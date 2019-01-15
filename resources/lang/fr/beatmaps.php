@@ -144,13 +144,18 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Supprimer',
+        'delete_own_confirm' => 'Êtes-vous sûr ? La beatmap sera supprimé et vous serez redirigé vers votre profil.',
+        'delete_other_confirm' => 'Êtes-vous sûr ? La beatmap sera supprimée et vous serez redirigé vers le profil de l\'utilisateur.',
         'disqualification_prompt' => 'Raison de la disqualification?',
         'disqualified_at' => 'disqualifiée :time_ago (:reason).',
         'disqualified_no_reason' => 'aucune raison spécifiée',
         'disqualify' => 'Disqualifier',
         'incorrect_state' => 'Erreur lors de l\'action, merci de réessayer.',
+        'love' => 'Aimer',
+        'love_confirm' => 'Vous aimez cette beatmap ?',
         'nominate' => 'Nominer',
-        'nominate_confirm' => 'Nominer cette beatmap?',
+        'nominate_confirm' => 'Nominer cette beatmap ?',
         'nominated_by' => 'nominée par :users',
         'qualified' => 'La map sera classée le :date environ, si aucun problème n\'est trouvé.',
         'qualified_soon' => 'Beatmap bientôt classée, si aucun problème n\'est trouvé.',
@@ -166,20 +171,22 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Êtes-vous sûr ? Poster un nouveau problème va réinitialiser le processus de nomination.',
+            'disqualify' => '',
         ],
     ],
 
     'listing' => [
         'search' => [
             'prompt' => 'Tapez des mots-clés...',
+            'login_required' => 'Connectez-vous pour rechercher.',
             'options' => 'Plus de critères de recherche',
-            'supporter_filter' => 'Le filtrage par :filters requiert un tag supporter actif',
+            'supporter_filter' => 'Le filtrage par :filters requiert un tag supporter osu! actif',
             'not-found' => 'Aucun résultat',
             'not-found-quote' => '... non, rien trouvé.',
             'filters' => [
                 'general' => 'Général',
                 'mode' => 'Mode',
-                'status' => 'Statut du Classement',
+                'status' => 'Catégories',
                 'genre' => 'Genre',
                 'language' => 'Langue',
                 'extra' => 'supplément',
@@ -202,10 +209,6 @@ return [
                 'link_text' => 'tag supporter',
             ],
         ],
-        'mode' => 'Mode',
-        'status' => 'Classification',
-        'source' => 'de :source',
-        'load-more' => 'Charger plus',
     ],
     'general' => [
         'recommended' => 'Difficulté recommandée',
@@ -225,7 +228,7 @@ return [
         'qualified' => 'Qualifiée',
         'loved' => 'Loved',
         'faves' => 'Favoris',
-        'pending' => 'En attente',
+        'pending' => 'En attente & WIP',
         'graveyard' => 'Cimetière',
         'my-maps' => 'Mes maps',
     ],

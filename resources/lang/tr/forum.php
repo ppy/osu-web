@@ -19,16 +19,16 @@
  */
 
 return [
-    'pinned_topics' => 'Sabitlenmiş konular',
+    'pinned_topics' => 'Sabitlenmiş Konular',
     'slogan' => "yalnız başına oynamak tehlikeli.",
     'subforums' => 'Alt Başlıklar',
-    'title' => 'osu!topluluğu',
+    'title' => 'osu! forumları',
 
     'covers' => [
         'create' => [
             '_' => 'Kapak fotoğrafı ekle',
             'button' => 'Resim yükle',
-            'info' => 'Kapak boyutları :dimensions kadar olmalıdır. Görselleri yüklemek için buraya da sürükleyebilirsin.',
+            'info' => 'Kapak boyutları :dimensions olmalıdır. Görselleri yüklemek için buraya da sürükleyebilirsin.',
         ],
 
         'destroy' => [
@@ -44,6 +44,20 @@ return [
     'forums' => [
         'topics' => [
             'empty' => 'Başlık yok!',
+        ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
         ],
     ],
 
@@ -75,7 +89,9 @@ return [
         'new_topic_login' => 'Yeni konu başlatmak için giriş yapın',
         'post_reply' => 'Gönder',
         'reply_box_placeholder' => 'Yanıtlamak için buraya yazın',
+        'reply_title_prefix' => 'Ynt',
         'started_by' => ':user tarafından',
+        'started_by_verbose' => ':user tarafından başlatıldı',
 
         'create' => [
             'preview' => 'Ön izleme ',
@@ -83,6 +99,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Yaz',
             'submit' => 'Gönder',
+
+            'necropost' => [
+                'default' => 'Bu konu bir süredir inaktif. Sadece mantıklı bir nedeniniz varsa buraya gönderi yapın.',
+
+                'new_topic' => [
+                    '_' => "Bu konu bir süredir inaktif. Eğer buraya gönderi yapmak için mantıklı bir nedeniniz yoksa, :create lütfen.",
+                    'create' => 'yeni bir konu aç',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Gönderi içeriğini buraya yaz',
@@ -108,11 +133,16 @@ return [
         'index' => [
             'title' => 'Forum Abonelikleri',
             'title_compact' => 'forum abonelikleri',
-            'title_main' => 'Forum <strong>Abonelikler</strong>',
+            'title_main' => 'Forum <strong>Abonelikleri</strong>',
 
             'box' => [
                 'total' => 'Abone olunan konular',
                 'unread' => 'Yeni yorumlar içeren konular',
+            ],
+
+            'info' => [
+                'total' => ':total konularına abone oldunuz.',
+                'unread' => 'Abone olduğunuz konulara :unread tane okunmamış yanıt bulunmaktadır.',
             ],
         ],
 
@@ -258,7 +288,8 @@ return [
             'to_not_watching' => 'Kayıtlı değil',
             'to_watching' => 'Kaydet',
             'to_watching_mail' => 'Bildirimlerle beraber kaydet',
-            'mail_disable' => 'Bildirimleri devre dışı bırak',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

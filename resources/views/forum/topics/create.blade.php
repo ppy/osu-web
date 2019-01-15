@@ -24,19 +24,9 @@
         "url" => route("forum.topics.store", ['forum_id' => $forum]),
         'data-remote' => true,
     ]) !!}
-        <input type="hidden" name="cover_id" value="{{ Request::old("cover_id") }}" class="js-forum-cover--input">
+        <input type="hidden" name="cover_id" class="js-forum-cover--input">
 
         @include('forum.topics._header')
-
-        <div class="js-post-preview--box hidden">
-            @include('forum.topics._post', [
-                'post' => $post,
-                'options' => [
-                    'signature' => $forum->enable_sigs,
-                    'contentExtraClasses' => 'js-post-preview--body',
-                ],
-            ])
-        </div>
 
         <div id="topic-post-form" class="osu-layout__row">
             <div class="forum-post">
@@ -50,6 +40,15 @@
                 @include("forum.topics._post_info", ["user" => Auth::user(), "options" => ["large" => true]])
 
                 <div class="forum-post__body">
+                    <div class="forum-post__preview js-post-preview--box hidden">
+                        <div class="forum-post__content forum-post__content--header">
+                            {{ trans('forum.topics.create.preview') }}
+                        </div>
+                        <div class="forum-post__content forum-post__content--main">
+                            <div class="forum-post-content js-post-preview--body">
+                            </div>
+                        </div>
+                    </div>
                     <div class="forum-post__content">
                         @include('forum.posts._form_body', ['postBody' => [
                             'content' => $post->post_text,
@@ -60,7 +59,7 @@
                     </div>
 
                     <div class="forum-post__content forum-post__content--poll-create">
-                        @include('forum.topics._create_poll')
+                        @include('forum.topics._create_poll', ['edit' => false])
                     </div>
 
                     <div class="forum-post__content forum-post__content--edit-bar forum-post__content--edit-bar-create">

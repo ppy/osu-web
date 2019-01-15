@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Sorted by:',
-            'created_at' => 'creation time',
-            'timeline' => 'timeline',
-            'updated_at' => 'last update',
+            'created_at' => 'Creation time',
+            'timeline' => 'Timeline',
+            'updated_at' => 'Last update',
         ],
 
         'stats' => [
@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Delete',
+        'delete_own_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to your profile.',
+        'delete_other_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to the user\'s profile.',
         'disqualification_prompt' => 'Reason for disqualification?',
         'disqualified_at' => 'Disqualified :time_ago (:reason).',
         'disqualified_no_reason' => 'no reason specified',
@@ -167,7 +170,8 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Are you sure? Posting a new problem will reset nomination process.',
+            'nomination_reset' => 'Are you sure? Posting a new problem will reset the nomination process.',
+            'disqualify' => 'Are you sure? This will remove the beatmap from qualifying and reset the nomination process.',
         ],
     ],
 
@@ -190,15 +194,15 @@ return [
                 'played' => 'Played',
             ],
             'sorting' => [
-                'title' => 'title',
-                'artist' => 'artist',
-                'difficulty' => 'difficulty',
-                'updated' => 'updated',
-                'ranked' => 'ranked',
-                'rating' => 'rating',
-                'plays' => 'plays',
-                'relevance' => 'relevance',
-                'nominations' => 'nominations',
+                'title' => 'Title',
+                'artist' => 'Artist',
+                'difficulty' => 'Difficulty',
+                'updated' => 'Updated',
+                'ranked' => 'Ranked',
+                'rating' => 'Rating',
+                'plays' => 'Plays',
+                'relevance' => 'Relevance',
+                'nominations' => 'Nominations',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtering by :filters requires an active :link',

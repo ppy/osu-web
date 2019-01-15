@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Yanlış zorluk belirtildi.',
         'invalid_beatmapset_id' => 'Yanlış beatmap belirtildi.',
         'locked' => 'Tartışma kilitli.',
-        'mapper_note_wrong_user' => 'Sadece beatmap sahibi mapper notu düşebilir.',
 
         'hype' => [
             'guest' => 'Destek oyu vermek için giriş yapmalısın.',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => 'Belirtilen zaman damgası beatmap\'in uzunluğunu aşmakta.',
             'negative' => "Zaman damgası negatif olamaz.",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => 'Silinmiş yorumlara cevap verilemez.',
     ],
 
     'forum' => [
@@ -69,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Yinelenen seçenekler yasaktır.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Kullanıcı başına seçenek sayısı mevcut seçenek sayısını geçemez.',
             'minimum_one_selection' => 'Kullanıcı başına en az bir seçenek gereklidir.',
             'minimum_two_options' => 'En az iki seçenek gereklidir.',
@@ -111,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Bu zaten senin kullanıcı adın, şapşal!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

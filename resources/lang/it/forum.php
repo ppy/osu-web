@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Topic Fissati',
     'slogan' => "è pericoloso giocare da soli.",
     'subforums' => 'Subforum',
-    'title' => 'comunità osu!',
+    'title' => 'forum osu!',
 
     'covers' => [
         'create' => [
@@ -44,6 +44,20 @@ return [
     'forums' => [
         'topics' => [
             'empty' => 'Nessun topic!',
+        ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
         ],
     ],
 
@@ -75,7 +89,9 @@ return [
         'new_topic_login' => 'Effettua l\'accesso per postare un nuovo topic',
         'post_reply' => 'Invia',
         'reply_box_placeholder' => 'Scrivi qui per rispondere',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'da :user',
+        'started_by_verbose' => 'postato da :user',
 
         'create' => [
             'preview' => 'Anteprima',
@@ -83,6 +99,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Scrivi',
             'submit' => 'Invia',
+
+            'necropost' => [
+                'default' => 'Questa discussione è inattivo da un bel po\' di tempo. Posta solo se hai una motivazione in particolare.',
+
+                'new_topic' => [
+                    '_' => "Questa discussione è inattivo da un bel po' di tempo. Se non hai un motivo in particolare per postare, per favore :create uno.",
+                    'create' => 'crea una nuova discussione',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Scrivi il contenuto del post qui',
@@ -113,6 +138,11 @@ return [
             'box' => [
                 'total' => 'Topic a cui sei iscritto',
                 'unread' => 'Topic con nuove risposte',
+            ],
+
+            'info' => [
+                'total' => 'Sei iscritto a :total topic.',
+                'unread' => 'Hai :unread risposte non lette nei topic a cui sei iscritto.',
             ],
         ],
 
@@ -258,7 +288,8 @@ return [
             'to_not_watching' => 'Non preferito',
             'to_watching' => 'Preferito',
             'to_watching_mail' => 'Preferito con notifica',
-            'mail_disable' => 'Disabilita notifiche',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

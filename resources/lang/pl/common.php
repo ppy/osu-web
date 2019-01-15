@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Na pewno?',
+    'confirmation_unsaved' => 'Niezapisane zmiany zostaną utracone. Czy na pewno chcesz kontynuować?',
     'saved' => 'Zapisane',
 
     'array_and' => [
@@ -29,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => 'Powrót na górę',
+        'back_to_previous' => 'Powrót do poprzedniej pozycji',
         'cancel' => 'Anuluj',
         'change' => 'zmień',
         'click_to_copy' => 'kliknij, aby skopiować',
         'click_to_copy_copied' => 'skopiowano do schowka!',
         'delete' => 'Usuń',
+        'edit' => 'Edytuj',
         'hide' => 'ukryj',
         'permalink' => 'odnośnik bezpośredni',
         'permalink_copied' => 'odnośnik skopiowany',
@@ -42,6 +46,7 @@ return [
         'reply_reopen' => 'Odpowiedz i otwórz ponownie',
         'reply_resolve' => 'Odpowiedz i rozwiąż',
         'reset' => 'Zresetuj',
+        'restore' => 'Przywróć',
         'save' => 'Zapisz',
         'saving' => 'Zapisywanie...',
         'search' => 'Szukaj',
@@ -58,9 +63,17 @@ return [
         'hours' => ':count godzina|:count godziny|:count godzin',
         'item' => ':count sztuka|:count sztuki|:count sztuk',
         'minute_short_unit' => 'min|min|min',
+        'minutes' => '',
         'months' => ':count miesiąc|:count miesiące|:count miesięcy',
         'second_short_unit' => 's|s|s',
         'years' => ':count rok|:count lata|:count lat',
+    ],
+
+    'countdown' => [
+        'days' => 'dni',
+        'hours' => 'godzin',
+        'minutes' => 'minut',
+        'seconds' => 'sekund',
     ],
 
     'datetime' => [

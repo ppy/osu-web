@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => 'Yksityisyys',
         'friends_only' => 'estä yksityisviestit henkilöiltä jotka eivät ole kaverilistallasi',
+        'hide_online' => 'piilota online-tilasi',
+    ],
+
+    'security' => [
+        'current_session' => 'nykyinen',
+        'end_session' => 'Sulje istunto',
+        'end_session_confirmation' => 'Suljetaanko istuntosi kyseisellä laitteella?',
+        'last_active' => 'Viimeksi aktiivisena',
+        'title' => 'Turvallisuus',
+        'web_sessions' => 'aktiiviset istunnot',
     ],
 ];

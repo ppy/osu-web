@@ -64,9 +64,9 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => '',
-            'generalAll' => '',
-            'timeline' => '',
+            'general' => 'Skriv här för att posta till General (:version)',
+            'generalAll' => 'Skriv här för att posta till General (Alla svårighetsgrader)',
+            'timeline' => 'Skriv här för att posta till Tidslinjen (:version)',
         ],
 
         'message_type' => [
@@ -144,11 +144,16 @@ return [
     ],
 
     'nominations' => [
+        'delete' => '',
+        'delete_own_confirm' => '',
+        'delete_other_confirm' => '',
         'disqualification_prompt' => 'Anledning för diskvalificering?',
         'disqualified_at' => 'Diskvalificerad :time_ago (:reason).',
         'disqualified_no_reason' => 'inget anledning specificerad',
         'disqualify' => 'Diskvalificera',
         'incorrect_state' => 'Ett fel uppstod, pröva att uppdatera sidan.',
+        'love' => 'Kärlek',
+        'love_confirm' => 'Älskar du denna beatmap?',
         'nominate' => 'Nominera',
         'nominate_confirm' => 'Nominera denna beatmap?',
         'nominated_by' => 'nominerad av :users',
@@ -166,20 +171,22 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Är du säker? Lägga upp ett nytt problem kommer återställa nomineringar.',
+            'disqualify' => '',
         ],
     ],
 
     'listing' => [
         'search' => [
             'prompt' => 'skriv in nyckelord...',
+            'login_required' => 'Logga in för att söka.',
             'options' => 'Mer Sök Alternativ',
-            'supporter_filter' => '',
+            'supporter_filter' => 'Filtrering av :filters kräver en aktiv osu!supporter tagg',
             'not-found' => 'inga resultat',
             'not-found-quote' => '... nope, ingenting hittades.',
             'filters' => [
                 'general' => 'Allmänt',
                 'mode' => 'Läge',
-                'status' => 'Rank Status',
+                'status' => 'Kategorier',
                 'genre' => 'Genre',
                 'language' => 'Språk',
                 'extra' => 'extra',
@@ -198,14 +205,10 @@ return [
                 'nominations' => 'nomineringar',
             ],
             'supporter_filter_quote' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Filtrering av :filters kräver en aktiv :link',
+                'link_text' => 'osu!supporter tagg',
             ],
         ],
-        'mode' => 'Läge',
-        'status' => 'Rank Status',
-        'source' => 'från :source',
-        'load-more' => 'Ladda mer...',
     ],
     'general' => [
         'recommended' => 'Rekommenderad svårighetsgrad',
@@ -225,7 +228,7 @@ return [
         'qualified' => 'Kvalificerad',
         'loved' => 'Älskad',
         'faves' => 'Favoriter',
-        'pending' => 'Avvaktar',
+        'pending' => 'Pågående & WIP',
         'graveyard' => 'Kyrkogård',
         'my-maps' => 'Mina Maps',
     ],

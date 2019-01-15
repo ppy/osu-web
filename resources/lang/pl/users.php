@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Historia modowania użytkownika :user",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Ostatnio rozpoczęte dyskusje',
@@ -77,7 +78,7 @@ return [
         'forgot' => 'Nie pamiętasz hasła?',
         'beta' => [
             'main' => 'Beta jest obecnie dostępna tylko dla wybranych użytkowników.',
-            'small' => '(donatorzy otrzymają ją wkrótce)',
+            'small' => '(donatorzy osu! otrzymają ją wkrótce)',
         ],
 
         'here' => 'tutaj', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,9 +98,31 @@ return [
         'error' => 'Musisz się zalogować, aby to zrobić.',
     ],
     'logout_confirm' => 'Na pewno chcesz się wylogować? :(',
+    'report' => [
+        'button_text' => 'zgłoś',
+        'comments' => 'Dodatkowe informacje',
+        'placeholder' => 'Podaj wszystkie informacje, które mogą okazać się przydatne.',
+        'reason' => 'Powód',
+        'thanks' => 'Dziękujemy za zgłoszenie!',
+        'title' => 'Zgłosić gracza :username?',
+
+        'actions' => [
+            'send' => 'Wyślij zgłoszenie',
+            'cancel' => 'Anuluj',
+        ],
+
+        'options' => [
+            'cheating' => 'Oszukiwanie',
+            'insults' => 'Obrażanie mnie lub innych',
+            'spam' => 'Spamowanie',
+            'unwanted_content' => 'Zamieszczanie nieodpowiednich treści',
+            'nonsense' => 'Pisanie bez sensu',
+            'other' => 'Inny (napisz poniżej)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Twoje konto zostało zablokowane!',
-        'message' => 'Podczas blokady konta, niemożliwa będzie interakcja z innymi użytkownikami, a twoje wyniki będą widoczne tylko dla ciebie. Jest to zazwyczaj zautomatyzowany proces i może być odwrócony w ciągu 24 godzin. Jeżeli chcesz odwołać się od blokady, skontaktuj się z <a href="mailto:accounts@ppy.sh">pomocą techniczną</a>.',
+        'message' => 'Podczas blokady konta interakcja z innymi użytkownikami nie będzie możliwa, a twoje wyniki będą widoczne tylko dla ciebie. Zazwyczaj nałożenie blokady jest rezultatem zautomatyzowanego procesu, a jej usunięcie powinno nastąpić w ciągu 24 godzin. Jeżeli chcesz odwołać się od blokady, skontaktuj się z <a href="mailto:accounts@ppy.sh">pomocą techniczną</a>.',
     ],
     'show' => [
         'age' => 'Ma :age lat',
@@ -110,8 +133,6 @@ return [
         'joined_at' => 'Na osu! od :date',
         'lastvisit' => 'Ostatnio online :date',
         'missingtext' => 'Wprowadzona nazwa użytkownika jest błędna lub użytkownik został zablokowany',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age i pochodzi z :country',
         'origin_country' => 'Pochodzi z :country',
         'page_description' => 'osu! - Wszystko co chcesz wiedzieć o :username!',
         'previous_usernames' => 'poprzednie nazwy użytkownika',
@@ -128,7 +149,7 @@ return [
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
                     'restriction_info' => "Aby odblokować tę funkcję, potrzebujesz <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>statusu donatora</a>.",
-                    'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2000x700',
+                    'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2800x620',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
                 ],
@@ -145,27 +166,29 @@ return [
             'unranked' => 'Brak nowych wyników',
 
             'achievements' => [
-                'title' => 'Osiągnięcia',
                 'achieved-on' => 'Odblokowane dnia :date',
+                'locked' => '',
+                'title' => 'Osiągnięcia',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Jeszcze nie ma...',
                 'title' => 'Beatmapy',
 
                 'favourite' => [
-                    'title' => 'Ulubione beatmapy (:count)',
+                    'title' => 'Ulubione beatmapy',
                 ],
                 'graveyard' => [
-                    'title' => 'Porzucone beatmapy (:count)',
+                    'title' => 'Porzucone beatmapy',
                 ],
                 'loved' => [
-                    'title' => 'Ulubione społeczności (:count)',
+                    'title' => 'Ulubione społeczności',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Rankingowe i zatwierdzone beatmapy (:count)',
+                    'title' => 'Rankingowe i zatwierdzone beatmapy',
                 ],
                 'unranked' => [
-                    'title' => 'Oczekujące beatmapy (:count)',
+                    'title' => 'Oczekujące beatmapy',
                 ],
             ],
             'historical' => [
@@ -174,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Wykres zagrań',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'liczba zagrań',
@@ -185,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Wykres obejrzanych powtórek',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -239,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Ten użytkownik nie uzyskał jeszcze żadnych medali. ;_;",
+                'recent' => '',
                 'title' => 'Medale',
             ],
             'recent_activity' => [
                 'title' => 'Ostatnie',
             ],
             'top_ranks' => [
+                'download_replay' => 'Pobierz powtórkę',
                 'empty' => 'Brak wyników. :(',
                 'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp.',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'Wyniki',
-                'weighted_pp' => 'ważone: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Najlepsze wyniki',
@@ -280,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Zainteresowania',
@@ -309,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Pozycja w rankingu krajowym dla :mode',
+            'country_simple' => '',
             'global' => 'Pozycja w rankingu globalnym dla :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precyzja',
             'level' => 'Poziom :level',
+            'level_progress' => '',
             'maximum_combo' => 'Maksymalne combo',
+            'medals' => '',
             'play_count' => 'Liczba zagrań',
             'play_time' => 'Łączny czas gry',
             'ranked_score' => 'Łączny rankingowy wynik',

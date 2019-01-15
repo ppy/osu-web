@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ValidationException;
 use App\Libraries\Search\PostSearch;
 use App\Libraries\Search\PostSearchRequestParams;
 use App\Libraries\UserRegistration;
@@ -29,10 +30,7 @@ use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\User;
 use App\Models\UserNotFound;
-use App\Models\UserReport;
 use Auth;
-use Illuminate\Pagination\LengthAwarePaginator;
-use PDOException;
 use Request;
 
 class UsersController extends Controller
@@ -45,9 +43,14 @@ class UsersController extends Controller
         $this->middleware('auth', ['only' => [
             'checkUsernameAvailability',
             'checkUsernameExists',
+            'report',
         ]]);
 
         $this->middleware('throttle:10,60', ['only' => ['store']]);
+
+        if (is_api_request()) {
+            $this->middleware('require-scopes:identify', ['only' => ['me']]);
+        }
 
         $this->middleware(function ($request, $next) {
             $this->parsePaginationParams();
@@ -62,6 +65,8 @@ class UsersController extends Controller
 
     public function card($id)
     {
+        // FIXME: if there's a username with the id of a restricted user,
+        // it'll show the card of the non-restricted user.
         $user = User::lookup($id);
 
         // render usercard as popup (i.e. pretty fade-in elements on load)
@@ -79,10 +84,10 @@ class UsersController extends Controller
     {
         $username = Request::input('username');
 
-        $errors = Auth::user()->validateUsernameChangeTo($username);
+        $errors = Auth::user()->validateChangeUsername($username);
 
-        $available = count($errors) === 0;
-        $message = $available ? "Username '".e($username)."' is available!" : implode(' ', $errors);
+        $available = $errors->isEmpty();
+        $message = $available ? "Username '".e($username)."' is available!" : $errors->toSentence();
         $cost = $available ? Auth::user()->usernameChangeCost() : 0;
 
         return [
@@ -108,6 +113,10 @@ class UsersController extends Controller
 
     public function store()
     {
+        if (!config('osu.user.allow_registration')) {
+            return abort(403, 'User registration is currently disabled');
+        }
+
         $ip = Request::ip();
 
         if (IpBan::where('ip', '=', $ip)->exists()) {
@@ -127,9 +136,11 @@ class UsersController extends Controller
 
         $registration = new UserRegistration($params);
 
-        if ($registration->save()) {
+        try {
+            $registration->save();
+
             return $registration->user()->fresh()->defaultJson();
-        } else {
+        } catch (ValidationException $e) {
             return response(['form_error' => [
                 'user' => $registration->user()->validationErrors()->all(),
             ]], 422);
@@ -149,19 +160,21 @@ class UsersController extends Controller
 
         $page = $mapping[$type] ?? abort(404);
 
-        return $this->getExtra($this->user, $page, [], $this->perPage, $this->offset);
+        // Override per page restriction in parsePaginationParams to allow infinite paging
+        $perPage = $this->sanitizedLimitParam();
+
+        return $this->getExtra($this->user, $page, [], $perPage, $this->offset);
     }
 
     public function posts($id)
     {
-        $user = User::lookup($id);
+        $user = User::lookup($id, 'id', true);
         if ($user === null || !priv_check('UserShow', $user)->can()) {
             abort(404);
         }
 
         $search = (new PostSearch(new PostSearchRequestParams(request(), $user)))
-            ->size(50)
-            ->page(LengthAwarePaginator::resolveCurrentPage());
+            ->size(50);
 
         return view('users.posts', compact('search', 'user'));
     }
@@ -178,26 +191,18 @@ class UsersController extends Controller
 
     public function report($id)
     {
-        $user = User::lookup($id);
+        $user = User::lookup($id, 'id', true);
         if ($user === null || !priv_check('UserShow', $user)->can()) {
             return response()->json([], 404);
         }
 
-        priv_check('UserReport', Auth::user())->ensureCan();
-
-        $report = Auth::user()->reportsMade()->make([
-            'user_id' => $user->getKey(),
-            'comments' => trim(request('comments')),
-            'reason' => trim(request('reason')),
-        ]);
-
         try {
-            $report->saveOrExplode();
-        } catch (PDOException $ex) {
-            // ignore duplicate reports;
-            if (!is_sql_unique_exception($ex)) {
-                throw $ex;
-            }
+            $user->reportBy(auth()->user(), [
+                'comments' => trim(request('comments')),
+                'reason' => trim(request('reason')),
+            ]);
+        } catch (ValidationException $e) {
+            return error_popup($e->getMessage());
         }
 
         return response(null, 204);
@@ -216,7 +221,7 @@ class UsersController extends Controller
         $perPage = $this->perPage;
 
         if ($type === 'firsts') {
-            // Override per page restriction in parsePageParams to allow infinite paging
+            // Override per page restriction in parsePaginationParams to allow infinite paging
             $perPage = $this->sanitizedLimitParam();
         }
 
@@ -263,11 +268,12 @@ class UsersController extends Controller
             'replays_watched_counts',
             'statistics.rank',
             'statistics.scoreRanks',
+            'support_level',
             'unranked_beatmapset_count',
             'user_achievements',
         ];
 
-        if (priv_check('UserSilenceShowExtendedInfo')->can()) {
+        if (priv_check('UserSilenceShowExtendedInfo')->can() && !is_api_request()) {
             $userIncludes[] = 'account_history.actor';
         }
 
@@ -339,7 +345,7 @@ class UsersController extends Controller
 
     private function parsePaginationParams()
     {
-        $this->user = User::lookup(Request::route('user'), 'id');
+        $this->user = User::lookup(Request::route('user'), 'id', true);
         if ($this->user === null || !priv_check('UserShow', $this->user)->can()) {
             abort(404);
         }
@@ -426,21 +432,21 @@ class UsersController extends Controller
             // Score
             case 'scoresBest':
                 $transformer = 'Score';
-                $includes = ['beatmap', 'beatmapset', 'weight'];
-                $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
+                $includes = ['beatmap', 'beatmapset', 'weight', 'user'];
+                $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ['beatmap', 'beatmap.beatmapset', 'user']);
                 break;
             case 'scoresFirsts':
                 $transformer = 'Score';
-                $includes = ['beatmap', 'beatmapset'];
+                $includes = ['beatmap', 'beatmapset', 'user'];
                 $query = $user->scoresFirst($options['mode'], true)
                     ->orderBy('score_id', 'desc')
-                    ->with('beatmap', 'beatmap.beatmapset');
+                    ->with('beatmap', 'beatmap.beatmapset', 'user');
                 break;
             case 'scoresRecent':
                 $transformer = 'Score';
-                $includes = ['beatmap', 'beatmapset', 'best'];
+                $includes = ['beatmap', 'beatmapset', 'best', 'user'];
                 $query = $user->scores($options['mode'], true)
-                    ->with('beatmap', 'beatmap.beatmapset', 'best');
+                    ->with('beatmap', 'beatmap.beatmapset', 'best', 'user');
                 break;
         }
 

@@ -1,28 +1,31 @@
+preserve_hierarchy: true
 files:
   - source: /resources/lang/en/**/*.php
     translation: /resources/lang/%locale%/**/%original_file_name%
     languages_mapping:
       locale:
-        bg-BG: bg
-        zh-CN: zh
-        zh-TW: zh-tw
-        cs-CZ: cs
+        bg: bg
+        cs: cs
         da: da
-        nl: nl
-        fi-FI: fi
+        de: de
+        el: el
+        es-ES: es
+        fi: fi
         fr: fr
+        hu: hu
         id: id
         it: it
         ja: ja
         ko: ko
+        nl: nl
         pl: pl
+        pt-PT: pt
         pt-BR: pt-br
+        ro-RO: ro
         ru: ru
         sv-SE: sv
-        vi: vi
-        es-ES: es
-        de: de
         th: th
-        el: el
-        hu: hu
         tr: tr
+        vi: vi
+        zh-CN: zh
+        zh-TW: zh-tw

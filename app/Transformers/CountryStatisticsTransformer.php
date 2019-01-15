@@ -40,6 +40,8 @@ class CountryStatisticsTransformer extends Fractal\TransformerAbstract
 
     public function includeCountry(CountryStatistics $stat)
     {
-        return $this->item($stat->country, new CountryTransformer);
+        return $stat->country === null
+            ? $this->primitive(null)
+            : $this->item($stat->country, new CountryTransformer);
     }
 }

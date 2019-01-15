@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Byla zadaná neplatná obtížnost.',
         'invalid_beatmapset_id' => 'Byla zadaná neplatná beatmapa.',
         'locked' => 'Diskuze je uzamčená.',
-        'mapper_note_wrong_user' => 'Pouze autor beatmapy může přidávat maperské poznámky.',
 
         'hype' => [
             'guest' => 'Musíš být přihlášek k nadšení.',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => 'Upřesněná sekvence času přesahuje délku beatmapy.',
             'negative' => "Časová sekvence nemůže být záporná.",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => 'Odpovídat na smazaný komentář není povoleno.',
     ],
 
     'forum' => [
@@ -69,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Duplikované možnosti nejsou povoleny.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Možnost jednoho uživatele by neměla přesáhnout hodnotu povolených možností.',
             'minimum_one_selection' => 'Minimálně jedna možnost na uživatele je vyžadována.',
             'minimum_two_options' => 'Jsou vyžadovány alespoň dvě možnosti.',
@@ -111,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Tohle je tvoje uživatelské jméno, hlupáku!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

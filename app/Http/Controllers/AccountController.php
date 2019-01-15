@@ -128,6 +128,7 @@ class AccountController extends Controller
             request(),
             'user',
             [
+                'hide_presence:bool',
                 'osu_playstyle:string[]',
                 'playmode:string',
                 'pm_friends_only:bool',
@@ -189,9 +190,13 @@ class AccountController extends Controller
 
         priv_check('UserPageEdit', $user)->ensureCan();
 
-        $user = $user->updatePage(Request::input('body'));
+        try {
+            $user = $user->updatePage(Request::input('body'));
 
-        return ['html' => $user->userPage->bodyHTML];
+            return ['html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']])];
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
+        }
     }
 
     public function updatePassword()

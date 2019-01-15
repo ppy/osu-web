@@ -22,8 +22,8 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => 'Rakastatko osu!:a?<br/>
-                                Tue osu!:n kehittäjää :D',
+            'big_description' => 'Rakastatko osua!?<br/>
+                                Tue osun kehittämistä! :D',
             'small_description' => '',
             'support_button' => 'Haluan tukea osu!:a',
         ],
@@ -76,7 +76,7 @@ return [
             ],
 
             'early_access' => [
-                'title' => 'Ennakkojulkaisu',
+                'title' => 'Ennakkojulkaisut',
                 'description' => 'Pääsy uusimpiin versioihin, joissa voit kokeilla uusia ominaisuuksia ennen päivitysten julkaisua!',
             ],
 
@@ -117,7 +117,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Lajitteluasetuksia',
-                'description' => 'Näet beatmapin maa-, ystävä- ja modikohtaiset sijoitukset pelissä.',
+                'description' => 'Näet beatmapin maa-, kaveri- ja modikohtaiset sijoitukset pelissä.',
             ],
 
             'feel_special' => [
@@ -133,7 +133,7 @@ return [
 
         'convinced' => [
             'title' => 'Vakuutuin! :D',
-            'support' => 'tue osu!:a',
+            'support' => 'tue osua!',
             'gift' => 'tai lahjoita Tukija toiselle pelaajalle',
             'instructions' => 'klikkaa sydäntä jatkaaksesi osu!kauppaan',
         ],

@@ -84,5 +84,15 @@ return [
     'privacy' => [
         'title' => 'Απόρρητο',
         'friends_only' => 'Αποκλεισμός των ιδιωτικών μηνυμάτων από άτομα που δεν βρίσκονται στη λίστα φίλων σας',
+        'hide_online' => '',
+    ],
+
+    'security' => [
+        'current_session' => '',
+        'end_session' => '',
+        'end_session_confirmation' => '',
+        'last_active' => '',
+        'title' => '',
+        'web_sessions' => '',
     ],
 ];

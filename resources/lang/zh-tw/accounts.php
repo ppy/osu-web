@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => '隱私政策',
         'friends_only' => '過濾來自好友以外的訊息',
+        'hide_online' => '隱藏在線狀態',
+    ],
+
+    'security' => [
+        'current_session' => '目前',
+        'end_session' => '終止會話',
+        'end_session_confirmation' => '你確定要立刻結束該設備上的會話嗎？',
+        'last_active' => '上次使用：',
+        'title' => '安全',
+        'web_sessions' => '瀏覽器會話',
     ],
 ];

@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'Ale né, s tvým košíkem se vyskytly nějaké potíže!',
         'cart_problems_edit' => 'Pro editaci klikni sem.',
         'declined' => 'Tvá platba byla zrušena.',
+        'delayed_shipping' => 'V tuto chvíli jsme zahlceni objednávkami! Svou objednávku můžeš umístit, ale počítej prosím s **dalšími 1-2 týdny zpoždění** zatímco dokončíme už existující objednávky.',
         'old_cart' => 'Obsah tvého košíku se zdá být zastaralý a proto byl znovu načten, zkus to prosím znovu.',
         'pay' => 'Zaplatit přes PayPal',
+
+        'has_pending' => [
+            '_' => 'Máte nedokončené platby, klikněte na :link pro zobrazení.',
+            'link_text' => 'zde',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'Předchozí nákup nebyl dokončen.',
-            'line_2' => 'Pokračuj v platbě vybráním platební metody, nebo :link ke zrušení.',
-            'link_text' => 'klikni zde',
+            'line_2' => 'Pokračujte v platbě vybráním platební metody.',
         ],
-        'delayed_shipping' => 'V tuto chvíli jsme zahlceni objednávkami! Svou objednávku můžeš umístit, ale počítej prosím s **dalšími 1-2 týdny zpoždění** zatímco dokončíme už existující objednávky.',
     ],
 
     'discount' => 'ušetři :percent%',
+
+    'invoice' => [
+        'echeck_delay' => 'Jelikož vaše platba byla prováděna službou eCheck, prosím, dejte nám až 10 dní na to, aby platba úspěšně prošla přes PayPal!',
+        'status' => [
+            'processing' => [
+                'title' => 'Vaše platba nebyla ještě potvrzena!',
+                'line_1' => 'Pokud jste už zaplatil, možná stále čekáme na potvrzení vaší platby. Prosím, dejte nám pár minut a pak zkuste znovu načíst tuto stránku!',
+                'line_2' => [
+                    '_' => 'Pokud se vyskytl problém při placení, :link',
+                    'link_text' => 'klikněte zde pro pokračování v placení',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,11 @@ return [
     ],
 
     'order' => [
+        'paid_on' => 'Objednávka vystavena dne :date',
+
+        'invoice' => 'Zobrazit fakturu',
+        'no_orders' => 'Nejsou zde žádné objednávky k zobrazení.',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name pro :username (:duration)',
@@ -82,6 +106,15 @@ return [
             'paid' => 'Nemůžeš upravit svou objednávku, jelikož jsi za ni již zaplatil.',
             'processing' => 'Nemůžeš upravit svou objednávku, jelikož se již zpracovává.',
             'shipped' => 'Nemůžeš upravit svou objednávku, jelikož již byla odeslána.',
+        ],
+
+        'status' => [
+            'cancelled' => 'Zrušeno',
+            'checkout' => 'V přípravě',
+            'delivered' => 'Doručeno',
+            'paid' => 'Zaplaceno',
+            'processing' => 'Očekávající potvrzení',
+            'shipped' => 'Na cestě',
         ],
     ],
 
@@ -105,7 +138,7 @@ return [
     'supporter_tag' => [
         'gift' => 'darovat hráči',
         'require_login' => [
-            '_' => 'Pro obdržení supporter tagu se musíš :link!',
+            '_' => 'Pro obdržení štítku podporovatele se musíš :link!',
             'link_text' => 'přihlášený',
         ],
     ],

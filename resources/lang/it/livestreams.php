@@ -20,10 +20,12 @@
 
 return [
     'top-headers' => [
-        'headline' => 'Live Streams',
-        'description' => 'Data is fetched from twitch.tv every five minutes based on the directory listing. Feel free to start streaming and get yourself listed! For more information on how to get setup, please check out the wiki page on live streaming.',
+        'headline' => 'Livestream',
+        'description' => 'I dati sono reperiti da twitch.tv ogni 5 minuti basandosi sulla directory listing. Sentiti libero di andare in diretta e comparire sulla lista! Per maggiori informazioni su come fare, controlla la voce sul "live streaming" della wiki.',
+
+        'link' => '',
     ],
     'headers' => [
-        'regular' => 'Currently Streaming',
+        'regular' => 'In Diretta',
     ],
 ];

@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => '指定の難易度が無効です。',
         'invalid_beatmapset_id' => '指定の譜面が無効です。',
         'locked' => 'ディスカッションはロックされています。',
-        'mapper_note_wrong_user' => 'マッパーメモは譜面作者のみ投稿できます。',
 
         'hype' => [
             'guest' => 'Hypeするにはログインが必要です。',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => '指定されたタイムスタンプは譜面の長さの範囲に存在しません。',
             'negative' => "タイムスタンプは負の数が使えません。",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => '削除されたコメントに返信することはできません。',
     ],
 
     'forum' => [
@@ -69,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => '選択肢の重複があります。',
+            'grace_period_expired' => '',
             'invalid_max_options' => '選択数の上限に選択肢の数以上の数値は使用不可能です。',
             'minimum_one_selection' => '選択数は１が最低の数値です。',
             'minimum_two_options' => '選択肢は最低2つ必要です。',
@@ -111,5 +115,9 @@ return [
             ],
             'username_is_same' => '既に使用しているユーザーネームです！',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

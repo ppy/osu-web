@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Προσδιορίστηκε μη έγκυρη δυσκολία.',
         'invalid_beatmapset_id' => 'Προσδιορίστηκε μη έγκυρο beatmap.',
         'locked' => 'Η συζήτηση είναι κλειδωμένη.',
-        'mapper_note_wrong_user' => 'Μόνο ο δημιουργός του beatmap μπορεί να δημοσιεύσει τις σημειώσεις του mapper.',
 
         'hype' => [
             'guest' => 'Πρέπει να είστε συνδεδεμένοι για να κάνετε hype.',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => 'Το καθορισμένο timestamp είναι πέρα από τη διάρκεια του beatmap.',
             'negative' => "Η χρονική σήμανση δε μπορεί να είναι αρνητική.",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => '',
     ],
 
     'forum' => [
@@ -69,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Η επιλογή για διπλασιασμό δεν είναι επιτρεπτή.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Η επιλογή ανά χρήστη ίσως υπερβαίνει τον αριθμό των διαθέσιμων επιλογών.',
             'minimum_one_selection' => 'Το ελάχιστο που απαιτείται είναι μία επιλογή ανά χρήστη.',
             'minimum_two_options' => 'Χρειάζονται τουλάχιστον δύο επιλογές.',
@@ -111,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Αυτό είναι ήδη το όνομα χρήστη σου, χαζούλη!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

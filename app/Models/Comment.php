@@ -25,7 +25,7 @@ use Carbon\Carbon;
 
 class Comment extends Model
 {
-    use Validatable;
+    use Reportable, Validatable;
 
     const COMMENTABLES = [
         'beatmapset' => Beatmapset::class,
@@ -48,6 +48,11 @@ class Comment extends Model
     public static function isValidType($type)
     {
         return array_key_exists($type, static::COMMENTABLES);
+    }
+
+    public function scopeWithoutTrashed($query)
+    {
+        return $query->whereNull('deleted_at');
     }
 
     public function commentable()
@@ -75,6 +80,11 @@ class Comment extends Model
         return $this->hasMany(static::class, 'parent_id');
     }
 
+    public function votes()
+    {
+        return $this->hasMany(CommentVote::class);
+    }
+
     public function setCommentableTypeAttribute($value)
     {
         if (!static::isValidType($value)) {
@@ -98,11 +108,19 @@ class Comment extends Model
             $this->validationErrors()->add('message', 'too_long', ['limit' => static::MESSAGE_LIMIT]);
         }
 
-        if ($this->parent_id !== null && !$this->parent()->exists()) {
-            $this->validationErrors()->add('parent_id', 'invalid');
+        if ($this->isDirty('parent_id') && $this->parent_id !== null) {
+            if ($this->parent === null) {
+                $this->validationErrors()->add('parent_id', 'invalid');
+            } elseif ($this->parent->trashed()) {
+                $this->validationErrors()->add('parent_id', '.deleted_parent');
+            }
         }
 
-        if (!$this->allowEmptyCommentable && !$this->commentable()->exists()) {
+        if (!$this->allowEmptyCommentable && (
+            $this->commentable_type === null ||
+            $this->commentable_id === null ||
+            !$this->commentable()->exists()
+        )) {
             $this->validationErrors()->add('commentable', 'required');
         }
 
@@ -131,6 +149,14 @@ class Comment extends Model
                 $this->parent->increment('replies_count_cache');
             }
 
+            if ($this->isDirty('deleted_at')) {
+                if (isset($this->deleted_at)) {
+                    $this->votes_count_cache = 0;
+                } else {
+                    $this->votes_count_cache = $this->votes()->count();
+                }
+            }
+
             return parent::save($options);
         });
     }
@@ -140,7 +166,7 @@ class Comment extends Model
         return presence($this->disqus_user_data['name'] ?? null);
     }
 
-    public function isDeleted()
+    public function trashed()
     {
         return $this->deleted_at !== null;
     }
@@ -156,5 +182,13 @@ class Comment extends Model
     public function restore()
     {
         return $this->update(['deleted_at' => null]);
+    }
+
+    protected function newReportableExtraParams() : array
+    {
+        return [
+            'reason' => 'Spam', // TODO: probably want more options
+            'user_id' => $this->user_id,
+        ];
     }
 }

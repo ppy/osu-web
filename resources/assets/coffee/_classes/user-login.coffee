@@ -30,6 +30,7 @@ class @UserLogin
 
     $(document).on 'click', '.js-user-link', @showOnClick
     $(document).on 'click', '.js-login-required--click', @showToContinue
+    $(document).on 'ajax:before', '.js-login-required--click', -> currentUser.id?
 
     $(document).on 'ajax:error', @showOnError
     $(document).on 'turbolinks:load', @showOnLoad
@@ -77,7 +78,9 @@ class @UserLogin
   show: (target) =>
     @clickAfterLogin = target
 
-    Timeout.set 0, -> $('.js-user-login--menu')[0].click()
+    Timeout.set 0, ->
+      $(document).trigger 'gallery:close'
+      $('.js-user-login--menu')[0].click()
 
 
   showOnClick: (e) =>

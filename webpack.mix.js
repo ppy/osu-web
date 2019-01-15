@@ -16,11 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-const { mix } = require('laravel-mix');
+const mix = require('laravel-mix');
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const SentryPlugin = require('webpack-sentry-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 require('dotenv').config();
 
 // .js doesn't support globbing by itself, so we need to glob
@@ -30,6 +31,13 @@ let min = '', reactMin = 'development';
 if (mix.inProduction()) {
   min = '.min';
   reactMin = 'production.min'
+}
+
+const reactComponentSet = function (name) {
+    return [[
+      ...glob.sync(`resources/assets/coffee/react/${name}/*.coffee`),
+      `resources/assets/coffee/react/${name}.coffee`,
+    ], `js/react/${name}.js`];
 }
 
 const paymentSandbox = !(process.env.PAYMENT_SANDBOX == 0
@@ -65,7 +73,7 @@ const vendor = [
   path.join(node_root, `prop-types/prop-types${min}.js`),
   path.join(node_root, 'photoswipe/dist/photoswipe.js'),
   path.join(node_root, 'photoswipe/dist/photoswipe-ui-default.js'),
-  path.join(node_root, `d3/build/d3${min}.js`),
+  path.join(node_root, `d3/dist/d3${min}.js`),
   path.join(node_root, 'moment/moment.js'),
   path.join(node_root, 'js-cookie/src/js.cookie.js'),
   path.join(node_root, `imagesloaded/imagesloaded.pkgd${min}.js`),
@@ -96,7 +104,8 @@ let webpackConfig = {
       path.resolve(__dirname, 'resources/assets/lib'),
       path.resolve(__dirname, 'node_modules'),
     ],
-    extensions: ['*', '.js', '.coffee']
+    extensions: ['*', '.js', '.coffee', '.ts'],
+    plugins: [new TsconfigPathsPlugin()]
   },
   module: {
     rules: [
@@ -164,55 +173,22 @@ mix
 .js([
   'resources/assets/app.js'
 ], 'js/app.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/admin/contest/*.coffee'),
-  'resources/assets/coffee/react/admin/contest.coffee',
-], 'js/react/admin/contest.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/profile-page/*.coffee'),
-  'resources/assets/coffee/react/profile-page.coffee',
-], 'js/react/profile-page.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/beatmaps/*.coffee'),
-  'resources/assets/coffee/react/beatmaps.coffee',
-], 'js/react/beatmaps.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/status-page/*.coffee'),
-  'resources/assets/coffee/react/status-page.coffee',
-], 'js/react/status-page.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/beatmap-discussions/*.coffee'),
-  'resources/assets/coffee/react/beatmap-discussions.coffee',
-], 'js/react/beatmap-discussions.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/beatmapset-page/*.coffee'),
-  'resources/assets/coffee/react/beatmapset-page.coffee',
-], 'js/react/beatmapset-page.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/changelog-index/*.coffee'),
-  'resources/assets/coffee/react/changelog-index.coffee',
-], 'js/react/changelog-index.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/changelog-build/*.coffee'),
-  'resources/assets/coffee/react/changelog-build.coffee',
-], 'js/react/changelog-build.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/mp-history/*.coffee'),
-  'resources/assets/coffee/react/mp-history.coffee',
-], 'js/react/mp-history.js')
-.js([
-  'resources/assets/coffee/react/artist-page.coffee',
-], 'js/react/artist-page.js')
-.js([
-  // 'resources/assets/coffee/react/contest/voting/_base-entry-list.coffee',
-  ...glob.sync('resources/assets/coffee/react/contest/voting/*.coffee'),
-  'resources/assets/coffee/react/contest-voting.coffee',
-], 'js/react/contest-voting.js')
-.js([
-  ...glob.sync('resources/assets/coffee/react/contest/entry/*.coffee'),
-  'resources/assets/coffee/react/contest-entry.coffee',
-], 'js/react/contest-entry.js')
-.copy('node_modules/@fortawesome/fontawesome-free-webfonts/webfonts', 'public/vendor/fonts/font-awesome')
+.js(...reactComponentSet('artist-page'))
+.js(...reactComponentSet('beatmap-discussions'))
+.js(...reactComponentSet('beatmaps'))
+.js(...reactComponentSet('beatmapset-page'))
+.js(...reactComponentSet('changelog-build'))
+.js(...reactComponentSet('changelog-index'))
+.js(...reactComponentSet('comments-index'))
+.js(...reactComponentSet('comments-show'))
+.js(...reactComponentSet('mp-history'))
+.js(...reactComponentSet('profile-page'))
+.js(...reactComponentSet('status-page'))
+.js(...reactComponentSet('admin/contest'))
+.js(...reactComponentSet('contest-entry'))
+.js(...reactComponentSet('contest-voting'))
+.ts('resources/assets/lib/chat.ts', 'js/react/chat.js')
+.copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/timeago/locales', 'public/vendor/js/timeago-locales')
 .copy('node_modules/moment/locale', 'public/vendor/js/moment-locales')

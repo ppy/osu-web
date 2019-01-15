@@ -34,19 +34,46 @@ return [
         'kudosu_gain' => 'Dyskusja :discussion otrzymała wystarczająco dużo głosów na kudosu.',
         'kudosu_lost' => 'Dyskusja :discussion straciła głosy, a przyznane kudosu zostało odebrane.',
         'kudosu_recalculate' => 'Kudosu w dyskusji :discussion zostało przekalkulowane.',
+        'love' => ':user nadał(a) tej beatmapie status ulubionej społeczności',
         'nominate' => 'Nominowana przez :user.',
         'nomination_reset' => 'Nowy problem :discussion spowodował zresetowanie nominacji.',
-        'qualify' => 'Zakwalifikowana.',
+        'qualify' => 'Ta beatmapa osiągnęła wystarczającą liczbę nominacji i została zakwalifikowana.',
         'rank' => 'Rankingowa.',
     ],
 
     'index' => [
-        'title' => 'Historia zdarzeń zestawu beatmap',
+        'title' => 'Historia zdarzeń zestawów beatmap',
+
+        'form' => [
+            'period' => 'Okres',
+            'types' => 'Rodzaje',
+        ],
     ],
 
     'item' => [
         'content' => 'Zawartość',
         'discussion_deleted' => '[usunięte]',
         'type' => 'Typ',
+    ],
+
+    'type' => [
+        'approve' => 'Zatwierdzenie',
+        'discussion_delete' => 'Usunięcie dyskusji',
+        'discussion_post_delete' => 'Usunięcie odpowiedzi w dyskusji',
+        'discussion_post_restore' => 'Przywrócenie odpowiedzi w dyskusji',
+        'discussion_restore' => 'Przywrócenie dyskusji',
+        'disqualify' => 'Dyskwalifikacja',
+        'issue_reopen' => 'Ponowne otworzenie dyskusji',
+        'issue_resolve' => 'Zakończenie dyskusji',
+        'kudosu_allow' => 'Zezwolenie na otrzymanie kudosu',
+        'kudosu_deny' => 'Odrzucenie otrzymania kudosu',
+        'kudosu_gain' => 'Zdobycie kudosu',
+        'kudosu_lost' => 'Utrata kudosu',
+        'kudosu_recalculate' => 'Przekalkulowanie kudosu',
+        'love' => 'Nadanie statusu ulubionej społeczności',
+        'nominate' => 'Nominacja',
+        'nomination_reset' => 'Zresetowanie nominacji',
+        'qualify' => 'Kwalifikacja',
+        'rank' => 'Nadanie statusu rankingowego',
     ],
 ];

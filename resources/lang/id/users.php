@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Riwayat Modding :user",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Diskusi yang baru dimulai',
@@ -77,7 +78,7 @@ return [
         'forgot' => 'Lupa kata sandi?',
         'beta' => [
             'main' => 'Akses beta saat ini dibatasi untuk pengguna istimewa.',
-            'small' => '(Supporter akan segera masuk)',
+            'small' => '(osu!supporter akan segera masuk)',
         ],
 
         'here' => 'di sini', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +98,28 @@ return [
         'error' => 'Anda perlu masuk untuk melakukan ini.',
     ],
     'logout_confirm' => 'Apa Anda yakin akan keluar? :(',
+    'report' => [
+        'button_text' => 'laporkan',
+        'comments' => 'Komentar Tambahan',
+        'placeholder' => 'Mohon berikan informasi apa pun yang Anda yakini dapat bermanfaat.',
+        'reason' => 'Alasan',
+        'thanks' => 'Terima kasih atas laporan Anda!',
+        'title' => 'Laporkan :username?',
+
+        'actions' => [
+            'send' => 'Kirim Laporan',
+            'cancel' => 'Batal',
+        ],
+
+        'options' => [
+            'cheating' => 'Melakukan kecurangan',
+            'insults' => 'Menghina saya / orang lain',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Menautkan konten yang tidak pantas',
+            'nonsense' => 'Berperilaku buruk',
+            'other' => 'Lainnya (ketik di bawah)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Akun Anda telah dibatasi!',
         'message' => 'Selama dibatasi, Anda tidak dapat berinteraksi dengan pengguna lain dan skor hanya akan terlihat oleh Anda. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. Jika Anda ingin mengajukan banding atas pembatasan Anda, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
@@ -110,8 +133,6 @@ return [
         'joined_at' => 'Bergabung :date',
         'lastvisit' => 'Terakhir terlihat :date',
         'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna mungkin telah diblokir)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age dari :country',
         'origin_country' => 'Dari :country',
         'page_description' => 'osu! - Segala sesuatu yang ingin Anda ketahui tentang :username!',
         'previous_usernames' => 'dulu dikenal sebagai',
@@ -128,7 +149,7 @@ return [
                     'dropzone' => 'Letakkan di sini untuk mengunggah',
                     'dropzone_info' => 'Anda juga dapat meletakkan gambar Anda di sini untuk mengunggah.',
                     'restriction_info' => "Layanan untuk mengunggah gambar sampul hanya tersedia untuk <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> saja",
-                    'size_info' => 'Ukuran gambar sampul yang optimal selayaknya adalah 2000x700',
+                    'size_info' => 'Ukuran gambar sampul yang optimal selayaknya adalah 2800x620',
                     'too_large' => 'File yang diunggah terlalu besar.',
                     'unsupported_format' => 'Format tidak didukung.',
                 ],
@@ -145,27 +166,29 @@ return [
             'unranked' => 'Tidak ada rekam jejak permainan yang tercatat dalam beberapa waktu ke belakang',
 
             'achievements' => [
-                'title' => 'Pencapaian',
                 'achieved-on' => 'Dicapai pada :date',
+                'locked' => '',
+                'title' => 'Pencapaian',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Saat ini belum ada...',
                 'title' => 'Beatmap',
 
                 'favourite' => [
-                    'title' => 'Beatmap Favorit (:count)',
+                    'title' => 'Beatmap Favorit',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmap Graveyarded (:count)',
+                    'title' => 'Beatmap Graveyarded',
                 ],
                 'loved' => [
-                    'title' => 'Beatmap Favorit (:count)',
+                    'title' => 'Beatmap Loved',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmap Ranked & Approved (:count)',
+                    'title' => 'Beatmap Ranked & Approved',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmap Pending (:count)',
+                    'title' => 'Beatmap Pending',
                 ],
             ],
             'historical' => [
@@ -174,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Riwayat Main',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'jumlah dimainkan',
@@ -185,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Riwayat Jumlah Tayangan Ulang yang Ditonton',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -239,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Pengguna ini belum mendapatkannya. ;_;",
+                'recent' => '',
                 'title' => 'Medali',
             ],
             'recent_activity' => [
                 'title' => 'Terbaru',
             ],
             'top_ranks' => [
+                'download_replay' => 'Unduh Replay',
                 'empty' => 'Belum ada catatan performa yang mendapat peringkat pertama. :(',
                 'not_ranked' => 'Hanya beatmap Ranked yang dapat memberikan pp.',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'Peringkat',
-                'weighted_pp' => 'Terhitung: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Performa Terbaik',
@@ -280,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Minat',
@@ -309,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Peringkat negara untuk :mode',
+            'country_simple' => '',
             'global' => 'Peringkat global untuk :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Akurasi Hit',
             'level' => 'Level :level',
+            'level_progress' => '',
             'maximum_combo' => 'Kombo Maksimum',
+            'medals' => '',
             'play_count' => 'Jumlah Main',
             'play_time' => 'Telah Bermain Selama',
             'ranked_score' => 'Skor Ranked',

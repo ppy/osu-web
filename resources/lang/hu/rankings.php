@@ -20,17 +20,26 @@
 
 return [
     'header' => ':type Rangsor',
+
     'type' => [
         'performance' => 'Teljesítmény',
         'charts' => 'Reflektorfény',
         'score' => 'Pontszám',
         'country' => 'Ország',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Befejezés ideje',
+        'map_count' => 'Mapok száma',
+        'participants' => 'Résztvevők',
+        'start_date' => 'Kezdés ideje',
+    ],
+
     'stat' => [
         'accuracy' => 'Pontosság',
         'active_users' => 'Aktív Felhasználók',
         'country' => 'Ország',
-        'play_count' => 'Játszottságszám',
+        'play_count' => 'Játékszám',
         'performance' => 'Teljesítmény',
         'total_score' => 'Összpontszám',
         'ranked_score' => 'Rangsorolt Pontszám',

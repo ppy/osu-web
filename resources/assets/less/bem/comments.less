@@ -18,6 +18,7 @@
 
 .comments {
   @_top: comments;
+  @_header-spacing: 20px;
 
   display: flex;
   flex-direction: column;
@@ -28,10 +29,7 @@
     color: @changelog-fg;
   }
 
-  &__items {
-    .default-gutter();
-    padding-top: 40px;
-    padding-bottom: 40px;
+  &__content {
     background-color: #eee;
 
     .@{_top}--changelog & {
@@ -39,16 +37,30 @@
     }
   }
 
+  &__items {
+    padding-top: 10px;
+
+    &--empty {
+      .default-gutter();
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    &--loading {
+      opacity: 0.5;
+    }
+  }
+
   &__new {
     .default-gutter();
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: @_header-spacing;
+    padding-bottom: @_header-spacing;
   }
 
   &__title {
     .default-gutter();
-    padding-top: 20px;
-    padding-bottom: 10px;
+    padding-top: @_header-spacing;
+    padding-bottom: 0;
     font-size: @font-size--title-small-4;
     margin: 0;
     color: @pink-darker;

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,7 @@ namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\ForumUpdateNotifier;
+use App\Libraries\NewForumTopic;
 use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
 use App\Models\Forum\PollOption;
@@ -32,7 +33,6 @@ use App\Models\Forum\TopicPoll;
 use App\Models\Forum\TopicWatch;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
-use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request as HttpRequest;
 use Request;
@@ -58,22 +58,56 @@ class TopicsController extends Controller
 
     public function create()
     {
-        $forum = Forum::findOrFail(Request::input('forum_id'));
+        $forum = Forum::findOrFail(request('forum_id'));
 
         priv_check('ForumTopicStore', $forum)->ensureCan();
 
-        $cover = json_item(
-            TopicCover::findForUse(Request::old('cover_id'), Auth::user()),
-            new TopicCoverTransformer()
+        return view(
+            'forum.topics.create',
+            (new NewForumTopic($forum, Auth::user()))->toArray()
         );
+    }
 
-        $post = new Post([
-            'post_text' => Request::old('body'),
-            'user' => Auth::user(),
-            'post_time' => Carbon::now(),
-        ]);
+    public function editPollGet($topicId)
+    {
+        $topic = Topic::findOrFail($topicId);
 
-        return view('forum.topics.create', compact('forum', 'cover', 'post'));
+        priv_check('ForumTopicPollEdit', $topic)->ensureCan();
+
+        return view('forum.topics._edit_poll', compact('topic'));
+    }
+
+    public function editPollPost($topicId)
+    {
+        $topic = Topic::findOrFail($topicId);
+
+        priv_check('ForumTopicPollEdit', $topic)->ensureCan();
+
+        $poll = (new TopicPoll())->fill($this->getPollParams());
+        $poll->setTopic($topic);
+
+        $topic->getConnection()->transaction(function () use ($poll, $topic) {
+            if (!$poll->save()) {
+                return;
+            }
+
+            if (Auth::user()->getKey() !== $topic->topic_poster) {
+                $this->logModerate(
+                    'LOG_EDIT_POLL',
+                    [$topic->poll_title],
+                    $topic
+                );
+            }
+        });
+
+        if ($poll->validationErrors()->isAny()) {
+            return error_popup($poll->validationErrors()->toSentence());
+        }
+
+        $pollSummary = PollOption::summary($topic, Auth::user());
+        $canEditPoll = $poll->canEdit();
+
+        return view('forum.topics._poll', compact('canEditPoll', 'pollSummary', 'topic'));
     }
 
     public function issueTag($id)
@@ -194,6 +228,7 @@ class TopicsController extends Controller
                 'forum.cover',
                 'pollOptions.votes',
                 'pollOptions.post',
+                'featureVotes.user',
             ])->withTrashed()->findOrFail($id);
 
         $userCanModerate = priv_check('ForumModerate', $topic->forum)->can();
@@ -291,14 +326,22 @@ class TopicsController extends Controller
 
         $watch = TopicWatch::lookup($topic, Auth::user());
 
+        $poll = new TopicPoll;
+        $poll->setTopic($topic);
+        $canEditPoll = $poll->canEdit() && priv_check('ForumTopicPollEdit', $topic)->can();
+
+        $featureVotes = $this->groupFeatureVotes($topic);
+
         return view(
             "forum.topics.{$template}",
             compact(
+                'canEditPoll',
                 'cover',
                 'watch',
                 'jumpTo',
                 'pollSummary',
                 'posts',
+                'featureVotes',
                 'firstPostPosition',
                 'firstPostId',
                 'topic',
@@ -314,15 +357,7 @@ class TopicsController extends Controller
         priv_check('ForumTopicStore', $forum)->ensureCan();
 
         if (get_bool($request->get('with_poll'))) {
-            $pollParams = get_params($request, 'forum_topic_poll', [
-                'length_days:int',
-                'max_options:int',
-                'options:string_split',
-                'title',
-                'vote_change:bool',
-            ]);
-
-            $poll = (new TopicPoll())->fill($pollParams);
+            $poll = (new TopicPoll())->fill($this->getPollParams());
 
             if (!$poll->isValid()) {
                 return error_popup($poll->validationErrors()->toSentence());
@@ -405,5 +440,31 @@ class TopicsController extends Controller
         } else {
             return error_popup($star->validationErrors()->toSentence());
         }
+    }
+
+    private function getPollParams()
+    {
+        return get_params(request(), 'forum_topic_poll', [
+            'length_days:int',
+            'max_options:int',
+            'options:string_split',
+            'title',
+            'vote_change:bool',
+        ]);
+    }
+
+    private function groupFeatureVotes($topic)
+    {
+        $ret = [];
+
+        foreach ($topic->featureVotes as $vote) {
+            $username = optional($vote->user)->username;
+            $ret[$username] ?? ($ret[$username] = 0);
+            $ret[$username] += $vote->voteIncrement();
+        }
+
+        arsort($ret);
+
+        return $ret;
     }
 }

@@ -31,12 +31,11 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Został ustawiony znacznik czasu, ale nie odnaleziono beatmapy.',
-        'beatmapset_no_hype' => "Nie możesz nagłośnij tej beatmapy.",
+        'beatmapset_no_hype' => "Nie możesz nagłośnić tej beatmapy.",
         'hype_requires_null_beatmap' => 'Priorytet musi zostać nadany w sekcji Główne (wszystkie poziomy trudności).',
         'invalid_beatmap_id' => 'Ustawiono niewłaściwy poziom trudności.',
         'invalid_beatmapset_id' => 'Ustawiono niewłaściwą beatmapę.',
         'locked' => 'Dyskusja została zablokowana.',
-        'mapper_note_wrong_user' => 'Tylko twórca beatmapy może zamieszczać adnotacje.',
 
         'hype' => [
             'guest' => 'Musisz się zalogować, aby nagłośnić tę beatmapę.',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => 'Określony znacznik czasu przekracza długość beatmapy.',
             'negative' => "Znacznik czasu nie może być ujemny.",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => 'Nie możesz odpowiedzieć na usunięty komentarz.',
     ],
 
     'forum' => [
@@ -69,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Nie możesz dodawać takich samych możliwości wyboru.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Liczba odpowiedzi do zaznaczenia przez użytkownika nie może przekroczyć liczby wyborów.',
             'minimum_one_selection' => 'Wymagany jest conajmniej jeden wybór na użytkownika.',
             'minimum_two_options' => 'Wymagane są conajmniej dwie możliwości wyboru.',
@@ -111,5 +115,9 @@ return [
             ],
             'username_is_same' => 'To twoja obecna nazwa!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

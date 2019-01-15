@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user님의 모딩 기록",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => '최근 시작된 토론',
@@ -77,7 +78,7 @@ return [
         'forgot' => '비밀번호를 잊어버리셨나요?',
         'beta' => [
             'main' => '베타 권한은 현재 일부 특수 사용자만 가지고 있습니다.',
-            'small' => '(서포터들도 곧 받게 될 거에요)',
+            'small' => '(osu! 서포터들도 곧 받게 될 거에요)',
         ],
 
         'here' => '이곳', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +98,28 @@ return [
         'error' => '계속하려면 로그인하셔야 합니다.',
     ],
     'logout_confirm' => '정말 로그아웃하실건가요? :(',
+    'report' => [
+        'button_text' => '신고',
+        'comments' => '추가 의견',
+        'placeholder' => '아시는 정보를 입력해 주세요. 유용하게 쓰일 수 있습니다.',
+        'reason' => '이유',
+        'thanks' => '신고해 주셔서 감사합니다!',
+        'title' => ':username 님을 신고할까요?',
+
+        'actions' => [
+            'send' => '신고 보내기',
+            'cancel' => '취소',
+        ],
+
+        'options' => [
+            'cheating' => '부정 행위 / 치트 사용',
+            'insults' => '자신 / 다른 사람을 모욕 함',
+            'spam' => '도배',
+            'unwanted_content' => '부적절한 콘텐츠에 링크 걸기',
+            'nonsense' => '허튼소리',
+            'other' => '기타 (아래에 입력해 주세요)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => '계정이 제한되어 있습니다!',
         'message' => '계정이 제한되어있으면 다른 플레이어와 소통할 수 없으며 점수가 본인에게만 표시됩니다. 계정 제한은 보통 자동적으로 처리되며, 24시간 이내에 철회될 수 있습니다. 제한에 대한 항소를 원하시면 <a href="mailto:accounts@ppy.sh">지원팀에 연락</a>해주시기 바랍니다.',
@@ -110,8 +133,6 @@ return [
         'joined_at' => ':date에 가입',
         'lastvisit' => ':date에 마지막으로 접속',
         'missingtext' => '오타가 있는 것 같은데요! (또는 차단된 사용자일 수 있습니다)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age, :country에 거주',
         'origin_country' => ':country에 거주',
         'page_description' => 'osu! - :username님에 대해 궁금했던 모든 것!',
         'previous_usernames' => '이전 사용자명',
@@ -128,7 +149,7 @@ return [
                     'dropzone' => '업로드하려면 여기에 끌어놓으세요',
                     'dropzone_info' => '이쪽에 이미지를 끌어놓아 업로드할수도 있습니다',
                     'restriction_info' => "<a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!서포터</a>만 업로드할 수 있습니다",
-                    'size_info' => '표지 크기는 2000x700 이여야 합니다',
+                    'size_info' => '표지 크기는 2800x620 이여야 합니다',
                     'too_large' => '업로드된 파일이 너무 큽니다.',
                     'unsupported_format' => '지원되지 않는 확장자입니다.',
                 ],
@@ -145,27 +166,29 @@ return [
             'unranked' => '최근 플레이가 없습니다',
 
             'achievements' => [
-                'title' => '업적',
                 'achieved-on' => ':date에 달성함',
+                'locked' => '',
+                'title' => '업적',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => '아직... 없네요...',
                 'title' => '비트맵',
 
                 'favourite' => [
-                    'title' => '즐겨찾기한 비트맵 (:count)',
+                    'title' => '즐겨찾기한 비트맵',
                 ],
                 'graveyard' => [
-                    'title' => '무덤에 간 비트맵 (:count)',
+                    'title' => '무덤에 간 비트맵',
                 ],
                 'loved' => [
-                    'title' => 'Loved 비트맵 (:count)',
+                    'title' => 'Loved 비트맵',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked / Approved 된 비트맵 (:count개)',
+                    'title' => 'Ranked / Approved 된 비트맵',
                 ],
                 'unranked' => [
-                    'title' => 'Pending 비트맵 (:count)',
+                    'title' => 'Pending 비트맵',
                 ],
             ],
             'historical' => [
@@ -174,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => '플레이 기록',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => '플레이 횟수',
@@ -185,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => '리플레이가 재생된 횟수',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -239,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "아직 아무런 메달도 받지 못했네요. ;_;",
+                'recent' => '',
                 'title' => '메달',
             ],
             'recent_activity' => [
                 'title' => '최근 활동',
             ],
             'top_ranks' => [
+                'download_replay' => '리플레이 다운로드',
                 'empty' => '아직 이렇다 할 플레이 기록이 없네요. :(',
                 'not_ranked' => '랭크된 비트맵만 pp를 줍니다.',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => '랭크',
-                'weighted_pp' => '가중치 적용: :pp (:percentage)',
 
                 'best' => [
                     'title' => '최고 성과',
@@ -280,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => '디스코드',
             'interests' => '관심 분야',
@@ -309,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => ':mode 국가 순위',
+            'country_simple' => '',
             'global' => ':mode 세계 순위',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => '정확도',
             'level' => '레벨 :level',
+            'level_progress' => '',
             'maximum_combo' => '최대 콤보',
+            'medals' => '',
             'play_count' => '플레이 횟수',
             'play_time' => '총 플레이 시간',
             'ranked_score' => '기록된 점수',

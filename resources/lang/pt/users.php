@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Histórico de Modificações do :user",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Discussões recentemente iniciadas',
@@ -77,7 +78,7 @@ return [
         'forgot' => 'Esqueceste-te da palavra-passe?',
         'beta' => [
             'main' => 'O acesso beta está actualmente restrito a utilizadores privilegiados.',
-            'small' => '(os apoiantes entrarão em breve)',
+            'small' => '(osu!supporters terão acesso em breve)',
         ],
 
         'here' => 'aqui', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +98,28 @@ return [
         'error' => 'Precisas de ter sessão iniciada para fazer isto.',
     ],
     'logout_confirm' => 'Tens a certeza que queres terminar a sessão? :(',
+    'report' => [
+        'button_text' => 'denunciar',
+        'comments' => 'Comentários Adicionais',
+        'placeholder' => 'Por favor fornece qualquer informação que acredites ser útil.',
+        'reason' => 'Motivo',
+        'thanks' => 'Obrigado pela tua denúncia!',
+        'title' => 'Denunciar :username?',
+
+        'actions' => [
+            'send' => 'Enviar Relatório',
+            'cancel' => 'Cancelar',
+        ],
+
+        'options' => [
+            'cheating' => 'Jogada suja / Fazer batota',
+            'insults' => 'Insultar-me / outros',
+            'spam' => 'Spamar',
+            'unwanted_content' => 'Enviar ligações com conteúdo impróprio',
+            'nonsense' => 'Disparate',
+            'other' => 'Outro (escreve abaixo)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'A tua conta foi restrita!',
         'message' => 'Enquanto restrito(a), estarás incapaz de interagir com outros jogadores e as tuas pontuações só serão visíveis para ti. Isto é habitualmente o resultado dum processo automático e irá ser levantado geralmente em 24 horas. Se quiseres apelar a tua restrição, por favor <a href="mailto:accounts@ppy.sh">contacta a assistência</a>.',
@@ -110,8 +133,6 @@ return [
         'joined_at' => 'Juntou-se em :date',
         'lastvisit' => 'Visto pela ultima vez em :date',
         'missingtext' => 'Poderás ter escrito mal! (ou o utilizador poderá ter sido banido)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age de :country',
         'origin_country' => 'De :country',
         'page_description' => 'osu! - Tudo o que sempre quiseste saber sobre :username!',
         'previous_usernames' => 'antigamente conhecido como',
@@ -128,7 +149,7 @@ return [
                     'dropzone' => 'Larga aqui para carregar',
                     'dropzone_info' => 'Também podes largar aqui a tua imagem para carregar',
                     'restriction_info' => "Carregamento disponível para <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> só",
-                    'size_info' => 'O tamanho da capa deveria ser 2000x700',
+                    'size_info' => 'O tamanho da capa deveria ser 2800x620',
                     'too_large' => 'O ficheiro carregado é demasiado grande.',
                     'unsupported_format' => 'Formato não suportado.',
                 ],
@@ -145,27 +166,29 @@ return [
             'unranked' => 'Nenhuma partida recente',
 
             'achievements' => [
-                'title' => 'Proezas',
                 'achieved-on' => 'Conseguida em :date',
+                'locked' => '',
+                'title' => 'Proezas',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Nenhuns... por agora.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Beatmaps Favoritos (:count)',
+                    'title' => 'Beatmaps Favoritos',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps no Cemitério (:count)',
+                    'title' => 'Beatmaps no Cemitério',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps Adorados (:count)',
+                    'title' => 'Beatmaps Adorados',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmaps Classificados & Aprovados (:count)',
+                    'title' => 'Beatmaps Classificados & Aprovados',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmaps Pendentes (:count)',
+                    'title' => 'Beatmaps Pendentes',
                 ],
             ],
             'historical' => [
@@ -174,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Histórico de Jogos',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'vezes jogados',
@@ -185,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historial de Repetições Vistas',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -239,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Este utilizador ainda não conseguiu nenhuma. ;_;",
+                'recent' => '',
                 'title' => 'Medalhas',
             ],
             'recent_activity' => [
                 'title' => 'Recente',
             ],
             'top_ranks' => [
+                'download_replay' => 'Transferir Repetição',
                 'empty' => 'Nenhum registo de desempenhos espectaculares ainda. :(',
                 'not_ranked' => 'Somente beatmaps classificados é que dão pp.',
-                'pp' => '',
+                'pp_weight' => '',
                 'title' => 'Classificações',
-                'weighted_pp' => 'ponderado: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Melhor Desempenho',
@@ -280,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'Interesses',
@@ -309,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Classificação nacional para :mode',
+            'country_simple' => '',
             'global' => 'Classificação global para :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão de Acertos',
             'level' => 'Nível :level',
+            'level_progress' => '',
             'maximum_combo' => 'Combo Máximo',
+            'medals' => '',
             'play_count' => 'Número de Partidas',
             'play_time' => 'Tempo Total de Jogo',
             'ranked_score' => 'Pontuação Classificada',

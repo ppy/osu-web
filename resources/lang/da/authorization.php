@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Kun den oprindlige ejer af tråden og beatmap ejeren kan løse en diskussion.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => '',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Vent venligst et stykke tid med at stemme igen.',
             'owner' => "Du kan ikke stemme på din egen diskussion!",
@@ -48,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Adgang til den anmodede kanal er nægtet.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Adgang til den anmodede kanal er nødvendig.',
-                    'moderated' => 'Kanal er i øjeblikket modereret.',
-                    'not_lazer' => 'Du kan i øjeblikket kun tale i #lazer.',
-                ],
+        'blocked' => '',
+        'friends_only' => '',
+        'moderated' => '',
+        'no_access' => '',
+        'restricted' => '',
+    ],
 
-                'not_allowed' => 'Kan ikke sende besked imens du er bannet/begrænset/mutet.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "",
         ],
     ],
 
@@ -71,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => '',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Kun sidste opslag kan blive slettet.',
@@ -95,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Du har lige lavet et opslag! Vent et stykke tid, eller rediger dit seneste opslag.',
+                'double_post' => '',
                 'locked' => 'Kan ikke svare en låst tråd.',
                 'no_forum_access' => 'Adgang til det anmodede forum er nødvendig.',
                 'no_permission' => 'Du har ikke tilladelse til at svare.',
@@ -155,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'Brugerside er låst.',
                 'not_owner' => 'Du kan kun redigere din egen brugerside.',
-                'require_supporter_tag' => 'Supporter tag er nødvendigt.',
+                'require_supporter_tag' => '',
             ],
         ],
     ],

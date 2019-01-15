@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Usuń z ulubionych',
             'favourited_count' => '+ 1 inna!|+ :count inne!|+ :count innych!',
         ],
-        'stats' => [
-            'cs' => 'Wielkość kółek',
-            'cs-mania' => 'Ilość klawiszy',
-            'drain' => 'Spadek HP',
-            'accuracy' => 'Precyzja',
-            'ar' => 'Prędkość otoczki',
-            'stars' => 'Trudność',
-            'total_length' => 'Długość',
-            'bpm' => 'BPM',
-            'count_circles' => 'Ilość kółek',
-            'count_sliders' => 'Liczba sliderów',
-            'user-rating' => 'Oceny użytkowników',
-            'rating-spread' => 'Wykres ocen',
-            'nominations' => 'Nominacje',
-            'playcount' => 'Liczba zagrań',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Opis',
             'genre' => 'Gatunek',
@@ -76,10 +75,11 @@ return [
             'no_scores' => 'Dane są nadal ładowane...',
             'points-of-failure' => 'Wykres porażek',
             'source' => 'Źródło',
-            'success-rate' => 'Wskaźnik sukcesu',
+            'success-rate' => 'Wskaźnik ukończonych zagrań',
             'tags' => 'Tagi',
             'unranked' => 'Nierankingowa beatmapa',
         ],
+
         'scoreboard' => [
             'achieved' => 'osiągnięte :when',
             'country' => 'Ranking krajowy',
@@ -112,6 +112,23 @@ return [
                 'first' => 'Najlepszy wynik',
                 'own' => 'Twój wynik',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Wielkość kółek',
+            'cs-mania' => 'Liczba klawiszy',
+            'drain' => 'Spadek HP',
+            'accuracy' => 'Precyzja',
+            'ar' => 'Prędkość otoczki',
+            'stars' => 'Trudność',
+            'total_length' => 'Długość',
+            'bpm' => 'BPM',
+            'count_circles' => 'Liczba kółek',
+            'count_sliders' => 'Liczba sliderów',
+            'user-rating' => 'Oceny użytkowników',
+            'rating-spread' => 'Wykres ocen',
+            'nominations' => 'Nominacje',
+            'playcount' => 'Liczba zagrań',
         ],
     ],
 ];

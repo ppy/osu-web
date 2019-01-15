@@ -144,11 +144,16 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Удалить',
+        'delete_own_confirm' => 'Уверены? Карта будет удалена, и вы будете перенаправлены обратно в свой профиль.',
+        'delete_other_confirm' => 'Уверены? Карта будет удалена, и вы будете перенаправлены в профиль пользователя.',
         'disqualification_prompt' => 'Причина для дисквалификации?',
         'disqualified_at' => 'дисквалифицирован :time_ago (:reason).',
         'disqualified_no_reason' => 'причина не указана',
         'disqualify' => 'Дисквалифицировать',
         'incorrect_state' => 'Не удалось выполнить данную задачу, попробуйте перезагрузить страницу.',
+        'love' => 'Любимое',
+        'love_confirm' => 'Отметить карту как любимую?',
         'nominate' => 'Номинировать',
         'nominate_confirm' => 'Номинировать эту карту?',
         'nominated_by' => 'номинирована :users',
@@ -166,20 +171,22 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Вы уверены? Сообщение о новой проблеме сбросит статус номинации.',
+            'disqualify' => '',
         ],
     ],
 
     'listing' => [
         'search' => [
             'prompt' => 'начните вводить ключевые слова ...',
+            'login_required' => 'Войдите, чтобы искать.',
             'options' => 'Больше настроек поиска',
-            'supporter_filter' => 'Фильтрация по :filters требует активного тега Саппорта',
+            'supporter_filter' => 'Фильтрация по :filters требует наличия osu!supporter',
             'not-found' => 'нет результатов',
             'not-found-quote' => '... увы, ничего не найдено.',
             'filters' => [
                 'general' => 'Общее',
                 'mode' => 'Режим игры',
-                'status' => 'Статус',
+                'status' => 'Категории',
                 'genre' => 'Жанр',
                 'language' => 'Язык',
                 'extra' => 'Дополнительно',
@@ -199,13 +206,9 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Фильтрация по :filters требует :link',
-                'link_text' => 'тег "помощника"',
+                'link_text' => 'тэг osu!supporter',
             ],
         ],
-        'mode' => 'Режим игры',
-        'status' => 'Статус одобрения',
-        'source' => 'от :source',
-        'load-more' => 'Загрузить ещё...',
     ],
     'general' => [
         'recommended' => 'рекомендуемая сложность',
@@ -225,7 +228,7 @@ return [
         'qualified' => 'Квалифицированные',
         'loved' => 'Любимые',
         'faves' => 'Избранные',
-        'pending' => 'Ожидающие',
+        'pending' => 'Ожидающие и в процессе разработки',
         'graveyard' => 'Заброшенные',
         'my-maps' => 'Мои карты',
     ],

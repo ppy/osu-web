@@ -32,6 +32,16 @@
   --}}
 @endsection
 
+{{-- empty sections so placeholders render for react to fill in --}}
+@if (auth()->check())
+    @section('sticky-header-breadcrumbs')
+    @endsection
+
+    @section('sticky-header-content')
+    @endsection
+@endif
+
+
 @section("script")
   @parent
 

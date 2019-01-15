@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Przypięte wątki',
     'slogan' => "samodzielna rozgrywka jest niebezpieczna.",
     'subforums' => 'Podfora',
-    'title' => 'Społeczność osu!',
+    'title' => 'forum osu!',
 
     'covers' => [
         'create' => [
@@ -44,6 +44,20 @@ return [
     'forums' => [
         'topics' => [
             'empty' => 'Brak wątków!',
+        ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
         ],
     ],
 
@@ -75,7 +89,9 @@ return [
         'new_topic_login' => 'Zaloguj się, aby utworzyć nowy wątek',
         'post_reply' => 'Opublikuj',
         'reply_box_placeholder' => 'Napisz tutaj swoją odpowiedź',
+        'reply_title_prefix' => 'Odp.',
         'started_by' => 'przez :user',
+        'started_by_verbose' => 'utworzony przez :user',
 
         'create' => [
             'preview' => 'Podgląd',
@@ -83,6 +99,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Napisz',
             'submit' => 'Opublikuj',
+
+            'necropost' => [
+                'default' => 'Ten wątek jest nieaktywny od dłuższego czasu. Opublikuj nowy post, tylko jeżeli masz do tego odpowiedni powód.',
+
+                'new_topic' => [
+                    '_' => "Ten wątek jest nieaktywny od dłuższego czasu. Jeżeli nie masz odpowiedniego powodu do pisania tutaj, :create.",
+                    'create' => 'utwórz nowy wątek',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Tutaj wpisz zawartość posta',
@@ -113,6 +138,11 @@ return [
             'box' => [
                 'total' => 'Zasubskrybowane wątki',
                 'unread' => 'Wątki z nowymi odpowiedziami',
+            ],
+
+            'info' => [
+                'total' => 'Liczba zasubskrybowanych wątków: :total.',
+                'unread' => 'Liczba zasubskrybowanych wątków z nowymi odpowiedziami: :unread.',
             ],
         ],
 
@@ -258,7 +288,8 @@ return [
             'to_not_watching' => 'Nie subskrybuj',
             'to_watching' => 'Subskrybuj',
             'to_watching_mail' => 'Subskrybuj z powiadomieniami',
-            'mail_disable' => 'Wyłącz powiadomienia',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Historial de Modding de :usuario",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Discusiones recientemente empezadas',
@@ -77,7 +78,7 @@ return [
         'forgot' => '¿Olvidaste tu contraseña?',
         'beta' => [
             'main' => 'El acceso a la beta está actualmente restringido a usuarios privilegiados.',
-            'small' => '(los supporters tendrán acceso pronto)',
+            'small' => '(los osu!supporters tendrán acceso pronto)',
         ],
 
         'here' => 'aquí', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +98,28 @@ return [
         'error' => 'Necesitas haber iniciado sesión para hacer esto.',
     ],
     'logout_confirm' => '¿Estás seguro de que quieres cerrar la sesión? :(',
+    'report' => [
+        'button_text' => 'reportar',
+        'comments' => 'Comentarios Adicionales',
+        'placeholder' => 'Por favor proporcione cualquier información que usted cree que podría ser útil.',
+        'reason' => 'Razón',
+        'thanks' => '¡Gracias por tu informe!',
+        'title' => '¿Reportar :username?',
+
+        'actions' => [
+            'send' => 'Enviar Reporte',
+            'cancel' => 'Cancelar',
+        ],
+
+        'options' => [
+            'cheating' => '',
+            'insults' => 'Insulta a mí / otros',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Enlazando a contenido inapropiado',
+            'nonsense' => 'Incomprensible',
+            'other' => 'Otros (indicar abajo)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => '¡Tu cuenta ha sido restringida!',
         'message' => 'Mientras estás restringido, no podrás interactuar con otros jugadores y tus puntuaciones solo las podrás ver tú. Esto es, normalmente, el resultado de un proceso automatizado, y se levanta normalmente dentro de 24 horas. Si deseas apelar a tu restricción, por favor <a href="mailto:accounts@ppy.sh">contacta con el soporte</a>.',
@@ -110,8 +133,6 @@ return [
         'joined_at' => 'Se unió en :date',
         'lastvisit' => 'Visto por última vez :date',
         'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido baneado)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age de :country',
         'origin_country' => 'De :country',
         'page_description' => 'osu! - ¡Todo lo que siempre quisiste saber acerca de :username!',
         'previous_usernames' => 'Antes conocido como',
@@ -128,7 +149,7 @@ return [
                     'dropzone' => 'Suelta aquí para subir',
                     'dropzone_info' => 'También puedes soltar tu imagen aquí para subirla',
                     'restriction_info' => "Subida solo disponible para <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
-                    'size_info' => 'El tamaño de la portada debe ser de 2000x700',
+                    'size_info' => 'El tamaño de la portada debe ser de 2800x620',
                     'too_large' => 'El archivo subido es demasiado grande.',
                     'unsupported_format' => 'Formato no soportado.',
                 ],
@@ -145,27 +166,29 @@ return [
             'unranked' => 'No hay partidas recientes',
 
             'achievements' => [
-                'title' => 'Logros',
                 'achieved-on' => 'Obtenido el :date',
+                'locked' => '',
+                'title' => 'Logros',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Ninguno... aún.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Beatmaps Favoritos (:count)',
+                    'title' => 'Beatmaps Favoritos',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps Abandonados (:count)',
+                    'title' => 'Beatmaps Abandonados',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps Amados (:count)',
+                    'title' => 'Beatmaps Amados',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmaps Rankeados y Aprobados (:count)',
+                    'title' => 'Beatmaps Rankeados y Aprobados',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmaps Pendientes (:count)',
+                    'title' => 'Beatmaps Pendientes',
                 ],
             ],
             'historical' => [
@@ -174,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Historial de juego',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'veces jugadas',
@@ -185,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historial de repeticiones vistas',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -239,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Este usuario aún no ha conseguido ninguna. ;_;",
+                'recent' => '',
                 'title' => 'Medallas',
             ],
             'recent_activity' => [
                 'title' => 'Reciente',
             ],
             'top_ranks' => [
+                'download_replay' => '',
                 'empty' => 'No hay records de rendimiento impresionantes aún. :(',
                 'not_ranked' => 'Sólo los mapas rankeados dan pp.',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'Rangos',
-                'weighted_pp' => 'valorado en: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Mejores Rendimientos',
@@ -280,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Intereses',
@@ -309,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Rank nacional para :mode',
+            'country_simple' => '',
             'global' => 'Rank global para :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisión',
             'level' => 'Nivel :level',
+            'level_progress' => '',
             'maximum_combo' => 'Combo máximo',
+            'medals' => '',
             'play_count' => 'Conteo de jugadas',
             'play_time' => 'Tiempo de juego total',
             'ranked_score' => 'Puntuación rankeada',

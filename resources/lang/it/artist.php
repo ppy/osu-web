@@ -27,7 +27,7 @@ return [
     ],
 
     'beatmaps' => [
-        '_' => 'Mappe',
+        '_' => 'Beatmap',
         'download' => 'Scarica Template della Mappa',
         'download-na' => 'Template della Mappa non ancora disponibile',
     ],
@@ -45,5 +45,12 @@ return [
         '_' => 'Brani',
         'count' => ':count brano |:count brani',
         'exclusive' => 'osu! esclusiva',
+    ],
+
+    'tracklist' => [
+        'title' => 'titolo',
+        'length' => 'durata',
+        'bpm' => 'bpm',
+        'genre' => 'genere',
     ],
 ];

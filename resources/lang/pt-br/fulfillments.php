@@ -24,7 +24,7 @@ return [
             'subject' => 'Obrigado, osu! <3 você',
         ],
         'supporter_gift' => [
-            'subject' => 'Você tem uma supporter tag do osu!',
+            'subject' => 'Você possui uma osu!supporter tag!',
         ],
     ],
 ];

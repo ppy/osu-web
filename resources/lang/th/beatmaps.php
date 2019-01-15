@@ -64,9 +64,9 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => '',
-            'generalAll' => '',
-            'timeline' => '',
+            'general' => 'พิมพ์ตรงนี้เพื่อลงรายการบัญชีทั่วไป (:version)',
+            'generalAll' => 'พิมพ์ตรงนี้เพื่อลงรายการบัญชีทั่วไป (ทุกระดับความยาก)',
+            'timeline' => 'พิมพ์ตรงนี้เพื่อลงรายการบัญชีไปยังไทม์ไลน์ (:version)',
         ],
 
         'message_type' => [
@@ -144,11 +144,16 @@ return [
     ],
 
     'nominations' => [
+        'delete' => '',
+        'delete_own_confirm' => '',
+        'delete_other_confirm' => '',
         'disqualification_prompt' => 'เหตุผลในการตัดสิทธิ์?',
         'disqualified_at' => 'ถูกตัดสิทธิ์เมื่อ :time_ago เพราะ (:reason)',
         'disqualified_no_reason' => 'ไม่มีเหตุผลที่ระบุไว้',
         'disqualify' => 'ตัดสิทธิ์',
         'incorrect_state' => 'เกิดข้อผิดพลาดในการดำเนินการ ลองรีเฟรชหน้าเพจนี้ดู',
+        'love' => 'รัก',
+        'love_confirm' => 'ชอบบีทแมพนี้หรือ',
         'nominate' => 'เสนอชื่อ',
         'nominate_confirm' => 'เสนอชื่อ Beatmap นี้?',
         'nominated_by' => 'เสนอชื่อโดย :users',
@@ -166,20 +171,22 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'คุณแน่ใจหรือ? ในการโพสต์ปัญหาใหม่จะรีเซ็ตการเสนอชื่อ',
+            'disqualify' => '',
         ],
     ],
 
     'listing' => [
         'search' => [
             'prompt' => 'พิมพ์คำสำคัญ...',
+            'login_required' => 'ลงชื่อเข้าใช้เพื่อค้นหา',
             'options' => 'ค้นหาเพิ่มเติม',
-            'supporter_filter' => '',
+            'supporter_filter' => 'กรองโดย :filters ต้องมี osu!supporter tag ทำงานอยู่',
             'not-found' => 'ไม่มีผลการค้นหา',
             'not-found-quote' => '... ไม่อ่ะ ไม่เจออะไรเลย',
             'filters' => [
                 'general' => 'ทั่วไป',
                 'mode' => 'โหมด',
-                'status' => 'สถานะการจัดอันดับ',
+                'status' => 'หมวดหมู่',
                 'genre' => 'ประเภท',
                 'language' => 'ภาษา',
                 'extra' => 'เพิ่มเติม',
@@ -191,21 +198,17 @@ return [
                 'artist' => 'ศิลปิน',
                 'difficulty' => 'ระดับความยาก',
                 'updated' => 'เพิ่งอัพเดต',
-                'ranked' => '',
+                'ranked' => 'จัดอันดับแล้ว',
                 'rating' => 'คะแนน',
                 'plays' => 'จำนวนการเล่น',
                 'relevance' => 'ความเกี่ยวข้อง',
-                'nominations' => '',
+                'nominations' => 'เสนอชื่อเข้าชิง',
             ],
             'supporter_filter_quote' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'กรองโดย :filters ต้องมี :link ทำงานอยู่',
+                'link_text' => 'osu!supporter tag (ผู้สนับสนุนเกม)',
             ],
         ],
-        'mode' => 'โหมด',
-        'status' => 'สถานะการจัดอันดับ',
-        'source' => 'จาก :source',
-        'load-more' => 'โหลดเพิ่มเติม...',
     ],
     'general' => [
         'recommended' => 'ระดับความยากที่แนะนำ',
@@ -225,7 +228,7 @@ return [
         'qualified' => 'ผ่านเกณฑ์',
         'loved' => 'Loved',
         'faves' => 'รายการโปรด',
-        'pending' => 'อยู่ระหว่างดำเนินการ',
+        'pending' => '',
         'graveyard' => 'สุสาน',
         'my-maps' => 'แมพของฉัน',
     ],

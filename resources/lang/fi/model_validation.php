@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Määritelly vaikeustaso on virheellinen.',
         'invalid_beatmapset_id' => 'Määritelty beatmap on virheellinen.',
         'locked' => 'Keskustelu on lukittu.',
-        'mapper_note_wrong_user' => 'Vain beatmapin omistaja voi lähettää kartanluojan muistiinpanoja.',
 
         'hype' => [
             'guest' => 'Sinun on kirjauduttava sisään hurrataksesi.',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => 'Määritelty aikaleima on beatmapin pituuden ulkopuolella.',
             'negative' => "Aikaleima ei voi olla negatiivinen.",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => 'Poistettuun kommenttiin ei voi vastata.',
     ],
 
     'forum' => [
@@ -69,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Identtiset valinnat eivät ole sallittuja.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Valinnat käyttäjää kohti eivät voi ylittää kaikkien valintojen määrää.',
             'minimum_one_selection' => 'Vähintään yksi valinta käyttäjää kohti on vaadittu.',
             'minimum_two_options' => 'Tarvitsee ainakin kaksi valintaa.',
@@ -111,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Tämä on jo käyttäjänimesi, höpsö!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

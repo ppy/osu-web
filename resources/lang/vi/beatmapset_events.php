@@ -34,19 +34,46 @@ return [
         'kudosu_gain' => 'Cuộc thảo luận :discussion bởi :user đã nhận được đủ votes để có kudosu.',
         'kudosu_lost' => 'Cuộc thảo luận :discussion bởi :user đã mất votes và kudosu đã nhận được bị loại bỏ.',
         'kudosu_recalculate' => 'Kudosu của cuộc thảo luận :discussion đã được tính lại.',
+        'love' => 'Loved bởi :user',
         'nominate' => 'Được đề cử (nominated) bởi :user.',
         'nomination_reset' => 'Vấn đề mới :discussion đã khiến cho đề cử bị hoàn lại.',
-        'qualify' => 'Qualified.',
+        'qualify' => 'Beatmap này đã đạt được số đề cử (nominations) cần thiết và đã qualified.',
         'rank' => 'Đã được xếp hạng (Ranked).',
     ],
 
     'index' => [
         'title' => 'Những Sự Kiện Của Beatmapset',
+
+        'form' => [
+            'period' => 'Giai đoạn',
+            'types' => 'Loại',
+        ],
     ],
 
     'item' => [
         'content' => 'Nội dung',
         'discussion_deleted' => '[đã xóa]',
         'type' => 'Loại',
+    ],
+
+    'type' => [
+        'approve' => 'Chấp nhận',
+        'discussion_delete' => 'Xóa cuộc thảo luận',
+        'discussion_post_delete' => 'Xóa trả lời của cuộc thảo luận',
+        'discussion_post_restore' => 'Phục hồi trả lời của cuộc thảo luận',
+        'discussion_restore' => 'Phục hồi cuộc thảo luận',
+        'disqualify' => 'Disqualification',
+        'issue_reopen' => 'Mở lại cuộc thảo luận',
+        'issue_resolve' => 'Giải quyết cuộc thảo luận',
+        'kudosu_allow' => 'Cho phép kudosu',
+        'kudosu_deny' => 'Từ chối kudosu',
+        'kudosu_gain' => 'Kudosu đạt được',
+        'kudosu_lost' => 'Kudosu giảm',
+        'kudosu_recalculate' => 'Tính lại kudosu',
+        'love' => 'Love',
+        'nominate' => 'Đề cử',
+        'nomination_reset' => 'Đặt lại đề cử',
+        'qualify' => 'Qualification',
+        'rank' => 'Xếp hạng',
     ],
 ];

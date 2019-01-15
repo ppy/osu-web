@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => '指定的難度無效。',
         'invalid_beatmapset_id' => '指定的譜面無效。',
         'locked' => '討論被鎖定。',
-        'mapper_note_wrong_user' => '只有譜面作者可以釘上便籤。',
 
         'hype' => [
             'guest' => '登錄後才能推薦',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => '指定的時間戳不在譜面範圍內。',
             'negative' => "無法定位時間戳。",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => '',
     ],
 
     'forum' => [
@@ -69,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => '不允許重複的選項。',
+            'grace_period_expired' => '',
             'invalid_max_options' => '每人可選的選項不能超出總選項數。',
             'minimum_one_selection' => '每人至少可選一項。',
             'minimum_two_options' => '需要至少兩個選項。',
@@ -111,5 +115,9 @@ return [
             ],
             'username_is_same' => '这就是你的用户名，Baka！',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

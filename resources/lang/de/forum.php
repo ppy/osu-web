@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Angepinnte Threads',
     'slogan' => "es ist gefährlich, alleine zu spielen.",
     'subforums' => 'Subforen',
-    'title' => 'osu!community',
+    'title' => 'osu! Foren',
 
     'covers' => [
         'create' => [
@@ -44,6 +44,20 @@ return [
     'forums' => [
         'topics' => [
             'empty' => 'Keine Threads!',
+        ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
         ],
     ],
 
@@ -75,7 +89,9 @@ return [
         'new_topic_login' => 'Melde dich an, um einen neuen Thread zu erstellen',
         'post_reply' => 'Antworten',
         'reply_box_placeholder' => 'Zum Antworten hier Text eingeben',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'von :user',
+        'started_by_verbose' => 'gestartet von :user',
 
         'create' => [
             'preview' => 'Vorschau',
@@ -83,6 +99,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Bearbeiten',
             'submit' => 'Erstellen',
+
+            'necropost' => [
+                'default' => 'Dieser Beitrag ist seit längerer Zeit inaktiv. Poste nur, wenn du einen wichtigen Grund dazu hast.',
+
+                'new_topic' => [
+                    '_' => "Dieser Beitrag ist seit längerer Zeit inaktiv. Wenn du keinen wichtigen Grund zum posten hast, dann :create hier einen neuen.",
+                    'create' => 'Erstelle einen neuen Beitrag',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Inhalt hier eingeben',
@@ -113,6 +138,11 @@ return [
             'box' => [
                 'total' => 'Abonnierte Threads',
                 'unread' => 'Threads mit ungelesenen Antworten',
+            ],
+
+            'info' => [
+                'total' => 'Du hast :total Threads abonniert.',
+                'unread' => 'Du hast :unread ungelesene Antworten in abonnierten Threads.',
             ],
         ],
 
@@ -258,7 +288,8 @@ return [
             'to_not_watching' => 'Kein Lesezeichen gesetzt',
             'to_watching' => 'Lesezeichen setzen',
             'to_watching_mail' => 'Lesezeichen setzen und benachrichtigt werden',
-            'mail_disable' => 'Benachrichtigungen deaktivieren',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

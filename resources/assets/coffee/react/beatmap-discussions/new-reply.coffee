@@ -31,6 +31,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
     super props
 
     @throttledPost = _.throttle @post, 1000
+    @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
 
     @state =
       editing: false
@@ -74,7 +75,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       div
         className: "#{bn}__footer #{bn}__footer--notice"
         osu.trans 'beatmaps.discussions.reply_notice'
-        el BeatmapDiscussions.MessageLengthCounter, message: @state.message
+        el BeatmapDiscussions.MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div
         className: "#{bn}__footer"
@@ -142,12 +143,16 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       @box?.focus()
 
 
-  handleKeyDown: (e) =>
-    if e.keyCode == 27
-      @setState editing: false
-    else if e.keyCode == 13 && !e.shiftKey
-      e.preventDefault()
-      @throttledPost(e)
+  handleKeyDownCallback: (type, event) =>
+    switch type
+      when InputHandler.CANCEL
+        @setState editing: false
+      when InputHandler.SUBMIT
+        @throttledPost(event)
+
+
+  isTimeline: =>
+    @props.discussion.timestamp?
 
 
   post: (event) =>
@@ -192,4 +197,4 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
 
   validPost: =>
-    BeatmapDiscussionHelper.validMessageLength(@state.message)
+    BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())

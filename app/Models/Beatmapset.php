@@ -266,6 +266,12 @@ class Beatmapset extends Model implements AfterCommit
         return $this->approved <= 0;
     }
 
+    public function isScoreable()
+    {
+        return $this->approved > 0;
+    }
+
+    // TODO: remove this and update the coffee side names to match isScoreable.
     public function hasScores()
     {
         return $this->attributes['approved'] > 0;
@@ -676,7 +682,7 @@ class Beatmapset extends Model implements AfterCommit
             } else {
                 $hyped = $this
                     ->beatmapDiscussions()
-                    ->withoutDeleted()
+                    ->withoutTrashed()
                     ->ofType('hype')
                     ->where('user_id', '=', $user->getKey())
                     ->exists();
@@ -925,7 +931,7 @@ class Beatmapset extends Model implements AfterCommit
         return new BBCodeFromDB($description, $post->bbcode_uid, $options);
     }
 
-    private function getPost()
+    public function getPost()
     {
         $topic = Forum\Topic::find($this->thread_id);
 
@@ -940,7 +946,7 @@ class Beatmapset extends Model implements AfterCommit
     {
         return $this
             ->beatmapDiscussions()
-            ->withoutDeleted()
+            ->withoutTrashed()
             ->ofType('hype')
             ->count();
     }

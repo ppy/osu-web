@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user's ประวัติการมอด",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'การสนทนาล่าสุด',
@@ -77,7 +78,7 @@ return [
         'forgot' => 'ลืมรหัสผ่าน?',
         'beta' => [
             'main' => 'การเข้าถึงข้อมูลนี้มีข้อจำกัด จำกัดเฉพาะผู้ใช้ที่ได้รับการยกเว้นเท่านั้น',
-            'small' => '(supporters จะได้รับเร็วๆนี้)',
+            'small' => '',
         ],
 
         'here' => 'ที่นี่', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +98,28 @@ return [
         'error' => 'คุณจะต้องเข้าสู่ระบบเพื่อจะกระทำสิ่งนี้',
     ],
     'logout_confirm' => 'คุณแน่ใจหรือว่าต้องการออกจากระบบ? :(',
+    'report' => [
+        'button_text' => '',
+        'comments' => '',
+        'placeholder' => '',
+        'reason' => '',
+        'thanks' => '',
+        'title' => '',
+
+        'actions' => [
+            'send' => '',
+            'cancel' => '',
+        ],
+
+        'options' => [
+            'cheating' => '',
+            'insults' => '',
+            'spam' => '',
+            'unwanted_content' => '',
+            'nonsense' => '',
+            'other' => '',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'แอคเคาท์ของคุณได้ถูกจำกัดการใช้งาน',
         'message' => 'เมื่อคุณถูกจำกัดการใช้งาน, คุณจะไม่สามารถโต้ตอบกับผู้เล่นคนอื่นๆได้ และ คะแนนของคุณจะถูกให้เห็นแค่คุณเท่านั้น. ทุกอย่างจะทำกระบวนการอัตโนมัติและจะแล้วเสร็จภายใน 24 ชั่วโมง. ถ้าคุณอยากขอลดการจำกัดการใช้งานแอคเคาท์ของคุณ, โปรดติดต่อที่นี่ <a href="mailto:accounts@ppy.sh">contact support</a>.',
@@ -110,8 +133,6 @@ return [
         'joined_at' => 'เข้าร่วมเมื่อ :date',
         'lastvisit' => 'ออนไลน์ล่าสุด :date',
         'missingtext' => 'คุณอาจจะผิดพลาดนะ! (หรือไม่ก็ผู้ใช้อาจจะถูกแบน)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age มาจาก :country',
         'origin_country' => 'มาจาก :country',
         'page_description' => 'osu! - ทุกสิ่งทุกอย่างที่คุณอยากรู้เกี่ยวกับ :username!',
         'previous_usernames' => 'เคยมีชื่อว่า',
@@ -128,7 +149,7 @@ return [
                     'dropzone' => 'วางที่นี่เพื่ออัพโหลด',
                     'dropzone_info' => 'นอกจากนี้คุณยังสามารถวางรูปภาพเพื่ออัปโหลด',
                     'restriction_info' => "อัพโหลดพร้อมแล้ว สำหรับ <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!ผู้สนับสนุน</a> เท่านั้น",
-                    'size_info' => 'รูปภาพหน้าปกควรจะมีขนาด 2000x700',
+                    'size_info' => 'รูปภาพหน้าปกควรจะมีขนาด 2800x620',
                     'too_large' => 'ไฟล์มีขนาดใหญ่เกินไป',
                     'unsupported_format' => 'ไม่รองรับไฟล์นามสกุลนี้',
                 ],
@@ -145,27 +166,29 @@ return [
             'unranked' => 'ยังไม่มีการเล่น',
 
             'achievements' => [
-                'title' => 'รางวัลความสำเร็จ',
                 'achieved-on' => 'สำเร็จเมื่อวันที่ :date',
+                'locked' => '',
+                'title' => 'รางวัลความสำเร็จ',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'ยังไม่มี... อะ.',
                 'title' => 'บีทแมพ',
 
                 'favourite' => [
-                    'title' => 'บีทแมพที่ชื่นชอบ (:count)',
+                    'title' => 'บีทแมพที่ชื่นชอบ',
                 ],
                 'graveyard' => [
-                    'title' => 'สุสานบีทแมพ (:count)',
+                    'title' => 'สุสานบีทแมพ',
                 ],
                 'loved' => [
                     'title' => '',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ (:count)',
+                    'title' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
                 ],
                 'unranked' => [
-                    'title' => 'บีทแมพที่กำลังทำ (:count)',
+                    'title' => 'บีทแมพที่กำลังทำ',
                 ],
             ],
             'historical' => [
@@ -174,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'ประวัติการเล่น',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'จำนวนครั้งที่เล่น',
@@ -185,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'ประวัติการดูรีเพลย์',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -240,17 +265,18 @@ return [
             ],
             'medals' => [
                 'empty' => "ผู้ใช้คนนี้ยังไม่มีอะไรเลย. ;_;",
+                'recent' => '',
                 'title' => 'เหรียญตรา',
             ],
             'recent_activity' => [
                 'title' => 'ล่า​สุด',
             ],
             'top_ranks' => [
+                'download_replay' => '',
                 'empty' => 'ยังไม่มี performance ที่เจ๋งๆบันทึกไว้เลย . :(',
                 'not_ranked' => 'บีทแมพแรงค์เท่านั้นที่ให้พีพี',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'อันดับ',
-                'weighted_pp' => 'weighted: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Performance ที่ดีที่สุด',
@@ -281,6 +307,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => 'ดิสคอร์ด',
             'interests' => 'สิ่งที่สนใจ',
@@ -310,12 +342,16 @@ return [
         ],
         'rank' => [
             'country' => 'อันดับประเทศของ :mode',
+            'country_simple' => '',
             'global' => 'อันดับทั่วโลกของ :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'ความแม่นยำเฉลี่ย',
             'level' => 'เลเวล :level',
+            'level_progress' => '',
             'maximum_combo' => 'คอมโบสูงสุด',
+            'medals' => '',
             'play_count' => 'จำนวนครั้งที่เล่น',
             'play_time' => 'เวลาการเล่นทั้งหมด',
             'ranked_score' => 'คะแนนแรงค์',

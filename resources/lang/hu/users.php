@@ -22,7 +22,8 @@ return [
     'deleted' => '[törölt felhasználó]',
 
     'beatmapset_activities' => [
-        'title' => ":user Modding Története",
+        'title' => ":user Modolási Történelme",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Legutóbb kezdett beszélgetések',
@@ -47,11 +48,11 @@ return [
 
     'blocks' => [
         'banner_text' => 'Blokkoltad ezt a felhasználót.',
-        'blocked_count' => '(:count) letiltott fehasználó',
+        'blocked_count' => '(:count) blokkolt felhasználók',
         'hide_profile' => 'profil elrejtése',
         'not_blocked' => 'Ez a felhasználó nincs blokkolva.',
         'show_profile' => 'profil megjelenítése',
-        'too_many' => 'Blokkolási korlát elérve.',
+        'too_many' => 'Blokkolási limit elérve.',
         'button' => [
             'block' => 'tiltás',
             'unblock' => 'tiltás feloldása',
@@ -77,7 +78,7 @@ return [
         'forgot' => 'Elfelejtetted a jelszavad?',
         'beta' => [
             'main' => 'Beta hozzáférés jelenleg csak kiváltságos felhasználóknak elérhető.',
-            'small' => '(a támogatók hamarosan bejutnak)',
+            'small' => '(osu!támogatók hamarosan bejutnak)',
         ],
 
         'here' => 'itt', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +98,28 @@ return [
         'error' => 'Be kell jelentkezned, hogy ezt csináld.',
     ],
     'logout_confirm' => 'Biztosan ki akarsz jelentkezni? :(',
+    'report' => [
+        'button_text' => 'jelentés',
+        'comments' => 'További megjegyzések',
+        'placeholder' => 'Kérlek minden információt adj meg, amiről úgy gondolod hogy hasznos lehet.',
+        'reason' => 'Ok',
+        'thanks' => 'Köszönjük a jelentést!',
+        'title' => ':username jelentése?',
+
+        'actions' => [
+            'send' => 'Jelentés küldése',
+            'cancel' => 'Mégse',
+        ],
+
+        'options' => [
+            'cheating' => 'Tisztességtelen játék / Csalás',
+            'insults' => 'Engem / másokat sérteget',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Nem megfelelő tartalom linkelése',
+            'nonsense' => 'Nonszensz',
+            'other' => 'Egyéb (alá írd)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'A felhasználói fiókod korlátozva lett!',
         'message' => 'Korlátozva nem leszel képes más játékosokkal kapcsolatba lépni és a pontjaid csak neked lesznek láthatóak. Ez az eredménye egy automatikus folyamatnak és általában fel lesz oldva 24 órán belül. Amennyiben fellebbezni szeretnél, légyszíves lépj kapcsolatba a <a href="mailto:accounts@ppy.sh">support</a>-al.',
@@ -110,25 +133,23 @@ return [
         'joined_at' => 'Regisztrált: :date',
         'lastvisit' => 'Legutóbb online: :date',
         'missingtext' => 'Véletlenül elüthettél valamit! (vagy a felhasználó tiltva van)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age, innen: :country',
         'origin_country' => 'Innen: :country',
         'page_description' => 'osu! - Minden amit valaha tudni akartál :username-ról!',
         'previous_usernames' => 'korábbi nevén',
-        'plays_with' => 'Ezzel játszik: :devices',
+        'plays_with' => 'Ezekkel játszik: :devices',
         'title' => ":username profilja",
 
         'edit' => [
             'cover' => [
                 'button' => 'Profil Borító Változtatása',
-                'defaults_info' => 'Több borító lehetőségek a jövőben lesznek elérhetőek',
+                'defaults_info' => 'További borító lehetőségek a jövőben lesznek elérhetőek',
                 'upload' => [
                     'broken_file' => 'Kép feldolgozása sikertelen. Ellenőrizd a feltöltött képet és próbáld meg újra.',
                     'button' => 'Kép feltöltése',
                     'dropzone' => 'Húzd ide a feltöltendő fájlokat',
-                    'dropzone_info' => 'Ide is dobhatod a képed hogy feltöltsd',
+                    'dropzone_info' => 'Feltöltéshez ide is dobhatod a képed',
                     'restriction_info' => "Feltöltés elérhető <a href='".route('store.products.show', 'supporter-tag')."csak ' target='_blank'>osu!támogatók</a>",
-                    'size_info' => 'A borítónak 2000x700-asnak kellene lennie',
+                    'size_info' => 'A borítónak 2800x620-asnak kellene lennie',
                     'too_large' => 'A feltöltött fájl túl nagy.',
                     'unsupported_format' => 'Nem támogatott formátum.',
                 ],
@@ -145,27 +166,29 @@ return [
             'unranked' => 'Nem játszott mostanában',
 
             'achievements' => [
-                'title' => 'Trófeák',
                 'achieved-on' => 'Elérte: :date',
+                'locked' => '',
+                'title' => 'Trófeák',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Nincsen... még.',
                 'title' => 'Beatmap-ek',
 
                 'favourite' => [
-                    'title' => 'Kedvenc Beatmapek (:count)',
+                    'title' => 'Kedvenc Beatmapek',
                 ],
                 'graveyard' => [
-                    'title' => 'Eltemetett Beatmap-ek (:count)',
+                    'title' => 'Eltemetett Beatmap-ek',
                 ],
                 'loved' => [
-                    'title' => 'Szeretett Beatmap-ek (:count)',
+                    'title' => 'Szeretett Beatmap-ek',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmap-ek (:count)',
+                    'title' => 'Ranked & Approved Beatmap-ek',
                 ],
                 'unranked' => [
-                    'title' => 'Pending Beatmap-ek (:count)',
+                    'title' => 'Pending Beatmap-ek',
                 ],
             ],
             'historical' => [
@@ -174,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Játék előzmények',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'alkalommal lejátszva',
@@ -184,53 +208,54 @@ return [
                     'title' => 'Legutóbb Játszott (24ó)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Visszajátszás megtekintésének előzménye',
+                    'title' => 'Visszajátszás megtekintések előzménye',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
-                'available' => 'Elérhető kudosu',
+                'available' => 'Elérhető Kudosu',
                 'available_info' => "A kudosu becserélhető kudosu csillagokra, amely segít a beatmapjeidnek figyelmet gyüjteni. Ez az kudosu mennyiség amit még nem cseréltél be.",
-                'recent_entries' => 'Legutóbbi kudosu előzmény',
+                'recent_entries' => 'Legutóbbi Kudosu történelem',
                 'title' => 'Kudosu!',
-                'total' => 'Összesítetten elért kudosu',
-                'total_info' => 'Ahhoz, hogy láthasd mennyit müködött, hogy a felhasználó a beatmap moderálásához. Lást <a href=\''.osu_url('user.kudosu').'">ezt az oldalt</a> bővebb információért.',
+                'total' => 'Összesen megszerzett Kudosu',
+                'total_info' => 'Az alapján, hogy mennyire járult hozzá a felhasználó a beatmap moderáláshoz. Lásd <a href="'.osu_url('user.kudosu').'">ezt az oldalt</a> bővebb információkért.',
 
                 'entry' => [
-                    'amount' => ':amount kudosu mennyiség',
-                    'empty' => "Ez a felhasználó egyetlen kudosu!-t sem szerzett",
+                    'amount' => ':amount kudosu',
+                    'empty' => "Ez a felhasználó még nem kapott kudosu-t!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => ':amount kudosu szerezve a modolási tagadó kérelemre a :poszt posztról',
+                            'give' => ':amount kudosu szerezve a :post-on lévő kudosu megvonás megcáfolására',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => ':amount visszavonva a :poszt modolási posztról',
+                            'reset' => ':amount visszavonva a :post modolási posztról',
                         ],
 
                         'delete' => [
-                            'reset' => ':amount elveszítve a modolási :post poszt törlésre kerülése miatt',
+                            'reset' => ':amount elvesztve a :post-on lévő modolási poszt törlődése miatt',
                         ],
 
                         'restore' => [
-                            'give' => ':amount szerezve a modolási :post poszt újraállitása miatt',
+                            'give' => ':amount szerezve :post-on lévő modolási poszt visszaállítása miatt',
                         ],
 
                         'vote' => [
-                            'give' => ':amount szerezve a szavazatokból a :post modolási posztról',
-                            'reset' => ':amount elvesztve szavazatok vesztése miatt a :post modolási posztról',
+                            'give' => ':amount szerezve a :post-ban lévő modolási poszton elért szavazatokért',
+                            'reset' => ':amount elvesztve a :post-ban lévő modolási posztról elvesztett szavazatokért',
                         ],
 
                         'recalculate' => [
-                            'give' => ':amount szerezve szavazatok újrakalkulálása végett a :post modolási posztról',
-                            'reset' => ':amount veszítve a szavazatok újrakalkulálása miatt a :post modolási posztról',
+                            'give' => ':amount szerezve a :post-ban lévő modolási poszt szavazatainak újraszámolásáért',
+                            'reset' => ':amount elvesztve a :post-ban lévő modolási poszt szavazatainak újraszámolásáért',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => ':amount szerezve :giver adótol a :post posztra',
-                        'reset' => 'Kudosu újrakezdés a/az :giver adótol a :post posztra',
-                        'revoke' => 'Elutasitott kudosu :giver adótol a :post posztra',
+                        'give' => ':amount szerezve :giver által egy :post-ban lévő posztra',
+                        'reset' => 'Kudosu visszaállítás :giver által a posztra :post',
+                        'revoke' => 'Elutasitott kudosu :giver által a :post posztra',
                     ],
                 ],
             ],
@@ -238,33 +263,34 @@ return [
                 'title' => 'rólam!',
             ],
             'medals' => [
-                'empty' => "Ez a felhasználó még egyetlennel sem rendelkezik. ;_;",
+                'empty' => "Ez a felhasználó még nem rendelkezik egyel sem. ;_;",
+                'recent' => '',
                 'title' => 'Medálok',
             ],
             'recent_activity' => [
                 'title' => 'Legutóbbi',
             ],
             'top_ranks' => [
-                'empty' => 'Egyetlen bámulatos eredmény sincs eddig. :(',
-                'not_ranked' => 'Csak rankolt beatmap ad pp-t.',
-                'pp' => '',
-                'title' => 'Rankok',
-                'weighted_pp' => 'súlyozott: :pp (:percentage)',
+                'download_replay' => 'Replay letöltése',
+                'empty' => 'Még nem rendelkezik kiemelkedő eredménnyel. :(',
+                'not_ranked' => 'Kizárólag rangsorolt beatmap adhat pp-t.',
+                'pp_weight' => '',
+                'title' => 'Rangok',
 
                 'best' => [
                     'title' => 'Legjobb eredmények',
                 ],
                 'first' => [
-                    'title' => 'Első helyezetet elért eredmények',
+                    'title' => 'Első Helyezéses Eredmények',
                 ],
             ],
             'account_standing' => [
-                'title' => 'Álló fiók',
-                'bad_standing' => "<strong>:username</strong> gardróbjának nem áll jól a szénája :(",
-                'remaining_silence' => '<strong>felhasználó</strong> képes lesz ismétt beszélni :duration időn belül.',
+                'title' => 'Fiók Állása',
+                'bad_standing' => "<strong>:username</strong> fiókja nincs jó helyzetben. :(",
+                'remaining_silence' => '<strong>:username</strong> ismét képes lesz a beszédre :duration időn belül.',
 
                 'recent_infringements' => [
-                    'title' => 'Legutóbbi jogsértések',
+                    'title' => 'Legutóbbi szabálysértések',
                     'date' => 'dátum',
                     'action' => 'művelet',
                     'length' => 'hossz',
@@ -280,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'Érdekeltségek',
@@ -291,35 +323,39 @@ return [
             'website' => 'Honlap',
         ],
         'not_found' => [
-            'reason_1' => 'Ők talán megváltoztatták a felhasználónevüket.',
-            'reason_2' => 'Ez a fiók jelenleg nem elérhető biztonsági/visszaélési okokbol.',
-            'reason_3' => 'Megtörténhet, hogy elírtál valamit!',
+            'reason_1' => 'Talán megváltoztatta a felhasználónevét.',
+            'reason_2' => 'Ez a fiók jelenleg nem elérhető biztonsági vagy visszaélési okokból.',
+            'reason_3' => 'Lehet, hogy elírtál valamit!',
             'reason_header' => 'Fennáll egy pár lehetséges ok erre:',
             'title' => 'Felhasználó nem található! ;_;',
         ],
         'page' => [
-            'description' => '<strong>Rólam!</strong> egy egyedivé tehető része a profilodnak.',
+            'description' => '<strong>Rólam!</strong> egy személyre szabható része a profilodnak.',
             'edit_big' => 'A rólam! szerkesztése!',
             'placeholder' => 'Írd ide az oldal tartalmát',
-            'restriction_info' => "<a href='-nek kell lenned".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!támogató</a>kell a funkció feloldásához.",
+            'restriction_info' => "A funkció feloldásához <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!támogató</a> kell hogy legyél.",
         ],
         'post_count' => [
-            '_' => 'Közremüködött :link-ban',
+            '_' => 'Hozzájárult :link',
             'count' => ':count fórum poszt|:count fórum posztok',
         ],
         'rank' => [
             'country' => 'Országos rank a/az :mode-ra/re',
+            'country_simple' => '',
             'global' => 'Globális rank a :mode-ra/re',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Találati Pontosság',
             'level' => 'Szint: :level',
+            'level_progress' => '',
             'maximum_combo' => 'Legmagasabb Kombó',
-            'play_count' => 'Játszottság szám',
+            'medals' => '',
+            'play_count' => 'Játékszám',
             'play_time' => 'Teljes játékidő',
-            'ranked_score' => 'Rankolt pontszám',
-            'replays_watched_by_others' => 'Megtekintett Visszajátszások Mások Által',
-            'score_ranks' => 'Eredmény pontok',
+            'ranked_score' => 'Rangsorolt Pontszám',
+            'replays_watched_by_others' => 'Mások Által Megtekintett Visszajátszások',
+            'score_ranks' => 'Eredmény Rangok',
             'total_hits' => 'Találatok Száma',
             'total_score' => 'Összpontszám',
         ],
@@ -332,6 +368,6 @@ return [
         'saved' => 'Felhasználó létrehozva',
     ],
     'verify' => [
-        'title' => 'Fiók megerősitése',
+        'title' => 'Fiók megerősítése',
     ],
 ];

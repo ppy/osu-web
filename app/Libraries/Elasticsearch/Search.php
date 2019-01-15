@@ -24,10 +24,8 @@ use Datadog;
 use Elasticsearch\Client;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
 
-abstract class Search implements Queryable
+abstract class Search extends HasSearch implements Queryable
 {
-    use HasSearch;
-
     const HIGHLIGHT_FRAGMENT_SIZE = 50;
 
     /** @var string */
@@ -43,7 +41,6 @@ abstract class Search implements Queryable
 
     protected $aggregations;
     protected $index;
-    protected $params;
     protected $queryString;
 
     private $count;
@@ -52,24 +49,9 @@ abstract class Search implements Queryable
 
     public function __construct(string $index, SearchParams $params)
     {
+        parent::__construct($params);
+
         $this->index = $index;
-        $this->params = $params;
-
-        if ($this->params->page !== null) {
-            $this->page($this->params->page);
-        }
-
-        if ($this->params->size !== null) {
-            $this->size($this->params->size);
-        }
-
-        if ($this->params->sort !== null) {
-            $this->sort($this->params->sort);
-        }
-
-        if ($this->params->source !== null) {
-            $this->source($this->params->source);
-        }
     }
 
     // for paginator
@@ -105,7 +87,7 @@ abstract class Search implements Queryable
             $query = $this->toArray();
             // some arguments need to be stripped from the body as they're not supported by count.
             $body = $query['body'];
-            foreach (['from', 'size', 'sort', 'timeout', '_source'] as $key) {
+            foreach (['from', 'search_after', 'size', 'sort', 'timeout', '_source'] as $key) {
                 unset($body[$key]);
             }
 
@@ -124,17 +106,38 @@ abstract class Search implements Queryable
 
     public function getPaginator(array $options = [])
     {
-        if (isset($this->from)) {
-            // no laravel paginator if offset-only paging is used
-            return;
-        }
+        // this does mean it's possible to do something stupid
+        // like having $this->params->from start from the middle of a page,
+        // but you've got other problems if the paginator is used like that.
+        $page = floor($this->params->from / $this->params->size) + 1;
 
         return new SearchPaginator(
             $this,
-            $this->getSize(),
-            $this->getPage(),
+            $this->params->size,
+            $page,
             $options
         );
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getSortCursor()
+    {
+        $last = array_last($this->response()->hits());
+        if ($last !== null && array_key_exists('sort', $last)) {
+            $fields = array_map(function ($sort) {
+                return $sort->field;
+            }, $this->params->sorts);
+
+            $casted = array_map(function ($value) {
+                // stringify all ints since javascript doesn't like big ints.
+                // fortunately the minimum value is PHP_INT_MIN instead of the equivalent double.
+                return is_int($value) ? (string) $value : $value;
+            }, $last['sort']);
+
+            return array_combine($fields, $casted);
+        }
     }
 
     /**
@@ -159,6 +162,16 @@ abstract class Search implements Queryable
         return $this->response;
     }
 
+    /**
+     * @return $this
+     */
+    public function searchAfter(?array $searchAfter)
+    {
+        $this->params->searchAfter = $searchAfter;
+
+        return $this;
+    }
+
     public function setAggregations(array $aggregations)
     {
         $this->aggregations = $aggregations;
@@ -170,13 +183,18 @@ abstract class Search implements Queryable
     public function toArray() : array
     {
         $body = [
-            'from' => $this->getFrom(),
-            'size' => $this->getQuerySize(),
+            'size' => $this->getQuerySize(), // TODO: this probably shouldn't be calculated if search_after is used.
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
-            }, $this->sorts),
+            }, $this->params->sorts),
             'timeout' => config('osu.elasticsearch.search_timeout'),
         ];
+
+        if (isset($this->params->searchAfter)) {
+            $body['search_after'] = $this->params->searchAfter;
+        } else {
+            $body['from'] = $this->params->from;
+        }
 
         if (isset($this->highlight)) {
             $body['highlight'] = $this->highlight->toArray();
@@ -209,11 +227,6 @@ abstract class Search implements Queryable
     public function total()
     {
         return min($this->response()->total(), $this->maxResults());
-    }
-
-    protected function getDefaultSize() : int
-    {
-        return 50;
     }
 
     private function fetch()

@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Histórico de modding de :user",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Discussões começadas recentemente',
@@ -97,6 +98,28 @@ return [
         'error' => 'Você precisa estar conectado para fazer isso.',
     ],
     'logout_confirm' => 'Tem certeza de que deseja sair? :(',
+    'report' => [
+        'button_text' => 'reportar',
+        'comments' => 'Comentários Adicionais',
+        'placeholder' => 'Por favor, forneça qualquer informação que você acredite ser útil.',
+        'reason' => 'Motivo',
+        'thanks' => 'Obrigado por sua denuncia!',
+        'title' => 'Reportar :username?',
+
+        'actions' => [
+            'send' => 'Enviar Reporte',
+            'cancel' => 'Cancelar',
+        ],
+
+        'options' => [
+            'cheating' => 'Jogando sujo / Trapaceando',
+            'insults' => 'Me insultando / outros',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Enviando links com conteúdo inapropriado',
+            'nonsense' => 'Sem sentido',
+            'other' => 'Outro (escreva abaixo)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Sua conta foi restrita!',
         'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em recorrer da sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',
@@ -110,8 +133,6 @@ return [
         'joined_at' => 'Entrou em :date',
         'lastvisit' => 'Visto por último :date',
         'missingtext' => 'Talvez você tenha feito um erro de digitação! (ou o usuário está banido)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age e morando em :country',
         'origin_country' => 'Morando em :country',
         'page_description' => 'osu! - Tudo que você sempre quis saber sobre :username!',
         'previous_usernames' => 'anteriormente conhecido como',
@@ -128,7 +149,7 @@ return [
                     'dropzone' => 'Solte aqui pare enviar',
                     'dropzone_info' => 'Você também pode soltar sua imagem aqui para enviar',
                     'restriction_info' => "Envio disponível apenas para <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
-                    'size_info' => 'O tamanho da capa deve ser 2000x700',
+                    'size_info' => 'O tamanho da capa deve ser 2800x620',
                     'too_large' => 'O arquivo enviado é muito grande.',
                     'unsupported_format' => 'Formato não suportado.',
                 ],
@@ -145,27 +166,29 @@ return [
             'unranked' => 'Nada jogado recentemente',
 
             'achievements' => [
-                'title' => 'Conquistas',
                 'achieved-on' => 'Conquistado em :date',
+                'locked' => '',
+                'title' => 'Conquistas',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Nenhum... ainda.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Beatmaps favoritos (:count)',
+                    'title' => 'Beatmaps favoritos',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps no cemitério (:count)',
+                    'title' => 'Beatmaps no cemitério',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps Loved (:count)',
+                    'title' => 'Beatmaps Loved',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmaps Ranqueados & Aprovados (:count)',
+                    'title' => 'Beatmaps Ranqueados & Aprovados',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmaps Pendentes (:count)',
+                    'title' => 'Beatmaps Pendentes',
                 ],
             ],
             'historical' => [
@@ -174,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Histórico de Jogo',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'vezes jogadas',
@@ -185,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Histórico de Replays Assistidos',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -239,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Esse usuário não conseguiu nenhuma recentemente. ;_;",
+                'recent' => '',
                 'title' => 'Medalhas',
             ],
             'recent_activity' => [
                 'title' => 'Recente',
             ],
             'top_ranks' => [
+                'download_replay' => 'Baixar Replay',
                 'empty' => 'Nenhuma performance incrível ainda. :(',
                 'not_ranked' => 'Apenas beatmaps ranqueados dão pp.',
-                'pp' => ':amountpp',
-                'title' => 'Ranques',
-                'weighted_pp' => 'ponderado: :pp (:percentage)',
+                'pp_weight' => '',
+                'title' => 'Classificações',
 
                 'best' => [
                     'title' => 'Melhor Performance',
@@ -280,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Interesses',
@@ -309,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Ranking nacional de :mode',
+            'country_simple' => '',
             'global' => 'Ranking global de :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão',
             'level' => 'Nível :level',
+            'level_progress' => '',
             'maximum_combo' => 'Combo Máximo',
+            'medals' => '',
             'play_count' => 'Vezes Jogadas',
             'play_time' => 'Tempo de Jogo',
             'ranked_score' => 'Pontuação Ranqueada',

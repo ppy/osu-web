@@ -26,6 +26,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
     super props
 
     @throttledUpdatePost = _.throttle @updatePost, 1000
+    @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
     @xhr = {}
     @cache = {}
 
@@ -138,11 +139,10 @@ class BeatmapDiscussions.Post extends React.PureComponent
     @setState editing: true, =>
       @textarea.focus()
 
-  handleEnter: (e) =>
-    return if e.keyCode != 13 || e.shiftKey
-
-    e.preventDefault()
-    @throttledUpdatePost()
+  handleKeyDownCallback: (type, event) =>
+    switch type
+      when InputHandler.SUBMIT
+        @throttledUpdatePost()
 
 
   isOwner: =>
@@ -159,10 +159,10 @@ class BeatmapDiscussions.Post extends React.PureComponent
         disabled: @state.posting
         className: "#{bn}__message #{bn}__message--editor"
         onChange: @setMessage
-        onKeyDown: @handleEnter
+        onKeyDown: @handleKeyDown
         value: @state.message
         innerRef: (el) => @textarea = el
-      el BeatmapDiscussions.MessageLengthCounter, message: @state.message
+      el BeatmapDiscussions.MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div className: "#{bn}__actions",
         div className: "#{bn}__actions-group"
@@ -286,8 +286,13 @@ class BeatmapDiscussions.Post extends React.PureComponent
                 'data-confirm': osu.trans('common.confirmation')
                 osu.trans('beatmaps.discussions.allow_kudosu')
 
+
   clearPermalinkClicked: =>
     @setState permalinkTimer: null
+
+
+  isTimeline: =>
+    @props.discussion.timestamp?
 
 
   permalink: (e) =>
@@ -337,4 +342,4 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
 
   validPost: =>
-    BeatmapDiscussionHelper.validMessageLength(@state.message)
+    BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())

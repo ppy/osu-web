@@ -21,7 +21,7 @@
 return [
     'availability' => [
         'disabled' => 'Ez a beatmap jelenleg nem letölthető.',
-        'parts-removed' => 'Ez a beatmap eltávolításra került a készítő kérésére vagy egy harmadik fél a jogok tulajdonosa.',
+        'parts-removed' => 'Ez a beatmap eltávolításra került a készítő vagy egy jogbirtokos harmadik fél kérésére.',
         'more-info' => 'Itt találsz több információt.',
     ],
 
@@ -38,11 +38,11 @@ return [
             'submitted' => 'beküldve ',
             'updated' => 'utoljára frissítve ',
             'updated_timeago' => 'utóljára frissítve: :timeago',
-            'ranked' => 'rank-elve ',
+            'ranked' => 'rangsorolva ',
             'approved' => 'elfogadva ',
             'qualified' => 'qualified ',
-            'loved' => 'loved ',
-            'logged-out' => 'Be kell jelentkezned mielőtt beatmap-et tölthetnél le!',
+            'loved' => 'kedvelve ',
+            'logged-out' => 'Beatmap letöltéshez be kell jelentkezned!',
             'download' => [
                 '_' => 'Letöltés',
                 'video' => 'Videóval',
@@ -53,41 +53,41 @@ return [
             'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
             'favourited_count' => '+ 1 másik!|+ :count másik!',
         ],
-        'stats' => [
-            'cs' => 'Kör méret',
-            'cs-mania' => 'Gomb mennyiség',
-            'drain' => 'HP kimeritő',
-            'accuracy' => 'Pontosság',
-            'ar' => 'Megközelítés arány',
-            'stars' => 'Csillagos nehézség',
-            'total_length' => 'Hossz',
-            'bpm' => 'BPM',
-            'count_circles' => 'Körök Száma',
-            'count_sliders' => 'Csúszka számláló',
-            'user-rating' => 'Felhasználói Értékelés',
-            'rating-spread' => 'Értékelési terjedelem',
-            'nominations' => 'Jelölések',
-            'playcount' => 'Játszottságszám',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Leírás',
             'genre' => 'Műfaj',
             'language' => 'Nyelv',
-            'no_scores' => 'Az adat még mindig számolás alatt áll...',
-            'points-of-failure' => 'Hibapontok',
+            'no_scores' => 'Az adatok még számítás alatt...',
+            'points-of-failure' => 'Kibukási Alkalmak',
             'source' => 'Forrás',
             'success-rate' => 'Teljesítési arány',
-            'tags' => 'Cimkék',
+            'tags' => 'Címkék',
             'unranked' => 'Rangsorolatlan beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => 'elérve: :when',
             'country' => 'Országos Ranglista',
             'friend' => 'Baráti Ranglista',
             'global' => 'Globális Ranglista',
-            'supporter-link' => 'Kattints <a href=":link">ide</a>,hogy megtekinthesd azt a sok jó funkcíót amit kaphatsz!',
+            'supporter-link' => 'Kattints <a href=":link">ide</a>,hogy megtekinthesd azt a sok jó funkciót amit kaphatsz!',
             'supporter-only' => 'Támogató kell legyél, hogy elérd a baráti és az országos ranglistát!',
-            'title' => 'Eredményjelző',
+            'title' => 'Eredménylista',
 
             'headers' => [
                 'accuracy' => 'Pontosság',
@@ -110,8 +110,25 @@ return [
             ],
             'score' => [
                 'first' => 'Az élen',
-                'own' => 'A te legjobbad',
+                'own' => 'A legjobbad',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Kör nagyság',
+            'cs-mania' => 'Billentyűk száma',
+            'drain' => 'HP Vesztés',
+            'accuracy' => 'Pontosság',
+            'ar' => 'Közelítési sebesség',
+            'stars' => 'Nehézség',
+            'total_length' => 'Hossz',
+            'bpm' => 'BPM',
+            'count_circles' => 'Körök Száma',
+            'count_sliders' => 'Sliderek Száma',
+            'user-rating' => 'Felhasználói Értékelés',
+            'rating-spread' => 'Értékelési Szórás',
+            'nominations' => 'Nominálások',
+            'playcount' => 'Játékszám',
         ],
     ],
 ];

@@ -22,7 +22,7 @@ return [
     'pinned_topics' => '置頂主題',
     'slogan' => "獨樂樂不如眾樂樂~",
     'subforums' => '其他相關討論',
-    'title' => 'osu! 社群',
+    'title' => 'osu! 論壇',
 
     'covers' => [
         'create' => [
@@ -44,6 +44,20 @@ return [
     'forums' => [
         'topics' => [
             'empty' => '沒有主題！',
+        ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
         ],
     ],
 
@@ -75,7 +89,9 @@ return [
         'new_topic_login' => '登錄以發表新主題',
         'post_reply' => '發表',
         'reply_box_placeholder' => '輸入回覆',
+        'reply_title_prefix' => 'Re',
         'started_by' => '發表人： :user',
+        'started_by_verbose' => '由 :user 發起',
 
         'create' => [
             'preview' => '預覽',
@@ -83,6 +99,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => '編輯',
             'submit' => '發表',
+
+            'necropost' => [
+                'default' => '',
+
+                'new_topic' => [
+                    '_' => "此主題不被討論一段時間了。如果你沒有在這裡發文的具體理由, 請用 :create 代替。",
+                    'create' => '建立一個新的主題',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => '在這裡輸入內文',
@@ -113,6 +138,11 @@ return [
             'box' => [
                 'total' => '訂閱的主題',
                 'unread' => '主題有新回覆',
+            ],
+
+            'info' => [
+                'total' => '共訂閱了 :total 個主題',
+                'unread' => '有 :unread 個未讀回覆',
             ],
         ],
 
@@ -258,7 +288,8 @@ return [
             'to_not_watching' => '未訂閱',
             'to_watching' => '訂閱',
             'to_watching_mail' => '訂閱並開啟電子郵件通知',
-            'mail_disable' => '關閉電子郵件通知',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

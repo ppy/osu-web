@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => '刪除圖譜',
+        'difference' => '，領先 :difference 分',
+        'failed' => '失敗',
         'header' => '多人遊戲',
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
-        ],
+        'in-progress' => '遊戲中...',
+        'in_progress_spinner_label' => '',
+        'loading-events' => '載入事件..。',
+        'winner' => ':team 勝利',
+
         'events' => [
             'player-left' => ':user 離開了房間',
             'player-joined' => ':user 加入了房間',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => '房間被關閉',
             'host-changed-no-user' => '房主已經變更',
         ],
-        'in-progress' => '遊戲中...',
+
         'score' => [
             'stats' => [
                 'accuracy' => '準確率',
@@ -50,16 +52,18 @@ return [
                 'score' => '得分',
             ],
         ],
-        'failed' => '失敗',
+
+        'team-types' => [
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
+        ],
+
         'teams' => [
             'blue' => '藍隊',
             'red' => '紅隊',
         ],
-        'winner' => ':team 勝利',
-        'difference' => '，領先 :difference 分',
-        'loading-events' => '載入事件..。',
-        'more-events' => '查看全部...',
-        'beatmap-deleted' => '刪除圖譜',
     ],
     'game' => [
         'scoring-type' => [

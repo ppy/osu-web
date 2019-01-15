@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Připnuté témata',
     'slogan' => "je nebezpečné hrát sám.",
     'subforums' => 'Subfóra',
-    'title' => 'osu!komunita',
+    'title' => 'osu! fóra',
 
     'covers' => [
         'create' => [
@@ -44,6 +44,20 @@ return [
     'forums' => [
         'topics' => [
             'empty' => 'Žádná témata!',
+        ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
         ],
     ],
 
@@ -75,7 +89,9 @@ return [
         'new_topic_login' => 'Přihlaš se k vytvoření nového téma',
         'post_reply' => 'Přidat příspěvek',
         'reply_box_placeholder' => 'Pro zodpovězení klikni sem',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'od :user',
+        'started_by_verbose' => 'započal :user',
 
         'create' => [
             'preview' => 'Náhled',
@@ -83,6 +99,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Psát',
             'submit' => 'Odeslat',
+
+            'necropost' => [
+                'default' => 'Tohle téma bylo neaktivní už nějakou dobu. Napište pouze jesli k tomu máš důvod.',
+
+                'new_topic' => [
+                    '_' => "Toto téma je neaktivní už nějakou dobu. Pokud nemáte důvod k napsaní, prosím :create radši.",
+                    'create' => 'vytvoř nové téma',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Zde napiš obsah příspěvku',
@@ -113,6 +138,11 @@ return [
             'box' => [
                 'total' => 'Počet sledovaných témat',
                 'unread' => 'Témata s novými odpověďmi',
+            ],
+
+            'info' => [
+                'total' => 'Sledujete :total témat.',
+                'unread' => 'Máš :unread nepřečtených odpovědí ve sledovaných tématech.',
             ],
         ],
 
@@ -258,7 +288,8 @@ return [
             'to_not_watching' => 'Nezáložkováno',
             'to_watching' => 'Záložka',
             'to_watching_mail' => 'Záložka s oznámením',
-            'mail_disable' => 'Vypnout oznámení',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user's Modding Historik",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Nyligen startade diskussioner',
@@ -77,7 +78,7 @@ return [
         'forgot' => 'Glömt ditt lösenord?',
         'beta' => [
             'main' => 'Beta åtkomst är för nuvarande begränsad till privilegierade användare.',
-            'small' => '(supportare kommer komma in snart)',
+            'small' => '(osu!supportrar kommer att komma in snart)',
         ],
 
         'here' => 'här', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +98,28 @@ return [
         'error' => 'Du behöver vara inloggad för att göra detta.',
     ],
     'logout_confirm' => 'Är du säker på att du vill logga ut? :(',
+    'report' => [
+        'button_text' => 'rapportera',
+        'comments' => 'Ytterligare kommentarer',
+        'placeholder' => 'Var snäll och lämna någon information som du tror kan vara användbar.',
+        'reason' => 'Orsak',
+        'thanks' => 'Tack för din rapport!',
+        'title' => 'Rapportera :username?',
+
+        'actions' => [
+            'send' => 'Skicka Rapport',
+            'cancel' => 'Avbryt',
+        ],
+
+        'options' => [
+            'cheating' => 'Fult spel / Fusk',
+            'insults' => 'Förolämpar mig / andra',
+            'spam' => 'Spammning',
+            'unwanted_content' => 'Länkar olämpligt innehåll',
+            'nonsense' => 'Dumheter',
+            'other' => 'Andra (skriv nedan)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Ditt konto har blivit begränsat!',
         'message' => 'När du är begränsad, kommer du inte kunna interagera med andra spelare och dina poäng kommer endast vara synliga för dig. Detta är oftast ett resultat av en automatiserad process och kommer troligen lyftas inom 24 timmar. Om du vill överklaga din begränsning, var vänlig <a href="mailto:accounts@ppy.sh">kontakta support</a>.',
@@ -110,8 +133,6 @@ return [
         'joined_at' => 'Gick med :date',
         'lastvisit' => 'Senast sedd :date',
         'missingtext' => 'Du kanske har stavat fel! (eller så är användaren bannad)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age från :country',
         'origin_country' => 'Från :country',
         'page_description' => 'osu! - Allting du någonsin hade velat veta om :username!',
         'previous_usernames' => 'tidigare känd som',
@@ -128,7 +149,7 @@ return [
                     'dropzone' => 'Släpp här för att ladda upp',
                     'dropzone_info' => 'Du kan också släppa din bild här för att ladda upp',
                     'restriction_info' => "Uppladdning tillgängligt för <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> endast",
-                    'size_info' => 'Omslagets storlek bör vara 2000x700',
+                    'size_info' => 'Omslagets storlek bör vara 2800x620',
                     'too_large' => 'Uppladdad bild är för stor.',
                     'unsupported_format' => 'Formatet stöds ej.',
                 ],
@@ -145,27 +166,29 @@ return [
             'unranked' => 'Inga senaste spel',
 
             'achievements' => [
-                'title' => 'Prestationer',
                 'achieved-on' => 'Uppnått :date',
+                'locked' => '',
+                'title' => 'Prestationer',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Inga... än.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Favoriserade Beatmaps (:count)',
+                    'title' => 'Favoriserade Beatmaps',
                 ],
                 'graveyard' => [
-                    'title' => 'Begravda Beatmaps (:count)',
+                    'title' => 'Begravda Beatmaps',
                 ],
                 'loved' => [
-                    'title' => 'Älskade Beatmaps (:count)',
+                    'title' => 'Älskade Beatmaps',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Rankade & Godkända Beatmaps (:count)',
+                    'title' => 'Rankade & Godkända Beatmaps',
                 ],
                 'unranked' => [
-                    'title' => 'Väntade Beatmaps (:count)',
+                    'title' => 'Väntade Beatmaps',
                 ],
             ],
             'historical' => [
@@ -174,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Spelhistorik',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'gånger spelade',
@@ -185,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Repriser kollade',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -239,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Denna användare har inte fått några än. ;_;",
+                'recent' => '',
                 'title' => 'Medaljer',
             ],
             'recent_activity' => [
                 'title' => 'Senaste',
             ],
             'top_ranks' => [
+                'download_replay' => '',
                 'empty' => 'Inga fantastiska prestationsrekord än. :(',
                 'not_ranked' => 'Endast rankade beatmaps ger pp.',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'Ranker',
-                'weighted_pp' => 'vägd: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Bästa Prestation',
@@ -280,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Intressen',
@@ -309,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Landsrank för :mode',
+            'country_simple' => '',
             'global' => 'Global rank för :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Träffsäkerhet',
             'level' => 'Nivå :level',
+            'level_progress' => '',
             'maximum_combo' => 'Maximal Kombo',
+            'medals' => '',
             'play_count' => 'Antal Gånger Spelat',
             'play_time' => 'Total speltid',
             'ranked_score' => 'Rankad Poäng',

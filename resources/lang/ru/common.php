@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Вы уверены?',
+    'confirmation_unsaved' => 'Несохраненные изменения будет утеряны. Вы уверены?',
     'saved' => 'Сохранено',
 
     'array_and' => [
@@ -29,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => 'В начало',
+        'back_to_previous' => 'Возвратить предыдущее состояние',
         'cancel' => 'Отмена',
         'change' => 'изменить',
         'click_to_copy' => 'нажмите чтобы скопировать',
         'click_to_copy_copied' => 'скопировано!',
         'delete' => 'Удалить',
+        'edit' => 'Изменить',
         'hide' => 'скрыть',
         'permalink' => 'прямая ссылка',
         'permalink_copied' => 'ссылка скопирована',
@@ -42,6 +46,7 @@ return [
         'reply_reopen' => 'Ответить и возобновить',
         'reply_resolve' => 'Ответить и разрешить',
         'reset' => 'Сбросить',
+        'restore' => 'Восстановить',
         'save' => 'Сохранить',
         'saving' => 'Сохранение...',
         'search' => 'Найти',
@@ -58,9 +63,17 @@ return [
         'hours' => ':count час|:count часа|:count часов',
         'item' => ':count единица|:count единицы|:count единиц',
         'minute_short_unit' => 'мин',
+        'minutes' => '',
         'months' => ':count месяц|:count месяца|:count месяцев',
         'second_short_unit' => 'сек',
         'years' => ':count год|:count года|:count лет',
+    ],
+
+    'countdown' => [
+        'days' => 'дней',
+        'hours' => 'часов',
+        'minutes' => 'минут',
+        'seconds' => 'секунд',
     ],
 
     'datetime' => [

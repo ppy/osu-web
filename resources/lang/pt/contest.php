@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => 'Compete em mais maneiras do que só clicar em círculos.',
-        'large' => 'Concursos da Comunidade osu!',
+        'large' => 'Concursos da Comunidade',
     ],
     'voting' => [
         'over' => 'A votação para este concurso terminou',
@@ -38,6 +38,7 @@ return [
         'over' => 'Obrigado pelas tuas inscrições! As submissões foram fechadas para este concurso e a votação irá abrir em breve.',
         'limit_reached' => 'Chegaste ao limite de inscrições para este concurso',
         'drop_here' => 'Larga a tua inscrição aqui',
+        'download' => 'Transferir .osz',
         'wrong_type' => [
             'art' => 'Somente ficheiros .jpg e .png são aceites para este concurso.',
             'beatmap' => 'Somente ficheiros .osu são aceites para este concurso.',
@@ -50,7 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'votos',
-        'count' => '1 voto|:count votos',
+        'count' => ':count voto|:count votos',
+        'points' => ':count ponto|:count pontos',
     ],
     'dates' => [
         'ended' => 'Terminou em :date',

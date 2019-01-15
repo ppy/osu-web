@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'หัวข้อที่ปักหมุดไว้',
     'slogan' => "เล่นคนเดียวมันอันตราย",
     'subforums' => 'ฟอรั่มย่อย',
-    'title' => 'osu!community',
+    'title' => '',
 
     'covers' => [
         'create' => [
@@ -44,6 +44,20 @@ return [
     'forums' => [
         'topics' => [
             'empty' => 'ไม่มีหัวข้อ',
+        ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
         ],
     ],
 
@@ -75,7 +89,9 @@ return [
         'new_topic_login' => 'เข้าสู่ระบบเพื่อโพสต์หัวเรื่องใหม่',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'พิมพ์ที่นี่เพื่อตอบกลับ',
+        'reply_title_prefix' => '',
         'started_by' => 'โดย :user',
+        'started_by_verbose' => '',
 
         'create' => [
             'preview' => 'Preview',
@@ -83,6 +99,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'เขียน',
             'submit' => 'โพสต์',
+
+            'necropost' => [
+                'default' => '',
+
+                'new_topic' => [
+                    '_' => "",
+                    'create' => '',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'พิมพ์เนื้อหาโพสต์ที่นี่',
@@ -113,6 +138,11 @@ return [
             'box' => [
                 'total' => 'Topics subscribed',
                 'unread' => 'Topics with new replies',
+            ],
+
+            'info' => [
+                'total' => 'You subscribed to :total topics.',
+                'unread' => 'You have :unread unread replies to subscribed topics.',
             ],
         ],
 
@@ -258,7 +288,8 @@ return [
             'to_not_watching' => 'ไม่ได้บุ๊กมาร์คไว้',
             'to_watching' => 'บุ๊กมาร์ค',
             'to_watching_mail' => 'บุ๊กมาร์คและรับการแจ้งเตือน',
-            'mail_disable' => 'ปิดการแจ้งเตือน',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

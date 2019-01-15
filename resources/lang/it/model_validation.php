@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Difficoltà specificata non valida.',
         'invalid_beatmapset_id' => 'Beatmap specificata non valida.',
         'locked' => 'La discussione è chiusa.',
-        'mapper_note_wrong_user' => 'Solo il proprietario della beatmap può pubblicare delle note sulla mappa.',
 
         'hype' => [
             'guest' => 'Devi avere effettuato il login per promuovere.',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => 'Il timestamp specificato è oltre la lunghezza della beatmap.',
             'negative' => "Il timestamp non può essere negativo.",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => 'Non è permesso rispondere ad un commento eliminato.',
     ],
 
     'forum' => [
@@ -69,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Non è permesso avere un\'opzione duplicata.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Le opzioni per utente non possono superare il numero di opzioni disponibili.',
             'minimum_one_selection' => 'È richiesto un minimo di un\'opzione per utente.',
             'minimum_two_options' => 'È necessario almeno due opzioni.',
@@ -111,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Questo è già il tuo nome utente, stupido!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

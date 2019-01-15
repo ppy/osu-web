@@ -21,20 +21,20 @@ el = React.createElement
 
 class Beatmaps.SearchSort extends React.PureComponent
   render: =>
-    div className: 'beatmapsets-sorting',
+    div className: 'sort sort--beatmapsets',
+      span className: 'sort__item sort__item--title', osu.trans('sort._')
       for field in @fields()
         selected = @selected(field)
 
         a
           key: field
           href: '#'
-          className: "beatmapsets-sorting__item #{'beatmapsets-sorting__item--selected' if selected}"
+          className: "sort__item sort__item--button #{'sort__item--active' if selected}"
           onClick: @select
           'data-field': field
           osu.trans "beatmaps.listing.search.sorting.#{field}"
           span
-            className: 'beatmapsets-sorting__item-arrow'
-            'data-visibility': ('hidden' if !selected)
+            className: 'sort__item-arrow'
             i className: "fas fa-caret-#{if @props.sorting.order == 'asc' then 'up' else 'down'}"
 
 

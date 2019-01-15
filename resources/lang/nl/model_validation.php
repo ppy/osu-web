@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Ongeldige moeilijkheidsgraad opgegeven.',
         'invalid_beatmapset_id' => 'Ongeldige beatmap opgegeven.',
         'locked' => 'Discussie is vergrendeld.',
-        'mapper_note_wrong_user' => 'Enkel de eigenaar van de beatmap kan mapper notities posten.',
 
         'hype' => [
             'guest' => 'He moet ingelogd zijn om te hypen.',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => 'Opgegeven tijdstip is later dan het einde van de beatmap.',
             'negative' => "Tijdstip kan niet negatief zijn.",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => 'Op een verwijderde comment reageren is niet toegestaan.',
     ],
 
     'forum' => [
@@ -69,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Een optie dupliceren is niet toegestaan.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Opties per gebruiker mag niet groter zijn dan het aantal opties.',
             'minimum_one_selection' => 'Minstens een optie per gebruiker is vereist.',
             'minimum_two_options' => 'Moet ten minste twee opties hebben.',
@@ -111,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Dit is je gebruikersnaam al, dommerik!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

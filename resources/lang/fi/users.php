@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Käyttäjän :user modaushistoria",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Uusimmat keskustelut',
@@ -77,7 +78,7 @@ return [
         'forgot' => 'Unohditko salasanasi?',
         'beta' => [
             'main' => 'Beta on tällä hetkellä käytössä vain siihen oikeutetuilla käyttäjillä.',
-            'small' => '(Tukijat pääsevät sisään pian)',
+            'small' => '(osu!tukijat tulevat kohta)',
         ],
 
         'here' => 'täällä', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +98,28 @@ return [
         'error' => 'Sinun tarvitsee olla kirjautunut tätä varten.',
     ],
     'logout_confirm' => 'Oletko varma, että haluat kirjautua ulos? :(',
+    'report' => [
+        'button_text' => 'raportoi',
+        'comments' => 'Lisä-kommentit',
+        'placeholder' => 'Anna kaikki tieto joka voisi olla kätevää.',
+        'reason' => 'Syy',
+        'thanks' => 'Kiitos raportistasi!',
+        'title' => 'Ilmianna :username?',
+
+        'actions' => [
+            'send' => 'Lähetä raportti',
+            'cancel' => 'Peruuta',
+        ],
+
+        'options' => [
+            'cheating' => 'Väärin pelaaminen / Huijaaminen',
+            'insults' => 'Haukkuu minua / muita',
+            'spam' => 'Spämmii',
+            'unwanted_content' => 'Linkkaa aikuismateriaalia / muuta epämukavaa materiaalia',
+            'nonsense' => 'Hölynpölyä',
+            'other' => 'Muu (kirjoita alle)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Tilisi on rajoitettu!',
         'message' => 'Kun olet rajoitetussa tilassa, et näe muita pelaajia ja tuloksesi ovat näkyvissä vain sinulle. Tämä on yleensä automatisoitu prosessi ja poistuu useimmiten 24 tunnin sisällä. Jos haluat tehdä valituksen <a href="mailto:accounts@ppy.sh">ota yhteyttä tukeen</a>.',
@@ -110,8 +133,6 @@ return [
         'joined_at' => 'Liittyi :date',
         'lastvisit' => 'Nähty viimeksi :date',
         'missingtext' => 'Taisit tehdä kirjoitusvirheen! (tai käyttäjällä on porttikielto)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age, maasta: :country',
         'origin_country' => 'Maasta :country',
         'page_description' => 'osu! - Kaikki mitä olet koskaan halunnut tietää käyttäjästä :username!',
         'previous_usernames' => 'tunnettiin aiemmin nimellä',
@@ -128,7 +149,7 @@ return [
                     'dropzone' => 'Pudota tiedosto tähän ladataksesi',
                     'dropzone_info' => 'Voit myös lähettää kuvan pudottamalla sen tähän',
                     'restriction_info' => "Kuvien lähetys käytössä vain <a href='".route('store.products.show', 'supporter-tag')."'target='_blank'>vain Tukijoille</a>",
-                    'size_info' => 'Kansikuvan kuuluisi olla 2000x700 pikseliä',
+                    'size_info' => 'Kansikuvan kuuluisi olla 2800x620 pikseliä',
                     'too_large' => 'Lähetetty tiedosto on liian iso.',
                     'unsupported_format' => 'Tiedostomuotoa ei tueta.',
                 ],
@@ -142,30 +163,32 @@ return [
 
         'extra' => [
             'followers' => '1 seuraaja |:count seuraajaa',
-            'unranked' => 'Ei viimeaikaisia pelauksia',
+            'unranked' => 'Ei viimeaikaisia pelejä',
 
             'achievements' => [
-                'title' => 'Saavutukset',
                 'achieved-on' => 'Saavutuspäivä :date',
+                'locked' => '',
+                'title' => 'Saavutukset',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Ei yhtään... vielä.',
                 'title' => 'Beatmapit',
 
                 'favourite' => [
-                    'title' => 'Suosikit (:count)',
+                    'title' => 'Suosikit',
                 ],
                 'graveyard' => [
-                    'title' => 'Kuopatut (:count)',
+                    'title' => 'Kuopatut',
                 ],
                 'loved' => [
-                    'title' => 'Rakastetut beatmapit (:count)',
+                    'title' => 'Rakastetut beatmapit',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Hyväksytyt & Vahvistetut Beatmapit (:count)',
+                    'title' => 'Hyväksytyt & Vahvistetut Beatmapit',
                 ],
                 'unranked' => [
-                    'title' => 'Vireillä olevat Beatmapit (:count)',
+                    'title' => 'Vireillä olevat Beatmapit',
                 ],
             ],
             'historical' => [
@@ -174,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Pelaushistoria',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'pelikertoja: ',
@@ -185,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Katsotut Uusinnat',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -192,7 +217,7 @@ return [
                 'available_info' => "Kudosuja voit vaihtaa kudosutähtiin, jotka auttavat tuomaan lisää huomiota beatmapillesi. Näin monta kudosua et ole vielä vaihtanut.",
                 'recent_entries' => 'Viimeisimmät Kudosut',
                 'title' => 'Kudosu!',
-                'total' => 'Ansaittuja Kudosuja Yhteensä',
+                'total' => 'Ansaittu Kudosu',
                 'total_info' => 'Perustuu käyttäjän tekemään vaikutukseen beatmappien moderoinnissa. Katso <a href="'.osu_url('user.kudosu').'">tämä sivu</a> saadaksesi lisätietoja.',
 
                 'entry' => [
@@ -239,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Tämä käyttäjä ei ole saanut vielä yhtäkään. ;_;",
+                'recent' => '',
                 'title' => 'Mitalit',
             ],
             'recent_activity' => [
                 'title' => 'Viimeisimmät',
             ],
             'top_ranks' => [
+                'download_replay' => 'Lataa Replay',
                 'empty' => 'Loistavia suorituksia ei ole vielä. :(',
-                'not_ranked' => 'Vain hyväksytyt kartat antavat PP:tä.',
-                'pp' => '',
+                'not_ranked' => 'Vain hyväksytyt beatmapit antavat pp:tä.',
+                'pp_weight' => '',
                 'title' => 'Suoritukset',
-                'weighted_pp' => 'painotettu: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Parhaat Suoritukset',
@@ -280,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'Kiinnostuksen kohteet',
@@ -304,17 +336,21 @@ return [
             'restriction_info' => "Sinun pitää olla <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'> Tukija</a> avataksesi tämän toiminnon.",
         ],
         'post_count' => [
-            '_' => 'Lähettänyt :link',
+            '_' => 'Mukana toiminnassa :link',
             'count' => ':count foorumiviestillä|:count foorumiviestillä',
         ],
         'rank' => [
             'country' => 'Maakohtainen sijoitus pelimuodossa :mode',
+            'country_simple' => '',
             'global' => 'Maailmanlaajuinen sijoitus pelimuodossa :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Tarkkuus',
             'level' => 'Taso :level',
+            'level_progress' => '',
             'maximum_combo' => 'Korkein Combo',
+            'medals' => '',
             'play_count' => 'Pelikertoja',
             'play_time' => 'Pelaamisaika yhteensä',
             'ranked_score' => 'Tilastopisteet',
@@ -326,7 +362,7 @@ return [
     ],
     'status' => [
         'online' => 'Paikalla',
-        'offline' => 'Ei paikalla',
+        'offline' => 'Poissa',
     ],
     'store' => [
         'saved' => 'Käyttäjä luotu',

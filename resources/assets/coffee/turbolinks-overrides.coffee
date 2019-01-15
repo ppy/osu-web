@@ -21,11 +21,16 @@
 $(document).on 'click', 'a[href^="#"]', (e) ->
   href = e.currentTarget.href
   targetId = decodeURIComponent href[href.indexOf('#') + 1..]
+
+  return if targetId == ''
+
   target = document.getElementById targetId
 
   return if !target?
 
   e.preventDefault()
+  # still behaves weird in cases where push/popping state wouldn't normally result in a scroll.
+  Turbolinks.controller.advanceHistory href if location.href != href
   target.scrollIntoView()
 
 

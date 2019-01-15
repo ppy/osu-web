@@ -33,8 +33,8 @@ return [
     ],
 
     'error' => [
-        'contact_support' => 'Kérlek írj a supportnak fiókod visszaállitásához.',
-        'is_privileged' => 'Írj peppy-nek lulz.',
+        'contact_support' => 'Fiókod visszaszerzéséhez kérlek vedd fel a kapcsolatot az ügyfélszolgálattal.',
+        'is_privileged' => 'Nyaggasd peppy-t lol.',
         'missing_key' => 'Kötelező.',
         'too_many_tries' => 'Túl sok sikertelen próbálkozás.',
         'user_not_found' => 'A megadott felhasználó nem létezik.',
@@ -49,7 +49,7 @@ return [
     'started' => [
         'password' => 'Új jelszó',
         'password_confirmation' => 'Jelszó megerősítése',
-        'title' => 'Jelszó módositása <strong>:username</strong> felhasználónak.',
+        'title' => 'Jelszó visszaállítása <strong>:username</strong> felhasználónak.',
         'verification_key' => 'Hitelesítő kód',
     ],
 

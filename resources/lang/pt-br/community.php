@@ -23,7 +23,7 @@ return [
         'header' => [
             // size in font-size
             'big_description' => 'Ama o osu!?<br/>
-                                Ajude o desenvolvimento do osu! :D',
+                                Apoie nosso desenvolvimento :D',
             'small_description' => '',
             'support_button' => 'Quero ajudar o osu!',
         ],
@@ -41,7 +41,7 @@ return [
             'not_yet' => "Você ainda não tem uma supporter tag :(",
             'title' => 'Estado atual do supporter',
             'valid_until' => 'Sua supporter tag atual é válida até :date!',
-            'was_valid_until' => 'Sua supporter tag era válida :date.',
+            'was_valid_until' => 'Sua supporter tag era válida até :date.',
         ],
 
         'why_support' => [

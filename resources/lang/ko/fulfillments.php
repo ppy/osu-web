@@ -21,7 +21,7 @@
 return [
     'mail' => [
         'donation_thanks' => [
-            'subject' => '감사합니다, osu!는 여러분들을 <3 합니다!',
+            'subject' => '감사합니다, osu!는 여러분을 ❤합니다',
         ],
         'supporter_gift' => [
             'subject' => 'osu! 서포터 권한을 얻으셨습니다!',

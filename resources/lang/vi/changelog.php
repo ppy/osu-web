@@ -22,6 +22,10 @@ return [
     'feed_title' => 'feed',
     'generic' => 'Sửa lỗi và một số cải tiến',
 
+    'build' => [
+        'title' => 'những thay đổi trong :version',
+    ],
+
     'builds' => [
         'users_online' => ':count_delimited người dùng online',
     ],
@@ -31,6 +35,17 @@ return [
     ],
 
     'index' => [
+        'page_title' => [
+            '_' => 'danh sách thay đổi',
+            '_from' => 'những thay đổi từ :from',
+            '_from_to' => 'những thay đổi giữa :from và :to',
+            '_stream' => 'những thay đổi trong :stream',
+            '_stream_from' => 'những thay đổi trong :stream kể từ :from',
+            '_stream_from_to' => 'những thay đổi trong :stream giữa :from và :to',
+            '_stream_to' => 'những thay đổi trong :stream đến :to',
+            '_to' => 'những thay đổi đến :to',
+        ],
+
         'title' => [
             '_' => 'Changelog :info',
             'info' => 'Danh Sách',

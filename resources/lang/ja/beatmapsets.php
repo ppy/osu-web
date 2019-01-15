@@ -34,10 +34,10 @@ return [
         'discussion' => 'ディスカッション',
 
         'details' => [
-            'mapped_by' => '',
+            'mapped_by' => '作者 :mapper',
             'submitted' => '投稿日 ',
             'updated' => '最後の更新 ',
-            'updated_timeago' => '',
+            'updated_timeago' => '最終更新時刻: :timeago',
             'ranked' => 'ranked日時 ',
             'approved' => 'approved日時 ',
             'qualified' => 'qualified日時 ',
@@ -53,22 +53,21 @@ return [
             'unfavourite' => '譜面をお気に入りから外す',
             'favourited_count' => '+ そのほか:count人！',
         ],
-        'stats' => [
-            'cs' => 'サークルサイズ',
-            'cs-mania' => 'キー数',
-            'drain' => 'HPの厳しさ',
-            'accuracy' => '判定の厳しさ',
-            'ar' => 'アプローチ速度',
-            'stars' => '難易度（★）',
-            'total_length' => '長さ',
-            'bpm' => 'BPM',
-            'count_circles' => 'サークルの数',
-            'count_sliders' => 'スライダーの数',
-            'user-rating' => 'ユーザーの評価',
-            'rating-spread' => '評価分布',
-            'nominations' => 'ノミネーション',
-            'playcount' => 'プレイ数',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => '説明文',
             'genre' => 'ジャンル',
@@ -80,6 +79,7 @@ return [
             'tags' => 'タグ',
             'unranked' => 'Unranked譜面',
         ],
+
         'scoreboard' => [
             'achieved' => '達成日 :when',
             'country' => '国別ランキング',
@@ -112,6 +112,23 @@ return [
                 'first' => 'In the Lead',
                 'own' => 'Your Best',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'サークルサイズ',
+            'cs-mania' => 'キー数',
+            'drain' => 'HPの厳しさ',
+            'accuracy' => '判定の厳しさ',
+            'ar' => 'アプローチ速度',
+            'stars' => '難易度（★）',
+            'total_length' => '長さ',
+            'bpm' => 'BPM',
+            'count_circles' => 'サークルの数',
+            'count_sliders' => 'スライダーの数',
+            'user-rating' => 'ユーザーの評価',
+            'rating-spread' => '評価分布',
+            'nominations' => 'ノミネーション',
+            'playcount' => 'プレイ数',
         ],
     ],
 ];

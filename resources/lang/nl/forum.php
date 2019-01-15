@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Gepinde Onderwerpen',
     'slogan' => "it's dangerous to play alone.",
     'subforums' => 'Subfora',
-    'title' => 'osu!community',
+    'title' => 'osu! forums',
 
     'covers' => [
         'create' => [
@@ -44,6 +44,20 @@ return [
     'forums' => [
         'topics' => [
             'empty' => 'Geen topics!',
+        ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
         ],
     ],
 
@@ -75,7 +89,9 @@ return [
         'new_topic_login' => 'Log in om een nieuw onderwerp maken',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Typ hier om te antwoorden',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'door :user',
+        'started_by_verbose' => 'gestart door :user',
 
         'create' => [
             'preview' => 'Voorbeeld',
@@ -83,6 +99,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Schrijf',
             'submit' => 'Post',
+
+            'necropost' => [
+                'default' => 'Dit onderwerp is al een tijdje inactief. Maak alleen een post hier als je een specifieke reden daarvoor hebt.',
+
+                'new_topic' => [
+                    '_' => "Dit onderwerp is al een tijdje inactief. Als je geen specifieke reden om hier te posten hebt, :create in plaats daarvan.",
+                    'create' => 'maak een onderwerp aan',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Typ post inhoud hier',
@@ -113,6 +138,11 @@ return [
             'box' => [
                 'total' => 'Geabonneerde topics',
                 'unread' => 'Topics met nieuwe berichten',
+            ],
+
+            'info' => [
+                'total' => 'Je bent geabonneerd op :total topics.',
+                'unread' => 'Je hebt :unread ongelezen berichten in geabonneerde berichten.',
             ],
         ],
 
@@ -258,7 +288,8 @@ return [
             'to_not_watching' => 'Heeft geen bladwijzer',
             'to_watching' => 'Voeg bladwijzer toe',
             'to_watching_mail' => 'Voeg bladwijzer met notificaties toe',
-            'mail_disable' => 'Melding uitschakelen',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

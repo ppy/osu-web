@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Tylko autor wątku i autor beatmapy mogą zakończyć dyskusję.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Adnotacje mogą być dodawane tylko przez twórcę mapy, nominatora lub członka QAT.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Zaczekaj, zanim zagłosujesz ponownie',
             'owner' => "Nie możesz głosować we własnej dyskusji!",
@@ -48,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Nie posiadasz dostępu do tego kanału.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Nie posiadasz dostępu do tego kanału.',
-                    'moderated' => 'Kanał jest obecnie w trybie tylko dla moderatorów.',
-                    'not_lazer' => 'Obecnie możesz pisać tylko na kanale #lazer.',
-                ],
+        'blocked' => 'Nie możesz wysłać wiadomości do użytkownika, którego blokujesz lub który cię blokuje.',
+        'friends_only' => 'Ten użytkownik blokuje wiadomości od osób spoza listy znajomych.',
+        'moderated' => 'Ten kanał jest obecnie w trybie tylko dla moderatorów.',
+        'no_access' => 'Nie masz dostępu do tego kanału.',
+        'restricted' => 'Nie możesz wysyłać wiadomości podczas uciszenia czy blokady konta.',
+    ],
 
-                'not_allowed' => 'Nie możesz wysyłać wiadomości podczas uciszenia bądź blokady konta',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Nie możesz edytować usuniętego posta.",
         ],
     ],
 
@@ -71,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Nie posiadasz uprawnień do moderowania tego forum.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Tylko ostatni post może zostać usunięty.',
@@ -95,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Post został przed chwilą utworzony. Poczekaj chwilę albo zedytuj swój ostatni post.',
+                'double_post' => 'Zedytuj swój poprzedni post zamiast tworzenia nowego.',
                 'locked' => 'Nie możesz odpowiadać w zamkniętym wątku.',
                 'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
                 'no_permission' => 'Nie posiadasz uprawnień do odpowiadania.',
@@ -155,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'Strona użytkownika została zablokowana.',
                 'not_owner' => 'Możesz edytować tylko własną stronę użytkownika.',
-                'require_supporter_tag' => 'Wymagany jest status donatora.',
+                'require_supporter_tag' => 'Aby to zrobić, wymagany jest status donatora osu!.',
             ],
         ],
     ],

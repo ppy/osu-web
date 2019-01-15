@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Endast tråd skaparen eller beatmap ägare kan lösa en diskussion.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Endast beatmap ägaren eller nominator/QAT gruppmedlem kan publicera kart anteckningar.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Var god vänta innan du lägger mer röster',
             'owner' => "Kan inte rösta på din egen diskussion!",
@@ -48,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Åtkomst till begärd kanal tillåts inte.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Åtkomst till kanal behövs',
-                    'moderated' => 'Kanalen modereras just nu.',
-                    'not_lazer' => 'Du kan endast prata i #lazer just nu.',
-                ],
+        'blocked' => 'Kan inte skicka meddelanden till en användare som blockerar dig eller som du har blockerat.',
+        'friends_only' => 'Användaren blockerar meddelanden från personer inte på sin vänlista.',
+        'moderated' => '',
+        'no_access' => 'Du har inte behörighet till denna kanal.',
+        'restricted' => 'Du kan inte skicka meddelanden medan du är tystad, avstängd eller bannad.',
+    ],
 
-                'not_allowed' => 'Kan ej skicka meddelande medan man är bannad/begränsad/tystad.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Kan ej redigera raderade inlägg.",
         ],
     ],
 
@@ -71,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Inget tillstånd för att moderera detta forum.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Endast sista inlägget kan raderas.',
@@ -95,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Du la precis upp ett inlägg. Vänta en stund eller redigera ditt senaste inlägg.',
+                'double_post' => 'Vänligen redigera ditt senaste inlägg istället för att publicera ett inlägg igen.',
                 'locked' => 'Kan ej svara på ett låst inlägg.',
                 'no_forum_access' => 'Åtkomst till begärt forum behövs.',
                 'no_permission' => 'Saknar behörighet för att svara.',
@@ -155,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'Användar-sidan är låst.',
                 'not_owner' => 'Kan endast redigera egen användar-sida.',
-                'require_supporter_tag' => 'Supporter tagg behövs.',
+                'require_supporter_tag' => 'osu!supporter tag krävs.',
             ],
         ],
     ],

@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Weet je dat zeker?',
+    'confirmation_unsaved' => 'Niet-opgeslagen wijzigingen zullen verloren gaan. Weet je het zeker?',
     'saved' => 'Opgeslagen',
 
     'array_and' => [
@@ -29,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => 'Terug naar boven',
+        'back_to_previous' => 'Terug naar vorige positie',
         'cancel' => 'Annuleer',
         'change' => 'verander',
         'click_to_copy' => 'klik op naar klembord kopiëren',
         'click_to_copy_copied' => 'gekopiëerd naar klembord!',
         'delete' => 'Verwijder',
+        'edit' => 'Bewerk',
         'hide' => 'verbergen',
         'permalink' => 'permalink',
         'permalink_copied' => 'link gekopieerd',
@@ -42,6 +46,7 @@ return [
         'reply_reopen' => 'Beantwoord en Heropen',
         'reply_resolve' => 'Beantwoord en Los op',
         'reset' => 'Herstel',
+        'restore' => 'Herstel',
         'save' => 'Opslaan',
         'saving' => 'Opslaan...',
         'search' => 'Zoeken',
@@ -58,9 +63,17 @@ return [
         'hours' => ':count uur|:count uren',
         'item' => ':count stuk|:count stuks',
         'minute_short_unit' => 'minuut|minuten',
+        'minutes' => '',
         'months' => ':count maand|:count maanden',
         'second_short_unit' => 'second|seconden',
         'years' => ':count jaar|:count jaar',
+    ],
+
+    'countdown' => [
+        'days' => 'dagen',
+        'hours' => 'uren',
+        'minutes' => 'minuten',
+        'seconds' => 'seconden',
     ],
 
     'datetime' => [

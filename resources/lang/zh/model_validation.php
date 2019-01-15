@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => '指定的难度无效。',
         'invalid_beatmapset_id' => '指定的谱面无效。',
         'locked' => '讨论被锁定。',
-        'mapper_note_wrong_user' => '只有谱面作者可以钉上便签。',
 
         'hype' => [
             'guest' => '登录后才能推荐',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => '指定的时间戳不在谱面范围内。',
             'negative' => "无法定位时间戳。",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => '不能回复已删除的评论。',
     ],
 
     'forum' => [
@@ -69,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => '不允许重复的选项。',
+            'grace_period_expired' => '',
             'invalid_max_options' => '每人可选的选项不能超出总选项数。',
             'minimum_one_selection' => '每人至少可选一项。',
             'minimum_two_options' => '需要至少两个选项。',
@@ -111,5 +115,9 @@ return [
             ],
             'username_is_same' => '这就是你的用户名，Baka！',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

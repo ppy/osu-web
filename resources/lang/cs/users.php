@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user's modding historie",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Nedávno zahájená diskuze',
@@ -77,7 +78,7 @@ return [
         'forgot' => 'Zapoměl jsi heslo?',
         'beta' => [
             'main' => 'Beta přístup je momentálně omezen na oprávněné uživatele.',
-            'small' => '(brzy pro supportery)',
+            'small' => '(brzy pro podporovatele)',
         ],
 
         'here' => 'zde', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +98,28 @@ return [
         'error' => 'Pro tuto akci musíte být přihlášeni.',
     ],
     'logout_confirm' => 'Opravdu se chceš odhlásit? :(',
+    'report' => [
+        'button_text' => 'nahlásit',
+        'comments' => 'Přídavné komentáře',
+        'placeholder' => 'Prosím uveďte jakékoliv informace které si myslíte že by mohly být užitečně.',
+        'reason' => 'Důvod',
+        'thanks' => 'Děkují za vaše nahlášení!',
+        'title' => 'Nahlásit :username?',
+
+        'actions' => [
+            'send' => 'Poslat Nahlášení',
+            'cancel' => 'Zrušit',
+        ],
+
+        'options' => [
+            'cheating' => 'Faulové hráni / Podvádění',
+            'insults' => 'Uráží mě / jiné',
+            'spam' => 'Spamování',
+            'unwanted_content' => 'Linkovaní nebezpečného obsahu',
+            'nonsense' => 'Nesmysl',
+            'other' => 'Ostatní (napište dolů)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Tvůj účet byl omezen!',
         'message' => 'Zatímco jsi v omezeném režimu, nebudeš moci komunikovat s ostatními hráči a tvá skóre budou viditelná pouze pro tebe. Toto je obvykle výsledkem automatického procesu který by se měl sám vyřešit do nejpozději 24 hodin. Pokud si přeješ odvolat tvé omezení, prosím <a href="mailto:accounts@ppy.sh">kontaktujte podporu</a>.',
@@ -110,8 +133,6 @@ return [
         'joined_at' => 'Členem od :date',
         'lastvisit' => 'Naposledy spatřen :date',
         'missingtext' => 'Možná jste se přepsal! (nebo byl uživatel zabanován)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age z :country',
         'origin_country' => 'Z :country',
         'page_description' => 'osu! - Všechno co jste kdy chtěli vědět o :username!',
         'previous_usernames' => 'dříve znám jako',
@@ -128,7 +149,7 @@ return [
                     'dropzone' => 'Přetáhni sem pro nahrání',
                     'dropzone_info' => 'Můžeš také přetánout sem pro nahrání',
                     'restriction_info' => "Nahrání k dispozici pro <a href='".route('store.products.show', 'supporter-tag')."pouze ' target='_blank'>osu!supporteři</a>",
-                    'size_info' => 'Velikost záhlaví by měla být 2000x700',
+                    'size_info' => 'Velikost záhlaví by měla být 2800x620',
                     'too_large' => 'Nahraný soubor je příliš velký.',
                     'unsupported_format' => 'Nepodporovaný formát.',
                 ],
@@ -145,27 +166,29 @@ return [
             'unranked' => 'Žádné poslední údaje o hraní',
 
             'achievements' => [
-                'title' => 'Úspěchy',
                 'achieved-on' => 'Dosaženo :date',
+                'locked' => '',
+                'title' => 'Úspěchy',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Žádná... zatím.',
                 'title' => 'Beatmapy',
 
                 'favourite' => [
-                    'title' => 'Oblíbené Beatmapy (:count)',
+                    'title' => 'Oblíbené Beatmapy',
                 ],
                 'graveyard' => [
-                    'title' => 'Pohřbené Beatmapy (:count)',
+                    'title' => 'Pohřbené Beatmapy',
                 ],
                 'loved' => [
-                    'title' => 'Oblíbené Beatmapy (:count)',
+                    'title' => 'Oblíbené Beatmapy',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Hodnocené & Schválené Beatmapy (:count)',
+                    'title' => 'Hodnocené & Schválené Beatmapy',
                 ],
                 'unranked' => [
-                    'title' => 'Čekající Beatmapy (:count)',
+                    'title' => 'Čekající Beatmapy',
                 ],
             ],
             'historical' => [
@@ -174,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Herní historie',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'odehraný čas',
@@ -185,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historie zhlédnutí replayů',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -239,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Tento uživatel zatím žádné neobdržel ;_;",
+                'recent' => '',
                 'title' => 'Medaile',
             ],
             'recent_activity' => [
                 'title' => 'Nedávné',
             ],
             'top_ranks' => [
+                'download_replay' => 'Stáhnout záznam',
                 'empty' => 'Zatím žádné záznamy o úžasném výkonu. :(',
                 'not_ranked' => 'Pouze hodnocené mapy vydávají pp.',
-                'pp' => '',
+                'pp_weight' => '',
                 'title' => 'Umístění',
-                'weighted_pp' => 'stržil: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Nejlepší výkon',
@@ -280,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'Zájmy',
@@ -309,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Státní pozice pro :mode',
+            'country_simple' => '',
             'global' => 'Globální pozice pro :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Přesnost zásahů',
             'level' => 'Úroveň :level',
+            'level_progress' => '',
             'maximum_combo' => 'Maximální Combo',
+            'medals' => '',
             'play_count' => 'Počet zahrání',
             'play_time' => 'Celkový čas hraní',
             'ranked_score' => 'Hodnocené skóre',

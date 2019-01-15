@@ -82,6 +82,16 @@ return [
 
     'privacy' => [
         'title' => 'Privacy',
-        'friends_only' => 'Blokkeer privébericht van mensen buiten je vriendenlijst',
+        'friends_only' => 'blokkeer privéberichten van mensen niet in jouw vriendenlijst',
+        'hide_online' => 'verberg je online aanwezigheid',
+    ],
+
+    'security' => [
+        'current_session' => 'huidige',
+        'end_session' => 'Stop de sessie',
+        'end_session_confirmation' => 'Dit zal onmiddellijk je sessie op dat apparaat beëindigen. Weet je het zeker?',
+        'last_active' => 'Laatst actief:',
+        'title' => 'Beveiliging',
+        'web_sessions' => 'web sessies',
     ],
 ];

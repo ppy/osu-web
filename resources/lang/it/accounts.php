@@ -29,14 +29,14 @@ return [
         ],
 
         'email' => [
-            'current' => 'email corrente',
+            'current' => 'email attuale',
             'new' => 'nuova e-mail',
             'new_confirmation' => 'conferma email',
             'title' => 'Email',
         ],
 
         'password' => [
-            'current' => 'password corrente',
+            'current' => 'password attuale',
             'new' => 'nuova password',
             'new_confirmation' => 'conferma password',
             'title' => 'Password',
@@ -63,12 +63,12 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'conferma del cambio email',
+        'email_subject' => 'conferma il cambio della email di osu!',
         'update' => 'aggiorna',
     ],
 
     'update_password' => [
-        'email_subject' => 'conferma del cambio password',
+        'email_subject' => 'conferma il cambio della password di osu!',
         'update' => 'aggiorna',
     ],
 
@@ -76,12 +76,22 @@ return [
         'title' => 'Stili di gioco',
         'mouse' => 'mouse',
         'keyboard' => 'tastiera',
-        'tablet' => 'tablet',
+        'tablet' => 'tavoletta grafica',
         'touch' => 'schermo touch',
     ],
 
     'privacy' => [
         'title' => 'Privacy',
-        'friends_only' => 'Blocca i messaggi privati da persone che non sono sulla tua lista amici',
+        'friends_only' => 'blocca messaggi privati dei non-amici',
+        'hide_online' => 'nascondi il tuo stato online',
+    ],
+
+    'security' => [
+        'current_session' => 'questo dispositivo',
+        'end_session' => 'Termina Sessione',
+        'end_session_confirmation' => 'Questo terminerà la sessione sul dispositivo selezionato. Vuoi continuare?',
+        'last_active' => 'Ultimo visto:',
+        'title' => 'Sicurezza',
+        'web_sessions' => 'sessioni web',
     ],
 ];

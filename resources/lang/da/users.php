@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Senest startede diskussioner',
@@ -53,8 +54,8 @@ return [
         'show_profile' => 'vis profil',
         'too_many' => '',
         'button' => [
-            'block' => '',
-            'unblock' => '',
+            'block' => 'bloker',
+            'unblock' => 'fjern blokering',
         ],
     ],
 
@@ -77,7 +78,7 @@ return [
         'forgot' => 'Glemt din adgangskode?',
         'beta' => [
             'main' => 'Adgang til betaversionen er i øjeblikket restrikteret til priveligerede brugere.',
-            'small' => '(supportere ville også kunne snart)',
+            'small' => '',
         ],
 
         'here' => 'her', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +98,28 @@ return [
         'error' => 'Du skal være logget ind for at gøre dette.',
     ],
     'logout_confirm' => 'Er du sikker på, at du vil logge ud? :(',
+    'report' => [
+        'button_text' => '',
+        'comments' => '',
+        'placeholder' => '',
+        'reason' => 'Begrundelse',
+        'thanks' => '',
+        'title' => '',
+
+        'actions' => [
+            'send' => '',
+            'cancel' => '',
+        ],
+
+        'options' => [
+            'cheating' => '',
+            'insults' => '',
+            'spam' => '',
+            'unwanted_content' => '',
+            'nonsense' => '',
+            'other' => '',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Du konto er blevet begrænset!',
         'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen vil blive fjernet indenfor 24 timer. Hvis du ønsker at appellere din begrænsning, <a href="mailto:accounts@ppy.sh">kontakt supporten</a>.',
@@ -110,11 +133,9 @@ return [
         'joined_at' => 'Deltog på :date',
         'lastvisit' => 'Sidste set på :date',
         'missingtext' => 'Du har formentlig lavet en stavefejl! (eller også er brugeren blevet bannet)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age fra :country',
         'origin_country' => 'Fra :country',
         'page_description' => 'osu! - Alt hvad du har brug for at vide om :username!',
-        'previous_usernames' => '',
+        'previous_usernames' => 'tidligere kendt som',
         'plays_with' => 'Spiller med :devices',
         'title' => ":username ´s profil",
 
@@ -128,7 +149,7 @@ return [
                     'dropzone' => 'Smid her for at uploade',
                     'dropzone_info' => 'Du kan også smide dit billede her for at uploade',
                     'restriction_info' => "Upload er kun tilgængelig for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
-                    'size_info' => 'Coverbilledet burde være 2000x700',
+                    'size_info' => 'Coverbilledet burde være 2800x620',
                     'too_large' => 'Den uploadede fil er for stor.',
                     'unsupported_format' => 'Ikke-understøttet format.',
                 ],
@@ -145,27 +166,29 @@ return [
             'unranked' => 'Ingen seneste spil',
 
             'achievements' => [
-                'title' => 'Præstationer',
                 'achieved-on' => 'Opnået den :date',
+                'locked' => '',
+                'title' => 'Præstationer',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Ingen... endnu.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Favorit Beatmaps (:count)',
+                    'title' => 'Favorit Beatmaps',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps på kirkegården (:count)',
+                    'title' => 'Beatmaps på kirkegården',
                 ],
                 'loved' => [
-                    'title' => 'Elskede beatmaps (:count)',
+                    'title' => 'Elskede beatmaps',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Godkendte Beatmaps (:count)',
+                    'title' => 'Ranked & Godkendte Beatmaps',
                 ],
                 'unranked' => [
-                    'title' => 'Afventende Beatmaps (:count)',
+                    'title' => 'Afventende Beatmaps',
                 ],
             ],
             'historical' => [
@@ -174,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Spille Historik',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'gange spillet',
@@ -185,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Replays Set Historik',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -239,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Denne bruger har ikke fået nogle endnu. ;_;",
+                'recent' => '',
                 'title' => 'Medaljer',
             ],
             'recent_activity' => [
                 'title' => 'Seneste',
             ],
             'top_ranks' => [
+                'download_replay' => '',
                 'empty' => 'Ingen fede præstationsrekorder endnu. :(',
                 'not_ranked' => '',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'Ranks',
-                'weighted_pp' => 'vejede: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Bedste Præstationer',
@@ -280,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'Interesser',
@@ -309,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Landerangering for :mode',
+            'country_simple' => '',
             'global' => 'Global rangering for :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Præcision',
             'level' => 'Level :level',
+            'level_progress' => '',
             'maximum_combo' => 'Højeste Combo',
+            'medals' => '',
             'play_count' => 'Antal Spilforsøg',
             'play_time' => '',
             'ranked_score' => 'Ranked Score',

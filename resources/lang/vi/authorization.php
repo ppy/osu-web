@@ -33,6 +33,10 @@ return [
             'not_owner' => 'Chỉ có người mở thread và chủ beatmap mới có thể giải quyết cuộc thảo luận.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Chỉ chủ beatmap hoặc người đề cử/thành viên QAT mới có thể đăng ghi chú mapper.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Vui lòng đợi một lúc trước khi bình chọn thêm',
             'owner' => "Không thể bình chọn cuộc thảo luận của bạn.",
@@ -48,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Không được phép truy cập vào kênh đã yêu cầu.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Bắt buộc truy cập vào kênh được chỉ định.',
-                    'moderated' => 'Kênh hiện đang được kiểm duyệt.',
-                    'not_lazer' => 'Bạn chỉ có thể chat trên #lazer tại thời điểm này.',
-                ],
+        'blocked' => 'Không thể nhắn tin cho người dùng đã chặn bạn hoặc bạn đã chặn.',
+        'friends_only' => 'Người dùng đang chặn tin nhắn từ những người không trong danh sách bạn của họ.',
+        'moderated' => 'Kênh hiện đang được kiểm duyệt.',
+        'no_access' => 'Bạn không có quyền truy cập vào kênh này.',
+        'restricted' => 'Bạn không thể gửi tin nhắn trong khi bị im lặng, bị hạn chế hoặc bị cấm (ban).',
+    ],
 
-                'not_allowed' => 'Không thể gửi tin nhắn trong khi bị ban/hạn chế/im lặng.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Không thể chỉnh sửa bài đăng đã bị xóa.",
         ],
     ],
 
@@ -71,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Không cần sự cho phép để kiểm duyệt diễn đàn này.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Chỉ có thể xóa bài đăng cuối cùng.',
@@ -95,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Bạn vừa đăng. Đợi một lát hoặc chỉnh sửa bài đăng cuối cùng của bạn.',
+                'double_post' => 'Vui lòng chỉnh sửa bài đăng cuối cùng của bạn thay vì đăng thêm lần nữa.',
                 'locked' => 'Không thể trả lời một thread bị khóa.',
                 'no_forum_access' => 'Bắt buộc truy cập vào diễn đàn được yêu cầu.',
                 'no_permission' => 'Không được phép trả lời.',
@@ -155,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'Trang người dùng này đã bị khóa.',
                 'not_owner' => 'Chỉ có thể chỉnh sửa trang người dùng của bạn.',
-                'require_supporter_tag' => 'Phải có osu!supporter.',
+                'require_supporter_tag' => 'phải có osu!supporter.',
             ],
         ],
     ],

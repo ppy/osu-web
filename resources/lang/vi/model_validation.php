@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Difficulty đã chọn không hợp lệ.',
         'invalid_beatmapset_id' => 'Beatmap đã chọn không hợp lệ.',
         'locked' => 'Cuộc thảo luận đã bị khóa.',
-        'mapper_note_wrong_user' => 'Chỉ có chủ beatmap mới có thể đăng ghi chú.',
 
         'hype' => [
             'guest' => 'Cần phải đăng nhập để hype.',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => 'Mốc thời gian đã chọn vượt quá độ dài beatmap.',
             'negative' => "Mốc thời gian không thể âm.",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => 'Không cho phép trả lời bình luận đã xóa.',
     ],
 
     'forum' => [
@@ -69,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Không cho phép thêm lựa chọn trùng lặp.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Số lựa chọn cho một người không được vượt quá số lựa chọn sẵn có.',
             'minimum_one_selection' => 'Yêu cầu tối thiểu một lựa chọn cho mỗi người dùng.',
             'minimum_two_options' => 'Cần ít nhất hai lựa chọn.',
@@ -111,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Đây là tên người dùng của bạn mà, đồ ngốc!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

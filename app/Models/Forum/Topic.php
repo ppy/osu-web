@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -39,7 +39,7 @@ class Topic extends Model implements AfterCommit
 {
     use Elasticsearch\TopicTrait, SoftDeletes, Validatable;
 
-    const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
+    const DEFAULT_SORT = 'new';
 
     const STATUS_LOCKED = 1;
     const STATUS_UNLOCKED = 0;
@@ -92,7 +92,7 @@ class Topic extends Model implements AfterCommit
 
         $topic->getConnection()->transaction(function () use ($forum, $topic, $params, $poll) {
             $topic->saveOrExplode();
-            $topic->addPostOrExplode($params['user'], $params['body']);
+            $topic->addPostOrExplode($params['user'], $params['body'], false);
 
             if ($poll !== null) {
                 $topic->poll($poll)->save();
@@ -107,7 +107,7 @@ class Topic extends Model implements AfterCommit
         return $topic->fresh();
     }
 
-    public function addPostOrExplode($poster, $body)
+    public function addPostOrExplode($poster, $body, $isReply = true)
     {
         $post = new Post([
             'post_text' => $body,
@@ -118,14 +118,15 @@ class Topic extends Model implements AfterCommit
             'post_time' => Carbon::now(),
         ]);
 
-        $this->getConnection()->transaction(function () use ($post) {
+        $this->getConnection()->transaction(function () use ($post, $isReply) {
             $post->saveOrExplode();
 
-            $this->postsAdded(1);
+            $this->postsAdded($isReply ? 1 : 0);
             optional($this->forum)->postsAdded(1);
 
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, 1);
+                $post->user->refresh();
             }
         });
 
@@ -155,6 +156,7 @@ class Topic extends Model implements AfterCommit
 
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, -1);
+                $post->user->refresh();
             }
 
             return true;
@@ -173,7 +175,10 @@ class Topic extends Model implements AfterCommit
                 $this->restore();
             }
 
-            optional($post->user)->refreshForumCache($this->forum, 1);
+            if ($post->user !== null) {
+                $post->user->refreshForumCache($this->forum, 1);
+                $post->user->refresh();
+            }
         });
 
         return true;
@@ -298,6 +303,11 @@ class Topic extends Model implements AfterCommit
     public function setPollLastVoteAttribute($value)
     {
         $this->attributes['poll_last_vote'] = get_timestamp_or_zero($value);
+    }
+
+    public function getPollLengthDaysAttribute()
+    {
+        return $this->attributes['poll_length'] / 86400;
     }
 
     public function getPollStartAttribute($value)
@@ -486,27 +496,15 @@ class Topic extends Model implements AfterCommit
 
     public function scopePresetSort($query, $sort)
     {
-        switch ($sort[0] ?? null) {
+        $tieBreakerOrder = 'desc';
+
+        switch ($sort) {
             case 'feature-votes':
-                $sortField = 'osu_starpriority';
+                $query->orderBy('osu_starpriority', 'desc');
                 break;
         }
 
-        $sortField ?? ($sortField = static::DEFAULT_ORDER_COLUMN);
-
-        switch ($sort[1] ?? null) {
-            case 'asc':
-                $sortOrder = $sort[1];
-                break;
-        }
-
-        $sortOrder ?? ($sortOrder = 'desc');
-
-        $query->orderBy($sortField, $sortOrder);
-
-        if ($sortField !== static::DEFAULT_ORDER_COLUMN) {
-            $query->orderBy(static::DEFAULT_ORDER_COLUMN, 'desc');
-        }
+        $query->orderBy('topic_last_post_time', $tieBreakerOrder);
     }
 
     public function scopeRecent($query, $params = null)
@@ -627,7 +625,7 @@ class Topic extends Model implements AfterCommit
 
     public function isIssue()
     {
-        return in_array($this->forum_id, config('osu.forum.help_forum_ids'), true);
+        return in_array($this->forum_id, config('osu.forum.issue_forum_ids'), true);
     }
 
     public function postsAdded($count)
@@ -774,7 +772,7 @@ class Topic extends Model implements AfterCommit
 
     public function isFeatureTopic()
     {
-        return $this->forum->isFeatureForum();
+        return $this->topic_type === static::TYPES['normal'] && $this->forum->isFeatureForum();
     }
 
     public function poll($poll = null)

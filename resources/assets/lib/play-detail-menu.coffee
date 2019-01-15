@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright 2015-2019 ppy Pty. Ltd.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -17,7 +17,10 @@
 ###
 
 import { createElement as el, createRef, PureComponent } from 'react'
+import { createPortal } from 'react-dom'
 import { a, button, div, i } from 'react-dom-factories'
+import { ReportScore } from 'report-score'
+import { Modal } from 'modal'
 
 export class PlayDetailMenu extends PureComponent
   constructor: (props) ->
@@ -31,39 +34,86 @@ export class PlayDetailMenu extends PureComponent
 
 
   componentDidMount: =>
-    $(document).on "click.#{@uuid}", @hide
-    $(document).on "keyup.#{@uuid}", @hide
+    $(window).on 'throttled-resize.#{@uuid}', @resize
+    $(document).on "turbolinks:before-cache.#{@uuid}", () =>
+      @removePortal()
 
 
-  componentWillUnmount: =>
-    $(document).off ".#{@uuid}", @hide
-
-
-  hide: (e) =>
+  resize: () =>
     return if !@state.active
 
-    event = e.originalEvent
-    if event.keyCode == 27 || (event.button == 0 && !(@menu.current in event.composedPath()))
-      @setState active: false
+    # disappear if the tree the menu is in is no longer displayed
+    if !@menu.current.offsetParent?
+      @portal.style.display = 'none'
+      return
+
+    $element = $(@menu.current)
+    { top, left } = $element.offset()
+
+    @portal.style.display = 'block'
+    @portal.style.position = 'absolute'
+    @portal.style.top = "#{Math.floor(top + $element.height() / 2)}px"
+    @portal.style.left = "#{Math.floor(left + $element.width())}px"
+
+
+  componentDidUpdate: (_prevProps, prevState) =>
+    return if prevState.active == @state.active
+
+    if @state.active
+      @resize()
+      @addPortal()
+
+      $(document).on "click.#{@uuid} keydown.#{@uuid}", @hide
+      @props.onShow?()
+    else
+      @removePortal()
+      $(document).off "click.#{@uuid} keydown.#{@uuid}", @hide
       @props.onHide?()
 
 
-  onClick: =>
+  componentWillUnmount: =>
+    $(document).off ".#{@uuid}"
+
+
+  hide: (e) =>
+    return if !@state.active || Modal.isOpen()
+
+    event = e.originalEvent
+    return if !event? # originalEvent gets eaten by error popup?
+
+    if event.keyCode == 27 || (event.button == 0 && !@isMenuInPath(event.composedPath()))
+      @setState active: false
+
+
+  isMenuInPath: (path) =>
+    @menu.current in path || @portal in path
+
+
+  toggle: =>
     @setState active: !@state.active
-    @props.onShow?()
+
+
+  addPortal: =>
+    document.body.appendChild @portal if !@portal.parentElement?
+
+
+  removePortal: =>
+    document.body.removeChild @portal if @portal.parentElement?
 
 
   render: =>
+    @portal ?= document.createElement('div')
+
     div
       className: 'play-detail-menu'
       ref: @menu
       button
         className: 'play-detail-menu__button'
         type: 'button'
-        onClick: @onClick
+        onClick: @toggle
         i className: 'fas fa-ellipsis-v'
 
-      @renderMenu()
+      createPortal @renderMenu(), @portal
 
 
   renderMenu: =>
@@ -74,11 +124,16 @@ export class PlayDetailMenu extends PureComponent
       className: "play-detail-menu__menu"
       div
         className: 'simple-menu simple-menu--play-detail-menu'
-        a
-          className: 'simple-menu__item'
-          href: laroute.route 'users.replay',
-                  beatmap: @props.score.beatmap.id
-                  mode: @props.score.beatmap.mode
-                  user: @props.score.user_id
-          'data-turbolinks': false
-          osu.trans 'users.show.extra.top_ranks.download_replay'
+        if @props.score.replay
+          a
+            className: 'simple-menu__item js-login-required--click'
+            href: laroute.route 'scores.download',
+                    mode: @props.score.beatmap.mode
+                    score: @props.score.id
+            'data-turbolinks': false
+            onClick: @toggle
+            osu.trans 'users.show.extra.top_ranks.download_replay'
+
+        if currentUser.id? && @props.score.user_id != currentUser.id
+          el ReportScore,
+            { score } = @props

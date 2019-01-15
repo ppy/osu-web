@@ -33,9 +33,11 @@ return [
             'refresh' => 'Aktualisieren',
         ],
 
-        'outdated' => [
-            '_' => 'Diese Seite zeigt eine veraltete Übersetzung. Schau dir die :default für den neusten Stand an (und überlege, ob du vielleicht beim Übersetzen hilfst)!',
-            'default' => 'englische Version',
+        'translation' => [
+            'legal' => 'Diese Übersetzung wird nur für die Bequemlichkeit bereitgestellt. Das original :default ist die einzige grundlegende und tadellose Version dieses Textes.',
+            'outdated' => 'Diese Seite enthält eine veraltete Übersetzung des ursprünglichen Inhalts. Bitte schaue dir :default für genauere Informationen an (und überlege die Übersetzung zu aktualisieren, wenn du die Möglichkeit dazu hast)!',
+
+            'default' => 'Englische Version',
         ],
     ],
 ];

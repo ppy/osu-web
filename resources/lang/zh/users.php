@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user 的摸图历史",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => '最近打开的讨论',
@@ -77,7 +78,7 @@ return [
         'forgot' => '忘记密码？',
         'beta' => [
             'main' => 'Beta 仅限于特定用户访问',
-            'small' => '（捐赠玩家将在不久开放）',
+            'small' => '（在不久后将对 osu!支持者 开放）',
         ],
 
         'here' => '这里', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +98,28 @@ return [
         'error' => '请先登录',
     ],
     'logout_confirm' => '确定要退出吗？o(TヘTo)',
+    'report' => [
+        'button_text' => '举报',
+        'comments' => '附加信息',
+        'placeholder' => '请提供你认为可能有用的所有信息。',
+        'reason' => '原因',
+        'thanks' => '感谢你的报告！',
+        'title' => '举报 :username ？',
+
+        'actions' => [
+            'send' => '发送报告',
+            'cancel' => '取消',
+        ],
+
+        'options' => [
+            'cheating' => '违规 / 作弊',
+            'insults' => '侮辱 我/其他人',
+            'spam' => '刷屏/垃圾广告',
+            'unwanted_content' => '发布包含不当内容的链接',
+            'nonsense' => '无意义内容',
+            'other' => '其他（在下方输入原因）',
+        ],
+    ],
     'restricted_banner' => [
         'title' => '账户进入限制模式！',
         'message' => '在被限制时，无法与其他玩家互动，分数只有自己可见。该限制通常由系统自动给予，并将在24小时内解除。需要申诉？请<a href="mailto:accounts@ppy.sh">联系支持团队</a>.',
@@ -110,8 +133,6 @@ return [
         'joined_at' => '注册时间：:date',
         'lastvisit' => '上次登录：:date',
         'missingtext' => '未找到用户！（或者该用户已经被 ban）',
-        'origin_age' => ':age 岁',
-        'origin_country_age' => ':age，来自 :country',
         'origin_country' => '来自 :country',
         'page_description' => 'osu! - 你想知道的关于 :username 的一切!',
         'previous_usernames' => '曾用名',
@@ -128,7 +149,7 @@ return [
                     'dropzone' => '拖拽到此处',
                     'dropzone_info' => '将图片拖动到这里也可以上传',
                     'restriction_info' => "自定义头图只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> 可用",
-                    'size_info' => '图片大小最好是 2000x700 像素',
+                    'size_info' => '图片大小最好是 2800x620 像素',
                     'too_large' => '上传的图片过大。',
                     'unsupported_format' => '不支持的格式。',
                 ],
@@ -145,27 +166,29 @@ return [
             'unranked' => '最近没有玩过',
 
             'achievements' => [
-                'title' => '成就',
                 'achieved-on' => '达成于 :date',
+                'locked' => '',
+                'title' => '成就',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => '暂时没有...',
                 'title' => '谱面',
 
                 'favourite' => [
-                    'title' => '收藏的谱面 (:count)',
+                    'title' => '收藏的谱面',
                 ],
                 'graveyard' => [
-                    'title' => '坟场里的谱面 (:count)',
+                    'title' => '坟场里的谱面',
                 ],
                 'loved' => [
-                    'title' => 'Loved 的谱面 (:count)',
+                    'title' => 'Loved 的谱面',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked 并且得到赞的谱面 (:count)',
+                    'title' => 'Ranked & Approved 的谱面',
                 ],
                 'unranked' => [
-                    'title' => 'Pending 的谱面 (:count)',
+                    'title' => 'Pending 的谱面',
                 ],
             ],
             'historical' => [
@@ -174,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => '游玩记录',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => '游玩次数',
@@ -185,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => '回放被观看记录',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -239,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "该用户还没有获得成就。;_;",
+                'recent' => '',
                 'title' => '成就',
             ],
             'recent_activity' => [
                 'title' => '最近活动',
             ],
             'top_ranks' => [
+                'download_replay' => '下载回放',
                 'empty' => '还没有上传过成绩。 :(',
                 'not_ranked' => '只有 ranked 谱面才能得到 pp。',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => '成绩',
-                'weighted_pp' => '权重：:pp (:percentage)',
 
                 'best' => [
                     'title' => '最好成绩',
@@ -280,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => '兴趣爱好',
@@ -309,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => ':mode 模式的国内排名',
+            'country_simple' => '',
             'global' => ':mode 模式的全球排名',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => '准确率',
             'level' => '等级 :level',
+            'level_progress' => '',
             'maximum_combo' => '最大连击',
+            'medals' => '',
             'play_count' => '游戏次数',
             'play_time' => '游戏时间',
             'ranked_score' => 'Ranked 谱面总分',

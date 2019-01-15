@@ -30,6 +30,12 @@
                     {{ trans("layout.footer.legal.{$action}") }}
                 </a>
             @endforeach
+
+            @foreach ($extraFooterLinks ?? [] as $label => $link)
+                <a class="footer__link" href="{{ $link }}">
+                    {{ $label }}
+                </a>
+            @endforeach
         </div>
     @endif
     <div class="footer__row">ppy powered 2007-{{ date('Y') }}</div>

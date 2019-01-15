@@ -35,6 +35,7 @@ return [
             'groups-show' => 'gruplar',
             'index' => 'kontrol paneli',
             'legal-show' => 'bilgi',
+            'messages-index' => '',
             'news-index' => 'haberler',
             'news-show' => 'haberler',
             'password-reset-index' => 'şifreni sıfırla',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'topluluk',
+            'chat' => '',
+            'chat-index' => '',
             'dev' => 'geliştirme',
             'getForum' => 'forumlar',
-            'getChat' => 'sohbet',
             'getLive' => 'canlı',
+            'comments-index' => 'yorumlar',
+            'comments-show' => 'yorum',
             'contests' => 'yarışmalar',
             'profile' => 'profil',
             'tournaments' => 'turnuvalar',
@@ -133,6 +137,7 @@ return [
 
             'getCheckout' => 'ödeme',
             'getInvoice' => 'fatura',
+            'orders-index' => 'sipariş geçmişi',
             'products-show' => 'ürün',
 
             'new' => 'yeni',
@@ -177,11 +182,6 @@ return [
             'forum' => 'Topluluk Forumları',
             'livestreams' => 'Canlı Yayınlar',
             'report' => 'Bir Sorun Bildir',
-        ],
-        'support' => [
-            '_' => 'osu!\'yu Destekle',
-            'tags' => 'Supporter Etiketleri',
-            'merchandise' => 'Ürünler',
         ],
         'legal' => [
             '_' => 'Yasal & Durum',

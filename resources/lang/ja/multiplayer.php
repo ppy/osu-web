@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => '削除済み譜面',
+        'difference' => ':difference点差',
+        'failed' => 'FAILED',
         'header' => 'マルチ部屋',
-        'team-types' => [
-            'head-to-head' => '個人戦',
-            'tag-coop' => '協力モード',
-            'team-vs' => 'チーム戦',
-            'tag-team-vs' => 'タッグチーム戦',
-        ],
+        'in-progress' => '（試合進行中）',
+        'in_progress_spinner_label' => '試合進行中',
+        'loading-events' => 'イベント読み込み中・・・',
+        'winner' => ':teamの勝利',
+
         'events' => [
             'player-left' => ':userが退室しました',
             'player-joined' => ':userが入室しました',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => '部屋が解散されました',
             'host-changed-no-user' => 'ホストが変更されました',
         ],
-        'in-progress' => '（試合進行中）',
+
         'score' => [
             'stats' => [
                 'accuracy' => '精度(Accuracy)',
@@ -50,16 +52,18 @@ return [
                 'score' => 'スコア',
             ],
         ],
-        'failed' => 'FAILED',
+
+        'team-types' => [
+            'head-to-head' => '個人戦',
+            'tag-coop' => '協力モード',
+            'team-vs' => 'チーム戦',
+            'tag-team-vs' => 'タッグチーム戦',
+        ],
+
         'teams' => [
             'blue' => 'Blueチーム',
             'red' => 'Redチーム',
         ],
-        'winner' => ':teamの勝利',
-        'difference' => ':difference点差',
-        'loading-events' => 'イベント読み込み中・・・',
-        'more-events' => '全て見る・・・',
-        'beatmap-deleted' => '削除済み譜面',
     ],
     'game' => [
         'scoring-type' => [

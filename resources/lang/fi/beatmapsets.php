@@ -26,7 +26,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Beatmappien Listaus',
+        'title' => 'Beatmapit',
         'guest_title' => 'Beatmapit',
     ],
 
@@ -45,30 +45,29 @@ return [
             'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
             'download' => [
                 '_' => 'Lataa',
-                'video' => 'Videon kanssa',
-                'no-video' => 'ilman Videota',
+                'video' => 'videon kanssa',
+                'no-video' => 'ilman videota',
                 'direct' => '',
             ],
             'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
             'unfavourite' => 'Poista nämä beatmap-setti suosikeista',
             'favourited_count' => '+ 1 muu!|+ :count muuta!',
         ],
-        'stats' => [
-            'cs' => 'Ympyräkoko',
-            'cs-mania' => 'Koskettimien määrä',
-            'drain' => 'HP Drain',
-            'accuracy' => 'Tarkkuus',
-            'ar' => 'Lähestymisnopeus',
-            'stars' => 'Vaikeustaso',
-            'total_length' => 'Pituus',
-            'bpm' => 'BPM',
-            'count_circles' => 'Ympyröiden määrä',
-            'count_sliders' => 'Slidereiden määrä',
-            'user-rating' => 'Käyttäjien arvio',
-            'rating-spread' => 'Arvioiden jakauma',
-            'nominations' => 'Suositukset',
-            'playcount' => 'Pelikertojen määrä',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Kuvaus',
             'genre' => 'Tyylilaji',
@@ -80,10 +79,11 @@ return [
             'tags' => 'Tunnisteet',
             'unranked' => 'Beatmap ei ole hyväksytyssä tilassa',
         ],
+
         'scoreboard' => [
             'achieved' => 'saavutettu :when',
             'country' => 'Maakohtaiset sijoitukset',
-            'friend' => 'Ystävien sijoitukset',
+            'friend' => 'Kavereiden sijoitukset',
             'global' => 'Maailmanlaajuiset sijoitukset',
             'supporter-link' => 'Klikkaa <a href=":link">tästä</a> nähdäksesi kaikki hienot ominaisuudet mitä saat!',
             'supporter-only' => 'Sinun täytyy olla Tukija nähdäksesi maa- ja ystäväkohtaiset sijoitukset!',
@@ -103,7 +103,7 @@ return [
 
             'no_scores' => [
                 'country' => 'Kartasta ei vielä löydy maansisäisiä tuloksia!',
-                'friend' => 'Kukaan ystävistäsi ei vielä ole saanut tulosta tässä kartassa!',
+                'friend' => 'Kukaan kavereistasi ei vielä ole saanut tulosta tässä kartassa!',
                 'global' => 'Tuloksia ei ole. Ehkä voisit yrittää saada sellaisen?',
                 'loading' => 'Ladataan tuloksia...',
                 'unranked' => 'Beatmap ei ole hyväksytyssä tilassa.',
@@ -112,6 +112,23 @@ return [
                 'first' => 'Johdossa',
                 'own' => 'Sinun parhaasi',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Ympyräkoko',
+            'cs-mania' => 'Koskettimien määrä',
+            'drain' => 'HP Drain',
+            'accuracy' => 'Tarkkuus',
+            'ar' => 'Lähestymisnopeus',
+            'stars' => 'Vaikeustaso',
+            'total_length' => 'Pituus',
+            'bpm' => 'BPM',
+            'count_circles' => 'Ympyröiden määrä',
+            'count_sliders' => 'Slidereiden määrä',
+            'user-rating' => 'Käyttäjien arvio',
+            'rating-spread' => 'Arvioiden jakauma',
+            'nominations' => 'Suositukset',
+            'playcount' => 'Pelikertojen määrä',
         ],
     ],
 ];

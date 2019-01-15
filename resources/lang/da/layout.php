@@ -35,6 +35,7 @@ return [
             'groups-show' => 'grupper',
             'index' => 'dashboard',
             'legal-show' => 'information',
+            'messages-index' => '',
             'news-index' => 'nyheder',
             'news-show' => 'nyheder',
             'password-reset-index' => 'nulstil adgangskode',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'fællesskab',
+            'chat' => '',
+            'chat-index' => '',
             'dev' => '',
             'getForum' => 'forum',
-            'getChat' => 'chat',
             'getLive' => 'live',
+            'comments-index' => '',
+            'comments-show' => '',
             'contests' => 'konkurrencer',
             'profile' => 'profil',
             'tournaments' => 'turneringer',
@@ -133,6 +137,7 @@ return [
 
             'getCheckout' => 'betaling',
             'getInvoice' => 'faktura',
+            'orders-index' => '',
             'products-show' => 'produkt',
 
             'new' => 'ny',
@@ -177,11 +182,6 @@ return [
             'forum' => 'Fællesskabsforummer',
             'livestreams' => 'Live Streams',
             'report' => 'Rapportér en Fejl',
-        ],
-        'support' => [
-            '_' => 'Støt osu!',
-            'tags' => 'Supporter Tags',
-            'merchandise' => 'Merchandise',
         ],
         'legal' => [
             '_' => 'Legal & Status',

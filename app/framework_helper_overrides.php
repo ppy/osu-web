@@ -3,7 +3,7 @@
 // Fixes laravel/framework#12065.
 function e($value)
 {
-    if ($value instanceof Illuminate\Contracts\Support\Htmlable\Htmlable) {
+    if ($value instanceof Illuminate\Contracts\Support\Htmlable) {
         return $value->toHtml();
     }
 

@@ -31,6 +31,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        Middleware\StripCookies::class,
         Middleware\DisableSessionCookiesForAPI::class,
         Middleware\EncryptCookies::class,
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
@@ -65,6 +66,7 @@ class Kernel extends HttpKernel
         'check-user-restricted' => Middleware\CheckUserRestricted::class,
         'guest' => Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'require-scopes' => Middleware\RequireScopes::class,
         'verify-user' => Middleware\VerifyUser::class,
     ];
 }

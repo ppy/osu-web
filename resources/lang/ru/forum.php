@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Закреплённые темы',
     'slogan' => "опасно играть одному.",
     'subforums' => 'Подфорумы',
-    'title' => 'osu!сообщество',
+    'title' => 'osu! форум',
 
     'covers' => [
         'create' => [
@@ -44,6 +44,20 @@ return [
     'forums' => [
         'topics' => [
             'empty' => 'Нет тем!',
+        ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
         ],
     ],
 
@@ -75,7 +89,9 @@ return [
         'new_topic_login' => 'Войдите, чтобы создать новую тему',
         'post_reply' => 'Ответить',
         'reply_box_placeholder' => 'Начинайте вводить тут',
+        'reply_title_prefix' => 'Ответ',
         'started_by' => 'от :user',
+        'started_by_verbose' => 'начато :user',
 
         'create' => [
             'preview' => 'Предпросмотр',
@@ -83,6 +99,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Редактирование',
             'submit' => 'Опубликовать',
+
+            'necropost' => [
+                'default' => 'Данная тема была долгое время неактивна. Добавляйте сюда записи, только если у вас есть на то веская причина.',
+
+                'new_topic' => [
+                    '_' => "Данная тема была долгое время неактивна. Если у вас нет причин добавлять сюда комментарии, пожалуйста :create.",
+                    'create' => 'создайте новую тему',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Содержимое',
@@ -113,6 +138,11 @@ return [
             'box' => [
                 'total' => 'Подписок на тем',
                 'unread' => 'С новыми ответами',
+            ],
+
+            'info' => [
+                'total' => 'Всего подписок :total.',
+                'unread' => 'У вас :unread непрочитанных ответов к темам, за которыми вы следите.',
             ],
         ],
 
@@ -258,7 +288,8 @@ return [
             'to_not_watching' => 'Не в закладках',
             'to_watching' => 'Заметка',
             'to_watching_mail' => 'В закладки с оповещением',
-            'mail_disable' => 'Отключить уведомления',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

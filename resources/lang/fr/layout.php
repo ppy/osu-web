@@ -35,6 +35,7 @@ return [
             'groups-show' => 'groupes',
             'index' => 'tableau de bord',
             'legal-show' => 'information',
+            'messages-index' => '',
             'news-index' => 'actualités',
             'news-show' => 'actualités',
             'password-reset-index' => 'réinitialiser le mot de passe',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'communauté',
+            'chat' => '',
+            'chat-index' => '',
             'dev' => 'développement',
             'getForum' => 'forums',
-            'getChat' => 'chat',
             'getLive' => 'direct',
+            'comments-index' => 'commentaires',
+            'comments-show' => 'commentaire',
             'contests' => 'concours',
             'profile' => 'profil',
             'tournaments' => 'tournois',
@@ -133,6 +137,7 @@ return [
 
             'getCheckout' => 'acheter',
             'getInvoice' => 'facture',
+            'orders-index' => 'historique des commandes',
             'products-show' => 'produit',
 
             'new' => 'nouveau',
@@ -177,11 +182,6 @@ return [
             'forum' => 'Forums',
             'livestreams' => 'Streams en direct',
             'report' => 'Signaler une erreur',
-        ],
-        'support' => [
-            '_' => 'Supporter osu!',
-            'tags' => 'Tags de Supporter',
-            'merchandise' => 'Marchandise',
         ],
         'legal' => [
             '_' => 'Statut & Légal',

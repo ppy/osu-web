@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Chủ Đề Đã Ghim',
     'slogan' => "Chơi một mình khá là nguy hiểm đấy.",
     'subforums' => 'Subforums',
-    'title' => 'Cộng Đồng osu!',
+    'title' => 'diễn đàn osu!',
 
     'covers' => [
         'create' => [
@@ -44,6 +44,20 @@ return [
     'forums' => [
         'topics' => [
             'empty' => 'Không có chủ đề nào cả!',
+        ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
         ],
     ],
 
@@ -75,7 +89,9 @@ return [
         'new_topic_login' => 'Đăng nhập để đăng một chủ đề mới',
         'post_reply' => 'Đăng',
         'reply_box_placeholder' => 'Nhập vào đây để trả lời',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'bởi :user',
+        'started_by_verbose' => 'bắt đầu bởi :user',
 
         'create' => [
             'preview' => 'Xem trước',
@@ -83,6 +99,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Viết',
             'submit' => 'Đăng',
+
+            'necropost' => [
+                'default' => 'Chủ đề này đã không còn hoạt động trong một thời gian. Chỉ đăng ở đây nếu bạn có một lý do cụ thể.',
+
+                'new_topic' => [
+                    '_' => "Chủ đề này đã không còn hoạt động trong một thời gian. Nếu bạn không có một lý do cụ thể để đăng ở đây, vui lòng :create.",
+                    'create' => 'tạo một chủ đề mới',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Nhập nội dung bài viết vào đây',
@@ -113,6 +138,11 @@ return [
             'box' => [
                 'total' => 'Chủ đề đã đăng kí',
                 'unread' => 'Chủ đề có trả lời mới',
+            ],
+
+            'info' => [
+                'total' => 'Bạn đã đăng kí :total chủ đề.',
+                'unread' => 'Bạn chưa đọc :unread trả lời của những chủ đề đã đăng kí.',
             ],
         ],
 
@@ -258,7 +288,8 @@ return [
             'to_not_watching' => 'Chưa đánh dấu',
             'to_watching' => 'Đánh dấu',
             'to_watching_mail' => 'Đánh dấu với thông báo',
-            'mail_disable' => 'Tắt thông báo',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

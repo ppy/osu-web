@@ -33,6 +33,10 @@ return [
             'not_owner' => '게시글 작성자 또는 비트맵 제작자만 토론을 가결할 수 있습니다.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => '비트맵 소유자나 nominator/QAT그룹 구성원만이 mapper notes를 작성할 수 있습니다.',
+        ],
+
         'vote' => [
             'limit_exceeded' => '투표를 더 하기 전에 조금 기다려주세요',
             'owner' => "자신이 시작한 토론에는 투표할 수 없습니다.",
@@ -48,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => '요청하신 채널로의 입장이 허용되지 않았습니다.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => '대상 채널에 접근하기 위한 권한이 필요합니다.',
-                    'moderated' => '현재 채널이 관리 중입니다.',
-                    'not_lazer' => '현재 #lazer에서만 채팅할 수 있습니다.',
-                ],
+        'blocked' => '당신을 차단하였거나 당신이 차단한 유저에게 메시지를 보낼 수 없습니다.',
+        'friends_only' => '해당 유저는 친구가 아닌 유저의 메시지를 차단한 상태입니다.',
+        'moderated' => '채널은 현재 관리 중입니다.',
+        'no_access' => '해당 채널에 대한 접근 권한이 없습니다.',
+        'restricted' => '침목이나 제한, 밴이 된 상태인 동안에는 메시지를 보낼 수 없습니다.',
+    ],
 
-                'not_allowed' => '차단/제한/침묵 상태에서는 메시지를 보낼 수 없습니다.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "삭제된 게시물을 수정 할 수 없습니다.",
         ],
     ],
 
@@ -71,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => '이 포럼을 관리할 권한이 없습니다.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => '마지막 답글만 삭제할 수 있습니다.',
@@ -95,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => '답글을 올린 지 얼마 되지 않았습니다. 잠시 기다려주시거나, 마지막에 올린 글을 수정하세요.',
+                'double_post' => '다시 작성하기보단 마지막으로 작성한 글을 수정 해 주세요.',
                 'locked' => '게시글이 잠겨있어 답변할 수 없습니다.',
                 'no_forum_access' => '요청하신 포럼에 대한 접근 권한이 필요합니다.',
                 'no_permission' => '답변할 권한이 없습니다.',
@@ -155,7 +158,7 @@ return [
             'edit' => [
                 'locked' => '유저 페이지가 잠겨있습니다.',
                 'not_owner' => '본인의 유저 페이지만 수정할 수 있습니다.',
-                'require_supporter_tag' => '서포터 권한이 필요합니다.',
+                'require_supporter_tag' => 'osu! 서포터 태그가 필요합니다.',
             ],
         ],
     ],

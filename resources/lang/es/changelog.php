@@ -22,6 +22,10 @@ return [
     'feed_title' => 'lista',
     'generic' => 'Corrección de errores y mejoras menores.',
 
+    'build' => [
+        'title' => 'cambios en :version',
+    ],
+
     'builds' => [
         'users_online' => ':count_delimited usuario en línea|:count_delimited usuarios en línea',
     ],
@@ -31,6 +35,17 @@ return [
     ],
 
     'index' => [
+        'page_title' => [
+            '_' => 'lista de cambios',
+            '_from' => 'cambios desde :from',
+            '_from_to' => 'cambios entre :from y :to',
+            '_stream' => 'cambios en :stream',
+            '_stream_from' => 'cambios en :stream desde :from',
+            '_stream_from_to' => 'cambios en :stream entre :from y :to',
+            '_stream_to' => 'cambios en :stream hasta :to',
+            '_to' => 'cambios hasta :to',
+        ],
+
         'title' => [
             '_' => 'Lista de cambios :info',
             'info' => 'Listando',

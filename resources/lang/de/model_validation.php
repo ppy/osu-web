@@ -36,7 +36,6 @@ return [
         'invalid_beatmap_id' => 'Ungültige Schwierigkeitsstufe gewählt.',
         'invalid_beatmapset_id' => 'Ungültige Beatmap gewählt.',
         'locked' => 'Die Diskussion ist gesperrt.',
-        'mapper_note_wrong_user' => 'Nur der Besitzer der Beatmap kann Notizen posten.',
 
         'hype' => [
             'guest' => 'Zum Hypen muss man eingeloggt sein.',
@@ -50,6 +49,10 @@ return [
             'exceeds_beatmapset_length' => 'Der gewählte Zeitpunkt ist nach dem Ende der Beatmap.',
             'negative' => "Der Zeitpunkt muss positiv sein.",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => 'Das Antworten auf den gelöschten Kommentar ist nicht erlaubt.',
     ],
 
     'forum' => [
@@ -69,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Die gleiche Antwort kann nicht doppelt enthalten sein.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Die Zahl an Antworten pro Benutzer kann die Anzahl an Antworten nicht überschreiten.',
             'minimum_one_selection' => 'Mindestens eine Antwort wird pro Benutzer benötigt.',
             'minimum_two_options' => 'Mindestens zwei Antworten werden benötigt.',
@@ -111,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Das ist doch schon dein Name, Dummerchen!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

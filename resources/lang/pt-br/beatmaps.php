@@ -144,11 +144,16 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Excluir',
+        'delete_own_confirm' => 'Você tem certeza? Esse beatmap será deletado e você será redirecionado de volta para seu perfil.',
+        'delete_other_confirm' => 'Você tem certeza? Esse beatmap será deletado e você será redirecionado de volta para seu perfil de usuário.',
         'disqualification_prompt' => 'Motivo da desqualificação?',
         'disqualified_at' => 'Desqualificado :time_ago (:reason).',
         'disqualified_no_reason' => 'sem motivo específico',
         'disqualify' => 'Desqualificar',
         'incorrect_state' => 'Erro ao realizar essa ação, tente atualizar a página.',
+        'love' => 'Amar',
+        'love_confirm' => 'Amar esse beatmap?',
         'nominate' => 'Nomear',
         'nominate_confirm' => 'Nomear este beatmap?',
         'nominated_by' => 'nomeado por :users',
@@ -166,20 +171,22 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Você tem certeza? Postar um novo problema reiniciará as nomeações.',
+            'disqualify' => '',
         ],
     ],
 
     'listing' => [
         'search' => [
             'prompt' => 'digite palavras-chave...',
+            'login_required' => 'Conecte-se para pesquisar.',
             'options' => 'Mais opções de busca',
-            'supporter_filter' => 'Filtrar por :filters requer uma supporter tag ativa',
+            'supporter_filter' => 'Filtrar por :filters requer uma osu!supporter tag ativa',
             'not-found' => 'nenhum resultado',
             'not-found-quote' => '... não, nada encontrado.',
             'filters' => [
                 'general' => 'Geral',
                 'mode' => 'Modo',
-                'status' => 'Estado de Ranqueamento',
+                'status' => 'Categorias',
                 'genre' => 'Gênero',
                 'language' => 'Idioma',
                 'extra' => 'extra',
@@ -199,13 +206,9 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtrar por :filters requer uma :link',
-                'link_text' => 'supporter tag',
+                'link_text' => 'osu!supporter tag',
             ],
         ],
-        'mode' => 'Modo',
-        'status' => 'Estado de Ranqueamento',
-        'source' => 'de :source',
-        'load-more' => 'Carregar mais...',
     ],
     'general' => [
         'recommended' => 'Dificuldade recomendada',
@@ -225,7 +228,7 @@ return [
         'qualified' => 'Qualificado',
         'loved' => 'Loved',
         'faves' => 'Favoritos',
-        'pending' => 'Pendente',
+        'pending' => 'Pendente & Em Progresso',
         'graveyard' => 'Cemitério',
         'my-maps' => 'Meus beatmaps',
     ],

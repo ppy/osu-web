@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Sei sicuro?',
+    'confirmation_unsaved' => 'Le modifiche non salvate andranno perse. Sei sicuro?',
     'saved' => 'Salvato',
 
     'array_and' => [
@@ -29,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => 'Torna in cima',
+        'back_to_previous' => 'Torna alla posizione precedente',
         'cancel' => 'Cancella',
         'change' => 'modifica',
         'click_to_copy' => 'clicca per copiare negli appunti',
         'click_to_copy_copied' => 'copiato negli appunti!',
         'delete' => 'Elimina',
+        'edit' => 'Modifica',
         'hide' => 'nascondi',
         'permalink' => 'permalink',
         'permalink_copied' => 'link copiato',
@@ -42,10 +46,11 @@ return [
         'reply_reopen' => 'Rispondi e Riapri',
         'reply_resolve' => 'Rispondi e Risolvi',
         'reset' => 'Resetta',
+        'restore' => 'Ripristina',
         'save' => 'Salva',
-        'saving' => 'Salvando...',
+        'saving' => 'Salvataggio in corso...',
         'search' => 'Cerca',
-        'see_more' => 'vedi più',
+        'see_more' => 'mostra altro',
         'show' => 'mostra',
         'show_more' => 'mostra altro',
         'upload_image' => 'carica immagine',
@@ -58,9 +63,17 @@ return [
         'hours' => ':count ora|:count ore',
         'item' => ':count unità|:count unità',
         'minute_short_unit' => 'minuto|minuti',
+        'minutes' => '',
         'months' => ':count mese|:count mesi',
         'second_short_unit' => 'secondo|secondi',
         'years' => ':count anno|:count anni',
+    ],
+
+    'countdown' => [
+        'days' => 'giorni',
+        'hours' => 'ore',
+        'minutes' => 'minuti',
+        'seconds' => 'secondi',
     ],
 
     'datetime' => [
@@ -76,7 +89,7 @@ return [
     'device' => [
         'keyboard' => 'Tastiera',
         'mouse' => 'Mouse',
-        'tablet' => 'Tablet',
+        'tablet' => 'Tavoletta grafica',
         'touch' => 'Schermo Touch',
     ],
 
@@ -95,7 +108,7 @@ return [
         'count_50' => '50',
         'count_geki' => 'MAX',
         'count_katu' => '200',
-        'count_miss' => 'Errori',
+        'count_miss' => 'Miss',
     ],
 
     'time' => [

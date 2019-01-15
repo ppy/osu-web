@@ -33,9 +33,11 @@ return [
             'refresh' => 'Actualiser',
         ],
 
-        'outdated' => [
-            '_' => 'Cette page est une traduction ancienne de son contenu original. Merci de vérifier :default pour l\'information la plus à jour (vous pouvez aussi mettre à jour la traduction si vous souhaitez aider) !',
-            'default' => 'la version anglaise',
+        'translation' => [
+            'legal' => 'Cette traduction est fournie uniquement pour votre commodité. L’originale :default sera la seule version juridiquement contraignante de ce texte.',
+            'outdated' => 'Cette page est une traduction ancienne de son contenu original. Merci de vérifier :default pour l\'information la plus à jour (vous pouvez aussi mettre à jour la traduction si vous souhaitez aider) !',
+
+            'default' => 'Version anglaise',
         ],
     ],
 ];

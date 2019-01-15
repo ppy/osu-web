@@ -20,22 +20,31 @@
 
 return [
     'header' => 'Ranking :type',
+
     'type' => [
         'performance' => 'Globalny',
         'charts' => 'Wyróżnionych',
         'score' => 'Punktowy',
         'country' => 'Krajowy',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Data zakończenia',
+        'map_count' => 'Liczba beatmap',
+        'participants' => 'Uczestnicy',
+        'start_date' => 'Data rozpoczęcia',
+    ],
+
     'stat' => [
         'accuracy' => 'Precyzja',
         'active_users' => 'Aktywni użytkownicy',
         'country' => 'Kraj',
-        'play_count' => 'Ilość zagrań',
+        'play_count' => 'Liczba zagrań',
         'performance' => 'Liczba pp',
-        'total_score' => 'Łączna ilość punktów',
+        'total_score' => 'Łączna liczba punktów',
         'ranked_score' => 'Punkty rankingowe',
         'average_score' => 'Średni wynik',
-        'average_performance' => 'Średnia ilość pp',
+        'average_performance' => 'Średnia liczba pp',
         'ss' => 'SS',
         's' => 'S',
         'a' => 'A',

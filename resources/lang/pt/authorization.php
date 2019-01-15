@@ -22,21 +22,25 @@ return [
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Não é possível anular o hyping.',
-            'has_reply' => 'Não é possível apagar a discussão com respostas',
+            'has_reply' => 'Não é possível apagar uma discussão com respostas',
         ],
         'nominate' => [
-            'exhausted' => 'Tu alcançaste o teu limite de nomeação por dia, por favor tenta outra vez amanhã.',
-            'incorrect_state' => 'Erro ao executar essa acção, por favor recarrega a página.',
+            'exhausted' => 'Tu alcançaste o teu limite de nomeações por dia, por favor tenta outra vez amanhã.',
+            'incorrect_state' => 'Erro ao executar essa ação, por favor recarrega a página.',
             'owner' => "Não é possível nomear o próprio beatmap.",
         ],
         'resolve' => [
             'not_owner' => 'Só quem começou um segmento de mensagens ou o proprietário do beatmap é que consegue resolver uma discussão.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Apenas o proprietário do beatmap ou nomeador/membro do grupo QAT é que pode publicar notas de mapeador.',
+        ],
+
         'vote' => [
-            'limit_exceeded' => 'Por favor espera um momento antes de lançares mais votos',
+            'limit_exceeded' => 'Por favor espera um momento antes de pores mais votos',
             'owner' => "Não é possível votar na própria discussão.",
-            'wrong_beatmapset_state' => 'Só é possível votar em discussões com beatmaps que estão a aguardar aprovação.',
+            'wrong_beatmapset_state' => 'Só é possível votar em discussões com beatmaps que estejam a aguardar aprovação.',
         ],
     ],
 
@@ -48,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Não é permitido o acesso ao canal solicitado.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'É necessário o acesso ao canal alvo.',
-                    'moderated' => 'Canal actualmente monitorizado.',
-                    'not_lazer' => 'Só podes falar em #lazer de momento.',
-                ],
+        'blocked' => 'Não é possível enviar uma mensagem a um utilizador que te esteja a bloquear ou que o tenhas bloqueado.',
+        'friends_only' => 'O utilizador está a bloquear mensagens de pessoas que não façam parte da lista de amigos dele.',
+        'moderated' => 'Esse canal está atualmente moderado.',
+        'no_access' => 'Tu não tens acesso a esse canal.',
+        'restricted' => 'Não podes enviar mensagens enquanto estiveres silenciado, restrito ou banido.',
+    ],
 
-                'not_allowed' => 'Não é possível enviar mensagem enquanto estiveres banido/restrito/silenciado.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Não é possível editar publicações apagadas.",
         ],
     ],
 
@@ -71,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Sem permissão para moderar este fórum.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Somente a ultima publicação pode ser apagada.',
@@ -81,7 +84,7 @@ return [
 
             'edit' => [
                 'deleted' => 'Não é possível editar uma publicação eliminada.',
-                'locked' => 'Esta publicação está bloqueada para edição.',
+                'locked' => 'Esta publicação está bloqueada de ser editada.',
                 'no_forum_access' => 'Acesso ao fórum solicitado é obrigatório.',
                 'not_owner' => 'Só o publicador é que pode editar a publicação.',
                 'topic_locked' => 'Não é possível eliminar uma publicação dum tópico bloqueado.',
@@ -89,13 +92,13 @@ return [
 
             'store' => [
                 'play_more' => 'Tenta jogar o jogo antes de publicar nos fóruns, por favor! Se tiveres um problema ao jogar, por favor publica no fórum de Ajuda e Suporte.',
-                'too_many_help_posts' => "Precisas de jogar mais tempo o jogo antes de criares publicações adicionais. Se ainda estiveres a ter problemas enquanto jogares o jogo, envia um email para support@ppy.sh", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "Precisas de jogar mais tempo o jogo antes de criares publicações adicionais. Se ainda estiveres a ter problemas ao jogares o jogo, envia um email para support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Acabaste de publicar. Espera um pouco ou edita a tua ultima publicação.',
+                'double_post' => 'Por favor edita a tua ultima publicação em vez de publicar novamente.',
                 'locked' => 'Não é possível responder a um segmento de mensagens bloqueado.',
                 'no_forum_access' => 'Acesso ao fórum solicitado é obrigatório.',
                 'no_permission' => 'Sem permissão para responder.',
@@ -155,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'A página de utilizador está bloqueada.',
                 'not_owner' => 'Só é possível editar a própria página de utilizador.',
-                'require_supporter_tag' => 'É obrigatória uma etiqueta de apoiante.',
+                'require_supporter_tag' => 'Uma etiqueta de osu!supporter é necessária.',
             ],
         ],
     ],

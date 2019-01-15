@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,6 +19,9 @@
  */
 
 namespace App\Models\Forum;
+
+use App\Models\User;
+use Carbon\Carbon;
 
 class Forum extends Model
 {
@@ -67,6 +70,13 @@ class Forum extends Model
         }
 
         return $lastTopics ?? [];
+    }
+
+    public static function markAllAsRead(User $user)
+    {
+        $user->update(['user_lastmark' => Carbon::now()]);
+        ForumTrack::where('user_id', $user->getKey())->delete();
+        TopicTrack::where('user_id', $user->getKey())->delete();
     }
 
     public function categorySlug()
@@ -204,7 +214,9 @@ class Forum extends Model
     // feature forum shall have extra features like sorting and voting
     public function isFeatureForum()
     {
-        return $this->forum_id === config('osu.forum.feature_forum_id');
+        $id = config('osu.forum.feature_forum_id');
+
+        return $this->forum_id === $id || isset($this->forum_parents[$id]);
     }
 
     public function topicsAdded($count)
@@ -286,6 +298,18 @@ class Forum extends Model
     public function isOpen()
     {
         return $this->forum_type === 1;
+    }
+
+    public function markAsRead(User $user)
+    {
+        $forumTrack = ForumTrack::firstOrNew([
+            'user_id' => $user->getKey(),
+            'forum_id' => $this->getKey(),
+        ]);
+        $forumTrack->mark_time = Carbon::now();
+        $forumTrack->save();
+
+        TopicTrack::where('user_id', $user->getKey())->where('forum_id', $this->getKey())->delete();
     }
 
     public function toMetaDescription()

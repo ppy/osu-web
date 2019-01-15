@@ -144,11 +144,16 @@ return [
     ],
 
     'nominations' => [
+        'delete' => '삭제',
+        'delete_own_confirm' => '확실한가요? 비트맵을 제거하고 당신의 프로필로 돌아갑니다.',
+        'delete_other_confirm' => '확실한가요? 비트맵을 제거하고 해당 유저의 프로필로 돌아갑니다.',
         'disqualification_prompt' => 'Disqualify하는 이유는 무엇입니까?',
-        'disqualified_at' => 'Disqualified :time_ago (:reason).',
+        'disqualified_at' => ':time_ago에 Disqualified 됨 (:reason).',
         'disqualified_no_reason' => '이유가 명시되지 않았습니다',
         'disqualify' => 'Disqualify',
         'incorrect_state' => '해당 작업을 수행하는 중 오류가 발생했습니다, 페이지를 새로 고쳐보세요.',
+        'love' => '하트',
+        'love_confirm' => '이 비트맵이 마음에 드시나요?',
         'nominate' => '지명',
         'nominate_confirm' => '이 비트맵을 지명하시겠습니까?',
         'nominated_by' => ':users님이 지명함',
@@ -166,20 +171,22 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => '확실한가요? 새로운 문제를 제기하는 것은 지명 상태를 초기화시킵니다.',
+            'disqualify' => '',
         ],
     ],
 
     'listing' => [
         'search' => [
             'prompt' => '검색어를 입력하세요...',
+            'login_required' => '검색하려면 로그인하세요.',
             'options' => '검색 옵션 더 보기',
-            'supporter_filter' => ':filters로 검색하려면 서포터 권한이 필요합니다.',
+            'supporter_filter' => ':filters로 검색하려면 osu! 서포터 권한이 필요합니다.',
             'not-found' => '결과 없음',
             'not-found-quote' => '... 없네요, 아무것도 못 찾았습니다.',
             'filters' => [
                 'general' => '일반',
                 'mode' => '모드',
-                'status' => '등록 상태',
+                'status' => '카테고리',
                 'genre' => '장르',
                 'language' => '언어',
                 'extra' => '추가 기능',
@@ -199,13 +206,9 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => ':filters로 검색하려면 :link이 필요합니다.',
-                'link_text' => '서포터 권한',
+                'link_text' => 'osu! 서포터',
             ],
         ],
-        'mode' => '모드',
-        'status' => '랭크 상태',
-        'source' => '원작: :source',
-        'load-more' => '더 불러오기...',
     ],
     'general' => [
         'recommended' => '권장 난이도',
@@ -225,7 +228,7 @@ return [
         'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => '즐겨찾기',
-        'pending' => 'Pending',
+        'pending' => '보류 중 & 작업 중',
         'graveyard' => 'Graveyard',
         'my-maps' => '내 비트맵',
     ],

@@ -23,7 +23,7 @@ return [
         'update' => [
             'null_user' => 'A szerkesztéshez be kell lépni.',
             'system_generated' => 'Rendszer által generált posztot nem lehet szerkeszteni.',
-            'wrong_user' => 'A poszt szerkesztéséhez a tulajának kell lenned.',
+            'wrong_user' => 'Csak a tulajdonos szerkesztheti a posztot.',
         ],
     ],
 
@@ -37,13 +37,13 @@ return [
 
         'form' => [
             '_' => 'Keresés',
-            'deleted' => 'Tartalmazza a törölt megbeszéléseket',
-            'types' => 'Üzenet típusok',
+            'deleted' => 'Törölt beszélgetések mellékelése',
+            'types' => 'Üzenettípusok',
             'username' => 'Felhasználónév',
 
             'user' => [
                 'label' => 'Felhasználó',
-                'overview' => 'Aktivitás áttekintő',
+                'overview' => 'Tevékenység áttekintés',
             ],
         ],
     ],
@@ -52,12 +52,12 @@ return [
         'created_at' => 'Beküldés időpontja',
         'deleted_at' => 'Törlés dátuma',
         'message_type' => 'Típus',
-        'permalink' => 'Állandó hivatkozás',
+        'permalink' => 'Permalink',
     ],
 
     'nearby_posts' => [
         'confirm' => 'Egy poszt sem foglalkozik a problémámmal',
-        'notice' => 'Ezek a posztok :timestamp (:existing_timestamps) körüliek.Kérlek posztolás előtt nézd meg őket.',
+        'notice' => 'Már vannak posztok :timestamp (:existing_timestamps) körül. Kérlek nézd meg posztolás előtt.',
     ],
 
     'reply' => [
@@ -69,20 +69,20 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => 'Megoldott ként ként megjelölt :user felhasználó által',
+            'true' => 'Megoldottnak jelölve :user által',
             'false' => 'Újranyitva :user által',
         ],
     ],
 
     'user' => [
         'admin' => 'admin',
-        'bng' => 'jelölő',
-        'owner' => 'mappoló',
+        'bng' => 'nomináló',
+        'owner' => 'készítő',
         'qat' => 'qat',
     ],
 
     'user_filter' => [
         'everyone' => 'Mindenki',
-        'label' => 'Felhasználó által csoportositott',
+        'label' => 'Szűrés felhasználó szerint',
     ],
 ];

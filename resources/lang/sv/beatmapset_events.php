@@ -34,19 +34,46 @@ return [
         'kudosu_gain' => 'Diskussionen :discussion av :user skaffade sig tillräckligt många röster för kudosu.',
         'kudosu_lost' => 'Diskussionen :discussion av :user förlorade röster och tillåten kudosu har tagits bort.',
         'kudosu_recalculate' => 'Diskussionen :discussion har fått sina tillåtna kudosu omberäknade.',
+        'love' => 'Älskad av :user',
         'nominate' => 'Nominerad av :user.',
         'nomination_reset' => 'Nytt problem :discussion triggade en nomination återställning.',
-        'qualify' => 'Kvalificerad.',
+        'qualify' => 'Denna beatmap har uppnått den nödvändiga antalet av nomineringar och har blivit kvalificerad.',
         'rank' => 'Rankad.',
     ],
 
     'index' => [
         'title' => 'Beatmapset händelser',
+
+        'form' => [
+            'period' => '',
+            'types' => '',
+        ],
     ],
 
     'item' => [
         'content' => 'Innehåll',
         'discussion_deleted' => '[raderad]',
         'type' => 'Typ',
+    ],
+
+    'type' => [
+        'approve' => '',
+        'discussion_delete' => '',
+        'discussion_post_delete' => '',
+        'discussion_post_restore' => '',
+        'discussion_restore' => '',
+        'disqualify' => '',
+        'issue_reopen' => '',
+        'issue_resolve' => '',
+        'kudosu_allow' => '',
+        'kudosu_deny' => '',
+        'kudosu_gain' => '',
+        'kudosu_lost' => '',
+        'kudosu_recalculate' => '',
+        'love' => '',
+        'nominate' => '',
+        'nomination_reset' => '',
+        'qualify' => '',
+        'rank' => '',
     ],
 ];

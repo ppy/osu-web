@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Ιστορικό Modding του χρήστη :user",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Πρόσφατα δημιουργημένες συζητήσεις',
@@ -77,7 +78,7 @@ return [
         'forgot' => 'Ξεχάσατε τον κωδικό σας;',
         'beta' => [
             'main' => 'Η πρόσβαση στην έκδοση Beta είναι περιορισμένη σε προνομιούχους χρήστες.',
-            'small' => '(οι supporters θα έχουνε πρόσβαση σύντομα)',
+            'small' => '(οι osu!supporters θα έχουν πρόσβαση σύντομα)',
         ],
 
         'here' => 'εδώ', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +98,28 @@ return [
         'error' => 'Πρέπει να είστε συνδεδεμένος για να το κάνετε αυτό.',
     ],
     'logout_confirm' => 'Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε; :(',
+    'report' => [
+        'button_text' => 'αναφορά',
+        'comments' => 'Πρόσθετα Σχόλια',
+        'placeholder' => 'Παρακαλώ δώστε οποιαδήποτε πληροφορία πιστεύετε ότι μπορεί να είναι χρήσιμη.',
+        'reason' => 'Λόγος',
+        'thanks' => 'Ευχαριστούμε για την αναφορά σας!',
+        'title' => 'Αναφορά του :username;',
+
+        'actions' => [
+            'send' => 'Αποστολή Αναφοράς',
+            'cancel' => 'Άκυρο',
+        ],
+
+        'options' => [
+            'cheating' => 'Παράτυπος τρόπος παιχνιδιού / Κλέψιμο',
+            'insults' => 'Προσβάλει εμένα / άλλους',
+            'spam' => 'Spamming',
+            'unwanted_content' => 'Δημοσίευση links με ακατάλληλο περιεχόμενο',
+            'nonsense' => 'Ανοησίες',
+            'other' => 'Άλλο (γράψτε παρακάτω)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Ο λογαριασμός σας έχει περιοριστεί!',
         'message' => 'Όσο βρίσκεστε υπό περιορισμό, δεν θα είστε σε θέση να αλληλεπιδράσετε με άλλους χρήστες και τα score σας θα είναι ορατά μόνο σε εσάς. Αυτό είναι αποτέλεσμα μιας αυτόματης διαδικασίας που συνήθως διαρκεί 24 ώρες. Εάν επιθυμείτε την αναίρεση του περιορισμού, παρακαλώ <a href="mailto:accounts@ppy.sh">επικοινωνήστε με την ομάδα υποστήριξης</a>.',
@@ -110,8 +133,6 @@ return [
         'joined_at' => 'Μέλος από :date',
         'lastvisit' => 'Τελευταία φορά εμφανίστηκε στις :date',
         'missingtext' => 'Ίσως να κάνατε κάποιο ορθογραφικό λάθος! (ή ο χρήστης είναι banned)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age από :country',
         'origin_country' => 'Από :country',
         'page_description' => 'osu! - Όλα όσα θέλεις να ξέρεις για τον :username!',
         'previous_usernames' => 'προηγουμένως γνωστός ως',
@@ -128,7 +149,7 @@ return [
                     'dropzone' => 'Αφήστε εδώ για να ανεβεί',
                     'dropzone_info' => 'Μπορείτε επίσης να σύρετε την εικόνα σας εδώ για να ανεβεί',
                     'restriction_info' => "Διαθέσιμη μεταφόρτωση για <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> μόνο",
-                    'size_info' => 'Το μέγεθος του εξωφύλλου πρέπει να είναι 2000x700',
+                    'size_info' => 'Το μέγεθος του εξωφύλλου πρέπει να είναι 2800x620',
                     'too_large' => 'Το αρχείο είναι πολύ μεγάλο.',
                     'unsupported_format' => 'Μη υποστηριζόμενη μορφή.',
                 ],
@@ -145,27 +166,29 @@ return [
             'unranked' => 'Κανένα πρόσφατο σκορ',
 
             'achievements' => [
-                'title' => 'Επιτεύγματα',
                 'achieved-on' => 'Επιτεύχθηκε στις :date',
+                'locked' => '',
+                'title' => 'Επιτεύγματα',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Κανένα... ακόμα.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Αγαπημένα Beatmaps (:count)',
+                    'title' => 'Αγαπημένα Beatmaps',
                 ],
                 'graveyard' => [
-                    'title' => 'Παρατημένα Beatmaps (:count)',
+                    'title' => 'Παρατημένα Beatmaps',
                 ],
                 'loved' => [
-                    'title' => 'Loved Beatmaps (:count)',
+                    'title' => 'Loved Beatmaps',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                    'title' => 'Ranked & Approved Beatmaps',
                 ],
                 'unranked' => [
-                    'title' => 'Εκκρεμή Beatmaps (:count)',
+                    'title' => 'Εκκρεμή Beatmaps',
                 ],
             ],
             'historical' => [
@@ -174,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Ιστορικό Δραστηριότητας',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'φορές που παίχτηκε',
@@ -185,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Ιστορικό Παρακολούθησης Replay',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -239,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Αυτός ο χρήστης δεν έχει πάρει κανένα ακόμα. ;_;",
+                'recent' => '',
                 'title' => 'Μετάλλια',
             ],
             'recent_activity' => [
                 'title' => 'Πρόσφατα',
             ],
             'top_ranks' => [
+                'download_replay' => '',
                 'empty' => 'Καμία εκπληκτική επίδοση ακόμα. :(',
                 'not_ranked' => 'Μόνο τα ranked beatmaps δίνουν pp.',
-                'pp' => '',
+                'pp_weight' => '',
                 'title' => 'Σκορ',
-                'weighted_pp' => 'σταθμισμένα: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Καλύτερες Eπιδόσεις',
@@ -280,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'Ενδιαφέροντα',
@@ -309,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Κατάταξη στη χώρα για το :mode',
+            'country_simple' => '',
             'global' => 'Παγκόσμια κατάταξη για το :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Ακρίβεια Ευστοχίας',
             'level' => 'Επίπεδο :level',
+            'level_progress' => '',
             'maximum_combo' => 'Μέγιστο Combo',
+            'medals' => '',
             'play_count' => 'Αριθμός Προσπαθειών',
             'play_time' => 'Συνολικός Χρόνος Παιχνιδιού',
             'ranked_score' => 'Ranked Σκορ',

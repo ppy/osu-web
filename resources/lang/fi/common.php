@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Oletko varma?',
+    'confirmation_unsaved' => 'Tallentamattomat muutokset menetetään. Oletko aivan varma?',
     'saved' => 'Tallennettu',
 
     'array_and' => [
@@ -29,11 +30,14 @@ return [
     ],
 
     'buttons' => [
+        'back_to_top' => 'Takaisin ylös',
+        'back_to_previous' => 'Takaisin',
         'cancel' => 'Peruuta',
         'change' => 'muuta',
         'click_to_copy' => 'kopioi leikepöydälle',
         'click_to_copy_copied' => 'kopioitu leikepöydälle!',
         'delete' => 'Poista',
+        'edit' => 'Muokkaa',
         'hide' => 'piilota',
         'permalink' => 'pysyvä linkki',
         'permalink_copied' => 'linkki kopioitu',
@@ -42,6 +46,7 @@ return [
         'reply_reopen' => 'Vastaa ja uudelleenavaa',
         'reply_resolve' => 'Vastaa ja merkitse ratkaistuksi',
         'reset' => 'Nollaa',
+        'restore' => 'Palauta',
         'save' => 'Tallenna',
         'saving' => 'Tallennetaan...',
         'search' => 'Etsi',
@@ -56,11 +61,19 @@ return [
         'days' => ':count päivä|:count päivää',
         'hour_short_unit' => 't|t',
         'hours' => ':count tunti|:count tuntia',
-        'item' => ':count yksikkö|:count yksikköä',
+        'item' => ':count kappale|:count kappaletta',
         'minute_short_unit' => 'm | m',
+        'minutes' => '',
         'months' => ':count kuukausi|:count kuukautta',
         'second_short_unit' => 's|s',
         'years' => ':count vuosi|:count vuotta',
+    ],
+
+    'countdown' => [
+        'days' => 'päivää',
+        'hours' => 'tuntia',
+        'minutes' => 'minuuttia',
+        'seconds' => 'sekuntia',
     ],
 
     'datetime' => [
@@ -81,7 +94,7 @@ return [
     ],
 
     'dropzone' => [
-        'target' => 'pudota tähän lataaksesi',
+        'target' => 'pudota tähän ladataksesi',
     ],
 
     'pagination' => [

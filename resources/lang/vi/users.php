@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Lịch Sử Modding Của :user",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Cuộc thảo luận gần đây',
@@ -97,6 +98,28 @@ return [
         'error' => 'Bạn cần phải đăng nhập để làm việc này.',
     ],
     'logout_confirm' => 'Bạn có chắc muốn đăng xuất không? :(',
+    'report' => [
+        'button_text' => 'báo cáo',
+        'comments' => 'Bình Luận Khác',
+        'placeholder' => 'Vui lòng cung cấp bất kỳ thông tin nào bạn cho rằng có thể hữu ích.',
+        'reason' => 'Lý Do',
+        'thanks' => 'Cảm ơn bạn đã báo cáo!',
+        'title' => 'Báo cáo :username?',
+
+        'actions' => [
+            'send' => 'Gửi Báo Cáo',
+            'cancel' => 'Hủy',
+        ],
+
+        'options' => [
+            'cheating' => 'Chơi xấu / Gian lận',
+            'insults' => 'Xúc phạm tôi / những người khác',
+            'spam' => 'Spamming',
+            'unwanted_content' => 'Có những nội dung không phù hợp',
+            'nonsense' => 'Phi lý',
+            'other' => 'Khác (nhập dưới đây)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Tài khoản của bạn đã bị hạn chế!',
         'message' => 'Trong khi bị hạn chế, Bạn sẽ không thể tương tác với những người chơi khác và chỉ có bạn thấy được điểm của bạn. Đây thường là kết quả của một quá trình từ động và thường sẽ được gỡ bỏ trong vòng 24 giờ. Nếu bạn muốn kháng nghị về sự hạn chế này, vui lòng <a href="mailto:accounts@ppy.sh">liên hệ hỗ trợ</a>.',
@@ -110,8 +133,6 @@ return [
         'joined_at' => 'Đã tham gia :date',
         'lastvisit' => 'Lần cuối hoạt động :date',
         'missingtext' => 'Có thể bạn đã thực hiện một lỗi đánh máy! (hoặc người dùng này có thể đã bị ban)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age đến từ :country',
         'origin_country' => 'Từ :country',
         'page_description' => 'osu! - Tất cả những bì bạn muốn biết về :username!',
         'previous_usernames' => 'được biết đến trước đây với',
@@ -128,7 +149,7 @@ return [
                     'dropzone' => 'Thả vào đây để tải lên',
                     'dropzone_info' => 'Bạn cũng có thể thả hình ảnh vào đây để tải lên',
                     'restriction_info' => "Tải lên chỉ có sẵn cho <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>người hỗ trợ osu!</a>",
-                    'size_info' => 'Kích cỡ ảnh bìa nên là 2000x700',
+                    'size_info' => 'Kích cỡ ảnh bìa nên là 2800x620',
                     'too_large' => 'Tệp đã tải lên quá lơn.',
                     'unsupported_format' => 'Định dạng không được hỗ trợ.',
                 ],
@@ -145,27 +166,29 @@ return [
             'unranked' => 'Không chơi gần đây',
 
             'achievements' => [
-                'title' => 'Huy hiệu',
                 'achieved-on' => 'Đạt được vào :date',
+                'locked' => '',
+                'title' => 'Huy hiệu',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Chưa có... gì cả.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Beatmap Yêu Thích (:count)',
+                    'title' => 'Beatmap Yêu Thích',
                 ],
                 'graveyard' => [
-                    'title' => 'Graveyarded Beatmaps (:count)',
+                    'title' => '',
                 ],
                 'loved' => [
-                    'title' => 'Loved Beatmaps (:count)',
+                    'title' => 'Loved Beatmaps',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận (:count)',
+                    'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmap Đang Chờ (:count)',
+                    'title' => 'Beatmap Đang Chờ',
                 ],
             ],
             'historical' => [
@@ -174,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Lịch Sử Chơi',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'số lần chơi',
@@ -185,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Lịch Sử Replay Được Xem',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -239,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Người dùng này chưa có huy chương nào cả. ;_;",
+                'recent' => '',
                 'title' => 'Huy Chương',
             ],
             'recent_activity' => [
                 'title' => 'Gần Đây',
             ],
             'top_ranks' => [
+                'download_replay' => 'Tải Xuống Replay',
                 'empty' => 'Chưa ghi nhận thành tích tuyệt vời nào. :(',
                 'not_ranked' => 'Chỉ có beatmap được xếp hạng mới có pp.',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'Xếp Hạng',
-                'weighted_pp' => 'trọng số: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Thực Hiện Tốt Nhất',
@@ -280,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Sở Thích',
@@ -309,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => 'Hạng quốc gia cho :mode',
+            'country_simple' => '',
             'global' => 'Hạng quốc tế cho :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Độ Chính Xác',
             'level' => 'Level :level',
+            'level_progress' => '',
             'maximum_combo' => 'Combo Cao Nhất',
+            'medals' => '',
             'play_count' => 'Số Lần Chơi',
             'play_time' => 'Tổng Thời Gian Chơi',
             'ranked_score' => 'Điểm Được Xếp Hạng',

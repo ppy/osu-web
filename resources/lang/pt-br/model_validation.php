@@ -33,10 +33,9 @@ return [
         'beatmap_missing' => 'Marcação de tempo é especificada mas beatmap está faltando.',
         'beatmapset_no_hype' => "Beatmap não pode ser hypado.",
         'hype_requires_null_beatmap' => 'Hype deve ser feito na seção Geral (todas as dificuldades).',
-        'invalid_beatmap_id' => 'Dificuldade inválida especificada.',
+        'invalid_beatmap_id' => 'Dificuldade especificada inválida.',
         'invalid_beatmapset_id' => 'Beatmap inválido especificado.',
         'locked' => 'Discussão está trancada.',
-        'mapper_note_wrong_user' => 'Apenas o dono do beatmap pode postar notas de mapper.',
 
         'hype' => [
             'guest' => 'Precisa estar conectado para hypar.',
@@ -52,14 +51,18 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Não é permitido responder comentários excluídos.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Só pode votar um pedido de recurso.',
-            'not_enough_feature_votes' => 'Sem votos suficientes.',
+            'not_enough_feature_votes' => 'Votos suficientes.',
         ],
 
         'poll_vote' => [
-            'invalid' => 'Opção inválida especificada.',
+            'invalid' => 'Opção especificada inválida.',
         ],
 
         'post' => [
@@ -69,7 +72,8 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Opção duplicada não é permitida.',
-            'invalid_max_options' => 'Opção por usuário não deve exceder o número de opções disponíveis.',
+            'grace_period_expired' => '',
+            'invalid_max_options' => 'Opções por usuário não deve exceder o número de opções disponíveis.',
             'minimum_one_selection' => 'É necessário no mínimo uma opção por usuário.',
             'minimum_two_options' => 'É necessário no mínimo duas opções.',
             'too_many_options' => 'Número máximo de opções permitidas excedido.',
@@ -111,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Este já é seu nome de usuário, bobinho!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

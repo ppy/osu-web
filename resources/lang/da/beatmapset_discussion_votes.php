@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title' => '',
+        'title' => 'Beatmap Diskussion Stemmer',
     ],
 
     'item' => [

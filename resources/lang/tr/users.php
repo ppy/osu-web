@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user'in Modlama Geçmişi",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Yakın zamanda başlatılan tartışmalar',
@@ -77,7 +78,7 @@ return [
         'forgot' => 'Şifrenizi mi unuttunuz?',
         'beta' => [
             'main' => 'Beta erişimi ayrıcalıklı üyelere kısıtlandırılmıştır.',
-            'small' => '(supporterlar yakında gelecek)',
+            'small' => '(osu!supporterlar yakında erişebilecekler)',
         ],
 
         'here' => 'buraya', // this is substituted in when generating a link above. change it to suit the language.
@@ -97,6 +98,28 @@ return [
         'error' => 'Bunu yapmak için giriş yapmalısınız.',
     ],
     'logout_confirm' => 'Çıkış yapmak istediğinize emin misiniz? :(',
+    'report' => [
+        'button_text' => 'şikayet et',
+        'comments' => 'Ek yorumlar',
+        'placeholder' => 'Lütfen kullanışlı olabileceğini düşündüğünüz her türlü bilgiyi iletin.',
+        'reason' => 'Gerekçe',
+        'thanks' => 'Bildirdiğiniz için teşekkürler!',
+        'title' => ':username şikayet edilsin mi?',
+
+        'actions' => [
+            'send' => 'Rapor Et',
+            'cancel' => 'İptal',
+        ],
+
+        'options' => [
+            'cheating' => 'Kuraldışı oyun / Hile',
+            'insults' => 'Bana / başkalarına hakaret',
+            'spam' => 'Spam yapmak',
+            'unwanted_content' => 'Uygunsuz içerik paylaşma',
+            'nonsense' => 'Saçmalık',
+            'other' => 'Diğer (aşağıda belirtin)',
+        ],
+    ],
     'restricted_banner' => [
         'title' => 'Hesabınız kısıtlandı!',
         'message' => 'Kısıtlanmışken, diğer oyuncularla etkileşime geçemeyecek ve skorlarınızı sadece siz görebileceksiniz. Bu genellikle otomatik olan bir işlemin sonucudur ve 24 saat içerisinde kalkabilir. Kısıtlamanızın açılması için başvurmak istiyorsanız, lütfen <a href="mailto:accounts@ppy.sh">destek hattıyla</a> iletişime geçin.',
@@ -110,8 +133,6 @@ return [
         'joined_at' => ':date tarihinde katıldı',
         'lastvisit' => 'Son görülme :date',
         'missingtext' => 'Yazım hatası yapmış olabilirsin! (veya bu kullanıcı banlanmış olabilir)',
-        'origin_age' => ':age',
-        'origin_country_age' => ':age ülke: :country',
         'origin_country' => 'Ülke: :country',
         'page_description' => 'osu! - :username hakkında bilmek istediğiniz her şey!',
         'previous_usernames' => 'nâm-ı diğer',
@@ -128,7 +149,7 @@ return [
                     'dropzone' => 'Yüklemek için dosyayı bırak',
                     'dropzone_info' => 'Yüklemek için resmi buraya da bırakabilirsiniz',
                     'restriction_info' => "Yükleme <a href=' için uygun".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter'lara</a> özel",
-                    'size_info' => 'Kapak boyutu 2000x700 olmalı',
+                    'size_info' => 'Kapak boyutu 2800x620 olmalı',
                     'too_large' => 'Yüklenen dosya boyutu çok büyük.',
                     'unsupported_format' => 'Desteklenmeyen biçim.',
                 ],
@@ -141,31 +162,33 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count takipçi',
+            'followers' => '1 takipçi|:count takipçi',
             'unranked' => 'Son zamanlarda oynamamış',
 
             'achievements' => [
-                'title' => 'Başarımlar',
                 'achieved-on' => ':date tarihinde başarıldı',
+                'locked' => '',
+                'title' => 'Başarımlar',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Hiç yok... şimdilik.',
                 'title' => 'Beatmapler',
 
                 'favourite' => [
-                    'title' => 'Favori Beatmapler (:count)',
+                    'title' => 'Favori Beatmapler',
                 ],
                 'graveyard' => [
-                    'title' => 'Terk Edilmiş Beatmapler (:count)',
+                    'title' => 'Terk Edilmiş Beatmapler',
                 ],
                 'loved' => [
-                    'title' => 'Sevilen Beatmapler (:count)',
+                    'title' => 'Sevilen Beatmapler',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Dereceli & Onaylanmış Beatmapler (:count)',
+                    'title' => 'Dereceli & Onaylanmış Beatmapler',
                 ],
                 'unranked' => [
-                    'title' => 'Onay Beklenen Beatmapler (:count)',
+                    'title' => 'Onay Beklenen Beatmapler',
                 ],
             ],
             'historical' => [
@@ -174,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Oyun Geçmişi',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'oynama sayısı',
@@ -185,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Tekrar İzlenme Geçmişi',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -239,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Bu kullanıcı daha hiç almamış. ;_;",
+                'recent' => '',
                 'title' => 'Madalyalar',
             ],
             'recent_activity' => [
                 'title' => 'Son',
             ],
             'top_ranks' => [
+                'download_replay' => 'Tekrarı İndir',
                 'empty' => 'Henüz kayda değer bir performans kaydı yok. :(',
                 'not_ranked' => 'Sadece dereceli beatmapler pp verir.',
-                'pp' => '',
+                'pp_weight' => '',
                 'title' => 'Dereceler',
-                'weighted_pp' => 'ağırlıklı: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'En İyi Performans',
@@ -280,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'İlgi Alanları',
@@ -309,12 +341,16 @@ return [
         ],
         'rank' => [
             'country' => ':mode için Ülke sıralaması',
+            'country_simple' => '',
             'global' => ':mode için Dünya sıralaması',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Vuruş İsabeti',
             'level' => ':level Seviye',
+            'level_progress' => '',
             'maximum_combo' => 'Maksimum Kombo',
+            'medals' => '',
             'play_count' => 'Toplam Oynama Sayısı',
             'play_time' => 'Toplam Oynama Süresi',
             'ranked_score' => 'Dereceli Skor',

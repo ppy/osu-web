@@ -21,8 +21,8 @@
 return [
     'pinned_topics' => 'Kiinnitetyt Aiheet',
     'slogan' => "on vaarallista pelata yksin.",
-    'subforums' => 'Alaforumit',
-    'title' => 'osu!yhteisö',
+    'subforums' => 'Alafoorumit',
+    'title' => 'osu! foorumit',
 
     'covers' => [
         'create' => [
@@ -44,6 +44,20 @@ return [
     'forums' => [
         'topics' => [
             'empty' => 'Ei aiheita!',
+        ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
         ],
     ],
 
@@ -75,7 +89,9 @@ return [
         'new_topic_login' => 'Kirjaudu sisään lähettääksesi uuden aiheen',
         'post_reply' => 'Vastaa',
         'reply_box_placeholder' => 'Kirjoita vastauksesi tähän',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'tehnyt :user',
+        'started_by_verbose' => 'aloittanut :user',
 
         'create' => [
             'preview' => 'Esikatselu',
@@ -83,6 +99,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Kirjoita',
             'submit' => 'Lähetä',
+
+            'necropost' => [
+                'default' => 'Tämä aihealue on ollut epäaktiivinen lähiaikoina. Postaa tänne vain jos sinulla on hyvä syy siihen.',
+
+                'new_topic' => [
+                    '_' => "Tämä aihe on ollut epäaktiivisena jo pidemmän aikaa. :create jos sinulla ei ole hyvää syytä lähettää viestiä.",
+                    'create' => 'luo uusi aihe',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Kirjoita aiheen sisältö tähän',
@@ -113,6 +138,11 @@ return [
             'box' => [
                 'total' => 'Seurattuja aiheita',
                 'unread' => 'Aiheita uusilla vastauksilla',
+            ],
+
+            'info' => [
+                'total' => 'Olet seurannut :total aihetta.',
+                'unread' => 'Sinulla on :unread lukematonta vastausta seuratuissa aiheissa.',
             ],
         ],
 
@@ -258,7 +288,8 @@ return [
             'to_not_watching' => 'Lisäämättä kirjanmerkkeihin',
             'to_watching' => 'Kirjanmerkkeihin',
             'to_watching_mail' => 'Kirjanmerkkeihin ilmoituksella',
-            'mail_disable' => 'Poista ilmoitukset käytöstä',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

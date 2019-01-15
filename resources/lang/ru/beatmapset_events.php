@@ -34,19 +34,46 @@ return [
         'kudosu_gain' => 'Отзыву :discussion от :user получило достаточно голосов для получения кудосу.',
         'kudosu_lost' => 'Отзыву :discussion от :user потеряло голоса и присуждённые кудосу были удалены.',
         'kudosu_recalculate' => 'Кудосу за отзыв :discussion были пересчитаны.',
+        'love' => 'Добавлено :user в любимое',
         'nominate' => 'Номинирована :user.',
         'nomination_reset' => 'Из-за новой проблемы в :discussion статус номинации был сброшен.',
-        'qualify' => 'Квалифицирована.',
+        'qualify' => 'Эта карта была номинирована достаточное количество раз для квалификации.',
         'rank' => 'Ранкнута.',
     ],
 
     'index' => [
         'title' => 'События карты',
+
+        'form' => [
+            'period' => 'Период',
+            'types' => 'Типы',
+        ],
     ],
 
     'item' => [
         'content' => 'Контент',
         'discussion_deleted' => '[удалено]',
         'type' => 'Тип',
+    ],
+
+    'type' => [
+        'approve' => 'Одобрено',
+        'discussion_delete' => 'Удаление дискуссии',
+        'discussion_post_delete' => 'Удаление ответов в дискуссии',
+        'discussion_post_restore' => 'Восстановление ответов в дискуссии',
+        'discussion_restore' => 'Восстановление дискуссии',
+        'disqualify' => 'Дисквалификация',
+        'issue_reopen' => 'Возобновление обсуждения',
+        'issue_resolve' => 'Обсуждение решения',
+        'kudosu_allow' => 'Квота Kudosu',
+        'kudosu_deny' => 'Отказ в Kudosu',
+        'kudosu_gain' => 'Получение Kudosu',
+        'kudosu_lost' => 'Потеря Kudosu',
+        'kudosu_recalculate' => 'Перерасчет Kudosu',
+        'love' => 'Любовь',
+        'nominate' => 'Номинация',
+        'nomination_reset' => 'Сброс номинации',
+        'qualify' => 'Квалификация',
+        'rank' => 'Рейтинг',
     ],
 ];

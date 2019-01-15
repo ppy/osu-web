@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Неуспешно запазване на пост',
+            'error' => 'Неуспешно запазване на публикацията',
         ],
     ],
 
@@ -64,9 +64,9 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => '',
-            'generalAll' => '',
-            'timeline' => '',
+            'general' => 'Пишете тук, за да публикувате в General (:version)',
+            'generalAll' => 'Пишете тук, за да публикувате в General (Всички трудности)',
+            'timeline' => 'Пишете тук, за да публикувате в Timeline (:version)',
         ],
 
         'message_type' => [
@@ -144,11 +144,16 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Изтрий',
+        'delete_own_confirm' => 'Сигурни ли сте? Бийтмапът ще бъде изтрит и ще бъдете пренасочени обратно към вашия профил.',
+        'delete_other_confirm' => 'Сигурни ли сте? Бийтмапът ще бъде изтрит и ще бъдете пренасочени обратно към профила на потребителя.',
         'disqualification_prompt' => 'Причина за дисквалифициране?',
         'disqualified_at' => 'Дисквалифициран :time_ago (:reason).',
         'disqualified_no_reason' => 'няма определена причина',
         'disqualify' => 'Дисквалифицирайте',
         'incorrect_state' => 'Грешка при извършване на това действие, опитайте да презаредите страницата.',
+        'love' => 'Обич',
+        'love_confirm' => 'Маркирайте този бийтмап като любим?',
         'nominate' => 'Номинирай',
         'nominate_confirm' => 'Номинирай този бийтмап?',
         'nominated_by' => 'номиниран от :users',
@@ -166,20 +171,22 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Сигурен ли сте? Публикуването на нов проблем ще нулира номинационният процес.',
+            'disqualify' => '',
         ],
     ],
 
     'listing' => [
         'search' => [
             'prompt' => 'въведи ключови думи...',
+            'login_required' => 'Влезте си в акаунта за търсене.',
             'options' => 'Повече опции за търсене',
-            'supporter_filter' => '',
+            'supporter_filter' => 'Филтриране по :filters изисква активен osu!supporter',
             'not-found' => 'няма намерени резултати',
             'not-found-quote' => '... не, нищо не е намерено.',
             'filters' => [
                 'general' => 'Общо',
                 'mode' => 'Игра',
-                'status' => 'Класиран Статус',
+                'status' => 'Категории',
                 'genre' => 'Жанр',
                 'language' => 'Език',
                 'extra' => 'екстра',
@@ -198,14 +205,10 @@ return [
                 'nominations' => 'номинации',
             ],
             'supporter_filter_quote' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Филтриране по :filters изисква активен :link',
+                'link_text' => 'osu!supporter tag',
             ],
         ],
-        'mode' => 'Игра',
-        'status' => 'Класиран Статус',
-        'source' => 'от :source',
-        'load-more' => 'Зареди още...',
     ],
     'general' => [
         'recommended' => 'Препоръчана трудност',
@@ -225,7 +228,7 @@ return [
         'qualified' => 'Квалифицирани',
         'loved' => 'Обичани',
         'faves' => 'Фаворити',
-        'pending' => 'Чакащи',
+        'pending' => 'Изчакващи одобрение или недовършени',
         'graveyard' => 'Гробище',
         'my-maps' => 'Моите Мапове',
     ],

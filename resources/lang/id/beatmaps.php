@@ -144,11 +144,16 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Hapus',
+        'delete_own_confirm' => 'Apa Anda yakin? Beatmap yang dipilih akan dihapus dan Anda akan dialihkan kembali ke profil Anda.',
+        'delete_other_confirm' => 'Apa Anda yakin? Beatmap yang dipilih akan dihapus dan Anda akan dialihkan kembali ke profil pengguna.',
         'disqualification_prompt' => 'Alasan diskualifikasi?',
         'disqualified_at' => 'Didiskualifikasi :time_ago (:reason).',
         'disqualified_no_reason' => 'tidak ada alasan yang diberikan',
         'disqualify' => 'Diskualifikasi',
         'incorrect_state' => 'Ditemukan kesalahan saat melakukan tindakan ini, silakan muat ulang laman.',
+        'love' => 'Love',
+        'love_confirm' => 'Love beatmap ini?',
         'nominate' => 'Nominasi',
         'nominate_confirm' => 'Nominasikan beatmap ini?',
         'nominated_by' => 'dinominasikan oleh :users',
@@ -166,20 +171,22 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Apakah kamu yakin? Memposting masalah baru akan mengulang proses nominasi.',
+            'disqualify' => '',
         ],
     ],
 
     'listing' => [
         'search' => [
             'prompt' => 'ketik kata kunci...',
+            'login_required' => 'Masuk untuk mencari.',
             'options' => 'Opsi Pencarian Lebih Lanjut',
-            'supporter_filter' => 'Penyaringan dengan :filters memerlukan supporter tag aktif',
+            'supporter_filter' => 'Penyaringan berdasarkan :filters memerlukan osu!supporter tag yang aktif',
             'not-found' => 'tidak ada hasil',
             'not-found-quote' => '... tidak, tidak ditemukan apa pun.',
             'filters' => [
                 'general' => 'Umum',
                 'mode' => 'Mode',
-                'status' => 'Status Map',
+                'status' => 'Kategori',
                 'genre' => 'Aliran',
                 'language' => 'Bahasa',
                 'extra' => 'tambahan',
@@ -199,13 +206,9 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Penyaringan dengan :filters memerlukan :link aktif',
-                'link_text' => 'supporter tag',
+                'link_text' => 'osu!supporter tag',
             ],
         ],
-        'mode' => 'Mode',
-        'status' => 'Status Map',
-        'source' => 'dari :source',
-        'load-more' => 'Muat lebih banyak...',
     ],
     'general' => [
         'recommended' => 'Tingkat kesulitan yang disarankan',
@@ -225,7 +228,7 @@ return [
         'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'Favorit',
-        'pending' => 'Pending',
+        'pending' => 'Pending & WIP',
         'graveyard' => 'Graveyard',
         'my-maps' => 'Map Saya',
     ],
