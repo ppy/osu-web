@@ -304,6 +304,6 @@ return [
     ],
     'panel' => [
         'playcount' => 'Playcount: :count',
-        'favourite' => 'Favourites: :count',
+        'favourites' => 'Favourites: :count',
     ],
 ];
