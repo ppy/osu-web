@@ -44,6 +44,7 @@ class @CommentShowMore extends React.PureComponent
     blockClass = osu.classWithModifiers bn, @props.modifiers
 
     if 'top' in @props.modifiers
+      remaining = @props.total - @props.comments.length
       modifiers = ['comments']
       if 'changelog' in @props.modifiers
         modifiers.push('t-dark-purple-darker')
@@ -55,6 +56,7 @@ class @CommentShowMore extends React.PureComponent
         hasMore: true
         callback: @load
         modifiers: modifiers
+        remaining: remaining
     else
       div className: blockClass,
         if @state.loading
