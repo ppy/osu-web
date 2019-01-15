@@ -40,6 +40,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * The contents of the cart should not be cleared until the payment request is
  *  successfully sent to the payment provider.
  * i.e. it should not be cleared immediately on checking out.
+ *
+ * @property User $user
  */
 class Order extends Model
 {
@@ -80,11 +82,6 @@ class Order extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeWhereHasInvoice($query)
-    {
-        return $query->whereIn('status', static::STATUS_HAS_INVOICE);
-    }
-
     public function scopeInCart($query)
     {
         return $query->where('status', 'incart');
@@ -93,6 +90,16 @@ class Order extends Model
     public function scopeProcessing($query)
     {
         return $query->where('status', 'processing');
+    }
+
+    public function scopeStale($query)
+    {
+        return $query->where('updated_at', '<', Carbon::now()->subDays(config('store.order.stale_days')));
+    }
+
+    public function scopeWhereHasInvoice($query)
+    {
+        return $query->whereIn('status', static::STATUS_HAS_INVOICE);
     }
 
     public function scopeWithPayments($query)

@@ -52,23 +52,31 @@ return [
             'favourite' => 'Favourite this beatmapset',
             'unfavourite' => 'Unfavourite this beatmapset',
             'favourited_count' => '+ 1 other!|+ :count others!',
+
+            'login_required' => [
+                'top' => 'Sign In',
+                'bottom' => 'to access more features',
+            ],
         ],
-        'stats' => [
-            'cs' => 'Circle Size',
-            'cs-mania' => 'Key Amount',
-            'drain' => 'HP Drain',
-            'accuracy' => 'Accuracy',
-            'ar' => 'Approach Rate',
-            'stars' => 'Star Difficulty',
-            'total_length' => 'Length',
-            'bpm' => 'BPM',
-            'count_circles' => 'Circle Count',
-            'count_sliders' => 'Slider Count',
-            'user-rating' => 'User Rating',
-            'rating-spread' => 'Rating Spread',
-            'nominations' => 'Nominations',
-            'playcount' => 'Playcount',
+
+        'favourites' => [
+            'limit_reached' => 'You have too many favourited beatmaps! Please unfavourite some before trying again.',
         ],
+
+        'hype' => [
+            'action' => 'Hype this map if you enjoyed playing it to help it progress to <strong>Ranked</strong> status.',
+
+            'current' => [
+                '_' => 'This map is currently :status.',
+
+                'status' => [
+                    'pending' => 'pending',
+                    'qualified' => 'qualified',
+                    'wip' => 'work in progress',
+                ],
+            ],
+        ],
+
         'info' => [
             'description' => 'Description',
             'genre' => 'Genre',
@@ -80,6 +88,7 @@ return [
             'tags' => 'Tags',
             'unranked' => 'Unranked beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => 'achieved :when',
             'country' => 'Country Ranking',
@@ -112,6 +121,23 @@ return [
                 'first' => 'In the Lead',
                 'own' => 'Your Best',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Circle Size',
+            'cs-mania' => 'Key Amount',
+            'drain' => 'HP Drain',
+            'accuracy' => 'Accuracy',
+            'ar' => 'Approach Rate',
+            'stars' => 'Star Difficulty',
+            'total_length' => 'Length',
+            'bpm' => 'BPM',
+            'count_circles' => 'Circle Count',
+            'count_sliders' => 'Slider Count',
+            'user-rating' => 'User Rating',
+            'rating-spread' => 'Rating Spread',
+            'nominations' => 'Nominations',
+            'playcount' => 'Playcount',
         ],
     ],
 ];

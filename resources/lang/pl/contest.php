@@ -38,6 +38,7 @@ return [
         'over' => 'Dziękujemy za zgłoszenia! Przesyłanie prac zakończyło się i wkrótce rozpocznie się głosowanie.',
         'limit_reached' => 'Osiągnięto limit zgłoszeń dla tego konkursu',
         'drop_here' => 'Tutaj umieść swoje zgłoszenie',
+        'download' => 'Pobierz plik .osz',
         'wrong_type' => [
             'art' => 'Jedynie pliki o rozszerzeniach .jpg czy .png są dozwolone w tym konkursie.',
             'beatmap' => 'Jedynie pliki o rozszerzeniu .osu są dozwolone w tym konkursie.',
@@ -50,7 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'głosy',
-        'count' => '1 głos|:count głosy|:count głosów',
+        'count' => ':count głos|:count głosy|:count głosów',
+        'points' => ':count punkt|:count punkty|:count punktów',
     ],
     'dates' => [
         'ended' => 'Zakończony :date',

@@ -19,8 +19,18 @@
 @import "app";
 
 .bbcode {
+  @_top: bbcode;
   word-wrap: break-word;
   line-height: 1.5;
+
+  a {
+    .@{_top}--profile-page& {
+      color: @blue;
+      .link-hover({
+        color: @blue-light;
+      });
+    }
+  }
 
   h2,
   h4 {
@@ -64,6 +74,16 @@
   .size-50 { font-size: 50%; }
   .size-85 { font-size: 85%; }
   .size-150 { font-size: 150%; }
+
+  // overrides bootstrap styling for [notice]
+  .well {
+    margin: 0;
+
+    .@{_top}--profile-page& {
+      background-color: #333;
+      border-color: #444;
+    }
+  }
 
   &--normal-line-height {
     line-height: inherit;

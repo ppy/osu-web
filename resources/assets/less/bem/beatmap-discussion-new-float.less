@@ -34,6 +34,12 @@
   margin-bottom: 10px;
   pointer-events: none;
 
+  &--pinned {
+    position: sticky;
+    z-index: 1;
+    // top will be calulated by the component.
+  }
+
   &__content {
     .bg();
     padding-top: 10px;
@@ -43,19 +49,5 @@
   &__floatable {
     .own-layer();
     width: 100%;
-
-    .@{top}--floating & {
-      position: fixed;
-      z-index: @z-index--fixed-bar;
-      top: 0;
-    }
-  }
-
-  &__spacer {
-    display: none;
-
-    .@{top}--floating & {
-      display: block;
-    }
   }
 }

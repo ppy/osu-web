@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'Eventi Beatmap',
+
+        'form' => [
+            'period' => 'Periodo',
+            'types' => 'Tipi',
+        ],
     ],
 
     'item' => [
         'content' => 'Contenuto',
         'discussion_deleted' => '[eliminato]',
         'type' => 'Tipo',
+    ],
+
+    'type' => [
+        'approve' => 'Approvazione',
+        'discussion_delete' => 'Eliminazione discussione',
+        'discussion_post_delete' => 'Eliminazione risposta a discussione',
+        'discussion_post_restore' => 'Recupero risposta a discussione',
+        'discussion_restore' => 'Recupero discussione',
+        'disqualify' => 'Squalificazione',
+        'issue_reopen' => 'Riaprimento discussione',
+        'issue_resolve' => 'Risolvimento discussione',
+        'kudosu_allow' => 'Accettazione kudosu',
+        'kudosu_deny' => 'Negazione kudosu',
+        'kudosu_gain' => 'Guadagno kudosu',
+        'kudosu_lost' => 'Perdita kudosu',
+        'kudosu_recalculate' => 'Ricalcolo kudosu',
+        'love' => 'Ama',
+        'nominate' => 'Nominazione',
+        'nomination_reset' => 'Reset delle nominazioni',
+        'qualify' => 'Qualificazione',
+        'rank' => 'Classificazione',
     ],
 ];

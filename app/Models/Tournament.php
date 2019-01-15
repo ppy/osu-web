@@ -31,6 +31,7 @@ class Tournament extends Model
     public static function getGroupedListing()
     {
         $tournaments = static::query()
+            ->with('registrations')
             ->orderBy('tournament_id', 'desc')
             ->get();
 

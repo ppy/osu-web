@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,12 +18,12 @@
 
 .osu-page {
   .width(@extra-margin: 0px) {
-    width: calc(100% ~'-' (@extra-margin * 2));
+    width: calc(100% - (@extra-margin * 2));
     max-width: (@container-sm - @extra-margin * 2);
   }
 
   .width-desktop(@extra-margin: 0px) {
-    width: calc(100% ~'-' ((@extra-margin + @grid-gutter-width) * 2));
+    width: calc(100% - ((@extra-margin + @grid-gutter-width) * 2));
     max-width: (@container-sm - @extra-margin * 2);
   }
 
@@ -41,6 +41,10 @@
     .default-box-shadow();
   }
 
+  &--has-anchor {
+    .fragment-target-fn();
+  }
+
   &--beatmapsets-search-header {
     .default-box-shadow();
     margin-bottom: 10px;
@@ -50,6 +54,8 @@
     .default-box-shadow();
     background-color: @changelog-bg;
     color: @changelog-fg;
+    display: flex;
+    flex-direction: column;
   }
 
   &--comment {
@@ -92,6 +98,13 @@
     }
   }
 
+  &--forum-topic-feature-vote {
+    .default-box-shadow();
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 5px;
+  }
+
   &--forum-pippi {
     margin-bottom: 10px;
   }
@@ -126,11 +139,25 @@
 
   &--header-v3 {
     align-self: auto;
-    z-index: @z-index--page-header;
+  }
+
+  &--header-v3-compact {
+    @media @desktop {
+      align-self: flex-start;
+      margin-top: 90px;
+      width: 100%;
+    }
   }
 
   &--landing-buttons {
     flex: 1 0 auto;
+  }
+
+  &--notification-banners {
+    @media @desktop {
+      height: 0;
+      top: (@nav2-height + 10px);
+    }
   }
 
   &--password-reset {
@@ -176,15 +203,15 @@
     }
   }
 
-  &--users-show-header {
+  &--users {
     .default-box-shadow();
+    background-color: @community-user-graygreen-darker;
+    color: #fff;
+    margin-bottom: 10px;
   }
 
-  &--users-show-header-extra {
+  &--users-show-header {
     .default-box-shadow();
-    .inner-shadow-top();
-    margin-bottom: 10px;
-    background-color: #333;
   }
 
   &--wiki {
@@ -203,5 +230,20 @@
   // color overrides goes here
   &--dark-bg {
     background-color: #333;
+  }
+
+  &--chat {
+    .default-box-shadow();
+    background-color: @community-blue-darker;
+    color: @community-blue;
+
+    flex: 1 0 auto;
+    display: flex;
+    height: calc((var(--vh, 1vh) * 100) - 150px); // viewport height - compact header+footer
+    width: 100vw;
+
+    @media @mobile {
+      height: calc((var(--vh, 1vh) * 100) - 110px);
+    }
   }
 }

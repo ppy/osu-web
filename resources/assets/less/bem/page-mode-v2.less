@@ -25,26 +25,35 @@
   .default-text-shadow();
   display: flex;
   list-style: none;
-  padding: 0 (@gutter-desktop + @gutter - 10px);
+  padding: 0;
   margin: 0;
   width: 100%;
 
   @media @desktop {
     padding: 0 (@gutter-desktop - 10px);
+    min-height: @_bar-active-height;
   }
 
   &::after {
     content: '';
     width: 100%;
     height: @_bar-height;
-    position: absolute;
     bottom: 0;
     left: 0;
+    @media @desktop {
+      position: absolute;
+    }
   }
 
   &--changelog {
     &::after {
       background-color: @dark-purple;
+    }
+  }
+
+  &--chat {
+    &::after {
+      background-color: @community-blue;
     }
   }
 
@@ -54,8 +63,18 @@
     }
   }
 
+  &--users {
+    &::after {
+      background-color: @community-user-green;
+    }
+  }
+
   &__item {
     display: flex;
+
+    @media @mobile {
+      display: none;
+    }
 
     & + &::before {
       content: '›';
@@ -66,8 +85,16 @@
         color: @dark-purple;
       }
 
+      .@{_top}--chat & {
+        color: @community-blue;
+      }
+
       .@{_top}--comments & {
         color: @blue;
+      }
+
+      .@{_top}--users & {
+        display: none;
       }
     }
   }
@@ -79,6 +106,10 @@
     margin: 0 5px;
     transition: all 100ms;
 
+    @media @mobile {
+      display: none;
+    }
+
     &::before {
       content: '';
       position: absolute;
@@ -86,11 +117,12 @@
       left: @_link-padding;
       height: @_bar-active-height;
       border-radius: 1000px;
-      width: calc(100% ~'-' (2 * @_link-padding));
+      width: calc(100% - (2 * @_link-padding));
       transition: inherit;
       will-change: transform;
       pointer-events: none;
       transform: scaleY(0);
+      z-index: @z-index--page-header; // prevent page content from covering the bottom poart
     }
 
     &:hover::before {
@@ -105,11 +137,27 @@
       }
     }
 
+    .@{_top}--chat & {
+      color: @community-blue;
+
+      &::before {
+        background-color: @community-blue;
+      }
+    }
+
     .@{_top}--comments & {
       color: @blue;
 
       &::before {
         background-color: @blue;
+      }
+    }
+
+    .@{_top}--users & {
+      color: @community-user-green;
+
+      &::before {
+        background-color: @community-user-green;
       }
     }
 

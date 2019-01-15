@@ -19,10 +19,10 @@
  */
 
 return [
-    'months' => '',
+    'months' => 'месеца',
 
     'user_search' => [
-        'searching' => '',
-        'not_found' => "",
+        'searching' => 'търсене...',
+        'not_found' => "Този потребител не съществува",
     ],
 ];

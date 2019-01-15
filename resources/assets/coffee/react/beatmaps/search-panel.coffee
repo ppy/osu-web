@@ -16,38 +16,127 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,a,i,input,h1,h2} = ReactDOMFactories
+{div, a, i, input, h1, h2, li, ol, span} = ReactDOMFactories
 el = React.createElement
 
 class Beatmaps.SearchPanel extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @inputRef = React.createRef()
+    @pinnedInputRef = React.createRef()
+
+    # containers for React to render portal into; turbolinks and React portals
+    # don't play well together, otherwise. These aren't needed without turbolinks.
+    @breadcrumbsPortal = document.createElement('div')
+    @contentPortal = document.createElement('div')
+
     @prevText = null
     @debouncedSubmit = _.debounce @submit, 500
+    @breadcrumbsElement = window.stickyHeader.breadcrumbsElement()
+    @contentElement = window.stickyHeader.contentElement()
+
+    @state =
+      query: @props.filters.query
 
 
   componentDidMount: =>
-    $(document).on 'turbolinks:before-cache.beatmaps-search-cache', @componentWillUnmount
+    $(document).on 'sticky-header:sticking.search-panel', @setHeaderPinned
+    $(document).on 'turbolinks:before-cache.search-panel', () =>
+      # componentWillUnmount is called too late for Beatmaps.
+      @breadcrumbsElement?.removeChild @breadcrumbsPortal
+      @contentElement?.removeChild @contentPortal
+
+    @breadcrumbsElement?.appendChild @breadcrumbsPortal
+    @contentElement?.appendChild @contentPortal
+
+
+  componentDidUpdate: (prevProps, prevState) =>
+    @debouncedSubmit @state.query if prevState.query != @state.query
 
 
   componentWillUnmount: =>
-    $(document).off '.beatmaps-search-cache'
+    $(document).off '.search-panel'
     @debouncedSubmit.cancel()
 
 
   render: =>
+    div null,
+      if @breadcrumbsElement?
+        ReactDOM.createPortal @renderBreadcrumbs(), @breadcrumbsPortal
+
+      if @contentElement?
+        ReactDOM.createPortal @renderStickyContent(), @contentPortal
+
+      div
+        className: 'osu-page osu-page--beatmapsets-search-header'
+        if currentUser.id?
+          @renderUser()
+        else
+          @renderGuest()
+
+
+  renderBreadcrumbs: =>
+    return null unless currentUser.id?
+
+    # TODO: replace with component that takes an array of {name, link}.
+    ol className: 'sticky-header-breadcrumbs',
+      li className: 'sticky-header-breadcrumbs__item',
+        span
+          className: 'sticky-header-breadcrumbs__link'
+          osu.trans 'beatmapsets.index.guest_title'
+
+      li className: 'sticky-header-breadcrumbs__item',
+        span
+          className: 'sticky-header-breadcrumbs__link'
+          osu.trans 'home.search.title'
+
+
+  renderStickyContent: =>
+    return null unless currentUser.id?
+
     div
-      className: 'osu-page osu-page--beatmapsets-search-header'
-      if currentUser.id?
-        @renderUser()
-      else
-        @renderGuest()
+      className: 'beatmapsets-search beatmapsets-search--sticky'
+      div
+        className: 'beatmapsets-search__input-container'
+        input
+          className: 'beatmapsets-search__input js-beatmapsets-search-input'
+          ref: @pinnedInputRef
+          type: 'textbox'
+          name: 'search'
+          onChange: @onChange
+          placeholder: osu.trans('beatmaps.listing.search.prompt')
+          value: @state.query
+        div className: 'beatmapsets-search__icon',
+          i className: 'fas fa-search'
+
+      div
+        className: 'beatmapsets-search__filters'
+        @renderFilter
+          name: 'status'
+          options: @props.availableFilters.statuses
+          showTitle: false
+
+        @renderFilter
+          name: 'mode'
+          options: @props.availableFilters.modes
+          showTitle: false
 
 
-  onInput: (event) =>
-    event.persist()
-    @debouncedSubmit event
+  onChange: (event) =>
+    @setState
+      query: event.target.value
+
+
+  renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>
+    el Beatmaps.SearchFilter,
+      filters: @props.filters
+      name: name
+      title: osu.trans("beatmaps.listing.search.filters.#{name}") if showTitle
+      options: options
+      default: @props.filterDefaults[name]
+      multiselect: multiselect
+      selected: @props.filters[name]
 
 
   renderGuest: =>
@@ -70,10 +159,12 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
   renderUser: =>
     filters = @props.availableFilters
+    cssClasses = 'beatmapsets-search'
+    cssClasses += ' beatmapsets-search--expanded' if @props.isExpanded
 
     div
       ref: @props.innerRef
-      className: "beatmapsets-search #{'beatmapsets-search--expanded' if @props.isExpanded}"
+      className: cssClasses
       div
         className: 'beatmapsets-search__background'
         style:
@@ -81,35 +172,27 @@ class Beatmaps.SearchPanel extends React.PureComponent
       div className: 'beatmapsets-search__input-container',
         input
           className: 'beatmapsets-search__input js-beatmapsets-search-input'
+          ref: @inputRef
           type: 'textbox'
           name: 'search'
+          onChange: @onChange
           placeholder: osu.trans('beatmaps.listing.search.prompt')
-          onInput: @onInput
-          defaultValue: @props.filters.query
+          value: @state.query
         div className: 'beatmapsets-search__icon',
           i className: 'fas fa-search'
 
-      el Beatmaps.SearchFilter,
-        name: 'general'
-        title: osu.trans('beatmaps.listing.search.filters.general')
-        options: filters.general
-        default: @props.filterDefaults.general
+      @renderFilter
         multiselect: true
-        selected: @props.filters.general
+        name: 'general'
+        options: filters.general
 
-      el Beatmaps.SearchFilter,
+      @renderFilter
         name: 'mode'
-        title: osu.trans('beatmaps.listing.search.filters.mode')
         options: filters.modes
-        default: @props.filterDefaults.mode
-        selected: @props.filters.mode
 
-      el Beatmaps.SearchFilter,
+      @renderFilter
         name: 'status'
-        title: osu.trans('beatmaps.listing.search.filters.status')
         options: filters.statuses
-        default: @props.filterDefaults.status
-        selected: @props.filters.status
 
       a
         className: 'beatmapsets-search__expand-link'
@@ -119,48 +202,35 @@ class Beatmaps.SearchPanel extends React.PureComponent
         div {}, i className: 'fas fa-angle-down'
 
       div className: 'beatmapsets-search__advanced',
-        el Beatmaps.SearchFilter,
+        @renderFilter
           name: 'genre'
-          title: osu.trans('beatmaps.listing.search.filters.genre')
           options: filters.genres
-          default: @props.filterDefaults.genre
-          selected: @props.filters.genre
 
-        el Beatmaps.SearchFilter,
+        @renderFilter
           name: 'language'
-          title: osu.trans('beatmaps.listing.search.filters.language')
           options: filters.languages
-          default: @props.filterDefaults.language
-          selected: @props.filters.language
 
-        el Beatmaps.SearchFilter,
+        @renderFilter
+          multiselect: true
           name: 'extra'
-          title: osu.trans('beatmaps.listing.search.filters.extra')
           options: filters.extras
-          multiselect: true
-          selected: @props.filters.extra
 
-        el Beatmaps.SearchFilter,
+        @renderFilter
+          multiselect: true
           name: 'rank'
-          title: osu.trans('beatmaps.listing.search.filters.rank')
           options: filters.ranks
-          multiselect: true
-          selected: @props.filters.rank
 
-        el Beatmaps.SearchFilter,
+        @renderFilter
           name: 'played'
-          title: osu.trans('beatmaps.listing.search.filters.played')
           options: filters.played
-          default: @props.filterDefaults.played
-          selected: @props.filters.played
 
 
-  submit: (e) =>
-    text = e.target.value.trim()
+  setHeaderPinned: (_event, pinned) =>
+    if pinned && document.activeElement == @inputRef.current
+      @pinnedInputRef.current.focus()
+    else if !pinned && document.activeElement == @pinnedInputRef.current
+      @inputRef.current.focus()
 
-    if text == @prevText
-      return
 
-    @prevText = text
-
-    $(document).trigger 'beatmap:search:filtered', query: text
+  submit: (query) ->
+    $(document).trigger 'beatmap:search:filtered', query: query.trim()

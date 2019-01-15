@@ -20,12 +20,12 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'beatmap on poistettu',
+        'beatmap-deleted' => 'poistettu beatmap',
         'difference' => ':difference pisteen erotuksella',
         'failed' => 'HÄVISI',
         'header' => 'Moninpelit',
         'in-progress' => '(peli meneillään)',
-        'in_progress_spinner_label' => '',
+        'in_progress_spinner_label' => 'peli meneillään',
         'loading-events' => 'Ladataan tapahtumia...',
         'winner' => ':team voitti',
 
@@ -48,7 +48,7 @@ return [
         'score' => [
             'stats' => [
                 'accuracy' => 'Tarkkuus',
-                'combo' => 'Combo',
+                'combo' => 'Kombo',
                 'score' => 'Pisteet',
             ],
         ],

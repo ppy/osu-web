@@ -21,42 +21,8 @@
 el = React.createElement
 
 class @Comments extends React.PureComponent
-  constructor: (props) ->
-    super props
-
-    commentBundle = @props.comments ? osu.parseJson("json-comments-#{@props.commentableType}-#{@props.commentableId}")
-
-    @id = "comments-#{osu.uuid()}"
-
-    @state =
-      comments: commentBundle.comments
-      users: commentBundle.users
-      topLevelCount: commentBundle.top_level_count
-
-
-  componentDidMount: =>
-    $.subscribe "comments:added.#{@id}", @appendBundle
-    $.subscribe "comment:updated.#{@id}", @update
-
-
-  componentWillUnmount: =>
-    $.unsubscribe ".#{@id}"
-
-
   render: =>
-    # When implementing other type of order, don't forget to take care
-    # how replying and show more interacts. It's currently fine* because
-    # it's ordered by created_at descending which means the reply will
-    # always be at the top and doesn't affect loading older posts.
-    # Also handling new replies will need to be fixed as well for newest
-    # first because it currently just doesn't.
-    commentsByParentId = _(@state.comments ? [])
-      .uniqBy('id')
-      .orderBy(['created_at', 'id'], ['desc', 'desc'])
-      .groupBy('parent_id')
-      .value()
-    usersById = _.keyBy(@state.users ? [], 'id')
-
+    commentsByParentId = _.groupBy(@props.comments, 'parent_id')
     comments = commentsByParentId[null]
 
 
@@ -68,37 +34,34 @@ class @Comments extends React.PureComponent
           commentableId: @props.commentableId
           focus: false
           modifiers: @props.modifiers
-      if comments?
+      div className: 'comments__content',
         div className: 'comments__items',
-          for comment in comments
-            el Comment,
-              key: comment.id
-              comment: comment
-              commentsByParentId: commentsByParentId
-              usersById: usersById
-              depth: 0
-              modifiers: @props.modifiers
-          if comments.length < @state.topLevelCount
-            lastCommentId = _.last(comments)?.id
+          el CommentsSort,
+            loadingSort: @props.loadingSort
+            currentSort: @props.currentSort
+            modifiers: @props.modifiers
+        if comments?
+          div className: "comments__items #{if @props.loadingSort? then 'comments__items--loading' else ''}",
+            for comment in comments
+              el Comment,
+                key: comment.id
+                comment: comment
+                commentsByParentId: commentsByParentId
+                userVotesByCommentId: @props.userVotesByCommentId
+                usersById: @props.usersById
+                depth: 0
+                currentSort: @props.currentSort
+                modifiers: @props.modifiers
+                moreComments: @props.moreComments
             el CommentShowMore,
-              key: "show-more:#{lastCommentId}"
               commentableType: @props.commentableType
               commentableId: @props.commentableId
-              after: lastCommentId
+              comments: comments
+              total: @props.topLevelCount
+              sort: @props.currentSort
               modifiers: _.concat 'top', @props.modifiers
-      else
-        div
-          className: 'comments__items comments__items--empty'
-          osu.trans('comments.empty')
-
-
-  appendBundle: (_event, {comments}) =>
-    @setState
-      comments: osu.updateCollection @state.comments, comments.comments
-      users: osu.updateCollection @state.users, comments.users
-
-
-  update: (_event, {comment}) =>
-    @setState
-      comments: osu.updateCollection @state.comments, [comment]
-      users: osu.updateCollection @state.users, [comment.user, comment.editor]
+              moreComments: @props.moreComments
+        else
+          div
+            className: 'comments__items comments__items--empty'
+            osu.trans('comments.empty')

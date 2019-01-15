@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Opravdu chcete příspěvek odstranit?',
         'confirm_restore' => 'Opravdu chcete příspěvek obnovit?',
@@ -87,11 +101,11 @@ return [
             'submit' => 'Odeslat',
 
             'necropost' => [
-                'default' => '',
+                'default' => 'Tohle téma bylo neaktivní už nějakou dobu. Napište pouze jesli k tomu máš důvod.',
 
                 'new_topic' => [
-                    '_' => "",
-                    'create' => '',
+                    '_' => "Toto téma je neaktivní už nějakou dobu. Pokud nemáte důvod k napsaní, prosím :create radši.",
+                    'create' => 'vytvoř nové téma',
                 ],
             ],
 
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'Nezáložkováno',
             'to_watching' => 'Záložka',
             'to_watching_mail' => 'Záložka s oznámením',
-            'mail_disable' => 'Vypnout oznámení',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

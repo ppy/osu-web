@@ -33,8 +33,10 @@ return [
             'refresh' => 'Recarregar',
         ],
 
-        'outdated' => [
-            '_' => 'Esta página contém uma tradução desactualizada do conteúdo original. Por favor, verifica o :default para as informações mais precisas (e considera actualizar a tradução se fores capaz de ajudar)!',
+        'translation' => [
+            'legal' => 'Esta tradução é fornecida apenas para conveniência. A original :default será a única juridicamente vinculativa versão deste texto.',
+            'outdated' => 'Esta página contém uma tradução desactualizada do conteúdo original. Por favor, verifica o :default para as informações mais precisas (e considera actualizar a tradução se fores capaz de ajudar)!',
+
             'default' => 'Versão em inglês',
         ],
     ],

@@ -58,7 +58,7 @@ class BeatmapsController extends Controller
 
             $query = $beatmap
                 ->scoresBest($mode)
-                ->with('user.country')
+                ->with(['beatmap', 'user.country'])
                 ->defaultListing();
         } catch (ScoreRetrievalException $ex) {
             return error_popup($ex->getMessage());
@@ -68,7 +68,7 @@ class BeatmapsController extends Controller
         $query->withType($type, compact('user'));
 
         $results = [
-            'scores' => json_collection($query->forListing(), 'Score', ['user', 'user.country']),
+            'scores' => json_collection($query->forListing(), 'Score', ['beatmap', 'user', 'user.country']),
         ];
 
         if ($user !== null) {

@@ -15,10 +15,18 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@if (optional(Auth::user())->isAdmin())
+    @php
+        $extraFooterLinks = [
+            trans('common.buttons.admin') => route('admin.beatmapsets.show', $beatmapset->getKey()),
+        ];
+    @endphp
+@endif
 @extends('master', [
     'currentSection' => 'beatmaps',
     'pageDescription' => $beatmapset->toMetaDescription(),
     'titlePrepend' => "{$beatmapset->title} - {$beatmapset->artist}",
+    'extraFooterLinks' => $extraFooterLinks ?? [],
 ])
 
 @section('content')

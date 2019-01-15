@@ -22,6 +22,11 @@ return [
     'error' => [
         'chat' => [
             'limit_exceeded' => 'Lähetät viestejä liian nopeasti, odota hetki ennen kuin yrität uudelleen.',
+            'too_long' => 'Viesti jota yrität lähettää on liian pitkä.',
         ],
+    ],
+
+    'scopes' => [
+        'identify' => '',
     ],
 ];

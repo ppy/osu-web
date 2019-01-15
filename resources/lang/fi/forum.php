@@ -21,7 +21,7 @@
 return [
     'pinned_topics' => 'Kiinnitetyt Aiheet',
     'slogan' => "on vaarallista pelata yksin.",
-    'subforums' => 'Alaforumit',
+    'subforums' => 'Alafoorumit',
     'title' => 'osu! foorumit',
 
     'covers' => [
@@ -44,6 +44,20 @@ return [
     'forums' => [
         'topics' => [
             'empty' => 'Ei aiheita!',
+        ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
         ],
     ],
 
@@ -77,7 +91,7 @@ return [
         'reply_box_placeholder' => 'Kirjoita vastauksesi tähän',
         'reply_title_prefix' => 'Re',
         'started_by' => 'tehnyt :user',
-        'started_by_verbose' => '',
+        'started_by_verbose' => 'aloittanut :user',
 
         'create' => [
             'preview' => 'Esikatselu',
@@ -90,7 +104,7 @@ return [
                 'default' => 'Tämä aihealue on ollut epäaktiivinen lähiaikoina. Postaa tänne vain jos sinulla on hyvä syy siihen.',
 
                 'new_topic' => [
-                    '_' => "",
+                    '_' => "Tämä aihe on ollut epäaktiivisena jo pidemmän aikaa. :create jos sinulla ei ole hyvää syytä lähettää viestiä.",
                     'create' => 'luo uusi aihe',
                 ],
             ],
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'Lisäämättä kirjanmerkkeihin',
             'to_watching' => 'Kirjanmerkkeihin',
             'to_watching_mail' => 'Kirjanmerkkeihin ilmoituksella',
-            'mail_disable' => 'Poista ilmoitukset käytöstä',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

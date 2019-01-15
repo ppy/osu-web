@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => '',
+        'delete_own_confirm' => '',
+        'delete_other_confirm' => '',
         'disqualification_prompt' => 'Anledning för diskvalificering?',
         'disqualified_at' => 'Diskvalificerad :time_ago (:reason).',
         'disqualified_no_reason' => 'inget anledning specificerad',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Är du säker? Lägga upp ett nytt problem kommer återställa nomineringar.',
+            'disqualify' => '',
         ],
     ],
 

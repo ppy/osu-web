@@ -3,9 +3,11 @@
 set -u
 set -e
 
-# the user when provisioning is `vagrant`, but files are created by `www-data`
-# don't fail if permissions don't get set on all files (useful when reloading the container)
-chmod -R 777 storage bootstrap/cache || true
+# The user when provisioning is different than the user running actual php workers (in production).
+if [ -z "${OSU_SKIP_CACHE_PERMISSION_OVERRIDE:-}" ]; then
+    # Don't fail if permissions don't get set on all files.
+    chmod -R 777 storage bootstrap/cache || true
+fi
 
 if [ ! -d node_modules ]; then
   mkdir -p ~/node_modules
@@ -36,12 +38,6 @@ fi
 php artisan passport:keys
 php artisan lang:js resources/assets/js/messages.js
 php artisan laroute:generate
-
-if [ ! "${APP_DEBUG:-false}" = "true" ]
-then
-  php artisan config:cache
-  php artisan route:cache
-fi
 
 command -v yarn || npm install -g yarn
 yarn

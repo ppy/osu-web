@@ -20,13 +20,18 @@
 
 import { BackToTop } from 'back-to-top'
 import { PlayDetailList } from 'play-detail-list'
-import { ReportForm } from 'report-form'
+import { PlayDetailMenu } from 'play-detail-menu'
+import { ReportComment } from 'report-comment'
+import { ReportUser } from 'report-user'
+import { ScoreHelper } from 'score-helper'
 import { SelectOptions } from 'select-options'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
 import VirtualList from 'react-virtual-list'
+import GalleryContest from 'gallery-contest'
+import WindowVHPatcher from 'window-vh-patcher';
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
@@ -34,10 +39,22 @@ window.Promise ?= Promise
 window._exported = {
   BackToTop
   PlayDetailList
-  ReportForm
+  PlayDetailMenu
+  ReportComment
+  ReportUser
+  ScoreHelper
   SelectOptions
   SpotlightSelectOptions
+  GalleryContest
+  WindowVHPatcher
 }
+
+# refer to variables.less
+window._styles =
+  header:
+    height: 90 # @nav2-height
+    heightSticky: 50 # @nav2-height--pinned
+    heightMobile: 60 # @navbar-height
 
 window.StoreCheckout = StoreCheckout
 window.TextareaAutosize = TextareaAutosize

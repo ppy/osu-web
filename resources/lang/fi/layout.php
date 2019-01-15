@@ -27,14 +27,15 @@ return [
         'home' => [
             '_' => 'etusivu',
             'account-edit' => 'asetukset',
-            'friends-index' => 'ystävät',
-            'changelog-index' => 'päivityshistoria',
+            'friends-index' => 'kaverit',
+            'changelog-index' => 'muutosloki',
             'changelog-build' => 'versio',
             'getDownload' => 'lataa',
             'getIcons' => 'kuvakkeet',
             'groups-show' => 'ryhmät',
             'index' => 'hallinta',
             'legal-show' => 'tiedot',
+            'messages-index' => '',
             'news-index' => 'uutiset',
             'news-show' => 'uutiset',
             'password-reset-index' => 'palauta salasana',
@@ -44,7 +45,7 @@ return [
         ],
         'help' => [
             '_' => 'apua',
-            'getFaq' => 'ukk',
+            'getFaq' => 'usein kysytyt',
             'getRules' => 'säännöt',
             'getSupport' => 'tarvitsen siis oikeasti apua!',
             'getWiki' => 'wiki',
@@ -58,7 +59,7 @@ return [
             'beatmapset-watches-index' => 'modiseuranta',
             'beatmapset_discussion_votes-index' => 'äänet karttakeskusteluissa',
             'beatmapset_events-index' => 'beatmapin tapahtumat',
-            'index' => 'listaus',
+            'index' => 'lista',
             'packs' => 'kokoelmat',
             'show' => 'info',
         ],
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'yhteisö',
+            'chat' => '',
+            'chat-index' => '',
             'dev' => 'kehitystyö',
             'getForum' => 'foorumit',
-            'getChat' => 'chat',
             'getLive' => 'livenä',
+            'comments-index' => 'kommentit',
+            'comments-show' => 'kommentti',
             'contests' => 'kilpailut',
             'profile' => 'profiili',
             'tournaments' => 'turnaukset',
@@ -128,11 +132,12 @@ return [
         'store' => [
             '_' => 'kauppa',
             'checkout-show' => 'kassa',
-            'getListing' => 'listaus',
+            'getListing' => 'lista',
             'cart-show' => 'ostoskori',
 
             'getCheckout' => 'kassa',
             'getInvoice' => 'lasku',
+            'orders-index' => 'tilaushistoria',
             'products-show' => 'tuote',
 
             'new' => 'uusi',
@@ -166,7 +171,7 @@ return [
         'general' => [
             '_' => 'Yleinen',
             'home' => 'Aloitus',
-            'changelog-index' => 'Muutoshistoria',
+            'changelog-index' => 'Muutosloki',
             'beatmaps' => 'Beatmapit',
             'download' => 'Lataa osu!',
             'wiki' => 'Wiki',
@@ -247,7 +252,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Asetukset',
-            'friends' => 'Ystävät',
+            'friends' => 'Kaverit',
             'logout' => 'Kirjaudu ulos',
             'profile' => 'Profiili',
         ],

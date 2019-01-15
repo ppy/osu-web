@@ -36,7 +36,7 @@ return [
 
     'index' => [
         'page_title' => [
-            '_' => 'registro delle modifiche',
+            '_' => 'note di rilascio',
             '_from' => 'modifiche dal :from',
             '_from_to' => 'modifiche da :from a :to',
             '_stream' => 'modifiche in :stream',
@@ -47,7 +47,7 @@ return [
         ],
 
         'title' => [
-            '_' => 'Registro delle modifiche :info',
+            '_' => 'Note di rilascio :info',
             'info' => 'Lista',
         ],
     ],

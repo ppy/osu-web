@@ -30,6 +30,8 @@ class ProfilePage.Main extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @tabs = React.createRef()
+    @pages = React.createRef()
     @state = JSON.parse(props.container.dataset.profilePageState ? null)
     @restoredState = @state?
 
@@ -46,7 +48,6 @@ class ProfilePage.Main extends React.PureComponent
           raw: props.userPage.raw
           editing: false
           selection: [0, 0]
-        tabsSticky: false
         profileOrder: props.user.profile_order[..]
         recentActivity: @props.extras.recentActivity
         scoresBest: @props.extras.scoresBest
@@ -74,11 +75,10 @@ class ProfilePage.Main extends React.PureComponent
     $.subscribe 'user:page:update.profilePage', @userPageUpdate
     $.subscribe 'profile:showMore.profilePage', @showMore
     $.subscribe 'profile:page:jump.profilePage', @pageJump
-    $.subscribe 'stickyHeader.profilePage', @_tabsStick
     $(window).on 'throttled-scroll.profilePage', @pageScan
     $(document).on 'turbolinks:before-cache.profilePage', @saveStateToContainer
 
-    $(@pages).sortable
+    $(@pages.current).sortable
       cursor: 'move'
       handle: '.js-profile-page-extra--sortable-handle'
       items: '.js-sortable--page'
@@ -86,7 +86,7 @@ class ProfilePage.Main extends React.PureComponent
       scrollSpeed: 10
       update: @updateOrder
 
-    $(@tabs).sortable
+    $(@tabs.current).sortable
       containment: 'parent'
       cursor: 'move'
       disabled: !@props.withEdit
@@ -115,7 +115,7 @@ class ProfilePage.Main extends React.PureComponent
     $(window).off '.profilePage'
 
     for sortable in [@pages, @tabs]
-      $(sortable).sortable 'destroy'
+      $(sortable.current).sortable 'destroy'
 
     $(window).stop()
     Timeout.clear @modeScrollTimeout
@@ -134,7 +134,8 @@ class ProfilePage.Main extends React.PureComponent
 
     isBlocked = _.find(currentUser.blocks, target_id: @state.user.id)
 
-    div className: 'osu-layout__no-scroll',
+    div
+      className: 'osu-layout__no-scroll' if isBlocked && !@state.forceShow
       if isBlocked
         div className: 'osu-page',
           el NotificationBanner,
@@ -143,7 +144,7 @@ class ProfilePage.Main extends React.PureComponent
             message:
               div className: 'notification-banner__button-group',
                 div className: 'notification-banner__button',
-                  el BlockButton, user_id: @props.user.id
+                  el BlockButton, userId: @props.user.id
                 div className: 'notification-banner__button',
                   button
                     type: 'button'
@@ -165,49 +166,33 @@ class ProfilePage.Main extends React.PureComponent
           currentMode: @state.currentMode
           withEdit: @props.withEdit
           rankHistory: @props.rankHistory
+          userAchievements: @props.userAchievements
 
         div
-          className: "hidden-xs page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
-
-          div
-            className: 'js-sticky-header'
-            'data-sticky-header-target': 'page-extra-tabs'
-
-          div
-            className: 'page-extra-tabs__padding js-sync-height--target'
-            'data-sync-height-id': 'page-extra-tabs'
-
-          div
-            className: 'page-extra-tabs__floatable js-sync-height--reference js-switchable-mode-page--scrollspy-offset'
-            'data-sync-height-target': 'page-extra-tabs'
-            if profileOrder.length > 1
-              div className: 'osu-page',
-                div
-                  className: 'page-mode page-mode--page-extra-tabs'
-                  ref: (el) => @tabs = el
-                  for m in profileOrder
-                    a
-                      className: "page-mode__item #{'js-sortable--tab' if @isSortablePage m}"
-                      key: m
-                      'data-page-id': m
-                      onClick: @tabClick
-                      href: "##{m}"
-                      el ProfilePage.ExtraTab,
-                        page: m
-                        currentPage: @state.currentPage
-                        currentMode: @state.currentMode
+          className: 'hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
+          if profileOrder.length > 1
+            div className: 'osu-page',
+              div
+                className: 'page-mode page-mode--profile-page-extra'
+                ref: @tabs
+                for m in profileOrder
+                  a
+                    className: "page-mode__item #{'js-sortable--tab' if @isSortablePage m}"
+                    key: m
+                    'data-page-id': m
+                    onClick: @tabClick
+                    href: "##{m}"
+                    el ProfilePage.ExtraTab,
+                      page: m
+                      currentPage: @state.currentPage
+                      currentMode: @state.currentMode
 
         div
-          className: 'osu-layout__section osu-layout__section--extra'
+          className: 'osu-layout__section osu-layout__section--users-extra'
           div
             className: 'osu-layout__row'
-            ref: (el) => @pages = el
+            ref: @pages
             @extraPage name for name in profileOrder
-
-
-  _tabsStick: (_e, target) =>
-    newState = (target == 'page-extra-tabs')
-    @setState(tabsSticky: newState) if newState != @state.tabsSticky
 
 
   extraPage: (name) =>
@@ -338,7 +323,11 @@ class ProfilePage.Main extends React.PureComponent
     @scrolling = true
     Timeout.clear @modeScrollTimeout
 
-    $(window).stop().scrollTo target, 500,
+    # count for the tabs height; assume pageJump always causes the header to be pinned
+    # otherwise the calculation needs another phase and gets a bit messy.
+    offsetTop = target.offset().top - pagesOffset[0].getBoundingClientRect().height
+
+    $(window).stop().scrollTo window.stickyHeader.scrollOffset(offsetTop), 500,
       onAfter: =>
         # Manually set the mode to avoid confusion (wrong highlight).
         # Scrolling will obviously break it but that's unfortunate result
@@ -349,8 +338,6 @@ class ProfilePage.Main extends React.PureComponent
           # - simple variable in callback
           # Both still change the switch too soon.
           @modeScrollTimeout = Timeout.set 100, => @scrolling = false
-      # count for the tabs height
-      offset: pagesOffset[0].getBoundingClientRect().height * -1
 
 
   pageScan: =>
@@ -393,7 +380,7 @@ class ProfilePage.Main extends React.PureComponent
   tabClick: (e) =>
     e.preventDefault()
 
-    # See $(@tabs).sortable.
+    # See $(@tabs.current).sortable.
     return if @draggingTab
 
     @pageJump null, e.currentTarget.dataset.pageId

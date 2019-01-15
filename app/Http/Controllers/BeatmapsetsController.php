@@ -127,6 +127,7 @@ class BeatmapsetsController extends Controller
                 'beatmaps.max_combo',
                 'converts',
                 'converts.failtimes',
+                'current_user_attributes',
                 $descriptionInclude,
                 'genre',
                 'language',
@@ -139,7 +140,7 @@ class BeatmapsetsController extends Controller
         if (Request::is('api/*')) {
             return $set;
         } else {
-            $commentBundle = new CommentBundle($beatmapset);
+            $commentBundle = CommentBundle::forEmbed($beatmapset);
             $countries = json_collection(Country::all(), new CountryTransformer);
             $hasDiscussion = $beatmapset->discussion_enabled;
 
@@ -150,14 +151,13 @@ class BeatmapsetsController extends Controller
     public function search()
     {
         $params = new BeatmapsetSearchRequestParams(request(), Auth::user());
+        $search = (new BeatmapsetSearch($params))->source(false);
 
-        $records = datadog_timing(function () use ($params) {
+        $records = datadog_timing(function () use ($params, $search) {
             $ids = $params->fetchCacheable(
                 'search-cache:',
                 config('osu.beatmapset.es_cache_duration'),
-                function () use ($params) {
-                    $search = (new BeatmapsetSearch($params))->source(false);
-
+                function () use ($search) {
                     return $search->response()->ids();
                 }
             );
@@ -168,11 +168,14 @@ class BeatmapsetsController extends Controller
                 ->get();
         }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
 
-        return json_collection(
-            $records,
-            new BeatmapsetTransformer,
-            'beatmaps'
-        );
+        return [
+            'beatmapsets' => json_collection(
+                $records,
+                new BeatmapsetTransformer,
+                'beatmaps'
+            ),
+            'cursor' => $search->getSortCursor(),
+        ];
     }
 
     public function discussion($id)
@@ -311,15 +314,24 @@ class BeatmapsetsController extends Controller
 
     public function updateFavourite($id)
     {
+        if (!Auth::check()) {
+            abort(403);
+        }
+
         $beatmapset = Beatmapset::findOrFail($id);
         $user = Auth::user();
 
-        if (Request::input('action') === 'favourite') {
-            priv_check('UserFavourite')->ensureCan();
-            $beatmapset->favourite($user);
-        } elseif (Request::input('action') === 'unfavourite') {
-            priv_check('UserFavouriteRemove')->ensureCan();
-            $beatmapset->unfavourite($user);
+        switch (Request::input('action')) {
+            case 'favourite':
+                if ($user->favouriteBeatmapsets()->count() >= $user->beatmapsetFavouriteAllowance()) {
+                    return error_popup(trans('beatmapsets.show.favourites.limit_reached'));
+                }
+                $beatmapset->favourite($user);
+                break;
+
+            case 'unfavourite':
+                $beatmapset->unfavourite($user);
+                break;
         }
 
         // reload models to get the correct favourite status

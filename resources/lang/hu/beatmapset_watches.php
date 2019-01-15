@@ -21,7 +21,7 @@
 return [
     'button' => [
         'action' => [
-            'to_0' => 'Követés megszűntetése',
+            'to_0' => 'Követés megszüntetése',
             'to_1' => 'Követés',
         ],
     ],

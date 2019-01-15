@@ -45,6 +45,7 @@ class Kernel extends ConsoleKernel
 
         // parsing html with regexp
         Commands\StoreCheckOrderTrackingStatus::class,
+        Commands\StoreCleanupStaleOrders::class,
 
         // builds
         Commands\BuildsCreate::class,
@@ -74,6 +75,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('store:cleanup-stale-orders')
+            ->daily();
+
         $schedule->command('store:tracking')
             ->cron('0 0,8,16 * * *');
 

@@ -25,7 +25,7 @@ return [
     'wrong_confirmation' => 'Bekræftelseskoderne matcher ikke.',
 
     'beatmap_discussion_post' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'Diskussionen er låst.',
         'first_post' => 'Kan ikke slette det startende opslag.',
     ],
 
@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => '',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Kan kun stemme på en funktionsanmodning.',
@@ -68,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Duplikeret valgmulighed er ikke tilladt.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Valgmuligheder pr. bruger må ikke overskride antallet af valgmuligheder i alt.',
             'minimum_one_selection' => 'Et minimum af en valgmulighed pr. bruger er nødvendig.',
             'minimum_two_options' => 'Der skal være mindst 2 valgmuligheder.',
@@ -110,5 +115,9 @@ return [
             ],
             'username_is_same' => '',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
             'favourited_count' => '+ 1 másik!|+ :count másik!',
         ],
-        'stats' => [
-            'cs' => 'Kör nagyság',
-            'cs-mania' => 'Billentyűk száma',
-            'drain' => 'HP Vesztés',
-            'accuracy' => 'Pontosság',
-            'ar' => 'Közelítési arány',
-            'stars' => 'Nehézség',
-            'total_length' => 'Hossz',
-            'bpm' => 'BPM',
-            'count_circles' => 'Körök Száma',
-            'count_sliders' => 'Csúszka számláló',
-            'user-rating' => 'Felhasználói Értékelés',
-            'rating-spread' => 'Értékelési Szórás',
-            'nominations' => 'Jelölések',
-            'playcount' => 'Játékszám',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Leírás',
             'genre' => 'Műfaj',
@@ -77,9 +76,10 @@ return [
             'points-of-failure' => 'Kibukási Alkalmak',
             'source' => 'Forrás',
             'success-rate' => 'Teljesítési arány',
-            'tags' => 'Cimkék',
+            'tags' => 'Címkék',
             'unranked' => 'Rangsorolatlan beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => 'elérve: :when',
             'country' => 'Országos Ranglista',
@@ -87,7 +87,7 @@ return [
             'global' => 'Globális Ranglista',
             'supporter-link' => 'Kattints <a href=":link">ide</a>,hogy megtekinthesd azt a sok jó funkciót amit kaphatsz!',
             'supporter-only' => 'Támogató kell legyél, hogy elérd a baráti és az országos ranglistát!',
-            'title' => 'Eredményjelző',
+            'title' => 'Eredménylista',
 
             'headers' => [
                 'accuracy' => 'Pontosság',
@@ -110,8 +110,25 @@ return [
             ],
             'score' => [
                 'first' => 'Az élen',
-                'own' => 'A te legjobbad',
+                'own' => 'A legjobbad',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Kör nagyság',
+            'cs-mania' => 'Billentyűk száma',
+            'drain' => 'HP Vesztés',
+            'accuracy' => 'Pontosság',
+            'ar' => 'Közelítési sebesség',
+            'stars' => 'Nehézség',
+            'total_length' => 'Hossz',
+            'bpm' => 'BPM',
+            'count_circles' => 'Körök Száma',
+            'count_sliders' => 'Sliderek Száma',
+            'user-rating' => 'Felhasználói Értékelés',
+            'rating-spread' => 'Értékelési Szórás',
+            'nominations' => 'Nominálások',
+            'playcount' => 'Játékszám',
         ],
     ],
 ];

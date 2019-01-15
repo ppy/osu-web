@@ -89,6 +89,7 @@ return [
         'paid_on' => 'Order placed :date',
 
         'invoice' => 'View Invoice',
+        'no_orders' => 'No orders to view.',
 
         'item' => [
             'display_name' => [

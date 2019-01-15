@@ -22,7 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Por favor, inicie a sessão para continuar.',
         'http-403' => 'Acesso negado.',
-        'http-404' => 'Não encontrado',
+        'http-404' => 'Não encontrado.',
         'http-429' => 'Muitas tentativas. Tente novamente mais tarde.',
     ],
     'account' => [
