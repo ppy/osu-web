@@ -72,6 +72,10 @@ return [
             'restore' => 'Restore post',
             'edit' => 'Edit post',
         ],
+
+        'info' => [
+            'post_count' => ':count post|:count posts',
+        ],
     ],
 
     'search' => [
