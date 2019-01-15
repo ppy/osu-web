@@ -525,6 +525,7 @@ class Order extends Model
                 $matches = [];
                 preg_match('/.+\((?<country>.+)\)$/', $product->name, $matches);
                 $params['extraData']['cc'] = Country::where('name', $matches['country'])->first()->acronym;
+                $params['extraData']['tournament_id'] = $product->tournament_id;
                 $params['cost'] = $product->cost ?? 0;
                 break;
             default:
