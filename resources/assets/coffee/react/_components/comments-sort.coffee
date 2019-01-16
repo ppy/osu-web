@@ -21,10 +21,11 @@
 class @CommentsSort extends React.PureComponent
   render: =>
     div className: osu.classWithModifiers('sort', @props.modifiers),
-      div className: 'sort__item sort__item--title', osu.trans('sort._')
-      @renderButton('new')
-      @renderButton('old')
-      @renderButton('top')
+      div className: 'sort__items',
+        div className: 'sort__item sort__item--title', osu.trans('sort._')
+        @renderButton('new')
+        @renderButton('old')
+        @renderButton('top')
 
 
   renderButton: (sort) =>
