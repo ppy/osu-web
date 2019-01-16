@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -48,11 +48,12 @@ class FeatureVote extends Model
 
     public function voteIncrement()
     {
-        if ($this->user && $this->user->osu_subscriber) {
-            return 2;
+        switch ($this->type) {
+            case 'supporter':
+                return 2;
+            case 'user':
+                return 1;
         }
-
-        return 1;
     }
 
     public function setType()

@@ -48,11 +48,6 @@ class Product extends Model
         return $this->hasMany(static::class, 'master_product_id', 'product_id');
     }
 
-    public function category()
-    {
-        return $this->hasOne('Category');
-    }
-
     public function notificationRequests()
     {
         return $this->hasMany(NotificationRequest::class, 'product_id');

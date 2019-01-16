@@ -88,6 +88,7 @@ $(document).on 'turbolinks:load', ->
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
 @twitchPlayer ?= new TwitchPlayer(@turbolinksReload)
+_exported.WindowVHPatcher.init(window)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->

@@ -53,16 +53,21 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         $profileCustomization = $user->profileCustomization();
 
+        $country = $user->country_acronym === null
+            ? null
+            : [
+                'code' => $user->country_acronym,
+                'name' => $user->countryName(),
+            ];
+
         return [
             'id' => $user->user_id,
             'username' => $user->username,
-            'join_date' => json_date($user->user_regdate),
-            'country' => [
-                'code' => $user->country_acronym,
-                'name' => $user->countryName(),
-            ],
+            'join_date' => json_time($user->user_regdate),
+            'country' => $country,
             'avatar_url' => $user->user_avatar,
             'is_supporter' => $user->osu_subscriber,
+            'has_supported' => $user->hasSupported(),
             'is_gmt' => $user->isGMT(),
             'is_qat' => $user->isQAT(),
             'is_bng' => $user->isBNG(),

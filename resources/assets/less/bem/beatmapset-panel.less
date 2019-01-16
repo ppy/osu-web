@@ -120,7 +120,7 @@
   &__panel {
     .own-layer();
     .default-box-shadow();
-    .default-border-radius();
+    border-radius: @border-radius-base + 2px @border-radius-base + 2px @border-radius-base @border-radius-base;
 
     width: 100%;
     background: #fff;
@@ -199,7 +199,7 @@
     position: absolute;
     left: @padding;
     bottom: @padding;
-    width: calc(100% ~'-' (@padding * 2));
+    width: calc(100% - (@padding * 2));
   }
 
   &__video-icon {

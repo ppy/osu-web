@@ -47,7 +47,7 @@ class ProfilePage.RankChart extends React.Component
       osu.transChoice('common.time.days_ago', -d)
 
   formatY: (d) ->
-    "<strong>#{osu.trans('users.show.rank.global_simple')}</strong> #{osu.formatNumber(-d)}"
+    "<strong>#{osu.trans('users.show.rank.global_simple')}</strong> ##{osu.formatNumber(-d)}"
 
 
   render: =>
@@ -89,5 +89,7 @@ class ProfilePage.RankChart extends React.Component
       data.unshift
         x: data[0].x - 1
         y: data[0].y
+
+    _.last(data).y = -@props.stats.rank.global
 
     @rankChart.loadData data

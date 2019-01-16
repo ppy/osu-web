@@ -49,6 +49,8 @@
 
                 <button type="button" class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 
+                <div class="js-pswp-buttons"></div>
+
                 <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
                 <!-- element will get modifier active when preloader is running -->
                 <div class="pswp__preloader">

@@ -50,7 +50,7 @@ class ProfilePage.Detail extends React.PureComponent
             el ProfilePage.RankCount, stats: @props.stats
         div className: "#{bn}__row",
           div className: "#{bn}__col #{bn}__col--bottom-left",
-            if @props.rankHistory?
+            if @props.stats.is_ranked
               el ProfilePage.RankChart,
                 rankHistory: @props.rankHistory
                 stats: @props.stats

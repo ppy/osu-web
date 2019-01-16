@@ -43,7 +43,7 @@ use Request;
 class User extends Model implements AuthenticatableContract
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
-    use HasApiTokens, Authenticatable, UserAvatar, UserScoreable, Validatable;
+    use HasApiTokens, Authenticatable, Reportable, UserAvatar, UserScoreable, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -220,6 +220,7 @@ class User extends Model implements AuthenticatableContract
         return $existing;
     }
 
+    // TODO: be able to change which connection this runs on?
     public static function findByUsernameForInactive($username) : ?self
     {
         return static::whereIn(
@@ -693,7 +694,7 @@ class User extends Model implements AuthenticatableContract
 
     public function reportedIn()
     {
-        return $this->hasMany(UserReport::class, 'user_id');
+        return $this->morphMany(UserReport::class, 'reportable');
     }
 
     public function reportsMade()
@@ -1009,9 +1010,19 @@ class User extends Model implements AuthenticatableContract
         return $this->isSupporter() ? config('osu.user.max_friends_supporter') : config('osu.user.max_friends');
     }
 
+    public function maxMultiplayerRooms()
+    {
+        return $this->isSupporter() ? config('osu.user.max_multiplayer_rooms_supporter') : config('osu.user.max_multiplayer_rooms');
+    }
+
     public function beatmapsetDownloadAllowance()
     {
         return $this->isSupporter() ? config('osu.beatmapset.download_limit_supporter') : config('osu.beatmapset.download_limit');
+    }
+
+    public function beatmapsetFavouriteAllowance()
+    {
+        return $this->isSupporter() ? config('osu.beatmapset.favourite_limit_supporter') : config('osu.beatmapset.favourite_limit');
     }
 
     public function uncachedFollowerCount()
@@ -1089,16 +1100,20 @@ class User extends Model implements AuthenticatableContract
 
     public function hasBlocked(self $user)
     {
-        return $this->blocks()
-            ->where('zebra_id', $user->user_id)
-            ->exists();
+        if (!array_key_exists('blocks', $this->memoized)) {
+            $this->memoized['blocks'] = $this->blocks;
+        }
+
+        return $this->memoized['blocks']->where('user_id', $user->user_id)->count() > 0;
     }
 
     public function hasFriended(self $user)
     {
-        return $this->friends()
-            ->where('zebra_id', $user->user_id)
-            ->exists();
+        if (!array_key_exists('friends', $this->memoized)) {
+            $this->memoized['friends'] = $this->friends;
+        }
+
+        return $this->memoized['friends']->where('user_id', $user->user_id)->count() > 0;
     }
 
     public function hasFavourited($beatmapset)
@@ -1156,9 +1171,15 @@ class User extends Model implements AuthenticatableContract
 
     public function title()
     {
-        if ($this->user_rank !== 0 && $this->user_rank !== null) {
-            return $this->rank->rank_title ?? null;
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+            if ($this->user_rank !== 0 && $this->user_rank !== null) {
+                $title = $this->rank->rank_title;
+            }
+
+            $this->memoized[__FUNCTION__] = $title ?? null;
         }
+
+        return $this->memoized[__FUNCTION__];
     }
 
     public function hasProfile()
@@ -1560,5 +1581,12 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $this->isValid() && parent::save($options);
+    }
+
+    protected function newReportableExtraParams() : array
+    {
+        return [
+            'user_id' => $this->getKey(),
+        ];
     }
 }

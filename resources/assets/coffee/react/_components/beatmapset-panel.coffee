@@ -59,6 +59,10 @@ class @BeatmapsetPanel extends React.PureComponent
       currentNominations = osu.formatNumber(beatmapset.nominations.current)
       requiredNominations = osu.formatNumber(beatmapset.nominations.required)
 
+    playCount = osu.formatNumber(beatmapset.play_count)
+
+    favouriteCount = osu.formatNumber(beatmapset.favourite_count)
+
     # arbitrary number
     maxDisplayedDifficulty = 10
 
@@ -119,12 +123,12 @@ class @BeatmapsetPanel extends React.PureComponent
                   span className: 'beatmapset-panel__count-number', currentNominations
                   i className: 'fas fa-thumbs-up fa-fw'
             else
-              div className: 'beatmapset-panel__count',
-                span className: 'beatmapset-panel__count-number', osu.formatNumber(beatmapset.play_count)
+              div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.panel.playcount', count: playCount),
+                span className: 'beatmapset-panel__count-number', playCount
                 i className: 'fas fa-fw fa-play-circle'
 
-            div className: 'beatmapset-panel__count',
-              span className: 'beatmapset-panel__count-number', osu.formatNumber(beatmapset.favourite_count)
+            div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.panel.favourites', count: favouriteCount),
+              span className: 'beatmapset-panel__count-number', favouriteCount
               i className: 'fas fa-fw fa-heart'
 
           div

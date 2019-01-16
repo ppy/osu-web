@@ -62,7 +62,7 @@ class ProfilePage.Beatmaps extends React.PureComponent
           div
             className: 'osu-layout__col',
             el ShowMoreLink,
-              modifiers: ['profile-page']
+              modifiers: ['profile-page', 't-community-user-graygreen-darker']
               event: 'profile:showMore'
               hasMore: @props.pagination[section].hasMore
               loading: @props.pagination[section].loading

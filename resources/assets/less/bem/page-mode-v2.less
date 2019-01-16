@@ -94,7 +94,7 @@
       }
 
       .@{_top}--users & {
-        color: @community-user-green;
+        display: none;
       }
     }
   }
@@ -117,7 +117,7 @@
       left: @_link-padding;
       height: @_bar-active-height;
       border-radius: 1000px;
-      width: calc(100% ~'-' (2 * @_link-padding));
+      width: calc(100% - (2 * @_link-padding));
       transition: inherit;
       will-change: transform;
       pointer-events: none;

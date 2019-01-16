@@ -255,19 +255,11 @@ function locale_name($locale)
 function locale_for_moment($locale)
 {
     if ($locale === 'en') {
-        return;
+        return 'en-gb';
     }
 
     if ($locale === 'zh') {
         return 'zh-cn';
-    }
-
-    if ($locale === 'zh-hk') {
-        return 'zh-hk';
-    }
-
-    if ($locale === 'zh-tw') {
-        return 'zh-tw';
     }
 
     return $locale;
@@ -606,7 +598,7 @@ function wiki_url($page = 'Welcome', $locale = null)
 {
     // FIXME: remove `rawurlencode` workaround when fixed upstream.
     // Reference: https://github.com/laravel/framework/issues/26715
-    $params = ['page' => rawurlencode($page)];
+    $params = ['page' => str_replace('%2F', '/', rawurlencode($page))];
 
     if (present($locale) && $locale !== App::getLocale()) {
         $params['locale'] = $locale;

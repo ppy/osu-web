@@ -67,7 +67,7 @@ class ProfilePage.Kudosu extends React.Component
 
           li className: 'profile-extra-entries__item',
             el ShowMoreLink,
-              modifiers: ['profile-page']
+              modifiers: ['profile-page', 't-community-user-graygreen-darker']
               event: 'profile:showMore'
               hasMore: @props.pagination.recentlyReceivedKudosu.hasMore
               loading: @props.pagination.recentlyReceivedKudosu.loading

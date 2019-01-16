@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright 2015-2019 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -35,7 +35,7 @@
     @include('forum.topics._floating_header')
     @include('forum.topics._header')
 
-    <div class="js-header--alt js-sync-height--target" data-sync-height-id="sticky-header"></div>
+    <div class="forum-topic-header-padding js-header--alt js-sync-height--target" data-sync-height-id="sticky-header"></div>
 
     @if ($topic->poll()->exists())
         <div class="osu-layout__row js-header--main">
@@ -43,50 +43,28 @@
         </div>
     @endif
 
-    @if (false && $topic->isFeatureTopic())
-        <div class="forum-topic-feature-vote">
-            <p>
-                @foreach ($topic->featureVotes as $vote)
-                    <span>+{{ $vote->voteIncrement() }} by {{ $vote->user->username }}</span>
-                @endforeach
-            </p>
-            <p>
-                {{ trans('forum.topics.show.feature_vote.current', [
-                    'count' => $topic->osu_starpriority,
-                ]) }}
-            </p>
-
-            @if (Auth::check())
-                @if (Auth::user()->osu_featurevotes >= App\Models\Forum\FeatureVote::COST)
-                    <a href="{{ route('forum.topics.vote-feature', $topic->getKey()) }}" data-method="POST" data-remote=1>
-                        {{ trans('forum.topics.show.feature_vote.do') }}
-                    </a>
-                @else
-                    <p>
-                        {{ trans('forum.topics.show.feature_vote.user.not_enough') }}
-                    </p>
-                @endif
-
-                <p>
-                    {{ trans('forum.topics.show.feature_vote.user.current', [
-                        'votes' => trans_choice('forum.topics.show.feature_vote.user.count', Auth::user()->osu_featurevotes),
-                    ]) }}
-                </p>
-            @endif
-        </div>
+    @if ($topic->isFeatureTopic())
+        @include ('forum.topics._feature_vote')
     @endif
 
-    <div class="forum-posts-load-link js-header--alt {{ $posts->first()->post_id === $firstPostId ? 'hidden' : '' }}">
-        <a href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]) }}" class="js-forum-posts-show-more js-forum__posts-show-more--previous" data-mode="previous">Load more</a>
-        <span>{!! spinner() !!}</span>
-    </div>
+    @include('objects._show_more_link', [
+        'additionalClasses' => 'js-header--alt js-forum-posts-show-more js-forum__posts-show-more--previous',
+        'arrow' => 'up',
+        'attributes' => ['data-mode' => 'previous'],
+        'hidden' => $posts->first()->post_id === $firstPostId,
+        'modifiers' => ['forum-topic', 't-ddd'],
+        'url' => route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]),
+    ])
 
     @include("forum.topics._posts")
 
-    <div class="forum-posts-load-link {{ $firstPostPosition + sizeof($posts) - 1 >= $topic->postsCount() ? 'hidden' : '' }}">
-        <a href="{{ post_url($topic->topic_id, $posts->last()->post_id + 1, false) }}" class="js-forum-posts-show-more js-forum__posts-show-more--next" data-mode="next">Load more</a>
-        <span>{!! spinner() !!}</span>
-    </div>
+    @include('objects._show_more_link', [
+        'additionalClasses' => 'js-forum-posts-show-more js-forum__posts-show-more--next',
+        'attributes' => ['data-mode' => 'next'],
+        'hidden' => $firstPostPosition + sizeof($posts) - 1 >= $topic->postsCount(),
+        'modifiers' => ['forum-topic', 't-ddd'],
+        'url' => post_url($topic->topic_id, $posts->last()->post_id + 1, false),
+    ])
 
     <div class="js-forum-topic-reply--container js-sync-height--target forum-topic-reply" data-sync-height-id="forum-topic-reply">
         {!! Form::open([

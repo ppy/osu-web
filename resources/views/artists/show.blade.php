@@ -47,7 +47,7 @@
                     <div class="artist__albums">
                         @foreach ($albums as $album)
                             <div class="artist__album">
-                                <a name="album-{{$album['id']}}" id="album-{{$album['id']}}"></a>
+                                <a class="fragment-target" name="album-{{$album['id']}}" id="album-{{$album['id']}}"></a>
                                 <div class="artist__album-header">
                                     <div class="artist__album-header-overlay" style="background-image: url({{$album['cover_url']}});"></div>
                                     <img class="artist__album-cover" src="{{$album['cover_url']}}">
