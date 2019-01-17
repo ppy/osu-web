@@ -136,18 +136,6 @@ class Product extends Model
         return $this->weight !== null;
     }
 
-    public function scopeActive($query)
-    {
-        return $query
-            ->where('enabled', true)
-            ->available();
-    }
-
-    public function scopeAvailable($query)
-    {
-        return $query->where('available_until', '>=', Carbon::now());
-    }
-
     public function scopeNotAvailable($query)
     {
         return $query->where('available_until', '<', Carbon::now());
