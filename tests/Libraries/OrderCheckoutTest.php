@@ -22,10 +22,29 @@ use App\Models\Country;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
 use App\Models\Tournament;
+use Carbon\Carbon;
 
+// TODO: should split into Tournament-specific and generic Checkout tests.
 class OrderCheckoutTest extends TestCase
 {
-    public function testTournamentBannerForPendingTournament()
+    public function testTournamentBannerWhenAvailable()
+    {
+        $tournament = factory(Tournament::class)->create();
+        $product = $this->createTournamentProduct($tournament, Carbon::now()->addDay(1));
+        $orderItem = factory(OrderItem::class)->create([
+            'product_id' => $product->product_id,
+            'extra_data' => [
+                'tournament_id' => $tournament->getKey(),
+            ],
+        ]);
+        $tournament->update(['tournament_banner_product_id' => $product->getKey()]);
+
+        $checkout = new OrderCheckout($orderItem->order);
+
+        $this->assertEmpty($checkout->validate());
+    }
+
+    public function testTournamentBannerWhenNoEndDate()
     {
         $tournament = factory(Tournament::class)->create();
         $product = $this->createTournamentProduct($tournament);
@@ -42,10 +61,10 @@ class OrderCheckoutTest extends TestCase
         $this->assertEmpty($checkout->validate());
     }
 
-    public function testTournamentBannerForEndedTournament()
+    public function testTournamentBannerWhenNotAvailable()
     {
-        $tournament = factory(Tournament::class)->states('bannerEnded')->create();
-        $product = $this->createTournamentProduct($tournament);
+        $tournament = factory(Tournament::class)->create();
+        $product = $this->createTournamentProduct($tournament, Carbon::now()->subDay(1));
         $orderItem = factory(OrderItem::class)->create([
             'product_id' => $product->product_id,
             'extra_data' => [
@@ -59,13 +78,13 @@ class OrderCheckoutTest extends TestCase
         $this->assertNotEmpty($checkout->validate());
     }
 
-    private function createTournamentProduct(Tournament $tournament)
+    private function createTournamentProduct(Tournament $tournament, Carbon $availableUntil = null)
     {
         $country = factory(Country::class)->create();
 
         $product = factory(Product::class, 'child_banners')->create([
+            'available_until' => $availableUntil,
             'name' => "{$tournament->name} Support Banner ({$country->name})",
-            'tournament_id' => $tournament->getKey(),
         ]);
 
         $type_mappings_json = [
