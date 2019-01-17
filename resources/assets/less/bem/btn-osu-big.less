@@ -98,7 +98,22 @@
     background-image: url('/images/backgrounds/buttonpink@2x.png');
   }
 
-  &--comment-editor, &--chat-send {
+  &--comment-editor {
+    min-width: 80px;
+    border-radius: 10000px;
+    padding: 5px;
+  }
+
+  &--comment-editor[disabled] {
+    opacity: 0.4;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  &--chat-send {
+    min-width: 80px;
     border-radius: 10000px;
     padding: 10px;
 
@@ -106,10 +121,6 @@
       min-width: 130px;
       padding: 10px 20px;
     }
-  }
-
-  &--chat-send {
-    min-width: 80px;
   }
 
   &--contest-download {
