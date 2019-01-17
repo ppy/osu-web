@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => ':count post|:count posts',
+            'post_count' => ':count_delimited post|:count_delimited posts',
         ],
     ],
 
