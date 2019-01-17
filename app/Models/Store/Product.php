@@ -145,12 +145,12 @@ class Product extends Model
 
     public function scopeAvailable($query)
     {
-        return $query->where('available_until', '<=', Carbon::now());
+        return $query->where('available_until', '>=', Carbon::now());
     }
 
     public function scopeNotAvailable($query)
     {
-        return $query->where('available_until', '>', Carbon::now());
+        return $query->where('available_until', '<', Carbon::now());
     }
 
     public function scopeLatest($query)
