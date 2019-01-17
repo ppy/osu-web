@@ -21,6 +21,7 @@ addons:
       - mysql-5.7-trusty
     packages:
       - mysql-server
+  chrome: stable
 
 env:
   global:
@@ -35,13 +36,13 @@ env:
 
 install:
   # elasticsearch setup (part 1)
-  - wget "${ES_DOWNLOAD_URL}"
+  - travis_retry bash -c 'wget "${ES_DOWNLOAD_URL}"'
   - unzip "elasticsearch-${ES_VERSION}.zip"
   - ./"elasticsearch-${ES_VERSION}/bin/elasticsearch" &
 
-  - nvm install 8.9
+  - travis_retry nvm install 8.9
   - nvm use 8.9
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.3.2
+  - travis_retry bash -c 'curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.3.2'
   - ./bin/db_setup.sh
   - ./build.sh
 
@@ -49,5 +50,10 @@ install:
   # wait until es server is up
   - wget -q --waitretry=1 --retry-connrefused -T 10 -O - http://127.0.0.1:9200
   - php artisan es:index-documents --yes
+
+before_script:
+  - php artisan locale:check
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - php artisan serve > /dev/null 2>&1 &
 
 script: ./bin/phpunit
