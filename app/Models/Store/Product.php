@@ -21,6 +21,7 @@
 namespace App\Models\Store;
 
 use App\Exceptions\InsufficientStockException;
+use Carbon\Carbon;
 
 class Product extends Model
 {
