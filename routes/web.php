@@ -323,6 +323,11 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth:api', 'r
             Route::get('favourites', 'API\BeatmapsetsController@favourites');     //  GET /api/v2/beatmapsets/favourites
         });
 
+        Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
+            // GET /api/v2/scores/:mode/:score_id/download
+            Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
+        });
+
         // Beatmaps
         //   GET /api/v2/beatmaps/:beatmap_id/scores
         Route::get('beatmaps/{id}/scores', 'BeatmapsController@scores');
