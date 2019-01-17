@@ -37,18 +37,20 @@
         }
     @endphp
     <div class="sort sort--forum-topics">
-        <span class="sort__item sort__item--title">{{ trans('sort._') }}</span>
+        <div class="sort__items">
+            <span class="sort__item sort__item--title">{{ trans('sort._') }}</span>
 
-        @foreach ($defaultMenu + $menu as $menuSort => $menuItem)
-            <a
-                class="
-                    sort__item
-                    sort__item--button
-                    {{ ($sort ?? null) === $menuSort ? 'sort__item--active u-forum--link-text' : '' }}
-                "
-                href="{{ $menuItem['url'] }}#topics"
-            >{{ $menuItem['title'] }}
-            </a>
-        @endforeach
+            @foreach ($defaultMenu + $menu as $menuSort => $menuItem)
+                <a
+                    class="
+                        sort__item
+                        sort__item--button
+                        {{ ($sort ?? null) === $menuSort ? 'sort__item--active u-forum--link-text' : '' }}
+                    "
+                    href="{{ $menuItem['url'] }}#topics"
+                >{{ $menuItem['title'] }}
+                </a>
+            @endforeach
+        </div>
     </div>
 @endif
