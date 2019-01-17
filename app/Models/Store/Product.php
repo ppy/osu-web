@@ -21,7 +21,6 @@
 namespace App\Models\Store;
 
 use App\Exceptions\InsufficientStockException;
-use App\Models\Tournament;
 
 class Product extends Model
 {
@@ -36,17 +35,14 @@ class Product extends Model
         'allow_multiple' => 'boolean',
     ];
 
+    protected $dates = ['available_until'];
+
     private $images;
     private $types;
 
     public function masterProduct()
     {
         return $this->belongsTo(self::class, 'master_product_id', 'product_id');
-    }
-
-    public function tournament()
-    {
-        return $this->belongsTo(Tournament::class, 'tournament_id');
     }
 
     public function variations()
@@ -106,17 +102,10 @@ class Product extends Model
         }
     }
 
-    /**
-     * Returns if a tournament banner is available.
-     *
-     * Returns true if a banner is available, false if not,
-     * null if the product is not a tournament banner.
-     *
-     * @return bool|null
-     */
-    public function isTournamentBannerAvailable() : ?bool
+    public function isAvailable() : bool
     {
-        return $this->tournament_id !== null ? $this->tournament->isStoreBannerAvailable() : null;
+        return $this->enabled
+            && $this->available_until === null ? true : $this->available_until->isFuture();
     }
 
     public function typeMappings()
@@ -150,15 +139,17 @@ class Product extends Model
     {
         return $query
             ->where('enabled', true)
-            ->where(function ($tournamentsQuery) {
-                $tournamentIds = Tournament::from((new Tournament)->tableName(true))
-                    ->bannerSalesNotNotEnded()
-                    ->select('tournament_id');
+            ->available();
+    }
 
-                $tournamentsQuery
-                    ->whereIn('tournament_id', $tournamentIds)
-                    ->orWhere('tournament_id', null);
-            });
+    public function scopeAvailable($query)
+    {
+        return $query->where('available_until', '<=', Carbon::now());
+    }
+
+    public function scopeNotAvailable($query)
+    {
+        return $query->where('available_until', '>', Carbon::now());
     }
 
     public function scopeLatest($query)

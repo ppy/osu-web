@@ -21,22 +21,19 @@
 namespace App\Console\Commands;
 
 use App\Models\Store\Product;
-use App\Models\Tournament;
 use Illuminate\Console\Command;
 
-class StoreExpireTournamentBanners extends Command
+class StoreExpireProducts extends Command
 {
-    protected $signature = 'store:expire-tournament-banners';
+    protected $signature = 'store:expire-products';
 
-    protected $description = 'Disables banner products of tournaments that have ended';
+    protected $description = 'Disables products that should no longer be available.';
 
     public function handle()
     {
-        $tournamentIds = Tournament::from((new Tournament)->tableName(true))->bannerSalesEnded()->select('tournament_id');
-
         $count = Product
             ::where('enabled', true)
-            ->whereIn('tournament_id', $tournamentIds)
+            ->notAvailable()
             ->update(['enabled' => false]);
 
         $this->line("Disabled {$count} items.");

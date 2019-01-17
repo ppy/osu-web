@@ -168,7 +168,7 @@ class OrderCheckout
     {
         // TODO: nested indexed ValidationError...somehow.
         $itemErrors = [];
-        $items = $this->order->items()->with('product.tournament')->get();
+        $items = $this->order->items()->with('product')->get();
         foreach ($items as $item) {
             $messages = [];
             if (!$item->isValid()) {
@@ -176,7 +176,7 @@ class OrderCheckout
             }
 
             // Checkout process level validations, should not be part of OrderItem validation.
-            if ($item->product === null || !$item->product->enabled) {
+            if ($item->product === null || !$item->product->isAvailable()) {
                 $messages[] = trans('model_validation/store/product.not_available');
             }
 
@@ -192,10 +192,6 @@ class OrderCheckout
             $customClass = $item->getCustomClassInstance();
             if ($customClass !== null) {
                 $messages[] = $customClass->validate()->allMessages();
-            }
-
-            if (!($item->product->isTournamentBannerAvailable() ?? true)) {
-                $messages[] = trans('model_validation/store/product.tournament.not_available');
             }
 
             $flattened = array_flatten($messages);

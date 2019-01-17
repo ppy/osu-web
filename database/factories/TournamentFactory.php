@@ -18,10 +18,7 @@ $factory->define(App\Models\Tournament::class, function (Faker\Generator $faker)
         },
         'end_date' => function () {
             return Carbon\Carbon::now()->addMonths(3);
-        },
-        'banner_sales_ends_at' => function () {
-            return Carbon\Carbon::now()->addMonths(3);
-        },
+        }
     ];
 });
 
@@ -38,9 +35,6 @@ $factory->state(App\Models\Tournament::class, 'bannerEnded', function (Faker\Gen
         },
         'end_date' => function () {
             return Carbon\Carbon::now()->subMonths(1);
-        },
-        'banner_sales_ends_at' => function () {
-            return Carbon\Carbon::now()->subMonths(1);
-        },
+        }
     ];
 });
