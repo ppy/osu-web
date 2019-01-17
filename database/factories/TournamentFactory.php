@@ -18,6 +18,6 @@ $factory->define(App\Models\Tournament::class, function (Faker\Generator $faker)
         },
         'end_date' => function () {
             return Carbon\Carbon::now()->addMonths(3);
-        }
+        },
     ];
 });
