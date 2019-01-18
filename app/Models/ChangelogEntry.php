@@ -20,9 +20,9 @@
 
 namespace App\Models;
 
+use App\Libraries\OsuMarkdownProcessor;
 use Carbon\Carbon;
 use Exception;
-use Markdown;
 
 class ChangelogEntry extends Model
 {
@@ -182,7 +182,10 @@ class ChangelogEntry extends Model
         list($private, $public) = static::splitMessage($this->message);
 
         if ($public !== null) {
-            return Markdown::convertToHtml($public);
+            return OsuMarkdownProcessor::process($public, [
+                'block_name' => 'changelog-md',
+                'html_input' => 'allow',
+            ])['output'];
         }
     }
 }
