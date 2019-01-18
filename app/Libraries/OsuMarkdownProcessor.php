@@ -20,6 +20,7 @@
 
 namespace App\Libraries;
 
+use Jonnybarnes\CommonmarkLinkify\LinkifyExtension;
 use League\CommonMark\Block\Element as Block;
 use League\CommonMark\Block\Element\Document;
 use League\CommonMark\CommonMarkConverter;
@@ -50,6 +51,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
     public static function process($rawInput, $config)
     {
         $config = array_merge([
+            'autolink' => false,
             'html_input' => 'strip',
             'block_name' => 'osu-md',
         ], $config);
@@ -67,6 +69,10 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         $env->addDocumentProcessor($processor);
         $env->addExtension(new TableExtension\TableExtension);
         $env->addBlockRenderer(TableExtension\Table::class, new OsuTableRenderer);
+
+        if ($config['autolink']) {
+            $env->addExtension(new LinkifyExtension);
+        }
 
         $converter = new CommonMarkConverter($config, $env);
 

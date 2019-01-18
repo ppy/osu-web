@@ -183,6 +183,7 @@ class ChangelogEntry extends Model
 
         if ($public !== null) {
             return OsuMarkdownProcessor::process($public, [
+                'autolink' => true,
                 'block_name' => 'changelog-md',
                 'html_input' => 'allow',
             ])['output'];
