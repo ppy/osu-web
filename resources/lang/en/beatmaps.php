@@ -186,7 +186,7 @@ return [
             'filters' => [
                 'general' => 'General',
                 'mode' => 'Mode',
-                'status' => 'Categories',
+                'status' => 'Sections',
                 'genre' => 'Genre',
                 'language' => 'Language',
                 'extra' => 'extra',
