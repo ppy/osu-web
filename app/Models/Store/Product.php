@@ -106,7 +106,7 @@ class Product extends Model
     public function isAvailable() : bool
     {
         return $this->enabled
-            && $this->available_until === null ? true : $this->available_until->isFuture();
+            && ($this->available_until === null ? true : $this->available_until->isFuture());
     }
 
     public function typeMappings()
