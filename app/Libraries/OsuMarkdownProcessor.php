@@ -50,16 +50,22 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
     public static function process($rawInput, $config)
     {
         $config = array_merge([
-            'html_input' => 'strip',
             'block_name' => 'osu-md',
+            'html_input' => 'strip',
+            'parse_yaml_header' => true,
+            'relative_url_root' => null,
+            'title_from_document' => false,
         ], $config);
 
         $rawInput = strip_utf8_bom($rawInput);
-        $input = static::parseYamlHeader($rawInput);
-        $header = $input['header'] ?? [];
 
-        if (!isset($config['fetch_title'])) {
-            $config['fetch_title'] = !isset($header['title']);
+        if ($config['parse_yaml_header']) {
+            $input = static::parseYamlHeader($rawInput);
+            $header = $input['header'] ?? [];
+            $document = $input['document'];
+        } else {
+            $document = $rawInput;
+            $header = [];
         }
 
         $env = Environment::createCommonMarkEnvironment();
@@ -76,10 +82,10 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             $blockClass .= " {$config['block_name']}--{$blockModifier}";
         }
 
-        $converted = $converter->convertToHtml($input['document']);
+        $converted = $converter->convertToHtml($document);
         $output = "<div class='{$blockClass}'>{$converted}</div>";
 
-        if (!isset($header['title'])) {
+        if ($config['title_from_document']) {
             $header['title'] = $processor->title;
         }
 
@@ -118,20 +124,28 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
     {
         $walker = $document->walker();
 
+        $titleFromDocument = $this->config->getConfig('title_from_document');
+        $fixRelativeUrl = $this->config->getConfig('relative_url_root') !== null;
+
         while (($this->event = $walker->next()) !== null) {
             $this->previousNode = $this->node;
             $this->node = $this->event->getNode();
 
             $this->updateLocaleLink();
-            $this->fixRelativeUrl();
+
+            if ($fixRelativeUrl) {
+                $this->fixRelativeUrl();
+            }
+
             $this->prefixUrl();
             $this->recordFirstImage();
 
             $this->trackListLevel();
 
-            if ($this->config->getConfig('fetch_title')) {
+            if ($titleFromDocument) {
                 $this->setTitle();
             }
+
             $this->loadToc();
             $this->parseFigure();
 
@@ -198,7 +212,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         $src = $this->node->getUrl();
 
         if (preg_match(',^(#|/|https?://|mailto:),', $src) !== 1) {
-            $this->node->setUrl($this->config->getConfig('path').'/'.$src);
+            $this->node->setUrl($this->config->getConfig('relative_url_root').'/'.$src);
         }
     }
 

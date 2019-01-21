@@ -201,9 +201,9 @@ class NewsPost extends Model
         $rawPage = $file->content();
 
         $this->page = OsuMarkdownProcessor::process($rawPage, [
-            'html_input' => 'allow',
-            'path' => route('news.show', $this->slug),
             'block_modifiers' => ['news'],
+            'html_input' => 'allow',
+            'relative_url_root' => route('news.show', $this->slug),
         ]);
 
         $this->version = static::pageVersion();
