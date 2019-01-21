@@ -14,7 +14,7 @@ class AddAvailableUntilToProducts extends Migration
     public function up()
     {
         Schema::connection('mysql-store')->table('products', function (Blueprint $table) {
-            $table->timestamp('available_until')->nullable();
+            $table->timestampTz('available_until')->nullable();
             $table->index(['available_until']);
         });
     }
