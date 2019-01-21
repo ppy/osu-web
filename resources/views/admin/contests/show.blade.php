@@ -71,11 +71,11 @@
         <dl>
             <dt class="admin-contest__meta-row">Entry Description</dt>
             <dd class="contest">
-                <div class="contest__description">{!! Markdown::convertToHtml($contest->description_enter) !!}</div>
+                <div class="contest__description">{!! markdown($contest->description_enter) !!}</div>
             </dd>
             <dt class="admin-contest__meta-row">Voting Description</dt>
             <dd class="contest">
-                <div class="contest__description">{!! Markdown::convertToHtml($contest->description_voting) !!}</div>
+                <div class="contest__description">{!! markdown($contest->description_voting) !!}</div>
             </dd>
             @if ($contest->extra_options !== null)
                 <dt class="admin-contest__meta-row">Extra Options</dt>

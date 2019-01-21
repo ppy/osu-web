@@ -182,7 +182,7 @@ class ChangelogEntry extends Model
         list($private, $public) = static::splitMessage($this->message);
 
         if ($public !== null) {
-            return Markdown::convertToHtml($public);
+            return markdown($public, 'changelog_entry');
         }
     }
 }

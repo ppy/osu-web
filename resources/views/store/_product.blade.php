@@ -33,7 +33,7 @@
         style="background-image: url('{{ $_large ? $product->header_image : $product->image }}')"
     >
         <div class="product-box__text">
-            {!! Markdown::convertToHtml($product->header_description) !!}
+            {!! markdown($product->header_description) !!}
         </div>
 
         @if(!$_inStock)
