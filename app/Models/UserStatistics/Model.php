@@ -23,6 +23,10 @@ namespace App\Models\UserStatistics;
 use App\Models\Model as BaseModel;
 use App\Models\User;
 
+/**
+ * @property mixed $country_acronym
+ * @property User $user
+ */
 abstract class Model extends BaseModel
 {
     protected $primaryKey = 'user_id';

@@ -20,6 +20,13 @@
 
 namespace App\Models;
 
+/**
+ * @property Beatmapset $beatmapset
+ * @property int $beatmapset_id
+ * @property int $item_id
+ * @property BeatmapPack $pack
+ * @property int $pack_id
+ */
 class BeatmapPackItem extends Model
 {
     protected $table = 'osu_beatmappacks_items';

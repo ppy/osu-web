@@ -22,6 +22,25 @@ namespace App\Models;
 
 use Carbon\Carbon;
 
+/**
+ * @property \Carbon\Carbon|null $created_at
+ * @property string $description
+ * @property \Carbon\Carbon $end_date
+ * @property string|null $header_banner
+ * @property string|null $info_url
+ * @property string $name
+ * @property int $play_mode
+ * @property \Illuminate\Database\Eloquent\Collection $profileBanners ProfileBanner
+ * @property int|null $rank_max
+ * @property int|null $rank_min
+ * @property \Illuminate\Database\Eloquent\Collection $registrations TournamentRegistration
+ * @property \Carbon\Carbon $signup_close
+ * @property \Carbon\Carbon $signup_open
+ * @property \Carbon\Carbon $start_date
+ * @property int|null $tournament_banner_product_id
+ * @property int $tournament_id
+ * @property \Carbon\Carbon|null $updated_at
+ */
 class Tournament extends Model
 {
     protected $primaryKey = 'tournament_id';

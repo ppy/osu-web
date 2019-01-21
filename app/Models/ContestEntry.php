@@ -20,6 +20,19 @@
 
 namespace App\Models;
 
+/**
+ * @property Contest $contest
+ * @property int $contest_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property string|null $entry_url
+ * @property int $id
+ * @property string $masked_name
+ * @property string $name
+ * @property \Carbon\Carbon|null $updated_at
+ * @property User $user
+ * @property int|null $user_id
+ * @property \Illuminate\Database\Eloquent\Collection $votes ContestVote
+ */
 class ContestEntry extends Model
 {
     public function contest()

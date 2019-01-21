@@ -20,6 +20,17 @@
 
 namespace App\Models;
 
+/**
+ * @property bool $build_on_tag
+ * @property \Illuminate\Database\Eloquent\Collection $changelogEntries ChangelogEntry
+ * @property \Carbon\Carbon|null $created_at
+ * @property string|null $default_category
+ * @property int $id
+ * @property UpdateStream $mainUpdateStream
+ * @property string $name
+ * @property int|null $stream_id
+ * @property \Carbon\Carbon|null $updated_at
+ */
 class Repository extends Model
 {
     protected $casts = [
