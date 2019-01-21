@@ -126,6 +126,8 @@ class OsuMarkdown
     {
         $rawInput = strip_utf8_bom($rawInput);
 
+        $this->header = [];
+
         if ($this->config['parse_yaml_header']) {
             $parsed = static::parseYamlHeader($rawInput);
             $this->document = $parsed['document'];
