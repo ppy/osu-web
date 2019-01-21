@@ -18,24 +18,27 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries;
+namespace App\Models;
 
-use App\Jobs\Notify;
-use App\Jobs\NotifyForumUpdateMail;
-use App\Jobs\NotifyForumUpdateSlack;
-
-class ForumUpdateNotifier
+class Notification extends Model
 {
-    public static function onNew($data)
+    protected $casts = [
+        'details' => 'array',
+        'is_private' => 'boolean',
+    ];
+
+    public function notifiable()
     {
-        (new NotifyForumUpdateSlack($data, 'new'))->dispatchIfNeeded();
+        return $this->morphTo();
     }
 
-    public static function onReply($data)
+    public function source()
     {
-        dispatch(Notify::onForumTopicReply($data['user'], $data['post']));
-        dispatch(new NotifyForumUpdateMail($data));
+        return $this->belongsTo(User::class);
+    }
 
-        (new NotifyForumUpdateSlack($data, 'reply'))->dispatchIfNeeded();
+    public function userNotifications()
+    {
+        return $this->hasMany(UserNotification::class);
     }
 }

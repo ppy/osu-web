@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Jobs\Notify;
 use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -163,12 +164,17 @@ class BeatmapDiscussionPostsController extends Controller
                     BeatmapsetEvent::log($event, Auth::user(), $posts[0])->saveOrExplode();
                 }
 
-                if ($disqualify) {
-                    $discussion->beatmapset->setApproved('pending', Auth::user());
-                }
-
-                // feels like a controller shouldn't be calling refreshCache on a model?
                 if ($resetNominations || $disqualify) {
+                    if ($disqualify) {
+                        $discussion->beatmapset->setApproved('pending', Auth::user());
+                        dispatch(Notify::onBeatmapsetDisqualify(Auth::user(), $discussion->beatmapset));
+                    }
+
+                    if ($resetNominations) {
+                        dispatch(Notify::onBeatmapsetResetNominations(Auth::user(), $discussion->beatmapset));
+                    }
+
+                    // feels like a controller shouldn't be calling refreshCache on a model?
                     $discussion->beatmapset->refreshCache();
                 }
             });
@@ -179,6 +185,7 @@ class BeatmapDiscussionPostsController extends Controller
         $beatmapset = $discussion->beatmapset;
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
+        dispatch(Notify::onBeatmapsetDiscussionPostNew(Auth::user(), $post));
         (new NotifyBeatmapsetUpdate([
             'user' => Auth::user(),
             'beatmapset' => $beatmapset,

@@ -23,6 +23,7 @@ namespace App\Models;
 use App\Exceptions\BeatmapProcessorException;
 use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\EsIndexDocument;
+use App\Jobs\Notify;
 use App\Jobs\RemoveBeatmapsetBestScores;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
@@ -583,6 +584,7 @@ class Beatmapset extends Model implements AfterCommit
 
             // remove current scores
             dispatch(new RemoveBeatmapsetBestScores($this));
+            dispatch(Notify::onBeatmapsetQualify($user, $this));
         });
 
         return true;
@@ -612,6 +614,8 @@ class Beatmapset extends Model implements AfterCommit
                 $this->events()->create(['type' => BeatmapsetEvent::NOMINATE, 'user_id' => $user->user_id]);
                 if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
                     $this->qualify($user);
+                } else {
+                    dispatch(Notify::onBeatmapsetNominate($user, $this));
                 }
             }
             $this->refreshCache();
@@ -640,6 +644,7 @@ class Beatmapset extends Model implements AfterCommit
 
             dispatch((new CheckBeatmapsetCovers($this))->onQueue('beatmap_high'));
             dispatch(new RemoveBeatmapsetBestScores($this));
+            dispatch(Notify::onBeatmapsetLove($user, $this));
         });
 
         return [
