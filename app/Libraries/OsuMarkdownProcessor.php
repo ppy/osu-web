@@ -149,6 +149,8 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             $this->loadToc();
             $this->parseFigure();
 
+            $this->proxyImage();
+
             // last to prevent possible conflict
             $this->addClass();
         }
@@ -299,6 +301,19 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
 
         if (starts_with($url, '/wiki/')) {
             $this->node->setUrl('/help'.$url);
+        }
+    }
+
+    public function proxyImage()
+    {
+        if (!$this->node instanceof Inline\Image || !$this->event->isEntering()) {
+            return;
+        }
+
+        $url = $this->node->getUrl();
+
+        if (present($url)) {
+        $this->node->setUrl(proxy_image($url));
         }
     }
 
