@@ -136,6 +136,15 @@ class Product extends Model
         return $this->weight !== null;
     }
 
+    public function scopeAvailable($query)
+    {
+        return $query
+            ->where('enabled', true)
+            ->where(function ($q) {
+                return $q->whereNull('available_until')->orWhere('available_until', '>=', Carbon::now());
+            });
+    }
+
     public function scopeNotAvailable($query)
     {
         return $query->where('available_until', '<', Carbon::now());
@@ -144,7 +153,7 @@ class Product extends Model
     public function scopeLatest($query)
     {
         return $query
-            ->where('enabled', true)
+            ->available()
             ->where('master_product_id', null)
             ->with('masterProduct')
             ->with('variations')
