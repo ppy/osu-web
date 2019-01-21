@@ -46,6 +46,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'statistics',
         'support_level',
         'unranked_beatmapset_count',
+        'unread_pm_count',
         'user_achievements',
     ];
 
@@ -282,6 +283,13 @@ class UserTransformer extends Fractal\TransformerAbstract
             return [
                 $user->profileBeatmapsetsUnranked()->count(),
             ];
+        });
+    }
+
+    public function includeUnreadPmCount(User $user)
+    {
+        return $this->primitive($user, function ($user) {
+            return $user->notificationCount();
         });
     }
 

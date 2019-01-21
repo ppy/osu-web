@@ -124,6 +124,13 @@ return [
             'persistent' => true,
         ],
 
+        'broadcast' => [
+            'host' => env('REDIS_HOST_BROADCAST', '127.0.0.1'),
+            'port' => get_int(env('REDIS_PORT_BROADCAST')) ?? 6379,
+            'database' => 0,
+            'persistent' => true,
+        ],
+
     ],
 
 ];

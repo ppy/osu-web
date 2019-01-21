@@ -20,6 +20,7 @@
 
 namespace App\Libraries;
 
+use App\Jobs\Notify;
 use App\Jobs\NotifyForumUpdateMail;
 use App\Jobs\NotifyForumUpdateSlack;
 
@@ -32,6 +33,7 @@ class ForumUpdateNotifier
 
     public static function onReply($data)
     {
+        dispatch(new Notify('ForumTopicReply', $data['post'], $data['user']));
         dispatch(new NotifyForumUpdateMail($data));
 
         (new NotifyForumUpdateSlack($data, 'reply'))->dispatchIfNeeded();

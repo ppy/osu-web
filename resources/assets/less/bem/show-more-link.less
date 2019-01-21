@@ -30,9 +30,9 @@
   border-radius: 10000px;
   color: inherit;
 
-  .link-hover({
+  &:hover {
     color: inherit;
-  });
+  };
 
   &--beatmapsets {
     margin-bottom: 10px;
@@ -57,33 +57,41 @@
   &--t-community-user-graygreen-darker {
     background-color: @community-user-graygreen-darker;
 
-    .link-hover({
+    &:hover {
       background-color: @community-user-graygreen-dark;
-    });
+    };
   }
 
   &--t-dark-purple-dark {
     background-color: @dark-purple-dark;
 
-    .link-hover({
+    &:hover {
       background-color: @dark-graypurple;
-    });
+    };
   }
 
   &--t-dark-purple-darker {
     background-color: @dark-purple-darker;
 
-    .link-hover({
+    &:hover {
       background-color: #000;
-    });
+    };
   }
 
   &--t-ddd {
     background-color: #ddd;
 
-    .link-hover({
+    &:hover {
       background-color: #ccc;
-    });
+    };
+  }
+
+  &--t-graysky {
+    background-color: @graysky;
+
+    &:hover {
+      background-color: @graysky-light;
+    };
   }
 
   &[disabled], &.js-disabled {

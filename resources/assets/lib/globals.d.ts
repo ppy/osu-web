@@ -55,10 +55,13 @@ interface OsuCommon {
   popup: (message: string, type: string) => void;
   presence: (str?: string | null) => string | null;
   promisify: (xhr: JQueryXHR) => Promise<any>;
-  timeago: (time: string) => string;
+  timeago: (time?: string) => string;
   trans: (...args: any[]) => string;
-  urlPresence: (url: string) => string;
+  transChoice: (key: string, count: number, replacements?: any, locale?: string) => string;
+  urlPresence: (url?: string) => string;
   uuid: () => string;
+  formatNumber: (num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string) => string;
+  formatNumber: (num?: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string) => string | null;
 }
 
 interface Country {
@@ -94,7 +97,8 @@ interface User {
   last_visit?: string;
   pm_friends_only: boolean;
   profile_colour?: string;
-  username: string
+  unread_pm_count?: number;
+  username: string;
 }
 
 interface TooltipDefault {

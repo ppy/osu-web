@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use App\Jobs\MarkNotificationsRead;
 use Carbon\Carbon;
 
 /**
@@ -54,6 +55,8 @@ class BeatmapsetWatch extends Model
         if ($beatmapset === null || $user === null) {
             return;
         }
+
+        dispatch(new MarkNotificationsRead\Beatmapset($beatmapset, $user));
 
         return static
             ::where('beatmapset_id', '=', $beatmapset->getKey())
