@@ -126,6 +126,7 @@ class Topic extends Model implements AfterCommit
 
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, 1);
+                $post->user->refresh();
             }
         });
 
@@ -155,6 +156,7 @@ class Topic extends Model implements AfterCommit
 
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, -1);
+                $post->user->refresh();
             }
 
             return true;
@@ -173,7 +175,10 @@ class Topic extends Model implements AfterCommit
                 $this->restore();
             }
 
-            optional($post->user)->refreshForumCache($this->forum, 1);
+            if ($post->user !== null) {
+                $post->user->refreshForumCache($this->forum, 1);
+                $post->user->refresh();
+            }
         });
 
         return true;

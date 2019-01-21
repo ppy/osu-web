@@ -27,9 +27,6 @@
 
   .default-gutter();
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: -@_item-margin;
   font-size: @font-size--normal;
 
   &--beatmapset-discussions {
@@ -41,8 +38,7 @@
   }
 
   &--forum-topics {
-    margin: 0;
-    padding: (10px - @_item-margin) (40px - @_item-margin);
+    padding: 10px 40px;
     background-color: #eee;
     border-bottom: 1px solid #ddd;
   }
@@ -147,5 +143,12 @@
 
   &__item-icon {
     margin-right: 5px;
+  }
+
+  &__items {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: -@_item-margin;
   }
 }
