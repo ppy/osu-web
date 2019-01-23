@@ -21,6 +21,7 @@
 namespace App\Models\Store;
 
 use App\Exceptions\InsufficientStockException;
+use Carbon\Carbon;
 
 /**
  * @property bool $allow_multiple
@@ -63,6 +64,8 @@ class Product extends Model
         'enabled' => 'boolean',
         'allow_multiple' => 'boolean',
     ];
+
+    protected $dates = ['available_until'];
 
     private $images;
     private $types;
@@ -124,6 +127,12 @@ class Product extends Model
         }
     }
 
+    public function isAvailable() : bool
+    {
+        return $this->enabled
+            && ($this->available_until === null ? true : $this->available_until->isFuture());
+    }
+
     public function typeMappings()
     {
         if ($this->masterProduct) {
@@ -151,11 +160,25 @@ class Product extends Model
         return $this->weight !== null;
     }
 
+    public function scopeAvailable($query)
+    {
+        return $query
+            ->where('enabled', true)
+            ->where(function ($q) {
+                return $q->whereNull('available_until')->orWhere('available_until', '>=', Carbon::now());
+            });
+    }
+
+    public function scopeNotAvailable($query)
+    {
+        return $query->where('available_until', '<', Carbon::now());
+    }
+
     public function scopeLatest($query)
     {
         return $query
+            ->available()
             ->where('master_product_id', null)
-            ->where('enabled', true)
             ->with('masterProduct')
             ->with('variations')
             ->orderBy('promoted', 'desc')

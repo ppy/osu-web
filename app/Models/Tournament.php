@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use App\Models\Store\Product;
 use Carbon\Carbon;
 
 /**
@@ -72,6 +73,11 @@ class Tournament extends Model
         return $this->hasMany(TournamentRegistration::class, 'tournament_id');
     }
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'tournament_banner_product_id');
+    }
+
     public function isRegistrationOpen()
     {
         $now = Carbon::now();
@@ -88,8 +94,7 @@ class Tournament extends Model
 
     public function isStoreBannerAvailable()
     {
-        return $this->tournament_banner_product_id !== null &&
-            optional($this->end_date)->isFuture() ?? true;
+        return $this->tournament_banner_product_id !== null && $this->product->isAvailable();
     }
 
     public function isSignedUp($user)

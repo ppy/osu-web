@@ -38,14 +38,12 @@ class StoreController extends Controller
     {
         $this->middleware('auth', ['only' => [
             'getInvoice',
-            'postAddToCart',
             'postNewAddress',
             'postUpdateAddress',
         ]]);
 
         $this->middleware('check-user-restricted', ['only' => [
             'getInvoice',
-            'postAddToCart',
             'postNewAddress',
             'postUpdateAddress',
         ]]);
@@ -69,7 +67,7 @@ class StoreController extends Controller
     {
         return view('store.index')
             ->with('cart', $this->userCart())
-            ->with('products', Store\Product::latest()->simplePaginate(30));
+            ->with('products', Store\Product::latest()->get());
     }
 
     public function getInvoice($id = null)
@@ -172,13 +170,6 @@ class StoreController extends Controller
         $order->address()->associate($address);
         $order->save();
 
-        return js_view('layout.ujs-reload');
-    }
-
-    public function postAddToCart()
-    {
-        // FIXME: remove after deploy; this is just to stop 'omg can't add items'
-        // old route, force reload to get updated view.
         return js_view('layout.ujs-reload');
     }
 }

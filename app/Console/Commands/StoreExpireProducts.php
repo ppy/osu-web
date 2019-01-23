@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,13 +18,24 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'mail' => [
-        'donation_thanks' => [
-            'subject' => 'Thanks, osu! <3s you',
-        ],
-        'supporter_gift' => [
-            'subject' => 'You have been gifted an osu!supporter tag!',
-        ],
-    ],
-];
+namespace App\Console\Commands;
+
+use App\Models\Store\Product;
+use Illuminate\Console\Command;
+
+class StoreExpireProducts extends Command
+{
+    protected $signature = 'store:expire-products';
+
+    protected $description = 'Disables products that should no longer be available.';
+
+    public function handle()
+    {
+        $count = Product
+            ::where('enabled', true)
+            ->notAvailable()
+            ->update(['enabled' => false]);
+
+        $this->line("Disabled {$count} items.");
+    }
+}

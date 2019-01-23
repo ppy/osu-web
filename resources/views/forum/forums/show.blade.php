@@ -81,11 +81,11 @@
 
         @if (count($topics) > 0 || $forum->isOpen())
             <div class="forum-topics-spacer">
-                <div class="forum-topics-spacer__buttons forum-topics-spacer__buttons--left">
+                <div class="forum-topics-spacer__group forum-topics-spacer__group--left">
                     @include('forum.forums._new_topic', compact('forum'))
                 </div>
 
-                <div class="forum-topics-spacer__buttons forum-topics-spacer__buttons--right">
+                <div class="forum-topics-spacer__group forum-topics-spacer__group--right">
                     @include('forum.forums._mark_as_read', compact('forum'))
                 </div>
             </div>
@@ -96,11 +96,11 @@
             ])
 
             <div class="forum-topics-spacer forum-topics-spacer--pager">
-                <div class="forum-topics-spacer__buttons forum-topics-spacer__buttons--left">
+                <div class="forum-topics-spacer__group forum-topics-spacer__group--left">
                     @include('forum.forums._new_topic', compact('forum'))
                 </div>
 
-                <div class="forum-topics-spacer__pager">
+                <div class="forum-topics-spacer__group forum-topics-spacer__group--pager">
                     @include('objects._pagination_v0', ['object' => $topics
                         ->fragment('topics')
                         ->appends([
@@ -110,7 +110,7 @@
                     ])
                 </div>
 
-                <div class="forum-topics-spacer__buttons forum-topics-spacer__buttons--right">
+                <div class="forum-topics-spacer__group forum-topics-spacer__group--right">
                     @include('forum.forums._mark_as_read', compact('forum'))
                 </div>
             </div>
