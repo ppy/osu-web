@@ -215,10 +215,6 @@ class BeatmapsetsController extends Controller
 
     public function download($id)
     {
-        if (Request::is('api/*') && !Auth::user()->isSupporter()) {
-            abort(403);
-        }
-
         $beatmapset = Beatmapset::findOrFail($id);
 
         if ($beatmapset->download_disabled) {
