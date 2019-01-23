@@ -22,6 +22,16 @@ namespace App\Models;
 
 use Carbon\Carbon;
 
+/**
+ * @property BeatmapDiscussion $beatmapDiscussion
+ * @property int $beatmap_discussion_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property int $id
+ * @property int $score
+ * @property \Carbon\Carbon|null $updated_at
+ * @property User $user
+ * @property int|null $user_id
+ */
 class BeatmapDiscussionVote extends Model
 {
     public static function recentlyReceivedByUser($userId, $timeframeMonths = 3)

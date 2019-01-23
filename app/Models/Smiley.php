@@ -23,6 +23,16 @@ namespace App\Models;
 use Cache;
 use DB;
 
+/**
+ * @property string $code
+ * @property int $display_on_posting
+ * @property string $emotion
+ * @property int $smiley_height
+ * @property int $smiley_id
+ * @property int $smiley_order
+ * @property string $smiley_url
+ * @property int $smiley_width
+ */
 class Smiley extends Model
 {
     protected $table = 'phpbb_smilies';

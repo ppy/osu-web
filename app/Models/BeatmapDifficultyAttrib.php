@@ -20,6 +20,13 @@
 
 namespace App\Models;
 
+/**
+ * @property int $attrib_id
+ * @property int $beatmap_id
+ * @property int $mode
+ * @property int $mods
+ * @property float|null $value
+ */
 class BeatmapDifficultyAttrib extends Model
 {
     protected $table = 'osu_beatmap_difficulty_attribs';

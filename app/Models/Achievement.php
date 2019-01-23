@@ -20,6 +20,20 @@
 
 namespace App\Models;
 
+/**
+ * @property int $achievement_id
+ * @property string|null $description
+ * @property bool $enabled
+ * @property string $grouping
+ * @property string|null $image
+ * @property int|null $mode
+ * @property string $name
+ * @property int $ordering
+ * @property int $progression
+ * @property string|null $quest_instructions
+ * @property int|null $quest_ordering
+ * @property string $slug
+ */
 class Achievement extends Model
 {
     protected $table = 'osu_achievements';

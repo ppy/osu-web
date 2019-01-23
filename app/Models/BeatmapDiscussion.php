@@ -25,6 +25,29 @@ use Cache;
 use Carbon\Carbon;
 use DB;
 
+/**
+ * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussionPosts BeatmapDiscussionPost
+ * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussionVotes BeatmapDiscussionVote
+ * @property int|null $beatmap_id
+ * @property int $beatmapset_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property int|null $deleted_by_id
+ * @property int $id
+ * @property KudosuHistory $kudosuHistory
+ * @property bool $kudosu_denied
+ * @property int|null $kudosu_denied_by_id
+ * @property int|null $message_type
+ * @property bool $resolved
+ * @property int|null $resolver_id
+ * @property BeatmapDiscussionPost $startingPost
+ * @property int|null $timestamp
+ * @property \Carbon\Carbon|null $updated_at
+ * @property User $user
+ * @property int|null $user_id
+ * @property Beatmap $visibleBeatmap
+ * @property Beatmapset $visibleBeatmapset
+ */
 class BeatmapDiscussion extends Model
 {
     use Validatable;

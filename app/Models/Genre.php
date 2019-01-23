@@ -22,6 +22,10 @@ namespace App\Models;
 
 use App\Transformers\GenreTransformer;
 
+/**
+ * @property int $genre_id
+ * @property string $name
+ */
 class Genre extends Model
 {
     protected $table = 'osu_genres';

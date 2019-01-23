@@ -22,6 +22,16 @@ namespace App\Models\Chat;
 
 use App\Models\User;
 
+/**
+ * @property Channel $channel
+ * @property int $channel_id
+ * @property string $content
+ * @property bool $is_action
+ * @property int $message_id
+ * @property User $sender
+ * @property \Carbon\Carbon $timestamp
+ * @property int $user_id
+ */
 class Message extends Model
 {
     protected $primaryKey = 'message_id';

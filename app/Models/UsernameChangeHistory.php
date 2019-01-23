@@ -20,6 +20,14 @@
 
 namespace App\Models;
 
+/**
+ * @property int $change_id
+ * @property \Carbon\Carbon|null $timestamp
+ * @property mixed $type
+ * @property int $user_id
+ * @property string $username
+ * @property string|null $username_last
+ */
 class UsernameChangeHistory extends Model
 {
     protected $table = 'osu_username_change_history';
