@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright 2015-2019 ppy Pty. Ltd.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -19,20 +19,24 @@
 el = React.createElement
 bn = 'show-more-link'
 
-class @ShowMoreLink extends React.PureComponent
-  render: =>
-    return null unless @props.hasMore || @props.loading
+@ShowMoreLink = React.forwardRef (props, ref) =>
+  return null unless props.hasMore || props.loading
 
-    button
-      type: 'button'
-      onClick: @props.callback ? @showMore
-      disabled: @props.loading
-      className: osu.classWithModifiers(bn, @props.modifiers)
-      span className: "#{bn}__spinner",
-        el Spinner
-      span className: "#{bn}__label",
+  onClick = props.callback
+  onClick ?= -> $.publish props.event, props.data
+
+  button
+    ref: ref
+    type: 'button'
+    onClick: onClick
+    disabled: props.loading
+    className: osu.classWithModifiers(bn, props.modifiers)
+    span className: "#{bn}__spinner",
+      el Spinner
+    span className: "#{bn}__label",
+      span className: "#{bn}__label-icon",
+        span className: 'fas fa-angle-down'
+      span className: "#{bn}__label-text",
         osu.trans('common.buttons.show_more')
-
-
-  showMore: =>
-    $.publish @props.event, @props.data
+      span className: "#{bn}__label-icon",
+        span className: 'fas fa-angle-down'

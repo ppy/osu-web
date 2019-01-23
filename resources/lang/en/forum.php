@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -72,6 +72,10 @@ return [
             'restore' => 'Restore post',
             'edit' => 'Edit post',
         ],
+
+        'info' => [
+            'post_count' => ':count post|:count posts',
+        ],
     ],
 
     'search' => [
@@ -84,7 +88,7 @@ return [
         'deleted' => 'deleted topic',
         'go_to_latest' => 'view latest post',
         'latest_post' => ':when by :user',
-        'latest_reply_by' => 'latest reply by :user',
+        'latest_reply_by' => 'last reply by :user',
         'new_topic' => 'New topic',
         'new_topic_login' => 'Sign in to post new topic',
         'post_reply' => 'Post',
@@ -193,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'views',
+            'feature_votes' => 'star priority',
             'replies' => 'replies',
+            'views' => 'views',
         ],
 
         'issue_tag_added' => [
@@ -268,8 +273,14 @@ return [
                 'current' => 'Current Priority: +:count',
                 'do' => 'Promote this request',
 
+                'info' => [
+                    '_' => 'This is a :feature_request. Feature requests can be voted up by :supporters.',
+                    'feature_request' => 'feature request',
+                    'supporters' => 'supporters',
+                ],
+
                 'user' => [
-                    'count' => '{0} no vote|{1} :count vote|[2,*] :count votes',
+                    'count' => '{0} no votes|{1} :count vote|[2,*] :count votes',
                     'current' => 'You have :votes remaining.',
                     'not_enough' => "You don't have any more votes remaining",
                 ],

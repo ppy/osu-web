@@ -127,7 +127,9 @@ class Beatmaps.Main extends React.PureComponent
         className: 'osu-layout__row osu-layout__row--page-compact'
         div className: listCssClasses,
           if currentUser.id?
-            el Beatmaps.SearchSort, sorting: @sorting(), filters: @state.filters
+            div
+              className: 'beatmapsets__sort'
+              el Beatmaps.SearchSort, sorting: @sorting(), filters: @state.filters
 
           div
             className: 'beatmapsets__content'
@@ -155,7 +157,9 @@ class Beatmaps.Main extends React.PureComponent
                     title: osu.trans("beatmaps.listing.search.not-found")
                   osu.trans("beatmaps.listing.search.not-found-quote")
 
-          el(Beatmaps.Paginator, @state.paging) unless @isSupporterMissing()
+          if !@isSupporterMissing()
+            div className: 'beatmapsets__paginator',
+              el(Beatmaps.Paginator, @state.paging)
 
       el window._exported.BackToTop,
         anchor: @backToTopAnchor

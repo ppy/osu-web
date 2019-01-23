@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ValidationException;
 use App\Models\Score\Best\Model as ScoreBest;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class ScoresController extends Controller
 {
@@ -45,5 +46,39 @@ class ScoresController extends Controller
         }
 
         return response(null, 204);
+    }
+
+    public function download($mode, $id)
+    {
+        $score = ScoreBest::getClassByString($mode)
+            ::where('score_id', $id)
+            ->where('replay', true)
+            ->firstOrFail();
+
+        $replayFile = $score->replayFile();
+        if ($replayFile === null) {
+            abort(404);
+        }
+
+        try {
+            $disposition = "attachment; filename=replay-{$mode}_{$score->beatmap_id}_{$score->getKey()}.osr";
+
+            $content = $replayFile->get();
+            // TODO: switch to streamDownload in Laravel 5.6+?
+            $stream = response()->stream(function () use ($replayFile, $content) {
+                echo $replayFile->headerChunk();
+                echo pack('i', strlen($content));
+                echo $content;
+                echo $replayFile->endChunk();
+            });
+            $stream->headers->set('Content-Disposition', $disposition);
+            $stream->headers->set('Content-Type', 'application/octet-stream');
+
+            return $stream;
+        } catch (FileNotFoundException $e) {
+            // missing from storage.
+            log_error($e);
+            abort(404);
+        }
     }
 }

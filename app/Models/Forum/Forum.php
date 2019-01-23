@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -214,7 +214,9 @@ class Forum extends Model
     // feature forum shall have extra features like sorting and voting
     public function isFeatureForum()
     {
-        return $this->forum_id === config('osu.forum.feature_forum_id');
+        $id = config('osu.forum.feature_forum_id');
+
+        return $this->forum_id === $id || isset($this->forum_parents[$id]);
     }
 
     public function topicsAdded($count)

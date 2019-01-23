@@ -63,8 +63,6 @@ class Kernel extends ConsoleKernel
 
         Commands\UserBestScoresCheckCommand::class,
         Commands\UserRecalculateRankCounts::class,
-
-        Commands\LocaleCheck::class,
     ];
 
     /**

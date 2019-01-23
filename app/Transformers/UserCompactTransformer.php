@@ -51,7 +51,9 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
 
     public function includeCountry(User $user)
     {
-        return $this->item($user->country, new CountryTransformer);
+        return $user->country === null
+            ? $this->primitive(null)
+            : $this->item($user->country, new CountryTransformer);
     }
 
     public function includeCover(User $user)
