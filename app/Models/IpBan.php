@@ -20,6 +20,13 @@
 
 namespace App\Models;
 
+/**
+ * @property int $active
+ * @property int $ip
+ * @property int $length
+ * @property \Carbon\Carbon $timestamp
+ * @property int|null $user_id
+ */
 class IpBan extends Model
 {
     protected $table = 'osu_ip_bans';

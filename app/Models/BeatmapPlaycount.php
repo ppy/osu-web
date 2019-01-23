@@ -20,6 +20,13 @@
 
 namespace App\Models;
 
+/**
+ * @property Beatmap $beatmap
+ * @property int $beatmap_id
+ * @property int $playcount
+ * @property User $user
+ * @property int $user_id
+ */
 class BeatmapPlaycount extends Model
 {
     protected $table = 'osu_user_beatmap_playcount';

@@ -22,6 +22,15 @@ namespace App\Models;
 
 use DB;
 
+/**
+ * @property \Carbon\Carbon $created_date
+ * @property int $failed_attempts
+ * @property string $failed_ids
+ * @property int $ip
+ * @property \Carbon\Carbon|null $last_attempt
+ * @property int $total_attempts
+ * @property int $unique_ids
+ */
 class LoginAttempt extends Model
 {
     protected $table = 'osu_login_attempts';

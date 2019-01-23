@@ -22,6 +22,14 @@ namespace App\Models\Forum;
 
 use App\Models\User;
 
+/**
+ * @property bool $mail
+ * @property bool $notify_status
+ * @property Topic $topic
+ * @property int $topic_id
+ * @property User $user
+ * @property int $user_id
+ */
 class TopicWatch extends Model
 {
     protected $table = 'phpbb_topics_watch';

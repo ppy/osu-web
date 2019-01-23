@@ -20,6 +20,10 @@
 
 namespace App\Models\ReplayViewCount;
 
+/**
+ * @property int $play_count
+ * @property int $score_id
+ */
 class Fruits extends Model
 {
     protected $table = 'osu_replays_fruits';

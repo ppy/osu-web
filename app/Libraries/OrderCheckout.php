@@ -176,7 +176,7 @@ class OrderCheckout
             }
 
             // Checkout process level validations, should not be part of OrderItem validation.
-            if ($item->product === null || !$item->product->enabled) {
+            if ($item->product === null || !$item->product->isAvailable()) {
                 $messages[] = trans('model_validation/store/product.not_available');
             }
 

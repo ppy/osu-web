@@ -20,6 +20,13 @@
 
 namespace App\Models;
 
+/**
+ * @property int $banchostats_id
+ * @property \Carbon\Carbon $date
+ * @property int $multiplayer_games
+ * @property int $users_irc
+ * @property int $users_osu
+ */
 class BanchoStats extends Model
 {
     protected $table = 'osu_banchostats';

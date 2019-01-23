@@ -22,6 +22,11 @@ namespace App\Models;
 
 use Carbon\Carbon;
 
+/**
+ * @property int $count
+ * @property int $user_id
+ * @property string $year_month
+ */
 class UserReplaysWatchedCount extends Model
 {
     protected $table = 'osu_user_replayswatched';

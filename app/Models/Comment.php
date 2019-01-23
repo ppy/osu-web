@@ -23,6 +23,32 @@ namespace App\Models;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 
+/**
+ * @property mixed $commentable
+ * @property int|null $commentable_id
+ * @property mixed|null $commentable_type
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property int|null $deleted_by_id
+ * @property int|null $disqus_id
+ * @property int|null $disqus_parent_id
+ * @property string|null $disqus_thread_id
+ * @property array|null $disqus_user_data
+ * @property \Carbon\Carbon|null $edited_at
+ * @property int|null $edited_by_id
+ * @property User $editor
+ * @property int $id
+ * @property string $message
+ * @property static $parent
+ * @property int|null $parent_id
+ * @property \Illuminate\Database\Eloquent\Collection $replies static
+ * @property int $replies_count_cache
+ * @property \Carbon\Carbon|null $updated_at
+ * @property User $user
+ * @property int|null $user_id
+ * @property \Illuminate\Database\Eloquent\Collection $votes CommentVote
+ * @property int $votes_count_cache
+ */
 class Comment extends Model
 {
     use Reportable, Validatable;

@@ -24,6 +24,24 @@ use Carbon\Carbon;
 use Exception;
 use Markdown;
 
+/**
+ * @property \Illuminate\Database\Eloquent\Collection $builds Build
+ * @property string|null $category
+ * @property \Carbon\Carbon|null $created_at
+ * @property GithubUser $githubUser
+ * @property int|null $github_pull_request_id
+ * @property int|null $github_user_id
+ * @property int $id
+ * @property bool $major
+ * @property string|null $message
+ * @property bool $private
+ * @property Repository $repository
+ * @property int|null $repository_id
+ * @property string|null $title
+ * @property string|null $type
+ * @property \Carbon\Carbon|null $updated_at
+ * @property string|null $url
+ */
 class ChangelogEntry extends Model
 {
     protected $casts = [

@@ -40,6 +40,140 @@ use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
+/**
+ * @property \Illuminate\Database\Eloquent\Collection $accountHistories UserAccountHistory
+ * @property ApiKey $apiKey
+ * @property \Illuminate\Database\Eloquent\Collection $badges UserBadge
+ * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussionVotes BeatmapDiscussionVote
+ * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussions BeatmapDiscussion
+ * @property \Illuminate\Database\Eloquent\Collection $beatmapPlaycounts BeatmapPlaycount
+ * @property \Illuminate\Database\Eloquent\Collection $beatmaps Beatmap
+ * @property \Illuminate\Database\Eloquent\Collection $beatmapsetNominations BeatmapsetEvent
+ * @property \Illuminate\Database\Eloquent\Collection $beatmapsetRatings BeatmapsetUserRating
+ * @property \Illuminate\Database\Eloquent\Collection $beatmapsetWatches BeatmapsetWatch
+ * @property \Illuminate\Database\Eloquent\Collection $beatmapsets Beatmapset
+ * @property \Illuminate\Database\Eloquent\Collection $blocks static
+ * @property \Illuminate\Database\Eloquent\Collection $changelogs Changelog
+ * @property \Illuminate\Database\Eloquent\Collection $channels Chat\Channel
+ * @property \Illuminate\Database\Eloquent\Collection $clients UserClient
+ * @property Country $country
+ * @property string $country_acronym
+ * @property mixed $current_password
+ * @property mixed $displayed_last_visit
+ * @property \Illuminate\Database\Eloquent\Collection $events Event
+ * @property \Illuminate\Database\Eloquent\Collection $favourites FavouriteBeatmapset
+ * @property \Illuminate\Database\Eloquent\Collection $forumPosts Forum\Post
+ * @property \Illuminate\Database\Eloquent\Collection $friends static
+ * @property \Illuminate\Database\Eloquent\Collection $githubUsers GithubUser
+ * @property \Illuminate\Database\Eloquent\Collection $givenKudosu KudosuHistory
+ * @property int $group_id
+ * @property mixed $hide_presence
+ * @property \Illuminate\Database\Eloquent\Collection $monthlyPlaycounts UserMonthlyPlaycount
+ * @property int $osu_featurevotes
+ * @property int $osu_kudosavailable
+ * @property int $osu_kudosdenied
+ * @property int $osu_kudostotal
+ * @property float $osu_mapperrank
+ * @property int $osu_playmode
+ * @property int $osu_playstyle
+ * @property bool $osu_subscriber
+ * @property \Carbon\Carbon|null $osu_subscriptionexpiry
+ * @property int $osu_testversion
+ * @property mixed $password
+ * @property mixed $password_confirmation
+ * @property mixed $playmode
+ * @property mixed $pm_friends_only
+ * @property \Illuminate\Database\Eloquent\Collection $profileBanners ProfileBanner
+ * @property Rank $rank
+ * @property \Illuminate\Database\Eloquent\Collection $rankHistories RankHistory
+ * @property \Illuminate\Database\Eloquent\Collection $receivedKudosu KudosuHistory
+ * @property \Illuminate\Database\Eloquent\Collection $relations UserRelation
+ * @property string|null $remember_token
+ * @property \Illuminate\Database\Eloquent\Collection $replaysWatchedCounts UserReplaysWatchedCount
+ * @property UserReport $reportedIn
+ * @property \Illuminate\Database\Eloquent\Collection $reportsMade UserReport
+ * @property \Illuminate\Database\Eloquent\Collection $storeAddresses Store\Address
+ * @property \Illuminate\Database\Eloquent\Collection $supporterTagPurchases UserDonation
+ * @property \Illuminate\Database\Eloquent\Collection $supporterTags UserDonation
+ * @property \Illuminate\Database\Eloquent\Collection $userAchievements UserAchievement
+ * @property \Illuminate\Database\Eloquent\Collection $userGroups UserGroup
+ * @property Forum\Post $userPage
+ * @property UserProfileCustomization $userProfileCustomization
+ * @property string $user_actkey
+ * @property int $user_allow_massemail
+ * @property bool $user_allow_pm
+ * @property int $user_allow_viewemail
+ * @property bool $user_allow_viewonline
+ * @property string $user_avatar
+ * @property int $user_avatar_height
+ * @property int $user_avatar_type
+ * @property int $user_avatar_width
+ * @property string $user_birthday
+ * @property string $user_colour
+ * @property string $user_dateformat
+ * @property mixed $user_discord
+ * @property int $user_dst
+ * @property string|null $user_email
+ * @property mixed $user_email_confirmation
+ * @property int $user_emailtime
+ * @property string $user_from
+ * @property int $user_full_folder
+ * @property int $user_id
+ * @property int $user_inactive_reason
+ * @property int $user_inactive_time
+ * @property string|null $user_interests
+ * @property string $user_ip
+ * @property string $user_jabber
+ * @property string $user_lang
+ * @property string $user_last_confirm_key
+ * @property int $user_last_privmsg
+ * @property int $user_last_search
+ * @property int $user_last_warning
+ * @property string $user_lastfm
+ * @property string $user_lastfm_session
+ * @property int $user_lastmark
+ * @property string $user_lastpage
+ * @property int $user_lastpost_time
+ * @property int $user_lastvisit
+ * @property int $user_login_attempts
+ * @property int $user_message_rules
+ * @property string $user_msnm
+ * @property int $user_new_privmsg
+ * @property string $user_newpasswd
+ * @property int $user_notify
+ * @property int $user_notify_pm
+ * @property int $user_notify_type
+ * @property string|null $user_occ
+ * @property int $user_options
+ * @property int $user_passchg
+ * @property string $user_password
+ * @property int|null $user_perm_from
+ * @property mixed|null $user_permissions
+ * @property int $user_post_show_days
+ * @property string $user_post_sortby_dir
+ * @property string $user_post_sortby_type
+ * @property int $user_posts
+ * @property int $user_rank
+ * @property int $user_regdate
+ * @property mixed $user_sig
+ * @property string $user_sig_bbcode_bitfield
+ * @property string $user_sig_bbcode_uid
+ * @property int $user_style
+ * @property float $user_timezone
+ * @property int $user_topic_show_days
+ * @property string $user_topic_sortby_dir
+ * @property string $user_topic_sortby_type
+ * @property string $user_twitter
+ * @property int $user_type
+ * @property int $user_unread_privmsg
+ * @property int $user_warnings
+ * @property string $user_website
+ * @property string $username
+ * @property \Illuminate\Database\Eloquent\Collection $usernameChangeHistory UsernameChangeHistory
+ * @property string $username_clean
+ * @property string|null $username_previous
+ * @property int|null $userpage_post_id
+ */
 class User extends Model implements AuthenticatableContract
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
