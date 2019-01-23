@@ -67,7 +67,7 @@ class StoreController extends Controller
     {
         return view('store.index')
             ->with('cart', $this->userCart())
-            ->with('products', Store\Product::latest()->simplePaginate(30));
+            ->with('products', Store\Product::latest()->get());
     }
 
     public function getInvoice($id = null)
