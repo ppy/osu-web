@@ -417,7 +417,7 @@ class User extends Model implements AuthenticatableContract
 
         switch ($lookup_type) {
             case 'string':
-                $user = self::where('username', $username_or_id)->orWhere('username_clean', '=', $username_or_id);
+                $user = self::where('username', (string) $username_or_id)->orWhere('username_clean', '=', (string) $username_or_id);
                 break;
 
             case 'id':
