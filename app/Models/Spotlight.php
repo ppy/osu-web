@@ -25,6 +25,17 @@ use DB;
 use Illuminate\Database\Schema\Blueprint;
 use Schema;
 
+/**
+ * @property string $acronym
+ * @property bool $active
+ * @property int $chart_id
+ * @property \Carbon\Carbon|null $chart_month
+ * @property \Carbon\Carbon|null $end_date
+ * @property bool $mode_specific
+ * @property string $name
+ * @property \Carbon\Carbon|null $start_date
+ * @property string $type
+ */
 class Spotlight extends Model
 {
     public const PERIODIC_TYPES = ['bestof', 'monthly'];

@@ -25,6 +25,23 @@ use App\Models\Score\Best;
 use App\Models\Score\Best\Model as BestModel;
 use App\Traits\Validatable;
 
+/**
+ * @property string $comments
+ * @property int $mode
+ * @property mixed $reason
+ * @property int $report_id
+ * @property mixed $reportable
+ * @property int|null $reportable_id
+ * @property mixed|null $reportable_type
+ * @property User $reporter
+ * @property int $reporter_id
+ * @property mixed $score
+ * @property int $score_id
+ * @property mixed $score_type
+ * @property \Carbon\Carbon $timestamp
+ * @property User $user
+ * @property int $user_id
+ */
 class UserReport extends Model
 {
     use Validatable;

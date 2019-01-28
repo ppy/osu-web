@@ -20,6 +20,16 @@
 
 namespace App\Models;
 
+/**
+ * @property Build $build
+ * @property mixed $disk_md5
+ * @property mixed $mac_md5
+ * @property mixed $osu_md5
+ * @property \Carbon\Carbon $timestamp
+ * @property mixed $unique_md5
+ * @property int $user_id
+ * @property int $verified
+ */
 class UserClient extends Model
 {
     const CREATED_AT = 'timestamp';

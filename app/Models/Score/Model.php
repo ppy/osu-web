@@ -25,6 +25,10 @@ use App\Models\Model as BaseModel;
 use App\Models\User;
 use App\Traits\Scoreable;
 
+/**
+ * @property Beatmap $beatmap
+ * @property User $user
+ */
 abstract class Model extends BaseModel
 {
     use Scoreable;

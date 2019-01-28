@@ -20,6 +20,16 @@
 
 namespace App\Models\Multiplayer;
 
+/**
+ * @property \Carbon\Carbon|null $end_time
+ * @property \Illuminate\Database\Eloquent\Collection $events Event
+ * @property \Illuminate\Database\Eloquent\Collection $games Game
+ * @property mixed $keep_forever
+ * @property int $match_id
+ * @property string $name
+ * @property mixed $private
+ * @property \Carbon\Carbon|null $start_time
+ */
 class Match extends Model
 {
     protected $primaryKey = 'match_id';

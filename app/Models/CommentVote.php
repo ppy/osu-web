@@ -20,6 +20,15 @@
 
 namespace App\Models;
 
+/**
+ * @property Comment $comment
+ * @property int $comment_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property int $id
+ * @property \Carbon\Carbon|null $updated_at
+ * @property User $user
+ * @property int $user_id
+ */
 class CommentVote extends Model
 {
     public function comment()

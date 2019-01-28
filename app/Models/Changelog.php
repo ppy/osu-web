@@ -20,6 +20,25 @@
 
 namespace App\Models;
 
+/**
+ * @property string|null $build
+ * @property string $category
+ * @property int $changelog_id
+ * @property string $checksum
+ * @property \Carbon\Carbon $date
+ * @property Build $gameBuild
+ * @property bool $major
+ * @property string $message
+ * @property string $prefix
+ * @property bool $private
+ * @property int|null $stream_id
+ * @property int|null $thread_id
+ * @property int $tweet
+ * @property UpdateStream $updateStream
+ * @property string|null $url
+ * @property User $user
+ * @property int $user_id
+ */
 class Changelog extends Model
 {
     public $timestamps = false;
