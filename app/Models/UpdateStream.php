@@ -22,6 +22,15 @@ namespace App\Models;
 
 use Carbon\Carbon;
 
+/**
+ * @property \Illuminate\Database\Eloquent\Collection $builds Build
+ * @property \Illuminate\Database\Eloquent\Collection $changelogEntries ChangelogEntry
+ * @property \Illuminate\Database\Eloquent\Collection $changelogs Changelog
+ * @property string $name
+ * @property string|null $pretty_name
+ * @property string|null $repository
+ * @property int $stream_id
+ */
 class UpdateStream extends Model
 {
     public $timestamps = false;

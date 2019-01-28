@@ -240,6 +240,15 @@
   width: 100%;
 }
 
+// used to account rounding error in chrome where 100% is few pixels short to the actual 100%.
+.full-size-overflow() {
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  right: -10px;
+  bottom: -10px;
+}
+
 .btn-bg() {
   background-image: url("/images/backgrounds/button.svg");
   background-size: 200px;

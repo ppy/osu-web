@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright 2015-2019 ppy Pty. Ltd.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -75,7 +75,7 @@ class ProfilePage.Historical extends React.PureComponent
               playcount: playcount
           el ShowMoreLink,
             key: 'show-more-row'
-            modifiers: ['profile-page']
+            modifiers: ['profile-page', 't-community-user-graygreen-darker']
             event: 'profile:showMore'
             hasMore: @props.pagination.beatmapPlaycounts.hasMore
             loading: @props.pagination.beatmapPlaycounts.loading
@@ -99,7 +99,7 @@ class ProfilePage.Historical extends React.PureComponent
 
           el ShowMoreLink,
             key: 'show-more-row'
-            modifiers: ['profile-page']
+            modifiers: ['profile-page', 't-community-user-graygreen-darker']
             event: 'profile:showMore'
             hasMore: @props.pagination.scoresRecent.hasMore
             loading: @props.pagination.scoresRecent.loading

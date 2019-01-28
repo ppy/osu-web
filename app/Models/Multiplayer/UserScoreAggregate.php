@@ -22,6 +22,18 @@ namespace App\Models\Multiplayer;
 
 use App\Models\User;
 
+/**
+ * @property float $accuracy
+ * @property int $attempts
+ * @property int $completed
+ * @property \Carbon\Carbon $created_at
+ * @property int $id
+ * @property float|null $pp
+ * @property int $room_id
+ * @property int $total_score
+ * @property \Carbon\Carbon $updated_at
+ * @property int $user_id
+ */
 class UserScoreAggregate extends RoomUserHighScore
 {
     public $isNew = false;

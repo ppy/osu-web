@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright 2015-2019 ppy Pty. Ltd.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -33,7 +33,7 @@ class ProfilePage.TopRanks extends React.PureComponent
 
             div className: 'profile-extra-entries__item',
               el ShowMoreLink,
-                modifiers: ['profile-page']
+                modifiers: ['profile-page', 't-community-user-graygreen-darker']
                 event: 'profile:showMore'
                 hasMore: @props.pagination.scoresBest.hasMore
                 loading: @props.pagination.scoresBest.loading
@@ -60,7 +60,7 @@ class ProfilePage.TopRanks extends React.PureComponent
 
             div className: 'profile-extra-entries__item',
               el ShowMoreLink,
-                modifiers: ['profile-page']
+                modifiers: ['profile-page', 't-community-user-graygreen-darker']
                 event: 'profile:showMore'
                 hasMore: @props.pagination.scoresFirsts.hasMore
                 loading: @props.pagination.scoresFirsts.loading

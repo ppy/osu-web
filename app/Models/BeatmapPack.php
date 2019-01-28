@@ -20,6 +20,16 @@
 
 namespace App\Models;
 
+/**
+ * @property string $author
+ * @property \Carbon\Carbon $date
+ * @property \Illuminate\Database\Eloquent\Collection $items BeatmapPackItem
+ * @property string $name
+ * @property int $pack_id
+ * @property int|null $playmode
+ * @property string $tag
+ * @property string $url
+ */
 class BeatmapPack extends Model
 {
     const DEFAULT_TYPE = 'standard';

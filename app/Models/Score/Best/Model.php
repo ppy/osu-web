@@ -29,6 +29,9 @@ use App\Models\Score\Model as BaseModel;
 use App\Models\User;
 use DB;
 
+/**
+ * @property User $user
+ */
 abstract class Model extends BaseModel
 {
     use Reportable;

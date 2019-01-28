@@ -35,7 +35,7 @@
   });
 
   &--beatmapsets {
-    margin: 10px auto 0;
+    margin-bottom: 10px;
   }
 
   &--changelog-index {
@@ -59,6 +59,14 @@
 
     .link-hover({
       background-color: @community-user-graygreen-dark;
+    });
+  }
+
+  &--t-dark-purple-dark {
+    background-color: @dark-purple-dark;
+
+    .link-hover({
+      background-color: @dark-graypurple;
     });
   }
 
@@ -88,6 +96,10 @@
     &.@{_top}--t-ddd {
       background-color: #ddd;
       color: #666;
+    }
+
+    &.@{_top}--t-dark-purple-dark {
+      background-color: @dark-purple-dark;
     }
 
     &.@{_top}--t-dark-purple-darker {

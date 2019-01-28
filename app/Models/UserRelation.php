@@ -4,6 +4,14 @@ namespace App\Models;
 
 use DB;
 
+/**
+ * @property bool $foe
+ * @property bool $friend
+ * @property User $target
+ * @property User $user
+ * @property int $user_id
+ * @property int $zebra_id
+ */
 class UserRelation extends Model
 {
     protected $table = 'phpbb_zebra';

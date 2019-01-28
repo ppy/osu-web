@@ -26,6 +26,20 @@ use App\Libraries\Multiplayer\Ruleset;
 use App\Models\Beatmap;
 use App\Models\Model;
 
+/**
+ * @property json|null $allowed_mods
+ * @property Beatmap $beatmap
+ * @property int $beatmap_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property int $id
+ * @property int|null $playlist_order
+ * @property json|null $required_mods
+ * @property Room $room
+ * @property int $room_id
+ * @property int|null $ruleset_id
+ * @property \Illuminate\Database\Eloquent\Collection $scores RoomScore
+ * @property \Carbon\Carbon|null $updated_at
+ */
 class PlaylistItem extends Model
 {
     protected $table = 'multiplayer_playlist_items';

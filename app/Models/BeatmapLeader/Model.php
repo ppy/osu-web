@@ -24,6 +24,10 @@ use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
 use App\Models\User;
 
+/**
+ * @property Beatmap $beatmap
+ * @property User $user
+ */
 abstract class Model extends BaseModel
 {
     protected $primaryKey = 'beatmap_id';

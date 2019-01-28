@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -59,7 +59,7 @@ export default class MainView extends React.Component<PropsInterface, any> {
     const lazerLink = 'https://github.com/ppy/osu/releases';
     return(
       <div>
-        <HeaderV3 compact='true' theme='chat' title='Chat' />
+        <HeaderV3 compact={true} theme='chat' title='Chat' />
         <Provider dataStore={this.props.dataStore} dispatcher={this.props.dispatcher}>
           {this.props.dataStore.channelStore.loaded ? (
             <div className='chat osu-page osu-page--chat'>
