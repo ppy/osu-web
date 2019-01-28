@@ -16,37 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.builds {
-  &__date {
-    font-size: @font-size--title;
-    font-weight: 300;
-    color: @yellow-light;
-    text-align: center;
-    padding: 20px 0 0;
-  }
-
-  &__group {
-    padding: 0 @gutter;
-
-    @media @desktop {
-      padding-left: @gutter-desktop;
-      padding-right: @gutter-desktop;
-    }
-
-    & + & {
-      border-top: 2px solid #111;
-    }
-
-    &--discussions {
-      padding: 0;
-    }
-  }
-
-  &__item {
-    padding: 0 0 30px;
-
-    & + & {
-      border-top: 1px solid @dark-purple-darker;
-    }
-  }
+export default interface AdminMenuItem {
+  component: string;
+  icon: string;
+  text: string;
+  props: any;
 }

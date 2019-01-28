@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,20 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.news {
-  &__nav {
-    display: flex;
-    justify-content: center;
-    padding: 20px 10px;
-  }
-
-  &__nav-button {
-    font-size: 40px;
-    margin: 0 10px;
-  }
-
-  &__time {
-    font-size: 12px;
-    margin-bottom: 10px;
-  }
+export default interface TitleTrans {
+  key: string;
+  info: string;
 }

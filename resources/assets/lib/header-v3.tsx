@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,13 +16,36 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import HeaderLink from 'interfaces/header-link';
+import HeaderTitleTrans from 'interfaces/header-title-trans';
 import * as React from 'react';
 
-export default class HeaderV3 extends React.Component<any, any> {
+interface PropsInterface {
+  compact?: boolean;
+  links?: HeaderLink[];
+  theme?: string;
+  title?: string;
+  titleTrans?: HeaderTitleTrans;
+}
+
+export default class HeaderV3 extends React.Component<PropsInterface, {}> {
   renderHeaderTitle(): React.ReactNode {
     let classNames = 'osu-page-header-v3';
     if (this.props.theme) {
       classNames += ` osu-page-header-v3--${this.props.theme}`;
+    }
+
+    let title;
+
+    if (this.props.titleTrans != null) {
+      title = <h1
+        className='osu-page-header-v3__title-text'
+        dangerouslySetInnerHTML={{
+          __html: osu.trans(this.props.titleTrans.key, {
+            info: `<span class='osu-page-header-v3__title-highlight'>${this.props.titleTrans.info}</span>`,
+        })}} />;
+    } else {
+      title = <h1 className='osu-page-header-v3__title-text'>{title}</h1>;
     }
 
     return (
@@ -31,11 +54,7 @@ export default class HeaderV3 extends React.Component<any, any> {
           <div className='osu-page-header-v3__title-icon'>
             <div className='osu-page-header-v3__icon' />
           </div>
-          <h1
-            className='osu-page-header-v3__title-text'
-            dangerouslySetInnerHTML={{
-              __html: this.props.title,
-            }} />
+          {title}
         </div>
       </div>
     );
@@ -43,13 +62,30 @@ export default class HeaderV3 extends React.Component<any, any> {
 
   renderHeaderTabs(): React.ReactNode {
     // TODO: handle tabs
-    let classNames = 'page-mode-v2 page-mode-v2--breadcrumbs';
+    let classNames = 'page-mode-v2';
     if (this.props.theme) {
       classNames += ` page-mode-v2--${this.props.theme}`;
     }
 
+    let items;
+
+    if (this.props.links != null) {
+      items = this.props.links.map((link) => {
+        let linkClass = 'page-mode-v2__link';
+        if (link.active) {
+          linkClass += ' page-mode-v2__link--active';
+        }
+
+        return <li className='page-mode-v2__item' key={`${link.url}-${link.title}`}>
+          <a className={linkClass} href={link.url}>{link.title}</a>
+        </li>;
+      });
+    }
+
     return (
-      <ol className={classNames} />
+      <ol className={classNames}>
+        {items}
+      </ol>
     );
   }
 

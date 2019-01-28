@@ -16,37 +16,49 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.builds {
-  &__date {
-    font-size: @font-size--title;
-    font-weight: 300;
-    color: @yellow-light;
-    text-align: center;
-    padding: 20px 0 0;
+.admin-menu {
+  position: fixed;
+  z-index: @z-index--admin-menu;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  color: #fff;
+  padding: 20px 20px 50px 50px;
+
+  &:hover {
+    opacity: 1;
   }
 
-  &__group {
-    padding: 0 @gutter;
+  &__button {
+    .reset-input();
+    border-radius: 10000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    width: @admin-menu-icon-width;
+    background-color: #333;
 
-    @media @desktop {
-      padding-left: @gutter-desktop;
-      padding-right: @gutter-desktop;
-    }
-
-    & + & {
-      border-top: 2px solid #111;
-    }
-
-    &--discussions {
-      padding: 0;
+    &:hover, &.js-menu--active {
+      background-color: @blue-darker;
     }
   }
 
-  &__item {
-    padding: 0 0 30px;
+  &__button-arrow {
+    font-size: 12px; // icon size
+  }
 
-    & + & {
-      border-top: 1px solid @dark-purple-darker;
-    }
+  &__button-icon {
+    margin-top: 10px;
+    font-size: 24px; // icon size
+  }
+
+  &__menu {
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    margin-left: 50px;
+    margin-bottom: -20px;
+    padding-bottom: 10px;
   }
 }

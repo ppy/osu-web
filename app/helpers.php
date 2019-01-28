@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -1118,7 +1118,11 @@ function parse_time_to_carbon($value)
     }
 
     if (is_string($value)) {
-        return Carbon\Carbon::parse($value);
+        try {
+            return Carbon\Carbon::parse($value);
+        } catch (Exception $_e) {
+            return;
+        }
     }
 
     if ($value instanceof Carbon\Carbon) {

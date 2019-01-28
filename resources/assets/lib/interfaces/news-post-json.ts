@@ -16,37 +16,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.builds {
-  &__date {
-    font-size: @font-size--title;
-    font-weight: 300;
-    color: @yellow-light;
-    text-align: center;
-    padding: 20px 0 0;
-  }
+interface Navigation {
+  newer?: NewsPostJson;
+  older?: NewsPostJson;
+}
 
-  &__group {
-    padding: 0 @gutter;
-
-    @media @desktop {
-      padding-left: @gutter-desktop;
-      padding-right: @gutter-desktop;
-    }
-
-    & + & {
-      border-top: 2px solid #111;
-    }
-
-    &--discussions {
-      padding: 0;
-    }
-  }
-
-  &__item {
-    padding: 0 0 30px;
-
-    & + & {
-      border-top: 1px solid @dark-purple-darker;
-    }
-  }
+export default interface NewsPostJson {
+  content?: string;
+  edit_url: string;
+  first_image?: string;
+  id: number;
+  navigation?: Navigation;
+  preview?: string;
+  published_at: string;
+  slug: string;
+  title: string;
 }

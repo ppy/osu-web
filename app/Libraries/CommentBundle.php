@@ -125,6 +125,7 @@ class CommentBundle
     private function getComments($query, $isChildren = true)
     {
         $sort = $this->params->sortDbOptions();
+        $sorted = false;
         $queryLimit = $this->params->limit;
 
         if (!$isChildren) {
@@ -133,26 +134,23 @@ class CommentBundle
             }
 
             $queryLimit++;
-            $values = [];
+            $queryCursor = [];
+            $hasValidCursor = true;
 
-            foreach ($sort['columns'] as $column) {
+            foreach ($sort as $column => $order) {
                 $key = $column === 'votes_count_cache' ? 'votesCount' : camel_case($column);
                 $value = $this->params->cursor[$key];
                 if (isset($value)) {
-                    $values[$column] = $value;
+                    $queryCursor[] = compact('column', 'order', 'value');
+                } else {
+                    $hasValidCursor = false;
+                    break;
                 }
             }
 
-            if (count($values) > 0 && count($values) === count($sort['columns'])) {
-                $direction = $sort['order'] === 'DESC' ? '<' : '>';
-                $key = implode(',', $sort['columns']);
-                foreach ($values as $value) {
-                    $bindingKeys[] = '?';
-                    $bindingValues[] = $value;
-                }
-                $bindingKey = implode(',', $bindingKeys);
-
-                $query->whereRaw("({$key}) {$direction} ({$bindingKey})", $bindingValues);
+            if ($hasValidCursor) {
+                $query->cursorWhere($queryCursor);
+                $sorted = true;
             } else {
                 $query->offset($this->params->limit * ($this->params->page - 1));
             }
@@ -166,8 +164,10 @@ class CommentBundle
             $query->with('parent');
         }
 
-        foreach ($sort['columns'] as $column) {
-            $query->orderBy($column, $sort['order']);
+        if (!$sorted) {
+            foreach ($sort as $column => $order) {
+                $query->orderBy($column, $order);
+            }
         }
 
         return $query->limit($queryLimit)->get();

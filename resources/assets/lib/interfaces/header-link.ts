@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,15 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.news-index-item {
-  margin: 10px 0;
-
-  &__time {
-    font-size: @font-size--normal;
-  }
-
-  &__title {
-    .link-pink-dark();
-    font-size: @font-size--large;
-  }
+export default interface HeaderV3Link {
+  active: boolean;
+  title: string;
+  url: string;
 }

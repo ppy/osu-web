@@ -13,7 +13,10 @@ declare var reactTurbolinks: any;
 
 // external (to typescript) react components
 declare var BigButton: any;
+declare var Comments: any;
+declare var CommentsManager: any;
 declare var Img2x: any;
+declare var ShowMoreLink: any;
 declare var Spinner: any;
 declare var Timeout: any;
 declare var UserAvatar: any;
@@ -31,9 +34,13 @@ interface JQueryStatic {
 
 interface OsuCommon {
   ajaxError: (xhr: JQueryXHR) => void;
-  trans: (...args: any[]) => string;
-  uuid: () => string;
+  classWithModifiers: (baseName: string, modifiers?: string[]) => string;
+  jsonClone: (obj: any) => any;
   parseJson: (id: string) => any;
+  timeago: (time: string) => string;
+  trans: (...args: any[]) => string;
+  urlPresence: (url: string) => string;
+  uuid: () => string;
 }
 
 interface User {
@@ -42,5 +49,5 @@ interface User {
 }
 
 interface TooltipDefault {
-  remove: (HTMLElement) => void,
+  remove: (HTMLElement) => void;
 }
