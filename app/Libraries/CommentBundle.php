@@ -92,6 +92,7 @@ class CommentBundle
 
         if ($this->params->parentId === 0 || $this->params->parentId === null) {
             $result['top_level_count'] = $this->commentsQuery()->whereNull('parent_id')->count();
+            $result['total'] = $this->commentsQuery()->count();
         }
 
         if ($this->includeCommentableMeta) {
