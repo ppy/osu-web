@@ -20,6 +20,16 @@
 
 namespace App\Models;
 
+/**
+ * @property Beatmapset $beatmapset
+ * @property int $beatmapset_id
+ * @property int $fulfilled
+ * @property BeatmapMirror $mirror
+ * @property int $mirror_id
+ * @property int $timestamp
+ * @property User $user
+ * @property int $user_id
+ */
 class BeatmapDownload extends Model
 {
     protected $table = 'osu_downloads';

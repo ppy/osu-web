@@ -2,6 +2,14 @@
 
 namespace App\Models;
 
+/**
+ * @property Beatmapset $beatmapset
+ * @property int $beatmapset_id
+ * @property \Carbon\Carbon $date
+ * @property int $rating
+ * @property User $user
+ * @property int $user_id
+ */
 class BeatmapsetUserRating extends Model
 {
     protected $table = 'osu_user_beatmapset_ratings';

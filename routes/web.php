@@ -252,7 +252,6 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
 
     Route::post('update-address', 'StoreController@postUpdateAddress');
     Route::post('new-address', 'StoreController@postNewAddress');
-    Route::post('add-to-cart', 'StoreController@postAddToCart');
 
     Route::group(['namespace' => 'Store'], function () {
         Route::post('products/{product}/notification-request', 'NotificationRequestsController@store')->name('notification-request');
@@ -322,6 +321,11 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth:api', 'r
 
         Route::group(['prefix' => 'beatmapsets'], function () {
             Route::get('favourites', 'API\BeatmapsetsController@favourites');     //  GET /api/v2/beatmapsets/favourites
+        });
+
+        Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
+            // GET /api/v2/scores/:mode/:score_id/download
+            Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
         });
 
         // Beatmaps

@@ -42,7 +42,7 @@ class ProductsController extends Controller
 
     private function getProduct($id)
     {
-        $product = Product::with('masterProduct')->where('enabled', true);
+        $product = Product::with('masterProduct')->available();
 
         return is_numeric($id)
             ? $product->findOrFail($id)

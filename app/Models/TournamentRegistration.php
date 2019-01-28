@@ -20,6 +20,15 @@
 
 namespace App\Models;
 
+/**
+ * @property \Carbon\Carbon|null $created_at
+ * @property int $registration_id
+ * @property Tournament $tournament
+ * @property int $tournament_id
+ * @property \Carbon\Carbon|null $updated_at
+ * @property User $user
+ * @property int $user_id
+ */
 class TournamentRegistration extends Model
 {
     protected $primaryKey = 'registration_id';

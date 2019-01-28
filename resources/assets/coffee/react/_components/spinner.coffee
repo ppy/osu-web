@@ -18,5 +18,7 @@
 
 {div} = ReactDOMFactories
 
-@Spinner = ->
-  div className: 'la-ball-clip-rotate'
+bn = 'la-ball-clip-rotate'
+
+@Spinner = ({modifiers}) ->
+  div className: osu.classWithModifiers(bn, modifiers)

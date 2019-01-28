@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2019 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,29 +18,24 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Console\Commands;
 
-/**
- * @property Achievement $achievement
- * @property int $achievement_id
- * @property \Carbon\Carbon $date
- * @property User $user
- * @property int $user_id
- */
-class UserAchievement extends Model
+use App\Models\Store\Product;
+use Illuminate\Console\Command;
+
+class StoreExpireProducts extends Command
 {
-    protected $table = 'osu_user_achievements';
+    protected $signature = 'store:expire-products';
 
-    protected $dates = ['date'];
-    public $timestamps = false;
+    protected $description = 'Disables products that should no longer be available.';
 
-    public function user()
+    public function handle()
     {
-        return $this->belongsTo(User::class, 'user_id');
-    }
+        $count = Product
+            ::where('enabled', true)
+            ->notAvailable()
+            ->update(['enabled' => false]);
 
-    public function achievement()
-    {
-        return $this->belongsTo(Achievement::class, 'achievement_id');
+        $this->line("Disabled {$count} items.");
     }
 }

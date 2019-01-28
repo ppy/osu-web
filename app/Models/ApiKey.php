@@ -20,6 +20,17 @@
 
 namespace App\Models;
 
+/**
+ * @property string $api_key
+ * @property string $app_name
+ * @property string $app_url
+ * @property int $enabled
+ * @property int $hit_count
+ * @property int $key
+ * @property int $miss_count
+ * @property int $revoked
+ * @property int $user_id
+ */
 class ApiKey extends Model
 {
     protected $table = 'osu_apikeys';

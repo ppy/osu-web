@@ -685,7 +685,7 @@ function nav_links()
         'getWiki' => wiki_url('Welcome'),
         'getFaq' => wiki_url('FAQ'),
         'getRules' => wiki_url('Rules'),
-        'getSupport' => wiki_url('Help_Center'),
+        'getSupport' => wiki_url('Help_Centre'),
     ];
 
     return $links;
