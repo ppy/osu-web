@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>..
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -321,6 +321,11 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth:api', 'r
 
         Route::group(['prefix' => 'beatmapsets'], function () {
             Route::get('favourites', 'API\BeatmapsetsController@favourites');     //  GET /api/v2/beatmapsets/favourites
+        });
+
+        Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
+            // GET /api/v2/scores/:mode/:score_id/download
+            Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
         });
 
         // Beatmaps

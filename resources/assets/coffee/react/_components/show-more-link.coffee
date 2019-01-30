@@ -38,5 +38,8 @@ bn = 'show-more-link'
         span className: 'fas fa-angle-down'
       span className: "#{bn}__label-text",
         osu.trans('common.buttons.show_more')
+
+        if props.remaining?
+          " (#{props.remaining})"
       span className: "#{bn}__label-icon",
         span className: 'fas fa-angle-down'
