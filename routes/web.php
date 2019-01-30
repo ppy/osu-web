@@ -307,11 +307,11 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth:api', 'r
 
         Route::group(['as' => 'rooms.', 'prefix' => 'rooms'], function () {
             Route::get('{mode?}', 'Multiplayer\RoomsController@index')->name('index')->where('mode', 'owned|participated|ended');
-            Route::put('{room_id}/users/{user_id}', 'Multiplayer\RoomsController@join')->name('join');
-            Route::delete('{room_id}/users/{user_id}', 'Multiplayer\RoomsController@part')->name('part');
-            Route::get('{room_id}/leaderboard', 'Multiplayer\RoomsController@leaderboard');
-            Route::group(['as' => 'playlist.', 'prefix' => '{room_id}/playlist'], function () {
-                Route::apiResource('{playlist_id}/scores', 'Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['store', 'update']]);
+            Route::put('{room}/users/{user}', 'Multiplayer\RoomsController@join')->name('join');
+            Route::delete('{room}/users/{user}', 'Multiplayer\RoomsController@part')->name('part');
+            Route::get('{room}/leaderboard', 'Multiplayer\RoomsController@leaderboard');
+            Route::group(['as' => 'playlist.', 'prefix' => '{room}/playlist'], function () {
+                Route::apiResource('{playlist}/scores', 'Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['store', 'update']]);
             });
         });
         Route::apiResource('rooms', 'Multiplayer\RoomsController', ['only' => ['show', 'store']]);
