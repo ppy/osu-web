@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, h2} = ReactDOMFactories
+{button, div, h2, span} = ReactDOMFactories
 
 el = React.createElement
 
@@ -27,7 +27,9 @@ class @Comments extends React.PureComponent
 
 
     div className: osu.classWithModifiers('comments', @props.modifiers),
-      h2 className: 'comments__title', osu.trans('comments.title')
+      h2 className: 'comments__title',
+        osu.trans('comments.title')
+        span className: 'comments__count', @props.total.toLocaleString()
       div className: 'comments__new',
         el CommentEditor,
           commentableType: @props.commentableType

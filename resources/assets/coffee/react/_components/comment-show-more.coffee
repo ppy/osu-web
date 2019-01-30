@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2019 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -44,6 +44,7 @@ class @CommentShowMore extends React.PureComponent
     blockClass = osu.classWithModifiers bn, @props.modifiers
 
     if 'top' in @props.modifiers
+      remaining = @props.total - @props.comments.length
       modifiers = ['comments']
       if 'changelog' in @props.modifiers
         modifiers.push('t-dark-purple-darker')
@@ -55,6 +56,7 @@ class @CommentShowMore extends React.PureComponent
         hasMore: true
         callback: @load
         modifiers: modifiers
+        remaining: remaining
     else
       div className: blockClass,
         if @state.loading
