@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -92,6 +92,7 @@ class CommentBundle
 
         if ($this->params->parentId === 0 || $this->params->parentId === null) {
             $result['top_level_count'] = $this->commentsQuery()->whereNull('parent_id')->count();
+            $result['total'] = $this->commentsQuery()->count();
         }
 
         if ($this->includeCommentableMeta) {
@@ -125,6 +126,7 @@ class CommentBundle
     private function getComments($query, $isChildren = true)
     {
         $sort = $this->params->sortDbOptions();
+        $sorted = false;
         $queryLimit = $this->params->limit;
 
         if (!$isChildren) {
@@ -133,26 +135,23 @@ class CommentBundle
             }
 
             $queryLimit++;
-            $values = [];
+            $queryCursor = [];
+            $hasValidCursor = true;
 
-            foreach ($sort['columns'] as $column) {
+            foreach ($sort as $column => $order) {
                 $key = $column === 'votes_count_cache' ? 'votesCount' : camel_case($column);
                 $value = $this->params->cursor[$key];
                 if (isset($value)) {
-                    $values[$column] = $value;
+                    $queryCursor[] = compact('column', 'order', 'value');
+                } else {
+                    $hasValidCursor = false;
+                    break;
                 }
             }
 
-            if (count($values) > 0 && count($values) === count($sort['columns'])) {
-                $direction = $sort['order'] === 'DESC' ? '<' : '>';
-                $key = implode(',', $sort['columns']);
-                foreach ($values as $value) {
-                    $bindingKeys[] = '?';
-                    $bindingValues[] = $value;
-                }
-                $bindingKey = implode(',', $bindingKeys);
-
-                $query->whereRaw("({$key}) {$direction} ({$bindingKey})", $bindingValues);
+            if ($hasValidCursor) {
+                $query->cursorWhere($queryCursor);
+                $sorted = true;
             } else {
                 $query->offset($this->params->limit * ($this->params->page - 1));
             }
@@ -166,8 +165,10 @@ class CommentBundle
             $query->with('parent');
         }
 
-        foreach ($sort['columns'] as $column) {
-            $query->orderBy($column, $sort['order']);
+        if (!$sorted) {
+            foreach ($sort as $column => $order) {
+                $query->orderBy($column, $order);
+            }
         }
 
         return $query->limit($queryLimit)->get();

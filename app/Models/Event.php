@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,20 @@ namespace App\Models;
 use Carbon\Carbon;
 use Sentry;
 
+/**
+ * @property Beatmap $beatmap
+ * @property int|null $beatmap_id
+ * @property Beatmapset $beatmapset
+ * @property int|null $beatmapset_id
+ * @property \Carbon\Carbon $date
+ * @property int $epicfactor
+ * @property int $event_id
+ * @property int $private
+ * @property string $text
+ * @property string|null $text_clean
+ * @property User $user
+ * @property int|null $user_id
+ */
 class Event extends Model
 {
     public $parsed = false;

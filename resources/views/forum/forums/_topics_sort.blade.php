@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2019 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -37,18 +37,20 @@
         }
     @endphp
     <div class="sort sort--forum-topics">
-        <span class="sort__item sort__item--title">{{ trans('sort._') }}</span>
+        <div class="sort__items">
+            <span class="sort__item sort__item--title">{{ trans('sort._') }}</span>
 
-        @foreach ($defaultMenu + $menu as $menuSort => $menuItem)
-            <a
-                class="
-                    sort__item
-                    sort__item--button
-                    {{ ($sort ?? null) === $menuSort ? 'sort__item--active u-forum--link-text' : '' }}
-                "
-                href="{{ $menuItem['url'] }}#topics"
-            >{{ $menuItem['title'] }}
-            </a>
-        @endforeach
+            @foreach ($defaultMenu + $menu as $menuSort => $menuItem)
+                <a
+                    class="
+                        sort__item
+                        sort__item--button
+                        {{ ($sort ?? null) === $menuSort ? 'sort__item--active u-forum--link-text' : '' }}
+                    "
+                    href="{{ $menuItem['url'] }}#topics"
+                >{{ $menuItem['title'] }}
+                </a>
+            @endforeach
+        </div>
     </div>
 @endif

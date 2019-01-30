@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -157,7 +157,9 @@ class Beatmaps.Main extends React.PureComponent
                     title: osu.trans("beatmaps.listing.search.not-found")
                   osu.trans("beatmaps.listing.search.not-found-quote")
 
-          el(Beatmaps.Paginator, @state.paging) unless @isSupporterMissing()
+          if !@isSupporterMissing()
+            div className: 'beatmapsets__paginator',
+              el(Beatmaps.Paginator, @state.paging)
 
       el window._exported.BackToTop,
         anchor: @backToTopAnchor

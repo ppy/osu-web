@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,6 +25,19 @@ use App\Models\User;
 
 /**
  * Dumb persistence model for UserScoreAggregate.
+ *
+ * @property float $accuracy
+ * @property int $attempts
+ * @property int $completed
+ * @property \Carbon\Carbon $created_at
+ * @property int $id
+ * @property float|null $pp
+ * @property Room $room
+ * @property int $room_id
+ * @property int $total_score
+ * @property \Carbon\Carbon $updated_at
+ * @property User $user
+ * @property int $user_id
  */
 class RoomUserHighScore extends Model
 {

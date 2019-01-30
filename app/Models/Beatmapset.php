@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,6 +34,67 @@ use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
+/**
+ * @property bool $active
+ * @property \Illuminate\Database\Eloquent\Collection $allBeatmaps Beatmap
+ * @property int $approved
+ * @property \Carbon\Carbon|null $approved_date
+ * @property int|null $approvedby_id
+ * @property User $approver
+ * @property string $artist
+ * @property string|null $artist_unicode
+ * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussions BeatmapDiscussion
+ * @property \Illuminate\Database\Eloquent\Collection $beatmaps Beatmap
+ * @property int $beatmapset_id
+ * @property mixed|null $body_hash
+ * @property float $bpm
+ * @property Comment $comments
+ * @property \Carbon\Carbon|null $cover_updated_at
+ * @property string $creator
+ * @property \Illuminate\Database\Eloquent\Collection $defaultBeatmaps Beatmap
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property string|null $difficulty_names
+ * @property bool $discussion_enabled
+ * @property string $displaytitle
+ * @property bool $download_disabled
+ * @property string|null $download_disabled_url
+ * @property bool $epilepsy
+ * @property \Illuminate\Database\Eloquent\Collection $events BeatmapsetEvent
+ * @property int $favourite_count
+ * @property \Illuminate\Database\Eloquent\Collection $favourites FavouriteBeatmapset
+ * @property string|null $filename
+ * @property int $filesize
+ * @property int|null $filesize_novideo
+ * @property Genre $genre
+ * @property int $genre_id
+ * @property mixed|null $header_hash
+ * @property int $hype
+ * @property Language $language
+ * @property int $language_id
+ * @property \Carbon\Carbon $last_update
+ * @property int $nominations
+ * @property int $offset
+ * @property mixed|null $osz2_hash
+ * @property int $play_count
+ * @property int $previous_queue_duration
+ * @property \Carbon\Carbon|null $queued_at
+ * @property float $rating
+ * @property string $source
+ * @property int $star_priority
+ * @property bool $storyboard
+ * @property \Carbon\Carbon|null $submit_date
+ * @property string $tags
+ * @property \Carbon\Carbon|null $thread_icon_date
+ * @property int $thread_id
+ * @property string $title
+ * @property string|null $title_unicode
+ * @property User $user
+ * @property \Illuminate\Database\Eloquent\Collection $userRatings BeatmapsetUserRating
+ * @property int $user_id
+ * @property int $versions_available
+ * @property bool $video
+ * @property \Illuminate\Database\Eloquent\Collection $watches BeatmapsetWatch
+ */
 class Beatmapset extends Model implements AfterCommit
 {
     use Elasticsearch\BeatmapsetTrait, SoftDeletes;

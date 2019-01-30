@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,14 @@ namespace App\Models\Forum;
 use App\Models\User;
 use App\Traits\Validatable;
 
+/**
+ * @property PollOption $pollOption
+ * @property int $poll_option_id
+ * @property int $topic_id
+ * @property User $user
+ * @property int $vote_user_id
+ * @property string $vote_user_ip
+ */
 class PollVote extends Model
 {
     use Validatable;

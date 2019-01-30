@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,26 +20,38 @@
   @_top: comment-editor;
   @_avatar: 50px;
   @_avatar-margin: 10px;
-  @_spacing: 5px;
+  @_spacing: 10px;
+  @_border-radius: @border-radius-large;
 
-  .default-border-radius();
-  background-color: #fff;
+  @_bg-message: #fff;
+  @_bg-footer: #eee;
+
+  @_bg-message-changelog: @changelog-bg-extra;
+  @_bg-footer-changelog: @dark-purple-dark;
+
+  border-radius: @_border-radius;
   display: flex;
   flex-direction: column;
-  border: 0 solid #ccc;
-  padding: @_spacing;
+  background-color: @_bg-message;
+  border: 2px solid @_bg-message;
 
   &--changelog {
-    background-color: @changelog-bg-extra;
-    border-color: @dark-purple-dark;
+    background-color: @_bg-message-changelog;
+    border-color: @_bg-message-changelog;
   }
 
   &--fancy {
-    border-width: 1px;
-    border-radius: @border-radius-large;
+    background-color: @_bg-footer;
+    border-color: @_bg-footer;
+
     @media @desktop {
       margin-left: (@_avatar + @_avatar-margin);
     }
+  }
+
+  &--fancy&--changelog {
+    background-color: @_bg-footer-changelog;
+    border-color: @_bg-footer-changelog;
   }
 
   &__avatar {
@@ -59,15 +71,27 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
+    padding: 0 (@_spacing - 2px);
+    border-radius: 0 0 @_border-radius @_border-radius;
+    background-color: @_bg-footer;
+
+    .@{_top}--changelog & {
+      background-color: @_bg-footer-changelog;
+    }
   }
 
   &__footer-item {
     font-size: @font-size--normal;
-    padding: @_spacing;
     flex: none;
+    margin: 5px 2px;
 
     &--notice {
+      align-self: center;
       flex: 1;
+    }
+
+    .@{_top}--changelog & {
+      color: @pink-lighter;
     }
   }
 
@@ -77,8 +101,10 @@
 
     min-height: 3em;
     padding: @_spacing;
-    resize: vertical;
     font-size: @font-size--phone-input;
+    border-radius: @_border-radius @_border-radius 0 0;
+    resize: none;
+    background-color: @_bg-message;
 
     @media @desktop {
       font-size: inherit;
@@ -86,6 +112,12 @@
 
     .@{_top}--changelog & {
       color: @changelog-fg;
+      background-color: @_bg-message-changelog;
+
+      &::placeholder {
+        color: inherit;
+        opacity: 0.8;
+      }
     }
   }
 }

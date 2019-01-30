@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,6 +26,18 @@ use App\Libraries\OsuWiki;
 use Carbon\Carbon;
 use Exception;
 
+/**
+ * @property Comment $comments
+ * @property \Carbon\Carbon|null $created_at
+ * @property string|null $hash
+ * @property int $id
+ * @property array|null $page
+ * @property \Carbon\Carbon|null $published_at
+ * @property string $slug
+ * @property string|null $tumblr_id
+ * @property \Carbon\Carbon|null $updated_at
+ * @property string|null $version
+ */
 class NewsPost extends Model
 {
     // in minutes
@@ -61,6 +73,36 @@ class NewsPost extends Model
     public static function pageVersion()
     {
         return static::VERSION.'.'.OsuMarkdownProcessor::VERSION;
+    }
+
+    public static function search($params)
+    {
+        $query = static::whereNotNull('published_at');
+
+        $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 1, 21);
+
+        // implies default sorting.
+        $cursor['id'] = get_int($params['cursor']['id'] ?? null);
+        $cursor['published_at'] = parse_time_to_carbon($params['cursor']['published_at'] ?? null);
+
+        if ($cursor['id'] !== null && $cursor['published_at'] !== null) {
+            $query->cursorWhere([
+                ['column' => 'published_at', 'order' => 'DESC', 'value' => $cursor['published_at']],
+                ['column' => 'id', 'order' => 'DESC', 'value' => $cursor['id']],
+            ]);
+        } else {
+            $query->orderBy('published_at', 'DESC')->orderBy('id', 'DESC');
+        }
+
+        $query->limit($limit);
+
+        return [
+            'query' => $query,
+            'params' => [
+                'cursor' => $cursor,
+                'limit' => $limit,
+            ],
+        ];
     }
 
     public static function syncAll()
@@ -153,8 +195,8 @@ class NewsPost extends Model
     public function newer()
     {
         if (!array_key_exists('newer', $this->adjacent)) {
-            $this->adjacent['newer'] = static::select('slug')
-                ->where('published_at', '>=', $this->published_at)
+            $this->adjacent['newer'] = static
+                ::where('published_at', '>=', $this->published_at)
                 ->where('id', '<>', $this->getKey())
                 ->orderBy('published_at', 'ASC')
                 ->orderBy('id', 'ASC')
@@ -167,8 +209,8 @@ class NewsPost extends Model
     public function older()
     {
         if (!array_key_exists('older', $this->adjacent)) {
-            $this->adjacent['older'] = static::select('slug')
-                ->where('published_at', '<=', $this->published_at)
+            $this->adjacent['older'] = static
+                ::where('published_at', '<=', $this->published_at)
                 ->where('id', '<>', $this->getKey())
                 ->orderBy('published_at', 'DESC')
                 ->orderBy('id', 'DESC')

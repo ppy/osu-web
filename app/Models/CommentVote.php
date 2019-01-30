@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,15 @@
 
 namespace App\Models;
 
+/**
+ * @property Comment $comment
+ * @property int $comment_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property int $id
+ * @property \Carbon\Carbon|null $updated_at
+ * @property User $user
+ * @property int $user_id
+ */
 class CommentVote extends Model
 {
     public function comment()

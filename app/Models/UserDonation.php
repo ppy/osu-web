@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,7 +24,17 @@ use Carbon\Carbon;
 use DB;
 use Log;
 
-// FIXME: should validate donation is a positive value on save.
+/**
+ * FIXME: should validate donation is a positive value on save.
+ *
+ * @property int $amount
+ * @property bool $cancel
+ * @property int $length
+ * @property int $target_user_id
+ * @property \Carbon\Carbon $timestamp
+ * @property string $transaction_id
+ * @property int $user_id
+ */
 class UserDonation extends Model
 {
     protected $table = 'osu_user_donations';

@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -130,14 +130,16 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
 
     div
       className: 'sort sort--beatmapset-discussions'
-      span className: 'sort__item sort__item--title', osu.trans('sort._')
-      for preset in presets
-        button
-          type: 'button'
-          className: "sort__item sort__item--button #{if @currentSort() == preset then 'sort__item--active' else ''}"
-          'data-sort-preset': preset
-          onClick: @changeSort
-          sortPresets[preset].text
+      div
+        className: 'sort__items'
+        span className: 'sort__item sort__item--title', osu.trans('sort._')
+        for preset in presets
+          button
+            type: 'button'
+            className: "sort__item sort__item--button #{if @currentSort() == preset then 'sort__item--active' else ''}"
+            'data-sort-preset': preset
+            onClick: @changeSort
+            sortPresets[preset].text
 
 
   discussionPage: (discussion) =>

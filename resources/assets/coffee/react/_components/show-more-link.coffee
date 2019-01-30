@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2019 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -38,5 +38,8 @@ bn = 'show-more-link'
         span className: 'fas fa-angle-down'
       span className: "#{bn}__label-text",
         osu.trans('common.buttons.show_more')
+
+        if props.remaining?
+          " (#{props.remaining})"
       span className: "#{bn}__label-icon",
         span className: 'fas fa-angle-down'
