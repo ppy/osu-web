@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => 'Login to comment',
-        'reply' => 'Login to reply',
+        'new' => 'Sign in to comment',
+        'reply' => 'Sign in to reply',
     ],
 
     'index' => [
