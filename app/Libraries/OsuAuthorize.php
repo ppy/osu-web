@@ -441,28 +441,11 @@ class OsuAuthorize
             return 'ok';
         }
 
-        static $publicEvents = [
-            BeatmapsetEvent::NOMINATE,
-            BeatmapsetEvent::QUALIFY,
-            BeatmapsetEvent::NOMINATION_RESET,
-            BeatmapsetEvent::DISQUALIFY,
-            BeatmapsetEvent::APPROVE,
-            BeatmapsetEvent::RANK,
-            BeatmapsetEvent::LOVE,
-            BeatmapsetEvent::KUDOSU_GAIN,
-            BeatmapsetEvent::KUDOSU_LOST,
-        ];
-
-        if (in_array($event->type, $publicEvents, true)) {
+        if (in_array($event->type, BeatmapsetEvent::types('public'), true)) {
             return 'ok';
         }
 
-        static $kudosuModerationEvents = [
-            BeatmapsetEvent::KUDOSU_ALLOW,
-            BeatmapsetEvent::KUDOSU_DENY,
-        ];
-
-        if (in_array($event->type, $kudosuModerationEvents, true)) {
+        if (in_array($event->type, BeatmapsetEvent::types('kudosuModeration'), true)) {
             if ($this->checkBeatmapDiscussionAllowOrDenyKudosu($user, null) === 'ok') {
                 return 'ok';
             }
