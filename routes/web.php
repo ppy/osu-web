@@ -89,7 +89,7 @@ Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
     Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
 });
 
-Route::resource('comments', 'CommentsController', ['except' => 'create']);
+Route::resource('comments', 'CommentsController', ['except' => ['create', 'edit']]);
 Route::post('comments/{comment}/report', 'CommentsController@report')->name('comments.report');
 Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
 Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
@@ -120,7 +120,7 @@ Route::group(['prefix' => 'community'], function () {
             Route::resource('posts', 'PostsController', ['only' => ['destroy', 'edit', 'show', 'update']]);
 
             Route::post('topics/{topic}/edit-poll', 'TopicsController@editPollPost')->name('topics.edit-poll');
-            Route::get('topics/{topic}/edit-poll', 'TopicsController@editPollGet');
+            Route::get('topics/{topic}/edit-poll', 'TopicsController@editPollGet')->name('topics.edit-poll');
 
             Route::post('topics/preview', 'TopicsController@preview')->name('topics.preview');
             Route::post('topics/{topic}/issue-tag', 'TopicsController@issueTag')->name('topics.issue-tag');
