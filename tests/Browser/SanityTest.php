@@ -276,7 +276,7 @@ class SanityTest extends DuskTestCase
                     $this->passed++;
                     $this->output("\e[0;32m    ✓\e[0m");
                 } catch (\Exception $err) {
-                    $filename = 'ss/'.$route->getName().'.png';
+                    $filename = 'fail-'.$route->getName().'.png';
                     $browser->driver->takeScreenshot($filename);
 
                     $this->failed++;
