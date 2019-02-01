@@ -445,7 +445,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (in_array($event->type, BeatmapsetEvents::types('kudosuModeration'), true)) {
+        if (in_array($event->type, BeatmapsetEvent::types('kudosuModeration'), true)) {
             if ($this->checkBeatmapDiscussionAllowOrDenyKudosu($user, null) === 'ok') {
                 return 'ok';
             }
