@@ -56,7 +56,6 @@ install:
   - php artisan es:index-documents --yes
 
 before_script:
-  - php artisan locale:check
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
   - php artisan serve > /dev/null 2>&1 &
 
