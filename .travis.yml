@@ -62,4 +62,6 @@ before_script:
 jobs:
   include:
     - script: ./bin/phpunit
-    - script: php artisan dusk
+      name: "phpunit"
+    - script: php artisan dusk --verbose
+      name: "browser tests"
