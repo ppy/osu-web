@@ -30,7 +30,11 @@ class BeatmapsetEventsController extends Controller
 
     public function index()
     {
-        $search = BeatmapsetEvent::search(request());
+        $params = request()->all();
+        $params['is_moderator'] = priv_check('BeatmapDiscussionModerate')->can();
+        $params['is_kudosu_moderator'] = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
+
+        $search = BeatmapsetEvent::search($params);
 
         return view('beatmapset_events.index', [
             'search' => $search,
