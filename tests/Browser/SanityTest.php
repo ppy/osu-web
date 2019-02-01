@@ -81,8 +81,13 @@ class SanityTest extends DuskTestCase
             self::$scaffolding['mode'] = new ScaffoldDummy('osu');
 
             // factory for /home/changelog/*
-            self::$scaffolding['changelog'] = factory(\App\Models\Changelog::class)->create();
-            self::$scaffolding['build'] = factory(\App\Models\Build::class)->create();
+            self::$scaffolding['stream'] = factory(\App\Models\UpdateStream::class)->create();
+            self::$scaffolding['changelog'] = factory(\App\Models\Changelog::class)->create([
+                'stream_id' => self::$scaffolding['stream']->stream_id,
+            ]);
+            self::$scaffolding['build'] = factory(\App\Models\Build::class)->create([
+                'stream_id' => self::$scaffolding['stream']->stream_id,
+            ]);
 
             // factory for /g/*
             self::$scaffolding['group'] = factory(\App\Models\Group::class)->create();
@@ -190,7 +195,7 @@ class SanityTest extends DuskTestCase
                 // ],
             ],
             'changelog.build' => [
-                'stream' => self::$scaffolding['build']->updateStream->name,
+                'stream' => self::$scaffolding['stream']->name,
                 'build' => self::$scaffolding['build']->version,
             ],
             'changelog.show' => [
