@@ -149,7 +149,11 @@ class BeatmapsetEvent extends Model
 
         $params['types'] = array_intersect($params['types'], $allowedTypes);
 
-        if (!empty($params['types'])) {
+        if (empty($params['types'])) {
+            if ($searchByUser) {
+                $query->whereIn('type', $allowedTypes);
+            }
+        } else {
             $query->whereIn('type', $params['types']);
         }
 
