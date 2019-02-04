@@ -204,6 +204,8 @@ class SupporterTagFulfillmentTest extends TestCase
             'osu_subscriptionexpiry' => $today->copy()->addMonthsNoOverflow(2),
         ]);
 
+        $oldExpiry = $donor->osu_subscriptionexpiry;
+
         $this->createDonationOrderItem($this->order, $this->user, true, true);
         $this->createDonationOrderItem($this->order, $this->user, true, false);
 
@@ -213,7 +215,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->refresh();
 
         // there should be 1 month left.
-        $this->assertEquals($today->copy()->addMonthsNoOverflow(1), $donor->osu_subscriptionexpiry);
+        $this->assertEquals($oldExpiry->subMonthsNoOverflow(1), $donor->osu_subscriptionexpiry);
         $this->assertEquals(2, $donor->osu_featurevotes);
         $this->assertTrue($donor->osu_subscriber);
     }
