@@ -28,21 +28,20 @@ class ProfilePage.TopRanks extends React.PureComponent
       div null,
         h3 className: 'page-extra__title page-extra__title--small', osu.trans('users.show.extra.top_ranks.best.title')
         if @props.scoresBest?.length
-          div className: 'profile-extra-entries',
+          el React.Fragment, null,
             el window._exported.PlayDetailList, scores: @props.scoresBest
 
-            div className: 'profile-extra-entries__item',
-              el ShowMoreLink,
-                modifiers: ['profile-page', 't-community-user-graygreen-darker']
-                event: 'profile:showMore'
-                hasMore: @props.pagination.scoresBest.hasMore
-                loading: @props.pagination.scoresBest.loading
-                data:
-                  name: 'scoresBest'
-                  url: laroute.route 'users.scores',
-                    user: @props.user.id
-                    type: 'best'
-                    mode: @props.currentMode
+            el ShowMoreLink,
+              modifiers: ['profile-page', 't-community-user-graygreen-darker']
+              event: 'profile:showMore'
+              hasMore: @props.pagination.scoresBest.hasMore
+              loading: @props.pagination.scoresBest.loading
+              data:
+                name: 'scoresBest'
+                url: laroute.route 'users.scores',
+                  user: @props.user.id
+                  type: 'best'
+                  mode: @props.currentMode
         else
           p className: 'profile-extra-entries', osu.trans('users.show.extra.top_ranks.empty')
 
@@ -55,20 +54,19 @@ class ProfilePage.TopRanks extends React.PureComponent
             span className: 'page-extra__title-count',
               @props.user.scores_first_count[0].toLocaleString()
         if @props.scoresFirsts?.length
-          div className: 'profile-extra-entries',
+          el React.Fragment, null,
             el window._exported.PlayDetailList, scores: @props.scoresFirsts
 
-            div className: 'profile-extra-entries__item',
-              el ShowMoreLink,
-                modifiers: ['profile-page', 't-community-user-graygreen-darker']
-                event: 'profile:showMore'
-                hasMore: @props.pagination.scoresFirsts.hasMore
-                loading: @props.pagination.scoresFirsts.loading
-                data:
-                  name: 'scoresFirsts'
-                  url: laroute.route 'users.scores',
-                    user: @props.user.id
-                    type: 'firsts'
-                    mode: @props.currentMode
+            el ShowMoreLink,
+              modifiers: ['profile-page', 't-community-user-graygreen-darker']
+              event: 'profile:showMore'
+              hasMore: @props.pagination.scoresFirsts.hasMore
+              loading: @props.pagination.scoresFirsts.loading
+              data:
+                name: 'scoresFirsts'
+                url: laroute.route 'users.scores',
+                  user: @props.user.id
+                  type: 'firsts'
+                  mode: @props.currentMode
         else
           p className: 'profile-extra-entries', osu.trans('users.show.extra.top_ranks.empty')
