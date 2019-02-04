@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,26 +15,29 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $legacyNav ?? ($legacyNav = true);
+
+    if (!isset($title)) {
+        $titleTree = [];
+
+        if (isset($titlePrepend)) {
+            $titleTree[] = $titlePrepend;
+        }
+
+        $titleTree[] = trans("layout.menu.{$currentSection}.{$currentAction}");
+        $titleTree[] = trans("layout.menu.{$currentSection}._");
+
+        $title = implode(' · ', $titleTree);
+    }
+
+    $title .= ' | osu!';
+@endphp
 <!DOCTYPE html>
 <html>
     <head>
         @include("layout.metadata")
-        <title>
-            @if (isset($title))
-                {{ $title }}
-            @elseif (isset($titlePrepend))
-                {{
-                    $titlePrepend.
-                    ' · '.
-                    trans("layout.menu.$currentSection.$currentAction").
-                    ' · '.
-                    trans("layout.menu.$currentSection._")
-                }}
-            @else
-                {{ trans("layout.menu.$currentSection.$currentAction") }} · {{ trans("layout.menu.$currentSection._") }}
-            @endif
-            | osu!
-        </title>
+        <title>{{ $title }}</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
@@ -51,8 +54,20 @@
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
         <div class="blackout js-blackout" data-visibility="hidden"></div>
 
+        @if (Auth::user() && Auth::user()->isRestricted())
+            @include('objects._notification_banner', [
+                'type' => 'alert',
+                'title' => trans('users.restricted_banner.title'),
+                'message' => trans('users.restricted_banner.message'),
+            ])
+        @endif
+
         @if (!isset($blank))
             @include("layout.header")
+
+            <div class="osu-page {{ $legacyNav ? '' : 'osu-page--notification-banners' }} js-notification-banners">
+                @stack('notification_banners')
+            </div>
         @endif
         <div class="osu-layout__section osu-layout__section--full js-content {{ $currentSection }}_{{ $currentAction }}">
             @include("layout.popup")

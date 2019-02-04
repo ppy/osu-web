@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@ namespace App\Libraries\Fulfillments;
 
 use App\Events\Fulfillments\UsernameChanged;
 use App\Events\Fulfillments\UsernameReverted;
-use App\Libraries\ChangeUsername;
+use App\Exceptions\ChangeUsernameException;
 use App\Models\Event;
 
 class UsernameChangeFulfillment extends OrderFulfiller
@@ -36,7 +36,13 @@ class UsernameChangeFulfillment extends OrderFulfiller
         $this->throwOnFail($this->validateRun());
 
         $user = $this->order->user;
-        $history = $user->changeUsername($this->getNewUserName(), $this->getChangeType());
+        try {
+            $history = $user->changeUsername($this->getNewUserName(), $this->getChangeType());
+        } catch (ChangeUsernameException $ex) {
+            $this->validationErrors()->merge($ex->getErrors());
+            $this->throwOnFail();
+        }
+
         Event::generate('usernameChange', [
             'user' => $user,
             'history' => $history,
@@ -74,9 +80,6 @@ class UsernameChangeFulfillment extends OrderFulfiller
                 ['expected' => $user->usernameChangeCost(), 'actual' => $item['cost']]
             );
         }
-
-        $change = new ChangeUsername($user, $this->getNewUserName(), $this->getChangeType());
-        $this->validationErrors()->merge($change->validate());
 
         return $this->validationErrors()->isEmpty();
     }

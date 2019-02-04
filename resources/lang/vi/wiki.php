@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,10 +34,10 @@ return [
         ],
 
         'translation' => [
-            'legal' => '',
-            'outdated' => '',
+            'legal' => 'Bản dịch này chỉ được cung cấp vì lí do thuận tiện. Bản gốc :default là phiên bản ràng buộc duy nhất của bài viết này.',
+            'outdated' => 'Trang này chứa bản dịch cũ của nội dung gốc. Hãy xem :default để có thông tin chính xác nhất (và hãy xem xét việc cập nhật bản dịch nếu bạn có thể)!',
 
-            'default' => '',
+            'default' => 'Phiên bản tiếng Anh',
         ],
     ],
 ];

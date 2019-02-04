@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => 'csoportok',
             'index' => 'áttekintés',
             'legal-show' => 'információ',
+            'messages-index' => '',
             'news-index' => 'újdonságok',
             'news-show' => 'újdonságok',
             'password-reset-index' => 'jelszó visszaállítása',
@@ -77,9 +78,10 @@ return [
         ],
         'community' => [
             '_' => 'közösség',
+            'chat' => '',
+            'chat-index' => '',
             'dev' => 'fejlesztés',
             'getForum' => 'fórumok',
-            'getChat' => 'chat',
             'getLive' => 'élő',
             'comments-index' => 'hozzászólások',
             'comments-show' => 'hozzászólás',

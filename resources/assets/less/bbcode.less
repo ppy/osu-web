@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,8 +19,18 @@
 @import "app";
 
 .bbcode {
+  @_top: bbcode;
   word-wrap: break-word;
   line-height: 1.5;
+
+  a {
+    .@{_top}--profile-page& {
+      color: @blue;
+      .link-hover({
+        color: @blue-light;
+      });
+    }
+  }
 
   h2,
   h4 {
@@ -68,6 +78,11 @@
   // overrides bootstrap styling for [notice]
   .well {
     margin: 0;
+
+    .@{_top}--profile-page& {
+      background-color: #333;
+      border-color: #444;
+    }
   }
 
   &--normal-line-height {

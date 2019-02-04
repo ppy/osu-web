@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,11 @@ return [
     'error' => [
         'chat' => [
             'limit_exceeded' => 'メッセージを送信する頻度が高すぎます。時間を置いてもう一度試してください。',
-            'too_long' => '',
+            'too_long' => '送信しようとしてるメッセージが長すぎます。',
         ],
+    ],
+
+    'scopes' => [
+        'identify' => '',
     ],
 ];

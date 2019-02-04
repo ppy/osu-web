@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => 'ryhmät',
             'index' => 'hallinta',
             'legal-show' => 'tiedot',
+            'messages-index' => '',
             'news-index' => 'uutiset',
             'news-show' => 'uutiset',
             'password-reset-index' => 'palauta salasana',
@@ -77,9 +78,10 @@ return [
         ],
         'community' => [
             '_' => 'yhteisö',
+            'chat' => '',
+            'chat-index' => '',
             'dev' => 'kehitystyö',
             'getForum' => 'foorumit',
-            'getChat' => 'chat',
             'getLive' => 'livenä',
             'comments-index' => 'kommentit',
             'comments-show' => 'kommentti',

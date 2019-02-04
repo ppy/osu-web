@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -52,7 +52,7 @@ return [
     ],
 
     'comment' => [
-        'deleted_parent' => '',
+        'deleted_parent' => 'Không cho phép trả lời bình luận đã xóa.',
     ],
 
     'forum' => [
@@ -72,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Không cho phép thêm lựa chọn trùng lặp.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Số lựa chọn cho một người không được vượt quá số lựa chọn sẵn có.',
             'minimum_one_selection' => 'Yêu cầu tối thiểu một lựa chọn cho mỗi người dùng.',
             'minimum_two_options' => 'Cần ít nhất hai lựa chọn.',
@@ -114,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Đây là tên người dùng của bạn mà, đồ ngốc!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

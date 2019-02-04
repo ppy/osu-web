@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,16 @@
 
 namespace App\Models\Multiplayer;
 
+/**
+ * @property \Carbon\Carbon|null $end_time
+ * @property \Illuminate\Database\Eloquent\Collection $events Event
+ * @property \Illuminate\Database\Eloquent\Collection $games Game
+ * @property mixed $keep_forever
+ * @property int $match_id
+ * @property string $name
+ * @property mixed $private
+ * @property \Carbon\Carbon|null $start_time
+ */
 class Match extends Model
 {
     protected $primaryKey = 'match_id';

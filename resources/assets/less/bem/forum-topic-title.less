@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -79,12 +79,8 @@
     flex: none;
     padding-right: @_buttons-margin-left;
     min-width: 0;
-    max-width: calc(100% ~'-' @_button-edit-width);
+    max-width: calc(100% - @_button-edit-width);
 
-    /* magic line-clamping on webkit browsers (safari, chrome, etc) */
-    /* (other browsers won't show ellipses) */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+    .webkit-line-clamp(3);
   }
 }

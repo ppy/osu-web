@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -72,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Η επιλογή για διπλασιασμό δεν είναι επιτρεπτή.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Η επιλογή ανά χρήστη ίσως υπερβαίνει τον αριθμό των διαθέσιμων επιλογών.',
             'minimum_one_selection' => 'Το ελάχιστο που απαιτείται είναι μία επιλογή ανά χρήστη.',
             'minimum_two_options' => 'Χρειάζονται τουλάχιστον δύο επιλογές.',
@@ -114,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Αυτό είναι ήδη το όνομα χρήστη σου, χαζούλη!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

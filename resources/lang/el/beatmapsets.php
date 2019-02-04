@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Αφαιρέστε αυτό το beatmapset από τα αγαπημένα',
             'favourited_count' => '+1 ακόμη| + :count ακόμη!',
         ],
-        'stats' => [
-            'cs' => 'Μέγεθος Κύκλου',
-            'cs-mania' => 'Αριθμός Πλήκτρων',
-            'drain' => 'HP Drain',
-            'accuracy' => 'Ακρίβεια',
-            'ar' => 'Approach Rate',
-            'stars' => 'Δυσκολία σε Αστέρια',
-            'total_length' => 'Διάρκεια',
-            'bpm' => 'BPM',
-            'count_circles' => 'Αριθμός Κύκλων',
-            'count_sliders' => 'Αριθμός Sliders',
-            'user-rating' => 'Βαθμολόγηση Χρηστών',
-            'rating-spread' => 'Εύρος Βαθμολογίας',
-            'nominations' => 'Υποψηφιότητες',
-            'playcount' => 'Φορές που παίχτηκε',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Περιγραφή',
             'genre' => 'Είδος',
@@ -80,6 +79,7 @@ return [
             'tags' => 'Ετικέτες',
             'unranked' => 'Unranked beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => 'επετεύχθη :when',
             'country' => 'Κατάταξη στη Χώρα',
@@ -112,6 +112,23 @@ return [
                 'first' => 'Προηγείται',
                 'own' => 'Το καλύτερό σας',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Μέγεθος Κύκλου',
+            'cs-mania' => 'Αριθμός Πλήκτρων',
+            'drain' => 'HP Drain',
+            'accuracy' => 'Ακρίβεια',
+            'ar' => 'Approach Rate',
+            'stars' => 'Δυσκολία σε Αστέρια',
+            'total_length' => 'Διάρκεια',
+            'bpm' => 'BPM',
+            'count_circles' => 'Αριθμός Κύκλων',
+            'count_sliders' => 'Αριθμός Sliders',
+            'user-rating' => 'Βαθμολόγηση Χρηστών',
+            'rating-spread' => 'Εύρος Βαθμολογίας',
+            'nominations' => 'Υποψηφιότητες',
+            'playcount' => 'Φορές που παίχτηκε',
         ],
     ],
 ];

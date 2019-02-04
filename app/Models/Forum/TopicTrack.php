@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,12 @@
 
 namespace App\Models\Forum;
 
+/**
+ * @property int $forum_id
+ * @property int $mark_time
+ * @property int $topic_id
+ * @property int $user_id
+ */
 class TopicTrack extends Model
 {
     protected $table = 'phpbb_topics_track';
@@ -62,6 +68,7 @@ class TopicTrack extends Model
             $forumId = $topic->forum_id;
 
             $result[$topicId] =
+                $topicTime <= $user->user_lastmark ||
                 (isset($readStatus[$topicId]) && $topicTime <= $readStatus[$topicId]->mark_time) ||
                 (isset($forumReadStatus[$forumId]) && $topicTime <= $forumReadStatus[$forumId]->mark_time);
         }

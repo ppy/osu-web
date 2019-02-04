@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,7 +23,7 @@ return [
     'title' => 'Featured Artists',
 
     'admin' => [
-        'hidden' => 'UMĚLEC JE ZATÍM SKRYTÝ',
+        'hidden' => 'UMĚLEC JE MOMENTÁLNĚ SKRYTÝ',
     ],
 
     'beatmaps' => [
@@ -48,9 +48,9 @@ return [
     ],
 
     'tracklist' => [
-        'title' => '',
-        'length' => '',
-        'bpm' => '',
-        'genre' => '',
+        'title' => 'název',
+        'length' => 'délka',
+        'bpm' => 'bpm',
+        'genre' => 'žánr',
     ],
 ];

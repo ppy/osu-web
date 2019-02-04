@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -171,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => '확실한가요? 새로운 문제를 제기하는 것은 지명 상태를 초기화시킵니다.',
+            'disqualify' => '',
         ],
     ],
 

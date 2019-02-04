@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,8 @@ return [
     'top-headers' => [
         'headline' => 'Transmissões em Directo',
         'description' => 'A informação é obtida através da twitch.tv a cada cinco minutos baseado na listagem de directórios. Fica à vontade em começares a transmitir e torna-te listado! Para mais informações em como configurar, por favor consulta a página wiki em relação à transmissão em directo.',
+
+        'link' => '',
     ],
     'headers' => [
         'regular' => 'Actualmente a Transmitir',

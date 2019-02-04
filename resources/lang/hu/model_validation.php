@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -72,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Duplikálás nem engedélyezett.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Felhasználónkénti opciók száma nem haladhatja meg az elérhető opciók mennyiségét.',
             'minimum_one_selection' => 'Minimum egy opció kell felhasználónként.',
             'minimum_two_options' => 'Legalább 2 választási lehetőség kell.',
@@ -114,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Már ez a felhasználóneved te butus!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

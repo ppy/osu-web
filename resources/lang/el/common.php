@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -63,6 +63,7 @@ return [
         'hours' => ':count ώρα|:count ώρες',
         'item' => ':count μονάδα|:count μονάδες',
         'minute_short_unit' => 'λεπτό|λεπτά',
+        'minutes' => '',
         'months' => ':count μήνας|:count μήνες',
         'second_short_unit' => 'δευτ.|δευτ.',
         'years' => ':count χρόνος|:count χρόνια',

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -72,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Duplicerade val är ej tillåtet.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Val per användare får inte överskrida antalet tillgängliga val.',
             'minimum_one_selection' => 'Minst ett val per användare krävs.',
             'minimum_two_options' => 'Behöver åtminstone två val.',
@@ -114,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Detta är redan ditt användarnamn, dumbom!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

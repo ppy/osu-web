@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -61,8 +61,9 @@ return [
         'days' => ':count päivä|:count päivää',
         'hour_short_unit' => 't|t',
         'hours' => ':count tunti|:count tuntia',
-        'item' => ':count yksikkö|:count yksikköä',
+        'item' => ':count kappale|:count kappaletta',
         'minute_short_unit' => 'm | m',
+        'minutes' => '',
         'months' => ':count kuukausi|:count kuukautta',
         'second_short_unit' => 's|s',
         'years' => ':count vuosi|:count vuotta',

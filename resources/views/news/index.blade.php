@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,58 +15,18 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master', ['title' => trans('news.index.title')])
+@extends('master', [
+    'bodyAdditionalClasses' => 'osu-layout--body-111-plain',
+    'legacyNav' => false,
+    'title' => trans('news.index.title_page'),
+])
 
 @section('content')
-    @component('news._header', ['title' => trans('news.index.title')])
-        @slot('actions')
-            <div class="forum-post-actions">
-                @if (priv_check('NewsIndexUpdate')->can())
-                    <div class="forum-post-actions__action">
-                        <button
-                            type="button"
-                            class="btn-circle"
-                            data-remote="true"
-                            data-url="{{ route('news.store') }}"
-                            data-method="POST"
-                            data-reload-on-success="1"
-                            title="{{ trans('news.store.button') }}"
-                            data-tooltip-position="left center"
-                        >
-                            <span class="btn-circle__content">
-                                <i class="fas fa-sync"></i>
-                            </span>
-                        </button>
-                    </div>
-                @endif
-            </div>
-        @endslot
-    @endcomponent
+    <div class="js-react--news-index osu-layout osu-layout--full"></div>
 
-    <div class="osu-page osu-page--generic">
-        <div class="news-index">
-            <div class="news-index__list">
-                @foreach ($posts as $post)
-                    <div class="news-index-item">
-                        <a
-                            href="{{ route('news.show', $post->slug) }}"
-                            class="news-index-item__title"
-                        >{{ $post->title() }}</a>
+    <script id="json-index" type="application/json">
+        {!! json_encode($postsJson) !!}
+    </script>
 
-                        <span class="news-index-item__time">
-                            {!! trans('news.show.posted', ['time' => timeago($post->published_at)]) !!}
-                        </span>
-                    </div>
-                @endforeach
-            </div>
-
-            <div class="t-forum-category-osu">
-                @include('objects._pagination_v0', ['object' => $posts
-                    ->appends([
-                        'limit' => Request::input('limit'),
-                    ])
-                ])
-            </div>
-        </div>
-    </div>
+    @include('layout._extra_js', ['src' => 'js/react/news-index.js'])
 @endsection

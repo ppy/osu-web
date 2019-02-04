@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,19 @@
 
 namespace App\Models;
 
+/**
+ * @property Contest $contest
+ * @property int $contest_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property string|null $entry_url
+ * @property int $id
+ * @property string $masked_name
+ * @property string $name
+ * @property \Carbon\Carbon|null $updated_at
+ * @property User $user
+ * @property int|null $user_id
+ * @property \Illuminate\Database\Eloquent\Collection $votes ContestVote
+ */
 class ContestEntry extends Model
 {
     public function contest()

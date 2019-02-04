@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,10 +22,14 @@
   margin: 0;
   @item-height: 25px;
 
+  &--kudosu {
+    margin-top: 20px;
+  }
+
   &__item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     margin-bottom: 5px;
     min-height: @item-height;
 
@@ -39,7 +43,7 @@
         .full-size();
         content: ' ';
         margin: 0 -10px;
-        width: calc(100% ~'+' 20px);
+        width: calc(100% + 20px);
         pointer-events: none;
         will-change: opacity;
         transition: all 25ms ease-out;
@@ -56,11 +60,25 @@
     }
   }
 
+  &__kudosu-amount {
+    font-weight: inherit;
+    font-style: italic;
+    color: @pink;
+  }
+
+  &__link {
+    .link-blue-light();
+
+    &--kudosu {
+      font-style: italic;
+    }
+  }
+
   &__detail {
     flex: 1;
     min-width: 0;
     display: flex;
-    align-items: center;
+    align-items: baseline;
 
     &--vertical {
       flex-direction: column;
@@ -77,11 +95,6 @@
       min-width: 0;
       flex: 1;
     }
-  }
-
-  &__detail-row {
-    display: flex;
-    align-items: flex-end;
   }
 
   &__text {
@@ -111,9 +124,16 @@
   }
 
   &__icon {
+    .center-content();
+    align-self: flex-start;
     flex: none;
-    width: @item-height;
+    width: 40px;
     height: @item-height;
     margin-right: 10px;
+    font-size: 20px; // icon size
+  }
+
+  &__time {
+    color: @community-user-graygreen-lighter;
   }
 }

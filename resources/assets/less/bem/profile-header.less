@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,167 +17,25 @@
  */
 
 .profile-header {
-  @top: profile-header;
-  .default-header-overlay();
-  background-color: #333;
-  background-size: cover;
-  background-position: center;
-  transition: background-image 120ms;
-
-  min-height: @profile-header-height;
-  padding: 80px 40px 0; // additional spacing for tournament banner
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-
-  @media @desktop {
-    flex-direction: row;
-    padding-top: 30px;
-    align-items: flex-end;
-  }
-
-  &__actions {
+  &__cover-editor {
     position: absolute;
-    right: 20px;
-    bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    will-change: opacity;
+    right: @gutter-profile-page;
+    top: 10px;
 
     @media @desktop {
-      opacity: 0;
-      width: 0;
       right: 0;
-      bottom: 20px;
-    }
-
-    .@{top}:hover & {
-      opacity: 1;
-    }
-
-    .@{top}--editing & {
-      opacity: 1;
-    }
-  }
-
-  &__column {
-    margin: 0 10px;
-
-    &--info {
-      flex: 1 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-self: stretch;
-      min-width: 0;
-
-      @media @desktop {
-        flex: 1;
-      }
-    }
-  }
-
-  &__default-mode {
-    .reset-input();
-    background-color: #333;
-    margin-bottom: 10px;
-
-    border: 2px solid transparent;
-
-    font-size: @font-size--normal;
-    color: #fff;
-    padding: 5px 20px;
-    border-radius: 10000px; // rounded corner
-    transition: 120ms ease-in-out border-color;
-
-    &:focus {
-      border-color: #555;
-    }
-
-    &:hover {
-      border-color: @yellow;
-    }
-
-    &:active {
-      border-color: @yellow-dark;
-    }
-
-    &--disabled {
-      &, &:focus, &:hover, &:active {
-        border-color: transparent;
-        color: #ccc;
-      }
-    }
-  }
-
-  &__spinner {
-    .full-size();
-    .center-content();
-
-    font-size: 80px;
-    color: #fff;
-    background-color: fade(#000, 70%);
-  }
-
-  &__tournament-banner {
-    width: 100%;
-
-    &--float {
-      display: none;
+      top: auto;
+      bottom: 100%;
       margin-bottom: 10px;
-      z-index: @z-index--profile-tournament-banner;
-
-      @media @desktop {
-        display: block;
-      }
-    }
-
-    &--top {
-      position: absolute;
-      left: 0;
-      top: 0;
-
-      @media @desktop {
-        display: none;
-      }
     }
   }
 
-  &__tournament-banner-image {
-    .@{top}__tournament-banner--float & {
-      .default-border-radius();
-      .own-layer();
-      max-width: 100%;
-      transition: transform 200ms cubic-bezier(.08,.82,.17,1);
-      will-change: transform;
-    }
-
-    .@{top}__tournament-banner--float:hover & {
-        transform: scale(1.2);
-    }
-
-    .@{top}__tournament-banner--top & {
-      width: 100%;
-    }
-  }
-
-  &__info {
+  &__top {
     display: flex;
     flex-direction: column;
-    align-items: center;
 
     @media @desktop {
-      align-items: flex-start;
-    }
-
-    &--bottom {
-      flex: 1 0 auto;
-      justify-content: flex-end;
-    }
-
-    &--top {
-      flex: none;
+      flex-direction: row;
     }
   }
 }

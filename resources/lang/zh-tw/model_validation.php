@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -72,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => '不允許重複的選項。',
+            'grace_period_expired' => '',
             'invalid_max_options' => '每人可選的選項不能超出總選項數。',
             'minimum_one_selection' => '每人至少可選一項。',
             'minimum_two_options' => '需要至少兩個選項。',
@@ -114,5 +115,9 @@ return [
             ],
             'username_is_same' => '这就是你的用户名，Baka！',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

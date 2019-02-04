@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -19,12 +19,42 @@
 el = React.createElement
 {div} = ReactDOMFactories
 
-bn = 'notification-banner'
+bn = 'notification-banner-v2'
+notificationBanners = document.getElementsByClassName('js-notification-banners')
 
-@NotificationBanner = ({type, title, message}) ->
-  div className: "#{bn} #{bn}--#{type}",
-    div className: "#{bn}__icon"
-    div className: "#{bn}__icon-label", type.toUpperCase()
-    div className: "#{bn}__text", title
-    div className: "#{bn}__text", message
-    div className: "#{bn}__light-bar"
+class @NotificationBanner extends React.PureComponent
+  constructor: (props) ->
+    super props
+
+    @eventId = "notification-banner-#{osu.uuid()}"
+    @createPortalContainer()
+
+
+  componentDidMount: =>
+    $(document).on "turbolinks:before-cache.#{@eventId}", @removePortalContainer
+
+
+  componentWillUnmount: =>
+    $(document).off ".#{@eventId}"
+    @removePortalContainer()
+
+
+  render: =>
+    notification =
+      div className: "#{bn} #{bn}--#{@props.type}",
+        div className: "#{bn}__col #{bn}__col--icon"
+        div className: "#{bn}__col #{bn}__col--label",
+          div className: "#{bn}__type", @props.type
+          div className: "#{bn}__text", @props.title
+        div className: "#{bn}__col",
+          div className: "#{bn}__text", @props.message
+    ReactDOM.createPortal notification, @portalContainer
+
+
+  removePortalContainer: =>
+    notificationBanners[0].removeChild @portalContainer
+
+
+  createPortalContainer: =>
+    @portalContainer = document.createElement 'div'
+    notificationBanners[0].appendChild @portalContainer

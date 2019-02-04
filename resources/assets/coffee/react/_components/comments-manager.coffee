@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -40,6 +40,7 @@ class @CommentsManager extends React.PureComponent
         userVotes: commentBundle.user_votes
         users: commentBundle.users ? []
         topLevelCount: commentBundle.top_level_count
+        total: commentBundle.total
         commentableMeta: commentBundle.commentable_meta ? []
         loadingSort: null
         currentSort: 'new'
@@ -82,6 +83,7 @@ class @CommentsManager extends React.PureComponent
       users: @mergeCollection @state.users, commentBundle.users
       commentableMeta: _.concat @state.commentableMeta, commentBundle.commentable_meta
       moreComments: moreComments
+      total: commentBundle.total ? @state.total
 
 
   update: (_event, {comment}) =>
@@ -149,6 +151,7 @@ class @CommentsManager extends React.PureComponent
         commentableMeta: data.commentable_meta ? []
         userVotes: data.user_votes ? []
         topLevelCount: data.top_level_count
+        total: data.total ? @state.total
         currentSort: sort
         moreComments: {}
     .always =>

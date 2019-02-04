@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -63,6 +63,7 @@ return [
         'hours' => ':count ชั่วโมง|:count ชั่วโมง',
         'item' => ':count อัน|:count อัน',
         'minute_short_unit' => 'นาที|นาที',
+        'minutes' => '',
         'months' => ':count เดือน|:count เดือน',
         'second_short_unit' => 'วินาที|วินาที',
         'years' => ':count ปี|:count ปี',

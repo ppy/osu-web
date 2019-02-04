@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,14 @@ return [
         'chat' => [
             'limit_exceeded' => 'You are sending messages too quickly, please wait a bit before trying again.',
             'too_long' => 'The message you are trying to send is too long.',
+        ],
+    ],
+
+    'scopes' => [
+        'identify' => 'Identify you and read your public profile.',
+
+        'friends' => [
+            'read' => 'See who you are following.',
         ],
     ],
 ];

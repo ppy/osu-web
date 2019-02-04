@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,8 @@ return [
     'top-headers' => [
         'headline' => 'ライブ配信',
         'description' => '五分毎にtwitch.tvからデータを受信してリストを表示しています。osu!をプレイ中に設定して配信を始めるとリストに表示される様になります。配信方法についてはwikiを参照してください。',
+
+        'link' => '',
     ],
     'headers' => [
         'regular' => '配信中',

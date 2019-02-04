@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -72,6 +72,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Повторение вариантов недопустимо.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Вариант на пользователя не может превышать количество доступных опций.',
             'minimum_one_selection' => 'Требуется минимум один вариант для каждого пользователя.',
             'minimum_two_options' => 'Нужно как минимум два варианта.',
@@ -114,5 +115,9 @@ return [
             ],
             'username_is_same' => 'Это имя уже используется!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

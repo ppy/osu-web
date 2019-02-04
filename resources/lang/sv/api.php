@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,5 +24,9 @@ return [
             'limit_exceeded' => 'Du skickar meddelanden för snabbt, vänta en stund innan du skickar igen.',
             'too_long' => 'Meddelandet du försöker skicka är för långt.',
         ],
+    ],
+
+    'scopes' => [
+        'identify' => '',
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -32,7 +32,7 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => '刪除',
+        'deleted_beatmap' => '已刪除',
         'title' => '圖譜討論',
 
         'form' => [
@@ -52,7 +52,7 @@ return [
         'created_at' => '發佈日期',
         'deleted_at' => '刪除日期',
         'message_type' => '類型',
-        'permalink' => '永久連結',
+        'permalink' => '固定連結',
     ],
 
     'nearby_posts' => [
@@ -76,9 +76,9 @@ return [
 
     'user' => [
         'admin' => '管理員',
-        'bng' => 'nominator',
+        'bng' => '譜面管理團隊',
         'owner' => '作圖者',
-        'qat' => 'qat',
+        'qat' => '質量保證團隊',
     ],
 
     'user_filter' => [

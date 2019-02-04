@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,28 +17,125 @@
  */
 
 .show-more-link {
+  @_top: show-more-link;
+
+  .link-plain();
   .reset-input();
   display: block;
-  width: 100%;
-  padding-top: 10px;
+  align-self: center;
   text-align: center;
+  font-size: @font-size--normal;
+  color: @link-color;
+  padding: 5px 20px;
+  border-radius: 10000px;
+  color: inherit;
 
-  // Declared early so color and other styles can be overridden by other modifiers.
-  &--link {
-    color: @link-color;
+  .link-hover({
+    color: inherit;
+  });
 
-    .link-hover({
-      color: @link-hover-color;
-      text-decoration: underline;
-    });
+  &--beatmapsets {
+    margin-bottom: 10px;
   }
 
   &--changelog-index {
-    padding: 40px 0;
-    color: #fff;
+    margin: 40px 0;
+  }
+
+  &--comments {
+    margin: 10px auto;
+  }
+
+  &--forum-topic {
+    margin: 5px auto 10px;
+  }
+
+  &--profile-page {
+    margin: 10px auto 0;
+  }
+
+  &--t-community-user-graygreen-darker {
+    background-color: @community-user-graygreen-darker;
 
     .link-hover({
-      color: #fff;
+      background-color: @community-user-graygreen-dark;
     });
+  }
+
+  &--t-dark-purple-dark {
+    background-color: @dark-purple-dark;
+
+    .link-hover({
+      background-color: @dark-graypurple;
+    });
+  }
+
+  &--t-dark-purple-darker {
+    background-color: @dark-purple-darker;
+
+    .link-hover({
+      background-color: #000;
+    });
+  }
+
+  &--t-ddd {
+    background-color: #ddd;
+
+    .link-hover({
+      background-color: #ccc;
+    });
+  }
+
+  &[disabled], &.js-disabled {
+    color: #ccc;
+
+    &.@{_top}--t-community-user-graygreen-darker {
+      background-color: @community-user-graygreen-darker;
+    }
+
+    &.@{_top}--t-ddd {
+      background-color: #ddd;
+      color: #666;
+    }
+
+    &.@{_top}--t-dark-purple-dark {
+      background-color: @dark-purple-dark;
+    }
+
+    &.@{_top}--t-dark-purple-darker {
+      background-color: @dark-purple-darker;
+    }
+  }
+
+  &__spinner {
+    .center-content();
+    .full-size();
+    position: absolute;
+    display: none;
+
+    .@{_top}[disabled] &, .@{_top}.js-disabled & {
+      display: flex;
+    }
+  }
+
+  &__label {
+    opacity: 1;
+
+    .@{_top}[disabled] &, .@{_top}.js-disabled & {
+      opacity: 0;
+    }
+  }
+
+  &__label-icon {
+    color: @yellow;
+
+    .@{_top}--t-ddd & {
+      color: @yellow-dark;
+    }
+  }
+
+  &__label-text {
+    margin: 0 10px;
+    text-transform: uppercase;
   }
 }

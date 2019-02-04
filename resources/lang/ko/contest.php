@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -51,8 +51,8 @@ return [
     ],
     'vote' => [
         'list' => '투표',
-        'count' => '',
-        'points' => '',
+        'count' => ':count표',
+        'points' => ':count포인트',
     ],
     'dates' => [
         'ended' => ':date 에 끝났습니다',

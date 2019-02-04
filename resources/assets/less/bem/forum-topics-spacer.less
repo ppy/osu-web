@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,7 +23,10 @@
 
   @media @mobile {
     // so the pager doesn't get squashed.
-    // some reordering magic will probably be required if a right side button gets added.
+    flex-wrap: wrap;
+  }
+
+  @media @narrow {
     flex-direction: column;
   }
 
@@ -33,16 +36,40 @@
     min-height: 4em; // don't look too silly if there's no pager.
   }
 
-  &__buttons {
+  &__group {
+    display: flex;
     min-width: @forum-topic-new-topic-button--width;
     flex: 1;
 
-    @media @mobile {
+    &--left {
+      @media @mobile {
+        order: 1;
+      }
+    }
+
+    &--right {
+      justify-content: flex-end;
+      @media @mobile {
+        order: 2;
+      }
+    }
+
+    &--pager {
+      flex: none;
+      justify-content: center;
+
+      @media @mobile {
+        width: 100%;
+        order: 3;
+      }
+    }
+
+    @media @narrow {
+      & + & {
+        padding-top: 5px;
+      }
+
       width: 100%;
     }
-  }
-
-  &__pager {
-    flex: none;
   }
 }

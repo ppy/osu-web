@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,11 +16,17 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{form, input} = ReactDOMFactories
+{div, label, p, strong} = ReactDOMFactories
 el = React.createElement
 
 
 class ProfilePage.CoverUploader extends React.Component
+  constructor: (props) ->
+    super props
+
+    @uploadButtonContainer = React.createRef()
+
+
   componentDidMount: =>
     $dropzone = $('.js-profile-cover-upload--dropzone')
 
@@ -30,7 +36,7 @@ class ProfilePage.CoverUploader extends React.Component
       name: 'cover_file'
       disabled: !@props.canUpload
 
-    @uploadButtonContainer.appendChild($uploadButton[0])
+    @uploadButtonContainer.current.appendChild($uploadButton[0])
 
     $uploadButton.fileupload
       url: laroute.route('account.cover')
@@ -59,30 +65,31 @@ class ProfilePage.CoverUploader extends React.Component
     labelClass = 'btn-osu btn-osu--small btn-osu-default fileupload profile-cover-uploader__button'
     labelClass += ' disabled' unless @props.canUpload
 
-    el 'div', className: 'profile-cover-uploader',
+    div className: 'profile-cover-uploader',
       el ProfilePage.CoverSelection,
         url: @props.cover.custom_url
         thumbUrl: @props.cover.custom_url
         isSelected: !@props.cover.id?
         name: -1
+        modifiers: ['custom']
 
-      el 'label',
+      label
         className: labelClass
-        ref: (el) => @uploadButtonContainer = el
+        ref: @uploadButtonContainer
         osu.trans 'users.show.edit.cover.upload.button'
 
-      el 'div', className: 'profile-cover-uploader__info',
-        el 'p', className: 'profile-cover-uploader__info-entry',
-          el 'strong',
+      div className: 'profile-cover-uploader__info',
+        p className: 'profile-cover-uploader__info-entry',
+          strong
             dangerouslySetInnerHTML:
               __html: osu.trans 'users.show.edit.cover.upload.restriction_info'
 
-        el 'p', className: 'profile-cover-uploader__info-entry',
+        p className: 'profile-cover-uploader__info-entry',
           osu.trans 'users.show.edit.cover.upload.dropzone_info'
 
-        el 'p', className: 'profile-cover-uploader__info-entry',
+        p className: 'profile-cover-uploader__info-entry',
           osu.trans 'users.show.edit.cover.upload.size_info'
 
 
   $uploadButton: =>
-    $(@uploadButtonContainer).find('.js-profile-cover-upload')
+    $(@uploadButtonContainer.current).find('.js-profile-cover-upload')

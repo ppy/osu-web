@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -28,6 +28,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
+use Laravel\Passport\Exceptions\MissingScopeException;
 use Sentry;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -100,11 +101,7 @@ class Handler extends ExceptionHandler
         }
 
         if (config('app.debug')) {
-            if ($this->isHttpException($e)) {
-                $response = $this->renderHttpException($e);
-            } else {
-                $response = parent::render($request, $e);
-            }
+            $response = parent::render($request, $e);
         } else {
             $message = $this->exceptionMessage($e);
 
@@ -176,7 +173,7 @@ class Handler extends ExceptionHandler
             return 403;
         } elseif ($e instanceof AuthenticationException) {
             return 401;
-        } elseif ($e instanceof AuthorizationException) {
+        } elseif ($e instanceof AuthorizationException || $e instanceof MissingScopeException) {
             return 403;
         } else {
             return 500;

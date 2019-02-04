@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,6 +33,42 @@ use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property string $bbcode_bitfield
+ * @property string $bbcode_uid
+ * @property mixed $body_raw
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property int $enable_bbcode
+ * @property int $enable_magic_url
+ * @property int $enable_sig
+ * @property int $enable_smilies
+ * @property Forum $forum
+ * @property int $forum_id
+ * @property int $icon_id
+ * @property User $lastEditor
+ * @property int $osu_kudosobtained
+ * @property bool $post_approved
+ * @property int $post_attachment
+ * @property int $post_edit_count
+ * @property bool $post_edit_locked
+ * @property string $post_edit_reason
+ * @property int $post_edit_time
+ * @property int $post_edit_user
+ * @property int $post_id
+ * @property mixed $post_position
+ * @property int $post_postcount
+ * @property int $post_reported
+ * @property string $post_subject
+ * @property mixed $post_text
+ * @property int $post_time
+ * @property string $post_username
+ * @property int $poster_id
+ * @property string $poster_ip
+ * @property mixed $search_content
+ * @property Topic $topic
+ * @property int $topic_id
+ * @property User $user
+ */
 class Post extends Model implements AfterCommit
 {
     use Elasticsearch\PostTrait, SoftDeletes, Validatable;
@@ -223,6 +259,10 @@ class Post extends Model implements AfterCommit
             $this->validationErrors()->add('post_text', 'required');
         }
 
+        if ($this->isDirty('post_text') && mb_strlen($this->body_raw) > config('osu.forum.max_post_length')) {
+            $this->validationErrors()->add('post_text', 'too_long', ['limit' => config('osu.forum.max_post_length')]);
+        }
+
         if (!$this->skipBeatmapPostRestrictions) {
             // don't forget to sync with views.forum.topics._posts
             if ($this->isBeatmapsetPost()) {
@@ -230,6 +270,10 @@ class Post extends Model implements AfterCommit
 
                 return false;
             }
+        }
+
+        if (empty(trim(BBCodeFromDB::removeBlockQuotes($this->post_text)))) {
+            $this->validationErrors()->add('base', '.only_quote');
         }
 
         return $this->validationErrors()->isEmpty();
@@ -267,16 +311,6 @@ class Post extends Model implements AfterCommit
         return 'forum.post';
     }
 
-    public function getBodyHTMLAttribute()
-    {
-        return bbcode($this->post_text, $this->bbcode_uid, ['withGallery' => true]);
-    }
-
-    public function getBodyHTMLWithoutImageDimensionsAttribute()
-    {
-        return bbcode($this->post_text, $this->bbcode_uid, ['withGallery' => true, 'withoutImageDimensions' => true]);
-    }
-
     public function getBodyRawAttribute()
     {
         return bbcode_for_editor($this->post_text, $this->bbcode_uid);
@@ -292,6 +326,11 @@ class Post extends Model implements AfterCommit
     public function afterCommit()
     {
         dispatch(new EsIndexDocument($this));
+    }
+
+    public function bodyHTML($options = [])
+    {
+        return bbcode($this->post_text, $this->bbcode_uid, array_merge(['withGallery' => true], $options));
     }
 
     public function markRead($user)

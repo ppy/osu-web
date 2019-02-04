@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -55,13 +55,3 @@
 
 <div class="js-user-verification--reference"></div>
 @include('layout._user_verification_popup')
-
-@if (Auth::user() && Auth::user()->isRestricted())
-    <div class="osu-page">
-        @include('objects._notification_banner', [
-            'type' => 'alert',
-            'title' => trans('users.restricted_banner.title'),
-            'message' => trans('users.restricted_banner.message'),
-        ])
-    </div>
-@endif

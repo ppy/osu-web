@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'เลิก Favourite beatmapset นี้',
             'favourited_count' => '+1 ผู้อื่น| + :count ผู้อื่น',
         ],
-        'stats' => [
-            'cs' => 'ขนาดวงกลม',
-            'cs-mania' => 'จำนวนคีย์',
-            'drain' => 'การลด HP',
-            'accuracy' => 'ความแม่นยำ',
-            'ar' => 'อัตราการเข้าใกล้',
-            'stars' => 'ระดับความยาก',
-            'total_length' => 'ความยาว',
-            'bpm' => 'BPM',
-            'count_circles' => 'จำนวนวงกลม',
-            'count_sliders' => 'จำนวนสไลเดอร์',
-            'user-rating' => 'คะแนน',
-            'rating-spread' => 'การกระจายความยาก',
-            'nominations' => 'การเสนอชื่อ',
-            'playcount' => 'จำนวนครั้งที่เล่น',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'คำอธิบาย',
             'genre' => 'ประเภท',
@@ -80,6 +79,7 @@ return [
             'tags' => 'แท็ก',
             'unranked' => 'แมพที่ไม่ได้จัดอันดับ',
         ],
+
         'scoreboard' => [
             'achieved' => 'ได้รับ :when',
             'country' => 'อันดับประเทศ',
@@ -112,6 +112,23 @@ return [
                 'first' => 'นำ',
                 'own' => 'คะแนนดีที่สุดของคุณ',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'ขนาดวงกลม',
+            'cs-mania' => 'จำนวนคีย์',
+            'drain' => 'การลด HP',
+            'accuracy' => 'ความแม่นยำ',
+            'ar' => 'อัตราการเข้าใกล้',
+            'stars' => 'ระดับความยาก',
+            'total_length' => 'ความยาว',
+            'bpm' => 'BPM',
+            'count_circles' => 'จำนวนวงกลม',
+            'count_sliders' => 'จำนวนสไลเดอร์',
+            'user-rating' => 'คะแนน',
+            'rating-spread' => 'การกระจายความยาก',
+            'nominations' => 'การเสนอชื่อ',
+            'playcount' => 'จำนวนครั้งที่เล่น',
         ],
     ],
 ];

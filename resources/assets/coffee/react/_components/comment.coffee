@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -185,6 +185,13 @@ class @Comment extends React.PureComponent
                   onClick: @delete
                   osu.trans('common.buttons.delete')
 
+            if @canReport()
+              div className: 'comment__row-item',
+                el _exported.ReportComment,
+                  className: 'comment__action'
+                  comment: @props.comment
+                  user: @userFor(@props.comment)
+
             if @props.comment.replies_count > 0
               div className: 'comment__row-item',
                 if @props.showReplies
@@ -296,7 +303,11 @@ class @Comment extends React.PureComponent
 
 
   canModerate: =>
-    currentUser.is_admin || currentUser.is_gmt
+    currentUser.is_admin || currentUser.is_gmt || currentUser.is_qat
+
+
+  canReport: =>
+    currentUser.id? && @props.comment.user_id != currentUser.id
 
 
   canRestore: =>

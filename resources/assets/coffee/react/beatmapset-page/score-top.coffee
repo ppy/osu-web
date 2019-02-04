@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -58,7 +58,7 @@ BeatmapsetPage.ScoreTop = (props) ->
               type: 'performance'
             el FlagCountry,
               country: props.countries[props.score.user.country_code]
-              classModifiers: ['scoreboard', 'small-box']
+              modifiers: ['scoreboard', 'small-box']
 
       div className: "#{bn}__wrapping-container #{bn}__wrapping-container--right",
         div className: "#{bn}__stats",

@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,8 @@ import { createElement as el, PureComponent } from 'react'
 import { button, span, i } from 'react-dom-factories'
 import { ReportForm } from 'report-form'
 
+bn = 'textual-button'
+
 export class ReportUser extends PureComponent
   constructor: (props) ->
     super props
@@ -33,15 +35,24 @@ export class ReportUser extends PureComponent
   render: =>
     return null unless currentUser.id? && @props.user?.id != currentUser.id
 
+    blockClass = osu.classWithModifiers(bn, @props.modifiers)
+    if @props.wrapperClass?
+      wrapperClass = @props.wrapperClass
+      contentClass = blockClass
+    else
+      wrapperClass = blockClass
+      contentClass = null
+
     [
       button
-        className: 'textual-button'
+        className: wrapperClass
         key: 'button'
         onClick: @showForm
         type: 'button'
-        span null,
-          i className: 'textual-button__icon fas fa-exclamation-triangle'
-          " #{osu.trans 'users.report.button_text'}"
+        span className: contentClass,
+          i className: "#{bn}__icon fas fa-exclamation-triangle"
+          ' '
+          osu.trans 'users.report.button_text'
 
       el ReportForm,
         completed: @state.completed

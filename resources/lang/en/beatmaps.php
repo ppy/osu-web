@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Sorted by:',
-            'created_at' => 'creation time',
-            'timeline' => 'timeline',
-            'updated_at' => 'last update',
+            'created_at' => 'Creation time',
+            'timeline' => 'Timeline',
+            'updated_at' => 'Last update',
         ],
 
         'stats' => [
@@ -194,15 +194,15 @@ return [
                 'played' => 'Played',
             ],
             'sorting' => [
-                'title' => 'title',
-                'artist' => 'artist',
-                'difficulty' => 'difficulty',
-                'updated' => 'updated',
-                'ranked' => 'ranked',
-                'rating' => 'rating',
-                'plays' => 'plays',
-                'relevance' => 'relevance',
-                'nominations' => 'nominations',
+                'title' => 'Title',
+                'artist' => 'Artist',
+                'difficulty' => 'Difficulty',
+                'updated' => 'Updated',
+                'ranked' => 'Ranked',
+                'rating' => 'Rating',
+                'plays' => 'Plays',
+                'relevance' => 'Relevance',
+                'nominations' => 'Nominations',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtering by :filters requires an active :link',
@@ -301,5 +301,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => 'Playcount: :count',
+        'favourites' => 'Favourites: :count',
     ],
 ];

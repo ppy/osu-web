@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Haritayı favorilerden çıkar',
             'favourited_count' => '+ 1 kişi tarafından!|+ :count kişi tarafından!',
         ],
-        'stats' => [
-            'cs' => 'Daire Boyutu',
-            'cs-mania' => 'Tuş Sayısı',
-            'drain' => 'HP Drain',
-            'accuracy' => 'İsabetlilik',
-            'ar' => 'Yaklaşım Oranı',
-            'stars' => 'Zorluk',
-            'total_length' => 'Uzunluk',
-            'bpm' => 'BPM',
-            'count_circles' => 'Daire Sayısı',
-            'count_sliders' => 'Slider Sayısı',
-            'user-rating' => 'Kullanıcı Derecelendirmesi',
-            'rating-spread' => 'Değerlendirme Puanı',
-            'nominations' => 'Adaylıklar',
-            'playcount' => 'Oynama sayısı',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Açıklama',
             'genre' => 'Tür',
@@ -80,6 +79,7 @@ return [
             'tags' => 'Etiketler',
             'unranked' => 'Derecelendirilmemiş beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => ':when oynandı',
             'country' => 'Ülke sıralaması',
@@ -112,6 +112,23 @@ return [
                 'first' => 'Lider',
                 'own' => 'En İyi Skorun',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Daire Boyutu',
+            'cs-mania' => 'Tuş Sayısı',
+            'drain' => 'HP Drain',
+            'accuracy' => 'İsabetlilik',
+            'ar' => 'Yaklaşım Oranı',
+            'stars' => 'Zorluk',
+            'total_length' => 'Uzunluk',
+            'bpm' => 'BPM',
+            'count_circles' => 'Daire Sayısı',
+            'count_sliders' => 'Slider Sayısı',
+            'user-rating' => 'Kullanıcı Derecelendirmesi',
+            'rating-spread' => 'Değerlendirme Puanı',
+            'nominations' => 'Adaylıklar',
+            'playcount' => 'Oynama sayısı',
         ],
     ],
 ];

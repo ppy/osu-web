@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 return [
     'coming_soon' => 'coming soon',
+    'limitation_notice' => 'NOTE: Only people who are using <a href=":lazer_link">osu!lazer</a> or the new website will receive PMs through this system.<br/>If you are unsure, send them a message via the <a href=":oldpm_link">old forum PM page</a> instead.',
     'talking_in' => 'talking in :channel',
     'talking_with' => 'talking with :name',
     'title_compact' => 'chat',

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -83,15 +83,15 @@ return [
     'privacy' => [
         'title' => 'Soukromí',
         'friends_only' => 'blokovat soukromé zprávy od lidí, které nejsou v tvém seznamu přátel',
-        'hide_online' => '',
+        'hide_online' => 'skrýt váš online status',
     ],
 
     'security' => [
-        'current_session' => '',
-        'end_session' => '',
-        'end_session_confirmation' => '',
-        'last_active' => '',
-        'title' => '',
-        'web_sessions' => '',
+        'current_session' => 'současná',
+        'end_session' => 'Ukončit relaci',
+        'end_session_confirmation' => 'Tohle okamžitě ukončí vaši současnou relaci na tom zařízení. Jste si jistý?',
+        'last_active' => 'Naposledy aktivní:',
+        'title' => 'Zabezpečení',
+        'web_sessions' => 'webové relace',
     ],
 ];

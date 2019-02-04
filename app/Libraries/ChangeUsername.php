@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,52 +27,55 @@ class ChangeUsername
 {
     use Validatable;
 
-    private $newUsername;
-    private $type;
-    private $user;
+    /** @var User */
+    protected $user;
 
-    public function __construct(User $user, $newUsername, $type)
+    protected $username;
+
+    public static function requireSupportedMessage()
     {
+        $link = link_to(
+            route('support-the-game'),
+            trans('model_validation.user.change_username.supporter_required.link_text')
+        );
+
+        return trans('model_validation.user.change_username.supporter_required._', ['link' => $link]);
+    }
+
+    public function __construct(User $user, string $newUsername)
+    {
+        $this->username = $newUsername;
         $this->user = $user;
-        $this->newUsername = $newUsername;
-        $this->type = $type;
     }
 
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    public function validate()
+    public function validate() : ValidationErrors
     {
         $this->validationErrors()->reset();
-
-        // FIXME: move username the same validation here.
-
-        $errors = User::validateUsername($this->newUsername, $this->user->username);
-        if (count($errors) > 0) {
-            foreach ($errors as $error) {
-                $this->validationErrors()->addTranslated('username', $error);
-            }
+        if ($this->user->user_id <= 1) {
+            return $this->validationErrors()->addTranslated('user_id', 'This user cannot be renamed');
         }
 
-        return $this->validationErrors();
-    }
+        if (!$this->user->hasSupported()) {
+            return $this->validationErrors()->addTranslated('username', static::requireSupportedMessage());
+        }
 
-    public function isValid()
-    {
-        return $this->validationErrors()->isEmpty();
-    }
+        if ($this->username === $this->user->username) {
+            return $this->validationErrors()->add('username', '.change_username.username_is_same');
+        }
 
-    // TODO: move User::changeUsername here.
+        if ($this->validationErrors()->merge(UsernameValidation::validateUsername($this->username))->isAny()) {
+            return $this->validationErrors();
+        }
 
-    public function validationErrorsKeyBase()
-    {
-        return 'model_validation/';
+        if ($this->validationErrors()->merge(UsernameValidation::validateAvailability($this->username))->isAny()) {
+            return $this->validationErrors();
+        }
+
+        return $this->validationErrors()->merge(UsernameValidation::validateUsersOfUsername($this->username));
     }
 
     public function validationErrorsTranslationPrefix()
     {
-        return 'change_username';
+        return 'user';
     }
 }

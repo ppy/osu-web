@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,7 +47,7 @@ return [
     'beatmap_discussion_post' => [
         'edit' => [
             'system_generated' => 'I post automaticamente generati non possono essere modificati.',
-            'not_owner' => 'Solo l\'autore del post può editarlo.',
+            'not_owner' => 'Solo l\'autore del post può modificarlo.',
         ],
     ],
 

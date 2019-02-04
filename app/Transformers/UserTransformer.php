@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -44,6 +44,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'replays_watched_counts',
         'scores_first_count',
         'statistics',
+        'support_level',
         'unranked_beatmapset_count',
         'user_achievements',
     ];
@@ -52,16 +53,21 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         $profileCustomization = $user->profileCustomization();
 
+        $country = $user->country_acronym === null
+            ? null
+            : [
+                'code' => $user->country_acronym,
+                'name' => $user->countryName(),
+            ];
+
         return [
             'id' => $user->user_id,
             'username' => $user->username,
-            'join_date' => json_date($user->user_regdate),
-            'country' => [
-                'code' => $user->country_acronym,
-                'name' => $user->countryName(),
-            ],
+            'join_date' => json_time($user->user_regdate),
+            'country' => $country,
             'avatar_url' => $user->user_avatar,
             'is_supporter' => $user->osu_subscriber,
+            'has_supported' => $user->hasSupported(),
             'is_gmt' => $user->isGMT(),
             'is_qat' => $user->isQAT(),
             'is_bng' => $user->isBNG(),
@@ -102,7 +108,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         $histories = $user->accountHistories()->recent();
 
-        if (!priv_check('UserSilenceShowExtendedInfo')->can()) {
+        if (!priv_check('UserSilenceShowExtendedInfo')->can() || is_api_request()) {
             $histories->default();
         } else {
             $histories->with('actor');
@@ -204,7 +210,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->item($user, function ($user) {
             if ($user->userPage !== null) {
                 return [
-                    'html' => $user->userPage->bodyHTMLWithoutImageDimensions,
+                    'html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']]),
                     'raw' => $user->userPage->bodyRaw,
                 ];
             } else {
@@ -261,6 +267,13 @@ class UserTransformer extends Fractal\TransformerAbstract
         $stats = $user->statistics($params->get('mode')[0]);
 
         return $this->item($stats, new UserStatisticsTransformer);
+    }
+
+    public function includeSupportLevel(User $user)
+    {
+        return $this->primitive($user->supportLevel(), function ($level) {
+            return $level;
+        });
     }
 
     public function includeUnrankedBeatmapsetCount(User $user)

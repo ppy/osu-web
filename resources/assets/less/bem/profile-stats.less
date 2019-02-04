@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,23 +17,24 @@
  */
 
 .profile-stats {
-  @_badge: profile-badge--level;
-
-  font-size: @font-size--normal;
-  display: flex;
-  flex-direction: column;
-  width: @profile-stats-box-width;
+  .inner-shadow-top();
+  font-size: @font-size--title-small;
   flex: none;
-  margin: -1px 0;
+  padding: 15px 20px;
+  width: 100%;
+
+  @media @desktop {
+    box-shadow: none;
+    font-size: @font-size--normal;
+    padding-right: @gutter-desktop;
+    width: auto;
+    min-width: (@profile-stats-box-width-desktop + @gutter-desktop + 20px);
+  }
 
   &__entry {
     display: flex;
     justify-content: space-between;
-    margin: 2px 0;
-
-    &--full {
-      flex-direction: column;
-    }
+    margin: 5px 0;
   }
 
   &__key {
@@ -41,82 +42,7 @@
     margin-right: 30px;
   }
 
-  &__playtime {
-    color: @yellow;
-    font-size: 12px;
-    letter-spacing: 1px;
-    font-weight: 600;
-  }
-
-  &__stat-box {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-
-    &--playtime {
-      .@{_badge}:hover ~ & {
-        display: none;
-      }
-    }
-
-    &--experience-bar {
-      flex: 1 0 auto;
-      margin-right: 15px;
-      display: none;
-
-      .@{_badge}:hover ~ & {
-        display: flex;
-      }
-    }
-  }
-
-  &__playtime-main {
-    font-size: 18px;
-  }
-
-  &__playtime-unit {
-    font-weight: 200;
-
-    &::after {
-      content: ' ';
-    }
-  }
-
-  &__rank {
-    display: inline-block;
-    text-align: center;
-    margin: 5px 10px 0;
-  }
-
-  &__row {
-    background-color: fade(#000, 50%);
-    color: #fff;
-    padding: 18px 20px;
-    margin: 1px 0;
-
-    &--compact {
-      padding-top: 5px;
-      padding-bottom: 5px;
-    }
-
-    &--playtime {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-  }
-
   &__value {
     font-weight: bold;
-
-    &--score-ranks {
-      text-align: center;
-      padding-top: 10px;
-    }
-
-    &--level-progress {
-      letter-spacing: 1px;
-      margin-left: auto;
-    }
   }
 }

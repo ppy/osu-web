@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -19,89 +19,12 @@
 {div, img} = ReactDOMFactories
 el = React.createElement
 
-class ProfilePage.Badges extends React.Component
-  constructor: (props) ->
-    super props
-
-    @slideTimer = 5000
-    @initialSlide = Math.min(2000, @props.badges.length * 500)
-    @timeouts = {}
-    @intervals = {}
-
-    @state =
-      currentBadge: @props.badges.length - 1
-      looping: true
-      initial: true
-
-
-  componentDidMount: =>
-    @timeouts.first = Timeout.set 0, @nextBadge
-    @timeouts.slider = Timeout.set @initialSlide, =>
-      @setState initial: false
-      @intervals.slider = setInterval @nextBadge, @slideTimer
-
-
-  componentWillUnmount: =>
-    Timeout.clear timeout for _name, timeout of @timeouts
-    clearInterval interval for _name, interval of @intervals
-
-
+class ProfilePage.Badges extends React.PureComponent
   render: =>
-    if @props.badges.length == 0
-      return div()
-    else if @props.badges.length == 1
-      badge = @props.badges[0]
-
-      div className: 'profile-badges profile-badges--single',
-        div className: 'profile-badges__stripe',
-          div
-            className: 'profile-badges__badge'
-            style: backgroundImage: osu.urlPresence(badge.image_url)
-            title: badge.description
-    else
-      div
-        className: 'profile-badges'
-        onMouseEnter: @pause
-        onMouseLeave: @resume
+    div className: 'profile-badges',
+      for badge in @props.badges
         div
-          className: 'profile-badges__stripe'
-          style:
-            transform: @currentBadgeTransform()
-            transitionDuration: @currentBadgeTransitionDuration()
-          for badge in @props.badges
-            div
-              key: badge.image_url
-              className: 'profile-badges__badge'
-              style: backgroundImage: osu.urlPresence(badge.image_url)
-              title: badge.description
-        div className: 'profile-badges__counter',
-          osu.transChoice('common.count.badges', @props.badges.length)
-
-
-  currentBadgeTransform: =>
-    return "" if !@state.looping && !osu.isMobile()
-
-    "translateX(#{-100 * @state.currentBadge / @props.badges.length}%)"
-
-
-  currentBadgeTransitionDuration: =>
-    if @state.initial
-      "#{@initialSlide}ms"
-    else if @state.looping
-      ''
-    else
-      '250ms'
-
-  nextBadge: (callback) =>
-    return if !@state.looping
-
-    @setState
-      currentBadge: (@state.currentBadge + 1) % @props.badges.length, callback
-
-
-  pause: =>
-    @setState looping: false
-
-
-  resume: =>
-    @setState looping: true
+          key: badge.image_url
+          className: 'profile-badges__badge'
+          style: backgroundImage: osu.urlPresence(badge.image_url)
+          title: badge.description

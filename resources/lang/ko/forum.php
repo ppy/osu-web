@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -44,6 +44,20 @@ return [
     'forums' => [
         'topics' => [
             'empty' => '주제글이 아무것도 없습니다!',
+        ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
         ],
     ],
 
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => '즐겨찾기 등록 안됨',
             'to_watching' => '즐겨찾기',
             'to_watching_mail' => '알림과 함께 즐겨찾기',
-            'mail_disable' => '알림 사용 안 함',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,8 @@ return [
     'top-headers' => [
         'headline' => 'Живи Потоци',
         'description' => 'Данните се извличат от twitch.tv на всеки пет минути, въз основа на списък с директории. Почуствайте се свободни в това да започнете да стриймвате и вероятно ще се появите на страницата! За повече информация за това как да си настроите програмата, моля проверете wiki страницата на тема пряко предаване онлайн.',
+
+        'link' => '',
     ],
     'headers' => [
         'regular' => 'Вмомента на живо',

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Exceptions\ValidationException;
 use App\Libraries\CommentBundle;
 use App\Models\Comment;
 use App\Models\Log;
@@ -32,6 +33,13 @@ class CommentsController extends Controller
 {
     protected $section = 'community';
     protected $actionPrefix = 'comments-';
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('auth', ['except' => 'index']);
+    }
 
     public function destroy($id)
     {
@@ -61,7 +69,7 @@ class CommentsController extends Controller
             $class = Comment::COMMENTABLES[$type] ?? null;
 
             if ($class === null) {
-                abort(404);
+                abort(422);
             }
 
             $commentable = $class::findOrFail($id);
@@ -92,6 +100,21 @@ class CommentsController extends Controller
 
             return view('comments.index', compact('commentBundle', 'commentPagination'));
         }
+    }
+
+    public function report($id)
+    {
+        $comment = Comment::findOrFail($id);
+
+        try {
+            $comment->reportBy(auth()->user(), [
+                'comments' => trim(request('comments')),
+            ]);
+        } catch (ValidationException $e) {
+            return error_popup($e->getMessage());
+        }
+
+        return response(null, 204);
     }
 
     public function restore($id)

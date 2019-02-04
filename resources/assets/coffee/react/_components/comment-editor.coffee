@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -74,7 +74,6 @@ class @CommentEditor extends React.PureComponent
             el BigButton,
               modifiers: ['comment-editor']
               text: osu.trans('common.buttons.cancel')
-              icon: 'fas fa-times'
               props:
                 onClick: @props.close
                 disabled: @state.posting
@@ -83,8 +82,11 @@ class @CommentEditor extends React.PureComponent
           div className: "#{bn}__footer-item",
             el BigButton,
               modifiers: ['comment-editor']
-              text: @buttonText()
-              icon: @buttonIcon()
+              text:
+                if @state.posting
+                  el Spinner
+                else
+                  @buttonText()
               props:
                 onClick: @throttledPost
                 disabled: @state.posting || !@isValid()
@@ -94,16 +96,6 @@ class @CommentEditor extends React.PureComponent
               modifiers: ['comment-editor']
               extraClasses: ['js-user-link']
               text: osu.trans("comments.guest_button.#{@mode()}")
-              icon: 'fas fa-sign-in-alt'
-
-
-  buttonIcon: =>
-    return '_spinner' if @state.posting
-
-    switch @mode()
-      when 'reply' then 'fas fa-reply'
-      when 'edit' then 'fas fa-save'
-      when 'new' then 'fas fa-comment'
 
 
   buttonText: =>

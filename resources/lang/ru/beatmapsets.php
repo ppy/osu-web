@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Удалить из избранного',
             'favourited_count' => '+ 1 другой!|+ :count других!',
         ],
-        'stats' => [
-            'cs' => 'Размер нот',
-            'cs-mania' => 'Количество нот',
-            'drain' => 'Потеря HP',
-            'accuracy' => 'Точность',
-            'ar' => 'Скорость подхода',
-            'stars' => 'Сложность',
-            'total_length' => 'Длительность',
-            'bpm' => 'BPM',
-            'count_circles' => 'Количество нот',
-            'count_sliders' => 'Количество слайдеров',
-            'user-rating' => 'Рейтинг пользователей',
-            'rating-spread' => 'Шкала рейтинга',
-            'nominations' => 'Номинации',
-            'playcount' => 'Количество игр',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Описание',
             'genre' => 'Жанр',
@@ -80,6 +79,7 @@ return [
             'tags' => 'Теги',
             'unranked' => 'Unranked карта',
         ],
+
         'scoreboard' => [
             'achieved' => 'достигнут :when',
             'country' => 'Рейтинг стран',
@@ -112,6 +112,23 @@ return [
                 'first' => 'Лидирует',
                 'own' => 'Ваш рекорд',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Размер нот',
+            'cs-mania' => 'Количество нот',
+            'drain' => 'Потеря HP',
+            'accuracy' => 'Точность',
+            'ar' => 'Скорость подхода',
+            'stars' => 'Сложность',
+            'total_length' => 'Длительность',
+            'bpm' => 'BPM',
+            'count_circles' => 'Количество нот',
+            'count_sliders' => 'Количество слайдеров',
+            'user-rating' => 'Рейтинг пользователей',
+            'rating-spread' => 'Шкала рейтинга',
+            'nominations' => 'Номинации',
+            'playcount' => 'Количество игр',
         ],
     ],
 ];

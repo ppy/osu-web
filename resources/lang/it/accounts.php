@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -29,14 +29,14 @@ return [
         ],
 
         'email' => [
-            'current' => 'email corrente',
+            'current' => 'email attuale',
             'new' => 'nuova e-mail',
             'new_confirmation' => 'conferma email',
             'title' => 'Email',
         ],
 
         'password' => [
-            'current' => 'password corrente',
+            'current' => 'password attuale',
             'new' => 'nuova password',
             'new_confirmation' => 'conferma password',
             'title' => 'Password',
@@ -63,12 +63,12 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'conferma del cambio email',
+        'email_subject' => 'conferma il cambio della email di osu!',
         'update' => 'aggiorna',
     ],
 
     'update_password' => [
-        'email_subject' => 'conferma del cambio password',
+        'email_subject' => 'conferma il cambio della password di osu!',
         'update' => 'aggiorna',
     ],
 

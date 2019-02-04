@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Fjern markering af dette beatmapset som favorit',
             'favourited_count' => '+ 1 anden!|+ :count andre!',
         ],
-        'stats' => [
-            'cs' => 'Cirkelstørrelse',
-            'cs-mania' => 'Key Antal',
-            'drain' => 'HP-dræn',
-            'accuracy' => 'Præcision',
-            'ar' => 'Approach Rate',
-            'stars' => 'Stjernesværhedsgrad',
-            'total_length' => 'Længde',
-            'bpm' => 'BPM',
-            'count_circles' => 'Cirkel Antal',
-            'count_sliders' => 'Slider Antal',
-            'user-rating' => 'Brugerbedømmelse',
-            'rating-spread' => 'Rating Fordeling',
-            'nominations' => 'Nomineringer',
-            'playcount' => '',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Beskrivelse',
             'genre' => 'Genre',
@@ -80,6 +79,7 @@ return [
             'tags' => 'Tags',
             'unranked' => 'Ikke-ranked beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => 'opnået :when',
             'country' => 'Landerangering',
@@ -112,6 +112,23 @@ return [
                 'first' => 'I førerpositionen',
                 'own' => 'Dit bedste',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Cirkelstørrelse',
+            'cs-mania' => 'Key Antal',
+            'drain' => 'HP-dræn',
+            'accuracy' => 'Præcision',
+            'ar' => 'Approach Rate',
+            'stars' => 'Stjernesværhedsgrad',
+            'total_length' => 'Længde',
+            'bpm' => 'BPM',
+            'count_circles' => 'Cirkel Antal',
+            'count_sliders' => 'Slider Antal',
+            'user-rating' => 'Brugerbedømmelse',
+            'rating-spread' => 'Rating Fordeling',
+            'nominations' => 'Nomineringer',
+            'playcount' => '',
         ],
     ],
 ];

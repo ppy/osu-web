@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -66,7 +66,7 @@
                                 type="button"
                                 class="btn-circle"
                                 data-remote="true"
-                                data-url="{{ route('wiki.show', [$page->path]) }}"
+                                data-url="{{ wiki_url($page->path) }}"
                                 data-method="PUT"
                                 title="{{ trans('wiki.show.edit.refresh') }}"
                                 data-tooltip-position="left center"

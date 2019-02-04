@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,37 +16,66 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h1, span, a, i} = ReactDOMFactories
+{a, div, h1, span} = ReactDOMFactories
 el = React.createElement
 
-class ProfilePage.HeaderInfo extends React.PureComponent
-  render: =>
-    avatar = el UserAvatar, user: @props.user, modifiers: ['profile']
 
-    div className: 'profile-info',
+class ProfilePage.HeaderInfo extends React.PureComponent
+  bn = 'profile-info'
+
+
+  render: =>
+    avatar = el UserAvatar, user: @props.user, modifiers: ['full']
+
+    div className: bn,
+      div
+        className: "#{bn}__bg"
+        style:
+          backgroundImage: osu.urlPresence(@props.coverUrl)
+
       if @props.user.id == currentUser.id
         a
+          className: "#{bn}__avatar"
           href: "#{laroute.route 'account.edit'}#avatar"
           title: osu.trans 'users.show.change_avatar'
           avatar
       else
-        avatar
-      div className: 'profile-info__details',
-        if @props.user.is_supporter
-          el SupporterIcon
+        div
+          className: "#{bn}__avatar"
+          avatar
+
+      div className: "#{bn}__details",
         h1
-          className: 'profile-info__name'
-          @props.user.username
-          div className: 'profile-info__previous-usernames', @previousUsernames()
+          className: "#{bn}__name"
+          span className: 'u-ellipsis-overflow', @props.user.username
+          div className: "#{bn}__previous-usernames", @previousUsernames()
         # hard space if no title
-        span className: 'profile-info__title', @props.user.title ? '\u00A0'
-        div className: 'profile-info__flags',
-          a
-            href: laroute.route 'rankings',
-              mode: @props.currentMode,
-              country: @props.user.country.code,
-              type: 'performance'
-            el FlagCountry, country: @props.user.country
+        span
+          className: "#{bn}__title"
+          style: color: @props.user.profile_colour
+          @props.user.title ? '\u00A0'
+        div className: "#{bn}__icon-group",
+          div className: "#{bn}__icons",
+            if @props.user.is_supporter
+              span
+                className: "#{bn}__icon #{bn}__icon--supporter"
+                title: osu.trans('users.show.is_supporter')
+                _(@props.user.support_level).times (i) =>
+                  span
+                    key: i
+                    className: 'fas fa-heart'
+          div className: "#{bn}__icons #{bn}__icons--flag",
+            if @props.user.country?.code?
+              a
+                className: "#{bn}__flag #{bn}__flag--country"
+                href: laroute.route 'rankings',
+                  mode: @props.currentMode,
+                  country: @props.user.country.code,
+                  type: 'performance'
+                span className: "#{bn}__flag-flag",
+                  el FlagCountry, country: @props.user.country, modifiers: ['full']
+                span className: "#{bn}__flag-text",
+                  @props.user.country.name
       div
         className: 'profile-info__bar hidden-xs'
         style:
@@ -65,10 +94,10 @@ class ProfilePage.HeaderInfo extends React.PureComponent
         className: 'profile-previous-usernames__icon profile-previous-usernames__icon--with-title'
         title: "#{osu.trans('users.show.previous_usernames')}: #{previousUsernames}"
         onClick: @doNothing
-        i className: 'fas fa-address-card'
+        span className: 'fas fa-address-card'
       div
         className: 'profile-previous-usernames__icon profile-previous-usernames__icon--plain'
-        i className: 'fas fa-address-card'
+        span className: 'fas fa-address-card'
       div
         className: 'profile-previous-usernames__content'
         div

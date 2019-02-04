@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -121,7 +121,7 @@
   &__panel {
     .own-layer();
     .default-box-shadow();
-    .default-border-radius();
+    border-radius: @border-radius-base + 2px @border-radius-base + 2px @border-radius-base @border-radius-base;
 
     width: 100%;
     background: #fff;
@@ -202,7 +202,7 @@
     position: absolute;
     left: @padding;
     bottom: @padding;
-    width: calc(100% ~'-' (@padding * 2));
+    width: calc(100% - (@padding * 2));
   }
 
   &__video-icon {

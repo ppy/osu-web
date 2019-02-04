@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => 'nhóm',
             'index' => 'tổng quan',
             'legal-show' => 'thông tin',
+            'messages-index' => '',
             'news-index' => 'tin tức',
             'news-show' => 'tin tức',
             'password-reset-index' => 'đặt lại mật khẩu',
@@ -77,12 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'cộng đồng',
+            'chat' => '',
+            'chat-index' => '',
             'dev' => 'phát triển',
             'getForum' => 'diễn đàn',
-            'getChat' => 'chat',
             'getLive' => 'live stream',
-            'comments-index' => '',
-            'comments-show' => '',
+            'comments-index' => 'bình luận',
+            'comments-show' => 'bình luận',
             'contests' => 'cuộc thi',
             'profile' => 'trang cá nhân',
             'tournaments' => 'giải đấu',
@@ -135,7 +137,7 @@ return [
 
             'getCheckout' => 'thanh toán',
             'getInvoice' => 'hóa đơn',
-            'orders-index' => '',
+            'orders-index' => 'lịch sử đơn hàng',
             'products-show' => 'mặt hàng',
 
             'new' => 'mới',

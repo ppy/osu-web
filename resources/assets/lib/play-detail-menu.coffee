@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -126,11 +126,10 @@ export class PlayDetailMenu extends PureComponent
         className: 'simple-menu simple-menu--play-detail-menu'
         if @props.score.replay
           a
-            className: 'simple-menu__item'
-            href: laroute.route 'users.replay',
-                    beatmap: @props.score.beatmap.id
+            className: 'simple-menu__item js-login-required--click'
+            href: laroute.route 'scores.download',
                     mode: @props.score.beatmap.mode
-                    user: @props.score.user_id
+                    score: @props.score.id
             'data-turbolinks': false
             onClick: @toggle
             osu.trans 'users.show.extra.top_ranks.download_replay'

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,13 +17,19 @@
  */
 
 .badge-achievement {
-  @_top: ~"badge-achievement";
+  @_top: badge-achievement;
   @_recent-width: 55px;
   @_big-width: 110px;
   @_big-height: 118px;
 
   text-align: center;
   vertical-align: middle;
+
+  &--dynamic-height {
+    flex: none;
+    width: (1em * @_big-width / @_big-height );
+    height: 1em;
+  }
 
   &--listing {
     width: 70px;
@@ -34,6 +40,10 @@
     min-width: (@_recent-width + 10px);
     width: 25%;
     margin-bottom: 10px;
+  }
+
+  &--recent-activity {
+    height: 100%;
   }
 
   &__locked-bg {
@@ -52,18 +62,26 @@
   &__image {
     max-width: 100%;
 
+    &--big {
+      width: @_big-width;
+      height: @_big-height;
+    }
+
+    .@{_top}--dynamic-height & {
+      vertical-align: baseline;
+    }
+
     .@{_top}--recent & {
       max-width: @_recent-width;
+    }
+
+    .@{_top}--recent-activity & {
+      height: 100%;
     }
 
     .@{_top}--locked & {
       opacity: 0.25;
       filter: saturate(0);
-    }
-
-    &--big {
-      width: @_big-width;
-      height: @_big-height;
     }
   }
 }

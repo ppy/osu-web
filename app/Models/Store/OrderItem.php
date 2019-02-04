@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,6 +27,21 @@ use App\Traits\Validatable;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property float|null $cost
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property array|null $extra_data
+ * @property string|null $extra_info
+ * @property int $id
+ * @property Order $order
+ * @property int $order_id
+ * @property Product $product
+ * @property int $product_id
+ * @property int $quantity
+ * @property bool $reserved
+ * @property \Carbon\Carbon|null $updated_at
+ */
 class OrderItem extends Model
 {
     use SoftDeletes, Validatable;
@@ -121,7 +136,7 @@ class OrderItem extends Model
     {
         // only one for now
         if ($this->product->custom_class === 'username-change') {
-            return new ChangeUsername($this->order->user, $this->extra_info, 'paid');
+            return new ChangeUsername($this->order->user, $this->extra_info);
         }
     }
 

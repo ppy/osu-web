@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -20,9 +20,8 @@
 el = React.createElement
 
 ProfilePage.ExtraHeader = (props) ->
-  div
-    key: 'header'
+  div null,
     h2 className: 'page-extra__title', osu.trans("users.show.extra.#{props.name}.title")
     if props.withEdit
-      span className: 'page-extra__dragdrop-toggle js-profile-page-extra--sortable-handle',
+      span className: 'page-extra__dragdrop-toggle hidden-xs js-profile-page-extra--sortable-handle',
         i className: 'fas fa-bars'

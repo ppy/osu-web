@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -38,7 +38,7 @@ return [
         'over' => 'Díky za vaše vstupy! Podání byla uzavřena a hlasování se brzy otevře.',
         'limit_reached' => 'Dosáhl jsi limitu vstupů pro tuto soutěž',
         'drop_here' => 'Tvůj vstup přetáhni sem',
-        'download' => '',
+        'download' => 'Stáhnout .osz',
         'wrong_type' => [
             'art' => 'Pouze .jpg a ,png soubory jsou přijímány pro tuto soutěž.',
             'beatmap' => 'Pouze .osu soubory jsou přijímány pro tuto soutěž.',
@@ -51,8 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'hlasy',
-        'count' => '',
-        'points' => '',
+        'count' => ':count hlas|:count hlasů',
+        'points' => ':count bod|:count bodů',
     ],
     'dates' => [
         'ended' => 'Ukončeno :date',

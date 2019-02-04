@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -52,7 +52,6 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
             'updated_at' => json_time($discussion->updated_at),
             'deleted_at' => json_time($discussion->deleted_at),
             'votes' => $discussion->votesSummary(),
-            'duration' => $discussion->total_length,
 
             'kudosu_denied' => $discussion->kudosu_denied,
         ];

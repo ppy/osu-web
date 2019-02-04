@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -31,8 +31,9 @@ class ProfilePage.TopRanks extends React.PureComponent
           div className: 'profile-extra-entries',
             el window._exported.PlayDetailList, scores: @props.scoresBest
 
-            li className: 'profile-extra-entries__item',
+            div className: 'profile-extra-entries__item',
               el ShowMoreLink,
+                modifiers: ['profile-page', 't-community-user-graygreen-darker']
                 event: 'profile:showMore'
                 hasMore: @props.pagination.scoresBest.hasMore
                 loading: @props.pagination.scoresBest.loading
@@ -48,13 +49,18 @@ class ProfilePage.TopRanks extends React.PureComponent
       div null,
         h3
           className: 'page-extra__title page-extra__title--small'
-          "#{osu.trans('users.show.extra.top_ranks.first.title')} (#{@props.user.scores_first_count[0]})"
+          osu.trans('users.show.extra.top_ranks.first.title')
+          ' '
+          if @props.user.scores_first_count[0] > 0
+            span className: 'page-extra__title-count',
+              @props.user.scores_first_count[0].toLocaleString()
         if @props.scoresFirsts?.length
           div className: 'profile-extra-entries',
             el window._exported.PlayDetailList, scores: @props.scoresFirsts
 
-            li className: 'profile-extra-entries__item',
+            div className: 'profile-extra-entries__item',
               el ShowMoreLink,
+                modifiers: ['profile-page', 't-community-user-graygreen-darker']
                 event: 'profile:showMore'
                 hasMore: @props.pagination.scoresFirsts.hasMore
                 loading: @props.pagination.scoresFirsts.loading

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -52,16 +52,16 @@ return [
     ],
 
     'chat' => [
-        'blocked' => '',
-        'friends_only' => '',
-        'moderated' => '',
-        'no_access' => '',
-        'restricted' => '',
+        'blocked' => 'あなたをブロックしているユーザーまたは、あなたがブロックしているユーザーとはメッセージはやり取りできません。',
+        'friends_only' => 'ユーザーは友達リストにいないユーザーからブロックされています。',
+        'moderated' => 'そのチャンネルは現在管理されています。',
+        'no_access' => 'あなたはそのチャンネルにアクセスするための権限を持っていません。',
+        'restricted' => 'あなたがbanされている間はメッセージを送信できません。',
     ],
 
     'comment' => [
         'update' => [
-            'deleted' => "",
+            'deleted' => "削除済みの投稿は編集できません。",
         ],
     ],
 
@@ -71,7 +71,7 @@ return [
 
     'forum' => [
         'moderate' => [
-            'no_permission' => '',
+            'no_permission' => 'このフォーラムを管理する権限がありません。',
         ],
 
         'post' => [

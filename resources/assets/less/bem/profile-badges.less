@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,30 +17,19 @@
  */
 
 .profile-badges {
-  @_top: profile-badges;
-
-  @_width: @_badge-width + ((@_padding + @_badge-margin) * 2);
-  @_padding: 3px;
-
-  @_badge-margin: 3px;
   @_badge-width: 86px;
   @_badge-height: 40px;
+  @_padding: 5px;
 
-  .own-layer();
-  .default-border-radius();
-  background-color: #333;
-  margin-bottom: 5px;
-  min-width: @_width;
-  max-width: @_width;
-  overflow: hidden;
+  .inner-shadow-top();
+  padding: (@padding-profile-page - @_padding) (@gutter-profile-page - @_padding);
   display: flex;
-  flex-direction: column;
-  padding: @_padding;
+  flex-wrap: wrap;
+  background-color: @community-user-graygreen-darkest;
 
-  &:hover {
-    @media @desktop {
-      max-width: 100%;
-    }
+  @media @desktop {
+    padding-left: (@gutter-profile-page-desktop - @_padding);
+    padding-right: (@gutter-profile-page-desktop - @_padding);
   }
 
   &__badge {
@@ -50,29 +39,6 @@
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    margin: @_badge-margin;
-  }
-
-  &__counter {
-    color: #fff;
-    font-size: @font-size--small;
-    padding-top: @_padding;
-    text-align: center;
-    margin: 0 @_padding;
-  }
-
-  &__stripe {
-    display: flex;
-    align-self: flex-start;
-    transition: transform 500ms ease-in-out;
-    will-change: transform;
-
-    .@{_top}:hover & {
-      @media @desktop {
-        flex-wrap: wrap;
-        justify-content: center;
-        max-width: 100%;
-      }
-    }
+    margin: @_padding;
   }
 }

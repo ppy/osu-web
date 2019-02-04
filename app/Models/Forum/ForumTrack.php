@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,11 @@
 
 namespace App\Models\Forum;
 
+/**
+ * @property int $forum_id
+ * @property int $mark_time
+ * @property int $user_id
+ */
 class ForumTrack extends Model
 {
     protected $table = 'phpbb_forums_track';

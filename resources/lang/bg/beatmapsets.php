@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -53,22 +53,21 @@ return [
             'unfavourite' => 'Премахни от харесани бийтмап сетове',
             'favourited_count' => '+ 1 друг!|+ :count други!',
         ],
-        'stats' => [
-            'cs' => 'Големина на кръгчетата',
-            'cs-mania' => 'Брой клавиши',
-            'drain' => 'HP Изтощаване',
-            'accuracy' => 'Прецизност',
-            'ar' => 'Скорост на наближаване',
-            'stars' => 'Трудност',
-            'total_length' => 'Продължителност',
-            'bpm' => 'BPM',
-            'count_circles' => 'Брой кръгчета',
-            'count_sliders' => 'Брой слайдери',
-            'user-rating' => 'Потребителски рейтинг',
-            'rating-spread' => 'Разпределение на рейтинга',
-            'nominations' => 'Номинации',
-            'playcount' => 'Брой игри',
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
         ],
+
         'info' => [
             'description' => 'Описание',
             'genre' => 'Жанр',
@@ -80,6 +79,7 @@ return [
             'tags' => 'Тагове',
             'unranked' => 'Некласиран бийтмап',
         ],
+
         'scoreboard' => [
             'achieved' => 'постигнато на :when',
             'country' => 'Държавно класиране',
@@ -112,6 +112,23 @@ return [
                 'first' => 'Начело',
                 'own' => 'Твоят най-добър',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Големина на кръгчетата',
+            'cs-mania' => 'Брой клавиши',
+            'drain' => 'HP Изтощаване',
+            'accuracy' => 'Прецизност',
+            'ar' => 'Скорост на наближаване',
+            'stars' => 'Трудност',
+            'total_length' => 'Продължителност',
+            'bpm' => 'BPM',
+            'count_circles' => 'Брой кръгчета',
+            'count_sliders' => 'Брой слайдери',
+            'user-rating' => 'Потребителски рейтинг',
+            'rating-spread' => 'Разпределение на рейтинга',
+            'nominations' => 'Номинации',
+            'playcount' => 'Брой игри',
         ],
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -89,6 +89,7 @@ return [
         'paid_on' => '订单支付于 :date',
 
         'invoice' => '查看发票',
+        'no_orders' => '没有可显示的订单。',
 
         'item' => [
             'display_name' => [

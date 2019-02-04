@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,19 @@ namespace App\Models;
 
 use Carbon\Carbon;
 
+/**
+ * @property User $actor
+ * @property int $ban_id
+ * @property int|null $ban_status
+ * @property int|null $banner_id
+ * @property int $period
+ * @property string|null $reason
+ * @property string|null $supporting_url
+ * @property \Carbon\Carbon|null $timestamp
+ * @property mixed $type
+ * @property User $user
+ * @property int|null $user_id
+ */
 class UserAccountHistory extends Model
 {
     protected $table = 'osu_user_banhistory';

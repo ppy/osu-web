@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -89,7 +89,7 @@
   color: @blue-light;
 
   .link-hover({
-    color: @blue-light;
+    color: @blue-lighter;
   });
 }
 
@@ -211,6 +211,11 @@
   align-items: center;
 }
 
+.at2x(@url, @w: auto, @h: auto) {
+  .at2x-simple(@url);
+  background-size: @w @h;
+}
+
 .at2x-simple(@url) {
   @url2x: replace(@url, "(\.[^.]+)$", "@2x$1");
   background-image: url(@url);
@@ -233,6 +238,15 @@
   top: 0;
   height: 100%;
   width: 100%;
+}
+
+// used to account rounding error in chrome where 100% is few pixels short to the actual 100%.
+.full-size-overflow() {
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  right: -10px;
+  bottom: -10px;
 }
 
 .btn-bg() {
@@ -265,4 +279,15 @@
 .default-font() {
   font-family: @font-default;
   font-family: var(--font-default-override, var(--font-default));
+}
+
+.webkit-line-clamp(@lines) {
+  // Magic line-clamping on webkit browsers (safari, chrome, etc).
+  // Other browsers won't show ellipses.
+  display: -webkit-box;
+  -webkit-line-clamp: @lines;
+  // It's required to tell autoprefixer to ignore the following line.
+  // Reference: https://github.com/postcss/autoprefixer/issues/1141
+  /* autoprefixer: ignore next */
+  -webkit-box-orient: vertical;
 }

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,10 +23,10 @@
   @padding--small: 10px;
 
   &--profile-page {
-    margin-left: -@page-extra-side-padding--small;
+    margin-left: -@gutter-profile-page;
 
     @media @desktop {
-      margin-left: -@page-extra-side-padding--large;
+      margin-left: -@gutter-profile-page-desktop;
     }
   }
 
@@ -44,11 +44,12 @@
     }
 
     .@{_top}--profile-page & {
-      padding: @page-extra-side-padding--small;
+      background-color: @community-user-graygreen-darker;
+      padding: 10px @gutter-profile-page;
 
       @media @desktop {
-        padding-left: @page-extra-side-padding--large;
-        padding-right: @page-extra-side-padding--large;
+        padding-left: @gutter-profile-page-desktop;
+        padding-right: @gutter-profile-page-desktop;
       }
     }
   }
@@ -63,16 +64,16 @@
 
     .@{_top}--beatmap-description-editor & {
       padding: @padding--large;
-      max-height: calc(100vh ~'-' 200px);
+      max-height: calc(100vh - 200px);
     }
 
     .@{_top}--profile-page & {
       height: 400px;
-      padding: @page-extra-side-padding--small;
+      padding: 10px @gutter-profile-page;
 
       @media @desktop {
-        padding-left: @page-extra-side-padding--large;
-        padding-right: @page-extra-side-padding--large;
+        padding-left: @gutter-profile-page-desktop;
+        padding-right: @gutter-profile-page-desktop;
       }
     }
   }

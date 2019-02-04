@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -29,10 +29,10 @@ return [
     ],
 
     'spotlight' => [
-        'end_date' => '',
+        'end_date' => '結束日期',
         'map_count' => '',
-        'participants' => '',
-        'start_date' => '',
+        'participants' => '參加者',
+        'start_date' => '開始日期',
     ],
 
     'stat' => [

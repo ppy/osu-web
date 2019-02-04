@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,6 +30,7 @@ return [
     ],
 
     'buttons' => [
+        'admin' => 'Admin',
         'back_to_top' => 'Back to top',
         'back_to_previous' => 'Return to previous position',
         'cancel' => 'Cancel',
@@ -63,6 +64,7 @@ return [
         'hours' => ':count hour|:count hours',
         'item' => ':count unit|:count units',
         'minute_short_unit' => 'min|mins',
+        'minutes' => ':count minute|:count minutes',
         'months' => ':count month|:count months',
         'second_short_unit' => 'sec|secs',
         'years' => ':count year|:count years',

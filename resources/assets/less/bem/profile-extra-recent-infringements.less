@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,16 +20,18 @@
   @_top: profile-extra-recent-infringements;
 
   overflow-x: auto;
+  line-height: normal;
 
   &__action {
     width: 100%;
     border-radius: 20px;
 
-    margin-left: -10px;
+    margin: -2px -10px;
     padding: 2px 10px;
 
     &--note {
       background-color: @blue;
+      color: #000;
     }
 
     &--restriction {
@@ -39,6 +41,7 @@
 
     &--silence {
       background-color: @yellow;
+      color: #000;
     }
   }
 
@@ -47,25 +50,22 @@
     min-width: 800px;
 
     margin: 0 -5px;
+
+    @media @desktop {
+      min-width: auto;
+    }
   }
 
   &__table-cell {
-    padding: 0 5px;
-    padding-bottom: 7px;
-
-    &--header {
-      font-size: @font-size--small;
-      font-weight: 900;
-      text-transform: uppercase;
-
-      padding-bottom: 10px;
-    }
+    padding: 5px;
+    vertical-align: baseline;
 
     &--action {
       width: 115px;
     }
 
     &--date {
+      color: @community-user-graygreen-lighter;
       width: 160px;
       padding-right: 20px;
     }
@@ -74,17 +74,25 @@
       width: 145px;
       padding-right: 40px;
     }
+
+    // overrides other modifiers
+    &--header {
+      font-size: @font-size--small;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #fff;
+    }
   }
 
   &__actor {
-    color: #999;
-
-    a, a:hover, a:active, a:link, a:visited {
-      color: #999;
-    }
+    color: @community-user-graygreen-lighter;
 
     &::before {
       content: ' ';
+    }
+
+    a {
+      color: @community-user-graygreen-light;
     }
   }
 }

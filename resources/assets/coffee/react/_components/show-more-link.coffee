@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -15,25 +15,31 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{button, div} = ReactDOMFactories
+{button, span} = ReactDOMFactories
 el = React.createElement
+bn = 'show-more-link'
 
-class @ShowMoreLink extends React.PureComponent
-  render: =>
-    blockClass = osu.classWithModifiers('show-more-link', @props.modifiers)
+@ShowMoreLink = React.forwardRef (props, ref) =>
+  return null unless props.hasMore || props.loading
 
-    if @props.loading
-      div className: blockClass, el Spinner
+  onClick = props.callback
+  onClick ?= -> $.publish props.event, props.data
 
-    else
-      return null unless @props.hasMore
-
-      button
-        type: 'button'
-        onClick: @props.callback ? @showMore
-        className: "#{blockClass} show-more-link--link"
+  button
+    ref: ref
+    type: 'button'
+    onClick: onClick
+    disabled: props.loading
+    className: osu.classWithModifiers(bn, props.modifiers)
+    span className: "#{bn}__spinner",
+      el Spinner
+    span className: "#{bn}__label",
+      span className: "#{bn}__label-icon",
+        span className: 'fas fa-angle-down'
+      span className: "#{bn}__label-text",
         osu.trans('common.buttons.show_more')
 
-
-  showMore: =>
-    $.publish @props.event, @props.data
+        if props.remaining?
+          " (#{props.remaining})"
+      span className: "#{bn}__label-icon",
+        span className: 'fas fa-angle-down'

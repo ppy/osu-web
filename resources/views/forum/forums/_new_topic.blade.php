@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@
 @endphp
 
 @if ($newTopicEnabled)
-    <a class="btn-osu-big btn-osu-big--forum-new-topic js-login-required--click"
+    <a class="btn-osu-big btn-osu-big--forum-button js-login-required--click"
         href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}">
         @if (Auth::check())
             <span class="btn-osu-big__content">
@@ -41,7 +41,7 @@
         @endif
     </a>
 @else
-    <span class="btn-osu-big btn-osu-big--forum-new-topic" title="{{ $newTopicAuth->message() }}" disabled>
+    <span class="btn-osu-big btn-osu-big--forum-button" title="{{ $newTopicAuth->message() }}" disabled>
         <span class="btn-osu-big__content">
             <span class="btn-osu-big__left">
                 {{ trans('forum.topic.new_topic') }}

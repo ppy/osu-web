@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@ el = React.createElement
 
 class ProfilePage.ExtraTab extends React.PureComponent
   render: =>
-    className = 'page-mode-link'
+    className = 'page-mode-link page-mode-link--profile-page'
 
     if @props.page == @props.currentPage
       className += ' page-mode-link--is-active'

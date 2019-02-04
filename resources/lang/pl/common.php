@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -63,6 +63,7 @@ return [
         'hours' => ':count godzina|:count godziny|:count godzin',
         'item' => ':count sztuka|:count sztuki|:count sztuk',
         'minute_short_unit' => 'min|min|min',
+        'minutes' => '',
         'months' => ':count miesiąc|:count miesiące|:count miesięcy',
         'second_short_unit' => 's|s|s',
         'years' => ':count rok|:count lata|:count lat',

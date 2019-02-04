@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -127,7 +127,9 @@ class Beatmaps.Main extends React.PureComponent
         className: 'osu-layout__row osu-layout__row--page-compact'
         div className: listCssClasses,
           if currentUser.id?
-            el Beatmaps.SearchSort, sorting: @sorting(), filters: @state.filters
+            div
+              className: 'beatmapsets__sort'
+              el Beatmaps.SearchSort, sorting: @sorting(), filters: @state.filters
 
           div
             className: 'beatmapsets__content'
@@ -155,7 +157,9 @@ class Beatmaps.Main extends React.PureComponent
                     title: osu.trans("beatmaps.listing.search.not-found")
                   osu.trans("beatmaps.listing.search.not-found-quote")
 
-          el(Beatmaps.Paginator, @state.paging) unless @isSupporterMissing()
+          if !@isSupporterMissing()
+            div className: 'beatmapsets__paginator',
+              el(Beatmaps.Paginator, @state.paging)
 
       el window._exported.BackToTop,
         anchor: @backToTopAnchor
@@ -246,18 +250,16 @@ class Beatmaps.Main extends React.PureComponent
 
 
   stateFromUrl: =>
-    params = location.search.substr(1).split('&')
+    params = new URL(location).searchParams
 
     expand = false
 
     filters = {}
 
-    for part in params
-      [key, value] = part.split('=')
-      value = decodeURIComponent(value)
-      key = BeatmapsetFilter.charToKey[key]
+    for own char, key of BeatmapsetFilter.charToKey
+      value = params.get(char)
 
-      continue if !key? || value.length == 0
+      continue if !value? || value.length == 0
 
       value = BeatmapsetFilter.castFromString[key](value) if BeatmapsetFilter.castFromString[key]
       expand = true if key in BeatmapsetFilter.expand

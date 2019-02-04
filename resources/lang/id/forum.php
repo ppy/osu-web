@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -44,6 +44,20 @@ return [
     'forums' => [
         'topics' => [
             'empty' => 'Topik tidak ditemukan!',
+        ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
         ],
     ],
 
@@ -274,7 +288,8 @@ return [
             'to_not_watching' => 'Tidak dimarkahi',
             'to_watching' => 'Markah',
             'to_watching_mail' => 'Markah dengan notifikasi',
-            'mail_disable' => 'Nonaktifkan notifikasi',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

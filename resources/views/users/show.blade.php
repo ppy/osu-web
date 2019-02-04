@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,22 +15,26 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $legacyNav = false;
+@endphp
 @extends('master', [
+    'bodyAdditionalClasses' => 'osu-layout--body-222-plain',
     'currentSection' => 'community',
     'currentAction' => 'profile',
     'title' => trans('users.show.title', ['username' => $user->username]),
-    'pageDescription' => trans('users.show.page_description', ['username' => $user->username])
+    'pageDescription' => trans('users.show.page_description', ['username' => $user->username]),
+    'legacyNav' => $legacyNav,
 ])
 
 @section('content')
     @if (Auth::user() && Auth::user()->isAdmin() && $user->isRestricted())
-        <div class="osu-page">
-            @include('objects._notification_banner', [
-                'type' => 'warning',
-                'title' => trans('admin.users.restricted_banner.title'),
-                'message' => trans('admin.users.restricted_banner.message'),
-            ])
-        </div>
+        @include('objects._notification_banner', [
+            'type' => 'warning',
+            'title' => trans('admin.users.restricted_banner.title'),
+            'message' => trans('admin.users.restricted_banner.message'),
+            'legacyNav' => $legacyNav,
+        ])
     @endif
 
     <div class="js-react--profile-page osu-layout osu-layout--full"></div>

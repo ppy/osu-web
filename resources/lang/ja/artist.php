@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,11 +19,11 @@
  */
 
 return [
-    'page_description' => 'osu!推奨アーティスト',
-    'title' => '推奨アーティスト',
+    'page_description' => 'osu! おすすめアーティスト',
+    'title' => 'おすすめアーティスト',
 
     'admin' => [
-        'hidden' => 'ARTIST IS CURRENTLY HIDDEN',
+        'hidden' => 'アーティストは現在非表示にされています',
     ],
 
     'beatmaps' => [
@@ -33,24 +33,24 @@ return [
     ],
 
     'index' => [
-        'description' => 'osu!推奨アーティストはosu!との協力でゲームにさまざまな楽曲を提供しているアーティストたちです。このアーティストたちはosu!チームに楽曲の譜面化への適性を見込まれて選ばれました。中にはosu!限定の楽曲を提供しているアーティストも存在します。<br><br>このセクションの楽曲は譜面としてタイミングは既に設定してあり、osu!内のみでの使用が認可されています。',
+        'description' => 'osu!推奨アーティストはosu!との協力でゲームにさまざまな楽曲を提供しているアーティストたちです。このアーティストたちはosu!チームに楽曲の譜面化への適性を見込まれて選ばれました。中にはosu!限定の楽曲を提供しているアーティストも存在します。<br><br>このセクションの楽曲は譜面としてタイミングは既に設定してあり、osu!内のみでの使用が許可されています。',
     ],
 
     'links' => [
-        'osu' => 'プロフィール',
+        'osu' => 'osu!',
         'site' => '公式サイト',
     ],
 
     'songs' => [
         '_' => '楽曲',
         'count' => ':count 曲',
-        'exclusive' => 'osu!限定',
+        'exclusive' => 'osu! 限定',
     ],
 
     'tracklist' => [
-        'title' => '',
-        'length' => '',
-        'bpm' => '',
-        'genre' => '',
+        'title' => '曲名',
+        'length' => '長さ',
+        'bpm' => 'bpm',
+        'genre' => 'ジャンル',
     ],
 ];

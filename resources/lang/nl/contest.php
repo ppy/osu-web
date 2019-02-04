@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -38,7 +38,7 @@ return [
         'over' => 'Bedankt voor de inzendingen! Inzendingen zijn gesloten voor deze wedstrijd en stemmen gaan binnenkort openen.',
         'limit_reached' => 'Je hebt de limiet voor inschrijvingen bereikt',
         'drop_here' => 'Sleep je inzending hier',
-        'download' => '',
+        'download' => 'Download .osz',
         'wrong_type' => [
             'art' => 'Alleen .jpg en .png bestanden worden geaccepteerd voor deze wedstrijd.',
             'beatmap' => 'Alleen .osu bestanden worden geaccepteerd voor deze wedstrijd.',
@@ -51,8 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'stemmen',
-        'count' => '',
-        'points' => '',
+        'count' => ':count stem|:count stemmen',
+        'points' => ':count punt|:count punten',
     ],
     'dates' => [
         'ended' => 'Gesloten :date',

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'index' => [
         'none_running' => 'Non ci sono tornei in corso in questo momento, prova a vedere più tardi!',
-        'registration_period' => 'Registrazioni da :inizio a :fine',
+        'registration_period' => 'Registrazione da :start a :end',
 
         'header' => [
             'subtitle' => 'Una lista di tutti i tornei attivi e ufficialmente riconosciuti',
@@ -42,10 +42,10 @@ return [
         'banner' => 'Supporta la tua squadra',
         'entered' => 'Sei stato iscritto in questo torneo. <br><br>Nota che questo non vuol dire che tu sia stato automaticamente assegnato a una squadra.<br><br>Ulteriori informazioni verranno spedite via email in vicinanza della data del torneo, quindi per favore assicurati che l\'email associata al tuo account di osu! sia valida!',
         'info_page' => 'Informazioni',
-        'login_to_register' => 'Per favore :effettua l\'accesso per vedere i dettagli della registrazione!',
+        'login_to_register' => 'Si prega di :login per visualizzare i dettagli di registrazione!',
         'not_yet_entered' => 'Non sei registrato in questo torneo.',
         'rank_too_low' => 'Siamo spiacenti, la tua posizione in classifica non soddisfa i i requisiti di questo torneo!',
-        'registration_ends' => 'Le iscrizioni chiudono il :data',
+        'registration_ends' => 'Le iscrizioni chiudono il :date',
 
         'button' => [
             'cancel' => 'Annulla iscrizione',
@@ -59,5 +59,5 @@ return [
             'running' => 'Questo torneo è attualmente in corso. Controllare la pagina di informazioni per avere più dettagli.',
         ],
     ],
-    'tournament_period' => ':inizio a :fine',
+    'tournament_period' => ':start a :end',
 ];

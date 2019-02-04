@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -28,19 +28,19 @@
     box-shadow: 0 @border-size darken(@color, 10%), 0 (@border-size + @box-shadow-y) @box-shadow-radius @box-shadow-color;
 
     &:focus {
-      background-position: calc(50% ~'-' 10px) 50%;
+      background-position: calc(50% - 10px) 50%;
       background-color: lighten(@color, 5%);
     }
 
     &:hover {
-      background-position: calc(50% ~'-' 20px) 50%;
+      background-position: calc(50% - 20px) 50%;
       background-color: lighten(@color, 10%);
     }
 
     &:active {
       @move: 2px;
       transform: translate(0, @move);
-      background-position: calc(50% ~'-' 20px) 50%;
+      background-position: calc(50% - 20px) 50%;
       box-shadow: 0 (@border-size - @move) darken(@color, 10%), 0 (@border-size - @move + @box-shadow-y) @box-shadow-radius @box-shadow-color;
     }
   }

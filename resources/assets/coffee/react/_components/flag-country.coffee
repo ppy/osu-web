@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -21,11 +21,10 @@ el = React.createElement
 
 bn = 'flag-country'
 
-@FlagCountry = ({country, classModifiers = []}) ->
-  return span() if !country.code?
+@FlagCountry = ({country, modifiers}) ->
+  return null if !country?.code?
 
-  blockClass = bn
-  blockClass += " #{bn}--#{m}" for m in classModifiers
+  blockClass = osu.classWithModifiers(bn, modifiers)
 
   span
     className: blockClass

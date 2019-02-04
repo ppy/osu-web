@@ -1,0 +1,122 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.profile-detail-bar {
+  @_column-padding: 10px;
+  width: 100%;
+  display: none;
+  display: flex;
+  flex-wrap: wrap;
+  flex: none;
+  padding: (@padding-profile-page - @_column-padding) (@gutter-profile-page - @_column-padding);
+  justify-content: space-between;
+  align-items: center;
+  background-color: @community-user-graygreen-dark;
+
+  @media @desktop {
+    height: 60px;
+    padding-left: @gutter-profile-page-desktop;
+    padding-right: @gutter-profile-page-desktop;
+  }
+
+  &__column {
+    display: flex;
+    width: 100%;
+    padding: @_column-padding;
+
+    @media @desktop {
+      width: auto;
+    }
+
+    &--left {
+      align-self: stretch;
+      margin: -5px;
+    }
+
+    &--right {
+      @media @desktop {
+        min-width: @profile-stats-box-width-desktop;
+      }
+    }
+  }
+
+  &__entry {
+    flex: none;
+
+    &--ranking {
+      height: 0; // enforce overflow to bottom
+      align-self: flex-start;
+
+      & + & {
+        margin-left: 10px;
+      }
+    }
+
+    &--level {
+      .center-content();
+
+      margin-left: auto;
+      display: flex;
+      height: 40px;
+    }
+
+    &--level-progress {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding-right: 10px;
+      font-size: @font-size--normal;
+      font-weight: bold;
+    }
+  }
+
+  &__level {
+    .center-content();
+    height: calc(100% + 10px);
+    width: 50px;
+    font-size: @font-size--large;
+    background-image: url('/images/backgrounds/level-hexagon.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &__level-progress-text {
+    position: absolute;
+    top: 50%;
+    right: 0;
+  }
+
+  &__menu-item {
+    margin: 5px;
+    display: flex;
+  }
+
+  &__page-toggle {
+    .center-content();
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: @gutter-desktop;
+    height: 100%;
+    display: none;
+
+    @media @desktop {
+      display: flex;
+    }
+  }
+}

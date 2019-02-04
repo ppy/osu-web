@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -63,6 +63,7 @@ return [
         'hours' => ':count час|:count часа|:count часов',
         'item' => ':count единица|:count единицы|:count единиц',
         'minute_short_unit' => 'мин',
+        'minutes' => '',
         'months' => ':count месяц|:count месяца|:count месяцев',
         'second_short_unit' => 'сек',
         'years' => ':count год|:count года|:count лет',

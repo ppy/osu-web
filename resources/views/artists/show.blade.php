@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -47,7 +47,7 @@
                     <div class="artist__albums">
                         @foreach ($albums as $album)
                             <div class="artist__album">
-                                <a name="album-{{$album['id']}}" id="album-{{$album['id']}}"></a>
+                                <a class="fragment-target" name="album-{{$album['id']}}" id="album-{{$album['id']}}"></a>
                                 <div class="artist__album-header">
                                     <div class="artist__album-header-overlay" style="background-image: url({{$album['cover_url']}});"></div>
                                     <img class="artist__album-cover" src="{{$album['cover_url']}}">

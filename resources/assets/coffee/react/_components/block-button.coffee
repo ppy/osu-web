@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -25,13 +25,14 @@ class @BlockButton extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @eventId = "blockButton-#{@props.user_id}-#{osu.uuid()}"
+    @button = React.createRef()
+    @eventId = "blockButton-#{@props.userId}-#{osu.uuid()}"
     @state =
-      block: _.find(currentUser.blocks, target_id: props.user_id)
+      block: _.find(currentUser.blocks, target_id: props.userId)
 
 
   updateBlocks: (data) =>
-    @setState block: _.find(data, target_id: @props.user_id), ->
+    @setState block: _.find(data, target_id: @props.userId), ->
       currentUser.blocks = _.filter data, relation_type: 'block'
       currentUser.friends = _.filter data, relation_type: 'friend'
       $.publish 'user:update', currentUser
@@ -40,7 +41,7 @@ class @BlockButton extends React.PureComponent
 
 
   refresh: (e) =>
-    @setState block: _.find(currentUser.blocks, target_id: @props.user_id)
+    @setState block: _.find(currentUser.blocks, target_id: @props.userId)
 
 
   clicked: (e) =>
@@ -51,22 +52,18 @@ class @BlockButton extends React.PureComponent
         #un-blocking
         @xhr = $.ajax
           type: 'DELETE'
-          url: laroute.route 'blocks.destroy', block: @props.user_id
+          url: laroute.route 'blocks.destroy', block: @props.userId
       else
         #blocking
         @xhr = $.ajax
           type: 'POST'
-          url: laroute.route 'blocks.store', target: @props.user_id
+          url: laroute.route 'blocks.store', target: @props.userId
 
       @xhr
       .always =>
         @setState loading: false
-      .fail osu.emitAjaxError(@button)
+      .fail osu.emitAjaxError(@button.current)
       .done @updateBlocks
-
-
-  setButton: (element) =>
-    @button = element
 
 
   componentDidMount: =>
@@ -81,23 +78,34 @@ class @BlockButton extends React.PureComponent
   render: =>
     return null unless @isVisible()
 
+    blockClass = osu.classWithModifiers(bn, ['block'].concat(@props.modifiers))
+    if @props.wrapperClass?
+      wrapperClass = @props.wrapperClass
+      contentClass = blockClass
+    else
+      wrapperClass = blockClass
+      contentClass = null
+
     button
       type: 'button'
-      className: "#{bn} #{bn}--block"
+      className: wrapperClass
       onClick: @clicked
-      ref: @setButton
+      ref: @button
       disabled: @state.loading
-      span {},
+      span className: contentClass,
         if @state.loading
           span className: "#{bn}__icon fa-fw", el Spinner
         else
           i className: "#{bn}__icon fas fa-ban fa-fw"
-
-        if @state.block then " #{osu.trans 'users.blocks.button.unblock'}" else " #{osu.trans 'users.blocks.button.block'}"
+        ' '
+        if @state.block
+          osu.trans 'users.blocks.button.unblock'
+        else
+          osu.trans 'users.blocks.button.block'
 
   isVisible: =>
     # - not a guest
     # - not viewing own profile
     currentUser.id? &&
-      _.isFinite(@props.user_id) &&
-      @props.user_id != currentUser.id
+      _.isFinite(@props.userId) &&
+      @props.userId != currentUser.id
