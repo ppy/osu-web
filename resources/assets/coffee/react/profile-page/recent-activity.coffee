@@ -53,13 +53,12 @@ class ProfilePage.RecentActivity extends React.PureComponent
 
     switch event.type
       when 'achievement'
-        badge = div className: 'profile-extra-entries__icon',
-          el ProfilePage.AchievementBadge,
-            modifiers: ['recent-activity']
-            achievement: event.achievement
-            userAchievement:
-              achieved_at: event.createdAt
-              achievement_id: event.achievement.id
+        badge = el ProfilePage.AchievementBadge,
+          modifiers: ['recent-activity']
+          achievement: event.achievement
+          userAchievement:
+            achieved_at: event.createdAt
+            achievement_id: event.achievement.id
 
         text = div
           className: 'profile-extra-entries__text'
@@ -122,9 +121,7 @@ class ProfilePage.RecentActivity extends React.PureComponent
 
       when 'rank'
         badge = div
-          className: "profile-extra-entries__icon"
-          div
-            className: "score-rank-v2 score-rank-v2--#{event.scoreRank}-mini"
+          className: "score-rank-v2 score-rank-v2--#{event.scoreRank}-mini"
 
         text = div
           className: 'profile-extra-entries__text'
@@ -179,14 +176,14 @@ class ProfilePage.RecentActivity extends React.PureComponent
         return
 
     # default, empty badge
-    badge ?= div className: 'profile-extra-entries__icon'
 
     li
       className: 'profile-extra-entries__item'
       key: event.id
       div
         className: 'profile-extra-entries__detail'
-        badge
+        div className: 'profile-extra-entries__icon-container',
+          div className: 'profile-extra-entries__icon', badge
         text
       div
         className: 'profile-extra-entries__time'
