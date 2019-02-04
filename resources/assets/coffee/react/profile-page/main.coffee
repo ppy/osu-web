@@ -75,7 +75,7 @@ class ProfilePage.Main extends React.PureComponent
     $.subscribe 'user:page:update.profilePage', @userPageUpdate
     $.subscribe 'profile:showMore.profilePage', @showMore
     $.subscribe 'profile:page:jump.profilePage', @pageJump
-    $(window).on 'throttled-scroll.profilePage', @pageScan
+    $(window).on 'throttled-scroll.profilePage throttled-resize.profilePage', @pageScan
     $(document).on 'turbolinks:before-cache.profilePage', @saveStateToContainer
 
     $(@pages.current).sortable
@@ -405,6 +405,7 @@ class ProfilePage.Main extends React.PureComponent
 
       .done (userData) =>
         $.publish 'user:update', userData
+        @pageScan()
 
       .fail (xhr) =>
         osu.emitAjaxError() xhr
