@@ -123,6 +123,7 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
       td className: "#{bn}__play-detail-menu",
         if _exported.ScoreHelper.hasMenu(score)
           el _exported.PlayDetailMenu,
+            mode: @props.beatmap.mode
             onHide: () => @onMenuActive?(active: false, index: index)
             onShow: () => @onMenuActive?(active: true, index: index)
             score: score

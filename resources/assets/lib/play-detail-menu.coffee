@@ -128,7 +128,7 @@ export class PlayDetailMenu extends PureComponent
           a
             className: 'simple-menu__item js-login-required--click'
             href: laroute.route 'scores.download',
-                    mode: @props.score.beatmap.mode
+                    mode: @props.mode ? @props.score.beatmap.mode
                     score: @props.score.id
             'data-turbolinks': false
             onClick: @toggle
