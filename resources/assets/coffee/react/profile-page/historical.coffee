@@ -95,10 +95,7 @@ class ProfilePage.Historical extends React.PureComponent
 
       if @props.scoresRecent?.length
         [
-          el window._exported.PlayDetailList,
-            key: 'play-detail-list'
-            mode: @props.currentMode
-            scores: @props.scoresRecent
+          el window._exported.PlayDetailList, key: 'play-detail-list', scores: @props.scoresRecent
 
           el ShowMoreLink,
             key: 'show-more-row'

@@ -44,7 +44,6 @@ export class PlayDetailList extends PureComponent
           activated: @state.activeMenu == i
           index: i
           key: i
-          mode: @props.mode
           onMenuActive: @onMenuActive
           score: score
 
