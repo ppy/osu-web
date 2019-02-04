@@ -21,6 +21,7 @@
 namespace App\Transformers;
 
 use App\Models\Score\Best\Model as ScoreBest;
+use App\Models\Score\Model as ScoreModel;
 use League\Fractal;
 
 class ScoreTransformer extends Fractal\TransformerAbstract
@@ -40,7 +41,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'id' => $score->score_id,
             'user_id' => $score->user_id,
             'accuracy' => $score->accuracy(),
-            'mode' => $score->getMode(),
+            'mode' => $score instanceof ScoreModel ? $score->getMode() : null,
             'mods' => $score->enabled_mods,
             'score' => $score->score,
             'max_combo' => $score->maxcombo,
