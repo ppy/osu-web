@@ -124,7 +124,7 @@ class ProfilePage.RecentActivity extends React.PureComponent
         badge = div
           className: "profile-extra-entries__icon"
           div
-            className: "score-rank-v2 score-rank-v2--#{event.scoreRank}"
+            className: "score-rank-v2 score-rank-v2--#{event.scoreRank}-mini"
 
         text = div
           className: 'profile-extra-entries__text'

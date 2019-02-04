@@ -28,10 +28,18 @@
     &--@{rank} {
       .bg(@prefix);
     }
+
+    &--@{rank}-mini {
+      .bg-mini(@prefix);
+    }
   }
 
   .bg(@filename) {
     .at2x-simple("/images/badges/score-ranks-v2/@{filename}.png");
+  }
+
+  .bg-mini(@filename) {
+    .at2x-simple("/images/badges/score-ranks-v2-mini/@{filename}_mini.png");
   }
 
   .all(XH, "SS+");
