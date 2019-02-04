@@ -169,7 +169,7 @@ class ProfilePage.Main extends React.PureComponent
           userAchievements: @props.userAchievements
 
         div
-          className: 'hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
+          className: 'page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
           if profileOrder.length > 1
             div className: 'osu-page',
               div
