@@ -171,6 +171,7 @@ class @Forum
 
     try @jumpTo n
 
+
   scrollTo: (postId) =>
     post = document.querySelector(".js-forum-post[data-post-id='#{postId}']")
 
@@ -185,6 +186,13 @@ class @Forum
 
     # using jquery smooth scrollTo will cause unwanted events to trigger on the way down.
     window.scrollTo window.pageXOffset, postTop
+    @highlightPost post
+
+
+  highlightPost: (post) =>
+    @highlightedPost?.classList.remove 'js-forum-post--highlighted'
+    @highlightedPost = post
+    @highlightedPost?.classList.add 'js-forum-post--highlighted'
 
 
   initialScrollTo: =>

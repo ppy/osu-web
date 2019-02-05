@@ -42,6 +42,11 @@
     opacity: 0.5;
   }
 
+  .js-forum-post--highlighted & {
+    border: 3px solid @blue-darker;
+    margin: -3px -3px 2px -3px; // offset so content doesn't get squashed or shift around.
+  }
+
   &__actions {
     .desktop-position() {
       @media @desktop {
