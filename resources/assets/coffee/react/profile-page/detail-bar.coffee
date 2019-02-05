@@ -47,6 +47,7 @@ class ProfilePage.DetailBar extends React.PureComponent
         button
           className: 'profile-page-toggle'
           onClick: @props.toggleExtend
+          title: osu.trans("common.buttons.#{if @props.extended then 'collapse' else 'expand'}")
           if @props.extended
             span className: 'fas fa-chevron-up'
           else
@@ -120,6 +121,7 @@ class ProfilePage.DetailBar extends React.PureComponent
     div className: "#{bn}__menu-item",
       button
         className: 'profile-page-toggle js-click-menu'
+        title: osu.trans('common.buttons.show_more_options')
         'data-click-menu-target': "profile-page-bar-#{@id}"
         span className: 'fas fa-ellipsis-v'
       div
