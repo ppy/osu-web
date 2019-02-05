@@ -189,10 +189,9 @@ class @Forum
     @highlightPost post
 
 
-  highlightPost: (post) =>
-    @highlightedPost?.classList.remove 'js-forum-post--highlighted'
-    @highlightedPost = post
-    @highlightedPost?.classList.add 'js-forum-post--highlighted'
+  highlightPost: (post) ->
+    $('.js-forum-post--highlighted').removeClass('js-forum-post--highlighted')
+    $(post).addClass('js-forum-post--highlighted')
 
 
   initialScrollTo: =>
