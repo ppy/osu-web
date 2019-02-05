@@ -54,12 +54,18 @@ class BeatmapsetsController extends Controller
 
     public function index()
     {
+        $beatmaps = $this->search();
+
+        $filters = $this->getFilters();
+
+        return view('beatmaps.index', compact('filters', 'beatmaps'));
+    }
+
+    private function getFilters()
+    {
         $languages = Language::listing();
         $genres = Genre::listing();
 
-        $beatmaps = $this->search();
-
-        // temporarily put filters here
         $general = [
             ['id' => 'recommended', 'name' => trans('beatmaps.general.recommended')],
             ['id' => 'converts', 'name' => trans('beatmaps.general.converts')],
@@ -97,9 +103,7 @@ class BeatmapsetsController extends Controller
             ['id' => 'unplayed', 'name' => trans('beatmaps.played.unplayed')],
         ];
 
-        $filters = compact('general', 'modes', 'statuses', 'genres', 'languages', 'played', 'extras', 'ranks');
-
-        return view('beatmaps.index', compact('filters', 'beatmaps'));
+        return compact('general', 'modes', 'statuses', 'genres', 'languages', 'played', 'extras', 'ranks');
     }
 
     public function show($id)
