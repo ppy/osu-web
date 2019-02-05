@@ -61,13 +61,18 @@ class BeatmapsetsController extends Controller
         return view('beatmaps.index', compact('filters', 'beatmaps'));
     }
 
-    private function getFilters()
+    private function getFilters($search = null)
     {
+        $params = new BeatmapsetSearchRequestParams(request(), Auth::user());
+        $search = (new BeatmapsetSearch($params))->source(false);
+        $search->getQuery();
+        $diff = $search->recommendedDifficulty;
+
         $languages = Language::listing();
         $genres = Genre::listing();
 
         $general = [
-            ['id' => 'recommended', 'name' => trans('beatmaps.general.recommended')],
+            ['id' => 'recommended', 'name' => trans('beatmaps.general.recommended')." ({$diff})"],
             ['id' => 'converts', 'name' => trans('beatmaps.general.converts')],
         ];
 
