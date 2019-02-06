@@ -20,12 +20,17 @@ class SanityTest extends DuskTestCase
         parent::setUp();
 
         if (!isset(self::$scaffolding)) {
+            // user to login as and to use for requests
             self::$scaffolding['user'] = factory(\App\Models\User::class)->create();
 
             // factories for /beatmapsets/*
             self::$scaffolding['beatmap_mirror'] = factory(\App\Models\BeatmapMirror::class)->create();
+            self::$scaffolding['genre'] = factory(\App\Models\Genre::class)->create();
+            self::$scaffolding['language'] = factory(\App\Models\Language::class)->create();
             self::$scaffolding['beatmapset'] = factory(\App\Models\Beatmapset::class)->create([
                 'discussion_enabled' => true,
+                'genre_id' => self::$scaffolding['genre']->genre_id,
+                'language_id' => self::$scaffolding['language']->language_id,
             ]);
             self::$scaffolding['beatmap'] = factory(\App\Models\Beatmap::class)->create([
                 'beatmapset_id' => self::$scaffolding['beatmapset']->getKey(),
@@ -107,7 +112,7 @@ class SanityTest extends DuskTestCase
             // dummy for wiki page
             self::$scaffolding['page'] = new ScaffoldDummy('terms');
 
-            // dummy for gamemode
+            // dummy for news
             self::$scaffolding['news'] = new ScaffoldDummy('2014-06-21-meet-yuzu');
 
             // score factory
@@ -131,6 +136,7 @@ class SanityTest extends DuskTestCase
             self::$scaffolding['user']->userProfileCustomization()->forceDelete();
         }
 
+        // Tear down in reverse-order so that dependants get destroyed before their dependencies.
         $nukingOrder = array_reverse(self::$scaffolding);
 
         foreach ($nukingOrder as $name => $scaffold) {
@@ -266,9 +272,8 @@ class SanityTest extends DuskTestCase
                         ->assertDontSee('Sorry, the page you are looking for could not be found');
 
                     if (in_array($route->getName(), $verificationExpected)) {
+                        // TODO: perform verification and check stuff didn't explode
                         $browser->assertSee('Account Verification');
-
-                    // do verification and check stuff didn't explode
                     } else {
                         $browser->assertDontSee('Account Verification');
                     }
