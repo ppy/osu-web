@@ -186,8 +186,8 @@ class MessagesControllerTest extends TestCase
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->user->user_id,
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->user->user_id,
             ]));
 
         $this->actAsScopedUser($this->user, ['*']);
@@ -290,8 +290,8 @@ class MessagesControllerTest extends TestCase
     {
         $this->actAsScopedUser($this->restrictedUser, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->restrictedUser->user_id,
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->restrictedUser->user_id,
             ]));
 
         $this->actAsScopedUser($this->restrictedUser, ['*']);
@@ -351,8 +351,8 @@ class MessagesControllerTest extends TestCase
     {
         $this->actAsScopedUser($this->silencedUser, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->silencedUser->user_id,
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->silencedUser->user_id,
             ]));
 
         $this->actAsScopedUser($this->silencedUser, ['*']);
