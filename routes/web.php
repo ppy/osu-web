@@ -404,10 +404,10 @@ route_redirect('mp/{match}', 'matches.show');
 route_redirect('wiki/{page?}', 'wiki.show')->where('page', '.+');
 
 // status
-if (Config::get('app.debug')) {
-    Route::get('/status', 'StatusController@getMain');
-} else {
+if (Config::get('app.env') === 'production') {
     Route::group(['domain' => 'stat.ppy.sh'], function () {
         Route::get('/', 'StatusController@getMain')->name('status.index');
     });
+} else {
+    Route::get('/status', 'StatusController@getMain')->name('status.index');
 }
