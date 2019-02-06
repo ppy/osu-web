@@ -125,14 +125,13 @@ class @Forum
     return if @_postsCounter.length == 0
 
     currentPost = null
-    anchorHeight = window.innerHeight * 0.5
 
     if osu.bottomPage()
       currentPost = @posts[@posts.length - 1]
     else
       for post in @posts
         postTop = post.getBoundingClientRect().top
-        if postTop <= anchorHeight
+        if Math.floor(window.stickyHeader.scrollOffset(postTop)) <= 0
           currentPost = post
         else
           break
