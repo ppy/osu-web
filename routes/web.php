@@ -242,7 +242,7 @@ Route::group(['prefix' => 'help'], function () {
 
 // FIXME: someone split this crap up into proper controllers
 Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
-    Route::get('/', 'StoreController@getIndex')->name('index');
+    route_redirect('/', 'store.products.index');
 
     Route::get('listing', 'StoreController@getListing')->name('products.index');
     Route::get('invoice/{invoice}', 'StoreController@getInvoice')->name('invoice.show');
