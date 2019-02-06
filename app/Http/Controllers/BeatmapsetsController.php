@@ -175,6 +175,7 @@ class BeatmapsetsController extends Controller
                 'beatmaps'
             ),
             'cursor' => $search->getSortCursor(),
+            'total' => $search->count(),
         ];
     }
 

@@ -29,6 +29,7 @@ class ProfilePage.UserPage extends React.Component
         div className: 'page-extra__actions',
           button
             type: 'button'
+            title: osu.trans('users.show.page.button')
             className: 'profile-page-toggle'
             onClick: @editStart
             span className: 'fas fa-pencil-alt'

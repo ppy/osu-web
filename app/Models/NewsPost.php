@@ -65,7 +65,7 @@ class NewsPost extends Model
 
         $post->sync();
 
-        if ($post->page !== null) {
+        if ($post->page !== null && $post->published_at !== null && $post->published_at->isPast()) {
             return $post;
         }
     }
@@ -77,7 +77,7 @@ class NewsPost extends Model
 
     public static function search($params)
     {
-        $query = static::whereNotNull('published_at');
+        $query = static::published();
 
         $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 1, 21);
 
@@ -162,7 +162,13 @@ class NewsPost extends Model
 
     public function scopeDefault($query)
     {
-        $query->whereNotNull('published_at')->orderBy('published_at', 'DESC');
+        return $query->published()->orderBy('published_at', 'DESC');
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->whereNotNull('published_at')
+            ->where('published_at', '<=', Carbon::now());
     }
 
     public function filename()

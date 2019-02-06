@@ -51,7 +51,20 @@
                         {{ trans('beatmapset_events.index.form.types') }}
                     </div>
                     <div class="simple-form__checkboxes-overflow">
-                        @foreach (App\Models\BeatmapsetEvent::publicTypes() as $type)
+                        @php
+                            if (present($search['params']['user'] ?? null)) {
+                                $types = App\Models\BeatmapsetEvent::types('public');
+                                if (priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can()) {
+                                    $types = array_merge($types, App\Models\BeatmapsetEvent::types('kudosuModeration'));
+                                }
+                                if (priv_check('BeatmapDiscussionModerate')->can()) {
+                                    $types = array_merge($types, App\Models\BeatmapsetEvent::types('moderation'));
+                                }
+                            } else {
+                                $types = App\Models\BeatmapsetEvent::types('all');
+                            }
+                        @endphp
+                        @foreach ($types as $type)
                             <div class="simple-form__checkbox-overflow-container">
                                 <label class="simple-form__checkbox simple-form__checkbox--overflow">
                                     @include('objects._checkbox', [
