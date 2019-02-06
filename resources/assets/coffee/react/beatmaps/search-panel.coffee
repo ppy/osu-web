@@ -136,6 +136,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
       options: options
       default: @props.filterDefaults[name]
       multiselect: multiselect
+      recommendedDifficulty: @props.recommendedDifficulty
       selected: @props.filters[name]
 
 

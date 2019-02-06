@@ -129,8 +129,7 @@ class BeatmapsetSearch extends RecordSearch
     {
         if ($this->params->showRecommended && $this->params->user !== null) {
             // TODO: index convert difficulties and handle them.
-            $mode = Beatmap::modeStr($this->params->mode) ?? $this->params->user->playmode;
-            $difficulty = $this->params->user->recommendedStarDifficulty($mode);
+            $difficulty = $this->params->getRecommendedDifficulty();
             $query->filter([
                 'range' => [
                     'difficulties.difficultyrating' => [
@@ -139,8 +138,6 @@ class BeatmapsetSearch extends RecordSearch
                     ],
                 ],
             ]);
-
-            $this->recommendedDifficulty = $difficulty;
         }
     }
 

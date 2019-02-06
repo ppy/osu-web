@@ -134,6 +134,7 @@ class BeatmapsetsController extends Controller
                 'beatmaps'
             ),
             'cursor' => $search->getSortCursor(),
+            'recommended_difficulty' => $params->getRecommendedDifficulty(),
             'total' => $search->count(),
         ];
     }
@@ -297,18 +298,13 @@ class BeatmapsetsController extends Controller
         ];
     }
 
-    private function getFilters($search = null)
+    private function getFilters()
     {
-        $params = new BeatmapsetSearchRequestParams(request(), Auth::user());
-        $search = (new BeatmapsetSearch($params))->source(false);
-        $search->getQuery();
-        $diff = $search->recommendedDifficulty;
-
         $languages = Language::listing();
         $genres = Genre::listing();
 
         $general = [
-            ['id' => 'recommended', 'name' => trans('beatmaps.general.recommended')." ({$diff})"],
+            ['id' => 'recommended', 'name' => trans('beatmaps.general.recommended')],
             ['id' => 'converts', 'name' => trans('beatmaps.general.converts')],
         ];
 
