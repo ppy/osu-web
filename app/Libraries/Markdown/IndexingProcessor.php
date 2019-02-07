@@ -20,6 +20,7 @@
 
 namespace App\Libraries\Markdown;
 
+use App\Libraries\OsuWiki;
 use League\CommonMark\Block\Element as Block;
 use League\CommonMark\Block\Element\Document;
 use League\CommonMark\CommonMarkConverter;
@@ -31,7 +32,6 @@ use League\CommonMark\Util\ConfigurationAwareInterface;
 use Symfony\Component\Yaml\Exception\ParseException as YamlParseException;
 use Symfony\Component\Yaml\Yaml;
 use Webuni\CommonMark\TableExtension;
-use App\Libraries\OsuWiki;
 
 class IndexingProcessor
 {
@@ -50,6 +50,7 @@ class IndexingProcessor
         }
 
         $env = Environment::createCommonMarkEnvironment();
+        $env->addExtension(new TableExtension\TableExtension);
         $env->addExtension(new IndexingTextRendererExtension);
         $converter = new CommonMarkConverter($config, $env);
         $converted = $converter->convertToHtml($input['document']);

@@ -19,6 +19,11 @@ class IndexingTextRendererExtension extends CommonMarkCoreExtension
             'League\CommonMark\Block\Element\ListItem'      => new BlockTextRenderer,
             'League\CommonMark\Block\Element\Paragraph'     => new BlockTextRenderer,
             'League\CommonMark\Block\Element\ThematicBreak' => new BlockTextRenderer,
+            'Webuni\CommonMark\TableExtension\Table'        => new TableRenderer,
+            'Webuni\CommonMark\TableExtension\TableCaption' => new NoopRenderer,
+            'Webuni\CommonMark\TableExtension\TableRows'    => new TableRenderer,
+            'Webuni\CommonMark\TableExtension\TableRow'     => new TableRenderer,
+            'Webuni\CommonMark\TableExtension\TableCell'    => new TableRenderer,
         ];
     }
 
