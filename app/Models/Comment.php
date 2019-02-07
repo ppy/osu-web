@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use App\Libraries\MorphMap;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 
@@ -54,9 +55,9 @@ class Comment extends Model
     use Reportable, Validatable;
 
     const COMMENTABLES = [
-        'beatmapset' => Beatmapset::class,
-        'build' => Build::class,
-        'news_post' => NewsPost::class,
+        MorphMap::MAP[Beatmapset::class],
+        MorphMap::MAP[Build::class],
+        MorphMap::MAP[NewsPost::class],
     ];
 
     // FIXME: decide on good number.
@@ -73,7 +74,7 @@ class Comment extends Model
 
     public static function isValidType($type)
     {
-        return array_key_exists($type, static::COMMENTABLES);
+        return in_array($type, static::COMMENTABLES, true);
     }
 
     public function scopeWithoutTrashed($query)
