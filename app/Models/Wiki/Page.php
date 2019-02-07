@@ -26,6 +26,7 @@ use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Es;
+use App\Libraries\Markdown\IndexingProcessor;
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
@@ -44,6 +45,8 @@ class Page
     private $cache = [];
     private $defaultTitle;
     private $defaultSubtitle;
+
+    private $source; // source document from elasticsearch;
 
     public static function cleanupPath($path)
     {
@@ -106,6 +109,7 @@ class Page
 
     public function __construct($path, $locale, $esCache = null)
     {
+        $this->source = $esCache;
         if ($esCache !== null) {
             $path = $esCache['path'];
             $locale = $esCache['locale'];
@@ -141,10 +145,13 @@ class Page
                 'tags' => [],
             ];
         } else {
+            $content = OsuWiki::fetchContent('wiki/'.$this->pagePath());
+            $indexContent = IndexingProcessor::process($content, []);
+
             $params['body'] = [
                 'locale' => $this->locale,
                 'page' => json_encode($this->page()),
-                'page_text' => replace_tags_with_spaces($this->page()['output']),
+                'page_text' => $indexContent,
                 'path' => $this->path,
                 'path_clean' => static::cleanupPath($this->path),
                 'title' => $this->title(),
@@ -165,6 +172,11 @@ class Page
             'id' => $this->pagePath(),
             'client' => ['ignore' => 404],
         ]));
+    }
+
+    public function getSource()
+    {
+        return $this->source;
     }
 
     public function isOutdated()
