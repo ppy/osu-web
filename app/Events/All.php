@@ -22,6 +22,11 @@ class All implements ShouldBroadcast
         $this->notification = $notification;
     }
 
+    public function broadcastAs()
+    {
+        return $this->notification->name;
+    }
+
     /**
      * Get the channels the event should broadcast on.
      *
@@ -46,7 +51,6 @@ class All implements ShouldBroadcast
     {
         return [
             'id' => $this->notification->getKey(),
-            'name' => $this->notification->name,
             'object_type' => $this->notification->notifiable_type,
             'object_id' => $this->notification->notifiable_id,
             'source_user_id' => $this->notification->source_user_id,
