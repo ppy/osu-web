@@ -42,7 +42,7 @@ class Beatmaps.SearchFilter extends React.PureComponent
 
           text = option.name
           if @props.name == 'general' && option.id == 'recommended' && @props.recommendedDifficulty?
-            text = option.name + " (#{@props.recommendedDifficulty.toFixed(2)})"
+            text += " (#{@props.recommendedDifficulty.toFixed(2)})"
 
           a
             key: i
