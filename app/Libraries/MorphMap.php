@@ -20,9 +20,11 @@
 
 namespace App\Libraries;
 
+use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\Build;
 use App\Models\Comment;
+use App\Models\Forum;
 use App\Models\NewsPost;
 use App\Models\Score;
 use App\Models\User;
@@ -30,9 +32,12 @@ use App\Models\User;
 class MorphMap
 {
     const MAP = [
+        BeatmapDiscussionPost::class => 'beatmapset_discussion_post',
         Beatmapset::class => 'beatmapset',
         Build::class => 'build',
         Comment::class => 'comment',
+        Forum\Post::class => 'forum_post',
+        Forum\Topic::class => 'forum_topic',
         NewsPost::class => 'news_post',
         Score\Best\Fruits::class => 'score_best_fruits',
         Score\Best\Mania::class => 'score_best_mania',
