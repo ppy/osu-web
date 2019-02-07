@@ -20,9 +20,9 @@
 
 namespace App\Transformers;
 
+use App\Libraries\MorphMap;
 use App\Models\Beatmapset;
 use App\Models\Build;
-use App\Models\Comment;
 use App\Models\Model;
 use App\Models\NewsPost;
 use League\Fractal;
@@ -51,7 +51,7 @@ class CommentableMetaTransformer extends Fractal\TransformerAbstract
 
         if (isset($commentable)) {
             $id = $commentable->getKey();
-            $type = array_search_null(get_class($commentable), Comment::COMMENTABLES);
+            $type = MorphMap::getType($commentable);
         }
 
         return [
