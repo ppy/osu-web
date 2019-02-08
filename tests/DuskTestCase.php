@@ -49,4 +49,15 @@ abstract class DuskTestCase extends BaseTestCase
 
         return $driver;
     }
+
+    /**
+     * Create a new Browser instance.
+     *
+     * @param  \Facebook\WebDriver\Remote\RemoteWebDriver  $driver
+     * @return \Tests\Browser
+     */
+    protected function newBrowser($driver)
+    {
+        return new Browser($driver);
+    }
 }

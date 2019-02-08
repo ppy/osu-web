@@ -4,13 +4,13 @@ namespace Tests\Browser;
 
 use App\Models\Country;
 use DB;
-use Laravel\Dusk\Browser;
 use Route;
+use Tests\Browser;
 use Tests\DuskTestCase;
 
 class SanityTest extends DuskTestCase
 {
-    protected static $scaffolding;
+    protected static $scaffolding; // static so we only set up the scaffolding once
 
     protected $passed = 0;
     protected $failed = 0;
@@ -20,6 +20,17 @@ class SanityTest extends DuskTestCase
     {
         parent::setUp();
 
+        $this->createScaffolding();
+
+        $this->beforeApplicationDestroyed(function () {
+            // We do this here while we can still access laravel,
+            // tearDown/tearDownAfterClass runs after laravel is torn down
+            $this->cleanup();
+        });
+    }
+
+    public function createScaffolding()
+    {
         if (!isset(self::$scaffolding)) {
             self::$scaffolding['country'] = Country::first() ?? factory(\App\Models\Country::class)->create();
             // user to login as and to use for requests
@@ -71,10 +82,16 @@ class SanityTest extends DuskTestCase
             ]);
 
             self::$scaffolding['topic'] = factory(\App\Models\Forum\Topic::class)->create([
+                'topic_poster' => self::$scaffolding['user']->getKey(),
+                'topic_first_poster_name' => self::$scaffolding['user']->username,
+                'topic_last_poster_id' => self::$scaffolding['user']->getKey(),
+                'topic_last_poster_name' => self::$scaffolding['user']->username,
                 'forum_id' => self::$scaffolding['forum']->getKey(),
             ]);
 
             self::$scaffolding['post'] = factory(\App\Models\Forum\Post::class)->create([
+                'poster_id' => self::$scaffolding['user']->getKey(),
+                'post_username' => self::$scaffolding['user']->username,
                 'forum_id' => self::$scaffolding['forum']->getKey(),
                 'topic_id' => self::$scaffolding['topic']->getKey(),
             ]);
@@ -124,10 +141,6 @@ class SanityTest extends DuskTestCase
             // TODO: move this into ScoreBestFactory when Laravel is upgraded to 5.6+ and we can use afterCreatingState
             self::$scaffolding['score']->replayFile()->disk()->put(self::$scaffolding['score']->getKey(), 'this-is-totally-a-legit-replay');
         }
-
-        $this->beforeApplicationDestroyed(function () {
-            $this->cleanup();
-        });
     }
 
     public function cleanup()
@@ -136,6 +149,7 @@ class SanityTest extends DuskTestCase
             return;
         }
 
+        // Clean up extra things that get created (i.e. as side-effects, etc)
         if (isset(self::$scaffolding['user'])) {
             self::$scaffolding['user']->userProfileCustomization()->forceDelete();
         }
@@ -165,7 +179,6 @@ class SanityTest extends DuskTestCase
 
     public function testPageLoadCheck()
     {
-        $scaffolding = self::$scaffolding;
         $bypass = [
             '_dusk/',
             '_lio',
@@ -174,13 +187,64 @@ class SanityTest extends DuskTestCase
             'payments/',
         ];
 
-        $verificationExpected = [
-            'account.edit',
-            'store.checkout.show',
-            'store.invoice.show',
-            'store.orders.index',
-        ];
+        foreach (Route::getRoutes()->get('GET') as $route) {
+            $this->output("\n  /{$route->uri} (".(presence($route->getName()) ?? '???').')');
 
+            if (!present($route->getName())) {
+                $this->output(" \e[30;1m[SKIPPED]\e[0m");
+                $this->skipped++;
+                continue;
+            }
+
+            foreach ($bypass as $prefix) {
+                if (starts_with($route->uri, $prefix)) {
+                    $this->output(" \e[30;1m[SKIPPED]\e[0m");
+                    $this->skipped++;
+                    continue 2;
+                }
+            }
+
+            // TODO: add additional logic for certain routes to re-run tests per game mode, per user score type, etc
+            $this->browse(function (Browser $browser) use ($route) {
+                try {
+                    $url = $this->bindParams($browser, $route);
+
+                    $browser
+                        ->loginAs(self::$scaffolding['user'])
+                        ->visit($url);
+
+                    // $browser->driver->takeScreenshot('ss/'.$route->getName().'.png');
+
+                    $this->checkAdminPermission($browser, $route);
+                    $this->checkVerification($browser, $route);
+
+                    $browser
+                        ->assertDontSee('Oh no! Something broke! ;_;')
+                        ->assertDontSee('Sorry, the page you are looking for could not be found');
+
+                    $this->checkJavascriptErrors($browser, $route);
+
+                    $this->passed++;
+                    $this->output("\e[0;32m    ✓\e[0m\n");
+                } catch (\Exception $err) {
+                    $filename = 'tests/Browser/screenshots/fail-'.$route->getName().'.png';
+                    $browser->driver->takeScreenshot($filename);
+
+                    $this->failed++;
+                    $this->output('  '.$err->getMessage()."\n");
+                    $this->output("  screenshot saved to: {$filename}\n");
+                    $this->output("\e[1;37;41m\e[2K    x\e[0m\n");
+
+                    throw $err;
+                }
+            });
+        }
+
+        $this->output("\n\n{$this->passed}/".($this->passed+$this->failed)." passed (".round(($this->passed / ($this->passed+$this->failed))*100, 2)."%) [{$this->skipped} skipped]\n\n");
+    }
+
+    public function bindParams(Browser $browser, \Illuminate\Routing\Route $route)
+    {
         $paramOverrides = [
             'forum.topics.create' => [
                 'forum_id' => self::$scaffolding['forum']->getKey(),
@@ -216,91 +280,134 @@ class SanityTest extends DuskTestCase
             ],
         ];
 
-        foreach (Route::getRoutes()->get('GET') as $route) {
-            $this->output("\n  /{$route->uri} (".(presence($route->getName()) ?? '???').')');
+        $params = [];
+        $paramNames = $route->parameterNames();
+        $this->output("\n");
 
-            if (!present($route->getName())) {
-                $this->output(" \e[30;1m[SKIPPED]\e[0m");
-                $this->skipped++;
-                continue;
-            }
-
-            foreach ($bypass as $prefix) {
-                if (starts_with($route->uri, $prefix)) {
-                    $this->output(" \e[30;1m[SKIPPED]\e[0m");
-                    $this->skipped++;
-                    continue 2;
-                }
-            }
-
-            $params = [];
-            $paramNames = $route->parameterNames();
-            $this->output("\n");
-
-            // This goes through each parameter the route expects and uses the value either from $paramOverrides if present or from the scaffolding in setUp() to map params to objects
-            foreach ($paramNames as $paramName) {
-                $this->output("    {$paramName} => ");
-                if (isset($paramOverrides[$route->getName()]) && isset($paramOverrides[$route->getName()][$paramName])) {
-                    $params[$paramName] = $paramOverrides[$route->getName()][$paramName];
-                    $this->output($paramOverrides[$route->getName()][$paramName]." \e[30;1m(override)\e[0m\n");
+        // Go through each parameter referenced in the route and either use the value from $paramOverrides (if present) or use the scaffolding prepared in setUp()
+        foreach ($paramNames as $paramName) {
+            $this->output("    {$paramName} => ");
+            if (isset($paramOverrides[$route->getName()]) && isset($paramOverrides[$route->getName()][$paramName])) {
+                $params[$paramName] = $paramOverrides[$route->getName()][$paramName];
+                $this->output($params[$paramName]." \e[30;1m(override)\e[0m\n");
+            } else {
+                if (isset(self::$scaffolding[$paramName])) {
+                    $params[$paramName] = self::$scaffolding[$paramName]->getKey();
+                    $this->output($params[$paramName]."\n");
                 } else {
-                    if (isset($scaffolding[$paramName])) {
-                        $params[$paramName] = $scaffolding[$paramName]->getKey();
-                        $this->output($scaffolding[$paramName]->getKey()."\n");
-                    } else {
-                        $this->output("\e[30;1m¯\_(ツ)_/¯\e[0m\n");
-                    }
+                    $this->output("\e[30;1m¯\_(ツ)_/¯\e[0m\n");
                 }
             }
-
-            if (isset($paramOverrides[$route->getName()])) {
-                foreach ($paramOverrides[$route->getName()] as $paramName => $paramValue) {
-                    if (!in_array($paramName, $paramNames)) {
-                        $params[$paramName] = $paramValue;
-                        $this->output("    {$paramName} => {$paramValue} \e[30;1m(additional override)\e[0m\n");
-                    }
-                }
-            }
-            $route->parameters = $params;
-
-            // TODO: add additional logic for certain routes to re-run tests per game mode, per user score type, etc
-
-            $this->browse(function (Browser $browser) use ($route, $params, $scaffolding, $verificationExpected) {
-                try {
-                    $url = str_replace(config('app.url'), '', route($route->getName(), $params));
-                    $browser
-                        ->loginAs(self::$scaffolding['user'])
-                        ->visit($url);
-
-                    // $browser->driver->takeScreenshot('ss/'.$route->getName().'.png');
-
-                    $browser
-                        ->assertDontSee('Oh no! Something broke! ;_;')
-                        ->assertDontSee('Sorry, the page you are looking for could not be found');
-
-                    if (in_array($route->getName(), $verificationExpected)) {
-                        // TODO: perform verification and check stuff didn't explode
-                        $browser->assertSee('Account Verification');
-                    } else {
-                        $browser->assertDontSee('Account Verification');
-                    }
-
-                    $this->passed++;
-                    $this->output("\e[0;32m    ✓\e[0m");
-                } catch (\Exception $err) {
-                    $filename = 'fail-'.$route->getName().'.png';
-                    $browser->driver->takeScreenshot($filename);
-
-                    $this->failed++;
-                    $this->output('  '.$err->getMessage()."\n");
-                    $this->output("  screenshot saved to: {$filename}\n");
-                    $this->output("\e[1;37;41m\e[2K    x\e[0m");
-
-                    throw $err;
-                }
-            });
         }
 
-        $this->output("\n\n{$this->passed}/".($this->passed+$this->failed)." passed (".round(($this->passed / ($this->passed+$this->failed))*100, 2)."%) [{$this->skipped} skipped]\n\n");
+        if (isset($paramOverrides[$route->getName()])) {
+            foreach ($paramOverrides[$route->getName()] as $paramName => $paramValue) {
+                if (!in_array($paramName, $paramNames)) {
+                    $params[$paramName] = $paramValue;
+                    $this->output("    {$paramName} => {$paramValue} \e[30;1m(extra param from override)\e[0m\n");
+                }
+            }
+        }
+
+        $url = str_replace(config('app.url'), '', route($route->getName(), $params));
+
+        return $url;
+    }
+
+    public function checkAdminPermission(Browser $browser, \Illuminate\Routing\Route $route)
+    {
+        $adminRestricted = [
+            'comments.index',
+            'comments.show',
+        ];
+
+        if (starts_with($route->uri, 'admin') || in_array($route->getName(), $adminRestricted)) {
+            // TODO: retry and check page as admin? (will affect subsequent tests though, so figure out how to deal with that..)
+            $browser->assertSee("You shouldn't be here.");
+        } else {
+            $browser->assertDontSee("You shouldn't be here.");
+        }
+    }
+
+    public function checkJavascriptErrors(Browser $browser, \Illuminate\Routing\Route $route)
+    {
+        // Note: if you call getLog more than once a request, the subsequent calls return an empty array.
+        $rawLog = $browser->driver->manage()->getLog('browser');
+        $logLines = collect(self::filterLog($rawLog));
+
+        if ($logLines->contains('source', 'javascript')) {
+            $error = implode(' | ', $logLines->where('source', 'javascript')->pluck('message')->toArray());
+
+            throw new \Exception("JavaScript ERROR: {$error}");
+        }
+    }
+
+    public function checkVerification(Browser $browser, \Illuminate\Routing\Route $route)
+    {
+        $verificationExpected = [
+            'account.edit',
+            'store.checkout.show',
+            'store.invoice.show',
+            'store.orders.index',
+        ];
+
+        if (in_array($route->getName(), $verificationExpected)) {
+            $browser->assertSee('Account Verification');
+
+            $verificationCode = self::getVerificationCode();
+
+            $browser
+                ->type('.user-verification__key', $verificationCode)
+                ->waitUntilMissing('.user-verification')
+                ->pause(2000) // allows time for dialog hiding transition
+                ->assertDontSee('Account Verification');
+        } else {
+            $browser->assertDontSee('Account Verification');
+        }
+    }
+
+    public static function filterLog(array $log)
+    {
+        $return = [];
+
+        foreach ($log as $line) {
+            if ($line['source'] === 'network') {
+                $matches = [];
+                $count = preg_match_all("/^([^ ]+) - Failed to load resource: the server responded with a status of ([0-9]{3}) \(([^\)]*)\)$/i", $line['message'], $matches);
+                $returnCode = get_int(optional($matches[2])[0]);
+                $url = optional($matches[1])[0];
+
+                // ignore missing non-critical assets
+                if (
+                    ($returnCode == 404 && starts_with($url, 'https://assets.ppy.sh')) ||
+                    ($returnCode == 403 && starts_with($url, 'https://i.ppy.sh'))
+                ) {
+                    continue;
+                }
+
+                $return[] = [
+                    'url' => $url,
+                    'status' => $returnCode,
+                    'message' => optional($matches[3])[0],
+                    'source' => 'network',
+                    'raw' => $line['message'],
+                ];
+            } else {
+                $return[] = $line;
+            }
+        }
+
+        return $return;
+    }
+
+    public static function getVerificationCode()
+    {
+        $log = file_get_contents('storage/logs/laravel.log');
+        $matches = [];
+        $count = preg_match_all('/Your verification code is: ([0-9a-f]{8})/im', $log, $matches);
+
+        if ($count > 0) {
+            return $matches[1][count($matches[1])-1];
+        }
     }
 }
