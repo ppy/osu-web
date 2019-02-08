@@ -2,6 +2,7 @@
 
 namespace Tests\Browser;
 
+use App\Models\Country;
 use DB;
 use Laravel\Dusk\Browser;
 use Route;
@@ -20,8 +21,11 @@ class SanityTest extends DuskTestCase
         parent::setUp();
 
         if (!isset(self::$scaffolding)) {
+            self::$scaffolding['country'] = Country::first() ?? factory(\App\Models\Country::class)->create();
             // user to login as and to use for requests
-            self::$scaffolding['user'] = factory(\App\Models\User::class)->create();
+            self::$scaffolding['user'] = factory(\App\Models\User::class)->create([
+                'country_acronym' => self::$scaffolding['country']->acronym,
+            ]);
 
             // factories for /beatmapsets/*
             self::$scaffolding['beatmap_mirror'] = factory(\App\Models\BeatmapMirror::class)->create();
@@ -110,7 +114,7 @@ class SanityTest extends DuskTestCase
             ]);
 
             // dummy for wiki page
-            self::$scaffolding['page'] = new ScaffoldDummy('terms');
+            self::$scaffolding['page'] = new ScaffoldDummy('Welcome');
 
             // dummy for news
             self::$scaffolding['news'] = new ScaffoldDummy('2014-06-21-meet-yuzu');
@@ -206,6 +210,9 @@ class SanityTest extends DuskTestCase
             ],
             'changelog.show' => [
                 'changelog' => self::$scaffolding['build']->version,
+            ],
+            'legal' => [
+                'page' => 'terms',
             ],
         ];
 
