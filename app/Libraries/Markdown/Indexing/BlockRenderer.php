@@ -3,7 +3,6 @@
 namespace App\Libraries\Markdown\Indexing;
 
 use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\ListItem;
 use League\CommonMark\Block\Renderer\BlockRendererInterface;
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\Inline\Element\AbstractInline;
@@ -55,11 +54,6 @@ class BlockRenderer implements BlockRendererInterface
             return '';
         }
 
-        // collapse paragraph in list into single block.
-        if (static::getEnclosingBlock($block) instanceof ListItem) {
-            return $text;
-        }
-
-        return $text."\n";
+        return $inTightList ? $text : $text."\n";
     }
 }
