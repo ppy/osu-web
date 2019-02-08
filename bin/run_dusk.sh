@@ -6,7 +6,10 @@ php artisan serve > /dev/null 2>&1 &
 
 # run the tests
 php artisan dusk --verbose
+EXIT_CODE=$?
 
 # 'cleanup'
 pkill google-chrome-stable
 pkill -f "php artisan serve"
+
+exit $EXIT_CODE
