@@ -11,6 +11,10 @@
   "repositories": [
     {
       "type": "vcs",
+      "url": "https://github.com/nanaya/commonmark-linkify"
+    },
+    {
+      "type": "vcs",
       "url": "https://github.com/nanaya/slack-php"
     }
   ],
@@ -25,7 +29,7 @@
     "guzzlehttp/guzzle": "*",
     "itsgoingd/clockwork": ">=3.0",
     "jenssegers/agent": "^2.6",
-    "jonnybarnes/commonmark-linkify": "*",
+    "jonnybarnes/commonmark-linkify": "dev-fix-multi-links-newline",
     "laravel/framework": "5.5.*",
     "laravel/passport": "*",
     "laravel/tinker": "~1.0",

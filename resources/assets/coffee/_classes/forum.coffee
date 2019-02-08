@@ -125,14 +125,13 @@ class @Forum
     return if @_postsCounter.length == 0
 
     currentPost = null
-    anchorHeight = window.innerHeight * 0.5
 
     if osu.bottomPage()
       currentPost = @posts[@posts.length - 1]
     else
       for post in @posts
         postTop = post.getBoundingClientRect().top
-        if postTop <= anchorHeight
+        if Math.floor(window.stickyHeader.scrollOffset(postTop)) <= 0
           currentPost = post
         else
           break
@@ -171,6 +170,7 @@ class @Forum
 
     try @jumpTo n
 
+
   scrollTo: (postId) =>
     post = document.querySelector(".js-forum-post[data-post-id='#{postId}']")
 
@@ -185,6 +185,12 @@ class @Forum
 
     # using jquery smooth scrollTo will cause unwanted events to trigger on the way down.
     window.scrollTo window.pageXOffset, postTop
+    @highlightPost post
+
+
+  highlightPost: (post) ->
+    $('.js-forum-post--highlighted').removeClass('js-forum-post--highlighted')
+    $(post).addClass('js-forum-post--highlighted')
 
 
   initialScrollTo: =>

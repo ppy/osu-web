@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ab20d768c10ffcc53254fd2b78de61bf",
+    "content-hash": "2245edf9fae238b7a62ee8b527cc8ebb",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1758,16 +1758,16 @@
         },
         {
             "name": "jonnybarnes/commonmark-linkify",
-            "version": "v0.5",
+            "version": "dev-fix-multi-links-newline",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jonnybarnes/commonmark-linkify.git",
-                "reference": "4d9a3cfe4f0ced80f974a705c6fa985b285a5940"
+                "url": "https://github.com/nanaya/commonmark-linkify.git",
+                "reference": "cb112ae57361cd11c29d9d5a0b2366100c8e547e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jonnybarnes/commonmark-linkify/zipball/4d9a3cfe4f0ced80f974a705c6fa985b285a5940",
-                "reference": "4d9a3cfe4f0ced80f974a705c6fa985b285a5940",
+                "url": "https://api.github.com/repos/nanaya/commonmark-linkify/zipball/cb112ae57361cd11c29d9d5a0b2366100c8e547e",
+                "reference": "cb112ae57361cd11c29d9d5a0b2366100c8e547e",
                 "shasum": ""
             },
             "require": {
@@ -1783,7 +1783,6 @@
                     "Jonnybarnes\\CommonmarkLinkify\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "CC0-1.0"
             ],
@@ -1800,7 +1799,10 @@
                 "extension",
                 "markdown"
             ],
-            "time": "2018-10-05T15:28:41+00:00"
+            "support": {
+                "source": "https://github.com/nanaya/commonmark-linkify/tree/fix-multi-links-newline"
+            },
+            "time": "2019-01-17T11:18:34+00:00"
         },
         {
             "name": "knplabs/github-api",
@@ -2807,7 +2809,7 @@
             "support": {
                 "source": "https://github.com/nanaya/slack-php/tree/laravel-5.4"
             },
-            "time": "2017-02-16 06:27:23"
+            "time": "2017-02-16T06:27:23+00:00"
         },
         {
             "name": "mariuzzo/laravel-js-localization",
@@ -7791,6 +7793,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "jonnybarnes/commonmark-linkify": 20,
         "maknz/slack": 20
     },
     "prefer-stable": false,
