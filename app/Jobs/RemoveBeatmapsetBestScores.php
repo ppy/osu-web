@@ -81,7 +81,7 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
             $table = (new $class)->getTable();
             $class::whereIn('beatmap_id', $beatmapIds)
                 ->orderBy('score_id')
-                ->where('score_id', '<=', $this->maxScoreIds[$mode])
+                ->where('score_id', '<=', $this->maxScoreIds[$mode] ?? 0)
                 ->from(DB::raw("{$table} FORCE INDEX (beatmap_score_lookup)")) // TODO: fixes an issue with MySQL 5.6; remove after updating.
                 ->chunkById(100, function ($scores) {
                     $scores->each->delete();
