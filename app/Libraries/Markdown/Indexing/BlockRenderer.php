@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Libraries\Markdown;
+namespace App\Libraries\Markdown\Indexing;
 
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Renderer\BlockRendererInterface;
@@ -9,7 +9,7 @@ use League\CommonMark\Inline\Element\AbstractInline;
 use League\CommonMark\Block\Element\ListItem;
 use League\CommonMark\Node\Node;
 
-class BlockTextRenderer implements BlockRendererInterface
+class BlockRenderer implements BlockRendererInterface
 {
     /**
      * Finds the enclosing parent level block element for a given node.

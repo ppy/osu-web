@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Libraries\Markdown;
+namespace App\Libraries\Markdown\Indexing;
 
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\Node\Node;
 use Webuni\CommonMark\TableExtension\TableRows;
 
-class TableRenderer extends BlockTextRenderer
+class TableRenderer extends BlockRenderer
 {
     /**
      * @param AbstractBlock $block

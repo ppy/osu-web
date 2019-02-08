@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Libraries\Markdown;
+namespace App\Libraries\Markdown\Indexing;
 
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\Node\Node;

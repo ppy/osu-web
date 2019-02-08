@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Libraries\Markdown;
+namespace App\Libraries\Markdown\Indexing;
 
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\Inline\Element\AbstractInline;
@@ -8,7 +8,7 @@ use League\CommonMark\Inline\Element\AbstractStringContainer;
 use League\CommonMark\Inline\Renderer\InlineRendererInterface;
 
 
-class InlineTextRenderer implements InlineRendererInterface
+class InlineRenderer implements InlineRendererInterface
 {
     /**
      * @param AbstractInline $inline
