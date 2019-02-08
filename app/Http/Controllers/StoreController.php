@@ -56,13 +56,6 @@ class StoreController extends Controller
         return parent::__construct();
     }
 
-    // GET /store
-
-    public function getIndex()
-    {
-        return ujs_redirect('/store/listing');
-    }
-
     public function getListing()
     {
         return view('store.index')
