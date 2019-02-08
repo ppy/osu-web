@@ -48,7 +48,7 @@ class EsIndexWiki extends Command
 
                 (new EsIndexDocument($page))->handle();
                 $bar->advance();
-            };
+            }
 
             $cursor = $search->getSortCursor();
         }

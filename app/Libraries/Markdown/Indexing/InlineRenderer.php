@@ -7,7 +7,6 @@ use League\CommonMark\Inline\Element\AbstractInline;
 use League\CommonMark\Inline\Element\AbstractStringContainer;
 use League\CommonMark\Inline\Renderer\InlineRendererInterface;
 
-
 class InlineRenderer implements InlineRendererInterface
 {
     /**

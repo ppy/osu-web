@@ -21,11 +21,9 @@
 namespace App\Libraries\Markdown\Indexing;
 
 use App\Libraries\Markdown\ParsesHeader;
-use App\Libraries\OsuWiki;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
 use Webuni\CommonMark\TableExtension;
-
 
 class IndexingProcessor
 {

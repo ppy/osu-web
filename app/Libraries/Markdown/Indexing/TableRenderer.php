@@ -4,7 +4,6 @@ namespace App\Libraries\Markdown\Indexing;
 
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\Node\Node;
 use Webuni\CommonMark\TableExtension\TableRows;
 
 class TableRenderer extends BlockRenderer
