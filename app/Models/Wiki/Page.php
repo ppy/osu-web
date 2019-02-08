@@ -27,7 +27,7 @@ use App\Jobs\EsIndexDocument;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Es;
 use App\Libraries\Markdown\Indexing\IndexingProcessor;
-use App\Libraries\OsuMarkdownProcessor;
+use App\Libraries\Markdown\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use Carbon\Carbon;

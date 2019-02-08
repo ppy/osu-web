@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries;
+namespace App\Libraries\Markdown;
 
 use League\CommonMark\Block\Element as Block;
 use League\CommonMark\Block\Element\Document;
@@ -28,12 +28,12 @@ use League\CommonMark\Environment;
 use League\CommonMark\Inline\Element as Inline;
 use League\CommonMark\Util\Configuration;
 use League\CommonMark\Util\ConfigurationAwareInterface;
-use Symfony\Component\Yaml\Exception\ParseException as YamlParseException;
-use Symfony\Component\Yaml\Yaml;
 use Webuni\CommonMark\TableExtension;
 
 class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationAwareInterface
 {
+    use ParsesHeader;
+
     const VERSION = 11;
 
     public $firstImage;
@@ -87,26 +87,6 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         $firstImage = $processor->firstImage;
 
         return compact('header', 'output', 'toc', 'firstImage');
-    }
-
-    public static function parseYamlHeader($input)
-    {
-        $hasMatch = preg_match('#^(?:---\n(?<header>.+?)\n(?:---|\.\.\.)\n)(?<document>.+)$#s', $input, $matches);
-
-        if ($hasMatch === 1) {
-            try {
-                $header = Yaml::parse($matches['header']);
-            } catch (YamlParseException $_e) {
-                $header = null;
-            }
-
-            return [
-                'header' => $header,
-                'document' => $matches['document'],
-            ];
-        }
-
-        return ['document' => $input];
     }
 
     public function setConfiguration(Configuration $config)

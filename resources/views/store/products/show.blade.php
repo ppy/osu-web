@@ -41,7 +41,7 @@
 
                 <div class="grid">
                     <div class="grid-cell grid-cell--fill">
-                        {!! App\Libraries\OsuMarkdownProcessor::process($product->description, [
+                        {!! App\Libraries\Markdown\OsuMarkdownProcessor::process($product->description, [
                             'html_input' => 'allow',
                             'block_modifiers' => ['store'],
                         ])['output'] !!}
@@ -87,7 +87,7 @@
                 <div class="grid-cell grid-cell--1of2">
                     <div class="grid">
                         <div class="grid-cell grid-cell--fill">
-                            {!! App\Libraries\OsuMarkdownProcessor::process($product->description, [
+                            {!! App\Libraries\Markdown\OsuMarkdownProcessor::process($product->description, [
                                 'html_input' => 'allow',
                                 'block_modifiers' => ['store'],
                             ])['output'] !!}
