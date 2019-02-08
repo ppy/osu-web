@@ -74,6 +74,7 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
             Es::getClient('scores')->deleteByQuery([
                 'index' => config('osu.elasticsearch.prefix')."high_scores_{$mode}",
                 'body' => ['query' => $query->toArray()],
+                'client' => ['ignore' => 404],
             ]);
 
             $class = static::scoreClass($mode);
