@@ -146,7 +146,7 @@ class Page
             ];
         } else {
             $content = OsuWiki::fetchContent('wiki/'.$this->pagePath());
-            $indexContent = IndexingProcessor::process($content, []);
+            $indexContent = IndexingProcessor::process($content);
 
             $params['body'] = [
                 'locale' => $this->locale,

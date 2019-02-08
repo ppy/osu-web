@@ -17,31 +17,22 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Libraries\Markdown\Indexing\IndexingProcessor;
 
-namespace App\Libraries\Markdown\Indexing;
-
-use App\Libraries\Markdown\ParsesHeader;
-use League\CommonMark\CommonMarkConverter;
-use League\CommonMark\Environment;
-use Webuni\CommonMark\TableExtension;
-
-class IndexingProcessor
+class IndexingProcessorTest extends TestCase
 {
-    use ParsesHeader;
-
-    public static function process($rawInput)
+    public function testAll()
     {
-        $config = ['html_input' => 'strip'];
+        $path = __DIR__.'/markdown_examples';
 
-        $rawInput = strip_utf8_bom($rawInput);
-        $input = static::parseYamlHeader($rawInput);
+        foreach (glob("{$path}/*.md") as $mdFilePath) {
+            $markdown = file_get_contents($mdFilePath);
+            $textFilePath = preg_replace('/\.md$/', '.txt', $mdFilePath);
 
-        $env = Environment::createCommonMarkEnvironment();
-        $env->addExtension(new TableExtension\TableExtension);
-        $env->addExtension(new RendererExtension);
-        $converter = new CommonMarkConverter($config, $env);
-        $converted = $converter->convertToHtml($input['document']);
+            $output = IndexingProcessor::process($markdown);
+            $referenceOutput = file_get_contents($textFilePath);
 
-        return $converted;
+            $this->assertSame($referenceOutput, $output);
+        }
     }
 }
