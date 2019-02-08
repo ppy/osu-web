@@ -11,8 +11,6 @@
 |
 */
 
-use App\Models\Comment;
-
 $factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
     return [
         'user_id' => function () {

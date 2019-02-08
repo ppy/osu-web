@@ -173,7 +173,7 @@ class SanityTest extends DuskTestCase
     {
         // apparently there's no phpunit api to do this...
         if (in_array('--verbose', $_SERVER['argv'], true)) {
-            echo($text);
+            echo $text;
         }
     }
 
@@ -240,7 +240,7 @@ class SanityTest extends DuskTestCase
             });
         }
 
-        $this->output("\n\n{$this->passed}/".($this->passed+$this->failed)." passed (".round(($this->passed / ($this->passed+$this->failed))*100, 2)."%) [{$this->skipped} skipped]\n\n");
+        $this->output("\n\n{$this->passed}/".($this->passed + $this->failed).' passed ('.round(($this->passed / ($this->passed + $this->failed)) * 100, 2)."%) [{$this->skipped} skipped]\n\n");
     }
 
     public function bindParams(Browser $browser, \Illuminate\Routing\Route $route)
@@ -302,7 +302,7 @@ class SanityTest extends DuskTestCase
 
         if (isset($paramOverrides[$route->getName()])) {
             foreach ($paramOverrides[$route->getName()] as $paramName => $paramValue) {
-                if (!in_array($paramName, $paramNames)) {
+                if (!in_array($paramName, $paramNames, true)) {
                     $params[$paramName] = $paramValue;
                     $this->output("    {$paramName} => {$paramValue} \e[30;1m(extra param from override)\e[0m\n");
                 }
@@ -321,7 +321,7 @@ class SanityTest extends DuskTestCase
             'comments.show',
         ];
 
-        if (starts_with($route->uri, 'admin') || in_array($route->getName(), $adminRestricted)) {
+        if (starts_with($route->uri, 'admin') || in_array($route->getName(), $adminRestricted, true)) {
             // TODO: retry and check page as admin? (will affect subsequent tests though, so figure out how to deal with that..)
             $browser->assertSee("You shouldn't be here.");
         } else {
@@ -351,7 +351,7 @@ class SanityTest extends DuskTestCase
             'store.orders.index',
         ];
 
-        if (in_array($route->getName(), $verificationExpected)) {
+        if (in_array($route->getName(), $verificationExpected, true)) {
             $browser->assertSee('Account Verification');
 
             $verificationCode = self::getVerificationCode();
@@ -379,8 +379,8 @@ class SanityTest extends DuskTestCase
 
                 // ignore missing non-critical assets
                 if (
-                    ($returnCode == 404 && starts_with($url, 'https://assets.ppy.sh')) ||
-                    ($returnCode == 403 && starts_with($url, 'https://i.ppy.sh'))
+                    ($returnCode === 404 && starts_with($url, 'https://assets.ppy.sh')) ||
+                    ($returnCode === 403 && starts_with($url, 'https://i.ppy.sh'))
                 ) {
                     continue;
                 }
@@ -407,7 +407,7 @@ class SanityTest extends DuskTestCase
         $count = preg_match_all('/Your verification code is: ([0-9a-f]{8})/im', $log, $matches);
 
         if ($count > 0) {
-            return $matches[1][count($matches[1])-1];
+            return $matches[1][count($matches[1]) - 1];
         }
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 $factory->define(App\Models\UpdateStream::class, function (Faker\Generator $faker) {
     return  [
         'name' => function () use ($faker) {
@@ -6,6 +7,6 @@ $factory->define(App\Models\UpdateStream::class, function (Faker\Generator $fake
         },
         'pretty_name' => function () use ($faker) {
             return $faker->colorName();
-        }
+        },
     ];
 });

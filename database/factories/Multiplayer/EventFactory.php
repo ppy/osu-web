@@ -1,5 +1,5 @@
 <?php
-use App\Models\Multiplayer\Event;
+
 
 $factory->define(App\Models\Multiplayer\Event::class, function (Faker\Generator $faker) {
     return [

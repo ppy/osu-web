@@ -11,8 +11,6 @@
 |
 */
 
-use App\Models\Group;
-
 $factory->define(App\Models\Group::class, function (Faker\Generator $faker) {
     return [
         'group_name' => function () use ($faker) {
