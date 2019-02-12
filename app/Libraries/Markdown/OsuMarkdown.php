@@ -20,6 +20,7 @@
 
 namespace App\Libraries\Markdown;
 
+use App\Libraries\Markdown\Indexing\RendererExtension as IndexingRendererExtension;
 use Jonnybarnes\CommonmarkLinkify\LinkifyExtension;
 use League\CommonMark\Block\Element\Document;
 use League\CommonMark\CommonMarkConverter;
@@ -124,14 +125,14 @@ class OsuMarkdown
 
     public function load($rawInput)
     {
-        $rawInput = strip_utf8_bom($rawInput);
+        $this->rawInput = strip_utf8_bom($rawInput);
 
         if ($this->config['parse_yaml_header']) {
-            $parsed = static::parseYamlHeader($rawInput);
+            $parsed = static::parseYamlHeader($this->rawInput);
             $this->document = $parsed['document'];
             $this->header = $parsed['header'];
         } else {
-            $this->document = $rawInput;
+            $this->document = $this->rawInput;
             $this->header = [];
         }
 
@@ -148,6 +149,21 @@ class OsuMarkdown
             'output' => $this->html,
             'toc' => $this->toc,
         ];
+    }
+
+    public function toIndexable()
+    {
+        $config = ['html_input' => 'strip'];
+
+        $input = static::parseYamlHeader($this->rawInput);
+
+        $env = Environment::createCommonMarkEnvironment();
+        $env->addExtension(new TableExtension\TableExtension);
+        $env->addExtension(new IndexingRendererExtension);
+        $converter = new CommonMarkConverter($config, $env);
+        $converted = $converter->convertToHtml($input['document']);
+
+        return $converted;
     }
 
     private function process()

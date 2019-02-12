@@ -26,7 +26,6 @@ use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Es;
-use App\Libraries\Markdown\Indexing\IndexingProcessor;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
@@ -146,7 +145,9 @@ class Page
             ];
         } else {
             $content = OsuWiki::fetchContent('wiki/'.$this->pagePath());
-            $indexContent = IndexingProcessor::process($content);
+            $indexContent = (new OsuMarkdown('wiki', [
+                'relative_url_root' => wiki_url($this->path),
+            ]))->load($content)->toIndexable();
 
             $params['body'] = [
                 'locale' => $this->locale,

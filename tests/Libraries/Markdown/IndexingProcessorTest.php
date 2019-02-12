@@ -17,7 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-use App\Libraries\Markdown\Indexing\IndexingProcessor;
+use App\Libraries\Markdown\OsuMarkdown;
 
 class IndexingProcessorTest extends TestCase
 {
@@ -29,7 +29,7 @@ class IndexingProcessorTest extends TestCase
             $markdown = file_get_contents($mdFilePath);
             $textFilePath = preg_replace('/\.md$/', '.txt', $mdFilePath);
 
-            $output = IndexingProcessor::process($markdown);
+            $output = (new OsuMarkdown('wiki'))->load($markdown)->toIndexable();
             $referenceOutput = file_get_contents($textFilePath);
 
             $this->assertSame($referenceOutput, $output);
