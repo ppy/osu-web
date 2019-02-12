@@ -40,13 +40,17 @@ class Beatmaps.SearchFilter extends React.PureComponent
           cssClasses = 'beatmapsets-search-filter__item'
           cssClasses += ' beatmapsets-search-filter__item--active' if @selected(option.id)
 
+          text = option.name
+          if @props.name == 'general' && option.id == 'recommended' && @props.recommendedDifficulty?
+            text += " (#{@props.recommendedDifficulty.toFixed(2)})"
+
           a
             key: i
             href: @href(option)
             className: cssClasses
             'data-filter-value': option.id
             onClick: @select
-            option.name
+            text
 
 
   cast: (value) =>

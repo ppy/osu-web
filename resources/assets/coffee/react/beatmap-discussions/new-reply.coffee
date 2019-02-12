@@ -161,7 +161,8 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
     @postXhr?.abort()
 
-    action = event.currentTarget.dataset.action
+    # in case the event came from input box, do 'reply'.
+    action = event.currentTarget.dataset.action ? 'reply'
     @setState posting: action
 
     resolved = switch action

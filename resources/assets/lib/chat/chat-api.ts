@@ -21,7 +21,7 @@ import * as ApiResponses from './chat-api-responses';
 export default class ChatAPI {
   getMessages(channelId: number): Promise<ApiResponses.GetMessagesJSON> {
     return new Promise((resolve, reject) => {
-      $.get(laroute.route('chat.channels.messages.index', {channel_id: channelId}))
+      $.get(laroute.route('chat.channels.messages.index', {channel: channelId}))
         .done((response) => {
           resolve(response as ApiResponses.GetMessagesJSON);
         }).fail((error) => {
@@ -46,7 +46,7 @@ export default class ChatAPI {
     return new Promise((resolve, reject) => {
       $.ajax({
         type: 'PUT',
-        url: laroute.route('chat.channels.mark-as-read', {channel_id: channelId, message_id: messageId}),
+        url: laroute.route('chat.channels.mark-as-read', {channel: channelId, message: messageId}),
       }).done((response) => {
         resolve(response as ApiResponses.MarkAsReadJSON);
       }).fail((error) => {
@@ -70,7 +70,7 @@ export default class ChatAPI {
 
   sendMessage(channelId: number, message: string): Promise<ApiResponses.SendMessageJSON> {
     return new Promise((resolve, reject) => {
-      $.post(laroute.route('chat.channels.messages.store', {channel_id: channelId}), {
+      $.post(laroute.route('chat.channels.messages.store', {channel: channelId}), {
         message,
         target_id: channelId,
         target_type: 'channel',

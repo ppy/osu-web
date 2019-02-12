@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2245edf9fae238b7a62ee8b527cc8ebb",
+    "content-hash": "0a3167c44160e35cf9a7c288c4707b1b",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1142,74 +1142,6 @@
                 "manager"
             ],
             "time": "2018-08-23T10:42:08+00:00"
-        },
-        {
-            "name": "graham-campbell/markdown",
-            "version": "v10.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GrahamCampbell/Laravel-Markdown.git",
-                "reference": "fdb55c7953c85c60f742294a9cd2b3b010bca0b6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Markdown/zipball/fdb55c7953c85c60f742294a9cd2b3b010bca0b6",
-                "reference": "fdb55c7953c85c60f742294a9cd2b3b010bca0b6",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/contracts": "5.5.*|5.6.*|5.7.*",
-                "illuminate/support": "5.5.*|5.6.*|5.7.*",
-                "illuminate/view": "5.5.*|5.6.*|5.7.*",
-                "league/commonmark": "^0.18",
-                "php": "^7.1.3"
-            },
-            "require-dev": {
-                "graham-campbell/analyzer": "^2.1",
-                "graham-campbell/testbench": "^5.1",
-                "league/commonmark-extras": "^0.1.5",
-                "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^6.5|^7.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "10.2-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "GrahamCampbell\\Markdown\\MarkdownServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GrahamCampbell\\Markdown\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Graham Campbell",
-                    "email": "graham@alt-three.com"
-                }
-            ],
-            "description": "Markdown Is A CommonMark Wrapper For Laravel 5",
-            "keywords": [
-                "Graham Campbell",
-                "GrahamCampbell",
-                "Laravel Markdown",
-                "Laravel-Markdown",
-                "common mark",
-                "commonmark",
-                "framework",
-                "laravel",
-                "markdown"
-            ],
-            "time": "2018-09-29T10:19:14+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

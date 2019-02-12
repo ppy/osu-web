@@ -54,50 +54,9 @@ class BeatmapsetsController extends Controller
 
     public function index()
     {
-        $languages = Language::listing();
-        $genres = Genre::listing();
-
         $beatmaps = $this->search();
 
-        // temporarily put filters here
-        $general = [
-            ['id' => 'recommended', 'name' => trans('beatmaps.general.recommended')],
-            ['id' => 'converts', 'name' => trans('beatmaps.general.converts')],
-        ];
-
-        $modes = [['id' => null, 'name' => trans('beatmaps.mode.any')]];
-        foreach (Beatmap::MODES as $name => $id) {
-            $modes[] = ['id' => $id, 'name' => trans("beatmaps.mode.{$name}")];
-        }
-
-        $statuses = [
-            ['id' => 7, 'name' => trans('beatmaps.status.any')],
-            ['id' => 0, 'name' => trans('beatmaps.status.ranked-approved')],
-            ['id' => 3, 'name' => trans('beatmaps.status.qualified')],
-            ['id' => 8, 'name' => trans('beatmaps.status.loved')],
-            ['id' => 2, 'name' => trans('beatmaps.status.faves')],
-            ['id' => 4, 'name' => trans('beatmaps.status.pending')],
-            ['id' => 5, 'name' => trans('beatmaps.status.graveyard')],
-            ['id' => 6, 'name' => trans('beatmaps.status.my-maps')],
-        ];
-
-        $extras = [
-            ['id' => 'video', 'name' => trans('beatmaps.extra.video')],
-            ['id' => 'storyboard', 'name' => trans('beatmaps.extra.storyboard')],
-        ];
-
-        $ranks = [];
-        foreach (['XH', 'X', 'SH', 'S', 'A', 'B', 'C', 'D'] as $rank) {
-            $ranks[] = ['id' => $rank, 'name' => trans("beatmaps.rank.{$rank}")];
-        }
-
-        $played = [
-            ['id' => null, 'name' => trans('beatmaps.played.any')],
-            ['id' => 'played', 'name' => trans('beatmaps.played.played')],
-            ['id' => 'unplayed', 'name' => trans('beatmaps.played.unplayed')],
-        ];
-
-        $filters = compact('general', 'modes', 'statuses', 'genres', 'languages', 'played', 'extras', 'ranks');
+        $filters = $this->getFilters();
 
         return view('beatmaps.index', compact('filters', 'beatmaps'));
     }
@@ -175,6 +134,7 @@ class BeatmapsetsController extends Controller
                 'beatmaps'
             ),
             'cursor' => $search->getSortCursor(),
+            'recommended_difficulty' => $params->getRecommendedDifficulty(),
             'total' => $search->count(),
         ];
     }
@@ -336,5 +296,50 @@ class BeatmapsetsController extends Controller
           'favcount' => $beatmapset->fresh()->favourite_count,
           'favourited' => $user->fresh()->hasFavourited($beatmapset),
         ];
+    }
+
+    private function getFilters()
+    {
+        $languages = Language::listing();
+        $genres = Genre::listing();
+
+        $general = [
+            ['id' => 'recommended', 'name' => trans('beatmaps.general.recommended')],
+            ['id' => 'converts', 'name' => trans('beatmaps.general.converts')],
+        ];
+
+        $modes = [['id' => null, 'name' => trans('beatmaps.mode.any')]];
+        foreach (Beatmap::MODES as $name => $id) {
+            $modes[] = ['id' => $id, 'name' => trans("beatmaps.mode.{$name}")];
+        }
+
+        $statuses = [
+            ['id' => 7, 'name' => trans('beatmaps.status.any')],
+            ['id' => 0, 'name' => trans('beatmaps.status.ranked-approved')],
+            ['id' => 3, 'name' => trans('beatmaps.status.qualified')],
+            ['id' => 8, 'name' => trans('beatmaps.status.loved')],
+            ['id' => 2, 'name' => trans('beatmaps.status.faves')],
+            ['id' => 4, 'name' => trans('beatmaps.status.pending')],
+            ['id' => 5, 'name' => trans('beatmaps.status.graveyard')],
+            ['id' => 6, 'name' => trans('beatmaps.status.my-maps')],
+        ];
+
+        $extras = [
+            ['id' => 'video', 'name' => trans('beatmaps.extra.video')],
+            ['id' => 'storyboard', 'name' => trans('beatmaps.extra.storyboard')],
+        ];
+
+        $ranks = [];
+        foreach (['XH', 'X', 'SH', 'S', 'A', 'B', 'C', 'D'] as $rank) {
+            $ranks[] = ['id' => $rank, 'name' => trans("beatmaps.rank.{$rank}")];
+        }
+
+        $played = [
+            ['id' => null, 'name' => trans('beatmaps.played.any')],
+            ['id' => 'played', 'name' => trans('beatmaps.played.played')],
+            ['id' => 'unplayed', 'name' => trans('beatmaps.played.unplayed')],
+        ];
+
+        return compact('general', 'modes', 'statuses', 'genres', 'languages', 'played', 'extras', 'ranks');
     }
 }
