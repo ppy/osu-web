@@ -76,13 +76,13 @@ class OsuMarkdown
 
     private $config;
     private $document;
+    private $html;
     private $indexable;
     private $processor;
 
 
     public $firstImage;
     public $header;
-    public $html;
     public $toc;
 
     public static function parseYamlHeader($input)
@@ -125,6 +125,15 @@ class OsuMarkdown
         $this->converter = new CommonMarkConverter($this->config, $env);
     }
 
+    public function html()
+    {
+        if ($this->html === null) {
+            $this->process();
+        }
+
+        return $this->html;
+    }
+
     public function load($rawInput)
     {
         $this->reset();
@@ -145,14 +154,12 @@ class OsuMarkdown
 
     public function toArray()
     {
-        if ($this->html === null) {
-            $this->process();
-        }
+        $html = $this->html();
 
         return [
             'firstImage' => $this->firstImage,
             'header' => $this->header,
-            'output' => $this->html,
+            'output' => $html,
             'toc' => $this->toc,
         ];
     }

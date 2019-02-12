@@ -297,7 +297,7 @@ function markdown($input, $preset = 'default')
         $converter[$preset] = new App\Libraries\Markdown\OsuMarkdown($preset);
     }
 
-    return $converter[$preset]->load($input)->html;
+    return $converter[$preset]->load($input)->html();
 }
 
 function mysql_escape_like($string)
