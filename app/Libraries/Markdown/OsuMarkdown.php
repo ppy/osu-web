@@ -76,7 +76,9 @@ class OsuMarkdown
 
     private $config;
     private $document;
+    private $indexable;
     private $processor;
+
 
     public $firstImage;
     public $header;
@@ -125,6 +127,8 @@ class OsuMarkdown
 
     public function load($rawInput)
     {
+        $this->reset();
+
         $rawInput = strip_utf8_bom($rawInput);
 
         if ($this->config['parse_yaml_header']) {
@@ -155,13 +159,15 @@ class OsuMarkdown
 
     public function toIndexable()
     {
-        $env = Environment::createCommonMarkEnvironment();
-        $env->addExtension(new TableExtension\TableExtension);
-        $env->addExtension(new IndexingRendererExtension);
-        $converter = new CommonMarkConverter($this->config, $env);
-        $converted = $converter->convertToHtml($this->document);
+        if ($this->indexable === null) {
+            $env = Environment::createCommonMarkEnvironment();
+            $env->addExtension(new TableExtension\TableExtension);
+            $env->addExtension(new IndexingRendererExtension);
+            $converter = new CommonMarkConverter($this->config, $env);
+            $this->indexable = $converter->convertToHtml($this->document);
+        }
 
-        return $converted;
+        return $this->indexable;
     }
 
     private function process()
@@ -182,5 +188,14 @@ class OsuMarkdown
 
         $this->toc = $this->processor->toc;
         $this->firstImage = $this->processor->firstImage;
+    }
+
+    private function reset()
+    {
+        $this->firstImage = null;
+        $this->header = null;
+        $this->html = null;
+        $this->toc = null;
+        $this->indexable = null;
     }
 }
