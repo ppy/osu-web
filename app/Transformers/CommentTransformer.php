@@ -40,7 +40,7 @@ class CommentTransformer extends Fractal\TransformerAbstract
             : null;
 
         $messageHtml = priv_check('CommentShow', $comment)->can()
-            ? Markdown::convertToHtml($comment->message)
+            ? markdown($comment->message)
             : null;
 
         return [
