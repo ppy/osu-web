@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -27,7 +27,7 @@
         "class" => "osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1"
     ]) !!}
         <div class="osu-layout__sub-row osu-layout__sub-row--lg1" id="product-header" style="background-image: url({{ $product->header_image }})">
-            <div>{!! Markdown::convertToHtml($product->header_description) !!}</div>
+            <div>{!! markdown($product->header_description) !!}</div>
         </div>
 
         <div class="osu-layout__sub-row">
@@ -41,10 +41,7 @@
 
                 <div class="grid">
                     <div class="grid-cell grid-cell--fill">
-                        {!! App\Libraries\OsuMarkdownProcessor::process($product->description, [
-                            'html_input' => 'allow',
-                            'block_modifiers' => ['store'],
-                        ])['output'] !!}
+                        {!! markdown($product->description, 'store') !!}
                     </div>
                 </div>
 
@@ -87,10 +84,7 @@
                 <div class="grid-cell grid-cell--1of2">
                     <div class="grid">
                         <div class="grid-cell grid-cell--fill">
-                            {!! App\Libraries\OsuMarkdownProcessor::process($product->description, [
-                                'html_input' => 'allow',
-                                'block_modifiers' => ['store'],
-                            ])['output'] !!}
+                            {!! markdown($product->description, 'store') !!}
                         </div>
                     </div>
                     <div class="grid price-box">

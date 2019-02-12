@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -28,16 +28,6 @@
 
         @include('forum.topics._header')
 
-        <div class="js-post-preview--box hidden">
-            @include('forum.topics._post', [
-                'post' => $post,
-                'options' => [
-                    'signature' => $forum->enable_sigs,
-                    'contentExtraClasses' => 'js-post-preview--body',
-                ],
-            ])
-        </div>
-
         <div id="topic-post-form" class="osu-layout__row">
             <div class="forum-post">
                 @if (Auth::user()->isSpecial())
@@ -50,6 +40,15 @@
                 @include("forum.topics._post_info", ["user" => Auth::user(), "options" => ["large" => true]])
 
                 <div class="forum-post__body">
+                    <div class="forum-post__preview js-post-preview--box hidden">
+                        <div class="forum-post__content forum-post__content--header">
+                            {{ trans('forum.topics.create.preview') }}
+                        </div>
+                        <div class="forum-post__content forum-post__content--main">
+                            <div class="forum-post-content js-post-preview--body">
+                            </div>
+                        </div>
+                    </div>
                     <div class="forum-post__content">
                         @include('forum.posts._form_body', ['postBody' => [
                             'content' => $post->post_text,

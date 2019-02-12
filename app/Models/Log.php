@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,22 @@
 
 namespace App\Models;
 
+/**
+ * @property Forum\Forum $forum
+ * @property int $forum_id
+ * @property mixed $log_data
+ * @property int $log_id
+ * @property string $log_ip
+ * @property string $log_operation
+ * @property int $log_time
+ * @property int $log_type
+ * @property User $reportee
+ * @property int $reportee_id
+ * @property Forum\Topic $topic
+ * @property int $topic_id
+ * @property User $user
+ * @property int $user_id
+ */
 class Log extends Model
 {
     const LOG_FORUM_ADMIN = 0;

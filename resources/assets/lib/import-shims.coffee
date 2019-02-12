@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -30,6 +30,8 @@ import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
 import VirtualList from 'react-virtual-list'
+import GalleryContest from 'gallery-contest'
+import WindowVHPatcher from 'window-vh-patcher';
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
@@ -43,6 +45,8 @@ window._exported = {
   ScoreHelper
   SelectOptions
   SpotlightSelectOptions
+  GalleryContest
+  WindowVHPatcher
 }
 
 # refer to variables.less

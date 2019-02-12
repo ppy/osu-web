@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,6 +24,14 @@ use App\Models\User;
 use App\Models\UserRelation;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * @property Channel $channel
+ * @property int $channel_id
+ * @property int|null $last_read_id
+ * @property User $user
+ * @property User $userScoped
+ * @property int $user_id
+ */
 class UserChannel extends Model
 {
     protected $guarded = [];
@@ -59,13 +67,15 @@ class UserChannel extends Model
 
         // fetch the users in each of the channels (and whether they're restricted and/or blocked)
         $userRelationTableName = (new UserRelation)->tableName(true);
-        $userChannelMembers = self::whereIn('channel_id', $userChannels->pluck('channel_id'))
+        $userChannelMembers = self::whereIn('user_channels.channel_id', $userChannels->pluck('channel_id'))
             ->selectRaw('user_channels.*')
             ->selectRaw('phpbb_zebra.foe')
             ->leftJoin($userRelationTableName, function ($join) use ($userRelationTableName, $userId) {
                 $join->on("{$userRelationTableName}.zebra_id", 'user_channels.user_id')
                     ->where("{$userRelationTableName}.user_id", $userId);
             })
+            ->join('channels', 'channels.channel_id', '=', 'user_channels.channel_id')
+            ->where('channels.type', '=', 'PM')
             ->with('userScoped')
             ->get();
 

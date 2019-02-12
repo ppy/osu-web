@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -441,28 +441,11 @@ class OsuAuthorize
             return 'ok';
         }
 
-        static $publicEvents = [
-            BeatmapsetEvent::NOMINATE,
-            BeatmapsetEvent::QUALIFY,
-            BeatmapsetEvent::NOMINATION_RESET,
-            BeatmapsetEvent::DISQUALIFY,
-            BeatmapsetEvent::APPROVE,
-            BeatmapsetEvent::RANK,
-            BeatmapsetEvent::LOVE,
-            BeatmapsetEvent::KUDOSU_GAIN,
-            BeatmapsetEvent::KUDOSU_LOST,
-        ];
-
-        if (in_array($event->type, $publicEvents, true)) {
+        if (in_array($event->type, BeatmapsetEvent::types('public'), true)) {
             return 'ok';
         }
 
-        static $kudosuModerationEvents = [
-            BeatmapsetEvent::KUDOSU_ALLOW,
-            BeatmapsetEvent::KUDOSU_DENY,
-        ];
-
-        if (in_array($event->type, $kudosuModerationEvents, true)) {
+        if (in_array($event->type, BeatmapsetEvent::types('kudosuModeration'), true)) {
             if ($this->checkBeatmapDiscussionAllowOrDenyKudosu($user, null) === 'ok') {
                 return 'ok';
             }
@@ -535,6 +518,7 @@ class OsuAuthorize
 
     public function checkChatChannelJoin(User $user, Channel $channel)
     {
+        // TODO: be able to rejoin multiplayer channels you were a part of?
         $prefix = 'chat.';
 
         $this->ensureLoggedIn($user);
@@ -562,7 +546,6 @@ class OsuAuthorize
                     break;
 
                 case Channel::TYPES['spectator']:
-                case Channel::TYPES['multiplayer']:
                 case Channel::TYPES['temporary']: // this and the comparisons below are needed until bancho is updated to use the new channel types
                     if (starts_with($channel->name, '#spect_')) {
                         return 'ok';
@@ -576,10 +559,25 @@ class OsuAuthorize
                         }
                     }
                     break;
+
+                case Channel::TYPES['multiplayer']:
+                    return 'ok';
+                break;
             }
         }
 
         return $prefix.'no_access';
+    }
+
+    public function checkChatChannelPart(User $user, Channel $channel)
+    {
+        $prefix = 'chat.';
+
+        $this->ensureLoggedIn($user);
+
+        if ($channel->type !== Channel::TYPES['private']) {
+            return 'ok';
+        }
     }
 
     public function checkCommentDestroy($user, $comment)
@@ -999,6 +997,22 @@ class OsuAuthorize
         }
     }
 
+    public function checkMultiplayerRoomCreate($user)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
+    public function checkMultiplayerScoreSubmit($user)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
     public function checkUserPageEdit($user, $pageOwner)
     {
         $prefix = 'user.page.edit.';
@@ -1009,7 +1023,7 @@ class OsuAuthorize
         $page = $pageOwner->userPage;
 
         if ($page === null) {
-            if (!$user->osu_subscriber) {
+            if (!$user->hasSupported()) {
                 return $prefix.'require_supporter_tag';
             }
         } else {
@@ -1022,26 +1036,6 @@ class OsuAuthorize
                 return $prefix.'locked';
             }
         }
-
-        return 'ok';
-    }
-
-    public function checkUserFavourite($user)
-    {
-        $prefix = 'errors.beatmapsets.';
-
-        $this->ensureLoggedIn($user);
-
-        if ($user->favouriteBeatmapsets()->count() > 99) {
-            return $prefix.'too-many-favourites';
-        }
-
-        return 'ok';
-    }
-
-    public function checkUserFavouriteRemove($user)
-    {
-        $this->ensureLoggedIn($user);
 
         return 'ok';
     }

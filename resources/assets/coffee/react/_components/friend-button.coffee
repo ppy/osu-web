@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -102,7 +102,7 @@ class @FriendButton extends React.PureComponent
     isFriendLimit = (currentUser.friends?.length ? 0) >= currentUser.max_friends
     title = switch
       when !isVisible
-        null
+        osu.trans('friends.buttons.disabled')
       when @state.friend?
         osu.trans('friends.buttons.remove')
       when isFriendLimit
@@ -118,15 +118,16 @@ class @FriendButton extends React.PureComponent
       else
         blockClass += " #{bn}--friend"
 
-    button
-      type: 'button'
-      className: blockClass
-      onClick: @clicked
-      ref: @button
+    div
       title: title
-      disabled: disabled
-      @renderIcon({isFriendLimit, isVisible})
-      @renderCounter()
+      button
+        type: 'button'
+        className: blockClass
+        onClick: @clicked
+        ref: @button
+        disabled: disabled
+        @renderIcon({isFriendLimit, isVisible})
+        @renderCounter()
 
 
   renderCounter: =>

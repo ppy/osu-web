@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -155,6 +155,12 @@ class BeatmapsetPage.Main extends React.Component
       @setState
         favcount: data.favcount
         hasFavourited: data.favourited
+
+    .fail (xhr, status) =>
+      if status == 'abort'
+        return
+
+      osu.ajaxError xhr
 
   componentDidMount: ->
     $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmap

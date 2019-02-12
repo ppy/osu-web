@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -53,16 +53,21 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         $profileCustomization = $user->profileCustomization();
 
+        $country = $user->country_acronym === null
+            ? null
+            : [
+                'code' => $user->country_acronym,
+                'name' => $user->countryName(),
+            ];
+
         return [
             'id' => $user->user_id,
             'username' => $user->username,
             'join_date' => json_time($user->user_regdate),
-            'country' => [
-                'code' => $user->country_acronym,
-                'name' => $user->countryName(),
-            ],
+            'country' => $country,
             'avatar_url' => $user->user_avatar,
             'is_supporter' => $user->osu_subscriber,
+            'has_supported' => $user->hasSupported(),
             'is_gmt' => $user->isGMT(),
             'is_qat' => $user->isQAT(),
             'is_bng' => $user->isBNG(),

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-const { mix } = require('laravel-mix');
+const mix = require('laravel-mix');
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -73,7 +73,7 @@ const vendor = [
   path.join(node_root, `prop-types/prop-types${min}.js`),
   path.join(node_root, 'photoswipe/dist/photoswipe.js'),
   path.join(node_root, 'photoswipe/dist/photoswipe-ui-default.js'),
-  path.join(node_root, `d3/build/d3${min}.js`),
+  path.join(node_root, `d3/dist/d3${min}.js`),
   path.join(node_root, 'moment/moment.js'),
   path.join(node_root, 'js-cookie/src/js.cookie.js'),
   path.join(node_root, `imagesloaded/imagesloaded.pkgd${min}.js`),
@@ -186,17 +186,12 @@ mix
 .js(...reactComponentSet('status-page'))
 .js(...reactComponentSet('admin/contest'))
 .js(...reactComponentSet('wiki-search'))
-.js([
-  ...glob.sync('resources/assets/coffee/react/contest/entry/*.coffee'),
-  'resources/assets/coffee/react/contest-entry.coffee',
-], 'js/react/contest-entry.js')
-.js([
-  // 'resources/assets/coffee/react/contest/voting/_base-entry-list.coffee',
-  ...glob.sync('resources/assets/coffee/react/contest/voting/*.coffee'),
-  'resources/assets/coffee/react/contest-voting.coffee',
-], 'js/react/contest-voting.js')
-.ts('resources/assets/ts/chat.ts', 'js/react/chat.js')
-.copy('node_modules/@fortawesome/fontawesome-free-webfonts/webfonts', 'public/vendor/fonts/font-awesome')
+.js(...reactComponentSet('contest-entry'))
+.js(...reactComponentSet('contest-voting'))
+.ts('resources/assets/lib/chat.ts', 'js/react/chat.js')
+.ts('resources/assets/lib/news-index.ts', 'js/react/news-index.js')
+.ts('resources/assets/lib/news-show.ts', 'js/react/news-show.js')
+.copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/timeago/locales', 'public/vendor/js/timeago-locales')
 .copy('node_modules/moment/locale', 'public/vendor/js/moment-locales')

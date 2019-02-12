@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -78,7 +78,9 @@ class @UserLogin
   show: (target) =>
     @clickAfterLogin = target
 
-    Timeout.set 0, -> $('.js-user-login--menu')[0].click()
+    Timeout.set 0, ->
+      $(document).trigger 'gallery:close'
+      $('.js-user-login--menu')[0].click()
 
 
   showOnClick: (e) =>

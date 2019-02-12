@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -72,6 +72,35 @@ abstract class Model extends BaseModel
 
             return $query->count();
         };
+    }
+
+    public function scopeCursorWhere($query, array $cursors, bool $isFirst = true)
+    {
+        if (empty($cursors)) {
+            return;
+        }
+
+        if ($isFirst) {
+            foreach ($cursors as $cursor) {
+                $query->orderBy($cursor['column'], $cursor['order']);
+            }
+        }
+
+        $cursor = array_shift($cursors);
+
+        $dir = strtoupper($cursor['order']) === 'DESC' ? '<' : '>';
+
+        if (count($cursors) === 0) {
+            $query->where($cursor['column'], $dir, $cursor['value']);
+        } else {
+            $query->where($cursor['column'], "{$dir}=", $cursor['value'])
+                ->where(function ($q) use ($cursor, $dir, $cursors) {
+                    $q->where($cursor['column'], $dir, $cursor['value'])
+                        ->orWhere(function ($qq) use ($cursors) {
+                            $qq->cursorWhere($cursors, false);
+                        });
+                });
+        }
     }
 
     public function scopeOrderByField($query, $field, $ids)

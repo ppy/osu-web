@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,6 +34,7 @@ class ModdingHistoryController extends Controller
     protected $section = 'user';
 
     protected $isModerator;
+    protected $isKudosuModerator;
     protected $searchParams;
     protected $user;
 
@@ -41,6 +42,7 @@ class ModdingHistoryController extends Controller
     {
         $this->middleware(function ($request, $next) {
             $this->isModerator = priv_check('BeatmapDiscussionModerate')->can();
+            $this->isKudosuModerator = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
             $this->user = User::lookup(request('user'), null, $this->isModerator);
 
             if ($this->user === null || $this->user->isBot() || !priv_check('UserShow', $this->user)->can()) {
@@ -56,6 +58,7 @@ class ModdingHistoryController extends Controller
 
             $this->searchParams = array_merge(['user' => $this->user->user_id], request()->query());
             $this->searchParams['is_moderator'] = $this->isModerator;
+            $this->searchParams['is_kudosu_moderator'] = $this->isKudosuModerator;
 
             if (!$this->isModerator) {
                 $this->searchParams['with_deleted'] = false;

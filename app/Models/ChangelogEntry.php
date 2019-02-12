@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,6 +24,24 @@ use Carbon\Carbon;
 use Exception;
 use Markdown;
 
+/**
+ * @property \Illuminate\Database\Eloquent\Collection $builds Build
+ * @property string|null $category
+ * @property \Carbon\Carbon|null $created_at
+ * @property GithubUser $githubUser
+ * @property int|null $github_pull_request_id
+ * @property int|null $github_user_id
+ * @property int $id
+ * @property bool $major
+ * @property string|null $message
+ * @property bool $private
+ * @property Repository $repository
+ * @property int|null $repository_id
+ * @property string|null $title
+ * @property string|null $type
+ * @property \Carbon\Carbon|null $updated_at
+ * @property string|null $url
+ */
 class ChangelogEntry extends Model
 {
     protected $casts = [
@@ -182,7 +200,7 @@ class ChangelogEntry extends Model
         list($private, $public) = static::splitMessage($this->message);
 
         if ($public !== null) {
-            return Markdown::convertToHtml($public);
+            return markdown($public, 'changelog_entry');
         }
     }
 }

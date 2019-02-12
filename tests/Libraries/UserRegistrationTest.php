@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -32,7 +32,7 @@ class UserRegistrationTest extends TestCase
         $thrown = $this->runSubject($reg);
 
         $this->assertFalse($thrown);
-        $this->assertEquals($origCount + 1, User::count());
+        $this->assertSame($origCount + 1, User::count());
     }
 
     public function testRequiresUsername()
@@ -51,7 +51,7 @@ class UserRegistrationTest extends TestCase
                 'username' => [trans('model_validation.required', ['attribute' => 'username'])],
             ]
         );
-        $this->assertEquals($origCount, User::count());
+        $this->assertSame($origCount, User::count());
     }
 
     public function testStoreRequiresEmail()
@@ -70,7 +70,7 @@ class UserRegistrationTest extends TestCase
                 'user_email' => [trans('model_validation.required', ['attribute' => 'user_email'])],
             ]
         );
-        $this->assertEquals($origCount, User::count());
+        $this->assertSame($origCount, User::count());
     }
 
     public function testStoreRequiresPassword()
@@ -89,7 +89,7 @@ class UserRegistrationTest extends TestCase
                 'password' => [trans('model_validation.required', ['attribute' => 'password'])],
             ]
         );
-        $this->assertEquals($origCount, User::count());
+        $this->assertSame($origCount, User::count());
     }
 
     // wrapper to catch the exception

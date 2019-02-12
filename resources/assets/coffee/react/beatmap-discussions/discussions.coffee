@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -24,7 +24,6 @@ lp = 'beatmaps.discussions'
 
 sortPresets =
   updated_at:
-    icon: 'fas fa-calendar-alt'
     text: osu.trans('beatmaps.discussions.sort.updated_at')
     sort: (a, b) ->
       if a.updated_at == b.updated_at
@@ -33,7 +32,6 @@ sortPresets =
         Date.parse(b.updated_at) - Date.parse(a.updated_at)
 
   created_at:
-    icon: 'far fa-folder'
     text: osu.trans('beatmaps.discussions.sort.created_at')
     sort: (a, b) ->
       if a.created_at == b.created_at
@@ -43,7 +41,6 @@ sortPresets =
 
   # there's obviously no timeline field
   timeline:
-    icon: 'fas fa-barcode'
     text: osu.trans('beatmaps.discussions.sort.timeline')
     sort: (a, b) ->
       if a.timestamp == b.timestamp
@@ -74,19 +71,14 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
           osu.trans('beatmaps.discussions.title')
 
         div className: "#{bn}__toolbar",
+          div className: "#{bn}__toolbar-content #{bn}__toolbar-content--left",
+            div
+              className: "#{bn}__toolbar-item"
+              @renderSortOptions()
           div className: "#{bn}__toolbar-content #{bn}__toolbar-content--right",
             a
               href: '#'
-              className: "#{bn}__toolbar-link"
-              'data-type': 'sort'
-              onClick: @changeSort
-              span className: "#{bn}__toolbar-link-content", osu.trans('beatmaps.discussions.sort._')
-              span className: "#{bn}__toolbar-link-content", i className: sortPresets[@currentSort()].icon
-              span className: "#{bn}__toolbar-link-content", sortPresets[@currentSort()].text
-
-            a
-              href: '#'
-              className: "#{bn}__toolbar-link"
+              className: "#{bn}__toolbar-item #{bn}__toolbar-item--link"
               'data-type': 'collapse'
               onClick: @expand
               el IconExpand,
@@ -97,7 +89,7 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
 
             a
               href: '#'
-              className: "#{bn}__toolbar-link"
+              className: "#{bn}__toolbar-item #{bn}__toolbar-item--link"
               'data-type': 'expand'
               onClick: @expand
               el IconExpand,
@@ -128,6 +120,29 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
             @timelineCircle()
 
 
+  renderSortOptions: =>
+    presets =
+      switch @props.mode
+        when 'timeline'
+          ['timeline', 'updated_at']
+        else
+          ['created_at', 'updated_at']
+
+    div
+      className: 'sort sort--beatmapset-discussions'
+      div
+        className: 'sort__items'
+        span className: 'sort__item sort__item--title', osu.trans('sort._')
+        for preset in presets
+          button
+            key: preset
+            type: 'button'
+            className: "sort__item sort__item--button #{if @currentSort() == preset then 'sort__item--active' else ''}"
+            'data-sort-preset': preset
+            onClick: @changeSort
+            sortPresets[preset].text
+
+
   discussionPage: (discussion) =>
     return if !discussion.id?
 
@@ -150,15 +165,14 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
 
 
   changeSort: (e) =>
-    e.preventDefault()
+    targetPreset = e.currentTarget.dataset.sortPreset
 
-    sort = {}
-    sort[@props.mode] = if @currentSort() == 'updated_at'
-                          if @props.mode == 'timeline' then 'timeline' else 'created_at'
-                        else
-                          'updated_at'
+    return if targetPreset == @currentSort()
 
-    @setState sort: _.assign({}, @state.sort, sort)
+    sort = osu.jsonClone @state.sort
+    sort[@props.mode] = targetPreset
+
+    @setState {sort}
 
 
   currentSort: =>

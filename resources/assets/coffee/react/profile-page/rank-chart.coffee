@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -47,7 +47,7 @@ class ProfilePage.RankChart extends React.Component
       osu.transChoice('common.time.days_ago', -d)
 
   formatY: (d) ->
-    "<strong>#{osu.trans('users.show.rank.global_simple')}</strong> #{(-d).toLocaleString()}"
+    "<strong>#{osu.trans('users.show.rank.global_simple')}</strong> ##{(-d).toLocaleString()}"
 
 
   render: =>

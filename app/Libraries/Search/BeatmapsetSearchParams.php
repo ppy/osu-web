@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,6 +21,7 @@
 namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\SearchParams;
+use App\Models\Beatmap;
 
 class BeatmapsetSearchParams extends SearchParams
 {
@@ -63,6 +64,9 @@ class BeatmapsetSearchParams extends SearchParams
     /** @var User|null */
     public $user = null;
 
+    /** @var float|null */
+    private $recommendedDifficulty;
+
     public function __construct()
     {
         parent::__construct();
@@ -94,6 +98,25 @@ class BeatmapsetSearchParams extends SearchParams
             || $this->showRecommended
             || $this->playedFilter !== null
         );
+    }
+
+    /**
+     * Gets the recommended star difficulty for the user for the selected game mode; null if the user is not logged in.
+     *
+     * @return float|null The recommended star difficulty; .
+     */
+    public function getRecommendedDifficulty() : ?float
+    {
+        if ($this->user === null) {
+            return null;
+        }
+
+        if ($this->recommendedDifficulty === null) {
+            $mode = Beatmap::modeStr($this->mode) ?? $this->user->playmode;
+            $this->recommendedDifficulty = $this->user->recommendedStarDifficulty($mode);
+        }
+
+        return $this->recommendedDifficulty;
     }
 
     public function hasSupporterFeatures() : bool

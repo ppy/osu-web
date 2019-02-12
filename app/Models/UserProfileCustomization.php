@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,14 @@ namespace App\Models;
 
 use App\Libraries\ProfileCover;
 
+/**
+ * @property array|null $cover_json
+ * @property \Carbon\Carbon $created_at
+ * @property string|null $extras_order
+ * @property int $id
+ * @property \Carbon\Carbon $updated_at
+ * @property int|null $user_id
+ */
 class UserProfileCustomization extends Model
 {
     /**

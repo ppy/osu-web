@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -237,8 +237,8 @@ class ChatControllerTest extends TestCase
         // join the channel
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $publicChannel->channel_id,
-                'user_id' => $this->user->user_id,
+                'channel' => $publicChannel->channel_id,
+                'user' => $this->user->user_id,
             ]))
             ->assertStatus(204);
 
@@ -344,8 +344,8 @@ class ChatControllerTest extends TestCase
         // join the channel
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $publicChannel->channel_id,
-                'user_id' => $this->user->user_id,
+                'channel' => $publicChannel->channel_id,
+                'user' => $this->user->user_id,
             ]))
             ->assertStatus(204);
 
@@ -362,8 +362,8 @@ class ChatControllerTest extends TestCase
         // join channel
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $publicChannel->channel_id,
-                'user_id' => $this->user->user_id,
+                'channel' => $publicChannel->channel_id,
+                'user' => $this->user->user_id,
             ]))
             ->assertStatus(204);
 

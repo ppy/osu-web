@@ -1,0 +1,154 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.sort {
+  @_top: sort;
+  @_item-margin: 5px;
+  @_hover-bg: #ddd;
+  @_hover-bg--beatmapsets: #eee;
+  @_hover-bg--beatmapset-discussions: #eee;
+  @_hover-bg--changelog: @dark-purple-darker;
+  @_hover-bg--forum-topics: #ddd;
+
+  .default-gutter();
+  display: flex;
+  font-size: @font-size--normal;
+
+  &--beatmapset-discussions {
+    padding: 0;
+  }
+
+  &--beatmapsets {
+    padding: 10px 0;
+  }
+
+  &--forum-topics {
+    padding: 10px 40px;
+    background-color: #eee;
+    border-bottom: 1px solid #ddd;
+  }
+
+  &__item {
+    .reset-input();
+    margin: @_item-margin;
+    padding: 5px 10px;
+    color: #333;
+    .default-border-radius();
+
+    .@{_top}--changelog & {
+      color: inherit;
+    }
+
+    &--button {
+      .link-plain();
+      color: #555;
+
+      .link-hover({
+        background-color: @_hover-bg;
+        color: #555;
+      });
+
+      .@{_top}--beatmapset-discussions & {
+        .link-hover({
+          background-color: @_hover-bg--beatmapset-discussions;
+        });
+      }
+
+      .@{_top}--beatmapsets & {
+        .link-hover({
+          background-color: @_hover-bg--beatmapsets;
+        });
+      }
+
+      .@{_top}--changelog & {
+        color: #ddd;
+
+        .link-hover({
+          background-color: @_hover-bg--changelog;
+          color: #ddd;
+        });
+      }
+
+      .@{_top}--forum-topics & {
+        .link-hover({
+          background-color: @_hover-bg--forum-topics;
+        });
+      }
+    }
+
+    &--title {
+      padding: 0;
+    }
+
+    // overrides --button
+    &--active {
+      background-color: @_hover-bg;
+      color: @pink-darker;
+      font-weight: bold;
+
+      .link-hover({
+        color: @pink-darker;
+      });
+
+      .@{_top}--beatmapset-discussions & {
+        background-color: @_hover-bg--beatmapset-discussions;
+      }
+
+      .@{_top}--beatmapsets & {
+        background-color: @_hover-bg--beatmapsets;
+      }
+
+      .@{_top}--changelog & {
+        background-color: @_hover-bg--changelog;
+        color: @pink;
+
+        .link-hover({
+          color: @pink;
+        });
+      }
+
+      .@{_top}--forum-topics & {
+        background-color: @_hover-bg--forum-topics;
+      }
+    }
+  }
+
+  &__item-arrow {
+    margin-left: 5px;
+    opacity: 0;
+
+    .@{_top}__item:hover & {
+      opacity: 1;
+    }
+
+    .@{_top}__item--active & {
+      opacity: 1;
+    }
+  }
+
+  &__item-icon {
+    margin-right: 5px;
+  }
+
+  &__items {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: -@_item-margin;
+  }
+}

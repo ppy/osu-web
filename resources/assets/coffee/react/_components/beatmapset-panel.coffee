@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -58,6 +58,10 @@ class @BeatmapsetPanel extends React.PureComponent
       requiredHype = beatmapset.hype.required.toLocaleString()
       currentNominations = beatmapset.nominations.current.toLocaleString()
       requiredNominations = beatmapset.nominations.required.toLocaleString()
+
+    playCount = beatmapset.play_count.toLocaleString()
+
+    favouriteCount = beatmapset.favourite_count.toLocaleString()
 
     # arbitrary number
     maxDisplayedDifficulty = 10
@@ -119,12 +123,12 @@ class @BeatmapsetPanel extends React.PureComponent
                   span className: 'beatmapset-panel__count-number', currentNominations
                   i className: 'fas fa-thumbs-up fa-fw'
             else
-              div className: 'beatmapset-panel__count',
-                span className: 'beatmapset-panel__count-number', beatmapset.play_count.toLocaleString()
+              div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.panel.playcount', {count: playCount}),
+                span className: 'beatmapset-panel__count-number', playCount
                 i className: 'fas fa-fw fa-play-circle'
 
-            div className: 'beatmapset-panel__count',
-              span className: 'beatmapset-panel__count-number', beatmapset.favourite_count.toLocaleString()
+            div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.panel.favourites', {count: favouriteCount}),
+              span className: 'beatmapset-panel__count-number', favouriteCount
               i className: 'fas fa-fw fa-heart'
 
           div
@@ -160,6 +164,7 @@ class @BeatmapsetPanel extends React.PureComponent
               if currentUser?.id
                 a
                   href: laroute.route 'beatmapsets.download', beatmapset: beatmapset.id
+                  title: osu.trans('beatmapsets.show.details.download._')
                   className: 'beatmapset-panel__icon js-beatmapset-download-link'
                   'data-turbolinks': 'false'
                   i className: 'fas fa-download'

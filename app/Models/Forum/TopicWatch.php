@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,14 @@ namespace App\Models\Forum;
 
 use App\Models\User;
 
+/**
+ * @property bool $mail
+ * @property bool $notify_status
+ * @property Topic $topic
+ * @property int $topic_id
+ * @property User $user
+ * @property int $user_id
+ */
 class TopicWatch extends Model
 {
     protected $table = 'phpbb_topics_watch';

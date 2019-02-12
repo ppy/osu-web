@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -114,6 +114,7 @@ class ProfilePage.Header extends React.Component
         className: 'profile-header__cover-editor'
         button
           className: 'profile-page-toggle'
+          title: osu.trans('users.show.edit.cover.button')
           onClick: @toggleEdit
           span className: 'fas fa-pencil-alt'
         if @state.editing
@@ -130,6 +131,8 @@ class ProfilePage.Header extends React.Component
           href: laroute.route('users.show', user: @props.user.id)
           className: 'page-mode-v2__link page-mode-v2__link--active'
           osu.trans 'users.show.header_title.info'
+      li
+        className: 'page-mode-v2__item'
         a
           href: laroute.route('users.modding.index', user: @props.user.id)
           className: 'page-mode-v2__link'

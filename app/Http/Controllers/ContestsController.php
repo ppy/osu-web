@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -29,10 +29,14 @@ class ContestsController extends Controller
 
     public function index()
     {
-        $contests = Contest::where('visible', true)->orderBy('id', 'desc')->get();
+        $contests = Contest::orderBy('id', 'desc');
+
+        if (!Auth::check() || !Auth::user()->isAdmin()) {
+            $contests->where('visible', true);
+        }
 
         return view('contests.index')
-            ->with('contests', $contests);
+            ->with('contests', $contests->get());
     }
 
     public function show($id)

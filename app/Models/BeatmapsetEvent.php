@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,17 @@ namespace App\Models;
 
 use Carbon\Carbon;
 
+/**
+ * @property Beatmapset $beatmapset
+ * @property int $beatmapset_id
+ * @property string|null $comment
+ * @property \Carbon\Carbon|null $created_at
+ * @property int $id
+ * @property mixed|null $type
+ * @property \Carbon\Carbon|null $updated_at
+ * @property User $user
+ * @property int|null $user_id
+ */
 class BeatmapsetEvent extends Model
 {
     const NOMINATE = 'nominate';
@@ -80,8 +91,9 @@ class BeatmapsetEvent extends Model
         ];
 
         $query = static::limit($params['limit'])->offset(($params['page'] - 1) * $params['limit']);
+        $searchByUser = present($rawParams['user'] ?? null);
 
-        if (present($rawParams['user'] ?? null)) {
+        if ($searchByUser) {
             $params['user'] = $rawParams['user'];
             $user = User::lookup($params['user']);
 
@@ -123,9 +135,25 @@ class BeatmapsetEvent extends Model
             $params['types'] = array_merge($params['types'], get_arr($rawParams['types'], 'get_string'));
         }
 
-        $params['types'] = array_intersect($params['types'], static::publicTypes());
+        if ($searchByUser) {
+            $allowedTypes = static::types('public');
+            if ($rawParams['is_moderator'] ?? false) {
+                $allowedTypes = array_merge($allowedTypes, static::types('moderation'));
+            }
+            if ($rawParams['is_kudosu_moderator'] ?? false) {
+                $allowedTypes = array_merge($allowedTypes, static::types('kudosuModeration'));
+            }
+        } else {
+            $allowedTypes = static::types('all');
+        }
 
-        if (!empty($params['types'])) {
+        $params['types'] = array_intersect($params['types'], $allowedTypes);
+
+        if (empty($params['types'])) {
+            if ($searchByUser) {
+                $query->whereIn('type', $allowedTypes);
+            }
+        } else {
             $query->whereIn('type', $params['types']);
         }
 
@@ -153,35 +181,61 @@ class BeatmapsetEvent extends Model
     }
 
     /**
-     * Currently used for generating type filter checkboxes in events index page.
+     * Currently used for:
+     * - generating type filter checkboxes in events index page
+     *   - searching by user should limit the allowed types
+     * - checking whether or not user id should be visible
      * Order affects how they're displayed.
      */
-    public static function publicTypes()
+    public static function types($privilege)
     {
-        return [
-            static::NOMINATE,
-            static::QUALIFY,
-            // static::APPROVE, // not used
-            static::RANK,
-            static::LOVE,
-            static::NOMINATION_RESET,
-            static::DISQUALIFY,
+        static $ret;
 
-            static::KUDOSU_ALLOW,
-            static::KUDOSU_DENY,
-            static::KUDOSU_GAIN,
-            static::KUDOSU_LOST,
-            static::KUDOSU_RECALCULATE,
+        if ($ret === null) {
+            $ret = [
+                'public' => [
+                    static::NOMINATE,
+                    static::QUALIFY,
+                    static::RANK,
+                    static::LOVE,
+                    static::NOMINATION_RESET,
+                    static::DISQUALIFY,
 
-            static::ISSUE_RESOLVE,
-            static::ISSUE_REOPEN,
+                    static::KUDOSU_GAIN,
+                    static::KUDOSU_LOST,
+                ],
+                'kudosuModeration' => [
+                    static::KUDOSU_ALLOW,
+                    static::KUDOSU_DENY,
+                ],
+                'moderation' => [
+                    static::APPROVE, // not actually used
 
-            static::DISCUSSION_DELETE,
-            static::DISCUSSION_RESTORE,
+                    static::KUDOSU_RECALCULATE,
 
-            static::DISCUSSION_POST_DELETE,
-            static::DISCUSSION_POST_RESTORE,
-        ];
+                    static::ISSUE_RESOLVE,
+                    static::ISSUE_REOPEN,
+
+                    static::DISCUSSION_DELETE,
+                    static::DISCUSSION_RESTORE,
+
+                    static::DISCUSSION_POST_DELETE,
+                    static::DISCUSSION_POST_RESTORE,
+                ],
+            ];
+        }
+
+        if ($privilege === 'all' && !isset($ret['all'])) {
+            $all = [];
+
+            foreach ($ret as $_priv => $types) {
+                $all = array_merge($all, $types);
+            }
+
+            $ret['all'] = $all;
+        }
+
+        return $ret[$privilege];
     }
 
     public function beatmapset()

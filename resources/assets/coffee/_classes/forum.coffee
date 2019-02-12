@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -112,7 +112,6 @@ class @Forum
     lastPostLoaded = @lastPostLoaded()
 
     $('.js-forum__posts-show-more--next')
-      .closest('div')
       .toggleClass 'hidden', lastPostLoaded
 
     if !@userCanModerate()
@@ -126,14 +125,13 @@ class @Forum
     return if @_postsCounter.length == 0
 
     currentPost = null
-    anchorHeight = window.innerHeight * 0.5
 
     if osu.bottomPage()
       currentPost = @posts[@posts.length - 1]
     else
       for post in @posts
         postTop = post.getBoundingClientRect().top
-        if postTop <= anchorHeight
+        if Math.floor(window.stickyHeader.scrollOffset(postTop)) <= 0
           currentPost = post
         else
           break
@@ -172,6 +170,7 @@ class @Forum
 
     try @jumpTo n
 
+
   scrollTo: (postId) =>
     post = document.querySelector(".js-forum-post[data-post-id='#{postId}']")
 
@@ -186,6 +185,12 @@ class @Forum
 
     # using jquery smooth scrollTo will cause unwanted events to trigger on the way down.
     window.scrollTo window.pageXOffset, postTop
+    @highlightPost post
+
+
+  highlightPost: (post) ->
+    $('.js-forum-post--highlighted').removeClass('js-forum-post--highlighted')
+    $(post).addClass('js-forum-post--highlighted')
 
 
   initialScrollTo: =>
@@ -210,8 +215,10 @@ class @Forum
 
   showMore: (e) =>
     e.preventDefault()
-    $link = $(e.target)
-    $linkDiv = $link.closest('div')
+
+    return if e.currentTarget.classList.contains('js-disabled')
+
+    $link = $(e.currentTarget)
     mode = $link.data('mode')
 
     options =
@@ -226,7 +233,7 @@ class @Forum
       $refPost = $('.js-forum-post').last()
       options['start'] = $refPost.data('post-id') + 1
 
-    $linkDiv.addClass 'loading'
+    $link.addClass 'js-disabled'
 
     $.get(window.canonicalUrl, options)
     .done (data) =>
@@ -234,11 +241,11 @@ class @Forum
       scrollReferenceTop = scrollReference.getBoundingClientRect().top
 
       if mode == 'previous'
-        $linkDiv.after data
+        $link.after data
         toRemoveStart = @maxPosts
         toRemoveEnd = @posts.length
       else
-        $linkDiv.before data
+        $link.before data
         toRemoveStart = 0
         toRemoveEnd = @posts.length - @maxPosts
 
@@ -261,7 +268,7 @@ class @Forum
       $link.attr 'data-failed', '0'
 
     .always ->
-      $linkDiv.removeClass 'loading'
+      $link.removeClass 'js-disabled'
     .fail ->
       $link.attr 'data-failed', '1'
 

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,11 +26,16 @@
 @screen-mobile-max: (@screen-sm-min - 1px);
 @desktop: ~"(min-width: @{screen-sm-min})";
 @mobile: ~"(max-width: @{screen-mobile-max})";
+@narrow: ~"(max-width: 480px)";
+
+@highdpi: ~"(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx)";
 
 @hover-transition-duration: 120ms;
 
 @header-pinned: js-header-is-pinned;
 @header-pinned-animation-duration: 300ms;
+
+@admin-menu-icon-width: 50px;
 
 // update import-shims.coffee when changing the height of the header.
 @nav2-avatar-height: 60px;
@@ -72,7 +77,6 @@
 // here be z-indexes
 @z-index--header-bg: -1;
 
-@z-index--visibility-hidden: 0;
 @z-index--body-background: 0;
 
 @z-index--beatmapset-header: 1;
@@ -89,6 +93,7 @@
 @z-index--wiki-search-suggestions: 50;
 @z-index--nav2: 100;
 @z-index--simple-menu: 101;
+@z-index--admin-menu: 499;
 @z-index--back-to-top: 500;
 @z-index--fixed-bar: 501;
 @z-index--blackout: 510;

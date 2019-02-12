@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -63,6 +63,12 @@
     }
   }
 
+  &--news {
+    &::after {
+      background-color: @dark-purple;
+    }
+  }
+
   &--users {
     &::after {
       background-color: @community-user-green;
@@ -93,8 +99,12 @@
         color: @blue;
       }
 
+      .@{_top}--news & {
+        color: @dark-purple;
+      }
+
       .@{_top}--users & {
-        color: @community-user-green;
+        display: none;
       }
     }
   }
@@ -117,7 +127,7 @@
       left: @_link-padding;
       height: @_bar-active-height;
       border-radius: 1000px;
-      width: calc(100% ~'-' (2 * @_link-padding));
+      width: calc(100% - (2 * @_link-padding));
       transition: inherit;
       will-change: transform;
       pointer-events: none;
@@ -150,6 +160,14 @@
 
       &::before {
         background-color: @blue;
+      }
+    }
+
+    .@{_top}--news & {
+      color: @dark-purple;
+
+      &::before {
+        background-color: @dark-purple;
       }
     }
 

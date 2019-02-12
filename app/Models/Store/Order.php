@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -41,7 +41,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *  successfully sent to the payment provider.
  * i.e. it should not be cleared immediately on checking out.
  *
+ * @property Address $address
+ * @property int|null $address_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property \Illuminate\Database\Eloquent\Collection $items OrderItem
+ * @property string|null $last_tracking_state
+ * @property int $order_id
+ * @property \Carbon\Carbon|null $paid_at
+ * @property \Illuminate\Database\Eloquent\Collection $payments Payment
+ * @property \Carbon\Carbon|null $shipped_at
+ * @property float|null $shipping
+ * @property mixed $status
+ * @property string|null $tracking_code
+ * @property string|null $transaction_id
+ * @property \Carbon\Carbon|null $updated_at
  * @property User $user
+ * @property int $user_id
  */
 class Order extends Model
 {

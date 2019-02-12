@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,11 +35,61 @@ use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
+/**
+ * @property Beatmapset $beatmapset
+ * @property TopicCover $cover
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property \Illuminate\Database\Eloquent\Collection $featureVotes FeatureVote
+ * @property Forum $forum
+ * @property int $forum_id
+ * @property int $icon_id
+ * @property \Illuminate\Database\Eloquent\Collection $logs Log
+ * @property mixed $osu_lastreplytype
+ * @property int $osu_starpriority
+ * @property \Illuminate\Database\Eloquent\Collection $pollOptions PollOption
+ * @property \Illuminate\Database\Eloquent\Collection $pollVotes PollVote
+ * @property int $poll_last_vote
+ * @property int $poll_length
+ * @property mixed $poll_length_days
+ * @property int $poll_max_options
+ * @property int $poll_start
+ * @property string $poll_title
+ * @property bool $poll_vote_change
+ * @property \Illuminate\Database\Eloquent\Collection $posts Post
+ * @property bool $topic_approved
+ * @property int $topic_attachment
+ * @property int $topic_bumped
+ * @property int $topic_bumper
+ * @property int $topic_first_post_id
+ * @property string $topic_first_poster_colour
+ * @property string $topic_first_poster_name
+ * @property int $topic_id
+ * @property int $topic_last_post_id
+ * @property string $topic_last_post_subject
+ * @property int $topic_last_post_time
+ * @property string $topic_last_poster_colour
+ * @property int $topic_last_poster_id
+ * @property string $topic_last_poster_name
+ * @property int $topic_last_view_time
+ * @property int $topic_moved_id
+ * @property int $topic_poster
+ * @property int $topic_replies
+ * @property int $topic_replies_real
+ * @property int $topic_reported
+ * @property int $topic_status
+ * @property int $topic_time
+ * @property int $topic_time_limit
+ * @property string $topic_title
+ * @property int $topic_type
+ * @property int $topic_views
+ * @property \Illuminate\Database\Eloquent\Collection $userTracks TopicTrack
+ * @property \Illuminate\Database\Eloquent\Collection $watches TopicWatch
+ */
 class Topic extends Model implements AfterCommit
 {
     use Elasticsearch\TopicTrait, SoftDeletes, Validatable;
 
-    const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
+    const DEFAULT_SORT = 'new';
 
     const STATUS_LOCKED = 1;
     const STATUS_UNLOCKED = 0;
@@ -126,6 +176,7 @@ class Topic extends Model implements AfterCommit
 
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, 1);
+                $post->user->refresh();
             }
         });
 
@@ -155,6 +206,7 @@ class Topic extends Model implements AfterCommit
 
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, -1);
+                $post->user->refresh();
             }
 
             return true;
@@ -173,7 +225,10 @@ class Topic extends Model implements AfterCommit
                 $this->restore();
             }
 
-            optional($post->user)->refreshForumCache($this->forum, 1);
+            if ($post->user !== null) {
+                $post->user->refreshForumCache($this->forum, 1);
+                $post->user->refresh();
+            }
         });
 
         return true;
@@ -491,27 +546,15 @@ class Topic extends Model implements AfterCommit
 
     public function scopePresetSort($query, $sort)
     {
-        switch ($sort[0] ?? null) {
+        $tieBreakerOrder = 'desc';
+
+        switch ($sort) {
             case 'feature-votes':
-                $sortField = 'osu_starpriority';
+                $query->orderBy('osu_starpriority', 'desc');
                 break;
         }
 
-        $sortField ?? ($sortField = static::DEFAULT_ORDER_COLUMN);
-
-        switch ($sort[1] ?? null) {
-            case 'asc':
-                $sortOrder = $sort[1];
-                break;
-        }
-
-        $sortOrder ?? ($sortOrder = 'desc');
-
-        $query->orderBy($sortField, $sortOrder);
-
-        if ($sortField !== static::DEFAULT_ORDER_COLUMN) {
-            $query->orderBy(static::DEFAULT_ORDER_COLUMN, 'desc');
-        }
+        $query->orderBy('topic_last_post_time', $tieBreakerOrder);
     }
 
     public function scopeRecent($query, $params = null)
@@ -779,7 +822,7 @@ class Topic extends Model implements AfterCommit
 
     public function isFeatureTopic()
     {
-        return $this->forum->isFeatureForum();
+        return $this->topic_type === static::TYPES['normal'] && $this->forum->isFeatureForum();
     }
 
     public function poll($poll = null)

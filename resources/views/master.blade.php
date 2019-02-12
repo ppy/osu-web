@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -17,27 +17,27 @@
 --}}
 @php
     $legacyNav ?? ($legacyNav = true);
+
+    if (!isset($title)) {
+        $titleTree = [];
+
+        if (isset($titlePrepend)) {
+            $titleTree[] = $titlePrepend;
+        }
+
+        $titleTree[] = trans("layout.menu.{$currentSection}.{$currentAction}");
+        $titleTree[] = trans("layout.menu.{$currentSection}._");
+
+        $title = implode(' · ', $titleTree);
+    }
+
+    $title .= ' | osu!';
 @endphp
 <!DOCTYPE html>
 <html>
     <head>
         @include("layout.metadata")
-        <title>
-            @if (isset($title))
-                {{ $title }}
-            @elseif (isset($titlePrepend))
-                {{
-                    $titlePrepend.
-                    ' · '.
-                    trans("layout.menu.$currentSection.$currentAction").
-                    ' · '.
-                    trans("layout.menu.$currentSection._")
-                }}
-            @else
-                {{ trans("layout.menu.$currentSection.$currentAction") }} · {{ trans("layout.menu.$currentSection._") }}
-            @endif
-            | osu!
-        </title>
+        <title>{{ $title }}</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>

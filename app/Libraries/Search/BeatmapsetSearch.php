@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -29,6 +29,8 @@ use App\Models\Score;
 
 class BeatmapsetSearch extends RecordSearch
 {
+    public $recommendedDifficulty;
+
     /**
      * @param BeatmapsetSearchParams $params
      */
@@ -127,8 +129,7 @@ class BeatmapsetSearch extends RecordSearch
     {
         if ($this->params->showRecommended && $this->params->user !== null) {
             // TODO: index convert difficulties and handle them.
-            $mode = Beatmap::modeStr($this->params->mode) ?? $this->params->user->playmode;
-            $difficulty = $this->params->user->recommendedStarDifficulty($mode);
+            $difficulty = $this->params->getRecommendedDifficulty();
             $query->filter([
                 'range' => [
                     'difficulties.difficultyrating' => [

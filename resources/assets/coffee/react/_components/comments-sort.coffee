@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -20,23 +20,23 @@
 
 class @CommentsSort extends React.PureComponent
   render: =>
-    div className: osu.classWithModifiers('comments-sort', @props.modifiers),
-      div className: 'comments-sort__item',
-        osu.trans('comments.sort._')
-      @renderButton('new')
-      @renderButton('old')
-      @renderButton('top')
+    div className: osu.classWithModifiers('sort', @props.modifiers),
+      div className: 'sort__items',
+        div className: 'sort__item sort__item--title', osu.trans('sort._')
+        @renderButton('new')
+        @renderButton('old')
+        @renderButton('top')
 
 
   renderButton: (sort) =>
-    className = 'comments-sort__item comments-sort__item--button'
-    className += ' comments-sort__item--active' if sort == (@props.loadingSort ? @props.currentSort)
+    className = 'sort__item sort__item--button'
+    className += ' sort__item--active' if sort == (@props.loadingSort ? @props.currentSort)
 
     button
       className: className
       'data-sort': sort
       onClick: @setSort
-      osu.trans("comments.sort.#{sort}")
+      osu.trans("sort.#{sort}")
 
 
   setSort: (e) =>

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -38,7 +38,7 @@ class CommentsController extends Controller
     {
         parent::__construct();
 
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'index']);
     }
 
     public function destroy($id)
@@ -69,7 +69,7 @@ class CommentsController extends Controller
             $class = Comment::COMMENTABLES[$type] ?? null;
 
             if ($class === null) {
-                abort(404);
+                abort(422);
             }
 
             $commentable = $class::findOrFail($id);
