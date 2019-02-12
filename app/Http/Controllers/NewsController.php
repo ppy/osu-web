@@ -48,7 +48,7 @@ class NewsController extends Controller
     {
         $post = NewsPost::lookupAndSync($slug);
 
-        if ($post === null || $post->published_at === null) {
+        if ($post === null) {
             abort(404);
         }
 
