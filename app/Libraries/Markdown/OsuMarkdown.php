@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries;
+namespace App\Libraries\Markdown;
 
 use Jonnybarnes\CommonmarkLinkify\LinkifyExtension;
 use League\CommonMark\Block\Element\Document;

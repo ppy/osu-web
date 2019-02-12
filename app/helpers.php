@@ -291,10 +291,10 @@ function markdown($input, $preset = 'default')
 {
     static $converter;
 
-    App\Libraries\OsuMarkdown::PRESETS[$preset] ?? $preset = 'default';
+    App\Libraries\Markdown\OsuMarkdown::PRESETS[$preset] ?? $preset = 'default';
 
     if (!isset($converter[$preset])) {
-        $converter[$preset] = new App\Libraries\OsuMarkdown($preset);
+        $converter[$preset] = new App\Libraries\Markdown\OsuMarkdown($preset);
     }
 
     return $converter[$preset]->load($input)->html;
