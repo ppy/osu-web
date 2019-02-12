@@ -125,24 +125,26 @@ class OsuMarkdown
 
     public function load($rawInput)
     {
-        $this->rawInput = strip_utf8_bom($rawInput);
+        $rawInput = strip_utf8_bom($rawInput);
 
         if ($this->config['parse_yaml_header']) {
-            $parsed = static::parseYamlHeader($this->rawInput);
+            $parsed = static::parseYamlHeader($rawInput);
             $this->document = $parsed['document'];
             $this->header = $parsed['header'];
         } else {
-            $this->document = $this->rawInput;
+            $this->document = $rawInput;
             $this->header = [];
         }
-
-        $this->process();
 
         return $this;
     }
 
     public function toArray()
     {
+        if ($this->html === null) {
+            $this->process();
+        }
+
         return [
             'firstImage' => $this->firstImage,
             'header' => $this->header,
@@ -153,15 +155,11 @@ class OsuMarkdown
 
     public function toIndexable()
     {
-        $config = ['html_input' => 'strip'];
-
-        $input = static::parseYamlHeader($this->rawInput);
-
         $env = Environment::createCommonMarkEnvironment();
         $env->addExtension(new TableExtension\TableExtension);
         $env->addExtension(new IndexingRendererExtension);
-        $converter = new CommonMarkConverter($config, $env);
-        $converted = $converter->convertToHtml($input['document']);
+        $converter = new CommonMarkConverter($this->config, $env);
+        $converted = $converter->convertToHtml($this->document);
 
         return $converted;
     }
