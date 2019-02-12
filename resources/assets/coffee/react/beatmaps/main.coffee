@@ -56,6 +56,7 @@ class Beatmaps.Main extends React.PureComponent
         more: @props.beatmaps.cursor? && @props.beatmaps.total > @props.beatmaps.beatmapsets.length
         total: @props.beatmaps.total
         url: laroute.route('beatmapsets.search')
+      recommendedDifficulty: @props.beatmaps.recommended_difficulty
       loading: false
       filters: null
       isExpanded: null
@@ -110,7 +111,6 @@ class Beatmaps.Main extends React.PureComponent
     listCssClasses = 'beatmapsets'
     listCssClasses += ' beatmapsets--dimmed' if @state.loading
 
-
     div
       className: 'osu-layout__section'
       el Beatmaps.SearchPanel,
@@ -121,6 +121,7 @@ class Beatmaps.Main extends React.PureComponent
         filterDefaults: BeatmapsetFilter.getDefaults(@state.filters)
         expand: @expand
         isExpanded: @state.isExpanded
+        recommendedDifficulty: @state.recommendedDifficulty
 
       div className: 'js-sticky-header'
 
@@ -195,6 +196,7 @@ class Beatmaps.Main extends React.PureComponent
         cursor: data.cursor
         more: data.cursor? && data.total > beatmaps.length
         url: @state.paging.url
+      recommendedDifficulty: data.recommended_difficulty
 
 
   fetchResults: (newQuery) =>

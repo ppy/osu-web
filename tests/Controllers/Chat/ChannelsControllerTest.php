@@ -68,8 +68,8 @@ class ChannelsControllerTest extends TestCase
     public function testChannelJoinPublicWhenGuest() // fail
     {
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->user->user_id,
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->user->user_id,
             ]))
             ->assertStatus(401);
     }
@@ -78,8 +78,8 @@ class ChannelsControllerTest extends TestCase
     {
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->anotherUser->user_id,
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->anotherUser->user_id,
             ]))
             ->assertStatus(403);
     }
@@ -88,8 +88,8 @@ class ChannelsControllerTest extends TestCase
     {
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $this->privateChannel->channel_id,
-                'user_id' => $this->user->user_id,
+                'channel' => $this->privateChannel->channel_id,
+                'user' => $this->user->user_id,
             ]))
             ->assertStatus(403);
     }
@@ -105,8 +105,8 @@ class ChannelsControllerTest extends TestCase
         // join channel
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->user->user_id,
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->user->user_id,
             ]))
             ->assertStatus(204);
 
@@ -128,8 +128,8 @@ class ChannelsControllerTest extends TestCase
         // join channel
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->user->user_id,
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->user->user_id,
             ]))
             ->assertStatus(204);
 
@@ -142,8 +142,8 @@ class ChannelsControllerTest extends TestCase
         // attempt to join channel again
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->user->user_id,
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->user->user_id,
             ]))
             ->assertStatus(204);
 
@@ -162,8 +162,8 @@ class ChannelsControllerTest extends TestCase
         $this->json(
             'PUT',
             route('api.chat.channels.mark-as-read', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'message_id' => $this->publicMessage->message_id,
+                'channel' => $this->publicChannel->channel_id,
+                'message' => $this->publicMessage->message_id,
             ])
         )
         ->assertStatus(401);
@@ -175,8 +175,8 @@ class ChannelsControllerTest extends TestCase
         $this->json(
                 'PUT',
                 route('api.chat.channels.mark-as-read', [
-                    'channel_id' => $this->publicChannel->channel_id,
-                    'message_id' => $this->publicMessage->message_id,
+                    'channel' => $this->publicChannel->channel_id,
+                    'message' => $this->publicMessage->message_id,
                 ])
             )
             ->assertStatus(404);
@@ -186,16 +186,16 @@ class ChannelsControllerTest extends TestCase
     {
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->user->user_id,
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->user->user_id,
             ]));
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json(
                 'PUT',
                 route('api.chat.channels.mark-as-read', [
-                    'channel_id' => $this->publicChannel->channel_id,
-                    'message_id' => $this->publicMessage->message_id,
+                    'channel' => $this->publicChannel->channel_id,
+                    'message' => $this->publicMessage->message_id,
                 ])
             )
             ->assertStatus(204);
@@ -215,8 +215,8 @@ class ChannelsControllerTest extends TestCase
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->user->user_id,
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->user->user_id,
             ]));
 
         // mark as read to $newerPublicMessage->message_id
@@ -224,8 +224,8 @@ class ChannelsControllerTest extends TestCase
         $this->json(
                 'PUT',
                 route('api.chat.channels.mark-as-read', [
-                    'channel_id' => $this->publicChannel->channel_id,
-                    'message_id' => $newerPublicMessage->message_id,
+                    'channel' => $this->publicChannel->channel_id,
+                    'message' => $newerPublicMessage->message_id,
                 ])
             )
             ->assertStatus(204);
@@ -243,8 +243,8 @@ class ChannelsControllerTest extends TestCase
         $this->json(
                 'PUT',
                 route('api.chat.channels.mark-as-read', [
-                    'channel_id' => $this->publicChannel->channel_id,
-                    'message_id' => $this->publicMessage->message_id,
+                    'channel' => $this->publicChannel->channel_id,
+                    'message' => $this->publicMessage->message_id,
                 ])
             )
             ->assertStatus(204);
@@ -264,8 +264,8 @@ class ChannelsControllerTest extends TestCase
     public function testChannelLeaveWhenGuest() // fail
     {
         $this->json('DELETE', route('api.chat.channels.part', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->user->user_id,
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->user->user_id,
             ]))
             ->assertStatus(401);
     }
@@ -274,8 +274,8 @@ class ChannelsControllerTest extends TestCase
     {
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('DELETE', route('api.chat.channels.part', [
-                'channel_id' => $this->privateChannel->channel_id,
-                'user_id' => $this->user->user_id,
+                'channel' => $this->privateChannel->channel_id,
+                'user' => $this->user->user_id,
             ]))
             ->assertStatus(403);
     }
@@ -289,8 +289,8 @@ class ChannelsControllerTest extends TestCase
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('DELETE', route('api.chat.channels.part', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->user->user_id,
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->user->user_id,
             ]))
             ->assertStatus(204);
 
@@ -311,8 +311,8 @@ class ChannelsControllerTest extends TestCase
         // join channel
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->user->user_id,
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->user->user_id,
             ]))
             ->assertStatus(204);
 
@@ -325,8 +325,8 @@ class ChannelsControllerTest extends TestCase
         // leave channel
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('DELETE', route('api.chat.channels.part', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->user->user_id,
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->user->user_id,
             ]))
             ->assertStatus(204);
 

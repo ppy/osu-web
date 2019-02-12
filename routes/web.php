@@ -23,7 +23,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
     Route::post('/beatmapsets/{beatmapset}/covers/remove', 'BeatmapsetsController@removeCovers')->name('beatmapsets.covers.remove');
     Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['show', 'update']]);
 
-    Route::post('contests/{id}/zip', 'ContestsController@gimmeZip')->name('contests.get-zip');
+    Route::post('contests/{contest}/zip', 'ContestsController@gimmeZip')->name('contests.get-zip');
     Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
 
     Route::resource('user-contest-entries', 'UserContestEntriesController', ['only' => ['destroy']]);
@@ -89,7 +89,7 @@ Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
     Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
 });
 
-Route::resource('comments', 'CommentsController');
+Route::resource('comments', 'CommentsController', ['except' => 'create']);
 Route::post('comments/{comment}/report', 'CommentsController@report')->name('comments.report');
 Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
 Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
@@ -109,9 +109,7 @@ Route::group(['prefix' => 'community'], function () {
 
     Route::post('tournaments/{tournament}/unregister', 'TournamentsController@unregister')->name('tournaments.unregister');
     Route::post('tournaments/{tournament}/register', 'TournamentsController@register')->name('tournaments.register');
-    Route::resource('tournaments', 'TournamentsController');
-
-    route_redirect('profile/{id}', 'users.show');
+    Route::resource('tournaments', 'TournamentsController', ['only' => ['index', 'show']]);
 
     Route::group(['as' => 'forum.', 'namespace' => 'Forum'], function () {
         Route::group(['prefix' => 'forums'], function () {
@@ -149,10 +147,10 @@ Route::group(['prefix' => 'community'], function () {
         Route::get('updates', 'ChatController@updates')->name('updates');
         Route::get('presence', 'ChatController@presence')->name('presence');
         Route::group(['as' => 'channels.', 'prefix' => 'channels'], function () {
-            Route::apiResource('{channel_id}/messages', 'Channels\MessagesController', ['only' => ['index', 'store']]);
-            Route::put('{channel_id}/users/{user_id}', 'ChannelsController@join')->name('join');
-            Route::delete('{channel_id}/users/{user_id}', 'ChannelsController@part')->name('part');
-            Route::put('{channel_id}/mark-as-read/{message_id}', 'ChannelsController@markAsRead')->name('mark-as-read');
+            Route::apiResource('{channel}/messages', 'Channels\MessagesController', ['only' => ['index', 'store']]);
+            Route::put('{channel}/users/{user}', 'ChannelsController@join')->name('join');
+            Route::delete('{channel}/users/{user}', 'ChannelsController@part')->name('part');
+            Route::put('{channel}/mark-as-read/{message}', 'ChannelsController@markAsRead')->name('mark-as-read');
         });
         Route::apiResource('channels', 'ChannelsController', ['only' => ['index']]);
     });
@@ -184,7 +182,6 @@ Route::group(['prefix' => 'home'], function () {
     Route::post('changelog/github', 'ChangelogController@github');
     Route::resource('changelog', 'ChangelogController', ['only' => ['index', 'show']]);
     Route::get('download', 'HomeController@getDownload')->name('download');
-    Route::get('icons', 'HomeController@getIcons');
     Route::post('set-locale', 'HomeController@setLocale')->name('set-locale');
     Route::get('support', 'HomeController@supportTheGame')->name('support-the-game');
 
@@ -198,7 +195,7 @@ Route::group(['prefix' => 'home'], function () {
 
     Route::resource('blocks', 'BlocksController', ['only' => ['store', 'destroy']]);
     Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
-    Route::resource('news', 'NewsController', ['except' => ['destroy']]);
+    Route::resource('news', 'NewsController', ['only' => ['index', 'show', 'store', 'update']]);
 
     Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
 });
@@ -245,7 +242,7 @@ Route::group(['prefix' => 'help'], function () {
 
 // FIXME: someone split this crap up into proper controllers
 Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
-    Route::get('/', 'StoreController@getIndex');
+    route_redirect('/', 'store.products.index');
 
     Route::get('listing', 'StoreController@getListing')->name('products.index');
     Route::get('invoice/{invoice}', 'StoreController@getInvoice')->name('invoice.show');
@@ -300,21 +297,21 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth:api', 'r
             Route::get('updates', 'ChatController@updates')->name('updates');
             Route::get('presence', 'ChatController@presence')->name('presence');
             Route::group(['as' => 'channels.', 'prefix' => 'channels'], function () {
-                Route::apiResource('{channel_id}/messages', 'Channels\MessagesController', ['only' => ['index', 'store']]);
-                Route::put('{channel_id}/users/{user_id}', 'ChannelsController@join')->name('join');
-                Route::delete('{channel_id}/users/{user_id}', 'ChannelsController@part')->name('part');
-                Route::put('{channel_id}/mark-as-read/{message_id}', 'ChannelsController@markAsRead')->name('mark-as-read');
+                Route::apiResource('{channel}/messages', 'Channels\MessagesController', ['only' => ['index', 'store']]);
+                Route::put('{channel}/users/{user}', 'ChannelsController@join')->name('join');
+                Route::delete('{channel}/users/{user}', 'ChannelsController@part')->name('part');
+                Route::put('{channel}/mark-as-read/{message}', 'ChannelsController@markAsRead')->name('mark-as-read');
             });
             Route::apiResource('channels', 'ChannelsController', ['only' => ['index']]);
         });
 
         Route::group(['as' => 'rooms.', 'prefix' => 'rooms'], function () {
             Route::get('{mode?}', 'Multiplayer\RoomsController@index')->name('index')->where('mode', 'owned|participated|ended');
-            Route::put('{room_id}/users/{user_id}', 'Multiplayer\RoomsController@join')->name('join');
-            Route::delete('{room_id}/users/{user_id}', 'Multiplayer\RoomsController@part')->name('part');
-            Route::get('{room_id}/leaderboard', 'Multiplayer\RoomsController@leaderboard');
-            Route::group(['as' => 'playlist.', 'prefix' => '{room_id}/playlist'], function () {
-                Route::apiResource('{playlist_id}/scores', 'Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['store', 'update']]);
+            Route::put('{room}/users/{user}', 'Multiplayer\RoomsController@join')->name('join');
+            Route::delete('{room}/users/{user}', 'Multiplayer\RoomsController@part')->name('part');
+            Route::get('{room}/leaderboard', 'Multiplayer\RoomsController@leaderboard');
+            Route::group(['as' => 'playlist.', 'prefix' => '{room}/playlist'], function () {
+                Route::apiResource('{playlist}/scores', 'Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['store', 'update']]);
             });
         });
         Route::apiResource('rooms', 'Multiplayer\RoomsController', ['only' => ['show', 'store']]);
@@ -398,7 +395,7 @@ route_redirect('forum/t/{topic}', 'forum.topics.show');
 route_redirect('forum/{forum}', 'forum.forums.show');
 // redirects to beatmapset anyways so there's no point
 // in having an another redirect on top of that
-Route::get('b/{beatmap}', 'BeatmapsController@show');
+Route::get('b/{beatmap}', 'BeatmapsController@show')->name('redirect:beatmaps.show');
 route_redirect('g/{group}', 'groups.show');
 route_redirect('s/{beatmapset}', 'beatmapsets.show');
 route_redirect('u/{user}', 'users.show');
@@ -407,10 +404,10 @@ route_redirect('mp/{match}', 'matches.show');
 route_redirect('wiki/{page?}', 'wiki.show')->where('page', '.+');
 
 // status
-if (Config::get('app.debug')) {
-    Route::get('/status', 'StatusController@getMain');
-} else {
+if (Config::get('app.env') === 'production') {
     Route::group(['domain' => 'stat.ppy.sh'], function () {
-        Route::get('/', 'StatusController@getMain');
+        Route::get('/', 'StatusController@getMain')->name('status.index');
     });
+} else {
+    Route::get('/status', 'StatusController@getMain')->name('status.index');
 }
