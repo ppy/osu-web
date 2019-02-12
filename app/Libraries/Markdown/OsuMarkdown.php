@@ -76,14 +76,12 @@ class OsuMarkdown
 
     private $config;
     private $document;
+    private $firstImage;
+    private $header;
     private $html;
     private $indexable;
     private $processor;
-
-
-    public $firstImage;
-    public $header;
-    public $toc;
+    private $toc;
 
     public static function parseYamlHeader($input)
     {
@@ -199,10 +197,7 @@ class OsuMarkdown
 
     private function reset()
     {
-        $this->firstImage = null;
-        $this->header = null;
         $this->html = null;
-        $this->toc = null;
         $this->indexable = null;
     }
 }
