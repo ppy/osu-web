@@ -43,7 +43,10 @@
 
                 <ul class="table cart-items">
                     @foreach($order->items as $i)
-                        <li class="store-order-item">
+                        <li class="js-store-order-item store-order-item"
+                            data-shopify-id="{{ $i->product->shopify_id }}"
+                            data-quantity="{{ $i->quantity }}"
+                        >
                             <div class="store-order-item__line">
                                 <span class="store-order-item__name">
                                     {{ $i->getDisplayName() }}
@@ -113,7 +116,7 @@
                     </div>
                 @else
                     <div class="big-button">
-                        <a href="{{ route('store.checkout.show', $order) }}" class="btn-osu btn-osu-default" name="checkout">
+                        <a href="{{ route('store.checkout.show', $order) }}" class="js-store-checkout btn-osu btn-osu-default" name="checkout">
                             {{ trans('store.cart.checkout' ) }}
                         </a>
                     </div>

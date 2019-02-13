@@ -29,6 +29,43 @@ const client = Shopify.buildClient(options);
 window.ShopifyClient = client;
 
 export class Store {
+  private static instance: Store;
+
+  static init() {
+    if (this.instance == null) {
+      this.instance = new Store();
+    }
+
+    return this.instance;
+  }
+
+  private constructor() {
+    $(document).on('click', '.js-store-checkout', this.checkout);
+  }
+
+  async checkout(event: Event) {
+    event.preventDefault();
+
+    const lineItems = $('.js-store-order-item').map((_, element) => {
+      // FIXME: handle the ones with no id.
+      return {
+        quantity: Number(element.dataset.quantity),
+        variantId: Store.encodeShopifyId(Store.toShopifyVariantId(element.dataset.shopifyId || '')),
+      };
+    }).toArray();
+
+    console.log(lineItems);
+
+    // create shopify checkout.
+    let checkout = await client.checkout.create();
+    console.log(checkout.id);
+    checkout = await client.checkout.addLineItems(checkout.id, lineItems);
+
+    console.log(`Redirecting to ${checkout.webUrl}`);
+
+    window.location = checkout.webUrl;
+  }
+
   static decodeShopifyId(base64: string) {
     return atob(base64);
   }
@@ -79,4 +116,4 @@ export class Store {
   }
 }
 
-window.Store = new Store();
+window.Store = Store.init();
