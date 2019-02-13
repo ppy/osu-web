@@ -219,6 +219,15 @@ class Order extends Model
         return (float) $total;
     }
 
+    public function getTransactionId()
+    {
+        if (!present($this->transaction_id)) {
+            return;
+        }
+
+        return explode('-', $this->transaction_id)[1] ?? null;
+    }
+
     public function requiresShipping()
     {
         foreach ($this->items as $i) {
@@ -324,6 +333,17 @@ class Order extends Model
     public function isPendingEcheck()
     {
         return $this->tracking_code === static::PENDING_ECHECK;
+    }
+
+    public function isShouldShopify()
+    {
+        foreach ($this->items as $item) {
+            if ($item->product->shopify_id !== null) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

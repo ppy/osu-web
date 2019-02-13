@@ -49,7 +49,7 @@ class CheckoutController extends Controller
     public function show($id)
     {
         $order = $this->orderForCheckout($id);
-        if ($order === null || $order->isEmpty()) {
+        if ($order === null || $order->isEmpty() || $order->isShouldShopify()) {
             return ujs_redirect(route('store.cart.show'));
         }
 
