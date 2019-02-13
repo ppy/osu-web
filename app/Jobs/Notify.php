@@ -47,7 +47,7 @@ class Notify implements ShouldQueue
 
         $receiverIds = $post
             ->beatmapset
-            ->watches
+            ->watches()
             ->where('user_id', '<>', $source->getKey())
             ->pluck('user_id')
             ->all();
