@@ -96,6 +96,8 @@ let webpackConfig = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.PAYMENT_SANDBOX': JSON.stringify(paymentSandbox),
+      'process.env.SHOPIFY_DOMAIN': JSON.stringify(process.env.SHOPIFY_DOMAIN),
+      'process.env.SHOPIFY_TOKEN': JSON.stringify(process.env.SHOPIFY_TOKEN),
     })
   ],
   resolve: {
@@ -190,6 +192,7 @@ mix
 .ts('resources/assets/lib/chat.ts', 'js/react/chat.js')
 .ts('resources/assets/lib/news-index.ts', 'js/react/news-index.js')
 .ts('resources/assets/lib/news-show.ts', 'js/react/news-show.js')
+.ts('resources/assets/lib/store.ts', 'js/store.js')
 .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/timeago/locales', 'public/vendor/js/timeago-locales')

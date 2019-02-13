@@ -1,4 +1,20 @@
+interface Window {
+  Store: any;
+  ShopifyClient: any;
+}
+
 declare var window: Window;
+
+// interfaces for using process.env
+interface Process {
+  env: ProcessEnv;
+}
+
+interface ProcessEnv {
+  [key: string]: string | undefined;
+}
+
+declare var process: Process;
 
 // libraries
 declare var _: any;
