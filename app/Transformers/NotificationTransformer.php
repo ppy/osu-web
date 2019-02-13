@@ -22,7 +22,6 @@ namespace App\Transformers;
 
 use App\Models\Notification;
 use League\Fractal;
-use Markdown;
 
 class NotificationTransformer extends Fractal\TransformerAbstract
 {
