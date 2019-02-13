@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\User;
 use App\Models\Forum\AuthOption;
+use App\Models\User;
 
 $factory->defineAs(App\Models\Forum\Forum::class, 'parent', function (Faker\Generator $faker) {
     return  [
