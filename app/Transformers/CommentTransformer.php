@@ -22,7 +22,6 @@ namespace App\Transformers;
 
 use App\Models\Comment;
 use League\Fractal;
-use Markdown;
 
 class CommentTransformer extends Fractal\TransformerAbstract
 {
