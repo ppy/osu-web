@@ -34,17 +34,19 @@ class All implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        if ($this->notification->is_private) {
-            return $this->notification->userNotifications->map(function ($userNotification) {
-                if ($userNotification === null) {
-                    return;
-                }
+        $channels = $this->notification->userNotifications->map(function ($userNotification) {
+            if ($userNotification === null) {
+                return;
+            }
 
-                return new Channel("user:{$userNotification->user_id}");
-            })->all();
+            return new Channel("user:{$userNotification->user_id}");
+        })->all();
+
+        if (!$this->notification->is_private) {
+            $channels[] = new Channel('global');
         }
 
-        return new Channel('global');
+        return $channels;
     }
 
     public function broadcastWith()
