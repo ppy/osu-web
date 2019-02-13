@@ -21,7 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\GitHubNotFoundException;
-use App\Libraries\OsuMarkdownProcessor;
+use App\Libraries\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use Carbon\Carbon;
 use Exception;
@@ -72,7 +72,7 @@ class NewsPost extends Model
 
     public static function pageVersion()
     {
-        return static::VERSION.'.'.OsuMarkdownProcessor::VERSION;
+        return static::VERSION.'.'.OsuMarkdown::VERSION;
     }
 
     public static function search($params)
@@ -248,11 +248,9 @@ class NewsPost extends Model
 
         $rawPage = $file->content();
 
-        $this->page = OsuMarkdownProcessor::process($rawPage, [
-            'html_input' => 'allow',
-            'path' => route('news.show', $this->slug),
-            'block_modifiers' => ['news'],
-        ]);
+        $this->page = (new OsuMarkdown('news', [
+            'relative_url_root' => route('news.show', $this->slug),
+        ]))->load($rawPage)->toArray();
 
         $this->version = static::pageVersion();
         $this->published_at = $this->pagePublishedAt();

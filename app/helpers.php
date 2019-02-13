@@ -287,6 +287,19 @@ function log_error($exception)
     }
 }
 
+function markdown($input, $preset = 'default')
+{
+    static $converter;
+
+    App\Libraries\OsuMarkdown::PRESETS[$preset] ?? $preset = 'default';
+
+    if (!isset($converter[$preset])) {
+        $converter[$preset] = new App\Libraries\OsuMarkdown($preset);
+    }
+
+    return $converter[$preset]->load($input)->html;
+}
+
 function mysql_escape_like($string)
 {
     return addcslashes($string, '%_\\');
