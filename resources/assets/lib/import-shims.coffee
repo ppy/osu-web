@@ -31,7 +31,7 @@ import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
 import VirtualList from 'react-virtual-list'
 import GalleryContest from 'gallery-contest'
-import WindowVHPatcher from 'window-vh-patcher';
+import WindowVHPatcher from 'window-vh-patcher'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise

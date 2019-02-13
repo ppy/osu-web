@@ -49,5 +49,5 @@ interface User {
 }
 
 interface TooltipDefault {
-  remove: (HTMLElement) => void;
+  remove: (el: HTMLElement) => void;
 }
