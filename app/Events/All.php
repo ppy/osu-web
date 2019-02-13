@@ -51,13 +51,6 @@ class All implements ShouldBroadcast
 
     public function broadcastWith()
     {
-        return [
-            'id' => $this->notification->getKey(),
-            'name' => $this->notification->name,
-            'object_type' => $this->notification->notifiable_type,
-            'object_id' => $this->notification->notifiable_id,
-            'source_user_id' => $this->notification->source_user_id,
-            'details' => $this->notification->details,
-        ];
+        return json_item($this->notification, 'Notification');
     }
 }
