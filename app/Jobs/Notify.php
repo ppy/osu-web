@@ -61,7 +61,7 @@ class Notify implements ShouldQueue
             'title' => $beatmapset->title,
         ];
 
-        $receiverIds = static::beatmapsetReceiverIds($post->beatmapset, $source);
+        $receiverIds = static::beatmapsetReceiverIds($beatmapset, $source);
 
         return new static($source, $receiverIds, $beatmapset, [
             'details' => $details,
@@ -77,7 +77,7 @@ class Notify implements ShouldQueue
             'title' => $beatmapset->title,
         ];
 
-        $receiverIds = static::beatmapsetReceiverIds($post->beatmapset, $source);
+        $receiverIds = static::beatmapsetReceiverIds($beatmapset, $source);
 
         return new static($source, $receiverIds, $beatmapset, [
             'details' => $details,
@@ -93,7 +93,7 @@ class Notify implements ShouldQueue
             'title' => $beatmapset->title,
         ];
 
-        $receiverIds = static::beatmapsetReceiverIds($post->beatmapset, $source);
+        $receiverIds = static::beatmapsetReceiverIds($beatmapset, $source);
 
         return new static($source, $receiverIds, $beatmapset, [
             'details' => $details,
@@ -109,7 +109,7 @@ class Notify implements ShouldQueue
             'title' => $beatmapset->title,
         ];
 
-        $receiverIds = static::beatmapsetReceiverIds($post->beatmapset, $source);
+        $receiverIds = static::beatmapsetReceiverIds($beatmapset, $source);
 
         return new static($source, $receiverIds, $beatmapset, [
             'details' => $details,
@@ -125,7 +125,7 @@ class Notify implements ShouldQueue
             'title' => $beatmapset->title,
         ];
 
-        $receiverIds = static::beatmapsetReceiverIds($post->beatmapset, $source);
+        $receiverIds = static::beatmapsetReceiverIds($beatmapset, $source);
 
         return new static($source, $receiverIds, $beatmapset, [
             'details' => $details,
