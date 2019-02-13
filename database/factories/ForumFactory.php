@@ -58,3 +58,18 @@ $factory->define(App\Models\Forum\Post::class, function (Faker\Generator $faker)
         'post_approved' => 1,
     ];
 });
+
+
+$factory->defineAs(App\Models\Forum\Authorize::class, 'post', function (Faker\Generator $faker) {
+    return [
+        'auth_option_id' => 1,
+        'auth_setting' => 1,
+    ];
+});
+
+$factory->defineAs(App\Models\Forum\Authorize::class, 'reply', function (Faker\Generator $faker) {
+    return [
+        'auth_option_id' => 2,
+        'auth_setting' => 1,
+    ];
+});

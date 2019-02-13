@@ -46,6 +46,7 @@ class SanityTest extends DuskTestCase
                 'discussion_enabled' => true,
                 'genre_id' => self::$scaffolding['genre']->genre_id,
                 'language_id' => self::$scaffolding['language']->language_id,
+                'user_id' => self::$scaffolding['user']->getKey(),
             ]);
             self::$scaffolding['beatmap'] = factory(\App\Models\Beatmap::class)->create([
                 'beatmapset_id' => self::$scaffolding['beatmapset']->getKey(),
@@ -80,6 +81,26 @@ class SanityTest extends DuskTestCase
             self::$scaffolding['forum'] = factory(\App\Models\Forum\Forum::class, 'child')->create([
                 'parent_id' => self::$scaffolding['forum_parent']->getKey(),
             ]);
+            // satisfy group permissions required for posting in forum
+            self::$scaffolding['_group'] = factory(\App\Models\Group::class)->create([
+                'group_id' => 2,
+                'group_name' => 'default'
+            ]);
+            self::$scaffolding['_forum_acl_post'] = factory(\App\Models\Forum\Authorize::class, 'post')->create([
+                'forum_id' => self::$scaffolding['forum']->getKey(),
+                'group_id' => self::$scaffolding['_group']->getKey(),
+            ]);
+            self::$scaffolding['_forum_acl_reply'] = factory(\App\Models\Forum\Authorize::class, 'reply')->create([
+                'forum_id' => self::$scaffolding['forum']->getKey(),
+                'group_id' => self::$scaffolding['_group']->getKey(),
+            ]);
+            self::$scaffolding['_user_group'] = factory(\App\Models\UserGroup::class)->create([
+                'user_id' => self::$scaffolding['user']->getKey(),
+                'group_id' => self::$scaffolding['_group']->getKey(),
+            ]);
+            // satisfy minimum playcount for forum posting
+            self::$scaffolding['user']->monthlyPlaycounts()->save(factory(\App\Models\UserMonthlyPlaycount::class)->make());
+
 
             self::$scaffolding['topic'] = factory(\App\Models\Forum\Topic::class)->create([
                 'topic_poster' => self::$scaffolding['user']->getKey(),
