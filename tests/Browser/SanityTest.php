@@ -187,6 +187,8 @@ class SanityTest extends DuskTestCase
             'payments/',
         ];
 
+        $exception = null;
+
         foreach (Route::getRoutes()->get('GET') as $route) {
             $this->output("\n  /{$route->uri} (".(presence($route->getName()) ?? '???').')');
 
@@ -235,12 +237,18 @@ class SanityTest extends DuskTestCase
                     $this->output("  screenshot saved to: {$filename}\n");
                     $this->output("\e[1;37;41m\e[2K    x\e[0m\n");
 
-                    throw $err;
+                    // save exception for later and let tests continue running
+                    $exception = $err;
                 }
             });
         }
 
         $this->output("\n\n{$this->passed}/".($this->passed + $this->failed).' passed ('.round(($this->passed / ($this->passed + $this->failed)) * 100, 2)."%) [{$this->skipped} skipped]\n\n");
+
+        if ($exception) {
+            // triggered delayed test failure
+            $this->fail($exception);
+        }
     }
 
     public function bindParams(Browser $browser, \Illuminate\Routing\Route $route)
