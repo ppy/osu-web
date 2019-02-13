@@ -1,17 +1,7 @@
 <?php
 
 use App\Models\User;
-
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
+use App\Models\Forum\AuthOption;
 
 $factory->defineAs(App\Models\Forum\Forum::class, 'parent', function (Faker\Generator $faker) {
     return  [
@@ -59,16 +49,32 @@ $factory->define(App\Models\Forum\Post::class, function (Faker\Generator $faker)
     ];
 });
 
+$factory->defineAs(AuthOption::class, 'post', function (Faker\Generator $faker) {
+    return [
+        'auth_option' => 'f_post',
+    ];
+});
+
+$factory->defineAs(AuthOption::class, 'reply', function (Faker\Generator $faker) {
+    return [
+        'auth_option' => 'f_reply',
+    ];
+});
+
 $factory->defineAs(App\Models\Forum\Authorize::class, 'post', function (Faker\Generator $faker) {
     return [
-        'auth_option_id' => 1,
+        'auth_option_id' => function () {
+            return AuthOption::where('auth_option', 'f_post')->first() ?? factory(AuthOption::class, 'post');
+        },
         'auth_setting' => 1,
     ];
 });
 
 $factory->defineAs(App\Models\Forum\Authorize::class, 'reply', function (Faker\Generator $faker) {
     return [
-        'auth_option_id' => 2,
+        'auth_option_id' => function () {
+            return AuthOption::where('auth_option', 'f_reply')->first() ?? factory(AuthOption::class, 'reply');
+        },
         'auth_setting' => 1,
     ];
 });

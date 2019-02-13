@@ -82,10 +82,7 @@ class SanityTest extends DuskTestCase
                 'parent_id' => self::$scaffolding['forum_parent']->getKey(),
             ]);
             // satisfy group permissions required for posting in forum
-            self::$scaffolding['_group'] = factory(\App\Models\Group::class)->create([
-                'group_id' => 2,
-                'group_name' => 'default',
-            ]);
+            self::$scaffolding['_group'] = factory(\App\Models\Group::class)->create();
             self::$scaffolding['_forum_acl_post'] = factory(\App\Models\Forum\Authorize::class, 'post')->create([
                 'forum_id' => self::$scaffolding['forum']->getKey(),
                 'group_id' => self::$scaffolding['_group']->getKey(),
