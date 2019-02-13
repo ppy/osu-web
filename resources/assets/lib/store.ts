@@ -39,33 +39,6 @@ export class Store {
     return this.instance;
   }
 
-  private constructor() {
-    $(document).on('click', '.js-store-checkout', this.checkout);
-  }
-
-  async checkout(event: Event) {
-    event.preventDefault();
-
-    const lineItems = $('.js-store-order-item').map((_, element) => {
-      // FIXME: handle the ones with no id.
-      return {
-        quantity: Number(element.dataset.quantity),
-        variantId: Store.encodeShopifyId(Store.toShopifyVariantId(element.dataset.shopifyId || '')),
-      };
-    }).toArray();
-
-    console.log(lineItems);
-
-    // create shopify checkout.
-    let checkout = await client.checkout.create();
-    console.log(checkout.id);
-    checkout = await client.checkout.addLineItems(checkout.id, lineItems);
-
-    console.log(`Redirecting to ${checkout.webUrl}`);
-
-    window.location = checkout.webUrl;
-  }
-
   static decodeShopifyId(base64: string) {
     return atob(base64);
   }
@@ -80,6 +53,45 @@ export class Store {
 
   static toShopifyVariantId(id: string) {
     return `gid://shopify/ProductVariant/${id}`;
+  }
+
+  private constructor() {
+    $(document).on('click', '.js-store-checkout', this.beginCheckout);
+  }
+
+  async beginCheckout(event: Event) {
+    event.preventDefault();
+    if (event.target == null) { return; }
+
+    const orderId = (event.target as HTMLElement).dataset.orderId;
+
+    // create shopify checkout.
+    let checkout = await client.checkout.create();
+    console.log(checkout.id);
+
+    const params = {
+      orderId,
+      provider: 'shopify',
+      shopifyId: checkout.id,
+    };
+
+
+    const result = await osu.promisify($.post(laroute.route('store.checkout.store'), params));
+    console.log(result);
+
+    const lineItems = $('.js-store-order-item').map((_, element) => {
+      // FIXME: handle the ones with no id.
+      return {
+        quantity: Number(element.dataset.quantity),
+        variantId: Store.encodeShopifyId(Store.toShopifyVariantId(element.dataset.shopifyId || '')),
+      };
+    }).toArray();
+
+    console.log(lineItems);
+    checkout = await client.checkout.addLineItems(checkout.id, lineItems);
+    console.log(`Redirecting to ${checkout.webUrl}`);
+
+    window.location = checkout.webUrl;
   }
 
   // debug helpers
