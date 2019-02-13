@@ -84,7 +84,7 @@ class SanityTest extends DuskTestCase
             // satisfy group permissions required for posting in forum
             self::$scaffolding['_group'] = factory(\App\Models\Group::class)->create([
                 'group_id' => 2,
-                'group_name' => 'default'
+                'group_name' => 'default',
             ]);
             self::$scaffolding['_forum_acl_post'] = factory(\App\Models\Forum\Authorize::class, 'post')->create([
                 'forum_id' => self::$scaffolding['forum']->getKey(),
@@ -100,7 +100,6 @@ class SanityTest extends DuskTestCase
             ]);
             // satisfy minimum playcount for forum posting
             self::$scaffolding['user']->monthlyPlaycounts()->save(factory(\App\Models\UserMonthlyPlaycount::class)->make());
-
 
             self::$scaffolding['topic'] = factory(\App\Models\Forum\Topic::class)->create([
                 'topic_poster' => self::$scaffolding['user']->getKey(),

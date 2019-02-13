@@ -59,7 +59,6 @@ $factory->define(App\Models\Forum\Post::class, function (Faker\Generator $faker)
     ];
 });
 
-
 $factory->defineAs(App\Models\Forum\Authorize::class, 'post', function (Faker\Generator $faker) {
     return [
         'auth_option_id' => 1,
