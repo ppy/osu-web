@@ -204,7 +204,7 @@ class SanityTest extends DuskTestCase
             'payments/',
         ];
 
-        $exception = null;
+        $this->testFailed = null;
 
         foreach (Route::getRoutes()->get('GET') as $route) {
             $this->output("\n  /{$route->uri} (".(presence($route->getName()) ?? '???').')');
@@ -255,16 +255,16 @@ class SanityTest extends DuskTestCase
                     $this->output("\e[1;37;41m\e[2K    x\e[0m\n");
 
                     // save exception for later and let tests continue running
-                    $exception = $err;
+                    $this->testFailed = $err;
                 }
             });
         }
 
         $this->output("\n\n{$this->passed}/".($this->passed + $this->failed).' passed ('.round(($this->passed / ($this->passed + $this->failed)) * 100, 2)."%) [{$this->skipped} skipped]\n\n");
 
-        if ($exception) {
+        if ($this->testFailed !== null) {
             // triggered delayed test failure
-            $this->fail($exception);
+            $this->fail($this->testFailed);
         }
     }
 
