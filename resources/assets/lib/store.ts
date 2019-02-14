@@ -102,11 +102,6 @@ export class Store {
     event.preventDefault();
     if (event.target == null) { return; }
 
-    const orderId = (event.target as HTMLElement).dataset.orderId;
-    if (orderId == null) {
-      throw new Error('orderId is missing');
-    }
-
     console.log('resuming shopify');
     const checkoutId = (event.target as HTMLElement).dataset.checkoutId;
     const checkout = await client.checkout.fetch(checkoutId);
