@@ -209,18 +209,10 @@ class SanityTest extends DuskTestCase
         foreach (Route::getRoutes()->get('GET') as $route) {
             $this->output("\n  /{$route->uri} (".(presence($route->getName()) ?? '???').')');
 
-            if (!present($route->getName())) {
+            if (!present($route->getName()) || starts_with($route->uri, $bypass)) {
                 $this->output(" \e[30;1m[SKIPPED]\e[0m");
                 $this->skipped++;
                 continue;
-            }
-
-            foreach ($bypass as $prefix) {
-                if (starts_with($route->uri, $prefix)) {
-                    $this->output(" \e[30;1m[SKIPPED]\e[0m");
-                    $this->skipped++;
-                    continue 2;
-                }
             }
 
             // TODO: add additional logic for certain routes to re-run tests per game mode, per user score type, etc
