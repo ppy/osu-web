@@ -25,7 +25,6 @@
     "elasticsearch/elasticsearch": "~6.0",
     "ezyang/htmlpurifier": "*",
     "graham-campbell/github": "*",
-    "graham-campbell/markdown": "*",
     "guzzlehttp/guzzle": "*",
     "itsgoingd/clockwork": ">=3.0",
     "jenssegers/agent": "^2.6",
