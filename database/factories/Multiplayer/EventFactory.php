@@ -1,6 +1,5 @@
 <?php
 
-
 $factory->define(App\Models\Multiplayer\Event::class, function (Faker\Generator $faker) {
     return [
         'match_id' => function () {
@@ -21,6 +20,6 @@ $factory->state(App\Models\Multiplayer\Event::class, 'join', function (Faker\Gen
 
 $factory->state(App\Models\Multiplayer\Event::class, 'part', function (Faker\Generator $faker) {
     return [
-        'text' => 'JOIN',
+        'text' => 'PART',
     ];
 });

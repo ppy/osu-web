@@ -23,7 +23,9 @@ $factory->define(App\Models\Score\Best\Osu::class, function (Faker\Generator $fa
         'countkatu' => round($maxCombo * 0.05),
         'enabled_mods' => array_rand_val([0, 16, 24, 64, 72]),
         'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now,
-        'pp' => $faker->biasedNumberBetween(10, 100) * 1.5 * $beatmap->difficultyrating,
+        'pp' => function () use ($faker) {
+            return $faker->biasedNumberBetween(10, 100) * 1.5 * $beatmap->difficultyrating;
+        },
         'rank' => array_rand_val(['A', 'S', 'B', 'SH', 'XH', 'X']),
     ];
 });

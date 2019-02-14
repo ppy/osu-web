@@ -14,8 +14,6 @@ $factory->define(App\Models\BeatmapPack::class, function (Faker\Generator $faker
         'tag' => function () use ($faker) {
             return $faker->randomElement(['S', 'T', 'A', 'R']).$faker->numberBetween(10, 100);
         },
-        'date' => function () use ($faker) {
-            return Carbon\Carbon::now()->subMonths(2);
-        },
+        'date' => Carbon\Carbon::now()->subMonths(2),
     ];
 });

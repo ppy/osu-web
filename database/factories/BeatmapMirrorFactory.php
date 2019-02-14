@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\BeatmapMirror;
+
 $factory->define(App\Models\BeatmapMirror::class, function (Faker\Generator $faker) {
     return  [
         'base_url' => 'http://beatmap-download.test/',
@@ -9,6 +11,6 @@ $factory->define(App\Models\BeatmapMirror::class, function (Faker\Generator $fak
         },
         'provider_user_id' => 2,
         'enabled' => 1,
-        'version' => 2,
+        'version' => BeatmapMirror::MIN_VERSION_TO_USE,
     ];
 });
