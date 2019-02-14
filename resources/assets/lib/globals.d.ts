@@ -32,6 +32,7 @@ declare var BigButton: any;
 declare var Comments: any;
 declare var CommentsManager: any;
 declare var Img2x: any;
+declare var LoadingOverlay: any;
 declare var ShowMoreLink: any;
 declare var Spinner: any;
 declare var Timeout: any;

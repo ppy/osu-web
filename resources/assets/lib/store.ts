@@ -78,6 +78,9 @@ export class Store {
     }).toArray();
     console.log(lineItems);
 
+    LoadingOverlay.show();
+    LoadingOverlay.show.flush();
+
     // create shopify checkout.
     const checkout = await client.checkout.create({
       customAttributes: [{ key: 'orderId', value: orderId }],
@@ -101,6 +104,9 @@ export class Store {
   async resumeShopifyCheckout(event: Event) {
     event.preventDefault();
     if (event.target == null) { return; }
+
+    LoadingOverlay.show();
+    LoadingOverlay.show.flush();
 
     console.log('resuming shopify');
     const checkoutId = (event.target as HTMLElement).dataset.checkoutId;
