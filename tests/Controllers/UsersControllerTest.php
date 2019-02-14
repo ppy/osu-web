@@ -30,7 +30,7 @@ class UsersControllerTest extends TestCase
     {
         config()->set('osu.user.allow_registration', true);
 
-        $country = factory(Country::class)->create();
+        $country = Country::inRandomOrder()->first() ?? factory(Country::class)->create();
 
         $this
             ->json('POST', route('users.store'), [
