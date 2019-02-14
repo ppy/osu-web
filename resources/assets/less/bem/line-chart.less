@@ -81,6 +81,10 @@
     display: flex;
     flex-direction: column;
 
+    .@{_top}--status-page & {
+      background-color: @pink-darker;
+    }
+
     &[data-float=right] {
       left: auto;
       right: 0;
@@ -95,10 +99,16 @@
         color: @community-user-graygreen-lighter;
         order: 1;
       }
+      .@{_top}--status-page & {
+        color: #fff;
+      }
     }
 
     &--y {
       .@{_top}--profile-page & {
+        color: #fff;
+      }
+      .@{_top}--status-page & {
         color: #fff;
       }
     }
