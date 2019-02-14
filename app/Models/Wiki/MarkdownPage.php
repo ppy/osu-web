@@ -21,7 +21,7 @@
 namespace App\Models\Wiki;
 
 use App\Exceptions\GitHubNotFoundException;
-use App\Libraries\OsuMarkdownProcessor;
+use App\Libraries\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use Exception;
 
@@ -59,9 +59,9 @@ class MarkdownPage extends Page
         }
 
         if (present($body)) {
-            return OsuMarkdownProcessor::process($body, [
-                'path' => route('wiki.show', $this->path),
-            ]);
+            return (new OsuMarkdown('wiki', [
+                'relative_url_root' => wiki_url($this->path),
+            ]))->load($body)->toArray();
         }
     }
 
