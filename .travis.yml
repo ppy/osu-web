@@ -38,6 +38,7 @@ env:
     - ES_VERSION=6.1.3 ES_DOWNLOAD_URL=https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.zip
     - APP_URL=http://127.0.0.1:8000
     - GITHUB_TOKEN=98cbc568911ef1e060a3a31623f2c80c1786d5ff
+    - OSU_INSTALL_DEV=1
 
 install:
   - pecl install redis <<<''
