@@ -75,7 +75,6 @@ export class Store {
       shopifyId: checkout.id,
     };
 
-
     const result = await osu.promisify($.post(laroute.route('store.checkout.store'), params));
     console.log(result);
 

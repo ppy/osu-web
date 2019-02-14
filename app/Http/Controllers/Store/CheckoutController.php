@@ -69,6 +69,7 @@ class CheckoutController extends Controller
     {
         $orderId = get_int(request('orderId'));
         $provider = request('provider');
+        $shopifyId = presence(request('shopifyId'));
 
         $order = $this->orderForCheckout($orderId);
 
@@ -76,11 +77,7 @@ class CheckoutController extends Controller
             return ujs_redirect(route('store.cart.show'));
         }
 
-        if ($provider === 'shopify') {
-            return $this->shopifyCheckout($order);
-        }
-
-        $checkout = new OrderCheckout($order, $provider);
+        $checkout = new OrderCheckout($order, $provider, $shopifyId);
 
         $validationErrors = $checkout->validate();
         if (!empty($validationErrors)) {
@@ -118,20 +115,6 @@ class CheckoutController extends Controller
         });
 
         return ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
-    }
-
-    private function shopifyCheckout(Order $order)
-    {
-        $shopifyId = presence(trim(request('shopifyId')));
-        if ($shopifyId === null) {
-            throw new \Exception('missing Shopify checkout id');
-        }
-
-        $transactionId = "shopify-{$shopifyId}";
-
-        $order->update(['transaction_id' => $transactionId]);
-
-        return [$transactionId];
     }
 
     private function orderForCheckout($id)

@@ -20,11 +20,13 @@
 
 namespace App\Libraries;
 
+use App\Exceptions\InvariantException;
 use App\Libraries\Payments\InvalidOrderStateException;
 use App\Models\Store\Order;
 use App\Models\User;
 use DB;
 use Request;
+
 
 class OrderCheckout
 {
@@ -38,10 +40,18 @@ class OrderCheckout
      */
     private $provider;
 
-    public function __construct(Order $order, string $provider = null)
+    /** @var string|null */
+    private $shopifyId;
+
+    public function __construct(Order $order, ?string $provider = null, ?string $shopifyId = null)
     {
+        if ($provider === 'shopify' && $shopifyId === null) {
+            throw new InvariantException('shopify provider requires a checkout id.');
+        }
+
         $this->order = $order;
         $this->provider = $provider;
+        $this->shopifyId = $shopifyId;
     }
 
     /**
@@ -112,7 +122,7 @@ class OrderCheckout
             }
 
             $order->status = 'processing';
-            $order->transaction_id = $this->provider;
+            $order->transaction_id = $this->generateTransactionIdForNewCheckout();
             $order->reserveItems();
 
             $order->saveorExplode();
@@ -230,5 +240,10 @@ class OrderCheckout
     private function allowXsollaPayment()
     {
         return !$this->order->requiresShipping();
+    }
+
+    private function generateTransactionIdForNewCheckout()
+    {
+        return $this->provider === 'shopify' ? "shopify-{$this->shopifyId}" : $this->provider;
     }
 }
