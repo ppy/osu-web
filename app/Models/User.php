@@ -1102,6 +1102,11 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(UserAchievement::class, 'user_id');
     }
 
+    public function userNotifications()
+    {
+        return $this->hasMany(UserNotification::class, 'user_id');
+    }
+
     public function usernameChangeHistory()
     {
         return $this->hasMany(UsernameChangeHistory::class, 'user_id');
