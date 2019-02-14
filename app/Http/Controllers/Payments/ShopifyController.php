@@ -22,6 +22,7 @@ namespace App\Http\Controllers\Payments;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\OrderCheckout;
+use App\Libraries\Payments\ShopifySignature;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use Carbon\Carbon;
@@ -34,6 +35,11 @@ class ShopifyController extends Controller
 
     public function callback()
     {
+        $signature = new ShopifySignature(request());
+        if (!$signature->isValid()) {
+            throw new Exception("invalid signature");
+        }
+
         // X-Shopify-Hmac-Sha256
         // X-Shopify-Order-Id
         // X-Shopify-Shop-Domain
