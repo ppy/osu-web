@@ -59,7 +59,9 @@
                                 <span class="store-order__item-quantity">x{{ $item->quantity }}</span>
                         @endforeach
                     </ul>
-                    @if ($order->hasInvoice())
+                    @if ($order->isShopify())
+                        <a class="store-order__link" href="{{ route('store.invoice.show', $order) }}">Show shopify link instead.</a>
+                    @elseif ($order->hasInvoice())
                         <a class="store-order__link" href="{{ route('store.invoice.show', $order) }}">{{ trans('store.order.invoice') }}</a>
                     @endif
                 </div>

@@ -45,7 +45,7 @@ class OrderCheckout
 
     public function __construct(Order $order, ?string $provider = null, ?string $shopifyId = null)
     {
-        if ($provider === 'shopify' && $shopifyId === null) {
+        if ($provider === Order::PROVIDER_SHOPIFY && $shopifyId === null) {
             throw new InvariantException('shopify provider requires a checkout id.');
         }
 
@@ -244,6 +244,6 @@ class OrderCheckout
 
     private function generateTransactionIdForNewCheckout()
     {
-        return $this->provider === 'shopify' ? "shopify-{$this->shopifyId}" : $this->provider;
+        return $this->provider === Order::PROVIDER_SHOPIFY ? "{$this->provider}-{$this->shopifyId}" : $this->provider;
     }
 }

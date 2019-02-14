@@ -67,6 +67,8 @@ class Order extends Model
     const ORDER_NUMBER_REGEX = '/^(?<prefix>[A-Za-z]+)-(?<userId>\d+)-(?<orderId>\d+)$/';
     const PENDING_ECHECK = 'PENDING ECHECK';
 
+    const PROVIDER_SHOPIFY = 'shopify';
+
     const STATUS_HAS_INVOICE = ['processing', 'checkout', 'paid', 'shipped', 'cancelled', 'delivered'];
 
     protected $primaryKey = 'order_id';
@@ -333,6 +335,11 @@ class Order extends Model
     public function isPendingEcheck()
     {
         return $this->tracking_code === static::PENDING_ECHECK;
+    }
+
+    public function isShopify()
+    {
+        return starts_with($this->transaction_id, static::PROVIDER_SHOPIFY);
     }
 
     public function isShouldShopify()
