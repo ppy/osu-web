@@ -17,7 +17,7 @@ class AddUserNotifications extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('notification_id');
             $table->unsignedBigInteger('user_id');
-            $table->tinyInteger('read_status')->default(0);
+            $table->boolean('is_read')->default(false);
             $table->timestampsTz();
         });
     }
