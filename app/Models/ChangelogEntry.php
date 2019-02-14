@@ -22,7 +22,6 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Exception;
-use Markdown;
 
 /**
  * @property \Illuminate\Database\Eloquent\Collection $builds Build
