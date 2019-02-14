@@ -48,5 +48,5 @@ class ProfilePage.Stats extends React.PureComponent
     val = @props.stats[key]
 
     switch key
-      when 'hit_accuracy' then "#{val.toFixed(2)}%"
-      else val.toLocaleString()
+      when 'hit_accuracy' then "#{osu.formatNumber(val, 2)}%"
+      else osu.formatNumber(val)

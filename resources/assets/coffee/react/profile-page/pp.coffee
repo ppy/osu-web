@@ -23,4 +23,4 @@ ProfilePage.Pp = ({stats}) ->
   el ValueDisplay,
     modifiers: ['pp']
     label: 'pp'
-    value: Math.round(stats.pp).toLocaleString()
+    value: osu.formatNumber(Math.round(stats.pp))

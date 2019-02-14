@@ -18,22 +18,26 @@ function trans($key = null, $replace = [], $locale = null)
         return $translator;
     }
 
-    if ($translator->hasForLocale($key, $locale)) {
-        $translated = presence($translator->get($key, $replace, $locale, false));
+    if (!trans_exists($key, $locale)) {
+        $locale = config('app.fallback_locale');
     }
 
-    return $translated ??
-        $translator->get($key, $replace, config('app.fallback_locale'), false);
+    return $translator->get($key, $replace, $locale, false);
 }
 
 function trans_choice($key, $number, array $replace = [], $locale = null)
 {
-    $translator = app('translator');
-
-    if ($translator->hasForLocale($key, $locale)) {
-        $translated = presence($translator->transChoice($key, $number, $replace, $locale));
+    if (!trans_exists($key, $locale)) {
+        $locale = config('app.fallback_locale');
     }
 
-    return $translated ??
-        $translator->transChoice($key, $number, $replace, config('app.fallback_locale'));
+    if (is_array($number) || $number instanceof Countable) {
+        $number = count($number);
+    }
+
+    if (!isset($replace['count_delimited'])) {
+        $replace['count_delimited'] = i18n_number_format($number, null, null, $locale);
+    }
+
+    return app('translator')->transChoice($key, $number, $replace, $locale);
 }

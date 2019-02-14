@@ -53,7 +53,7 @@ class ProfilePage.TopRanks extends React.PureComponent
           ' '
           if @props.user.scores_first_count[0] > 0
             span className: 'page-extra__title-count',
-              @props.user.scores_first_count[0].toLocaleString()
+              osu.formatNumber(@props.user.scores_first_count[0])
         if @props.scoresFirsts?.length
           div className: 'profile-extra-entries',
             el window._exported.PlayDetailList, scores: @props.scoresFirsts
