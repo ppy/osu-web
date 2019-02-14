@@ -22,4 +22,7 @@ namespace App\Models;
 
 class UserNotification extends Model
 {
+    protected $casts = [
+        'is_read' => 'boolean',
+    ];
 }
