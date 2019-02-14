@@ -90,6 +90,7 @@ return [
 
         'invoice' => 'View Invoice',
         'no_orders' => 'No orders to view.',
+        'resume' => 'Resume Checkout',
 
         'item' => [
             'display_name' => [

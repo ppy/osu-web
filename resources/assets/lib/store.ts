@@ -57,6 +57,7 @@ export class Store {
 
   private constructor() {
     $(document).on('click', '.js-store-checkout', this.beginCheckout);
+    $(document).on('click', '.js-store-shopify-checkout', this.resumeShopifyCheckout);
   }
 
   async beginCheckout(event: Event) {
@@ -88,6 +89,18 @@ export class Store {
 
     console.log(lineItems);
     checkout = await client.checkout.addLineItems(checkout.id, lineItems);
+    console.log(`Redirecting to ${checkout.webUrl}`);
+
+    window.location = checkout.webUrl;
+  }
+
+  async resumeShopifyCheckout(event: Event) {
+    event.preventDefault();
+    if (event.target == null) { return; }
+
+    console.log('resuming shopify');
+    const checkoutId = (event.target as HTMLElement).dataset.checkoutId;
+    const checkout = await client.checkout.fetch(checkoutId);
     console.log(`Redirecting to ${checkout.webUrl}`);
 
     window.location = checkout.webUrl;

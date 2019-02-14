@@ -60,7 +60,13 @@
                         @endforeach
                     </ul>
                     @if ($order->isShopify())
-                        <a class="store-order__link" href="{{ route('store.invoice.show', $order) }}">Show shopify link instead.</a>
+                        {{-- FIXME: change to button or have js scan and update hrefs on all links --}}
+                        <a class="js-store-shopify-checkout store-order__link"
+                            data-checkout-id="{{ $order->getShopifyCheckoutId() }}"
+                            href="#"
+                        >
+                            {{ trans('store.order.resume') }}
+                        </a>
                     @elseif ($order->hasInvoice())
                         <a class="store-order__link" href="{{ route('store.invoice.show', $order) }}">{{ trans('store.order.invoice') }}</a>
                     @endif

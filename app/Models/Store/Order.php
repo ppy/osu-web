@@ -221,10 +221,10 @@ class Order extends Model
         return (float) $total;
     }
 
-    public function getTransactionId()
+    public function getTransactionId() : ?string
     {
         if (!present($this->transaction_id)) {
-            return;
+            return null;
         }
 
         return explode('-', $this->transaction_id)[1] ?? null;
@@ -337,12 +337,21 @@ class Order extends Model
         return $this->tracking_code === static::PENDING_ECHECK;
     }
 
-    public function isShopify()
+    public function getShopifyCheckoutId() : ?string
+    {
+        if (!$this->isShopify()) {
+            return null;
+        }
+
+        return $this->getTransactionId();
+    }
+
+    public function isShopify() : bool
     {
         return starts_with($this->transaction_id, static::PROVIDER_SHOPIFY);
     }
 
-    public function isShouldShopify()
+    public function isShouldShopify() : bool
     {
         foreach ($this->items as $item) {
             if ($item->product->shopify_id !== null) {
