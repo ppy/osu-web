@@ -20,11 +20,13 @@
 
 namespace App\Http\Controllers\Payments;
 
-
+use App\Exceptions\ModelNotSavedException;
+use App\Libraries\OrderCheckout;
 use App\Models\Store\Order;
+use App\Models\Store\Payment;
+use Carbon\Carbon;
 use Exception;
 use Log;
-use App\Libraries\OrderCheckout;
 
 class ShopifyController extends Controller
 {
@@ -51,6 +53,7 @@ class ShopifyController extends Controller
                 (new OrderCheckout($order))->completeCheckout();
                 break;
             case 'orders/paid':
+                $this->updateOrderPayment($order);
                 break;
             default:
                 Log::error("Didn't understand {$type}");
@@ -84,5 +87,22 @@ class ShopifyController extends Controller
         }
 
         return $this->params;
+    }
+
+    private function updateOrderPayment(Order $order)
+    {
+        $params = $this->getParams();
+        $payment = new Payment([
+            'provider' => Order::PROVIDER_SHOPIFY,
+            'transaction_id' => $order->getTransactionId(),
+            'country_code' => array_get($params, 'billing_address.country_code'),
+            'paid_at' => Carbon::parse(array_get($params, 'processed_at')),
+        ]);
+
+        if (!$order->payments()->save($payment)) {
+            throw new ModelNotSavedException();
+        }
+
+        $order->paid($payment);
     }
 }

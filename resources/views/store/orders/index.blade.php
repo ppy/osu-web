@@ -65,7 +65,7 @@
                             data-checkout-id="{{ $order->getShopifyCheckoutId() }}"
                             href="#"
                         >
-                            {{ trans('store.order.resume') }}
+                            {{ $order->status === 'processing' ? trans('store.order.resume') : trans('store.order.invoice') }}
                         </a>
                     @elseif ($order->hasInvoice())
                         <a class="store-order__link" href="{{ route('store.invoice.show', $order) }}">{{ trans('store.order.invoice') }}</a>
