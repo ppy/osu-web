@@ -41,7 +41,7 @@
 
         <div>
             {{ trans('forum.topics.show.feature_vote.current', [
-                'count' => number_format($topic->osu_starpriority),
+                'count' => i18n_number_format($topic->osu_starpriority),
             ]) }}
         </div>
 

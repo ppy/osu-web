@@ -114,7 +114,7 @@
                     title="{{ trans('forum.topics.index.feature_votes') }}"
                     data-tooltip-position="right center"
                 >
-                    {{ number_format($topic->osu_starpriority) }}
+                    {{ i18n_number_format($topic->osu_starpriority) }}
                     <i class="far fa-star"></i>
                 </div>
             @endif
