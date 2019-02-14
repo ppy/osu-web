@@ -49,6 +49,9 @@ class ShopifyController extends Controller
 
         $type = $this->getWebookType();
         switch ($type) {
+            case 'orders/fulfilled':
+                $order->update(['status' => 'shipped', 'shipped_at' => now()]);
+                break;
             case 'orders/create':
                 (new OrderCheckout($order))->completeCheckout();
                 break;
