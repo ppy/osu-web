@@ -164,6 +164,7 @@ class @BeatmapsetPanel extends React.PureComponent
               if currentUser?.id
                 a
                   href: laroute.route 'beatmapsets.download', beatmapset: beatmapset.id
+                  title: osu.trans('beatmapsets.show.details.download._')
                   className: 'beatmapset-panel__icon js-beatmapset-download-link'
                   'data-turbolinks': 'false'
                   i className: 'fas fa-download'

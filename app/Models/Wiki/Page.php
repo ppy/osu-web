@@ -26,7 +26,7 @@ use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Es;
-use App\Libraries\OsuMarkdownProcessor;
+use App\Libraries\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use Carbon\Carbon;
@@ -225,9 +225,9 @@ class Page
                     }
 
                     if (present($body)) {
-                        $page = OsuMarkdownProcessor::process($body, [
-                            'path' => wiki_url($this->path),
-                        ]);
+                        $page = (new OsuMarkdown('wiki', [
+                            'relative_url_root' => wiki_url($this->path),
+                        ]))->load($body)->toArray();
                     }
                 }
 

@@ -50,7 +50,6 @@ class Beatmaps.Paginator extends React.PureComponent
 
 
   autoPagerOnScroll: =>
-    return if @auto == false
     return if !@props.more || @props.loading || !@autoPagerTarget.current?
 
     currentTarget = @autoPagerTarget.current.getBoundingClientRect().top

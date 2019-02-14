@@ -330,6 +330,7 @@ return [
             'title' => 'User not found! ;_;',
         ],
         'page' => [
+            'button' => 'Edit profile page',
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',

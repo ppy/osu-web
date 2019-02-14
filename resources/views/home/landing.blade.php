@@ -86,7 +86,6 @@
                 <a
                     href="#"
                     class="landing-nav__link js-nav-toggle js-click-menu js-user-login--menu"
-                    title="{{ trans("users.anonymous.login_link") }}"
                     data-click-menu-target="nav2-login-box"
                 >
                     {{ trans("users.login._") }}

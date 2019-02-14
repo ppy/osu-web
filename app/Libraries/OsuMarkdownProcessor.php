@@ -22,92 +22,25 @@ namespace App\Libraries;
 
 use League\CommonMark\Block\Element as Block;
 use League\CommonMark\Block\Element\Document;
-use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\DocumentProcessorInterface;
-use League\CommonMark\Environment;
 use League\CommonMark\Inline\Element as Inline;
 use League\CommonMark\Util\Configuration;
 use League\CommonMark\Util\ConfigurationAwareInterface;
-use Symfony\Component\Yaml\Exception\ParseException as YamlParseException;
-use Symfony\Component\Yaml\Yaml;
 use Webuni\CommonMark\TableExtension;
 
 class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationAwareInterface
 {
-    const VERSION = 11;
-
     public $firstImage;
     public $title;
-    public $toc = [];
+    public $toc;
 
     private $config;
     private $event;
     private $node;
     private $previousNode;
-    private $tocSlugs = [];
-    private $listLevel = 0;
 
-    public static function process($rawInput, $config)
-    {
-        $config = array_merge([
-            'html_input' => 'strip',
-            'block_name' => 'osu-md',
-        ], $config);
-
-        $rawInput = strip_utf8_bom($rawInput);
-        $input = static::parseYamlHeader($rawInput);
-        $header = $input['header'] ?? [];
-
-        if (!isset($config['fetch_title'])) {
-            $config['fetch_title'] = !isset($header['title']);
-        }
-
-        $env = Environment::createCommonMarkEnvironment();
-        $processor = new static;
-        $env->addDocumentProcessor($processor);
-        $env->addExtension(new TableExtension\TableExtension);
-        $env->addBlockRenderer(TableExtension\Table::class, new OsuTableRenderer);
-
-        $converter = new CommonMarkConverter($config, $env);
-
-        $blockClass = $config['block_name'];
-
-        foreach ($config['block_modifiers'] ?? [] as $blockModifier) {
-            $blockClass .= " {$config['block_name']}--{$blockModifier}";
-        }
-
-        $converted = $converter->convertToHtml($input['document']);
-        $output = "<div class='{$blockClass}'>{$converted}</div>";
-
-        if (!isset($header['title'])) {
-            $header['title'] = $processor->title;
-        }
-
-        $toc = $processor->toc;
-        $firstImage = $processor->firstImage;
-
-        return compact('header', 'output', 'toc', 'firstImage');
-    }
-
-    public static function parseYamlHeader($input)
-    {
-        $hasMatch = preg_match('#^(?:---\n(?<header>.+?)\n(?:---|\.\.\.)\n)(?<document>.+)$#s', $input, $matches);
-
-        if ($hasMatch === 1) {
-            try {
-                $header = Yaml::parse($matches['header']);
-            } catch (YamlParseException $_e) {
-                $header = null;
-            }
-
-            return [
-                'header' => $header,
-                'document' => $matches['document'],
-            ];
-        }
-
-        return ['document' => $input];
-    }
+    private $listLevel;
+    private $tocSlugs;
 
     public function setConfiguration(Configuration $config)
     {
@@ -118,22 +51,46 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
     {
         $walker = $document->walker();
 
+        $fixRelativeUrl = $this->config->getConfig('relative_url_root') !== null;
+        $generateToc = $this->config->getConfig('generate_toc');
+        $recordFirstImage = $this->config->getConfig('record_first_image');
+        $titleFromDocument = $this->config->getConfig('title_from_document');
+
+        $this->firstImage = null;
+        $this->title = null;
+        $this->toc = [];
+        $this->tocSlugs = [];
+        $this->listLevel = 0;
+
         while (($this->event = $walker->next()) !== null) {
             $this->previousNode = $this->node;
             $this->node = $this->event->getNode();
 
             $this->updateLocaleLink();
-            $this->fixRelativeUrl();
+
+            if ($fixRelativeUrl) {
+                $this->fixRelativeUrl();
+            }
+
             $this->prefixUrl();
-            $this->recordFirstImage();
+
+            if ($recordFirstImage) {
+                $this->recordFirstImage();
+            }
 
             $this->trackListLevel();
 
-            if ($this->config->getConfig('fetch_title')) {
+            if ($titleFromDocument) {
                 $this->setTitle();
             }
-            $this->loadToc();
+
+            if ($generateToc) {
+                $this->loadToc();
+            }
+
             $this->parseFigure();
+
+            $this->proxyImage();
 
             // last to prevent possible conflict
             $this->addClass();
@@ -198,7 +155,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         $src = $this->node->getUrl();
 
         if (preg_match(',^(#|/|https?://|mailto:),', $src) !== 1) {
-            $this->node->setUrl($this->config->getConfig('path').'/'.$src);
+            $this->node->setUrl($this->config->getConfig('relative_url_root').'/'.$src);
         }
     }
 
@@ -285,6 +242,19 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
 
         if (starts_with($url, '/wiki/')) {
             $this->node->setUrl('/help'.$url);
+        }
+    }
+
+    public function proxyImage()
+    {
+        if (!$this->node instanceof Inline\Image || !$this->event->isEntering()) {
+            return;
+        }
+
+        $url = $this->node->getUrl();
+
+        if (present($url)) {
+            $this->node->setUrl(proxy_image($url));
         }
     }
 

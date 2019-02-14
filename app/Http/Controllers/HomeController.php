@@ -68,19 +68,6 @@ class HomeController extends Controller
         return view('home.download');
     }
 
-    public function getIcons()
-    {
-        return view('home.icons')
-        ->with('icons', [
-            'osu',
-            'mode-osu',
-            'mode-mania',
-            'mode-fruits',
-            'mode-taiko',
-            'social-patreon',
-        ]);
-    }
-
     public function index()
     {
         $host = Request::getHttpHost();

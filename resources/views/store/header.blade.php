@@ -44,7 +44,7 @@
                 </h2>
 
                 <div class="store-header__notice-text">
-                    {!! Markdown::convertToHtml(config('osu.store.notice')) !!}
+                    {!! markdown(config('osu.store.notice')) !!}
                 </div>
             </div>
         @endif

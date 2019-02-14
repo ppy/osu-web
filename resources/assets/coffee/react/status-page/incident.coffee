@@ -20,35 +20,20 @@
 el = React.createElement
 
 class Status.Incident extends React.Component
-  propTypes =
-    description: React.PropTypes.string.isRequired
-    active : React.PropTypes.bool.isRequired
-    status: React.PropTypes.string.isRequired
-    date: React.PropTypes.string.isRequired
-    by: React.PropTypes.string.isRequired
-
-  constructor: (props) ->
-    super props
 
   render: =>
     fromNow = moment(@props.date, 'DD-MM-YYYY HH:mm:ss').fromNow()
 
-    div
-      className: 'status-incident'
-      div
-        className: "status-incident__state status-incident__state--#{@props.status}"
-      div
-        className: 'status-incident__content'
-        div
-          className: 'status-incident__info'
+    div className: 'status-incident',
+      div className: "status-incident__state status-incident__state--#{@props.status}"
+      div className: 'status-incident__content',
+        div className: 'status-incident__info',
           span className: 'status-incident__info-date',
             "#{fromNow}, "
           span className: 'status-incident__info-by',
             if _.isEmpty(@props.by) then osu.trans('status_page.incidents.automated') else "by #{@props.by}"
-        div
-          className: 'status-incident__desc'
-          span
-            className: 'status-incident__desc--resolved' unless !@props.active
+        div className: 'status-incident__desc',
+          span className: ('status-incident__desc--resolved' unless !@props.active),
             @props.description
-          span
+          span null,
             " #{osu.trans('status_page.recent.incidents.state.' + @props.status)}!"

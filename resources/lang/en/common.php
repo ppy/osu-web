@@ -31,14 +31,16 @@ return [
 
     'buttons' => [
         'admin' => 'Admin',
-        'back_to_top' => 'Back to top',
         'back_to_previous' => 'Return to previous position',
+        'back_to_top' => 'Back to top',
         'cancel' => 'Cancel',
         'change' => 'change',
         'click_to_copy' => 'click to copy to clipboard',
         'click_to_copy_copied' => 'copied to clipboard!',
+        'collapse' => 'collapse',
         'delete' => 'Delete',
         'edit' => 'Edit',
+        'expand' => 'expand',
         'hide' => 'hide',
         'permalink' => 'permalink',
         'permalink_copied' => 'link copied',
@@ -54,6 +56,7 @@ return [
         'see_more' => 'see more',
         'show' => 'show',
         'show_more' => 'show more',
+        'show_more_options' => 'show more options',
         'upload_image' => 'upload image',
     ],
 

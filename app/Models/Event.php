@@ -217,10 +217,16 @@ class Event extends Model
     public function stringMode($mode)
     {
         switch ($mode) {
-            case 'osu!mania': return 'mania';
-            case 'Taiko': return 'taiko';
-            case 'osu!': return 'osu';
-            case 'Catch the Beat': return 'fruits';
+            case 'osu!mania':
+                return 'mania';
+            case 'Taiko':
+            case 'osu!taiko':
+                return 'taiko';
+            case 'osu!':
+                return 'osu';
+            case 'Catch the Beat':
+            case 'osu!catch':
+                return 'fruits';
         }
     }
 

@@ -21,7 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\GitHubNotFoundException;
-use App\Libraries\OsuMarkdownProcessor;
+use App\Libraries\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use Carbon\Carbon;
 use Exception;
@@ -65,19 +65,19 @@ class NewsPost extends Model
 
         $post->sync();
 
-        if ($post->page !== null) {
+        if ($post->page !== null && $post->published_at !== null && $post->published_at->isPast()) {
             return $post;
         }
     }
 
     public static function pageVersion()
     {
-        return static::VERSION.'.'.OsuMarkdownProcessor::VERSION;
+        return static::VERSION.'.'.OsuMarkdown::VERSION;
     }
 
     public static function search($params)
     {
-        $query = static::whereNotNull('published_at');
+        $query = static::published();
 
         $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 1, 21);
 
@@ -162,7 +162,13 @@ class NewsPost extends Model
 
     public function scopeDefault($query)
     {
-        $query->whereNotNull('published_at')->orderBy('published_at', 'DESC');
+        return $query->published()->orderBy('published_at', 'DESC');
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->whereNotNull('published_at')
+            ->where('published_at', '<=', Carbon::now());
     }
 
     public function filename()
@@ -242,11 +248,9 @@ class NewsPost extends Model
 
         $rawPage = $file->content();
 
-        $this->page = OsuMarkdownProcessor::process($rawPage, [
-            'html_input' => 'allow',
-            'path' => route('news.show', $this->slug),
-            'block_modifiers' => ['news'],
-        ]);
+        $this->page = (new OsuMarkdown('news', [
+            'relative_url_root' => route('news.show', $this->slug),
+        ]))->load($rawPage)->toArray();
 
         $this->version = static::pageVersion();
         $this->published_at = $this->pagePublishedAt();

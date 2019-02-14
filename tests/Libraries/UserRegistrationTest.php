@@ -32,7 +32,7 @@ class UserRegistrationTest extends TestCase
         $thrown = $this->runSubject($reg);
 
         $this->assertFalse($thrown);
-        $this->assertEquals($origCount + 1, User::count());
+        $this->assertSame($origCount + 1, User::count());
     }
 
     public function testRequiresUsername()
@@ -51,7 +51,7 @@ class UserRegistrationTest extends TestCase
                 'username' => [trans('model_validation.required', ['attribute' => 'username'])],
             ]
         );
-        $this->assertEquals($origCount, User::count());
+        $this->assertSame($origCount, User::count());
     }
 
     public function testStoreRequiresEmail()
@@ -70,7 +70,7 @@ class UserRegistrationTest extends TestCase
                 'user_email' => [trans('model_validation.required', ['attribute' => 'user_email'])],
             ]
         );
-        $this->assertEquals($origCount, User::count());
+        $this->assertSame($origCount, User::count());
     }
 
     public function testStoreRequiresPassword()
@@ -89,7 +89,7 @@ class UserRegistrationTest extends TestCase
                 'password' => [trans('model_validation.required', ['attribute' => 'password'])],
             ]
         );
-        $this->assertEquals($origCount, User::count());
+        $this->assertSame($origCount, User::count());
     }
 
     // wrapper to catch the exception

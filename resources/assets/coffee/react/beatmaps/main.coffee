@@ -52,9 +52,11 @@ class Beatmaps.Main extends React.PureComponent
       beatmaps: @props.beatmaps.beatmapsets
       paging:
         cursor: @props.beatmaps.cursor
-        url: laroute.route('beatmapsets.search')
         loading: false
-        more: @props.beatmaps.beatmapsets.length > 0
+        more: @props.beatmaps.cursor? && @props.beatmaps.total > @props.beatmaps.beatmapsets.length
+        total: @props.beatmaps.total
+        url: laroute.route('beatmapsets.search')
+      recommendedDifficulty: @props.beatmaps.recommended_difficulty
       loading: false
       filters: null
       isExpanded: null
@@ -109,7 +111,6 @@ class Beatmaps.Main extends React.PureComponent
     listCssClasses = 'beatmapsets'
     listCssClasses += ' beatmapsets--dimmed' if @state.loading
 
-
     div
       className: 'osu-layout__section'
       el Beatmaps.SearchPanel,
@@ -120,6 +121,7 @@ class Beatmaps.Main extends React.PureComponent
         filterDefaults: BeatmapsetFilter.getDefaults(@state.filters)
         expand: @expand
         isExpanded: @state.isExpanded
+        recommendedDifficulty: @state.recommendedDifficulty
 
       div className: 'js-sticky-header'
 
@@ -186,12 +188,15 @@ class Beatmaps.Main extends React.PureComponent
   fetchNewState: (newQuery = false) =>
     @fetchResults(newQuery)
     .then (data) =>
-      beatmaps: if newQuery then data.beatmapsets else @state.beatmaps.concat(data.beatmapsets)
+      beatmaps = if newQuery then data.beatmapsets else @state.beatmaps.concat(data.beatmapsets)
+
+      beatmaps: beatmaps
       loading: false
       paging:
         cursor: data.cursor
+        more: data.cursor? && data.total > beatmaps.length
         url: @state.paging.url
-        more: data.beatmapsets.length > 0
+      recommendedDifficulty: data.recommended_difficulty
 
 
   fetchResults: (newQuery) =>
