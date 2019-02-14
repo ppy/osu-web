@@ -15,12 +15,16 @@ php:
 matrix:
   fast_finish: true
 
+services:
+  - redis-server
+
 addons:
   apt:
     sources:
       - mysql-5.7-trusty
     packages:
       - mysql-server
+  chrome: stable
 
 env:
   global:
@@ -28,20 +32,23 @@ env:
     - SLACK_ENDPOINT=https://myconan.net/null/
     - PATH=$HOME/.yarn/bin:$PATH
     - APP_ENV=testing
-    - SESSION_DRIVER=array
-    - CACHE_DRIVER=array
+    - SESSION_DRIVER=redis
+    - CACHE_DRIVER=redis
     - CAMO_KEY=""
     - ES_VERSION=6.1.3 ES_DOWNLOAD_URL=https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.zip
+    - APP_URL=http://127.0.0.1:8000
+    - GITHUB_TOKEN=98cbc568911ef1e060a3a31623f2c80c1786d5ff
 
 install:
+  - pecl install redis <<<''
   # elasticsearch setup (part 1)
-  - wget "${ES_DOWNLOAD_URL}"
+  - travis_retry bash -c 'wget "${ES_DOWNLOAD_URL}"'
   - unzip "elasticsearch-${ES_VERSION}.zip"
   - ./"elasticsearch-${ES_VERSION}/bin/elasticsearch" &
 
-  - nvm install 8.9
+  - travis_retry nvm install 8.9
   - nvm use 8.9
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.3.2
+  - travis_retry bash -c 'curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.3.2'
   - ./bin/db_setup.sh
   - ./build.sh
 
@@ -50,4 +57,9 @@ install:
   - wget -q --waitretry=1 --retry-connrefused -T 10 -O - http://127.0.0.1:9200
   - php artisan es:index-documents --yes
 
-script: ./bin/phpunit
+jobs:
+  include:
+    - script: ./bin/phpunit
+      name: "phpunit"
+    - script: ./bin/run_dusk.sh
+      name: "browser tests"
