@@ -61,16 +61,16 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count badge|:count badges',
-        'days' => ':count day|:count days',
+        'badges' => ':count_delimited badge|:count_delimited badges',
+        'days' => ':count_delimited day|:count_delimited days',
         'hour_short_unit' => 'hr|hrs',
-        'hours' => ':count hour|:count hours',
-        'item' => ':count unit|:count units',
+        'hours' => ':count_delimited hour|:count_delimited hours',
+        'item' => ':count_delimited unit|:count_delimited units',
         'minute_short_unit' => 'min|mins',
-        'minutes' => ':count minute|:count minutes',
-        'months' => ':count month|:count months',
+        'minutes' => ':count_delimited minute|:count_delimited minutes',
+        'months' => ':count_delimited month|:count_delimited months',
         'second_short_unit' => 'sec|secs',
-        'years' => ':count year|:count years',
+        'years' => ':count_delimited year|:count_delimited years',
     ],
 
     'countdown' => [
@@ -116,8 +116,8 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count day ago|:count days ago',
-        'hours_ago' => ':count hour ago|:count hours ago',
+        'days_ago' => ':count_delimited day ago|:count_delimited days ago',
+        'hours_ago' => ':count_delimited hour ago|:count_delimited hours ago',
         'now' => 'now',
         'remaining' => 'Time Remaining',
     ],

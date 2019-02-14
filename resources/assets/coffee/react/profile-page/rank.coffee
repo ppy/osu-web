@@ -25,6 +25,6 @@ ProfilePage.Rank = ({type, stats, modifiers}) ->
     label: osu.trans("users.show.rank.#{type}_simple")
     value:
       if stats.rank[type]?
-        "##{stats.rank[type].toLocaleString()}"
+        "##{osu.formatNumber(stats.rank[type])}"
       else
         '-'

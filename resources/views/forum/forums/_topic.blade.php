@@ -97,7 +97,7 @@
                 title="{{ trans('forum.topics.index.views') }}"
                 data-tooltip-position="right center"
             >
-                {{ number_format($topic->topic_views) }}
+                {{ i18n_number_format($topic->topic_views) }}
                 <i class="fas fa-eye"></i>
             </div>
 
@@ -105,7 +105,7 @@
                 title="{{ trans('forum.topics.index.replies') }}"
                 data-tooltip-position="right center"
             >
-                {{ number_format($topic->topic_replies) }}
+                {{ i18n_number_format($topic->topic_replies) }}
                 <i class="far fa-comment"></i>
             </div>
 
@@ -114,7 +114,7 @@
                     title="{{ trans('forum.topics.index.feature_votes') }}"
                     data-tooltip-position="right center"
                 >
-                    {{ number_format($topic->osu_starpriority) }}
+                    {{ i18n_number_format($topic->osu_starpriority) }}
                     <i class="far fa-star"></i>
                 </div>
             @endif

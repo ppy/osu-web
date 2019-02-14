@@ -129,10 +129,10 @@
             </div>
 
             <div class="landing-hero__info">
-                {!! trans("home.landing.players", ['count' => number_format($stats->totalUsers)]) !!},
+                {!! trans("home.landing.players", ['count' => i18n_number_format($stats->totalUsers)]) !!},
                 {!! trans("home.landing.online", [
-                    'players' => number_format($stats->currentOnline),
-                    'games' => number_format($stats->currentGames)]
+                    'players' => i18n_number_format($stats->currentOnline),
+                    'games' => i18n_number_format($stats->currentGames)]
                 ) !!}
             </div>
 
