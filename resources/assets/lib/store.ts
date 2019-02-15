@@ -52,10 +52,12 @@ export class Store {
   private constructor() {
     $(document).on('click', '.js-store-checkout', this.beginCheckout.bind(this));
     $(document).on('click', '.js-store-resume-checkout', this.resumeCheckout.bind(this));
+
+    $('.js-store-checkout').prop('disabled', false);
   }
 
   async beginCheckout(event: Event) {
-    if (event.target == null) { return event.preventDefault(); }
+    if (event.target == null) { return; }
 
     const orderId = osu.presence((event.target as HTMLElement).dataset.orderId);
     if (orderId == null) {
@@ -68,13 +70,14 @@ export class Store {
       // can't mix Shopify and non-Shopify items.
       osu.popup('These items can\'t be checked out together', 'danger');
 
-      return event.preventDefault();
+      return;
     }
 
     if (lineItems.length > 0) {
-      event.preventDefault();
       return this.beginShopifyCheckout(orderId, lineItems);
     }
+
+    Turbolinks.visit(laroute.route('store.checkout.show', { checkout: orderId }));
   }
 
   async beginShopifyCheckout(orderId: string, lineItems: LineItem[]) {
