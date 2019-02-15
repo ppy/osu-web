@@ -134,7 +134,11 @@ class HomeController extends Controller
         $allSearch = new AllSearch(request(), ['user' => Auth::user()]);
         $isSearchPage = true;
 
-        return view('home.search', compact('allSearch', 'isSearchPage'));
+        if (request('format', 'blade') === 'json') {
+            return json_item($allSearch, 'AllSearch');
+        } else {
+            return view('home.search', compact('allSearch', 'isSearchPage'));
+        }
     }
 
     public function setLocale()
