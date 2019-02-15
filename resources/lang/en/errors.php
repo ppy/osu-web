@@ -35,7 +35,7 @@ return [
         'standard_converts_only' => 'No scores are available for the requested mode on this beatmap difficulty.',
     ],
     'checkout' => [
-        'generic' => 'An error occurred while preparing your checkout.'
+        'generic' => 'An error occurred while preparing your checkout.',
     ],
     'logged_out' => 'You have been signed out. Please sign in and retry.',
     'supporter_only' => 'You must be an osu!supporter to use this feature.',

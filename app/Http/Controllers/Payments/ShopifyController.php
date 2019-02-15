@@ -28,7 +28,6 @@ use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use Carbon\Carbon;
 use Exception;
-use Log;
 use Sentry;
 
 class ShopifyController extends Controller
