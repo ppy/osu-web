@@ -115,7 +115,7 @@ return [
             'delivered' => 'Delivered',
             'paid' => 'Paid',
             'processing' => 'Pending confirmation',
-            'shipped' => 'In Transit',
+            'shipped' => 'Shipped',
         ],
     ],
 
