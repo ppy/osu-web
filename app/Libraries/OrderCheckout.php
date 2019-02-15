@@ -27,7 +27,6 @@ use App\Models\User;
 use DB;
 use Request;
 
-
 class OrderCheckout
 {
     /**
@@ -179,7 +178,6 @@ class OrderCheckout
         $shouldShopify = $this->order->isShouldShopify();
         // TODO: nested indexed ValidationError...somehow.
         $itemErrors = [];
-        $orderErrors = [];
         $items = $this->order->items()->with('product')->get();
         foreach ($items as $item) {
             $messages = [];

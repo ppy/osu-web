@@ -37,7 +37,7 @@ class ShopifyController extends Controller
     {
         $signature = new ShopifySignature(request());
         if (!$signature->isValid()) {
-            throw new Exception("invalid signature");
+            throw new Exception('invalid signature');
         }
 
         // X-Shopify-Hmac-Sha256
