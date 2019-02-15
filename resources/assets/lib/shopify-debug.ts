@@ -26,7 +26,7 @@ import { decodeShopifyId } from 'shopify-gid';
 
 const options = {
   domain: process.env.SHOPIFY_DOMAIN,
-  storefrontAccessToken: process.env.SHOPIFY_TOKEN,
+  storefrontAccessToken: process.env.SHOPIFY_STOREFRONT_TOKEN,
 };
 
 const client = Shopify.buildClient(options);

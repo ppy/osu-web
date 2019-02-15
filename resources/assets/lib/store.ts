@@ -28,7 +28,7 @@ declare global {
 // process.env.$ has to be static as it is injected by webpack at compile time.
 const options = {
   domain: process.env.SHOPIFY_DOMAIN,
-  storefrontAccessToken: process.env.SHOPIFY_TOKEN,
+  storefrontAccessToken: process.env.SHOPIFY_STOREFRONT_TOKEN,
 };
 
 const client = Shopify.buildClient(options);

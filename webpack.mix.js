@@ -97,7 +97,7 @@ let webpackConfig = {
     new webpack.DefinePlugin({
       'process.env.PAYMENT_SANDBOX': JSON.stringify(paymentSandbox),
       'process.env.SHOPIFY_DOMAIN': JSON.stringify(process.env.SHOPIFY_DOMAIN),
-      'process.env.SHOPIFY_TOKEN': JSON.stringify(process.env.SHOPIFY_TOKEN),
+      'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
     })
   ],
   resolve: {
