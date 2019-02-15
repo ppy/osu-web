@@ -17,6 +17,13 @@
  */
 
 import Shopify from 'shopify-buy';
+import { toShopifyVariantId } from 'shopify-gid';
+
+declare global {
+  interface Window {
+    Store: Store;
+  }
+}
 
 // process.env.$ has to be static as it is injected by webpack at compile time.
 const options = {
@@ -25,8 +32,6 @@ const options = {
 };
 
 const client = Shopify.buildClient(options);
-
-window.ShopifyClient = client;
 
 interface LineItem {
   quantity: number;
@@ -42,22 +47,6 @@ export class Store {
     }
 
     return this.instance;
-  }
-
-  static decodeShopifyId(base64: string) {
-    return atob(base64);
-  }
-
-  static encodeShopifyId(str: string) {
-    return btoa(str);
-  }
-
-  static toShopifyProductId(id: string) {
-    return `gid://shopify/Product/${id}`;
-  }
-
-  static toShopifyVariantId(id: string) {
-    return `gid://shopify/ProductVariant/${id}`;
   }
 
   private constructor() {
@@ -128,39 +117,6 @@ export class Store {
     window.location = checkout.webUrl;
   }
 
-  // debug helpers
-  fetchAllProducts(): Promise<any[]> {
-    return client.product.fetchAll();
-  }
-
-  async fetchAllProductIds(): Promise<string[]> {
-    const products = await this.fetchAllProducts();
-
-    return products.map((x) => Store.decodeShopifyId(x.id));
-  }
-
-  async fetchAllVariants(): Promise<any[]> {
-    const products = await this.fetchAllProducts();
-
-    let variants: any[] = [];
-    for (const product of products) {
-      variants = variants.concat(product.variants);
-    }
-
-    return variants;
-  }
-
-  async fetchAllVariantIds(): Promise<{ }> {
-    const variants = await this.fetchAllVariants();
-
-    return variants.map((x) => {
-      return {
-        id: Store.decodeShopifyId(x.id),
-        name: x.title,
-      };
-    });
-  }
-
   private collectShopifyItems() {
     let isValid = true;
 
@@ -174,7 +130,7 @@ export class Store {
       if (id != null) {
         lineItems.push({
           quantity: Number(element.dataset.quantity),
-          variantId: Store.encodeShopifyId(Store.toShopifyVariantId(id)),
+          variantId: toShopifyVariantId(id),
         });
       }
     });
@@ -190,4 +146,4 @@ export class Store {
   }
 }
 
-window.Store = Store.init();
+window.Store = window.Store || Store.init();

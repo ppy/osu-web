@@ -1,10 +1,3 @@
-interface Window {
-  Store: any;
-  ShopifyClient: any;
-}
-
-declare var window: Window;
-
 // interfaces for using process.env
 interface Process {
   env: ProcessEnv;
@@ -15,6 +8,8 @@ interface ProcessEnv {
 }
 
 declare var process: Process;
+
+declare var window: Window;
 
 // libraries
 declare var _: any;
