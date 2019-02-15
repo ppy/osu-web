@@ -60,15 +60,20 @@
                         @endforeach
                     </ul>
                     @if ($order->isShopify())
-                        {{-- FIXME: change to button or have js scan and update hrefs on all links --}}
-                        <a class="js-store-shopify-checkout store-order__link"
+                        <button
+                            class="js-store-resume-checkout btn-osu-big"
                             data-checkout-id="{{ $order->getShopifyCheckoutId() }}"
-                            href="#"
+                            data-order-id="{{ $order->getKey() }}"
                         >
                             {{ $order->status === 'processing' ? trans('store.order.resume') : trans('store.order.invoice') }}
-                        </a>
+                        </button>
                     @elseif ($order->hasInvoice())
-                        <a class="store-order__link" href="{{ route('store.invoice.show', $order) }}">{{ trans('store.order.invoice') }}</a>
+                        <button
+                            class="js-store-resume-checkout btn-osu-big"
+                            data-order-id="{{ $order->getKey() }}"
+                        >
+                            {{ trans('store.order.invoice') }}
+                        </button>
                     @endif
                 </div>
             @endforeach

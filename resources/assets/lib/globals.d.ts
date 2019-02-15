@@ -15,6 +15,7 @@ declare var window: Window;
 declare var _: any;
 declare var laroute: any;
 declare var moment: any;
+declare var Turbolinks: Turbolinks;
 
 // our helpers
 declare var tooltipDefault: TooltipDefault;
@@ -65,4 +66,8 @@ interface User {
 
 interface TooltipDefault {
   remove: (el: HTMLElement) => void;
+}
+
+interface Turbolinks {
+  visit: (url: string) => void;
 }

@@ -51,7 +51,7 @@ export class Store {
 
   private constructor() {
     $(document).on('click', '.js-store-checkout', this.beginCheckout.bind(this));
-    $(document).on('click', '.js-store-shopify-checkout', this.resumeShopifyCheckout.bind(this));
+    $(document).on('click', '.js-store-resume-checkout', this.resumeCheckout.bind(this));
   }
 
   async beginCheckout(event: Event) {
@@ -104,14 +104,22 @@ export class Store {
     }
   }
 
-  async resumeShopifyCheckout(event: Event) {
-    event.preventDefault();
+  async resumeCheckout(event: Event) {
     if (event.target == null) { return; }
 
+    const target = event.target as HTMLElement;
+    const checkoutId = osu.presence(target.dataset.checkoutId);
+    if (checkoutId == null) {
+      Turbolinks.visit(laroute.route('store.invoice.show', { invoice: target.dataset.orderId }));
+    } else {
+      this.resumeShopifyCheckout(checkoutId);
+    }
+  }
+
+  async resumeShopifyCheckout(checkoutId: string) {
     LoadingOverlay.show();
     LoadingOverlay.show.flush();
 
-    const checkoutId = osu.presence((event.target as HTMLElement).dataset.checkoutId);
     const checkout = await client.checkout.fetch(checkoutId);
 
     window.location = checkout.webUrl;
