@@ -53,6 +53,10 @@ export class Store {
     $(document).on('click', '.js-store-checkout', this.beginCheckout.bind(this));
     $(document).on('click', '.js-store-resume-checkout', this.resumeCheckout.bind(this));
 
+    $(document).on('turbolinks:load', () => {
+      $('.js-store-checkout').prop('disabled', false);
+    });
+
     $('.js-store-checkout').prop('disabled', false);
   }
 
