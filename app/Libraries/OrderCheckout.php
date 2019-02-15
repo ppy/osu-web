@@ -176,6 +176,7 @@ class OrderCheckout
      */
     public function validate()
     {
+        $shouldShopify = $this->order->isShouldShopify();
         // TODO: nested indexed ValidationError...somehow.
         $itemErrors = [];
         $orderErrors = [];
@@ -199,6 +200,10 @@ class OrderCheckout
                 $messages[] = trans('model_validation/store/product.too_many', ['count' => $item->product->max_quantity]);
             }
 
+            if ($shouldShopify && !$item->product->isShopify()) {
+                $messages[] = trans('model_validation/store/product.must_separate');
+            }
+
             $customClass = $item->getCustomClassInstance();
             if ($customClass !== null) {
                 $messages[] = $customClass->validate()->allMessages();
@@ -210,17 +215,7 @@ class OrderCheckout
             }
         }
 
-        if ($this->order->isShouldShopify()) {
-            $incompatible = $this->order->items->reduce(function ($carry, $item) {
-                return $carry || $item->product->isShopify();
-            }, false);
-
-            if ($incompatible) {
-                $orderErrors[] = 'Can\'t mix items';
-            }
-        }
-
-        return $itemErrors === [] ? [] : ['order' => $orderErrors, 'orderItems' => $itemErrors];
+        return $itemErrors === [] ? [] : ['orderItems' => $itemErrors];
     }
 
     /**

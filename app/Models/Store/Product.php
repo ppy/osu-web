@@ -212,7 +212,7 @@ class Product extends Model
         return $this->isShopify() ? "gid://shopify/ProductVariant/{$this->shopify_id}" : null;
     }
 
-    public function isShopify()
+    public function isShopify() : bool
     {
         return $this->shopify_id !== null;
     }
