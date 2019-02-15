@@ -28,6 +28,7 @@ use App\Models\Store\Payment;
 use Carbon\Carbon;
 use Exception;
 use Log;
+use Sentry;
 
 class ShopifyController extends Controller
 {
@@ -65,7 +66,10 @@ class ShopifyController extends Controller
                 $this->updateOrderPayment($order);
                 break;
             default:
-                Log::error("Didn't understand {$type}");
+                Sentry::captureMessage(
+                    'Received %s webhook for order %s from Shopify',
+                    [$type, $orderId]
+                );
                 break;
         }
 
