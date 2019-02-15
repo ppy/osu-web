@@ -72,7 +72,8 @@ export class Store {
 
     if (!isValid) {
       // can't mix Shopify and non-Shopify items.
-      osu.popup('These items can\'t be checked out together', 'danger');
+      // This should normally not show as the button itself shouldn't have been rendered.
+      osu.popup(osu.trans('model_validation/store/product.must_separate'), 'danger');
 
       return;
     }
