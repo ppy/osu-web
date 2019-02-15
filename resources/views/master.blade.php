@@ -109,9 +109,6 @@
         @include('layout._loading_overlay')
         @include('layout.popup-container')
 
-        {{-- TODO: move to store only pages --}}
-        @include('layout._extra_js', ['src' => 'js/store.js'])
-
         @yield("script")
     </body>
 </html>
