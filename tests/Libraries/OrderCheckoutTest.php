@@ -19,6 +19,7 @@
  */
 use App\Libraries\OrderCheckout;
 use App\Models\Country;
+use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
 use App\Models\Tournament;
@@ -76,6 +77,33 @@ class OrderCheckoutTest extends TestCase
         $checkout = new OrderCheckout($orderItem->order);
 
         $this->assertNotEmpty($checkout->validate());
+    }
+
+    public function testShopifyItemDoesNotMix()
+    {
+        $product1 = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5, 'shopify_id' => 1]);
+        $product2 = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5, 'shopify_id' => null]);
+        $orderItem1 = factory(OrderItem::class)->create([
+            'product_id' => $product1->product_id,
+            'quantity' => 1,
+        ]);
+
+        $orderItem2 = factory(OrderItem::class)->create([
+            'product_id' => $product2->product_id,
+            'quantity' => 1,
+        ]);
+
+        $order = factory(Order::class)->create();
+        $order->items()->save($orderItem1);
+        $order->items()->save($orderItem2);
+
+        $checkout = new OrderCheckout($order);
+        $result = $checkout->validate();
+
+        $this->assertSame(
+            [trans('model_validation/store/product.must_separate')],
+            array_get($result, "orderItems.{$orderItem2->getKey()}")
+        );
     }
 
     private function createTournamentProduct(Tournament $tournament, Carbon $availableUntil = null)
