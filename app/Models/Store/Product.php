@@ -46,6 +46,7 @@ use Carbon\Carbon;
  * @property \Illuminate\Database\Eloquent\Collection $notificationRequests NotificationRequest
  * @property int $product_id
  * @property bool $promoted
+ * @property string|null $shopify_id
  * @property int|null $stock
  * @property string|null $type_mappings_json
  * @property \Carbon\Carbon|null $updated_at
