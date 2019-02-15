@@ -54,6 +54,8 @@ interface OsuCommon {
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   jsonClone: (obj: any) => any;
   parseJson: (id: string) => any;
+  popup: (message: string, type: string) => void;
+  presence: (str?: string | null) => string | null;
   promisify: (xhr: JQueryXHR) => Promise<any>;
   timeago: (time: string) => string;
   trans: (...args: any[]) => string;

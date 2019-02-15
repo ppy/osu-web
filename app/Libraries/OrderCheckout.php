@@ -178,6 +178,7 @@ class OrderCheckout
     {
         // TODO: nested indexed ValidationError...somehow.
         $itemErrors = [];
+        $orderErrors = [];
         $items = $this->order->items()->with('product')->get();
         foreach ($items as $item) {
             $messages = [];
@@ -190,7 +191,6 @@ class OrderCheckout
                 $messages[] = trans('model_validation/store/product.not_available');
             }
 
-            // TODO: probably can combine max_quantity and inStock check and message.
             if (!$item->product->inStock($item->quantity)) {
                 $messages[] = trans('model_validation/store/product.insufficient_stock');
             }
@@ -210,7 +210,17 @@ class OrderCheckout
             }
         }
 
-        return $itemErrors === [] ? [] : ['orderItems' => $itemErrors];
+        if ($this->order->isShouldShopify()) {
+            $incompatible = $this->order->items->reduce(function ($carry, $item) {
+                return $carry || $item->product->isShopify();
+            }, false);
+
+            if ($incompatible) {
+                $orderErrors[] = 'Can\'t mix items';
+            }
+        }
+
+        return $itemErrors === [] ? [] : ['order' => $orderErrors, 'orderItems' => $itemErrors];
     }
 
     /**

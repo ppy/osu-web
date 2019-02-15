@@ -201,6 +201,21 @@ class Product extends Model
         return $query->whereNotNull('weight');
     }
 
+    /**
+     * Returns the Shopify product variant GraphQL gid for this Product, null if it is not a Shopify item.
+     *
+     * @return string|null
+     */
+    public function getShopifyVariantGid() : ?string
+    {
+        return $this->isShopify() ? "gid://shopify/ProductVariant/{$this->shopify_id}" : null;
+    }
+
+    public function isShopify()
+    {
+        return $this->shopify_id !== null;
+    }
+
     public function productsInRange()
     {
         if (!($mappings = $this->typeMappings())) {

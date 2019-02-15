@@ -28,6 +28,11 @@ const client = Shopify.buildClient(options);
 
 window.ShopifyClient = client;
 
+interface LineItem {
+  quantity: number;
+  variantId: string;
+}
+
 export class Store {
   private static instance: Store;
 
@@ -56,49 +61,58 @@ export class Store {
   }
 
   private constructor() {
-    $(document).on('click', '.js-store-checkout', this.beginCheckout);
-    $(document).on('click', '.js-store-shopify-checkout', this.resumeShopifyCheckout);
+    $(document).on('click', '.js-store-checkout', this.beginCheckout.bind(this));
+    $(document).on('click', '.js-store-shopify-checkout', this.resumeShopifyCheckout.bind(this));
   }
 
   async beginCheckout(event: Event) {
-    event.preventDefault();
-    if (event.target == null) { return; }
+    if (event.target == null) { return event.preventDefault(); }
 
-    const orderId = (event.target as HTMLElement).dataset.orderId;
+    const orderId = osu.presence((event.target as HTMLElement).dataset.orderId);
     if (orderId == null) {
       throw new Error('orderId is missing');
     }
 
-    const lineItems = $('.js-store-order-item').map((_, element) => {
-      // FIXME: handle the ones with no id.
-      return {
-        quantity: Number(element.dataset.quantity),
-        variantId: Store.encodeShopifyId(Store.toShopifyVariantId(element.dataset.shopifyId || '')),
+    const { isValid, lineItems } = this.collectShopifyItems();
+
+    if (!isValid) {
+      // can't mix Shopify and non-Shopify items.
+      osu.popup('These items can\'t be checked out together', 'danger');
+
+      return event.preventDefault();
+    }
+
+    if (lineItems.length > 0) {
+      event.preventDefault();
+      return this.beginShopifyCheckout(orderId, lineItems);
+    }
+  }
+
+  async beginShopifyCheckout(orderId: string, lineItems: LineItem[]) {
+    try {
+      LoadingOverlay.show();
+      LoadingOverlay.show.flush();
+
+      // create shopify checkout.
+      // error returned will be a JSON string in error.message
+      const checkout = await client.checkout.create({
+        customAttributes: [{ key: 'orderId', value: orderId }],
+        lineItems,
+      });
+
+      const params = {
+        orderId,
+        provider: 'shopify',
+        shopifyId: checkout.id,
       };
-    }).toArray();
-    console.log(lineItems);
 
-    LoadingOverlay.show();
-    LoadingOverlay.show.flush();
+      await osu.promisify($.post(laroute.route('store.checkout.store'), params));
 
-    // create shopify checkout.
-    const checkout = await client.checkout.create({
-      customAttributes: [{ key: 'orderId', value: orderId }],
-      lineItems,
-    });
-    console.log(checkout.id);
-
-    const params = {
-      orderId,
-      provider: 'shopify',
-      shopifyId: checkout.id,
-    };
-
-    const result = await osu.promisify($.post(laroute.route('store.checkout.store'), params));
-    console.log(result);
-    console.log(`Redirecting to ${checkout.webUrl}`);
-
-    window.location = checkout.webUrl;
+      window.location = checkout.webUrl;
+    } catch (error) {
+      osu.popup('TODO: handle different error messages', 'danger');
+      LoadingOverlay.hide();
+    }
   }
 
   async resumeShopifyCheckout(event: Event) {
@@ -108,10 +122,8 @@ export class Store {
     LoadingOverlay.show();
     LoadingOverlay.show.flush();
 
-    console.log('resuming shopify');
-    const checkoutId = (event.target as HTMLElement).dataset.checkoutId;
+    const checkoutId = osu.presence((event.target as HTMLElement).dataset.checkoutId);
     const checkout = await client.checkout.fetch(checkoutId);
-    console.log(`Redirecting to ${checkout.webUrl}`);
 
     window.location = checkout.webUrl;
   }
@@ -147,6 +159,34 @@ export class Store {
         name: x.title,
       };
     });
+  }
+
+  private collectShopifyItems() {
+    let isValid = true;
+
+    const lineItems: LineItem[] = [];
+    $('.js-store-order-item').each((_, element) => {
+      const id = osu.presence(element.dataset.shopifyId);
+      if (id == null) {
+        isValid = false;
+      }
+
+      if (id != null) {
+        lineItems.push({
+          quantity: Number(element.dataset.quantity),
+          variantId: Store.encodeShopifyId(Store.toShopifyVariantId(id)),
+        });
+      }
+    });
+
+    if (lineItems.length === 0) {
+      isValid = true;
+    }
+
+    return {
+      isValid,
+      lineItems,
+    };
   }
 }
 
