@@ -144,7 +144,14 @@ class Page
                 'tags' => [],
             ];
         } else {
-            $content = OsuWiki::fetchContent('wiki/'.$this->pagePath());
+            try {
+                $content = OsuWiki::fetchContent('wiki/'.$this->pagePath());
+            } catch (GitHubNotFoundException $e) {
+                log_error($e);
+
+                return $this->esDeleteDocument();
+            }
+
             $indexContent = (new OsuMarkdown('wiki', [
                 'relative_url_root' => wiki_url($this->path),
             ]))->load($content)->toIndexable();
