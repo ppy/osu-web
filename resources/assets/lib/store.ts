@@ -106,7 +106,9 @@ export class Store {
 
       window.location = checkout.webUrl;
     } catch (error) {
-      osu.popup('TODO: handle different error messages', 'danger');
+      // either error from Shopify or updating the order state failed.
+      // TODO: separate the handling of errors.
+      osu.popup(osu.trans('errors.checkout.generic'), 'danger');
       LoadingOverlay.hide();
     }
   }

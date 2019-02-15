@@ -16,6 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+# TODO: migrate to store.ts.
+
 import { StorePaypal } from 'store-paypal'
 import { StoreXsolla } from 'store-xsolla'
 
