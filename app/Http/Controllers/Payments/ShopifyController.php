@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers\Payments;
 
+use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\ShopifySignature;
@@ -38,7 +39,7 @@ class ShopifyController extends Controller
     {
         $signature = new ShopifySignature(request());
         if (!$signature->isValid()) {
-            throw new Exception('invalid signature');
+            throw new InvalidSignatureException();
         }
 
         // X-Shopify-Hmac-Sha256
