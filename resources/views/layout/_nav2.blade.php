@@ -176,7 +176,7 @@
                         <i class="fas fa-inbox"></i>
 
                         <span class="notification-icon__count">
-                            {{ number_format(Auth::user()->notificationCount()) }}
+                            {{ i18n_number_format(Auth::user()->notificationCount()) }}
                         </span>
                     </span>
                 </a>

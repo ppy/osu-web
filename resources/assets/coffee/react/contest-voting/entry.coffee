@@ -70,4 +70,4 @@ class Contest.Voting.Entry extends React.Component
           div className:'contest__vote-count',
             osu.transChoice 'contest.vote.count', @props.entry.results.votes
             if isFinite(votePercentage)
-              " (#{votePercentage}%)"
+              " (#{osu.formatNumber(votePercentage)}%)"

@@ -432,6 +432,14 @@ function to_sentence($array, $key = 'common.array_and')
     }
 }
 
+// Handles case where crowdin fills in untranslated key with empty string.
+function trans_exists($key, $locale)
+{
+    $translated = app('translator')->get($key, [], $locale, false);
+
+    return present($translated) && $translated !== $key;
+}
+
 function obscure_email($email)
 {
     $email = explode('@', $email);
@@ -466,7 +474,7 @@ function currency($price, $precision = 2, $zeroShowFree = true)
         return 'free!';
     }
 
-    return 'US$'.number_format($price, $precision);
+    return 'US$'.i18n_number_format($price, null, null, $precision);
 }
 
 /**
@@ -802,6 +810,21 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null
     }
 
     return $formatter->format($datetime);
+}
+
+function i18n_number_format($number, $style = null, $pattern = null, $precision = null, $locale = null)
+{
+    $formatter = NumberFormatter::create(
+        $locale ?? App::getLocale(),
+        $style ?? NumberFormatter::DEFAULT_STYLE,
+        $pattern
+    );
+
+    if ($precision !== null) {
+        $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, $precision);
+    }
+
+    return $formatter->format($number);
 }
 
 function i18n_time($datetime, $format = IntlDateFormatter::LONG)
@@ -1235,14 +1258,15 @@ function suffixed_number_format($number)
 
 function suffixed_number_format_tag($number)
 {
-    return "<span title='".number_format($number)."'>".suffixed_number_format($number).'</span>';
+    return "<span title='".i18n_number_format($number)."'>".suffixed_number_format($number).'</span>';
 }
 
 // formats a number as a percentage with a fixed number of precision
 // e.g.: 98.3 -> 98.30%
 function format_percentage($number, $precision = 2)
 {
-    return sprintf("%.{$precision}f%%", round($number, $precision));
+    // the formatter assumes decimal number while the function receives percentage number.
+    return i18n_number_format($number / 100, NumberFormatter::PERCENT, null, $precision);
 }
 
 function group_users_by_online_state($users)

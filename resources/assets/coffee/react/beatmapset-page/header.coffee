@@ -86,12 +86,12 @@ class BeatmapsetPage.Header extends React.Component
               className: 'beatmapset-header__star-difficulty'
               style:
                 visibility: 'hidden' if !@props.hoveredBeatmap?
-              "#{osu.trans 'beatmapsets.show.stats.stars'} #{if @props.hoveredBeatmap then @props.hoveredBeatmap.difficulty_rating.toFixed 2 else ''}"
+              "#{osu.trans 'beatmapsets.show.stats.stars'} #{if @props.hoveredBeatmap then osu.formatNumber(@props.hoveredBeatmap.difficulty_rating, 2) else ''}"
 
             div {},
               span className: 'beatmapset-header__value', title: osu.trans('beatmapsets.show.stats.playcount'),
                 span className: 'beatmapset-header__value-icon', i className: 'fas fa-play-circle'
-                span className: 'beatmapset-header__value-name', @props.beatmapset.play_count.toLocaleString()
+                span className: 'beatmapset-header__value-name', osu.formatNumber(@props.beatmapset.play_count)
 
               if @props.beatmapset.status == 'pending'
                 span className: 'beatmapset-header__value', title: osu.trans('beatmapsets.show.stats.nominations'),
@@ -105,7 +105,7 @@ class BeatmapsetPage.Header extends React.Component
                 span className: 'beatmapset-header__value-icon',
                   i className: 'fas fa-heart'
                 span className: 'beatmapset-header__value-name',
-                  @props.favcount.toLocaleString()
+                  osu.formatNumber(@props.favcount)
 
             # this content of this div is used as a template for the on-hover/touch above
             div
@@ -121,7 +121,7 @@ class BeatmapsetPage.Header extends React.Component
                   el UserAvatar, user: user, modifiers: ['full']
               if @props.favcount > @favouritesToShow
                 div className: 'beatmapset-favourites__remainder-count',
-                  osu.transChoice 'beatmapsets.show.details.favourited_count', (@props.favcount - @favouritesToShow).toLocaleString()
+                  osu.transChoice 'beatmapsets.show.details.favourited_count', @props.favcount - @favouritesToShow
 
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--title u-ellipsis-overflow'

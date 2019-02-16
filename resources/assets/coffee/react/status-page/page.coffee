@@ -89,7 +89,7 @@ class @Status.Page extends React.Component
           else
             osu.transChoice('common.time.hours_ago', -d)
         y: (d) =>
-          (d).toLocaleString()
+          osu.formatNumber(d)
 
       infoBoxFormats =
         x: (d) -> "#{formats.x(d)}"
@@ -167,7 +167,7 @@ class @Status.Page extends React.Component
               h4 className: 'status-info__data-title',
                 osu.trans('status_page.online.current')
               h1 className: 'status-info__data-amount',
-                @state.status.online.current.toLocaleString()
+                osu.formatNumber(@state.status.online.current)
             div className: 'status-info__separator',
               null
             div
@@ -176,7 +176,7 @@ class @Status.Page extends React.Component
               h4 className: 'status-info__data-title',
                 osu.trans('status_page.online.score')
               h1 className: 'status-info__data-amount',
-                @state.status.online.score.toLocaleString()
+                osu.formatNumber(@state.status.online.score)
         div className: 'osu-layout__col-container osu-layout__col-container--with-gutter',
           el Status.Incidents,
             incidents: @state.status.incidents

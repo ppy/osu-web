@@ -270,10 +270,13 @@
                         forum-topic-nav__counter--middle"
                     >/</span>
 
-                    <span class="forum-topic-nav__counter
-                        forum-topic-nav__counter--right
-                        js-forum__total-count"
-                    >{{ $topic->postsCount() }}</span>
+                    <span
+                        class="forum-topic-nav__counter
+                            forum-topic-nav__counter--right
+                            js-forum__total-count
+                        "
+                        data-total="{{ $topic->postsCount() }}"
+                    >{{ i18n_number_format($topic->postsCount()) }}</span>
 
                     <div
                         class="js-forum-topic-post-jump--cover forum-topic-nav__counter-cover"

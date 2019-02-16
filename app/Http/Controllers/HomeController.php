@@ -179,10 +179,10 @@ class HomeController extends Controller
                 'expiration' => $expiration,
                 // purchased
                 'dollars' => currency($dollars, 2, false),
-                'tags' => number_format($tags),
+                'tags' => i18n_number_format($tags),
                 // gifted
                 'giftedDollars' => currency($giftedDollars, 2, false),
-                'giftedTags' => number_format($giftedTags),
+                'giftedTags' => i18n_number_format($giftedTags),
             ];
 
             if ($current) {

@@ -49,6 +49,7 @@ services:
     user: ${UID:?err}
     environment:
       <<: *x-env
+      OSU_INSTALL_DEV: 1
       OSU_SKIP_CACHE_PERMISSION_OVERRIDE: 1
     command: ['./docker/php/start.sh', 'db:3306']
   yarn:
