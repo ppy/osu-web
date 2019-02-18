@@ -17,14 +17,10 @@ matrix:
   fast_finish: true
 
 services:
+  - mysql
   - redis-server
 
 addons:
-  apt:
-    sources:
-      - mysql-5.7-trusty
-    packages:
-      - mysql-server
   chrome: stable
 
 env:
