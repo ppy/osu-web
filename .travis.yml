@@ -1,8 +1,8 @@
 cache:
   directories:
-    - vendor
-    - node_modules
     - $HOME/.yarn-cache
+    - node_modules
+    - vendor
   yarn: true
 
 dist: xenial
