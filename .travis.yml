@@ -25,16 +25,16 @@ addons:
 
 env:
   global:
-    - DB_USERNAME=root
-    - SLACK_ENDPOINT=https://myconan.net/null/
     - APP_ENV=testing
-    - SESSION_DRIVER=redis
+    - APP_URL=http://127.0.0.1:8000
     - CACHE_DRIVER=redis
     - CAMO_KEY=""
+    - DB_USERNAME=root
     - ES_VERSION=6.6.0 ES_DOWNLOAD_URL=https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.zip
-    - APP_URL=http://127.0.0.1:8000
     - GITHUB_TOKEN=98cbc568911ef1e060a3a31623f2c80c1786d5ff
     - OSU_INSTALL_DEV=1
+    - SESSION_DRIVER=redis
+    - SLACK_ENDPOINT=https://myconan.net/null/
 
 install:
   - pecl install redis <<<''
