@@ -3,6 +3,7 @@ cache:
     - vendor
     - node_modules
     - $HOME/.yarn-cache
+  yarn: true
 
 dist: xenial
 sudo: false
@@ -30,7 +31,6 @@ env:
   global:
     - DB_USERNAME=root
     - SLACK_ENDPOINT=https://myconan.net/null/
-    - PATH=$HOME/.yarn/bin:$PATH
     - APP_ENV=testing
     - SESSION_DRIVER=redis
     - CACHE_DRIVER=redis
@@ -49,7 +49,6 @@ install:
 
   - travis_retry nvm install 10
   - nvm use 10
-  - travis_retry bash -c 'curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.3.2'
   - ./bin/db_setup.sh
   - ./build.sh
 
