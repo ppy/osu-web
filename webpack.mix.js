@@ -23,13 +23,6 @@ const webpack = require('webpack');
 const SentryPlugin = require('webpack-sentry-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
-// might have already been called when mix starts? Won't override anything.
-require('dotenv').config();
-
-console.log(`cwd is "${process.cwd()}"`);
-// same lookup as dotenv.
-console.log(`load .env from "${path.resolve(process.cwd(), '.env')}"`);
-
 requiredEnvs = ['PAYMENT_SANDBOX', 'SHOPIFY_DOMAIN', 'SHOPIFY_STOREFRONT_TOKEN'];
 for (const key of requiredEnvs) {
   const value = process.env[key];
