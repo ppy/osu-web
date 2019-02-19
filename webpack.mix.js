@@ -161,7 +161,7 @@ if (!mix.inProduction() || process.env.SENTRY_RELEASE == 1) {
 }
 
 if (process.env.SENTRY_RELEASE == 1) {
-  webpackConfig['plugins'] = [
+  webpackConfig['plugins'].push(
     new SentryPlugin({
       organisation: process.env.SENTRY_ORG,
       project: process.env.SENTRY_PROJ,
@@ -176,7 +176,7 @@ if (process.env.SENTRY_RELEASE == 1) {
         return '~' + filename
       }
     })
-  ]
+  );
 }
 
 // use polling if watcher is bugged.
