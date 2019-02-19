@@ -34,9 +34,9 @@ requiredEnvs = ['PAYMENT_SANDBOX', 'SHOPIFY_DOMAIN', 'SHOPIFY_STOREFRONT_TOKEN']
 for (const key of requiredEnvs) {
   const value = process.env[key];
   if (value == null) {
-    console.error(`${key} is missing from env!`);
+    throw new Error(`${key} is missing from env!`);
   } else if (value.length === 0) {
-    console.error(`${key} exists in env but is empty!`);
+    throw new Error(`${key} exists in env but is empty!`);
   }
 }
 
