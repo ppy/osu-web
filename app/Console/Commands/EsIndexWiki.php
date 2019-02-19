@@ -51,7 +51,7 @@ class EsIndexWiki extends Command
                     (new EsIndexDocument($page))->handle();
                 } else {
                     (new EsDeleteDocument($page))->handle();
-                };
+                }
 
                 $bar->advance();
             }
