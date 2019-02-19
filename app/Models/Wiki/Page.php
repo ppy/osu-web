@@ -144,11 +144,8 @@ class Page
                 'tags' => [],
             ];
         } else {
-            try {
-                $content = OsuWiki::fetchContent('wiki/'.$this->pagePath());
-            } catch (GitHubNotFoundException $e) {
-                log_error($e);
-
+            $content = $this->getContent();
+            if ($content === null) {
                 return $this->esDeleteDocument();
             }
 
@@ -180,6 +177,24 @@ class Page
             'id' => $this->pagePath(),
             'client' => ['ignore' => 404],
         ]));
+    }
+
+    /**
+     * Gets the markdown content for the page from Github.
+     *
+     * @return string|null
+     */
+    public function getContent()
+    {
+        if (!array_key_exists('content', $this->cache)) {
+            try {
+                $this->cache['content'] = OsuWiki::fetchContent('wiki/'.$this->pagePath());
+            } catch (GitHubNotFoundException $e) {
+                $this->cache['content'] = null;
+            }
+        }
+
+        return $this->cache['content'];
     }
 
     public function getSource()
@@ -233,15 +248,11 @@ class Page
 
                 if ($fetch) {
                     try {
-                        $body = OsuWiki::fetchContent('wiki/'.$this->pagePath());
+                        $body = $this->getContent();
                     } catch (Exception $e) {
-                        if (!$e instanceof GitHubNotFoundException) {
-                            $index = false;
-
-                            log_error($e);
-                        }
-
                         $body = null;
+                        $index = false;
+                        log_error($e);
                     }
 
                     if (present($body)) {
