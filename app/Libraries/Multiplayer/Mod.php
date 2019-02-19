@@ -45,6 +45,7 @@ class Mod
     const OSU_TARGET = 'TP';
     const OSU_TRANSFORM = 'TR';
     const OSU_WIGGLE = 'WG';
+    const OSU_GROW = 'GR';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -116,6 +117,7 @@ class Mod
         [
             self::OSU_TRANSFORM,
             self::OSU_WIGGLE,
+            self::OSU_GROW,
         ],
     ];
 
@@ -135,6 +137,7 @@ class Mod
                         self::OSU_TARGET,
                         self::OSU_TRANSFORM,
                         self::OSU_WIGGLE,
+                        self::OSU_GROW,
                     ]
                 ),
 
