@@ -185,7 +185,7 @@ class Order extends Model
             return;
         }
 
-        return studly_case(explode('-', $this->transaction_id)[0]);
+        return explode('-', $this->transaction_id)[0];
     }
 
     public function getPaymentStatusText()
@@ -348,7 +348,7 @@ class Order extends Model
 
     public function isShopify() : bool
     {
-        return starts_with($this->transaction_id, static::PROVIDER_SHOPIFY);
+        return $this->getPaymentProvider() === static::PROVIDER_SHOPIFY;
     }
 
     public function isShouldShopify() : bool

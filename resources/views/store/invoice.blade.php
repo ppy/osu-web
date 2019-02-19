@@ -130,7 +130,7 @@
                 @endif
                 </td>
                 <td>FOB Japan</td>
-                <td>{{ $order->getPaymentProvider() }} ({{ $order->getPaymentStatusText() }})</td>
+                <td>{{ studly_case($order->getPaymentProvider()) }} ({{ $order->getPaymentStatusText() }})</td>
             </tr>
         </table>
         @endif
