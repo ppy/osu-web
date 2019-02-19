@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\Sort;
@@ -46,7 +47,12 @@ class EsIndexWiki extends Command
                     continue;
                 }
 
-                (new EsIndexDocument($page))->handle();
+                if ($page->getContent(true) !== null) {
+                    (new EsIndexDocument($page))->handle();
+                } else {
+                    (new EsDeleteDocument($page))->handle();
+                };
+
                 $bar->advance();
             }
 

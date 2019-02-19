@@ -145,10 +145,6 @@ class Page
             ];
         } else {
             $content = $this->getContent();
-            if ($content === null) {
-                return $this->esDeleteDocument();
-            }
-
             $indexContent = (new OsuMarkdown('wiki', [
                 'relative_url_root' => wiki_url($this->path),
             ]))->load($content)->toIndexable();
@@ -182,11 +178,12 @@ class Page
     /**
      * Gets the markdown content for the page from Github.
      *
+     * @param bool $force Force any cached value to refresh.
      * @return string|null
      */
-    public function getContent()
+    public function getContent(bool $force = false)
     {
-        if (!array_key_exists('content', $this->cache)) {
+        if (!array_key_exists('content', $this->cache) || $force) {
             try {
                 $this->cache['content'] = OsuWiki::fetchContent('wiki/'.$this->pagePath());
             } catch (GitHubNotFoundException $e) {
