@@ -74,6 +74,10 @@ class OrderCheckout
      */
     public function allowedCheckoutTypes()
     {
+        if ($this->order->isShouldShopify()) {
+            return [Order::PROVIDER_SHOPIFY];
+        }
+
         if ($this->order->getTotal() > 0) {
             $allowed = ['paypal'];
             if ($this->allowCentiliPayment()) {
