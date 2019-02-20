@@ -42,7 +42,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
     public function getPaymentProvider()
     {
-        return 'xsolla';
+        return Order::PROVIDER_XSOLLA;
     }
 
     public function getPaymentTransactionId()

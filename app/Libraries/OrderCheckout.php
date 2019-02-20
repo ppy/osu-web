@@ -79,13 +79,13 @@ class OrderCheckout
         }
 
         if ($this->order->getTotal() > 0) {
-            $allowed = ['paypal'];
+            $allowed = [Order::PROVIDER_PAYPAL];
             if ($this->allowCentiliPayment()) {
-                $allowed[] = 'centili';
+                $allowed[] = Order::PROVIDER_CENTILLI;
             }
 
             if ($this->allowXsollaPayment()) {
-                $allowed[] = 'xsolla';
+                $allowed[] = Order::PROVIDER_XSOLLA;
             }
 
             return $allowed;
