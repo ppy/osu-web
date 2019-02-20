@@ -177,7 +177,7 @@ class Notify implements ShouldQueue
         event(new All($notification));
 
         if (is_array($this->receiverIds)) {
-            DB::transaction(function () {
+            DB::transaction(function () use ($notification) {
                 $receivers = User::whereIn('user_id', $this->receiverIds)->get();
 
                 foreach ($receivers as $receiver) {
