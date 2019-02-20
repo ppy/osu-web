@@ -100,8 +100,8 @@
                         </p>
                     </div>
                 @else
-                    @foreach ($checkout->allowedCheckoutTypes() as $type)
-                        @include("store.checkout._{$type}")
+                    @foreach ($checkout->allowedCheckoutProviders() as $provider)
+                        @include("store.checkout._{$provider}")
                     @endforeach
                 @endif
             </div>

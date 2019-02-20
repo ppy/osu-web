@@ -72,7 +72,7 @@ class OrderCheckout
     /**
      * @return string[]
      */
-    public function allowedCheckoutTypes()
+    public function allowedCheckoutProviders()
     {
         if ($this->order->isShouldShopify()) {
             return [Order::PROVIDER_SHOPIFY];
@@ -121,7 +121,7 @@ class OrderCheckout
     public function beginCheckout()
     {
         // something that shouldn't happen just happened.
-        if (!in_array($this->provider, $this->allowedCheckoutTypes(), true)) {
+        if (!in_array($this->provider, $this->allowedCheckoutProviders(), true)) {
             throw new InvariantException("{$this->provider} not in allowed checkout providers.");
         }
 
