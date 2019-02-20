@@ -20,15 +20,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\ModelNotSavedException;
-use App\Exceptions\ValidationException;
-use App\Libraries\CommentBundle;
-use App\Libraries\MorphMap;
 use App\Models\Notification;
-use App\Models\Log;
-use Carbon\Carbon;
-use Exception;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class NotificationsController extends Controller
 {
