@@ -22,7 +22,6 @@
  */
 
 import Shopify from 'shopify-buy';
-import { decodeShopifyId } from 'shopify-gid';
 
 const options = {
   domain: process.env.SHOPIFY_DOMAIN,
@@ -38,7 +37,7 @@ export async function fetchAllProducts(): Promise<any[]> {
 export async function fetchAllProductIds(): Promise<string[]> {
   const products = await this.fetchAllProducts();
 
-  return products.map((x: any) => decodeShopifyId(x.id));
+  return products.map((x: any) => x.id);
 }
 
 export async function fetchAllVariants(): Promise<any[]> {
@@ -57,7 +56,7 @@ export async function fetchAllVariantIds(): Promise<{ }> {
 
   return variants.map((x: any) => {
     return {
-      id: decodeShopifyId(x.id),
+      gid: x.id,
       name: x.title,
     };
   });

@@ -204,12 +204,13 @@ class Product extends Model
 
     /**
      * Returns the Shopify product variant GraphQL gid for this Product, null if it is not a Shopify item.
+     * This is currently implemented as convenience for checking the gid matches the one from the Storefront API.
      *
      * @return string|null
      */
     public function getShopifyVariantGid() : ?string
     {
-        return $this->isShopify() ? "gid://shopify/ProductVariant/{$this->shopify_id}" : null;
+        return $this->isShopify() ? base64_encode("gid://shopify/ProductVariant/{$this->shopify_id}") : null;
     }
 
     public function isShopify() : bool

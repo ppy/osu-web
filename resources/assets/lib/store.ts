@@ -17,7 +17,7 @@
  */
 
 import Shopify from 'shopify-buy';
-import { toShopifyVariantId } from 'shopify-gid';
+import { toShopifyVariantGid } from 'shopify-gid';
 
 declare global {
   interface Window {
@@ -154,7 +154,7 @@ export class Store {
       if (id != null) {
         lineItems.push({
           quantity: Number(element.dataset.quantity),
-          variantId: toShopifyVariantId(id),
+          variantId: toShopifyVariantGid(id),
         });
       }
     });
