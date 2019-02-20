@@ -155,9 +155,7 @@ export class Store {
       const id = osu.presence(element.dataset.shopifyId);
       if (id == null) {
         isValid = false;
-      }
-
-      if (id != null) {
+      } else {
         lineItems.push({
           quantity: Number(element.dataset.quantity),
           variantId: toShopifyVariantGid(id),
