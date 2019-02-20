@@ -101,7 +101,7 @@
                     </div>
                 @else
                     @foreach ($checkout->allowedCheckoutTypes() as $type)
-                        @include("store._checkout_{$type}")
+                        @include("store.checkout._{$type}")
                     @endforeach
                 @endif
             </div>
