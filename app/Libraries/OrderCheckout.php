@@ -121,7 +121,7 @@ class OrderCheckout
     public function beginCheckout()
     {
         // something that shouldn't happen just happened.
-        if (!in_array($this->provider, $this->allowedCheckoutTypes())) {
+        if (!in_array($this->provider, $this->allowedCheckoutTypes(), true)) {
             throw new InvariantException("{$this->provider} not in allowed checkout providers.");
         }
 
