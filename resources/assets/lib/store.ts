@@ -113,7 +113,7 @@ export class Store {
     const params = {
       orderId,
       provider: 'shopify',
-      shopifyId: checkout.id,
+      shopifyCheckoutId: checkout.id,
     };
 
     await osu.promisify($.post(laroute.route('store.checkout.store'), params));

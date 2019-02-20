@@ -68,7 +68,7 @@ class CheckoutController extends Controller
     {
         $orderId = get_int(request('orderId'));
         $provider = request('provider');
-        $shopifyId = presence(request('shopifyId'));
+        $shopifyCheckoutId = presence(request('shopifyCheckoutId'));
 
         $order = $this->orderForCheckout($orderId);
 
@@ -76,7 +76,7 @@ class CheckoutController extends Controller
             return ujs_redirect(route('store.cart.show'));
         }
 
-        $checkout = new OrderCheckout($order, $provider, $shopifyId);
+        $checkout = new OrderCheckout($order, $provider, $shopifyCheckoutId);
 
         $validationErrors = $checkout->validate();
         if (!empty($validationErrors)) {
