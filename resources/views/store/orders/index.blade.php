@@ -62,8 +62,9 @@
                     @if ($order->isShopify())
                         <button
                             class="js-store-resume-checkout btn-osu-big"
-                            data-shopify-checkout-id="{{ $order->getProviderReference() }}"
                             data-order-id="{{ $order->getKey() }}"
+                            data-provider="{{ $order->getPaymentProvider() }}"
+                            data-provider-reference="{{ $order->getProviderReference() }}"
                         >
                             {{ $order->status === 'processing' ? trans('store.order.resume') : trans('store.order.invoice') }}
                         </button>
@@ -71,6 +72,7 @@
                         <button
                             class="js-store-resume-checkout btn-osu-big"
                             data-order-id="{{ $order->getKey() }}"
+                            data-provider="{{ $order->getPaymentProvider() }}"
                         >
                             {{ trans('store.order.invoice') }}
                         </button>

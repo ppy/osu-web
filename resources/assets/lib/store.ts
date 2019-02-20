@@ -124,11 +124,17 @@ export class Store {
     if (event.target == null) { return; }
 
     const target = event.target as HTMLElement;
-    const checkoutId = osu.presence(target.dataset.shopifyCheckoutId);
-    if (checkoutId == null) {
-      Turbolinks.visit(laroute.route('store.invoice.show', { invoice: target.dataset.orderId }));
+    const checkoutId = osu.presence(target.dataset.providerReference);
+    const provider = osu.presence(target.dataset.provider);
+
+    if (provider === 'shopify') {
+      if (checkoutId !== null) {
+        this.resumeShopifyCheckout(checkoutId);
+      } else {
+        // TODO: show error.
+      }
     } else {
-      this.resumeShopifyCheckout(checkoutId);
+      Turbolinks.visit(laroute.route('store.invoice.show', { invoice: target.dataset.orderId }));
     }
   }
 
