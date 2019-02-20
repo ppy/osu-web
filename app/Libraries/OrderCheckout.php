@@ -74,16 +74,20 @@ class OrderCheckout
      */
     public function allowedCheckoutTypes()
     {
-        $allowed = ['paypal'];
-        if ($this->allowCentiliPayment()) {
-            $allowed[] = 'centili';
+        if ($this->order->getTotal() > 0) {
+            $allowed = ['paypal'];
+            if ($this->allowCentiliPayment()) {
+                $allowed[] = 'centili';
+            }
+
+            if ($this->allowXsollaPayment()) {
+                $allowed[] = 'xsolla';
+            }
+
+            return $allowed;
         }
 
-        if ($this->allowXsollaPayment()) {
-            $allowed[] = 'xsolla';
-        }
-
-        return $allowed;
+        return ['free'];
     }
 
     /**
@@ -114,7 +118,7 @@ class OrderCheckout
     {
         // something that shouldn't happen just happened.
         if (!in_array($this->provider, $this->allowedCheckoutTypes())) {
-            throw new InvariantException("{$this->provider} not in allowed checkout types.");
+            throw new InvariantException("{$this->provider} not in allowed checkout providers.");
         }
 
         DB::connection('mysql-store')->transaction(function () {

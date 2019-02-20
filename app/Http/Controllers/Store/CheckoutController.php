@@ -89,7 +89,7 @@ class CheckoutController extends Controller
 
         $checkout->beginCheckout();
 
-        if ((float) $order->getTotal() === 0.0 && Request::input('completed')) {
+        if ((float) $order->getTotal() === 0.0 && $provider === 'free') {
             return $this->freeCheckout($checkout);
         }
 
