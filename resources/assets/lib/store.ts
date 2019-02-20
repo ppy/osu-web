@@ -151,5 +151,3 @@ export class Store {
     return lineItems;
   }
 }
-
-window.Store = window.Store || Store.init();

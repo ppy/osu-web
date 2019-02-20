@@ -19,5 +19,5 @@
 
 @section('script')
     @parent
-    @include('layout._extra_js', ['src' => 'js/store.js'])
+    @include('layout._extra_js', ['src' => 'js/store-bootstrap.js'])
 @endsection
