@@ -218,7 +218,7 @@ class BeatmapsetPage.Info extends React.Component
 
               div
                 className: 'beatmap-success-rate__percentage'
-                title: "#{@props.beatmap.passcount.toLocaleString()} / #{@props.beatmap.playcount.toLocaleString()}"
+                title: "#{osu.formatNumber(@props.beatmap.passcount)} / #{osu.formatNumber(@props.beatmap.playcount)}"
                 'data-tooltip-position': 'bottom center'
                 style:
                   marginLeft: "#{percentage}%"

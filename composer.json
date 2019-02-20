@@ -50,6 +50,7 @@
     "beyondcode/laravel-query-detector": "^1.0",
     "filp/whoops": "~2.0",
     "fzaninotto/faker": "~1.4",
+    "laravel/dusk": "^2.0",
     "mockery/mockery": "~1.0",
     "phpunit/phpunit": "~6.0",
     "symfony/css-selector": "*",
@@ -69,7 +70,10 @@
   "autoload-dev": {
     "classmap": [
       "tests/TestCase.php"
-    ]
+    ],
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
   },
   "scripts": {
     "post-root-package-install": [

@@ -25,8 +25,7 @@ class @StatusChart
     outerRadius = Math.min(width, height) / 2
     innerRadius = outerRadius / 4.7 * 4
 
-    @defaultArc = d3.svg
-            .arc()
+    @defaultArc = d3.arc()
             .innerRadius(innerRadius)
             .outerRadius(outerRadius)
             .startAngle(0)

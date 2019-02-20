@@ -1,23 +1,16 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
-
 use App\Models\BeatmapMirror;
 
-$factory->define(BeatmapMirror::class, function () {
+$factory->define(BeatmapMirror::class, function (Faker\Generator $faker) {
     return  [
-        'base_url' => '',
-        'secret_key' => '',
-        'provider_user_id' => 0,
+        'base_url' => 'http://beatmap-download.test/',
+        'traffic_used' => rand(0, pow(2, 32)),
+        'secret_key' => function () use ($faker) {
+            return $faker->password();
+        },
+        'provider_user_id' => 2,
+        'enabled' => 1,
         'version' => BeatmapMirror::MIN_VERSION_TO_USE,
     ];
 });

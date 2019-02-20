@@ -77,4 +77,4 @@ class ProfilePage.BeatmapPlaycount extends React.PureComponent
       span
         className: "#{bn}__count-icon"
         span className: 'fas fa-play'
-      @props.playcount.count.toLocaleString()
+      osu.formatNumber(@props.playcount.count)

@@ -32,6 +32,7 @@ class UserGroup extends Model
 {
     protected $table = 'phpbb_user_group';
     public $timestamps = false;
+    protected $primaryKeys = ['user_id', 'group_id'];
 
     // taken from current forum
     const GROUPS = [

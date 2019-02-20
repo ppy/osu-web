@@ -156,11 +156,11 @@ class ProfilePage.Historical extends React.PureComponent
         curve: d3.curveLinear
         formats:
           x: (d) -> moment(d).format(osu.trans('common.datetime.year_month_short.moment'))
-          y: (d) -> d.toLocaleString()
+          y: (d) -> osu.formatNumber(d)
         margins: right: 60 # more spacing for x axis label
         infoBoxFormats:
           x: (d) -> moment(d).format(osu.trans('common.datetime.year_month.moment'))
-          y: (d) -> "<strong>#{osu.trans("users.show.extra.historical.#{attribute}.count_label")}</strong> #{_.escape(d.toLocaleString())}"
+          y: (d) -> "<strong>#{osu.trans("users.show.extra.historical.#{attribute}.count_label")}</strong> #{_.escape(osu.formatNumber(d))}"
         tickValues: {}
         ticks: {}
         circleLine: true
