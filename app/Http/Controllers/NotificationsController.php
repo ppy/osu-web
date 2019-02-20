@@ -25,7 +25,7 @@ use App\Models\Notification;
 class NotificationsController extends Controller
 {
     protected $section = 'community';
-    protected $actionPrefix = 'comments-';
+    protected $actionPrefix = 'notifications_';
 
     public function __construct()
     {
