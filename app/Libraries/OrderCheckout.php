@@ -40,17 +40,17 @@ class OrderCheckout
     private $provider;
 
     /** @var string|null */
-    private $shopifyId;
+    private $providerReference;
 
-    public function __construct(Order $order, ?string $provider = null, ?string $shopifyId = null)
+    public function __construct(Order $order, ?string $provider = null, ?string $providerReference = null)
     {
-        if ($provider === Order::PROVIDER_SHOPIFY && $shopifyId === null) {
-            throw new InvariantException('shopify provider requires a checkout id.');
+        if ($provider === Order::PROVIDER_SHOPIFY && $providerReference === null) {
+            throw new InvariantException('shopify provider requires a providerReference (checkout id).');
         }
 
         $this->order = $order;
         $this->provider = $provider;
-        $this->shopifyId = $shopifyId;
+        $this->providerReference = $providerReference;
     }
 
     /**
@@ -134,7 +134,7 @@ class OrderCheckout
             }
 
             $order->status = 'processing';
-            $order->transaction_id = $this->generateTransactionIdForNewCheckout();
+            $order->transaction_id = $this->newOrderTransactionId();
             $order->reserveItems();
 
             $order->saveorExplode();
@@ -258,8 +258,8 @@ class OrderCheckout
         return !$this->order->requiresShipping();
     }
 
-    private function generateTransactionIdForNewCheckout()
+    private function newOrderTransactionId()
     {
-        return $this->provider === Order::PROVIDER_SHOPIFY ? "{$this->provider}-{$this->shopifyId}" : $this->provider;
+        return $this->provider === Order::PROVIDER_SHOPIFY ? "{$this->provider}-{$this->providerReference}" : $this->provider;
     }
 }
