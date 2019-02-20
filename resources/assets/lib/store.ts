@@ -62,25 +62,17 @@ export class Store {
 
   async beginCheckout(event: Event) {
     if (event.target == null) { return; }
-
-    const orderId = osu.presence((event.target as HTMLElement).dataset.orderId);
+    const dataset = (event.target as HTMLElement).dataset;
+    const orderId = osu.presence(dataset.orderId);
     if (orderId == null) {
       throw new Error('orderId is missing');
     }
 
-    const { isValid, lineItems } = this.collectShopifyItems();
+    const shouldShopify = dataset.shopify === '1';
 
-    if (!isValid) {
-      // can't mix Shopify and non-Shopify items.
-      // This should normally not show as the button itself shouldn't have been rendered.
-      osu.popup(osu.trans('model_validation/store/product.must_separate'), 'danger');
-
-      return;
-    }
-
-    if (lineItems.length > 0) {
+    if (shouldShopify) {
       try {
-        await this.beginShopifyCheckout(orderId, lineItems);
+        await this.beginShopifyCheckout(orderId);
       } catch (error) {
         LoadingOverlay.hide();
         userVerification.showOnError({ target: event.target }, error);
@@ -92,7 +84,7 @@ export class Store {
     Turbolinks.visit(laroute.route('store.checkout.show', { checkout: orderId }));
   }
 
-  async beginShopifyCheckout(orderId: string, lineItems: LineItem[]) {
+  async beginShopifyCheckout(orderId: string) {
     LoadingOverlay.show();
     LoadingOverlay.show.flush();
 
@@ -102,7 +94,7 @@ export class Store {
       // error returned will be a JSON string in error.message
       checkout = await client.checkout.create({
         customAttributes: [{ key: 'orderId', value: orderId }],
-        lineItems,
+        lineItems: this.collectShopifyItems(),
       });
     } catch (error) {
       LoadingOverlay.hide();
@@ -148,29 +140,16 @@ export class Store {
   }
 
   private collectShopifyItems() {
-    let isValid = true;
-
     const lineItems: LineItem[] = [];
     $('.js-store-order-item').each((_, element) => {
-      const id = osu.presence(element.dataset.shopifyId);
-      if (id == null) {
-        isValid = false;
-      } else {
-        lineItems.push({
-          quantity: Number(element.dataset.quantity),
-          variantId: toShopifyVariantGid(id),
-        });
-      }
+      const id = element.dataset.shopifyId;
+      lineItems.push({
+        quantity: Number(element.dataset.quantity),
+        variantId: toShopifyVariantGid(id),
+      });
     });
 
-    if (lineItems.length === 0) {
-      isValid = true;
-    }
-
-    return {
-      isValid,
-      lineItems,
-    };
+    return lineItems;
   }
 }
 

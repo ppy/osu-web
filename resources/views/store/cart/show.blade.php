@@ -119,6 +119,7 @@
                         <button
                             class="js-store-checkout btn-osu btn-osu-default"
                             data-order-id="{{ $order->order_id }}"
+                            data-shopify="{{ $order->isShouldShopify() }}"
                             disabled
                         >
                             {{ trans('store.cart.checkout' ) }}

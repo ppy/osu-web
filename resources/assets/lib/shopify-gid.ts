@@ -16,10 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-export function toShopifyProductGid(id: string) {
+export function toShopifyProductGid(id?: string) {
   return btoa(`gid://shopify/Product/${id}`);
 }
 
-export function toShopifyVariantGid(id: string) {
+export function toShopifyVariantGid(id?: string) {
   return btoa(`gid://shopify/ProductVariant/${id}`);
 }
