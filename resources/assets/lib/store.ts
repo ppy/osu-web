@@ -62,13 +62,13 @@ export class Store {
 
   async beginCheckout(event: Event) {
     if (event.target == null) { return; }
+
     const dataset = (event.target as HTMLElement).dataset;
-    const orderId = osu.presence(dataset.orderId);
+    const orderId = dataset.orderId;
+    const shouldShopify = dataset.shopify === '1';
     if (orderId == null) {
       throw new Error('orderId is missing');
     }
-
-    const shouldShopify = dataset.shopify === '1';
 
     if (shouldShopify) {
       try {
@@ -116,12 +116,11 @@ export class Store {
     if (event.target == null) { return; }
 
     const target = event.target as HTMLElement;
-    const checkoutId = osu.presence(target.dataset.providerReference);
-    const provider = osu.presence(target.dataset.provider);
+    const { provider, providerReference } = target.dataset;
 
     if (provider === 'shopify') {
-      if (checkoutId !== null) {
-        this.resumeShopifyCheckout(checkoutId);
+      if (providerReference != null) {
+        this.resumeShopifyCheckout(providerReference);
       } else {
         // TODO: show error.
       }
