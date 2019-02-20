@@ -117,7 +117,7 @@ export class Store {
     };
 
     await osu.promisify($.post(laroute.route('store.checkout.store'), params));
-    window.location = checkout.webUrl;
+    window.location.href = checkout.webUrl;
   }
 
   async resumeCheckout(event: Event) {
@@ -138,7 +138,7 @@ export class Store {
 
     const checkout = await client.checkout.fetch(checkoutId);
 
-    window.location = checkout.webUrl;
+    window.location.href = checkout.webUrl;
   }
 
   private collectShopifyItems() {
