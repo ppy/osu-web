@@ -23,6 +23,7 @@ namespace App\Jobs;
 use App\Events\All;
 use App\Models\Notification;
 use App\Models\User;
+use DB;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
@@ -171,19 +172,19 @@ class Notify implements ShouldQueue
         $notification->notifiable()->associate($this->object);
         $notification->source()->associate($this->source);
 
-        if (is_array($this->receiverIds)) {
-            $receivers = User::whereIn('user_id', $this->receiverIds)->get();
-        }
-
         $notification->save();
 
-        if (isset($receivers)) {
-            foreach ($receivers as $user) {
-                $notification->userNotifications()->create(['user_id' => $user->getKey()]);
-            }
-        }
-
         event(new All($notification));
+
+        if (is_array($this->receiverIds)) {
+            DB::transaction(function () {
+                $receivers = User::whereIn('user_id', $this->receiverIds)->get();
+
+                foreach ($receivers as $receiver) {
+                    $notification->userNotifications()->create(['user_id' => $receiver->getKey()]);
+                }
+            });
+        }
     }
 
     private static function beatmapsetReceiverIds($beatmapset, $excludeUser)
