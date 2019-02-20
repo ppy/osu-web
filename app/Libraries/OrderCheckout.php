@@ -112,6 +112,11 @@ class OrderCheckout
 
     public function beginCheckout()
     {
+        // something that shouldn't happen just happened.
+        if (!in_array($this->provider, $this->allowedCheckoutTypes())) {
+            throw new InvariantException("{$this->provider} not in allowed checkout types.");
+        }
+
         DB::connection('mysql-store')->transaction(function () {
             $order = $this->order->lockSelf();
             if (!$order->canCheckout()) {
