@@ -79,44 +79,45 @@ export class Store {
     }
 
     if (lineItems.length > 0) {
-      return this.beginShopifyCheckout(orderId, lineItems, event.target);
+      try {
+        await this.beginShopifyCheckout(orderId, lineItems);
+      } catch (error) {
+        LoadingOverlay.hide();
+        userVerification.showOnError({ target: event.target }, error);
+      }
+
+      return;
     }
 
     Turbolinks.visit(laroute.route('store.checkout.show', { checkout: orderId }));
   }
 
-  async beginShopifyCheckout(orderId: string, lineItems: LineItem[], target: EventTarget) {
-    try {
-      LoadingOverlay.show();
-      LoadingOverlay.show.flush();
+  async beginShopifyCheckout(orderId: string, lineItems: LineItem[]) {
+    LoadingOverlay.show();
+    LoadingOverlay.show.flush();
 
+    let checkout: any;
+    try {
       // create shopify checkout.
       // error returned will be a JSON string in error.message
-      const checkout = await client.checkout.create({
+      checkout = await client.checkout.create({
         customAttributes: [{ key: 'orderId', value: orderId }],
         lineItems,
       });
-
-      const params = {
-        orderId,
-        provider: 'shopify',
-        shopifyId: checkout.id,
-      };
-
-      // FIXME: ugly
-      try {
-        await osu.promisify($.post(laroute.route('store.checkout.store'), params));
-        window.location = checkout.webUrl;
-      } catch (error) {
-        LoadingOverlay.hide();
-        userVerification.showOnError({ target }, error);
-      }
     } catch (error) {
-      // either error from Shopify or updating the order state failed.
-      // TODO: separate the handling of errors.
-      osu.popup(osu.trans('errors.checkout.generic'), 'danger');
       LoadingOverlay.hide();
+      osu.popup(osu.trans('errors.checkout.generic'), 'danger');
+      return;
     }
+
+    const params = {
+      orderId,
+      provider: 'shopify',
+      shopifyId: checkout.id,
+    };
+
+    await osu.promisify($.post(laroute.route('store.checkout.store'), params));
+    window.location = checkout.webUrl;
   }
 
   async resumeCheckout(event: Event) {
