@@ -115,7 +115,7 @@ class ShopifyController extends Controller
         $params = $this->getParams();
         $payment = new Payment([
             'provider' => Order::PROVIDER_SHOPIFY,
-            'transaction_id' => $order->getTransactionId(),
+            'transaction_id' => $order->getProviderReference(),
             'country_code' => array_get($params, 'billing_address.country_code'),
             'paid_at' => Carbon::parse(array_get($params, 'processed_at')),
         ]);

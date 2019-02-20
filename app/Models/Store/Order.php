@@ -211,6 +211,20 @@ class Order extends Model
         }
     }
 
+    /**
+     * Returns the reference id for the provider associated with this Order.
+     *
+     * @return string|null
+     */
+    public function getProviderReference() : ?string
+    {
+        if (!present($this->transaction_id)) {
+            return null;
+        }
+
+        return explode('-', $this->transaction_id)[1] ?? null;
+    }
+
     public function getSubtotal($forShipping = false)
     {
         $total = 0;
@@ -223,15 +237,6 @@ class Order extends Model
         }
 
         return (float) $total;
-    }
-
-    public function getTransactionId() : ?string
-    {
-        if (!present($this->transaction_id)) {
-            return null;
-        }
-
-        return explode('-', $this->transaction_id)[1] ?? null;
     }
 
     public function requiresShipping()
@@ -339,15 +344,6 @@ class Order extends Model
     public function isPendingEcheck()
     {
         return $this->tracking_code === static::PENDING_ECHECK;
-    }
-
-    public function getShopifyCheckoutId() : ?string
-    {
-        if (!$this->isShopify()) {
-            return null;
-        }
-
-        return $this->getTransactionId();
     }
 
     public function isShopify() : bool
