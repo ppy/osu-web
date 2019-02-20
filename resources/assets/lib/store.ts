@@ -124,7 +124,7 @@ export class Store {
     if (event.target == null) { return; }
 
     const target = event.target as HTMLElement;
-    const checkoutId = osu.presence(target.dataset.checkoutId);
+    const checkoutId = osu.presence(target.dataset.shopifyCheckoutId);
     if (checkoutId == null) {
       Turbolinks.visit(laroute.route('store.invoice.show', { invoice: target.dataset.orderId }));
     } else {

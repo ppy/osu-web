@@ -62,7 +62,7 @@
                     @if ($order->isShopify())
                         <button
                             class="js-store-resume-checkout btn-osu-big"
-                            data-checkout-id="{{ $order->getProviderReference() }}"
+                            data-shopify-checkout-id="{{ $order->getProviderReference() }}"
                             data-order-id="{{ $order->getKey() }}"
                         >
                             {{ $order->status === 'processing' ? trans('store.order.resume') : trans('store.order.invoice') }}
