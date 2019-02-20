@@ -79,13 +79,13 @@ export class Store {
     }
 
     if (lineItems.length > 0) {
-      return this.beginShopifyCheckout(orderId, lineItems);
+      return this.beginShopifyCheckout(orderId, lineItems, event.target);
     }
 
     Turbolinks.visit(laroute.route('store.checkout.show', { checkout: orderId }));
   }
 
-  async beginShopifyCheckout(orderId: string, lineItems: LineItem[]) {
+  async beginShopifyCheckout(orderId: string, lineItems: LineItem[], target: EventTarget) {
     try {
       LoadingOverlay.show();
       LoadingOverlay.show.flush();
@@ -103,9 +103,14 @@ export class Store {
         shopifyId: checkout.id,
       };
 
-      await osu.promisify($.post(laroute.route('store.checkout.store'), params));
-
-      window.location = checkout.webUrl;
+      // FIXME: ugly
+      try {
+        await osu.promisify($.post(laroute.route('store.checkout.store'), params));
+        window.location = checkout.webUrl;
+      } catch (error) {
+        LoadingOverlay.hide();
+        userVerification.showOnError({ target }, error);
+      }
     } catch (error) {
       // either error from Shopify or updating the order state failed.
       // TODO: separate the handling of errors.

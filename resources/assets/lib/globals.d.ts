@@ -22,6 +22,7 @@ declare var tooltipDefault: TooltipDefault;
 declare var osu: OsuCommon;
 declare var currentUser: any;
 declare var reactTurbolinks: any;
+declare var userVerification: any;
 
 // external (to typescript) react components
 declare var BigButton: any;
