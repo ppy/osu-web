@@ -67,6 +67,12 @@ class Order extends Model
     const ORDER_NUMBER_REGEX = '/^(?<prefix>[A-Za-z]+)-(?<userId>\d+)-(?<orderId>\d+)$/';
     const PENDING_ECHECK = 'PENDING ECHECK';
 
+    const PROVIDER_CENTILLI = 'centili';
+    const PROVIDER_FREE = 'free';
+    const PROVIDER_PAYPAL = 'paypal';
+    const PROVIDER_SHOPIFY = 'shopify';
+    const PROVIDER_XSOLLA = 'xsolla';
+
     const STATUS_HAS_INVOICE = ['processing', 'checkout', 'paid', 'shipped', 'cancelled', 'delivered'];
 
     protected $primaryKey = 'order_id';
@@ -183,7 +189,7 @@ class Order extends Model
             return;
         }
 
-        return studly_case(explode('-', $this->transaction_id)[0]);
+        return explode('-', $this->transaction_id)[0];
     }
 
     public function getPaymentStatusText()
@@ -203,6 +209,20 @@ class Order extends Model
             default:
                 return 'Unknown';
         }
+    }
+
+    /**
+     * Returns the reference id for the provider associated with this Order.
+     *
+     * @return string|null
+     */
+    public function getProviderReference() : ?string
+    {
+        if (!present($this->transaction_id)) {
+            return null;
+        }
+
+        return explode('-', $this->transaction_id)[1] ?? null;
     }
 
     public function getSubtotal($forShipping = false)
@@ -324,6 +344,22 @@ class Order extends Model
     public function isPendingEcheck()
     {
         return $this->tracking_code === static::PENDING_ECHECK;
+    }
+
+    public function isShopify() : bool
+    {
+        return $this->getPaymentProvider() === static::PROVIDER_SHOPIFY;
+    }
+
+    public function isShouldShopify() : bool
+    {
+        foreach ($this->items as $item) {
+            if ($item->product->shopify_id !== null) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

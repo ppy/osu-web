@@ -34,9 +34,6 @@ return [
         'invalid_mode' => 'Chế độ đã chỉ định không hợp lệ.',
         'standard_converts_only' => 'Không có điểm số cho chế độ được yêu cầu trong độ khó của beatmap này.',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'Bạn có quá nhiều beatmap yêu thích! Hãy bỏ yêu thích một beatmap trước khi tiếp tục.',
-    ],
     'logged_out' => 'Bạn đã đăng xuất. Hãy đăng nhập và thử lại.',
     'supporter_only' => 'Bạn phải là người hỗ trợ để sử dụng tính năng này.',
     'no_restricted_access' => 'Bạn không được cho phép thực hiện hành động này trong khi tài khoản của bạn đang trong trạng thái hạn chế.',

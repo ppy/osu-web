@@ -34,36 +34,46 @@ return [
         'discussion' => 'Dyskusja',
 
         'details' => [
+            'approved' => 'zatwierdzona od ',
+            'favourite' => 'Dodaj do ulubionych',
+            'favourited_count' => '+ 1 inna!|+ :count inne!|+ :count innych!',
+            'logged-out' => 'Zaloguj się, aby zacząć pobierać beatmapy!',
+            'loved' => 'ulubiona społeczności od ',
             'mapped_by' => 'autorstwa :mapper',
+            'qualified' => 'zakwalifikowana od ',
+            'ranked' => 'rankingowa od ',
             'submitted' => 'dodana ',
+            'unfavourite' => 'Usuń z ulubionych',
             'updated' => 'ostatnio aktualizowana ',
             'updated_timeago' => 'ostatnio zaktualizowana :timeago',
-            'ranked' => 'rankingowa od ',
-            'approved' => 'zatwierdzona od ',
-            'qualified' => 'zakwalifikowana od ',
-            'loved' => 'ulubiona społeczności od ',
-            'logged-out' => 'Zaloguj się, aby zacząć pobierać beatmapy!',
+
             'download' => [
                 '_' => 'Pobierz',
-                'video' => 'z wideo',
-                'no-video' => 'bez wideo',
                 'direct' => 'osu!direct',
+                'no-video' => 'bez wideo',
+                'video' => 'z wideo',
             ],
-            'favourite' => 'Dodaj do ulubionych',
-            'unfavourite' => 'Usuń z ulubionych',
-            'favourited_count' => '+ 1 inna!|+ :count inne!|+ :count innych!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Nagłośnij tę beatmapę, aby pomóc jej w uzyskaniu statusu <strong>rankingowego</strong>.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Ta beatmapa jest obecnie :status.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'oczekująca',
+                    'qualified' => 'zakwalifikowana',
+                    'wip' => 'rozwijana',
                 ],
             ],
         ],

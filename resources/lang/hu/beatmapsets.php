@@ -34,36 +34,46 @@ return [
         'discussion' => 'Beszélgetés',
 
         'details' => [
+            'approved' => 'elfogadva ',
+            'favourite' => 'A beatmap szett kedvencek közé tétele',
+            'favourited_count' => '+ 1 másik!|+ :count másik!',
+            'logged-out' => 'Beatmap letöltéshez be kell jelentkezned!',
+            'loved' => 'kedvelve ',
             'mapped_by' => 'mappolva :mapper által',
+            'qualified' => 'qualified ',
+            'ranked' => 'rangsorolva ',
             'submitted' => 'beküldve ',
+            'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
             'updated' => 'utoljára frissítve ',
             'updated_timeago' => 'utóljára frissítve: :timeago',
-            'ranked' => 'rangsorolva ',
-            'approved' => 'elfogadva ',
-            'qualified' => 'qualified ',
-            'loved' => 'kedvelve ',
-            'logged-out' => 'Beatmap letöltéshez be kell jelentkezned!',
+
             'download' => [
                 '_' => 'Letöltés',
-                'video' => 'Videóval',
-                'no-video' => 'Videó nélkül',
                 'direct' => 'osu!direct',
+                'no-video' => 'Videó nélkül',
+                'video' => 'Videóval',
             ],
-            'favourite' => 'A beatmap szett kedvencek közé tétele',
-            'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
-            'favourited_count' => '+ 1 másik!|+ :count másik!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Hype-old a map-et ha élvezted rajta a játékot, hogy segíthesd a <strong>Rangsorolt</strong> állapot felé jutásban.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Ez a map :status jelenleg.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'függőben',
+                    'qualified' => 'kvalifikált',
+                    'wip' => 'munkálatok alatt',
                 ],
             ],
         ],

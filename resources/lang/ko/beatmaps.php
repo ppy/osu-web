@@ -73,7 +73,7 @@ return [
             'disqualify' => 'Disqualify',
             'hype' => 'Hype!',
             'mapper_note' => '노트',
-            'nomination_reset' => 'Nomination 초기화',
+            'nomination_reset' => '지명 초기화',
             'praise' => '칭찬',
             'problem' => '문제',
             'suggestion' => '제안',
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => '정렬 기준:',
-            'created_at' => '작성일',
-            'timeline' => '타임라인',
-            'updated_at' => '최근 업데이트',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -147,7 +147,7 @@ return [
         'delete' => '삭제',
         'delete_own_confirm' => '확실한가요? 비트맵을 제거하고 당신의 프로필로 돌아갑니다.',
         'delete_other_confirm' => '확실한가요? 비트맵을 제거하고 해당 유저의 프로필로 돌아갑니다.',
-        'disqualification_prompt' => 'Disqualify하는 이유는 무엇입니까?',
+        'disqualification_prompt' => 'Disqualify 처리하는 이유는 무엇입니까?',
         'disqualified_at' => ':time_ago에 Disqualified 됨 (:reason).',
         'disqualified_no_reason' => '이유가 명시되지 않았습니다',
         'disqualify' => 'Disqualify',
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => '확실한가요? 새로운 문제를 제기하는 것은 지명 상태를 초기화시킵니다.',
-            'disqualify' => '',
+            'disqualify' => '확실한가요? 이 작업은 비트맵을 qualify 상태에서 제거하고 지명 상태도 초기화합니다.',
         ],
     ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => '플레이함',
             ],
             'sorting' => [
-                'title' => '제목',
-                'artist' => '아티스트',
-                'difficulty' => '난이도',
-                'updated' => '최신 업데이트',
-                'ranked' => '랭크된 날짜',
-                'rating' => '평점',
-                'plays' => '플레이된 횟수',
-                'relevance' => '연관성',
-                'nominations' => '지명',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => ':filters로 검색하려면 :link이 필요합니다.',
@@ -301,5 +301,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

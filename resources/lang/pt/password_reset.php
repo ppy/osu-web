@@ -38,7 +38,7 @@ return [
         'missing_key' => 'Necessário.',
         'too_many_tries' => 'Demasiadas tentativas falhadas.',
         'user_not_found' => 'O utilizador solicitado não existe.',
-        'wrong_key' => 'Código incorrecto.',
+        'wrong_key' => 'Código incorreto.',
     ],
 
     'notice' => [

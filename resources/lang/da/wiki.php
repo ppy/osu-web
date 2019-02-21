@@ -34,10 +34,10 @@ return [
         ],
 
         'translation' => [
-            'legal' => '',
-            'outdated' => '',
+            'legal' => 'Denne oversættelse er tilgængelig for nemheds skyld. Den oprindelige version :default er den eneste juridisk bindende version af denne tekst.',
+            'outdated' => 'Denne side indeholder en forældet oversættelse af det oprindelige indhold. Se venligst :default for de mest nøjagtige oplysninger (og overvej at hjælpe til med at oversætte, hvis du har mulighed for det)!',
 
-            'default' => '',
+            'default' => 'Engelsk version',
         ],
     ],
 ];

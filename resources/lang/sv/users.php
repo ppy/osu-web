@@ -330,6 +330,7 @@ return [
             'title' => 'Användare hittades inte! ;_;',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>jag!</strong> är en personlig anpassningsbar del på din profil sida.',
             'edit_big' => 'Redigera mig!',
             'placeholder' => 'Skriv sidoinnehåll här',

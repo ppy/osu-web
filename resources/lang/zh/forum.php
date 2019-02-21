@@ -48,16 +48,16 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => '标记版块为已读',
+        'forums' => '标记版块为已读',
+        'busy' => '标记为已读…',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => '编辑投票将清空当前投票结果！',
 
         'actions' => [
-            'edit' => '',
+            'edit' => '编辑投票',
         ],
     ],
 
@@ -71,6 +71,10 @@ return [
             'destroy' => '删除回复',
             'restore' => '恢复回复',
             'edit' => '编辑回复',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => '创建投票',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => '创建投票',
                 'remove' => '取消创建投票',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => '查看数',
+            'feature_votes' => '',
             'replies' => '回复数',
+            'views' => '查看数',
         ],
 
         'issue_tag_added' => [
@@ -266,6 +273,12 @@ return [
                 'current' => '当前优先级: +:count',
                 'do' => '提升这个请求',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => ':count 票',
                     'current' => '还有 :votes 。',
@@ -288,8 +301,8 @@ return [
             'to_not_watching' => '未订阅',
             'to_watching' => '订阅',
             'to_watching_mail' => '订阅并启用邮件通知',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => '通知已启用。点击禁用',
+            'tooltip_mail_enable' => '通知已禁用。点击启用',
         ],
     ],
 ];

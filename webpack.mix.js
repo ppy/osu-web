@@ -22,7 +22,16 @@ const path = require('path');
 const webpack = require('webpack');
 const SentryPlugin = require('webpack-sentry-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-require('dotenv').config();
+
+requiredEnvs = ['PAYMENT_SANDBOX', 'SHOPIFY_DOMAIN', 'SHOPIFY_STOREFRONT_TOKEN'];
+for (const key of requiredEnvs) {
+  const value = process.env[key];
+  if (value == null) {
+    throw new Error(`${key} is missing from env!`);
+  } else if (value.length === 0) {
+    throw new Error(`${key} exists in env but is empty!`);
+  }
+}
 
 // .js doesn't support globbing by itself, so we need to glob
 // and spread the values in.
@@ -99,6 +108,8 @@ let webpackConfig = {
     new webpack.DefinePlugin({
       'process.env.PAYMENT_SANDBOX': JSON.stringify(paymentSandbox),
       'process.env.WEBSOCKET_URL': websocketUrl,
+      'process.env.SHOPIFY_DOMAIN': JSON.stringify(process.env.SHOPIFY_DOMAIN),
+      'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
     })
   ],
   resolve: {
@@ -146,7 +157,7 @@ if (!mix.inProduction() || process.env.SENTRY_RELEASE == 1) {
 }
 
 if (process.env.SENTRY_RELEASE == 1) {
-  webpackConfig['plugins'] = [
+  webpackConfig['plugins'].push(
     new SentryPlugin({
       organisation: process.env.SENTRY_ORG,
       project: process.env.SENTRY_PROJ,
@@ -161,7 +172,7 @@ if (process.env.SENTRY_RELEASE == 1) {
         return '~' + filename
       }
     })
-  ]
+  );
 }
 
 // use polling if watcher is bugged.
@@ -193,6 +204,7 @@ mix
 .ts('resources/assets/lib/chat.ts', 'js/react/chat.js')
 .ts('resources/assets/lib/news-index.ts', 'js/react/news-index.js')
 .ts('resources/assets/lib/news-show.ts', 'js/react/news-show.js')
+.ts('resources/assets/lib/store-bootstrap.ts', 'js/store-bootstrap.js')
 .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/timeago/locales', 'public/vendor/js/timeago-locales')

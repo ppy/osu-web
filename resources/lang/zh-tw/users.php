@@ -330,6 +330,7 @@ return [
             'title' => '找不到使用者',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>個人介紹</strong> 在您的個人簡介網頁可以自行修改。',
             'edit_big' => '編輯',
             'placeholder' => '在這裡編輯',

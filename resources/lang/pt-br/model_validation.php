@@ -68,11 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Deletar postagem de metadados de um beatmap não é permitido.',
             'beatmapset_post_no_edit' => 'Editar postagem de metadados de um beatmap não é permitido.',
+            'only_quote' => '',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Opção duplicada não é permitida.',
-            'grace_period_expired' => '',
+            'grace_period_expired' => 'Não é possível editar uma enquete após :limit horas',
             'invalid_max_options' => 'Opções por usuário não deve exceder o número de opções disponíveis.',
             'minimum_one_selection' => 'É necessário no mínimo uma opção por usuário.',
             'minimum_two_options' => 'É necessário no mínimo duas opções.',
@@ -97,6 +98,7 @@ return [
         'username_available_soon' => 'Este nome de usuário estará disponível a qualquer momento!',
         'username_invalid_characters' => 'O nome de usuário contém caracteres inválidos.',
         'username_in_use' => 'Nome de usuário já está em uso!',
+        'username_locked' => '', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Por favor use underscores ou espaços, não os dois!',
         'username_no_spaces' => "Nome de usuário não pode começar ou terminar com espaços!",
         'username_not_allowed' => 'Nome de usuário não permitido.',
@@ -118,6 +120,6 @@ return [
     ],
 
     'user_report' => [
-        'self' => "",
+        'self' => "Você não pode se denunciar!",
     ],
 ];

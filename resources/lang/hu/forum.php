@@ -48,16 +48,16 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'Fórum megjelölése olvasottként',
+        'forums' => 'Fórumok megjelölése olvasottként',
+        'busy' => 'Olvasottnak jelölés...',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => 'A szavazás szerkesztése eltávolítja a jelenlegi eredményeket!',
 
         'actions' => [
-            'edit' => '',
+            'edit' => 'Szavazás szerkesztése',
         ],
     ],
 
@@ -71,6 +71,10 @@ return [
             'destroy' => 'Poszt törlése',
             'restore' => 'Poszt visszaállítása',
             'edit' => 'Poszt szerkesztése',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Szavazás Létrehozása',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Szavazás létrehozása',
                 'remove' => 'Szavazás létrehozásának megszakítása',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'megtekintések',
+            'feature_votes' => '',
             'replies' => 'válaszok',
+            'views' => 'megtekintések',
         ],
 
         'issue_tag_added' => [
@@ -266,6 +273,12 @@ return [
                 'current' => 'Jelenlegi prioritás: +:count',
                 'do' => 'Kérés promotálása',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => '{0} nincs szavazat|{1} :count szavazat|[2,*] :count szavazat',
                     'current' => 'Neked :votes darab szavazatod maradt.',
@@ -288,8 +301,8 @@ return [
             'to_not_watching' => 'Nincs könyvjelzőnek állítva',
             'to_watching' => 'Könyvjelző',
             'to_watching_mail' => 'Könyvjelző értesítéssel',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => 'Értesítés engedélyezve van. Ide kattintva letilthatod',
+            'tooltip_mail_enable' => 'Értesítés le van tiltva. Ide kattintva engedélyezheted',
         ],
     ],
 ];

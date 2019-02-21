@@ -30,14 +30,17 @@ return [
     ],
 
     'buttons' => [
-        'back_to_top' => '',
+        'admin' => '',
         'back_to_previous' => '',
+        'back_to_top' => '',
         'cancel' => 'ยกเลิก',
         'change' => 'เปลี่ยน',
         'click_to_copy' => 'คลิกเพื่อคัดลอกไปยังคลิปบอร์ด',
         'click_to_copy_copied' => 'คัดลอกไปยังคลิปบอร์ดแล้ว',
+        'collapse' => '',
         'delete' => 'ลบ',
         'edit' => '',
+        'expand' => '',
         'hide' => 'ซ่อน',
         'permalink' => 'ลิงก์ถาวร',
         'permalink_copied' => 'คัดลอกลิ้งค์แล้ว',
@@ -53,6 +56,7 @@ return [
         'see_more' => 'ดูเพิ่มเติม',
         'show' => 'แสดง',
         'show_more' => 'แสดงเพิ่มเติม',
+        'show_more_options' => '',
         'upload_image' => 'อัพโหลดรูปภาพ',
     ],
 

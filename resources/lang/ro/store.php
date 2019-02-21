@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'Uh oh, există niște probleme cu coșul tău!',
         'cart_problems_edit' => 'Dă clic aici pentru a-l edita.',
         'declined' => 'Plata a fost anulată.',
+        'delayed_shipping' => 'În prezent suntem copleșiți de comenzi! Ești binevenit să-ți plasezi comanda, dar te rugăm să aștepți **o întârziere de 1-2 săptămâni suplimentară** în timp ce prindem din urmă comenzile existente.',
         'old_cart' => 'Coșul tău pare a fi expirat și a fost reîncărcat, te rugăm să încerci din nou.',
         'pay' => 'Plătește cu Paypal',
+
+        'has_pending' => [
+            '_' => 'Dacă ai plăți incomplete, apasă click pe :link pentru a le vedea.',
+            'link_text' => 'aici',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'O plată anterioară a fost începută, dar nu s-a terminat.',
-            'line_2' => 'Reluați comanda prin selectarea unei metode de plată sau :link pentru a anula.',
-            'link_text' => 'dă clic aici',
+            'line_2' => 'Calculează-ți plata prin selectarea unei metode de plată.',
         ],
-        'delayed_shipping' => 'În prezent suntem copleșiți de comenzi! Ești binevenit să-ți plasezi comanda, dar te rugăm să aștepți **o întârziere de 1-2 săptămâni suplimentară** în timp ce prindem din urmă comenzile existente.',
     ],
 
     'discount' => 'salvează :percent%',
+
+    'invoice' => [
+        'echeck_delay' => 'Pentru că plata ta a fost făcută electronic, te rugăm să aștepți încă 10 zile pentru ca plata să se afișeze prin PayPal!',
+        'status' => [
+            'processing' => [
+                'title' => 'Plata nu a fost încă confirmată!',
+                'line_1' => 'Dacă ai plătit deja, se poate ca noi încă să așteptăm pentru a primi confirmarea plății. Te rugăm să reîmprospătezi această pagină într-un minut sau două!',
+                'line_2' => [
+                    '_' => 'Dacă ai întâmpinat o problemă în timpul plății, :link',
+                    'link_text' => 'apasă aici pentru a-ți calcula plata',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,11 @@ return [
     ],
 
     'order' => [
+        'paid_on' => 'Comandă plasată pe :date',
+
+        'invoice' => 'Vezi factura',
+        'no_orders' => 'Nu sunt comenzi pentru vizualizare.',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name pentru :username (:duration)',
@@ -82,6 +106,15 @@ return [
             'paid' => 'Nu îți poți modifica comanda deoarece aceasta a fost deja plătită.',
             'processing' => 'Nu îți poți modifica comanda în timp ce aceasta este în curs de procesare.',
             'shipped' => 'Nu îți poți modifica comanda deoarece aceasta a fost deja expediată.',
+        ],
+
+        'status' => [
+            'cancelled' => 'Anulat',
+            'checkout' => 'Se pregătește',
+            'delivered' => 'Livrat',
+            'paid' => 'Plătit',
+            'processing' => 'Confirmarea plății',
+            'shipped' => '',
         ],
     ],
 
@@ -105,7 +138,7 @@ return [
     'supporter_tag' => [
         'gift' => 'dăruiește unui jucător',
         'require_login' => [
-            '_' => 'Trebuie să fii :link pentru a obține o insignă de suporter!',
+            '_' => 'Trebuie să fii :link pentru a obține o insignă de suporter osu!',
             'link_text' => 'conectat',
         ],
     ],

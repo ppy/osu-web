@@ -41,8 +41,8 @@ return [
 
     'errors' => [
         'expired' => 'Código de verificação expirado, novo email de verificação enviado.',
-        'incorrect_key' => 'Código de verificação incorrecto.',
-        'retries_exceeded' => 'Código de verificação incorrecto. Limite de tentativas excedido, novo email de verificação enviado.',
+        'incorrect_key' => 'Código de verificação incorreto.',
+        'retries_exceeded' => 'Código de verificação incorreto. Limite de tentativas excedido, novo email de verificação enviado.',
         'reissued' => 'Código de verificação reenviado, novo email de verificação enviado.',
         'unknown' => 'Ocorreu um problema desconhecido, novo email de verificação enviado.',
     ],

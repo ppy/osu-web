@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user's modding historie",
-        'title_compact' => '',
+        'title_compact' => 'Módování',
 
         'discussions' => [
             'title_recent' => 'Nedávno zahájená diskuze',
@@ -167,11 +167,11 @@ return [
 
             'achievements' => [
                 'achieved-on' => 'Dosaženo :date',
-                'locked' => '',
+                'locked' => 'Uzamknuto',
                 'title' => 'Úspěchy',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => 'autora :artist',
                 'none' => 'Žádná... zatím.',
                 'title' => 'Beatmapy',
 
@@ -197,7 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Herní historie',
-                    'count_label' => '',
+                    'count_label' => 'Her',
                 ],
                 'most_played' => [
                     'count' => 'odehraný čas',
@@ -209,7 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historie zhlédnutí replayů',
-                    'count_label' => '',
+                    'count_label' => 'Záznamů přehráno',
                 ],
             ],
             'kudosu' => [
@@ -264,7 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Tento uživatel zatím žádné neobdržel ;_;",
-                'recent' => '',
+                'recent' => 'Nejnovější',
                 'title' => 'Medaile',
             ],
             'recent_activity' => [
@@ -274,7 +274,7 @@ return [
                 'download_replay' => 'Stáhnout záznam',
                 'empty' => 'Zatím žádné záznamy o úžasném výkonu. :(',
                 'not_ranked' => 'Pouze hodnocené mapy vydávají pp.',
-                'pp_weight' => '',
+                'pp_weight' => 'váženo na :percentage',
                 'title' => 'Umístění',
 
                 'best' => [
@@ -308,8 +308,8 @@ return [
         ],
 
         'header_title' => [
-            '_' => '',
-            'info' => '',
+            '_' => ':info o hráči',
+            'info' => 'Informace',
         ],
 
         'info' => [
@@ -330,6 +330,7 @@ return [
             'title' => 'Uživatel nebyl nalezen! ;_;',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>já!</strong> je osobní přizpůsobitelná plocha na vašem profilu.',
             'edit_big' => 'Uprav mě!',
             'placeholder' => 'Zde napiš obsah stánky',
@@ -341,16 +342,16 @@ return [
         ],
         'rank' => [
             'country' => 'Státní pozice pro :mode',
-            'country_simple' => '',
+            'country_simple' => 'Místní hodnocení',
             'global' => 'Globální pozice pro :mode',
-            'global_simple' => '',
+            'global_simple' => 'Světové hodnocení',
         ],
         'stats' => [
             'hit_accuracy' => 'Přesnost zásahů',
             'level' => 'Úroveň :level',
-            'level_progress' => '',
+            'level_progress' => 'Postup do dalšího levelu',
             'maximum_combo' => 'Maximální Combo',
-            'medals' => '',
+            'medals' => 'Medaile',
             'play_count' => 'Počet zahrání',
             'play_time' => 'Celkový čas hraní',
             'ranked_score' => 'Hodnocené skóre',

@@ -34,36 +34,46 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
+            'approved' => 'approved am ',
+            'favourite' => 'Dieses Beatmapset zu deinen Favoriten hinzufügen',
+            'favourited_count' => '+ 1 anderer!|+ :count andere!',
+            'logged-out' => 'Zum Herunterladen von Beatmaps muss man eingeloggt sein!',
+            'loved' => 'loved am ',
             'mapped_by' => 'erstellt von :mapper',
+            'qualified' => 'qualifziert am ',
+            'ranked' => 'ranked am ',
             'submitted' => 'eingereicht am ',
+            'unfavourite' => 'Dieses Beatmapset von deinen Favoriten entfernen',
             'updated' => 'letztes update am ',
             'updated_timeago' => 'zuletzt aktualisiert :timeago',
-            'ranked' => 'ranked am ',
-            'approved' => 'approved am ',
-            'qualified' => 'qualifziert am ',
-            'loved' => 'loved am ',
-            'logged-out' => 'Zum Herunterladen von Beatmaps muss man eingeloggt sein!',
+
             'download' => [
                 '_' => 'Herunterladen',
-                'video' => 'mit Video',
-                'no-video' => 'ohne Video',
                 'direct' => 'osu!direct',
+                'no-video' => 'ohne Video',
+                'video' => 'mit Video',
             ],
-            'favourite' => 'Dieses Beatmapset zu deinen Favoriten hinzufügen',
-            'unfavourite' => 'Dieses Beatmapset von deinen Favoriten entfernen',
-            'favourited_count' => '+ 1 anderer!|+ :count andere!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Wenn du es genossen hast diese Karte zu spielen, dann hype diese Karte, um beim Fortschritt zum <strong>Ranked</strong>-Status beizutragen.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Die Map ist zurzeit :status.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'ausstehend',
+                    'qualified' => 'qualifiziert',
+                    'wip' => 'work-in-progress',
                 ],
             ],
         ],
@@ -81,7 +91,7 @@ return [
         ],
 
         'scoreboard' => [
-            'achieved' => 'erreicht am :when',
+            'achieved' => 'erreicht :when',
             'country' => 'Länder-Rangliste',
             'friend' => 'Freundes-Rangliste',
             'global' => 'Globale Rangliste',

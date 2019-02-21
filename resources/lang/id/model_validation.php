@@ -68,11 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Menghapus posting metadata beatmap tidak diizinkan.',
             'beatmapset_post_no_edit' => 'Menyunting posting metadata beatmap tidak diizinkan.',
+            'only_quote' => '',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Opsi ganda tidak diizinkan.',
-            'grace_period_expired' => '',
+            'grace_period_expired' => 'Tidak dapat menyunting sebuah jajak pendapat setelah melebihi :limit jam',
             'invalid_max_options' => 'Pilihan per pengguna tidak boleh melebihi jumlah opsi yang tersedia.',
             'minimum_one_selection' => 'Diperlukan setidaknya satu opsi per pengguna.',
             'minimum_two_options' => 'Diperlukan setidaknya dua opsi',
@@ -97,6 +98,7 @@ return [
         'username_available_soon' => 'Nama pengguna ini dapat digunakan sekarang!',
         'username_invalid_characters' => 'Nama pengguna yang diminta mengandung karakter yang tidak valid.',
         'username_in_use' => 'Nama pengguna sudah digunakan!',
+        'username_locked' => '', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Mohon gunakan garis bawah atau spasi, jangan keduanya!',
         'username_no_spaces' => "Nama pengguna tidak dapat dimulai atau diakhiri dengan spasi!",
         'username_not_allowed' => 'Pilihan nama pengguna ini tidak diizinkan.',
@@ -118,6 +120,6 @@ return [
     ],
 
     'user_report' => [
-        'self' => "",
+        'self' => "Anda tidak dapat melaporkan diri Anda sendiri!",
     ],
 ];

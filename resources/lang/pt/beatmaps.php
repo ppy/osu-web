@@ -27,7 +27,7 @@ return [
 
     'discussion-votes' => [
         'update' => [
-            'error' => 'Falha ao actualizar voto',
+            'error' => 'Falha ao atualizar voto',
         ],
     ],
 
@@ -37,10 +37,10 @@ return [
         'deleted' => 'Eliminado por :editor :delete_time.',
         'deny_kudosu' => 'recusar kudosu',
         'edit' => 'editar',
-        'edited' => 'Editado pela ultima vez por :editor :update_time.',
+        'edited' => 'Editado pela última vez por :editor :update_time.',
         'kudosu_denied' => 'Recusado de obter kudosu.',
         'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi eliminada por isso poderá não ser mais discutida.',
-        'message_type_select' => 'Seleccionar Tipo de Comentário',
+        'message_type_select' => 'Selecionar Tipo de Comentário',
         'reply_notice' => 'Prime ENTER para responder.',
         'reply_placeholder' => 'Escreve a tua resposta aqui',
         'require-login' => 'Por favor inicia sessão para publicar ou responder',
@@ -55,7 +55,7 @@ return [
 
         'empty' => [
             'empty' => 'Ainda sem discussões!',
-            'hidden' => 'Nenhuma discussão corresponde ao filtro seleccionado.',
+            'hidden' => 'Nenhuma discussão corresponde ao filtro selecionado.',
         ],
 
         'message_hint' => [
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Ordenadas por:',
-            'created_at' => 'hora da criação',
-            'timeline' => 'cronologia',
-            'updated_at' => 'última actualização',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -111,14 +111,14 @@ return [
             'mapper_notes' => 'Notas',
             'mine' => 'Minhas',
             'pending' => 'Pendentes',
-            'praises' => 'Glorificações',
+            'praises' => 'Elogios',
             'resolved' => 'Resolvidas',
             'total' => 'Todas',
         ],
 
         'status-messages' => [
             'approved' => 'Este beatmap foi aprovado a :date!',
-            'graveyard' => "Este beatmap não tem sido actualizado desde :date e muito provavelmente foi abandonado pelo criador...",
+            'graveyard' => "Este beatmap não tem sido atualizado desde :date e muito provavelmente foi abandonado pelo criador...",
             'loved' => 'Este beatmap foi adicionado a adorado em :date!',
             'ranked' => 'Este beatmap foi classificado em :date!',
             'wip' => 'Nota: Este beatmap está marcado como um trabalho em progresso pelo criador.',
@@ -145,13 +145,13 @@ return [
 
     'nominations' => [
         'delete' => 'Apagar',
-        'delete_own_confirm' => 'Tens a certeza? O beatmap será apagado e serás redireccionado de volta para o teu perfil.',
-        'delete_other_confirm' => 'Tens a certeza? O beatmap será apagado e serás redireccionado de volta para o perfil de utilizador.',
+        'delete_own_confirm' => 'Tens a certeza? O beatmap será apagado e serás redirecionado de volta para o teu perfil.',
+        'delete_other_confirm' => 'Tens a certeza? O beatmap será apagado e serás redirecionado de volta para o perfil de utilizador.',
         'disqualification_prompt' => 'Razão pela desqualificação?',
         'disqualified_at' => 'Desqualificado :time_ago (:reason).',
         'disqualified_no_reason' => 'nenhuma razão especificada',
         'disqualify' => 'Desqualificar',
-        'incorrect_state' => 'Erro ao desempenhar essa acção, tenta recarregar a página.',
+        'incorrect_state' => 'Erro ao desempenhar essa ação, tenta recarregar a página.',
         'love' => 'Adorar',
         'love_confirm' => 'Adoras este beatmap?',
         'nominate' => 'Nomear',
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Tens a certeza? Publicar um novo problema irá reiniciar o processo de nomeação.',
-            'disqualify' => '',
+            'disqualify' => 'Tens a certeza? Isto irá remover o beatmap de qualificar-se e reiniciará o processo de nomeação.',
         ],
     ],
 
@@ -188,24 +188,24 @@ return [
                 'mode' => 'Modo',
                 'status' => 'Categorias',
                 'genre' => 'Género',
-                'language' => 'Linguagem',
+                'language' => 'Idioma',
                 'extra' => 'extra',
                 'rank' => 'Classificação Alcançada',
                 'played' => 'Jogado',
             ],
             'sorting' => [
-                'title' => 'título',
-                'artist' => 'artista',
-                'difficulty' => 'dificuldade',
-                'updated' => 'actualizado',
-                'ranked' => 'classificado',
-                'rating' => 'avaliação',
-                'plays' => 'partidas',
-                'relevance' => 'relevância',
-                'nominations' => 'nomeações',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
-                '_' => 'Filtrar por :filters requer um :link activo',
+                '_' => 'Filtrar por :filters requer um :link ativo',
                 'link_text' => 'etiqueta de osu!supporter',
             ],
         ],
@@ -223,10 +223,10 @@ return [
     ],
     'status' => [
         'any' => 'Qualquer',
-        'ranked-approved' => 'Classificado & Aprovado',
-        'approved' => 'Aprovado',
-        'qualified' => 'Qualificado',
-        'loved' => 'Adorado',
+        'ranked-approved' => 'Classificados e Aprovados',
+        'approved' => 'Aprovados',
+        'qualified' => 'Qualificados',
+        'loved' => 'Adorados',
         'faves' => 'Favoritos',
         'pending' => 'Pendente & WIP',
         'graveyard' => 'Cemitério',
@@ -242,7 +242,7 @@ return [
         'other' => 'Outro',
         'novelty' => 'Inovação',
         'hip-hop' => 'Hip Hop',
-        'electronic' => 'Electrónica',
+        'electronic' => 'Eletrónica',
     ],
     'mods' => [
         '4K' => '',
@@ -301,5 +301,9 @@ return [
         'B' => '',
         'C' => '',
         'D' => '',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

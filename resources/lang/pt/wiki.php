@@ -20,11 +20,11 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'A página solicitada ainda não foi traduzida para a linguagem seleccionada (:language). A exibir a versão em Inglês.',
-        'languages' => 'Linguagens',
+        'fallback_translation' => 'A página solicitada ainda não foi traduzida para a linguagem selecionada (:language). A exibir a versão em Inglês.',
+        'languages' => 'Idiomas',
         'missing' => 'A página requisitada ":keyword" não pôde ser encontrada.',
         'missing_title' => 'Não encontrada',
-        'missing_translation' => 'A página solicitada não pôde ser encontrada para a linguagem seleccionada.',
+        'missing_translation' => 'A página solicitada não pôde ser encontrada para o idioma selecionado.',
         'search' => 'A pesquisar páginas existentes :link.',
         'toc' => 'Conteúdos',
 
@@ -34,8 +34,8 @@ return [
         ],
 
         'translation' => [
-            'legal' => 'Esta tradução é fornecida apenas para conveniência. A original :default será a única juridicamente vinculativa versão deste texto.',
-            'outdated' => 'Esta página contém uma tradução desactualizada do conteúdo original. Por favor, verifica o :default para as informações mais precisas (e considera actualizar a tradução se fores capaz de ajudar)!',
+            'legal' => 'Esta tradução é fornecida apenas para conveniência. A original :default será a única versão juridicamente vinculativa deste texto.',
+            'outdated' => 'Esta página contém uma tradução desatualizada do conteúdo original. Por favor, verifica o :default para as informações mais precisas (e considera atualizar a tradução se fores capaz de ajudar)!',
 
             'default' => 'Versão em inglês',
         ],

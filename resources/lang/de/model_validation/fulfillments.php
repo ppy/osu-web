@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'Aktueller Nutzername (:current) entspricht nicht dem, der widerrufen werden soll (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Die Spende liegt unter dem für einen Supporter-Tag nötigen Betrag (:actual > :expected)',
+        'insufficient_paid' => '',
     ],
 ];

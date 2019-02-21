@@ -23,7 +23,7 @@ return [
         'header' => [
             // size in font-size
             'big_description' => 'Iubești osu!?<br/>
-                                Susține dezvoltrea osu! :D',
+                                Susține dezvoltarea osu! :D',
             'small_description' => '',
             'support_button' => 'Vreau să sprijin osu!',
         ],

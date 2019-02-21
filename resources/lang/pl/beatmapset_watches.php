@@ -40,7 +40,7 @@ return [
     ],
 
     'mail' => [
-        'update' => 'Nowa aktualizacja dla beatmapy ":title"',
+        'update' => 'Nowa aktualizacja dla beatmapy „:title”',
     ],
 
     'status' => [

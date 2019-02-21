@@ -24,6 +24,7 @@ return [
         'online' => '<strong>:players</strong> са вмомента онлайн в общо <strong>:games</strong> игри',
         'peak' => 'Връхна точка, :count потребители онлайн',
         'players' => '<strong>:count</strong> регистрирани играчи',
+        'title' => '',
 
         'slogan' => [
             'main' => 'най-добрата безплатна ритъм игра',

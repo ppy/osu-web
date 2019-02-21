@@ -30,7 +30,7 @@ return [
 
     'spotlight' => [
         'end_date' => 'Fecha de fin',
-        'map_count' => '',
+        'map_count' => 'Recuento de mapas',
         'participants' => 'Participantes',
         'start_date' => 'Fecha de Inicio',
     ],

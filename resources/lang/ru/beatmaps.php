@@ -96,14 +96,14 @@ return [
         ],
 
         'show' => [
-            'title' => ':title сделанный :mapper',
+            'title' => ':title от :mapper',
         ],
 
         'sort' => [
             '_' => 'Отсортировано по:',
-            'created_at' => 'дате создания',
-            'timeline' => 'графику',
-            'updated_at' => 'дате обновления',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Вы уверены? Сообщение о новой проблеме сбросит статус номинации.',
-            'disqualify' => '',
+            'disqualify' => 'Уверены? Карта будет снята с квалификации и статус номинирования будет сброшен.',
         ],
     ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => 'Сыграно',
             ],
             'sorting' => [
-                'title' => 'название',
-                'artist' => 'исполнитель',
-                'difficulty' => 'сложность',
-                'updated' => 'обновлено',
-                'ranked' => 'рейтинговые',
-                'rating' => 'рейтинг',
-                'plays' => 'количество игр',
-                'relevance' => 'релевантность',
-                'nominations' => 'номинации',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Фильтрация по :filters требует :link',
@@ -301,5 +301,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

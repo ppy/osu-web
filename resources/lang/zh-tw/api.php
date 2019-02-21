@@ -27,6 +27,10 @@ return [
     ],
 
     'scopes' => [
-        'identify' => '',
+        'identify' => '識別您的身份並閱讀您的公開個人資料。',
+
+        'friends' => [
+            'read' => '',
+        ],
     ],
 ];

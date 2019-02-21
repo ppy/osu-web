@@ -25,7 +25,7 @@ return [
         'failed' => 'FAILED',
         'header' => 'Multiplayer Matches',
         'in-progress' => '(match i gang)',
-        'in_progress_spinner_label' => '',
+        'in_progress_spinner_label' => 'match i gang',
         'loading-events' => 'Indlæser begivenheder...',
         'winner' => ':team vinder',
 

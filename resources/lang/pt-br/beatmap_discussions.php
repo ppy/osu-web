@@ -23,7 +23,7 @@ return [
         'update' => [
             'null_user' => 'Precisa estar conectado para editar.',
             'system_generated' => 'Postagens geradas pelo sistema não podem ser editadas.',
-            'wrong_user' => 'Precisa ser o dono da postagem para editá-la.',
+            'wrong_user' => 'Precisa ser dono da postagem para editá-la.',
         ],
     ],
 
@@ -52,7 +52,7 @@ return [
         'created_at' => 'Data de publicação',
         'deleted_at' => 'Data de exclusão',
         'message_type' => 'Tipo',
-        'permalink' => 'Copiar link da postagem',
+        'permalink' => 'Copiar link da publicação',
     ],
 
     'nearby_posts' => [

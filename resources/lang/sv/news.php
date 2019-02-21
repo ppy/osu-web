@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'lista',
-        'news-show' => 'inlägg',
-    ],
-
     'index' => [
-        'title' => 'osu!news',
+        'title_page' => '',
 
         'nav' => [
             'newer' => 'Nyare inlägg',
             'older' => 'Äldre inlägg',
         ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'show' => [
-        'posted' => 'upplagd :time',
+        'by' => '',
 
         'nav' => [
             'newer' => 'Nyare inlägg',
             'older' => 'Äldre inlägg',
+        ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
         ],
     ],
 

@@ -27,18 +27,15 @@ return [
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Um erro ocorreu. Tenta recarregar a página.',
+            'generic' => 'Ocorreu um erro. Tenta recarregar a página.',
         ],
     ],
     'beatmaps' => [
         'invalid_mode' => 'Modo especificado inválido.',
         'standard_converts_only' => 'Não há pontuações disponíveis para o modo solicitado nesta dificuldade de beatmap.',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'Tu tens demasiados beatmaps preferidos! Por favor retira um antes de continuar.',
-    ],
     'logged_out' => 'Foste desconectado. Por favor inicia sessão e tenta outra vez.',
-    'supporter_only' => 'Tu tens de ser um apoiante para usar esta funcionalidade.',
-    'no_restricted_access' => 'Tu não és capaz de desempenhar esta acção enquanto a tua conta estiver num estado restrito.',
+    'supporter_only' => 'Tu tens de ser um apoiante para utilizar esta funcionalidade.',
+    'no_restricted_access' => 'Tu não és capaz de desempenhar esta ação enquanto a tua conta estiver num estado restrito.',
     'unknown' => 'Ocorreu um erro desconhecido.',
 ];

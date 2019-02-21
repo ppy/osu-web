@@ -35,7 +35,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => '',
+            '_' => '按下 Enter :action. 如果要換行請下 shift+enter 。',
             'edit' => '保存',
             'new' => '發布',
             'reply' => '回覆',
@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => '登入以評論',
-        'reply' => '登入以回覆',
+        'new' => '',
+        'reply' => '',
     ],
 
     'index' => [
@@ -65,12 +65,5 @@ return [
             '_' => '評論 :info',
             'info' => '詳情',
         ],
-    ],
-
-    'sort' => [
-        '_' => '',
-        'new' => '',
-        'old' => '',
-        'top' => '',
     ],
 ];

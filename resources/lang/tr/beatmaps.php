@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Şuna göre sıralandı:',
-            'created_at' => 'oluşturulma zamanı',
-            'timeline' => 'zaman çizgisi',
-            'updated_at' => 'son güncelleme',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Emin misin? Yeni bir sorun bildirmek aday gösterme sürecini sıfırlayacaktır.',
-            'disqualify' => '',
+            'disqualify' => 'Emin misiniz? Bu beatmap\'in niteliğini silecek ve adaylık süresine sıfırlayacak.',
         ],
     ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => 'Oynanmışlık',
             ],
             'sorting' => [
-                'title' => 'isim',
-                'artist' => 'sanatçı',
-                'difficulty' => 'zorluk',
-                'updated' => 'güncel',
-                'ranked' => 'dereceli',
-                'rating' => 'derece',
-                'plays' => 'oynanma',
-                'relevance' => 'alaka',
-                'nominations' => 'adaylıklar',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => ':filters ile filtrelemek için aktif bir :link gerekli',
@@ -301,5 +301,9 @@ return [
         'B' => '',
         'C' => '',
         'D' => '',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

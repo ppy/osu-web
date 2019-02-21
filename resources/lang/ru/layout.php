@@ -35,7 +35,7 @@ return [
             'groups-show' => 'группы',
             'index' => 'главная',
             'legal-show' => 'информация',
-            'messages-index' => '',
+            'messages-index' => 'сообщения',
             'news-index' => 'новости',
             'news-show' => 'новости',
             'password-reset-index' => 'сброс пароля',
@@ -53,7 +53,7 @@ return [
         ],
         'beatmaps' => [
             '_' => 'карты',
-            'artists' => 'featured artists',
+            'artists' => 'osu!featured artists',
             'beatmap_discussion_posts-index' => 'публикации в обсуждений карты',
             'beatmap_discussions-index' => 'обсуждения карты',
             'beatmapset-watches-index' => 'подписки на карты',
@@ -78,8 +78,8 @@ return [
         ],
         'community' => [
             '_' => 'сообщество',
-            'chat' => '',
-            'chat-index' => '',
+            'chat' => 'сообщения',
+            'chat-index' => 'сообщения',
             'dev' => 'разработка',
             'getForum' => 'форумы',
             'getLive' => 'прямые трансляции',

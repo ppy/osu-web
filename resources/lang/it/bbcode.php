@@ -25,7 +25,7 @@ return [
     'italic' => 'Corsivo',
     'link' => 'Link',
     'list' => 'Lista',
-    'list_numbered' => 'Lista Ordinata',
+    'list_numbered' => 'Lista Numerata',
     'size' => [
         '_' => 'Dimensioni Font',
         'tiny' => 'Minuscolo',
@@ -33,6 +33,6 @@ return [
         'normal' => 'Normale',
         'large' => 'Grande',
     ],
-    'spoilerbox' => 'Box Spoiler',
+    'spoilerbox' => 'Spoiler Box',
     'strikethrough' => 'Strike',
 ];

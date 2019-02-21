@@ -34,9 +34,6 @@ return [
         'invalid_mode' => 'Ungültiger Modus gewählt.',
         'standard_converts_only' => 'Es gibt keine Ranglisten für den angeforderten Modus auf dieser Schwierigkeitsstufe',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'Du hast zu viele favorisierte Beatmaps! Bitte entferne eine, bevor du fortfährst.',
-    ],
     'logged_out' => 'Du wurdest ausgeloggt. Einloggen und erneut versuchen.',
     'supporter_only' => 'Für dieses Feature muss man Supporter sein.',
     'no_restricted_access' => 'Diese Aktion steht nicht zur Verfügung, während der Account restricted ist.',

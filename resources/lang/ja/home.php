@@ -24,6 +24,7 @@ return [
         'online' => '現在<strong>:players</strong>人オンラインでマルチ部屋数<strong>:games</strong>',
         'peak' => '最高オンライン数:count',
         'players' => '累計登録者数<strong>:count</strong>人',
+        'title' => '',
 
         'slogan' => [
             'main' => '基本料無料で最高のリズムゲーム',

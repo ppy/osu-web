@@ -24,6 +24,7 @@ return [
         'online' => '<strong>:players</strong> συνδεδεμένοι αυτή τη στιγμή σε <strong>:games</strong> παιχνίδια',
         'peak' => 'Κορύφωση, :count συνδεδεμένοι χρήστες',
         'players' => '<strong>:count</strong> εγγεγραμμένοι παίκτες',
+        'title' => '',
 
         'slogan' => [
             'main' => 'το καλυτερότερο free-to-win ρυθμικό παιχνίδι',

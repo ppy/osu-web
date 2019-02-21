@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'Nama pengguna saat ini (:current) tidak sama dengan perubahan untuk diganti (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Donasi Anda tidak mencukupi untuk dapat menghadiahkan supporter tag ke pengguna lain (:actual > :expected)',
+        'insufficient_paid' => '',
     ],
 ];

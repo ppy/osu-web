@@ -30,16 +30,19 @@ return [
     ],
 
     'buttons' => [
-        'back_to_top' => 'Voltar ao topo',
+        'admin' => '',
         'back_to_previous' => 'Voltar à posição anterior',
+        'back_to_top' => 'Voltar ao topo',
         'cancel' => 'Cancelar',
         'change' => 'mudar',
         'click_to_copy' => 'clica para copiar para o bloco de notas',
         'click_to_copy_copied' => 'copiado para o bloco de notas!',
+        'collapse' => '',
         'delete' => 'Apagar',
         'edit' => 'Editar',
+        'expand' => '',
         'hide' => 'ocultar',
-        'permalink' => 'permalink',
+        'permalink' => 'link permanente',
         'permalink_copied' => 'link copiado',
         'post' => 'Publicar',
         'reply' => 'Resposta',
@@ -53,6 +56,7 @@ return [
         'see_more' => 'ver mais',
         'show' => 'mostrar',
         'show_more' => 'mostrar mais',
+        'show_more_options' => '',
         'upload_image' => 'carregar imagem',
     ],
 
@@ -63,7 +67,7 @@ return [
         'hours' => ':count hora|:count horas',
         'item' => ':count unidade|:count unidades',
         'minute_short_unit' => 'min|mins',
-        'minutes' => '',
+        'minutes' => ':count minuto|:count minutos',
         'months' => ':count mês|:count meses',
         'second_short_unit' => 'seg|segs',
         'years' => ':count ano|:count anos',
@@ -90,7 +94,7 @@ return [
         'keyboard' => 'Teclado',
         'mouse' => 'Rato',
         'tablet' => 'Tablet',
-        'touch' => 'Ecrã Táctil',
+        'touch' => 'Ecrã Tátil',
     ],
 
     'dropzone' => [

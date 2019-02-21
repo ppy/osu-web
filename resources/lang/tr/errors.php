@@ -34,9 +34,6 @@ return [
         'invalid_mode' => 'Geçersiz mod seçildi.',
         'standard_converts_only' => 'Bu beatmap zorluğunda seçilen mod\'da şuanda skor mevcut değil.',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'Favorilerinizde çok fazla beatmap\'iniz var! Lütfen devam etmeden önce birini çıkartın.',
-    ],
     'logged_out' => 'Oturumunuz kapatıldı. Lütfen giriş yapın ve tekrar deneyin.',
     'supporter_only' => 'Bu özelliği kullanabilmeniz için supporter olmanız gerekmektedir.',
     'no_restricted_access' => 'Hesabınız kısıtlanmış durumdayken bu işlemi gerçekleştiremezsiniz.',

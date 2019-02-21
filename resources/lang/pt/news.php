@@ -19,36 +19,41 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'listagem',
-        'news-show' => 'publicação',
-    ],
-
     'index' => [
-        'title' => 'osu!news',
+        'title_page' => '',
 
         'nav' => [
             'newer' => 'Publicações mais recentes',
             'older' => 'Publicações mais antigas',
         ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'show' => [
-        'posted' => 'publicado há :time',
+        'by' => '',
 
         'nav' => [
             'newer' => 'Publicação mais recente',
             'older' => 'Publicação mais antiga',
         ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'store' => [
-        'button' => 'Actualização',
-        'ok' => 'A listar actualizados.',
+        'button' => 'Atualização',
+        'ok' => 'A listar atualizados.',
     ],
 
     'update' => [
-        'button' => 'Actualizar',
-        'ok' => 'Publicação actualizada.',
+        'button' => 'Atualizar',
+        'ok' => 'Publicação atualizada.',
     ],
 ];

@@ -48,16 +48,16 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'Označit fórum jako přečtené',
+        'forums' => 'Označit fóra jako přečtená',
+        'busy' => 'Označuju jako přečtené...',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => 'Změna v hlasování vymaže stávající výsledky!',
 
         'actions' => [
-            'edit' => '',
+            'edit' => 'Upravit hlasování',
         ],
     ],
 
@@ -71,6 +71,10 @@ return [
             'destroy' => 'Odstranit příspěvek',
             'restore' => 'Obnovit příspěvek',
             'edit' => 'Upravit příspěvek',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Vytvoření ankety',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Vytvořit anketu',
                 'remove' => 'Zrušit vytváření ankety',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'zobrazení',
+            'feature_votes' => '',
             'replies' => 'odpovědi',
+            'views' => 'zobrazení',
         ],
 
         'issue_tag_added' => [
@@ -266,6 +273,12 @@ return [
                 'current' => 'Aktuální priorita: +:count',
                 'do' => 'Promovat tento požadavek',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => '{0} žádné hlasy | {1} :count hlas | [2,*] :count hlasů',
                     'current' => 'Zbývá vám :votes.',
@@ -288,8 +301,8 @@ return [
             'to_not_watching' => 'Nezáložkováno',
             'to_watching' => 'Záložka',
             'to_watching_mail' => 'Záložka s oznámením',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => 'Notifikace je zapnutá. Klikněte pro vypnutí',
+            'tooltip_mail_enable' => 'Notifikace je vypnutá. Klikněte pro zapnutí',
         ],
     ],
 ];
