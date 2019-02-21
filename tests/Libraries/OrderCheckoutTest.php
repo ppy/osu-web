@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Exceptions\InvariantException;
 use App\Libraries\OrderCheckout;
 use App\Models\Country;
 use App\Models\Store\Order;
@@ -104,6 +105,47 @@ class OrderCheckoutTest extends TestCase
             [trans('model_validation/store/product.must_separate')],
             array_get($result, "orderItems.{$orderItem2->getKey()}")
         );
+    }
+
+    public function testTotalNonZeroDoesNotAllowFreeCheckout()
+    {
+        $product1 = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5, 'cost' => 1]);
+        $orderItem1 = factory(OrderItem::class)->create([
+            'product_id' => $product1->product_id,
+            'quantity' => 1,
+            'cost' => $product1->cost,
+        ]);
+
+        $order = factory(Order::class)->create();
+        $order->items()->save($orderItem1);
+
+        $checkout = new OrderCheckout($order, Order::PROVIDER_FREE);
+        $result = $checkout->allowedCheckoutProviders();
+
+        $this->expectException(InvariantException::class);
+        $checkout->beginCheckout();
+
+        $this->assertNotContains(Order::PROVIDER_FREE, $result);
+    }
+
+    public function testTotalZeroOnlyAllowsFreeCheckout()
+    {
+        $product1 = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5, 'cost' => 0]);
+        $orderItem1 = factory(OrderItem::class)->create([
+            'product_id' => $product1->product_id,
+            'quantity' => 1,
+            'cost' => $product1->cost,
+        ]);
+
+        $order = factory(Order::class)->create();
+        $order->items()->save($orderItem1);
+        $checkout = new OrderCheckout($order, Order::PROVIDER_PAYPAL);
+        $result = $checkout->allowedCheckoutProviders();
+
+        $this->expectException(InvariantException::class);
+        $checkout->beginCheckout();
+
+        $this->assertSame([Order::PROVIDER_FREE], $result);
     }
 
     private function createTournamentProduct(Tournament $tournament, Carbon $availableUntil = null)
