@@ -101,7 +101,6 @@
                     'url' => '/oauth/authorize',
                     'method' => 'POST',
                 ]) !!}
-                    {!! csrf_field() !!}
                     <input type="hidden" name="state" value="{{ $request->state }}" />
                     <input type="hidden" name="state" value="{{ $client->id }}" />
 
@@ -112,10 +111,8 @@
 
                 {!! Form::open([
                     'url' => '/oauth/authorize',
-                    'method' => 'POST',
+                    'method' => 'DELETE',
                 ]) !!}
-                    {!! csrf_field() !!}
-                    {!! method_field('DELETE') !!}
                     <input type="hidden" name="state" value="{{ $request->state }}" />
                     <input type="hidden" name="state" value="{{ $client->id }}" />
 

@@ -27,7 +27,6 @@
         'data-remote' => true,
     ]) !!}
         <div class="oauth-form__dialog">
-            {!! csrf_field() !!}
             <div class="oauth-form__row oauth-form__row--header"></div>
 
             <div class="oauth-form__row oauth-form__row--title">
