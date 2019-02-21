@@ -25,7 +25,7 @@ class LocaleMeta
     const MAPPINGS = [
         'be' => [
             'name' => 'Беларуская мова',
-            'flag' => 'BE',
+            'flag' => 'BY',
         ],
         'bg' => [
             'name' => 'Български',
