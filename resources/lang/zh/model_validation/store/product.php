@@ -20,6 +20,6 @@
 
 return [
     'insufficient_stock' => '该物品存货不足!',
-    'not_available' => '这件物品暂时不可用',
+    'not_available' => '该物品暂时不可用',
     'too_many' => '每个订单你只能订购 :count 个此物品。',
 ];

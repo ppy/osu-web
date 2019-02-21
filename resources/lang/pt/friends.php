@@ -21,6 +21,7 @@
 return [
     'buttons' => [
       'add' => 'adicionar amigo',
+      'disabled' => '',
       'remove' => 'remover amigo',
     ],
 
@@ -32,5 +33,5 @@ return [
     'title' => 'Amigos',
     'title_compact' => 'amigos',
 
-    'too_many' => 'Limite de amigos alcançado.',
+    'too_many' => 'Limite de amigos alcançado',
 ];

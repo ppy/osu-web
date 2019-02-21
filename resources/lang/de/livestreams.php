@@ -23,7 +23,7 @@ return [
         'headline' => 'Livestreams',
         'description' => 'Die Daten werden alle fünf Minuten von twitch.tv geladen und basieren auf dem "Durchsuchen"-Verzeichnis. Fang\' ruhig selber an zu streamen und komm auf diese Liste! Wenn du mehr Informationen brauchst, schau\' dir die Wiki-Seite zu Livestreaming an.',
 
-        'link' => '',
+        'link' => 'die Wiki-Seite auf Livestreams',
     ],
     'headers' => [
         'regular' => 'Aktuelle Streams',

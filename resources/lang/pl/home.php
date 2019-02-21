@@ -24,6 +24,7 @@ return [
         'online' => '<strong>:players</strong> użytkowników jest obecnie online w <strong>:games</strong> meczach',
         'peak' => ':count użytkowników online',
         'players' => '<strong>:count</strong> zarejestrowanych użytkowników',
+        'title' => '',
 
         'slogan' => [
             'main' => 'darmowa gra rytmiczna',

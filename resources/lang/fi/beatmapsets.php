@@ -34,24 +34,34 @@ return [
         'discussion' => 'Keskustelu',
 
         'details' => [
+            'approved' => 'vahvistettu ',
+            'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
+            'favourited_count' => '+ 1 muu!|+ :count muuta!',
+            'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
+            'loved' => 'rakastettu ',
             'mapped_by' => 'luonut: :mapper',
+            'qualified' => 'esihyväksytty ',
+            'ranked' => 'hyväksytty ',
             'submitted' => 'Julkaistu ',
+            'unfavourite' => 'Poista nämä beatmap-setti suosikeista',
             'updated' => 'viimeisin päivitys ',
             'updated_timeago' => 'viimeksi päivitetty :timeago',
-            'ranked' => 'hyväksytty ',
-            'approved' => 'vahvistettu ',
-            'qualified' => 'esihyväksytty ',
-            'loved' => 'rakastettu ',
-            'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
+
             'download' => [
                 '_' => 'Lataa',
-                'video' => 'videon kanssa',
-                'no-video' => 'ilman videota',
                 'direct' => '',
+                'no-video' => 'ilman videota',
+                'video' => 'videon kanssa',
             ],
-            'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
-            'unfavourite' => 'Poista nämä beatmap-setti suosikeista',
-            'favourited_count' => '+ 1 muu!|+ :count muuta!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
 
         'hype' => [

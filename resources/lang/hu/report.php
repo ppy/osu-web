@@ -20,6 +20,11 @@
 
 return [
     'scores' => [
+        'button' => 'Eredmény Jelentése',
+        'title' => 'Jelented :username eredményét?',
+    ],
+
+    'comment' => [
         'button' => '',
         'title' => '',
     ],

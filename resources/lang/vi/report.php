@@ -20,6 +20,11 @@
 
 return [
     'scores' => [
+        'button' => 'Báo Cáo Điểm',
+        'title' => 'Báo cáo điểm của :username?',
+    ],
+
+    'comment' => [
         'button' => '',
         'title' => '',
     ],

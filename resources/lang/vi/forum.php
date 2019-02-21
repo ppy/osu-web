@@ -48,16 +48,16 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'Đánh dấu diễn đàn đã đọc',
+        'forums' => 'Đánh dấu diễn đàn đã đọc',
+        'busy' => 'Đang đánh dấu đã đọc...',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => 'Chỉnh sửa cuộc thăm dò sẽ xóa bỏ các kết quả hiện tại!',
 
         'actions' => [
-            'edit' => '',
+            'edit' => 'Sửa cuộc thăm dò',
         ],
     ],
 
@@ -71,6 +71,10 @@ return [
             'destroy' => 'Xóa bài viết',
             'restore' => 'Phục hồi bài viết',
             'edit' => 'Chỉnh sửa bài viết',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Tạo Thăm Dò Ý Kiến',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Tạo một cuộc thăm dò',
                 'remove' => 'Hủy bỏ',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'lượt xem',
+            'feature_votes' => '',
             'replies' => 'câu trả lời',
+            'views' => 'lượt xem',
         ],
 
         'issue_tag_added' => [
@@ -266,6 +273,12 @@ return [
                 'current' => 'Độ Ưu Tiên: +:count',
                 'do' => 'Thúc đẩy yêu cầu này',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => '{0} không có bình chọn|[1,*] :count phiếu',
                     'current' => 'Bạn còn :votes.',
@@ -288,8 +301,8 @@ return [
             'to_not_watching' => 'Chưa đánh dấu',
             'to_watching' => 'Đánh dấu',
             'to_watching_mail' => 'Đánh dấu với thông báo',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => 'Đã bật thông báo. Nhấp để tắt',
+            'tooltip_mail_enable' => 'Đã tắt thông báo. Nhấp để bật',
         ],
     ],
 ];

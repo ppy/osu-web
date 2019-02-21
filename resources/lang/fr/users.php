@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Historique des modifications de :user",
-        'title_compact' => '',
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Discussions commencées récemment',
@@ -167,11 +167,11 @@ return [
 
             'achievements' => [
                 'achieved-on' => 'Acquis le :date',
-                'locked' => '',
+                'locked' => 'Verrouillé',
                 'title' => 'Succès',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => 'par :artist',
                 'none' => 'Aucune... pour le moment.',
                 'title' => 'Beatmaps',
 
@@ -197,7 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Historique des parties',
-                    'count_label' => '',
+                    'count_label' => 'Parties',
                 ],
                 'most_played' => [
                     'count' => 'Nombre de fois jouée',
@@ -209,7 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historique des replays regardées',
-                    'count_label' => '',
+                    'count_label' => 'Replays Regardés',
                 ],
             ],
             'kudosu' => [
@@ -264,7 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Cet utilisateur n'en a encore jamais reçue. ;_;",
-                'recent' => '',
+                'recent' => 'Dernier',
                 'title' => 'Médailles',
             ],
             'recent_activity' => [
@@ -274,7 +274,7 @@ return [
                 'download_replay' => 'Télécharger le replay',
                 'empty' => 'Pas de première place. :(',
                 'not_ranked' => 'Seules les beatmaps classées accordent des pp.',
-                'pp_weight' => '',
+                'pp_weight' => 'pondéré :percentage',
                 'title' => 'Classements',
 
                 'best' => [
@@ -308,8 +308,8 @@ return [
         ],
 
         'header_title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Joueur :info',
+            'info' => 'Info',
         ],
 
         'info' => [
@@ -330,6 +330,7 @@ return [
             'title' => 'Utilisateur non trouvé! ;_;',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>Moi !</strong> est une zone personnalisable du profil.',
             'edit_big' => 'Éditez-moi !',
             'placeholder' => 'Tapez le contenu de la page',
@@ -341,16 +342,16 @@ return [
         ],
         'rank' => [
             'country' => 'Classement national en :mode',
-            'country_simple' => '',
+            'country_simple' => 'Classement Pays',
             'global' => 'Classement global en :mode',
-            'global_simple' => '',
+            'global_simple' => 'Classement Global',
         ],
         'stats' => [
             'hit_accuracy' => 'Précision',
             'level' => 'Niveau :level',
-            'level_progress' => '',
+            'level_progress' => 'Progression jusqu’au prochain niveau',
             'maximum_combo' => 'Combo maximum',
-            'medals' => '',
+            'medals' => 'Médailles',
             'play_count' => 'Nombres de parties',
             'play_time' => 'Temps de jeu total',
             'ranked_score' => 'Score classé',

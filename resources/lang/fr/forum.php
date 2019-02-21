@@ -48,16 +48,16 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'Marquer le forum comme lu',
+        'forums' => 'Marquer les forums comme lus',
+        'busy' => 'Marquer comme lu...',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => 'Éditer un sondage supprimera les résultats actuels !',
 
         'actions' => [
-            'edit' => '',
+            'edit' => 'Éditer le sondage',
         ],
     ],
 
@@ -71,6 +71,10 @@ return [
             'destroy' => 'Supprimer le post',
             'restore' => 'Restaurer le post',
             'edit' => 'Modifier le post',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Créer un sondage',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Créer un sondage',
                 'remove' => 'Annuler la création du sondage',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'vues',
+            'feature_votes' => '',
             'replies' => 'réponses',
+            'views' => 'vues',
         ],
 
         'issue_tag_added' => [
@@ -266,6 +273,12 @@ return [
                 'current' => 'Priorité : +:count',
                 'do' => 'Promouvoir cette requête',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => '{0} pas de vote|{1} :count vote|[2,*] :count votes',
                     'current' => 'Il vous reste :votes.',
@@ -288,8 +301,8 @@ return [
             'to_not_watching' => 'Vous ne suivez pas ce sujet',
             'to_watching' => 'Suivre',
             'to_watching_mail' => 'Suivre avec notifications',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => 'La notification est activée. Cliquez pour désactiver',
+            'tooltip_mail_enable' => 'La notification est désactivée. Cliquez pour activer',
         ],
     ],
 ];

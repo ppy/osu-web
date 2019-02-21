@@ -68,6 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Radera beatmap metadata inlägg är inte tillåtet.',
             'beatmapset_post_no_edit' => 'Redigera beatmap metadata inlägg är inte tillåtet.',
+            'only_quote' => '',
         ],
 
         'topic_poll' => [
@@ -97,6 +98,7 @@ return [
         'username_available_soon' => 'Detta användarnamn kommer att bli tillgängligt vilken minut som helst!',
         'username_invalid_characters' => 'Det begärda användarnamnet innehåller ogiltiga tecken.',
         'username_in_use' => 'Användarnamnet används redan!',
+        'username_locked' => '', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Använd antingen understreck eller blanksteg, inte båda!',
         'username_no_spaces' => "Användarnamn kan inte börja eller sluta med blanksteg!",
         'username_not_allowed' => 'Det valda användarnamnet är inte tillåtet.',

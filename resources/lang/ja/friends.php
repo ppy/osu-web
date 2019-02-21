@@ -21,6 +21,7 @@
 return [
     'buttons' => [
       'add' => 'フレンドに追加',
+      'disabled' => '',
       'remove' => 'フレンドから削除',
     ],
 

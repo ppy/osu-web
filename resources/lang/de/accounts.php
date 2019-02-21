@@ -31,14 +31,14 @@ return [
         'email' => [
             'current' => 'Aktuelle E-Mail Adresse',
             'new' => 'Neue E-Mail',
-            'new_confirmation' => 'e-mail bestätigen',
+            'new_confirmation' => 'E-Mail bestätigen',
             'title' => 'E-Mail',
         ],
 
         'password' => [
             'current' => 'aktuelles passwort',
             'new' => 'neues passwort',
-            'new_confirmation' => 'passwort bestätigen',
+            'new_confirmation' => 'Passwort bestätigen',
             'title' => 'Passwort',
         ],
 
@@ -47,7 +47,7 @@ return [
 
             'user' => [
                 'user_from' => 'aktueller standort',
-                'user_interests' => 'interessen',
+                'user_interests' => 'Interessen',
                 'user_msnm' => 'skype',
                 'user_occ' => 'beschäftigung',
                 'user_twitter' => 'twitter',
@@ -74,9 +74,9 @@ return [
 
     'playstyles' => [
         'title' => 'Spielstil',
-        'mouse' => 'maus',
-        'keyboard' => 'tastatur',
-        'tablet' => 'tablet',
+        'mouse' => 'Maus',
+        'keyboard' => 'Tastatur',
+        'tablet' => 'Tablet',
         'touch' => 'touch',
     ],
 

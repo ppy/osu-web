@@ -24,6 +24,7 @@ return [
         'online' => '<strong>:players</strong> online-tilassa <strong>:games</strong> pelaamassa',
         'peak' => 'Huipussaan :count käyttäjää paikalla',
         'players' => '<strong>:count</strong> rekisteröitynyttä pelaajaa',
+        'title' => '',
 
         'slogan' => [
             'main' => 'parastakin parempi ilmainen rytmipeli',
@@ -36,8 +37,8 @@ return [
         'button' => 'Hae',
         'empty_result' => 'Mitään ei löytynyt!',
         'missing_query' => 'Tarvitaan vähintään :n merkin pituinen hakusana',
-        'placeholder' => 'kirjoita etsiäksesi',
-        'title' => 'Etsi',
+        'placeholder' => 'kirjoita hakeaksesi',
+        'title' => 'Hae',
 
         'beatmapset' => [
             'more' => ':count lisää hakutulosta',
@@ -53,7 +54,7 @@ return [
 
             'label' => [
                 'forum' => 'etsi foorumeista',
-                'forum_children' => 'etsi myös alafoorumit',
+                'forum_children' => 'etsi myös alafoorumeilta',
                 'topic_id' => 'aihe #',
                 'username' => 'luoja',
             ],

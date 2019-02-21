@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user님의 모딩 기록",
-        'title_compact' => '',
+        'title_compact' => '모딩',
 
         'discussions' => [
             'title_recent' => '최근 시작된 토론',
@@ -167,11 +167,11 @@ return [
 
             'achievements' => [
                 'achieved-on' => ':date에 달성함',
-                'locked' => '',
+                'locked' => '잠김',
                 'title' => '업적',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => ':artist 님이 제작',
                 'none' => '아직... 없네요...',
                 'title' => '비트맵',
 
@@ -197,7 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => '플레이 기록',
-                    'count_label' => '',
+                    'count_label' => '플레이된 횟수',
                 ],
                 'most_played' => [
                     'count' => '플레이 횟수',
@@ -209,7 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => '리플레이가 재생된 횟수',
-                    'count_label' => '',
+                    'count_label' => '관전된 횟수',
                 ],
             ],
             'kudosu' => [
@@ -264,7 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "아직 아무런 메달도 받지 못했네요. ;_;",
-                'recent' => '',
+                'recent' => '최근 획득',
                 'title' => '메달',
             ],
             'recent_activity' => [
@@ -274,7 +274,7 @@ return [
                 'download_replay' => '리플레이 다운로드',
                 'empty' => '아직 이렇다 할 플레이 기록이 없네요. :(',
                 'not_ranked' => '랭크된 비트맵만 pp를 줍니다.',
-                'pp_weight' => '',
+                'pp_weight' => '가중치 :percentage',
                 'title' => '랭크',
 
                 'best' => [
@@ -308,8 +308,8 @@ return [
         ],
 
         'header_title' => [
-            '_' => '',
-            'info' => '',
+            '_' => '플레이어 :info',
+            'info' => '정보',
         ],
 
         'info' => [
@@ -330,6 +330,7 @@ return [
             'title' => '사용자를 찾을 수 없습니다! ;_;',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>me!</strong>는 유저 프로필 페이지에서 개인이 꾸밀 수 있는 공간입니다.',
             'edit_big' => 'me! 수정하기',
             'placeholder' => '페이지에 들어갈 내용을 입력하세요.',
@@ -341,16 +342,16 @@ return [
         ],
         'rank' => [
             'country' => ':mode 국가 순위',
-            'country_simple' => '',
+            'country_simple' => '국가 순위',
             'global' => ':mode 세계 순위',
-            'global_simple' => '',
+            'global_simple' => '전체 순위',
         ],
         'stats' => [
             'hit_accuracy' => '정확도',
             'level' => '레벨 :level',
-            'level_progress' => '',
+            'level_progress' => '다음 레벨까지의 진척도',
             'maximum_combo' => '최대 콤보',
-            'medals' => '',
+            'medals' => '메달',
             'play_count' => '플레이 횟수',
             'play_time' => '총 플레이 시간',
             'ranked_score' => '기록된 점수',

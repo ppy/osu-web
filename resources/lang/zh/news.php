@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => '列表',
-        'news-show' => '新闻',
-    ],
-
     'index' => [
-        'title' => 'osu!新闻',
+        'title_page' => '',
 
         'nav' => [
             'newer' => '下一条新闻',
             'older' => '上一条新闻',
         ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'show' => [
-        'posted' => ':time 推送',
+        'by' => '',
 
         'nav' => [
             'newer' => '下一条新闻',
             'older' => '上一条新闻',
+        ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
         ],
     ],
 

@@ -30,14 +30,17 @@ return [
     ],
 
     'buttons' => [
-        'back_to_top' => '返回頂部',
+        'admin' => '',
         'back_to_previous' => '返回到上一個位置',
+        'back_to_top' => '返回頂部',
         'cancel' => '取消',
         'change' => '變更',
         'click_to_copy' => '點擊以複製到剪貼簿',
         'click_to_copy_copied' => '已複製到剪貼簿！',
+        'collapse' => '',
         'delete' => '刪除',
         'edit' => '編輯',
+        'expand' => '',
         'hide' => '隱藏',
         'permalink' => '永久連結',
         'permalink_copied' => '連結已複製',
@@ -53,6 +56,7 @@ return [
         'see_more' => '查看更多',
         'show' => '顯示',
         'show_more' => '顯示更多',
+        'show_more_options' => '',
         'upload_image' => '上傳圖片',
     ],
 

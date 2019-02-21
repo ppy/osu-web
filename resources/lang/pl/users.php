@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Historia modowania użytkownika :user",
-        'title_compact' => '',
+        'title_compact' => 'Modowanie',
 
         'discussions' => [
             'title_recent' => 'Ostatnio rozpoczęte dyskusje',
@@ -167,11 +167,11 @@ return [
 
             'achievements' => [
                 'achieved-on' => 'Odblokowane dnia :date',
-                'locked' => '',
+                'locked' => 'Zablokowane',
                 'title' => 'Osiągnięcia',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => 'autorstwa :artist',
                 'none' => 'Jeszcze nie ma...',
                 'title' => 'Beatmapy',
 
@@ -182,7 +182,7 @@ return [
                     'title' => 'Porzucone beatmapy',
                 ],
                 'loved' => [
-                    'title' => 'Ulubione społeczności',
+                    'title' => 'Ulubione beatmapy społeczności',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Rankingowe i zatwierdzone beatmapy',
@@ -197,7 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Wykres zagrań',
-                    'count_label' => '',
+                    'count_label' => 'Liczba zagrań:',
                 ],
                 'most_played' => [
                     'count' => 'liczba zagrań',
@@ -209,7 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Wykres obejrzanych powtórek',
-                    'count_label' => '',
+                    'count_label' => 'Obejrzane powtórki:',
                 ],
             ],
             'kudosu' => [
@@ -264,7 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Ten użytkownik nie uzyskał jeszcze żadnych medali. ;_;",
-                'recent' => '',
+                'recent' => 'Ostatnie',
                 'title' => 'Medale',
             ],
             'recent_activity' => [
@@ -274,7 +274,7 @@ return [
                 'download_replay' => 'Pobierz powtórkę',
                 'empty' => 'Brak wyników. :(',
                 'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp.',
-                'pp_weight' => '',
+                'pp_weight' => 'ważone :percentage',
                 'title' => 'Wyniki',
 
                 'best' => [
@@ -308,8 +308,8 @@ return [
         ],
 
         'header_title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Użytkownik » :info',
+            'info' => 'Informacje',
         ],
 
         'info' => [
@@ -330,6 +330,7 @@ return [
             'title' => 'Nie znaleziono użytkownika! ;_;',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>ja!</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
@@ -341,16 +342,16 @@ return [
         ],
         'rank' => [
             'country' => 'Pozycja w rankingu krajowym dla :mode',
-            'country_simple' => '',
+            'country_simple' => 'Ranking krajowy',
             'global' => 'Pozycja w rankingu globalnym dla :mode',
-            'global_simple' => '',
+            'global_simple' => 'Ranking globalny',
         ],
         'stats' => [
             'hit_accuracy' => 'Precyzja',
             'level' => 'Poziom :level',
-            'level_progress' => '',
+            'level_progress' => 'Postęp do następnego poziomu',
             'maximum_combo' => 'Maksymalne combo',
-            'medals' => '',
+            'medals' => 'Medale',
             'play_count' => 'Liczba zagrań',
             'play_time' => 'Łączny czas gry',
             'ranked_score' => 'Łączny rankingowy wynik',

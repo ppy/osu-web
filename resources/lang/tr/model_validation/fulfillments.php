@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'Şuanki kullanıcı adı (:current), değiştirmek istediğiniz kullanıcı adı (:username) ile eşleşmemektedir',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Yapılan bağış, supporter etiketi hediyesi için yeterli miktarda değil. (:actual > :expected)',
+        'insufficient_paid' => '',
     ],
 ];

@@ -34,36 +34,46 @@ return [
         'discussion' => 'Discussão',
 
         'details' => [
-            'mapped_by' => 'mapeado por :mapper',
-            'submitted' => 'enviado em ',
-            'updated' => 'última atualização em ',
-            'updated_timeago' => 'última vez atualizado :timeago',
-            'ranked' => 'ranqueado em ',
             'approved' => 'aprovado em ',
-            'qualified' => 'qualificado em ',
-            'loved' => 'loved em ',
+            'favourite' => 'Favoritar este beatmap',
+            'favourited_count' => '+ 1 favorito!|+ :count outros favoritos!',
             'logged-out' => 'Você precisa conectar-se antes de baixar qualquer beatmap!',
+            'loved' => 'loved em ',
+            'mapped_by' => 'mapeado por :mapper',
+            'qualified' => 'qualificado em ',
+            'ranked' => 'ranqueado em ',
+            'submitted' => 'enviado em ',
+            'unfavourite' => 'Remover dos favoritos',
+            'updated' => 'última atualização em ',
+            'updated_timeago' => 'última atualização :timeago',
+
             'download' => [
                 '_' => 'Baixar',
-                'video' => 'com Vídeo',
-                'no-video' => 'sem Vídeo',
                 'direct' => 'osu!direct',
+                'no-video' => 'sem Vídeo',
+                'video' => 'com Vídeo',
             ],
-            'favourite' => 'Favoritar este beatmap',
-            'unfavourite' => 'Remover dos favoritos',
-            'favourited_count' => '+ 1 favorito!|+ :count outros favoritos!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'De um hype se você se divertiu jogando este map para ajudá-lo no processo de <strong>Raqueamento</strong>.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Este map está atualmente :status.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'pendente',
+                    'qualified' => 'qualificado',
+                    'wip' => 'em processo de criação',
                 ],
             ],
         ],

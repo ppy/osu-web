@@ -21,12 +21,16 @@
 return [
     'error' => [
         'chat' => [
-            'limit_exceeded' => 'Posíláte zprávy moc rychle, prosím vyčkejte chvíli a zkuste to znovu.',
-            'too_long' => 'Zpráva, kterou chcete poslat, je moc dlouhá.',
+            'limit_exceeded' => 'Posíláte zprávy moc rychle, vyčkejte prosím chvíli a zkuste to znovu.',
+            'too_long' => 'Zpráva, kterou se snažíte poslat, je moc dlouhá.',
         ],
     ],
 
     'scopes' => [
-        'identify' => '',
+        'identify' => 'Indentifikovat vás a prohlížet váš veřejný profil.',
+
+        'friends' => [
+            'read' => '',
+        ],
     ],
 ];

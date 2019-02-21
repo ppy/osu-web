@@ -24,7 +24,7 @@ return [
             'subject' => '감사합니다, osu!는 여러분을 ❤합니다',
         ],
         'supporter_gift' => [
-            'subject' => 'osu! 서포터 권한을 얻으셨습니다!',
+            'subject' => '',
         ],
     ],
 ];

@@ -49,7 +49,7 @@ return [
     'mode' => [
         'artist' => '艺术家/专辑',
         'chart' => '月赛',
-        'standard' => '标准',
+        'standard' => '普通',
         'theme' => '主题',
     ],
 

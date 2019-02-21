@@ -20,6 +20,11 @@
 
 return [
     'scores' => [
+        'button' => '기록 신고',
+        'title' => ':username님의 기록을 신고하실 건가요?',
+    ],
+
+    'comment' => [
         'button' => '',
         'title' => '',
     ],

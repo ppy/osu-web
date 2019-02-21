@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'Current username (:current) is not the same as change to revoke (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Donation is less than required for supporter tag gift (:actual > :expected)',
+        'insufficient_paid' => '',
     ],
 ];

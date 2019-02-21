@@ -47,7 +47,7 @@ return [
         ],
 
         'title' => [
-            '_' => 'Changelog :info',
+            '_' => ':info Changelog',
             'info' => 'Danh Sách',
         ],
     ],

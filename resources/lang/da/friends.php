@@ -21,6 +21,7 @@
 return [
     'buttons' => [
       'add' => 'tilføj ven',
+      'disabled' => '',
       'remove' => 'fjern ven',
     ],
 
@@ -32,5 +33,5 @@ return [
     'title' => 'Venner',
     'title_compact' => 'venner',
 
-    'too_many' => 'Det maksimale antal venner nået.',
+    'too_many' => 'Det maksimale antal venner er nået',
 ];

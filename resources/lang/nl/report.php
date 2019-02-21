@@ -23,4 +23,9 @@ return [
         'button' => '',
         'title' => '',
     ],
+
+    'comment' => [
+        'button' => '',
+        'title' => '',
+    ],
 ];

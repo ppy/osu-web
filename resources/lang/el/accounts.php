@@ -84,15 +84,15 @@ return [
     'privacy' => [
         'title' => 'Απόρρητο',
         'friends_only' => 'Αποκλεισμός των ιδιωτικών μηνυμάτων από άτομα που δεν βρίσκονται στη λίστα φίλων σας',
-        'hide_online' => '',
+        'hide_online' => 'απόκρυψη παρουσίας',
     ],
 
     'security' => [
-        'current_session' => '',
-        'end_session' => '',
-        'end_session_confirmation' => '',
-        'last_active' => '',
-        'title' => '',
-        'web_sessions' => '',
+        'current_session' => 'τρέχουσα',
+        'end_session' => 'Λήξη Συνεδρίας',
+        'end_session_confirmation' => 'Αυτό θα λήξει τη συνεδρία σας σε αυτή την συσκευή. Είστε σίγουρος;',
+        'last_active' => 'Τελευταία ενεργός:',
+        'title' => 'Ασφάλεια',
+        'web_sessions' => 'συνεδρίες',
     ],
 ];

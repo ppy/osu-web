@@ -34,36 +34,46 @@ return [
         'discussion' => '토론',
 
         'details' => [
+            'approved' => 'approved된 날짜: ',
+            'favourite' => '즐겨찾기',
+            'favourited_count' => '및 +1명의 사람!|및 +:count명의 사람들!',
+            'logged-out' => '로그인 후 비트맵을 다운로드하세요!',
+            'loved' => 'loved된 날짜: ',
             'mapped_by' => ':mapper님의 맵',
+            'qualified' => 'qualified된 날짜: ',
+            'ranked' => 'ranked된 날짜: ',
             'submitted' => '만든 날짜: ',
+            'unfavourite' => '즐겨찾기 해제',
             'updated' => '마지막 수정 날짜: ',
             'updated_timeago' => ':timeago에 마지막으로 수정됨',
-            'ranked' => 'ranked된 날짜: ',
-            'approved' => 'approved된 날짜: ',
-            'qualified' => 'qualified된 날짜: ',
-            'loved' => 'loved된 날짜: ',
-            'logged-out' => '로그인 후 비트맵을 다운로드하세요!',
+
             'download' => [
                 '_' => '다운로드',
-                'video' => '영상 포함',
-                'no-video' => '영상 미포함',
                 'direct' => 'osu!다이렉트',
+                'no-video' => '영상 미포함',
+                'video' => '영상 포함',
             ],
-            'favourite' => '즐겨찾기',
-            'unfavourite' => '즐겨찾기 해제',
-            'favourited_count' => '및 +1명의 사람!|및 +:count명의 사람들!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => '이 맵을 즐기셨다면 홍보해서 <strong>Ranked</strong> 상태가 될 수 있게 도와주세요.',
 
             'current' => [
-                '_' => '',
+                '_' => '이 맵은 현재 :status 상태입니다.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'pending',
+                    'qualified' => 'qualified',
+                    'wip' => '제작 중',
                 ],
             ],
         ],

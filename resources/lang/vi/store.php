@@ -114,7 +114,7 @@ return [
             'delivered' => 'Đã Giao Hàng',
             'paid' => 'Đã Thanh Toán',
             'processing' => 'Đang chờ xác nhận',
-            'shipped' => 'Đang Vận Chuyển',
+            'shipped' => '',
         ],
     ],
 

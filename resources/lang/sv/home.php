@@ -24,6 +24,7 @@ return [
         'online' => '<strong>:players</strong> spelare online i <strong>:games</strong> spel',
         'peak' => 'Som högst, :count spelare online',
         'players' => '<strong>:count</strong> registrerade spelare',
+        'title' => '',
 
         'slogan' => [
             'main' => 'gratis-att-spela rytm spel',

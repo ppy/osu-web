@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Seřazeno podle:',
-            'created_at' => 'čas vytvoření',
-            'timeline' => 'časová osa',
-            'updated_at' => 'poslední aktualizace',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Jsi si jist? Vytvořením nové připomínky se nominační proces resetuje.',
-            'disqualify' => '',
+            'disqualify' => 'Jste si jistý? Tohle odstraní beatmapu z kvalifikování a vyresetuje nominační proces.',
         ],
     ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => 'Již hrané',
             ],
             'sorting' => [
-                'title' => 'název',
-                'artist' => 'interpret',
-                'difficulty' => 'obtížnost',
-                'updated' => 'aktualizováno',
-                'ranked' => 'ohodnocené',
-                'rating' => 'hodnocení',
-                'plays' => 'hráno',
-                'relevance' => 'relevance',
-                'nominations' => 'nominace',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtrování podle :filters vyžaduje aktivní :link',
@@ -301,5 +301,9 @@ return [
         'B' => '',
         'C' => '',
         'D' => '',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

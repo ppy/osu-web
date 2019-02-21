@@ -43,14 +43,14 @@ return [
     ],
 
     'guest_button' => [
-        'new' => 'Kirjaudu kommentoidaksesi',
-        'reply' => 'Kirjaudu vastataksesi',
+        'new' => '',
+        'reply' => '',
     ],
 
     'index' => [
         'title' => [
             '_' => 'Kommentit :info',
-            'info' => 'Listat',
+            'info' => 'Listaus',
         ],
     ],
 
@@ -65,12 +65,5 @@ return [
             '_' => 'Kommentit :info',
             'info' => 'Tiedot',
         ],
-    ],
-
-    'sort' => [
-        '_' => '',
-        'new' => '',
-        'old' => '',
-        'top' => '',
     ],
 ];

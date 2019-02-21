@@ -48,16 +48,16 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'Oznacz forum jako przeczytane',
+        'forums' => 'Oznacz fora jako przeczytane',
+        'busy' => 'Oznaczanie jako przeczytane...',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => 'Edycja ankiety usunie dotychczasowe wyniki!',
 
         'actions' => [
-            'edit' => '',
+            'edit' => 'Edytuj ankietę',
         ],
     ],
 
@@ -71,6 +71,10 @@ return [
             'destroy' => 'Usuń post',
             'restore' => 'Przywróć post',
             'edit' => 'Edytuj post',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -167,8 +171,10 @@ return [
         'create' => [
             'create_poll' => 'Tworzenie ankiety',
 
+            'preview' => '',
+
             'create_poll_button' => [
-                'add' => 'Stwórz ankietę',
+                'add' => 'Utwórz ankietę',
                 'remove' => 'Anuluj tworzenie ankiety',
             ],
 
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'wyświetleń',
+            'feature_votes' => '',
             'replies' => 'odpowiedzi',
+            'views' => 'wyświetleń',
         ],
 
         'issue_tag_added' => [
@@ -266,6 +273,12 @@ return [
                 'current' => 'Priorytet: +:count',
                 'do' => 'Nagłośnij tę prośbę',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => '{0} brak głosów|{1} :count głos|[2,*] :count głosów',
                     'current' => 'Pozostało ci :votes głosów.',
@@ -288,8 +301,8 @@ return [
             'to_not_watching' => 'Nie subskrybuj',
             'to_watching' => 'Subskrybuj',
             'to_watching_mail' => 'Subskrybuj z powiadomieniami',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => 'Powiadomienia są włączone. Kliknij tutaj, aby je wyłączyć.',
+            'tooltip_mail_enable' => 'Powiadomienia są wyłączone. Kliknij tutaj, aby je włączyć.',
         ],
     ],
 ];

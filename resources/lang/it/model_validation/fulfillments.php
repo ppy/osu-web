@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'L\'username corrente (:current) non è lo stesso del cambio da annullare (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'La donazione è inferiore al minimo richiesto per regalare la tag da supporter (:actual > :expected)',
+        'insufficient_paid' => '',
     ],
 ];
