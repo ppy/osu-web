@@ -39,8 +39,6 @@ interface LineItem {
 }
 
 export class Store {
-  private static instance: Store;
-
   static init(sharedContext: Window) {
     sharedContext.Store = sharedContext.Store || new Store();
   }
