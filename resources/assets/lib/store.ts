@@ -42,7 +42,7 @@ export class Store {
   private static instance: Store;
 
   static init(sharedContext: Window) {
-    window.Store = window.Store || new Store();
+    sharedContext.Store = sharedContext.Store || new Store();
   }
 
   private constructor() {
