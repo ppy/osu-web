@@ -20,6 +20,11 @@
 
 return [
     'scores' => [
+        'button' => 'スコアを報告',
+        'title' => ':username のスコアを報告しますか？',
+    ],
+
+    'comment' => [
         'button' => '',
         'title' => '',
     ],

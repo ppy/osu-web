@@ -25,6 +25,6 @@ return [
 
     'item' => [
         'content' => 'Съдържание',
-        'modding_history_link' => 'Разгледай модинг хронологията',
+        'modding_history_link' => 'Разгледай modding историята',
     ],
 ];

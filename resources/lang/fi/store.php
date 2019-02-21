@@ -114,7 +114,7 @@ return [
             'delivered' => 'Toimitettu',
             'paid' => 'Maksettu',
             'processing' => '',
-            'shipped' => 'Kuljetuksessa',
+            'shipped' => '',
         ],
     ],
 

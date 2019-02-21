@@ -34,36 +34,46 @@ return [
         'discussion' => 'Συζήτηση',
 
         'details' => [
+            'approved' => 'έγινε approved στις ',
+            'favourite' => 'Προσθέστε αυτό το beatmapset στα αγαπημένα',
+            'favourited_count' => '+1 ακόμη| + :count ακόμη!',
+            'logged-out' => 'Πρέπει να συνδεθείτε πριν κάνετε λήψη κάποιου beatmap!',
+            'loved' => 'έγινε loved στις ',
             'mapped_by' => 'δημιουργήθηκε από :mapper',
+            'qualified' => 'έγινε qualified στις ',
+            'ranked' => 'έγινε ranked στις ',
             'submitted' => 'υποβλήθηκε στις ',
+            'unfavourite' => 'Αφαιρέστε αυτό το beatmapset από τα αγαπημένα',
             'updated' => 'τελευταία ενημέρωση στις ',
             'updated_timeago' => 'τελευταία ενημέρωση :timeago',
-            'ranked' => 'έγινε ranked στις ',
-            'approved' => 'έγινε approved στις ',
-            'qualified' => 'έγινε qualified στις ',
-            'loved' => 'έγινε loved στις ',
-            'logged-out' => 'Πρέπει να συνδεθείτε πριν κάνετε λήψη κάποιου beatmap!',
+
             'download' => [
                 '_' => 'Λήψη',
-                'video' => 'με Βίντεο',
-                'no-video' => 'χωρίς Βίντεο',
                 'direct' => '',
+                'no-video' => 'χωρίς Βίντεο',
+                'video' => 'με Βίντεο',
             ],
-            'favourite' => 'Προσθέστε αυτό το beatmapset στα αγαπημένα',
-            'unfavourite' => 'Αφαιρέστε αυτό το beatmapset από τα αγαπημένα',
-            'favourited_count' => '+1 ακόμη| + :count ακόμη!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Προωθήστε το map εαν σας άρεσε και βοηθήστε το να προοδεύσει στην <strong>Ranked</strong> κατάταξη.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Αυτό το map είναι προς το παρόν :status .',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'εκκρεμεί',
+                    'qualified' => 'πιστοποιημένο',
+                    'wip' => 'εργασία σε εξέλιξη',
                 ],
             ],
         ],

@@ -19,26 +19,26 @@
  */
 
 return [
-    'deleted' => '',
-    'edited' => '',
-    'empty' => '',
-    'replies' => '',
-    'show_replies' => '',
-    'title' => '',
+    'deleted' => 'διαγράφηκε',
+    'edited' => 'επεξεργάστηκε :timeago απο :user',
+    'empty' => 'Κανένα σχόλιο ακόμη.',
+    'replies' => 'Απαντήσεις',
+    'show_replies' => 'εμφάνιση απαντήσεων',
+    'title' => 'Σχόλια',
 
     'commentable_name' => [
-        'beatmapset' => '',
-        'build' => '',
-        'news_post' => '',
-        '_deleted' => '',
+        'beatmapset' => 'Beatmap',
+        'build' => 'Αλλαγές',
+        'news_post' => 'Ειδήσεις',
+        '_deleted' => 'Διαγραμμένο στοιχείο',
     ],
 
     'editor' => [
         'textarea_hint' => [
-            '_' => '',
-            'edit' => '',
-            'new' => '',
-            'reply' => '',
+            '_' => 'Πατήστε enter για να :action. Χρησιμοποιήστε shift + enter για νέα γραμμή.',
+            'edit' => 'αποθήκευση',
+            'new' => 'δημοσίευση',
+            'reply' => 'απάντηση',
         ],
     ],
 
@@ -49,28 +49,21 @@ return [
 
     'index' => [
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Σχόλια :info',
+            'info' => 'Καταχώρηση',
         ],
     ],
 
     'placeholder' => [
-        'edit' => '',
-        'new' => '',
-        'reply' => '',
+        'edit' => 'Επεξεργαστείτε το σχόλιο εδώ',
+        'new' => 'Πληκτρολόγηση σχολίου εδώ',
+        'reply' => 'Πληκτρολόγηση απάντησης εδώ',
     ],
 
     'show' => [
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Σχόλια :info',
+            'info' => 'Λεπτομέρειες',
         ],
-    ],
-
-    'sort' => [
-        '_' => '',
-        'new' => '',
-        'old' => '',
-        'top' => '',
     ],
 ];

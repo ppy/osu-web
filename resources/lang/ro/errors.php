@@ -34,9 +34,6 @@ return [
         'invalid_mode' => 'Mod specificat invalid.',
         'standard_converts_only' => 'Niciun scor avabil pentru modul solicitat pe această dificultate beatmap.',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'Ai prea multe beatmaps favorite! Te rugăm să mai elimini unul înainte de a continua.',
-    ],
     'logged_out' => 'Ai fost deconectat. Te rugăm să te conectezi și să incerci din nou.',
     'supporter_only' => 'Trebuie să fii un suporter pentru a folosi această funcție.',
     'no_restricted_access' => 'Nu ești capabil să efectuezi această acțiune în timp ce contul tău se află într-un statut restricționat.',

@@ -24,6 +24,7 @@ return [
         'online' => '<strong>:players</strong>명의 플레이어가 현재 접속 중이며, <strong>:games</strong> 개의 게임이 개설되어 있습니다.',
         'peak' => '최다 동시 접속자 수: :count명',
         'players' => '가입된 플레이어: <strong>:count</strong>명',
+        'title' => '',
 
         'slogan' => [
             'main' => '무료 리듬 게임',

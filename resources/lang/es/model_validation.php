@@ -68,6 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Eliminar la publicación de los metadatos del beatmapa no está permitido.',
             'beatmapset_post_no_edit' => 'Editar la publicación de los metadatos del mapa no está permitido.',
+            'only_quote' => '',
         ],
 
         'topic_poll' => [
@@ -97,6 +98,7 @@ return [
         'username_available_soon' => '¡Este nombre de usuario estará disponible para su uso en cualquier momento!',
         'username_invalid_characters' => 'El nombre de usuario solicitado tiene carácteres inválidos.',
         'username_in_use' => '¡El nombre de usuario ya está en uso!',
+        'username_locked' => '', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Por favor utiliza guiones bajos o espacios, ¡no ambas!',
         'username_no_spaces' => "¡El nombre no puede iniciar o finalizar con espacios!",
         'username_not_allowed' => 'Esta elección de nombre de usuario no está permitida.',

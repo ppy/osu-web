@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Lịch Sử Modding Của :user",
-        'title_compact' => '',
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Cuộc thảo luận gần đây',
@@ -167,11 +167,11 @@ return [
 
             'achievements' => [
                 'achieved-on' => 'Đạt được vào :date',
-                'locked' => '',
+                'locked' => 'Đã khóa',
                 'title' => 'Huy hiệu',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => 'bởi :artist',
                 'none' => 'Chưa có... gì cả.',
                 'title' => 'Beatmaps',
 
@@ -179,7 +179,7 @@ return [
                     'title' => 'Beatmap Yêu Thích',
                 ],
                 'graveyard' => [
-                    'title' => '',
+                    'title' => 'Graveyarded Beatmaps',
                 ],
                 'loved' => [
                     'title' => 'Loved Beatmaps',
@@ -197,7 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Lịch Sử Chơi',
-                    'count_label' => '',
+                    'count_label' => 'Lượt Chơi',
                 ],
                 'most_played' => [
                     'count' => 'số lần chơi',
@@ -209,7 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Lịch Sử Replay Được Xem',
-                    'count_label' => '',
+                    'count_label' => 'Replay Đã Xem',
                 ],
             ],
             'kudosu' => [
@@ -264,7 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Người dùng này chưa có huy chương nào cả. ;_;",
-                'recent' => '',
+                'recent' => 'Gần Nhất',
                 'title' => 'Huy Chương',
             ],
             'recent_activity' => [
@@ -274,7 +274,7 @@ return [
                 'download_replay' => 'Tải Xuống Replay',
                 'empty' => 'Chưa ghi nhận thành tích tuyệt vời nào. :(',
                 'not_ranked' => 'Chỉ có beatmap được xếp hạng mới có pp.',
-                'pp_weight' => '',
+                'pp_weight' => 'trọng số :percentage',
                 'title' => 'Xếp Hạng',
 
                 'best' => [
@@ -308,8 +308,8 @@ return [
         ],
 
         'header_title' => [
-            '_' => '',
-            'info' => '',
+            '_' => ':info Người Chơi',
+            'info' => 'Thông Tin',
         ],
 
         'info' => [
@@ -330,6 +330,7 @@ return [
             'title' => 'Không tìm thấy người dùng! ;_;',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>tôi!</strong> là một khu vực cá nhân có thể tùy chỉnh trong trang cá nhân của bạn.',
             'edit_big' => 'Chỉnh sửa tôi!',
             'placeholder' => 'Nhập nội dung trang vào đây',
@@ -341,16 +342,16 @@ return [
         ],
         'rank' => [
             'country' => 'Hạng quốc gia cho :mode',
-            'country_simple' => '',
+            'country_simple' => 'Hạng Quốc Gia',
             'global' => 'Hạng quốc tế cho :mode',
-            'global_simple' => '',
+            'global_simple' => 'Hạng Toàn Cầu',
         ],
         'stats' => [
             'hit_accuracy' => 'Độ Chính Xác',
             'level' => 'Level :level',
-            'level_progress' => '',
+            'level_progress' => 'Tiến độ qua level tiếp theo',
             'maximum_combo' => 'Combo Cao Nhất',
-            'medals' => '',
+            'medals' => 'Huy Chương',
             'play_count' => 'Số Lần Chơi',
             'play_time' => 'Tổng Thời Gian Chơi',
             'ranked_score' => 'Điểm Được Xếp Hạng',

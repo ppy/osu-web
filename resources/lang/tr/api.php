@@ -28,5 +28,9 @@ return [
 
     'scopes' => [
         'identify' => '',
+
+        'friends' => [
+            'read' => '',
+        ],
     ],
 ];

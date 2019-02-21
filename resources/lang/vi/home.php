@@ -24,6 +24,7 @@ return [
         'online' => '<strong>:players</strong> đang chơi trong <strong>:games</strong> games',
         'peak' => 'Đỉnh điểm, :count người chơi online',
         'players' => '<strong>:count</strong> người chơi đã đăng kí',
+        'title' => '',
 
         'slogan' => [
             'main' => 'game nhịp điệu free-to-win hay nhất',

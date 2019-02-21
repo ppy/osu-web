@@ -72,6 +72,10 @@ return [
             'restore' => 'Återställ inlägg',
             'edit' => 'Redigera inlägg',
         ],
+
+        'info' => [
+            'post_count' => '',
+        ],
     ],
 
     'search' => [
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Skapande av enkät',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Skapa en enkät',
                 'remove' => 'Avbryt skapande av enkät',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'visningar',
+            'feature_votes' => '',
             'replies' => 'svar',
+            'views' => 'visningar',
         ],
 
         'issue_tag_added' => [
@@ -265,6 +272,12 @@ return [
             'feature_vote' => [
                 'current' => 'Nuvarande Prioritet: +:count',
                 'do' => 'Uppmuntra denna begäran',
+
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
 
                 'user' => [
                     'count' => '{0} ingen röst|{1} :count röst|[2,*] :count röster',

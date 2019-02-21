@@ -20,6 +20,11 @@
 
 return [
     'scores' => [
+        'button' => '举报成绩',
+        'title' => '举报 :username 的成绩？',
+    ],
+
+    'comment' => [
         'button' => '',
         'title' => '',
     ],

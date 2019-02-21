@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Sortir berdasarkan:',
-            'created_at' => 'waktu pembuatan',
-            'timeline' => 'linimasa',
-            'updated_at' => 'pembaruan terakhir',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Apakah kamu yakin? Memposting masalah baru akan mengulang proses nominasi.',
-            'disqualify' => '',
+            'disqualify' => 'Apakah Anda yakin? Tindakan ini akan menghilangkan status Qualified beatmap ini dan mengulang proses nominasi dari awal.',
         ],
     ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => 'Telah Dimainkan',
             ],
             'sorting' => [
-                'title' => 'judul',
-                'artist' => 'artis',
-                'difficulty' => 'tingkat kesulitan',
-                'updated' => 'terbaru',
-                'ranked' => 'ranked',
-                'rating' => 'penilaian',
-                'plays' => 'jumlah dimainkan',
-                'relevance' => 'relevansi',
-                'nominations' => 'nominasi',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Penyaringan dengan :filters memerlukan :link aktif',
@@ -301,5 +301,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

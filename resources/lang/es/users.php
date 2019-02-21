@@ -330,6 +330,7 @@ return [
             'title' => '¡Usuario no encontrado! ;_;',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>¡yo!</strong> es una área personal y personalizable en tu perfil.',
             'edit_big' => 'Editar ¡yo!',
             'placeholder' => 'Escribe el contenido de la pagina aquí',

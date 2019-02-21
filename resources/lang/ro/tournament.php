@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => 'Nu sunt turnee care rulează în acest moment, te rugăm să verifici înapoi mai târziu!',
+        'registration_period' => 'Înscriere: :start la :end',
+
         'header' => [
             'subtitle' => 'O listă de turnee active și oficial recunoscute',
             'title' => 'Turnee comunitare',
         ],
-        'none_running' => 'Nu sunt turnee care rulează în acest moment, te rugăm să verifici înapoi mai târziu!',
-        'registration_period' => 'Înscriere: :start la :end',
+
+        'item' => [
+            'registered' => 'Jucători înregistrați',
+        ],
 
         'state' => [
             'current' => 'Turnee în desfășurare',

@@ -114,6 +114,7 @@ return [
             'delivered' => 'Consegnato',
             'paid' => 'Pagato',
             'processing' => 'In attesa di conferma',
+            'shipped' => '',
         ],
     ],
 

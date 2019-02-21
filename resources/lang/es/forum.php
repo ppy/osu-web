@@ -72,6 +72,10 @@ return [
             'restore' => 'Restaurar publicación',
             'edit' => 'Editar publicación',
         ],
+
+        'info' => [
+            'post_count' => '',
+        ],
     ],
 
     'search' => [
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Creación de encuestas',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Crear una encuesta',
                 'remove' => 'Cancelar creación de encuesta',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'vistas',
+            'feature_votes' => '',
             'replies' => 'respuestas',
+            'views' => 'vistas',
         ],
 
         'issue_tag_added' => [
@@ -265,6 +272,12 @@ return [
             'feature_vote' => [
                 'current' => 'Prioridad actual: +:count',
                 'do' => 'Apoyar esta solicitud',
+
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
 
                 'user' => [
                     'count' => '{0} cero votos|{1} :count voto|[2,*] :count votos',

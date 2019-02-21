@@ -24,6 +24,7 @@ return [
         'online' => '<strong>:players</strong> giocatori online ora in <strong>:games</strong> games',
         'peak' => 'Picco, :count utenti online',
         'players' => '<strong>:count</strong> utenti registrati',
+        'title' => '',
 
         'slogan' => [
             'main' => 'il miglior gioco di ritmo free-to-play',

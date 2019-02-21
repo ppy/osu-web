@@ -48,16 +48,16 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => '포럼을 읽음으로 표시',
+        'forums' => '포럼을 읽음으로 표시',
+        'busy' => '읽음으로 표시...',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => '투표를 수정하면 결과를 번복합니다!',
 
         'actions' => [
-            'edit' => '',
+            'edit' => '투표 수정',
         ],
     ],
 
@@ -71,6 +71,10 @@ return [
             'destroy' => '삭제',
             'restore' => '복원',
             'edit' => '수정',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => '투표 만들기',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => '투표 만들기',
                 'remove' => '투표 생성 취소',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => '조회수',
+            'feature_votes' => '',
             'replies' => '답글',
+            'views' => '조회수',
         ],
 
         'issue_tag_added' => [
@@ -266,6 +273,12 @@ return [
                 'current' => '현재 우선도: +:count',
                 'do' => '이 요청 옹호',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => '{0} 표 없음|{1,*} :count 표',
                     'current' => '투표 횟수가 :votes회 남았습니다.',
@@ -288,8 +301,8 @@ return [
             'to_not_watching' => '즐겨찾기 등록 안됨',
             'to_watching' => '즐겨찾기',
             'to_watching_mail' => '알림과 함께 즐겨찾기',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => '알림이 활성화되었습니다. 눌러서 비활성화하세요.',
+            'tooltip_mail_enable' => '알림이 비활성화되었습니다. 눌러서 활성화하세요.',
         ],
     ],
 ];

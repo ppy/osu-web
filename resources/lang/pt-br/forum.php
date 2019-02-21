@@ -48,22 +48,22 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'Marcar fórum como lido',
+        'forums' => 'Marcar fóruns como lido',
+        'busy' => 'Marcando como lido...',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => 'Editar uma enquete irá remover os resultados atuais!',
 
         'actions' => [
-            'edit' => '',
+            'edit' => 'Editar enquete',
         ],
     ],
 
     'post' => [
-        'confirm_destroy' => 'Excluir mesmo a publicação?',
-        'confirm_restore' => 'Restaurar mesmo a publicação?',
+        'confirm_destroy' => 'Deseja mesmo a excluir publicação?',
+        'confirm_restore' => 'Deseja mesmo restaurar a publicação?',
         'edited' => 'Última edição por :user :when, editado :count vezes no total.',
         'posted_at' => 'publicado :when',
 
@@ -71,6 +71,10 @@ return [
             'destroy' => 'Excluir publicação',
             'restore' => 'Restaurar publicação',
             'edit' => 'Editar publicação',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Criação de Enquete',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Criar enquete',
                 'remove' => 'Cancelar criação de enquete',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'visualizações',
+            'feature_votes' => '',
             'replies' => 'respostas',
+            'views' => 'visualizações',
         ],
 
         'issue_tag_added' => [
@@ -266,6 +273,12 @@ return [
                 'current' => 'Prioridade Atual: +:count',
                 'do' => 'Promover este pedido',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => '{0} sem votos|{1} :count voto|[2,*] :count votos',
                     'current' => 'Você tem :votes restantes.',
@@ -288,8 +301,8 @@ return [
             'to_not_watching' => 'Não marcada',
             'to_watching' => 'Marcar',
             'to_watching_mail' => 'Marcar com notificação',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => 'Notificação está habilitada. Clique para desativar',
+            'tooltip_mail_enable' => 'Notificação está desativada. Clique para habilitar',
         ],
     ],
 ];

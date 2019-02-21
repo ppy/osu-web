@@ -68,6 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => '譜面のmetadata投稿を削除するのは許可されていません。',
             'beatmapset_post_no_edit' => '譜面のmetadata投稿を編集するのは許可されていません。',
+            'only_quote' => '',
         ],
 
         'topic_poll' => [
@@ -97,6 +98,7 @@ return [
         'username_available_soon' => 'このユーザーネームはまもなく使用可能になります。',
         'username_invalid_characters' => '指定のユーザーネームに無効の文字が含まれています。',
         'username_in_use' => '既に使用されているユーザーネームです！',
+        'username_locked' => '', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'アンダーバーかスペースのどちらかに統一してください。',
         'username_no_spaces' => "ユーザーネームの端にスペースは使用できません。",
         'username_not_allowed' => 'このユーザーネームに使用は許可されていません。',

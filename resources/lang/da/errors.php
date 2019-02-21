@@ -22,7 +22,7 @@ return [
     'codes' => [
         'http-401' => 'Log venligst ind for at fortsætte.',
         'http-403' => 'Adgang nægtet.',
-        'http-404' => '',
+        'http-404' => 'Ikke fundet.',
         'http-429' => 'For mange forsøg. Prøv igen senere.',
     ],
     'account' => [
@@ -33,9 +33,6 @@ return [
     'beatmaps' => [
         'invalid_mode' => 'Ugyldig spiltilstand er specificeret.',
         'standard_converts_only' => 'Ingen scores er tilgængelige for den anmodede spiltilstand på denne beatmap sværhedsgrad.',
-    ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'Du har for mange favoritter! Fjern venligst en favorit for at tilføje en ny.',
     ],
     'logged_out' => 'Du er blevet logget ud. Log venligst ind og prøv igen.',
     'supporter_only' => 'Du skal være supporter for at udføre denne handling.',

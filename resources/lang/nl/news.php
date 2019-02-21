@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'lijst',
-        'news-show' => 'bericht',
-    ],
-
     'index' => [
-        'title' => 'osu!nieuws',
+        'title_page' => '',
 
         'nav' => [
             'newer' => 'Nieuwere berichten',
             'older' => 'Oudere berichten',
         ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'show' => [
-        'posted' => 'geplaatst :time',
+        'by' => '',
 
         'nav' => [
             'newer' => 'Nieuwer bericht',
             'older' => 'Ouder bericht',
+        ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
         ],
     ],
 

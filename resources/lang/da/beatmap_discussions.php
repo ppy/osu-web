@@ -36,9 +36,9 @@ return [
         'title' => 'Beatmap Diskussioner',
 
         'form' => [
-            '_' => '',
+            '_' => 'Søg',
             'deleted' => 'Inkluder slettede diskussioner',
-            'types' => '',
+            'types' => 'Meddelelsestyper',
             'username' => 'Brugernavn',
 
             'user' => [
@@ -49,9 +49,9 @@ return [
     ],
 
     'item' => [
-        'created_at' => '',
+        'created_at' => 'Opslag dato',
         'deleted_at' => 'Sletnings dato',
-        'message_type' => '',
+        'message_type' => 'Skriv',
         'permalink' => 'Permalink',
     ],
 
