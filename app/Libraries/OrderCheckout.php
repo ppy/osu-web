@@ -91,7 +91,7 @@ class OrderCheckout
             return $allowed;
         }
 
-        return ['free'];
+        return [Order::PROVIDER_FREE];
     }
 
     /**
