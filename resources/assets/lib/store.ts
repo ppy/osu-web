@@ -41,12 +41,8 @@ interface LineItem {
 export class Store {
   private static instance: Store;
 
-  static init() {
-    if (this.instance == null) {
-      this.instance = new Store();
-    }
-
-    return this.instance;
+  static init(sharedContext: Window) {
+    window.Store = window.Store || new Store();
   }
 
   private constructor() {

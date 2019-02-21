@@ -18,4 +18,4 @@
 
 import { Store } from 'store';
 
-window.Store = window.Store || Store.init();
+Store.init(window);
