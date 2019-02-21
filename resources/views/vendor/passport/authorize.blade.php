@@ -102,7 +102,6 @@
                     'method' => 'POST',
                 ]) !!}
                     {!! csrf_field() !!}
-                    {!! method_field('DELETE') !!}
                     <input type="hidden" name="state" value="{{ $request->state }}" />
                     <input type="hidden" name="state" value="{{ $client->id }}" />
 
