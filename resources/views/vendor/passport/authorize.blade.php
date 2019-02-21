@@ -102,7 +102,7 @@
                     'method' => 'POST',
                 ]) !!}
                     <input type="hidden" name="state" value="{{ $request->state }}" />
-                    <input type="hidden" name="state" value="{{ $client->id }}" />
+                    <input type="hidden" name="client_id" value="{{ $client->id }}" />
 
                     <button class="oauth-form__button">
                         {{ trans('oauth.authorise.authorise') }}
@@ -114,7 +114,7 @@
                     'method' => 'DELETE',
                 ]) !!}
                     <input type="hidden" name="state" value="{{ $request->state }}" />
-                    <input type="hidden" name="state" value="{{ $client->id }}" />
+                    <input type="hidden" name="client_id" value="{{ $client->id }}" />
 
                     <button
                         class="oauth-form__button oauth-form__button--cancel"
