@@ -104,6 +104,7 @@ return [
         'ja',
         'ko',
         'nl',
+        'no',
         'pl',
         'pt',
         'pt-br',
