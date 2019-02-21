@@ -109,7 +109,7 @@ class LocaleMeta
         ],
         'sk' => [
             'name' => 'Slovenčina',
-            'flag' => 'SK'
+            'flag' => 'SK',
         ],
         'sv' => [
             'name' => 'Svenska',
