@@ -89,6 +89,7 @@ return [
         'en',
 
         // sort by name
+        'be',
         'bg',
         'cs',
         'da',
@@ -103,6 +104,7 @@ return [
         'ja',
         'ko',
         'nl',
+        'no',
         'pl',
         'pt',
         'pt-br',
