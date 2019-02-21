@@ -12,6 +12,7 @@ disabled:
 
 finder:
   not-path:
+    - resources/lang/be
     - resources/lang/bg
     - resources/lang/cs
     - resources/lang/da
