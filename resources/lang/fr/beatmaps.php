@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Trier par:',
-            'created_at' => 'Date de création',
-            'timeline' => 'Chronologie',
-            'updated_at' => 'Dernière mise à jour',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Êtes-vous sûr ? Poster un nouveau problème va réinitialiser le processus de nomination.',
-            'disqualify' => '',
+            'disqualify' => 'Êtes-vous sûr? Cela va supprimer la beatmap de la qualification et réinitialiser le processus de nomination.',
         ],
     ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => 'Jouée',
             ],
             'sorting' => [
-                'title' => 'titre',
-                'artist' => 'artiste',
-                'difficulty' => 'difficulté',
-                'updated' => 'mise à jour',
-                'ranked' => 'classée',
-                'rating' => 'évaluation',
-                'plays' => 'parties',
-                'relevance' => 'pertinence',
-                'nominations' => 'nominations',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Le filtrage par :filters requiert un :link actif',
@@ -301,5 +301,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

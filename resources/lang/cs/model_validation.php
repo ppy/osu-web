@@ -68,11 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Mazání metadat beatmapy není povoleno.',
             'beatmapset_post_no_edit' => 'Editace metadat beatmapy není povoleno.',
+            'only_quote' => '',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Duplikované možnosti nejsou povoleny.',
-            'grace_period_expired' => '',
+            'grace_period_expired' => 'Nemůžete upravovat hlasování po více jak :limit hodinách',
             'invalid_max_options' => 'Možnost jednoho uživatele by neměla přesáhnout hodnotu povolených možností.',
             'minimum_one_selection' => 'Minimálně jedna možnost na uživatele je vyžadována.',
             'minimum_two_options' => 'Jsou vyžadovány alespoň dvě možnosti.',
@@ -97,6 +98,7 @@ return [
         'username_available_soon' => 'Toto uživatelské jméno bude k dispozici pro použití každou chvíli!',
         'username_invalid_characters' => 'Žádané uživatelské jméno obsahuje neplatné znaky.',
         'username_in_use' => 'Uživatelské jméno je již používáno!',
+        'username_locked' => '', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Použijte prosím podtržítka nebo mezery, ne obojí!',
         'username_no_spaces' => "Uživatelské jméno nesmí začínat nebo končit mezerou!",
         'username_not_allowed' => 'Toto uživatelské jméno není povoleno.',
@@ -118,6 +120,6 @@ return [
     ],
 
     'user_report' => [
-        'self' => "",
+        'self' => "Nemůžete nahlásit sám sebe!",
     ],
 ];

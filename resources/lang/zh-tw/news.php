@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => '列表',
-        'news-show' => '最新消息',
-    ],
-
     'index' => [
-        'title' => 'osu!最新消息',
+        'title_page' => '',
 
         'nav' => [
             'newer' => '下一條新消息',
             'older' => '上一條新消息',
         ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'show' => [
-        'posted' => ':time 發佈',
+        'by' => '',
 
         'nav' => [
             'newer' => '下一條新消息',
             'older' => '上一條新消息',
+        ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
         ],
     ],
 

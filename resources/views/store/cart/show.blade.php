@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('store.layout')
 
 @php
     // always ignore empty keys.
@@ -43,7 +43,10 @@
 
                 <ul class="table cart-items">
                     @foreach($order->items as $i)
-                        <li class="store-order-item">
+                        <li class="js-store-order-item store-order-item"
+                            data-shopify-id="{{ $i->product->shopify_id }}"
+                            data-quantity="{{ $i->quantity }}"
+                        >
                             <div class="store-order-item__line">
                                 <span class="store-order-item__name">
                                     {{ $i->getDisplayName() }}
@@ -113,9 +116,14 @@
                     </div>
                 @else
                     <div class="big-button">
-                        <a href="{{ route('store.checkout.show', $order) }}" class="btn-osu btn-osu-default" name="checkout">
+                        <button
+                            class="js-store-checkout btn-osu btn-osu-default"
+                            data-order-id="{{ $order->order_id }}"
+                            data-shopify="{{ $order->isShouldShopify() }}"
+                            disabled
+                        >
                             {{ trans('store.cart.checkout' ) }}
-                        </a>
+                        </button>
                     </div>
                 @endif
             </div>

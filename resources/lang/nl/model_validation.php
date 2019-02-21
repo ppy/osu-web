@@ -68,6 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Beatmap metadata post verwijderen is niet toegestaan.',
             'beatmapset_post_no_edit' => 'Beatmap metadata post bewerken is niet toegestaan.',
+            'only_quote' => '',
         ],
 
         'topic_poll' => [
@@ -97,6 +98,7 @@ return [
         'username_available_soon' => 'Deze gebruikersnaam kan elk moment beschikbaar worden!',
         'username_invalid_characters' => 'De opgevraagde gebruikersnaam bevat ongeldige tekens.',
         'username_in_use' => 'Gebruikersnaam is al in gebruik!',
+        'username_locked' => '', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Gebruik oftewel underscores of spaties, niet beide!',
         'username_no_spaces' => "Gebruikersnaam kan niet beginnen of eindigen met spaties!",
         'username_not_allowed' => 'Deze gebruikersnaam is niet toegestaan.',

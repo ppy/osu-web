@@ -23,7 +23,7 @@ return [
     'generic' => 'Perbaikan bug dan perkembangan kecil',
 
     'build' => [
-        'title' => 'terjadi perubahan di :version',
+        'title' => 'daftar perubahan pada :version',
     ],
 
     'builds' => [

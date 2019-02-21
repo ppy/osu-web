@@ -30,14 +30,17 @@ return [
     ],
 
     'buttons' => [
-        'back_to_top' => '',
+        'admin' => '',
         'back_to_previous' => '',
+        'back_to_top' => '',
         'cancel' => 'Avbryt',
         'change' => 'ändra',
         'click_to_copy' => 'klicka för att kopiera till urklipp',
         'click_to_copy_copied' => 'kopierad till urklipp!',
+        'collapse' => '',
         'delete' => 'Radera',
         'edit' => '',
+        'expand' => '',
         'hide' => 'dölj',
         'permalink' => 'permalänk',
         'permalink_copied' => 'länk kopierad',
@@ -53,6 +56,7 @@ return [
         'see_more' => 'se mer',
         'show' => 'visa',
         'show_more' => 'visa mer',
+        'show_more_options' => '',
         'upload_image' => 'ladda upp bild',
     ],
 

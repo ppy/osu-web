@@ -27,7 +27,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Estas são as discussões do beatmap que estás a seguir. Serás notificado quando houver novas publicações ou actualizações.',
+        'description' => 'Estas são as discussões do beatmap que estás a seguir. Serás notificado quando houver novas publicações ou atualizações.',
         'title_compact' => 'lista de observação de modificações',
         'title_main' => 'Lista de Observação de Modificações',
 
@@ -40,7 +40,7 @@ return [
     ],
 
     'mail' => [
-        'update' => 'Nova actualização para o beatmap ":title"',
+        'update' => 'Nova atualização para o beatmap ":title"',
     ],
 
     'status' => [

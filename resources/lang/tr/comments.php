@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => 'Yorum yapmak için giriş yapınız',
-        'reply' => 'Yanıt yapmak için giriş yapınız',
+        'new' => '',
+        'reply' => '',
     ],
 
     'index' => [
@@ -65,12 +65,5 @@ return [
             '_' => 'Yorumlar :info',
             'info' => 'Ayrıntı',
         ],
-    ],
-
-    'sort' => [
-        '_' => '',
-        'new' => '',
-        'old' => '',
-        'top' => '',
     ],
 ];

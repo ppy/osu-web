@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Cronologia Modding di :user",
-        'title_compact' => '',
+        'title_compact' => 'Moderazione',
 
         'discussions' => [
             'title_recent' => 'Discussioni aperte di recente',
@@ -51,7 +51,7 @@ return [
         'blocked_count' => 'utenti bloccati (:count)',
         'hide_profile' => 'nascondi profilo',
         'not_blocked' => 'Questo utente non è bloccato.',
-        'show_profile' => 'visualizza profilo',
+        'show_profile' => 'Visualizza profilo',
         'too_many' => 'Limite blocchi raggiunto.',
         'button' => [
             'block' => 'blocca',
@@ -112,10 +112,10 @@ return [
         ],
 
         'options' => [
-            'cheating' => 'Gioco sporco / Cheating',
+            'cheating' => 'Gioco scorretto / Cheating',
             'insults' => 'Insulti a me / altri',
             'spam' => 'Spamming',
-            'unwanted_content' => 'Condivisione di contenuti inappropiati',
+            'unwanted_content' => 'Condivisione di contenuti inappropriati',
             'nonsense' => 'Senza senso',
             'other' => 'Altro (scrivi sotto)',
         ],
@@ -130,7 +130,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
         'change_avatar' => 'cambia il tuo avatar!',
         'first_members' => 'Qui dall\'inizio',
         'is_developer' => 'sviluppatore di osu!',
-        'is_supporter' => 'sostenitore di osu!',
+        'is_supporter' => 'supporter di osu!',
         'joined_at' => 'Registrato :date',
         'lastvisit' => 'Ultimo visto :date',
         'missingtext' => 'Potresti aver fatto un\'errore di battitura! (o l\'utente potrebbe essere stato bannato)',
@@ -168,11 +168,11 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
 
             'achievements' => [
                 'achieved-on' => 'Raggiunto il :date',
-                'locked' => '',
+                'locked' => 'Bloccato',
                 'title' => 'Obiettivi',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => 'di :artist',
                 'none' => 'Nessuna... per ora.',
                 'title' => 'Beatmap',
 
@@ -189,7 +189,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                     'title' => 'Beatmap Classificate e Approvate',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmap In Attesa',
+                    'title' => 'Beatmap In Attesa (:count)',
                 ],
             ],
             'historical' => [
@@ -198,7 +198,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
 
                 'monthly_playcounts' => [
                     'title' => 'Cronologia Partite',
-                    'count_label' => '',
+                    'count_label' => 'Giocate',
                 ],
                 'most_played' => [
                     'count' => 'volte giocata',
@@ -210,7 +210,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Cronologia Replay Guardati',
-                    'count_label' => '',
+                    'count_label' => 'Replay guardati',
                 ],
             ],
             'kudosu' => [
@@ -265,7 +265,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
             ],
             'medals' => [
                 'empty' => "Questo utente non ne ha ricevuti ancora. ;_;",
-                'recent' => '',
+                'recent' => 'Più recenti',
                 'title' => 'Medaglie',
             ],
             'recent_activity' => [
@@ -275,7 +275,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                 'download_replay' => 'Scarica Replay',
                 'empty' => 'Ancora nessuna prestazione impressionante. :(',
                 'not_ranked' => 'Solo le mappe classificate danno pp.',
-                'pp_weight' => '',
+                'pp_weight' => 'valutata :percentage',
                 'title' => 'Rank',
 
                 'best' => [
@@ -309,8 +309,8 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
         ],
 
         'header_title' => [
-            '_' => '',
-            'info' => '',
+            '_' => ':info giocatore',
+            'info' => 'Informazioni',
         ],
 
         'info' => [
@@ -331,6 +331,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
             'title' => 'Utente non trovato! ;_;',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>io!</strong> è un\'area personale personalizzabile nella tua pagina del profilo.',
             'edit_big' => 'Modificami!',
             'placeholder' => 'Scrivi il contenuto della pagina qui',
@@ -342,16 +343,16 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
         ],
         'rank' => [
             'country' => 'Rank del paese per :mode',
-            'country_simple' => '',
+            'country_simple' => 'Classifica del Paese',
             'global' => 'Rank globale :mode',
-            'global_simple' => '',
+            'global_simple' => 'Classifica globale',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisione dei colpi',
             'level' => 'Livello :level',
-            'level_progress' => '',
+            'level_progress' => 'Avanzamento al livello successivo',
             'maximum_combo' => 'Combo Massima',
-            'medals' => '',
+            'medals' => 'Medaglie',
             'play_count' => 'Partite giocate',
             'play_time' => 'Tempo totale di gioco',
             'ranked_score' => 'Punteggio Rankato',

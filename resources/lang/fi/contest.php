@@ -26,8 +26,15 @@ return [
     'voting' => [
         'over' => 'Äänestys tälle kilpailulle on päättynyt',
         'login_required' => 'Kirjaudu sisään äänestääksesi.',
+
         'best_of' => [
             'none_played' => "Näyttäisi siltä, ettet pelannut tähän kilpailuun kelpuutettuja karttoja!",
+        ],
+
+        'button' => [
+            'add' => '',
+            'remove' => '',
+            'used_up' => '',
         ],
     ],
     'entry' => [

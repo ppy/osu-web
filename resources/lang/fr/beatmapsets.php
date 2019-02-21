@@ -34,36 +34,46 @@ return [
         'discussion' => 'Discussion',
 
         'details' => [
+            'approved' => 'approuvée le ',
+            'favourite' => 'Ajouter ce beatmapset aux favoris',
+            'favourited_count' => '+ 1 autre!|+ :count autres!',
+            'logged-out' => 'Vous devez vous connecter pour pouvoir télécharger des beatmaps !',
+            'loved' => 'loved le ',
             'mapped_by' => 'mappée par :mapper',
+            'qualified' => 'qualifiée le ',
+            'ranked' => 'classée le ',
             'submitted' => 'envoyée le ',
+            'unfavourite' => 'Retirer ce beatmapset des favoris',
             'updated' => 'dernière mise à jour le ',
             'updated_timeago' => 'dernière mise à jour :timeago',
-            'ranked' => 'classée le ',
-            'approved' => 'approuvée le ',
-            'qualified' => 'qualifiée le ',
-            'loved' => 'loved le ',
-            'logged-out' => 'Vous devez vous connecter pour pouvoir télécharger des beatmaps !',
+
             'download' => [
                 '_' => 'télécharger',
-                'video' => 'avec Vidéo',
-                'no-video' => 'sans Vidéo',
                 'direct' => 'osu!direct',
+                'no-video' => 'sans Vidéo',
+                'video' => 'avec Vidéo',
             ],
-            'favourite' => 'Ajouter ce beatmapset aux favoris',
-            'unfavourite' => 'Retirer ce beatmapset des favoris',
-            'favourited_count' => '+ 1 autre!|+ :count autres!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Hype cette map si vous avez aimé la jouer afin qu’elle progresse au statut de <strong>Classée</strong>.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Cette map est actuellement :status.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'en attente',
+                    'qualified' => 'qualifiée',
+                    'wip' => 'travail en cours',
                 ],
             ],
         ],

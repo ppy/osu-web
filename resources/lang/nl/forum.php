@@ -72,6 +72,10 @@ return [
             'restore' => 'Herstel post',
             'edit' => 'Bewerk post',
         ],
+
+        'info' => [
+            'post_count' => '',
+        ],
     ],
 
     'search' => [
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Peiling Aanmaken',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Maak een Peiling aan',
                 'remove' => 'Annuleer aanmaken van peiling',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'keer bekeken',
+            'feature_votes' => '',
             'replies' => 'keer beantwoordt',
+            'views' => 'keer bekeken',
         ],
 
         'issue_tag_added' => [
@@ -265,6 +272,12 @@ return [
             'feature_vote' => [
                 'current' => 'Prioriteit: +:count',
                 'do' => 'Promoot dit verzoek',
+
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
 
                 'user' => [
                     'count' => '{0} geen stemmen|{1} :count stem|[2,*] :count stemmen',

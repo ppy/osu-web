@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'lista',
-        'news-show' => 'wiadomość',
-    ],
-
     'index' => [
-        'title' => 'Wiadomości ze świata osu!',
+        'title_page' => '',
 
         'nav' => [
             'newer' => 'Nowsze wiadomości',
             'older' => 'Starsze wiadomości',
         ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'show' => [
-        'posted' => 'opublikowane :time',
+        'by' => '',
 
         'nav' => [
             'newer' => 'Nowsza wiadomość',
             'older' => 'Starsza wiadomość',
+        ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
         ],
     ],
 

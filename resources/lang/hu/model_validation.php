@@ -68,11 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Beatmap metaadat törlése nem engedélyezett.',
             'beatmapset_post_no_edit' => 'Beatmap metaadat poszt szerkesztése nem engedélyezett.',
+            'only_quote' => '',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Duplikálás nem engedélyezett.',
-            'grace_period_expired' => '',
+            'grace_period_expired' => 'Nem lehet szerkeszteni a szavazást több mint :limit óra után',
             'invalid_max_options' => 'Felhasználónkénti opciók száma nem haladhatja meg az elérhető opciók mennyiségét.',
             'minimum_one_selection' => 'Minimum egy opció kell felhasználónként.',
             'minimum_two_options' => 'Legalább 2 választási lehetőség kell.',
@@ -97,6 +98,7 @@ return [
         'username_available_soon' => 'Ez a felhasználónév bármelyik pillanatban elérhető lehet!',
         'username_invalid_characters' => 'A kért felhasználónév nem felhasználható karaktereket tartalmaz.',
         'username_in_use' => 'Foglalt felhasználónév!',
+        'username_locked' => '', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Vagy alsóvonalat használj, vagy space gomb lenyomásával üres teret, nem menő mind a kettő!',
         'username_no_spaces' => "A felhasználóneved nem kezdődhet és nem is végződhet üres hellyel!",
         'username_not_allowed' => 'Ez a felhasználónév nem engedett.',
@@ -118,6 +120,6 @@ return [
     ],
 
     'user_report' => [
-        'self' => "",
+        'self' => "Nem jelentheted magadat!",
     ],
 ];

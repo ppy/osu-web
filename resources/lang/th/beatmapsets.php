@@ -34,24 +34,34 @@ return [
         'discussion' => 'การสนทนา',
 
         'details' => [
+            'approved' => 'อนุมัติเมื่อ ',
+            'favourite' => 'Favourite beatmapset นี้',
+            'favourited_count' => '+1 ผู้อื่น| + :count ผู้อื่น',
+            'logged-out' => 'คุณต้องเข้าสู่ระบบก่อนที่จะดาวน์โหลด beatmaps ใด ๆ',
+            'loved' => 'loved เมื่อ ',
             'mapped_by' => 'แมพโดย :mapper',
+            'qualified' => 'ผ่านเกณฑ์เมื่อ ',
+            'ranked' => 'จัดอันดับเมื่อ ',
             'submitted' => 'ส่งเมื่อ ',
+            'unfavourite' => 'เลิก Favourite beatmapset นี้',
             'updated' => 'แก้ไขล่าสุดเมื่อ ',
             'updated_timeago' => 'อัพเดทล่าสุดเมื่อ :timeago',
-            'ranked' => 'จัดอันดับเมื่อ ',
-            'approved' => 'อนุมัติเมื่อ ',
-            'qualified' => 'ผ่านเกณฑ์เมื่อ ',
-            'loved' => 'loved เมื่อ ',
-            'logged-out' => 'คุณต้องเข้าสู่ระบบก่อนที่จะดาวน์โหลด beatmaps ใด ๆ',
+
             'download' => [
                 '_' => 'ดาวน์โหลด',
-                'video' => 'พร้อม Video',
-                'no-video' => 'ไม่พร้อม Video',
                 'direct' => 'osu!direct',
+                'no-video' => 'ไม่พร้อม Video',
+                'video' => 'พร้อม Video',
             ],
-            'favourite' => 'Favourite beatmapset นี้',
-            'unfavourite' => 'เลิก Favourite beatmapset นี้',
-            'favourited_count' => '+1 ผู้อื่น| + :count ผู้อื่น',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
 
         'hype' => [

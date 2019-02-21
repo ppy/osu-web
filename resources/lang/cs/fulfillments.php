@@ -24,7 +24,7 @@ return [
             'subject' => 'Díky, osu! tě <3luje',
         ],
         'supporter_gift' => [
-            'subject' => 'Máš štítek podporovatele!',
+            'subject' => '',
         ],
     ],
 ];

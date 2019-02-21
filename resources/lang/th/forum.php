@@ -72,6 +72,10 @@ return [
             'restore' => 'Restore post',
             'edit' => 'Edit post',
         ],
+
+        'info' => [
+            'post_count' => '',
+        ],
     ],
 
     'search' => [
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Poll Creation',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Create a poll',
                 'remove' => 'Cancel creating a poll',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'views',
+            'feature_votes' => '',
             'replies' => 'replies',
+            'views' => 'views',
         ],
 
         'issue_tag_added' => [
@@ -265,6 +272,12 @@ return [
             'feature_vote' => [
                 'current' => 'Current Priority: +:count',
                 'do' => 'Promote this request',
+
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
 
                 'user' => [
                     'count' => '{0} no vote|{1} :count vote|[2,*] :count votes',

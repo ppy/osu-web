@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => '並び替え順:',
-            'created_at' => '投稿日時',
-            'timeline' => 'タイムライン',
-            'updated_at' => '更新日時',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -194,15 +194,15 @@ return [
                 'played' => 'プレイ済み',
             ],
             'sorting' => [
-                'title' => '曲名',
-                'artist' => 'アーティスト',
-                'difficulty' => '難易度',
-                'updated' => '更新日時',
-                'ranked' => 'ranked日時',
-                'rating' => '評価',
-                'plays' => 'プレイ数',
-                'relevance' => '関連性',
-                'nominations' => 'ノミネーション',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => ':filters による絞り込みには有効な:link が必要です',
@@ -301,5 +301,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

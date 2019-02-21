@@ -287,6 +287,10 @@ Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payme
         Route::get('completed', 'CentiliController@completed')->name('completed');
         Route::get('failed', 'CentiliController@failed')->name('failed');
     });
+
+    Route::group(['as' => 'shopify.', 'prefix' => 'shopify'], function () {
+        Route::post('callback', 'ShopifyController@callback')->name('callback');
+    });
 });
 
 // API

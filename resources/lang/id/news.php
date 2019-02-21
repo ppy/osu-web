@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'daftar',
-        'news-show' => 'postingan',
-    ],
-
     'index' => [
-        'title' => 'osu!news',
+        'title_page' => '',
 
         'nav' => [
             'newer' => 'Postingan baru',
             'older' => 'Postingan lama',
         ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'show' => [
-        'posted' => 'Diposting :time',
+        'by' => '',
 
         'nav' => [
             'newer' => 'Postingan baru',
             'older' => 'Postingan lama',
+        ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
         ],
     ],
 

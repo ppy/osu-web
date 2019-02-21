@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => 'Đăng nhập để bình luận',
-        'reply' => 'Đăng nhập để trả lời',
+        'new' => '',
+        'reply' => '',
     ],
 
     'index' => [
@@ -65,12 +65,5 @@ return [
             '_' => 'Bình luận :info',
             'info' => 'Chi tiết',
         ],
-    ],
-
-    'sort' => [
-        '_' => '',
-        'new' => '',
-        'old' => '',
-        'top' => '',
     ],
 ];
