@@ -18,9 +18,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'insufficient_stock' => 'There is not enough of this item left!',
-    'must_separate' => 'This item has to be checked out separately from other items',
-    'not_available' => 'This item is not available.',
-    'too_many' => 'You can only order :count of this item per order.',
-];
+namespace Tests;
+
+use App\Libraries\Payments\ShopifySignature;
+use Config;
+use TestCase;
+
+class ShopifySignatureTest extends TestCase
+{
+    public function setUp()
+    {
+        parent::setUp();
+        Config::set('payments.shopify.webhook_key', 'magic');
+    }
+
+    public function testCalculateSignature()
+    {
+        static $expected = 'Syw+KdQu/p0kqe9g2ttEdLFCRDb13IKygoZhQO4KO1w=';
+        $signature = ShopifySignature::calculateSignature(file_get_contents(__DIR__.'/content.json'));
+
+        $this->assertSame($expected, $signature);
+    }
+}

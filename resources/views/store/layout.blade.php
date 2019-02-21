@@ -15,16 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('store/layout')
+@extends('master')
 
-@section('content')
-    @include('store.header')
-
-    <div class="osu-layout__row osu-layout__row--with-gutter">
-        <div class="osu-layout__col-container">
-            @foreach($products as $product)
-                @include('store._product', ['product' => $product])
-            @endforeach
-        </div>
-    </div>
+@section('script')
+    @parent
+    @include('layout._extra_js', ['src' => 'js/store-bootstrap.js'])
 @endsection

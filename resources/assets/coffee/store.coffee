@@ -35,7 +35,6 @@ $(document).on 'click', '#new-address-switch a', (e) ->
 checkCheckoutConfirmations = ->
   $checkboxes = $('.js-checkout-confirmation-step')
   $checkboxesChecked = $checkboxes.filter(':checked')
-  $('#checkout-with-paypal').toggleClass('disabled', $checkboxesChecked.length < $checkboxes.length)
 
 $(document).on 'turbolinks:load', checkCheckoutConfirmations
 $(document).on 'change', '.js-checkout-confirmation-step', checkCheckoutConfirmations

@@ -48,7 +48,7 @@ class CheckoutController extends Controller
     public function show($id)
     {
         $order = $this->orderForCheckout($id);
-        if ($order === null || $order->isEmpty()) {
+        if ($order === null || $order->isEmpty() || $order->isShouldShopify()) {
             return ujs_redirect(route('store.cart.show'));
         }
 
@@ -61,13 +61,14 @@ class CheckoutController extends Controller
         // an array and will cause issues in shared views.
         $validationErrors = session('checkout.error.errors') ?? $checkout->validate();
 
-        return view('store.checkout', compact('order', 'addresses', 'checkout', 'validationErrors'));
+        return view('store.checkout.show', compact('order', 'addresses', 'checkout', 'validationErrors'));
     }
 
     public function store()
     {
         $orderId = get_int(request('orderId'));
         $provider = request('provider');
+        $shopifyCheckoutId = presence(request('shopifyCheckoutId'));
 
         $order = $this->orderForCheckout($orderId);
 
@@ -75,7 +76,7 @@ class CheckoutController extends Controller
             return ujs_redirect(route('store.cart.show'));
         }
 
-        $checkout = new OrderCheckout($order, $provider);
+        $checkout = new OrderCheckout($order, $provider, $shopifyCheckoutId);
 
         $validationErrors = $checkout->validate();
         if (!empty($validationErrors)) {
@@ -88,7 +89,7 @@ class CheckoutController extends Controller
 
         $checkout->beginCheckout();
 
-        if ((float) $order->getTotal() === 0.0 && Request::input('completed')) {
+        if ((float) $order->getTotal() === 0.0) {
             return $this->freeCheckout($checkout);
         }
 
