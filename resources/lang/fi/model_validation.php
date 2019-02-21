@@ -68,6 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Beatmapin metatietoviestiä ei voi poistaa.',
             'beatmapset_post_no_edit' => 'Beatmapin metatietoviestiä ei voi muokata.',
+            'only_quote' => '',
         ],
 
         'topic_poll' => [
@@ -97,6 +98,7 @@ return [
         'username_available_soon' => 'Tämä nimi on käytössä millä hetkellä hyvänsä!',
         'username_invalid_characters' => 'Käyttäjätunnus sisältää virheellisiä merkkejä.',
         'username_in_use' => 'Käyttäjätunnus on jo käytössä!',
+        'username_locked' => '', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Käytä joko alaviivoja tai välilyöntejä, ei molempia!',
         'username_no_spaces' => "Käyttäjätunnus ei voi alkaa tai loppua välilyönneillä!",
         'username_not_allowed' => 'Tätä käyttäjätunnusta ei ole sallittu.',

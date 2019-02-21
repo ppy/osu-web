@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":users Moddingverlauf",
-        'title_compact' => '',
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Letztens gestartete Diskussionen',
@@ -167,11 +167,11 @@ return [
 
             'achievements' => [
                 'achieved-on' => 'Erreicht am :date',
-                'locked' => '',
+                'locked' => 'Gesperrt',
                 'title' => 'Erfolge',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => 'von :artist',
                 'none' => '(Noch) keine.',
                 'title' => 'Beatmaps',
 
@@ -197,7 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Play-Verlauf',
-                    'count_label' => '',
+                    'count_label' => 'Spiele',
                 ],
                 'most_played' => [
                     'count' => 'mal gespielt',
@@ -209,7 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Angeschaute Wiederholungen',
-                    'count_label' => '',
+                    'count_label' => 'Wiederholungen angeschaut',
                 ],
             ],
             'kudosu' => [
@@ -264,7 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Dieser Nutzer hat noch keine erhalten. ;_;",
-                'recent' => '',
+                'recent' => 'Neuste',
                 'title' => 'Medaillen',
             ],
             'recent_activity' => [
@@ -274,7 +274,7 @@ return [
                 'download_replay' => 'Replay downloaden',
                 'empty' => 'Noch keine Performance-Rekorde. :(',
                 'not_ranked' => 'Nur Ranked Beatmaps geben PP.',
-                'pp_weight' => '',
+                'pp_weight' => ':percentage gewichtet',
                 'title' => 'Ränge',
 
                 'best' => [
@@ -308,8 +308,8 @@ return [
         ],
 
         'header_title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Spieler :info',
+            'info' => 'Info',
         ],
 
         'info' => [
@@ -330,6 +330,7 @@ return [
             'title' => 'Benutzer nicht gefunden! ;_;',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>me!</strong> ist ein persönlicher Bereich auf deinem osu!-Profil, den du nach deinem Belieben anpassen kannst.',
             'edit_big' => 'me! bearbeiten',
             'placeholder' => 'Seiteninhalt hier eingeben',
@@ -341,16 +342,16 @@ return [
         ],
         'rank' => [
             'country' => 'Länderrang im Modus :mode',
-            'country_simple' => '',
+            'country_simple' => 'Länder-Rangliste',
             'global' => 'Globaler Rang im Modus :mode',
-            'global_simple' => '',
+            'global_simple' => 'Globale Rangliste',
         ],
         'stats' => [
             'hit_accuracy' => 'Genauigkeit',
             'level' => 'Level :level',
-            'level_progress' => '',
+            'level_progress' => 'Fortschritt bis zum nächsten Level',
             'maximum_combo' => 'Höchste Combo',
-            'medals' => '',
+            'medals' => 'Medaillen',
             'play_count' => 'Play-Anzahl',
             'play_time' => 'Gesamtspielzeit',
             'ranked_score' => 'Punktzahl auf Ranglisten',

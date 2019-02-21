@@ -48,16 +48,16 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'Contrassegna il forum come già letto',
+        'forums' => 'Contrassegna i forum come già letti',
+        'busy' => 'Contrassegnando come già letti...',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => 'Modificare un sondaggio rimuoverà i risultati attuali!',
 
         'actions' => [
-            'edit' => '',
+            'edit' => 'Modifica sondaggio',
         ],
     ],
 
@@ -71,6 +71,10 @@ return [
             'destroy' => 'Elimina post',
             'restore' => 'Ripristina post',
             'edit' => 'Modifica post',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Creazione Sondaggio',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Crea un sondaggio',
                 'remove' => 'Cancella la creazione del sondaggio',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'visualizzazioni',
+            'feature_votes' => '',
             'replies' => 'risposte',
+            'views' => 'visualizzazioni',
         ],
 
         'issue_tag_added' => [
@@ -266,6 +273,12 @@ return [
                 'current' => 'Priorità Attuale: +:count',
                 'do' => 'Promuovi questa richiesta',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => '{0} nessun voto|{1} :count voto|[2,*] :count voti',
                     'current' => 'Hai :votes rimanenti.',
@@ -288,8 +301,8 @@ return [
             'to_not_watching' => 'Non preferito',
             'to_watching' => 'Preferito',
             'to_watching_mail' => 'Preferito con notifica',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => 'Le notifiche sono abilitate. Premi per disabilitarle',
+            'tooltip_mail_enable' => 'Le notifiche sono disabilitate. Premi per abilitarle',
         ],
     ],
 ];

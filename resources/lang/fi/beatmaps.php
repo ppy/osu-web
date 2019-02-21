@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Lajiteltu:',
-            'created_at' => 'luontiaika',
-            'timeline' => 'aikajana',
-            'updated_at' => 'viimeisin päivitys',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -178,7 +178,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'anna hakusana...',
-            'login_required' => 'Kirjaudu sisään etsiäksesi.',
+            'login_required' => 'Kirjaudu sisään hakeaksesi.',
             'options' => 'Lisää Hakuasetuksia',
             'supporter_filter' => 'Tunnisteella :filters rajaaminen vaatii aktiivisen osu!supporter-tagin',
             'not-found' => 'ei tuloksia',
@@ -194,15 +194,15 @@ return [
                 'played' => 'Pelatut',
             ],
             'sorting' => [
-                'title' => 'nimi',
-                'artist' => 'artisti',
-                'difficulty' => 'vaikeustaso',
-                'updated' => 'päivitetty',
-                'ranked' => 'hyväksytty',
-                'rating' => 'arvosana',
-                'plays' => 'pelikerrat',
-                'relevance' => 'osuvuus',
-                'nominations' => 'suositukset',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Rajataksesi tunnisteella :filters sinulla on oltava aktiivinen :link',
@@ -301,5 +301,9 @@ return [
         'B' => '',
         'C' => '',
         'D' => '',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

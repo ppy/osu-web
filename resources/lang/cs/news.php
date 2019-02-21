@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'výpis',
-        'news-show' => 'příspěvek',
-    ],
-
     'index' => [
-        'title' => 'osu!news',
+        'title_page' => '',
 
         'nav' => [
             'newer' => 'Novější příspěvky',
             'older' => 'Starší příspěvky',
         ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'show' => [
-        'posted' => 'přidáno :time',
+        'by' => '',
 
         'nav' => [
             'newer' => 'Novější příspěvek',
             'older' => 'Starší příspěvek',
+        ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
         ],
     ],
 

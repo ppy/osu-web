@@ -34,36 +34,46 @@ return [
         'discussion' => 'Diskuze',
 
         'details' => [
+            'approved' => 'schváleno:',
+            'favourite' => 'Přidat do mých oblíbených',
+            'favourited_count' => '+ 1 ostatní!|+ :count ostatních!',
+            'logged-out' => 'Pro stahování beatmap musíš být přihlášen!',
+            'loved' => 'amorem zasažené:',
             'mapped_by' => 'beatmapu vytvořil :mapper',
+            'qualified' => 'kvalifikováno:',
+            'ranked' => 'hodnocené od:',
             'submitted' => 'nahráno:',
+            'unfavourite' => 'Odebrat z mých oblíbených',
             'updated' => 'naposledy upraveno:',
             'updated_timeago' => 'naposledy aktualizováno :timeago',
-            'ranked' => 'hodnocené od:',
-            'approved' => 'schváleno:',
-            'qualified' => 'kvalifikováno:',
-            'loved' => 'amorem zasažené:',
-            'logged-out' => 'Pro stahování beatmap musíš být přihlášen!',
+
             'download' => [
                 '_' => 'Stáhnout',
-                'video' => 's Videem',
-                'no-video' => 'bez Videa',
                 'direct' => '',
+                'no-video' => 'bez Videa',
+                'video' => 's Videem',
             ],
-            'favourite' => 'Přidat do mých oblíbených',
-            'unfavourite' => 'Odebrat z mých oblíbených',
-            'favourited_count' => '+ 1 ostatní!|+ :count ostatních!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Dejte Hype téhle mapě, pokud jste si užili její hraní a pomocte jí se dostat do <strong>Hodnoceného</strong> stavu.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Tato mapa je právě :status.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'čekající',
+                    'qualified' => 'kvalifikované',
+                    'wip' => 'rozpracované',
                 ],
             ],
         ],

@@ -182,7 +182,7 @@ return [
                     'title' => 'Beatmaps in het kerkhof',
                 ],
                 'loved' => [
-                    'title' => 'Geliefde Beatmappen',
+                    'title' => 'Geliefde Beatmaps',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Gerankte & Goedgekeurde Beatmaps',
@@ -330,6 +330,7 @@ return [
             'title' => 'Gebruiker niet gevonden! ;_;',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>ik!</strong> is een persoonlijk bewerkbaar gedeelte van je profiel.',
             'edit_big' => 'Bewerk me!',
             'placeholder' => 'Typ pagina inhoud hier',

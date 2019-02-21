@@ -48,16 +48,16 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'Tandai forum ini sebagai telah terbaca',
+        'forums' => 'Tandai forum-forum ini sebagai telah terbaca',
+        'busy' => 'Menandai sebagai telah terbaca...',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => 'Mengubah isi dari suatu jajak pendapat akan menghilangkan semua hasil yang sudah tercatat saat ini!',
 
         'actions' => [
-            'edit' => '',
+            'edit' => 'Sunting jajak pendapat',
         ],
     ],
 
@@ -71,6 +71,10 @@ return [
             'destroy' => 'Hapus Kiriman',
             'restore' => 'Kembalikan post',
             'edit' => 'Sunting post',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Pembuatan Jajak Pendapat',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Buat jajak pendapat',
                 'remove' => 'Batal membuat jajak pendapat',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'kali dilihat',
+            'feature_votes' => '',
             'replies' => 'balasan',
+            'views' => 'kali dilihat',
         ],
 
         'issue_tag_added' => [
@@ -266,6 +273,12 @@ return [
                 'current' => 'Prioritas saat ini: +:count',
                 'do' => 'Promosikan permintaan ini',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => '{0} tidak ada suara|{1} :count suara|[2,*] :count suara',
                     'current' => 'Anda memiliki :votes tersisa.',
@@ -288,8 +301,8 @@ return [
             'to_not_watching' => 'Tidak dimarkahi',
             'to_watching' => 'Markah',
             'to_watching_mail' => 'Markah dengan notifikasi',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => 'Anda sedang mengaktifkan notifikasi otomatis untuk topik ini. Klik di sini untuk menonaktifkan notifikasi otomatis',
+            'tooltip_mail_enable' => 'Anda sedang tidak mengaktifkan notifikasi otomatis untuk topik ini. Klik di sini untuk mengaktifkan notifikasi otomatis',
         ],
     ],
 ];

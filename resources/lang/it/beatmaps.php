@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Errore durante il salvataggio di un post',
+            'error' => 'Errore durante il salvataggio del post',
         ],
     ],
 
@@ -73,7 +73,7 @@ return [
             'disqualify' => 'Squalifica',
             'hype' => 'Hype!',
             'mapper_note' => 'Nota',
-            'nomination_reset' => 'Azzera Nomina',
+            'nomination_reset' => 'Resetta Nomina',
             'praise' => 'Elogio',
             'problem' => 'Problema',
             'suggestion' => 'Suggerimento',
@@ -100,10 +100,10 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Ordinato per:',
-            'created_at' => 'data di creazione',
-            'timeline' => 'linea temporale',
-            'updated_at' => 'ultimo aggiornamento',
+            '_' => 'Ordina per:',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -158,10 +158,10 @@ return [
         'nominate_confirm' => 'Nominare questa beatmap?',
         'nominated_by' => 'nominato da :users',
         'qualified' => 'La classificazione è prevista per il :date, se non viene trovato alcun problema.',
-        'qualified_soon' => 'La classificazione è prevista a breve, se non viene trovato alcun problema.',
-        'required_text' => 'Nominazioni: :current/:required',
+        'qualified_soon' => 'Sarà rankata a breve, se non viene trovato alcun problema.',
+        'required_text' => 'Nomine: :current/:required',
         'reset_message_deleted' => 'eliminato',
-        'title' => 'Stato nomina',
+        'title' => 'Stato nomine',
         'unresolved_issues' => 'Ci sono ancora dei problemi irrisolti che devono essere indirizzati prima.',
 
         'reset_at' => [
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Sei sicuro? Postando un nuovo problema si resetterà il processo di nomina.',
-            'disqualify' => '',
+            'disqualify' => 'Sei sicuro? Questo rimuoverà la beatmap dalla qualificazione e resetterà il processo di nomina.',
         ],
     ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => 'Giocato',
             ],
             'sorting' => [
-                'title' => 'titolo',
-                'artist' => 'artista',
-                'difficulty' => 'difficoltà',
-                'updated' => 'aggiornato',
-                'ranked' => 'data classificazione',
-                'rating' => 'valutazione',
-                'plays' => 'volte giocata',
-                'relevance' => 'rilevanza',
-                'nominations' => 'candidature',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtrare tramite :filters necessita di una :link attiva',
@@ -301,5 +301,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

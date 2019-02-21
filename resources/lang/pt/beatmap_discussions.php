@@ -52,7 +52,7 @@ return [
         'created_at' => 'Data da publicação',
         'deleted_at' => 'Data de eliminação',
         'message_type' => 'Tipo',
-        'permalink' => 'Permalink',
+        'permalink' => 'Link Permanente',
     ],
 
     'nearby_posts' => [

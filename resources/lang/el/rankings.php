@@ -29,10 +29,10 @@ return [
     ],
 
     'spotlight' => [
-        'end_date' => '',
-        'map_count' => '',
-        'participants' => '',
-        'start_date' => '',
+        'end_date' => 'Ημερομηνία Λήξης',
+        'map_count' => 'Αριθμός Προσπαθειών',
+        'participants' => 'Συμμετέχοντες',
+        'start_date' => 'Ημερομηνία έναρξης',
     ],
 
     'stat' => [

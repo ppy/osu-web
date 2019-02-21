@@ -20,6 +20,11 @@
 
 return [
     'scores' => [
+        'button' => 'Laporkan Skor',
+        'title' => 'Laporkan skor dari :username?',
+    ],
+
+    'comment' => [
         'button' => '',
         'title' => '',
     ],

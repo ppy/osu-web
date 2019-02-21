@@ -30,14 +30,17 @@ return [
     ],
 
     'buttons' => [
-        'back_to_top' => 'トップに戻る',
+        'admin' => '',
         'back_to_previous' => '直前の状態に戻す',
+        'back_to_top' => 'トップに戻る',
         'cancel' => 'キャンセル',
         'change' => '変更',
         'click_to_copy' => 'クリックでコピー',
         'click_to_copy_copied' => 'クリップボードにコピーされました！',
+        'collapse' => '',
         'delete' => '削除',
         'edit' => '編集',
+        'expand' => '',
         'hide' => '隠す',
         'permalink' => 'パーマリンク',
         'permalink_copied' => 'コピーしました',
@@ -53,6 +56,7 @@ return [
         'see_more' => 'もっと見る',
         'show' => '表示',
         'show_more' => '展開する',
+        'show_more_options' => '',
         'upload_image' => '画像をアップロード',
     ],
 

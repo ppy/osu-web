@@ -48,16 +48,16 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'Отметить раздел прочитанным',
+        'forums' => 'Отметить разделы прочитанными',
+        'busy' => 'Отмечается как прочитанное...',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => 'Изменение опроса сбросит текущие ответы!',
 
         'actions' => [
-            'edit' => '',
+            'edit' => 'Изменить опрос',
         ],
     ],
 
@@ -71,6 +71,10 @@ return [
             'destroy' => 'Удалить ответ',
             'restore' => 'Восстановить ответ',
             'edit' => 'Редактировать ответ',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Создание опроса',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Прикрепить опрос',
                 'remove' => 'Отменить опрос',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'просмотров',
+            'feature_votes' => '',
             'replies' => 'ответов',
+            'views' => 'просмотров',
         ],
 
         'issue_tag_added' => [
@@ -266,6 +273,12 @@ return [
                 'current' => 'Текущий приоритет: +:count',
                 'do' => 'Продвинуть данный запрос',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => ':count голос|:count голоса|:count голосов',
                     'current' => 'У вас осталось :votes голосов.',
@@ -288,8 +301,8 @@ return [
             'to_not_watching' => 'Не в закладках',
             'to_watching' => 'Заметка',
             'to_watching_mail' => 'В закладки с оповещением',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => 'Уведомления включены. Нажмите, чтобы отключить',
+            'tooltip_mail_enable' => 'Уведомления отключены. Нажмите, чтобы включить',
         ],
     ],
 ];

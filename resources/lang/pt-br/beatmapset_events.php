@@ -22,7 +22,7 @@ return [
     'event' => [
         'approve' => 'Aprovado.',
         'discussion_delete' => 'Moderador excluiu a discussão :discussion.',
-        'discussion_post_delete' => 'Moderador excluiu postagem da discussão :discussion.',
+        'discussion_post_delete' => 'Um moderador excluiu a publicação da discussão :discussion.',
         'discussion_post_restore' => 'Moderador restaurou postagem da discussão :discussion.',
         'discussion_restore' => 'Moderador restaurou discussão :discussion.',
         'disqualify' => 'Desqualificado por :user. Motivo: :discussion (:text).',

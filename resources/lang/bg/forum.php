@@ -48,16 +48,16 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'Маркирай форума като прочетен',
+        'forums' => 'Маркирай форумите като прочетени',
+        'busy' => 'Маркиране като прочетено...',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => 'Редактирането на анкетата ще анулира текущите резултати!',
 
         'actions' => [
-            'edit' => '',
+            'edit' => 'Редактирай анкета',
         ],
     ],
 
@@ -71,6 +71,10 @@ return [
             'destroy' => 'Изтрий публикацията',
             'restore' => 'Възстанови публикацията',
             'edit' => 'Редактиране на публикацията',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Създаване на анкета',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Създай анкета',
                 'remove' => 'Отмени създаването на анкета',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'посещения',
+            'feature_votes' => '',
             'replies' => 'отговори',
+            'views' => 'посещения',
         ],
 
         'issue_tag_added' => [
@@ -266,6 +273,12 @@ return [
                 'current' => 'Текущ приоритет: +:count',
                 'do' => 'Разгласи тази молба',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => '{0} няма гласове | {1} :count глас | [2,*] :count гласове',
                     'current' => 'Вие имате :votes оставащи гласа.',
@@ -288,8 +301,8 @@ return [
             'to_not_watching' => 'Не е отметнато',
             'to_watching' => 'Отметка',
             'to_watching_mail' => 'Отметка с известяване',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => 'Включени известия. Кликни да изключиш',
+            'tooltip_mail_enable' => 'Изключени известия. Кликни да включиш',
         ],
     ],
 ];

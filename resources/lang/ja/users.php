@@ -85,7 +85,7 @@ return [
     ],
 
     'posts' => [
-        'title' => ':username\\の投稿',
+        'title' => ':username\の投稿',
     ],
 
     'signup' => [
@@ -330,6 +330,7 @@ return [
             'title' => 'ユーザーが見つかりませんでした。 ｡･ﾟ･(ﾉД` )･ﾟ･｡',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>me!</strong>はプロフィール上で自由に編集できる領域です。',
             'edit_big' => 'me!を編集',
             'placeholder' => '内容はここ',

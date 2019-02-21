@@ -48,9 +48,9 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'Merkitse luetuksi',
+        'forums' => 'Merkitse luetuksi',
+        'busy' => 'Merkitään luetuksi...',
     ],
 
     'poll' => [
@@ -71,6 +71,10 @@ return [
             'destroy' => 'Poista viesti',
             'restore' => 'Palauta viesti',
             'edit' => 'Muokkaa viestiä',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Äänestyksen Luonti',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Luo äänestys',
                 'remove' => 'Keskeytä äänestyksen luonti',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'katsomiskertaa',
+            'feature_votes' => '',
             'replies' => 'vastausta',
+            'views' => 'katsomiskertaa',
         ],
 
         'issue_tag_added' => [
@@ -265,6 +272,12 @@ return [
             'feature_vote' => [
                 'current' => 'Tärkeys tällä hetkellä: +:count',
                 'do' => 'Ehdota tätä pyyntöä',
+
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
 
                 'user' => [
                     'count' => '{0} ei ääniä |{1}:count ääni|[2,*]:count ääntä',

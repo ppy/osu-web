@@ -24,6 +24,7 @@ return [
         'online' => 'Jelenleg <strong>:players</strong> játszik <strong>:games</strong> játékban',
         'peak' => 'Csúcsfokon, :count játékos volt elérhető',
         'players' => '<strong>:count</strong> regisztrált játékos',
+        'title' => '',
 
         'slogan' => [
             'main' => 'a legeslegjobb ingyen játszható ritmusjáték',

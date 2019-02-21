@@ -24,6 +24,7 @@ return [
         'online' => 'aktuell <strong>:players</strong> online in <strong>:games</strong> Spielen',
         'peak' => 'Maximum, :count Benutzer online',
         'players' => '<strong>:count</strong> registrierte Spieler',
+        'title' => '',
 
         'slogan' => [
             'main' => 'das allerbeste free-to-play rhythmusspiel',
@@ -52,8 +53,8 @@ return [
             'title' => 'Forum',
 
             'label' => [
-                'forum' => 'in foren suchen',
-                'forum_children' => 'subforen einbeziehen',
+                'forum' => 'in Foren suchen',
+                'forum_children' => 'Subforen einbeziehen',
                 'topic_id' => 'Thread #',
                 'username' => 'autor',
             ],
@@ -61,7 +62,7 @@ return [
 
         'mode' => [
             'all' => 'alle',
-            'beatmapset' => 'beatmap',
+            'beatmapset' => 'Beatmap',
             'forum_post' => 'forum',
             'user' => 'spieler',
             'wiki_page' => 'wiki',
@@ -101,10 +102,10 @@ return [
                 'description' => 'klick den knopf da oben zum herunterladen und führ die installationsdatei aus!',
             ],
             'beatmaps' => [
-                'title' => 'hol\' dir beatmaps',
+                'title' => 'hol\' dir Beatmaps',
                 'description' => [
                     '_' => ':browse durch die enorme Bibliothek an von Nutzern erstellten Beatmaps und fang an zu spielen!',
-                    'browse' => 'Blätter',
+                    'browse' => 'stöbern',
                 ],
             ],
         ],
@@ -112,7 +113,7 @@ return [
     ],
 
     'user' => [
-        'title' => 'dashboard',
+        'title' => 'Dashboard',
         'news' => [
             'title' => 'News',
             'error' => 'News konnten nicht geladen werden. Versuche, die Seite neu zu laden...?',

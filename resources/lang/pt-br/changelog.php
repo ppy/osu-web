@@ -47,7 +47,7 @@ return [
         ],
 
         'title' => [
-            '_' => 'Registro de Alterações :info',
+            '_' => ':info de alterações',
             'info' => 'Listagem',
         ],
     ],

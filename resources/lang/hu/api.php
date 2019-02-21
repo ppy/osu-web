@@ -27,6 +27,10 @@ return [
     ],
 
     'scopes' => [
-        'identify' => '',
+        'identify' => 'Azonosíthat téged és olvashat a nyilvános profilodból.',
+
+        'friends' => [
+            'read' => '',
+        ],
     ],
 ];

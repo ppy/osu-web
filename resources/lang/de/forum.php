@@ -48,16 +48,16 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'Forum als gelesen markieren',
+        'forums' => 'Foren als gelesen markieren',
+        'busy' => 'Als gelesen markieren...',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => 'Beim bearbeiten einer Umfrage, werden die aktuellen Ergebnisse gelöscht!',
 
         'actions' => [
-            'edit' => '',
+            'edit' => 'Umfrage bearbeiten',
         ],
     ],
 
@@ -71,6 +71,10 @@ return [
             'destroy' => 'Post löschen',
             'restore' => 'Post wiederherstellen',
             'edit' => 'Post bearbeiten',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Abstimmung erstellen',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Erstelle eine Abstimmung',
                 'remove' => 'Brich die Abstimmungserstellung ab',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'Aufrufe',
+            'feature_votes' => '',
             'replies' => 'Antworten',
+            'views' => 'Aufrufe',
         ],
 
         'issue_tag_added' => [
@@ -266,6 +273,12 @@ return [
                 'current' => 'Aktuelle Priorität: +:count',
                 'do' => 'Priorität hinzufügen',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => '{0} Keine Stimme|{1} :count Stimme|[2,*] :count Stimmen',
                     'current' => 'Du hast noch :votes.',
@@ -288,8 +301,8 @@ return [
             'to_not_watching' => 'Kein Lesezeichen gesetzt',
             'to_watching' => 'Lesezeichen setzen',
             'to_watching_mail' => 'Lesezeichen setzen und benachrichtigt werden',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => 'Benachrichtigungen sind aktiviert. Klicken, zum deaktivieren',
+            'tooltip_mail_enable' => 'Benachrichtigungen sind deaktiviert. Klicken, zum aktivieren',
         ],
     ],
 ];

@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Rendezve:',
-            'created_at' => 'létrehozás ideje',
-            'timeline' => 'idővonal',
-            'updated_at' => 'utolsó frissítés',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Biztos vagy ebben? Egy új probléma posztolása alaphelyzetbe állítja a nominálási folyamatot.',
-            'disqualify' => '',
+            'disqualify' => 'Biztos vagy benne? Ezzel kizárod a beatmap-et a kvalifikálásból és alaphelyzetbe áll a nominálás.',
         ],
     ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => 'Lejátszott',
             ],
             'sorting' => [
-                'title' => 'cím',
-                'artist' => 'előadó',
-                'difficulty' => 'nehézség',
-                'updated' => 'frissítve',
-                'ranked' => 'rangsorolt',
-                'rating' => 'értékelés',
-                'plays' => 'játszottság',
-                'relevance' => 'relevancia',
-                'nominations' => 'nominálások',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => ':filters általi szűrés aktív :link-et igényel',
@@ -301,5 +301,9 @@ return [
         'B' => '',
         'C' => '',
         'D' => '',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

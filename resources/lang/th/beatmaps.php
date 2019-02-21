@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'เรียงตาม:',
-            'created_at' => 'เวลาที่สร้าง',
-            'timeline' => 'ไทม์ไลน์',
-            'updated_at' => 'อัพเดทล่าสุด',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -194,15 +194,15 @@ return [
                 'played' => 'เคยเล่นแล้ว',
             ],
             'sorting' => [
-                'title' => 'ชื่อ',
-                'artist' => 'ศิลปิน',
-                'difficulty' => 'ระดับความยาก',
-                'updated' => 'เพิ่งอัพเดต',
-                'ranked' => 'จัดอันดับแล้ว',
-                'rating' => 'คะแนน',
-                'plays' => 'จำนวนการเล่น',
-                'relevance' => 'ความเกี่ยวข้อง',
-                'nominations' => 'เสนอชื่อเข้าชิง',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'กรองโดย :filters ต้องมี :link ทำงานอยู่',
@@ -301,5 +301,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

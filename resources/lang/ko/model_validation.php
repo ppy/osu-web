@@ -68,11 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => '비트맵 메타데이터 글을 삭제할 수 없습니다.',
             'beatmapset_post_no_edit' => '비트맵 메타데이터 글을 수정할 수 없습니다.',
+            'only_quote' => '',
         ],
 
         'topic_poll' => [
             'duplicate_options' => '지정하려는 항목이 이미 존재합니다.',
-            'grace_period_expired' => '',
+            'grace_period_expired' => ':limit시간 뒤에 투표 수정을 할 수 없습니다',
             'invalid_max_options' => '지정된 항목보다 많이 투표하도록 설정할 수 없습니다.',
             'minimum_one_selection' => '투표자들이 최소 한 개 이상은 선택할 수 있도록 해야합니다.',
             'minimum_two_options' => '투표 항목이 적어도 두 개는 필요합니다.',
@@ -97,6 +98,7 @@ return [
         'username_available_soon' => '이 사용자 이름은 곧 사용 가능 합니다!',
         'username_invalid_characters' => '요청한 사용자 이름에 유효하지 않은 문자가 있습니다.',
         'username_in_use' => '이미 사용중인 사용자 이름 입니다!',
+        'username_locked' => '', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => '언더바나 공백을 사용해주세요, 둘 중 하나요!',
         'username_no_spaces' => "사용자 이름은 공백으로 시작하거나 끝날 수 없습니다!",
         'username_not_allowed' => '이 사용자 이름 선택은 허용되지 않습니다.',
@@ -118,6 +120,6 @@ return [
     ],
 
     'user_report' => [
-        'self' => "",
+        'self' => "자기 자신은 신고할 수 없습니다!",
     ],
 ];

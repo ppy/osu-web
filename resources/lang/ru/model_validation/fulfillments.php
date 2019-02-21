@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'Текущий ник (:current) не похож на предыдущий (:username) для восстановления',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Сумма платежа недостаточна для покупки osu!supporter (:actual > :expected)',
+        'insufficient_paid' => '',
     ],
 ];

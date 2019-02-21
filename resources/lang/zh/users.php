@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user 的摸图历史",
-        'title_compact' => '',
+        'title_compact' => '摸图',
 
         'discussions' => [
             'title_recent' => '最近打开的讨论',
@@ -167,11 +167,11 @@ return [
 
             'achievements' => [
                 'achieved-on' => '达成于 :date',
-                'locked' => '',
+                'locked' => '锁定',
                 'title' => '成就',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => 'by :artist',
                 'none' => '暂时没有...',
                 'title' => '谱面',
 
@@ -197,7 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => '游玩记录',
-                    'count_label' => '',
+                    'count_label' => '游玩次数',
                 ],
                 'most_played' => [
                     'count' => '游玩次数',
@@ -209,7 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => '回放被观看记录',
-                    'count_label' => '',
+                    'count_label' => '回放被观看次数',
                 ],
             ],
             'kudosu' => [
@@ -264,7 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "该用户还没有获得成就。;_;",
-                'recent' => '',
+                'recent' => '最近取得',
                 'title' => '成就',
             ],
             'recent_activity' => [
@@ -274,7 +274,7 @@ return [
                 'download_replay' => '下载回放',
                 'empty' => '还没有上传过成绩。 :(',
                 'not_ranked' => '只有 ranked 谱面才能得到 pp。',
-                'pp_weight' => '',
+                'pp_weight' => '权重：:percentage',
                 'title' => '成绩',
 
                 'best' => [
@@ -308,8 +308,8 @@ return [
         ],
 
         'header_title' => [
-            '_' => '',
-            'info' => '',
+            '_' => '玩家 :info',
+            'info' => '资料',
         ],
 
         'info' => [
@@ -330,6 +330,7 @@ return [
             'title' => '找不到指定的用户',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>个人介绍</strong> 是您可以自定义的展示区.',
             'edit_big' => '编辑',
             'placeholder' => '在这里编辑',
@@ -341,16 +342,16 @@ return [
         ],
         'rank' => [
             'country' => ':mode 模式的国内排名',
-            'country_simple' => '',
+            'country_simple' => '国内排名',
             'global' => ':mode 模式的全球排名',
-            'global_simple' => '',
+            'global_simple' => '全球排名',
         ],
         'stats' => [
             'hit_accuracy' => '准确率',
             'level' => '等级 :level',
-            'level_progress' => '',
+            'level_progress' => '到下一级的进度',
             'maximum_combo' => '最大连击',
-            'medals' => '',
+            'medals' => '奖章',
             'play_count' => '游戏次数',
             'play_time' => '游戏时间',
             'ranked_score' => 'Ranked 谱面总分',

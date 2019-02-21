@@ -23,7 +23,7 @@ return [
         'headline' => 'Livestreams',
         'description' => 'Dataen her er hentet fra twitch.tv hvert femte minut baseret på listen over livestreams. Begynd bare at streame løs for at få dig selv på listen! For mere information om, hvordan du kommer i gang, tjek vores livestreaming wikiside ud.',
 
-        'link' => '',
+        'link' => 'wiki-siden omkring livestreaming',
     ],
     'headers' => [
         'regular' => 'Streamer i øjeblikket',

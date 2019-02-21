@@ -72,6 +72,10 @@ return [
             'restore' => '恢復回覆',
             'edit' => '編輯回覆',
         ],
+
+        'info' => [
+            'post_count' => '',
+        ],
     ],
 
     'search' => [
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => '建立投票',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => '建立投票',
                 'remove' => '取消建立投票',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => '瀏覽數',
+            'feature_votes' => '',
             'replies' => '回覆數',
+            'views' => '瀏覽數',
         ],
 
         'issue_tag_added' => [
@@ -265,6 +272,12 @@ return [
             'feature_vote' => [
                 'current' => '當前優先順序: +:count',
                 'do' => '提升這個請求',
+
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
 
                 'user' => [
                     'count' => '{0} 沒有票|[1,*] :count 票',

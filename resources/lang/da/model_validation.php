@@ -30,29 +30,29 @@ return [
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => '',
+        'beatmap_missing' => 'Tidsstempel er angivet, men beatmap mangler.',
         'beatmapset_no_hype' => "Beatmappet kan ikke hypes.",
-        'hype_requires_null_beatmap' => '',
-        'invalid_beatmap_id' => '',
-        'invalid_beatmapset_id' => '',
+        'hype_requires_null_beatmap' => 'Hype skal gøres i afsnittet General (alle sværhedsgrader).',
+        'invalid_beatmap_id' => 'Ugyldig sværhedsgrad angivet.',
+        'invalid_beatmapset_id' => 'Ugyldig beatmap angivet.',
         'locked' => 'Diskussionen er låst.',
 
         'hype' => [
-            'guest' => '',
-            'hyped' => '',
-            'limit_exceeded' => '',
-            'not_hypeable' => '',
-            'owner' => '',
+            'guest' => 'Du skal være logget ind for at kunne hype.',
+            'hyped' => 'Du har allerede hypet dette beatmap.',
+            'limit_exceeded' => 'Du har brugt alt dit hype.',
+            'not_hypeable' => 'Dette beatmap kan ikke blive hyped',
+            'owner' => 'Du kan ikke hype din egen beatmap.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => '',
-            'negative' => "",
+            'exceeds_beatmapset_length' => 'Det angivede tidsstempel er længere end længden af beatmappet.',
+            'negative' => "Tidsstempel kan ikke være negativt.",
         ],
     ],
 
     'comment' => [
-        'deleted_parent' => '',
+        'deleted_parent' => 'Besvarelse af slettede kommentar er ikke tilladt.',
     ],
 
     'forum' => [
@@ -66,13 +66,14 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => '',
-            'beatmapset_post_no_edit' => '',
+            'beatmapset_post_no_delete' => 'Sletning af beatmap metadata indlæg er ikke tilladt.',
+            'beatmapset_post_no_edit' => 'Redigering af beatmap metadata indlæg er ikke tilladt.',
+            'only_quote' => '',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Duplikeret valgmulighed er ikke tilladt.',
-            'grace_period_expired' => '',
+            'grace_period_expired' => 'Kan ikke redigere en afstemning efter mere end :limit timer',
             'invalid_max_options' => 'Valgmuligheder pr. bruger må ikke overskride antallet af valgmuligheder i alt.',
             'minimum_one_selection' => 'Et minimum af en valgmulighed pr. bruger er nødvendig.',
             'minimum_two_options' => 'Der skal være mindst 2 valgmuligheder.',
@@ -80,7 +81,7 @@ return [
         ],
 
         'topic_vote' => [
-            'required' => '',
+            'required' => 'Vælg en indstilling under afstemningen.',
             'too_many' => 'Valgte flere valgmuliheder en tilladt.',
         ],
     ],
@@ -93,10 +94,11 @@ return [
         'invalid_email' => "Dette ligner ikke en email-adresse...",
         'too_short' => 'Den nye adgangskode er for kort.',
         'unknown_duplicate' => 'Brugernavnet eller email-adressen er allerede i brug.',
-        'username_available_in' => '',
-        'username_available_soon' => '',
+        'username_available_in' => 'Dette Brugernavn vil være til rådighed til brug i :duration.',
+        'username_available_soon' => 'Dette Brugernavn vil være tilgængelig hvert øjeblik nu!',
         'username_invalid_characters' => 'Det anmodede brugernavn indeholder ugyldige tegn.',
         'username_in_use' => 'Navnet er allerede i brug!',
+        'username_locked' => '', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Brug enten understreg eller mellemrum, ikke begge dele!',
         'username_no_spaces' => "Brugernavn kan ikke starte eller ende med mellemrum!",
         'username_not_allowed' => 'Dette brugernavn er ikke tilladt.',
@@ -113,11 +115,11 @@ return [
                 '_' => 'Du skal have :link for at ændre dit navn!',
                 'link_text' => 'støttede osu!',
             ],
-            'username_is_same' => '',
+            'username_is_same' => 'Det her er allerede dit Brugernavn, fjollehoved!',
         ],
     ],
 
     'user_report' => [
-        'self' => "",
+        'self' => "Du kan ikke rapportere dig selv!",
     ],
 ];

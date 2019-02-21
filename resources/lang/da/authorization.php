@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => '',
+            'mapper_note_wrong_user' => 'Kun ejeren af dette beatmap eller en nominator/QAT group member kan sende map notes.',
         ],
 
         'vote' => [
@@ -52,16 +52,16 @@ return [
     ],
 
     'chat' => [
-        'blocked' => '',
-        'friends_only' => '',
-        'moderated' => '',
-        'no_access' => '',
-        'restricted' => '',
+        'blocked' => 'Du kan ikke sende denne besked, enten har brugeren blokeret dig eller du har blokeret brugeren.',
+        'friends_only' => 'Brugeren blokere beskeder fra folk der ikke er på deres venneliste.',
+        'moderated' => 'Denne kanal er i øjeblikket modereret.',
+        'no_access' => 'Du har ikke adgang til denne kanal.',
+        'restricted' => 'Du kan ikke sende beskeder nå du er muted eller banned.',
     ],
 
     'comment' => [
         'update' => [
-            'deleted' => "",
+            'deleted' => "Kan ikke redigere slettede opslag.",
         ],
     ],
 
@@ -71,7 +71,7 @@ return [
 
     'forum' => [
         'moderate' => [
-            'no_permission' => '',
+            'no_permission' => 'Ingen tilladelse til at moderere dette forum.',
         ],
 
         'post' => [
@@ -98,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => '',
+                'double_post' => 'Rediger din seneste besked i stedet for at lave en ny.',
                 'locked' => 'Kan ikke svare en låst tråd.',
                 'no_forum_access' => 'Adgang til det anmodede forum er nødvendig.',
                 'no_permission' => 'Du har ikke tilladelse til at svare.',
@@ -158,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'Brugerside er låst.',
                 'not_owner' => 'Du kan kun redigere din egen brugerside.',
-                'require_supporter_tag' => '',
+                'require_supporter_tag' => 'osu!supporter tag er påkrævet.',
             ],
         ],
     ],

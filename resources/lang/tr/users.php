@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user'in Modlama Geçmişi",
-        'title_compact' => '',
+        'title_compact' => 'Modlama',
 
         'discussions' => [
             'title_recent' => 'Yakın zamanda başlatılan tartışmalar',
@@ -171,7 +171,7 @@ return [
                 'title' => 'Başarımlar',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => ':artist tarafından',
                 'none' => 'Hiç yok... şimdilik.',
                 'title' => 'Beatmapler',
 
@@ -197,7 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Oyun Geçmişi',
-                    'count_label' => '',
+                    'count_label' => 'Oynamalar',
                 ],
                 'most_played' => [
                     'count' => 'oynama sayısı',
@@ -209,7 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Tekrar İzlenme Geçmişi',
-                    'count_label' => '',
+                    'count_label' => 'Tekrar İzlendi',
                 ],
             ],
             'kudosu' => [
@@ -264,7 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Bu kullanıcı daha hiç almamış. ;_;",
-                'recent' => '',
+                'recent' => 'En Son',
                 'title' => 'Madalyalar',
             ],
             'recent_activity' => [
@@ -309,7 +309,7 @@ return [
 
         'header_title' => [
             '_' => '',
-            'info' => '',
+            'info' => 'Bilgi',
         ],
 
         'info' => [
@@ -330,6 +330,7 @@ return [
             'title' => 'Kullanıcı bulunamadı! ;_;',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>ben!</strong>, profil sayfanızdaki kişiselleştirilebilir bir alandır.',
             'edit_big' => 'Beni düzenle!',
             'placeholder' => 'Sayfanın içeriğini buraya yaz',
@@ -341,16 +342,16 @@ return [
         ],
         'rank' => [
             'country' => ':mode için Ülke sıralaması',
-            'country_simple' => '',
+            'country_simple' => 'Ülkesel Sıralama',
             'global' => ':mode için Dünya sıralaması',
-            'global_simple' => '',
+            'global_simple' => 'Küresel Sıralama',
         ],
         'stats' => [
             'hit_accuracy' => 'Vuruş İsabeti',
             'level' => ':level Seviye',
             'level_progress' => '',
             'maximum_combo' => 'Maksimum Kombo',
-            'medals' => '',
+            'medals' => 'Madalyalar',
             'play_count' => 'Toplam Oynama Sayısı',
             'play_time' => 'Toplam Oynama Süresi',
             'ranked_score' => 'Dereceli Skor',

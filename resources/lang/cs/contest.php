@@ -26,8 +26,15 @@ return [
     'voting' => [
         'over' => 'Hlasování pro tuto soutěž bylo ukončeno',
         'login_required' => 'Pro hlasování se prosím přihlaš.',
+
         'best_of' => [
             'none_played' => "Vypadá to, že nemáš zahranou žádnou mapu, která je kvalifikovaná na tuto soutěž!",
+        ],
+
+        'button' => [
+            'add' => '',
+            'remove' => '',
+            'used_up' => '',
         ],
     ],
     'entry' => [
