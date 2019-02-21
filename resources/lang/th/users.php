@@ -331,6 +331,7 @@ return [
             'title' => 'ไม่พบผู้ใช้นี้',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',

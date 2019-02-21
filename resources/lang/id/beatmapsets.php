@@ -34,36 +34,46 @@ return [
         'discussion' => 'Diskusi',
 
         'details' => [
+            'approved' => 'berstatus Approved sejak ',
+            'favourite' => 'Masukkan beatmapset ini ke dalam daftar Favorit Anda',
+            'favourited_count' => '+ :count lagi!',
+            'logged-out' => 'Anda harus masuk sebelum mengunduh beatmap!',
+            'loved' => 'berstatus Loved sejak ',
             'mapped_by' => 'dibuat oleh :mapper',
+            'qualified' => 'berstatus Qualified sejak ',
+            'ranked' => 'berstatus Ranked sejak ',
             'submitted' => 'diunggah pada ',
+            'unfavourite' => 'Hapus beatmapset ini dari daftar Favorit Anda',
             'updated' => 'terakhir diperbarui pada ',
             'updated_timeago' => 'terakhir diperbarui :timeago',
-            'ranked' => 'berstatus Ranked sejak ',
-            'approved' => 'berstatus Approved sejak ',
-            'qualified' => 'berstatus Qualified sejak ',
-            'loved' => 'berstatus Loved sejak ',
-            'logged-out' => 'Anda harus masuk sebelum mengunduh beatmap!',
+
             'download' => [
                 '_' => 'Unduh',
-                'video' => 'dengan Video',
-                'no-video' => 'tanpa Video',
                 'direct' => 'osu!direct',
+                'no-video' => 'tanpa Video',
+                'video' => 'dengan Video',
             ],
-            'favourite' => 'Masukkan beatmapset ini ke dalam daftar Favorit Anda',
-            'unfavourite' => 'Hapus beatmapset ini dari daftar Favorit Anda',
-            'favourited_count' => '+ :count lagi!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Apabila Anda menyukai beatmap ini, berikanlah hype Anda untuk mendorong beatmap ini selangkah lebih dekat menuju status <strong>Ranked</strong>.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Map ini sedang berstatus :status.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'pending',
+                    'qualified' => 'qualified',
+                    'wip' => 'dalam pengerjaan',
                 ],
             ],
         ],

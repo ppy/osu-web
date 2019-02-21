@@ -34,36 +34,46 @@ return [
         'discussion' => 'Discusión',
 
         'details' => [
+            'approved' => 'aprobado el ',
+            'favourite' => 'Marcar como favorito este beatmapset',
+            'favourited_count' => '+ ¡1 más!|+ ¡:count más!',
+            'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier beatmap!',
+            'loved' => 'amado el ',
             'mapped_by' => 'mapeado por :mapper',
+            'qualified' => 'calificado el ',
+            'ranked' => 'clasificado en ',
             'submitted' => 'enviado en ',
+            'unfavourite' => 'Desmarcar como favorito este beatmapset',
             'updated' => 'última actualización en ',
             'updated_timeago' => 'actualizado por última vez el :timeago',
-            'ranked' => 'clasificado en ',
-            'approved' => 'aprobado el ',
-            'qualified' => 'calificado el ',
-            'loved' => 'amado el ',
-            'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier beatmap!',
+
             'download' => [
                 '_' => 'Descargar',
-                'video' => 'con Video',
-                'no-video' => 'sin Video',
                 'direct' => 'osu!direct',
+                'no-video' => 'sin Video',
+                'video' => 'con Video',
             ],
-            'favourite' => 'Marcar como favorito este beatmapset',
-            'unfavourite' => 'Desmarcar como favorito este beatmapset',
-            'favourited_count' => '+ ¡1 más!|+ ¡:count más!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Apoya este mapa si te gusto para ayudarlo a legar a <strong>Ranked</strong>.',
 
             'current' => [
-                '_' => '',
+                '_' => 'El mapa esta :status.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'pendiente',
+                    'qualified' => 'cualificado',
+                    'wip' => 'trabajo en progreso',
                 ],
             ],
         ],

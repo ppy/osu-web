@@ -23,7 +23,7 @@ return [
         'headline' => 'Livestream',
         'description' => 'I dati sono reperiti da twitch.tv ogni 5 minuti basandosi sulla directory listing. Sentiti libero di andare in diretta e comparire sulla lista! Per maggiori informazioni su come fare, controlla la voce sul "live streaming" della wiki.',
 
-        'link' => '',
+        'link' => 'la pagina della wiki sulle livestreams',
     ],
     'headers' => [
         'regular' => 'In Diretta',

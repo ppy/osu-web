@@ -98,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Por favor, edite sua última postagem em vez de publicar novamente.',
+                'double_post' => 'Por favor, edite sua última publicação em vez de publicar novamente.',
                 'locked' => 'Não é possível responder a uma discussão trancada.',
                 'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
                 'no_permission' => 'Sem permissão para responder.',

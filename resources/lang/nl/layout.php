@@ -71,7 +71,7 @@ return [
             '_' => 'rankings',
             'index' => 'prestaties',
             'performance' => 'prestatie',
-            'charts' => 'grafieken',
+            'charts' => 'in de schijnwerpers',
             'score' => 'score',
             'country' => 'land',
             'kudosu' => 'kudosu',

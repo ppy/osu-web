@@ -20,6 +20,11 @@
 
 return [
     'scores' => [
+        'button' => 'Zgłoś wynik',
+        'title' => 'Zgłosić wynik gracza :username?',
+    ],
+
+    'comment' => [
         'button' => '',
         'title' => '',
     ],

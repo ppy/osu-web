@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => 'Confidențialitate',
         'friends_only' => 'Blochează mesajele private de la oameni care nu sunt pe lista ta de prieteni',
+        'hide_online' => 'ascunde-ți prezența online',
+    ],
+
+    'security' => [
+        'current_session' => 'curent',
+        'end_session' => 'Încheie sesiunea',
+        'end_session_confirmation' => 'Acest lucru iți va încheia imediat sesiunea pe acel dispozitiv. Ești sigur?',
+        'last_active' => 'Ultima conectare:',
+        'title' => 'Securitate',
+        'web_sessions' => 'sesiuni web',
     ],
 ];

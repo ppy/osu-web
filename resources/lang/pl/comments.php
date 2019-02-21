@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => 'Zaloguj się, aby skomentować',
-        'reply' => 'Zaloguj się, aby odpowiedzieć',
+        'new' => '',
+        'reply' => '',
     ],
 
     'index' => [
@@ -65,12 +65,5 @@ return [
             '_' => 'Komentarze » :info',
             'info' => 'Szczegóły',
         ],
-    ],
-
-    'sort' => [
-        '_' => '',
-        'new' => '',
-        'old' => '',
-        'top' => '',
     ],
 ];

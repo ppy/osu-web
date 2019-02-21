@@ -34,36 +34,46 @@ return [
         'discussion' => 'Tartışma',
 
         'details' => [
+            'approved' => 'tarihinde onaylandı ',
+            'favourite' => 'Haritayı favorilere ekle',
+            'favourited_count' => '+ 1 kişi tarafından!|+ :count kişi tarafından!',
+            'logged-out' => 'Herhangi bir beatmapi indirmeden önce giriş yapmalısınız!',
+            'loved' => 'sevilme tarihi: ',
             'mapped_by' => ':mapper tarafından yapıldı',
+            'qualified' => 'aday olma tarihi ',
+            'ranked' => 'dereceli olma tarihi: ',
             'submitted' => 'gönderilme tarihi: ',
+            'unfavourite' => 'Haritayı favorilerden çıkar',
             'updated' => 'son güncelleme ',
             'updated_timeago' => 'son güncelleme :timeago',
-            'ranked' => 'dereceli olma tarihi: ',
-            'approved' => 'tarihinde onaylandı ',
-            'qualified' => 'aday olma tarihi ',
-            'loved' => 'sevilme tarihi: ',
-            'logged-out' => 'Herhangi bir beatmapi indirmeden önce giriş yapmalısınız!',
+
             'download' => [
                 '_' => 'İndir',
-                'video' => 'Video ile',
-                'no-video' => 'Video olmadan',
                 'direct' => '',
+                'no-video' => 'Video olmadan',
+                'video' => 'Video ile',
             ],
-            'favourite' => 'Haritayı favorilere ekle',
-            'unfavourite' => 'Haritayı favorilerden çıkar',
-            'favourited_count' => '+ 1 kişi tarafından!|+ :count kişi tarafından!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => '<strong>Dereceli</strong> statüsüne erişmesi için eğer beğendiyseniz bu haritayı gazlayın.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Bu harita şu an :status.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'beklemede',
+                    'qualified' => 'nitelikli',
+                    'wip' => 'yapım aşamasında',
                 ],
             ],
         ],

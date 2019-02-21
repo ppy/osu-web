@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '账户设置',
+        'title' => '<strong>账户</strong>设置',
         'title_compact' => '设置',
         'username' => '用户名',
 
@@ -63,12 +63,12 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! 帐户邮箱更改',
+        'email_subject' => 'osu! 帐户邮箱更改确认',
         'update' => '更新',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! 帐户密码更改',
+        'email_subject' => 'osu! 帐户密码更改确认',
         'update' => '更新',
     ],
 

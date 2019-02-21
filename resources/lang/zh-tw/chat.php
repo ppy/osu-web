@@ -19,32 +19,32 @@
  */
 
 return [
-    'coming_soon' => '',
+    'coming_soon' => '即將上線',
     'limitation_notice' => '',
-    'talking_in' => '',
-    'talking_with' => '',
-    'title_compact' => '',
-    'title' => '',
+    'talking_in' => '在 :channel 聊天',
+    'talking_with' => '與 :name 聊天',
+    'title_compact' => '聊天',
+    'title' => '聊天',
     'cannot_send' => [
-        'channel' => '',
-        'user' => '',
+        'channel' => '您現在無法在頻道中發送訊息。可能是Bug或是以下原因:',
+        'user' => '您現在無法對這個玩家發送訊息。可能是Bug或是以下原因:',
         'reasons' => [
-            'blocked' => '',
+            'blocked' => '您已被收件者封鎖了',
             'channel_moderated' => '',
-            'friends_only' => '',
+            'friends_only' => '收件者只接受朋友發送的訊息',
             'restricted' => '',
             'target_restricted' => '',
         ],
     ],
     'input' => [
-        'disabled' => '',
-        'placeholder' => '',
-        'send' => '',
+        'disabled' => '無法傳送訊息。',
+        'placeholder' => '輸入訊息中...',
+        'send' => '送出',
     ],
     'no-conversations' => [
         'howto' => "",
         'lazer' => '',
-        'pm_limitations' => '',
-        'title' => '',
+        'pm_limitations' => '只有使用 <a href=":link">osu! lazer</a> 或是新網站的人才會收到才會收到訊息',
+        'title' => '還沒有聊天過',
     ],
 ];

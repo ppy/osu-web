@@ -34,24 +34,34 @@ return [
         'discussion' => '討論',
 
         'details' => [
+            'approved' => '批准於 ',
+            'favourite' => '收藏這張圖譜',
+            'favourited_count' => '還有很多人...',
+            'logged-out' => '下載圖譜前請先登入！',
+            'loved' => 'loved 於 ',
             'mapped_by' => '由 :mapper 製作',
+            'qualified' => '提名於 ',
+            'ranked' => '進榜於 ',
             'submitted' => '發佈於 ',
+            'unfavourite' => '取消收藏',
             'updated' => '上次更新於 ',
             'updated_timeago' => '最後更新時間 :timeago',
-            'ranked' => '進榜於 ',
-            'approved' => '批准於 ',
-            'qualified' => '提名於 ',
-            'loved' => 'loved 於 ',
-            'logged-out' => '下載圖譜前請先登入！',
+
             'download' => [
                 '_' => '下載',
-                'video' => '含影像',
-                'no-video' => '不含影像',
                 'direct' => 'osu!direct',
+                'no-video' => '不含影像',
+                'video' => '含影像',
             ],
-            'favourite' => '收藏這張圖譜',
-            'unfavourite' => '取消收藏',
-            'favourited_count' => '還有很多人...',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
 
         'hype' => [

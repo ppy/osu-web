@@ -50,7 +50,7 @@ return [
     'tracklist' => [
         'title' => 'Titel',
         'length' => 'Länge',
-        'bpm' => 'Bpm',
+        'bpm' => 'BPM',
         'genre' => 'Genre',
     ],
 ];

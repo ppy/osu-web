@@ -22,11 +22,15 @@ return [
     'error' => [
         'chat' => [
             'limit_exceeded' => 'Du sender beskeder for hurtigt, vent venligst lidt med at fortsætte.',
-            'too_long' => '',
+            'too_long' => 'Beskeden du prøver at sende er for lang.',
         ],
     ],
 
     'scopes' => [
-        'identify' => '',
+        'identify' => 'Identificere dig og læse din offentlige profil.',
+
+        'friends' => [
+            'read' => '',
+        ],
     ],
 ];

@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Riwayat Modding :user",
-        'title_compact' => '',
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Diskusi yang baru dimulai',
@@ -167,11 +167,11 @@ return [
 
             'achievements' => [
                 'achieved-on' => 'Dicapai pada :date',
-                'locked' => '',
+                'locked' => 'Terkunci',
                 'title' => 'Pencapaian',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => 'oleh :artist',
                 'none' => 'Saat ini belum ada...',
                 'title' => 'Beatmap',
 
@@ -197,7 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Riwayat Main',
-                    'count_label' => '',
+                    'count_label' => 'Kali Bermain',
                 ],
                 'most_played' => [
                     'count' => 'jumlah dimainkan',
@@ -209,7 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Riwayat Jumlah Tayangan Ulang yang Ditonton',
-                    'count_label' => '',
+                    'count_label' => 'Kali Tayangan Ulang Ditonton',
                 ],
             ],
             'kudosu' => [
@@ -264,7 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Pengguna ini belum mendapatkannya. ;_;",
-                'recent' => '',
+                'recent' => 'Terbaru',
                 'title' => 'Medali',
             ],
             'recent_activity' => [
@@ -274,7 +274,7 @@ return [
                 'download_replay' => 'Unduh Replay',
                 'empty' => 'Belum ada catatan performa yang mendapat peringkat pertama. :(',
                 'not_ranked' => 'Hanya beatmap Ranked yang dapat memberikan pp.',
-                'pp_weight' => '',
+                'pp_weight' => 'terbobotkan sejumlah :percentage',
                 'title' => 'Peringkat',
 
                 'best' => [
@@ -308,8 +308,8 @@ return [
         ],
 
         'header_title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Pemain :info',
+            'info' => 'Info',
         ],
 
         'info' => [
@@ -330,6 +330,7 @@ return [
             'title' => 'Pengguna tidak ditemukan! ;_;',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>saya!</strong> adalah area pribadi yang dapat dimodifikasi di laman profil Anda.',
             'edit_big' => 'Sunting saya!',
             'placeholder' => 'Ketik konten laman di sini',
@@ -341,16 +342,16 @@ return [
         ],
         'rank' => [
             'country' => 'Peringkat negara untuk :mode',
-            'country_simple' => '',
+            'country_simple' => 'Peringkat Negara',
             'global' => 'Peringkat global untuk :mode',
-            'global_simple' => '',
+            'global_simple' => 'Peringkat Global',
         ],
         'stats' => [
             'hit_accuracy' => 'Akurasi Hit',
             'level' => 'Level :level',
-            'level_progress' => '',
+            'level_progress' => 'Persentase pencapaian untuk menuju ke level selanjutnya',
             'maximum_combo' => 'Kombo Maksimum',
-            'medals' => '',
+            'medals' => 'Jumlah Medali',
             'play_count' => 'Jumlah Main',
             'play_time' => 'Telah Bermain Selama',
             'ranked_score' => 'Skor Ranked',

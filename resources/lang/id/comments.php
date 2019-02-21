@@ -35,7 +35,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Tekan enter untuk :action. Gunakan shift+enter untuk memulai garis baru.',
+            '_' => 'Tekan enter untuk mengirimkan :action. Gunakan shift+enter untuk memulai garis baru.',
             'edit' => 'simpan',
             'new' => 'post',
             'reply' => 'balas',
@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => 'Silakan masuk untuk berkomentar',
-        'reply' => 'Silakan masuk untuk membalas',
+        'new' => '',
+        'reply' => '',
     ],
 
     'index' => [
@@ -65,12 +65,5 @@ return [
             '_' => 'Komentar :info',
             'info' => 'Rincian',
         ],
-    ],
-
-    'sort' => [
-        '_' => '',
-        'new' => '',
-        'old' => '',
-        'top' => '',
     ],
 ];

@@ -34,36 +34,46 @@ return [
         'discussion' => 'Обсуждение',
 
         'details' => [
+            'approved' => 'одобрен ',
+            'favourite' => 'Добавить в избранное',
+            'favourited_count' => '+ 1 другой!|+ :count других!',
+            'logged-out' => 'Вы должны войти для загрузки карты!',
+            'loved' => 'избран ',
             'mapped_by' => 'сделана :mapper',
+            'qualified' => 'квалифицирован ',
+            'ranked' => 'ранкнут ',
             'submitted' => 'опубликован ',
+            'unfavourite' => 'Удалить из избранного',
             'updated' => 'обновлён ',
             'updated_timeago' => 'обновлён :timeago',
-            'ranked' => 'ранкнут ',
-            'approved' => 'одобрен ',
-            'qualified' => 'квалифицирован ',
-            'loved' => 'избран ',
-            'logged-out' => 'Вы должны войти для загрузки карты!',
+
             'download' => [
                 '_' => 'Скачать',
-                'video' => 'с видео',
-                'no-video' => 'без видео',
                 'direct' => 'osu!direct',
+                'no-video' => 'без видео',
+                'video' => 'с видео',
             ],
-            'favourite' => 'Добавить в избранное',
-            'unfavourite' => 'Удалить из избранного',
-            'favourited_count' => '+ 1 другой!|+ :count других!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Хайпаните эту карту если вам понравилось в неё играть чтобы помочь карте получить <strong>Ранкед</strong>.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Эта карта сейчас :status.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'на рассмотрении',
+                    'qualified' => 'квалифицирована',
+                    'wip' => 'работа в процессе',
                 ],
             ],
         ],
@@ -73,7 +83,7 @@ return [
             'genre' => 'Жанр',
             'language' => 'Язык',
             'no_scores' => 'Данные всё ещё обрабатываются...',
-            'points-of-failure' => 'Количество провалов',
+            'points-of-failure' => 'Шкала провалов',
             'source' => 'Источник',
             'success-rate' => 'Шанс успеха',
             'tags' => 'Теги',

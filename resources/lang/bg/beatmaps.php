@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Сортирани по:',
-            'created_at' => 'време на създаване',
-            'timeline' => 'времева лента',
-            'updated_at' => 'последна актуализация',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Сигурен ли сте? Публикуването на нов проблем ще нулира номинационният процес.',
-            'disqualify' => '',
+            'disqualify' => 'Сигурни ли сте? Това ще премахне бийтмапа от квалифицирания му статус и ще нулира целия процес на номинация.',
         ],
     ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => 'Изигран',
             ],
             'sorting' => [
-                'title' => 'заглавие',
-                'artist' => 'артист',
-                'difficulty' => 'трудност',
-                'updated' => 'актуализиран',
-                'ranked' => 'класиран',
-                'rating' => 'рейтинг',
-                'plays' => 'изигран',
-                'relevance' => 'уместност',
-                'nominations' => 'номинации',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Филтриране по :filters изисква активен :link',
@@ -301,5 +301,9 @@ return [
         'B' => '',
         'C' => '',
         'D' => '',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

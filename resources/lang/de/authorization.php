@@ -30,11 +30,11 @@ return [
             'owner' => "Eigene Beatmaps können nicht nominiert werden.",
         ],
         'resolve' => [
-            'not_owner' => 'Nur der Thread- oder Beatmapersteller kann die Diskussion für gelöst erklären.',
+            'not_owner' => 'Nur der Thread- oder Beatmapersteller kann die Diskussion beilegen.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Nur der Beatmap Urheber oder ein Nominator/QAT Mitglied kann Mapper Notizen posten.',
+            'mapper_note_wrong_user' => 'Nur der Beatmapersteller oder ein Nominator/QAT Mitglied kann Notizen erstellen.',
         ],
 
         'vote' => [
@@ -52,11 +52,11 @@ return [
     ],
 
     'chat' => [
-        'blocked' => 'Du kannst keine Nachrichten an einen User senden, der dich oder den du blockst.',
-        'friends_only' => 'Der User blockt alle Nachrichten von Personen, die nicht auf seiner Freundesliste sind.',
+        'blocked' => 'Du kannst keine Nachrichten an einen Benutzer senden, der dich oder den du blockiert hast.',
+        'friends_only' => 'Der Benutzer blockiert alle Nachrichten von Personen, die nicht auf seiner Freundesliste sind.',
         'moderated' => 'Dieser Kanal wird derzeit moderiert.',
         'no_access' => 'Du hast kein Zugriff auf diesen Kanal.',
-        'restricted' => 'Du kannst keine Nachrichten senden während du stummgeschaltet, eingeschränkt oder gebannt bist.',
+        'restricted' => 'Du kannst keine Nachrichten senden während du stumm geschaltet oder gesperrt bist.',
     ],
 
     'comment' => [
@@ -71,7 +71,7 @@ return [
 
     'forum' => [
         'moderate' => [
-            'no_permission' => 'Du hast keine Berechtigung, dieses Forum zu moderieren.',
+            'no_permission' => 'Keine Berechtigung, dieses Forum zu moderieren.',
         ],
 
         'post' => [
@@ -79,14 +79,14 @@ return [
                 'only_last_post' => 'Nur der letzte Beitrag kann gelöscht werden.',
                 'locked' => 'Beiträge in gesperrten Threads können nicht gelöscht werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
-                'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag löschen',
+                'not_owner' => 'Nur der Autor kann den Beitrag löschen.',
             ],
 
             'edit' => [
                 'deleted' => 'Gelöschte Beiträge können nicht bearbeitet werden.',
                 'locked' => 'Dieser Beitrag ist gesperrt und kann nicht bearbeitet werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
-                'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag bearbeiten.',
+                'not_owner' => 'Nur der Autor kann den Beitrag bearbeiten.',
                 'topic_locked' => 'Beiträge in gesperrten Threads können nicht bearbeitet werden.',
             ],
 

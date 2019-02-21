@@ -21,6 +21,7 @@
 return [
     'buttons' => [
       'add' => 'lisää kaveri',
+      'disabled' => '',
       'remove' => 'poista kaveri',
     ],
 

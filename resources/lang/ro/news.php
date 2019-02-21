@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'listare',
-        'news-show' => 'postare',
-    ],
-
     'index' => [
-        'title' => 'știri osu!',
+        'title_page' => '',
 
         'nav' => [
             'newer' => 'Postări mai noi',
             'older' => 'Postări mai vechi',
         ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'show' => [
-        'posted' => 'postat :time',
+        'by' => '',
 
         'nav' => [
             'newer' => 'Postare mai nouă',
             'older' => 'Postare mai veche',
+        ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
         ],
     ],
 

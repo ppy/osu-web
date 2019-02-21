@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'Başlıklar',
-        'news-show' => 'gönderi',
-    ],
-
     'index' => [
-        'title' => 'osu!news',
+        'title_page' => '',
 
         'nav' => [
             'newer' => 'En yeni gönderiler',
             'older' => 'Eski gönderiler',
         ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'show' => [
-        'posted' => ':time gönderildi',
+        'by' => '',
 
         'nav' => [
             'newer' => 'Yeni gönderiler',
             'older' => 'Eski gönderiler',
+        ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
         ],
     ],
 

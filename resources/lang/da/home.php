@@ -24,6 +24,7 @@ return [
         'online' => '<strong>:players</strong> online i øjeblikket i <strong>:games</strong> spil',
         'peak' => 'Peak, :count online brugere',
         'players' => '<strong>:count</strong> registrerede brugere',
+        'title' => '',
 
         'slogan' => [
             'main' => 'Det bedste gratis rytmespil',
@@ -112,7 +113,7 @@ return [
     ],
 
     'user' => [
-        'title' => '',
+        'title' => 'instrumentbræt',
         'news' => [
             'title' => 'Nyheder',
             'error' => 'Fejl ved indlæsning af nyheder, prøv at genindlæse siden?...',
@@ -127,7 +128,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '',
+            'new' => 'Nye Rangerede Beatmaps',
             'popular' => 'Populære Beatmaps',
             'by' => 'af',
             'plays' => ':count afspilninger',

@@ -34,24 +34,34 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
+            'approved' => 'godkänd den ',
+            'favourite' => 'Favorisera denna beatmapset',
+            'favourited_count' => '+ 1 annan!|+ :count andra!',
+            'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!',
+            'loved' => 'älskad den ',
             'mapped_by' => 'skapad av :mapper',
+            'qualified' => 'kvalificerad den ',
+            'ranked' => 'rankad den ',
             'submitted' => 'uppladdad den ',
+            'unfavourite' => 'Ta bort favorisering på denna beatmapset',
             'updated' => 'senast uppdaterad den ',
             'updated_timeago' => 'senast ändrad :timeago',
-            'ranked' => 'rankad den ',
-            'approved' => 'godkänd den ',
-            'qualified' => 'kvalificerad den ',
-            'loved' => 'älskad den ',
-            'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!',
+
             'download' => [
                 '_' => 'Ladda Ner',
-                'video' => 'med Video',
-                'no-video' => 'utan Video',
                 'direct' => 'osu!direct',
+                'no-video' => 'utan Video',
+                'video' => 'med Video',
             ],
-            'favourite' => 'Favorisera denna beatmapset',
-            'unfavourite' => 'Ta bort favorisering på denna beatmapset',
-            'favourited_count' => '+ 1 annan!|+ :count andra!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
 
         'hype' => [

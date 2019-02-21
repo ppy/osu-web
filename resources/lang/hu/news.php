@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'lista',
-        'news-show' => 'poszt',
-    ],
-
     'index' => [
-        'title' => 'osu!hírek',
+        'title_page' => '',
 
         'nav' => [
             'newer' => 'Újabb posztok',
             'older' => 'Régebbi posztok',
         ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'show' => [
-        'posted' => 'posztolva :time-kor',
+        'by' => '',
 
         'nav' => [
             'newer' => 'Újabb poszt',
             'older' => 'Régebbi poszt',
+        ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
         ],
     ],
 

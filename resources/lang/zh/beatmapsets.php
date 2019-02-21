@@ -34,36 +34,46 @@ return [
         'discussion' => '讨论',
 
         'details' => [
+            'approved' => 'approved 于 ',
+            'favourite' => '收藏这张谱面',
+            'favourited_count' => '还有很多人...',
+            'logged-out' => '下载谱面前请先登录！',
+            'loved' => 'loved 于 ',
             'mapped_by' => '作者: :mapper',
+            'qualified' => 'qualified 于 ',
+            'ranked' => 'ranked 于 ',
             'submitted' => '提交于 ',
+            'unfavourite' => '取消收藏',
             'updated' => '上次更新于 ',
             'updated_timeago' => '上次更新于 :timeago',
-            'ranked' => 'ranked 于 ',
-            'approved' => 'approved 于 ',
-            'qualified' => 'qualified 于 ',
-            'loved' => 'loved 于 ',
-            'logged-out' => '下载谱面前请先登录！',
+
             'download' => [
                 '_' => '下载',
-                'video' => '带视频',
-                'no-video' => '不带视频',
                 'direct' => 'osu!direct',
+                'no-video' => '不带视频',
+                'video' => '带视频',
             ],
-            'favourite' => '收藏这张谱面',
-            'unfavourite' => '取消收藏',
-            'favourited_count' => '还有很多人...',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => '如果你觉得这张谱面很好玩，推荐它来帮助它发展到<strong>Ranked</strong>状态。',
 
             'current' => [
-                '_' => '',
+                '_' => '这张谱面正处于 :status 状态。',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'pending',
+                    'qualified' => 'qualified',
+                    'wip' => '正在摸鱼中',
                 ],
             ],
         ],

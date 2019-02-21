@@ -20,6 +20,11 @@
 
 return [
     'scores' => [
+        'button' => 'Ilmianna pisteet',
+        'title' => 'Ilmiannetaanko käyttäjän :username pisteet?',
+    ],
+
+    'comment' => [
         'button' => '',
         'title' => '',
     ],

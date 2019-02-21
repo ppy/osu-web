@@ -114,7 +114,7 @@ return [
             'delivered' => 'Zugestellt',
             'paid' => 'Bezahlt',
             'processing' => 'Bestätigung ausstehend',
-            'shipped' => 'In Zustellung',
+            'shipped' => '',
         ],
     ],
 

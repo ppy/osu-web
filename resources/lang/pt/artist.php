@@ -19,8 +19,8 @@
  */
 
 return [
-    'page_description' => 'Featured artists no osu!',
-    'title' => 'Featured Artists',
+    'page_description' => 'Artistas destacados no osu!',
+    'title' => 'Artistas Destacados',
 
     'admin' => [
         'hidden' => 'O ARTISTA ESTÁ ATUALMENTE OCULTO',
@@ -33,7 +33,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Featured artists são artistas com os quais estamos a trabalhar em colaboração com o objetivo de trazer musicas novas e originais para o osu!. Estes artistas e uma seleção de faixas deles foram escolhidas pela equipa do osu! como sendo fantásticas e adequadas para mapeamento. Alguns destes featured artists também criaram faixas novas exclusivas para usar no osu!.<br><br>Todas as faixas nesta secção são fornecidas como ficheiros pré-temporizados .osz e foram oficialmente licenciados para uso no osu! e conteúdo relacionado com o osu.',
+        'description' => 'Artistas destacados são artistas com os quais estamos a trabalhar em colaboração com o objetivo de trazer musicas novas e originais para o osu!. Estes artistas e uma seleção de faixas deles foram escolhidas pela equipa do osu! como sendo fantásticas e adequadas para mapeamento. Alguns destes artistas destacados também criaram faixas novas exclusivas para usar no osu!.<br><br>Todas as faixas nesta secção são fornecidas como ficheiros pré-temporizados .osz e foram oficialmente licenciados para uso no osu! e conteúdo relacionado com o osu.',
     ],
 
     'links' => [
