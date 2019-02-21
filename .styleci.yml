@@ -33,6 +33,7 @@ finder:
     - resources/lang/pt-br
     - resources/lang/ro
     - resources/lang/ru
+    - resources/lang/sk
     - resources/lang/sv
     - resources/lang/th
     - resources/lang/tr

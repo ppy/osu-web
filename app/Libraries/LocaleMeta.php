@@ -111,6 +111,10 @@ class LocaleMeta
             'name' => 'Русский',
             'flag' => 'RU',
         ],
+        'sk' => [
+            'name' => 'Slovenčina',
+            'flag' => 'SK',
+        ],
         'sv' => [
             'name' => 'Svenska',
             'flag' => 'SE',
