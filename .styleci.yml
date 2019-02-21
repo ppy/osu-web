@@ -26,6 +26,7 @@ finder:
     - resources/lang/ja
     - resources/lang/ko
     - resources/lang/nl
+    - resources/lang/no
     - resources/lang/pl
     - resources/lang/pt
     - resources/lang/pt-br
