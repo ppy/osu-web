@@ -133,15 +133,11 @@ export class Store {
   }
 
   private collectShopifyItems() {
-    const lineItems: LineItem[] = [];
-    $('.js-store-order-item').each((_, element) => {
-      const id = element.dataset.shopifyId;
-      lineItems.push({
+    return $('.js-store-order-item').map((_, element) => {
+      return {
         quantity: Number(element.dataset.quantity),
-        variantId: toShopifyVariantGid(id),
-      });
-    });
-
-    return lineItems;
+        variantId: toShopifyVariantGid(element.dataset.shopifyId),
+      };
+    }).get();
   }
 }
