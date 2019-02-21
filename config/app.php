@@ -108,6 +108,7 @@ return [
         'pt-br',
         'ro',
         'ru',
+        'sk',
         'sv',
         'th',
         'tr',
