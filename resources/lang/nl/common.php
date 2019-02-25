@@ -30,14 +30,17 @@ return [
     ],
 
     'buttons' => [
-        'back_to_top' => 'Terug naar boven',
+        'admin' => '',
         'back_to_previous' => 'Terug naar vorige positie',
+        'back_to_top' => 'Terug naar boven',
         'cancel' => 'Annuleer',
         'change' => 'verander',
         'click_to_copy' => 'klik op naar klembord kopiëren',
         'click_to_copy_copied' => 'gekopiëerd naar klembord!',
+        'collapse' => '',
         'delete' => 'Verwijder',
         'edit' => 'Bewerk',
+        'expand' => '',
         'hide' => 'verbergen',
         'permalink' => 'permalink',
         'permalink_copied' => 'link gekopieerd',
@@ -53,6 +56,7 @@ return [
         'see_more' => 'toon meer',
         'show' => 'weergeven',
         'show_more' => 'toon meer',
+        'show_more_options' => '',
         'upload_image' => 'upload afbeelding',
     ],
 

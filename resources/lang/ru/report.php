@@ -20,6 +20,11 @@
 
 return [
     'scores' => [
+        'button' => 'Пожаловаться',
+        'title' => 'Пожаловаться на игру :username?',
+    ],
+
+    'comment' => [
         'button' => '',
         'title' => '',
     ],

@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'Nuvarande användarnamn (:current) är inte detsamma som ändring till återkallande (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Donationen är mindre än tillräckligt för supporter tag present (:actual > :expected)',
+        'insufficient_paid' => '',
     ],
 ];

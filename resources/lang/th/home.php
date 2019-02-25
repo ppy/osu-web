@@ -24,6 +24,7 @@ return [
         'online' => '<strong>:players</strong> currently online in <strong>:games</strong> games',
         'peak' => 'Peak, :count online users',
         'players' => '<strong>:count</strong> registered players',
+        'title' => '',
 
         'slogan' => [
             'main' => 'the bestest free-to-win rhythm game',

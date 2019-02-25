@@ -29,7 +29,7 @@ class @Comments extends React.PureComponent
     div className: osu.classWithModifiers('comments', @props.modifiers),
       h2 className: 'comments__title',
         osu.trans('comments.title')
-        span className: 'comments__count', @props.total.toLocaleString()
+        span className: 'comments__count', osu.formatNumber(@props.total)
       div className: 'comments__new',
         el CommentEditor,
           commentableType: @props.commentableType

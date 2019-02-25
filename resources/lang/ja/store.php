@@ -114,7 +114,7 @@ return [
             'delivered' => '発送済み',
             'paid' => '支払い済み',
             'processing' => '承認待ち',
-            'shipped' => '運送中',
+            'shipped' => '',
         ],
     ],
 

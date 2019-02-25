@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Sortat după:',
-            'created_at' => 'data creării',
-            'timeline' => 'cronologie',
-            'updated_at' => 'ultima actualizare',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -144,11 +144,16 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Șterge',
+        'delete_own_confirm' => 'Ești sigur? Acest beatmap va fi șters, iar tu vei fi redirecționat înapoi la profilul tău.',
+        'delete_other_confirm' => 'Ești sigur? Acest beatmap va fi șters, iar tu vei fi redirecționat înapoi la profilul utilizatorului.',
         'disqualification_prompt' => 'Motiv pentru descalificare?',
         'disqualified_at' => 'Descalificat :time_ago (:reason).',
         'disqualified_no_reason' => 'niciun răspuns specificat',
         'disqualify' => 'Descalificare',
         'incorrect_state' => 'S-a produs o eroare la efectuarea acestei acțiuni, încearcă să reîmprospătezi pagina.',
+        'love' => 'Love',
+        'love_confirm' => '\'Love\' acest beatmap?',
         'nominate' => 'Nominalizează',
         'nominate_confirm' => 'Nominalizezi acest beatmap?',
         'nominated_by' => 'nominalizat de :users',
@@ -166,20 +171,22 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Ești sigur? Postarea unei probleme noi va reseta procesul de nominalizare.',
+            'disqualify' => 'Ești sigur? Asta va elimina beatmap-ul din calificare și va reseta procesul de nominalizare.',
         ],
     ],
 
     'listing' => [
         'search' => [
             'prompt' => 'scrieți cuvinte cheie...',
+            'login_required' => 'Conectează-te pentru a căuta.',
             'options' => 'Mai multe opțiuni de căutare',
-            'supporter_filter' => 'Trebuie să fii un suporter pentru a filtra prin :filters',
+            'supporter_filter' => 'Trebuie să fii un suporter osu! pentru a putea filtra prin :filters',
             'not-found' => 'niciun rezultat',
             'not-found-quote' => '... nup, nimic găsit.',
             'filters' => [
                 'general' => 'General',
                 'mode' => 'Mod',
-                'status' => 'Statut de clasificare',
+                'status' => 'Categorii',
                 'genre' => 'Gen',
                 'language' => 'Limbă',
                 'extra' => 'extra',
@@ -187,25 +194,21 @@ return [
                 'played' => 'Jucat',
             ],
             'sorting' => [
-                'title' => 'titlu',
-                'artist' => 'artist',
-                'difficulty' => 'dificultate',
-                'updated' => 'actualizat',
-                'ranked' => 'clasat',
-                'rating' => 'evaluare',
-                'plays' => 'numărul de jucări',
-                'relevance' => 'relevanță',
-                'nominations' => 'nominalizări',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Ai nevoie de un :link activ pentru a filtra prin :filters',
-                'link_text' => 'etichetă de suporter',
+                'link_text' => 'etichetă de suporter osu!',
             ],
         ],
-        'mode' => 'Mod',
-        'status' => 'Statut de clasificare',
-        'source' => 'de la :source',
-        'load-more' => 'Încarcă mai multe...',
     ],
     'general' => [
         'recommended' => 'Dificultatea recomandată',
@@ -225,7 +228,7 @@ return [
         'qualified' => 'Calificate',
         'loved' => 'Loved',
         'faves' => 'Favorite',
-        'pending' => 'În așteptare',
+        'pending' => 'În așteptare & în lucru',
         'graveyard' => 'Graveyard',
         'my-maps' => 'Mapele mele',
     ],
@@ -298,5 +301,9 @@ return [
         'B' => '',
         'C' => '',
         'D' => '',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

@@ -92,7 +92,7 @@ class PaypalController extends Controller
 
         $order = Order::where('user_id', Auth::user()->user_id)->processing()->find($orderId);
         if ($order) {
-            (new OrderCheckout($order, 'paypal'))->failCheckout();
+            (new OrderCheckout($order, Order::PROVIDER_PAYPAL))->failCheckout();
         }
 
         return $this->setAndRedirectCheckoutError($order, trans('store.checkout.declined'));

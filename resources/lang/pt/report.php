@@ -20,6 +20,11 @@
 
 return [
     'scores' => [
+        'button' => 'Denunciar Pontuação',
+        'title' => 'Denunciar a pontuação de :username?',
+    ],
+
+    'comment' => [
         'button' => '',
         'title' => '',
     ],

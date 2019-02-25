@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'список',
-        'news-show' => 'запись',
-    ],
-
     'index' => [
-        'title' => 'osu!новости',
+        'title_page' => '',
 
         'nav' => [
             'newer' => 'Новые записи',
             'older' => 'Старые записи',
         ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'show' => [
-        'posted' => 'опубликовано :time',
+        'by' => '',
 
         'nav' => [
             'newer' => 'Новая запись',
             'older' => 'Старая запись',
+        ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
         ],
     ],
 

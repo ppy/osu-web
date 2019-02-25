@@ -21,6 +21,7 @@
 return [
     'buttons' => [
       'add' => 'voeg vriend toe',
+      'disabled' => '',
       'remove' => 'verwijder vriend',
     ],
 

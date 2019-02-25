@@ -26,15 +26,22 @@ return [
     'voting' => [
         'over' => 'A votação para este concurso terminou',
         'login_required' => 'Por favor inicia sessão para votar.',
+
         'best_of' => [
             'none_played' => "Não parece que jogaste nenhuns beatmaps que se qualificam para este concurso!",
+        ],
+
+        'button' => [
+            'add' => '',
+            'remove' => '',
+            'used_up' => '',
         ],
     ],
     'entry' => [
         '_' => 'inscrição',
         'login_required' => 'Por favor inicia sessão para entrar no concurso.',
         'silenced_or_restricted' => 'Não podes entrar em concursos enquanto restrito ou silenciado.',
-        'preparation' => 'Actualmente, estamos a preparar este concurso. Por favor espera pacientemente!',
+        'preparation' => 'Atualmente, estamos a preparar este concurso. Por favor espera pacientemente!',
         'over' => 'Obrigado pelas tuas inscrições! As submissões foram fechadas para este concurso e a votação irá abrir em breve.',
         'limit_reached' => 'Chegaste ao limite de inscrições para este concurso',
         'drop_here' => 'Larga a tua inscrição aqui',

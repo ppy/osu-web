@@ -20,6 +20,11 @@
 
 return [
     'scores' => [
+        'button' => '檢舉成績',
+        'title' => '檢舉 :username 的成績？',
+    ],
+
+    'comment' => [
         'button' => '',
         'title' => '',
     ],

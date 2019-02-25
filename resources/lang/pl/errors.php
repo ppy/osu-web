@@ -34,9 +34,6 @@ return [
         'invalid_mode' => 'Wybrano nieprawidłowy tryb.',
         'standard_converts_only' => 'Brak wyników dla wybranego trybu na tym poziomie trudności.',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'Masz za dużo ulubionych beatmap! Usuń jakąś, jeżeli chcesz kontynuować.',
-    ],
     'logged_out' => 'Wylogowano. Zaloguj się i spróbuj ponownie.',
     'supporter_only' => 'Potrzebujesz statusu donatora, aby używać tej funkcji.',
     'no_restricted_access' => 'Nie możesz wykonać tej czynności podczas blokady konta.',

@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'listagem',
-        'news-show' => 'publicação',
-    ],
-
     'index' => [
-        'title' => 'osu!news',
+        'title_page' => '',
 
         'nav' => [
             'newer' => 'Publicações recentes',
             'older' => 'Publicações antigas',
         ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'show' => [
-        'posted' => 'publicado :time',
+        'by' => '',
 
         'nav' => [
-            'newer' => 'Postagem nova',
-            'older' => 'Postagem antiga',
+            'newer' => 'Publicação mais recente',
+            'older' => 'Publicação mais antiga',
+        ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
         ],
     ],
 

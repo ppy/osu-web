@@ -48,16 +48,16 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'フォーラムを既読にする',
+        'forums' => 'フォーラムを既読にする',
+        'busy' => '既読にする....',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => '編集中の投票フォームは現在の編集状況が削除されます！',
 
         'actions' => [
-            'edit' => '',
+            'edit' => '投票を編集',
         ],
     ],
 
@@ -71,6 +71,10 @@ return [
             'destroy' => '投稿を削除',
             'restore' => '投稿を復元',
             'edit' => '投稿を編集',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'ポールの作成',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'ポールを作成',
                 'remove' => 'ポールの作成をキャンセル',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => '観覧数',
+            'feature_votes' => '',
             'replies' => '返信数',
+            'views' => '観覧数',
         ],
 
         'issue_tag_added' => [
@@ -266,6 +273,12 @@ return [
                 'current' => '現在の優先度： +:count',
                 'do' => 'このリクエストを推進する',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => '{0} 投票なし|[1,*] :count票',
                     'current' => '自分の持ち票数は:votes回です。',
@@ -288,8 +301,8 @@ return [
             'to_not_watching' => 'ブックマーク無し',
             'to_watching' => 'ブックマーク',
             'to_watching_mail' => 'ブックマーク（通知あり）',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => '通知は有効です。クリックして無効化',
+            'tooltip_mail_enable' => '通知は無効です。クリックして有効化',
         ],
     ],
 ];

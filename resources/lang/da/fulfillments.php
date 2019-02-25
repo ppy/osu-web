@@ -21,7 +21,7 @@
 return [
     'mail' => [
         'donation_thanks' => [
-            'subject' => '',
+            'subject' => 'Tak, osu! elsker dig! <3',
         ],
         'supporter_gift' => [
             'subject' => '',

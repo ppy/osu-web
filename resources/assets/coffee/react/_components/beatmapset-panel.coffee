@@ -54,14 +54,14 @@ class @BeatmapsetPanel extends React.PureComponent
 
     showHypeCounts = _.includes ['wip', 'pending', 'graveyard'], beatmapset.status
     if showHypeCounts
-      currentHype = beatmapset.hype.current.toLocaleString()
-      requiredHype = beatmapset.hype.required.toLocaleString()
-      currentNominations = beatmapset.nominations.current.toLocaleString()
-      requiredNominations = beatmapset.nominations.required.toLocaleString()
+      currentHype = osu.formatNumber(beatmapset.hype.current)
+      requiredHype = osu.formatNumber(beatmapset.hype.required)
+      currentNominations = osu.formatNumber(beatmapset.nominations.current)
+      requiredNominations = osu.formatNumber(beatmapset.nominations.required)
 
-    playCount = beatmapset.play_count.toLocaleString()
+    playCount = osu.formatNumber(beatmapset.play_count)
 
-    favouriteCount = beatmapset.favourite_count.toLocaleString()
+    favouriteCount = osu.formatNumber(beatmapset.favourite_count)
 
     # arbitrary number
     maxDisplayedDifficulty = 10
@@ -123,11 +123,11 @@ class @BeatmapsetPanel extends React.PureComponent
                   span className: 'beatmapset-panel__count-number', currentNominations
                   i className: 'fas fa-thumbs-up fa-fw'
             else
-              div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.panel.playcount', {count: playCount}),
+              div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.panel.playcount', count: playCount),
                 span className: 'beatmapset-panel__count-number', playCount
                 i className: 'fas fa-fw fa-play-circle'
 
-            div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.panel.favourites', {count: favouriteCount}),
+            div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.panel.favourites', count: favouriteCount),
               span className: 'beatmapset-panel__count-number', favouriteCount
               i className: 'fas fa-fw fa-heart'
 

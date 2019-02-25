@@ -33,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // RouteServiceProvider current runs before our provider, so Passport's default routes will override
         // those set in routes/web.php.
-        Route::get('oauth/authorize', AuthorizationController::class.'@authorize')->middleware(['web', 'auth']);
+        Route::get('oauth/authorize', AuthorizationController::class.'@authorize')->middleware(['web']);
 
         Passport::tokensCan([
             'friends.read' => trans('api.scopes.friends.read'),

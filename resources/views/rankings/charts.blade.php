@@ -50,7 +50,7 @@
                 <div class="spotlight-info__item-header">
                     {{ trans('rankings.spotlight.participants') }}
                 </div>
-                {{ number_format($scoreCount) }}
+                {{ i18n_number_format($scoreCount) }}
             </div>
         </div>
     </div>

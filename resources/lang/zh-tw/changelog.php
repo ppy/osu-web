@@ -37,7 +37,7 @@ return [
     'index' => [
         'page_title' => [
             '_' => '',
-            '_from' => '',
+            '_from' => '從 :from 以來的變化',
             '_from_to' => '',
             '_stream' => '',
             '_stream_from' => '',

@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'Tên tài khoản hiện tại (:current) không giống với tên đã đổi, không thể hủy tên (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Không đủ tiền để tặng supporter tag (:actual > :expected)',
+        'insufficient_paid' => '',
     ],
 ];

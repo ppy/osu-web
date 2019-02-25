@@ -41,7 +41,7 @@
                             class="notification-icon notification-icon--mobile{{Auth::user()->notificationCount() > 0 ? ' notification-icon--glow' : ''}}"
                         >
                             <i class="fas fa-lg fa-fw fa-inbox notification-icon__inbox"></i>
-                            <span class="notification-icon__count">{{ Auth::user()->notificationCount() > 0 ? number_format(Auth::user()->notificationCount()) : '' }}</span>
+                            <span class="notification-icon__count">{{ Auth::user()->notificationCount() > 0 ? i18n_number_format(Auth::user()->notificationCount()) : '' }}</span>
                         </a>
 
                         <a

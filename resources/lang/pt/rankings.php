@@ -37,7 +37,7 @@ return [
 
     'stat' => [
         'accuracy' => 'Precisão',
-        'active_users' => 'Utilizadores Activos',
+        'active_users' => 'Utilizadores Ativos',
         'country' => 'País',
         'play_count' => 'Contador de Partidas',
         'performance' => 'Desempenho',

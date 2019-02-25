@@ -35,7 +35,7 @@ return [
             'groups-show' => 'ryhmät',
             'index' => 'hallinta',
             'legal-show' => 'tiedot',
-            'messages-index' => '',
+            'messages-index' => 'viestit',
             'news-index' => 'uutiset',
             'news-show' => 'uutiset',
             'password-reset-index' => 'palauta salasana',
@@ -59,7 +59,7 @@ return [
             'beatmapset-watches-index' => 'modiseuranta',
             'beatmapset_discussion_votes-index' => 'äänet karttakeskusteluissa',
             'beatmapset_events-index' => 'beatmapin tapahtumat',
-            'index' => 'lista',
+            'index' => 'listaus',
             'packs' => 'kokoelmat',
             'show' => 'info',
         ],
@@ -78,8 +78,8 @@ return [
         ],
         'community' => [
             '_' => 'yhteisö',
-            'chat' => '',
-            'chat-index' => '',
+            'chat' => 'viestit',
+            'chat-index' => 'viestit',
             'dev' => 'kehitystyö',
             'getForum' => 'foorumit',
             'getLive' => 'livenä',
@@ -132,7 +132,7 @@ return [
         'store' => [
             '_' => 'kauppa',
             'checkout-show' => 'kassa',
-            'getListing' => 'lista',
+            'getListing' => 'listaus',
             'cart-show' => 'ostoskori',
 
             'getCheckout' => 'kassa',

@@ -48,7 +48,7 @@ return [
 
         'title' => [
             '_' => 'Muutosloki :info',
-            'info' => 'Lista',
+            'info' => 'Listaus',
         ],
     ],
 

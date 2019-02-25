@@ -58,8 +58,8 @@ return [
     ],
     'vote' => [
         'list' => 'votes',
-        'count' => ':count vote|:count votes',
-        'points' => ':count point|:count points',
+        'count' => ':count_delimited vote|:count_delimited votes',
+        'points' => ':count_delimited point|:count_delimited points',
     ],
     'dates' => [
         'ended' => 'Ended :date',

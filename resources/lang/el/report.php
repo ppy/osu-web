@@ -20,6 +20,11 @@
 
 return [
     'scores' => [
+        'button' => 'Βαθμολογία έκθεσης',
+        'title' => 'Αναφορά βαθμολογίας του :username;',
+    ],
+
+    'comment' => [
         'button' => '',
         'title' => '',
     ],

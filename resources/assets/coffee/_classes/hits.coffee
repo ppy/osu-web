@@ -29,5 +29,5 @@ class @Hits
         .join '/'
     values:
       elements
-        .map (elem) -> score.statistics[elem].toLocaleString()
+        .map (elem) -> osu.formatNumber(score.statistics[elem])
         .join '/'

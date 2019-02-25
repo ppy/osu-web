@@ -28,7 +28,7 @@ return [
     ],
 
     'events' => [
-        'empty' => '目前还没有什么事件...呢。',
+        'empty' => '目前还没有什么事呢...',
     ],
 
     'index' => [
@@ -52,7 +52,7 @@ return [
         'created_at' => '发帖时间',
         'deleted_at' => '删帖时间',
         'message_type' => '类型',
-        'permalink' => '静态链接',
+        'permalink' => '永久链接',
     ],
 
     'nearby_posts' => [
@@ -70,7 +70,7 @@ return [
     'system' => [
         'resolved' => [
             'true' => '被 :user 标记为 “已解决”',
-            'false' => '被 :user 标记为 “未解决”',
+            'false' => '被 :user 重新打开',
         ],
     ],
 

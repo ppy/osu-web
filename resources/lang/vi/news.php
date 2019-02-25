@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'danh sách',
-        'news-show' => 'bài đăng',
-    ],
-
     'index' => [
-        'title' => 'osu!news',
+        'title_page' => '',
 
         'nav' => [
             'newer' => 'Bài đăng mới hơn',
             'older' => 'Bài đăng cũ hơn',
         ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'show' => [
-        'posted' => 'đăng vào :time',
+        'by' => '',
 
         'nav' => [
             'newer' => 'Bài đăng mới hơn',
             'older' => 'Bài đăng cũ hơn',
+        ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
         ],
     ],
 

@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Histórico de modding de :user",
-        'title_compact' => '',
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Discussões começadas recentemente',
@@ -167,22 +167,22 @@ return [
 
             'achievements' => [
                 'achieved-on' => 'Conquistado em :date',
-                'locked' => '',
+                'locked' => 'Trancado',
                 'title' => 'Conquistas',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => 'por :artist',
                 'none' => 'Nenhum... ainda.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Beatmaps favoritos',
+                    'title' => 'Beatmaps Favoritos',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps no cemitério',
+                    'title' => 'Beatmaps no Cemitério',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps Loved',
+                    'title' => 'Loved Beatmaps',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmaps Ranqueados & Aprovados',
@@ -197,7 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Histórico de Jogo',
-                    'count_label' => '',
+                    'count_label' => 'Vezes jogadas',
                 ],
                 'most_played' => [
                     'count' => 'vezes jogadas',
@@ -209,7 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Histórico de Replays Assistidos',
-                    'count_label' => '',
+                    'count_label' => 'Replays assistidos',
                 ],
             ],
             'kudosu' => [
@@ -226,11 +226,11 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Recebeu :amount por negação de kudosu na postagem :post',
+                            'give' => 'Recebeu :amount por negação de kudosu na publicação :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Negou :amount na postagem :post',
+                            'reset' => 'Negou :amount na publicação :post',
                         ],
 
                         'delete' => [
@@ -242,20 +242,20 @@ return [
                         ],
 
                         'vote' => [
-                            'give' => 'Recebeu :amount por obter votos na postagem :post',
-                            'reset' => 'Perdeu :amount por perder votos na postagem :post',
+                            'give' => 'Recebeu :amount por obter votos na publicação :post',
+                            'reset' => 'Perdeu :amount por perder votos na publicação :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Recebeu :amount por votos recalculados na postagem :post',
-                            'reset' => 'Perdeu :amount por votos recalculados na postagem :post',
+                            'give' => 'Recebeu :amount por votos recalculados na publicação :post',
+                            'reset' => 'Perdeu :amount por votos recalculados na publicação :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Recebeu :amount de :giver na postagem :post',
-                        'reset' => 'Kudosu reiniciado por :giver na postagem :post',
-                        'revoke' => 'Kudosu negado por :giver na postagem :post',
+                        'give' => 'Recebeu :amount de :giver por uma publicação em :post',
+                        'reset' => 'Kudosu reiniciado por :giver na publicação :post',
+                        'revoke' => 'Kudosu negado por :giver na publicação :post',
                     ],
                 ],
             ],
@@ -264,7 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Esse usuário não conseguiu nenhuma recentemente. ;_;",
-                'recent' => '',
+                'recent' => 'Recente',
                 'title' => 'Medalhas',
             ],
             'recent_activity' => [
@@ -274,7 +274,7 @@ return [
                 'download_replay' => 'Baixar Replay',
                 'empty' => 'Nenhuma performance incrível ainda. :(',
                 'not_ranked' => 'Apenas beatmaps ranqueados dão pp.',
-                'pp_weight' => '',
+                'pp_weight' => 'ajustado :percentage',
                 'title' => 'Classificações',
 
                 'best' => [
@@ -308,8 +308,8 @@ return [
         ],
 
         'header_title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Jogador :info',
+            'info' => 'Info',
         ],
 
         'info' => [
@@ -330,6 +330,7 @@ return [
             'title' => 'Usuário não encontrado! ;_;',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>eu!</strong> é uma área pessoal customizável na sua página de perfil.',
             'edit_big' => 'Me edite!',
             'placeholder' => 'Digite o conteúdo da página aqui',
@@ -337,24 +338,24 @@ return [
         ],
         'post_count' => [
             '_' => 'Contribuiu com :link',
-            'count' => ':count postagem no fórum|:count postagens no fórum',
+            'count' => ':count publicação no fórum|:count publicações no fórum',
         ],
         'rank' => [
             'country' => 'Ranking nacional de :mode',
-            'country_simple' => '',
+            'country_simple' => 'Ranking Nacional',
             'global' => 'Ranking global de :mode',
-            'global_simple' => '',
+            'global_simple' => 'Ranking Global',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão',
             'level' => 'Nível :level',
-            'level_progress' => '',
+            'level_progress' => 'Progresso para o próximo nível',
             'maximum_combo' => 'Combo Máximo',
-            'medals' => '',
+            'medals' => 'Medalhas',
             'play_count' => 'Vezes Jogadas',
             'play_time' => 'Tempo de Jogo',
             'ranked_score' => 'Pontuação Ranqueada',
-            'replays_watched_by_others' => 'Replays Assistidos por Outros',
+            'replays_watched_by_others' => 'Replays Assistidos',
             'score_ranks' => 'Ranque em Pontuação',
             'total_hits' => 'Acertos Totais',
             'total_score' => 'Pontuação Total',

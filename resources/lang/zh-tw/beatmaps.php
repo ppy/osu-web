@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => '排序：',
-            'created_at' => '建立時間',
-            'timeline' => '時間軸',
-            'updated_at' => '最後更新時間',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -194,15 +194,15 @@ return [
                 'played' => '玩過',
             ],
             'sorting' => [
-                'title' => '標題',
-                'artist' => '作曲者',
-                'difficulty' => '困難度',
-                'updated' => '更新時間',
-                'ranked' => '排名',
-                'rating' => '評分',
-                'plays' => '遊玩次數',
-                'relevance' => '相關性',
-                'nominations' => '提名狀態',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => '按 :filters 篩選需先成為 :link',
@@ -301,5 +301,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

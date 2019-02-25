@@ -40,6 +40,7 @@
     "react-dom-factories": "^1.0.0",
     "react-virtual-list": "^2.3.0",
     "require-dir": "^1.2.0",
+    "shopify-buy": "^2.0.1",
     "timeago": "^1.5.0",
     "tsconfig-paths-webpack-plugin": "^3.2.0",
     "turbolinks": "^5.1.1",

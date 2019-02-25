@@ -24,6 +24,7 @@ return [
         'online' => '<strong>:players</strong> connectés en ce moment dans <strong>:games</strong> parties',
         'peak' => 'Pic, :count joueurs connectés',
         'players' => '<strong>:count</strong> joueurs inscrits',
+        'title' => '',
 
         'slogan' => [
             'main' => 'le meilleur jeu de rythme free-to-win',
@@ -89,7 +90,7 @@ return [
             'macos' => 'pour macOS',
             'linux' => 'pour Linux',
         ],
-        'mirror' => 'mirroir',
+        'mirror' => 'miroir',
         'macos-fallback' => 'utilisateurs macOS',
         'steps' => [
             'register' => [

@@ -38,7 +38,7 @@ ProfilePage.PlayTime = ({stats}) ->
   title = osu.transChoice("common.count.#{titleUnit}", titleValue)
 
   timeString = ''
-  timeString = "#{daysLeftOver.toLocaleString()}d " if daysLeftOver > 0
+  timeString = "#{osu.formatNumber(daysLeftOver)}d " if daysLeftOver > 0
   timeString += "#{hours}h #{minutes}m"
 
   el ValueDisplay,

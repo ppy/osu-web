@@ -26,8 +26,15 @@ return [
     'voting' => [
         'over' => 'このコンテストの投票期間は終了しました。',
         'login_required' => '投票するにはログインが必要です。',
+
         'best_of' => [
             'none_played' => "このコンテストに該当する譜面をプレイした事がないようです！",
+        ],
+
+        'button' => [
+            'add' => '',
+            'remove' => '',
+            'used_up' => '',
         ],
     ],
     'entry' => [

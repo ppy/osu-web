@@ -16,14 +16,17 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @if (!$newTopic && $topic->deletedPostsCount() > 0)
+    @php
+        $total = $newTopic ? 0 : $topic->deletedPostsCount();
+    @endphp
     <div class="counter-box counter-box--forum counter-box--forum-deleted">
         <div class="counter-box__content">
             <div class="counter-box__title">
                 {{ trans('forum.topics.show.deleted-posts') }}
             </div>
 
-            <div class="counter-box__count js-forum__deleted-count">
-                {{ $newTopic ? '0' : $topic->deletedPostsCount() }}
+            <div data-total="{{ $total }}" class="counter-box__count js-forum__deleted-count">
+                {{ i18n_number_format($total) }}
             </div>
         </div>
         <div class="counter-box__line">

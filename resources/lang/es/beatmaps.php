@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Ordenado por:',
-            'created_at' => 'tiempo de creación',
-            'timeline' => 'línea de tiempo',
-            'updated_at' => 'última actualización',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => '¿Estás seguro? Publicar un nuevo problema reiniciará todas las nominaciones.',
-            'disqualify' => '',
+            'disqualify' => '¿Estás seguro? Esto removerá el beatmap de qualifying y reiniciará el proceso de nominación.',
         ],
     ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => 'Jugado',
             ],
             'sorting' => [
-                'title' => 'título',
-                'artist' => 'artista',
-                'difficulty' => 'dificultad',
-                'updated' => 'actualizado',
-                'ranked' => 'rankeado',
-                'rating' => 'calificación',
-                'plays' => 'veces jugadas',
-                'relevance' => 'relevancia',
-                'nominations' => 'nominaciones',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Necesitas un :link activo para filtrar por :filters',
@@ -301,5 +301,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

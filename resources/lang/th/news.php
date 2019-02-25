@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'รายการ',
-        'news-show' => 'โพสต์',
-    ],
-
     'index' => [
-        'title' => 'osu!news',
+        'title_page' => '',
 
         'nav' => [
             'newer' => 'โพสต์ใหม่กว่า',
             'older' => 'โพสต์เก่ากว่า',
         ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'show' => [
-        'posted' => 'โพสต์เมื่อ :time',
+        'by' => '',
 
         'nav' => [
             'newer' => 'โพสต์ใหม่กว่า',
             'older' => 'โพสต์เก่ากว่า',
+        ],
+
+        'title' => [
+            '_' => '',
+            'info' => '',
         ],
     ],
 

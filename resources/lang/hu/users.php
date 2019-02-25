@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user Modolási Történelme",
-        'title_compact' => '',
+        'title_compact' => 'Modolás',
 
         'discussions' => [
             'title_recent' => 'Legutóbb kezdett beszélgetések',
@@ -167,11 +167,11 @@ return [
 
             'achievements' => [
                 'achieved-on' => 'Elérte: :date',
-                'locked' => '',
+                'locked' => 'Zárolt',
                 'title' => 'Trófeák',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => ':artist által',
                 'none' => 'Nincsen... még.',
                 'title' => 'Beatmap-ek',
 
@@ -197,7 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Játék előzmények',
-                    'count_label' => '',
+                    'count_label' => 'Játszások',
                 ],
                 'most_played' => [
                     'count' => 'alkalommal lejátszva',
@@ -209,7 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Visszajátszás megtekintések előzménye',
-                    'count_label' => '',
+                    'count_label' => 'Megnézett Visszajátszások',
                 ],
             ],
             'kudosu' => [
@@ -264,7 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Ez a felhasználó még nem rendelkezik egyel sem. ;_;",
-                'recent' => '',
+                'recent' => 'Legújabb',
                 'title' => 'Medálok',
             ],
             'recent_activity' => [
@@ -274,7 +274,7 @@ return [
                 'download_replay' => 'Replay letöltése',
                 'empty' => 'Még nem rendelkezik kiemelkedő eredménnyel. :(',
                 'not_ranked' => 'Kizárólag rangsorolt beatmap adhat pp-t.',
-                'pp_weight' => '',
+                'pp_weight' => 'súlyozott :percentage',
                 'title' => 'Rangok',
 
                 'best' => [
@@ -308,8 +308,8 @@ return [
         ],
 
         'header_title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Játékos :info',
+            'info' => 'Info',
         ],
 
         'info' => [
@@ -330,6 +330,7 @@ return [
             'title' => 'Felhasználó nem található! ;_;',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>Rólam!</strong> egy személyre szabható része a profilodnak.',
             'edit_big' => 'A rólam! szerkesztése!',
             'placeholder' => 'Írd ide az oldal tartalmát',
@@ -341,16 +342,16 @@ return [
         ],
         'rank' => [
             'country' => 'Országos rank a/az :mode-ra/re',
-            'country_simple' => '',
+            'country_simple' => 'Országos Rangsor',
             'global' => 'Globális rank a :mode-ra/re',
-            'global_simple' => '',
+            'global_simple' => 'Globális Rangsor',
         ],
         'stats' => [
             'hit_accuracy' => 'Találati Pontosság',
             'level' => 'Szint: :level',
-            'level_progress' => '',
+            'level_progress' => 'Haladás a következő szintre',
             'maximum_combo' => 'Legmagasabb Kombó',
-            'medals' => '',
+            'medals' => 'Medálok',
             'play_count' => 'Játékszám',
             'play_time' => 'Teljes játékidő',
             'ranked_score' => 'Rangsorolt Pontszám',

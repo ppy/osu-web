@@ -46,7 +46,7 @@ formatDuration = (value) ->
         if stat == 'total_length'
           formatDuration value
         else
-          value.toLocaleString()
+          osu.formatNumber(value)
 
       div
         className: "#{bn}__entry"

@@ -68,11 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Beatmap üstverisi gönderisinin silinmesi yasaktır.',
             'beatmapset_post_no_edit' => 'Beatmap üstverisi gönderisini düzenlemek yasaktır.',
+            'only_quote' => '',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Yinelenen seçenekler yasaktır.',
-            'grace_period_expired' => '',
+            'grace_period_expired' => ':limit saatten sonra bir anket düzenlenemez',
             'invalid_max_options' => 'Kullanıcı başına seçenek sayısı mevcut seçenek sayısını geçemez.',
             'minimum_one_selection' => 'Kullanıcı başına en az bir seçenek gereklidir.',
             'minimum_two_options' => 'En az iki seçenek gereklidir.',
@@ -97,6 +98,7 @@ return [
         'username_available_soon' => 'Bu kullanıcı adı hemen her an kullanıma açılabilir!',
         'username_invalid_characters' => 'İstenen kullanıcı adı geçersiz karakterler içeriyor.',
         'username_in_use' => 'Kullanıcı adı zaten kullanımda!',
+        'username_locked' => '', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Lütfen ya alt çizgi ya da boşluk kullanın, ikisini birden değil!',
         'username_no_spaces' => "Kullanıcı adı boşluk ile başlayamaz ya da bitemez!",
         'username_not_allowed' => 'Kullanıcı adı seçimine izin verilmiyor.',
@@ -118,6 +120,6 @@ return [
     ],
 
     'user_report' => [
-        'self' => "",
+        'self' => "Kendinizi raporlayamazsınız!",
     ],
 ];

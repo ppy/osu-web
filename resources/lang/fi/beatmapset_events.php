@@ -58,7 +58,7 @@ return [
 
     'type' => [
         'approve' => '',
-        'discussion_delete' => '',
+        'discussion_delete' => 'Poista keskustelu',
         'discussion_post_delete' => '',
         'discussion_post_restore' => '',
         'discussion_restore' => '',
