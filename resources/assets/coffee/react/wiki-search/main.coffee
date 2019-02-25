@@ -103,6 +103,8 @@ class @WikiSearch.Main extends React.Component
     $.subscribe 'suggestion:mouseleave.wikiSearch', @resetHighlight
     $.subscribe 'suggestion:select.wikiSearch', @selectHighlightedSuggestion
 
+    @refs.input.focus()
+
   componentWillUnmount: ->
     @xhr?.abort()
     @suggestionsDebounced?.cancel()
