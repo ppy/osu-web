@@ -23,14 +23,133 @@ class @WikiSearch.Main extends React.Component
   constructor: (props) ->
     super props
 
+    @state =
+      suggestions: []
+      suggestionsVisible: false
+      highlightedSuggestion: null
+
+    @suggestionsDebounced = _.debounce @getSuggestions, 500
+
+  getSuggestions: =>
+    queryString = @refs.input.value
+
+    if queryString == ''
+      @setState
+        suggestions: []
+        suggestionsVisible: false
+
+      return
+
+    @xhr = $.ajax laroute.route('search'),
+      method: 'GET'
+      data:
+        mode: 'wiki_page'
+        format: 'json'
+        query: queryString
+    .done (xhr, status) =>
+      @setState
+        suggestions: xhr.wiki_page[..9]
+        suggestionsVisible: xhr.wiki_page.length > 0
+
+  hideSuggestions: =>
+    @setState
+      suggestionsVisible: false
+      highlightedSuggestion: null
+
+  shiftSuggestion: (delta) =>
+    if not @state.suggestionsVisible or
+    @state.suggestions.length == 0 or
+    (@state.highlightedSuggestion == null and delta == -1)
+      return
+
+    newPosition = if @state.highlightedSuggestion != null
+      @state.highlightedSuggestion + delta
+    else
+      0
+
+    if newPosition > @state.suggestions.length - 1
+      newPosition = @state.highlightedSuggestion
+    else if newPosition == -1
+      newPosition = null
+
+    @setState
+      highlightedSuggestion: newPosition
+
+  highlightSuggestion: (e, position) =>
+    @setState
+      highlightedSuggestion: position
+
+  resetHighlight: =>
+    @setState
+      highlightedSuggestion: null
+
+  selectHighlightedSuggestion: =>
+    return if not @state.highlightedSuggestion
+
+    Turbolinks.visit laroute.route 'wiki.show',
+      page: @state.suggestions[@state.highlightedSuggestion].path
+
+  performSearch: =>
+    queryString = @refs.input.value
+
+    return if queryString == ''
+
+    Turbolinks.visit laroute.route 'search',
+      mode: 'wiki_page'
+      query: queryString
+
+  componentDidMount: ->
+    $.subscribe 'suggestion:mouseenter.wikiSearch', @highlightSuggestion
+    $.subscribe 'suggestion:mouseleave.wikiSearch', @resetHighlight
+    $.subscribe 'suggestion:select.wikiSearch', @selectHighlightedSuggestion
+
+  componentWillUnmount: ->
+    @xhr?.abort()
+    @suggestionsDebounced?.cancel()
+
+    $.unsubscribe '.wikiSearch'
+
+  onInput: (e) =>
+    @setState
+      suggestions: []
+
+    @suggestionsDebounced()
+
+  onKeyDown: (e) =>
+    switch e.keyCode
+      when 13  # enter
+        if @state.highlightedSuggestion != null
+          @selectHighlightedSuggestion()
+        else
+          @performSearch()
+      when 27  # escape
+        @hideSuggestions()
+      when 38  # up arrow
+        @shiftSuggestion -1
+      when 40  # down arrow
+        if @state.suggestionsVisible == false and @state.suggestions.length > 0
+          @setState
+            suggestionsVisible: true
+            highlightedSuggestion: 0
+        else
+          @shiftSuggestion 1
+
   render: ->
     div
       className: 'wiki-search',
       input
         className: 'wiki-search__bar'
+        ref: 'input'
         placeholder: osu.trans 'common.input.search'
+        onInput: @onInput
+        onKeyDown: @onKeyDown
+        onBlur: => _.delay @hideSuggestions, 200
 
       span
         className: 'wiki-search__button fa fa-search'
+        onClick: @performSearch
 
-      el WikiSearch.Suggestions
+      el WikiSearch.Suggestions,
+        suggestions: @state.suggestions
+        visible: @state.suggestionsVisible
+        highlighted: @state.highlightedSuggestion

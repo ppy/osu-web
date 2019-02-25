@@ -21,14 +21,33 @@ class @WikiSearch.Suggestions extends React.Component
   constructor: (props) ->
     super props
 
+  onMouseEnter: (e) =>
+    $.publish 'suggestion:mouseenter', parseInt e.target.getAttribute 'position'
+
+  onMouseLeave: =>
+    $.publish 'suggestion:mouseleave'
+
+  onClick: (e) =>
+    $.publish 'suggestion:select', parseInt e.target.getAttribute 'position'
+
   render: ->
+    className = 'wiki-search-suggestions'
+    className += ' wiki-search-suggestions--visible' if @props.visible
+
     div
-      className: 'wiki-search-suggestions',
-      for i in [1..5]
+      className: osu.classWithModifiers('wiki-search-suggestions', ['visible' if @props.visible]),
+      for el, i in @props.suggestions
         div
-          className: 'wiki-search-suggestions__suggestion',
-          span className: 'wiki-search-suggestions__suggestion--matching', 'te'
-          "st#{i}"
-      div
-        className: 'wiki-search-suggestions__prompt',
-        osu.trans 'wiki.main.search-enter-prompt'
+          # className: "wiki-search-suggestions__suggestion #{'wiki-search-suggestions__suggestion--highlighted' if i == @props.highlighted}",
+          className: osu.classWithModifiers 'wiki-search-suggestions__suggestion', ['highlighted' if i == @props.highlighted]
+          key: i
+          position: i
+          onMouseEnter: @onMouseEnter
+          onMouseLeave: @onMouseLeave
+          onClick: @onClick
+          el.title
+
+      if @props.highlighted == null
+        div
+          className: 'wiki-search-suggestions__prompt',
+          osu.trans 'wiki.main.search-enter-prompt'

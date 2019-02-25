@@ -21,13 +21,17 @@
   width: 100%;
   background-color: #222;
 
-  padding: 20px;
+  padding: 20px 0;
   margin-top: 3px;
   z-index: @z-index--wiki-search-suggestions;
 
   .default-border-radius;
 
   visibility: hidden;
+
+  &--visible {
+    visibility: visible;
+  }
 
   &__prompt {
     font-size: 12px;
@@ -38,7 +42,13 @@
   &__suggestion {
     width: 100%;
     font-size: 15px;
-    padding-bottom: 10px;
+    padding: 5px 20px;
+
+    user-select: none;
+
+    &--highlighted {
+      background-color: #333;
+    }
 
     &--matching {
       font-weight: 700;
