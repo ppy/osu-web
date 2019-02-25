@@ -24,6 +24,7 @@ class @WikiSearch.Main extends React.Component
     super props
 
     @state =
+      loading: false
       suggestions: []
       suggestionsVisible: false
       highlightedSuggestion: null
@@ -50,6 +51,9 @@ class @WikiSearch.Main extends React.Component
       @setState
         suggestions: xhr.wiki_page[..9]
         suggestionsVisible: xhr.wiki_page.length > 0
+    .always =>
+      @setState
+        loading: false
 
   hideSuggestions: =>
     @setState
@@ -114,6 +118,8 @@ class @WikiSearch.Main extends React.Component
   onInput: (e) =>
     @setState
       suggestions: []
+      suggestionsVisible: true
+      loading: true
 
     @suggestionsDebounced()
 
@@ -152,6 +158,7 @@ class @WikiSearch.Main extends React.Component
         onClick: @performSearch
 
       el WikiSearch.Suggestions,
+        loading: @state.loading
         suggestions: @state.suggestions
         visible: @state.suggestionsVisible
         highlighted: @state.highlightedSuggestion

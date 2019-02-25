@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 {div, span} = ReactDOMFactories
+el = React.createElement
 
 class @WikiSearch.Suggestions extends React.Component
   constructor: (props) ->
@@ -36,7 +37,12 @@ class @WikiSearch.Suggestions extends React.Component
 
     div
       className: osu.classWithModifiers('wiki-search-suggestions', ['visible' if @props.visible]),
-      for el, i in @props.suggestions
+      if @props.loading
+        div
+          className: 'wiki-search-suggestions__spinner'
+          el Spinner
+
+      for suggestion, i in @props.suggestions
         div
           # className: "wiki-search-suggestions__suggestion #{'wiki-search-suggestions__suggestion--highlighted' if i == @props.highlighted}",
           className: osu.classWithModifiers 'wiki-search-suggestions__suggestion', ['highlighted' if i == @props.highlighted]
@@ -45,7 +51,7 @@ class @WikiSearch.Suggestions extends React.Component
           onMouseEnter: @onMouseEnter
           onMouseLeave: @onMouseLeave
           onClick: @onClick
-          el.title
+          suggestion.title
 
       if @props.highlighted == null
         div
