@@ -18,8 +18,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries;
+namespace App\Libraries\Markdown;
 
+use App\Libraries\Markdown\Indexing\RendererExtension as IndexingRendererExtension;
 use Jonnybarnes\CommonmarkLinkify\LinkifyExtension;
 use League\CommonMark\Block\Element\Document;
 use League\CommonMark\CommonMarkConverter;
@@ -75,12 +76,12 @@ class OsuMarkdown
 
     private $config;
     private $document;
+    private $firstImage;
+    private $header;
+    private $html;
+    private $indexable;
     private $processor;
-
-    public $firstImage;
-    public $header;
-    public $html;
-    public $toc;
+    private $toc;
 
     public static function parseYamlHeader($input)
     {
@@ -122,8 +123,19 @@ class OsuMarkdown
         $this->converter = new CommonMarkConverter($this->config, $env);
     }
 
+    public function html()
+    {
+        if ($this->html === null) {
+            $this->process();
+        }
+
+        return $this->html;
+    }
+
     public function load($rawInput)
     {
+        $this->reset();
+
         $rawInput = strip_utf8_bom($rawInput);
 
         if ($this->config['parse_yaml_header']) {
@@ -135,19 +147,32 @@ class OsuMarkdown
             $this->header = [];
         }
 
-        $this->process();
-
         return $this;
     }
 
     public function toArray()
     {
+        $html = $this->html();
+
         return [
             'firstImage' => $this->firstImage,
             'header' => $this->header,
-            'output' => $this->html,
+            'output' => $html,
             'toc' => $this->toc,
         ];
+    }
+
+    public function toIndexable()
+    {
+        if ($this->indexable === null) {
+            $env = Environment::createCommonMarkEnvironment();
+            $env->addExtension(new TableExtension\TableExtension);
+            $env->addExtension(new IndexingRendererExtension);
+            $converter = new CommonMarkConverter($this->config, $env);
+            $this->indexable = $converter->convertToHtml($this->document);
+        }
+
+        return $this->indexable;
     }
 
     private function process()
@@ -168,5 +193,11 @@ class OsuMarkdown
 
         $this->toc = $this->processor->toc;
         $this->firstImage = $this->processor->firstImage;
+    }
+
+    private function reset()
+    {
+        $this->html = null;
+        $this->indexable = null;
     }
 }

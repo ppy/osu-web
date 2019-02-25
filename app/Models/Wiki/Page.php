@@ -26,7 +26,7 @@ use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Es;
-use App\Libraries\OsuMarkdown;
+use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use Carbon\Carbon;
@@ -44,6 +44,8 @@ class Page
     private $cache = [];
     private $defaultTitle;
     private $defaultSubtitle;
+
+    private $source; // source document from elasticsearch;
 
     public static function cleanupPath($path)
     {
@@ -106,6 +108,7 @@ class Page
 
     public function __construct($path, $locale, $esCache = null)
     {
+        $this->source = $esCache;
         if ($esCache !== null) {
             $path = $esCache['path'];
             $locale = $esCache['locale'];
@@ -141,10 +144,15 @@ class Page
                 'tags' => [],
             ];
         } else {
+            $content = $this->getContent();
+            $indexContent = (new OsuMarkdown('wiki', [
+                'relative_url_root' => wiki_url($this->path),
+            ]))->load($content)->toIndexable();
+
             $params['body'] = [
                 'locale' => $this->locale,
                 'page' => json_encode($this->page()),
-                'page_text' => replace_tags_with_spaces($this->page()['output']),
+                'page_text' => $indexContent,
                 'path' => $this->path,
                 'path_clean' => static::cleanupPath($this->path),
                 'title' => $this->title(),
@@ -165,6 +173,30 @@ class Page
             'id' => $this->pagePath(),
             'client' => ['ignore' => 404],
         ]));
+    }
+
+    /**
+     * Gets the markdown content for the page from Github.
+     *
+     * @param bool $force Force any cached value to refresh.
+     * @return string|null
+     */
+    public function getContent(bool $force = false)
+    {
+        if (!array_key_exists('content', $this->cache) || $force) {
+            try {
+                $this->cache['content'] = OsuWiki::fetchContent('wiki/'.$this->pagePath());
+            } catch (GitHubNotFoundException $e) {
+                $this->cache['content'] = null;
+            }
+        }
+
+        return $this->cache['content'];
+    }
+
+    public function getSource()
+    {
+        return $this->source;
     }
 
     public function isOutdated()
@@ -213,15 +245,11 @@ class Page
 
                 if ($fetch) {
                     try {
-                        $body = OsuWiki::fetchContent('wiki/'.$this->pagePath());
+                        $body = $this->getContent();
                     } catch (Exception $e) {
-                        if (!$e instanceof GitHubNotFoundException) {
-                            $index = false;
-
-                            log_error($e);
-                        }
-
                         $body = null;
+                        $index = false;
+                        log_error($e);
                     }
 
                     if (present($body)) {
