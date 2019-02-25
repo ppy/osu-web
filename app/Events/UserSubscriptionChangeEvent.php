@@ -24,7 +24,7 @@ use App\Models\Notification;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class UserSubscriptionChange implements ShouldBroadcast
+class UserSubscriptionChangeEvent implements ShouldBroadcast
 {
     public $action;
     public $userId;

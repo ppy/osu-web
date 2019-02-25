@@ -20,7 +20,7 @@
 
 namespace App\Models\Forum;
 
-use App\Events\UserSubscriptionChange;
+use App\Events\UserSubscriptionChangeEvent;
 use App\Models\User;
 
 /**
@@ -107,7 +107,7 @@ class TopicWatch extends Model
                     $watch->fill(['mail' => $mail])->saveOrExplode();
                 }
 
-                event(new UserSubscriptionChange($event, $user, $topic));
+                event(new UserSubscriptionChangeEvent($event, $user, $topic));
 
                 return $watch;
             } catch (Exception $e) {

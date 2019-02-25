@@ -24,7 +24,7 @@ use Illuminate\Broadcasting\Channel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Queue\SerializesModels;
 
-class All implements ShouldBroadcast
+class NewNotificationEvent implements ShouldBroadcast
 {
     use SerializesModels;
 

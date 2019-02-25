@@ -20,7 +20,7 @@
 
 namespace App\Jobs;
 
-use App\Events\All;
+use App\Events\NewNotificationEvent;
 use App\Models\Notification;
 use App\Models\User;
 use DB;
@@ -177,7 +177,7 @@ class Notify implements ShouldQueue
 
         $notification->save();
 
-        event(new All($notification));
+        event(new NewNotificationEvent($notification));
 
         if (is_array($this->receiverIds)) {
             DB::transaction(function () use ($notification) {
