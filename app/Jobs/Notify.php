@@ -39,16 +39,18 @@ class Notify implements ShouldQueue
 
     public static function onBeatmapsetDiscussionPostNew($source, $post)
     {
+        $beatmapset = $post->beatmapset;
+
         $details = [
             'username' => $source->username,
-            'title' => $post->beatmapset->title,
-            'beatmapset_id' => $post->beatmapset->getKey(),
+            'title' => $beatmapset->title,
+            'post_id' => $post->getKey(),
             'discussion_id' => $post->beatmapDiscussion->getKey(),
         ];
 
-        $receiverIds = static::beatmapsetReceiverIds($post->beatmapset, $source);
+        $receiverIds = static::beatmapsetReceiverIds($beatmapset, $source);
 
-        return new static($source, $receiverIds, $post, [
+        return new static($source, $receiverIds, $beatmapset, [
             'details' => $details,
             'is_private' => true,
             'name' => 'beatmapset_discussion_post_new',
@@ -149,9 +151,10 @@ class Notify implements ShouldQueue
         $details = [
             'username' => $source->username,
             'title' => $topic->topic_title,
+            'post_id' => $post->getKey(),
         ];
 
-        return new static($source, $receiverIds, $post, [
+        return new static($source, $receiverIds, $topic, [
             'details' => $details,
             'is_private' => true,
             'name' => 'post_reply',

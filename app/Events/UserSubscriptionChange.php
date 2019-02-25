@@ -20,29 +20,32 @@
 
 namespace App\Events;
 
+use App\Models\Notification;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Queue\SerializesModels;
 
-class All implements ShouldBroadcast
+class UserSubscriptionChange implements ShouldBroadcast
 {
-    use SerializesModels;
-
-    public $notification;
+    public $action;
+    public $userId;
+    public $channelName;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($notification)
+    public function __construct($action, $user, $notifiable)
     {
-        $this->notification = $notification;
+        $this->action = $action;
+        $this->userId = $user->getKey();
+        $this->channelName = Notification::generateChannelName($notifiable);
     }
 
     public function broadcastAs()
     {
-        return $this->notification->name;
+        return 'change';
     }
 
     /**
@@ -52,11 +55,14 @@ class All implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel($this->notification->channelName());
+        return new Channel("user_subscription:{$this->userId}");
     }
 
     public function broadcastWith()
     {
-        return json_item($this->notification, 'Notification');
+        return [
+            'action' => $this->action,
+            'channel' => $this->channelName,
+        ];
     }
 }

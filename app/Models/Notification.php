@@ -20,12 +20,19 @@
 
 namespace App\Models;
 
+use App\Libraries\MorphMap;
+
 class Notification extends Model
 {
     protected $casts = [
         'details' => 'array',
         'is_private' => 'boolean',
     ];
+
+    public static function generateChannelName($notifiable)
+    {
+        return MorphMap::getType($notifiable).':'.$notifiable->getKey();
+    }
 
     public function notifiable()
     {
@@ -40,5 +47,10 @@ class Notification extends Model
     public function userNotifications()
     {
         return $this->hasMany(UserNotification::class);
+    }
+
+    public function channelName()
+    {
+        return static::generateChannelName($this->notifiable);
     }
 }
