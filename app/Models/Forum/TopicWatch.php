@@ -100,7 +100,6 @@ class TopicWatch extends Model
                 if ($state === 'not_watching') {
                     $event = 'remove';
                     $watch->delete();
-
                 } else {
                     $event = 'add';
                     $mail = $state === 'watching_mail';
