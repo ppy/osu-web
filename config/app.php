@@ -236,6 +236,12 @@ return [
 
         /* Datadog Metrics */
         ChaseConey\LaravelDatadogHelper\LaravelDatadogHelperServiceProvider::class,
+
+        /*
+         * 2FA and Yubikey setup
+         */
+        PragmaRX\Google2FALaravel\ServiceProvider::class,
+        Lahaxearnaud\U2f\U2fServiceProvider::class,
     ],
 
     /*
@@ -293,6 +299,9 @@ return [
         'Slack' => Maknz\Slack\Facades\Slack::class,
         'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
         'Datadog' => ChaseConey\LaravelDatadogHelper\Datadog::class,
+
+        'Google2FA' => PragmaRX\Google2FALaravel\Facade::class,
+        'U2f' => Lahaxearnaud\U2f\U2fFacade::class,
     ],
 
 ];

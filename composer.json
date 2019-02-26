@@ -19,6 +19,7 @@
     }
   ],
   "require": {
+    "bacon/bacon-qr-code": "^2.0",
     "chaseconey/laravel-datadog-helper": "*",
     "doctrine/dbal": "*",
     "egulias/email-validator": "*",
@@ -29,6 +30,7 @@
     "itsgoingd/clockwork": ">=3.0",
     "jenssegers/agent": "^2.6",
     "jonnybarnes/commonmark-linkify": "dev-fix-multi-links-newline",
+    "lahaxearnaud/laravel-u2f": "^1.3",
     "laravel/framework": "5.5.*",
     "laravel/passport": "*",
     "laravel/tinker": "~1.0",
@@ -41,6 +43,7 @@
     "maknz/slack": "dev-laravel-5.4",
     "mariuzzo/laravel-js-localization": "*",
     "paypal/rest-api-sdk-php": "*",
+    "pragmarx/google2fa-laravel": "^0.2.0",
     "sentry/sentry-laravel": "*",
     "symfony/yaml": "*",
     "webuni/commonmark-table-extension": ">=0.8.0",

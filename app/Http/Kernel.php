@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'require-scopes' => Middleware\RequireScopes::class,
         'verify-user' => Middleware\VerifyUser::class,
+        'u2f' => \Lahaxearnaud\U2f\Http\Middleware\U2f::class,
     ];
 }
