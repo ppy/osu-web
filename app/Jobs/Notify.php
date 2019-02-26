@@ -184,7 +184,9 @@ class Notify implements ShouldQueue
                 $receivers = User::whereIn('user_id', $this->receiverIds)->get();
 
                 foreach ($receivers as $receiver) {
-                    $notification->userNotifications()->create(['user_id' => $receiver->getKey()]);
+                    if ($receiver->getKey() !== $this->source->getKey()) {
+                        $notification->userNotifications()->create(['user_id' => $receiver->getKey()]);
+                    }
                 }
             });
         }
