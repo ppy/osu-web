@@ -52,6 +52,7 @@ class FriendsController extends Controller
     public function index()
     {
         $order = request('order', 'asc');
+        $sort = request('sort', 'username'); // TODO: limit sort types
 
         $friends = Auth::user()
             ->friends()
@@ -59,7 +60,7 @@ class FriendsController extends Controller
                 'userProfileCustomization',
                 'country',
             ])
-            ->orderBy('username', $order)
+            ->orderBy($sort, $order)
             ->get();
 
         if (is_api_request() || request()->expectsJson()) {
