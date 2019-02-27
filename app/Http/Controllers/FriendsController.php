@@ -51,16 +51,18 @@ class FriendsController extends Controller
 
     public function index()
     {
+        $order = request('order', 'asc');
+
         $friends = Auth::user()
             ->friends()
             ->with([
                 'userProfileCustomization',
                 'country',
             ])
-            ->orderBy('username', 'asc')
+            ->orderBy('username', $order)
             ->get();
 
-        if (is_api_request()) {
+        if (is_api_request() || request()->expectsJson()) {
             return json_collection($friends, 'UserCompact', ['cover', 'country']);
         } else {
             $userlist = group_users_by_online_state($friends);
