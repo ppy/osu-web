@@ -18,32 +18,30 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries;
+namespace App\Libraries\Markdown\Indexing;
 
 use League\CommonMark\Block\Element\AbstractBlock;
+use League\CommonMark\Block\Renderer\BlockRendererInterface;
 use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\HtmlElement;
-use League\CommonMark\Util\Xml;
-use Webuni\CommonMark\TableExtension\Table;
-use Webuni\CommonMark\TableExtension\TableRenderer;
 
-class OsuTableRenderer extends TableRenderer
+class ListBlockRenderer implements BlockRendererInterface
 {
-    public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, $inTightList = false)
+    /**
+     * @param AbstractBlock $block
+     * @param ElementRendererInterface $htmlRenderer
+     * @param bool $inTightList
+     *
+     * @return string
+     */
+    public function render(AbstractBlock $block, ElementRendererInterface $renderer, $inTightList = false)
     {
-        if (!$block instanceof Table) {
-            throw new InvalidArgumentException('Incompatible block type: '.get_class($block));
+        $rendered = [];
+
+        $children = $block->children();
+        foreach ($children as $child) {
+            $rendered[] = $renderer->renderBlock($child, true);
         }
 
-        $attrs = [];
-        foreach ($block->getData('attributes', []) as $key => $value) {
-            $attrs[$key] = Xml::escape($value, true);
-        }
-
-        $separator = $htmlRenderer->getOption('inner_separator', "\n");
-
-        $table = new HtmlElement('table', [], $separator.$htmlRenderer->renderBlocks($block->children()).$separator);
-
-        return new HtmlElement('div', $attrs, $separator.$table.$separator);
+        return implode('', $rendered);
     }
 }
