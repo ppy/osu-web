@@ -48,7 +48,6 @@ class ForumTopic implements ShouldQueue
             return;
         }
 
-        $notifications = $topic->notifications()->where('created_at', '<=', $this->post->post_time);
         $notifications = Notification
             ::where('notifiable_type', '=', MorphMap::getType($topic))
             ->where('notifiable_id', '=', $topic->getKey())
