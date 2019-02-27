@@ -21,10 +21,8 @@
 namespace App\Jobs\MarkNotificationsRead;
 
 use App\Events\NotificationReadEvent;
-use App\Models\Notification;
-use App\Models\User;
-use DB;
 use App\Libraries\MorphMap;
+use App\Models\Notification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
