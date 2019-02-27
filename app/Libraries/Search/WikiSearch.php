@@ -39,6 +39,7 @@ class WikiSearch extends RecordSearch
         $this->highlight(
             (new Highlight)
                 ->field('page_text')
+                ->field('title')
                 ->fragmentSize(100)
                 ->numberOfFragments(5)
         );

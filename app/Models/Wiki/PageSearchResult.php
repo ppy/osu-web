@@ -32,7 +32,22 @@ class PageSearchResult extends Page
         $this->hit = $hit;
     }
 
-    // TODO: maybe move to a response/view helper?
+    public function highlightedTitle()
+    {
+        $highlights = $this->hit->highlights('title');
+        if (empty($highlights)) {
+            return $this->title(true);
+        }
+
+        $title = $highlights[0];
+
+        if (present($this->subtitle())) {
+            $title = $this->subtitle().' / '. $title;
+        }
+
+        return $title;
+    }
+
     public function highlights()
     {
         return implode(
