@@ -28,6 +28,7 @@ use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\Elasticsearch;
 use App\Models\Log;
+use App\Models\Notification;
 use App\Models\User;
 use App\Traits\Validatable;
 use Carbon\Carbon;
@@ -323,6 +324,11 @@ class Topic extends Model implements AfterCommit
     public function logs()
     {
         return $this->hasMany(Log::class, 'topic_id');
+    }
+
+    public function notifications()
+    {
+        return $this->morphMany(Notification::class, 'notifiable');
     }
 
     public function featureVotes()
