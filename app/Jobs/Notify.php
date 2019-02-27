@@ -158,6 +158,8 @@ class Notify implements ShouldQueue
             'details' => $details,
             'is_private' => true,
             'name' => 'post_reply',
+
+            'created_at' => $post->post_time,
         ]);
     }
 
