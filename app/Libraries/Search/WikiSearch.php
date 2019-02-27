@@ -24,7 +24,7 @@ use App;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Highlight;
 use App\Libraries\Elasticsearch\RecordSearch;
-use App\Models\Wiki\Page;
+use App\Models\Wiki\PageSearchResult;
 
 class WikiSearch extends RecordSearch
 {
@@ -39,8 +39,8 @@ class WikiSearch extends RecordSearch
         $this->highlight(
             (new Highlight)
                 ->field('page_text')
-                ->fragmentSize(static::HIGHLIGHT_FRAGMENT_SIZE)
-                ->numberOfFragments(3)
+                ->fragmentSize(100)
+                ->numberOfFragments(5)
         );
     }
 
@@ -50,8 +50,8 @@ class WikiSearch extends RecordSearch
 
         $pages = [];
 
-        foreach ($response->hits() as $hit) {
-            $page = new Page(null, null, $hit['_source']);
+        foreach ($response as $hit) {
+            $page = new PageSearchResult(null, null, $hit);
 
             $pages[] = $page;
         }

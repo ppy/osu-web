@@ -30,7 +30,9 @@
             </h1>
 
             <p class="search-entry__row search-entry__row--excerpt">
-                {!! html_excerpt($source['page_text']) !!}
+                <span class="search-highlight">
+                    {!! $entry->highlights() !!}
+                </span>
             </p>
 
             <p class="search-entry__row search-entry__row--footer">
