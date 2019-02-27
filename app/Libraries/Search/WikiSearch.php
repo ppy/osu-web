@@ -22,6 +22,7 @@ namespace App\Libraries\Search;
 
 use App;
 use App\Libraries\Elasticsearch\BoolQuery;
+use App\Libraries\Elasticsearch\Highlight;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\Wiki\Page;
 
@@ -33,6 +34,13 @@ class WikiSearch extends RecordSearch
             config('osu.elasticsearch.index.wiki_pages'),
             $params ?? new WikiSearchParams,
             Page::class
+        );
+
+        $this->highlight(
+            (new Highlight)
+                ->field('page_text')
+                ->fragmentSize(static::HIGHLIGHT_FRAGMENT_SIZE)
+                ->numberOfFragments(3)
         );
     }
 
