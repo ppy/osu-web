@@ -40,8 +40,8 @@ class WikiSearch extends RecordSearch
             (new Highlight)
                 // number_of_fragments: 0 forces the entire field to be returned instead of a fragment.
                 ->field('title', ['number_of_fragments' => 0])
-                ->field('page_text')
-                ->fragmentSize(100)
+                ->field('page_text', ['no_match_size' => 300])
+                ->fragmentSize(150)
                 ->numberOfFragments(5)
         );
     }

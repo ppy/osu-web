@@ -24,6 +24,7 @@ use App\Libraries\Elasticsearch\Hit;
 
 class PageSearchResult extends Page
 {
+    /** @var Hit */
     private $hit;
 
     public function __construct($path, $locale, Hit $hit) {
@@ -54,7 +55,7 @@ class PageSearchResult extends Page
             ' ... ',
             $this->hit->highlights(
                 'page_text',
-                200
+                300
             )
         );
     }
