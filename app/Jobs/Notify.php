@@ -48,7 +48,7 @@ class Notify implements ShouldQueue
             'discussion_id' => $post->beatmapDiscussion->getKey(),
         ];
 
-        $receiverIds = static::beatmapsetReceiverIds($beatmapset, $source);
+        $receiverIds = static::beatmapsetReceiverIds($beatmapset);
 
         return new static($source, $receiverIds, $beatmapset, [
             'details' => $details,
@@ -64,7 +64,7 @@ class Notify implements ShouldQueue
             'title' => $beatmapset->title,
         ];
 
-        $receiverIds = static::beatmapsetReceiverIds($beatmapset, $source);
+        $receiverIds = static::beatmapsetReceiverIds($beatmapset);
 
         return new static($source, $receiverIds, $beatmapset, [
             'details' => $details,
@@ -80,7 +80,7 @@ class Notify implements ShouldQueue
             'title' => $beatmapset->title,
         ];
 
-        $receiverIds = static::beatmapsetReceiverIds($beatmapset, $source);
+        $receiverIds = static::beatmapsetReceiverIds($beatmapset);
 
         return new static($source, $receiverIds, $beatmapset, [
             'details' => $details,
@@ -96,7 +96,7 @@ class Notify implements ShouldQueue
             'title' => $beatmapset->title,
         ];
 
-        $receiverIds = static::beatmapsetReceiverIds($beatmapset, $source);
+        $receiverIds = static::beatmapsetReceiverIds($beatmapset);
 
         return new static($source, $receiverIds, $beatmapset, [
             'details' => $details,
@@ -112,7 +112,7 @@ class Notify implements ShouldQueue
             'title' => $beatmapset->title,
         ];
 
-        $receiverIds = static::beatmapsetReceiverIds($beatmapset, $source);
+        $receiverIds = static::beatmapsetReceiverIds($beatmapset);
 
         return new static($source, $receiverIds, $beatmapset, [
             'details' => $details,
@@ -128,7 +128,7 @@ class Notify implements ShouldQueue
             'title' => $beatmapset->title,
         ];
 
-        $receiverIds = static::beatmapsetReceiverIds($beatmapset, $source);
+        $receiverIds = static::beatmapsetReceiverIds($beatmapset);
 
         return new static($source, $receiverIds, $beatmapset, [
             'details' => $details,
@@ -194,11 +194,10 @@ class Notify implements ShouldQueue
         }
     }
 
-    private static function beatmapsetReceiverIds($beatmapset, $excludeUser)
+    private static function beatmapsetReceiverIds($beatmapset)
     {
         return $beatmapset
             ->watches()
-            ->where('user_id', '<>', $excludeUser->getKey())
             ->pluck('user_id')
             ->all();
     }
