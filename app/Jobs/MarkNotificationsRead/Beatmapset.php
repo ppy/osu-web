@@ -55,6 +55,8 @@ class Beatmapset implements ShouldQueue
         $notificationIds = $userNotifications->pluck('notification_id')->all();
         $userNotifications->each->update(['is_read' => true]);
 
-        event(new NotificationReadEvent($this->user->getKey(), $notificationIds));
+        if (!empty($notificationIds)) {
+            event(new NotificationReadEvent($this->user->getKey(), $notificationIds));
+        }
     }
 }
