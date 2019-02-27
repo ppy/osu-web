@@ -165,7 +165,7 @@ class BeatmapsetsController extends Controller
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
         ];
 
-        BeatmapsetWatch::markRead($beatmapset, Auth::user());
+        BeatmapsetWatch::markRead(Auth::user(), $beatmapset);
 
         if ($returnJson) {
             return $initialData;
@@ -217,7 +217,7 @@ class BeatmapsetsController extends Controller
             return error_popup($nomination['message']);
         }
 
-        BeatmapsetWatch::markRead($beatmapset, Auth::user());
+        BeatmapsetWatch::markRead(Auth::user(), $beatmapset);
         (new NotifyBeatmapsetUpdate([
             'user' => Auth::user(),
             'beatmapset' => $beatmapset,
@@ -237,7 +237,7 @@ class BeatmapsetsController extends Controller
             return error_popup($nomination['message']);
         }
 
-        BeatmapsetWatch::markRead($beatmapset, Auth::user());
+        BeatmapsetWatch::markRead(Auth::user(), $beatmapset);
         (new NotifyBeatmapsetUpdate([
             'user' => Auth::user(),
             'beatmapset' => $beatmapset,

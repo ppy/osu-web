@@ -184,7 +184,7 @@ class BeatmapDiscussionPostsController extends Controller
 
         $beatmapset = $discussion->beatmapset;
 
-        BeatmapsetWatch::markRead($beatmapset, Auth::user());
+        BeatmapsetWatch::markRead(Auth::user(), $beatmapset);
         dispatch(Notify::onBeatmapsetDiscussionPostNew(Auth::user(), $post));
         (new NotifyBeatmapsetUpdate([
             'user' => Auth::user(),
