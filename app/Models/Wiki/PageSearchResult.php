@@ -27,7 +27,8 @@ class PageSearchResult extends Page
     /** @var Hit */
     private $hit;
 
-    public function __construct($path, $locale, Hit $hit) {
+    public function __construct($path, $locale, Hit $hit)
+    {
         parent::__construct($path, $locale, $hit->source());
 
         $this->hit = $hit;
@@ -43,7 +44,7 @@ class PageSearchResult extends Page
         $title = $highlights[0];
 
         if (present($this->subtitle())) {
-            $title = $this->subtitle().' / '. $title;
+            $title = $this->subtitle().' / '.$title;
         }
 
         return $title;
