@@ -19,14 +19,14 @@
  */
 
 return [
-    '_' => '',
+    '_' => 'Rendezés',
 
-    'new' => '',
-    'old' => '',
-    'top' => '',
+    'new' => 'Legutóbbi',
+    'old' => 'Régi',
+    'top' => 'Felső',
 
     'forum_topics' => [
-        'new' => '',
-        'feature_votes' => '',
+        'new' => 'Legutóbbi válasz',
+        'feature_votes' => 'Csillag prioritás',
     ],
 ];

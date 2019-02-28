@@ -42,7 +42,7 @@ return [
         'send' => 'Lähetä',
     ],
     'no-conversations' => [
-        'howto' => "",
+        'howto' => "Aloita keskusteluja käyttäjän profiilista tai käyttäjäkortti-ikkunasta.",
         'lazer' => 'Julkiset kanavat joihin olet liittynyt <a href=":link">osu!lazerilla</a> näkyvät myös täällä.',
         'pm_limitations' => 'Vain <a href=":link">osu!lazerin</a> tai uuden nettisivun käyttäjät voivat vastaanottaa yksityisviestejä.',
         'title' => 'ei vielä keskusteluja',

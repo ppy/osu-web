@@ -25,7 +25,7 @@ return [
     ],
 
     'comment' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Пожаловаться',
+        'title' => 'Пожаловать на комментарий :username?',
     ],
 ];

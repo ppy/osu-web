@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'Aktuální uživatelské jméno (:current) není stejné, jako změněné, které chcete zrušit (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => 'Váš dar je nižší, než je částka vyžadována pro darování statusu osu!podporovatele (:actual > :expected)',
     ],
 ];

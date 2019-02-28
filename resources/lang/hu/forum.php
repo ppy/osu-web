@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited poszt|-:count_delimited poszt',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Szavazás Létrehozása',
 
-            'preview' => '',
+            'preview' => 'Poszt előnézet',
 
             'create_poll_button' => [
                 'add' => 'Szavazás létrehozása',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'csillagos prioritás',
             'replies' => 'válaszok',
             'views' => 'megtekintések',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => 'Kérés promotálása',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Ez egy :feature_request. A funkciókérések felszavazhatóak :supporters által.',
+                    'feature_request' => 'funkciókérés',
+                    'supporters' => 'támogatók',
                 ],
 
                 'user' => [

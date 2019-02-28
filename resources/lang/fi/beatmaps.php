@@ -85,7 +85,7 @@ return [
             'timeline' => 'Aikajana',
             'scopes' => [
                 'general' => 'Tämä vaikeustaso',
-                'generalAll' => 'Kaikki vaikeusasteet',
+                'generalAll' => 'Kaikki vaikeustasot',
             ],
         ],
 
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Lajiteltu:',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'created_at' => 'Luomisaika',
+            'timeline' => 'Aikajana',
+            'updated_at' => 'Viimeisin päivitys',
         ],
 
         'stats' => [
@@ -117,7 +117,7 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'Tämä rytmikartta hyväksyttiiin :date!',
+            'approved' => 'Tämä beatmappi hyväksyttiiin :date!',
             'graveyard' => "Tätä beatmappia ei ole päivitetty sitten :date ja sen tekijä on todennäköisesti hyljännyt sen...",
             'loved' => 'Tämä beatmap lisättiin Rakastettuihin :date!',
             'ranked' => 'Tämä beatmap hyväksyttiin :date!',
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Oletko varma? Uuden ongelman lähettäminen kumoaa suositusprosessin.',
-            'disqualify' => '',
+            'disqualify' => 'Oletko varma? Tämä poistaa kappaleen hyväksynnästä ja resetoi äänestysprosessin.',
         ],
     ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => 'Pelatut',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'Nimi',
+                'artist' => 'Esittäjä',
+                'difficulty' => 'Vaikeustaso',
+                'updated' => 'Päivitetty',
+                'ranked' => 'Hyväksytty',
+                'rating' => 'Luokitus',
+                'plays' => 'Pelikerrat',
+                'relevance' => 'Osuvuus',
+                'nominations' => 'Äänestykset',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Rajataksesi tunnisteella :filters sinulla on oltava aktiivinen :link',
@@ -303,7 +303,7 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => 'Pelikerrat :count',
+        'favourites' => 'Suosikit :count',
     ],
 ];

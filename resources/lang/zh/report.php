@@ -25,7 +25,7 @@ return [
     ],
 
     'comment' => [
-        'button' => '',
-        'title' => '',
+        'button' => '举报',
+        'title' => '举报 :username 的评论？',
     ],
 ];

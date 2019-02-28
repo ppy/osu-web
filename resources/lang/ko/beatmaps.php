@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => '정렬 기준:',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'created_at' => '만든 날짜',
+            'timeline' => '타임라인',
+            'updated_at' => '마지막 업데이트',
         ],
 
         'stats' => [
@@ -194,15 +194,15 @@ return [
                 'played' => '플레이함',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => '제목',
+                'artist' => '아티스트',
+                'difficulty' => '난이도',
+                'updated' => '최근 순',
+                'ranked' => 'Ranked',
+                'rating' => '평가',
+                'plays' => '플레이된 횟수',
+                'relevance' => '연관성',
+                'nominations' => '지명 순',
             ],
             'supporter_filter_quote' => [
                 '_' => ':filters로 검색하려면 :link이 필요합니다.',
@@ -303,7 +303,7 @@ return [
         'D' => 'D',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => '플레이 횟수: :count',
+        'favourites' => '즐겨찾기 수: :count',
     ],
 ];

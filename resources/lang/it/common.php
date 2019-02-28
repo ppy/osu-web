@@ -30,17 +30,17 @@ return [
     ],
 
     'buttons' => [
-        'admin' => '',
+        'admin' => 'Amministratore',
         'back_to_previous' => 'Torna alla posizione precedente',
         'back_to_top' => 'Torna in cima',
         'cancel' => 'Cancella',
         'change' => 'modifica',
         'click_to_copy' => 'clicca per copiare negli appunti',
         'click_to_copy_copied' => 'copiato negli appunti!',
-        'collapse' => '',
+        'collapse' => 'comprimi',
         'delete' => 'Elimina',
         'edit' => 'Modifica',
-        'expand' => '',
+        'expand' => 'espandi',
         'hide' => 'nascondi',
         'permalink' => 'permalink',
         'permalink_copied' => 'link copiato',
@@ -56,7 +56,7 @@ return [
         'see_more' => 'mostra altro',
         'show' => 'mostra',
         'show_more' => 'mostra altro',
-        'show_more_options' => '',
+        'show_more_options' => 'mostra più opzioni',
         'upload_image' => 'carica immagine',
     ],
 
@@ -86,7 +86,7 @@ return [
             'php' => 'MMMM y',
         ],
         'year_month_short' => [
-            'moment' => 'MMM YYY',
+            'moment' => 'MMM YYYY',
         ],
     ],
 

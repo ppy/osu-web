@@ -49,7 +49,7 @@ return [
 
     'tracklist' => [
         'title' => '歌曲名',
-        'length' => '时常',
+        'length' => '时长',
         'bpm' => 'BPM',
         'genre' => '流派',
     ],

@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu!novinky',
 
         'nav' => [
             'newer' => 'Novější příspěvky',
@@ -28,13 +28,13 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Novinky » :info',
+            'info' => 'Hlávní stránka',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => 'od :user',
 
         'nav' => [
             'newer' => 'Novější příspěvek',
@@ -42,8 +42,8 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Novinky » :info',
+            'info' => 'Článek',
         ],
     ],
 

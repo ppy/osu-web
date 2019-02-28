@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => '排序：',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'created_at' => '创建时间',
+            'timeline' => '时间线',
+            'updated_at' => '最后更新时间',
         ],
 
         'stats' => [
@@ -121,7 +121,7 @@ return [
             'graveyard' => "这张谱面自 :date 就未更新了，或许它已经被作者抛弃了 ;w;",
             'loved' => '这张谱面于 :date 被 Loved !',
             'ranked' => '这张谱面于 :date 被 Ranked !',
-            'wip' => '注意：这张谱面被作者标记为正在填坑中（WIP）',
+            'wip' => '注意：这张谱面被作者标记为 WIP（work-in-progress）',
         ],
 
     ],
@@ -194,15 +194,15 @@ return [
                 'played' => '玩过',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => '标题',
+                'artist' => '艺术家',
+                'difficulty' => '难度',
+                'updated' => '已更新',
+                'ranked' => 'Ranked',
+                'rating' => '评分',
+                'plays' => '游玩次数',
+                'relevance' => '相关性',
+                'nominations' => '提名状态',
             ],
             'supporter_filter_quote' => [
                 '_' => '按 :filters 筛选需要成为 :link',
@@ -226,8 +226,8 @@ return [
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
         'qualified' => 'Qualified',
-        'loved' => '喜欢的',
-        'faves' => '最爱的',
+        'loved' => 'Loved',
+        'faves' => '收藏夹',
         'pending' => 'Pending & WIP',
         'graveyard' => '坟图',
         'my-maps' => '我的',
@@ -303,7 +303,7 @@ return [
         'D' => 'D',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => '游戏次数：:count',
+        'favourites' => '收藏次数：:count',
     ],
 ];

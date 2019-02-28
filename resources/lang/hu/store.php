@@ -114,7 +114,7 @@ return [
             'delivered' => 'Kézbesítve',
             'paid' => 'Fizetett',
             'processing' => 'Megerősítés függőben',
-            'shipped' => '',
+            'shipped' => 'Szállítás alatt',
         ],
     ],
 

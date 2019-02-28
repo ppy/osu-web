@@ -22,18 +22,18 @@ return [
     'pinned_topics' => 'Kiinnitetyt Aiheet',
     'slogan' => "on vaarallista pelata yksin.",
     'subforums' => 'Alafoorumit',
-    'title' => 'osu! foorumit',
+    'title' => 'osu!-foorumit',
 
     'covers' => [
         'create' => [
             '_' => 'Aseta kansikuva',
             'button' => 'Lataa kuva',
-            'info' => 'Kansikuvan koko kuuluisi olla :dimensions. Voit upottaa kuvan myös tähän.',
+            'info' => 'Kansikuvan koon kuuluisi olla :dimensions. Voit upottaa kuvan myös tähän.',
         ],
 
         'destroy' => [
             '_' => 'Poista kansikuva',
-            'confirm' => 'Oletko varma, että haluat poistaa kansikuvan?',
+            'confirm' => 'Haluatko varmasti poistaa kansikuvan?',
         ],
     ],
 
@@ -54,10 +54,10 @@ return [
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => 'Äänestyksen muokkaaminen poistaa tämänhetkiset tulokset!',
 
         'actions' => [
-            'edit' => '',
+            'edit' => 'Muokkaa äänestystä',
         ],
     ],
 
@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited viesti|:count_delimited viestiä',
         ],
     ],
 
@@ -86,7 +86,7 @@ return [
 
     'topic' => [
         'deleted' => 'poistettu aihe',
-        'go_to_latest' => 'katso viimeisin viesti',
+        'go_to_latest' => 'näytä viimeisin viesti',
         'latest_post' => ':when käyttäjältä :user',
         'latest_reply_by' => 'viimeisimmän vastauksen jätti :user',
         'new_topic' => 'Lähetä uusi aihe',
@@ -141,11 +141,11 @@ return [
 
             'box' => [
                 'total' => 'Seurattuja aiheita',
-                'unread' => 'Aiheita uusilla vastauksilla',
+                'unread' => 'Aiheita joissa uusia vastauksia',
             ],
 
             'info' => [
-                'total' => 'Olet seurannut :total aihetta.',
+                'total' => ':total aihetta seurattavana.',
                 'unread' => 'Sinulla on :unread lukematonta vastausta seuratuissa aiheissa.',
             ],
         ],
@@ -162,7 +162,7 @@ return [
         '_' => 'Aiheet',
 
         'actions' => [
-            'login_reply' => 'Kirjaudu sisään Vastataksesi',
+            'login_reply' => 'Kirjaudu sisään vastataksesi',
             'reply' => 'Vastaa',
             'reply_with_quote' => 'Lainaa viestiä vastaukseen',
             'search' => 'Hae',
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Äänestyksen Luonti',
 
-            'preview' => '',
+            'preview' => 'Viestin esikatselu',
 
             'create_poll_button' => [
                 'add' => 'Luo äänestys',
@@ -181,7 +181,7 @@ return [
             'poll' => [
                 'length' => 'Pidä äänestystä auki',
                 'length_days_suffix' => 'päivää',
-                'length_info' => 'Jätä tyhjä jos haluat loputtoman kyselyn',
+                'length_info' => 'Jätä tyhjäksi jos haluat kyselyn kestävän ikuisesti',
                 'max_options' => 'Vastauksia per käyttäjä',
                 'max_options_info' => 'Määrä vaihtoehtoja, joita käyttäjä voi valita äänestyksen aikana.',
                 'options' => 'Asetukset',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'tähtitaso',
             'replies' => 'vastausta',
             'views' => 'katsomiskertaa',
         ],
@@ -245,11 +245,11 @@ return [
         ],
 
         'lock' => [
-            'is_locked' => 'Tämä aihe on lukittu, eikä ole voidaan vastata',
+            'is_locked' => 'Tämä aihe on lukittu, eikä siihen voida vastata',
             'to_0' => 'Avaa aihe',
             'to_0_done' => 'Aihe on avattu',
             'to_1' => 'Lukitse aihe',
-            'to_1_done' => 'Aihe on lukittu',
+            'to_1_done' => 'Aihe lukittu',
         ],
 
         'moderate_move' => [
@@ -258,31 +258,31 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Irrota aihe',
-            'to_0_done' => 'Aihe on irrotettu',
+            'to_0_done' => 'Aihe irrotettu',
             'to_1' => 'Kiinnitä aihe',
-            'to_1_done' => 'Aihe on kiinnitetty',
+            'to_1_done' => 'Aihe kiinnitetty',
             'to_2' => 'Kiinnitä aihe ja merkkaa ilmoitukseksi',
             'to_2_done' => 'Aihe on kiinnitetty ja merkattu ilmoitukseksi',
         ],
 
         'show' => [
-            'deleted-posts' => 'Poistetut aiheet',
+            'deleted-posts' => 'Poistetut viestit',
             'total_posts' => 'Vastauksia',
 
             'feature_vote' => [
                 'current' => 'Tärkeys tällä hetkellä: +:count',
-                'do' => 'Ehdota tätä pyyntöä',
+                'do' => 'Ehdota tätä',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Tämä on :feature_request. :supporters voivat äänestää ominaisuuspyyntöjä.',
+                    'feature_request' => 'ominaisuuspyyntö',
+                    'supporters' => 'tukijat',
                 ],
 
                 'user' => [
                     'count' => '{0} ei ääniä |{1}:count ääni|[2,*]:count ääntä',
                     'current' => 'Sinulla on :votes jäljellä.',
-                    'not_enough' => "Sinulla ei ole enään ääniä jäljellä",
+                    'not_enough' => "Sinulla ei ole enää ääniä jäljellä",
                 ],
             ],
 
@@ -301,8 +301,8 @@ return [
             'to_not_watching' => 'Lisäämättä kirjanmerkkeihin',
             'to_watching' => 'Kirjanmerkkeihin',
             'to_watching_mail' => 'Kirjanmerkkeihin ilmoituksella',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => 'Ilmoitus on päällä. Klikkaa poistaaksesi käytöstä',
+            'tooltip_mail_enable' => 'Ilmoitus on pois käytöstä. Klikkaa laittaaksesi päälle',
         ],
     ],
 ];

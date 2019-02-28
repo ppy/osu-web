@@ -30,7 +30,7 @@ return [
         'identify' => 'Kenali diri Anda dan baca profil publik Anda.',
 
         'friends' => [
-            'read' => '',
+            'read' => 'Lihat siapa saja yang Anda ikuti.',
         ],
     ],
 ];

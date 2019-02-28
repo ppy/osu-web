@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'aktualności',
 
         'nav' => [
             'newer' => 'Nowsze wiadomości',
@@ -28,13 +28,13 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Aktualności » :info',
+            'info' => 'Strona główna',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => 'autorstwa :user',
 
         'nav' => [
             'newer' => 'Nowsza wiadomość',
@@ -42,8 +42,8 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Aktualności » :info',
+            'info' => 'Wiadomość',
         ],
     ],
 

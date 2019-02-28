@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited пост|:count_delimited поста|:count_delimited постов',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Создание опроса',
 
-            'preview' => '',
+            'preview' => 'Предпросмотр',
 
             'create_poll_button' => [
                 'add' => 'Прикрепить опрос',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'количество голосов',
             'replies' => 'ответов',
             'views' => 'просмотров',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => 'Продвинуть данный запрос',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Это :feature_request. За идею можно проголосовать только с :supporters.',
+                    'feature_request' => 'предложенная идея',
+                    'supporters' => 'osu!supporter',
                 ],
 
                 'user' => [

@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => '',
-        'reply' => '',
+        'new' => 'Jelentkezz be a hozzászóláshoz',
+        'reply' => 'Jelentkezz be a válaszoláshoz',
     ],
 
     'index' => [

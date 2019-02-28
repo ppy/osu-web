@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Rendezve:',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'created_at' => 'Létrehozás ideje',
+            'timeline' => 'Idővonal',
+            'updated_at' => 'Utolsó frissítés',
         ],
 
         'stats' => [
@@ -194,15 +194,15 @@ return [
                 'played' => 'Lejátszott',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'Cím',
+                'artist' => 'Előadó',
+                'difficulty' => 'Nehézség',
+                'updated' => 'Frissítve',
+                'ranked' => 'Rangsorolt',
+                'rating' => 'Értékelés',
+                'plays' => 'Játszások',
+                'relevance' => 'Relevancia',
+                'nominations' => 'Nominálások',
             ],
             'supporter_filter_quote' => [
                 '_' => ':filters általi szűrés aktív :link-et igényel',
@@ -303,7 +303,7 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => 'Játékszám: :count',
+        'favourites' => 'Kedvencek: :count',
     ],
 ];

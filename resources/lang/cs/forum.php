@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited příspěvek|:count_delimited příspěvky|:count_delimited příspěvků',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Vytvoření ankety',
 
-            'preview' => '',
+            'preview' => 'Náhled příspěvku',
 
             'create_poll_button' => [
                 'add' => 'Vytvořit anketu',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'priorita hvězd',
             'replies' => 'odpovědi',
             'views' => 'zobrazení',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => 'Promovat tento požadavek',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Tohle je :feature_request. Žádosti o nové funkce mohou dostávat hlasy od :supporters.',
+                    'feature_request' => 'žádost o novou funkci',
+                    'supporters' => 'podporovatelů',
                 ],
 
                 'user' => [

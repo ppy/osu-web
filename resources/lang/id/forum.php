@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited postingan',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Pembuatan Jajak Pendapat',
 
-            'preview' => '',
+            'preview' => 'Pratinjau Postingan',
 
             'create_poll_button' => [
                 'add' => 'Buat jajak pendapat',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'prioritas',
             'replies' => 'balasan',
             'views' => 'kali dilihat',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => 'Promosikan permintaan ini',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Ini adalah sebuah :feature_request. Fitur-fitur yang diajukan dapat di-vote lebih lanjut oleh :supporters.',
+                    'feature_request' => 'permintaan fitur',
+                    'supporters' => 'para supporter',
                 ],
 
                 'user' => [

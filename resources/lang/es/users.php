@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Historial de Modding de :usuario",
-        'title_compact' => '',
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Discusiones recientemente empezadas',
@@ -112,7 +112,7 @@ return [
         ],
 
         'options' => [
-            'cheating' => '',
+            'cheating' => 'Jugador tramposo',
             'insults' => 'Insulta a mí / otros',
             'spam' => 'Spam',
             'unwanted_content' => 'Enlazando a contenido inapropiado',
@@ -167,11 +167,11 @@ return [
 
             'achievements' => [
                 'achieved-on' => 'Obtenido el :date',
-                'locked' => '',
+                'locked' => 'Bloqueado',
                 'title' => 'Logros',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => 'por :artist',
                 'none' => 'Ninguno... aún.',
                 'title' => 'Beatmaps',
 
@@ -197,7 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Historial de juego',
-                    'count_label' => '',
+                    'count_label' => 'Veces jugado',
                 ],
                 'most_played' => [
                     'count' => 'veces jugadas',
@@ -209,7 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historial de repeticiones vistas',
-                    'count_label' => '',
+                    'count_label' => 'Repeticiones vistas',
                 ],
             ],
             'kudosu' => [
@@ -264,17 +264,17 @@ return [
             ],
             'medals' => [
                 'empty' => "Este usuario aún no ha conseguido ninguna. ;_;",
-                'recent' => '',
+                'recent' => 'Más reciente',
                 'title' => 'Medallas',
             ],
             'recent_activity' => [
                 'title' => 'Reciente',
             ],
             'top_ranks' => [
-                'download_replay' => '',
+                'download_replay' => 'Descargar Repetición',
                 'empty' => 'No hay records de rendimiento impresionantes aún. :(',
                 'not_ranked' => 'Sólo los mapas rankeados dan pp.',
-                'pp_weight' => '',
+                'pp_weight' => 'valorado :percentage',
                 'title' => 'Rangos',
 
                 'best' => [
@@ -308,8 +308,8 @@ return [
         ],
 
         'header_title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Información del jugador :info',
+            'info' => 'Información',
         ],
 
         'info' => [
@@ -330,7 +330,7 @@ return [
             'title' => '¡Usuario no encontrado! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'Editar pagina de perfil',
             'description' => '<strong>¡yo!</strong> es una área personal y personalizable en tu perfil.',
             'edit_big' => 'Editar ¡yo!',
             'placeholder' => 'Escribe el contenido de la pagina aquí',
@@ -342,16 +342,16 @@ return [
         ],
         'rank' => [
             'country' => 'Rank nacional para :mode',
-            'country_simple' => '',
+            'country_simple' => 'Ranking Nacional',
             'global' => 'Rank global para :mode',
-            'global_simple' => '',
+            'global_simple' => 'Ranking Global',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisión',
             'level' => 'Nivel :level',
-            'level_progress' => '',
+            'level_progress' => 'Progreso al siguiente nivel',
             'maximum_combo' => 'Combo máximo',
-            'medals' => '',
+            'medals' => 'Medallas',
             'play_count' => 'Conteo de jugadas',
             'play_time' => 'Tiempo de juego total',
             'ranked_score' => 'Puntuación rankeada',

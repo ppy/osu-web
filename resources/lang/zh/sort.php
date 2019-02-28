@@ -19,14 +19,14 @@
  */
 
 return [
-    '_' => '',
+    '_' => '排序方式',
 
-    'new' => '',
-    'old' => '',
-    'top' => '',
+    'new' => '最新',
+    'old' => '最旧',
+    'top' => '热门',
 
     'forum_topics' => [
-        'new' => '',
-        'feature_votes' => '',
+        'new' => '最后回复',
+        'feature_votes' => '星级优先级',
     ],
 ];

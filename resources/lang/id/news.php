@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu!news',
 
         'nav' => [
             'newer' => 'Postingan baru',
@@ -28,13 +28,13 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => ':info Berita',
+            'info' => 'Laman Depan',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => 'oleh :user',
 
         'nav' => [
             'newer' => 'Postingan baru',
@@ -42,8 +42,8 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => ':info Berita',
+            'info' => 'Kiriman',
         ],
     ],
 

@@ -330,7 +330,7 @@ return [
             'title' => 'Uživatel nebyl nalezen! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'Upravit stránku profilu',
             'description' => '<strong>já!</strong> je osobní přizpůsobitelná plocha na vašem profilu.',
             'edit_big' => 'Uprav mě!',
             'placeholder' => 'Zde napiš obsah stánky',

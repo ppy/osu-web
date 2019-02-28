@@ -93,7 +93,7 @@ return [
     ],
     'anonymous' => [
         'login_link' => 'clique para conectar-se',
-        'login_text' => 'conectar',
+        'login_text' => 'conectar-se',
         'username' => 'Visitante',
         'error' => 'Você precisa estar conectado para fazer isso.',
     ],
@@ -330,7 +330,7 @@ return [
             'title' => 'Usuário não encontrado! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'Editar página do perfil',
             'description' => '<strong>eu!</strong> é uma área pessoal customizável na sua página de perfil.',
             'edit_big' => 'Me edite!',
             'placeholder' => 'Digite o conteúdo da página aqui',

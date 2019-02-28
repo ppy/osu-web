@@ -19,14 +19,14 @@
  */
 
 return [
-    '_' => '',
+    '_' => 'Lajittele',
 
-    'new' => '',
-    'old' => '',
-    'top' => '',
+    'new' => 'Viimeisin',
+    'old' => 'Vanha',
+    'top' => 'Paras',
 
     'forum_topics' => [
-        'new' => '',
-        'feature_votes' => '',
+        'new' => 'Viimeisin kommentti',
+        'feature_votes' => 'Tähtitaso',
     ],
 ];

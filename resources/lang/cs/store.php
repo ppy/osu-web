@@ -114,7 +114,7 @@ return [
             'delivered' => 'Doručeno',
             'paid' => 'Zaplaceno',
             'processing' => 'Očekávající potvrzení',
-            'shipped' => '',
+            'shipped' => 'Na cestě',
         ],
     ],
 

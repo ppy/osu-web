@@ -24,7 +24,7 @@ return [
         'online' => '<strong>:players</strong> actualmente en línea en <strong>:games</strong> partidas',
         'peak' => ':count usuarios en línea',
         'players' => '<strong>:count</strong> usuarios registrados',
-        'title' => '',
+        'title' => 'bienvenido',
 
         'slogan' => [
             'main' => 'el mejor juego de ritmo gratis',

@@ -32,9 +32,9 @@ return [
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => 'Szavazás',
+            'remove' => 'Szavazat eltávolítása',
+            'used_up' => 'Felhasználtad az összes szavazatodat',
         ],
     ],
     'entry' => [

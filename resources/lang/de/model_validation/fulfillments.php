@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'Aktueller Nutzername (:current) entspricht nicht dem, der widerrufen werden soll (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => 'Deine Spende ist zu gering, um das osu!supporter tag Geschenk zu erhalten (:actual > :expected)',
     ],
 ];

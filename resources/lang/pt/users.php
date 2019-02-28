@@ -330,7 +330,7 @@ return [
             'title' => 'Utilizador não encontrado! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'Editar a página de perfil',
             'description' => '<strong>eu!</strong> é uma área pessoal personalizável na tua página de perfil.',
             'edit_big' => 'Edita-me!',
             'placeholder' => 'Escreve o conteúdo da página aqui',

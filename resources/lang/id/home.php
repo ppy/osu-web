@@ -24,7 +24,7 @@ return [
         'online' => '<strong>:players</strong> saat ini terhubung dalam <strong>:games</strong> permainan',
         'peak' => 'Tercatat maksimal sebanyak :count pengguna online',
         'players' => '<strong>:count</strong> pengguna terdaftar',
-        'title' => '',
+        'title' => 'selamat datang',
 
         'slogan' => [
             'main' => 'game ritme free-to-win terbaik',

@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'A felhasználó jelenlegi neve (:current) nem egyezik a visszaállítandó névvel (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => 'A fizetett összeg kevesebb, mint a támogatói cím ára (:actual > :expected)',
     ],
 ];

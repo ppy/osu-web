@@ -330,7 +330,7 @@ return [
             'title' => 'Benutzer nicht gefunden! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'Profil bearbeiten',
             'description' => '<strong>me!</strong> ist ein persönlicher Bereich auf deinem osu!-Profil, den du nach deinem Belieben anpassen kannst.',
             'edit_big' => 'me! bearbeiten',
             'placeholder' => 'Seiteninhalt hier eingeben',

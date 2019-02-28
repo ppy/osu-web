@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu!hírek',
 
         'nav' => [
             'newer' => 'Újabb posztok',
@@ -28,13 +28,13 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Hírek :info',
+            'info' => 'Címlap',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => ':user által',
 
         'nav' => [
             'newer' => 'Újabb poszt',
@@ -42,8 +42,8 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Hírek :info',
+            'info' => 'Poszt',
         ],
     ],
 

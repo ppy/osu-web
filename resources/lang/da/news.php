@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu!nyheder',
 
         'nav' => [
             'newer' => 'Nyere indlæg',
@@ -28,13 +28,13 @@ return [
         ],
 
         'title' => [
-            '_' => '',
+            '_' => 'Nyheder :info',
             'info' => '',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => 'af :user',
 
         'nav' => [
             'newer' => 'Nyere indlæg',
@@ -42,8 +42,8 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Nyheder :info',
+            'info' => 'Slå op',
         ],
     ],
 

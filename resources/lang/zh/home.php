@@ -24,7 +24,7 @@ return [
         'online' => '<strong>:players</strong> 名在线玩家, <strong>:games</strong> 个游戏房间',
         'peak' => '最高在线人数 :count 人',
         'players' => '<strong>:count</strong> 名已注册玩家',
-        'title' => '',
+        'title' => '欢迎',
 
         'slogan' => [
             'main' => '棒到不行的免费音乐游戏',

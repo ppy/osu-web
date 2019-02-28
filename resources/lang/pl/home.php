@@ -24,7 +24,7 @@ return [
         'online' => '<strong>:players</strong> użytkowników jest obecnie online w <strong>:games</strong> meczach',
         'peak' => ':count użytkowników online',
         'players' => '<strong>:count</strong> zarejestrowanych użytkowników',
-        'title' => '',
+        'title' => 'witaj',
 
         'slogan' => [
             'main' => 'darmowa gra rytmiczna',
@@ -115,12 +115,12 @@ return [
     'user' => [
         'title' => 'przegląd',
         'news' => [
-            'title' => 'Wiadomości',
+            'title' => 'Aktualności',
             'error' => 'Wystąpił błąd, spróbuj odświeżyć stronę.',
         ],
         'header' => [
             'welcome' => 'Witaj, <strong>:username</strong>!',
-            'messages' => 'Masz :count nową wiadomość|Masz :count nowe wiadomości|Masz :count nowych wiadomości',
+            'messages' => 'Masz :count_delimited nową wiadomość|Masz :count_delimited nowe wiadomości|Masz :count_delimited nowych wiadomości',
             'stats' => [
                 'friends' => 'Znajomi online',
                 'games' => 'Mecze',
