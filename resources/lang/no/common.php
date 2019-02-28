@@ -30,17 +30,17 @@ return [
     ],
 
     'buttons' => [
-        'admin' => '',
+        'admin' => 'Admin',
         'back_to_previous' => 'Gå tilbake til forrige posisjon',
         'back_to_top' => 'Tilbake til toppen',
         'cancel' => 'Avbryt',
         'change' => 'endre',
         'click_to_copy' => 'klikk for å kopiere til utklippstavlen',
         'click_to_copy_copied' => 'kopiert til utklippstavle!',
-        'collapse' => '',
+        'collapse' => 'skjul',
         'delete' => 'Slett',
         'edit' => 'Rediger',
-        'expand' => '',
+        'expand' => 'utvid',
         'hide' => 'skjul',
         'permalink' => 'permalenke',
         'permalink_copied' => 'lenke kopiert',
@@ -56,7 +56,7 @@ return [
         'see_more' => 'se mer',
         'show' => 'vis',
         'show_more' => 'vis mer',
-        'show_more_options' => '',
+        'show_more_options' => 'vis flere valg',
         'upload_image' => 'last opp bilde',
     ],
 
@@ -93,7 +93,7 @@ return [
     'device' => [
         'keyboard' => 'Tastatur',
         'mouse' => 'Mus',
-        'tablet' => 'Brett',
+        'tablet' => 'Tegnebrett',
         'touch' => 'Trykkskjerm',
     ],
 

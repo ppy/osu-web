@@ -66,7 +66,7 @@ return [
     'discount' => ':percent%の割引',
 
     'invoice' => [
-        'echeck_delay' => 'お支払い方法がeCheckのため、PayPalを介した支払いが完了するまで、さらに最大10日を要します。予めご了承ください。',
+        'echeck_delay' => '決済方法がeCheckのため、PayPalを介した支払いが完了するまで、さらに最大10日を要します。予めご了承ください。',
         'status' => [
             'processing' => [
                 'title' => 'お支払いはまだ完了していません。',

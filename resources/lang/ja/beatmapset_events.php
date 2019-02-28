@@ -37,7 +37,7 @@ return [
         'love' => ':user がLovedに追加しました。',
         'nominate' => ':userがノミネートしました。',
         'nomination_reset' => '新しい問題:discussionによりノミネートがリセットされました。',
-        'qualify' => 'このBeatmapは審査の対象になる数に達しており、審査に通っています。',
+        'qualify' => 'このビートマップは既に必要なノミネーション数に達しており、申請されています。',
         'rank' => 'Rankedされました。',
     ],
 
@@ -74,6 +74,6 @@ return [
         'nominate' => 'ノミネーション',
         'nomination_reset' => 'ノミネーションを取り消し',
         'qualify' => '申請中',
-        'rank' => 'Ranked中',
+        'rank' => 'ランキング',
     ],
 ];

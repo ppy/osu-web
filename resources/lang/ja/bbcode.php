@@ -33,6 +33,6 @@ return [
         'normal' => '中',
         'large' => '大',
     ],
-    'spoilerbox' => 'ボックス',
+    'spoilerbox' => 'スポイラー',
     'strikethrough' => '取り消し線',
 ];

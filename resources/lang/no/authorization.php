@@ -21,32 +21,32 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Kan ikke angre hyping.',
+            'is_hype' => 'Kan ikke angre spenning.',
             'has_reply' => 'Kan ikke slette en diskusjon med svar',
         ],
         'nominate' => [
-            'exhausted' => 'Du har nådd din nominasjons grense for dagen, vennligst prøv igjen i morgen.',
+            'exhausted' => 'Du har nådd din nominasjons-grense for dagen, vennligst prøv igjen i morgen.',
             'incorrect_state' => 'Feil under utføringen av denne handlingen, prøv å oppdatere siden.',
-            'owner' => "Kan ikke nominere egen beatmap.",
+            'owner' => "Du kan ikke nominere ditt eget beatmap.",
         ],
         'resolve' => [
-            'not_owner' => 'Bare personen som startet tråden og beatmap eieren kan markere en diskusjon som løst.',
+            'not_owner' => 'Bare personen som startet tråden og beatmapeieren kan markere en diskusjon som løst.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Bare beatmap eier eller nominator/QAT gruppemedlem kan legge inn kartleggingsnotater.',
+            'mapper_note_wrong_user' => 'Bare beatmapeieren eller en nominator/QAT gruppemedlem kan publisere notater.',
         ],
 
         'vote' => [
             'limit_exceeded' => 'Vennligst vent en stund før du avgir flere stemmer',
-            'owner' => "Kan ikke stemme på eget diskusjonsinnlegg.",
-            'wrong_beatmapset_state' => 'Kan bare stemme på diskusjoner der beatmappen er påventende.',
+            'owner' => "Du kan ikke stemme på ditt eget diskusjonsinnlegg.",
+            'wrong_beatmapset_state' => 'Kan bare stemme på diskusjoner der beatmappet er ventende.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Automatisk generert innlegg kan ikke redigeres.',
+            'system_generated' => 'Innlegg som er automatisk generert kan ikke bli endret.',
             'not_owner' => 'Bare senderen kan redigere innlegget.',
         ],
     ],
@@ -56,7 +56,7 @@ return [
         'friends_only' => 'Brukeren blokkerer meldinger fra personer som ikke er på deres venneliste.',
         'moderated' => 'Denne kanalen er for tiden moderert.',
         'no_access' => 'Du har ingen adgang til denne kanalen.',
-        'restricted' => 'Du kan ikke sende meldinger mens du er forstummet, begrenset eller bannlyst.',
+        'restricted' => 'Du kan ikke sende meldinger mens du er stum, begrenset eller bannlyst.',
     ],
 
     'comment' => [
@@ -99,14 +99,14 @@ return [
         'topic' => [
             'reply' => [
                 'double_post' => 'Vær så snill å rediger ditt siste innlegg, i steden for å legge til et nytt innlegg.',
-                'locked' => 'Kan ikke svare til en lukket tråd.',
+                'locked' => 'Kan ikke svare på en låst tråd.',
                 'no_forum_access' => 'Adgang til forespurt forum kreves.',
                 'no_permission' => 'Ingen tillatelse til å svare.',
 
                 'user' => [
-                    'require_login' => 'Vennligst logg inn for å svare.',
+                    'require_login' => 'Vennligst logg på for å svare.',
                     'restricted' => "Kan ikke svare mens kontoen din er begrenset.",
-                    'silenced' => "Kan ikke svare mens kontoen din er forstummet.",
+                    'silenced' => "Kan ikke svare mens kontoen din er stum.",
                 ],
             ],
 
@@ -124,7 +124,7 @@ return [
                 'user' => [
                     'require_login' => 'Vennligst logg inn for å stemme.',
                     'restricted' => "Kan ikke stemme mens kontoen din er begrenset.",
-                    'silenced' => "Kan ikke stemme mens kontoen din er forstummet.",
+                    'silenced' => "Kan ikke stemme mens kontoen din er stum.",
                 ],
             ],
 
@@ -145,11 +145,11 @@ return [
         ],
     ],
 
-    'require_login' => 'Vennligst logg inn for å fortsette.',
+    'require_login' => 'Vennligst logg på for å fortsette.',
 
     'unauthorized' => 'Ingen tilgang.',
 
-    'silenced' => "Kan ikke gjøre det mens kontoen din er forstummet.",
+    'silenced' => "Kan ikke gjøre det mens kontoen din er stum.",
 
     'restricted' => "Kan ikke gjøre det mens kontoen din er begrenset.",
 

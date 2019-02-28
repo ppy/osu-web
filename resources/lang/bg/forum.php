@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited публикация|:count_delimited публикации',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Създаване на анкета',
 
-            'preview' => '',
+            'preview' => 'Предварителен преглед',
 
             'create_poll_button' => [
                 'add' => 'Създай анкета',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'приоритет по звезди',
             'replies' => 'отговори',
             'views' => 'посещения',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => 'Разгласи тази молба',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Това е :feature_request. Заявките за нови функции може да се гласуват само от :supporters.',
+                    'feature_request' => 'заявка за функция',
+                    'supporters' => 'поддръжници',
                 ],
 
                 'user' => [

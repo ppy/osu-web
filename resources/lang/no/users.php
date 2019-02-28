@@ -22,7 +22,7 @@ return [
     'deleted' => '[slettet bruker]',
 
     'beatmapset_activities' => [
-        'title' => ":user's Modding Historikk",
+        'title' => ":user's Moddinghistorikk",
         'title_compact' => 'Modding',
 
         'discussions' => [
@@ -42,7 +42,7 @@ return [
         ],
 
         'votes_made' => [
-            'title_most' => 'Mest stemt (siste 3 måneder)',
+            'title_most' => 'Mest oppstemt (siste 3 måneder)',
         ],
     ],
 
@@ -65,11 +65,11 @@ return [
     ],
 
     'login' => [
-        '_' => 'Logg inn',
+        '_' => 'Logg på',
         'locked_ip' => 'IP-adressen din er blokkert. Vennligst vent et par minutter.',
         'username' => 'Brukernavn',
         'password' => 'Passord',
-        'button' => 'Logg inn',
+        'button' => 'Logg på',
         'button_posting' => 'Logger inn...',
         'remember' => 'Husk denne datamaskinen',
         'title' => 'Vennligst logg inn for å fortsette',
@@ -176,10 +176,10 @@ return [
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Favoritt Beatmaps',
+                    'title' => 'Favorittbeatmaps',
                 ],
                 'graveyard' => [
-                    'title' => 'Gravplasserte Beatmaps',
+                    'title' => 'Gravlagte Beatmaps',
                 ],
                 'loved' => [
                     'title' => 'Elskede Beatmaps',
@@ -214,11 +214,11 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Tilgjengelig',
-                'available_info' => "Kudosu kan omsettes for kudosu stjerner, som kan hjelpe din beatmap å få mer oppmerksomhet. Dette er antall kudosu som du ikke har handlet for enda.",
+                'available_info' => "Kudosu kan byttes for kudosustjerner, som kan hjelpe beatmappet ditt å få mer oppmerksomhet. Dette er antall kudosu som du ikke har byttet enda.",
                 'recent_entries' => 'Nylig Kudosu Historie',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Opptjent',
-                'total_info' => 'Basert på hvor mye bidrag en bruker har gjort til beatmap moderasjon. Se <a href="'.osu_url('user.kudosu').'">denne siden</a> for mer informasjon.',
+                'total_info' => 'Basert på hvor mange bidrag en bruker har gjort til beatmapmoderasjon. Se <a href="'.osu_url('user.kudosu').'">denne siden</a> for mer informasjon.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -230,25 +230,25 @@ return [
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Nektet :amount for modding innlegget :post',
+                            'reset' => 'Nektet :amount for moddinginnlegget :post',
                         ],
 
                         'delete' => [
-                            'reset' => 'Tapte :amount fra sletting av modding innlegg i :post',
+                            'reset' => 'Tapte :amount fra sletting av moddinginnlegg i :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Mottok :amount fra gjenopprettelsen av modding innlegg i :post',
+                            'give' => 'Mottok :amount fra gjenopprettelsen av moddinginnlegg i :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Mottok :amount fra å få stemmer i modding innlegget :post',
-                            'reset' => 'Tapte :amount fra å miste stemmer i modding innlegget :post',
+                            'give' => 'Mottok :amount fra å få stemmer på moddinginnlegget i :post',
+                            'reset' => 'Tapte :amount fra å miste stemmer på moddinginnlegget i :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Mottok :amount fra stemme omberegningen i modding innlegget :post',
-                            'reset' => 'Tapte :amount fra stemme omberegningen i modding innlegget :post',
+                            'give' => 'Mottok :amount fra stemmeomberegningen på modding innlegget i :post',
+                            'reset' => 'Tapte :amount fra stemmeomberegningen på modding innlegget i :post',
                         ],
                     ],
 
@@ -320,7 +320,7 @@ return [
             'occupation' => 'Yrke',
             'skype' => 'Skype',
             'twitter' => 'Twitter',
-            'website' => 'Nettsted',
+            'website' => 'Nettside',
         ],
         'not_found' => [
             'reason_1' => 'De kan ha endret brukernavnet sitt.',
@@ -330,7 +330,7 @@ return [
             'title' => 'Bruker ble ikke funnet! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'Rediger profil',
             'description' => '<strong>me!</strong> er et personlig egendefinerbart område på profilsiden din.',
             'edit_big' => 'Rediger me!',
             'placeholder' => 'Skriv sideinnhold her',

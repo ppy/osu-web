@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => '',
-        'reply' => '',
+        'new' => 'Logg på for å kommentere',
+        'reply' => 'Logg inn for å svare',
     ],
 
     'index' => [

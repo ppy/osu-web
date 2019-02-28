@@ -22,7 +22,7 @@ return [
     'error' => [
         'chat' => [
             'limit_exceeded' => 'Du sender meldinger for fort, vennligst vent litt før du prøver igjen.',
-            'too_long' => 'Meldingen som du prøver å sende er for lang.',
+            'too_long' => 'Meldingen du prøver å sende er for lang.',
         ],
     ],
 
@@ -30,7 +30,7 @@ return [
         'identify' => 'Identifiser deg og les din offentlige profil.',
 
         'friends' => [
-            'read' => '',
+            'read' => 'Se hvem du følger.',
         ],
     ],
 ];

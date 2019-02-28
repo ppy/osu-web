@@ -40,7 +40,7 @@ return [
             'logged-out' => '譜面をダウンロードするにはログインが必要です！',
             'loved' => 'lovedに追加された日 ',
             'mapped_by' => '作者 :mapper',
-            'qualified' => 'qualifiedされた日',
+            'qualified' => '申請された日 ',
             'ranked' => 'rankedされた日 ',
             'submitted' => '投稿日 ',
             'unfavourite' => '譜面をお気に入りから外す',
