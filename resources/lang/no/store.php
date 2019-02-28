@@ -114,7 +114,7 @@ return [
             'delivered' => 'Levert',
             'paid' => 'Betalt',
             'processing' => 'Avventer bekreftelse',
-            'shipped' => '',
+            'shipped' => 'På vei',
         ],
     ],
 

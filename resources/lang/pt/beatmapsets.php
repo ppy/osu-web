@@ -55,13 +55,13 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => 'para aceder a mais funcionalidades',
+                'top' => 'Iniciar Sessão',
             ],
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => 'Tens demasiados beatmaps como favoritos! Por favor remove alguns antes de tentares novamente.',
         ],
 
         'hype' => [

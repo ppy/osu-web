@@ -24,7 +24,7 @@ return [
         'online' => '<strong>:players</strong> connectés en ce moment dans <strong>:games</strong> parties',
         'peak' => 'Pic, :count joueurs connectés',
         'players' => '<strong>:count</strong> joueurs inscrits',
-        'title' => '',
+        'title' => 'bienvenue',
 
         'slogan' => [
             'main' => 'le meilleur jeu de rythme free-to-win',

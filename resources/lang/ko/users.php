@@ -171,7 +171,7 @@ return [
                 'title' => '업적',
             ],
             'beatmaps' => [
-                'by_artist' => ':artist 님이 제작',
+                'by_artist' => 'by :artist',
                 'none' => '아직... 없네요...',
                 'title' => '비트맵',
 
@@ -197,7 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => '플레이 기록',
-                    'count_label' => '플레이된 횟수',
+                    'count_label' => '플레이 횟수',
                 ],
                 'most_played' => [
                     'count' => '플레이 횟수',
@@ -209,7 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => '리플레이가 재생된 횟수',
-                    'count_label' => '관전된 횟수',
+                    'count_label' => '리플레이 재생 횟수',
                 ],
             ],
             'kudosu' => [
@@ -330,7 +330,7 @@ return [
             'title' => '사용자를 찾을 수 없습니다! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => '프로필 페이지 수정',
             'description' => '<strong>me!</strong>는 유저 프로필 페이지에서 개인이 꾸밀 수 있는 공간입니다.',
             'edit_big' => 'me! 수정하기',
             'placeholder' => '페이지에 들어갈 내용을 입력하세요.',
@@ -344,7 +344,7 @@ return [
             'country' => ':mode 국가 순위',
             'country_simple' => '국가 순위',
             'global' => ':mode 세계 순위',
-            'global_simple' => '전체 순위',
+            'global_simple' => '세계 순위',
         ],
         'stats' => [
             'hit_accuracy' => '정확도',
@@ -355,7 +355,7 @@ return [
             'play_count' => '플레이 횟수',
             'play_time' => '총 플레이 시간',
             'ranked_score' => '기록된 점수',
-            'replays_watched_by_others' => '다른 플레이어가 관전한 횟수',
+            'replays_watched_by_others' => '리플레이가 재생된 횟수',
             'score_ranks' => '점수 순위',
             'total_hits' => '총 타격 횟수',
             'total_score' => '총 점수',

@@ -44,7 +44,7 @@ return [
     'songs' => [
         '_' => 'Kappaleet',
         'count' => ':count kappale|:count kappaletta',
-        'exclusive' => 'osu! eksklusiivinen',
+        'exclusive' => 'vain osu!ssa',
     ],
 
     'tracklist' => [

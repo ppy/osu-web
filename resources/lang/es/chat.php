@@ -42,9 +42,9 @@ return [
         'send' => 'Enviar',
     ],
     'no-conversations' => [
-        'howto' => "",
+        'howto' => "Inicia conversaciones desde el perfil de un usuario o con un usercard popup.",
         'lazer' => 'Los canales a los que te unas por medio de <a href=":link">osu!lazer</a> aparecerán aquí.',
-        'pm_limitations' => '',
+        'pm_limitations' => 'Sólo las personas que usan <a href=":link">osu!lazer</a> o el nuevo sitio web recibirán PMs.',
         'title' => 'Sin conversaciones',
     ],
 ];

@@ -55,13 +55,13 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => 'per accedere a maggiori funzionalità',
+                'top' => 'Accedi',
             ],
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => 'Hai troppe beatmaps preferite! Si prega di de-preferirne una prima di continuare.',
         ],
 
         'hype' => [
@@ -129,7 +129,7 @@ return [
             'cs-mania' => 'Numero di Tasti',
             'drain' => 'Drenaggio HP',
             'accuracy' => 'Precisione',
-            'ar' => 'Tempo di approccio',
+            'ar' => 'Approach Rate',
             'stars' => 'Stelle di Difficoltà',
             'total_length' => 'Durata',
             'bpm' => 'BPM',

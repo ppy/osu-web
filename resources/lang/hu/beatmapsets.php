@@ -55,13 +55,13 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => 'további funkciók eléréséhez',
+                'top' => 'Bejelentkezés',
             ],
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => 'Túl sok beatmap van a kedvenceid között! Kérlek távolíts el néhányat az újrapróbálkozás előtt.',
         ],
 
         'hype' => [

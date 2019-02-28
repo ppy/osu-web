@@ -24,7 +24,7 @@ return [
         'online' => '<strong>:players</strong> online-tilassa <strong>:games</strong> pelaamassa',
         'peak' => 'Huipussaan :count käyttäjää paikalla',
         'players' => '<strong>:count</strong> rekisteröitynyttä pelaajaa',
-        'title' => '',
+        'title' => 'tervetuloa',
 
         'slogan' => [
             'main' => 'parastakin parempi ilmainen rytmipeli',
@@ -56,7 +56,7 @@ return [
                 'forum' => 'etsi foorumeista',
                 'forum_children' => 'etsi myös alafoorumeilta',
                 'topic_id' => 'aihe #',
-                'username' => 'luoja',
+                'username' => 'tekijä',
             ],
         ],
 
@@ -116,7 +116,7 @@ return [
         'title' => 'hallinta',
         'news' => [
             'title' => 'Uutiset',
-            'error' => 'Virhe ladattaessa uutisia, yritä päivittää sivu?...',
+            'error' => 'Virhe ladattaessa uutisia. Kokeile sivun päivittämistä.',
         ],
         'header' => [
             'welcome' => 'Hei <strong>:username</strong>!',
@@ -144,10 +144,10 @@ return [
         'title' => 'Vau!',
         'subtitle' => 'Sinulla taitaa olla hauskaa! :D',
         'body' => [
-            'part-1' => 'Tiesitkö että osu! toimii ilman mainoksia ja turvautuu pelaajien tukeen sen kehitys- ja käyttökustannuksissa?',
+            'part-1' => 'Tiesitkö että osu!a pidetään yllä ilman mainoksia ja turvautuu pelaajien tukeen sen kehitys- ja käyttökustannuksissa?',
             'part-2' => 'Tiesitkö myös että osua! tukemalla saat kasan hyödyllisiä ominaisuuksia, kuten <strong>pelinsisäisen beatmappien lataamisen</strong> joka aktivoituu automaattisesti moninpelissä ja katsojatilassa?',
         ],
         'find-out-more' => 'Klikkaa tästä lisätietoja!',
-        'download-starting' => "Ai, ja älä huoli - latauksesi on jo aloitettu ;)",
+        'download-starting' => "Niin, ja älä huoli - latauksesi on jo aloitettu ;)",
     ],
 ];

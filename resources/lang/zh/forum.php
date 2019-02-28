@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited 帖子',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => '创建投票',
 
-            'preview' => '',
+            'preview' => '发帖预览',
 
             'create_poll_button' => [
                 'add' => '创建投票',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => '星级优先级',
             'replies' => '回复数',
             'views' => '查看数',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => '提升这个请求',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => '这是一个 :feature_request。:supporters 可以为新功能请求投票。',
+                    'feature_request' => '新功能请求',
+                    'supporters' => 'osu! 支持者',
                 ],
 
                 'user' => [

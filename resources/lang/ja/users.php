@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":userのModding履歴",
-        'title_compact' => '',
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => '最近のディスカッション',
@@ -73,7 +73,7 @@ return [
         'button_posting' => 'ログイン中・・・',
         'remember' => 'ログイン状態を保存する',
         'title' => '続行するにはログインが必要です',
-        'failed' => '認証に失敗しました',
+        'failed' => 'サインインに失敗しました',
         'register' => "osu!アカウントがない方はこちらから",
         'forgot' => 'パスワードを紛失した場合',
         'beta' => [
@@ -101,7 +101,7 @@ return [
     'report' => [
         'button_text' => '報告',
         'comments' => '追加のコメント',
-        'placeholder' => '',
+        'placeholder' => 'あなたが役に立つと思う情報を書いて下さい。',
         'reason' => '理由',
         'thanks' => 'ご報告ありがとうございます！',
         'title' => ':usernameを報告しますか？',
@@ -167,11 +167,11 @@ return [
 
             'achievements' => [
                 'achieved-on' => '取得日時 :date',
-                'locked' => '',
+                'locked' => 'ロック',
                 'title' => '実績',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => 'by :artist',
                 'none' => 'まだ、空っぽ。',
                 'title' => '譜面',
 
@@ -197,7 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'プレイ回数の履歴',
-                    'count_label' => '',
+                    'count_label' => 'プレイ数',
                 ],
                 'most_played' => [
                     'count' => 'times played',
@@ -209,7 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'リプレイの再生回数',
-                    'count_label' => '',
+                    'count_label' => 'リプレイ視聴',
                 ],
             ],
             'kudosu' => [
@@ -264,7 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "このユーザーはまだメダルを取得していません。",
-                'recent' => '',
+                'recent' => '最新',
                 'title' => 'メダル',
             ],
             'recent_activity' => [
@@ -274,7 +274,7 @@ return [
                 'download_replay' => 'リプレイの保存',
                 'empty' => 'まだ記録を作ってません！',
                 'not_ranked' => 'Ranked譜面のみがppを授与します。',
-                'pp_weight' => '',
+                'pp_weight' => '割合 :percentage',
                 'title' => 'ランク',
 
                 'best' => [
@@ -308,8 +308,8 @@ return [
         ],
 
         'header_title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'プレイヤー :info',
+            'info' => '情報',
         ],
 
         'info' => [
@@ -330,7 +330,7 @@ return [
             'title' => 'ユーザーが見つかりませんでした。 ｡･ﾟ･(ﾉД` )･ﾟ･｡',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'プロフィールページを編集する',
             'description' => '<strong>me!</strong>はプロフィール上で自由に編集できる領域です。',
             'edit_big' => 'me!を編集',
             'placeholder' => '内容はここ',
@@ -342,16 +342,16 @@ return [
         ],
         'rank' => [
             'country' => ':modeの国内ランク',
-            'country_simple' => '',
+            'country_simple' => '国別ランキング',
             'global' => ':modeの世界ランク',
-            'global_simple' => '',
+            'global_simple' => '世界ランキング',
         ],
         'stats' => [
             'hit_accuracy' => '精度（Accuracy）',
             'level' => 'レベル :level',
-            'level_progress' => '',
+            'level_progress' => '次のレベルまで',
             'maximum_combo' => '最大コンボ',
-            'medals' => '',
+            'medals' => 'メダル',
             'play_count' => 'プレイ回数',
             'play_time' => 'プレイ時間',
             'ranked_score' => '合計Rankedスコア',

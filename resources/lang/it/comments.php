@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => '',
-        'reply' => '',
+        'new' => 'Effettua il login per commentare',
+        'reply' => 'Effettua il login per rispondere',
     ],
 
     'index' => [

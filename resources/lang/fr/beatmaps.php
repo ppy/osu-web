@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Trier par:',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'created_at' => 'Date de création',
+            'timeline' => 'Chronologie',
+            'updated_at' => 'Dernière mise à jour',
         ],
 
         'stats' => [
@@ -194,15 +194,15 @@ return [
                 'played' => 'Jouée',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'Titre',
+                'artist' => 'Artiste',
+                'difficulty' => 'Difficulté',
+                'updated' => 'Mise à jour',
+                'ranked' => 'Classée',
+                'rating' => 'Évaluation',
+                'plays' => 'Parties',
+                'relevance' => 'Pertinence',
+                'nominations' => 'Nominations',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Le filtrage par :filters requiert un :link actif',
@@ -304,6 +304,6 @@ return [
     ],
     'panel' => [
         'playcount' => '',
-        'favourites' => '',
+        'favourites' => 'Favorites : :count',
     ],
 ];

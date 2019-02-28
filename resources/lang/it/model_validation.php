@@ -68,7 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Cancellare i metadata di una beatmap non è consentito.',
             'beatmapset_post_no_edit' => 'Modificare i metadata di una beatmap non è consentito.',
-            'only_quote' => '',
+            'only_quote' => 'La tua risposta contiene solo una citazione.',
         ],
 
         'topic_poll' => [
@@ -98,7 +98,7 @@ return [
         'username_available_soon' => 'Questo nome utente sarà disponibile per l\'uso da un momento all\'altro!',
         'username_invalid_characters' => 'Il nome utente richiesto contiene caratteri non validi.',
         'username_in_use' => 'Il nome utente è già in uso!',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_locked' => 'Nome utente già in uso!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Si prega di utilizzare caratteri di sottolineatura o spazi, non entrambi!',
         'username_no_spaces' => "Il nome utente non può iniziare o finire con spazi!",
         'username_not_allowed' => 'La scelta di questo nome utente non è consentita.',

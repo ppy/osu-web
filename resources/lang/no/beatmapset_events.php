@@ -37,7 +37,7 @@ return [
         'love' => 'Elsket av :user',
         'nominate' => 'Nominert av :user.',
         'nomination_reset' => 'Nytt problem :discussion (:text) utløste en tilbakestilling av nominasjonen.',
-        'qualify' => 'Denne beatmappen har nådd det nødvendige antallet med nominasjoner og har nå blitt kvalifisert.',
+        'qualify' => 'Dette beatmappet har nådd det nødvendige antallet med nominasjoner og har nå blitt kvalifisert.',
         'rank' => 'Rangert.',
     ],
 

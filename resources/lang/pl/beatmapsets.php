@@ -36,7 +36,7 @@ return [
         'details' => [
             'approved' => 'zatwierdzona od ',
             'favourite' => 'Dodaj do ulubionych',
-            'favourited_count' => '+ 1 inna!|+ :count inne!|+ :count innych!',
+            'favourited_count' => '+ :count_delimited inna!|+ :count_delimited inne!|+ :count_delimited innych!',
             'logged-out' => 'Zaloguj się, aby zacząć pobierać beatmapy!',
             'loved' => 'ulubiona społeczności od ',
             'mapped_by' => 'autorstwa :mapper',
@@ -55,13 +55,13 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => 'aby uzyskać dostęp do pozostałych funkcji',
+                'top' => 'Zaloguj się',
             ],
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => 'Masz za dużo ulubionych beatmap! Usuń kilka, jeżeli chcesz kontynuować.',
         ],
 
         'hype' => [

@@ -29,8 +29,8 @@ return [
     ],
 
     'spotlight' => [
-        'end_date' => '',
-        'map_count' => '',
+        'end_date' => 'Päättymispäivä',
+        'map_count' => 'Kappalekerrat',
         'participants' => 'Osallistujat',
         'start_date' => 'Aloituspäivä',
     ],

@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu!소식',
 
         'nav' => [
             'newer' => '최근 글',
@@ -28,13 +28,13 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => '뉴스 :info',
+            'info' => '메인 화면',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => ':user 님이 작성',
 
         'nav' => [
             'newer' => '최근 글',
@@ -42,8 +42,8 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => '뉴스 :info',
+            'info' => '게시글',
         ],
     ],
 

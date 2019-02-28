@@ -19,14 +19,14 @@
  */
 
 return [
-    '_' => '',
+    '_' => 'Seřadit podle',
 
-    'new' => '',
-    'old' => '',
-    'top' => '',
+    'new' => 'Nedávné',
+    'old' => 'Nejstarší',
+    'top' => 'Nejlepší',
 
     'forum_topics' => [
-        'new' => '',
-        'feature_votes' => '',
+        'new' => 'Poslední odpověď',
+        'feature_votes' => 'Počet hvězd',
     ],
 ];

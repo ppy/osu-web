@@ -24,7 +24,7 @@ return [
         'online' => 'из них <strong>:players</strong> сейчас в <strong>:games</strong> играх',
         'peak' => 'Пик, :count активных игроков',
         'players' => 'зарегистрировано <strong>:count</strong> игроков',
-        'title' => '',
+        'title' => 'добро пожаловать',
 
         'slogan' => [
             'main' => 'лучшая бесплатная ритм-игра',

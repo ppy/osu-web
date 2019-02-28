@@ -68,7 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Menghapus posting metadata beatmap tidak diizinkan.',
             'beatmapset_post_no_edit' => 'Menyunting posting metadata beatmap tidak diizinkan.',
-            'only_quote' => '',
+            'only_quote' => 'Balasan Anda hanya berisi kutipan.',
         ],
 
         'topic_poll' => [
@@ -98,7 +98,7 @@ return [
         'username_available_soon' => 'Nama pengguna ini dapat digunakan sekarang!',
         'username_invalid_characters' => 'Nama pengguna yang diminta mengandung karakter yang tidak valid.',
         'username_in_use' => 'Nama pengguna sudah digunakan!',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_locked' => 'Nama pengguna sudah digunakan!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Mohon gunakan garis bawah atau spasi, jangan keduanya!',
         'username_no_spaces' => "Nama pengguna tidak dapat dimulai atau diakhiri dengan spasi!",
         'username_not_allowed' => 'Pilihan nama pengguna ini tidak diizinkan.',

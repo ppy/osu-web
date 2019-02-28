@@ -24,10 +24,10 @@ return [
         'online' => '<strong>:players</strong>명의 플레이어가 현재 접속 중이며, <strong>:games</strong> 개의 게임이 개설되어 있습니다.',
         'peak' => '최다 동시 접속자 수: :count명',
         'players' => '가입된 플레이어: <strong>:count</strong>명',
-        'title' => '',
+        'title' => '환영합니다',
 
         'slogan' => [
-            'main' => '무료 리듬 게임',
+            'main' => '최고의 무료 리듬 게임',
             'sub' => '리듬은 이미, 그 손끝에',
         ],
     ],
@@ -83,7 +83,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => "자, 시작해 보자!",
+        'tagline' => "시작해 봐요!",
         'action' => 'osu! 다운로드',
         'os' => [
             'windows' => 'Windows 용',
@@ -95,7 +95,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => '계정 만들기',
-                'description' => '게임을 시작하면 로그인하거나 계정을 만드는 절차를 따르세요.',
+                'description' => '게임을 시작하면 로그인하거나 계정을 만드는 절차를 따라주세요.',
             ],
             'download' => [
                 'title' => '게임 다운로드!',
@@ -104,7 +104,7 @@ return [
             'beatmaps' => [
                 'title' => '비트맵 받기',
                 'description' => [
-                    '_' => '유저들이 만든 비트맵의 광대한 라이브러리를:browse하고 시작해 보세요!',
+                    '_' => '유저들이 만든 비트맵의 광대한 라이브러리를 :browse하고 시작해 보세요!',
                     'browse' => '탐색',
                 ],
             ],

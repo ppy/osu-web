@@ -55,13 +55,13 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => '하여 더 많은 기능 사용',
+                'top' => '로그인',
             ],
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => '즐겨찾기 한 비트맵이 너무 많습니다! 계속하기 전에 즐겨찾기 수를 줄여주세요.',
         ],
 
         'hype' => [

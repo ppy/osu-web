@@ -25,6 +25,6 @@ return [
 
     'item' => [
         'content' => 'Sisältö',
-        'modding_history_link' => 'Katsele modaushistoriaa',
+        'modding_history_link' => 'Katsele modaamishistoriaa',
     ],
 ];

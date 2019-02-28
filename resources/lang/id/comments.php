@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => '',
-        'reply' => '',
+        'new' => 'Silakan masuk untuk berkomentar',
+        'reply' => 'Silakan masuk untuk membalas',
     ],
 
     'index' => [

@@ -24,7 +24,7 @@ return [
         'online' => '<strong>:players</strong> online i øjeblikket i <strong>:games</strong> spil',
         'peak' => 'Peak, :count online brugere',
         'players' => '<strong>:count</strong> registrerede brugere',
-        'title' => '',
+        'title' => 'velkommen',
 
         'slogan' => [
             'main' => 'Det bedste gratis rytmespil',
@@ -61,7 +61,7 @@ return [
         ],
 
         'mode' => [
-            'all' => 'all',
+            'all' => 'alt',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
             'user' => 'bruger',

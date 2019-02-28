@@ -55,13 +55,13 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => '以使用更多的功能',
+                'top' => '登录',
             ],
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => '谱面收藏数超出限制，请删除一些后再试。',
         ],
 
         'hype' => [
@@ -73,7 +73,7 @@ return [
                 'status' => [
                     'pending' => 'pending',
                     'qualified' => 'qualified',
-                    'wip' => '正在摸鱼中',
+                    'wip' => '制作中',
                 ],
             ],
         ],

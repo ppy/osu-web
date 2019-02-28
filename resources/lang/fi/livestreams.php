@@ -20,10 +20,10 @@
 
 return [
     'top-headers' => [
-        'headline' => 'Live-lähetykset',
+        'headline' => 'Suorat lähetykset',
         'description' => 'Tiedot haetaan twitch.tv:n listauksesta viiden minuutin välein. Voit vapaasti aloittaa striimaamisen ja saada itsesi listalle! Lisää tietoja aloittelemisesta löydät striimaamista käsittelevästä wiki-artikkelista.',
 
-        'link' => '',
+        'link' => 'wikisivu livestriimaamisesta',
     ],
     'headers' => [
         'regular' => 'Parhaillaan striimaavat',

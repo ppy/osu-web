@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'Obecna nazwa użytkownika (:current) nie jest taka sama jak zmiana do cofnięcia (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => 'Podana kwota jest niewystarczająca, by podarować status donatora osu! (:actual > :expected)',
     ],
 ];

@@ -30,7 +30,7 @@ return [
         'identify' => '',
 
         'friends' => [
-            'read' => '',
+            'read' => 'Zobacz, kogo obserwujesz.',
         ],
     ],
 ];

@@ -25,7 +25,7 @@ return [
     ],
 
     'comment' => [
-        'button' => '',
-        'title' => '',
+        'button' => '신고',
+        'title' => ':username님의 댓글을 신고하실 건가요?',
     ],
 ];

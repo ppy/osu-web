@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu!ニュース',
 
         'nav' => [
             'newer' => '次の記事',
@@ -28,13 +28,13 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'ニュース :info',
+            'info' => 'フロントページ',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => 'by :user',
 
         'nav' => [
             'newer' => '次の記事',
@@ -42,8 +42,8 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'ニュース :info',
+            'info' => '記事',
         ],
     ],
 

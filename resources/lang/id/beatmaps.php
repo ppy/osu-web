@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Sortir berdasarkan:',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'created_at' => 'Tanggal pembuatan',
+            'timeline' => 'Linimasa',
+            'updated_at' => 'Pembaruan terakhir',
         ],
 
         'stats' => [
@@ -194,15 +194,15 @@ return [
                 'played' => 'Telah Dimainkan',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'Judul',
+                'artist' => 'Artis',
+                'difficulty' => 'Tingkat Kesulitan',
+                'updated' => 'Terbaru',
+                'ranked' => 'Ranked',
+                'rating' => 'Penilaian',
+                'plays' => 'Jumlah Dimainkan',
+                'relevance' => 'Relevansi',
+                'nominations' => 'Nominasi',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Penyaringan dengan :filters memerlukan :link aktif',
@@ -303,7 +303,7 @@ return [
         'D' => 'D',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => 'Jumlah dimainkan: :count',
+        'favourites' => 'Jumlah favorit: :count',
     ],
 ];

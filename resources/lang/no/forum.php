@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited innlegg|:count_delimited innlegg',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Opprett avstemme',
 
-            'preview' => '',
+            'preview' => 'Forhåndsvisning av innlegg',
 
             'create_poll_button' => [
                 'add' => 'Lag en avstemming',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'stjerneprioritet',
             'replies' => 'svar',
             'views' => 'visninger',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => 'Fremhev denne forespørselen',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Dette er en :feature_request. Funksjonsforespørsler kan bli stemt opp av :supporters.',
+                    'feature_request' => 'funksjonsforespørsel',
+                    'supporters' => 'supportere',
                 ],
 
                 'user' => [

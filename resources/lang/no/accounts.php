@@ -31,14 +31,14 @@ return [
         'email' => [
             'current' => 'nåværende e-post',
             'new' => 'ny e-post',
-            'new_confirmation' => 'e-post bekreftelse',
+            'new_confirmation' => 'bekreft e-post',
             'title' => 'E-post',
         ],
 
         'password' => [
             'current' => 'nåværende passord',
             'new' => 'nytt passord',
-            'new_confirmation' => 'passordbekreftelsen',
+            'new_confirmation' => 'bekreft passord',
             'title' => 'Passord',
         ],
 
@@ -49,7 +49,7 @@ return [
                 'user_from' => 'nåværende plassering',
                 'user_interests' => 'interesser',
                 'user_msnm' => '',
-                'user_occ' => 'hobby',
+                'user_occ' => 'yrke',
                 'user_twitter' => '',
                 'user_website' => 'nettside',
                 'user_discord' => '',
@@ -68,12 +68,12 @@ return [
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! passord endringsbekreftelse',
+        'email_subject' => 'Bekreft endring av passord på osu!',
         'update' => 'oppdater',
     ],
 
     'playstyles' => [
-        'title' => 'Spilletyper',
+        'title' => 'Spillestiler',
         'mouse' => 'mus',
         'keyboard' => 'tastatur',
         'tablet' => 'tegnebrett',
@@ -83,14 +83,14 @@ return [
     'privacy' => [
         'title' => 'Personvern',
         'friends_only' => 'blokker private meldinger fra personer som ikke er på vennelisten din',
-        'hide_online' => 'gjem din online tilstedeværelse',
+        'hide_online' => 'skjul påloggingsstatus',
     ],
 
     'security' => [
         'current_session' => 'nåværende',
         'end_session' => 'Avslutt økt',
         'end_session_confirmation' => 'Dette vil ummidelbart avslutte økten på denne enheten. Er du sikker?',
-        'last_active' => 'Siste aktivitet:',
+        'last_active' => 'Sist aktiv:',
         'title' => 'Sikkerhet',
         'web_sessions' => 'websideøkter',
     ],

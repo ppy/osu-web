@@ -25,7 +25,7 @@ return [
     ],
 
     'comment' => [
-        'button' => '',
-        'title' => '',
+        'button' => '報告',
+        'title' => ':usernameのコメントを報告しますか？',
     ],
 ];

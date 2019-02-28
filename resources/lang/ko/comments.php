@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => '',
-        'reply' => '',
+        'new' => '로그인하여 댓글 달기',
+        'reply' => '로그인하여 답글 작성',
     ],
 
     'index' => [

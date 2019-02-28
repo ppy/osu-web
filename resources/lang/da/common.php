@@ -30,7 +30,7 @@ return [
     ],
 
     'buttons' => [
-        'admin' => '',
+        'admin' => 'Admin',
         'back_to_previous' => 'Vend tilbage til tidligere position',
         'back_to_top' => 'Tilbage til toppen',
         'cancel' => 'Annullér',
@@ -40,7 +40,7 @@ return [
         'collapse' => '',
         'delete' => 'Slet',
         'edit' => 'Rediger',
-        'expand' => '',
+        'expand' => 'udvid',
         'hide' => 'skjul',
         'permalink' => 'permalink',
         'permalink_copied' => 'link kopieret',
@@ -56,7 +56,7 @@ return [
         'see_more' => 'se mere',
         'show' => 'vis',
         'show_more' => 'vis mere',
-        'show_more_options' => '',
+        'show_more_options' => 'vis flere muligheder',
         'upload_image' => 'upload billede',
     ],
 

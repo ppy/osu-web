@@ -28,30 +28,30 @@ return [
         'login_required' => 'Kirjaudu sisään äänestääksesi.',
 
         'best_of' => [
-            'none_played' => "Näyttäisi siltä, ettet pelannut tähän kilpailuun kelpuutettuja karttoja!",
+            'none_played' => "Näyttäisi siltä, ettet ole pelannut tähän kilpailuun kelpuutettuja mappeja!",
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => 'Äänestä',
+            'remove' => 'Poista ääni',
+            'used_up' => 'Olet käyttänyt kaikki äänesi',
         ],
     ],
     'entry' => [
-        '_' => 'tuotos',
+        '_' => 'ehdokas',
         'login_required' => 'Kirjaudu sisään osallistuaksesi kilpailuun.',
         'silenced_or_restricted' => 'Et voi osallistua kilpailuun jos olet rajoitetussa -tai mykistetyssä tilassa.',
         'preparation' => 'Valmistelemme tätä kilpailua. Odota rauhassa!',
-        'over' => 'Kiitos lähetämistänne töistä! Osallistumiset kilpailuun on suljettu ja äänestys aukeaa pian.',
+        'over' => 'Kiitos lähettämistänne töistä! Kilpailuun ei oteta enää ehdokkaita ja äänestys avataan pian.',
         'limit_reached' => 'Olet saavuttanut kilpailuun lähetettävien töiden rajan',
-        'drop_here' => 'Pudota tuotoksesi tähän',
+        'drop_here' => 'Pudota työsi tähän',
         'download' => 'Lataa .osz-tiedosto',
         'wrong_type' => [
-            'art' => 'Kilpailuun hyväksytään vain .jpg tai .png tiedostoja.',
-            'beatmap' => 'Kilpailuun hyväksytään vain .osu tiedostoja.',
-            'music' => 'Kilpailuun hyväksytään vain .mp3 tiedostoja.',
+            'art' => 'Tähän kilpailuun sallitaan ainoastaan .jpg- ja -png-tiedostot.',
+            'beatmap' => 'Tähän kilpailuun sallitaan ainoastaan .osu-tiedostot.',
+            'music' => 'Tähän kilpailuun sallitaan ainoastaan .mp3-tiedostot.',
         ],
-        'too_big' => 'Lähetettyjen töiden määrä on tässä kilpailussa korkeintaan :limit.',
+        'too_big' => 'Tähän kilpailuun voi lähettää korkeintaan :limit työtä.',
     ],
     'beatmaps' => [
         'download' => 'Lataa tuotos',

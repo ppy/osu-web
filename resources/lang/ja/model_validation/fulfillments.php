@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => '現在のユーザーネーム (:current) が前回の名前と一致しません (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => 'ギフトに必要な額が寄付額を超えています。 (:actual > :expected)',
     ],
 ];

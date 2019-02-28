@@ -38,13 +38,13 @@ return [
             'favourite' => '譜面をお気に入りに追加する',
             'favourited_count' => '+ そのほか:count人！',
             'logged-out' => '譜面をダウンロードするにはログインが必要です！',
-            'loved' => 'loved日時 ',
+            'loved' => 'lovedに追加された日 ',
             'mapped_by' => '作者 :mapper',
-            'qualified' => 'qualified日時 ',
-            'ranked' => 'ranked日時 ',
+            'qualified' => '申請された日 ',
+            'ranked' => 'rankedされた日 ',
             'submitted' => '投稿日 ',
             'unfavourite' => '譜面をお気に入りから外す',
-            'updated' => '最後の更新 ',
+            'updated' => '最終更新日',
             'updated_timeago' => '最終更新時刻: :timeago',
 
             'download' => [
@@ -55,13 +55,13 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => 'より多くの機能にアクセスする',
+                'top' => 'サインイン',
             ],
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => 'お気に入りのビートマップが多すぎます！お気に入りを外してから再試行してください。',
         ],
 
         'hype' => [
@@ -79,7 +79,7 @@ return [
         ],
 
         'info' => [
-            'description' => '説明文',
+            'description' => '概要',
             'genre' => 'ジャンル',
             'language' => '言語',
             'no_scores' => 'データはまだ現在計算中です・・・',
