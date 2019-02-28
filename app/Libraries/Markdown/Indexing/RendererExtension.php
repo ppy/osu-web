@@ -34,7 +34,7 @@ class RendererExtension extends CommonMarkCoreExtension
             Block\Document::class => new BlockRenderer,
             Block\FencedCode::class => new NoopRenderer,
             Block\Heading::class => new NoopRenderer,
-            Block\HtmlBlock::class => new BlockRenderer,
+            Block\HtmlBlock::class => new NoopRenderer,
             Block\IndentedCode::class => new BlockRenderer,
             Block\ListBlock::class => new ListBlockRenderer,
             Block\ListItem::class => new ListItemRenderer,
@@ -53,10 +53,10 @@ class RendererExtension extends CommonMarkCoreExtension
         return [
             Inline\Code::class => new InlineRenderer,
             Inline\Emphasis::class => new InlineRenderer,
-            Inline\HtmlInline::class => new InlineRenderer,
+            Inline\HtmlInline::class => new NoopRenderer,
             Inline\Image::class => new NoopRenderer,
             Inline\Link::class => new InlineRenderer,
-            Inline\Newline::class => new NoopRenderer,
+            Inline\Newline::class => new NewlineRenderer,
             Inline\Strong::class => new InlineRenderer,
             Inline\Text::class => new InlineRenderer,
         ];
