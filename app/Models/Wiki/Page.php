@@ -32,7 +32,6 @@ use App\Libraries\Search\BasicSearch;
 use Carbon\Carbon;
 use Exception;
 use Log;
-use Sentry;
 
 class Page
 {
