@@ -32,7 +32,6 @@ use App\Libraries\Search\BasicSearch;
 use Carbon\Carbon;
 use Exception;
 use Log;
-use Sentry;
 
 class Page
 {
@@ -341,17 +340,6 @@ class Page
 
     private function log($action)
     {
-        $pagePath = $this->pagePath();
-        $message = "wiki ({$action}): {$pagePath}";
-
-        Log::info($message);
-        Sentry::captureMessage($message, [], [
-            'extra' => [
-                'action' => $action,
-                'pagePath' => $pagePath,
-            ],
-            'fingerprint' => ['wiki logging'],
-            'level' => 'info',
-        ]);
+        Log::info("wiki ({$action}): {$this->pagePath()}");
     }
 }
