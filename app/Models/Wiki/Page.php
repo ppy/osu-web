@@ -31,7 +31,6 @@ use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use Carbon\Carbon;
 use Exception;
-use Sentry;
 
 class Page
 {
@@ -135,10 +134,7 @@ class Page
         $params = static::searchIndexConfig();
 
         if ($this->page() === null) {
-            Sentry::captureMessage(
-                'wiki index document empty (%s)',
-                [$this->pagePath()]
-            );
+            log_info("wiki index document empty ({$this->pagePath()})");
 
             $params['body'] = [
                 'locale' => null,
@@ -150,10 +146,7 @@ class Page
                 'tags' => [],
             ];
         } else {
-            Sentry::captureMessage(
-                'wiki index document (%s)',
-                [$this->pagePath()]
-            );
+            log_info("wiki index document ({$this->pagePath()})");
 
             $content = $this->getContent();
             $indexContent = (new OsuMarkdown('wiki', [
@@ -180,10 +173,7 @@ class Page
 
     public function esDeleteDocument()
     {
-        Sentry::captureMessage(
-            'wiki delete document (%s)',
-            [$this->pagePath()]
-        );
+        log_info("wiki delete document ({$this->pagePath()})");
 
         return Es::getClient()->delete(static::searchIndexConfig([
             'id' => $this->pagePath(),
@@ -201,17 +191,11 @@ class Page
     {
         if (!array_key_exists('content', $this->cache) || $force) {
             try {
-                Sentry::captureMessage(
-                    'wiki fetch (%s)',
-                    [$this->pagePath()]
-                );
+                log_info("wiki fetch ({$this->pagePath()})");
 
                 $this->cache['content'] = OsuWiki::fetchContent('wiki/'.$this->pagePath());
             } catch (GitHubNotFoundException $e) {
-                Sentry::captureMessage(
-                    'wiki fetch not found (%s)',
-                    [$this->pagePath()]
-                );
+                log_info("wiki fetch not found ({$this->pagePath()})");
 
                 $this->cache['content'] = null;
             }

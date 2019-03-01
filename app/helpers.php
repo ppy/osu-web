@@ -287,6 +287,12 @@ function log_error($exception)
     }
 }
 
+function log_info($message)
+{
+    Log::info($message);
+    Sentry::captureMessage($message);
+}
+
 function markdown($input, $preset = 'default')
 {
     static $converter;
