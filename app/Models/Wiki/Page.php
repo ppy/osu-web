@@ -31,6 +31,8 @@ use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use Carbon\Carbon;
 use Exception;
+use Log;
+use Sentry;
 
 class Page
 {
@@ -134,6 +136,8 @@ class Page
         $params = static::searchIndexConfig();
 
         if ($this->page() === null) {
+            $this->log('index document empty');
+
             $params['body'] = [
                 'locale' => null,
                 'page' => null,
@@ -144,6 +148,8 @@ class Page
                 'tags' => [],
             ];
         } else {
+            $this->log('index document');
+
             $content = $this->getContent();
             $indexContent = (new OsuMarkdown('wiki', [
                 'relative_url_root' => wiki_url($this->path),
@@ -169,6 +175,8 @@ class Page
 
     public function esDeleteDocument()
     {
+        $this->log('delete document');
+
         return Es::getClient()->delete(static::searchIndexConfig([
             'id' => $this->pagePath(),
             'client' => ['ignore' => 404],
@@ -185,8 +193,12 @@ class Page
     {
         if (!array_key_exists('content', $this->cache) || $force) {
             try {
+                $this->log('fetch');
+
                 $this->cache['content'] = OsuWiki::fetchContent('wiki/'.$this->pagePath());
             } catch (GitHubNotFoundException $e) {
+                $this->log('not found');
+
                 $this->cache['content'] = null;
             }
         }
@@ -324,5 +336,21 @@ class Page
         }
 
         return presence($this->page()['header']['subtitle'] ?? null) ?? $this->defaultSubtitle;
+    }
+
+    private function log($action)
+    {
+        $pagePath = $this->pagePath();
+        $message = "wiki ({$action}): {$pagePath}";
+
+        Log::info($message);
+        Sentry::captureMessage($message, [], [
+            'extra' => [
+                'action' => $action,
+                'pagePath' => $pagePath,
+            ],
+            'fingerprint' => ['wiki logging'],
+            'level' => 'info',
+        ]);
     }
 }
