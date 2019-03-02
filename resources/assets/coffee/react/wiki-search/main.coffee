@@ -143,7 +143,7 @@ class @WikiSearch.Main extends React.Component
     div
       className: 'wiki-search',
       input
-        className: 'wiki-search__bar'
+        className: 'wiki-search__bar js-wiki-search-input'
         ref: 'input'
         placeholder: osu.trans 'common.input.search'
         onInput: @onInput

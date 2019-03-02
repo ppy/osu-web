@@ -19,22 +19,7 @@
 el = React.createElement
 
 class @WikiSearch.Suggestions extends React.Component
-  constructor: (props) ->
-    super props
-
-  onMouseEnter: (e) =>
-    $.publish 'suggestion:mouseenter', parseInt e.target.getAttribute 'position'
-
-  onMouseLeave: =>
-    $.publish 'suggestion:mouseleave'
-
-  onClick: (e) =>
-    $.publish 'suggestion:select', parseInt e.target.getAttribute 'position'
-
   render: ->
-    className = 'wiki-search-suggestions'
-    className += ' wiki-search-suggestions--visible' if @props.visible
-
     div
       className: osu.classWithModifiers('wiki-search-suggestions', ['visible' if @props.visible]),
       if @props.loading
@@ -43,15 +28,11 @@ class @WikiSearch.Suggestions extends React.Component
           el Spinner
 
       for suggestion, i in @props.suggestions
-        div
-          # className: "wiki-search-suggestions__suggestion #{'wiki-search-suggestions__suggestion--highlighted' if i == @props.highlighted}",
-          className: osu.classWithModifiers 'wiki-search-suggestions__suggestion', ['highlighted' if i == @props.highlighted]
+        el WikiSearch.Suggestion,
           key: i
           position: i
-          onMouseEnter: @onMouseEnter
-          onMouseLeave: @onMouseLeave
-          onClick: @onClick
-          suggestion.title
+          suggestion: suggestion
+          highlighted: i == @props.highlighted
 
       if @props.highlighted == null
         div
