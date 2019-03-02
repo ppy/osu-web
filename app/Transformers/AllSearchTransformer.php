@@ -20,13 +20,13 @@
 
 namespace App\Transformers;
 
-use League\Fractal;
 use App\Libraries\Search;
-use App\Transformers;
+use League\Fractal;
 
 class AllSearchTransformer extends Fractal\TransformerAbstract
 {
-    public function transform(Search\AllSearch $search) {
+    public function transform(Search\AllSearch $search)
+    {
         $transformed = [];
 
         foreach ($search->visibleSearches() as $mode => $search) {

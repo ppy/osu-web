@@ -32,7 +32,7 @@ class WikiSearch extends RecordSearch
         parent::__construct(
             config('osu.elasticsearch.index.wiki_pages'),
             $params ?? new WikiSearchParams,
-            Page::class # not used in this particular case
+            Page::class // not used in this particular case
         );
     }
 
@@ -104,7 +104,6 @@ class WikiSearch extends RecordSearch
                 ]]);
             }
         }
-
 
         return (new BoolQuery)
             ->must($langQuery)

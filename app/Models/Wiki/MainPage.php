@@ -23,10 +23,7 @@ namespace App\Models\Wiki;
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuWiki;
 use League\CommonMark\CommonMarkConverter;
-use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\Environment;
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Renderer\BlockRendererInterface;
 use Symfony\Component\Yaml\Yaml;
 
 class MainPage extends Page
@@ -100,10 +97,10 @@ class MainPage extends Page
                 $val = $this->parseString($val);
             }
 
-            # if one of a list elements' is another list, while
-            # it also has a key, it gets wrapped in an unnecessary
-            # array. we're removing it here.
-            if (is_array($val) && sizeof($val) == 1) {
+            // if one of a list elements' is another list, while
+            // it also has a key, it gets wrapped in an unnecessary
+            // array. we're removing it here.
+            if (is_array($val) && count($val) === 1) {
                 foreach ($val as $newkey => $newval) {
                     $key = $newkey;
                     $val = $newval;
@@ -120,7 +117,7 @@ class MainPage extends Page
     {
         $string = $this->converter->convertToHtml($string);
 
-        # commonmark wraps every paragraph in <p> tags
+        // commonmark wraps every paragraph in <p> tags
         return preg_replace('/<\/?p>/', '', $string);
     }
 }

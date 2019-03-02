@@ -21,16 +21,13 @@
 namespace App\Models\Wiki;
 
 use App;
-use App\Exceptions\GitHubNotFoundException;
 use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Es;
-use App\Libraries\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use Carbon\Carbon;
-use Exception;
 
 abstract class Page
 {
@@ -125,6 +122,7 @@ abstract class Page
         $this->requestedLocale = $locale;
         $this->locale = $locale;
     }
+
     public function editUrl()
     {
         return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/wiki/'.$this->pagePath();
@@ -259,13 +257,13 @@ abstract class Page
         dispatch(new EsDeleteDocument($this));
     }
 
-    public abstract function pageContent();
+    abstract public function pageContent();
 
-    public abstract function pageTemplate();
+    abstract public function pageTemplate();
 
-    public abstract function pagePath();
+    abstract public function pagePath();
 
-    public abstract function title();
+    abstract public function title();
 
     public function tags()
     {

@@ -43,8 +43,8 @@ return [
     'main' => [
         'title' => 'Knowledge Base',
         'subtitle' => 'because osu!pedia sounds lame',
-        'blurb' => "The osu! wiki is a project based on the contributions of people from osu!. The end goal is that it replaces the old FAQ section, and allows it to become a much more exhaustive resource. However, to make this possible, we need help from everyone willing to contribute!<br>You can use your osu! account to start contributing!",
-        'search-enter-prompt' => 'press enter for full search'
+        'blurb' => 'The osu! wiki is a project based on the contributions of people from osu!. The end goal is that it replaces the old FAQ section, and allows it to become a much more exhaustive resource. However, to make this possible, we need help from everyone willing to contribute!<br>You can use your osu! account to start contributing!',
+        'search-enter-prompt' => 'press enter for full search',
     ],
 
     'search' => [

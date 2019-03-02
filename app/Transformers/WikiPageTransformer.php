@@ -20,14 +20,15 @@
 
 namespace App\Transformers;
 
-use League\Fractal\TransformerAbstract;
 use App\Models\Wiki\Page;
+use League\Fractal\TransformerAbstract;
 
 class WikiPageTransformer extends TransformerAbstract
 {
     protected $availableIncludes = ['content'];
 
-    public function transform(Page $page) {
+    public function transform(Page $page)
+    {
         return [
             'title' => $page->title(),
             'path' => $page->path,
@@ -39,7 +40,8 @@ class WikiPageTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeContent(Page $page) {
+    public function includeContent(Page $page)
+    {
         return $this->item($page, function ($page) {
             return [$page->pageContent()];
         });

@@ -204,5 +204,5 @@ return [
         'custom_pages' => [
             'Main_Page' => App\Models\Wiki\MainPage::class,
         ],
-    ]
+    ],
 ];

@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Libraries\OsuWiki;
 use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
 use Request;
