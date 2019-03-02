@@ -37,6 +37,7 @@ class @WikiSearch.Main extends React.Component
       data:
         mode: 'wiki_page'
         format: 'json'
+        title_only: true
         query: @refs.input.value
     .done (xhr, status) =>
       @setState

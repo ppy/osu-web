@@ -80,13 +80,15 @@ class WikiSearch extends RecordSearch
         if ($this->params->queryString !== null) {
             $matchQuery->shouldMatch(1)
                 ->should(['match' => [
-                    'tags' => [
+                    'title' => [
                         'query' => $this->params->queryString,
                         'boost' => 10,
                     ],
-                ]])
-                ->should(['match' => [
-                    'title' => [
+                ]]);
+
+            if (!$this->params->titleOnly) {
+                $matchQuery->should(['match' => [
+                    'tags' => [
                         'query' => $this->params->queryString,
                         'boost' => 10,
                     ],
@@ -100,7 +102,9 @@ class WikiSearch extends RecordSearch
                 ->should(['match' => [
                     'page_text' => $this->params->queryString,
                 ]]);
+            }
         }
+
 
         return (new BoolQuery)
             ->must($langQuery)
