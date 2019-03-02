@@ -109,4 +109,9 @@ class WikiSearch extends RecordSearch
                 'queryable' => false,
             ]]);
     }
+
+    protected function maxResults() : int
+    {
+        return config('osu.search.max.wiki_page');
+    }
 }

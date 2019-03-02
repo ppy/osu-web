@@ -106,6 +106,7 @@ return [
 
         'max' => [
             'user' => 100,
+            'wiki_page' => 100,
         ],
     ],
     'score_replays' => [
