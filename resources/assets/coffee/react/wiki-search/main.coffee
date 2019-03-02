@@ -32,21 +32,12 @@ class @WikiSearch.Main extends React.Component
     @suggestionsDebounced = _.debounce @getSuggestions, 500
 
   getSuggestions: =>
-    queryString = @refs.input.value
-
-    if queryString == ''
-      @setState
-        suggestions: []
-        suggestionsVisible: false
-
-      return
-
     @xhr = $.ajax laroute.route('search'),
       method: 'GET'
       data:
         mode: 'wiki_page'
         format: 'json'
-        query: queryString
+        query: @refs.input.value
     .done (xhr, status) =>
       @setState
         suggestions: xhr.wiki_page[..9]
@@ -116,12 +107,17 @@ class @WikiSearch.Main extends React.Component
     $.unsubscribe '.wikiSearch'
 
   onInput: (e) =>
+    inputNotEmpty = @refs.input.value != ''
+
     @setState
       suggestions: []
-      suggestionsVisible: true
-      loading: true
+      suggestionsVisible: inputNotEmpty
+      loading: inputNotEmpty
 
-    @suggestionsDebounced()
+    if inputNotEmpty
+      @suggestionsDebounced()
+    else
+      @suggestionsDebounced.cancel()
 
   onKeyDown: (e) =>
     switch e.keyCode
