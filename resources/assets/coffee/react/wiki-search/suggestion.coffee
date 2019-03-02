@@ -29,8 +29,9 @@ class @WikiSearch.Suggestion extends React.Component
 
   render: ->
     queryString = $('.js-wiki-search-input').val()
-
     titleSplit = @props.suggestion.title.split RegExp "(?=#{queryString})", 'i'
+
+    pathCleaned = @cleanPath @props.suggestion.path, @props.suggestion.title
 
     div
       className: osu.classWithModifiers 'wiki-search-suggestions__suggestion', ['highlighted' if @props.highlighted]
@@ -39,6 +40,9 @@ class @WikiSearch.Suggestion extends React.Component
       onMouseLeave: @onMouseLeave
       onClick: @onClick
       @formatTitle titleSplit, queryString
+      span
+        className: osu.classWithModifiers 'wiki-search-suggestions__suggestion-text', ['path']
+        "#{Lang.get 'wiki.search.path'} #{@cleanPath @props.suggestion.path, @props.suggestion.title}" if pathCleaned != ''
 
   formatTitle: (titleSplit, delimiter) ->
     result = []
@@ -60,3 +64,6 @@ class @WikiSearch.Suggestion extends React.Component
       className: osu.classWithModifiers 'wiki-search-suggestions__suggestion-text', ['matching' if matching]
       key: key
       string
+
+  cleanPath: (path, title) ->
+    path.replace(RegExp("\/?#{title}", 'gi'), '').replace '_', ' '
