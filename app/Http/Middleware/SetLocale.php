@@ -22,7 +22,7 @@ namespace App\Http\Middleware;
 
 use App;
 use Auth;
-use Carbon;
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
 use Negotiation\LanguageNegotiator;
@@ -59,7 +59,7 @@ class SetLocale
 
         App::setLocale($locale);
         // Carbon setLocale normalizes the locale
-        Carbon\Carbon::setLocale($locale);
+        Carbon::setLocale($locale);
 
         return $next($request);
     }
