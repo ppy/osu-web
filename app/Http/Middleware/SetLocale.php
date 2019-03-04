@@ -25,6 +25,7 @@ use Auth;
 use Carbon;
 use Closure;
 use Illuminate\Http\Request;
+use Negotiation\LanguageNegotiator;
 
 class SetLocale
 {
@@ -41,12 +42,22 @@ class SetLocale
         if (Auth::check()) {
             $locale = Auth::user()->user_lang;
         } else {
-            $locale =
-                presence($request->cookie('locale')) ??
-                locale_accept_from_http($request->server('HTTP_ACCEPT_LANGUAGE'));
+            $locale = presence($request->cookie('locale'));
         }
 
-        $locale = get_valid_locale($locale);
+        if (!in_array($locale, config('app.available_locales'), true)) {
+            $locale = null;
+        }
+
+        if ($locale === null) {
+            $accept = $request->server('HTTP_ACCEPT_LANGUAGE');
+            $language = (new LanguageNegotiator)->getBest($accept, config('app.available_locales'));
+            if ($language !== null) {
+                $locale = $language->getType();
+            } else {
+                $locale = config('app.fallback_locale');
+            }
+        }
 
         App::setLocale($locale);
         // Carbon setLocale normalizes the locale

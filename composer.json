@@ -44,6 +44,7 @@
     "sentry/sentry-laravel": "*",
     "symfony/yaml": "*",
     "webuni/commonmark-table-extension": ">=0.8.0",
+    "willdurand/negotiation": "^2.3",
     "xsolla/xsolla-sdk-php": "*"
   },
   "require-dev": {
