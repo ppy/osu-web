@@ -49,7 +49,7 @@ class SetLocale
 
         if ($locale === null) {
             $accept = $request->server('HTTP_ACCEPT_LANGUAGE');
-            $language = (new LanguageNegotiator)->getBest($accept, config('app.available_locales'));
+            $language = present($accept) ? (new LanguageNegotiator)->getBest($accept, config('app.available_locales')) : null;
             if ($language !== null) {
                 $locale = $language->getType();
             } else {
