@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Falha ao salvar postagem',
+            'error' => 'Falha ao salvar a publicação',
         ],
     ],
 
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Ordenado por:',
-            'created_at' => 'data de criação',
-            'timeline' => 'linha do tempo',
-            'updated_at' => 'última atualização',
+            'created_at' => 'Data de criação',
+            'timeline' => 'Linha do tempo',
+            'updated_at' => 'Última atualização',
         ],
 
         'stats' => [
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Você tem certeza? Postar um novo problema reiniciará as nomeações.',
-            'disqualify' => '',
+            'disqualify' => 'Você tem certeza? Isso irá remover este beatmap da qualificação e reiniciará o processo de nomeação.',
         ],
     ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => 'Jogado',
             ],
             'sorting' => [
-                'title' => 'título',
-                'artist' => 'artista',
-                'difficulty' => 'dificuldade',
-                'updated' => 'atualizado',
-                'ranked' => 'ranqueado',
-                'rating' => 'classificação',
-                'plays' => 'vezes jogado',
-                'relevance' => 'relevância',
-                'nominations' => 'nomeações',
+                'title' => 'Título',
+                'artist' => 'Artista',
+                'difficulty' => 'Dificuldade',
+                'updated' => 'Atualizado',
+                'ranked' => 'Ranked',
+                'rating' => 'Avaliação',
+                'plays' => 'Vezes jogadas',
+                'relevance' => 'Relevância',
+                'nominations' => 'Nomeações',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtrar por :filters requer uma :link',
@@ -301,5 +301,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => 'Vezes jogadas :count',
+        'favourites' => 'Favoritos :count',
     ],
 ];

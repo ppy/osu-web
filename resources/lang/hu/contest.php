@@ -26,8 +26,15 @@ return [
     'voting' => [
         'over' => 'Erre a versenyre már véget ért a szavazás',
         'login_required' => 'Kérlek jelentkezz be a szavazáshoz.',
+
         'best_of' => [
             'none_played' => "Úgy tűnik, hogy egyetlen beatmap-et sem játszottál ami megfelelne ennek a versenynek!",
+        ],
+
+        'button' => [
+            'add' => 'Szavazás',
+            'remove' => 'Szavazat eltávolítása',
+            'used_up' => 'Felhasználtad az összes szavazatodat',
         ],
     ],
     'entry' => [

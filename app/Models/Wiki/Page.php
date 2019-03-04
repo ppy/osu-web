@@ -28,17 +28,21 @@ use App\Libraries\Elasticsearch\Es;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use Carbon\Carbon;
+use Exception;
+use Log;
 
 abstract class Page
 {
     // in minutes
-    const REINDEX_AFTER = 300;
+    const REINDEX_AFTER = 0;
     const VERSION = 1;
 
     public $locale;
     public $requestedLocale;
 
-    private $cache = [];
+    protected $cache = [];
+
+    private $source; // source document from elasticsearch;
 
     public static function cleanupPath($path)
     {
@@ -112,6 +116,7 @@ abstract class Page
 
     public function __construct($path, $locale, $esCache = null)
     {
+        $this->source = $esCache;
         if ($esCache !== null) {
             $path = $esCache['path'];
             $locale = $esCache['locale'];
@@ -133,6 +138,8 @@ abstract class Page
         $params = static::searchIndexConfig();
 
         if ($this->page() === null) {
+            $this->log('index document empty');
+
             $params['body'] = [
                 'locale' => null,
                 'page' => null,
@@ -144,10 +151,14 @@ abstract class Page
                 'queryable' => null,
             ];
         } else {
+            $this->log('index document');
+
+            $indexContent = $this->getContentIndexable();
+
             $params['body'] = [
                 'locale' => $this->locale,
                 'page' => json_encode($this->page()),
-                'page_text' => replace_tags_with_spaces($this->page()['output']),
+                'page_text' => $indexContent,
                 'path' => $this->path,
                 'path_clean' => static::cleanupPath($this->path),
                 'title' => $this->title(),
@@ -165,10 +176,27 @@ abstract class Page
 
     public function esDeleteDocument()
     {
+        $this->log('delete document');
+
         return Es::getClient()->delete(static::searchIndexConfig([
             'id' => $this->pagePath(),
             'client' => ['ignore' => 404],
         ]));
+    }
+
+    /**
+     * Gets the rendered the page.
+     *
+     * @param bool $force Force any cached value to refresh.
+     * @return string|null
+     */
+    abstract public function getContent(bool $force = false);
+
+    abstract public function getContentIndexable();
+
+    public function getSource()
+    {
+        return $this->source;
     }
 
     public function isOutdated()
@@ -221,7 +249,13 @@ abstract class Page
                 }
 
                 if ($fetch) {
-                    $page = $this->pageContent();
+                    try {
+                        $page = $this->getContent();
+                    } catch (Exception $e) {
+                        $page = null;
+                        $index = false;
+                        log_error($e);
+                    }
                 }
 
                 $this->cache['page'] = $page;
@@ -257,8 +291,6 @@ abstract class Page
         dispatch(new EsDeleteDocument($this));
     }
 
-    abstract public function pageContent();
-
     abstract public function pageTemplate();
 
     abstract public function pagePath();
@@ -268,5 +300,11 @@ abstract class Page
     public function tags()
     {
         return $this->page()['header']['tags'] ?? [];
+    }
+
+    protected function log($action)
+    {
+        $className = static::class;
+        Log::info("wiki ({$className} : {$action}): {$this->pagePath()}");
     }
 }

@@ -23,6 +23,8 @@ class @Status.Page extends React.Component
   constructor: (props) ->
     super props
 
+    @chartArea = React.createRef()
+
     @state =
       status: window.osuStatus
       charts: window.osuStatus.uptime.graphs
@@ -87,11 +89,10 @@ class @Status.Page extends React.Component
           else
             osu.transChoice('common.time.hours_ago', -d)
         y: (d) =>
-          (d).toLocaleString()
+          osu.formatNumber(d)
 
       infoBoxFormats =
-        x: (d) =>
-          "#{formats.x(d)}"
+        x: (d) -> "#{formats.x(d)}"
 
       scales =
         x: d3.scaleLinear()
@@ -103,8 +104,10 @@ class @Status.Page extends React.Component
         scales: scales
         tickValues: tickValues
         domains: domains
+        circleLine: true
+        modifiers: ['status-page']
 
-      @_statsChart = new LineChart(@refs.chartArea, options)
+      @_statsChart = new LineChart(@chartArea.current, options)
       @_statsChart.margins.bottom = 65
       @_statsChart.xAxis.tickPadding 5
 
@@ -154,9 +157,7 @@ class @Status.Page extends React.Component
         div className: 'osu-layout__row--page-compact',
           h1 className: 'status-info__title',
             (if @state.graph == 'users' then osu.trans('status_page.online.title.users') else osu.trans('status_page.online.title.score'))
-          div
-            ref: 'chartArea'
-            className: 'chart'
+          div className: 'chart', ref: @chartArea
           div className: 'status-info__container',
             div className: 'status-info__border',
               null
@@ -166,7 +167,7 @@ class @Status.Page extends React.Component
               h4 className: 'status-info__data-title',
                 osu.trans('status_page.online.current')
               h1 className: 'status-info__data-amount',
-                @state.status.online.current.toLocaleString()
+                osu.formatNumber(@state.status.online.current)
             div className: 'status-info__separator',
               null
             div
@@ -175,7 +176,7 @@ class @Status.Page extends React.Component
               h4 className: 'status-info__data-title',
                 osu.trans('status_page.online.score')
               h1 className: 'status-info__data-amount',
-                @state.status.online.score.toLocaleString()
+                osu.formatNumber(@state.status.online.score)
         div className: 'osu-layout__col-container osu-layout__col-container--with-gutter',
           el Status.Incidents,
             incidents: @state.status.incidents

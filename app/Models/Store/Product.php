@@ -46,6 +46,7 @@ use Carbon\Carbon;
  * @property \Illuminate\Database\Eloquent\Collection $notificationRequests NotificationRequest
  * @property int $product_id
  * @property bool $promoted
+ * @property string|null $shopify_id
  * @property int|null $stock
  * @property string|null $type_mappings_json
  * @property \Carbon\Carbon|null $updated_at
@@ -199,6 +200,22 @@ class Product extends Model
     public function scopeHasShipping($query)
     {
         return $query->whereNotNull('weight');
+    }
+
+    /**
+     * Returns the Shopify product variant GraphQL gid for this Product, null if it is not a Shopify item.
+     * This is currently implemented as convenience for checking the gid matches the one from the Storefront API.
+     *
+     * @return string|null
+     */
+    public function getShopifyVariantGid() : ?string
+    {
+        return $this->isShopify() ? base64_encode("gid://shopify/ProductVariant/{$this->shopify_id}") : null;
+    }
+
+    public function isShopify() : bool
+    {
+        return $this->shopify_id !== null;
     }
 
     public function productsInRange()

@@ -48,16 +48,16 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => '포럼을 읽음으로 표시',
+        'forums' => '포럼을 읽음으로 표시',
+        'busy' => '읽음으로 표시하는 중...',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => '투표를 수정하면 현재 결과가 제거됩니다!',
 
         'actions' => [
-            'edit' => '',
+            'edit' => '투표 수정',
         ],
     ],
 
@@ -71,6 +71,10 @@ return [
             'destroy' => '삭제',
             'restore' => '복원',
             'edit' => '수정',
+        ],
+
+        'info' => [
+            'post_count' => '게시글 :count_delimited개',
         ],
     ],
 
@@ -105,7 +109,7 @@ return [
 
                 'new_topic' => [
                     '_' => "이 주제는 조금 오래된 글입니다. 정말 여기에 작성해야 할 사유가 없다면, :create해 주세요.",
-                    'create' => '새로운 주제를 생성',
+                    'create' => '새로운 주제글 작성',
                 ],
             ],
 
@@ -119,8 +123,8 @@ return [
             'enter' => '특정 글로 이동하려면 클릭하세요',
             'first' => '처음 글로 이동하기',
             'last' => '마지막 글로 이동하기',
-            'next' => '다음 10개 글 표시',
-            'previous' => '이전 10개 글 표시',
+            'next' => '10개 글 건너뛰기',
+            'previous' => '10개 글 이전으로',
         ],
 
         'post_edit' => [
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => '투표 만들기',
 
+            'preview' => '글 미리보기',
+
             'create_poll_button' => [
                 'add' => '투표 만들기',
                 'remove' => '투표 생성 취소',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => '조회수',
+            'feature_votes' => '별 평점 순위',
             'replies' => '답글',
+            'views' => '조회수',
         ],
 
         'issue_tag_added' => [
@@ -266,6 +273,12 @@ return [
                 'current' => '현재 우선도: +:count',
                 'do' => '이 요청 옹호',
 
+                'info' => [
+                    '_' => '이곳은 :feature_request입니다. 기능 요청들의 투표는 :supporters가 할 수 있습니다.',
+                    'feature_request' => '기능 요청',
+                    'supporters' => '서포터',
+                ],
+
                 'user' => [
                     'count' => '{0} 표 없음|{1,*} :count 표',
                     'current' => '투표 횟수가 :votes회 남았습니다.',
@@ -288,8 +301,8 @@ return [
             'to_not_watching' => '즐겨찾기 등록 안됨',
             'to_watching' => '즐겨찾기',
             'to_watching_mail' => '알림과 함께 즐겨찾기',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => '알림이 활성화되었습니다. 눌러서 비활성화하세요.',
+            'tooltip_mail_enable' => '알림이 비활성화되었습니다. 눌러서 활성화하세요.',
         ],
     ],
 ];

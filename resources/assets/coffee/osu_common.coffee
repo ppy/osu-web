@@ -189,7 +189,19 @@
     return "#{bytes} B" if (bytes < k)
 
     i = Math.floor(Math.log(bytes) / Math.log(k))
-    return "#{(bytes / Math.pow(k, i)).toFixed(decimals)} #{suffixes[i]}"
+    "#{osu.formatNumber(bytes / Math.pow(k, i), decimals)} #{suffixes[i]}"
+
+
+  formatNumber: (number, precision, options, locale) ->
+    return null unless number?
+
+    options ?= {}
+
+    if precision?
+      options.minimumFractionDigits = precision
+      options.maximumFractionDigits = precision
+
+    number.toLocaleString locale ? currentLocale, options
 
 
   formatNumberSuffixed: (number, precision, options = {}) ->
@@ -276,7 +288,11 @@
 
 
   presence: (string) ->
-    if string? && string != '' then string else null
+    if osu.present(string) then string else null
+
+
+  present: (string) ->
+    string? && string != ''
 
 
   promisify: (deferred) ->
@@ -286,18 +302,10 @@
       .fail reject
 
 
-  trans: (key, replacements, locale) ->
-    if locale?
-      initialLocale = Lang.getLocale()
-      Lang.setLocale locale
-      translated = Lang.get(key, replacements)
-      Lang.setLocale initialLocale
+  trans: (key, replacements = {}, locale) ->
+    locale = fallbackLocale unless osu.transExists(key, locale)
 
-      translated
-    else
-      translated = Lang.get(key, replacements) if Lang.has(key)
-
-      osu.presence(translated) ? osu.trans(key, replacements, fallbackLocale)
+    Lang.get(key, replacements, locale)
 
 
   transArray: (array, key = 'common.array_and') ->
@@ -313,19 +321,24 @@
 
 
   transChoice: (key, count, replacements = {}, locale) ->
-    replacements.count_delimited ?= count.toLocaleString()
-
-    if locale?
+    if !osu.transExists(key, locale)
+      locale = fallbackLocale
       initialLocale = Lang.getLocale()
       Lang.setLocale locale
-      translated = Lang.choice(key, count, replacements)
-      Lang.setLocale initialLocale
 
-      translated
-    else
-      translated = Lang.choice(key, count, replacements) if Lang.has(key)
+    replacements.count_delimited ?= osu.formatNumber(count, null, null, locale)
+    translated = Lang.choice(key, count, replacements, locale)
 
-      osu.presence(translated) ? osu.transChoice(key, count, replacements, fallbackLocale)
+    Lang.setLocale initialLocale if initialLocale?
+
+    translated
+
+
+  # Handles case where crowdin fills in untranslated key with empty string.
+  transExists: (key, locale) ->
+    translated = Lang.get(key, null, locale)
+
+    osu.present(translated) && translated != key
 
 
   uuid: ->

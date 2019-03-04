@@ -21,9 +21,8 @@
 namespace App\Models\Wiki;
 
 use App\Exceptions\GitHubNotFoundException;
-use App\Libraries\OsuMarkdown;
+use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
-use Exception;
 
 class MarkdownPage extends Page
 {
@@ -44,25 +43,37 @@ class MarkdownPage extends Page
         return $this->path.'/'.$this->locale.'.md';
     }
 
-    public function pageContent()
+    /**
+     * {@inheritdoc}
+     */
+    public function getContent(bool $force = false)
     {
-        try {
-            $body = OsuWiki::fetchContent('wiki/'.$this->pagePath());
-        } catch (Exception $e) {
-            if (!$e instanceof GitHubNotFoundException) {
-                $index = false;
+        $key = $this->cacheKey();
 
-                log_error($e);
+        if (!array_key_exists($key, $this->cache) || $force) {
+            try {
+                $this->log('fetch');
+
+                $this->cache[$key] = OsuWiki::fetchContent('wiki/'.$this->pagePath());
+            } catch (GitHubNotFoundException $e) {
+                $this->log('not found');
+
+                $this->cache[$key] = null;
             }
-
-            $body = null;
         }
 
-        if (present($body)) {
+        if (present($this->cache[$key])) {
             return (new OsuMarkdown('wiki', [
                 'relative_url_root' => wiki_url($this->path),
-            ]))->load($body)->toArray();
+            ]))->load($this->cache[$key])->toArray();
         }
+    }
+
+    public function getContentIndexable()
+    {
+        return (new OsuMarkdown('wiki', [
+            'relative_url_root' => wiki_url($this->path),
+        ]))->load($this->cache[$this->cacheKey()])->toIndexable();
     }
 
     public function pageTemplate()
@@ -92,5 +103,10 @@ class MarkdownPage extends Page
         }
 
         return presence($this->page()['header']['subtitle'] ?? null) ?? $this->defaultSubtitle;
+    }
+
+    private function cacheKey()
+    {
+        return "content_{$this->locale}";
     }
 }

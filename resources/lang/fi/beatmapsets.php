@@ -34,36 +34,46 @@ return [
         'discussion' => 'Keskustelu',
 
         'details' => [
+            'approved' => 'vahvistettu ',
+            'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
+            'favourited_count' => '+ 1 muu!|+ :count muuta!',
+            'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
+            'loved' => 'rakastettu ',
             'mapped_by' => 'luonut: :mapper',
+            'qualified' => 'esihyväksytty ',
+            'ranked' => 'hyväksytty ',
             'submitted' => 'Julkaistu ',
+            'unfavourite' => 'Poista tämä beatmapkokoelma suosikeista',
             'updated' => 'viimeisin päivitys ',
             'updated_timeago' => 'viimeksi päivitetty :timeago',
-            'ranked' => 'hyväksytty ',
-            'approved' => 'vahvistettu ',
-            'qualified' => 'esihyväksytty ',
-            'loved' => 'rakastettu ',
-            'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
+
             'download' => [
                 '_' => 'Lataa',
-                'video' => 'videon kanssa',
-                'no-video' => 'ilman videota',
                 'direct' => '',
+                'no-video' => 'ilman videota',
+                'video' => 'videon kanssa',
             ],
-            'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
-            'unfavourite' => 'Poista nämä beatmap-setti suosikeista',
-            'favourited_count' => '+ 1 muu!|+ :count muuta!',
+
+            'login_required' => [
+                'bottom' => 'lisäomimaisuuksien käyttämiseen',
+                'top' => 'Kirjaudu sisään',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => 'Sinulla on liian monta lempikappaletta! Poista joitain suosikeistasi ennen uudelleenyrittämistä.',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Äänestä tätä kappaletta jos nautit sen pelaamisesta auttaaksesi sitä saamaan <strong>Ranked</strong> statuksen.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Tämä kappale on tällä hetkellä :status.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'odottaa',
+                    'qualified' => 'hyväksytty',
+                    'wip' => 'keskeneräinen',
                 ],
             ],
         ],
@@ -91,7 +101,7 @@ return [
 
             'headers' => [
                 'accuracy' => 'Tarkkuus',
-                'combo' => 'Max Combo',
+                'combo' => 'Maksimikombo',
                 'miss' => 'Ohi',
                 'mods' => 'Modit',
                 'player' => 'Pelaaja',
@@ -103,8 +113,8 @@ return [
 
             'no_scores' => [
                 'country' => 'Kartasta ei vielä löydy maansisäisiä tuloksia!',
-                'friend' => 'Kukaan kavereistasi ei vielä ole saanut tulosta tässä kartassa!',
-                'global' => 'Tuloksia ei ole. Ehkä voisit yrittää saada sellaisen?',
+                'friend' => 'Kukaan kavereistasi ei vielä ole saanut tulosta tässä mapissa!',
+                'global' => 'Tuloksia ei ole. Voisit hankkia niitä.',
                 'loading' => 'Ladataan tuloksia...',
                 'unranked' => 'Beatmap ei ole hyväksytyssä tilassa.',
             ],

@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => '목록',
-        'news-show' => '게시글',
-    ],
-
     'index' => [
-        'title' => 'osu!소식',
+        'title_page' => 'osu!소식',
 
         'nav' => [
             'newer' => '최근 글',
             'older' => '이전 글',
         ],
+
+        'title' => [
+            '_' => '뉴스 :info',
+            'info' => '메인 화면',
+        ],
     ],
 
     'show' => [
-        'posted' => ':time에 작성됨',
+        'by' => ':user 님이 작성',
 
         'nav' => [
             'newer' => '최근 글',
             'older' => '이전 글',
+        ],
+
+        'title' => [
+            '_' => '뉴스 :info',
+            'info' => '게시글',
         ],
     ],
 

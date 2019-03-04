@@ -38,7 +38,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
 
     public function getPaymentProvider()
     {
-        return 'centili';
+        return Order::PROVIDER_CENTILLI;
     }
 
     public function getPaymentTransactionId()

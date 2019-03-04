@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => ':count post|:count posts',
+            'post_count' => ':count_delimited post|:count_delimited posts',
         ],
     ],
 
@@ -280,7 +280,7 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} no votes|{1} :count vote|[2,*] :count votes',
+                    'count' => '{0} no votes|{1} :count_delimited vote|[2,*] :count_delimited votes',
                     'current' => 'You have :votes remaining.',
                     'not_enough' => "You don't have any more votes remaining",
                 ],

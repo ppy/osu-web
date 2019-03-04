@@ -34,9 +34,6 @@ return [
         'invalid_mode' => '指定的游戏模式无效。',
         'standard_converts_only' => '此谱面难度在请求的游戏模式下分数不可用。',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => '谱面收藏数超出限制，请删除一个后再试。',
-    ],
     'logged_out' => '你已退出，请登录后再试。',
     'supporter_only' => '要使用此功能，请先成为 osu! Supporter 。',
     'no_restricted_access' => '账户处于限制模式，无法执行该操作。',

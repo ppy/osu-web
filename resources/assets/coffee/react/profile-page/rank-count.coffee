@@ -32,4 +32,4 @@ class ProfilePage.RankCount extends React.PureComponent
       className: 'profile-rank-count__item'
       div
         className: "score-rank-v2 score-rank-v2--#{name} score-rank-v2--profile-page"
-      @props.stats.scoreRanks[name].toLocaleString()
+      osu.formatNumber(@props.stats.scoreRanks[name])

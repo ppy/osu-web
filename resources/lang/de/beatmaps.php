@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Sortiert nach:',
-            'created_at' => 'erstellungsdatum',
-            'timeline' => 'timeline',
-            'updated_at' => 'letzter aktualisierung',
+            'created_at' => 'Erstellungszeitpunkt',
+            'timeline' => 'Timeline',
+            'updated_at' => 'Letzte Aktualisierung',
         ],
 
         'stats' => [
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Bist du dir sicher? Der Nominierungsprozess wird durch das neue Problem zurückgesetzt.',
-            'disqualify' => '',
+            'disqualify' => 'Bist du sicher? Das wird die Beatmap von der Qualifiezierung entfernen und den Nominierungsprozess zurücksetzen.',
         ],
     ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => 'Gespielt',
             ],
             'sorting' => [
-                'title' => 'titel',
-                'artist' => 'künstler',
-                'difficulty' => 'schwierigkeit',
-                'updated' => 'zuletzt aktualisiert',
-                'ranked' => 'ranked',
-                'rating' => 'bewertung',
-                'plays' => 'plays',
-                'relevance' => 'relevanz',
-                'nominations' => 'nominierungen',
+                'title' => 'Titel',
+                'artist' => 'Künstler',
+                'difficulty' => 'Schwierigkeit',
+                'updated' => 'Zuletzt aktualisiert',
+                'ranked' => 'Ranked',
+                'rating' => 'Bewertung',
+                'plays' => 'Plays',
+                'relevance' => 'Relevanz',
+                'nominations' => 'Nominierungen',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Du benötigst einen aktiven :link, um nach :filters zu filtern',
@@ -301,5 +301,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => 'Anzahl der Spiele: :count',
+        'favourites' => 'Favoriten: :count',
     ],
 ];

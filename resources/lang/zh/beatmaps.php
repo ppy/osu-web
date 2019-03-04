@@ -59,7 +59,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => '这个信息将提交到整个谱面讨论中。如果需要单独针对某处，请在开头使用时间戳 (例如: 00:12:345)。',
+            'in_general' => '这个信息将提交到整个谱面集讨论中。如果需要单独针对某处，请在开头使用时间戳 (例如: 00:12:345)。',
             'in_timeline' => '需要 Mod 多处，请在每一个时间戳后写下意见并发表。',
         ],
 
@@ -102,7 +102,7 @@ return [
         'sort' => [
             '_' => '排序：',
             'created_at' => '创建时间',
-            'timeline' => '时间轴',
+            'timeline' => '时间线',
             'updated_at' => '最后更新时间',
         ],
 
@@ -110,7 +110,7 @@ return [
             'deleted' => '已删除',
             'mapper_notes' => '备注',
             'mine' => '我的',
-            'pending' => '未解决',
+            'pending' => 'Pending',
             'praises' => '赞',
             'resolved' => '已解决',
             'total' => '所有',
@@ -147,7 +147,7 @@ return [
         'delete' => '删除',
         'delete_own_confirm' => '你确定要删除吗？删除后你将回到个人资料页。',
         'delete_other_confirm' => '你确定要删除吗？删除后你将回到他的个人资料页。',
-        'disqualification_prompt' => 'DQ 的理由？',
+        'disqualification_prompt' => '认为不合格(DQ)的理由？',
         'disqualified_at' => '于 :time_ago 被 DQ （:reason）。',
         'disqualified_no_reason' => '没有指定原因',
         'disqualify' => 'Disqualify',
@@ -156,7 +156,7 @@ return [
         'love_confirm' => '喜欢这张谱面吗？',
         'nominate' => '提名',
         'nominate_confirm' => '提名这张谱面？',
-        'nominated_by' => '被 :users 提名',
+        'nominated_by' => '由 :users 提名',
         'qualified' => '如果没有问题，预计将于 :date 被 Ranked 。',
         'qualified_soon' => '如果没有问题，预计不久将被 Ranked 。',
         'required_text' => '提名数: :current/:required',
@@ -165,13 +165,13 @@ return [
         'unresolved_issues' => '仍然有需解决的问题 。',
 
         'reset_at' => [
-            'nomination_reset' => '提名于 :time_ago 被新问题 :discussion 重置。',
+            'nomination_reset' => '由于 :user 提出的新问题 :discussion（:message），提名过程于 :time_ago 被重置。',
             'disqualify' => ':time_ago 被 :user 因为新问题 :discussion (:message) 而 DQ.',
         ],
 
         'reset_confirm' => [
             'nomination_reset' => '你确定吗？提出新的问题会重置提名。',
-            'disqualify' => '',
+            'disqualify' => '你确定吗？这将使该谱面不再Qualified并重置提名。',
         ],
     ],
 
@@ -189,16 +189,16 @@ return [
                 'status' => '分类',
                 'genre' => '流派',
                 'language' => '语言',
-                'extra' => '额外',
-                'rank' => '有成绩',
+                'extra' => '其他',
+                'rank' => '成绩',
                 'played' => '玩过',
             ],
             'sorting' => [
                 'title' => '标题',
                 'artist' => '艺术家',
                 'difficulty' => '难度',
-                'updated' => '更新时间',
-                'ranked' => 'rank时间',
+                'updated' => '已更新',
+                'ranked' => 'Ranked',
                 'rating' => '评分',
                 'plays' => '游玩次数',
                 'relevance' => '相关性',
@@ -227,9 +227,9 @@ return [
         'approved' => 'Approved',
         'qualified' => 'Qualified',
         'loved' => 'Loved',
-        'faves' => 'Favourites',
+        'faves' => '收藏夹',
         'pending' => 'Pending & WIP',
-        'graveyard' => 'Graveyard',
+        'graveyard' => '坟图',
         'my-maps' => '我的',
     ],
     'genre' => [
@@ -301,5 +301,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '游戏次数：:count',
+        'favourites' => '收藏次数：:count',
     ],
 ];

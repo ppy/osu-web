@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'lista',
-        'news-show' => 'wiadomość',
-    ],
-
     'index' => [
-        'title' => 'Wiadomości ze świata osu!',
+        'title_page' => 'aktualności',
 
         'nav' => [
             'newer' => 'Nowsze wiadomości',
             'older' => 'Starsze wiadomości',
         ],
+
+        'title' => [
+            '_' => 'Aktualności » :info',
+            'info' => 'Strona główna',
+        ],
     ],
 
     'show' => [
-        'posted' => 'opublikowane :time',
+        'by' => 'autorstwa :user',
 
         'nav' => [
             'newer' => 'Nowsza wiadomość',
             'older' => 'Starsza wiadomość',
+        ],
+
+        'title' => [
+            '_' => 'Aktualności » :info',
+            'info' => 'Wiadomość',
         ],
     ],
 

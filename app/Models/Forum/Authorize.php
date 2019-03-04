@@ -33,6 +33,7 @@ class Authorize extends Model
 {
     protected $table = 'phpbb_acl_groups';
     public $timestamps = false;
+    protected $primaryKeys = ['group_id', 'forum_id', 'auth_option_id', 'auth_role_id', 'auth_setting'];
 
     public static function aclCheck($user, $authOption, $forum)
     {

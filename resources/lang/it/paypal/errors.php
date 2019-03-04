@@ -21,5 +21,5 @@
 return [
     'instrument_declined' => 'Il metodo di pagamento selezionato è stato rifiutato da PayPal.',
     'invalid_resource_id' => 'Nessuna informazione di pagamento trovata.',
-    'unknown' => "Si è verificato un errore sconosciuto.",
+    'unknown' => "Il pagamento è stato rifiutato, però non siamo sicuri perché.",
 ];

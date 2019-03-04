@@ -83,17 +83,17 @@ export class PlayDetail extends PureComponent
               className: "#{bn}__accuracy-and-weighted-pp"
               span
                 className: "#{bn}__accuracy"
-                "#{(score.accuracy * 100).toFixed(2)}%"
+                "#{osu.formatNumber(score.accuracy * 100, 2)}%"
               if score.weight?
                 span
                   className: "#{bn}__weighted-pp"
-                  Math.round(score.weight.pp).toLocaleString()
+                  osu.formatNumber(Math.round(score.weight.pp))
                   'pp'
             if score.weight?
               div
                 className: "#{bn}__pp-weight"
                 osu.trans 'users.show.extra.top_ranks.pp_weight',
-                  percentage: "#{Math.round(score.weight.percentage)}%"
+                  percentage: "#{osu.formatNumber(Math.round(score.weight.percentage))}%"
         div
           className: "#{bn}__score-detail #{bn}__score-detail--mods"
           el Mods, mods: score.mods, modifiers: ['profile-page']
@@ -102,7 +102,7 @@ export class PlayDetail extends PureComponent
           className: "#{bn}__pp"
           if pp > 0
             span null,
-              Math.round(pp).toLocaleString()
+              osu.formatNumber(Math.round(pp))
               span className: "#{bn}__pp-unit", 'pp'
           else
             span

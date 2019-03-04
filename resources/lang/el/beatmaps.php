@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Ταξινόμηση κατά:',
-            'created_at' => 'ημερομηνία δημιουργίας',
-            'timeline' => 'χρονολόγιο',
-            'updated_at' => 'τελευταία ενημέρωση',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -144,9 +144,9 @@ return [
     ],
 
     'nominations' => [
-        'delete' => '',
-        'delete_own_confirm' => '',
-        'delete_other_confirm' => '',
+        'delete' => 'Διαγραφή',
+        'delete_own_confirm' => 'Είστε σίγουρος; Το beatmap θα διαγραφεί και θα ανακατευθυνθείτε πίσω στο προφίλ σας.',
+        'delete_other_confirm' => 'Είστε σίγουρος; Το beatmap θα διαγραφεί και θα ανακατευθυνθείτε πίσω στο προφίλ του χρήστη.',
         'disqualification_prompt' => 'Λόγος αποκλεισμού;',
         'disqualified_at' => 'Disqualified :time_ago (:reason).',
         'disqualified_no_reason' => 'δεν έχει καθοριστεί κάποιος λόγος',
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Είστε σίγουροι; Η δημοσίευση ενός νέου προβλήματος θα επανεκκινήσει την διαδικασία υποψηφιότητας.',
-            'disqualify' => '',
+            'disqualify' => 'Είστε σίγουρος; Αυτό θα αφαιρέσει το beatmap απο τα προκριματικά και θα επαναφέρει την διαδικασία πιστοποίησης.',
         ],
     ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => 'Που έχετε παίξει',
             ],
             'sorting' => [
-                'title' => 'τίτλος',
-                'artist' => 'καλλιτέχνης',
-                'difficulty' => 'δυσκολία',
-                'updated' => 'ενημερωμένο',
-                'ranked' => 'ranked',
-                'rating' => 'βαθμολογία',
-                'plays' => 'προσπάθειες',
-                'relevance' => 'σχετικότητα',
-                'nominations' => 'nominations',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Το φιλτράρισμα κατά :filters απαιτεί ένα ενεργό :link',
@@ -301,5 +301,9 @@ return [
         'B' => '',
         'C' => '',
         'D' => '',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

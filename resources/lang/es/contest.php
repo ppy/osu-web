@@ -26,8 +26,15 @@ return [
     'voting' => [
         'over' => 'Las votaciones para este concurso ya han terminado',
         'login_required' => 'Por favor, inicia sesión para votar.',
+
         'best_of' => [
             'none_played' => "¡No parece que hayas jugado algún beatmap que califique para este concurso!",
+        ],
+
+        'button' => [
+            'add' => 'Votar',
+            'remove' => 'Quitar voto',
+            'used_up' => 'Ya has usado todos tus votos',
         ],
     ],
     'entry' => [
@@ -51,8 +58,8 @@ return [
     ],
     'vote' => [
         'list' => 'votos',
-        'count' => '',
-        'points' => '',
+        'count' => ':count_delimited voto|:count_delimited votos',
+        'points' => ':count_delimited punto|:count_delimited puntos',
     ],
     'dates' => [
         'ended' => 'Finalizó el :date',

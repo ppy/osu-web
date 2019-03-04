@@ -35,7 +35,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => '',
+            '_' => 'Paina enter-näppäintä tehdäksesi :action. Paina shift- ja enter-näppäimiä tehdäksesi uuden rivin.',
             'edit' => 'tallenna',
             'new' => 'lähetä',
             'reply' => 'vastaa',
@@ -43,14 +43,14 @@ return [
     ],
 
     'guest_button' => [
-        'new' => 'Kirjaudu kommentoidaksesi',
-        'reply' => 'Kirjaudu vastataksesi',
+        'new' => 'Kirjaudu sisään tehdäksesi kommentti',
+        'reply' => 'Kirjaudu sisään vastataksesi',
     ],
 
     'index' => [
         'title' => [
             '_' => 'Kommentit :info',
-            'info' => 'Listat',
+            'info' => 'Listaus',
         ],
     ],
 
@@ -65,12 +65,5 @@ return [
             '_' => 'Kommentit :info',
             'info' => 'Tiedot',
         ],
-    ],
-
-    'sort' => [
-        '_' => '',
-        'new' => '',
-        'old' => '',
-        'top' => '',
     ],
 ];

@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'liste',
-        'news-show' => 'opslag',
-    ],
-
     'index' => [
-        'title' => 'osu!news',
+        'title_page' => 'osu!nyheder',
 
         'nav' => [
             'newer' => 'Nyere indlæg',
             'older' => 'Ældre indlæg',
         ],
+
+        'title' => [
+            '_' => 'Nyheder :info',
+            'info' => '',
+        ],
     ],
 
     'show' => [
-        'posted' => 'slået op :time',
+        'by' => 'af :user',
 
         'nav' => [
             'newer' => 'Nyere indlæg',
             'older' => 'Ældre indlæg',
+        ],
+
+        'title' => [
+            '_' => 'Nyheder :info',
+            'info' => 'Slå op',
         ],
     ],
 

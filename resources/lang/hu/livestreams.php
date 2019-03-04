@@ -23,7 +23,7 @@ return [
         'headline' => 'Élő Adások',
         'description' => 'Az adatokat 5 percenként frissítjük a twitch.tv játék szerinti listázása alapján. Nyugodtan kezdj bele a közvetítésbe, hogy felkerülj a listára! További információért az adás felállításáról kérlek nézd meg az élő adásokról szóló wiki oldalt.',
 
-        'link' => '',
+        'link' => 'az élő közvetítésről szóló wiki oldal',
     ],
     'headers' => [
         'regular' => 'Jelenleg élő',

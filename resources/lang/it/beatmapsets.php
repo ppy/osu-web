@@ -34,36 +34,46 @@ return [
         'discussion' => 'Discussione',
 
         'details' => [
+            'approved' => 'approvata il ',
+            'favourite' => 'Mi piace questa lista di mappe',
+            'favourited_count' => '+ 1 altro!|+ :count altri!',
+            'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
+            'loved' => 'amata il ',
             'mapped_by' => 'mappata da :mapper',
+            'qualified' => 'qualificata il ',
+            'ranked' => 'classificata il ',
             'submitted' => 'inviata il ',
+            'unfavourite' => 'Non mi piace questa lista di mappe',
             'updated' => 'ultimo aggiornamento il ',
             'updated_timeago' => 'ultimo aggiornamento :timeago',
-            'ranked' => 'classificata il ',
-            'approved' => 'approvata il ',
-            'qualified' => 'qualificata il ',
-            'loved' => 'amata il ',
-            'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
+
             'download' => [
                 '_' => 'Scarica',
-                'video' => 'con Video',
-                'no-video' => 'senza Video',
                 'direct' => 'osu!direct',
+                'no-video' => 'senza Video',
+                'video' => 'con Video',
             ],
-            'favourite' => 'Mi piace questa lista di mappe',
-            'unfavourite' => 'Non mi piace questa lista di mappe',
-            'favourited_count' => '+ 1 altro!|+ :count altri!',
+
+            'login_required' => [
+                'bottom' => 'per accedere a maggiori funzionalità',
+                'top' => 'Accedi',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => 'Hai troppe beatmaps preferite! Si prega di de-preferirne una prima di continuare.',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Hype questa mappa se ti sei divertito a giocarla per aiutarla ad avanzare verso lo status di <strong>Ranked</strong>.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Questa mappa è attualmente :status.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'in attesa',
+                    'qualified' => 'qualificata',
+                    'wip' => 'lavori in corso',
                 ],
             ],
         ],
@@ -119,7 +129,7 @@ return [
             'cs-mania' => 'Numero di Tasti',
             'drain' => 'Drenaggio HP',
             'accuracy' => 'Precisione',
-            'ar' => 'Tempo di approccio',
+            'ar' => 'Approach Rate',
             'stars' => 'Stelle di Difficoltà',
             'total_length' => 'Durata',
             'bpm' => 'BPM',

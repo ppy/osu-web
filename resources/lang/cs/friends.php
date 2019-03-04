@@ -21,6 +21,7 @@
 return [
     'buttons' => [
       'add' => 'přidat přítele',
+      'disabled' => 'přátelé',
       'remove' => 'odebrat z přátel',
     ],
 

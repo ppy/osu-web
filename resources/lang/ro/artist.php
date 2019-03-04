@@ -46,4 +46,11 @@ return [
         'count' => ':count melodie|:count melodii',
         'exclusive' => 'exclusiv osu!',
     ],
+
+    'tracklist' => [
+        'title' => 'titlu',
+        'length' => 'durată',
+        'bpm' => 'bpm',
+        'genre' => 'gen',
+    ],
 ];

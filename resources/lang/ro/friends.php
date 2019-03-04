@@ -21,6 +21,7 @@
 return [
     'buttons' => [
       'add' => 'adaugă prieten',
+      'disabled' => '',
       'remove' => 'elimină prieten',
     ],
 

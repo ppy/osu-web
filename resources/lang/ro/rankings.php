@@ -20,12 +20,21 @@
 
 return [
     'header' => 'Clasificare :type',
+
     'type' => [
         'performance' => 'performanță',
         'charts' => 'În lumina reflectoarelor',
         'score' => 'scor',
         'country' => 'pe țară',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Data încheierii',
+        'map_count' => 'Număr de mape',
+        'participants' => 'Participanți',
+        'start_date' => 'Data începerii',
+    ],
+
     'stat' => [
         'accuracy' => 'Precizie',
         'active_users' => 'Utilizatori activi',

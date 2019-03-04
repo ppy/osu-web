@@ -20,7 +20,12 @@
 
 return [
     'scores' => [
-        'button' => '',
-        'title' => '',
+        'button' => '举报成绩',
+        'title' => '举报 :username 的成绩？',
+    ],
+
+    'comment' => [
+        'button' => '举报',
+        'title' => '举报 :username 的评论？',
     ],
 ];

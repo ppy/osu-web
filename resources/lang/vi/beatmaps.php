@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Sắp xếp bởi:',
-            'created_at' => 'thời gian tạo',
-            'timeline' => 'mốc thời gian',
-            'updated_at' => 'cập nhật gần đây',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Bạn chắc không? Đăng một vấn đề mới sẽ thiết lập lại quá trình đề cử (nomination).',
-            'disqualify' => '',
+            'disqualify' => 'Bạn chắc không? Việc này sẽ loại bỏ beatmap khỏi qualify và thiết lập lại quá trình đề cử.',
         ],
     ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => 'Đã chơi',
             ],
             'sorting' => [
-                'title' => 'tiêu đề',
-                'artist' => 'nghệ sĩ',
-                'difficulty' => 'độ khó',
-                'updated' => 'ngày cập nhật',
-                'ranked' => 'ngày xếp hạng',
-                'rating' => 'đánh giá',
-                'plays' => 'lượt chơi',
-                'relevance' => 'độ liên quan',
-                'nominations' => 'số đề cử',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Lọc theo :filters cần một :link đang hoạt động',
@@ -301,5 +301,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

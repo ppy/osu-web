@@ -80,10 +80,10 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
         div className: "badge-rank badge-rank--tiny badge-rank--#{score.rank}"
 
       td className: osu.classWithModifiers(cell, ["score"]),
-        score.score.toLocaleString()
+        osu.formatNumber(score.score)
 
       td className: osu.classWithModifiers(cell, ['perfect'] if score.accuracy == 1),
-        "#{(score.accuracy * 100).toFixed(2)}%"
+        "#{osu.formatNumber(score.accuracy * 100, 2)}%"
 
       td className: cell,
         if score.user.country_code
@@ -104,16 +104,16 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
           score.user.username
 
       td className: osu.classWithModifiers(cell, ['perfect'] if score.max_combo == @props.beatmap.max_combo?[0]),
-        "#{score.max_combo.toLocaleString()}x"
+        "#{osu.formatNumber(score.max_combo)}x"
 
       for stat in @props.hitTypeMapping
         td
           key: stat[0]
           className: osu.classWithModifiers(cell, ['zero'] if score.statistics["count_#{stat[1]}"] == 0),
-          score.statistics["count_#{stat[1]}"].toLocaleString()
+          osu.formatNumber(score.statistics["count_#{stat[1]}"])
 
       td className: osu.classWithModifiers(cell, ['zero'] if score.statistics.count_miss == 0),
-        score.statistics.count_miss.toLocaleString()
+        osu.formatNumber(score.statistics.count_miss)
 
       td className: cell, _.round score.pp
 

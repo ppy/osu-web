@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Gesorteerd op:',
-            'created_at' => 'aanmaaktijd',
-            'timeline' => 'tijdlijn',
-            'updated_at' => 'laatste update',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Weet je dat zeker? Een nieuw probleem posten zal het nominatieproces resetten.',
-            'disqualify' => '',
+            'disqualify' => 'Weet je het zeker? Hierdoor zal de beatmap worden verwijderd van kwalificatie en wordt het nominatie proces gereset.',
         ],
     ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => 'Gespeeld',
             ],
             'sorting' => [
-                'title' => 'titel',
-                'artist' => 'artiest',
-                'difficulty' => 'moeilijkheidsgraad',
-                'updated' => 'bijgewerkt',
-                'ranked' => 'gerankt',
-                'rating' => 'beoordeling',
-                'plays' => 'keren gespeeld',
-                'relevance' => 'relevantie',
-                'nominations' => 'nominaties',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filteren met :filters vereist een :link',
@@ -301,5 +301,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

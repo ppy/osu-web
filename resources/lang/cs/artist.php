@@ -28,22 +28,22 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmapy',
-        'download' => 'Stáhnout beatmap šablonu',
-        'download-na' => 'Beatmap šablona zatím není dostupná',
+        'download' => 'Stáhnout šablonu beatmapy',
+        'download-na' => 'Šablona beatmapy zatím není dostupná',
     ],
 
     'index' => [
-        'description' => 'Featured artists jsou umělci, se kterými spolupracujeme, abychom do osu! přinesli novou a originální hudbu. Tito umělci a výběr jejich skladeb byli ručně zvoleni osu! týmem kvůli jejich skvělosti a vhodnosti pro mapování. Někteří z featured artists navíc vytvořili nové skladby exkluzivně pro osu!.<br><br>Všechny skladby v této sekci jsou k dispozici jako předem načasované .osz soubory a jsou oficiálně licencované pro použití v osu! a obsahu s osu! souvisejícím.',
+        'description' => 'Featured artists jsou umělci, se kterými spolupracujeme, abychom do osu! přinesli novou a originální hudbu. Tito umělci a výběr jejich skladeb byli ručně zvoleni týmem osu! kvůli jejich úžasnosti a vlohám pro zmapování. Někteří z featured artists navíc vytvořili nové skladby exkluzivně pro osu!.<br><br>Všechny skladby v této sekci jsou k dispozici jako předem načasované .osz soubory a jsou oficiálně licencované pro použití v osu! a obsahu s osu! souvisejícím.',
     ],
 
     'links' => [
-        'osu' => 'osu! profil',
-        'site' => 'Oficiální Web',
+        'osu' => 'Profil osu!',
+        'site' => 'Oficiální stránky',
     ],
 
     'songs' => [
         '_' => 'Skladby',
-        'count' => ':count skladba|:count skladeb',
+        'count' => ':count_delimited skladba|:count_delimited skladeb',
         'exclusive' => 'osu! exkluzivní',
     ],
 

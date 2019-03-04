@@ -92,7 +92,7 @@ class ProfilePage.Links extends React.PureComponent
       html: osu.trans 'users.show.plays_with', devices: rowValue(playsWith)
 
     post_count: (val, user) ->
-      count = osu.transChoice 'users.show.post_count.count', val.toLocaleString()
+      count = osu.transChoice 'users.show.post_count.count', osu.formatNumber(val)
       url = laroute.route('users.posts', user: user.id)
 
       html:

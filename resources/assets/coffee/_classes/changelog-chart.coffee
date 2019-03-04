@@ -178,7 +178,7 @@ class @ChangelogChart
     @tooltipName
       .attr 'class', "changelog-chart__text changelog-chart__text--name changelog-chart__text--#{labelModifier}"
       .text currentLabel
-    @tooltipUserCount.text @data[dataRow][pos].data[currentLabel].user_count.toLocaleString()
+    @tooltipUserCount.text osu.formatNumber(@data[dataRow][pos].data[currentLabel].user_count)
     @tooltipDate.text @data[dataRow][pos].data.date_formatted
 
     tooltipWidth = @tooltip.node().getBoundingClientRect().width

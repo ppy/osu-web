@@ -24,7 +24,7 @@ return [
     ],
 
     'item' => [
-        'content' => '内容',
+        'content' => '目次',
         'modding_history_link' => 'Modding履歴を見る',
     ],
 ];

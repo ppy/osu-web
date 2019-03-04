@@ -16,6 +16,9 @@ return [
             'no_shipping' => env('PAYPAL_NO_SHIPPING_EXPERIENCE_PROFILE_ID'),
         ],
     ],
+    'shopify' => [
+        'webhook_key' => env('SHOPIFY_WEBHOOK_KEY'),
+    ],
     'xsolla' => [
         'api_key' => env('XSOLLA_API_KEY'),
         'merchant_id' => env('XSOLLA_MERCHANT_ID'),

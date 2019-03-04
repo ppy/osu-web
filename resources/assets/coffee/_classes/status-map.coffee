@@ -66,7 +66,7 @@ class @StatusMap
           .duration(1000)
           .attr('r', @circleSize + 20)
           .style('opacity', 0)
-          .each 'end', =>
+          .on 'end', =>
             target
               .attr('r', @circleSize)
               .style('opacity', 1)

@@ -49,7 +49,7 @@ class ProfilePage.Beatmaps extends React.PureComponent
         if count > 0
           span
             className: 'page-extra__title-count'
-            count.toLocaleString()
+            osu.formatNumber(count)
 
       if beatmapsets.length > 0
         div className: 'osu-layout__col-container osu-layout__col-container--with-gutter',

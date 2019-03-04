@@ -26,7 +26,11 @@ php composer.phar config -g github-oauth.github.com 98cbc568911ef1e060a3a31623f2
 
 rm -f bootstrap/cache/*.php bootstrap/cache/*.json
 
-php composer.phar install
+if [ -z "${OSU_INSTALL_DEV:-}" ]; then
+  php composer.phar install --no-dev
+else
+  php composer.phar install
+fi
 
 php artisan view:clear
 

@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Zapisywanie postu nie powiodło się',
+            'error' => 'Nie udało się zapisać posta',
         ],
     ],
 
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Sortowane według:',
-            'created_at' => 'data utworzenia',
-            'timeline' => 'oś czasu',
-            'updated_at' => 'ostatnie aktualizacje',
+            'created_at' => 'Data utworzenia',
+            'timeline' => 'Oś czasu',
+            'updated_at' => 'Ostatnie aktualizacje',
         ],
 
         'stats' => [
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Na pewno? Zgłoszenie nowego problemu zresetuje proces nominacji.',
-            'disqualify' => '',
+            'disqualify' => 'Czy na pewno chcesz to zrobić? Ta czynność odbierze tej beatmapie status zakwalifikowanej i zresetuje proces nominacji.',
         ],
     ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => 'Ukończenie',
             ],
             'sorting' => [
-                'title' => 'tytuł',
-                'artist' => 'wykonawca',
-                'difficulty' => 'poziom trudności',
-                'updated' => 'data modyfikacji',
-                'ranked' => 'data',
-                'rating' => 'ocena',
-                'plays' => 'liczba zagrań',
-                'relevance' => 'trafność',
-                'nominations' => 'nominacje',
+                'title' => 'Tytuł',
+                'artist' => 'Wykonawca',
+                'difficulty' => 'Poziom trudności',
+                'updated' => 'Ostatnie aktualizacje',
+                'ranked' => 'Data',
+                'rating' => 'Ocena',
+                'plays' => 'Liczba zagrań',
+                'relevance' => 'Trafność',
+                'nominations' => 'Nominacje',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Użycie wybranych filtrów (:filters) wymaga :link',
@@ -301,5 +301,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => 'Liczba zagrań: :count',
+        'favourites' => 'Polubiło: :count',
     ],
 ];

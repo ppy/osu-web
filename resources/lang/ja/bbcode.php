@@ -27,12 +27,12 @@ return [
     'list' => 'リスト',
     'list_numbered' => '番号付きリスト',
     'size' => [
-        '_' => '文字のサイズ',
+        '_' => 'フォントサイズ',
         'tiny' => '極小',
         'small' => '小',
         'normal' => '中',
         'large' => '大',
     ],
-    'spoilerbox' => 'ボックス',
+    'spoilerbox' => 'スポイラー',
     'strikethrough' => '取り消し線',
 ];

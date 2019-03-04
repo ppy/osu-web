@@ -48,7 +48,10 @@ class MainPage extends Page
         return $this->path.'/'.$this->locale.'.yaml';
     }
 
-    public function pageContent()
+    /**
+     * {@inheritdoc}
+     */
+    public function getContent(bool $force = false)
     {
         try {
             $sections = OsuWiki::fetchContent('wiki/'.$this->pagePath());
@@ -63,6 +66,12 @@ class MainPage extends Page
                 'output' => view('wiki.generators._main', compact('sections'))->render(),
             ];
         }
+    }
+
+    public function getContentIndexable()
+    {
+        // this page isn't supposed to be searchable anyway
+        return '';
     }
 
     public function isQueryable()

@@ -27,6 +27,10 @@ return [
     ],
 
     'scopes' => [
-        'identify' => '',
+        'identify' => 'Tunnista itsesi ja lue julkista profiiliasi.',
+
+        'friends' => [
+            'read' => 'Näe ketä seuraat.',
+        ],
     ],
 ];
