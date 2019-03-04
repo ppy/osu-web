@@ -62,6 +62,7 @@
   }
 
   &--forum-poll {
+    .default-border-radius();
     height: unset;
     background-color: #eee;
   }
@@ -98,13 +99,14 @@
     }
 
     .@{_top}--forum-poll & {
+      .default-border-radius();
       position: absolute;
-      background-color: @pink-darker;
+      background-color: @blue-lighter;
     }
 
     // must be after --forum-poll
     .@{_top}--forum-poll-voted & {
-      background-color: @purple-darker;
+      background-color: @pink-lighter;
     }
 
     .@{_top}--user-profile & {

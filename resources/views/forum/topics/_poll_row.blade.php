@@ -22,7 +22,7 @@
 
 <tr class="forum-poll-row {{ $pollOption['voted_by_user'] ? 'forum-poll-row--voted' : '' }}">
     <td class="forum-poll-row__column">
-        <label class="forum-poll-row__option-text-container">
+        <label class="forum-poll-row__checkbox-container">
             @if (priv_check('ForumTopicVote', $topic)->can())
                 <div class="osu-checkbox">
                     <input
