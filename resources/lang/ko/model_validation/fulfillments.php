@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => '현재 유저 이름 (:current)이 철회시 적용될 유저 이름(:username)과 일치하지 않습니다',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => '기부액이 서포터 권한을 얻는데 필요한 최소액보다 적습니다 (:actual > :expected)',
     ],
 ];

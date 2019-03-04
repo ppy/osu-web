@@ -114,7 +114,7 @@ return [
             'delivered' => '배송 완료',
             'paid' => '결제 완료',
             'processing' => '확인 대기 중',
-            'shipped' => '',
+            'shipped' => '운송 중',
         ],
     ],
 

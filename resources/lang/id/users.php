@@ -330,7 +330,7 @@ return [
             'title' => 'Pengguna tidak ditemukan! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'Sunting laman profil',
             'description' => '<strong>saya!</strong> adalah area pribadi yang dapat dimodifikasi di laman profil Anda.',
             'edit_big' => 'Sunting saya!',
             'placeholder' => 'Ketik konten laman di sini',

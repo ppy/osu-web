@@ -19,7 +19,7 @@
  */
 
 return [
-    'page_description' => 'Fremhevede artister i osu!',
+    'page_description' => 'Utvalgte artister på osu!',
     'title' => 'Fremhevede Artister',
 
     'admin' => [
@@ -33,24 +33,24 @@ return [
     ],
 
     'index' => [
-        'description' => 'Fremhevede arister er artister som vi i samarbeid med jobber for å bringe ny og original musikk til osu!. Disse artistene og et utvalg av sangene deres har blitt håndplukket av osu! laget, ettersom de er imponerende og tilpasset til mapping. Noen av disse fremhevede artistene har også laget nye og eksklusive sanger for bruk i osu!.<br><br>Alle sangene i denne seksjonen tilbys som forhåndstimet .osz filer og har offisielt blitt lisensiert for bruk i osu! og osu! relatert innhold.',
+        'description' => 'Utvalgte artister er artister som vi samarbeider med for å tilby ny og original musikk i osu! Disse artistene og de utvalgte sangene har blitt hånd-plukket av osu! teamet for å være superkule og tilpasset for mapping. Noen av disse utvalgte artister har også laget eksklusive nye sanger for osu! Alle sangene i denne seksjonen tilbys som pre-timed .osz filer og har blitt offisielt lisensiert for bruk i osu! og osu! relatert innhold.',
     ],
 
     'links' => [
-        'osu' => 'osu!-profil',
+        'osu' => 'osu! profil',
         'site' => 'Offisielt nettsted',
     ],
 
     'songs' => [
         '_' => 'Sanger',
         'count' => ':count sang|:count sanger',
-        'exclusive' => 'osu! eksklusive',
+        'exclusive' => 'osu! eksklusiv',
     ],
 
     'tracklist' => [
         'title' => 'tittel',
         'length' => 'lengde',
-        'bpm' => 'bpm',
+        'bpm' => 'spm',
         'genre' => 'sjanger',
     ],
 ];

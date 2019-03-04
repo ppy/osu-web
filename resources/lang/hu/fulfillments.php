@@ -24,7 +24,7 @@ return [
             'subject' => 'Köszi, az osu! <3 téged',
         ],
         'supporter_gift' => [
-            'subject' => '',
+            'subject' => 'osu!támogatói címet kaptál!',
         ],
     ],
 ];

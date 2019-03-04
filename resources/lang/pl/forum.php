@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited post|:count_delimited posty|:count_delimited postów',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Tworzenie ankiety',
 
-            'preview' => '',
+            'preview' => 'Podgląd wątku',
 
             'create_poll_button' => [
                 'add' => 'Utwórz ankietę',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'priorytet',
             'replies' => 'odpowiedzi',
             'views' => 'wyświetleń',
         ],
@@ -274,13 +274,13 @@ return [
                 'do' => 'Nagłośnij tę prośbę',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'To jest :feature_request. Na prośby o funkcję mogą głosować tylko :supporters.',
+                    'feature_request' => 'prośba o funkcję',
+                    'supporters' => 'donatorzy',
                 ],
 
                 'user' => [
-                    'count' => '{0} brak głosów|{1} :count głos|[2,*] :count głosów',
+                    'count' => '{0} 0 głosów|{1} :count_delimited głos|[2,4] :count_delimited głosy|{5,*} :count_delimited głosów',
                     'current' => 'Pozostało ci :votes głosów.',
                     'not_enough' => "Nie posiadasz żadnych głosów",
                 ],

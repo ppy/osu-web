@@ -19,14 +19,14 @@
  */
 
 return [
-    '_' => '',
+    '_' => '정렬 기준',
 
-    'new' => '',
-    'old' => '',
-    'top' => '',
+    'new' => '최근',
+    'old' => '과거',
+    'top' => '상위',
 
     'forum_topics' => [
-        'new' => '',
-        'feature_votes' => '',
+        'new' => '최근 응답',
+        'feature_votes' => '별 평점 순위',
     ],
 ];

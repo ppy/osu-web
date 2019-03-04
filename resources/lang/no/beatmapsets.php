@@ -20,13 +20,13 @@
 
 return [
     'availability' => [
-        'disabled' => 'Denne beatmappen er for tiden ikke tilgjengelig for nedlastning.',
-        'parts-removed' => 'Denne beatmappen inkluderer materielle som har blitt fjernet etter forespørsel fra skaperen eller en tredjepart rettighetshaver.',
+        'disabled' => 'Dette beatmappet er for øyeblikket ikke tilgjengelig for nedlastning.',
+        'parts-removed' => 'Deler av dette beatmappet har blitt fjernet etter forespørsel fra skaperen eller en tredjepart rettighetshaver.',
         'more-info' => 'Klikk her for mer informasjon.',
     ],
 
     'index' => [
-        'title' => 'Beatmaps Liste',
+        'title' => 'Beatmapsliste',
         'guest_title' => 'Beatmaps',
     ],
 
@@ -55,13 +55,13 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => 'for å få tilgang til flere funksjoner',
+                'top' => 'Logg på',
             ],
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => 'Du har lagt til for mange beatmaps som favoritter! Vennligst fjern noen av favorittene dine før du prøver igjen.',
         ],
 
         'hype' => [

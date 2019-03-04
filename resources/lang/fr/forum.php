@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited discussion|:count_delimited discussions',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Créer un sondage',
 
-            'preview' => '',
+            'preview' => 'Aperçu de la discussion',
 
             'create_poll_button' => [
                 'add' => 'Créer un sondage',
@@ -275,8 +275,8 @@ return [
 
                 'info' => [
                     '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    'feature_request' => 'demande de fonctionnalité',
+                    'supporters' => 'supporters',
                 ],
 
                 'user' => [

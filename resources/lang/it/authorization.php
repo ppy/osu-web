@@ -46,7 +46,7 @@ return [
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'I post automaticamente generati non possono essere modificati.',
+            'system_generated' => 'I post generati automaticamente non possono essere modificati.',
             'not_owner' => 'Solo l\'autore del post può modificarlo.',
         ],
     ],

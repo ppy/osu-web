@@ -27,12 +27,12 @@ return [
     ],
 
     'index' => [
-        'description' => 'Dette er beatmap diskusjonene som du følger. Du vil varsles om det er nye innlegg eller oppdateringer.',
+        'description' => 'Dette er beatmapdiskusjonene som du følger. Du vil varsles om nye innlegg eller oppdateringer.',
         'title_compact' => 'modding overvåkningsliste',
         'title_main' => 'Modding Overvåkningsliste',
 
         'table' => [
-            'empty' => 'Ingen beatmap diskusjon overvåket.',
+            'empty' => 'Ingen beatmapdiskusjon overvåket.',
             'open_issues' => 'Åpne problemstillinger',
             'state' => 'Tilstand',
             'title' => 'Tittel',

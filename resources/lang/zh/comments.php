@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => '',
-        'reply' => '',
+        'new' => '登录以评论',
+        'reply' => '登录以回复',
     ],
 
     'index' => [

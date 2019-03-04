@@ -48,16 +48,16 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'Marcar foro como leído',
+        'forums' => 'Marcar foros como leídos',
+        'busy' => 'Marcando como leído...',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => 'Editando una encuesta eliminará los resultados actuales!',
 
         'actions' => [
-            'edit' => '',
+            'edit' => 'Editar encuesta',
         ],
     ],
 
@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited publicación|:count_delimited publicaciones',
         ],
     ],
 
@@ -93,7 +93,7 @@ return [
         'new_topic_login' => 'Inicia sesión para publicar un nuevo tema',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escribe aquí para responder',
-        'reply_title_prefix' => '',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'por :user',
         'started_by_verbose' => 'iniciado por :user',
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Creación de encuestas',
 
-            'preview' => '',
+            'preview' => 'Vista previa',
 
             'create_poll_button' => [
                 'add' => 'Crear una encuesta',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'prioridad estrella',
             'replies' => 'respuestas',
             'views' => 'vistas',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => 'Apoyar esta solicitud',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Esto es un :feature_request. Sugerencias pueden ser votadas por :supporters.',
+                    'feature_request' => 'sugerir una idea',
+                    'supporters' => 'colaboradores',
                 ],
 
                 'user' => [
@@ -301,8 +301,8 @@ return [
             'to_not_watching' => 'No marcado',
             'to_watching' => 'Marcado',
             'to_watching_mail' => 'Marcado con aviso de notificaciones',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => 'Notificación activada. Haga clics para desactivar',
+            'tooltip_mail_enable' => 'Notificación desactivada. Haga clic para activar',
         ],
     ],
 ];

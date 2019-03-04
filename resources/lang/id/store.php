@@ -114,7 +114,7 @@ return [
             'delivered' => 'Sampai Tujuan',
             'paid' => 'Lunas',
             'processing' => 'Menunggu konfirmasi',
-            'shipped' => '',
+            'shipped' => 'Dalam Perjalanan',
         ],
     ],
 

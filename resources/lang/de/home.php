@@ -24,7 +24,7 @@ return [
         'online' => 'aktuell <strong>:players</strong> online in <strong>:games</strong> Spielen',
         'peak' => 'Maximum, :count Benutzer online',
         'players' => '<strong>:count</strong> registrierte Spieler',
-        'title' => '',
+        'title' => 'Willkommen',
 
         'slogan' => [
             'main' => 'das allerbeste free-to-play rhythmusspiel',

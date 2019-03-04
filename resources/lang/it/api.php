@@ -30,7 +30,7 @@ return [
         'identify' => 'Identificarti e leggere il tuo profilo pubblico.',
 
         'friends' => [
-            'read' => '',
+            'read' => 'Vedi chi stai seguendo.',
         ],
     ],
 ];

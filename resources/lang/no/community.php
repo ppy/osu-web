@@ -72,7 +72,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Last opp mer',
-                'description' => 'Ytterlige påventende beatmap plasser (pr. rangert beatmap) opp til en maks av 10.',
+                'description' => 'Ytterlige plasser for ventende beatmaps (pr. rangert beatmap) opp til en maks av 10.',
             ],
 
             'early_access' => [
@@ -86,8 +86,8 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Beatmap filtre',
-                'description' => 'Filtrer beatmap søk basert på spilt og uspilt, samt hvilken rangering du har oppnåd (hvis du har noen).',
+                'title' => 'Beatmapfiltre',
+                'description' => 'Filtrer beatmapsøk basert på spilt og uspilt, samt hvilken rangering du har oppnåd (om du har noen).',
             ],
 
             'yellow_fellow' => [

@@ -68,7 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => '비트맵 메타데이터 글을 삭제할 수 없습니다.',
             'beatmapset_post_no_edit' => '비트맵 메타데이터 글을 수정할 수 없습니다.',
-            'only_quote' => '',
+            'only_quote' => '답글에 인용만 포함하고 있습니다.',
         ],
 
         'topic_poll' => [
@@ -98,7 +98,7 @@ return [
         'username_available_soon' => '이 사용자 이름은 곧 사용 가능 합니다!',
         'username_invalid_characters' => '요청한 사용자 이름에 유효하지 않은 문자가 있습니다.',
         'username_in_use' => '이미 사용중인 사용자 이름 입니다!',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_locked' => '이미 사용 중인 사용자 이름입니다!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => '언더바나 공백을 사용해주세요, 둘 중 하나요!',
         'username_no_spaces' => "사용자 이름은 공백으로 시작하거나 끝날 수 없습니다!",
         'username_not_allowed' => '이 사용자 이름 선택은 허용되지 않습니다.',

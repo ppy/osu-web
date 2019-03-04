@@ -34,5 +34,5 @@ return [
         'large' => 'Голям',
     ],
     'spoilerbox' => 'Кутия с текст',
-    'strikethrough' => 'Зачертано',
+    'strikethrough' => 'Зачеркнато',
 ];

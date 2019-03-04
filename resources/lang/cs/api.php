@@ -30,7 +30,7 @@ return [
         'identify' => 'Indentifikovat vás a prohlížet váš veřejný profil.',
 
         'friends' => [
-            'read' => '',
+            'read' => 'Koukněte se, koho sledujete.',
         ],
     ],
 ];

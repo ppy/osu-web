@@ -53,8 +53,8 @@ return [
         'pay' => 'Maksa Paypalilla',
 
         'has_pending' => [
-            '_' => '',
-            'link_text' => 'tässä',
+            '_' => 'Sinulla on keskeneräisiä ostoksia, klikkaa :link nähdäksesi ne.',
+            'link_text' => 'tästä',
         ],
 
         'pending_checkout' => [
@@ -66,14 +66,14 @@ return [
     'discount' => 'säästä :percent%',
 
     'invoice' => [
-        'echeck_delay' => '',
+        'echeck_delay' => 'Koska maksusi oli eCheck, anna maksimissaan 10 päivää että maksu pääsee PayPalin läpi!',
         'status' => [
             'processing' => [
                 'title' => 'Maksuasi ei ole vielä vahvistettu!',
-                'line_1' => '',
+                'line_1' => 'Jos olet jo maksanut, me saatamme silti odottaa varmistusta maksustasi. Päivitä sivu yhden tai kahden minuutin kuluttua!',
                 'line_2' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Jos sinulla on ongelmia maksun aikana, :link',
+                    'link_text' => 'klikkaa tästä jatkaaksesi maksamista',
                 ],
             ],
         ],
@@ -86,10 +86,10 @@ return [
     ],
 
     'order' => [
-        'paid_on' => '',
+        'paid_on' => 'Tilaus laitettu :date',
 
         'invoice' => 'Näytä lasku',
-        'no_orders' => '',
+        'no_orders' => 'Ei tilauksia katsottavissa.',
 
         'item' => [
             'display_name' => [
@@ -113,8 +113,8 @@ return [
             'checkout' => 'Valmistellaan',
             'delivered' => 'Toimitettu',
             'paid' => 'Maksettu',
-            'processing' => '',
-            'shipped' => '',
+            'processing' => 'Odotetaan varmistusta',
+            'shipped' => 'Kuljetuksessa',
         ],
     ],
 
@@ -148,7 +148,7 @@ return [
         'checking' => 'Tarkistetaan saatavuutta nimelle :username...',
         'require_login' => [
             '_' => 'Sinun on oltava :link vaihtaaksesi nimesi!',
-            'link_text' => 'kirjautunut sisään',
+            'link_text' => 'kirjautuneena sisään',
         ],
     ],
 ];

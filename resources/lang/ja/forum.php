@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited 投稿|:count_delimited 投稿',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'ポールの作成',
 
-            'preview' => '',
+            'preview' => '投稿のプレビュー',
 
             'create_poll_button' => [
                 'add' => 'ポールを作成',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'スタープライオリティ',
             'replies' => '返信数',
             'views' => '観覧数',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => 'このリクエストを推進する',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'これは:feature_requestです。機能の提案は:supportersが投票することができます。',
+                    'feature_request' => '機能の提案',
+                    'supporters' => 'サポーター',
                 ],
 
                 'user' => [

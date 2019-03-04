@@ -49,7 +49,7 @@ return [
         'title' => 'Дискусии',
 
         'collapse' => [
-            'all-collapse' => 'Затвори всички',
+            'all-collapse' => 'Свий всички',
             'all-expand' => 'Разшири всички',
         ],
 
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Сортирани по:',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'created_at' => 'Време на създаване',
+            'timeline' => 'Времева лента',
+            'updated_at' => 'Последно обновяване',
         ],
 
         'stats' => [
@@ -190,19 +190,19 @@ return [
                 'genre' => 'Жанр',
                 'language' => 'Език',
                 'extra' => 'екстра',
-                'rank' => 'Постигнат Ранк',
+                'rank' => 'Постигнат Ранг',
                 'played' => 'Изигран',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'Заглавие',
+                'artist' => 'Изпълнител',
+                'difficulty' => 'Трудност',
+                'updated' => 'Обновен',
+                'ranked' => 'Класиран',
+                'rating' => 'Рейтинг',
+                'plays' => 'Изигран',
+                'relevance' => 'Уместност',
+                'nominations' => 'Номинации',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Филтриране по :filters изисква активен :link',
@@ -303,7 +303,7 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => 'Брой игри: :count',
+        'favourites' => 'Харесали: :count',
     ],
 ];

@@ -20,25 +20,25 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Настройки</strong> на Акаунта',
+        'title' => '<strong>Профилни</strong> настройки',
         'title_compact' => 'настройки',
-        'username' => 'име',
+        'username' => 'потребителско име',
 
         'avatar' => [
             'title' => 'Аватар',
         ],
 
         'email' => [
-            'current' => 'сегашен имейл',
+            'current' => 'текущ имейл',
             'new' => 'нов имейл',
-            'new_confirmation' => 'потвърдете нов имейл',
+            'new_confirmation' => 'потвърдете новия имейл',
             'title' => 'Имейл',
         ],
 
         'password' => [
-            'current' => 'сегашна парола',
+            'current' => 'текуща парола',
             'new' => 'нова парола',
-            'new_confirmation' => 'потвърдете нова парола',
+            'new_confirmation' => 'потвърдете новата парола',
             'title' => 'Парола',
         ],
 
@@ -58,18 +58,18 @@ return [
 
         'signature' => [
             'title' => 'Подпис',
-            'update' => 'запази',
+            'update' => 'обнови',
         ],
     ],
 
     'update_email' => [
         'email_subject' => 'потвърдете смяната на osu! имейла',
-        'update' => 'запази',
+        'update' => 'обнови',
     ],
 
     'update_password' => [
         'email_subject' => 'подвърдете смяната на osu! парола',
-        'update' => 'запази',
+        'update' => 'обнови',
     ],
 
     'playstyles' => [

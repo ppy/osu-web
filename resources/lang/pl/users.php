@@ -162,7 +162,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 obserwujący|:count obserwujących|:count obserwujących',
+            'followers' => ':count_delimited obserwujący|:count_delimited obserwujących|:count_delimited obserwujących',
             'unranked' => 'Brak nowych wyników',
 
             'achievements' => [
@@ -330,7 +330,7 @@ return [
             'title' => 'Nie znaleziono użytkownika! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'Edytuj stronę użytkownika',
             'description' => '<strong>ja!</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
@@ -338,7 +338,7 @@ return [
         ],
         'post_count' => [
             '_' => ':link',
-            'count' => ':count post na forum|:count posty na forum|:count postów na forum',
+            'count' => ':count_delimited post na forum|:count_delimited posty na forum|:count_delimited postów na forum',
         ],
         'rank' => [
             'country' => 'Pozycja w rankingu krajowym dla :mode',

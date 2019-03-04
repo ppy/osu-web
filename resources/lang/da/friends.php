@@ -21,7 +21,7 @@
 return [
     'buttons' => [
       'add' => 'tilføj ven',
-      'disabled' => '',
+      'disabled' => 'venner',
       'remove' => 'fjern ven',
     ],
 

@@ -32,9 +32,9 @@ return [
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => 'Hlasovat',
+            'remove' => 'Odebrat hlas',
+            'used_up' => 'Využil jsi všechny svoje hlasy',
         ],
     ],
     'entry' => [

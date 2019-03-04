@@ -32,9 +32,9 @@ return [
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => 'Votar',
+            'remove' => 'Quitar voto',
+            'used_up' => 'Ya has usado todos tus votos',
         ],
     ],
     'entry' => [
@@ -58,8 +58,8 @@ return [
     ],
     'vote' => [
         'list' => 'votos',
-        'count' => '',
-        'points' => '',
+        'count' => ':count_delimited voto|:count_delimited votos',
+        'points' => ':count_delimited punto|:count_delimited puntos',
     ],
     'dates' => [
         'ended' => 'Finalizó el :date',

@@ -19,14 +19,14 @@
  */
 
 return [
-    '_' => '',
+    '_' => 'Sortir berdasarkan',
 
-    'new' => '',
-    'old' => '',
-    'top' => '',
+    'new' => 'Komentar Terbaru',
+    'old' => 'Komentar Terlama',
+    'top' => 'Komentar Terbaik',
 
     'forum_topics' => [
-        'new' => '',
-        'feature_votes' => '',
+        'new' => 'Balasan Terakhir',
+        'feature_votes' => 'Prioritas',
     ],
 ];

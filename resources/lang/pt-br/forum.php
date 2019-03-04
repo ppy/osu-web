@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited publicação|:count_delimited publicações',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Criação de Enquete',
 
-            'preview' => '',
+            'preview' => 'Pré-visualizar a publicação',
 
             'create_poll_button' => [
                 'add' => 'Criar enquete',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'prioridade de estrela',
             'replies' => 'respostas',
             'views' => 'visualizações',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => 'Promover este pedido',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Esse é um :feature_request. Pedidos de recursos podem ser votados por :supporters.',
+                    'feature_request' => 'pedido de recurso',
+                    'supporters' => 'supporters',
                 ],
 
                 'user' => [

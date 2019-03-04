@@ -42,14 +42,14 @@ return [
         'message_placeholder_deleted_beatmap' => 'この難易度は削除されたのでディスカッションはできません。',
         'message_type_select' => 'コメントタイプを選択',
         'reply_notice' => 'Enter キーを押して送信',
-        'reply_placeholder' => 'ここに入力してください',
+        'reply_placeholder' => 'ここにメッセージを入力してください',
         'require-login' => '返信するにはログインが必要です。',
         'resolved' => '解決済',
         'restore' => '復元',
         'title' => 'ディスカッション',
 
         'collapse' => [
-            'all-collapse' => '全て収納する',
+            'all-collapse' => 'すべてを折りたたむ',
             'all-expand' => '全て展開する',
         ],
 
@@ -66,7 +66,7 @@ return [
         'message_placeholder' => [
             'general' => '一般(:version)への投稿をここに入力',
             'generalAll' => '一般 (全難易度) への投稿をここに入力',
-            'timeline' => '一般(:version)への投稿をここに入力',
+            'timeline' => 'タイムライン(:version)への投稿をここに入力',
         ],
 
         'message_type' => [
@@ -101,18 +101,18 @@ return [
 
         'sort' => [
             '_' => '並び替え順:',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'created_at' => '作成日時',
+            'timeline' => 'タイムライン',
+            'updated_at' => '最終更新',
         ],
 
         'stats' => [
-            'deleted' => '削除済',
+            'deleted' => '削除済み',
             'mapper_notes' => 'メモ',
             'mine' => '自分',
             'pending' => '未解決',
             'praises' => '称賛',
-            'resolved' => '解決済',
+            'resolved' => '解決済み',
             'total' => '全て',
         ],
 
@@ -121,7 +121,7 @@ return [
             'graveyard' => "この譜面は:dateから更新が止まっています・・・",
             'loved' => 'この譜面は:dateにLovedになりました！',
             'ranked' => 'この譜面は:dateにRankedになりました！',
-            'wip' => '注：この譜面は作者に未完成だとマークされています',
+            'wip' => '注：この譜面は作者によって作成途中とされています。',
         ],
 
     ],
@@ -146,19 +146,19 @@ return [
     'nominations' => [
         'delete' => '削除',
         'delete_own_confirm' => '譜面は削除され、あなたはプロフィール画面にリダイレクトされます。本当によろしいですか？',
-        'delete_other_confirm' => '譜面は削除され、あなたはプロフィール画面にリダイレクトされます。本当によろしいですか？',
+        'delete_other_confirm' => '譜面は削除され、あなたはユーザーのプロフィール画面にリダイレクトされます。本当によろしいですか？',
         'disqualification_prompt' => 'Disqualification（Qualifyの取り消し）の理由',
         'disqualified_at' => ':time_agoにDisqualifyされました(:reason).',
         'disqualified_no_reason' => '理由が明示されていません',
         'disqualify' => 'Disqualify',
-        'incorrect_state' => 'エラーが発生しました。ページの更新をすると直る可能性があります。',
+        'incorrect_state' => 'エラーが発生しました。ページの再読み込みを試してください。',
         'love' => 'Lovedに追加',
         'love_confirm' => 'Lovedに追加しますか？',
         'nominate' => 'ノミネート',
         'nominate_confirm' => 'この譜面をノミネートしますか？',
-        'nominated_by' => ':usersがノミネート',
-        'qualified' => '問題が発覚しなければ:dateにRanked予定',
-        'qualified_soon' => '問題が発覚しなければ間もなくRanked',
+        'nominated_by' => ':usersにノミネートされました。',
+        'qualified' => '特に問題がなかった場合、:dateにRanked予定',
+        'qualified_soon' => '特に問題がなかった場合、間もなくRanked',
         'required_text' => 'ノミネート数: :current/:required',
         'reset_message_deleted' => '削除済み',
         'title' => 'ノミネートのステータス',
@@ -171,14 +171,14 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'よろしいですか？新しい問題点を投稿すると審査中ではなくなります。',
-            'disqualify' => '',
+            'disqualify' => '本当にいいですか？これによりビートマップが認定から外され、ノミネーションがリセットされます。',
         ],
     ],
 
     'listing' => [
         'search' => [
             'prompt' => 'キーワードを入力・・・',
-            'login_required' => '検索にはサインインをする必要があります。',
+            'login_required' => 'ログインして検索する。',
             'options' => '検索の詳細設定',
             'supporter_filter' => ':filters による絞り込みにはサポーター タグが必要です',
             'not-found' => '該当結果なし',
@@ -194,19 +194,19 @@ return [
                 'played' => 'プレイ済み',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'タイトル',
+                'artist' => 'アーティスト',
+                'difficulty' => '難易度',
+                'updated' => '更新',
+                'ranked' => 'ランク',
+                'rating' => '評価',
+                'plays' => 'プレイ数',
+                'relevance' => '関連性',
+                'nominations' => 'ノミネーション',
             ],
             'supporter_filter_quote' => [
                 '_' => ':filters による絞り込みには有効な:link が必要です',
-                'link_text' => 'サポーター タグ',
+                'link_text' => 'osu! サポーター タグ',
             ],
         ],
     ],
@@ -224,13 +224,13 @@ return [
     'status' => [
         'any' => '全て',
         'ranked-approved' => 'Ranked & Approved',
-        'approved' => 'Approved',
-        'qualified' => 'Qualified',
+        'approved' => '承認済み',
+        'qualified' => '申請済み',
         'loved' => 'Loved',
         'faves' => 'お気に入り',
         'pending' => '保留中・製作中',
         'graveyard' => 'Graveyard',
-        'my-maps' => 'My Maps',
+        'my-maps' => 'マイマップ',
     ],
     'genre' => [
         'any' => '全て',
@@ -303,7 +303,7 @@ return [
         'D' => 'D',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => 'プレイ回数：:count',
+        'favourites' => 'お気に入り：:count',
     ],
 ];

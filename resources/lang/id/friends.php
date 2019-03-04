@@ -21,7 +21,7 @@
 return [
     'buttons' => [
       'add' => 'tambah teman',
-      'disabled' => '',
+      'disabled' => 'teman',
       'remove' => 'hapus teman',
     ],
 

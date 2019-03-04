@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited Beitrag | :count_delimited Beiträge',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Abstimmung erstellen',
 
-            'preview' => '',
+            'preview' => 'Beitragsvorschau',
 
             'create_poll_button' => [
                 'add' => 'Erstelle eine Abstimmung',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'Sternpriorität',
             'replies' => 'Antworten',
             'views' => 'Aufrufe',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => 'Priorität hinzufügen',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Dies ist ein :feature_request. Funktionsvorschläge können nur von :supporters abgestimmt werden.',
+                    'feature_request' => 'Funktionsvorschlag',
+                    'supporters' => 'Unterstützer',
                 ],
 
                 'user' => [

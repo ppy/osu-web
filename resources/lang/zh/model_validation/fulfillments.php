@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => '当前用户名（:current）与要撤销更改的用户名不一致（:username）',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => '捐赠少于支持者标签所需要求（:actual > :expected）',
     ],
 ];

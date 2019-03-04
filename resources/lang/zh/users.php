@@ -330,7 +330,7 @@ return [
             'title' => '找不到指定的用户',
         ],
         'page' => [
-            'button' => '',
+            'button' => '修改资料页面',
             'description' => '<strong>个人介绍</strong> 是您可以自定义的展示区.',
             'edit_big' => '编辑',
             'placeholder' => '在这里编辑',

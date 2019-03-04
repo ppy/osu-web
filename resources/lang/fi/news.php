@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu!uutiset',
 
         'nav' => [
             'newer' => 'Uudemmat viestit',
@@ -28,13 +28,13 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Uutiset :info',
+            'info' => 'Etusivu',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => ':user\'lta',
 
         'nav' => [
             'newer' => 'Uudempi viesti',
@@ -42,8 +42,8 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Uutiset :info',
+            'info' => 'Viesti',
         ],
     ],
 

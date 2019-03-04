@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Seřazeno podle:',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'created_at' => 'Čas vytvoření',
+            'timeline' => 'Časová osa',
+            'updated_at' => 'Poslední aktualizace',
         ],
 
         'stats' => [
@@ -194,15 +194,15 @@ return [
                 'played' => 'Již hrané',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'Název',
+                'artist' => 'Umělec',
+                'difficulty' => 'Obtížnost',
+                'updated' => 'Aktualizováno',
+                'ranked' => 'Hodnocené',
+                'rating' => 'Hodnocení',
+                'plays' => 'Zahraní',
+                'relevance' => 'Relevance',
+                'nominations' => 'Nominace',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtrování podle :filters vyžaduje aktivní :link',
@@ -303,7 +303,7 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => 'Počet zahrání: :count',
+        'favourites' => 'V oblíbených: :count',
     ],
 ];

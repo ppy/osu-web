@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => '',
-        'reply' => '',
+        'new' => 'サインインしてコメントする',
+        'reply' => 'サインインして返信する',
     ],
 
     'index' => [

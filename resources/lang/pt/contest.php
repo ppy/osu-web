@@ -32,9 +32,9 @@ return [
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => 'Votar',
+            'remove' => 'Remover voto',
+            'used_up' => 'Usaste todos os teus votos',
         ],
     ],
     'entry' => [

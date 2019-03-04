@@ -21,14 +21,14 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Du må være logget inn for å redigere.',
+            'null_user' => 'Du må være logget på for å redigere.',
             'system_generated' => 'Systemgenererte innlegg kan ikke redigeres.',
             'wrong_user' => 'Du må være eier av innlegget for å redigere.',
         ],
     ],
 
     'events' => [
-        'empty' => 'Ingenting har skjedd... ennå.',
+        'empty' => 'Ingenting har skjedd... enda.',
     ],
 
     'index' => [
@@ -62,7 +62,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Logg inn for å svare',
+            'guest' => 'Logg på for å svare',
             'user' => 'Svar',
         ],
     ],

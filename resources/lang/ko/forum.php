@@ -50,11 +50,11 @@ return [
     'mark_as_read' => [
         'forum' => '포럼을 읽음으로 표시',
         'forums' => '포럼을 읽음으로 표시',
-        'busy' => '읽음으로 표시...',
+        'busy' => '읽음으로 표시하는 중...',
     ],
 
     'poll' => [
-        'edit_warning' => '투표를 수정하면 결과를 번복합니다!',
+        'edit_warning' => '투표를 수정하면 현재 결과가 제거됩니다!',
 
         'actions' => [
             'edit' => '투표 수정',
@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => '게시글 :count_delimited개',
         ],
     ],
 
@@ -109,7 +109,7 @@ return [
 
                 'new_topic' => [
                     '_' => "이 주제는 조금 오래된 글입니다. 정말 여기에 작성해야 할 사유가 없다면, :create해 주세요.",
-                    'create' => '새로운 주제를 생성',
+                    'create' => '새로운 주제글 작성',
                 ],
             ],
 
@@ -123,8 +123,8 @@ return [
             'enter' => '특정 글로 이동하려면 클릭하세요',
             'first' => '처음 글로 이동하기',
             'last' => '마지막 글로 이동하기',
-            'next' => '다음 10개 글 표시',
-            'previous' => '이전 10개 글 표시',
+            'next' => '10개 글 건너뛰기',
+            'previous' => '10개 글 이전으로',
         ],
 
         'post_edit' => [
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => '투표 만들기',
 
-            'preview' => '',
+            'preview' => '글 미리보기',
 
             'create_poll_button' => [
                 'add' => '투표 만들기',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => '별 평점 순위',
             'replies' => '답글',
             'views' => '조회수',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => '이 요청 옹호',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => '이곳은 :feature_request입니다. 기능 요청들의 투표는 :supporters가 할 수 있습니다.',
+                    'feature_request' => '기능 요청',
+                    'supporters' => '서포터',
                 ],
 
                 'user' => [

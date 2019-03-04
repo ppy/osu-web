@@ -63,7 +63,7 @@ return [
 
     'post' => [
         'confirm_destroy' => 'Slet opslag?',
-        'confirm_restore' => 'Gendag opslag?',
+        'confirm_restore' => 'Gendan opslag?',
         'edited' => 'Sidst redigeret af :user den :when, redigeret i alt :count gange.',
         'posted_at' => 'slået op på :when',
 
@@ -108,7 +108,7 @@ return [
                 'default' => 'Dette emne har været inaktiv i et stykke tid. Kun post her hvis du har en særlig grund til.',
 
                 'new_topic' => [
-                    '_' => "Dette post har været inaktiv i et stykke tid. Hvis du ikke har en specifik grund til at sende noget, så :create et nyt post istedet.",
+                    '_' => "Dette opslag har været inaktiv i et stykke tid. Hvis du ikke har en specifik grund til at sende noget, så :create et nyt opslag istedet.",
                     'create' => 'lav et nyt emne',
                 ],
             ],
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'stjerne prioritet',
             'replies' => 'svar',
             'views' => 'visninger',
         ],
@@ -276,7 +276,7 @@ return [
                 'info' => [
                     '_' => '',
                     'feature_request' => '',
-                    'supporters' => '',
+                    'supporters' => 'supportere',
                 ],
 
                 'user' => [

@@ -409,31 +409,33 @@ class User extends Model implements AuthenticatableContract
         return $this->api->api_key === $key;
     }
 
-    public static function lookup($username_or_id, $lookup_type = null, $find_all = false)
+    public static function lookup($usernameOrId, $type = null, $findAll = false)
     {
-        if (!present($username_or_id)) {
+        if (!present($usernameOrId)) {
             return;
         }
 
-        switch ($lookup_type) {
+        switch ($type) {
             case 'string':
-                $user = self::where('username', (string) $username_or_id)->orWhere('username_clean', '=', (string) $username_or_id);
+                $user = static::where(function ($query) use ($usernameOrId) {
+                    $query->where('username', (string) $usernameOrId)->orWhere('username_clean', '=', (string) $usernameOrId);
+                });
                 break;
 
             case 'id':
-                $user = self::where('user_id', $username_or_id);
+                $user = static::where('user_id', $usernameOrId);
                 break;
 
             default:
-                if (ctype_digit((string) $username_or_id)) {
-                    $user = static::lookup($username_or_id, 'id', $find_all);
+                if (ctype_digit((string) $usernameOrId)) {
+                    $user = static::lookup($usernameOrId, 'id', $findAll);
                 }
 
-                return $user ?? static::lookup($username_or_id, 'string', $find_all);
+                return $user ?? static::lookup($usernameOrId, 'string', $findAll);
         }
 
-        if (!$find_all) {
-            $user = $user->where('user_type', 0)->where('user_warnings', 0);
+        if (!$findAll) {
+            $user->where('user_type', 0)->where('user_warnings', 0);
         }
 
         return $user->first();

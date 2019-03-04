@@ -37,13 +37,13 @@ return [
     'index' => [
         'page_title' => [
             '_' => 'muutosloki',
-            '_from' => '',
-            '_from_to' => '',
+            '_from' => 'muutoksen :from jälkeen',
+            '_from_to' => 'muutokset välillä :from - :to',
             '_stream' => ':stream muutokset',
-            '_stream_from' => '',
-            '_stream_from_to' => '',
-            '_stream_to' => '',
-            '_to' => '',
+            '_stream_from' => 'muutoksia :stream\'ssa :from lähtien',
+            '_stream_from_to' => 'muutoksia :stream\'ssa :from ja :to välillä',
+            '_stream_to' => 'muutoksia :stream\'ssa :to asti',
+            '_to' => 'muutokset :to asti',
         ],
 
         'title' => [
@@ -53,9 +53,9 @@ return [
     ],
 
     'support' => [
-        'heading' => 'Onko tämä päivitys mieleesi?',
+        'heading' => 'Piditkö tästä päivityksestä?',
         'text_1' => 'Tue osu!:n kehittämistä ja :link jo tänään!',
-        'text_1_link' => 'ryhdy tukijaksi',
+        'text_1_link' => 'ryhdy osu!n tukijaksi',
         'text_2' => 'Tukesi ei ainoastaan nopeuta pelin kehittämistä, vaan saat myös lisätoimintoja sekä enemmän muokkausvapautta!',
     ],
 ];

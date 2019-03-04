@@ -24,10 +24,10 @@ return [
         'online' => '現在<strong>:players</strong>人オンラインでマルチ部屋数<strong>:games</strong>',
         'peak' => '最高オンライン数:count',
         'players' => '累計登録者数<strong>:count</strong>人',
-        'title' => '',
+        'title' => 'ようこそ！',
 
         'slogan' => [
-            'main' => '基本料無料で最高のリズムゲーム',
+            'main' => '基本無料で最高のリズムゲーム',
             'sub' => 'リズムはもう、その指先に',
         ],
     ],
@@ -41,9 +41,9 @@ return [
         'title' => '検索結果',
 
         'beatmapset' => [
-            'more' => '他:count件の譜面検索結果',
-            'more_simple' => '他の譜面検索結果を見る',
-            'title' => '譜面',
+            'more' => '他:count件のビートマップ検索結果',
+            'more_simple' => '他のビートマップ検索結果を見る',
+            'title' => 'ビートマップ',
         ],
 
         'forum_post' => [

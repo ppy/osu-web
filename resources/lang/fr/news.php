@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu!news',
 
         'nav' => [
             'newer' => 'Nouveaux articles',
@@ -28,13 +28,13 @@ return [
         ],
 
         'title' => [
-            '_' => '',
+            '_' => 'Nouvelles :info',
             'info' => '',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => 'par :user',
 
         'nav' => [
             'newer' => 'Article le plus récent',
@@ -42,8 +42,8 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Nouvelles :info',
+            'info' => 'Article',
         ],
     ],
 

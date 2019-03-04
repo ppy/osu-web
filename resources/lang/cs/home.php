@@ -24,7 +24,7 @@ return [
         'online' => '<strong>:players</strong> právě v <strong>:games</strong> hrách',
         'peak' => 'Vrchol, :count online uživatelů',
         'players' => '<strong>:count</strong> registrovaných hráčů',
-        'title' => '',
+        'title' => 'vítejte',
 
         'slogan' => [
             'main' => 'nejlepší free-to-win rytmická hra',

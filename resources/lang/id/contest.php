@@ -32,9 +32,9 @@ return [
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => 'Pilih',
+            'remove' => 'Hapus pilihan',
+            'used_up' => 'Anda telah menggunakan semua hak pilih Anda',
         ],
     ],
     'entry' => [

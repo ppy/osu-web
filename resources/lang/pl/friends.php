@@ -21,7 +21,7 @@
 return [
     'buttons' => [
       'add' => 'dodaj znajomego',
-      'disabled' => '',
+      'disabled' => 'znajomi',
       'remove' => 'usuń znajomego',
     ],
 

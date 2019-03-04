@@ -24,11 +24,11 @@ return [
         'online' => '<strong>:players</strong> påkoblet i <strong>:games</strong> spill',
         'peak' => 'Maks, :count påloggede brukere',
         'players' => '<strong>:count</strong> registrerte spillere',
-        'title' => '',
+        'title' => 'velkommen',
 
         'slogan' => [
-            'main' => 'det beste gratis-å-vinne rytme spillet',
-            'sub' => 'rytmen er bare et klikk unna',
+            'main' => 'det besteste gratis-å-vinne rytmespillet',
+            'sub' => 'rytme er bare et klikk unna',
         ],
     ],
 
@@ -104,7 +104,7 @@ return [
             'beatmaps' => [
                 'title' => 'skaff beatmaps',
                 'description' => [
-                    '_' => ':browse det enorme bibliotek av brukerskapte beatmaps og begynn å spille!',
+                    '_' => ':browse det enorme biblioteket av brukerskapte beatmaps og begynn å spill!',
                     'browse' => 'bla igjennom',
                 ],
             ],
@@ -131,7 +131,7 @@ return [
             'new' => 'Nye Rangerte Beatmaps',
             'popular' => 'Populære Beatmaps',
             'by' => 'av',
-            'plays' => ':count spillforsøk',
+            'plays' => 'spilt :count ganger',
         ],
         'buttons' => [
             'download' => 'Last ned osu!',

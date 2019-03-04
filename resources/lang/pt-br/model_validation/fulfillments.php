@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'O atual nome de usuário (:current) não é o mesmo escolhido ao revogar (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => 'O valor da doação é menor que o necessário para obter uma osu!supporter tag (:actual > :expected)',
     ],
 ];
