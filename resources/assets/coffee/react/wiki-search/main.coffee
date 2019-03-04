@@ -142,21 +142,20 @@ class @WikiSearch.Main extends React.Component
   render: ->
     div
       className: 'wiki-search',
-      if currentUser?
-        input
-          className: 'wiki-search__bar js-wiki-search-input'
-          ref: 'input'
-          placeholder: osu.trans 'common.input.search'
-          onInput: @onInput
-          onKeyDown: @onKeyDown
-          onBlur: => _.delay @hideSuggestions, 200
+      input
+        className: 'wiki-search__bar js-wiki-search-input'
+        ref: 'input'
+        placeholder: osu.trans 'common.input.search'
+        onInput: @onInput
+        onKeyDown: @onKeyDown
+        onBlur: => _.delay @hideSuggestions, 200
 
-        span
-          className: 'wiki-search__button fa fa-search'
-          onClick: @performSearch
+      span
+        className: 'wiki-search__button fa fa-search'
+        onClick: @performSearch
 
-        el WikiSearch.Suggestions,
-          loading: @state.loading
-          suggestions: @state.suggestions
-          visible: @state.suggestionsVisible
-          highlighted: @state.highlightedSuggestion
+      el WikiSearch.Suggestions,
+        loading: @state.loading
+        suggestions: @state.suggestions
+        visible: @state.suggestionsVisible
+        highlighted: @state.highlightedSuggestion
