@@ -48,6 +48,7 @@ class Beatmaps.SearchSort extends React.PureComponent
       ranked: false
       rating: true
       plays: true
+      favourites: true
       relevance: false
       nominations: false
 
