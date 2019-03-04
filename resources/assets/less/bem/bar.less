@@ -62,7 +62,7 @@
   }
 
   &--forum-poll {
-    height: 5px;
+    height: unset;
     background-color: #eee;
   }
 
@@ -98,6 +98,7 @@
     }
 
     .@{_top}--forum-poll & {
+      position: absolute;
       background-color: @pink-darker;
     }
 
