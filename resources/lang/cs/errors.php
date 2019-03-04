@@ -34,9 +34,6 @@ return [
         'invalid_mode' => 'Byl specifikován neplatný mód.',
         'standard_converts_only' => 'Není dostupné žádné score pro zvolený mód na této obtížnosti.',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'Máte příliš mnoho oblíbených beatmap! Než budete pokračovat jednu odstraňte.',
-    ],
     'logged_out' => 'Byl jsi odhlášen. Přihlas se prosím a zkus to znovu.',
     'supporter_only' => 'Pro použití této funkce musíš mít osu! supporter tag.',
     'no_restricted_access' => 'Tuto akci nemůžeš provést, když je tvůj účet v omezeném režimu.',

@@ -20,12 +20,12 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Konto</strong>indstillinger',
+        'title' => '<strong>Konto</strong> Indstillinger',
         'title_compact' => 'indstillinger',
         'username' => 'brugernavn',
 
         'avatar' => [
-            'title' => 'Avatar',
+            'title' => 'Profilbillede',
         ],
 
         'email' => [
@@ -83,15 +83,15 @@ return [
     'privacy' => [
         'title' => 'Privacy',
         'friends_only' => 'Bloker private beskeder fra folk, der ikke er på din venneliste',
-        'hide_online' => '',
+        'hide_online' => 'skjul din online status',
     ],
 
     'security' => [
-        'current_session' => '',
-        'end_session' => '',
-        'end_session_confirmation' => '',
-        'last_active' => '',
-        'title' => '',
-        'web_sessions' => '',
+        'current_session' => 'nuværende',
+        'end_session' => 'Afslut Session',
+        'end_session_confirmation' => 'Dette vil straks afslutte sessionen på enheden. Er du sikker?',
+        'last_active' => 'Sidst aktiv:',
+        'title' => 'Sikkerhed',
+        'web_sessions' => 'websessioner',
     ],
 ];

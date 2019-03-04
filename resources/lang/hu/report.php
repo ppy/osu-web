@@ -20,7 +20,12 @@
 
 return [
     'scores' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Eredmény Jelentése',
+        'title' => 'Jelented :username eredményét?',
+    ],
+
+    'comment' => [
+        'button' => 'Jelentés',
+        'title' => 'Jelented :username hozzászólását?',
     ],
 ];

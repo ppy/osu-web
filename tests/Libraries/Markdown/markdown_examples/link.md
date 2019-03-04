@@ -1,0 +1,1 @@
+[Text](/some_link)

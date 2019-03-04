@@ -19,32 +19,37 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'lista',
-        'news-show' => 'viesti',
-    ],
-
     'index' => [
-        'title' => 'osu!uutiset',
+        'title_page' => 'osu!uutiset',
 
         'nav' => [
             'newer' => 'Uudemmat viestit',
             'older' => 'Vanhemmat viestit',
         ],
+
+        'title' => [
+            '_' => 'Uutiset :info',
+            'info' => 'Etusivu',
+        ],
     ],
 
     'show' => [
-        'posted' => 'julkaistu :time',
+        'by' => ':user\'lta',
 
         'nav' => [
             'newer' => 'Uudempi viesti',
             'older' => 'Vanhempi viesti',
         ],
+
+        'title' => [
+            '_' => 'Uutiset :info',
+            'info' => 'Viesti',
+        ],
     ],
 
     'store' => [
         'button' => 'Päivitä',
-        'ok' => 'Lista päivitetty.',
+        'ok' => 'Listaus päivitetty.',
     ],
 
     'update' => [

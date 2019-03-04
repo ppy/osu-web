@@ -114,7 +114,7 @@ return [
             'delivered' => 'Teslim edildi',
             'paid' => 'Ödendi',
             'processing' => 'Onay bekleniyor',
-            'shipped' => 'Kargoda',
+            'shipped' => '',
         ],
     ],
 

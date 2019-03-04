@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('store/layout')
 
 @section('content')
     @include('store.header')
@@ -27,4 +27,4 @@
             @endforeach
         </div>
     </div>
-@stop
+@endsection

@@ -90,6 +90,7 @@ return [
 
         'invoice' => 'View Invoice',
         'no_orders' => 'No orders to view.',
+        'resume' => 'Resume Checkout',
 
         'item' => [
             'display_name' => [
@@ -114,7 +115,7 @@ return [
             'delivered' => 'Delivered',
             'paid' => 'Paid',
             'processing' => 'Pending confirmation',
-            'shipped' => 'In Transit',
+            'shipped' => 'Shipped',
         ],
     ],
 

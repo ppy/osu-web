@@ -82,7 +82,7 @@ return [
 
     'privacy' => [
         'title' => 'Prywatność',
-        'friends_only' => 'Blokuj prywatne wiadomości od osób spoza listy znajomych',
+        'friends_only' => 'blokuj prywatne wiadomości od osób spoza listy znajomych',
         'hide_online' => 'ukryj swoją obecność online',
     ],
 

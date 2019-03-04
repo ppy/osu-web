@@ -34,28 +34,29 @@ return [
         'discussion' => 'Discussion',
 
         'details' => [
+            'approved' => 'approved on ',
+            'favourite' => 'Favourite this beatmapset',
+            'favourited_count' => '+ :count_delimited other!|+ :count_delimited others!',
+            'logged-out' => 'You need to sign in before downloading any beatmaps!',
+            'loved' => 'loved on ',
             'mapped_by' => 'mapped by :mapper',
+            'qualified' => 'qualified on ',
+            'ranked' => 'ranked on ',
             'submitted' => 'submitted on ',
+            'unfavourite' => 'Unfavourite this beatmapset',
             'updated' => 'last updated on ',
             'updated_timeago' => 'last updated :timeago',
-            'ranked' => 'ranked on ',
-            'approved' => 'approved on ',
-            'qualified' => 'qualified on ',
-            'loved' => 'loved on ',
-            'logged-out' => 'You need to sign in before downloading any beatmaps!',
+
             'download' => [
                 '_' => 'Download',
-                'video' => 'with Video',
-                'no-video' => 'without Video',
                 'direct' => 'osu!direct',
+                'no-video' => 'without Video',
+                'video' => 'with Video',
             ],
-            'favourite' => 'Favourite this beatmapset',
-            'unfavourite' => 'Unfavourite this beatmapset',
-            'favourited_count' => '+ 1 other!|+ :count others!',
 
             'login_required' => [
-                'top' => 'Sign In',
                 'bottom' => 'to access more features',
+                'top' => 'Sign In',
             ],
         ],
 

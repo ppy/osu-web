@@ -48,16 +48,16 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'Marcar foro como leído',
+        'forums' => 'Marcar foros como leídos',
+        'busy' => 'Marcando como leído...',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => 'Editando una encuesta eliminará los resultados actuales!',
 
         'actions' => [
-            'edit' => '',
+            'edit' => 'Editar encuesta',
         ],
     ],
 
@@ -71,6 +71,10 @@ return [
             'destroy' => 'Eliminar publicación',
             'restore' => 'Restaurar publicación',
             'edit' => 'Editar publicación',
+        ],
+
+        'info' => [
+            'post_count' => ':count_delimited publicación|:count_delimited publicaciones',
         ],
     ],
 
@@ -89,7 +93,7 @@ return [
         'new_topic_login' => 'Inicia sesión para publicar un nuevo tema',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escribe aquí para responder',
-        'reply_title_prefix' => '',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'por :user',
         'started_by_verbose' => 'iniciado por :user',
 
@@ -167,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Creación de encuestas',
 
+            'preview' => 'Vista previa',
+
             'create_poll_button' => [
                 'add' => 'Crear una encuesta',
                 'remove' => 'Cancelar creación de encuesta',
@@ -191,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'vistas',
+            'feature_votes' => 'prioridad estrella',
             'replies' => 'respuestas',
+            'views' => 'vistas',
         ],
 
         'issue_tag_added' => [
@@ -266,6 +273,12 @@ return [
                 'current' => 'Prioridad actual: +:count',
                 'do' => 'Apoyar esta solicitud',
 
+                'info' => [
+                    '_' => 'Esto es un :feature_request. Sugerencias pueden ser votadas por :supporters.',
+                    'feature_request' => 'sugerir una idea',
+                    'supporters' => 'colaboradores',
+                ],
+
                 'user' => [
                     'count' => '{0} cero votos|{1} :count voto|[2,*] :count votos',
                     'current' => 'Tienes :votes restantes.',
@@ -288,8 +301,8 @@ return [
             'to_not_watching' => 'No marcado',
             'to_watching' => 'Marcado',
             'to_watching_mail' => 'Marcado con aviso de notificaciones',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => 'Notificación activada. Haga clics para desactivar',
+            'tooltip_mail_enable' => 'Notificación desactivada. Haga clic para activar',
         ],
     ],
 ];

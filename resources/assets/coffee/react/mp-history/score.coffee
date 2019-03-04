@@ -62,12 +62,12 @@ class MPHistory.Score extends React.Component
 
               value = switch m
                 when 'combo'
-                  @props.score.max_combo.toLocaleString()
+                  osu.formatNumber(@props.score.max_combo)
                 when 'accuracy'
                   "#{_.round @props.score.accuracy * 100, 2}%"
                 when 'score'
                   modifier = 'large'
-                  @props.score.score.toLocaleString()
+                  osu.formatNumber(@props.score.score)
 
               div className: "mp-history-player-score__stat mp-history-player-score__stat--#{m}", key: m,
                 span className: 'mp-history-player-score__stat-label mp-history-player-score__stat-label--small', osu.trans "multiplayer.match.score.stats.#{m}"
@@ -86,4 +86,4 @@ class MPHistory.Score extends React.Component
                   osu.trans "common.score_count.#{m}"
                 span
                   className: 'mp-history-player-score__stat-number mp-history-player-score__stat-number--small'
-                  @props.score.statistics[m].toLocaleString()
+                  osu.formatNumber(@props.score.statistics[m])

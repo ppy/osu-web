@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => '一覧',
-        'news-show' => '記事',
-    ],
-
     'index' => [
-        'title' => 'osu!news',
+        'title_page' => 'osu!ニュース',
 
         'nav' => [
             'newer' => '次の記事',
             'older' => '前の記事',
         ],
+
+        'title' => [
+            '_' => 'ニュース :info',
+            'info' => 'フロントページ',
+        ],
     ],
 
     'show' => [
-        'posted' => '投稿日時 :time',
+        'by' => 'by :user',
 
         'nav' => [
             'newer' => '次の記事',
             'older' => '前の記事',
+        ],
+
+        'title' => [
+            '_' => 'ニュース :info',
+            'info' => '記事',
         ],
     ],
 

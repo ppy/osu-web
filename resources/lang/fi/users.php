@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Käyttäjän :user modaushistoria",
-        'title_compact' => '',
+        'title_compact' => 'Modaaminen',
 
         'discussions' => [
             'title_recent' => 'Uusimmat keskustelut',
@@ -115,7 +115,7 @@ return [
             'cheating' => 'Väärin pelaaminen / Huijaaminen',
             'insults' => 'Haukkuu minua / muita',
             'spam' => 'Spämmii',
-            'unwanted_content' => 'Linkkaa aikuismateriaalia / muuta epämukavaa materiaalia',
+            'unwanted_content' => 'Sopimattoman sisällön jakaminen',
             'nonsense' => 'Hölynpölyä',
             'other' => 'Muu (kirjoita alle)',
         ],
@@ -134,10 +134,10 @@ return [
         'lastvisit' => 'Nähty viimeksi :date',
         'missingtext' => 'Taisit tehdä kirjoitusvirheen! (tai käyttäjällä on porttikielto)',
         'origin_country' => 'Maasta :country',
-        'page_description' => 'osu! - Kaikki mitä olet koskaan halunnut tietää käyttäjästä :username!',
+        'page_description' => 'osu! - Kaikki mitä olet koskaan halunnut tietää :username:sta!',
         'previous_usernames' => 'tunnettiin aiemmin nimellä',
         'plays_with' => 'Pelityylinä :devices',
-        'title' => "käyttäjän :username profiili",
+        'title' => ":username:n profiili",
 
         'edit' => [
             'cover' => [
@@ -167,11 +167,11 @@ return [
 
             'achievements' => [
                 'achieved-on' => 'Saavutuspäivä :date',
-                'locked' => '',
+                'locked' => 'Lukittu',
                 'title' => 'Saavutukset',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => 'artistilta :artist',
                 'none' => 'Ei yhtään... vielä.',
                 'title' => 'Beatmapit',
 
@@ -197,7 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Pelaushistoria',
-                    'count_label' => '',
+                    'count_label' => 'Pelikerrat',
                 ],
                 'most_played' => [
                     'count' => 'pelikertoja: ',
@@ -209,7 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Katsotut Uusinnat',
-                    'count_label' => '',
+                    'count_label' => 'Uusintoja katsottu',
                 ],
             ],
             'kudosu' => [
@@ -264,7 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Tämä käyttäjä ei ole saanut vielä yhtäkään. ;_;",
-                'recent' => '',
+                'recent' => 'Viimeisin',
                 'title' => 'Mitalit',
             ],
             'recent_activity' => [
@@ -274,7 +274,7 @@ return [
                 'download_replay' => 'Lataa Replay',
                 'empty' => 'Loistavia suorituksia ei ole vielä. :(',
                 'not_ranked' => 'Vain hyväksytyt beatmapit antavat pp:tä.',
-                'pp_weight' => '',
+                'pp_weight' => 'painotettu :percentage',
                 'title' => 'Suoritukset',
 
                 'best' => [
@@ -308,8 +308,8 @@ return [
         ],
 
         'header_title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Pelaajan :info',
+            'info' => 'tiedot',
         ],
 
         'info' => [
@@ -330,6 +330,7 @@ return [
             'title' => 'Käyttäjää ei löytynyt! ;_;',
         ],
         'page' => [
+            'button' => 'Muokkaa profiilisivua',
             'description' => '<strong>Minä!</strong> on henkilökohtainen alue profiilisivullasi, jota voit muokata.',
             'edit_big' => 'Muokkaa minua!',
             'placeholder' => 'Kirjoita sivun sisältö tähän',
@@ -341,16 +342,16 @@ return [
         ],
         'rank' => [
             'country' => 'Maakohtainen sijoitus pelimuodossa :mode',
-            'country_simple' => '',
+            'country_simple' => 'Maakohtaiset sijoitukset',
             'global' => 'Maailmanlaajuinen sijoitus pelimuodossa :mode',
-            'global_simple' => '',
+            'global_simple' => 'Maailmanlaajuiset sijoitukset',
         ],
         'stats' => [
             'hit_accuracy' => 'Tarkkuus',
             'level' => 'Taso :level',
-            'level_progress' => '',
+            'level_progress' => 'Eteneminen seuraavalle tasolle',
             'maximum_combo' => 'Korkein Combo',
-            'medals' => '',
+            'medals' => 'Mitalit',
             'play_count' => 'Pelikertoja',
             'play_time' => 'Pelaamisaika yhteensä',
             'ranked_score' => 'Tilastopisteet',

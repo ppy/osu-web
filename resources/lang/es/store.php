@@ -70,10 +70,10 @@ return [
         'status' => [
             'processing' => [
                 'title' => '¡Aún no se ha confirmado tu pago!',
-                'line_1' => '',
+                'line_1' => 'Si ya ha pagado, puede que nosotros aún estemos esperando para la confirmación de tu compra. ¡Por favor recarga la pagina dentro de unos minutos!',
                 'line_2' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Si ha encontrado un problema durante la compra, :link',
+                    'link_text' => 'haz clic aquí para reanudar tu pago',
                 ],
             ],
         ],
@@ -88,7 +88,7 @@ return [
     'order' => [
         'paid_on' => '',
 
-        'invoice' => '',
+        'invoice' => 'Ver factura',
         'no_orders' => 'No hay ordenes para ver.',
 
         'item' => [
@@ -110,11 +110,11 @@ return [
 
         'status' => [
             'cancelled' => 'Cancelado',
-            'checkout' => '',
-            'delivered' => '',
-            'paid' => '',
+            'checkout' => 'Preparando',
+            'delivered' => 'Enviado',
+            'paid' => 'Pagado',
             'processing' => 'Confirmación pendiente',
-            'shipped' => '',
+            'shipped' => 'En tránsito',
         ],
     ],
 
@@ -138,7 +138,7 @@ return [
     'supporter_tag' => [
         'gift' => 'regalar al jugador',
         'require_login' => [
-            '_' => '',
+            '_' => '¡Necesitas ser :link para tener un osu!supporter!',
             'link_text' => 'sesión iniciada',
         ],
     ],

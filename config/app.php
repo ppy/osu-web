@@ -89,6 +89,7 @@ return [
         'en',
 
         // sort by name
+        'be',
         'bg',
         'cs',
         'da',
@@ -103,11 +104,13 @@ return [
         'ja',
         'ko',
         'nl',
+        'no',
         'pl',
         'pt',
         'pt-br',
         'ro',
         'ru',
+        'sk',
         'sv',
         'th',
         'tr',
@@ -204,7 +207,6 @@ return [
         /*
          * Package Service Providers...
          */
-        GrahamCampbell\Markdown\MarkdownServiceProvider::class,
         GrahamCampbell\GitHub\GitHubServiceProvider::class,
         Maknz\Slack\SlackServiceProvider::class,
         Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
@@ -286,7 +288,6 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 
-        'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
         'GitHub' => GrahamCampbell\GitHub\Facades\GitHub::class,
 
         'Slack' => Maknz\Slack\Facades\Slack::class,

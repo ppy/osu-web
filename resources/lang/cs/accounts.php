@@ -49,7 +49,7 @@ return [
                 'user_from' => 'současná poloha',
                 'user_interests' => 'zájmy',
                 'user_msnm' => '',
-                'user_occ' => 'povolání',
+                'user_occ' => 'zaměstnání',
                 'user_twitter' => '',
                 'user_website' => 'webové stránky',
                 'user_discord' => '',
@@ -82,14 +82,14 @@ return [
 
     'privacy' => [
         'title' => 'Soukromí',
-        'friends_only' => 'blokovat soukromé zprávy od lidí, které nejsou v tvém seznamu přátel',
+        'friends_only' => 'blokovat soukromé zprávy od lidí, kteří nejsou v tvém seznamu přátel',
         'hide_online' => 'skrýt váš online status',
     ],
 
     'security' => [
         'current_session' => 'současná',
         'end_session' => 'Ukončit relaci',
-        'end_session_confirmation' => 'Tohle okamžitě ukončí vaši současnou relaci na tom zařízení. Jste si jistý?',
+        'end_session_confirmation' => 'Toto okamžitě ukončí vaši relaci na tom zařízení. Jste si jistý?',
         'last_active' => 'Naposledy aktivní:',
         'title' => 'Zabezpečení',
         'web_sessions' => 'webové relace',

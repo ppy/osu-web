@@ -20,6 +20,11 @@
 
 return [
     'scores' => [
+        'button' => 'Skoru Raporla',
+        'title' => ':username adlı kişinin skoru raporlansın mı?',
+    ],
+
+    'comment' => [
         'button' => '',
         'title' => '',
     ],

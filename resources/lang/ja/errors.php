@@ -34,9 +34,6 @@ return [
         'invalid_mode' => '指定のモードは無効です。',
         'standard_converts_only' => 'この難易度の指定のモードのスコアは見つかりませんでした。',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'お気に入りの数の上限に達しています。お気に入り譜面の数を減らしましょう。',
-    ],
     'logged_out' => 'ログアウトされています。ログインしてから再度お試しください。',
     'supporter_only' => 'サポーター限定の機能です。',
     'no_restricted_access' => 'アカウントが制限中は無効です。',

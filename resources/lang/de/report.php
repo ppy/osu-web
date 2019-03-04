@@ -20,7 +20,12 @@
 
 return [
     'scores' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Score melden',
+        'title' => ':username\'s Score melden?',
+    ],
+
+    'comment' => [
+        'button' => 'Melden',
+        'title' => 'Den Kommentar von :username melden?',
     ],
 ];

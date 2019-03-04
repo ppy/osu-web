@@ -21,6 +21,7 @@
 return [
     'buttons' => [
       'add' => '添加好友',
+      'disabled' => '好友',
       'remove' => '删除好友',
     ],
 

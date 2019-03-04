@@ -68,19 +68,6 @@ class HomeController extends Controller
         return view('home.download');
     }
 
-    public function getIcons()
-    {
-        return view('home.icons')
-        ->with('icons', [
-            'osu',
-            'mode-osu',
-            'mode-mania',
-            'mode-fruits',
-            'mode-taiko',
-            'social-patreon',
-        ]);
-    }
-
     public function index()
     {
         $host = Request::getHttpHost();
@@ -192,10 +179,10 @@ class HomeController extends Controller
                 'expiration' => $expiration,
                 // purchased
                 'dollars' => currency($dollars, 2, false),
-                'tags' => number_format($tags),
+                'tags' => i18n_number_format($tags),
                 // gifted
                 'giftedDollars' => currency($giftedDollars, 2, false),
-                'giftedTags' => number_format($giftedTags),
+                'giftedTags' => i18n_number_format($giftedTags),
             ];
 
             if ($current) {

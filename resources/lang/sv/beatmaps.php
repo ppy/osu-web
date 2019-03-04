@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Sorterade efter:',
-            'created_at' => 'skapelsedatum',
-            'timeline' => 'tidslinje',
-            'updated_at' => 'senaste uppdatering',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -194,15 +194,15 @@ return [
                 'played' => 'Spelade',
             ],
             'sorting' => [
-                'title' => 'titel',
-                'artist' => 'artist',
-                'difficulty' => 'svårighetsgrad',
-                'updated' => 'uppdaterad',
-                'ranked' => 'rankad',
-                'rating' => 'omdöme',
-                'plays' => 'spelad',
-                'relevance' => 'relevans',
-                'nominations' => 'nomineringar',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtrering av :filters kräver en aktiv :link',
@@ -301,5 +301,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

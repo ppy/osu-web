@@ -21,6 +21,7 @@
 return [
     'buttons' => [
       'add' => 'arkadaş ekle',
+      'disabled' => 'arkadaşlar',
       'remove' => 'arkadaşlıktan çıkar',
     ],
 

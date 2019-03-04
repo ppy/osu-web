@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => 'Fai il login per commentare',
-        'reply' => 'Fai il login per rispondere',
+        'new' => 'Effettua il login per commentare',
+        'reply' => 'Effettua il login per rispondere',
     ],
 
     'index' => [
@@ -65,12 +65,5 @@ return [
             '_' => 'Commenti :info',
             'info' => 'Dettaglio',
         ],
-    ],
-
-    'sort' => [
-        '_' => '',
-        'new' => '',
-        'old' => '',
-        'top' => '',
     ],
 ];

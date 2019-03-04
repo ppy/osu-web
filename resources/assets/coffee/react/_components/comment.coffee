@@ -201,12 +201,12 @@ class @Comment extends React.PureComponent
                     onClick: @toggleReplies
                     "[#{if @state.expandReplies then '-' else '+'}] "
                     osu.trans('comments.replies')
-                    " (#{@props.comment.replies_count.toLocaleString()})"
+                    " (#{osu.formatNumber(@props.comment.replies_count)})"
                 else
                   span null,
                     osu.trans('comments.replies')
                     ': '
-                    @props.comment.replies_count.toLocaleString()
+                    osu.formatNumber(@props.comment.replies_count)
 
             if !@isDeleted() && @props.comment.edited_at?
               editor = @props.usersById[@props.comment.edited_by_id] ? deletedUser

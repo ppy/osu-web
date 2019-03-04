@@ -19,7 +19,7 @@
     'currentSection' => 'community',
     'currentAction' => 'contests',
     'title' => "Contest: {$contestMeta->name}",
-    'pageDescription' => strip_tags(Markdown::convertToHtml($contestMeta->currentDescription())),
+    'pageDescription' => strip_tags(markdown($contestMeta->currentDescription())),
     'bodyAdditionalClasses' => 'osu-layout--body-darker'
 ])
 

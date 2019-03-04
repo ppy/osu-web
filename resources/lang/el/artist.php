@@ -48,9 +48,9 @@ return [
     ],
 
     'tracklist' => [
-        'title' => '',
-        'length' => '',
-        'bpm' => '',
-        'genre' => '',
+        'title' => 'τίτλος',
+        'length' => 'διάρκεια',
+        'bpm' => 'bpm',
+        'genre' => 'είδος',
     ],
 ];

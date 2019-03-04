@@ -24,6 +24,7 @@ return [
         'online' => '<strong>:players</strong> momenteel online in <strong>:games</strong> games',
         'peak' => 'Piek, :count online gebruikers',
         'players' => '<strong>:count</strong> geregistreerde spelers',
+        'title' => '',
 
         'slogan' => [
             'main' => 'de beste free-to-win rhythm game',

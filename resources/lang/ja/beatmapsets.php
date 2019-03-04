@@ -34,42 +34,52 @@ return [
         'discussion' => 'ディスカッション',
 
         'details' => [
-            'mapped_by' => '作者 :mapper',
-            'submitted' => '投稿日 ',
-            'updated' => '最後の更新 ',
-            'updated_timeago' => '最終更新時刻: :timeago',
-            'ranked' => 'ranked日時 ',
             'approved' => 'approved日時 ',
-            'qualified' => 'qualified日時 ',
-            'loved' => 'loved日時 ',
+            'favourite' => '譜面をお気に入りに追加する',
+            'favourited_count' => '+ そのほか:count人！',
             'logged-out' => '譜面をダウンロードするにはログインが必要です！',
+            'loved' => 'lovedに追加された日 ',
+            'mapped_by' => '作者 :mapper',
+            'qualified' => '申請された日 ',
+            'ranked' => 'rankedされた日 ',
+            'submitted' => '投稿日 ',
+            'unfavourite' => '譜面をお気に入りから外す',
+            'updated' => '最終更新日',
+            'updated_timeago' => '最終更新時刻: :timeago',
+
             'download' => [
                 '_' => 'ダウンロード',
-                'video' => '動画あり',
-                'no-video' => '動画なし',
                 'direct' => 'osu!direct',
+                'no-video' => '動画なし',
+                'video' => '動画あり',
             ],
-            'favourite' => '譜面をお気に入りに追加する',
-            'unfavourite' => '譜面をお気に入りから外す',
-            'favourited_count' => '+ そのほか:count人！',
+
+            'login_required' => [
+                'bottom' => 'より多くの機能にアクセスする',
+                'top' => 'サインイン',
+            ],
+        ],
+
+        'favourites' => [
+            'limit_reached' => 'お気に入りのビートマップが多すぎます！お気に入りを外してから再試行してください。',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'もしこの譜面が良かった場合、この譜面を応援することで 譜面のステータスが<strong>Ranked</strong>の状態になります。',
 
             'current' => [
-                '_' => '',
+                '_' => 'この譜面は現在 :status です。',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => '未解決',
+                    'qualified' => '申請済',
+                    'wip' => '作業中',
                 ],
             ],
         ],
 
         'info' => [
-            'description' => '説明文',
+            'description' => '概要',
             'genre' => 'ジャンル',
             'language' => '言語',
             'no_scores' => 'データはまだ現在計算中です・・・',

@@ -26,11 +26,12 @@ use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Es;
-use App\Libraries\OsuMarkdownProcessor;
+use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use Carbon\Carbon;
 use Exception;
+use Log;
 
 class Page
 {
@@ -44,6 +45,8 @@ class Page
     private $cache = [];
     private $defaultTitle;
     private $defaultSubtitle;
+
+    private $source; // source document from elasticsearch;
 
     public static function cleanupPath($path)
     {
@@ -106,6 +109,7 @@ class Page
 
     public function __construct($path, $locale, $esCache = null)
     {
+        $this->source = $esCache;
         if ($esCache !== null) {
             $path = $esCache['path'];
             $locale = $esCache['locale'];
@@ -131,6 +135,8 @@ class Page
         $params = static::searchIndexConfig();
 
         if ($this->page() === null) {
+            $this->log('index document empty');
+
             $params['body'] = [
                 'locale' => null,
                 'page' => null,
@@ -141,10 +147,17 @@ class Page
                 'tags' => [],
             ];
         } else {
+            $this->log('index document');
+
+            $content = $this->getContent();
+            $indexContent = (new OsuMarkdown('wiki', [
+                'relative_url_root' => wiki_url($this->path),
+            ]))->load($content)->toIndexable();
+
             $params['body'] = [
                 'locale' => $this->locale,
                 'page' => json_encode($this->page()),
-                'page_text' => replace_tags_with_spaces($this->page()['output']),
+                'page_text' => $indexContent,
                 'path' => $this->path,
                 'path_clean' => static::cleanupPath($this->path),
                 'title' => $this->title(),
@@ -161,10 +174,41 @@ class Page
 
     public function esDeleteDocument()
     {
+        $this->log('delete document');
+
         return Es::getClient()->delete(static::searchIndexConfig([
             'id' => $this->pagePath(),
             'client' => ['ignore' => 404],
         ]));
+    }
+
+    /**
+     * Gets the markdown content for the page from Github.
+     *
+     * @param bool $force Force any cached value to refresh.
+     * @return string|null
+     */
+    public function getContent(bool $force = false)
+    {
+        $key = "content_{$this->locale}";
+        if (!array_key_exists($key, $this->cache) || $force) {
+            try {
+                $this->log('fetch');
+
+                $this->cache[$key] = OsuWiki::fetchContent('wiki/'.$this->pagePath());
+            } catch (GitHubNotFoundException $e) {
+                $this->log('not found');
+
+                $this->cache[$key] = null;
+            }
+        }
+
+        return $this->cache[$key];
+    }
+
+    public function getSource()
+    {
+        return $this->source;
     }
 
     public function isOutdated()
@@ -213,21 +257,17 @@ class Page
 
                 if ($fetch) {
                     try {
-                        $body = OsuWiki::fetchContent('wiki/'.$this->pagePath());
+                        $body = $this->getContent();
                     } catch (Exception $e) {
-                        if (!$e instanceof GitHubNotFoundException) {
-                            $index = false;
-
-                            log_error($e);
-                        }
-
                         $body = null;
+                        $index = false;
+                        log_error($e);
                     }
 
                     if (present($body)) {
-                        $page = OsuMarkdownProcessor::process($body, [
-                            'path' => wiki_url($this->path),
-                        ]);
+                        $page = (new OsuMarkdown('wiki', [
+                            'relative_url_root' => wiki_url($this->path),
+                        ]))->load($body)->toArray();
                     }
                 }
 
@@ -296,5 +336,10 @@ class Page
         }
 
         return presence($this->page()['header']['subtitle'] ?? null) ?? $this->defaultSubtitle;
+    }
+
+    private function log($action)
+    {
+        Log::info("wiki ({$action}): {$this->pagePath()}");
     }
 }

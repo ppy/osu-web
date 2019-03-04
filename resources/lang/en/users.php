@@ -162,7 +162,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 follower|:count followers',
+            'followers' => ':count_delimited follower|:count_delimited followers',
             'unranked' => 'No recent plays',
 
             'achievements' => [
@@ -330,6 +330,7 @@ return [
             'title' => 'User not found! ;_;',
         ],
         'page' => [
+            'button' => 'Edit profile page',
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
@@ -337,7 +338,7 @@ return [
         ],
         'post_count' => [
             '_' => 'Contributed :link',
-            'count' => ':count forum post|:count forum posts',
+            'count' => ':count_delimited forum post|:count_delimited forum posts',
         ],
         'rank' => [
             'country' => 'Country rank for :mode',

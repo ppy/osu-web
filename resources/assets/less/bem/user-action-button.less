@@ -23,6 +23,7 @@
   .link-plain();
   .link-white();
   .center-content();
+  display: flex;
   border-radius: 10px;
   height: 20px;
   width: 50px;
@@ -67,6 +68,10 @@
 
   &--right-margin {
     margin-right: 10px;
+  }
+
+  &[disabled] {
+    pointer-events: none;
   }
 
   &__counter {

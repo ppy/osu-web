@@ -114,6 +114,7 @@ class ProfilePage.Header extends React.Component
         className: 'profile-header__cover-editor'
         button
           className: 'profile-page-toggle'
+          title: osu.trans('users.show.edit.cover.button')
           onClick: @toggleEdit
           span className: 'fas fa-pencil-alt'
         if @state.editing

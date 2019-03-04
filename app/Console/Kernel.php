@@ -34,6 +34,7 @@ class Kernel extends ConsoleKernel
         Commands\DisqusImport::class,
 
         Commands\EsIndexDocuments::class,
+        Commands\EsIndexWiki::class,
 
         // modding stuff
         Commands\ModdingQueueUpdateCommand::class,

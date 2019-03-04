@@ -102,7 +102,7 @@ class @FriendButton extends React.PureComponent
     isFriendLimit = (currentUser.friends?.length ? 0) >= currentUser.max_friends
     title = switch
       when !isVisible
-        null
+        osu.trans('friends.buttons.disabled')
       when @state.friend?
         osu.trans('friends.buttons.remove')
       when isFriendLimit
@@ -118,21 +118,22 @@ class @FriendButton extends React.PureComponent
       else
         blockClass += " #{bn}--friend"
 
-    button
-      type: 'button'
-      className: blockClass
-      onClick: @clicked
-      ref: @button
+    div
       title: title
-      disabled: disabled
-      @renderIcon({isFriendLimit, isVisible})
-      @renderCounter()
+      button
+        type: 'button'
+        className: blockClass
+        onClick: @clicked
+        ref: @button
+        disabled: disabled
+        @renderIcon({isFriendLimit, isVisible})
+        @renderCounter()
 
 
   renderCounter: =>
     return unless @props.showFollowerCounter && @props.followers?
 
-    span className: "#{bn}__counter", @followers().toLocaleString()
+    span className: "#{bn}__counter", osu.formatNumber(@followers())
 
 
   renderIcon: ({isFriendLimit, isVisible}) =>

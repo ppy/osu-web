@@ -48,7 +48,7 @@ class @StoreSupporterTagPrice
       else 0
 
   pricePerMonth: ->
-    (@_price / @duration()).toFixed(2)
+    osu.formatNumber(@_price / @duration(), 2)
 
   discount: ->
     if @duration() >= 12
