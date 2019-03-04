@@ -45,9 +45,7 @@ class SetLocale
             $locale = presence($request->cookie('locale'));
         }
 
-        if (!in_array($locale, config('app.available_locales'), true)) {
-            $locale = null;
-        }
+        $locale = get_valid_locale($locale);
 
         if ($locale === null) {
             $accept = $request->server('HTTP_ACCEPT_LANGUAGE');
