@@ -19,6 +19,7 @@
 import { inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as React from 'react';
+import * as _ from 'lodash';
 import RootDataStore from 'stores/root-data-store';
 import MessageDivider from './message-divider';
 import MessageGroup from './message-group';
@@ -107,7 +108,8 @@ export default class ConversationView extends React.Component<any, any> {
       }
 
       // add message to current message grouping if the sender is the same, otherwise create a new message grouping
-      if (_.isEmpty(currentGroup) || _.last(currentGroup).sender.id === message.sender.id) {
+      const lastCurrentGroup = _.last(currentGroup);
+      if (lastCurrentGroup == null || lastCurrentGroup.sender.id === message.sender.id) {
         currentGroup.push(message);
       } else {
         conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);

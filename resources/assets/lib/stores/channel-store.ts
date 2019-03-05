@@ -22,6 +22,7 @@ import { UserLogoutAction } from 'actions/user-login-actions';
 import { ChannelJSON } from 'chat/chat-api-responses';
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
+import * as _ from 'lodash';
 import {action, computed, observable} from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
@@ -61,7 +62,9 @@ export default class ChannelStore implements DispatchListener {
   @computed
   get maxMessageId(): number {
     const channelArray = Array.from(this.channels.toJS().values());
-    return _.maxBy(channelArray, 'lastMessageId').lastMessageId;
+    const max = _.maxBy(channelArray, 'lastMessageId');
+
+    return max == null ? -1 : max.lastMessageId;
   }
 
   @computed

@@ -18,6 +18,7 @@
 
 import Message from 'models/chat/message';
 import * as React from 'react';
+import * as _ from 'lodash';
 
 interface PropsInterface {
   messages: Message[];

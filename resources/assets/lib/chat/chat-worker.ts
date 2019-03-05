@@ -113,7 +113,7 @@ export default class ChatWorker implements DispatchListener {
     this.updateXHR = true;
 
     this.api.getUpdates(this.rootDataStore.channelStore.maxMessageId)
-      .then((updateJson) => {
+      .then((updateJson: any) => {
         this.updateXHR = false;
         if (this.pollingEnabled) {
           this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
@@ -133,7 +133,7 @@ export default class ChatWorker implements DispatchListener {
           this.rootDataStore.channelStore.updatePresence(updateJson.presence);
         });
       })
-      .catch((err) => {
+      .catch((err: any) => {
         // silently ignore errors and continue polling
         this.updateXHR = false;
         if (this.pollingEnabled) {

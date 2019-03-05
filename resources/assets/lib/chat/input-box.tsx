@@ -23,6 +23,7 @@ import DispatchListener from 'dispatch-listener';
 import { inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as React from 'react';
+import * as _ from 'lodash';
 import RootDataStore from 'stores/root-data-store';
 
 @inject('dataStore')
