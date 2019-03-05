@@ -21,8 +21,8 @@
 ?>
 
 <tr class="forum-poll-row {{ $pollOption['voted_by_user'] ? 'forum-poll-row--voted' : '' }}">
-    <td class="forum-poll-row__column forum-poll-row__column--option-text">
-        <label class="forum-poll-row__option-text-container">
+    <td class="forum-poll-row__column">
+        <label class="forum-poll-row__checkbox-container">
             @if (priv_check('ForumTopicVote', $topic)->can())
                 <div class="osu-checkbox">
                     <input
@@ -38,16 +38,15 @@
                     </span>
                 </div>
             @endif
-
-            <span class="forum-poll-row__option-text">
-                {!! $pollOption['textHTML'] !!}
-            </span>
         </label>
     </td>
 
     <td class="forum-poll-row__column forum-poll-row__column--bar">
         <div class="bar bar--forum-poll {{ $pollOption['voted_by_user'] ? 'bar--forum-poll-voted' : '' }}">
             <div class="bar__fill" style="width: {{ $percentage }}">
+            </div>
+            <div class="forum-poll-row__option-text">
+                {!! $pollOption['textHTML'] !!}
             </div>
         </div>
     </td>
