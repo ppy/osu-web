@@ -62,7 +62,7 @@ reactTurbolinks.register('chat', MainView, () => {
       if (hasNonPmChannels) {
         initialChannel = dataStore.channelStore.nonPmChannels[0].channelId;
       } else if (hasPmChannels) {
-        initialChannel =  dataStore.channelStore.pmChannels[0].channelId;
+        initialChannel = dataStore.channelStore.pmChannels[0].channelId;
       }
     }
   }
