@@ -90,10 +90,6 @@ export default class ChatOrchestrator implements DispatchListener {
       return;
     }
 
-    if (typeof lastRead !== 'number') {
-        return;
-    }
-
     this.api.markAsRead(channel.channelId, lastRead)
       .then(() => {
         channel.lastReadId = lastRead;
