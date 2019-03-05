@@ -105,9 +105,12 @@ export default class Channel {
         this.messages = _.drop(this.messages, this.messages.length - this.backlogSize);
       }
 
-      const lastMessage = _.maxBy(([] as Message[]).concat(messages), 'messageId');
+      const lastMessage = _(([] as Message[]).concat(messages))
+        .filter(message => typeof message.messageId === 'number')
+        .maxBy('messageId');
       let lastMessageId;
 
+      // The type check is redundant due to the filter above.
       if (lastMessage != null && typeof lastMessage.messageId === 'number') {
         lastMessageId = lastMessage.messageId;
       } else {
