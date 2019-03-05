@@ -124,6 +124,9 @@ reactTurbolinks.register 'comments', CommentsManager, (el) ->
 
   props
 
+reactTurbolinks.register 'notification', _exported.NotificationWidget, ->
+  store: new _exported.NotificationStore(currentUser.id)
+
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port
 rootUrl += '/'

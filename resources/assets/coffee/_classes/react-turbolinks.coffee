@@ -37,12 +37,23 @@ class @ReactTurbolinks
       for own _name, component of @components
         for target in component.targets
           continue if target.dataset.reactTurbolinksLoaded != '1'
+          continue if @isPermanent(target)
           target.dataset.reactTurbolinksLoaded = null
           ReactDOM.unmountComponentAtNode target if !component.persistent
 
 
   destroyPersisted: =>
-    ReactDOM.unmountComponentAtNode(target) while target = @targets.pop()
+    @targets = @targets.filter (target) =>
+      # keep permanent components
+      return true if @isPermanent(target)
+
+      # unmount and discard everything else
+      ReactDOM.unmountComponentAtNode(target)
+      false
+
+
+  isPermanent: (target) ->
+    typeof target.dataset.turbolinksPermanent == 'string'
 
 
   register: (name, element, propsFunction = ->) =>

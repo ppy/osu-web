@@ -53,8 +53,6 @@ const paymentSandbox = !(process.env.PAYMENT_SANDBOX == 0
                          || process.env.PAYMENT_SANDBOX === 'false'
                          || !process.env.PAYMENT_SANDBOX);
 
-const websocketUrl = process.env.WEBSOCKET_URL || '/home/notifications/streaming';
-
 // relative from root?
 const node_root = 'node_modules';
 
@@ -109,9 +107,9 @@ let webpackConfig = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.PAYMENT_SANDBOX': JSON.stringify(paymentSandbox),
-      'process.env.WEBSOCKET_URL': JSON.stringify(websocketUrl),
       'process.env.SHOPIFY_DOMAIN': JSON.stringify(process.env.SHOPIFY_DOMAIN),
       'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
+      'process.env.WEBSOCKET_URL': JSON.stringify(process.env.WEBSOCKET_URL),
     })
   ],
   resolve: {

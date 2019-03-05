@@ -56,6 +56,7 @@ interface OsuCommon {
   trans: (...args: any[]) => string;
   urlPresence: (url: string) => string;
   uuid: () => string;
+  formatNumber: (num?: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string) => string | null;
 }
 
 interface User {
