@@ -17,6 +17,7 @@
  */
 
 import { ChannelJSON, ChannelType } from 'chat/chat-api-responses';
+import * as _ from 'lodash';
 import { action, computed, observable, transaction} from 'mobx';
 import User from 'models/user';
 import Message from './message';
@@ -104,7 +105,17 @@ export default class Channel {
         this.messages = _.drop(this.messages, this.messages.length - this.backlogSize);
       }
 
-      const lastMessageId = _.maxBy(([] as Message[]).concat(messages), 'messageId').messageId;
+      const lastMessage = _(([] as Message[]).concat(messages))
+        .filter((message) => typeof message.messageId === 'number')
+        .maxBy('messageId');
+      let lastMessageId;
+
+      // The type check is redundant due to the filter above.
+      if (lastMessage != null && typeof lastMessage.messageId === 'number') {
+        lastMessageId = lastMessage.messageId;
+      } else {
+        lastMessageId = -1;
+      }
       if (lastMessageId > this.lastMessageId) {
         this.lastMessageId = lastMessageId;
       }
@@ -143,7 +154,8 @@ export default class Channel {
     this.icon = presence.icon || '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
     this.lastReadId = presence.last_read_id;
 
-    this.lastMessageId = _.max([this.lastMessageId, presence.last_message_id]);
+    const lastMessageId = _.max([this.lastMessageId, presence.last_message_id]);
+    this.lastMessageId = lastMessageId == null ? -1 : lastMessageId;
 
     this.users = presence.users;
     this.metaLoaded = true;

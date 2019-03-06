@@ -54,7 +54,7 @@ export default class User {
     this.isBot = json.is_bot;
     this.isOnline = json.is_online;
     this.pmFriendsOnly = json.pm_friends_only;
-    this.loaded =  true;
+    this.loaded = true;
   }
 
   static fromJSON(json: UserJSON): User {

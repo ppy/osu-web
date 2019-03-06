@@ -10,7 +10,5 @@ declare module 'report-form' {
     visible: boolean;
   }
 
-  interface ReportFormOnSubmitParams {}
-
   class ReportForm extends React.PureComponent<ReportFormProps, any> {}
 }

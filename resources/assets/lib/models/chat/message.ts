@@ -21,7 +21,7 @@ import { action, observable} from 'mobx';
 import User from 'models/user';
 
 export default class Message {
-  @observable messageId: number = -1;
+  @observable messageId: number | string = -1;
   @observable uuid: string = osu.uuid();
   @observable channelId: number = -1;
   @observable sender: User;
