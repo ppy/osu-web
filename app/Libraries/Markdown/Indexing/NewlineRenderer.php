@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,10 +18,22 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.search-highlight {
-  em {
-    color: @yellow-dark;
-    font-style: inherit;
-    font-weight: bold;
-  }
+namespace App\Libraries\Markdown\Indexing;
+
+use League\CommonMark\ElementRendererInterface;
+use League\CommonMark\Inline\Element\AbstractInline;
+use League\CommonMark\Inline\Renderer\InlineRendererInterface;
+
+class NewlineRenderer implements InlineRendererInterface
+{
+    /**
+     * @param AbstractInline $inline
+     * @param ElementRendererInterface $htmlRenderer
+     *
+     * @return string
+     */
+    public function render(AbstractInline $inline, ElementRendererInterface $renderer)
+    {
+        return ' ';
+    }
 }
