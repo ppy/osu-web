@@ -27,9 +27,9 @@ class PageSearchResult extends Page
     /** @var Hit */
     private $hit;
 
-    public function __construct($path, $locale, Hit $hit)
+    public function __construct(Hit $hit)
     {
-        parent::__construct($path, $locale, $hit->source());
+        parent::__construct(null, null, $hit->source());
 
         $this->hit = $hit;
     }

@@ -53,7 +53,7 @@ class WikiSearch extends RecordSearch
         $pages = [];
 
         foreach ($response as $hit) {
-            $page = new PageSearchResult(null, null, $hit);
+            $page = new PageSearchResult($hit);
 
             $pages[] = $page;
         }
