@@ -16,9 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import * as _ from 'lodash';
 import Message from 'models/chat/message';
 import * as React from 'react';
-import * as _ from 'lodash';
 
 interface PropsInterface {
   messages: Message[];

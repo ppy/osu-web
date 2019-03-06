@@ -106,7 +106,7 @@ export default class Channel {
       }
 
       const lastMessage = _(([] as Message[]).concat(messages))
-        .filter(message => typeof message.messageId === 'number')
+        .filter((message) => typeof message.messageId === 'number')
         .maxBy('messageId');
       let lastMessageId;
 

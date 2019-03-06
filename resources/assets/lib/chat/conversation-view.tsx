@@ -16,10 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import * as _ from 'lodash';
 import { inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as React from 'react';
-import * as _ from 'lodash';
 import RootDataStore from 'stores/root-data-store';
 import MessageDivider from './message-divider';
 import MessageGroup from './message-group';

@@ -18,9 +18,9 @@
 
 import AdminMenu from 'admin-menu';
 import NewsPostJson from 'interfaces/news-post-json';
+import * as _ from 'lodash';
 import NewsHeader from 'news-header';
 import * as React from 'react';
-import * as _ from 'lodash';
 
 interface PropsInterface {
   container: HTMLElement;

@@ -18,10 +18,10 @@
 
 import AdminMenu from 'admin-menu';
 import PostJson from 'interfaces/news-post-json';
+import * as _ from 'lodash';
 import NewsHeader from 'news-header';
 import * as React from 'react';
 import PostItem from './post-item';
-import * as _ from 'lodash';
 
 interface PostsJson {
   news_posts: PostJson[];
