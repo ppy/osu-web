@@ -68,7 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => '不允许删除谱面信息帖。',
             'beatmapset_post_no_edit' => '不允许编辑谱面信息帖。',
-            'only_quote' => '',
+            'only_quote' => '你的回复仅包含引用',
         ],
 
         'topic_poll' => [
@@ -98,7 +98,7 @@ return [
         'username_available_soon' => '该用户名即将可用！',
         'username_invalid_characters' => '用户名中包含非法字符。',
         'username_in_use' => '用户名已经被使用！',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_locked' => '用户名已被使用！', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => '请在下划线和空格间选一个，不要混用！',
         'username_no_spaces' => "用户名不能以空格开头或结束。",
         'username_not_allowed' => '不允许使用该用户名。',

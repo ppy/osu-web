@@ -114,7 +114,7 @@ return [
             'delivered' => '已送达',
             'paid' => '已付款',
             'processing' => '待确认',
-            'shipped' => '',
+            'shipped' => '运送中',
         ],
     ],
 

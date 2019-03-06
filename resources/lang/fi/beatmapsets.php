@@ -43,7 +43,7 @@ return [
             'qualified' => 'esihyväksytty ',
             'ranked' => 'hyväksytty ',
             'submitted' => 'Julkaistu ',
-            'unfavourite' => 'Poista nämä beatmap-setti suosikeista',
+            'unfavourite' => 'Poista tämä beatmapkokoelma suosikeista',
             'updated' => 'viimeisin päivitys ',
             'updated_timeago' => 'viimeksi päivitetty :timeago',
 
@@ -55,25 +55,25 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => 'lisäomimaisuuksien käyttämiseen',
+                'top' => 'Kirjaudu sisään',
             ],
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => 'Sinulla on liian monta lempikappaletta! Poista joitain suosikeistasi ennen uudelleenyrittämistä.',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Äänestä tätä kappaletta jos nautit sen pelaamisesta auttaaksesi sitä saamaan <strong>Ranked</strong> statuksen.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Tämä kappale on tällä hetkellä :status.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'odottaa',
+                    'qualified' => 'hyväksytty',
+                    'wip' => 'keskeneräinen',
                 ],
             ],
         ],
@@ -101,7 +101,7 @@ return [
 
             'headers' => [
                 'accuracy' => 'Tarkkuus',
-                'combo' => 'Max Combo',
+                'combo' => 'Maksimikombo',
                 'miss' => 'Ohi',
                 'mods' => 'Modit',
                 'player' => 'Pelaaja',
@@ -113,8 +113,8 @@ return [
 
             'no_scores' => [
                 'country' => 'Kartasta ei vielä löydy maansisäisiä tuloksia!',
-                'friend' => 'Kukaan kavereistasi ei vielä ole saanut tulosta tässä kartassa!',
-                'global' => 'Tuloksia ei ole. Ehkä voisit yrittää saada sellaisen?',
+                'friend' => 'Kukaan kavereistasi ei vielä ole saanut tulosta tässä mapissa!',
+                'global' => 'Tuloksia ei ole. Voisit hankkia niitä.',
                 'loading' => 'Ladataan tuloksia...',
                 'unranked' => 'Beatmap ei ole hyväksytyssä tilassa.',
             ],

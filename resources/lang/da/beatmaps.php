@@ -101,8 +101,8 @@ return [
 
         'sort' => [
             '_' => 'Sorteret efter:',
-            'created_at' => '',
-            'timeline' => '',
+            'created_at' => 'Oprettelsestidspunkt',
+            'timeline' => 'Tidslinje',
             'updated_at' => '',
         ],
 
@@ -194,15 +194,15 @@ return [
                 'played' => 'Allerede spillet',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
+                'title' => 'Titel',
+                'artist' => 'Kunstner',
+                'difficulty' => 'Sværhedsgrad',
+                'updated' => 'Opdateret',
+                'ranked' => 'Rangeret',
                 'rating' => '',
-                'plays' => '',
+                'plays' => 'Afspilninger',
                 'relevance' => '',
-                'nominations' => '',
+                'nominations' => 'Nomineringer',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtrering af :filters kræver en aktiv :link',
@@ -304,6 +304,6 @@ return [
     ],
     'panel' => [
         'playcount' => '',
-        'favourites' => '',
+        'favourites' => 'Favoritter :count',
     ],
 ];

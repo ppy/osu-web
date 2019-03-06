@@ -66,7 +66,7 @@ return [
     'discount' => ':percent%の割引',
 
     'invoice' => [
-        'echeck_delay' => '',
+        'echeck_delay' => '決済方法がeCheckのため、PayPalを介した支払いが完了するまで、さらに最大10日を要します。予めご了承ください。',
         'status' => [
             'processing' => [
                 'title' => 'お支払いはまだ完了していません。',
@@ -86,7 +86,7 @@ return [
     ],
 
     'order' => [
-        'paid_on' => '',
+        'paid_on' => '注文済み :date',
 
         'invoice' => '請求書を見る',
         'no_orders' => '表示できる注文がありません。',
@@ -114,7 +114,7 @@ return [
             'delivered' => '発送済み',
             'paid' => '支払い済み',
             'processing' => '承認待ち',
-            'shipped' => '',
+            'shipped' => '輸送中',
         ],
     ],
 

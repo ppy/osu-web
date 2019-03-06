@@ -19,14 +19,14 @@
  */
 
 return [
-    '_' => '',
+    '_' => 'Sorter etter',
 
-    'new' => '',
-    'old' => '',
-    'top' => '',
+    'new' => 'Nylige',
+    'old' => 'Eldste',
+    'top' => 'Mest likt',
 
     'forum_topics' => [
-        'new' => '',
-        'feature_votes' => '',
+        'new' => 'Siste svar',
+        'feature_votes' => 'Stjerneprioritet',
     ],
 ];

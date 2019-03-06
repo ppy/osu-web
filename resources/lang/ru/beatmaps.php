@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Отсортировано по:',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'created_at' => 'дате создания',
+            'timeline' => 'хронологии',
+            'updated_at' => 'дате изменения',
         ],
 
         'stats' => [
@@ -194,15 +194,15 @@ return [
                 'played' => 'Сыграно',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'названию',
+                'artist' => 'исполнителю',
+                'difficulty' => 'сложности',
+                'updated' => 'дате обновления',
+                'ranked' => 'дате ранка',
+                'rating' => 'рейтингу',
+                'plays' => 'количеству игр',
+                'relevance' => 'релевантности',
+                'nominations' => 'номинациям',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Фильтрация по :filters требует :link',
@@ -303,7 +303,7 @@ return [
         'D' => 'D',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => 'Количество игр: :count',
+        'favourites' => 'В любимых: :count',
     ],
 ];

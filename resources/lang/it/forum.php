@@ -105,10 +105,10 @@ return [
             'submit' => 'Invia',
 
             'necropost' => [
-                'default' => 'Questa discussione è inattivo da un bel po\' di tempo. Posta solo se hai una motivazione in particolare.',
+                'default' => 'Questa discussione è inattiva da un bel po\' di tempo. Posta solo se hai una motivazione in particolare.',
 
                 'new_topic' => [
-                    '_' => "Questa discussione è inattivo da un bel po' di tempo. Se non hai un motivo in particolare per postare, per favore :create uno.",
+                    '_' => "Questa discussione è inattiva da un bel po' di tempo. Se non hai un motivo in particolare per postare qui, per favore :create.",
                     'create' => 'crea una nuova discussione',
                 ],
             ],
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Creazione Sondaggio',
 
-            'preview' => '',
+            'preview' => 'Anteprima del post',
 
             'create_poll_button' => [
                 'add' => 'Crea un sondaggio',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'priorità stella',
             'replies' => 'risposte',
             'views' => 'visualizzazioni',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => 'Promuovi questa richiesta',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Questa è una :feature_request. Le richieste di nuove funzionalità possono essere votate dai :supporters.',
+                    'feature_request' => 'richiedi una funzionalità',
+                    'supporters' => 'sostenitori',
                 ],
 
                 'user' => [

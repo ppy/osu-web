@@ -77,7 +77,7 @@ return [
         'register' => "Heb je geen osu! account? Maak een nieuwe",
         'forgot' => 'Wachtwoord vergeten?',
         'beta' => [
-            'main' => 'Beta toegang is alleen voor bepaalde gebruikers.',
+            'main' => 'Beta toegang is momenteel beperkt voor bepaalde gebruikers.',
             'small' => '(osu!supporters krijgen binnenkort in)',
         ],
 
@@ -121,8 +121,8 @@ return [
         ],
     ],
     'restricted_banner' => [
-        'title' => 'Je account is gerestricteerd!',
-        'message' => 'Zolang je gerestricteerd bent, kan je niet communiceren met andere spelers en kan enkel jij je scores zien. Meestal is dit het resultaat van een geautomatiseerd proces en wordt het binnen 24 uur verwijderd. Als je in beroep wil gaan, <a href="mailto:accounts@ppy.sh">contacteer dan support</a>.',
+        'title' => 'Je account is gerestrict!',
+        'message' => 'Zolang je gerestrict bent, kan je niet communiceren met andere spelers en kan enkel jij je scores zien. Meestal is dit het resultaat van een geautomatiseerd proces en wordt het binnen 24 uur verwijderd. Als je in beroep wil gaan, <a href="mailto:accounts@ppy.sh">contacteer dan support</a>.',
     ],
     'show' => [
         'age' => ':age jaar oud',

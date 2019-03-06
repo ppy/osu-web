@@ -26,7 +26,7 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Olet saavuttanut suosittelurajan tälle päivälle, yritä huomenna uudelleen.',
-            'incorrect_state' => 'Virhe toiminnon suorittamisessa, kokeile päivittää sivu.',
+            'incorrect_state' => 'Virhe toimintoa suorittaessa, kokeile sivun päivittämistä.',
             'owner' => "Omaa beatmappia ei voi suositella.",
         ],
         'resolve' => [
@@ -61,7 +61,7 @@ return [
 
     'comment' => [
         'update' => [
-            'deleted' => "Poistettua viestiä ei voi muokata.",
+            'deleted' => "Poistettuja viestejä ei voi mukata.",
         ],
     ],
 
@@ -76,14 +76,14 @@ return [
 
         'post' => [
             'delete' => [
-                'only_last_post' => 'Vain viimeinen viesti voidaan poistaa.',
+                'only_last_post' => 'Vain viimeisin viesti voidaan poistaa.',
                 'locked' => 'Lukitun aiheen viestejä ei voi poistaa.',
                 'no_forum_access' => 'Pääsy kyseiselle foorumille vaaditaan.',
                 'not_owner' => 'Vain lähettäjä voi poistaa viestin.',
             ],
 
             'edit' => [
-                'deleted' => 'Poistettua viestiä ei voi muokata.',
+                'deleted' => 'Poistettuja viestejä ei voi muokata.',
                 'locked' => 'Viestin muokkaaminen on estetty.',
                 'no_forum_access' => 'Pääsy kyseiselle foorumille vaaditaan.',
                 'not_owner' => 'Vain lähettäjä voi muokata viestiä.',
@@ -101,7 +101,7 @@ return [
                 'double_post' => 'Muokkaa entistä postaustasi sen sijaan kun postaat uuden.',
                 'locked' => 'Et voi vastata lukittuun aiheeseen.',
                 'no_forum_access' => 'Pääsy kyseiselle foorumille vaaditaan.',
-                'no_permission' => 'Ei oikeutta vastata.',
+                'no_permission' => 'Ei vastausoikeutta.',
 
                 'user' => [
                     'require_login' => 'Kirjaudu sisään vastataksesi.',

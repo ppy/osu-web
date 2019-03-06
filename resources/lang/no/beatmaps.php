@@ -43,14 +43,14 @@ return [
         'message_type_select' => 'Velg kommentartype',
         'reply_notice' => 'Trykk enter for å svare.',
         'reply_placeholder' => 'Skriv din respons her',
-        'require-login' => 'Vennligst logg inn for å skrive et innlegg eller svare',
+        'require-login' => 'Vennligst logg på for å skrive et innlegg eller svare',
         'resolved' => 'Løst',
         'restore' => 'gjenopprett',
         'title' => 'Diskusjoner',
 
         'collapse' => [
             'all-collapse' => 'Skjul alle',
-            'all-expand' => 'Utvid alle',
+            'all-expand' => 'Vis alle',
         ],
 
         'empty' => [
@@ -59,7 +59,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Dette innlegget vil gå til generell beatmapset diskusjon. For å modifisere denne beatmappen, start meldingen med et tidsstempel (eks. 00:12:345).',
+            'in_general' => 'Dette innlegget vil gå til den generelle diskusjonen for beatmapsettet. For å modifisere dette beatmappet, start meldingen med et tidsstempel (f.eks. 00:12:345).',
             'in_timeline' => 'For å modde flere tidsstempler, må du skrive flere ganger (et innlegg per tidsstempel).',
         ],
 
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Sortert etter:',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'created_at' => 'Opprettingstidspunkt',
+            'timeline' => 'Tidslinje',
+            'updated_at' => 'Siste oppdatering',
         ],
 
         'stats' => [
@@ -117,11 +117,11 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'Denne beatmappen ble godkjent den :date!',
-            'graveyard' => "Denne beatmappen har ikke blitt oppdaert siden :date og har mest sannsynlig blitt forlatt av skaperen...",
-            'loved' => 'Denne beatmappen ble lagt til i elsket den :date!',
-            'ranked' => 'Denne beatmappen ble rangert den :date!',
-            'wip' => 'Bemerk: Denne beatmappen er markert som "Under konstruksjon" av skaperen.',
+            'approved' => 'Dette beatmappet ble godkjent den :date!',
+            'graveyard' => "Dette beatmappet har ikke blitt oppdatert siden :date og har mest sannsynlig blitt forlatt av skaperen...",
+            'loved' => 'Dette beatmappet ble lagt til i elsket den :date!',
+            'ranked' => 'Dette beatmappet ble rangert den :date!',
+            'wip' => 'Merk: Dette beatmappet er markert som "under konstruksjon" av skaperen.',
         ],
 
     ],
@@ -130,8 +130,8 @@ return [
         'button' => 'Hype Beatmap!',
         'button_done' => 'Allerede Hypet!',
         'confirm' => "Er du sikker? Dette vil bruke en av dine gjenstående :n hype og kan ikke angres.",
-        'explanation' => 'Hype denne beatmappen for å gjøre den mer synlig for nominasjon og rangering!',
-        'explanation_guest' => 'Logg inn for å hype denne beatmappen slik at den blir mer synlig for nominering og rangering!',
+        'explanation' => 'Hype dette beatmappet for å gjøre den mer synlig for nominasjon og rangering!',
+        'explanation_guest' => 'Logg inn for å hype dette beatmappet slik at den blir mer synlig for nominering og rangering!',
         'new_time' => "Du vil få en ny hype :new_time.",
         'remaining' => 'Du har :remaining hype igjen.',
         'required_text' => 'Hype: :current/:required',
@@ -145,17 +145,17 @@ return [
 
     'nominations' => [
         'delete' => 'Slett',
-        'delete_own_confirm' => 'Er du sikker? Beatmappen vil bli slettet og du vil bli omdirigert tilbake til din profil.',
-        'delete_other_confirm' => 'Er du sikker? Beatmappen vil bli slettet og du vil bli omdirigert tilbake til brukeren sin profil.',
+        'delete_own_confirm' => 'Er du sikker? Beatmappet vil bli slettet og du vil bli omdirigert tilbake til profilen din.',
+        'delete_other_confirm' => 'Er du sikker? Beatmappet vil bli slettet og du vil bli omdirigert tilbake til brukeren sin profil.',
         'disqualification_prompt' => 'Årsak til diskvalifikasjon?',
         'disqualified_at' => 'Diskvalifisert :time_ago (:reason).',
         'disqualified_no_reason' => 'ingen grunn spesifisert',
         'disqualify' => 'Diskvalifiser',
         'incorrect_state' => 'Feil under utføringen av denne handlingen, prøv å oppdatere siden.',
         'love' => 'Elsker',
-        'love_confirm' => 'Elsk denne beatmappen?',
+        'love_confirm' => 'Elsk dette beatmappet?',
         'nominate' => 'Nominer',
-        'nominate_confirm' => 'Nominer denne beatmappen?',
+        'nominate_confirm' => 'Nominer dette beatmappet?',
         'nominated_by' => 'nominert av :users',
         'qualified' => 'Beregnes for å bli rangert :date, hvis ingen problemer blir funnet.',
         'qualified_soon' => 'Beregnet for å bli rangert snart, hvis ingen problemer blir funnet.',
@@ -171,14 +171,14 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Er du sikker? Hvis du legger inn et nytt problem, vil nominasjonsprosessen bli tilbakestilt.',
-            'disqualify' => 'Er du sikker? Dette vil fjerne beatmappen fra å kvalifisere og tilbakestille nomineringsprosessen.',
+            'disqualify' => 'Er du sikker? Dette vil fjerne beatmappets kvalifisert-status og tilbakestille nomineringsprosessen.',
         ],
     ],
 
     'listing' => [
         'search' => [
             'prompt' => 'skriv inn nøkkelord...',
-            'login_required' => 'Logg inn for å søke.',
+            'login_required' => 'Logg på for å søke.',
             'options' => 'Flere søkemuligheter',
             'supporter_filter' => 'Filtrering ved bruk av :filters krever en aktiv osu!supporter tag',
             'not-found' => 'ingen treff',
@@ -194,15 +194,15 @@ return [
                 'played' => 'Spilt',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'Tittel',
+                'artist' => 'Artist',
+                'difficulty' => 'Vanskelighetsgrad',
+                'updated' => 'Oppdatert',
+                'ranked' => 'Rangert',
+                'rating' => 'Vurdering',
+                'plays' => 'Spillforsøk',
+                'relevance' => 'Relevanse',
+                'nominations' => 'Nominasjoner',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtrering av :filters krever en aktiv :link',
@@ -303,7 +303,7 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => 'Spillforsøk: :count',
+        'favourites' => 'Favoritter: :count',
     ],
 ];

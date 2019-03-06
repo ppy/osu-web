@@ -153,6 +153,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'artist' => 'artist.raw',
             'creator' => 'creator.raw',
             'difficulty' => 'difficulties.difficultyrating',
+            'favourites' => 'favourite_count',
             'nominations' => 'nominations',
             'plays' => 'play_count',
             'ranked' => 'approved_date',

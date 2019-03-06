@@ -32,9 +32,9 @@ return [
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => '투표',
+            'remove' => '투표 제거',
+            'used_up' => '모든 투표권을 사용했습니다',
         ],
     ],
     'entry' => [

@@ -25,22 +25,22 @@ return [
     ],
     'voting' => [
         'over' => 'Avstemmingen for denne konkurransen har avsluttet',
-        'login_required' => 'Vennligst logg inn for å stemme.',
+        'login_required' => 'Vennligst logg på for å stemme.',
 
         'best_of' => [
             'none_played' => "Det ser ikke ut som du har spilt noen av beatmappene som kvaliseres for denne konkurransen!",
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => 'Stem',
+            'remove' => 'Fjern stemme',
+            'used_up' => 'Du har brukt opp alle stemmene dine',
         ],
     ],
     'entry' => [
         '_' => 'påmelding',
-        'login_required' => 'Vennligst logg inn for å delta i konkurransen.',
-        'silenced_or_restricted' => 'Du kan ikke bli med i konkurranser mens du er begrenset eller forstummet.',
+        'login_required' => 'Vennligst logg på for å delta i konkurransen.',
+        'silenced_or_restricted' => 'Du kan ikke bli med i konkurranser mens du er begrenset eller stum.',
         'preparation' => 'Vi driver for tiden å forbereder denne konkurransen. Vennligst vent tålmodig!',
         'over' => 'Takk for dine påmeldinger! Muligheten for innleveringer har lukket seg for denne konkurransen og avstemning vil åpne snart.',
         'limit_reached' => 'Du har nådd påmeldingsgrensen for denne konkurransen',

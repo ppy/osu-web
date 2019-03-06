@@ -19,14 +19,14 @@
  */
 
 return [
-    '_' => '',
+    '_' => 'Sortieren nach',
 
-    'new' => '',
-    'old' => '',
-    'top' => '',
+    'new' => 'Kürzlich',
+    'old' => 'Alt',
+    'top' => 'Top',
 
     'forum_topics' => [
-        'new' => '',
-        'feature_votes' => '',
+        'new' => 'Letzte Antwort',
+        'feature_votes' => 'Sternpriorität',
     ],
 ];

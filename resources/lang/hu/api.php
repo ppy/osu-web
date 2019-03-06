@@ -30,7 +30,7 @@ return [
         'identify' => 'Azonosíthat téged és olvashat a nyilvános profilodból.',
 
         'friends' => [
-            'read' => '',
+            'read' => 'Lásd, hogy kit követsz.',
         ],
     ],
 ];

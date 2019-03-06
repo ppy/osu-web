@@ -30,7 +30,7 @@ return [
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Tidsstempel er angitt, men beatmappen mangler.',
+        'beatmap_missing' => 'Tidsstempel er angitt, men beatmappet mangler.',
         'beatmapset_no_hype' => "Beatmap kan ikke bli hypet.",
         'hype_requires_null_beatmap' => 'Hype må gjøres i den Generelle (alle vanskelighetsgrader) seksjonen.',
         'invalid_beatmap_id' => 'Ugyldig vanskelighetsgrad angitt.',
@@ -39,10 +39,10 @@ return [
 
         'hype' => [
             'guest' => 'Må være logget inn for å hype.',
-            'hyped' => 'Du har allerede hypet denne beatmappen.',
+            'hyped' => 'Du har allerede hypet dette beatmappet.',
             'limit_exceeded' => 'Du har brukt opp all hypen din.',
-            'not_hypeable' => 'Denne beatmappen kan ikke bli hypet',
-            'owner' => 'Ingen hyping av din egen beatmap.',
+            'not_hypeable' => 'Dette beatmappet kan ikke bli hypet',
+            'owner' => 'Ingen hyping av ditt eget beatmap.',
         ],
 
         'timestamp' => [
@@ -57,7 +57,7 @@ return [
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Kan bare stemme på funskjonsforespørsler.',
+            'not_feature_topic' => 'Kan bare stemme på funksjonsforespørsler.',
             'not_enough_feature_votes' => 'Ikke nok stemmer.',
         ],
 
@@ -68,7 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Sletting av beatmap metadata innlegg er ikke tillatt.',
             'beatmapset_post_no_edit' => 'Redigering av beatmap metadata innlegg er ikke tillatt.',
-            'only_quote' => '',
+            'only_quote' => 'Svaret ditt inneholder kun et sitat.',
         ],
 
         'topic_poll' => [
@@ -98,7 +98,7 @@ return [
         'username_available_soon' => 'Dette brukernavnet vil bli tilgjengelig for bruk når som helst nå!',
         'username_invalid_characters' => 'Det forespurte brukernavnet inneholder ugyldige tegn.',
         'username_in_use' => 'Brukernavn er allerede i bruk!',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_locked' => 'Brukernavnet er ikke tilgjengelig!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Vennligst bruk enten understrekingstegn eller mellom, ikke begge!',
         'username_no_spaces' => "Brukernavnet kan ikke starte eller slutte med mellomrom!",
         'username_not_allowed' => 'Valg av dette brukernavnet er ikke tillatt.',

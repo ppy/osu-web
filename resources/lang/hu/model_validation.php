@@ -68,7 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Beatmap metaadat törlése nem engedélyezett.',
             'beatmapset_post_no_edit' => 'Beatmap metaadat poszt szerkesztése nem engedélyezett.',
-            'only_quote' => '',
+            'only_quote' => 'A válaszod csak egy idézetet tartalmaz.',
         ],
 
         'topic_poll' => [
@@ -98,7 +98,7 @@ return [
         'username_available_soon' => 'Ez a felhasználónév bármelyik pillanatban elérhető lehet!',
         'username_invalid_characters' => 'A kért felhasználónév nem felhasználható karaktereket tartalmaz.',
         'username_in_use' => 'Foglalt felhasználónév!',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_locked' => 'A név már használatban van!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Vagy alsóvonalat használj, vagy space gomb lenyomásával üres teret, nem menő mind a kettő!',
         'username_no_spaces' => "A felhasználóneved nem kezdődhet és nem is végződhet üres hellyel!",
         'username_not_allowed' => 'Ez a felhasználónév nem engedett.',

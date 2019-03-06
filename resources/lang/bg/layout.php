@@ -71,7 +71,7 @@ return [
             '_' => 'класации',
             'index' => 'изпълнение',
             'performance' => 'performance',
-            'charts' => 'в светлината на прожектора',
+            'charts' => 'препоръчани',
             'score' => 'резултат',
             'country' => 'държава',
             'kudosu' => 'kudosu',

@@ -54,10 +54,10 @@ return [
         'beatmaps' => [
             '_' => 'beatmaps',
             'artists' => 'fremhevede artister',
-            'beatmap_discussion_posts-index' => 'beatmap diskusjonsinnlegg',
+            'beatmap_discussion_posts-index' => 'beatmapdiskusjonsinnlegg',
             'beatmap_discussions-index' => 'beatmapdiskusjoner',
             'beatmapset-watches-index' => 'modding overvåkningsliste',
-            'beatmapset_discussion_votes-index' => 'beatmap diskusjons-stemmer',
+            'beatmapset_discussion_votes-index' => 'beatmapdiskusjonsstemmer',
             'beatmapset_events-index' => 'beatmapset hendelser',
             'index' => 'liste',
             'packs' => 'pakker',
@@ -111,7 +111,7 @@ return [
         ],
         'user' => [
             '_' => 'bruker',
-            'getLogin' => 'logg inn',
+            'getLogin' => 'logg på',
             'disabled' => 'deaktivert',
 
             'register' => 'registrer',
@@ -172,7 +172,7 @@ return [
             '_' => 'Generelt',
             'home' => 'Hjem',
             'changelog-index' => 'Endringslogg',
-            'beatmaps' => 'Beatmap Liste',
+            'beatmaps' => 'Beatmapliste',
             'download' => 'Last ned osu!',
             'wiki' => 'Wiki',
         ],
@@ -238,7 +238,7 @@ return [
             'title' => 'Logg på for å fortsette',
 
             'error' => [
-                'email' => "Brukernavn eller e-postadresse eksisterer ikke",
+                'email' => "Brukernavnet eller e-postadressen eksisterer ikke",
                 'password' => 'Ugyldig passord',
             ],
         ],

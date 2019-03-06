@@ -23,10 +23,10 @@ return [
         'blurb' => [
             'important' => 'LES DETTE FØR NEDLASTING',
             'instruction' => [
-                '_' => "Installasjon: Når en pakke har blitt lastet ned, pakk ut .rar filen til din osu! \"Songs\" mappe.
-                    Alle sanger i pakken er fortsatt i filformatet .zip og/eller som .osz, så osu! applikasjonen vil trenge å pakke dem ut selv neste gang du spiller.
-                    :scary pakk ut .zip/.osz filene selv.
-                    ellers vil beatmappene vises feil i osu! og de vil heller ikke fungere ordentlig.",
+                '_' => "Installasjon: Pakk ut .rar filen i osu!'s \"Songs\" mappe når en pakke er lastet ned,
+                    Alle sanger i pakken er fortsatt i filformatet .zip og/eller .osz, så osu! vil pakke dem ut automatisk neste gang du spiller.
+                    :scary pakk ut zip/osz filene selv,
+                    ettersom dette kan medføre til at beatmappene ikke vises eller fungerer riktig i osu!",
                 'scary' => 'ALDRI',
             ],
             'note' => [

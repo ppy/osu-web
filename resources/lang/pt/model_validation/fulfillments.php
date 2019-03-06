@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => 'Doar é menos que necessário para uma prenda etiqueta osu!supporter(:actual > :expected)',
     ],
 ];

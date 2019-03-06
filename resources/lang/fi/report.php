@@ -25,7 +25,7 @@ return [
     ],
 
     'comment' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Reportoi',
+        'title' => 'Reportoi :username\'n kommentti?',
     ],
 ];

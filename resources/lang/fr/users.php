@@ -330,7 +330,7 @@ return [
             'title' => 'Utilisateur non trouvé! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'Modifier le profil',
             'description' => '<strong>Moi !</strong> est une zone personnalisable du profil.',
             'edit_big' => 'Éditez-moi !',
             'placeholder' => 'Tapez le contenu de la page',

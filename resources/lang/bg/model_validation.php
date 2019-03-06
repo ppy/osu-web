@@ -68,7 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Изтриването на метаданните на този бийтмап не е позволено.',
             'beatmapset_post_no_edit' => 'Редактирането на метаданните на този бийтмап не е позволено.',
-            'only_quote' => '',
+            'only_quote' => 'Вашият отговор съдържа само цитат.',
         ],
 
         'topic_poll' => [
@@ -98,7 +98,7 @@ return [
         'username_available_soon' => 'Това потребителско име ще стане достъпно за употреба след няколко момента!',
         'username_invalid_characters' => 'Желаното име съдържа невалидни символи.',
         'username_in_use' => 'Потребителско име вече е в употреба!',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_locked' => 'Потребителското име вече е в употреба!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Моля използвайте или долна черта или пространства, не и двете!',
         'username_no_spaces' => "Потребителското име не може да започва или завършва с интервал!",
         'username_not_allowed' => 'Този избор на потребителско име не е разрешен.',
@@ -113,7 +113,7 @@ return [
         'change_username' => [
             'supporter_required' => [
                 '_' => 'Трябва да сте :link , за да промените името си!',
-                'link_text' => 'osu!supporter',
+                'link_text' => 'подкрепили osu!',
             ],
             'username_is_same' => 'Това е потребителското ти име, глупчо!',
         ],

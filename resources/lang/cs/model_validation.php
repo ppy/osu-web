@@ -68,7 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Mazání metadat beatmapy není povoleno.',
             'beatmapset_post_no_edit' => 'Editace metadat beatmapy není povoleno.',
-            'only_quote' => '',
+            'only_quote' => 'Tvoje odpověď obsahuje jenom citát.',
         ],
 
         'topic_poll' => [
@@ -98,7 +98,7 @@ return [
         'username_available_soon' => 'Toto uživatelské jméno bude k dispozici pro použití každou chvíli!',
         'username_invalid_characters' => 'Žádané uživatelské jméno obsahuje neplatné znaky.',
         'username_in_use' => 'Uživatelské jméno je již používáno!',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_locked' => 'Tohle jméno už někdo používá!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Použijte prosím podtržítka nebo mezery, ne obojí!',
         'username_no_spaces' => "Uživatelské jméno nesmí začínat nebo končit mezerou!",
         'username_not_allowed' => 'Toto uživatelské jméno není povoleno.',

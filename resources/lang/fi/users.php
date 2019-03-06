@@ -134,10 +134,10 @@ return [
         'lastvisit' => 'Nähty viimeksi :date',
         'missingtext' => 'Taisit tehdä kirjoitusvirheen! (tai käyttäjällä on porttikielto)',
         'origin_country' => 'Maasta :country',
-        'page_description' => 'osu! - Kaikki mitä olet koskaan halunnut tietää käyttäjästä :username!',
+        'page_description' => 'osu! - Kaikki mitä olet koskaan halunnut tietää :username:sta!',
         'previous_usernames' => 'tunnettiin aiemmin nimellä',
         'plays_with' => 'Pelityylinä :devices',
-        'title' => "käyttäjän :username profiili",
+        'title' => ":username:n profiili",
 
         'edit' => [
             'cover' => [
@@ -330,7 +330,7 @@ return [
             'title' => 'Käyttäjää ei löytynyt! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'Muokkaa profiilisivua',
             'description' => '<strong>Minä!</strong> on henkilökohtainen alue profiilisivullasi, jota voit muokata.',
             'edit_big' => 'Muokkaa minua!',
             'placeholder' => 'Kirjoita sivun sisältö tähän',

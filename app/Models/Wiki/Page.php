@@ -31,6 +31,7 @@ use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use Carbon\Carbon;
 use Exception;
+use Log;
 
 class Page
 {
@@ -134,6 +135,8 @@ class Page
         $params = static::searchIndexConfig();
 
         if ($this->page() === null) {
+            $this->log('index document empty');
+
             $params['body'] = [
                 'locale' => null,
                 'page' => null,
@@ -144,6 +147,8 @@ class Page
                 'tags' => [],
             ];
         } else {
+            $this->log('index document');
+
             $content = $this->getContent();
             $indexContent = (new OsuMarkdown('wiki', [
                 'relative_url_root' => wiki_url($this->path),
@@ -169,6 +174,8 @@ class Page
 
     public function esDeleteDocument()
     {
+        $this->log('delete document');
+
         return Es::getClient()->delete(static::searchIndexConfig([
             'id' => $this->pagePath(),
             'client' => ['ignore' => 404],
@@ -183,15 +190,20 @@ class Page
      */
     public function getContent(bool $force = false)
     {
-        if (!array_key_exists('content', $this->cache) || $force) {
+        $key = "content_{$this->locale}";
+        if (!array_key_exists($key, $this->cache) || $force) {
             try {
-                $this->cache['content'] = OsuWiki::fetchContent('wiki/'.$this->pagePath());
+                $this->log('fetch');
+
+                $this->cache[$key] = OsuWiki::fetchContent('wiki/'.$this->pagePath());
             } catch (GitHubNotFoundException $e) {
-                $this->cache['content'] = null;
+                $this->log('not found');
+
+                $this->cache[$key] = null;
             }
         }
 
-        return $this->cache['content'];
+        return $this->cache[$key];
     }
 
     public function getSource()
@@ -324,5 +336,10 @@ class Page
         }
 
         return presence($this->page()['header']['subtitle'] ?? null) ?? $this->defaultSubtitle;
+    }
+
+    private function log($action)
+    {
+        Log::info("wiki ({$action}): {$this->pagePath()}");
     }
 }

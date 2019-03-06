@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Cronologia Modding di :user",
-        'title_compact' => 'Moderazione',
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Discussioni aperte di recente',
@@ -49,7 +49,7 @@ return [
     'blocks' => [
         'banner_text' => 'Hai bloccato questo utente.',
         'blocked_count' => 'utenti bloccati (:count)',
-        'hide_profile' => 'nascondi profilo',
+        'hide_profile' => 'Nascondi profilo',
         'not_blocked' => 'Questo utente non è bloccato.',
         'show_profile' => 'Visualizza profilo',
         'too_many' => 'Limite blocchi raggiunto.',
@@ -67,7 +67,7 @@ return [
     'login' => [
         '_' => 'Accedi',
         'locked_ip' => 'il tuo indirizzo IP è bloccato. Aspetta qualche minuto per favore.',
-        'username' => 'Nome utente',
+        'username' => 'Nome Utente',
         'password' => 'Password',
         'button' => 'Accedi',
         'button_posting' => 'Accesso in corso...',
@@ -77,7 +77,7 @@ return [
         'register' => "Non hai un account di osu!? Fanne uno nuovo",
         'forgot' => 'Hai dimenticato la tua password?',
         'beta' => [
-            'main' => 'L\'accesso alla beta è momentaneamente ristretto ad utenti privilegiati.',
+            'main' => 'L\'accesso alla beta è attualmente limitato ad utenti privilegiati.',
             'small' => '(i supporter lo avranno a breve)',
         ],
 
@@ -99,7 +99,7 @@ return [
     ],
     'logout_confirm' => 'Sei sicuro di volerti disconnettere? :(',
     'report' => [
-        'button_text' => 'segnala',
+        'button_text' => 'Segnala',
         'comments' => 'Ulteriori Commenti',
         'placeholder' => 'Si prega di fornire qualsiasi informazione che ritieni possa essere utile.',
         'reason' => 'Motivazione',
@@ -132,8 +132,8 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
         'is_developer' => 'sviluppatore di osu!',
         'is_supporter' => 'supporter di osu!',
         'joined_at' => 'Registrato :date',
-        'lastvisit' => 'Ultimo visto :date',
-        'missingtext' => 'Potresti aver fatto un\'errore di battitura! (o l\'utente potrebbe essere stato bannato)',
+        'lastvisit' => 'Ultimo accesso :date',
+        'missingtext' => 'Potresti aver fatto un errore di battitura! (o l\'utente potrebbe essere stato bannato)',
         'origin_country' => 'da :country',
         'page_description' => 'osu! - Tutto ciò che hai mai voluto sapere su :username!',
         'previous_usernames' => 'precedentemente conosciuto come',
@@ -331,7 +331,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
             'title' => 'Utente non trovato! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'Modifica pagina del profilo',
             'description' => '<strong>io!</strong> è un\'area personale personalizzabile nella tua pagina del profilo.',
             'edit_big' => 'Modificami!',
             'placeholder' => 'Scrivi il contenuto della pagina qui',

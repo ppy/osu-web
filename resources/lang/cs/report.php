@@ -25,7 +25,7 @@ return [
     ],
 
     'comment' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Nahlásit',
+        'title' => 'Chcete nahlásit komentář od :username?',
     ],
 ];

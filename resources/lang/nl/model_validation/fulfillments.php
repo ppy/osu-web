@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'Huidige gebruikersnaam (:current) is niet dezelfde als de gebruikersnaam die we probeerde te verwijderen (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => 'Donatie is minder dan vereist voor osu!supporter tag geschenk (:actual > :expected)',
     ],
 ];

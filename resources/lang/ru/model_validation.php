@@ -68,7 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Нельзя удалить метаданные карты.',
             'beatmapset_post_no_edit' => 'Нельзя изменить метаданные карты.',
-            'only_quote' => '',
+            'only_quote' => 'Ваш ответ содержит только цитату.',
         ],
 
         'topic_poll' => [
@@ -98,7 +98,7 @@ return [
         'username_available_soon' => 'Это имя будет доступно для выбора в любую минуту!',
         'username_invalid_characters' => 'Выбранное имя содержит недопустимые символы.',
         'username_in_use' => 'Это имя уже используется!',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_locked' => 'Это имя уже используется!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Пожалуйста не используйте пробелы и подчёркивания одновременно!',
         'username_no_spaces' => "Имя не может начинаться и заканчиваться пробелами!",
         'username_not_allowed' => 'Это имя недоступно.',

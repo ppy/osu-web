@@ -20,7 +20,7 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'poistettu beatmap',
+        'beatmap-deleted' => 'poistettu beatmappi',
         'difference' => ':difference pisteen erotuksella',
         'failed' => 'HÄVISI',
         'header' => 'Moninpelit',

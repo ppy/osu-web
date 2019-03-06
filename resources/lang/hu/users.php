@@ -330,7 +330,7 @@ return [
             'title' => 'Felhasználó nem található! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'Profil szerkesztése',
             'description' => '<strong>Rólam!</strong> egy személyre szabható része a profilodnak.',
             'edit_big' => 'A rólam! szerkesztése!',
             'placeholder' => 'Írd ide az oldal tartalmát',

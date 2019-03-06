@@ -21,7 +21,7 @@
 return [
     'buttons' => [
       'add' => 'freund hinzufügen',
-      'disabled' => '',
+      'disabled' => 'Freunde',
       'remove' => 'freund entfernen',
     ],
 

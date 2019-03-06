@@ -21,7 +21,7 @@
 return [
     'buttons' => [
       'add' => 'barát hozzáadása',
-      'disabled' => '',
+      'disabled' => 'barátok',
       'remove' => 'barát törlése',
     ],
 
