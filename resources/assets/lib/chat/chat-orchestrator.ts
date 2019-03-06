@@ -94,7 +94,7 @@ export default class ChatOrchestrator implements DispatchListener {
       .then(() => {
         channel.lastReadId = lastRead;
       })
-      .catch((err: any) => {
+      .catch((err) => {
         console.debug('markAsRead error', err);
       });
   }
