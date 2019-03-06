@@ -28,4 +28,8 @@
             @include('objects._userlist', ['userlist' => $userlist])
         </div>
     </div>
+
+    <script id="json-friends" type="application/json">
+        {!! json_encode($userJson) !!}
+    </script>
 @endsection
