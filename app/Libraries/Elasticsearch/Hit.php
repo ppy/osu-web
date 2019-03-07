@@ -48,10 +48,10 @@ class Hit implements \ArrayAccess
      *
      * @return array
      */
-    public function highlights(string $field, ?int $limit = null)
+    public function highlights(string $field, ?int $limit = null) : array
     {
         if (isset($this['highlight'])) {
-            $highlights = $this['highlight'][$field];
+            $highlights = $this['highlight'][$field] ?? [];
             if ($limit === null) {
                 return $highlights;
             }

@@ -99,10 +99,11 @@ vendor.forEach(function (script) {
 
 let webpackConfig = {
   externals: {
+    "lodash": "_",
+    "prop-types": "PropTypes",
     "react": "React",
     "react-dom": "ReactDOM",
     "react-dom-factories": "ReactDOMFactories",
-    "prop-types": "PropTypes",
   },
   plugins: [
     new webpack.DefinePlugin({

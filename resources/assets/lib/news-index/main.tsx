@@ -18,6 +18,7 @@
 
 import AdminMenu from 'admin-menu';
 import PostJson from 'interfaces/news-post-json';
+import * as _ from 'lodash';
 import NewsHeader from 'news-header';
 import * as React from 'react';
 import PostItem from './post-item';
@@ -38,8 +39,8 @@ interface Search {
 }
 
 interface SearchCursor {
-  id: number;
-  published_at: string;
+  id?: number;
+  published_at?: string;
 }
 
 interface StateInterface {
@@ -128,15 +129,16 @@ export default class Main extends React.Component<PropsInterface, StateInterface
       return;
     }
 
-    const lastPost = _.last(this.state.posts);
-
-    const search = {
-      cursor: {
-        id: lastPost.id,
-        published_at: lastPost.published_at,
-      },
+    const search: Search = {
+      cursor: {},
       limit: 21,
     };
+
+    const lastPost = _.last(this.state.posts);
+    if (lastPost != null) {
+      search.cursor.id = lastPost.id;
+      search.cursor.published_at = lastPost.published_at;
+    }
 
     this.setState({loading: true});
 

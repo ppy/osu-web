@@ -12,7 +12,6 @@ declare var process: Process;
 declare var window: Window;
 
 // libraries
-declare var _: any;
 declare var laroute: any;
 declare var moment: any;
 declare var Turbolinks: Turbolinks;

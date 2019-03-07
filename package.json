@@ -3,15 +3,17 @@
   "scripts": {
     "dev": "yarn run development",
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=webpack.config.js",
-    "watch": "yarn run development --watch",
-    "watch-poll": "yarn run watch --watch-poll",
     "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=webpack.config.js",
+    "lint": "tslint --fix -c tslint.json 'resources/assets/lib/**/*.ts' 'resources/assets/lib/**/*.tsx'",
     "prod": "yarn run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=webpack.config.js"
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=webpack.config.js",
+    "watch": "yarn run development --watch",
+    "watch-poll": "yarn run watch --watch-poll"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.6.3",
     "@types/jquery": "^3.3.0",
+    "@types/lodash": "^4.14.122",
     "@types/react": "^16.7.0",
     "@types/react-dom": "^16.0.11",
     "babel-preset-react": "^6.3.13",

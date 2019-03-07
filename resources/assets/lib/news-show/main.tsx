@@ -18,6 +18,7 @@
 
 import AdminMenu from 'admin-menu';
 import NewsPostJson from 'interfaces/news-post-json';
+import * as _ from 'lodash';
 import NewsHeader from 'news-header';
 import * as React from 'react';
 
@@ -93,7 +94,7 @@ export default class Main extends React.Component<PropsInterface, {}> {
     </>;
   }
 
-  private renderHeader = ({author}: {author: string}) => {
+  private renderHeader = ({author}: {author?: string}) => {
     let authorDiv;
 
     if (author != null) {
@@ -190,7 +191,7 @@ export default class Main extends React.Component<PropsInterface, {}> {
 
     let author;
     const authorEl = _.last(contentHTML.querySelectorAll('p'));
-    if (authorEl != null && authorEl.textContent.match(/^[—–][^—–]/) != null) {
+    if (authorEl != null && authorEl.textContent != null && authorEl.textContent.match(/^[—–][^—–]/) != null) {
       author = authorEl.textContent.slice(1);
     }
 

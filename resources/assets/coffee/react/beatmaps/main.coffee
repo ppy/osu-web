@@ -197,6 +197,8 @@ class Beatmaps.Main extends React.PureComponent
         more: data.cursor? && data.total > beatmaps.length
         url: @state.paging.url
       recommendedDifficulty: data.recommended_difficulty
+    .catch (error) ->
+      throw error unless error.readyState == 0
 
 
   fetchResults: (newQuery) =>
