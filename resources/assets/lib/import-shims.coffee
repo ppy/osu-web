@@ -33,7 +33,7 @@ import VirtualList from 'react-virtual-list'
 import GalleryContest from 'gallery-contest'
 import WindowVHPatcher from 'window-vh-patcher'
 import NotificationWidget from 'notification-widget'
-import NotificationStore from 'notification-store'
+import NotificationStore from 'stores/notification-store'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
