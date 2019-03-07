@@ -32,7 +32,8 @@ import TextareaAutosize from 'react-autosize-textarea'
 import VirtualList from 'react-virtual-list'
 import GalleryContest from 'gallery-contest'
 import WindowVHPatcher from 'window-vh-patcher'
-import Notification from 'notification'
+import NotificationWidget from 'notification-widget'
+import NotificationStore from 'notification-store'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
@@ -40,7 +41,8 @@ window.Promise ?= Promise
 window._exported = {
   BackToTop
   GalleryContest
-  Notification
+  NotificationStore
+  NotificationWidget
   PlayDetailList
   PlayDetailMenu
   ReportComment
