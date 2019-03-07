@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import * as moment from 'moment';
 import * as React from 'react';
 
 interface PropsInterface {

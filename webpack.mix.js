@@ -100,6 +100,7 @@ vendor.forEach(function (script) {
 let webpackConfig = {
   externals: {
     "lodash": "_",
+    "moment": "moment",
     "prop-types": "PropTypes",
     "react": "React",
     "react-dom": "ReactDOM",
