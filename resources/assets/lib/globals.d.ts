@@ -13,7 +13,6 @@ declare var window: Window;
 
 // libraries
 declare var laroute: any;
-declare var moment: any;
 declare var Turbolinks: Turbolinks;
 
 // our helpers

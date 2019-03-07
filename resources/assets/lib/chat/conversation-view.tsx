@@ -19,6 +19,7 @@
 import * as _ from 'lodash';
 import { inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
+import * as moment from 'moment';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
 import MessageDivider from './message-divider';

@@ -19,6 +19,7 @@
 import AdminMenu from 'admin-menu';
 import NewsPostJson from 'interfaces/news-post-json';
 import * as _ from 'lodash';
+import * as moment from 'moment';
 import NewsHeader from 'news-header';
 import * as React from 'react';
 
