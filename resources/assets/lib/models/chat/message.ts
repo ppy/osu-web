@@ -19,6 +19,7 @@
 import { MessageJSON } from 'chat/chat-api-responses';
 import { action, observable} from 'mobx';
 import User from 'models/user';
+import * as moment from 'moment';
 
 export default class Message {
   @observable messageId: number | string = -1;

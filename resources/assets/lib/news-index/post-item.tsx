@@ -17,6 +17,7 @@
  */
 
 import PostJson from 'interfaces/news-post-json';
+import * as moment from 'moment';
 import * as React from 'react';
 
 export default function PostItem({post}: {post: PostJson}) {
