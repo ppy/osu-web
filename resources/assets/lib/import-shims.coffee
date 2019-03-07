@@ -27,6 +27,7 @@ import { ScoreHelper } from 'score-helper'
 import { SelectOptions } from 'select-options'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { StoreCheckout } from 'store-checkout'
+import { UserCardTooltip } from 'user-card-tooltip'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
 import VirtualList from 'react-virtual-list'
@@ -47,6 +48,7 @@ window._exported = {
   SpotlightSelectOptions
   GalleryContest
   WindowVHPatcher
+  UserCardTooltip
 }
 
 # refer to variables.less

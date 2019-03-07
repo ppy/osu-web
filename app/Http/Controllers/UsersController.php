@@ -69,6 +69,10 @@ class UsersController extends Controller
         // it'll show the card of the non-restricted user.
         $user = User::lookup($id);
 
+        if (request()->expectsJson()) {
+            return json_item($user, 'UserCompact', ['cover', 'country']);
+        }
+
         // render usercard as popup (i.e. pretty fade-in elements on load)
         $popup = true;
 
