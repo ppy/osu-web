@@ -24,7 +24,7 @@ interface PropsInterface {
 }
 
 interface StateInterface {
-  user: User;
+  user?: User;
 }
 
 /**
@@ -56,10 +56,19 @@ export class UserCardTooltip extends React.PureComponent<PropsInterface, StateIn
   async getUser() {
     const url = laroute.route('users.card', { user: this.props.userId });
     const response = await fetch(url, { headers: { Accept: 'application/json' } });
-    return await response.json();
+
+    if (response.ok) {
+      return await response.json();
+    } else {
+      return null;
+    }
   }
 
   render(): React.ReactNode {
-    return <UserCard user={this.state.user} />;
+    if (this.state.user) {
+      return <UserCard user={this.state.user} />;
+    } else {
+      return null;
+    }
   }
 }

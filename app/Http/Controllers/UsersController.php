@@ -70,7 +70,11 @@ class UsersController extends Controller
         $user = User::lookup($id);
 
         if (request()->expectsJson()) {
-            return json_item($user, 'UserCompact', ['cover', 'country']);
+            if ($user !== null) {
+                return json_item($user, 'UserCompact', ['cover', 'country']);
+            } else {
+                return response(null, 404);
+            }
         }
 
         // render usercard as popup (i.e. pretty fade-in elements on load)
