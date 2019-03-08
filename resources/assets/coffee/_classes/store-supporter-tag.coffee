@@ -28,6 +28,7 @@ class @StoreSupporterTag
     @debouncedGetUser = _.debounce @getUser, 300
     @el = rootElement
     @searching = false
+    @user = window.currentUser
 
     # Everything should be scoped under the root @el
     @priceElement = @el.querySelector('.js-price')
@@ -42,6 +43,8 @@ class @StoreSupporterTag
     @initializeSliderPresets()
     @initializeUsernameInput()
     @updateCostDisplay()
+
+    @updateTargetId() # force target_id for consistency.
     @setUserInteraction(@user?.id?)
 
 
@@ -121,9 +124,8 @@ class @StoreSupporterTag
       $.publish 'store-supporter-tag:update-user', null
       return @setUserInteraction(false)
 
-    @targetIdElement.value = @user?.id
     $.publish 'store-supporter-tag:update-user', @user
-
+    @updateTargetId()
     @setUserInteraction(@user?.id?)
 
   updateCostDisplay: =>
@@ -135,3 +137,6 @@ class @StoreSupporterTag
 
   updateSliderPreset: (elem, cost) ->
     $(elem).toggleClass('js-slider-preset--active', cost.duration() >= +elem.dataset.months)
+
+  updateTargetId: =>
+    @targetIdElement.value = @user?.id
