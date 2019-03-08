@@ -45,14 +45,94 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     this.setState({ backgroundLoaded: true });
   }
 
-  render(): React.ReactNode {
+  render() {
     const { user } = this.props;
-    let background: React.ReactFragment;
+    const details = this.isUserLoaded ?
+      <div className='usercard__icons'>
+        <div className='usercard__icon'>
+          <a href={laroute.route('rankings', { mode: 'osu', type: 'performance', country: user.country_code })}>
+            <FlagCountry country={ user.country }/>
+          </a>
+        </div>
 
+        {
+          user.is_supporter ?
+          <div className='usercard__icon'>
+            <a className='usercard__link-wrapper' href={laroute.route('support-the-game')}>
+              <SupporterIcon smaller={true} />
+            </a>
+          </div> : null
+        }
+
+        <div className='usercard__icon'>
+          <FriendButton userId={user.id} />
+        </div>
+
+        {
+          currentUser != null ? // TODO: need to get blocks
+          <div className='usercard__icon'>
+            <a className='user-action-button user-action-button--message'
+              href={laroute.route('messages.users.show', { user: user.id })}
+              title={osu.trans('users.card.send_message')}
+            >
+              <i className='fas fa-envelope'></i>
+            </a>
+          </div> : null
+        }
+      </div> : null;
+
+    return (
+      <div className='usercard'>
+        { this.renderBackground() }
+
+        <div className='usercard__card'>
+          <div className='usercard__card-content'>
+            { this.renderAvatar() }
+
+            <div className='usercard__metadata'>
+              <div className='usercard__username'>{ user.username }</div>
+              { details }
+            </div>
+          </div>
+          <div className={`usercard__status-bar usercard__status-bar--${this.isUserLoaded && user.is_online ? 'online' : 'offline'}`}>
+            <span className='far fa-fw fa-circle usercard__status-icon'></span>
+            <span className='usercard__status-message' title='last visit'>
+              {this.isUserLoaded && user.is_online ? osu.trans('users.status.online') : osu.trans('users.status.offline')}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  renderAvatar() {
+    const { user } = this.props;
     let avatarSpaceCssClass = 'usercard__avatar-space';
     if (!this.state.avatarLoaded) {
       avatarSpaceCssClass += ' usercard__avatar-space--loading';
     }
+
+    return (
+      <div className={avatarSpaceCssClass}>
+        <div className='usercard__avatar usercard__avatar--loader'>
+          <div className='la-ball-clip-rotate'></div>
+        </div>
+        {
+          this.isUserLoaded ? <img className='usercard__avatar usercard__avatar--main'
+                                   onError={this.onAvatarLoad} // remove spinner if error
+                                   onLoad={this.onAvatarLoad}
+                                   src={user.avatar_url}
+                              />
+                            : null
+        }
+      </div>
+    );
+  }
+
+  renderBackground() {
+    const { user } = this.props;
+    let background: React.ReactNode;
+    let backgroundLink: React.ReactNode;
 
     if (user.cover && user.cover.url) {
       let backgroundCssClass = 'usercard__background';
@@ -69,67 +149,20 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
       background = <div className='usercard__background-overlay usercard__background-overlay--guest'></div>;
     }
 
-    return (
-      <div className='usercard'>
-        <a href={laroute.route('users.show', { user: user.id })} className='usercard__background-container'>
+    if (this.isUserLoaded) {
+      backgroundLink =
+        <a href={laroute.route('users.show', { user: user.id })}
+           className='usercard__background-container'>
           {background}
-        </a>
+        </a>;
+    } else {
+      backgroundLink = background;
+    }
 
-        <div className='usercard__card'>
-          <div className='usercard__card-content'>
-            <div className={avatarSpaceCssClass}>
-              <div className='usercard__avatar usercard__avatar--loader'>
-                <div className='la-ball-clip-rotate'></div>
-              </div>
-              <img className='usercard__avatar usercard__avatar--main'
-                   onError={this.onAvatarLoad} // remove spinner if error
-                   onLoad={this.onAvatarLoad}
-                   src={user.avatar_url}
-              />
-            </div>
-            <div className='usercard__metadata'>
-              <div className='usercard__username'>{ user.username }</div>
-              <div className='usercard__icons'>
-                <div className='usercard__icon'>
-                  <a href={laroute.route('rankings', { mode: 'osu', type: 'performance', country: user.country_code })}>
-                    <FlagCountry country={ user.country }/>
-                  </a>
-                </div>
+    return backgroundLink;
+  }
 
-                { user.is_supporter ?
-                  <div className='usercard__icon'>
-                    <a className='usercard__link-wrapper' href={laroute.route('support-the-game')}>
-                      <SupporterIcon smaller={true} />
-                    </a>
-                  </div>
-                  : null
-                }
-                <div className='usercard__icon'>
-                  <FriendButton userId={user.id} />
-                </div>
-
-                { currentUser != null ? // TODO: need to get blocks
-                  <div className='usercard__icon'>
-                    <a className='user-action-button user-action-button--message'
-                      href={laroute.route('messages.users.show', { user: user.id })}
-                      title={osu.trans('users.card.send_message')}
-                    >
-                      <i className='fas fa-envelope'></i>
-                    </a>
-                  </div>
-                  : null
-                }
-              </div>
-            </div>
-          </div>
-          <div className={`usercard__status-bar usercard__status-bar--${user.is_online ? 'online' : 'offline'}`}>
-            <span className='far fa-fw fa-circle usercard__status-icon'></span>
-            <span className='usercard__status-message' title='last visit'>
-              {user.is_online ? osu.trans('users.status.online') : osu.trans('users.status.offline')}
-            </span>
-          </div>
-        </div>
-      </div>
-    );
+  private get isUserLoaded() {
+    return this.props.user.id > 0;
   }
 }
