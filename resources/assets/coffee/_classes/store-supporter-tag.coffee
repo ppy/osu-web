@@ -37,26 +37,12 @@ class @StoreSupporterTag
     @sliderPresets = @el.querySelectorAll('.js-slider-preset')
     @targetIdElement = @el.querySelector('input[name="item[extra_data][target_id]"]')
     @usernameInput = @el.querySelector('.js-username-input')
-    @usercard = @el.querySelector('.js-avatar')
-
-    @user =
-      userId: @targetIdElement.value
-
-    @currentUser =
-      userId: @el.dataset.userId
-      username: @el.dataset.username
-      cardHtml: @el.dataset.cardHtml ? @usercard.innerHTML
-    # save/restore current user card html
-    $(document).on 'turbolinks:before-cache', =>
-      @el.dataset.cardHtml = @currentUser.cardHtml
-
-    delete @el.dataset.cardHtml
 
     @cost = @calculate(@initializeSlider().slider('value'))
     @initializeSliderPresets()
     @initializeUsernameInput()
     @updateCostDisplay()
-    @setUserInteraction(@user?.userId)
+    @setUserInteraction(@user?.id?)
 
 
   initializeSlider: =>
@@ -84,18 +70,19 @@ class @StoreSupporterTag
 
   getUser: (username) =>
     if !username # reset to current user on empty
-      @user = @currentUser
+      @user = window.currentUser
       @searching = false
       @updateSearchResult()
       return
 
-    $.post laroute.route('users.check-username-exists'), username: username
+    $.ajax
+      data:
+        username: username
+      dataType: 'json',
+      type: 'POST'
+      url: laroute.route('users.check-username-exists')
     .done (data) =>
-      # make a User DTO?
-      @user =
-        userId: data.user_id
-        username: data.username
-        cardHtml: data.card_html
+      @user = data
 
     .fail (xhr) =>
       @user = null
@@ -131,17 +118,13 @@ class @StoreSupporterTag
 
   updateSearchResult: =>
     if @searching
-      @usercard.innerHTML = $('#js-usercard__loading-template').html()
+      $.publish 'store-supporter-tag:update-user', null
       return @setUserInteraction(false)
 
-    if @user
-      @targetIdElement.value = @user.userId
-      @usercard.innerHTML = @user.cardHtml
-      reactTurbolinks.boot()
-    else
-      @targetIdElement.value = null
+    @targetIdElement.value = @user?.id
+    $.publish 'store-supporter-tag:update-user', @user
 
-    @setUserInteraction(@user?.userId)
+    @setUserInteraction(@user?.id?)
 
   updateCostDisplay: =>
     @el.querySelector('input[name="item[cost]"]').value = @cost.price()

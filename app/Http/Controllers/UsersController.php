@@ -108,6 +108,10 @@ class UsersController extends Controller
         $username = Request::input('username');
         $user = User::lookup($username, 'string') ?? UserNotFound::instance();
 
+        if (request()->expectsJson()) {
+            return json_item($user, 'UserCompact', ['cover', 'country']);
+        }
+
         return [
             'user_id' => $user->user_id,
             'username' => $user->username,
