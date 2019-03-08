@@ -19,6 +19,7 @@
 import * as React from 'react';
 
 interface PropsInterface {
+  modifiers: [];
   user: User;
 }
 
@@ -28,6 +29,10 @@ interface StateInterface {
 }
 
 export class UserCard extends React.PureComponent<PropsInterface, StateInterface> {
+  static defaultProps = {
+    modifiers: [],
+  };
+
   constructor(props: PropsInterface) {
     super(props);
 
@@ -81,8 +86,13 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
         }
       </div> : null;
 
+    let usercardCss = 'usercard';
+    for (const modifier of this.props.modifiers) {
+      usercardCss += ` usercard--${modifier}`;
+    }
+
     return (
-      <div className='usercard'>
+      <div className={usercardCss}>
         { this.renderBackground() }
 
         <div className='usercard__card'>
