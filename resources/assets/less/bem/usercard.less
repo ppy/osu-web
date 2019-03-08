@@ -24,6 +24,7 @@
   @offline-color: #000;
   @online-color: @green;
   @flag-gutter: 3px; // more like half of it
+  @fade-duration: 220ms;
 
   display: flex;
   flex-direction: column;
@@ -51,15 +52,20 @@
   }
 
   &__background {
+    // to prevent annoying white-pixel artefacts appearing due to
+    // browsers not handling 'overflow: hidden' properly
+    .default-border-radius();
     .full-size();
     object-fit: cover;
+    transition: opacity linear @fade-duration;
+
     .@{top}--popup & {
       opacity: 0;
     }
 
-    // to prevent annoying white-pixel artefacts appearing due to
-    // browsers not handling 'overflow: hidden' properly
-    .default-border-radius();
+    &--loading {
+      opacity: 0;
+    }
   }
 
   &__background-container {

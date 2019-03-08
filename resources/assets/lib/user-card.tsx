@@ -23,15 +23,36 @@ interface PropsInterface {
   loading?: boolean;
 }
 
-export class UserCard extends React.PureComponent<PropsInterface> {
+interface StateInterface {
+  backgroundLoaded: boolean;
+}
+
+export class UserCard extends React.PureComponent<PropsInterface, StateInterface> {
+  constructor(props: PropsInterface) {
+    super(props);
+
+    this.state = {
+      backgroundLoaded: false,
+    };
+  }
+
+  onImageLoad = (event: React.SyntheticEvent) => {
+    this.setState({ backgroundLoaded: true });
+  }
+
   render(): React.ReactNode {
     const { user } = this.props;
     let background: React.ReactFragment;
 
     if (user.cover && user.cover.url) {
+      let backgroundCssClass = 'usercard__background';
+      if (!this.state.backgroundLoaded) {
+        backgroundCssClass += ' usercard__background--loading';
+      }
+
       background =
         <React.Fragment>
-          <img className='usercard__background' src={user.cover.url} />
+          <img className={backgroundCssClass} src={user.cover.url} onLoad={this.onImageLoad} />
           <div className='usercard__background-overlay'></div>
         </React.Fragment>;
     } else {
