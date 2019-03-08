@@ -55,11 +55,14 @@ export class UserCardTooltip extends React.PureComponent<PropsInterface, StateIn
 
   async getUser() {
     const url = laroute.route('users.card', { user: this.props.userId });
-    const response = await fetch(url, { headers: { Accept: 'application/json' } });
 
-    if (response.ok) {
-      return await response.json();
-    } else {
+    try {
+      return await osu.promisify($.ajax({
+        dataType: 'json',
+        type: 'GET',
+        url,
+      }));
+    } catch (error) {
       return null;
     }
   }
