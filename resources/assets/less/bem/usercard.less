@@ -132,20 +132,21 @@
     .full-size();
     object-fit: contain;
     background-color: #333;
+    transition: opacity linear @fade-duration;
 
     &--loader {
+      .center-content();
+      color: #fff;
+      font-size: 14px;
+      background: fade(#fff, 10%);
       opacity: 0;
 
-      .@{top}--popup & {
-        .center-content();
-        color: #fff;
-        font-size: 14px;
-        background: fade(#fff, 10%);
+      .@{top}__avatar-space--loading && {
         opacity: 0.25;
       }
     }
 
-    .@{top}--popup &--main {
+    .@{top}__avatar-space--loading & {
       opacity: 0;
     }
   }

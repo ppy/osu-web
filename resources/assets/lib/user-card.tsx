@@ -24,6 +24,7 @@ interface PropsInterface {
 }
 
 interface StateInterface {
+  avatarLoaded: boolean;
   backgroundLoaded: boolean;
 }
 
@@ -32,17 +33,27 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     super(props);
 
     this.state = {
+      avatarLoaded: false,
       backgroundLoaded: false,
     };
   }
 
-  onImageLoad = (event: React.SyntheticEvent) => {
+  onAvatarLoad = () => {
+    this.setState({ avatarLoaded: true });
+  }
+
+  onBackgroundLoad = () => {
     this.setState({ backgroundLoaded: true });
   }
 
   render(): React.ReactNode {
     const { user } = this.props;
     let background: React.ReactFragment;
+
+    let avatarSpaceCssClass = 'usercard__avatar-space';
+    if (!this.state.avatarLoaded) {
+      avatarSpaceCssClass += ' usercard__avatar-space--loading';
+    }
 
     if (user.cover && user.cover.url) {
       let backgroundCssClass = 'usercard__background';
@@ -52,7 +63,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
 
       background =
         <React.Fragment>
-          <img className={backgroundCssClass} src={user.cover.url} onLoad={this.onImageLoad} />
+          <img className={backgroundCssClass} onLoad={this.onBackgroundLoad} src={user.cover.url} />
           <div className='usercard__background-overlay'></div>
         </React.Fragment>;
     } else {
@@ -67,9 +78,15 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
 
         <div className='usercard__card'>
           <div className='usercard__card-content'>
-            <div className='usercard__avatar-space'>
-              <div className='usercard__avatar usercard__avatar--loader js-usercard--avatar-loader'></div>
-              <img className='usercard__avatar usercard__avatar--main' src={user.avatar_url} />
+            <div className={avatarSpaceCssClass}>
+              <div className='usercard__avatar usercard__avatar--loader'>
+                <div className='la-ball-clip-rotate'></div>
+              </div>
+              <img className='usercard__avatar usercard__avatar--main'
+                   onError={this.onAvatarLoad} // remove spinner if error
+                   onLoad={this.onAvatarLoad}
+                   src={user.avatar_url}
+              />
             </div>
             <div className='usercard__metadata'>
               <div className='usercard__username'>{this.props.loading ? osu.trans('users.card.loading') : user.username}</div>
