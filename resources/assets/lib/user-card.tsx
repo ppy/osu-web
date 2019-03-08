@@ -19,7 +19,7 @@
 import * as React from 'react';
 
 interface PropsInterface {
-  modifiers: [];
+  modifiers: string[];
   user: User;
 }
 
