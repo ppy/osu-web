@@ -20,7 +20,6 @@ import * as React from 'react';
 
 interface PropsInterface {
   user: User;
-  loading?: boolean;
 }
 
 interface StateInterface {
@@ -89,7 +88,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
               />
             </div>
             <div className='usercard__metadata'>
-              <div className='usercard__username'>{this.props.loading ? osu.trans('users.card.loading') : user.username}</div>
+              <div className='usercard__username'>{ user.username }</div>
               <div className='usercard__icons'>
                 <div className='usercard__icon'>
                   <a href={laroute.route('rankings', { mode: 'osu', type: 'performance', country: user.country_code })}>
