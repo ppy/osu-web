@@ -26,5 +26,23 @@
 @include ('layout._current_user')
 
 <div id="js-usercard__loading-template" class="hidden">
-    @include('objects._usercard', ['loading' => true])
+    {{-- This content is a placeholder so that qtip has something to fade in while the react component mounts --}}
+    <div>
+        <div class="usercard">
+            <div class="usercard__background-container">
+                <div class="usercard__background-overlay"></div>
+            </div>
+        <div class="usercard__card">
+            <div class="usercard__card-content">
+                <div class="usercard__avatar-space"></div>
+            </div>
+            <div class="usercard__metadata">
+                <div class="usercard__username">{{ trans('users.card.loading') }}</div>
+                <div class="usercard__status-bar usercard__status-bar--offline">
+                    <span class="far fa-fw fa-circle usercard__status-icon"></span>
+                    <span class="usercard__status-message">Offline</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

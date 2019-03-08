@@ -62,7 +62,8 @@ class @UserCard
       when 'left center' then 'right center'
       when 'right center' then 'left center'
 
-    card = document.createElement 'div'
+    # react should override the existing content after mounting
+    card = $('#js-usercard__loading-template').children().clone()[0]
     card.classList.add 'js-react--user-card-tooltip'
     card.dataset.userId = userId
 
