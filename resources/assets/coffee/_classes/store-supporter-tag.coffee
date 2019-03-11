@@ -68,14 +68,17 @@ class @StoreSupporterTag
       slide: @onSliderValueChanged
       change: @onSliderValueChanged
 
+
   initializeSliderPresets: =>
     $(@sliderPresets).on 'click', (event) =>
       target = event.currentTarget
       price = StoreSupporterTagPrice.durationToPrice(target.dataset.months)
       $(@slider).slider('value', @sliderValue(price)) if price
 
+
   initializeUsernameInput: =>
     $(@usernameInput).on 'input', @onInput
+
 
   getUser: (username) =>
     if !username # reset to current user on empty
@@ -102,13 +105,16 @@ class @StoreSupporterTag
       @searching = false
       @updateSearchResult()
 
+
   calculate: (position) =>
     new StoreSupporterTagPrice(Math.floor(position / @RESOLUTION))
+
 
   onSliderValueChanged: (event, ui) =>
     @slider.dataset.lastValue = ui.value
     @cost = @calculate(ui.value)
     @updateCostDisplay()
+
 
   onInput: (event) =>
     if !@searching
@@ -116,14 +122,17 @@ class @StoreSupporterTag
       @updateSearchResult()
     @debouncedGetUser(event.currentTarget.value)
 
+
   setUserInteraction: (enabled) =>
     StoreCart.setEnabled(enabled)
     # TODO: need to elevate this element when switching over to new store design.
     $(@el).toggleClass('js-store--disabled', !enabled)
     $('.js-slider').slider('disabled': !enabled)
 
+
   sliderValue: (price) ->
     price * @RESOLUTION
+
 
   updateSearchResult: =>
     if @searching
@@ -134,6 +143,7 @@ class @StoreSupporterTag
     @updateTargetId()
     @setUserInteraction(@user?.id?)
 
+
   updateCostDisplay: =>
     @el.querySelector('input[name="item[cost]"]').value = @cost.price()
     @priceElement.textContent = "USD #{@cost.price()}"
@@ -141,8 +151,10 @@ class @StoreSupporterTag
     @discountElement.textContent = @cost.discountText()
     @updateSliderPreset(elem, @cost) for elem in @sliderPresets
 
+
   updateSliderPreset: (elem, cost) ->
     $(elem).toggleClass('js-slider-preset--active', cost.duration() >= +elem.dataset.months)
+
 
   updateTargetId: =>
     @targetIdElement.value = @user?.id
