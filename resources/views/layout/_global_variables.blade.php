@@ -38,10 +38,6 @@
             </div>
             <div class="usercard__metadata">
                 <div class="usercard__username">{{ trans('users.card.loading') }}</div>
-                <div class="usercard__status-bar usercard__status-bar--offline">
-                    <span class="far fa-fw fa-circle usercard__status-icon"></span>
-                    <span class="usercard__status-message">Offline</span>
-                </div>
             </div>
         </div>
     </div>

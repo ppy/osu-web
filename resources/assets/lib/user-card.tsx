@@ -103,12 +103,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
               { details }
             </div>
           </div>
-          <div className={`usercard__status-bar usercard__status-bar--${this.isUserLoaded && this.user.is_online ? 'online' : 'offline'}`}>
-            <span className='far fa-fw fa-circle usercard__status-icon'></span>
-            <span className='usercard__status-message' title='last visit'>
-              {this.isUserLoaded && this.user.is_online ? osu.trans('users.status.online') : osu.trans('users.status.offline')}
-            </span>
-          </div>
+          { this.renderOnlineStatus() }
         </div>
       </div>
     );
@@ -167,6 +162,19 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     }
 
     return backgroundLink;
+  }
+
+  renderOnlineStatus() {
+    if (!this.isUserLoaded) { return null; }
+
+    return (
+      <div className={`usercard__status-bar usercard__status-bar--${this.user.is_online ? 'online' : 'offline'}`}>
+        <span className='far fa-fw fa-circle usercard__status-icon'></span>
+        <span className='usercard__status-message' title='last visit'>
+          {this.isUserLoaded && this.user.is_online ? osu.trans('users.status.online') : osu.trans('users.status.offline')}
+        </span>
+      </div>
+    );
   }
 
   private get isUserLoaded() {
