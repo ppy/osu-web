@@ -126,7 +126,7 @@ class PollOption extends Model
         return bbcode(
             $this->poll_option_text,
             $this->post->bbcode_uid,
-            ['withGallery' => true, 'extraClasses' => 'u-ellipsis-overflow']
+            ['withGallery' => true]
         );
     }
 

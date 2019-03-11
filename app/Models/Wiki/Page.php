@@ -160,7 +160,7 @@ class Page
                 'page_text' => $indexContent,
                 'path' => $this->path,
                 'path_clean' => static::cleanupPath($this->path),
-                'title' => $this->title(),
+                'title' => strip_tags($this->title()),
                 'tags' => $this->tags(),
             ];
         }

@@ -17,6 +17,7 @@
  */
 import { PresenceJSON, SendToJSON } from 'chat/chat-api-responses';
 import MainView from 'chat/main-view';
+import * as _ from 'lodash';
 import Channel from 'models/chat/channel';
 import User from 'models/user';
 import OsuCore from 'osu-core';
@@ -61,7 +62,7 @@ reactTurbolinks.register('chat', MainView, () => {
       if (hasNonPmChannels) {
         initialChannel = dataStore.channelStore.nonPmChannels[0].channelId;
       } else if (hasPmChannels) {
-        initialChannel =  dataStore.channelStore.pmChannels[0].channelId;
+        initialChannel = dataStore.channelStore.pmChannels[0].channelId;
       }
     }
   }

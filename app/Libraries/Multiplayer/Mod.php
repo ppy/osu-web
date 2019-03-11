@@ -37,6 +37,8 @@ class Mod
     const PERFECT = 'PF';
     const RELAX = 'RX';
     const SUDDENDEATH = 'SD';
+    const WIND_UP = 'WU';
+    const WIND_DOWN = 'WD';
 
     // osu-specific
     const OSU_AUTOPILOT = 'AP';
@@ -81,6 +83,8 @@ class Mod
         self::PERFECT,
         self::RELAX,
         self::SUDDENDEATH,
+        self::WIND_DOWN,
+        self::WIND_UP,
     ];
 
     // Defines mutual-exclusivity for groups of mods, i.e. only one mod within each group can be active at a time
@@ -102,6 +106,8 @@ class Mod
             self::HALFTIME,
             self::DAYCORE,
             self::NIGHTCORE,
+            self::WIND_DOWN,
+            self::WIND_UP,
         ],
         [
             self::MANIA_KEY1,
