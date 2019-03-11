@@ -49,6 +49,10 @@ class ShopifyController extends Controller
 
         $orderId = $this->getOrderId();
         if ($orderId === null) {
+            if ($this->shouldIgnore()) {
+                return response([], 204);
+            }
+
             throw new Exception('missing orderId');
         }
 
@@ -108,6 +112,17 @@ class ShopifyController extends Controller
         }
 
         return $this->params;
+    }
+
+    private function shouldIgnore()
+    {
+        $params = $this->getParams();
+
+        return array_get($params, 'browser_ip') === null
+            && array_get($params, 'checkout_id') === null
+            && array_get($params, 'gateway') === 'manual'
+            && array_get($params, 'payment_gateway_names') === ['manual']
+            && array_get($params, 'processing_method') === 'manual';
     }
 
     private function updateOrderPayment(Order $order)
