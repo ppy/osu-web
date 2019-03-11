@@ -35,18 +35,13 @@ export class UserCardStore extends React.PureComponent<PropsInterface, StateInte
   constructor(props: PropsInterface) {
     super(props);
 
-    this.state = JSON.parse(this.props.container.dataset.state || 'null') || {
+    this.state = {
       user: this.props.user,
     };
-
-    delete this.props.container.dataset.state;
   }
 
   componentDidMount() {
     $.subscribe('store-supporter-tag:update-user.user-card-store', this.setUser.bind(this));
-    $(document).on('turbolinks:before-cache.user-card-store', () => {
-      this.props.container.dataset.state = JSON.stringify(this.state);
-    });
   }
 
   componentWillUnmount() {

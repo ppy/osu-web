@@ -28,11 +28,6 @@ class @StoreSupporterTag
     @debouncedGetUser = _.debounce @getUser, 300
     @el = rootElement
     @searching = false
-    @user = JSON.parse(@el.dataset.user ? 'null') ? window.currentUser
-    delete @el.dataset.user
-
-    $(document).on 'turbolinks:before-cache', =>
-      @el.dataset.user = JSON.stringify(@user)
 
     # Everything should be scoped under the root @el
     @priceElement = @el.querySelector('.js-price')
@@ -42,6 +37,12 @@ class @StoreSupporterTag
     @sliderPresets = @el.querySelectorAll('.js-slider-preset')
     @targetIdElement = @el.querySelector('input[name="item[extra_data][target_id]"]')
     @usernameInput = @el.querySelector('.js-username-input')
+
+    @reactElement = @el.querySelector('.js-react--user-card-store')
+    @user = JSON.parse(@reactElement.dataset.user)
+
+    $(document).on 'turbolinks:before-cache.store-supporter-tag', =>
+      @reactElement.dataset.user = JSON.stringify(@user)
 
     @cost = @calculate(@initializeSlider().slider('value'))
     @initializeSliderPresets()
