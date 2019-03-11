@@ -32,6 +32,7 @@
             <div class="usercard__background-container">
                 <div class="usercard__background-overlay"></div>
             </div>
+        </div>
         <div class="usercard__card">
             <div class="usercard__card-content">
                 <div class="usercard__avatar-space"></div>
