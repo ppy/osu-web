@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import * as moment from 'moment';
 import * as React from 'react';
 
 interface PropsInterface {
@@ -167,10 +168,11 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   renderOnlineStatus() {
     if (!this.isUserLoaded) { return null; }
 
+    const title = this.user.last_visit && moment(this.user.last_visit).fromNow();
     return (
       <div className={`usercard__status-bar usercard__status-bar--${this.user.is_online ? 'online' : 'offline'}`}>
         <span className='far fa-fw fa-circle usercard__status-icon'></span>
-        <span className='usercard__status-message' title='last visit'>
+        <span className='usercard__status-message' title={title}>
           {this.isUserLoaded && this.user.is_online ? osu.trans('users.status.online') : osu.trans('users.status.offline')}
         </span>
       </div>

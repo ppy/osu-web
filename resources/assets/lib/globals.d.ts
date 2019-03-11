@@ -84,6 +84,7 @@ interface User {
   is_bot: boolean;
   is_online: boolean;
   is_supporter: boolean;
+  last_visit?: string;
   pm_friends_only: boolean;
   profile_colour?: string;
   username: string
