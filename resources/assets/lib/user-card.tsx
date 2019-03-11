@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import * as _ from 'lodash';
 import * as moment from 'moment';
 import * as React from 'react';
 
@@ -74,7 +75,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
         </div>
 
         {
-          currentUser != null ? // TODO: need to get blocks
+          this.canMessage ?
           <div className='usercard__icon'>
             <a className='user-action-button user-action-button--message'
               href={laroute.route('messages.users.show', { user: this.user.id })}
@@ -177,6 +178,11 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
         </span>
       </div>
     );
+  }
+
+  private get canMessage() {
+    return currentUser != null
+       && _.find(currentUser.blocks, { target_id: this.user.id }) == null;
   }
 
   private get isUserLoaded() {
