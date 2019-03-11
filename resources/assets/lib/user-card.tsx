@@ -20,7 +20,7 @@ import * as React from 'react';
 
 interface PropsInterface {
   modifiers: string[];
-  user: User;
+  user?: User;
 }
 
 interface StateInterface {
@@ -51,17 +51,16 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   }
 
   render() {
-    const { user } = this.props;
     const details = this.isUserLoaded ?
       <div className='usercard__icons'>
         <div className='usercard__icon'>
-          <a href={laroute.route('rankings', { mode: 'osu', type: 'performance', country: user.country_code })}>
-            <FlagCountry country={ user.country }/>
+          <a href={laroute.route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}>
+            <FlagCountry country={ this.user.country }/>
           </a>
         </div>
 
         {
-          user.is_supporter ?
+          this.user.is_supporter ?
           <div className='usercard__icon'>
             <a className='usercard__link-wrapper' href={laroute.route('support-the-game')}>
               <SupporterIcon smaller={true} />
@@ -70,14 +69,14 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
         }
 
         <div className='usercard__icon'>
-          <FriendButton userId={user.id} />
+          <FriendButton userId={this.user.id} />
         </div>
 
         {
           currentUser != null ? // TODO: need to get blocks
           <div className='usercard__icon'>
             <a className='user-action-button user-action-button--message'
-              href={laroute.route('messages.users.show', { user: user.id })}
+              href={laroute.route('messages.users.show', { user: this.user.id })}
               title={osu.trans('users.card.send_message')}
             >
               <i className='fas fa-envelope'></i>
@@ -100,14 +99,14 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
             { this.renderAvatar() }
 
             <div className='usercard__metadata'>
-              <div className='usercard__username'>{ user.username }</div>
+              <div className='usercard__username'>{ this.user.username }</div>
               { details }
             </div>
           </div>
-          <div className={`usercard__status-bar usercard__status-bar--${this.isUserLoaded && user.is_online ? 'online' : 'offline'}`}>
+          <div className={`usercard__status-bar usercard__status-bar--${this.isUserLoaded && this.user.is_online ? 'online' : 'offline'}`}>
             <span className='far fa-fw fa-circle usercard__status-icon'></span>
             <span className='usercard__status-message' title='last visit'>
-              {this.isUserLoaded && user.is_online ? osu.trans('users.status.online') : osu.trans('users.status.offline')}
+              {this.isUserLoaded && this.user.is_online ? osu.trans('users.status.online') : osu.trans('users.status.offline')}
             </span>
           </div>
         </div>
@@ -116,7 +115,6 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   }
 
   renderAvatar() {
-    const { user } = this.props;
     let avatarSpaceCssClass = 'usercard__avatar-space';
     if (!this.state.avatarLoaded) {
       avatarSpaceCssClass += ' usercard__avatar-space--loading';
@@ -131,7 +129,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
           this.isUserLoaded ? <img className='usercard__avatar usercard__avatar--main'
                                    onError={this.onAvatarLoad} // remove spinner if error
                                    onLoad={this.onAvatarLoad}
-                                   src={user.avatar_url}
+                                   src={this.user.avatar_url}
                               />
                             : null
         }
@@ -140,11 +138,10 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   }
 
   renderBackground() {
-    const { user } = this.props;
     let background: React.ReactNode;
     let backgroundLink: React.ReactNode;
 
-    if (user.cover && user.cover.url) {
+    if (this.user.cover && this.user.cover.url) {
       let backgroundCssClass = 'usercard__background';
       if (!this.state.backgroundLoaded) {
         backgroundCssClass += ' usercard__background--loading';
@@ -152,7 +149,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
 
       background =
         <React.Fragment>
-          <img className={backgroundCssClass} onLoad={this.onBackgroundLoad} src={user.cover.url} />
+          <img className={backgroundCssClass} onLoad={this.onBackgroundLoad} src={this.user.cover.url} />
           <div className='usercard__background-overlay'></div>
         </React.Fragment>;
     } else {
@@ -161,7 +158,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
 
     if (this.isUserLoaded) {
       backgroundLink =
-        <a href={laroute.route('users.show', { user: user.id })}
+        <a href={laroute.route('users.show', { user: this.user.id })}
            className='usercard__background-container'>
           {background}
         </a>;
@@ -173,6 +170,24 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   }
 
   private get isUserLoaded() {
-    return this.props.user.id > 0;
+    return Number.isFinite(this.user.id) &&  this.user.id > 0;
+  }
+
+  private get user() {
+    return this.props.user || this.userLoading;
+  }
+
+  private get userLoading(): User {
+    return {
+      cover: {},
+      default_group: '',
+      id: -1,
+      is_active: false,
+      is_bot: false,
+      is_online: false,
+      is_supporter: false,
+      pm_friends_only: true,
+      username: osu.trans('users.card.loading'),
+    };
   }
 }

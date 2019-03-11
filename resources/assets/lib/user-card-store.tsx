@@ -24,7 +24,7 @@ interface PropsInterface {
 }
 
 interface StateInterface {
-  user: User;
+  user?: User;
 }
 
 /**
@@ -52,20 +52,6 @@ export class UserCardStore extends React.PureComponent<PropsInterface, StateInte
   }
 
   setUser(event: JQuery.Event, user?: User) {
-    this.setState({ user: user == null ? this.userLoading : user });
-  }
-
-  get userLoading() {
-    return {
-      cover: {},
-      default_group: '',
-      id: -1,
-      is_active: false,
-      is_bot: false,
-      is_online: false,
-      is_supporter: false,
-      pm_friends_only: true,
-      username: osu.trans('users.card.loading'),
-    };
+    this.setState({ user });
   }
 }

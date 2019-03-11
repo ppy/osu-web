@@ -34,19 +34,7 @@ export class UserCardTooltip extends React.PureComponent<PropsInterface, StateIn
   constructor(props: PropsInterface) {
     super(props);
 
-    this.state = {
-      user: {
-        cover: {},
-        default_group: '',
-        id: -1,
-        is_active: false,
-        is_bot: false,
-        is_online: false,
-        is_supporter: false,
-        pm_friends_only: true,
-        username: osu.trans('users.card.loading'),
-      },
-    };
+    this.state = {};
 
     this.getUser().then((user) => {
       this.setState({ user });
