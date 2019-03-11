@@ -28,7 +28,11 @@ class @StoreSupporterTag
     @debouncedGetUser = _.debounce @getUser, 300
     @el = rootElement
     @searching = false
-    @user = window.currentUser
+    @user = JSON.parse(@el.dataset.user ? 'null') ? window.currentUser
+    delete @el.dataset.user
+
+    $(document).on 'turbolinks:before-cache', =>
+      @el.dataset.user = JSON.stringify(@user)
 
     # Everything should be scoped under the root @el
     @priceElement = @el.querySelector('.js-price')
