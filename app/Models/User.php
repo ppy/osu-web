@@ -386,7 +386,7 @@ class User extends Model implements AuthenticatableContract
     {
         if ($this->group_id !== 2 || $this->user_type === 1) {
             //reserved usernames
-            return Carbon::now()->addYears(10);
+            return Carbon::now()->addYears(3);
         }
 
         $playCount = array_reduce(array_keys(Beatmap::MODES), function ($result, $mode) {
@@ -395,7 +395,7 @@ class User extends Model implements AuthenticatableContract
 
         return $this->user_lastvisit
             ->addDays(static::INACTIVE_DAYS) //base inactivity period for all accounts
-            ->addDays($playCount * 0.75);    //bonus based on playcount
+            ->addDays(intval(1095*(1-pow(M_E,-$play_count/11000))));    //bonus based on playcount
     }
 
     public function validateChangeUsername(string $username)
