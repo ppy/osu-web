@@ -18,9 +18,10 @@
 
 .usercard {
   @top: usercard;
-  @avatar-size: 50px;
+  @avatar-size: 70px;
   @status-bar-size: 30px;
   @card-item-spacing: 10px;
+  @icon-height: 30px;
   @offline-color: #000;
   @online-color: @green;
   @flag-gutter: 3px; // more like half of it
@@ -39,12 +40,8 @@
   // to make broken cover images less ugly
   overflow: hidden;
 
-  .thick-box-shadow();
-  .link-hover({
-    .thicker-box-shadow();
-  });
   .fade-element(120ms);
-  .default-border-radius();
+  border-radius: 20px;
   .own-layer();
 
   &--friends-list {
@@ -86,6 +83,11 @@
     .link-white();
     .link-plain();
     pointer-events: none;
+
+    height: 100%;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
   }
 
   &__icon {
@@ -99,7 +101,10 @@
   }
 
   &__icons {
-    margin: @card-item-spacing (-@flag-gutter) 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    // margin: @card-item-spacing (-@flag-gutter) 0;
     display: flex;
   }
 
@@ -113,23 +118,17 @@
   &__card-content {
     display: flex;
     flex-direction: row;
-    height: @usercard-height - @status-bar-size;
-  }
-
-  &__metadata {
-    display: flex;
-    flex-direction: column;
-    margin: @card-item-spacing 0px;
+    // height: @usercard-height - @status-bar-size;
+    height: 100%;
   }
 
   &__avatar-space {
     width: @avatar-size;
     height: @avatar-size;
-    margin: @card-item-spacing;
   }
 
   &__avatar {
-    .default-border-radius();
+    border-radius: 15px;
     .full-size();
     object-fit: contain;
     background-color: #333;
@@ -153,19 +152,9 @@
   }
 
   &__message {
-    .center-content();
     .link-plain();
     .link-white();
-    border-radius: 10px;
-    width: 40px;
-    height: 20px;
-
     font-size: 14px;
-    background: fade(@blue, 70%);
-
-    &:hover {
-      background: fade(lighten(@blue, 5%), 70%);
-    }
   }
 
   &__message-icon {
@@ -180,30 +169,58 @@
     }
   }
 
-  &__username {
-    font-weight: 100;
-    font-style: italic;
-    .default-text-shadow();
-  }
-
   &__status-bar {
-    font-weight: 100;
-    height: @status-bar-size;
-    width: 100%;
-
-    padding-left: @avatar-size + (@card-item-spacing * 2);
-    display: inline-flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
     align-items: center;
-    .default-text-shadow();
 
-    background: fade(@offline-color, 50%);
+    width: 100%;
+    margin: @card-item-spacing;
 
-    &--online {
-      background: fade(@online-color, 50%);
-    }
+    font-weight: 100;
   }
 
   &__status-icon {
-    padding-right: @card-item-spacing;
+    font-size: 24px;
+    width: @avatar-size;
+    text-align: center;
+
+    color: @offline-color;
+
+    &--online {
+      color: @online-color;
+    }
+  }
+
+  &__status-message {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    max-width: 270px;
+    white-space: nowrap;
+
+    margin-left: @card-item-spacing;
+
+    font-size: 14px;
+
+    &--sub {
+      font-size: 12px;
+    }
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+
+    margin: @card-item-spacing;
+    height: @avatar-size;
+  }
+
+  &__username {
+    margin-left: @card-item-spacing;
+    font-style: italic;
   }
 }

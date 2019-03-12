@@ -61,40 +61,6 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   }
 
   render() {
-    const details = this.isUserLoaded ?
-      <div className='usercard__icons'>
-        <div className='usercard__icon'>
-          <a href={laroute.route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}>
-            <FlagCountry country={ this.user.country }/>
-          </a>
-        </div>
-
-        {
-          this.user.is_supporter ?
-          <div className='usercard__icon'>
-            <a className='usercard__link-wrapper' href={laroute.route('support-the-game')}>
-              <SupporterIcon smaller={true} />
-            </a>
-          </div> : null
-        }
-
-        <div className='usercard__icon'>
-          <FriendButton userId={this.user.id} />
-        </div>
-
-        {
-          this.canMessage ?
-          <div className='usercard__icon'>
-            <a className='user-action-button user-action-button--message'
-              href={laroute.route('messages.users.show', { user: this.user.id })}
-              title={osu.trans('users.card.send_message')}
-            >
-              <i className='fas fa-envelope'></i>
-            </a>
-          </div> : null
-        }
-      </div> : null;
-
     let usercardCss = 'usercard';
     for (const modifier of this.props.modifiers) {
       usercardCss += ` usercard--${modifier}`;
@@ -106,14 +72,13 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
 
         <div className='usercard__card'>
           <div className='usercard__card-content'>
-            { this.renderAvatar() }
-
-            <div className='usercard__metadata'>
+            <div className='usercard__user'>
+              { this.renderAvatar() }
               <div className='usercard__username'>{ this.user.username }</div>
-              { details }
             </div>
+            { this.renderIcons() }
           </div>
-          { this.renderOnlineStatus() }
+          { this.renderStatusBar() }
         </div>
       </div>
     );
@@ -174,16 +139,75 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     return backgroundLink;
   }
 
-  renderOnlineStatus() {
+  renderMenuButton() {
+
+  }
+
+  renderIcons() {
     if (!this.isUserLoaded) { return null; }
+
+    return (
+      <div className='usercard__icons'>
+        <div className='usercard__icon'>
+          <a href={laroute.route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}>
+            <FlagCountry country={ this.user.country }/>
+          </a>
+        </div>
+
+        {
+          this.user.is_supporter ?
+          <div className='usercard__icon'>
+            <a className='usercard__link-wrapper' href={laroute.route('support-the-game')}>
+              <SupporterIcon smaller={true} />
+            </a>
+          </div> : null
+        }
+
+        <div className='usercard__icon'>
+          <FriendButton userId={this.user.id} />
+        </div>
+
+        {
+          this.canMessage ?
+          <div className='usercard__icon'>
+            <a className='user-action-button user-action-button--message'
+              href={laroute.route('messages.users.show', { user: this.user.id })}
+              title={osu.trans('users.card.send_message')}
+            >
+              <i className='fas fa-envelope'></i>
+            </a>
+          </div> : null
+        }
+      </div>
+    );
+  }
+
+  renderStatusBar() {
+    if (!this.isUserLoaded) { return null; }
+
+
 
     const title = this.user.last_visit && moment(this.user.last_visit).fromNow();
     return (
-      <div className={`usercard__status-bar usercard__status-bar--${this.user.is_online ? 'online' : 'offline'}`}>
-        <span className='far fa-fw fa-circle usercard__status-icon'></span>
-        <span className='usercard__status-message' title={title}>
+      <div className='usercard__status-bar'>
+        { this.renderStatusIcon() }
+        <span className='usercard__status-message usercard__status-message--sub'>
+          {title}
+        </span>
+        <span className='usercard__status-message'>
           {this.user.is_online ? osu.trans('users.status.online') : osu.trans('users.status.offline')}
         </span>
+        { this.renderMenuButton() }
+      </div>
+    );
+  }
+
+  renderStatusIcon() {
+    if (!this.isUserLoaded) { return null; }
+
+    return (
+      <div className={`usercard__status-icon usercard__status-icon--${this.user.is_online ? 'online' : 'offline'}`}>
+        <span className='far fa-fw fa-circle'></span>
       </div>
     );
   }
