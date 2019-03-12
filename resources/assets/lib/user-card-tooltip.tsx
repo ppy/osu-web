@@ -56,10 +56,6 @@ export class UserCardTooltip extends React.PureComponent<PropsInterface, StateIn
   }
 
   render(): React.ReactNode {
-    if (this.state.user) {
-      return <UserCard user={this.state.user} />;
-    } else {
-      return null;
-    }
+    return <UserCard user={this.state.user} />;
   }
 }

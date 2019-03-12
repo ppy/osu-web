@@ -67,13 +67,9 @@ class UsersController extends Controller
     {
         // FIXME: if there's a username with the id of a restricted user,
         // it'll show the card of the non-restricted user.
-        $user = User::lookup($id);
+        $user = User::lookup($id) ?? UserNotFound::instance();
 
-        if ($user !== null) {
-            return json_item($user, 'UserCompact', ['cover', 'country']);
-        } else {
-            return response(null, 404);
-        }
+        return json_item($user, 'UserCompact', ['cover', 'country']);
     }
 
     public function disabled()
