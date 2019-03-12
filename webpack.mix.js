@@ -23,6 +23,7 @@ const webpack = require('webpack');
 const SentryPlugin = require('webpack-sentry-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
+// pre-condition for DefinePlugin
 requiredEnvs = ['PAYMENT_SANDBOX', 'SHOPIFY_DOMAIN', 'SHOPIFY_STOREFRONT_TOKEN'];
 for (const key of requiredEnvs) {
   const value = process.env[key];
