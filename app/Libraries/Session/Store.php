@@ -54,7 +54,7 @@ class Store extends \Illuminate\Session\Store
             $fullSessionId = Manage::keyPrefix($userId).':'.$sessionId;
             $this->handler->destroy($fullSessionId);
 
-            Manage::removeFullSessionId($userId, $fullSessionId);
+            Manage::removeFullId($userId, $fullSessionId);
 
             return true;
         }
@@ -191,7 +191,7 @@ class Store extends \Illuminate\Session\Store
 
         if ($destroy) {
             if (!$this->isGuestSession()) {
-                Manage::removeFullSessionId($userId, $this->getId());
+                Manage::removeFullId($userId, $this->getId());
             }
             $this->handler->destroy($this->getId());
         }

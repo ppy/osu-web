@@ -67,9 +67,9 @@ class Manage
         return config('cache.prefix').':'.static::keyPrefix($userId);
     }
 
-    public static function removeFullSessionId($userId, $fullSessionId)
+    public static function removeFullId($userId, $fullId)
     {
-        return static::removeKey($userId, config('cache.prefix').':'.$fullSessionId);
+        return static::removeKey($userId, config('cache.prefix').':'.$fullId);
     }
 
     public static function removeKey($userId, $key)
