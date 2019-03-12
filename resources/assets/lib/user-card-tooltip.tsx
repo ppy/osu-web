@@ -20,7 +20,7 @@ import * as React from 'react';
 import { UserCard } from 'user-card';
 
 interface PropsInterface {
-  userId: number | string;
+  userId: number;
 }
 
 interface StateInterface {
@@ -41,18 +41,14 @@ export class UserCardTooltip extends React.PureComponent<PropsInterface, StateIn
     });
   }
 
-  async getUser() {
+  getUser() {
     const url = laroute.route('users.card', { user: this.props.userId });
 
-    try {
-      return await osu.promisify($.ajax({
-        dataType: 'json',
-        type: 'GET',
-        url,
-      }));
-    } catch (error) {
-      return null;
-    }
+    return $.ajax({
+      dataType: 'json',
+      type: 'GET',
+      url,
+    });
   }
 
   render(): React.ReactNode {
