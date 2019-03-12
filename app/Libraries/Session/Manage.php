@@ -94,5 +94,6 @@ class Manage
         }
 
         Redis::srem(static::listKey($userId), $key);
+        Redis::del($key);
     }
 }
