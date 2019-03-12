@@ -29,7 +29,7 @@ export class Main extends React.PureComponent<PropsInterface> {
     const usersjsx: React.ReactNode[] = [];
 
     for (const user of users) {
-      usersjsx.push(<UserCard key={user.id} user={user} />);
+      usersjsx.push(<UserCard key={user.id} modifiers={['friends-list']} user={user} />);
     }
 
     return (
