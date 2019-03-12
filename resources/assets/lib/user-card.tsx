@@ -35,6 +35,18 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     modifiers: [],
   };
 
+  static userLoading: User = {
+    cover: {},
+    default_group: '',
+    id: 0,
+    is_active: false,
+    is_bot: false,
+    is_online: false,
+    is_supporter: false,
+    pm_friends_only: true,
+    username: osu.trans('users.card.loading'),
+  };
+
   constructor(props: PropsInterface) {
     super(props);
 
@@ -120,7 +132,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     return (
       <div className={avatarSpaceCssClass}>
         <div className='usercard__avatar usercard__avatar--loader'>
-          <div className='la-ball-clip-rotate'></div>
+          { !this.isUserNotFound ? <div className='la-ball-clip-rotate'></div> : null }
         </div>
         {
           this.isUserLoaded ? <img className='usercard__avatar usercard__avatar--main'
@@ -186,24 +198,14 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   }
 
   private get isUserLoaded() {
-    return Number.isFinite(this.user.id) &&  this.user.id > 0;
+    return Number.isFinite(this.user.id) && this.user.id > 0;
+  }
+
+  private get isUserNotFound() {
+    return this.user.id === -1;
   }
 
   private get user() {
-    return this.props.user || this.userLoading;
-  }
-
-  private get userLoading(): User {
-    return {
-      cover: {},
-      default_group: '',
-      id: -1,
-      is_active: false,
-      is_bot: false,
-      is_online: false,
-      is_supporter: false,
-      pm_friends_only: true,
-      username: osu.trans('users.card.loading'),
-    };
+    return this.props.user || UserCard.userLoading;
   }
 }
