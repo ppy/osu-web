@@ -174,7 +174,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
       <div className={`usercard__status-bar usercard__status-bar--${this.user.is_online ? 'online' : 'offline'}`}>
         <span className='far fa-fw fa-circle usercard__status-icon'></span>
         <span className='usercard__status-message' title={title}>
-          {this.isUserLoaded && this.user.is_online ? osu.trans('users.status.online') : osu.trans('users.status.offline')}
+          {this.user.is_online ? osu.trans('users.status.online') : osu.trans('users.status.offline')}
         </span>
       </div>
     );
