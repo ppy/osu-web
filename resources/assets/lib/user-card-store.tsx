@@ -41,7 +41,7 @@ export class UserCardStore extends React.PureComponent<PropsInterface, StateInte
   }
 
   componentDidMount() {
-    $.subscribe('store-supporter-tag:update-user.user-card-store', this.setUser.bind(this));
+    $.subscribe('store-supporter-tag:update-user.user-card-store', this.setUser);
   }
 
   componentWillUnmount() {
@@ -52,7 +52,7 @@ export class UserCardStore extends React.PureComponent<PropsInterface, StateInte
     return <UserCard user={this.state.user} />;
   }
 
-  setUser(event: JQuery.Event, user?: User) {
+  setUser = (event: JQuery.Event, user?: User) => {
     this.setState({ user });
   }
 }
