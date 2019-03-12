@@ -67,6 +67,17 @@ class Manage
         return config('cache.prefix').':'.static::keyPrefix($userId);
     }
 
+    public static function parseKey($key)
+    {
+        $pattern = '/^'.preg_quote(config('cache.prefix'), '/').':sessions:(?<userId>[0-9]+):(?<id>.{'.Store::SESSION_ID_LENGTH.'})$/';
+        preg_match($pattern, $key, $matches);
+
+        return [
+            'userId' => get_int($matches['userId'] ?? null),
+            'id' => $matches['id'] ?? null,
+        ];
+    }
+
     public static function removeFullId($userId, $fullId)
     {
         return static::removeKey($userId, config('cache.prefix').':'.$fullId);
@@ -76,6 +87,10 @@ class Manage
     {
         if (!static::isUsingRedis()) {
             return;
+        }
+
+        if ($userId === null) {
+            $userId = static::parseKey($key)['userId'];
         }
 
         Redis::srem(static::listKey($userId), $key);
