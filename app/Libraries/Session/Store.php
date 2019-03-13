@@ -75,7 +75,7 @@ class Store extends \Illuminate\Session\Store
 
     public static function parseKey($key)
     {
-        $pattern = '/^'.preg_quote(config('cache.prefix'), '/').':sessions:(?<userId>[0-9]+):(?<id>.{'.Store::SESSION_ID_LENGTH.'})$/';
+        $pattern = '/^'.preg_quote(config('cache.prefix'), '/').':sessions:(?<userId>[0-9]+):(?<id>.{'.static::SESSION_ID_LENGTH.'})$/';
         preg_match($pattern, $key, $matches);
 
         return [
