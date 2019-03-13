@@ -102,17 +102,6 @@ class Store extends \Illuminate\Session\Store
         Redis::srem(static::listKey($userId), $key);
         Redis::del($key);
     }
-    /**
-     * Get the redis key prefix of the current session (excluding cache prefix).
-     *
-     * @return string
-     */
-    protected function getCurrentKeyPrefix()
-    {
-        $sessionId = $this->getId();
-
-        return substr($sessionId, 0, strlen($sessionId) - static::SESSION_ID_LENGTH - 1);
-    }
 
     /**
      * Destroys a session owned by the current user that is identified by the given id.
@@ -223,31 +212,9 @@ class Store extends \Illuminate\Session\Store
         return is_string($id);
     }
 
-    /**
-     * Get a new, random session ID.
-     *
-     * @return string
-     */
-    protected function generateSessionId(int $userId = null)
-    {
-        // Overriden to allow namespacing the session id (used as the redis key)
-
-        return static::keyPrefix($userId).':'.Str::random(static::SESSION_ID_LENGTH);
-    }
-
     public function getIdWithoutKeyPrefix()
     {
         return $this->stripKeyPrefix($this->getId());
-    }
-
-    /**
-     * Returns the session id without the key prefix.
-     *
-     * @return string
-     */
-    protected function stripKeyPrefix($sessionId)
-    {
-        return substr($sessionId, -static::SESSION_ID_LENGTH);
     }
 
     /**
@@ -274,6 +241,43 @@ class Store extends \Illuminate\Session\Store
     }
 
     /**
+     * Save the session data to storage.
+     */
+    public function save()
+    {
+        // Overriden to track user sessions in Redis
+        parent::save();
+
+        if (!$this->isGuestSession()) {
+            Redis::sadd(config('cache.prefix').':'.$this->getCurrentKeyPrefix(), config('cache.prefix').':'.$this->getId());
+        }
+    }
+
+    /**
+     * Get a new, random session ID.
+     *
+     * @return string
+     */
+    protected function generateSessionId(int $userId = null)
+    {
+        // Overriden to allow namespacing the session id (used as the redis key)
+
+        return static::keyPrefix($userId).':'.Str::random(static::SESSION_ID_LENGTH);
+    }
+
+    /**
+     * Get the redis key prefix of the current session (excluding cache prefix).
+     *
+     * @return string
+     */
+    protected function getCurrentKeyPrefix()
+    {
+        $sessionId = $this->getId();
+
+        return substr($sessionId, 0, strlen($sessionId) - static::SESSION_ID_LENGTH - 1);
+    }
+
+    /**
      * Read the session data from the handler.
      *
      * @return array
@@ -296,15 +300,12 @@ class Store extends \Illuminate\Session\Store
     }
 
     /**
-     * Save the session data to storage.
+     * Returns the session id without the key prefix.
+     *
+     * @return string
      */
-    public function save()
+    protected function stripKeyPrefix($sessionId)
     {
-        // Overriden to track user sessions in Redis
-        parent::save();
-
-        if (!$this->isGuestSession()) {
-            Redis::sadd(config('cache.prefix').':'.$this->getCurrentKeyPrefix(), config('cache.prefix').':'.$this->getId());
-        }
+        return substr($sessionId, -static::SESSION_ID_LENGTH);
     }
 }
