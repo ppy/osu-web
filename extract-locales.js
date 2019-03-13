@@ -20,22 +20,36 @@ const fs = require('fs');
 const path = require('path');
 
 function extract() {
-  const json = getAllMesssages();
+  const messages = getAllMesssages();
 
   const langs = new Map();
-  for (const key in json) {
+  for (const key in messages) {
     const index = key.indexOf('.');
     const lang = key.substring(0, index);
     if (!langs.has(lang)) {
       langs.set(lang, {});
     }
-    langs.get(lang)[key] = json[key];
+    langs.get(lang)[key] = messages[key];
   }
 
   for (const lang of langs.keys()) {
-    filename = path.resolve(__dirname, `resources/assets/locales/${lang}.json`);
-    fs.writeFileSync(filename, JSON.stringify(langs.get(lang)));
+    filename = path.resolve(__dirname, `public/js/locales/${lang}.js`);
+    const json = JSON.stringify(langs.get(lang));
+    const script = `
+(function() {
+  'use strict';
+  if (typeof(Lang) === 'function') { Lang = new Lang(); Lang.setMessages({}); }
+  Object.assign(Lang.messages, ${json});
+})();
+`;
+    fs.writeFileSync(filename, script);
   }
+
+  // copy lang.js
+  fs.copyFileSync(
+    path.resolve(__dirname, 'vendor/mariuzzo/laravel-js-localization/lib/lang.min.js'),
+    path.resolve(__dirname, 'resources/assets/js/lang.js')
+  );
 }
 
 function getAllMesssages() {

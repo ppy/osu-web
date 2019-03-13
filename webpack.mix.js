@@ -23,6 +23,8 @@ const webpack = require('webpack');
 const SentryPlugin = require('webpack-sentry-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
+require('./extract-locales').extract();
+
 // .js doesn't support globbing by itself, so we need to glob
 // and spread the values in.
 const glob = require('glob');
@@ -201,7 +203,7 @@ mix
 .less('resources/assets/less/app.less', 'public/css')
 .scripts([
   'resources/assets/js/ga.js',
-  'resources/assets/js/messages.js',
+  'resources/assets/js/lang.js',
   'resources/assets/js/laroute.js'
 ], 'public/js/app-deps.js') // FIXME: less dumb name; this needs to be separated -
                             // compiling coffee and then concating together doesn't
