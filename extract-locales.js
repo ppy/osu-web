@@ -16,10 +16,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+'use strict';
+
 const fs = require('fs');
 const path = require('path');
 
 function extract() {
+  console.log('Extracting localizations...')
   const messages = getAllMesssages();
 
   const langs = new Map();
@@ -33,7 +36,6 @@ function extract() {
   }
 
   for (const lang of langs.keys()) {
-    filename = path.resolve(__dirname, `public/js/locales/${lang}.js`);
     const json = JSON.stringify(langs.get(lang));
     const script = `
 (function() {
@@ -42,7 +44,10 @@ function extract() {
   Object.assign(Lang.messages, ${json});
 })();
 `;
+
+    const filename = path.resolve(__dirname, `public/js/locales/${lang}.js`);
     fs.writeFileSync(filename, script);
+    console.log(`Created: ${filename}`);
   }
 
   // copy lang.js
@@ -53,12 +58,12 @@ function extract() {
 }
 
 function getAllMesssages() {
-  const messagesFile = path.resolve(__dirname, 'resources/assets/locales/messages.json');
+  const messagesFile = path.resolve(__dirname, 'resources/assets/messages.json');
   const content = fs.readFileSync(messagesFile);
 
   return JSON.parse(content);
 }
 
-module.exports = {
-  extract: extract,
-};
+const { spawnSync } = require('child_process');
+spawnSync('php', ['artisan', 'lang:js', '--json', 'resources/assets/messages.json'], { stdio: 'inherit' });
+extract();

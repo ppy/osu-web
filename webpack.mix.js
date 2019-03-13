@@ -23,8 +23,6 @@ const webpack = require('webpack');
 const SentryPlugin = require('webpack-sentry-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
-require('./extract-locales').extract();
-
 // .js doesn't support globbing by itself, so we need to glob
 // and spread the values in.
 const glob = require('glob');

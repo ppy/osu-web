@@ -45,4 +45,5 @@ php artisan laroute:generate
 
 command -v yarn || npm install -g yarn
 yarn
+yarn run extract-locales
 yarn run production
