@@ -33,9 +33,7 @@ interface StateInterface {
 export class UserCardTooltip extends React.PureComponent<PropsInterface, StateInterface> {
   readonly state: StateInterface = {};
 
-  constructor(props: PropsInterface) {
-    super(props);
-
+  componentDidMount() {
     this.getUser().then((user) => {
       this.setState({ user });
     });
