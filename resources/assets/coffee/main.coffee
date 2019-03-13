@@ -125,8 +125,8 @@ reactTurbolinks.register 'comments', CommentsManager, (el) ->
   props
 
 reactTurbolinks.register 'user-card', _exported.UserCard, (el) ->
-  modifiers: JSON.parse(el.dataset.modifiers)
-  user: JSON.parse(el.dataset.user)
+  modifiers: try JSON.parse(el.dataset.modifiers)
+  user: try JSON.parse(el.dataset.user)
 
 reactTurbolinks.register 'user-card-store', _exported.UserCardStore, (el) ->
   container: el
