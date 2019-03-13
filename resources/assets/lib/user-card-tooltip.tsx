@@ -31,10 +31,10 @@ interface StateInterface {
  * This component's job is to get the data and bootstrap the actual UserCard component for tooltips.
  */
 export class UserCardTooltip extends React.PureComponent<PropsInterface, StateInterface> {
+  readonly state: StateInterface = {};
+
   constructor(props: PropsInterface) {
     super(props);
-
-    this.state = {};
 
     this.getUser().then((user) => {
       this.setState({ user });

@@ -32,13 +32,7 @@ interface StateInterface {
  * This component's job shims UserCard for store-supporter-tag to update UserCard's props.
  */
 export class UserCardStore extends React.PureComponent<PropsInterface, StateInterface> {
-  constructor(props: PropsInterface) {
-    super(props);
-
-    this.state = {
-      user: this.props.user,
-    };
-  }
+  readonly state: StateInterface = { user: this.props.user };
 
   componentDidMount() {
     $.subscribe('store-supporter-tag:update-user.user-card-store', this.setUser);

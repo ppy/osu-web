@@ -47,14 +47,10 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     username: osu.trans('users.card.loading'),
   };
 
-  constructor(props: PropsInterface) {
-    super(props);
-
-    this.state = {
-      avatarLoaded: false,
-      backgroundLoaded: false,
-    };
-  }
+  readonly state: StateInterface = {
+    avatarLoaded: false,
+    backgroundLoaded: false,
+  };
 
   onAvatarLoad = () => {
     this.setState({ avatarLoaded: true });
