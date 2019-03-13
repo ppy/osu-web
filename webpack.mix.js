@@ -23,16 +23,6 @@ const webpack = require('webpack');
 const SentryPlugin = require('webpack-sentry-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
-requiredEnvs = ['PAYMENT_SANDBOX', 'SHOPIFY_DOMAIN', 'SHOPIFY_STOREFRONT_TOKEN'];
-for (const key of requiredEnvs) {
-  const value = process.env[key];
-  if (value == null) {
-    throw new Error(`${key} is missing from env!`);
-  } else if (value.length === 0) {
-    throw new Error(`${key} exists in env but is empty!`);
-  }
-}
-
 // .js doesn't support globbing by itself, so we need to glob
 // and spread the values in.
 const glob = require('glob');
