@@ -21,7 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\RegenerateBeatmapsetCover;
-use App\Libraries\Session\Manage as SessionManage;
+use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\UserBestScoresCheck;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
@@ -80,7 +80,7 @@ class LegacyInterOpController extends Controller
 
     public function userSessionsDestroy($id)
     {
-        SessionManage::destroy($id);
+        SessionStore::destroy($id);
 
         return ['success' => true];
     }
