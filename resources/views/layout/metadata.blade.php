@@ -86,9 +86,9 @@
     </script>
 @endif
 <script src="{{ mix("js/app-deps.js") }}" data-turbolinks-track="reload"></script>
-<script src="/js/locales/{{ app()->getLocale() }}.js" data-turbolinks-track="reload"></script>
+<script src="{{ mix('/js/locales/'.app()->getLocale().'.js') }}" data-turbolinks-track="reload"></script>
 @if (config('app.fallback_locale') !== app()->getLocale())
-    <script src="/js/locales/{{ config('app.fallback_locale') }}.js" data-turbolinks-track="reload"></script>
+    <script src="{{ mix('/js/locales/'.config('app.fallback_locale').'.js') }}" data-turbolinks-track="reload"></script>
 @endif
 
 <script src="{{ mix("js/app.js") }}" data-turbolinks-track="reload"></script>
