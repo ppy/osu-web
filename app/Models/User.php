@@ -387,25 +387,23 @@ class User extends Model implements AuthenticatableContract
         $playCount = array_reduce(array_keys(Beatmap::MODES), function ($result, $mode) {
             return $result + $this->statistics($mode, true)->value('playcount');
         }, 0);
-        
-        if ($this->group_id !== 2){
+
+        if ($this->group_id !== 2) {
             //reserved usernames
             return Carbon::now()->addYears(10);  //This will always be in the future, which is wanted
         }
 
-        if ( $this->user_type === 1){
+        if ($this->user_type === 1) {
             //restricted user
-            if ($playCount>1000){
+            if ($playCount > 1000){
                 return $this->user_lastvisit
                 ->addDays(static::INACTIVE_DAYS); //base inactivity period for all accounts
-            }
-
-            else {
+            } else {
                 return $this->user_lastvisit
                 ->addYears(3);
             }
         }
-        
+
         return $this->user_lastvisit
             ->addDays(static::INACTIVE_DAYS)
             ->addDays(intval(1095 * (1 - pow(M_E, -$playCount / 11000))));    //bonus based on playcount
