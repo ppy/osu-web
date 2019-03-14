@@ -70,8 +70,7 @@ class @UserCard
 
     options =
       events:
-        render: ->
-          reactTurbolinks.boot()
+        render: reactTurbolinks.boot
       style:
         def: false
         tip: false
