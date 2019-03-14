@@ -21,6 +21,7 @@
   @avatar-size: 70px;
   @status-bar-size: 30px;
   @card-item-spacing: 10px;
+  @flag-width: 45px;
   @icon-height: 30px;
   @offline-color: #000;
   @online-color: @green;
@@ -85,12 +86,12 @@
     pointer-events: none;
 
     height: 100%;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: space-between;
   }
 
   &__icon {
+    height: @icon-height;
+    width: @icon-height;
+
     margin: 0 @flag-gutter;
     display: flex;
     pointer-events: auto;
@@ -98,13 +99,16 @@
     &:empty {
       display: none;
     }
+
+    &--flag {
+      width: @flag-width;
+    }
   }
 
   &__icons {
     position: absolute;
     top: 0;
     right: 0;
-    // margin: @card-item-spacing (-@flag-gutter) 0;
     display: flex;
   }
 

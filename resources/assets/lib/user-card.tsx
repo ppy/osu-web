@@ -140,7 +140,20 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   }
 
   renderMenuButton() {
+    if (!this.canMessage) { return null; }
 
+    // TODO: menu
+    return null;
+    return (
+      <div className='usercard__icon'>
+        <a className='user-action-button user-action-button--message'
+          href={laroute.route('messages.users.show', { user: this.user.id })}
+          title={osu.trans('users.card.send_message')}
+        >
+          <i className='fas fa-envelope'></i>
+        </a>
+      </div>
+    );
   }
 
   renderIcons() {
@@ -148,9 +161,9 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
 
     return (
       <div className='usercard__icons'>
-        <div className='usercard__icon'>
+        <div className='usercard__icon usercard__icon--flag'>
           <a href={laroute.route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}>
-            <FlagCountry country={ this.user.country }/>
+            <FlagCountry country={this.user.country} modifiers={['user-card']} />
           </a>
         </div>
 
@@ -158,34 +171,20 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
           this.user.is_supporter ?
           <div className='usercard__icon'>
             <a className='usercard__link-wrapper' href={laroute.route('support-the-game')}>
-              <SupporterIcon smaller={true} />
+              <SupporterIcon modifiers={['user-card']} />
             </a>
           </div> : null
         }
 
         <div className='usercard__icon'>
-          <FriendButton userId={this.user.id} />
+          <FriendButton userId={this.user.id} modifiers={['user-card']} />
         </div>
-
-        {
-          this.canMessage ?
-          <div className='usercard__icon'>
-            <a className='user-action-button user-action-button--message'
-              href={laroute.route('messages.users.show', { user: this.user.id })}
-              title={osu.trans('users.card.send_message')}
-            >
-              <i className='fas fa-envelope'></i>
-            </a>
-          </div> : null
-        }
       </div>
     );
   }
 
   renderStatusBar() {
     if (!this.isUserLoaded) { return null; }
-
-
 
     const title = this.user.last_visit && moment(this.user.last_visit).fromNow();
     return (
