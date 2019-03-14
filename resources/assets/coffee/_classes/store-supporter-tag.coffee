@@ -50,8 +50,8 @@ class @StoreSupporterTag
     @initializeUsernameInput()
     @updateCostDisplay()
 
-    @updateTargetId() # force target_id for consistency.
-    @setUserInteraction(@user?.id?)
+    # force initial values for consistency.
+    @updateSearchResult()
 
 
   initializeSlider: =>
@@ -96,8 +96,7 @@ class @StoreSupporterTag
     .done (data) =>
       @user = data
 
-    .fail (xhr) =>
-      @user = null
+    .fail (xhr) ->
       if xhr.status == 401
         osu.popup osu.trans('errors.logged_out'), 'danger'
 
@@ -119,29 +118,13 @@ class @StoreSupporterTag
   onInput: (event) =>
     if !@searching
       @searching = true
+      @user = null
       @updateSearchResult()
     @debouncedGetUser(event.currentTarget.value)
 
 
-  setUserInteraction: (enabled) =>
-    StoreCart.setEnabled(enabled)
-    # TODO: need to elevate this element when switching over to new store design.
-    $(@el).toggleClass('js-store--disabled', !enabled)
-    $('.js-slider').slider('disabled': !enabled)
-
-
   sliderValue: (price) ->
     price * @RESOLUTION
-
-
-  updateSearchResult: =>
-    if @searching
-      $.publish 'store-supporter-tag:update-user', null
-      return @setUserInteraction(false)
-
-    $.publish 'store-supporter-tag:update-user', @user
-    @updateTargetId()
-    @setUserInteraction(@user?.id?)
 
 
   updateCostDisplay: =>
@@ -152,9 +135,24 @@ class @StoreSupporterTag
     @updateSliderPreset(elem, @cost) for elem in @sliderPresets
 
 
+  updateSearchResult: =>
+    $.publish 'store-supporter-tag:update-user', @user
+    @updateTargetId()
+    @updateUserInteraction()
+
+
   updateSliderPreset: (elem, cost) ->
     $(elem).toggleClass('js-slider-preset--active', cost.duration() >= +elem.dataset.months)
 
 
   updateTargetId: =>
     @targetIdElement.value = @user?.id
+
+
+  updateUserInteraction: =>
+    enabled = @user?.id? && Number.isFinite(@user.id) && @user.id > 0
+
+    StoreCart.setEnabled(enabled)
+    # TODO: need to elevate this element when switching over to new store design.
+    $(@el).toggleClass('js-store--disabled', !enabled)
+    $('.js-slider').slider('disabled': !enabled)
