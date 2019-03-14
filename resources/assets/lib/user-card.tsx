@@ -153,10 +153,10 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
       }
 
       background =
-        <React.Fragment>
+        <>
           <img className={backgroundCssClass} onLoad={this.onBackgroundLoad} src={this.user.cover.url} />
           <div className='usercard__background-overlay'></div>
-        </React.Fragment>;
+        </>;
     } else {
       background = <div className='usercard__background-overlay usercard__background-overlay--guest'></div>;
     }
