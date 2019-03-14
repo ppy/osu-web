@@ -16,6 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+'use strict';
+
 const mix = require('laravel-mix');
 const fs = require('fs');
 const path = require('path');
