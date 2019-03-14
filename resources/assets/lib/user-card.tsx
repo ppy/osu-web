@@ -171,7 +171,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
           this.user.is_supporter ?
           <div className='usercard__icon'>
             <a className='usercard__link-wrapper' href={laroute.route('support-the-game')}>
-              <SupporterIcon modifiers={['user-card']} />
+              <SupporterIcon />
             </a>
           </div> : null
         }

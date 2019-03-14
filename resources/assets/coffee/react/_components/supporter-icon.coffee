@@ -21,16 +21,12 @@ el = React.createElement
 
 bn = 'supporter-icon'
 
-# see also _supporter_icon.blade.php for blade version
-@SupporterIcon = ({background = false, smaller = false}) ->
+@SupporterIcon = () ->
   blockClass = bn
 
   span
-    className: "#{bn}#{if smaller then " #{bn}--smaller" else ''} fa-stack"
+    className: "#{bn} fa-stack"
     title: osu.trans('users.show.is_supporter')
-
-    if background
-      i className: "#{bn}__bg fas fa-circle fa-stack-2x"
 
     i className: "far fa-circle fa-stack-2x"
     i className: "#{bn}__heart fas fa-heart fa-stack-1x"
