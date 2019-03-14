@@ -208,10 +208,10 @@ mix
                             // work so well when versioning is used with webpack.
 .scripts(vendor, 'public/js/vendor.js');
 
-// include locales in manifest (also causes changes to trigger rebuild when watching)
-const locales = glob.sync('public/js/locales/*.js');
+// include locales in manifest
+const locales = glob.sync('resources/assets/build/locales/*.js');
 for (const locale of locales) {
-  mix.scripts([locale], locale);
+  mix.scripts([locale], `public/js/locales/${path.basename(locale)}`);
 }
 
 if (mix.inProduction()) {

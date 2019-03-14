@@ -29,7 +29,6 @@ desktop.ini
 /public/fonts/vendor
 /public/js
 /public/css
-/public/build
 /public/vendor
 /public/uploads
 /public/uploads-avatar
@@ -82,8 +81,9 @@ sftp-settings.json
 /bootstrap/cache/
 
 /resources/assets/js/messages.js
+/resources/assets/js/lang.js
 /resources/assets/js/laroute.js
-/resources/assets/js/build/
+/resources/assets/build/
 
 composer-installer
 

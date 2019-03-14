@@ -20,9 +20,16 @@
 
 const fs = require('fs');
 const path = require('path');
+const mkdirp = require('mkdirp');
+
+const buildPath = path.resolve(__dirname, 'resources/assets/build');
+const localesPath = path.resolve(buildPath, 'locales');
+const messagesPath = path.resolve(buildPath, 'messages.json');
 
 function extract() {
   console.log('Extracting localizations...')
+  mkdirp.sync(localesPath);
+
   const messages = getAllMesssages();
 
   const langs = new Map();
@@ -45,7 +52,7 @@ function extract() {
 })();
 `;
 
-    const filename = path.resolve(__dirname, `public/js/locales/${lang}.js`);
+    const filename = path.resolve(localesPath, `${lang}.js`);
     fs.writeFileSync(filename, script);
     console.log(`Created: ${filename}`);
   }
@@ -58,12 +65,11 @@ function extract() {
 }
 
 function getAllMesssages() {
-  const messagesFile = path.resolve(__dirname, 'resources/assets/messages.json');
-  const content = fs.readFileSync(messagesFile);
+  const content = fs.readFileSync(messagesPath);
 
   return JSON.parse(content);
 }
 
 const { spawnSync } = require('child_process');
-spawnSync('php', ['artisan', 'lang:js', '--json', 'resources/assets/messages.json'], { stdio: 'inherit' });
+spawnSync('php', ['artisan', 'lang:js', '--json', messagesPath], { stdio: 'inherit' });
 extract();
