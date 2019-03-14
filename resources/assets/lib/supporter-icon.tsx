@@ -16,12 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.supporter-icon {
-  .center-content();
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  font-size: 14px;
-  color: white;
-  background-color: @pink;
-}
+import * as React from 'react';
+
+export const SupporterIcon = () => {
+  return (
+    <span className='supporter-icon' title={osu.trans('users.show.is_supporter')}>
+      <span className='supporter-icon_heart fas fa-heart' />
+    </span>
+  );
+};

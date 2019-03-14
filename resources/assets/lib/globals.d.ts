@@ -32,7 +32,6 @@ declare var Img2x: any;
 declare var LoadingOverlay: any;
 declare var ShowMoreLink: any;
 declare var Spinner: any;
-declare var SupporterIcon: any;
 declare var Timeout: any;
 declare var UserAvatar: any;
 

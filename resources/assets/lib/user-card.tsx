@@ -19,6 +19,7 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import * as React from 'react';
+import { SupporterIcon } from 'supporter-icon';
 
 interface PropsInterface {
   modifiers: string[];
