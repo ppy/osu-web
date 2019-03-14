@@ -72,10 +72,9 @@ class @UserCard
       events:
         render: reactTurbolinks.boot
       style:
+        classes: 'qtip--user-card'
         def: false
         tip: false
-        width: 280
-        height: 130
       content:
         text: card
       position:
