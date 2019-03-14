@@ -204,6 +204,7 @@ mix
 .scripts([
   'resources/assets/js/ga.js',
   'resources/assets/js/lang.js',
+  'resources/assets/js/bootstrap-lang.js',
   'resources/assets/js/laroute.js'
 ], 'public/js/app-deps.js') // FIXME: less dumb name; this needs to be separated -
                             // compiling coffee and then concating together doesn't

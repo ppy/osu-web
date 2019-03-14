@@ -47,7 +47,6 @@ function extract() {
     const script = `
 (function() {
   'use strict';
-  if (typeof(Lang) === 'function') { Lang = new Lang(); Lang.setMessages({}); }
   Object.assign(Lang.messages, ${json});
 })();
 `;
