@@ -26,41 +26,23 @@ const buildPath = path.resolve(__dirname, 'resources/assets/build');
 const localesPath = path.resolve(buildPath, 'locales');
 const messagesPath = path.resolve(buildPath, 'messages.json');
 
-function extract() {
+function extractLanguages() {
   console.log('Extracting localizations...')
   mkdirp.sync(localesPath);
 
   const messages = getAllMesssages();
 
-  const langs = new Map();
+  const languages = new Map();
   for (const key in messages) {
     const index = key.indexOf('.');
-    const lang = key.substring(0, index);
-    if (!langs.has(lang)) {
-      langs.set(lang, {});
+    const language = key.substring(0, index);
+    if (!languages.has(language)) {
+      languages.set(language, {});
     }
-    langs.get(lang)[key] = messages[key];
+    languages.get(language)[key] = messages[key];
   }
 
-  for (const lang of langs.keys()) {
-    const json = JSON.stringify(langs.get(lang));
-    const script = `
-(function() {
-  'use strict';
-  Object.assign(Lang.messages, ${json});
-})();
-`;
-
-    const filename = path.resolve(localesPath, `${lang}.js`);
-    fs.writeFileSync(filename, script);
-    console.log(`Created: ${filename}`);
-  }
-
-  // copy lang.js
-  fs.copyFileSync(
-    path.resolve(__dirname, 'vendor/mariuzzo/laravel-js-localization/lib/lang.min.js'),
-    path.resolve(__dirname, 'resources/assets/js/lang.js')
-  );
+  return languages;
 }
 
 function getAllMesssages() {
@@ -69,6 +51,29 @@ function getAllMesssages() {
   return JSON.parse(content);
 }
 
-const { spawnSync } = require('child_process');
-spawnSync('php', ['artisan', 'lang:js', '--json', messagesPath], { stdio: 'inherit' });
-extract();
+function runLangJs()
+{
+  const { spawnSync } = require('child_process');
+  spawnSync('php', ['artisan', 'lang:js', '--json', messagesPath], { stdio: 'inherit' });
+}
+
+function writeTranslations(languages)
+{
+  for (const lang of languages.keys()) {
+    const json = JSON.stringify(languages.get(lang));
+    const filename = path.resolve(localesPath, `${lang}.js`);
+    const script = `(function() { 'use strict'; Object.assign(Lang.messages, ${json}); })();`;
+
+    fs.writeFileSync(filename, script);
+    console.log(`Created: ${filename}`);
+  }
+}
+
+runLangJs();
+writeTranslations(extractLanguages());
+
+// copy lang.js
+fs.copyFileSync(
+  path.resolve(__dirname, 'vendor/mariuzzo/laravel-js-localization/lib/lang.min.js'),
+  path.resolve(__dirname, 'resources/assets/js/lang.js')
+);
