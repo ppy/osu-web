@@ -62,37 +62,22 @@ class @UserCard
       when 'left center' then 'right center'
       when 'right center' then 'left center'
 
+    # react should override the existing content after mounting
+    card = $('#js-usercard__loading-template').children().clone()[0]
+    card.classList.replace 'js-react--user-card', 'js-react--user-card-tooltip'
+    delete card.dataset.reactTurbolinksLoaded
+    card.dataset.userId = userId
+
     options =
+      events:
+        render: reactTurbolinks.boot
       style:
         def: false
         tip: false
         width: 280
         height: 130
       content:
-        text: (event, api) =>
-          $.ajax
-            url: laroute.route 'users.card', user: userId
-          .done (content) =>
-            if content
-              api.set('content.text', content)
-
-              # make images fade-in nicely when loaded
-              api.tooltip.find('.usercard')
-                .imagesLoaded()
-                .progress (instance, image) =>
-                  if image.isLoaded
-                    $(image.img).fadeTo(@fadeLength, 1)
-                .always (instance) ->
-                  $(instance.elements[0]).find('.js-usercard--avatar-loader').fadeTo(@fadeLength, 0)
-
-              # manually init the friend-button react component
-              reactTurbolinks.boot()
-            else
-              api.hide()
-          .fail (xhr, status, error) ->
-            api.set('content.text', "#{status}: #{error}")
-
-          $('#js-usercard__loading-template').children().clone()
+        text: card
       position:
         at: at
         my: my

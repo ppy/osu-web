@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\ValidationException;
+use App\Libraries\MorphMap;
 use App\Models\Score\Best;
 use App\Models\Score\Best\Model as BestModel;
 use App\Traits\Validatable;
@@ -48,12 +49,12 @@ class UserReport extends Model
 
     const CREATED_AT = 'timestamp';
     const REPORTABLES = [
-        'comment' => Comment::class,
-        'user' => User::class,
-        'score_best_osu' => Best\Osu::class,
-        'score_best_taiko' => Best\Taiko::class,
-        'score_best_fruits' => Best\Fruits::class,
-        'score_best_mania' => Best\Mania::class,
+        MorphMap::MAP[Best\Fruits::class],
+        MorphMap::MAP[Best\Mania::class],
+        MorphMap::MAP[Best\Osu::class],
+        MorphMap::MAP[Best\Taiko::class],
+        MorphMap::MAP[Comment::class],
+        MorphMap::MAP[User::class],
     ];
 
     protected $table = 'osu_user_reports';

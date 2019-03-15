@@ -24,6 +24,7 @@
   @offline-color: #000;
   @online-color: @green;
   @flag-gutter: 3px; // more like half of it
+  @fade-duration: 220ms;
 
   display: flex;
   flex-direction: column;
@@ -51,15 +52,16 @@
   }
 
   &__background {
-    .full-size();
-    object-fit: cover;
-    .@{top}--popup & {
-      opacity: 0;
-    }
-
     // to prevent annoying white-pixel artefacts appearing due to
     // browsers not handling 'overflow: hidden' properly
     .default-border-radius();
+    .full-size();
+    object-fit: cover;
+    transition: opacity linear @fade-duration;
+
+    &--loading {
+      opacity: 0;
+    }
   }
 
   &__background-container {
@@ -126,20 +128,21 @@
     .full-size();
     object-fit: contain;
     background-color: #333;
+    transition: opacity linear @fade-duration;
 
     &--loader {
+      .center-content();
+      color: #fff;
+      font-size: 14px;
+      background: fade(#fff, 10%);
       opacity: 0;
 
-      .@{top}--popup & {
-        .center-content();
-        color: #fff;
-        font-size: 14px;
-        background: fade(#fff, 10%);
+      .@{top}__avatar-space--loading && {
         opacity: 0.25;
       }
     }
 
-    .@{top}--popup &--main {
+    .@{top}__avatar-space--loading & {
       opacity: 0;
     }
   }

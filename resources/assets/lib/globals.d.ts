@@ -26,10 +26,13 @@ declare var userVerification: any;
 declare var BigButton: any;
 declare var Comments: any;
 declare var CommentsManager: any;
+declare var FlagCountry: any;
+declare var FriendButton: any;
 declare var Img2x: any;
 declare var LoadingOverlay: any;
 declare var ShowMoreLink: any;
 declare var Spinner: any;
+declare var SupporterIcon: any;
 declare var Timeout: any;
 declare var UserAvatar: any;
 
@@ -58,9 +61,33 @@ interface OsuCommon {
   uuid: () => string;
 }
 
+interface Country {
+  code?: string;
+  name?: string;
+}
+
+interface Cover {
+  id?: string;
+  custom_url?: string;
+  url?: string;
+}
+
+// TODO: should look at combining with the other User.ts at some point.
 interface User {
+  avatar_url?: string;
+  country?: Country;
+  country_code?: string;
+  cover: Cover;
+  default_group: string;
   id: number;
-  username: string;
+  is_active: boolean;
+  is_bot: boolean;
+  is_online: boolean;
+  is_supporter: boolean;
+  last_visit?: string;
+  pm_friends_only: boolean;
+  profile_colour?: string;
+  username: string
 }
 
 interface TooltipDefault {
