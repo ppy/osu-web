@@ -18,6 +18,7 @@
 
 'use strict';
 
+const { spawnSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
@@ -53,7 +54,6 @@ function getAllMesssages() {
 
 function runLangJs()
 {
-  const { spawnSync } = require('child_process');
   spawnSync('php', ['artisan', 'lang:js', '--json', messagesPath], { stdio: 'inherit' });
 }
 
