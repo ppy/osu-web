@@ -60,6 +60,8 @@
     &--loading {
       opacity: 0;
     }
+
+    // background-color: #555;
   }
 
   &__background-container {
@@ -68,10 +70,17 @@
 
   &__background-overlay  {
     .full-size();
-    background-color: fade(#000, 75%);
+    transition: background-color 0.2s ease-in-out;
+    // background-color: fade(#fff, 25%);
+    background-color: fade(#000, 25%);
+    // background-color: fade(#000, 75%);
+
+    .usercard:hover & {
+      background-color: fade(#999, 25%);
+    }
 
     &--guest {
-      background-color: fade(#000, 60%);
+      // background-color: fade(#000, 60%);
     }
   }
 

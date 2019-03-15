@@ -124,7 +124,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
           <div className='usercard__background-overlay'></div>
         </>;
     } else {
-      background = <div className='usercard__background-overlay usercard__background-overlay--guest'></div>;
+      background = <div className='usercard__background-overlay'></div>;
     }
 
     if (this.isUserLoaded) {
@@ -189,7 +189,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
 
     const date = this.user.last_visit && moment(this.user.last_visit).fromNow();
     const lastSeen = date ? osu.trans('users.show.lastvisit', { date }) : null;
-    const status = this.user.is_online ? osu.trans('users.status.online') : osu.trans('users.status.offline');
+    const status = this.isOnline ? osu.trans('users.status.online') : osu.trans('users.status.offline');
 
     return (
       <div className='usercard__status-bar'>
@@ -211,7 +211,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     if (!this.isUserLoaded) { return null; }
 
     return (
-      <div className={`usercard__status-icon usercard__status-icon--${this.user.is_online ? 'online' : 'offline'}`}>
+      <div className={`usercard__status-icon usercard__status-icon--${this.isOnline ? 'online' : 'offline'}`}>
         <span className='far fa-fw fa-circle'></span>
       </div>
     );
@@ -220,6 +220,10 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   private get canMessage() {
     return currentUser != null
        && _.find(currentUser.blocks, { target_id: this.user.id }) == null;
+  }
+
+  private get isOnline() {
+    return this.user.is_online;
   }
 
   private get isUserLoaded() {
