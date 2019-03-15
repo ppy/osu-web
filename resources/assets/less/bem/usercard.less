@@ -43,7 +43,7 @@
 
   .fade-element(120ms);
   border-radius: 20px;
-  .own-layer();
+  // .own-layer();
 
   &--no-margin {
     margin: 0;
@@ -52,7 +52,7 @@
   &__background {
     // to prevent annoying white-pixel artefacts appearing due to
     // browsers not handling 'overflow: hidden' properly
-    .default-border-radius();
+    border-radius: 20px;
     .full-size();
     object-fit: cover;
     transition: opacity linear @fade-duration;
@@ -141,7 +141,7 @@
     .full-size();
     object-fit: contain;
     background-color: #333;
-    transition: opacity linear @fade-duration;
+    transition: opacity @fade-duration linear;
 
     &--loader {
       .center-content();
@@ -150,8 +150,18 @@
       background: fade(#fff, 10%);
       opacity: 0;
 
+      // stop the animation to remove the layer after load.
+      .la-ball-clip-rotate::before {
+        animation: ball-clip-rotate 0.75s linear;
+      }
+
       .@{top}__avatar-space--loading && {
+        visibility: visible;
         opacity: 0.25;
+
+        .la-ball-clip-rotate::before {
+          animation: ball-clip-rotate 0.75s linear infinite;
+        }
       }
     }
 
