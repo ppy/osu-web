@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
 use App\Libraries\CommentBundle;
+use App\Libraries\MorphMap;
 use App\Models\Comment;
 use App\Models\Log;
 use Carbon\Carbon;
@@ -66,12 +67,11 @@ class CommentsController extends Controller
         $id = request('commentable_id');
 
         if (isset($type) && isset($id)) {
-            $class = Comment::COMMENTABLES[$type] ?? null;
-
-            if ($class === null) {
+            if (!Comment::isValidType($type)) {
                 abort(422);
             }
 
+            $class = MorphMap::getClass($type);
             $commentable = $class::findOrFail($id);
         }
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "87f229734fc1a96b84554efd1c11a903",
+    "content-hash": "96a41fdee32e705439da480bb41603f2",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1690,16 +1690,16 @@
         },
         {
             "name": "jonnybarnes/commonmark-linkify",
-            "version": "dev-fix-multi-links-newline",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nanaya/commonmark-linkify.git",
-                "reference": "cb112ae57361cd11c29d9d5a0b2366100c8e547e"
+                "url": "https://github.com/jonnybarnes/commonmark-linkify.git",
+                "reference": "e27103f5e0e9e84eb17344a361845241e27512e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nanaya/commonmark-linkify/zipball/cb112ae57361cd11c29d9d5a0b2366100c8e547e",
-                "reference": "cb112ae57361cd11c29d9d5a0b2366100c8e547e",
+                "url": "https://api.github.com/repos/jonnybarnes/commonmark-linkify/zipball/e27103f5e0e9e84eb17344a361845241e27512e0",
+                "reference": "e27103f5e0e9e84eb17344a361845241e27512e0",
                 "shasum": ""
             },
             "require": {
@@ -1715,6 +1715,7 @@
                     "Jonnybarnes\\CommonmarkLinkify\\": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "CC0-1.0"
             ],
@@ -1731,10 +1732,7 @@
                 "extension",
                 "markdown"
             ],
-            "support": {
-                "source": "https://github.com/nanaya/commonmark-linkify/tree/fix-multi-links-newline"
-            },
-            "time": "2019-01-17T11:18:34+00:00"
+            "time": "2019-02-17T10:48:03+00:00"
         },
         {
             "name": "knplabs/github-api",
