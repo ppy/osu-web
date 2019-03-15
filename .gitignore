@@ -80,8 +80,6 @@ sftp-settings.json
 /storage/htmlpurifier/
 /bootstrap/cache/
 
-/resources/assets/js/messages.js
-/resources/assets/js/lang.js
 /resources/assets/js/laroute.js
 /resources/assets/build/
 

@@ -75,5 +75,5 @@ writeTranslations(extractLanguages());
 // copy lang.js
 fs.copyFileSync(
   path.resolve(__dirname, 'vendor/mariuzzo/laravel-js-localization/lib/lang.min.js'),
-  path.resolve(__dirname, 'resources/assets/js/lang.js')
+  path.resolve(buildPath, 'lang.js')
 );

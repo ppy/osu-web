@@ -203,7 +203,7 @@ mix
 .less('resources/assets/less/app.less', 'public/css')
 .scripts([
   'resources/assets/js/ga.js',
-  'resources/assets/js/lang.js',
+  'resources/assets/build/lang.js',
   'resources/assets/js/bootstrap-lang.js',
   'resources/assets/js/laroute.js'
 ], 'public/js/app-deps.js') // FIXME: less dumb name; this needs to be separated -
