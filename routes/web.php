@@ -387,6 +387,7 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
     Route::post('/refresh-beatmapset-cache/{beatmapset}', 'LegacyInterOpController@refreshBeatmapsetCache');
     Route::post('/regenerate-beatmapset-covers/{beatmapset}', 'LegacyInterOpController@regenerateBeatmapsetCovers');
     Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
+    Route::delete('/user-sessions/{user}', 'LegacyInterOpController@userSessionsDestroy');
     Route::get('/news', 'LegacyInterOpController@news');
 });
 

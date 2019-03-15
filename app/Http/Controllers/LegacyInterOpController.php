@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\RegenerateBeatmapsetCover;
+use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\UserBestScoresCheck;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
@@ -73,6 +74,13 @@ class LegacyInterOpController extends Controller
         foreach (Beatmap::MODES as $mode => $_v) {
             (new UserBestScoresCheck($user))->run($mode);
         }
+
+        return ['success' => true];
+    }
+
+    public function userSessionsDestroy($id)
+    {
+        SessionStore::destroy($id);
 
         return ['success' => true];
     }
