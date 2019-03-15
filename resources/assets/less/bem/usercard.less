@@ -101,10 +101,10 @@
   }
 
   &__icons {
-    position: absolute;
-    top: @card-item-spacing;
-    right: @card-item-spacing;
     display: flex;
+    flex: none;
+    justify-content: flex-end;
+    margin: @card-item-spacing;
   }
 
   &__link-wrapper {
@@ -117,13 +117,14 @@
   &__card-content {
     display: flex;
     flex-direction: row;
-    // height: @usercard-height - @status-bar-size;
+    justify-content: space-between;
     height: 100%;
   }
 
   &__avatar-space {
     width: @avatar-size;
     height: @avatar-size;
+    flex: none;
   }
 
   &__avatar {
@@ -216,6 +217,7 @@
 
     margin: @card-item-spacing;
     height: @avatar-size;
+    min-width: 0;
   }
 
   &__username {
