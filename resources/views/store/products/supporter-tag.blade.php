@@ -22,16 +22,14 @@
     </div>
 </div>
 @else
-<div class="js-store js-store-supporter-tag store-supporter-tag"
-    data-user-id="{{ Auth::user()->user_id }}"
-    data-username="{{ Auth::user()->username }}">
+<div class="js-store js-store-supporter-tag store-supporter-tag">
     <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
     <input type="hidden" name="item[quantity]" class="js-store-item-quantity" value="1" />
     <input type="hidden" id="supporter-tag-form-price" name="item[cost]" value="4" />
     <input type="hidden" name="item[extra_data][target_id]" value="{{ Auth::user()->user_id }}" />
     <div class="grid grid--xs grid--centered grid--stack store-supporter-tag__user-search">
-        <div class="js-avatar">
-            @include('objects._usercard', ['user' => Auth::user() ])
+        <div class="js-react--user-card-store"
+            data-user="{{ json_encode(json_item(auth()->user(), 'UserCompact', ['cover', 'country'])) }}">
         </div>
         <div class="grid-cell grid-cell--store-user-search">
             {!!

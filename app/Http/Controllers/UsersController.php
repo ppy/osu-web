@@ -67,12 +67,9 @@ class UsersController extends Controller
     {
         // FIXME: if there's a username with the id of a restricted user,
         // it'll show the card of the non-restricted user.
-        $user = User::lookup($id);
+        $user = User::lookup($id) ?? UserNotFound::instance();
 
-        // render usercard as popup (i.e. pretty fade-in elements on load)
-        $popup = true;
-
-        return view('objects._usercard', compact('user', 'popup'));
+        return json_item($user, 'UserCompact', ['cover', 'country']);
     }
 
     public function disabled()
@@ -104,11 +101,7 @@ class UsersController extends Controller
         $username = Request::input('username');
         $user = User::lookup($username, 'string') ?? UserNotFound::instance();
 
-        return [
-            'user_id' => $user->user_id,
-            'username' => $user->username,
-            'card_html' => view('objects._usercard', compact('user'))->render(),
-        ];
+        return json_item($user, 'UserCompact', ['cover', 'country']);
     }
 
     public function store()
