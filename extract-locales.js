@@ -79,4 +79,4 @@ fs.copyFileSync(
 
 // cleanup
 fs.unlinkSync(messagesPath);
-console.log(`Removed: ${messagesPath});
+console.log(`Removed: ${messagesPath}`);
