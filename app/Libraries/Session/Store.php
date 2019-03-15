@@ -51,7 +51,7 @@ class Store extends \Illuminate\Session\Store
      */
     public static function keyPrefix($userId)
     {
-        return 'sessions:'.$userId ?? 'guest';
+        return 'sessions:'.($userId ?? 'guest');
     }
 
     public static function keys($userId)
