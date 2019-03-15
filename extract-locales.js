@@ -20,6 +20,7 @@
 
 const { spawnSync } = require('child_process');
 const fs = require('fs');
+const glob = require('glob');
 const path = require('path');
 const mkdirp = require('mkdirp');
 
@@ -67,7 +68,10 @@ function writeTranslations(languages)
   }
 }
 
+// Remove previous existing files and ensure directory exists.
+glob.sync(path.resolve(localesPath, '*.js')).forEach(fs.unlinkSync);
 mkdirp.sync(localesPath);
+
 generateTranslations();
 writeTranslations(extractLanguages());
 
