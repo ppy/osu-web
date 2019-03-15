@@ -26,5 +26,6 @@
 @include ('layout._current_user')
 
 <div id="js-usercard__loading-template" class="hidden">
-    @include('objects._usercard', ['loading' => true])
+    {{-- This content is a placeholder so that qtip has something to fade in while the react component mounts --}}
+    <div class="js-react--user-card"></div>
 </div>

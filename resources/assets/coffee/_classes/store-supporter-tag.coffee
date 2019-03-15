@@ -37,26 +37,21 @@ class @StoreSupporterTag
     @sliderPresets = @el.querySelectorAll('.js-slider-preset')
     @targetIdElement = @el.querySelector('input[name="item[extra_data][target_id]"]')
     @usernameInput = @el.querySelector('.js-username-input')
-    @usercard = @el.querySelector('.js-avatar')
 
-    @user =
-      userId: @targetIdElement.value
+    @reactElement = @el.querySelector('.js-react--user-card-store')
+    @user = JSON.parse(@reactElement.dataset.user)
 
-    @currentUser =
-      userId: @el.dataset.userId
-      username: @el.dataset.username
-      cardHtml: @el.dataset.cardHtml ? @usercard.innerHTML
-    # save/restore current user card html
-    $(document).on 'turbolinks:before-cache', =>
-      @el.dataset.cardHtml = @currentUser.cardHtml
-
-    delete @el.dataset.cardHtml
+    $(document).on 'turbolinks:before-cache.store-supporter-tag', =>
+      @reactElement.dataset.user = JSON.stringify(@user)
+      $(document).off '.store-supporter-tag'
 
     @cost = @calculate(@initializeSlider().slider('value'))
     @initializeSliderPresets()
     @initializeUsernameInput()
     @updateCostDisplay()
-    @setUserInteraction(@user?.userId)
+
+    # force initial values for consistency.
+    @updateSearchResult()
 
 
   initializeSlider: =>
@@ -73,32 +68,35 @@ class @StoreSupporterTag
       slide: @onSliderValueChanged
       change: @onSliderValueChanged
 
+
   initializeSliderPresets: =>
     $(@sliderPresets).on 'click', (event) =>
       target = event.currentTarget
       price = StoreSupporterTagPrice.durationToPrice(target.dataset.months)
       $(@slider).slider('value', @sliderValue(price)) if price
 
+
   initializeUsernameInput: =>
     $(@usernameInput).on 'input', @onInput
 
+
   getUser: (username) =>
     if !username # reset to current user on empty
-      @user = @currentUser
+      @user = window.currentUser
       @searching = false
       @updateSearchResult()
       return
 
-    $.post laroute.route('users.check-username-exists'), username: username
+    $.ajax
+      data:
+        username: username
+      dataType: 'json',
+      type: 'POST'
+      url: laroute.route('users.check-username-exists')
     .done (data) =>
-      # make a User DTO?
-      @user =
-        userId: data.user_id
-        username: data.username
-        cardHtml: data.card_html
+      @user = data
 
-    .fail (xhr) =>
-      @user = null
+    .fail (xhr) ->
       if xhr.status == 401
         osu.popup osu.trans('errors.logged_out'), 'danger'
 
@@ -106,42 +104,28 @@ class @StoreSupporterTag
       @searching = false
       @updateSearchResult()
 
+
   calculate: (position) =>
     new StoreSupporterTagPrice(Math.floor(position / @RESOLUTION))
+
 
   onSliderValueChanged: (event, ui) =>
     @slider.dataset.lastValue = ui.value
     @cost = @calculate(ui.value)
     @updateCostDisplay()
 
+
   onInput: (event) =>
     if !@searching
       @searching = true
+      @user = null
       @updateSearchResult()
     @debouncedGetUser(event.currentTarget.value)
 
-  setUserInteraction: (enabled) =>
-    StoreCart.setEnabled(enabled)
-    # TODO: need to elevate this element when switching over to new store design.
-    $(@el).toggleClass('js-store--disabled', !enabled)
-    $('.js-slider').slider('disabled': !enabled)
 
   sliderValue: (price) ->
     price * @RESOLUTION
 
-  updateSearchResult: =>
-    if @searching
-      @usercard.innerHTML = $('#js-usercard__loading-template').html()
-      return @setUserInteraction(false)
-
-    if @user
-      @targetIdElement.value = @user.userId
-      @usercard.innerHTML = @user.cardHtml
-      reactTurbolinks.boot()
-    else
-      @targetIdElement.value = null
-
-    @setUserInteraction(@user?.userId)
 
   updateCostDisplay: =>
     @el.querySelector('input[name="item[cost]"]').value = @cost.price()
@@ -150,5 +134,25 @@ class @StoreSupporterTag
     @discountElement.textContent = @cost.discountText()
     @updateSliderPreset(elem, @cost) for elem in @sliderPresets
 
+
+  updateSearchResult: =>
+    $.publish 'store-supporter-tag:update-user', @user
+    @updateTargetId()
+    @updateUserInteraction()
+
+
   updateSliderPreset: (elem, cost) ->
     $(elem).toggleClass('js-slider-preset--active', cost.duration() >= +elem.dataset.months)
+
+
+  updateTargetId: =>
+    @targetIdElement.value = @user?.id
+
+
+  updateUserInteraction: =>
+    enabled = @user?.id? && Number.isFinite(@user.id) && @user.id > 0
+
+    StoreCart.setEnabled(enabled)
+    # TODO: need to elevate this element when switching over to new store design.
+    $(@el).toggleClass('js-store--disabled', !enabled)
+    $('.js-slider').slider('disabled': !enabled)
