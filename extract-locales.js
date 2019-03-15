@@ -50,7 +50,7 @@ function getAllMesssages() {
   return JSON.parse(content);
 }
 
-function runLangJs()
+function generateTranslations()
 {
   spawnSync('php', ['artisan', 'lang:js', '--json', messagesPath], { stdio: 'inherit' });
 }
@@ -68,7 +68,7 @@ function writeTranslations(languages)
 }
 
 mkdirp.sync(localesPath);
-runLangJs();
+generateTranslations();
 writeTranslations(extractLanguages());
 
 // copy lang.js
@@ -76,3 +76,7 @@ fs.copyFileSync(
   path.resolve(__dirname, 'vendor/mariuzzo/laravel-js-localization/lib/lang.min.js'),
   path.resolve(buildPath, 'lang.js')
 );
+
+// cleanup
+fs.unlinkSync(messagesPath);
+console.log(`Removed: ${messagesPath});
