@@ -16,6 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+'use strict';
+
 const mix = require('laravel-mix');
 const fs = require('fs');
 const path = require('path');
@@ -201,12 +203,19 @@ mix
 .less('resources/assets/less/app.less', 'public/css')
 .scripts([
   'resources/assets/js/ga.js',
-  'resources/assets/js/messages.js',
+  'resources/assets/build/lang.js',
+  'resources/assets/js/bootstrap-lang.js',
   'resources/assets/js/laroute.js'
 ], 'public/js/app-deps.js') // FIXME: less dumb name; this needs to be separated -
                             // compiling coffee and then concating together doesn't
                             // work so well when versioning is used with webpack.
 .scripts(vendor, 'public/js/vendor.js');
+
+// include locales in manifest
+const locales = glob.sync('resources/assets/build/locales/*.js');
+for (const locale of locales) {
+  mix.scripts([locale], `public/js/locales/${path.basename(locale)}`);
+}
 
 if (mix.inProduction()) {
   mix.version();

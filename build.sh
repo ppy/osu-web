@@ -40,9 +40,9 @@ if [ -z "${OSU_SKIP_DB_MIGRATION:-}" ]; then
 fi
 
 php artisan passport:keys
-php artisan lang:js resources/assets/js/messages.js
 php artisan laroute:generate
 
 command -v yarn || npm install -g yarn
 yarn
+yarn run generate-localizations
 yarn run production

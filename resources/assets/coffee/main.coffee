@@ -124,6 +124,18 @@ reactTurbolinks.register 'comments', CommentsManager, (el) ->
 
   props
 
+reactTurbolinks.register 'user-card', _exported.UserCard, (el) ->
+  modifiers: try JSON.parse(el.dataset.modifiers)
+  user: try JSON.parse(el.dataset.user)
+
+reactTurbolinks.register 'user-card-store', _exported.UserCardStore, (el) ->
+  container: el
+  user: JSON.parse(el.dataset.user)
+
+reactTurbolinks.register 'user-card-tooltip', _exported.UserCardTooltip, (el) ->
+  container: el
+  userId: parseInt(el.dataset.userId)
+
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port
 rootUrl += '/'
