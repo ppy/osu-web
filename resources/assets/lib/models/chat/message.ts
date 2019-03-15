@@ -19,9 +19,10 @@
 import { MessageJSON } from 'chat/chat-api-responses';
 import { action, observable} from 'mobx';
 import User from 'models/user';
+import * as moment from 'moment';
 
 export default class Message {
-  @observable messageId: number = -1;
+  @observable messageId: number | string = -1;
   @observable uuid: string = osu.uuid();
   @observable channelId: number = -1;
   @observable sender: User;

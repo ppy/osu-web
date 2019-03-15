@@ -16,25 +16,40 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as moment from 'moment';
 import * as React from 'react';
+import { UserCard } from 'user-card';
 
 interface PropsInterface {
-  type: string;
-  timestamp: string;
+  userId: number;
 }
 
-export default class MessageDivider extends React.Component<PropsInterface, any> {
+interface StateInterface {
+  user?: User;
+}
+
+/**
+ * This component's job is to get the data and bootstrap the actual UserCard component for tooltips.
+ */
+export class UserCardTooltip extends React.PureComponent<PropsInterface, StateInterface> {
+  readonly state: StateInterface = {};
+
+  componentDidMount() {
+    this.getUser().then((user) => {
+      this.setState({ user });
+    });
+  }
+
+  getUser() {
+    const url = laroute.route('users.card', { user: this.props.userId });
+
+    return $.ajax({
+      dataType: 'json',
+      type: 'GET',
+      url,
+    });
+  }
+
   render(): React.ReactNode {
-    switch (this.props.type) {
-      case 'DAY_MARKER':
-        return (<div className='chat-conversation__day-divider'>{moment(this.props.timestamp).format('LL')}</div>);
-
-      case 'READ_MARKER':
-        return (<div className='chat-conversation__read-marker' data-content='unread messages' />);
-
-      default:
-        return null;
-    }
+    return <UserCard user={this.state.user} />;
   }
 }

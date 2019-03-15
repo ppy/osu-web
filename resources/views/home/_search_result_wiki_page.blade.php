@@ -26,11 +26,16 @@
             href="{{ $url }}"
         >
             <h1 class="search-entry__row search-entry__row--title">
-                {{ $entry->title(true) }}
+                <span class="search-highlight">
+                    {!! $entry->highlightedTitle() !!}
+                </span>
+
             </h1>
 
             <p class="search-entry__row search-entry__row--excerpt">
-                {!! html_excerpt($source['page_text']) !!}
+                <span class="search-highlight">
+                    {!! $entry->highlights() !!}
+                </span>
             </p>
 
             <p class="search-entry__row search-entry__row--footer">

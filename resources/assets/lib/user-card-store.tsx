@@ -16,25 +16,37 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as moment from 'moment';
 import * as React from 'react';
+import { UserCard } from 'user-card';
 
 interface PropsInterface {
-  type: string;
-  timestamp: string;
+  container: HTMLElement;
+  user: User;
 }
 
-export default class MessageDivider extends React.Component<PropsInterface, any> {
-  render(): React.ReactNode {
-    switch (this.props.type) {
-      case 'DAY_MARKER':
-        return (<div className='chat-conversation__day-divider'>{moment(this.props.timestamp).format('LL')}</div>);
+interface StateInterface {
+  user?: User;
+}
 
-      case 'READ_MARKER':
-        return (<div className='chat-conversation__read-marker' data-content='unread messages' />);
+/**
+ * This component's job shims UserCard for store-supporter-tag to update UserCard's props.
+ */
+export class UserCardStore extends React.PureComponent<PropsInterface, StateInterface> {
+  readonly state: StateInterface = { user: this.props.user };
 
-      default:
-        return null;
-    }
+  componentDidMount() {
+    $.subscribe('store-supporter-tag:update-user.user-card-store', this.setUser);
+  }
+
+  componentWillUnmount() {
+    $.unsubscribe('.user-card-store');
+  }
+
+  render() {
+    return <UserCard user={this.state.user} />;
+  }
+
+  setUser = (event: JQuery.Event, user?: User) => {
+    this.setState({ user });
   }
 }

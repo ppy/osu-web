@@ -87,7 +87,7 @@ abstract class Search extends HasSearch implements Queryable
             $query = $this->toArray();
             // some arguments need to be stripped from the body as they're not supported by count.
             $body = $query['body'];
-            foreach (['from', 'search_after', 'size', 'sort', 'timeout', '_source'] as $key) {
+            foreach (['from', 'highlight', 'search_after', 'size', 'sort', 'timeout', '_source'] as $key) {
                 unset($body[$key]);
             }
 

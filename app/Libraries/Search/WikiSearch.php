@@ -22,8 +22,9 @@ namespace App\Libraries\Search;
 
 use App;
 use App\Libraries\Elasticsearch\BoolQuery;
+use App\Libraries\Elasticsearch\Highlight;
 use App\Libraries\Elasticsearch\RecordSearch;
-use App\Models\Wiki\Page;
+use App\Models\Wiki\PageSearchResult;
 
 class WikiSearch extends RecordSearch
 {
@@ -34,6 +35,15 @@ class WikiSearch extends RecordSearch
             $params ?? new WikiSearchParams,
             Page::class
         );
+
+        $this->highlight(
+            (new Highlight)
+                // number_of_fragments: 0 forces the entire field to be returned instead of a fragment.
+                ->field('title', ['number_of_fragments' => 0])
+                ->field('page_text', ['no_match_size' => 300])
+                ->fragmentSize(150)
+                ->numberOfFragments(5)
+        );
     }
 
     public function records()
@@ -42,8 +52,8 @@ class WikiSearch extends RecordSearch
 
         $pages = [];
 
-        foreach ($response->hits() as $hit) {
-            $page = new Page(null, null, $hit['_source']);
+        foreach ($response as $hit) {
+            $page = new PageSearchResult($hit);
 
             $pages[] = $page;
         }

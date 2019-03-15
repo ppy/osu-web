@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,25 +18,22 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as moment from 'moment';
-import * as React from 'react';
+namespace App\Libraries\Markdown\Indexing;
 
-interface PropsInterface {
-  type: string;
-  timestamp: string;
-}
+use League\CommonMark\ElementRendererInterface;
+use League\CommonMark\Inline\Element\AbstractInline;
+use League\CommonMark\Inline\Renderer\InlineRendererInterface;
 
-export default class MessageDivider extends React.Component<PropsInterface, any> {
-  render(): React.ReactNode {
-    switch (this.props.type) {
-      case 'DAY_MARKER':
-        return (<div className='chat-conversation__day-divider'>{moment(this.props.timestamp).format('LL')}</div>);
-
-      case 'READ_MARKER':
-        return (<div className='chat-conversation__read-marker' data-content='unread messages' />);
-
-      default:
-        return null;
+class NewlineRenderer implements InlineRendererInterface
+{
+    /**
+     * @param AbstractInline $inline
+     * @param ElementRendererInterface $htmlRenderer
+     *
+     * @return string
+     */
+    public function render(AbstractInline $inline, ElementRendererInterface $renderer)
+    {
+        return ' ';
     }
-  }
 }
