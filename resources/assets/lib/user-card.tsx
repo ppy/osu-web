@@ -187,16 +187,21 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   renderStatusBar() {
     if (!this.isUserLoaded) { return null; }
 
-    const title = this.user.last_visit && moment(this.user.last_visit).fromNow();
+    const date = this.user.last_visit && moment(this.user.last_visit).fromNow();
+    const lastSeen = date ? osu.trans('users.show.lastvisit', { date }) : null;
+    const status = this.user.is_online ? osu.trans('users.status.online') : osu.trans('users.status.offline');
+
     return (
       <div className='usercard__status-bar'>
         { this.renderStatusIcon() }
-        <span className='usercard__status-message usercard__status-message--sub'>
-          {title}
-        </span>
-        <span className='usercard__status-message'>
-          {this.user.is_online ? osu.trans('users.status.online') : osu.trans('users.status.offline')}
-        </span>
+        <div className='usercard__status-messages'>
+          <span className='usercard__status-message usercard__status-message--sub u-ellipsis-overflow'>
+            {lastSeen}
+          </span>
+          <span className='usercard__status-message u-ellipsis-overflow'>
+            {status}
+          </span>
+        </div>
         { this.renderMenuButton() }
       </div>
     );
