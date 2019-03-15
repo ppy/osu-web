@@ -123,7 +123,6 @@ class Mod
         [
             self::OSU_TRANSFORM,
             self::OSU_WIGGLE,
-            self::OSU_GROW,
         ],
     ];
 
