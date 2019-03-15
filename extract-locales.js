@@ -29,8 +29,6 @@ const messagesPath = path.resolve(buildPath, 'messages.json');
 
 function extractLanguages() {
   console.log('Extracting localizations...')
-  mkdirp.sync(localesPath);
-
   const messages = getAllMesssages();
 
   const languages = new Map();
@@ -69,6 +67,7 @@ function writeTranslations(languages)
   }
 }
 
+mkdirp.sync(localesPath);
 runLangJs();
 writeTranslations(extractLanguages());
 
