@@ -225,8 +225,9 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   }
 
   private get canMessage() {
-    return currentUser != null
-       && _.find(currentUser.blocks, { target_id: this.user.id }) == null;
+    return !_.isEmpty(currentUser)
+      && currentUser.id !== this.user.id
+      && _.find(currentUser.blocks, { target_id: this.user.id }) == null;
   }
 
   private get isOnline() {
