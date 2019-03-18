@@ -16,8 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.usercard {
-  @top: usercard;
+.user-card {
+  @top: user-card;
   @avatar-size: 70px;
   @background-color: #444; // friends list page is #333
   @status-bar-size: 30px;
@@ -109,7 +109,7 @@
     transition: background-color 0.2s ease-in-out;
     background-color: fade(@background-color, 50%);
 
-    .usercard:hover & {
+    .@{top}:hover & {
       background-color: fade(lighten(@background-color, 20%), 30%);
     }
   }

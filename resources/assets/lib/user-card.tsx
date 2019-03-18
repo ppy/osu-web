@@ -63,20 +63,20 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   }
 
   render() {
-    let usercardCss = 'usercard';
+    let usercardCss = 'user-card';
     for (const modifier of this.props.modifiers) {
-      usercardCss += ` usercard--${modifier}`;
+      usercardCss += ` user-card--${modifier}`;
     }
 
     return (
       <div className={usercardCss}>
         { this.renderBackground() }
 
-        <div className='usercard__card'>
-          <div className='usercard__content'>
-            <div className='usercard__user'>
+        <div className='user-card__card'>
+          <div className='user-card__content'>
+            <div className='user-card__user'>
               { this.renderAvatar() }
-              <div className='usercard__username u-ellipsis-overflow'>{ this.user.username }</div>
+              <div className='user-card__username u-ellipsis-overflow'>{ this.user.username }</div>
             </div>
             { this.renderIcons() }
           </div>
@@ -87,18 +87,18 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   }
 
   renderAvatar() {
-    let avatarSpaceCssClass = 'usercard__avatar-space';
+    let avatarSpaceCssClass = 'user-card__avatar-space';
     if (!this.state.avatarLoaded) {
-      avatarSpaceCssClass += ' usercard__avatar-space--loading';
+      avatarSpaceCssClass += ' user-card__avatar-space--loading';
     }
 
     return (
       <div className={avatarSpaceCssClass}>
-        <div className='usercard__avatar usercard__avatar--loader'>
+        <div className='user-card__avatar user-card__avatar--loader'>
           { !this.isUserNotFound ? <div className='la-ball-clip-rotate'></div> : null }
         </div>
         {
-          this.isUserLoaded ? <img className='usercard__avatar usercard__avatar--main'
+          this.isUserLoaded ? <img className='user-card__avatar user-card__avatar--main'
                                    onError={this.onAvatarLoad} // remove spinner if error
                                    onLoad={this.onAvatarLoad}
                                    src={this.user.avatar_url}
@@ -114,24 +114,24 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     let backgroundLink: React.ReactNode;
 
     if (this.user.cover && this.user.cover.url && this.isOnline) {
-      let backgroundCssClass = 'usercard__background';
+      let backgroundCssClass = 'user-card__background';
       if (!this.state.backgroundLoaded) {
-        backgroundCssClass += ' usercard__background--loading';
+        backgroundCssClass += ' user-card__background--loading';
       }
 
       background =
         <>
           <img className={backgroundCssClass} onLoad={this.onBackgroundLoad} src={this.user.cover.url} />
-          <div className='usercard__background-overlay'></div>
+          <div className='user-card__background-overlay'></div>
         </>;
     } else {
-      background = <div className='usercard__background-overlay'></div>;
+      background = <div className='user-card__background-overlay'></div>;
     }
 
     if (this.isUserLoaded) {
       backgroundLink =
         <a href={laroute.route('users.show', { user: this.user.id })}
-           className='usercard__background-container'>
+           className='user-card__background-container'>
           {background}
         </a>;
     } else {
@@ -154,7 +154,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
       </>;
 
     return (
-      <div className='usercard__icon usercard__icon--menu'>
+      <div className='user-card__icon user-card__icon--menu'>
         <PopupMenuPersistent>{items}</PopupMenuPersistent>
       </div>
     );
@@ -164,8 +164,8 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     if (!this.isUserLoaded) { return null; }
 
     return (
-      <div className='usercard__icons'>
-        <div className='usercard__icon usercard__icon--flag'>
+      <div className='user-card__icons'>
+        <div className='user-card__icon user-card__icon--flag'>
           <a href={laroute.route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}>
             <FlagCountry country={this.user.country} modifiers={['user-card']} />
           </a>
@@ -173,14 +173,14 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
 
         {
           this.user.is_supporter ?
-          <div className='usercard__icon'>
-            <a className='usercard__link-wrapper' href={laroute.route('support-the-game')}>
+          <div className='user-card__icon'>
+            <a className='user-card__link-wrapper' href={laroute.route('support-the-game')}>
               <SupporterIcon />
             </a>
           </div> : null
         }
 
-        <div className='usercard__icon'>
+        <div className='user-card__icon'>
           <FriendButton userId={this.user.id} modifiers={['user-card']} />
         </div>
       </div>
@@ -195,19 +195,19 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     const status = this.isOnline ? osu.trans('users.status.online') : osu.trans('users.status.offline');
 
     return (
-      <div className='usercard__content usercard__content--status'>
-        <div className='usercard__status'>
+      <div className='user-card__content user-card__content--status'>
+        <div className='user-card__status'>
           { this.renderStatusIcon() }
-          <div className='usercard__status-messages'>
-            <span className='usercard__status-message usercard__status-message--sub u-ellipsis-overflow'>
+          <div className='user-card__status-messages'>
+            <span className='user-card__status-message user-card__status-message--sub u-ellipsis-overflow'>
               {lastSeen}
             </span>
-            <span className='usercard__status-message u-ellipsis-overflow'>
+            <span className='user-card__status-message u-ellipsis-overflow'>
               {status}
             </span>
           </div>
         </div>
-        <div className='usercard__icons'>
+        <div className='user-card__icons'>
           { this.renderMenuButton() }
         </div>
       </div>
@@ -218,7 +218,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     if (!this.isUserLoaded) { return null; }
 
     return (
-      <div className={`usercard__status-icon usercard__status-icon--${this.isOnline ? 'online' : 'offline'}`}>
+      <div className={`user-card__status-icon user-card__status-icon--${this.isOnline ? 'online' : 'offline'}`}>
         <span className='far fa-fw fa-circle'></span>
       </div>
     );
