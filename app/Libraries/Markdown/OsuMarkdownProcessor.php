@@ -155,6 +155,10 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         $src = $this->node->getUrl();
 
         if (preg_match(',^(#|/|https?://|mailto:),', $src) !== 1) {
+            if (starts_with($src, './')) {
+                $src = substr($src, 2);
+            }
+
             $this->node->setUrl($this->config->getConfig('relative_url_root').'/'.$src);
         }
     }
