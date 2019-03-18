@@ -17,8 +17,9 @@
 ###
 
 import { PlayDetailMenu } from 'play-detail-menu'
-import { createElement as el, PureComponent } from 'react'
+import { createElement as el, Fragment, PureComponent } from 'react'
 import { a, button, div, i, img, small, span } from 'react-dom-factories'
+import { ReportScore } from 'report-score'
 import { ScoreHelper } from 'score-helper'
 
 osu = window.osu
@@ -117,7 +118,22 @@ export class PlayDetail extends PureComponent
             el PlayDetailMenu,
               onHide: @hide
               onShow: @show
-              score: score
+              items: (toggle) ->
+                el Fragment, null,
+                  if score.replay
+                    a
+                      className: 'simple-menu__item js-login-required--click'
+                      href: laroute.route 'scores.download',
+                              mode: score.mode
+                              score: score.id
+                      'data-turbolinks': false
+                      onClick: toggle
+                      osu.trans 'users.show.extra.top_ranks.download_replay'
+
+                  if currentUser.id? && score.user_id != currentUser.id
+                    el ReportScore,
+                      { score }
+
 
 
   hide: =>

@@ -19,10 +19,13 @@
 import { createElement as el, createRef, PureComponent } from 'react'
 import { createPortal } from 'react-dom'
 import { a, button, div, i } from 'react-dom-factories'
-import { ReportScore } from 'report-score'
 import { Modal } from 'modal'
 
 export class PlayDetailMenu extends PureComponent
+  @defaultProps =
+    items: (_toggle) ->
+
+
   constructor: (props) ->
     super props
 
@@ -124,16 +127,4 @@ export class PlayDetailMenu extends PureComponent
       className: "play-detail-menu__menu"
       div
         className: 'simple-menu simple-menu--play-detail-menu'
-        if @props.score.replay
-          a
-            className: 'simple-menu__item js-login-required--click'
-            href: laroute.route 'scores.download',
-                    mode: @props.score.mode
-                    score: @props.score.id
-            'data-turbolinks': false
-            onClick: @toggle
-            osu.trans 'users.show.extra.top_ranks.download_replay'
-
-        if currentUser.id? && @props.score.user_id != currentUser.id
-          el ReportScore,
-            { score } = @props
+        @props.items @toggle
