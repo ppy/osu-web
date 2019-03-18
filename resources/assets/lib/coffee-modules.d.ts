@@ -1,4 +1,14 @@
 // importable coffeescript modules
+declare module 'play-detail-menu' {
+  interface PlayDetailMenuProps {
+    items: (toggle: () => void) => React.ReactFragment;
+    onHide?: () => void;
+    onShow?: () => void;
+  }
+
+  class PlayDetailMenu extends React.PureComponent<PlayDetailMenuProps, any> {}
+}
+
 declare module 'report-form' {
   interface ReportFormProps {
     allowOptions: boolean;
