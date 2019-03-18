@@ -145,13 +145,10 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
 
     // TODO: menu
     return (
-      <div className='usercard__icon'>
-        <a className='user-action-button user-action-button--message'
-          href={laroute.route('messages.users.show', { user: this.user.id })}
-          title={osu.trans('users.card.send_message')}
-        >
-          <i className='fas fa-envelope'></i>
-        </a>
+      <div className='usercard__icon usercard__icon--menu'>
+        <button className='usercard__button' type='button'>
+          <span className='fas fa-ellipsis-v' />
+        </button>
       </div>
     );
   }

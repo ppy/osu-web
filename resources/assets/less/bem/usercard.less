@@ -124,6 +124,15 @@
     }
   }
 
+  &__button {
+    .reset-input();
+    .circle(100%);
+
+    cursor: pointer;
+    font-size: 10px;
+    background-color: #333;
+  }
+
   &__card {
     .link-white();
     .link-plain();
@@ -159,6 +168,11 @@
 
     &--flag {
       width: @flag-width;
+    }
+
+    &--menu {
+      height: 25px;
+      width: 25px;
     }
   }
 
