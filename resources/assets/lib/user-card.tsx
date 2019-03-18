@@ -18,6 +18,7 @@
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
 import { SupporterIcon } from 'supporter-icon';
 
@@ -143,12 +144,18 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   renderMenuButton() {
     if (!this.canMessage) { return null; }
 
-    // TODO: menu
+    const items = (dismiss: () => void) =>
+      <>
+        <a className='simple-menu__item js-login-required--click'
+           href={laroute.route('messages.users.show', { user: this.user.id })}
+           onClick={dismiss}>
+          {osu.trans('users.card.send_message')}
+        </a>
+      </>;
+
     return (
       <div className='usercard__icon usercard__icon--menu'>
-        <button className='usercard__button' type='button'>
-          <span className='fas fa-ellipsis-v' />
-        </button>
+        <PopupMenuPersistent>{items}</PopupMenuPersistent>
       </div>
     );
   }
