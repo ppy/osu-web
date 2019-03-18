@@ -19,6 +19,7 @@
 .usercard {
   @top: usercard;
   @avatar-size: 70px;
+  @background-color: #444; // friends list page is #333
   @status-bar-size: 30px;
   @card-item-spacing: 10px;
   @flag-width: 45px;
@@ -32,10 +33,7 @@
   flex-direction: column;
   width: @usercard-width;
   height: @usercard-height;
-  background-color: #333;
-  background-size: cover;
-  background-position: center;
-  background-image: url('/images/layout/beatmaps/default-bg.png');
+  background-color: @background-color;
   margin: @card-item-spacing;
 
   // to make broken cover images less ugly
@@ -53,7 +51,7 @@
     border-radius: 15px;
     .full-size();
     object-fit: contain;
-    background-color: #333;
+    background-color: @background-color;
     transition: opacity @fade-duration linear;
 
     &--loader {
@@ -100,8 +98,6 @@
     &--loading {
       opacity: 0;
     }
-
-    // background-color: #555;
   }
 
   &__background-container {
@@ -111,16 +107,10 @@
   &__background-overlay  {
     .full-size();
     transition: background-color 0.2s ease-in-out;
-    // background-color: fade(#fff, 25%);
-    background-color: fade(#000, 25%);
-    // background-color: fade(#000, 75%);
+    background-color: fade(@background-color, 50%);
 
     .usercard:hover & {
-      background-color: fade(#999, 25%);
-    }
-
-    &--guest {
-      // background-color: fade(#000, 60%);
+      background-color: fade(lighten(@background-color, 20%), 30%);
     }
   }
 
