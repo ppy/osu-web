@@ -107,10 +107,10 @@
   &__background-overlay  {
     .full-size();
     transition: background-color 0.2s ease-in-out;
-    background-color: fade(@background-color, 50%);
+    background-color: fade(@background-color, 60%);
 
     .@{top}:hover & {
-      background-color: fade(lighten(@background-color, 20%), 30%);
+      background-color: fade(lighten(@background-color, 20%), 40%);
     }
   }
 
@@ -130,8 +130,6 @@
 
     &--status {
       align-items: center;
-
-      font-weight: 100;
     }
   }
 
