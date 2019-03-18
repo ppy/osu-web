@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-import { PlayDetailMenu } from 'play-detail-menu'
+import { PopupMenu } from 'popup-menu'
 import { createElement as el, Fragment, PureComponent } from 'react'
 import { a, button, div, i, img, small, span } from 'react-dom-factories'
 import { ReportScore } from 'report-score'
@@ -115,7 +115,7 @@ export class PlayDetail extends PureComponent
         div
           className: "#{bn}__more"
           if ScoreHelper.hasMenu(score)
-            el PlayDetailMenu,
+            el PopupMenu,
               onHide: @hide
               onShow: @show
               items: (toggle) ->

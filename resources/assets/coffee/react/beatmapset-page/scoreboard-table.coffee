@@ -52,7 +52,7 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
             th className: "#{bn}__header #{bn}__header--miss", osu.trans('beatmapsets.show.scoreboard.headers.miss')
             th className: "#{bn}__header #{bn}__header--pp", osu.trans('beatmapsets.show.scoreboard.headers.pp')
             th className: "#{bn}__header #{bn}__header--mods", osu.trans('beatmapsets.show.scoreboard.headers.mods')
-            th className: "#{bn}__header #{bn}__header--play-detail-menu"
+            th className: "#{bn}__header #{bn}__header--popup-menu"
 
         tbody className: "#{bn}__body",
           for score, i in @props.scores
@@ -120,9 +120,9 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
       td className: osu.classWithModifiers(cell, ['mods']),
         el Mods, modifiers: ['scoreboard'], mods: score.mods
 
-      td className: "#{bn}__play-detail-menu",
+      td className: "#{bn}__popup-menu",
         if _exported.ScoreHelper.hasMenu(score)
-          el _exported.PlayDetailMenu,
+          el _exported.PopupMenu,
             onHide: () => @onMenuActive?(active: false, index: index)
             onShow: () => @onMenuActive?(active: true, index: index)
             score: score

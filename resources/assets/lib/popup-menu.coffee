@@ -21,7 +21,7 @@ import { createPortal } from 'react-dom'
 import { a, button, div, i } from 'react-dom-factories'
 import { Modal } from 'modal'
 
-export class PlayDetailMenu extends PureComponent
+export class PopupMenu extends PureComponent
   @defaultProps =
     items: (_toggle) ->
 
@@ -108,10 +108,10 @@ export class PlayDetailMenu extends PureComponent
     @portal ?= document.createElement('div')
 
     div
-      className: 'play-detail-menu'
+      className: 'popup-menu'
       ref: @menu
       button
-        className: 'play-detail-menu__button'
+        className: 'popup-menu__button'
         type: 'button'
         onClick: @toggle
         i className: 'fas fa-ellipsis-v'
@@ -124,7 +124,7 @@ export class PlayDetailMenu extends PureComponent
     return null unless @state.active
 
     div
-      className: "play-detail-menu__menu"
+      className: "popup-menu__menu"
       div
-        className: 'simple-menu simple-menu--play-detail-menu'
+        className: 'simple-menu simple-menu--popup-menu'
         @props.items @toggle
