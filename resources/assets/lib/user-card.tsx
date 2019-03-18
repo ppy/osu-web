@@ -72,7 +72,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
         { this.renderBackground() }
 
         <div className='usercard__card'>
-          <div className='usercard__card-content'>
+          <div className='usercard__content'>
             <div className='usercard__user'>
               { this.renderAvatar() }
               <div className='usercard__username u-ellipsis-overflow'>{ this.user.username }</div>
@@ -144,7 +144,6 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     if (!this.canMessage) { return null; }
 
     // TODO: menu
-    return null;
     return (
       <div className='usercard__icon'>
         <a className='user-action-button user-action-button--message'
@@ -192,17 +191,21 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     const status = this.isOnline ? osu.trans('users.status.online') : osu.trans('users.status.offline');
 
     return (
-      <div className='usercard__status-bar'>
-        { this.renderStatusIcon() }
-        <div className='usercard__status-messages'>
-          <span className='usercard__status-message usercard__status-message--sub u-ellipsis-overflow'>
-            {lastSeen}
-          </span>
-          <span className='usercard__status-message u-ellipsis-overflow'>
-            {status}
-          </span>
+      <div className='usercard__content usercard__content--status'>
+        <div className='usercard__status'>
+          { this.renderStatusIcon() }
+          <div className='usercard__status-messages'>
+            <span className='usercard__status-message usercard__status-message--sub u-ellipsis-overflow'>
+              {lastSeen}
+            </span>
+            <span className='usercard__status-message u-ellipsis-overflow'>
+              {status}
+            </span>
+          </div>
         </div>
-        { this.renderMenuButton() }
+        <div className='usercard__icons'>
+          { this.renderMenuButton() }
+        </div>
       </div>
     );
   }
