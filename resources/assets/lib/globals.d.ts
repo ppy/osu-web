@@ -72,6 +72,13 @@ interface Cover {
   url?: string;
 }
 
+interface Score {
+  id: string;
+  mode: string;
+  replay: boolean;
+  user_id: number;
+}
+
 // TODO: should look at combining with the other User.ts at some point.
 interface User {
   avatar_url?: string;

@@ -24,6 +24,7 @@ import { Modal } from 'modal'
 export class PopupMenu extends PureComponent
   @defaultProps =
     items: (_toggle) ->
+      # empty function
 
 
   constructor: (props) ->

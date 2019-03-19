@@ -22,3 +22,11 @@ declare module 'report-form' {
 
   class ReportForm extends React.PureComponent<ReportFormProps, any> {}
 }
+
+declare module 'report-score' {
+  interface Props {
+    score: Score;
+  }
+
+  class ReportScore extends React.PureComponent<Props> {}
+}
