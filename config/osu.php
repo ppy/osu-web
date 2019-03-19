@@ -39,7 +39,7 @@ return [
         'user_weekly_hype' => get_int(env('BEATMAPSET_USER_WEEKLY_HYPE')) ?? 3,
     ],
     'camo' => [
-        'key' => env('CAMO_KEY'),
+        'key' => presence(env('CAMO_KEY')),
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
     ],
     'chat' => [
