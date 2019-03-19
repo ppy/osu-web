@@ -31,7 +31,7 @@ use Webuni\CommonMark\TableExtension;
 
 class OsuMarkdown
 {
-    const VERSION = 11;
+    const VERSION = 12;
 
     const DEFAULT_CONFIG = [
         // CommonMark options
