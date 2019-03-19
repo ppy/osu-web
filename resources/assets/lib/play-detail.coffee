@@ -26,11 +26,6 @@ osu = window.osu
 bn = 'play-detail'
 
 export class PlayDetail extends PureComponent
-  @defaultProps =
-    # TODO: probably should rename this
-    onMenuActive: () ->
-      # empty function
-
   constructor: (props) ->
     super props
 
@@ -121,17 +116,8 @@ export class PlayDetail extends PureComponent
           className: "#{bn}__more"
           if ScoreHelper.hasMenu(score)
             el PlayDetailMenu,
-              onHide: @hide
-              onShow: @show
+              activation: @props.activation
               score: score
-
-
-  hide: =>
-    @props.onMenuActive(active: false, index: @props.index)
-
-
-  show: =>
-    @props.onMenuActive(active: true, index: @props.index)
 
 
   toggleCompact: =>

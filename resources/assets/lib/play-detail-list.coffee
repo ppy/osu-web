@@ -26,15 +26,14 @@ osu = window.osu
 export class PlayDetailList extends PureComponent
   render: =>
     el MenuActive,
-      render: (menuActive, callback) =>
-        classMods = ['menu-active'] if menuActive.activeIndex?
+      render: ({ state, update }) =>
+        classMods = ['menu-active'] if state.activeIndex?
         div
           className: osu.classWithModifiers('play-detail-list', classMods)
-          @props.scores.map (score, i) =>
+          @props.scores.map (score, index) =>
             el PlayDetail,
-              activated: menuActive.activeIndex == i
-              index: i
-              key: i
-              onMenuActive: callback
+              activated: state.activeIndex == index
+              activation: { index, update }
+              key: index
               score: score
 

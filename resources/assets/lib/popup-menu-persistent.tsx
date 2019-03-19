@@ -16,43 +16,31 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { PopupMenu } from 'popup-menu';
 import * as React from 'react';
 
 interface Props {
-  render(renderProps: RenderProps): React.ReactNode[];
+  activation: any; // update, index
+  items: (dismiss: () => void) => React.ReactFragment;
 }
 
-interface RenderProps {
-  state: State;
-  update(params: RenderPropsUpdateParams): void; // a callback to update the activated state of the wrapper.
-}
+export class PopupMenuPersistent extends React.PureComponent<Props> {
+  static defaultProps = {
+    // TODO: should be from a provider so it doesn't have to be passed multiple layers down?
+    activation: {},
+  };
 
-interface RenderPropsUpdateParams {
-  active: boolean; //  the state it was updated to.
-  index: any; // the index that was updated.
-}
+  onHide = () => {
+    this.props.activation.update({ active: false, index: this.props.activation.index });
+  }
 
-interface State {
-  activeIndex?: any;
-}
-
-/**
- * A wrapper component for tracking which menu in a list is 'active'.
- * TODO: should probably move to a context provider.
- */
-export class MenuActive extends React.PureComponent<Props, State> {
-  readonly state: State = {};
-
-  update = (params: RenderPropsUpdateParams) => {
-    this.setState({ activeIndex: params.active ? params.index : null });
+  onShow = () => {
+    this.props.activation.update({ active: true, index: this.props.activation.index });
   }
 
   render() {
-    const { state, update } = this;
     return (
-      <>
-        {this.props.render({ state, update })}
-      </>
+      <PopupMenu onHide={this.onHide} onShow={this.onShow} {...this.props} />
     );
   }
 }

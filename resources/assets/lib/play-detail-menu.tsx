@@ -17,7 +17,7 @@
  */
 
 import * as _ from 'lodash';
-import { PopupMenu } from 'popup-menu';
+import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
 import { ReportScore } from 'report-score';
 
@@ -46,7 +46,7 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
       </>;
 
     return (
-      <PopupMenu items={items} {...params} />
+      <PopupMenuPersistent items={items} {...params} />
     );
   }
 
