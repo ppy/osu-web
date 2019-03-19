@@ -19,31 +19,22 @@
 import { PlayDetail } from 'play-detail'
 import { createElement as el, PureComponent } from 'react'
 import { div } from 'react-dom-factories'
+import { MenuActive } from 'menu-active'
 
 osu = window.osu
 
 export class PlayDetailList extends PureComponent
-  constructor: (props) ->
-    super props
-
-    @state = {}
-
-
-  onMenuActive: ({ index, active }) =>
-    activeMenu = index if active
-    @setState { activeMenu }
-
-
   render: =>
-    classMods = ['menu-active'] if @state.activeMenu?
-
-    div
-      className: osu.classWithModifiers('play-detail-list', classMods)
-      @props.scores.map (score, i) =>
-        el PlayDetail,
-          activated: @state.activeMenu == i
-          index: i
-          key: i
-          onMenuActive: @onMenuActive
-          score: score
+    el MenuActive,
+      render: (menuActive, callback) =>
+        classMods = ['menu-active'] if menuActive.activeIndex?
+        div
+          className: osu.classWithModifiers('play-detail-list', classMods)
+          @props.scores.map (score, i) =>
+            el PlayDetail,
+              activated: menuActive.activeIndex == i
+              index: i
+              key: i
+              onMenuActive: callback
+              score: score
 
