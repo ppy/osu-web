@@ -28,7 +28,7 @@ return [
     'list_numbered' => '番号付きリスト',
     'size' => [
         '_' => 'フォントサイズ',
-        'tiny' => '極小',
+        'tiny' => '最小',
         'small' => '小',
         'normal' => '中',
         'large' => '大',

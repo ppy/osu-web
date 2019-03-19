@@ -53,20 +53,20 @@ return [
         'pay' => 'Pagar con PayPal',
 
         'has_pending' => [
-            '_' => '',
+            '_' => 'Tienes pedidos incompletos, haga clic :link para verlos.',
             'link_text' => 'aquí',
         ],
 
         'pending_checkout' => [
             'line_1' => 'Un anterior pago ha sido iniciado pero no fue completado.',
-            'line_2' => '',
+            'line_2' => 'Reanuda tu pago seleccionando un método de pago.',
         ],
     ],
 
     'discount' => 'ahorra un :percent%',
 
     'invoice' => [
-        'echeck_delay' => '',
+        'echeck_delay' => 'Como su pago fue un \'eCheck\', por favor, permita hasta 10 días extra para que el pago se reciba a través de PayPal!',
         'status' => [
             'processing' => [
                 'title' => '¡Aún no se ha confirmado tu pago!',
@@ -86,7 +86,7 @@ return [
     ],
 
     'order' => [
-        'paid_on' => '',
+        'paid_on' => 'Pedido :date',
 
         'invoice' => 'Ver factura',
         'no_orders' => 'No hay ordenes para ver.',

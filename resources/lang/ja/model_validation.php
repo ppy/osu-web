@@ -21,7 +21,7 @@
 return [
     'not_negative' => ':attributeに負の数は使用できません',
     'required' => ':attributeが必須です',
-    'too_long' => ':attributeの長さの上限を超えました。:limit文字が上限です',
+    'too_long' => ':attributeの使用文字数の制限を超えています。上限は:limit文字です。',
     'wrong_confirmation' => '認証が一致しません。',
 
     'beatmap_discussion_post' => [
@@ -30,23 +30,23 @@ return [
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'タイムスタンプは存在しますが譜面が見つかりませんでした',
-        'beatmapset_no_hype' => "この譜面はHypeできません。",
+        'beatmap_missing' => 'タイムスタンプは存在しますがビートマップが見つかりませんでした',
+        'beatmapset_no_hype' => "このビートマップはHypeできません。",
         'hype_requires_null_beatmap' => 'Hypeは一般（全ての難易度）セクションで行ってください。',
-        'invalid_beatmap_id' => '指定の難易度が無効です。',
-        'invalid_beatmapset_id' => '指定の譜面が無効です。',
+        'invalid_beatmap_id' => '無効の難易度が指定されました。',
+        'invalid_beatmapset_id' => '無効なビートマップが指定されました。',
         'locked' => 'ディスカッションはロックされています。',
 
         'hype' => [
             'guest' => 'Hypeするにはログインが必要です。',
-            'hyped' => '既にこの譜面をHypeしています。',
+            'hyped' => '既にこのビートマップをHypeしています。',
             'limit_exceeded' => 'Hype回数が残っていません。',
-            'not_hypeable' => 'この譜面はHypeできません。',
-            'owner' => '自分の譜面はHypeできません。',
+            'not_hypeable' => 'このビートマップはHypeできません。',
+            'owner' => '自分のビートマップはHypeできません。',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => '指定されたタイムスタンプは譜面の長さの範囲に存在しません。',
+            'exceeds_beatmapset_length' => '指定されたタイムスタンプはビートマップの長さの範囲に存在しません。',
             'negative' => "タイムスタンプは負の数が使えません。",
         ],
     ],
@@ -66,8 +66,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => '譜面のmetadata投稿を削除するのは許可されていません。',
-            'beatmapset_post_no_edit' => '譜面のmetadata投稿を編集するのは許可されていません。',
+            'beatmapset_post_no_delete' => 'ビートマップのメタデータ投稿を削除するのは許可されていません。',
+            'beatmapset_post_no_edit' => 'ビートマップのメタデータ投稿を編集するのは許可されていません。',
             'only_quote' => 'あなたの返信には引用しかありません。',
         ],
 
@@ -87,26 +87,26 @@ return [
     ],
 
     'user' => [
-        'contains_username' => 'ユーザーネームを含んだパスワードは使用できません。',
-        'email_already_used' => '既に使用されているEメールアドレスです。',
+        'contains_username' => 'ユーザー名を含んだパスワードは使用できません。',
+        'email_already_used' => '既に使用されているメールアドレスです。',
         'invalid_country' => 'データベースに存在しない国です。',
         'invalid_discord' => 'Discordのユーザー名が無効です。',
-        'invalid_email' => "無効のメールアドレスです。",
+        'invalid_email' => "無効なメールアドレスです。",
         'too_short' => '新しいパスワードが短すぎます。',
-        'unknown_duplicate' => 'ユーザーネームかEメールアドレスが既に使用されています。',
-        'username_available_in' => 'このユーザーネームは :duration で使用可能になります。',
-        'username_available_soon' => 'このユーザーネームはまもなく使用可能になります。',
-        'username_invalid_characters' => '指定のユーザーネームに無効の文字が含まれています。',
-        'username_in_use' => '既に使用されているユーザーネームです！',
-        'username_locked' => 'ユーザー名は既に使われています！', // TODO: language for this should be slightly different.
+        'unknown_duplicate' => 'ユーザー名かメールアドレスが既に使用されています。',
+        'username_available_in' => 'このユーザー名は:durationで使用可能になります。',
+        'username_available_soon' => 'このユーザー名はまもなく使用可能になります。',
+        'username_invalid_characters' => '指定のユーザー名に無効の文字が含まれています。',
+        'username_in_use' => '既に使用されているユーザー名です！',
+        'username_locked' => '既に使用されているユーザー名です！', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'アンダーバーかスペースのどちらかに統一してください。',
         'username_no_spaces' => "ユーザーネームの端にスペースは使用できません。",
-        'username_not_allowed' => 'このユーザーネームに使用は許可されていません。',
+        'username_not_allowed' => 'このユーザーネームの使用は許可されていません。',
         'username_too_short' => 'ユーザーネームが短すぎます。',
         'username_too_long' => 'ユーザーネームが長すぎます。',
-        'weak' => 'ブラックリストに含まれているパスワードです。',
-        'wrong_current_password' => '誤ったパスワードです。',
-        'wrong_email_confirmation' => 'Eメールの確認が一致しません。',
+        'weak' => 'ブラックリストに載っているパスワードです。',
+        'wrong_current_password' => 'パスワードが違います',
+        'wrong_email_confirmation' => 'メールアドレスが一致しません。',
         'wrong_password_confirmation' => 'パスワードの確認が一致しません。',
         'too_long' => '使用文字数の制限を超えています。上限は:limit文字です。',
 

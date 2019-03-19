@@ -42,7 +42,7 @@ return [
         'incidents' => [
             'title' => '最近の問題',
             'state' => [
-                'resolved' => '解決済',
+                'resolved' => '解決済み',
                 'resolving' => '解決中',
                 'unknown' => '不明',
             ],
@@ -60,7 +60,7 @@ return [
             'today' => '今日',
             'week' => '今週',
             'month' => '今月',
-            'all_time' => '全体',
+            'all_time' => '全期間',
             'last_week' => '先週',
             'weeks_ago' => ':count週間前',
         ],

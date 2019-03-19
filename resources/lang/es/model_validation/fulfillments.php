@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'El nombre de usuario actual (:current) no es el mismo nombre de usuario que se está intentando revocar (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => 'La donación es menor a la mínima necesitada para el osu!supporter (:actual > :expected)',
     ],
 ];

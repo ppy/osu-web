@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ': sınırlandırılmış mesaj sayısı |: sınırlandırılmış mesaj sayıları',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Anket oluşturma',
 
-            'preview' => '',
+            'preview' => 'Yazı önizleme',
 
             'create_poll_button' => [
                 'add' => 'Anket oluştur',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'yıldız öncelik',
             'replies' => 'yanıt',
             'views' => 'görülme',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => 'Bu isteği destekle',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Bu bir: özellik isteğidir. Özellik istekleri aşağıdakiler tarafından oylanabilir: destek Personeli.',
+                    'feature_request' => 'özellik isteği',
+                    'supporters' => 'destek Personeli',
                 ],
 
                 'user' => [

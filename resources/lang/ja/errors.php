@@ -31,11 +31,11 @@ return [
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => '指定のモードは無効です。',
-        'standard_converts_only' => 'この難易度の指定のモードのスコアは見つかりませんでした。',
+        'invalid_mode' => '無効なモードが選択されました。',
+        'standard_converts_only' => 'このビートマップの難易度には要求されたモードのスコアはありません。',
     ],
     'logged_out' => 'ログアウトされています。ログインしてから再度お試しください。',
-    'supporter_only' => 'サポーター限定の機能です。',
+    'supporter_only' => 'osu!サポーター限定の機能です。',
     'no_restricted_access' => 'アカウントが制限中は無効です。',
     'unknown' => '不明のエラーが発生しました。',
 ];

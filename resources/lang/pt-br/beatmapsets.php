@@ -125,7 +125,7 @@ return [
         ],
 
         'stats' => [
-            'cs' => 'Tamanho do Círculo',
+            'cs' => 'Tamanho dos Círculos',
             'cs-mania' => 'Número de Teclas',
             'drain' => 'Dreno de HP',
             'accuracy' => 'Precisão',

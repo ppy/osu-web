@@ -39,9 +39,9 @@ return [
         'edit' => '編集',
         'edited' => ':editorが:update_timeに編集',
         'kudosu_denied' => 'kudosuの入手を拒否されました。',
-        'message_placeholder_deleted_beatmap' => 'この難易度は削除されたのでディスカッションはできません。',
+        'message_placeholder_deleted_beatmap' => 'この難易度は削除された為これ以上ディスカッションに投稿できません。',
         'message_type_select' => 'コメントタイプを選択',
-        'reply_notice' => 'Enter キーを押して送信',
+        'reply_notice' => 'Enterキーを押して送信',
         'reply_placeholder' => 'ここにメッセージを入力してください',
         'require-login' => '返信するにはログインが必要です。',
         'resolved' => '解決済',
@@ -49,8 +49,8 @@ return [
         'title' => 'ディスカッション',
 
         'collapse' => [
-            'all-collapse' => 'すべてを折りたたむ',
-            'all-expand' => '全て展開する',
+            'all-collapse' => '全てを折りたたむ',
+            'all-expand' => '全て展開',
         ],
 
         'empty' => [
@@ -60,7 +60,7 @@ return [
 
         'message_hint' => [
             'in_general' => 'これは一般のディスカッションに投稿されます。 この譜面をmodするにはタイムスタンプ（例:　00:12:345）で始まるメッセージを入力してください。',
-            'in_timeline' => '複数のタイムスタンプをmodするには複数の投稿に分けてください。',
+            'in_timeline' => '複数のタイムスタンプをmodするには、投稿を複数回に分けてください。',
         ],
 
         'message_placeholder' => [
@@ -70,9 +70,9 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => '失格',
+            'disqualify' => '申請取り消し',
             'hype' => 'Hype!',
-            'mapper_note' => 'メモ',
+            'mapper_note' => '注意',
             'nomination_reset' => 'ノミネーションをリセット',
             'praise' => '称賛',
             'problem' => '問題',
@@ -84,19 +84,19 @@ return [
             'general' => '一般:scope',
             'timeline' => 'タイムライン',
             'scopes' => [
-                'general' => '選択中の難易度',
+                'general' => 'この難易度',
                 'generalAll' => '全難易度',
             ],
         ],
 
         'new' => [
             'timestamp' => 'タイムスタンプ',
-            'timestamp_missing' => 'ゲーム内のEdit画面でCtrl+Cを押してメッセージに張り付けるとタイムスタンプになります',
+            'timestamp_missing' => 'ゲーム内のEdit画面でCtrl+Cを押してメッセージに張り付けるとタイムスタンプになります！',
             'title' => '新しいディスカッション',
         ],
 
         'show' => [
-            'title' => ':title mapped by :mapper',
+            'title' => ':title 作成 by :mapper',
         ],
 
         'sort' => [
@@ -108,9 +108,9 @@ return [
 
         'stats' => [
             'deleted' => '削除済み',
-            'mapper_notes' => 'メモ',
+            'mapper_notes' => '注意',
             'mine' => '自分',
-            'pending' => '未解決',
+            'pending' => '保留中',
             'praises' => '称賛',
             'resolved' => '解決済み',
             'total' => '全て',
@@ -121,18 +121,18 @@ return [
             'graveyard' => "この譜面は:dateから更新が止まっています・・・",
             'loved' => 'この譜面は:dateにLovedになりました！',
             'ranked' => 'この譜面は:dateにRankedになりました！',
-            'wip' => '注：この譜面は作者によって作成途中とされています。',
+            'wip' => '注：このビートマップは作者によって作成途中とされています。',
         ],
 
     ],
 
     'hype' => [
-        'button' => '譜面をHype！',
+        'button' => 'ビートマップにHypeする！',
         'button_done' => 'Hype済みです！',
         'confirm' => "あなたの残りHype数は:n回です。Hypeは取り消しできません。Hypeしますか？",
         'explanation' => 'Hypeすることで譜面に注目が集まりやすくなります。Rankedして欲しい譜面はHypeしましょう！',
         'explanation_guest' => 'Hypeすることで譜面に注目が集まりやすくなります。ログインして譜面をHypeしましょう！',
-        'new_time' => ":new_timeで残りhype数が回復します。",
+        'new_time' => ":new_timeでhype数が回復します。",
         'remaining' => 'あなたの残りHype数は:remaining回です',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Hype進行',
@@ -146,19 +146,19 @@ return [
     'nominations' => [
         'delete' => '削除',
         'delete_own_confirm' => '譜面は削除され、あなたはプロフィール画面にリダイレクトされます。本当によろしいですか？',
-        'delete_other_confirm' => '譜面は削除され、あなたはユーザーのプロフィール画面にリダイレクトされます。本当によろしいですか？',
-        'disqualification_prompt' => 'Disqualification（Qualifyの取り消し）の理由',
-        'disqualified_at' => ':time_agoにDisqualifyされました(:reason).',
+        'delete_other_confirm' => 'ビートマップは削除され、あなたはユーザーのプロフィール画面にリダイレクトされます。本当によろしいですか？',
+        'disqualification_prompt' => '申請の取り消しの理由',
+        'disqualified_at' => ':time_agoに申請が取り消しされました（:reason）',
         'disqualified_no_reason' => '理由が明示されていません',
-        'disqualify' => 'Disqualify',
+        'disqualify' => '申請取り消し',
         'incorrect_state' => 'エラーが発生しました。ページの再読み込みを試してください。',
         'love' => 'Lovedに追加',
         'love_confirm' => 'Lovedに追加しますか？',
         'nominate' => 'ノミネート',
         'nominate_confirm' => 'この譜面をノミネートしますか？',
         'nominated_by' => ':usersにノミネートされました。',
-        'qualified' => '特に問題がなかった場合、:dateにRanked予定',
-        'qualified_soon' => '特に問題がなかった場合、間もなくRanked',
+        'qualified' => '特に問題がなかった場合、:dateにランク予定です。',
+        'qualified_soon' => '特に問題がなかった場合、間もなくランクされる予定です。',
         'required_text' => 'ノミネート数: :current/:required',
         'reset_message_deleted' => '削除済み',
         'title' => 'ノミネートのステータス',
@@ -170,7 +170,7 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'よろしいですか？新しい問題点を投稿すると審査中ではなくなります。',
+            'nomination_reset' => '本当によろしいですか？新しい問題を投稿すると審査中ではなくなります。',
             'disqualify' => '本当にいいですか？これによりビートマップが認定から外され、ノミネーションがリセットされます。',
         ],
     ],
@@ -189,8 +189,8 @@ return [
                 'status' => 'カテゴリー',
                 'genre' => 'ジャンル',
                 'language' => '言語',
-                'extra' => 'エキストラ',
-                'rank' => '取得ランク',
+                'extra' => '追加情報',
+                'rank' => 'ランク取得日',
                 'played' => 'プレイ済み',
             ],
             'sorting' => [
@@ -206,7 +206,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => ':filters による絞り込みには有効な:link が必要です',
-                'link_text' => 'osu! サポーター タグ',
+                'link_text' => 'サポーター タグ',
             ],
         ],
     ],
@@ -223,7 +223,7 @@ return [
     ],
     'status' => [
         'any' => '全て',
-        'ranked-approved' => 'Ranked & Approved',
+        'ranked-approved' => 'ランク＆承認済み',
         'approved' => '承認済み',
         'qualified' => '申請済み',
         'loved' => 'Loved',

@@ -303,7 +303,7 @@ return [
         'D' => 'D',
     ],
     'panel' => [
-        'playcount' => '',
+        'playcount' => 'Nombre de joueurs : :count',
         'favourites' => 'Favorites : :count',
     ],
 ];

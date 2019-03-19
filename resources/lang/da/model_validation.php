@@ -98,7 +98,7 @@ return [
         'username_available_soon' => 'Dette Brugernavn vil være tilgængelig hvert øjeblik nu!',
         'username_invalid_characters' => 'Det anmodede brugernavn indeholder ugyldige tegn.',
         'username_in_use' => 'Navnet er allerede i brug!',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_locked' => 'Brugernavn er allerede i brug!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Brug enten understreg eller mellemrum, ikke begge dele!',
         'username_no_spaces' => "Brugernavn kan ikke starte eller ende med mellemrum!",
         'username_not_allowed' => 'Dette brugernavn er ikke tilladt.',

@@ -198,7 +198,7 @@ return [
                 'artist' => '艺术家',
                 'difficulty' => '难度',
                 'updated' => '已更新',
-                'ranked' => 'Ranked',
+                'ranked' => 'Ranked 时间',
                 'rating' => '评分',
                 'plays' => '游玩次数',
                 'relevance' => '相关性',

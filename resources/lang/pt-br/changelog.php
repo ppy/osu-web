@@ -27,7 +27,7 @@ return [
     ],
 
     'builds' => [
-        'users_online' => ':count_delimited usuário online|:count_delimited usuários online',
+        'users_online' => ':count_delimited usuários online|:count_delimited usuários online',
     ],
 
     'entry' => [
@@ -47,13 +47,13 @@ return [
         ],
 
         'title' => [
-            '_' => ':info de alterações',
+            '_' => 'Lista de Alterações: :info',
             'info' => 'Listagem',
         ],
     ],
 
     'support' => [
-        'heading' => 'Amou esta atualização?',
+        'heading' => 'Amou essa atualização?',
         'text_1' => 'Ajude o desenvolvimento do osu! e :link hoje!',
         'text_1_link' => 'torne-se um osu!supporter',
         'text_2' => 'Além de você ajudar a agilizar o desenvolvimento, você também ganha umas coisinhas especiais!',

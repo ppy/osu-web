@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'priorité d\'étoiles',
             'replies' => 'réponses',
             'views' => 'vues',
         ],
@@ -274,7 +274,7 @@ return [
                 'do' => 'Promouvoir cette requête',
 
                 'info' => [
-                    '_' => '',
+                    '_' => 'Il s\'agit d\'une :feature_request. Les demandes de fonctionnalité peuvent être votées par des :supporters.',
                     'feature_request' => 'demande de fonctionnalité',
                     'supporters' => 'supporters',
                 ],

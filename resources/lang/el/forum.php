@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited δημοσίευση|:count_delimited δημοσιεύσεις',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Δημιουργία ψηφοφορίας',
 
-            'preview' => '',
+            'preview' => 'Προεπισκόπηση Δημοσίευσης',
 
             'create_poll_button' => [
                 'add' => 'Δημιούργησε ψηφοφορία',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'βάσει αστεριών',
             'replies' => 'απαντήσεις',
             'views' => 'προβολές',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => 'Προαγωγή αυτού του αιτήματος',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Αυτό είναι ένα :feature_request. Τα αιτήματα για λειτουργίες μπορούν να ψηφισθούν από τους :supporters.',
+                    'feature_request' => 'αίτημα για λειτουργία',
+                    'supporters' => 'supporters',
                 ],
 
                 'user' => [

@@ -27,6 +27,6 @@ return [
 
     'forum_topics' => [
         'new' => 'Dernière réponse',
-        'feature_votes' => '',
+        'feature_votes' => 'Priorité Star',
     ],
 ];

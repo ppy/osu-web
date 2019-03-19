@@ -33,7 +33,7 @@ return [
 
         'destroy' => [
             '_' => 'Выдаліць фонавую выяву',
-            'confirm' => 'Вы ўпэўнены, што хочаце выдаліць гэтую фонавую выяву?',
+            'confirm' => 'Вы ўпэўнены, што хочаце выдаліць гэту фонавую выяву?',
         ],
     ],
 
@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited допіс|:count_delimited допісы|:count_delimited допісаў',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Стварэння апытання',
 
-            'preview' => '',
+            'preview' => 'Перадпрагляд допіса',
 
             'create_poll_button' => [
                 'add' => 'Стварыць апытанне',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'зорны прыярытэт',
             'replies' => 'адказаў',
             'views' => 'праглядаў',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => 'Прасунуць гэты запыт',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Гэта :feature_request. Галасаванне за функцыі можа быць скарыстана :supporters.',
+                    'feature_request' => 'запыт функцыі',
+                    'supporters' => 'прыхільнікі',
                 ],
 
                 'user' => [

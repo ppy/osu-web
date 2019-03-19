@@ -20,13 +20,13 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => '削除済み譜面',
+        'beatmap-deleted' => '削除されたビートマップ',
         'difference' => ':difference点差',
-        'failed' => 'FAILED',
-        'header' => 'マルチ部屋',
+        'failed' => '失敗',
+        'header' => 'マルチプレイ部屋',
         'in-progress' => '（試合進行中）',
         'in_progress_spinner_label' => '試合進行中',
-        'loading-events' => 'イベント読み込み中・・・',
+        'loading-events' => 'イベントの読み込み中・・・',
         'winner' => ':teamの勝利',
 
         'events' => [
@@ -47,7 +47,7 @@ return [
 
         'score' => [
             'stats' => [
-                'accuracy' => '精度(Accuracy)',
+                'accuracy' => '精度',
                 'combo' => 'コンボ',
                 'score' => 'スコア',
             ],
@@ -61,8 +61,8 @@ return [
         ],
 
         'teams' => [
-            'blue' => 'Blueチーム',
-            'red' => 'Redチーム',
+            'blue' => 'ブルーチーム',
+            'red' => 'レッドチーム',
         ],
     ],
     'game' => [

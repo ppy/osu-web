@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Şuna göre sıralandı:',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'created_at' => 'Oluşturulma zamanı',
+            'timeline' => 'Zaman Çizgisi',
+            'updated_at' => 'Son güncelleme',
         ],
 
         'stats' => [
@@ -194,15 +194,15 @@ return [
                 'played' => 'Oynanmışlık',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'Başlık',
+                'artist' => 'Sanatçı',
+                'difficulty' => 'Zorluk',
+                'updated' => 'Güncellendi',
+                'ranked' => 'Sırada yer aldı',
+                'rating' => 'Derecelendirme',
+                'plays' => 'Oynamalar',
+                'relevance' => 'Alaka düzeyi',
+                'nominations' => 'Adaylıklar',
             ],
             'supporter_filter_quote' => [
                 '_' => ':filters ile filtrelemek için aktif bir :link gerekli',
@@ -303,7 +303,7 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => 'Oynanma sayısı',
+        'favourites' => 'Favoriler',
     ],
 ];

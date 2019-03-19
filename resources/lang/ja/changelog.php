@@ -31,14 +31,14 @@ return [
     ],
 
     'entry' => [
-        'by' => '開発者: :user',
+        'by' => 'by :user',
     ],
 
     'index' => [
         'page_title' => [
             '_' => '更新履歴一覧',
-            '_from' => ':from からの変更点',
-            '_from_to' => ':from から :to への変更',
+            '_from' => ':fromからの変更点',
+            '_from_to' => ':fromから:toへの変更',
             '_stream' => ':streamの変更点',
             '_stream_from' => ':fromからの:streamの変更',
             '_stream_from_to' => ':fromから:toの:streamの変更',
@@ -55,7 +55,7 @@ return [
     'support' => [
         'heading' => 'このアップデートは良かったですか？',
         'text_1' => 'osu!の開発をサポートするために:link！',
-        'text_1_link' => 'サポーターになりましょう',
-        'text_2' => '開発の進行の手助けになるほか、いろんな機能が追加で利用できるようになります！',
+        'text_1_link' => 'osu!サポーターになりましょう',
+        'text_2' => '開発の手助けにだけでなく、色々な機能が利用できるようになります！',
     ],
 ];

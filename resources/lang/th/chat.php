@@ -19,17 +19,17 @@
  */
 
 return [
-    'coming_soon' => '',
-    'limitation_notice' => '',
-    'talking_in' => '',
-    'talking_with' => '',
-    'title_compact' => '',
-    'title' => '',
+    'coming_soon' => 'เร็วๆ นี้',
+    'limitation_notice' => 'หมายเหตุ: เฉพาะคนใช้ <a href=":lazer_link">osu! lazer</a> หรือเว็บไซต์ใหม่เท่านั้นที่จะได้รับข้อความผ่านระบบนี้<br/>ถ้าคุณไม่แน่ใจ ส่งข้อความผ่านทาง<a href=":oldpm_link">ฟอรั่มเก่า</a>แทน',
+    'talking_in' => 'กำลังสนทนาใน :channel',
+    'talking_with' => 'กำลังสนทนากับ :name',
+    'title_compact' => 'ห้องสนทนา',
+    'title' => 'ห้องสนทนา',
     'cannot_send' => [
-        'channel' => '',
-        'user' => '',
+        'channel' => 'คุณไม่สามารถส่งข้อความผ่านช่องทางนี้ได้ในเวลานี้ อาจเนื่องมาจากสาเหตุต่อไปนี้',
+        'user' => 'คุณไม่สามารถส่งข้อความหาคนนี้ได้ในเวลานี้ อาจเนื่องมาจากสาเหตุต่อไปนี้',
         'reasons' => [
-            'blocked' => '',
+            'blocked' => 'คุณถูกบล็อกโดยผู้รับ',
             'channel_moderated' => '',
             'friends_only' => '',
             'restricted' => '',
@@ -37,9 +37,9 @@ return [
         ],
     ],
     'input' => [
-        'disabled' => '',
-        'placeholder' => '',
-        'send' => '',
+        'disabled' => 'ไม่สามารถส่งข้อความได้...',
+        'placeholder' => 'พิมพ์ข้อความ...',
+        'send' => 'ส่ง',
     ],
     'no-conversations' => [
         'howto' => "",

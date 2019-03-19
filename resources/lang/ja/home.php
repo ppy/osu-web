@@ -42,7 +42,7 @@ return [
 
         'beatmapset' => [
             'more' => '他:count件のビートマップ検索結果',
-            'more_simple' => '他のビートマップ検索結果を見る',
+            'more_simple' => 'もっとビートマップの検索結果を見る',
             'title' => 'ビートマップ',
         ],
 
@@ -62,7 +62,7 @@ return [
 
         'mode' => [
             'all' => '全て',
-            'beatmapset' => '譜面',
+            'beatmapset' => 'ビートマップ',
             'forum_post' => 'フォーラム',
             'user' => 'プレイヤー',
             'wiki_page' => 'wiki',
@@ -70,14 +70,14 @@ return [
 
         'user' => [
             'more' => '他:count件のプレイヤー検索結果',
-            'more_simple' => '他のプレイヤー検索結果を見る',
+            'more_simple' => 'もっとプレイヤーの検索結果を見る',
             'more_hidden' => 'プレイヤー検索は最大:max件までです。絞り込む事をおすすめします。',
             'title' => 'プレイヤー',
         ],
 
         'wiki_page' => [
             'link' => 'wikiを検索',
-            'more_simple' => '他のwiki検索結果を見る',
+            'more_simple' => 'もっとwikiの検索結果を見る',
             'title' => 'Wiki',
         ],
     ],
@@ -102,9 +102,9 @@ return [
                 'description' => '上のボタンからインストーラーをダウンロードして、実行しよう！',
             ],
             'beatmaps' => [
-                'title' => '譜面を取得する',
+                'title' => 'ビートマップを取得',
                 'description' => [
-                    '_' => ':browseから好きな譜面をユーザーたちが作成した膨大な数の譜面から見つけよう！',
+                    '_' => ':browseからユーザーが作った膨大な数のビートマップから好きなビートマップを見つけて遊ぼう！',
                     'browse' => 'ここ',
                 ],
             ],
