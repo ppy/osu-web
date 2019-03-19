@@ -23,7 +23,7 @@ import { Modal } from 'modal'
 
 export class PopupMenu extends PureComponent
   @defaultProps =
-    items: (_toggle) ->
+    items: (_dismiss) ->
       # empty function
 
 
@@ -79,6 +79,10 @@ export class PopupMenu extends PureComponent
     $(document).off ".#{@uuid}"
 
 
+  dismiss: =>
+    @setState active: false
+
+
   hide: (e) =>
     return if !@state.active || Modal.isOpen()
 
@@ -128,4 +132,4 @@ export class PopupMenu extends PureComponent
       className: "popup-menu__menu"
       div
         className: 'simple-menu simple-menu--popup-menu'
-        @props.items @toggle
+        @props.items @dismiss

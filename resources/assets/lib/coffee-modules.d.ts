@@ -1,7 +1,7 @@
 // importable coffeescript modules
 declare module 'popup-menu' {
   interface PopupMenuProps {
-    items: (toggle: () => void) => React.ReactFragment;
+    items: (dismiss: () => void) => React.ReactFragment;
     onHide?: () => void;
     onShow?: () => void;
   }

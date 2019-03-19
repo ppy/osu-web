@@ -29,14 +29,14 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
   render() {
     const { score, ...params } = this.props;
 
-    const items = (toggle: () => void) =>
+    const items = (dismiss: () => void) =>
       <>
         {
           score.replay ?
           <a className='simple-menu__item js-login-required--click'
             data-turbolinks={false}
             href={laroute.route('scores.download', { mode: score.mode, score: score.id })}
-            onClick={toggle}
+            onClick={dismiss}
           >
             {osu.trans('users.show.extra.top_ranks.download_replay')}
           </a> : null
