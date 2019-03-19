@@ -20,7 +20,7 @@
 
 import { BackToTop } from 'back-to-top'
 import { PlayDetailList } from 'play-detail-list'
-import { PopupMenu } from 'popup-menu'
+import { PlayDetailMenu } from 'play-detail-menu'
 import { ReportComment } from 'report-comment'
 import { ReportUser } from 'report-user'
 import { ScoreHelper } from 'score-helper'
@@ -42,7 +42,7 @@ window.Promise ?= Promise
 window._exported = {
   BackToTop
   PlayDetailList
-  PopupMenu
+  PlayDetailMenu
   ReportComment
   ReportUser
   ScoreHelper
