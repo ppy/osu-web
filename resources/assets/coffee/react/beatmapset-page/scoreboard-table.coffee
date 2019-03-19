@@ -21,48 +21,41 @@ el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
 class BeatmapsetPage.ScoreboardTable extends React.PureComponent
-  constructor: (props) ->
-    super props
-
-    @state = {}
-
-
-  onMenuActive: ({ index, active }) =>
-    activeMenu = index if active
-    @setState { activeMenu }
-
-
   render: =>
-    classMods = ['menu-active'] if @state.activeMenu?
+    el _exported.MenuActive,
+      render: (menuActive, callback) =>
+        classMods = ['menu-active'] if menuActive.activeIndex?
+        div className: osu.classWithModifiers(bn, classMods),
+          table
+            className: "#{bn}__table"
+            thead {},
+              tr {},
+                th className: "#{bn}__header #{bn}__header--rank", osu.trans('beatmapsets.show.scoreboard.headers.rank')
+                th className: "#{bn}__header #{bn}__header--grade", ''
+                th className: "#{bn}__header #{bn}__header--score", osu.trans('beatmapsets.show.scoreboard.headers.score')
+                th className: "#{bn}__header #{bn}__header--accuracy", osu.trans('beatmapsets.show.scoreboard.headers.accuracy')
+                th className: "#{bn}__header #{bn}__header--flag", ''
+                th className: "#{bn}__header #{bn}__header--player", osu.trans('beatmapsets.show.scoreboard.headers.player')
+                th className: "#{bn}__header #{bn}__header--maxcombo", osu.trans('beatmapsets.show.scoreboard.headers.combo')
+                for stat in @props.hitTypeMapping
+                  th key: stat[0], className: "#{bn}__header #{bn}__header--hitstat", stat[0]
+                th className: "#{bn}__header #{bn}__header--miss", osu.trans('beatmapsets.show.scoreboard.headers.miss')
+                th className: "#{bn}__header #{bn}__header--pp", osu.trans('beatmapsets.show.scoreboard.headers.pp')
+                th className: "#{bn}__header #{bn}__header--mods", osu.trans('beatmapsets.show.scoreboard.headers.mods')
+                th className: "#{bn}__header #{bn}__header--popup-menu"
 
-    div className: osu.classWithModifiers(bn, classMods),
-      table
-        className: "#{bn}__table"
-        thead {},
-          tr {},
-            th className: "#{bn}__header #{bn}__header--rank", osu.trans('beatmapsets.show.scoreboard.headers.rank')
-            th className: "#{bn}__header #{bn}__header--grade", ''
-            th className: "#{bn}__header #{bn}__header--score", osu.trans('beatmapsets.show.scoreboard.headers.score')
-            th className: "#{bn}__header #{bn}__header--accuracy", osu.trans('beatmapsets.show.scoreboard.headers.accuracy')
-            th className: "#{bn}__header #{bn}__header--flag", ''
-            th className: "#{bn}__header #{bn}__header--player", osu.trans('beatmapsets.show.scoreboard.headers.player')
-            th className: "#{bn}__header #{bn}__header--maxcombo", osu.trans('beatmapsets.show.scoreboard.headers.combo')
-            for stat in @props.hitTypeMapping
-              th key: stat[0], className: "#{bn}__header #{bn}__header--hitstat", stat[0]
-            th className: "#{bn}__header #{bn}__header--miss", osu.trans('beatmapsets.show.scoreboard.headers.miss')
-            th className: "#{bn}__header #{bn}__header--pp", osu.trans('beatmapsets.show.scoreboard.headers.pp')
-            th className: "#{bn}__header #{bn}__header--mods", osu.trans('beatmapsets.show.scoreboard.headers.mods')
-            th className: "#{bn}__header #{bn}__header--popup-menu"
-
-        tbody className: "#{bn}__body",
-          for score, i in @props.scores
-            @renderRow
-              activated: @state.activeMenu == i
-              index: i
-              score: score
+            tbody className: "#{bn}__body",
+              for score, i in @props.scores
+                @renderRow
+                  index: i
+                  menuActive: menuActive
+                  onMenuActive: callback
+                  score: score
 
 
-  renderRow: ({ activated, index, score }) =>
+  renderRow: ({ index, menuActive, onMenuActive, score }) =>
+    activated = menuActive.activeIndex == index
+
     classMods = if activated then ['menu-active'] else ['highlightable']
     classMods.push 'first' if index == 0
     classMods.push 'friend' if @props.scoreboardType != 'friend' && osu.currentUserIsFriendsWith(score.user.id)
@@ -123,6 +116,6 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
       td className: "#{bn}__popup-menu",
         if _exported.ScoreHelper.hasMenu(score)
           el _exported.PlayDetailMenu,
-            onHide: () => @onMenuActive?(active: false, index: index)
-            onShow: () => @onMenuActive?(active: true, index: index)
+            onHide: () -> onMenuActive(active: false, index: index)
+            onShow: () -> onMenuActive(active: true, index: index)
             score: score

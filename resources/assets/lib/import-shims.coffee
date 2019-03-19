@@ -19,6 +19,7 @@
 # Import shim so that globally declared scripts can work without changes.
 
 import { BackToTop } from 'back-to-top'
+import { MenuActive } from 'menu-active'
 import { PlayDetailList } from 'play-detail-list'
 import { PlayDetailMenu } from 'play-detail-menu'
 import { ReportComment } from 'report-comment'
@@ -41,6 +42,7 @@ window.Promise ?= Promise
 
 window._exported = {
   BackToTop
+  MenuActive
   PlayDetailList
   PlayDetailMenu
   ReportComment
