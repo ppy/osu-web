@@ -27,7 +27,7 @@ return [
     'title' => 'コメント',
 
     'commentable_name' => [
-        'beatmapset' => '譜面',
+        'beatmapset' => 'ビートマップ',
         'build' => '更新履歴',
         'news_post' => 'お知らせ',
         '_deleted' => '削除済みアイテム',
@@ -35,7 +35,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => ':actionを行うためにはenterキーを押してください。shift+enterを押すことで改行できます。',
+            '_' => ':actionを行うためにはEnterキーを押してください。Shift+Enterを押すことで改行できます。',
             'edit' => '保存',
             'new' => '投稿',
             'reply' => '返信',
@@ -43,21 +43,21 @@ return [
     ],
 
     'guest_button' => [
-        'new' => 'サインインしてコメントする',
-        'reply' => 'サインインして返信する',
+        'new' => 'ログインしてコメントする',
+        'reply' => 'ログインして返信する',
     ],
 
     'index' => [
         'title' => [
             '_' => 'コメント :info',
-            'info' => '譜面リスト',
+            'info' => '一覧',
         ],
     ],
 
     'placeholder' => [
         'edit' => 'コメントをここで編集',
-        'new' => '新規コメントをここに入力',
-        'reply' => 'あなたの反応をここに入力',
+        'new' => '新しいコメントを入力',
+        'reply' => '返信を入力',
     ],
 
     'show' => [

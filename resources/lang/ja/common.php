@@ -67,7 +67,7 @@ return [
         'hours' => ':count時間',
         'item' => ':count個',
         'minute_short_unit' => '分',
-        'minutes' => ':count_delimited分|:count_delimited分',
+        'minutes' => ':count_delimited分',
         'months' => ':countヶ月',
         'second_short_unit' => '秒',
         'years' => ':count年',

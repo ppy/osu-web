@@ -38,7 +38,7 @@ return [
     ],
 
     'email' => [
-        'new_reply' => '[osu!] ":title"に新しい投稿があります',
+        'new_reply' => '[osu!] トピック":title"に新しい返信があります',
     ],
 
     'forums' => [
@@ -50,7 +50,7 @@ return [
     'mark_as_read' => [
         'forum' => 'フォーラムを既読にする',
         'forums' => 'フォーラムを既読にする',
-        'busy' => '既読にする....',
+        'busy' => '既読にする・・・',
     ],
 
     'poll' => [

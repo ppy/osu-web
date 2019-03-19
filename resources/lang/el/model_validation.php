@@ -68,7 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Η διαγραφή του post για τα μεταδεδομένα το beatmap δεν είναι επιτρεπτή.',
             'beatmapset_post_no_edit' => 'Η επεξεργασία του post για τα μεταδεδομένα το beatmap δεν είναι επιτρεπτή.',
-            'only_quote' => '',
+            'only_quote' => 'Η απάντησή σας περιέχει μόνο μία αναφορά.',
         ],
 
         'topic_poll' => [
@@ -98,7 +98,7 @@ return [
         'username_available_soon' => 'Αυτό το όνομα χρήστη θα είναι διαθέσιμο σύντομα!',
         'username_invalid_characters' => 'Το ζητούμενο όνομα χρήστη περιέχει μη έγκυρους χαρακτήρες.',
         'username_in_use' => 'Το όνομα χρήστη χρησιμοποιείται ήδη!',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_locked' => 'Το όνομα χρήστη χρησιμοποιείται ήδη!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Παρακαλώ χρησιμοποιείστε κάτω παύλες ή κενά, όχι και τα δύο!',
         'username_no_spaces' => "Το όνομα χρήστη δε μπορεί να ξεκινάει ή να τελειώνει με κενά!",
         'username_not_allowed' => 'Η επιλογή αυτού του ονόματος χρήστη δεν επιτρέπεται.',

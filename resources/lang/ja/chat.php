@@ -20,31 +20,31 @@
 
 return [
     'coming_soon' => '近日公開',
-    'limitation_notice' => '注: <a href=":lazer_link">osu!lazer</a>または新しいウェブサイトでこのシステムを使ってPMを受け取れるようになります。<br/>もしご希望でない場合は、<a href=":oldpm_link">旧サイト</a>からメッセージが送信可能です。',
-    'talking_in' => ':channel で会話中',
-    'talking_with' => ':name と会話中',
+    'limitation_notice' => '注意：<a href=":lazer_link">osu!lazer</a>または新しいウェブサイトを利用している人だけが、このシステムを使ってPMを受け取れます。<br/>もし嫌な場合は、<a href=":oldpm_link">旧サイト</a>からメッセージを送信して下さい。',
+    'talking_in' => ':channelで会話中',
+    'talking_with' => ':nameと会話中',
     'title_compact' => 'チャット',
     'title' => 'チャット',
     'cannot_send' => [
-        'channel' => '現在このチャンネルでメッセージを送信できません。次の理由のいずれかが原因として考えられます:',
-        'user' => '現在このユーザーへのメッセージを送信できません。次の理由のいずれかが原因として考えられます:',
+        'channel' => '現在このチャンネルでメッセージを送信できません。次の理由のいずれかである可能性があります：',
+        'user' => '現在このユーザーへメッセージを送信できません。理由は次のいずれかである可能性があります：',
         'reasons' => [
-            'blocked' => '送信者によってブロックされました',
+            'blocked' => 'あなたは受信者にブロックされました',
             'channel_moderated' => 'このチャンネルは管理されています',
-            'friends_only' => '自分のフレンドリスト上の人からのみメッセージを受信する',
-            'restricted' => '現在制限されています',
+            'friends_only' => 'フレンドリスト上の人からのメッセージのみ受信する',
+            'restricted' => 'あなたは現在制限されています',
             'target_restricted' => '受信者は現在制限されています',
         ],
     ],
     'input' => [
         'disabled' => 'メッセージの送信ができません...',
-        'placeholder' => 'メッセージを入力...',
+        'placeholder' => 'メッセージを入力',
         'send' => '送信',
     ],
     'no-conversations' => [
-        'howto' => "ユーザープロフィールまたはポップアップユーザーカードから会話を開始",
-        'lazer' => 'あなたが参加している公開チャンネル<a href=":link">osu!lazer</a>もここに表示されます。',
-        'pm_limitations' => '<a href=":link">osu!lazer</a>または新しいウェブサイトを利用している人がPMを受信します。',
+        'howto' => "ユーザープロフィールまたはユーザーカードのポップアップから会話を開始します。",
+        'lazer' => 'あなたが<a href=":link">osu!lazer</a>で参加している公開チャンネルもここに表示されます。',
+        'pm_limitations' => '<a href=":link">osu!lazer</a>または新しいウェブサイトを利用している人だけがPMを受信できます。',
         'title' => 'まだトークはありません',
     ],
 ];

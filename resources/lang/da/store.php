@@ -38,7 +38,7 @@ return [
         'empty' => [
             'text' => 'Din indkøbskurv er tom.',
             'return_link' => [
-                '_' => 'Vend tilbage til :link at finde nogle goodies!',
+                '_' => 'Vend tilbage til :link for at finde nogle goodies!',
                 'link_text' => 'butik notering',
             ],
         ],
@@ -114,7 +114,7 @@ return [
             'delivered' => 'Leveret',
             'paid' => 'Betalt',
             'processing' => 'Afventer bekræftelse',
-            'shipped' => '',
+            'shipped' => 'På vej',
         ],
     ],
 

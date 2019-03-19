@@ -24,7 +24,7 @@ return [
         'online' => '<strong>:players</strong> oyuncu şu anda <strong>:games</strong> oyunda çevrimiçi',
         'peak' => 'Zirve, :count çevrimiçi oyuncu',
         'players' => '<strong>:count</strong> kayıtlı oyuncu',
-        'title' => '',
+        'title' => 'hoşgeldiniz',
 
         'slogan' => [
             'main' => 'en en iyi free-to-win ritim oyunu',

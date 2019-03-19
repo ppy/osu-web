@@ -30,7 +30,7 @@ return [
     ],
 
     'buttons' => [
-        'admin' => '',
+        'admin' => 'Administrator',
         'back_to_previous' => 'Powrót do poprzedniej pozycji',
         'back_to_top' => 'Powrót na górę',
         'cancel' => 'Anuluj',

@@ -27,10 +27,10 @@ return [
     ],
 
     'scopes' => [
-        'identify' => '',
+        'identify' => 'Kendinizi tanımlayın ve herkese açık profilinizi okuyun.',
 
         'friends' => [
-            'read' => '',
+            'read' => 'Kimi takip ettiğinizi görün.',
         ],
     ],
 ];

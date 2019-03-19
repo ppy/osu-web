@@ -33,17 +33,17 @@ return [
 
     'index' => [
         'deleted_beatmap' => '削除済み',
-        'title' => 'ディスカッション',
+        'title' => 'ビートマップディスカッション',
 
         'form' => [
             '_' => '検索',
-            'deleted' => '削除されたディスカッションを含む',
+            'deleted' => '削除されたディスカッションを含める',
             'types' => 'メッセージの種類',
             'username' => 'ユーザー名',
 
             'user' => [
                 'label' => 'ユーザー',
-                'overview' => '活動概要',
+                'overview' => 'アクティビティ',
             ],
         ],
     ],
@@ -77,7 +77,7 @@ return [
     'user' => [
         'admin' => '管理者',
         'bng' => 'ノミネーター',
-        'owner' => '譜面作者',
+        'owner' => 'マッパー',
         'qat' => 'qat',
     ],
 

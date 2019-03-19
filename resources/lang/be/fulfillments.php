@@ -24,7 +24,7 @@ return [
             'subject' => 'Дзякуй, osu! <3 вас',
         ],
         'supporter_gift' => [
-            'subject' => '',
+            'subject' => 'Вам падаравалі osu!supporter!',
         ],
     ],
 ];

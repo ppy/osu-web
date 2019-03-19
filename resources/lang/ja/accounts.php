@@ -29,7 +29,7 @@ return [
         ],
 
         'email' => [
-            'current' => '現在のメール アドレス',
+            'current' => '現在のメールアドレス',
             'new' => '新しいメールアドレス',
             'new_confirmation' => '新しいメールアドレス（再入力）',
             'title' => 'メールアドレス',
@@ -82,7 +82,7 @@ return [
 
     'privacy' => [
         'title' => 'プライバシー',
-        'friends_only' => '友達リストにいない人からのプライベートメッセージをブロックする',
+        'friends_only' => 'フレンドリストにいない人からのプライベートメッセージをブロックする',
         'hide_online' => 'オンライン状態を隠す',
     ],
 
@@ -90,7 +90,7 @@ return [
         'current_session' => '現在',
         'end_session' => 'セッションを終了',
         'end_session_confirmation' => 'すぐにこのセッションを終了してよろしいですか？',
-        'last_active' => '最終ログイン:',
+        'last_active' => '最終ログイン：',
         'title' => 'セキュリティ',
         'web_sessions' => 'webでのセッション',
     ],

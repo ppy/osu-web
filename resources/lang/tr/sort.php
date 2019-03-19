@@ -19,14 +19,14 @@
  */
 
 return [
-    '_' => '',
+    '_' => 'Şuna göre sırala',
 
-    'new' => '',
-    'old' => '',
-    'top' => '',
+    'new' => 'En son yüklenen',
+    'old' => 'Eski',
+    'top' => 'En üst',
 
     'forum_topics' => [
-        'new' => '',
-        'feature_votes' => '',
+        'new' => 'Son Yanıt',
+        'feature_votes' => 'Yıldız öncelik',
     ],
 ];

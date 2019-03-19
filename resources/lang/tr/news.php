@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu! Haberleri',
 
         'nav' => [
             'newer' => 'En yeni gönderiler',
@@ -28,13 +28,13 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Haber :info',
+            'info' => 'Önsayfa',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => ':user tarafından',
 
         'nav' => [
             'newer' => 'Yeni gönderiler',
@@ -42,8 +42,8 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Haber :info',
+            'info' => 'Mesajı Gönder',
         ],
     ],
 

@@ -167,7 +167,7 @@ return [
 
             'achievements' => [
                 'achieved-on' => ':date tarihinde başarıldı',
-                'locked' => '',
+                'locked' => 'Kilitli',
                 'title' => 'Başarımlar',
             ],
             'beatmaps' => [
@@ -274,7 +274,7 @@ return [
                 'download_replay' => 'Tekrarı İndir',
                 'empty' => 'Henüz kayda değer bir performans kaydı yok. :(',
                 'not_ranked' => 'Sadece dereceli beatmapler pp verir.',
-                'pp_weight' => '',
+                'pp_weight' => 'ağırlıklı: yüzde',
                 'title' => 'Dereceler',
 
                 'best' => [
@@ -308,7 +308,7 @@ return [
         ],
 
         'header_title' => [
-            '_' => '',
+            '_' => 'Oyuncu bilgisi',
             'info' => 'Bilgi',
         ],
 
@@ -330,7 +330,7 @@ return [
             'title' => 'Kullanıcı bulunamadı! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'Profili düzenle',
             'description' => '<strong>ben!</strong>, profil sayfanızdaki kişiselleştirilebilir bir alandır.',
             'edit_big' => 'Beni düzenle!',
             'placeholder' => 'Sayfanın içeriğini buraya yaz',
@@ -349,7 +349,7 @@ return [
         'stats' => [
             'hit_accuracy' => 'Vuruş İsabeti',
             'level' => ':level Seviye',
-            'level_progress' => '',
+            'level_progress' => 'Sonraki seviyeye ilerle',
             'maximum_combo' => 'Maksimum Kombo',
             'medals' => 'Madalyalar',
             'play_count' => 'Toplam Oynama Sayısı',

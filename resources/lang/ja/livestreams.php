@@ -26,6 +26,6 @@ return [
         'link' => 'wikiページはライブ中です',
     ],
     'headers' => [
-        'regular' => '配信中',
+        'regular' => '現在配信中',
     ],
 ];

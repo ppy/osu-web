@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => '',
-        'reply' => '',
+        'new' => 'Autentifică-te pentru a comenta',
+        'reply' => 'Autentifică-te pentru a răspunde',
     ],
 
     'index' => [

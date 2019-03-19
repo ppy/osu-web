@@ -39,7 +39,7 @@ return [
 
         'hype' => [
             'guest' => 'Каб хайпаваць, трэба ўвайсці.',
-            'hyped' => 'Вы ўжо хайпанулі гэтую бітмапу.',
+            'hyped' => 'Вы ўжо надалі хайп гэтай бітмапе.',
             'limit_exceeded' => 'Вы ўжо скарысталі ўвесь свой хайп.',
             'not_hypeable' => 'Гэтыя бітмапа не можа быць хайпанутай',
             'owner' => 'Немагчыма хайпаваць свае ўласныя бітмапы.',
@@ -68,7 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Выдаленне метададзеных допіса бітмапы недазволена.',
             'beatmapset_post_no_edit' => 'Рэдагаванне метададзеных допіса бітмапы недазволена.',
-            'only_quote' => '',
+            'only_quote' => 'Ваш адказ змяшчае толькі цытату.',
         ],
 
         'topic_poll' => [
@@ -98,7 +98,7 @@ return [
         'username_available_soon' => 'Гэтае імя карыстальніка будзе даступнае для выкарыстоўвання ў любую хвіліну!',
         'username_invalid_characters' => 'Запытаная імя карыстальніка змяшчае няправільныя сімвалы.',
         'username_in_use' => 'Імя карыстальніка ўжо выкарыстоўваецца!',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_locked' => 'Імя карыстальніка ўжо выкарыстоўваецца!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Не выкарыстоўвайце прабелы і сімвалы падкрэсліванне!',
         'username_no_spaces' => "Імя карыстальніка не можа пачынацца або сканчацца прабеламі!",
         'username_not_allowed' => 'Гэтае імя карыстальніка недаступна.',
@@ -113,7 +113,7 @@ return [
         'change_username' => [
             'supporter_required' => [
                 '_' => 'Каб змяніць імя, вы мусіце «:link»!',
-                'link_text' => 'патрымаць osu!',
+                'link_text' => 'падтрымаць osu!',
             ],
             'username_is_same' => 'Гэта ўжо і ёсць ваша імя карыстанне!',
         ],

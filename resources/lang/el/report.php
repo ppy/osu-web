@@ -25,7 +25,7 @@ return [
     ],
 
     'comment' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Αναφορά',
+        'title' => 'Αναφορά του σχολίου του :username;',
     ],
 ];

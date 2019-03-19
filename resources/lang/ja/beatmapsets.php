@@ -20,30 +20,30 @@
 
 return [
     'availability' => [
-        'disabled' => 'この譜面は現在ダウンロード不可能です。',
-        'parts-removed' => '権利者の申し立てによりこの譜面は部分的に削除されています。',
+        'disabled' => 'このビートマップは現在ダウンロード不可能です。',
+        'parts-removed' => '権利者の申し立てによりこのビートマップは部分的に削除されています。',
         'more-info' => '詳細はこちらです。',
     ],
 
     'index' => [
-        'title' => '譜面リスト',
-        'guest_title' => '譜面',
+        'title' => 'ビートマップリスト',
+        'guest_title' => 'ビートマップ',
     ],
 
     'show' => [
         'discussion' => 'ディスカッション',
 
         'details' => [
-            'approved' => 'approved日時 ',
-            'favourite' => '譜面をお気に入りに追加する',
+            'approved' => '承認日時 ',
+            'favourite' => 'ビートマップセットをお気に入りに追加する',
             'favourited_count' => '+ そのほか:count人！',
-            'logged-out' => '譜面をダウンロードするにはログインが必要です！',
+            'logged-out' => 'ビートマップをダウンロードするにはログインが必要です！',
             'loved' => 'lovedに追加された日 ',
-            'mapped_by' => '作者 :mapper',
+            'mapped_by' => '作者 by :mapper',
             'qualified' => '申請された日 ',
-            'ranked' => 'rankedされた日 ',
+            'ranked' => 'ランクされた日 ',
             'submitted' => '投稿日 ',
-            'unfavourite' => '譜面をお気に入りから外す',
+            'unfavourite' => 'ビートマップをお気に入りから外す',
             'updated' => '最終更新日',
             'updated_timeago' => '最終更新時刻: :timeago',
 
@@ -65,13 +65,13 @@ return [
         ],
 
         'hype' => [
-            'action' => 'もしこの譜面が良かった場合、この譜面を応援することで 譜面のステータスが<strong>Ranked</strong>の状態になります。',
+            'action' => 'もしこのビートマップが良かった場合、Hypeすることでビートマップのステータスが<strong>ランク</strong>状態になります。',
 
             'current' => [
-                '_' => 'この譜面は現在 :status です。',
+                '_' => 'このビートマップは現在:statusです。',
 
                 'status' => [
-                    'pending' => '未解決',
+                    'pending' => '保留中',
                     'qualified' => '申請済',
                     'wip' => '作業中',
                 ],
@@ -83,11 +83,11 @@ return [
             'genre' => 'ジャンル',
             'language' => '言語',
             'no_scores' => 'データはまだ現在計算中です・・・',
-            'points-of-failure' => 'Fail地点',
+            'points-of-failure' => '失敗地点',
             'source' => 'ソース',
             'success-rate' => 'クリア率',
             'tags' => 'タグ',
-            'unranked' => 'Unranked譜面',
+            'unranked' => 'ランクなしのビートマップ',
         ],
 
         'scoreboard' => [
@@ -96,31 +96,31 @@ return [
             'friend' => 'フレンドランキング',
             'global' => '世界ランキング',
             'supporter-link' => '<a href=":link">ここ</a>をクリックする事でサポーターの詳細が見れます。',
-            'supporter-only' => 'フレンドランキングと国別ランキングを利用するにはサポータータグが必要です！',
+            'supporter-only' => 'フレンドランキングと国別ランキングを利用するにはosu!サポータータグが必要です！',
             'title' => 'スコアボード',
 
             'headers' => [
-                'accuracy' => 'Accuracy',
-                'combo' => 'Max Combo',
-                'miss' => 'Miss',
+                'accuracy' => '精度',
+                'combo' => '最大コンボ',
+                'miss' => 'ミス',
                 'mods' => 'Mods',
-                'player' => 'Player',
+                'player' => 'プレイヤー',
                 'pp' => 'pp',
-                'rank' => 'Rank',
-                'score_total' => 'Total Score',
-                'score' => 'Score',
+                'rank' => '順位',
+                'score_total' => '合計スコア',
+                'score' => 'スコア',
             ],
 
             'no_scores' => [
-                'country' => 'あなたの国からのプレイヤーで記録を作った人はまだいません！',
-                'friend' => 'あなたのフレンドで記録を作った人はまだいません!',
+                'country' => 'あなたの国のプレイヤーで記録を作った人はまだいません！',
+                'friend' => 'あなたのフレンドで記録を作った人はまだいません！',
                 'global' => 'まだ記録はありません。一番乗りを目指そう！',
                 'loading' => 'スコアの読み込み中・・・',
-                'unranked' => 'Unranked譜面です。',
+                'unranked' => 'Unrankedのビートマップです。',
             ],
             'score' => [
                 'first' => 'In the Lead',
-                'own' => 'Your Best',
+                'own' => 'あなたのベスト',
             ],
         ],
 

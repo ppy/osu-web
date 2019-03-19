@@ -42,18 +42,18 @@ return [
     ],
 
     'notice' => [
-        'sent' => 'Eメールの認証コードを確認してください。',
+        'sent' => 'メールアドレスの認証コードを確認してください。',
         'saved' => '新しいパスワードの設定が完了しました！',
     ],
 
     'started' => [
         'password' => '新しいパスワード',
         'password_confirmation' => 'パスワードの再確認',
-        'title' => '<strong>:username</strong>のパスワードリセット',
+        'title' => '<strong>:username</strong>のパスワードをリセットする。',
         'verification_key' => '認証コード',
     ],
 
     'starting' => [
-        'username' => 'Eメールアドレスまたはユーザーネームを入力してください',
+        'username' => 'メールアドレスまたはユーザー名を入力してください',
     ],
 ];

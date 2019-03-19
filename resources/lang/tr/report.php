@@ -25,7 +25,7 @@ return [
     ],
 
     'comment' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Rapor Et',
+        'title' => ':username adlı kişinin skoru raporlansın mı?',
     ],
 ];

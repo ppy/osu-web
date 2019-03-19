@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Ταξινόμηση κατά:',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'created_at' => 'Ημερομηνία δημιουργίας',
+            'timeline' => 'Χρονολόγιο',
+            'updated_at' => 'Τελευταία ενημέρωση',
         ],
 
         'stats' => [
@@ -194,15 +194,15 @@ return [
                 'played' => 'Που έχετε παίξει',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'Τίτλος',
+                'artist' => 'Καλλιτέχνης',
+                'difficulty' => 'Δυσκολία',
+                'updated' => 'Ενημερώθηκε',
+                'ranked' => 'Ranked',
+                'rating' => 'Βαθμολογία',
+                'plays' => 'Προσπάθειες',
+                'relevance' => 'Συνάφεια',
+                'nominations' => 'Nominations',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Το φιλτράρισμα κατά :filters απαιτεί ένα ενεργό :link',
@@ -303,7 +303,7 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => 'Φορές που παίχτηκε: :count',
+        'favourites' => 'Αγαπημένα: :count',
     ],
 ];

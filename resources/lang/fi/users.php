@@ -350,7 +350,7 @@ return [
             'hit_accuracy' => 'Tarkkuus',
             'level' => 'Taso :level',
             'level_progress' => 'Eteneminen seuraavalle tasolle',
-            'maximum_combo' => 'Korkein Combo',
+            'maximum_combo' => 'Suurin combo',
             'medals' => 'Mitalit',
             'play_count' => 'Pelikertoja',
             'play_time' => 'Pelaamisaika yhteensä',
