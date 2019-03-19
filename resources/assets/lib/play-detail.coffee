@@ -26,6 +26,11 @@ osu = window.osu
 bn = 'play-detail'
 
 export class PlayDetail extends PureComponent
+  @defaultProps =
+    # TODO: probably should rename this
+    onMenuActive: () ->
+      # empty function
+
   constructor: (props) ->
     super props
 
@@ -122,11 +127,11 @@ export class PlayDetail extends PureComponent
 
 
   hide: =>
-    @props.onMenuActive?(active: false, index: @props.index)
+    @props.onMenuActive(active: false, index: @props.index)
 
 
   show: =>
-    @props.onMenuActive?(active: true, index: @props.index)
+    @props.onMenuActive(active: true, index: @props.index)
 
 
   toggleCompact: =>
