@@ -22,11 +22,13 @@ import * as React from 'react';
 import { ReportScore } from 'report-score';
 
 interface Props {
+  activationDidChange: (active: boolean, sender: any) => void;
   score: Score;
 }
 
 export class PlayDetailMenu extends React.PureComponent<Props> {
   render() {
+    // FIXME: additional props are just passed through, should move to context?
     const { score, ...params } = this.props;
 
     const items = (dismiss: () => void) =>

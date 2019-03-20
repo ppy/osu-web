@@ -23,8 +23,9 @@ bn = 'beatmap-scoreboard-table'
 class BeatmapsetPage.ScoreboardTable extends React.PureComponent
   render: =>
     el _exported.MenuActive,
-      render: (activationRenderProps) =>
-        classMods = ['menu-active'] if activationRenderProps.state.activeIndex?
+      # RenderProps
+      render: ({ state, willUpdate }) =>
+        classMods = ['menu-active'] if state.active
         div className: osu.classWithModifiers(bn, classMods),
           table
             className: "#{bn}__table"
@@ -45,15 +46,13 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
                 th className: "#{bn}__header #{bn}__header--popup-menu"
 
             tbody className: "#{bn}__body",
-              for score, i in @props.scores
-                @renderRow
-                  activated: activationRenderProps.state.activeIndex == i
-                  update: activationRenderProps.update
-                  index: i
-                  score: score
+              @props.scores.map (score, key) =>
+                activated = state.key == key
+                activationDidChange = (active, sender) -> willUpdate({ active, key, sender })
+                @renderRow key, { activated, activationDidChange, score }
 
 
-  renderRow: ({ activated, index, score, update }) =>
+  renderRow: (index, { activated, activationDidChange, score }) =>
     classMods = if activated then ['menu-active'] else ['highlightable']
     classMods.push 'first' if index == 0
     classMods.push 'friend' if @props.scoreboardType != 'friend' && osu.currentUserIsFriendsWith(score.user.id)
@@ -114,5 +113,4 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
       td className: "#{bn}__popup-menu",
         if _exported.ScoreHelper.hasMenu(score)
           el _exported.PlayDetailMenu,
-            activation: { index, update }
-            score: score
+            { activationDidChange, score }

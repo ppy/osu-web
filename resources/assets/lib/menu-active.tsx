@@ -24,16 +24,17 @@ interface Props {
 
 interface RenderProps {
   state: State;
-  update(params: RenderPropsUpdateParams): void; // a callback to update the activated state of the wrapper.
+  willUpdate(params: RenderPropsUpdateParams): void; // a callback to update the activated state of the wrapper.
 }
 
-interface RenderPropsUpdateParams {
-  active: boolean; //  the state it was updated to.
-  index: any; // the index that was updated.
+interface RenderPropsUpdateParams extends State {
+  sender: React.Component;
 }
 
 interface State {
-  activeIndex?: any;
+  // activeIndex?: any;
+  active: boolean;
+  key: any;
 }
 
 /**
@@ -41,18 +42,27 @@ interface State {
  * TODO: should probably move to a context provider.
  */
 export class MenuActive extends React.PureComponent<Props, State> {
-  readonly state: State = {};
-
-  update = (params: RenderPropsUpdateParams) => {
-    this.setState({ activeIndex: params.active ? params.index : null });
-  }
+  readonly state: State = {
+    active: false,
+    key: null,
+  };
 
   render() {
-    const { state, update } = this;
+    const { state, willUpdate } = this;
     return (
       <>
-        {this.props.render({ state, update })}
+        {this.props.render({ state, willUpdate })}
       </>
     );
+  }
+  willUpdate = (params: RenderPropsUpdateParams) => {
+    this.setState(this.newState(params));
+  }
+
+  private newState = (params: RenderPropsUpdateParams): State => {
+    return {
+      active: params.active,
+      key: params.active ? params.key : null,
+    };
   }
 }

@@ -17,7 +17,7 @@
 ###
 
 import { PlayDetailMenu } from 'play-detail-menu'
-import { createElement as el, Fragment, PureComponent } from 'react'
+import { createElement as el, createRef, Fragment, PureComponent } from 'react'
 import { a, button, div, i, img, small, span } from 'react-dom-factories'
 import { ReportScore } from 'report-score'
 import { ScoreHelper } from 'score-helper'
@@ -33,7 +33,7 @@ export class PlayDetail extends PureComponent
 
 
   render: =>
-    score = @props.score
+    { score, activationDidChange } = @props
     pp = score.best?.pp ? score.pp
 
     blockClass = bn
@@ -116,8 +116,7 @@ export class PlayDetail extends PureComponent
           className: "#{bn}__more"
           if ScoreHelper.hasMenu(score)
             el PlayDetailMenu,
-              activation: @props.activation
-              score: score
+              { activationDidChange, score }
 
 
   toggleCompact: =>

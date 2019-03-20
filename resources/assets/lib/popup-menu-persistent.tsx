@@ -20,7 +20,7 @@ import { PopupMenu } from 'popup-menu';
 import * as React from 'react';
 
 interface Props {
-  activation: any; // update, index
+  activationDidChange: (active: boolean, sender: any) => void;
   items: (dismiss: () => void) => React.ReactFragment;
 }
 
@@ -31,16 +31,16 @@ export class PopupMenuPersistent extends React.PureComponent<Props> {
   };
 
   onHide = () => {
-    this.props.activation.update({ active: false, index: this.props.activation.index });
+    this.props.activationDidChange(false, this);
   }
 
   onShow = () => {
-    this.props.activation.update({ active: true, index: this.props.activation.index });
+    this.props.activationDidChange(true, this);
   }
 
   render() {
     return (
-      <PopupMenu onHide={this.onHide} onShow={this.onShow} {...this.props} />
+      <PopupMenu onHide={this.onHide} onShow={this.onShow} items={this.props.items} />
     );
   }
 }
