@@ -19,13 +19,13 @@
 import { PlayDetail } from 'play-detail'
 import { createElement as el, createContext, PureComponent } from 'react'
 import { div } from 'react-dom-factories'
-import { MenuActive } from 'menu-active'
+import { StatefulActivation } from 'stateful-activation'
 
 osu = window.osu
 
 export class PlayDetailList extends PureComponent
   render: =>
-    el MenuActive,
+    el StatefulActivation,
       render: ({ state, willUpdate }) =>
         classMods = ['menu-active'] if state.active
         div

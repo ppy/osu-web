@@ -22,7 +22,7 @@ bn = 'beatmap-scoreboard-table'
 
 class BeatmapsetPage.ScoreboardTable extends React.PureComponent
   render: =>
-    el _exported.MenuActive,
+    el _exported.StatefulActivation,
       # RenderProps
       render: ({ state, willUpdate }) =>
         classMods = ['menu-active'] if state.active

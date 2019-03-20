@@ -19,7 +19,6 @@
 # Import shim so that globally declared scripts can work without changes.
 
 import { BackToTop } from 'back-to-top'
-import { MenuActive } from 'menu-active'
 import { PlayDetailList } from 'play-detail-list'
 import { PlayDetailMenu } from 'play-detail-menu'
 import { ReportComment } from 'report-comment'
@@ -27,6 +26,7 @@ import { ReportUser } from 'report-user'
 import { ScoreHelper } from 'score-helper'
 import { SelectOptions } from 'select-options'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
+import { StatefulActivation } from 'stateful-activation'
 import { StoreCheckout } from 'store-checkout'
 import { UserCard } from 'user-card'
 import { UserCardStore } from 'user-card-store'
@@ -42,7 +42,7 @@ window.Promise ?= Promise
 
 window._exported = {
   BackToTop
-  MenuActive
+  StatefulActivation
   PlayDetailList
   PlayDetailMenu
   ReportComment

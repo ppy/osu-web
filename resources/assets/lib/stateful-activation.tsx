@@ -19,7 +19,7 @@
 import * as React from 'react';
 
 interface Props {
-  render(renderProps: RenderProps): React.ReactNode[];
+  render(renderProps: RenderProps): React.ReactFragment;
 }
 
 interface RenderProps {
@@ -41,7 +41,7 @@ interface State {
  * A wrapper component for tracking which menu in a list is 'active'.
  * TODO: should probably move to a context provider.
  */
-export class MenuActive extends React.PureComponent<Props, State> {
+export class StatefulActivation extends React.PureComponent<Props, State> {
   readonly state: State = {
     active: false,
     key: null,
