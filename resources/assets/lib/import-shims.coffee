@@ -27,6 +27,7 @@ import { ScoreHelper } from 'score-helper'
 import { SelectOptions } from 'select-options'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { StatefulActivation } from 'stateful-activation'
+import { Context as StatefulActivationContext } from 'stateful-activation-context'
 import { StoreCheckout } from 'store-checkout'
 import { UserCard } from 'user-card'
 import { UserCardStore } from 'user-card-store'
@@ -42,7 +43,7 @@ window.Promise ?= Promise
 
 window._exported = {
   BackToTop
-  StatefulActivation
+  GalleryContest
   PlayDetailList
   PlayDetailMenu
   ReportComment
@@ -50,7 +51,8 @@ window._exported = {
   ScoreHelper
   SelectOptions
   SpotlightSelectOptions
-  GalleryContest
+  StatefulActivation
+  StatefulActivationContext
   WindowVHPatcher
   UserCard
   UserCardStore

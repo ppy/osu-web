@@ -24,11 +24,7 @@ interface Props {
 
 interface RenderProps {
   state: State;
-  willUpdate(params: RenderPropsUpdateParams): void; // a callback to update the activated state of the wrapper.
-}
-
-interface RenderPropsUpdateParams extends State {
-  sender: React.Component;
+  willUpdate(params: State): void; // a callback to update the activated state of the wrapper.
 }
 
 interface State {
@@ -55,14 +51,10 @@ export class StatefulActivation extends React.PureComponent<Props, State> {
       </>
     );
   }
-  willUpdate = (params: RenderPropsUpdateParams) => {
-    this.setState(this.newState(params));
-  }
-
-  private newState = (params: RenderPropsUpdateParams): State => {
-    return {
+  willUpdate = (params: State) => {
+    this.setState({
       active: params.active,
       key: params.active ? params.key : null,
-    };
+    });
   }
 }

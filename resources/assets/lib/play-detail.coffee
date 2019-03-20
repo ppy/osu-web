@@ -33,7 +33,7 @@ export class PlayDetail extends PureComponent
 
 
   render: =>
-    { score, activationDidChange } = @props
+    score = @props.score
     pp = score.best?.pp ? score.pp
 
     blockClass = bn
@@ -116,7 +116,7 @@ export class PlayDetail extends PureComponent
           className: "#{bn}__more"
           if ScoreHelper.hasMenu(score)
             el PlayDetailMenu,
-              { activationDidChange, score }
+              { score }
 
 
   toggleCompact: =>

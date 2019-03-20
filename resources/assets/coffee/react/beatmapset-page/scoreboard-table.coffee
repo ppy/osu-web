@@ -48,11 +48,14 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
             tbody className: "#{bn}__body",
               @props.scores.map (score, key) =>
                 activated = state.key == key
-                activationDidChange = (active, sender) -> willUpdate({ active, key, sender })
-                @renderRow key, { activated, activationDidChange, score }
+                activationDidChange = (active) -> willUpdate({ active, key })
+                el _exported.StatefulActivationContext.Provider,
+                  key: key
+                  value: { key, activationDidChange }
+                  @renderRow key, { activated, score }
 
 
-  renderRow: (index, { activated, activationDidChange, score }) =>
+  renderRow: (index, { activated, score }) =>
     classMods = if activated then ['menu-active'] else ['highlightable']
     classMods.push 'first' if index == 0
     classMods.push 'friend' if @props.scoreboardType != 'friend' && osu.currentUserIsFriendsWith(score.user.id)
@@ -113,4 +116,4 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
       td className: "#{bn}__popup-menu",
         if _exported.ScoreHelper.hasMenu(score)
           el _exported.PlayDetailMenu,
-            { activationDidChange, score }
+            { score }

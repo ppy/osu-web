@@ -16,28 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { PopupMenu } from 'popup-menu';
-import * as React from 'react';
-import { Context } from 'stateful-activation-context';
+import { createContext } from 'react';
 
-interface Props {
-  items: (dismiss: () => void) => React.ReactFragment;
-}
-
-export class PopupMenuPersistent extends React.PureComponent<Props> {
-  static contextType = Context;
-
-  onHide = () => {
-    this.context.activationDidChange(false);
-  }
-
-  onShow = () => {
-    this.context.activationDidChange(true);
-  }
-
-  render() {
-    return (
-      <PopupMenu onHide={this.onHide} onShow={this.onShow} items={this.props.items} />
-    );
-  }
-}
+export const Context = createContext({
+  activationDidChange: (active: boolean) => { /* do nothing */},
+  key: null,
+});

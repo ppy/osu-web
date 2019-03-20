@@ -20,6 +20,7 @@ import { PlayDetail } from 'play-detail'
 import { createElement as el, createContext, PureComponent } from 'react'
 import { div } from 'react-dom-factories'
 import { StatefulActivation } from 'stateful-activation'
+import { Context } from 'stateful-activation-context'
 
 osu = window.osu
 
@@ -33,9 +34,12 @@ export class PlayDetailList extends PureComponent
 
           @props.scores.map (score, key) ->
             activated = state.key == key
-            activationDidChange = (active, sender) -> willUpdate({ active, key, sender })
+            activationDidChange = (active) -> willUpdate({ active, key })
 
-            el PlayDetail,
-              { activated, activationDidChange, key, score }
+            el Context.Provider,
+              key: key
+              value: { key, activationDidChange }
+              el PlayDetail,
+                { activated, score }
 
 
