@@ -18,26 +18,29 @@
 
 import { PopupMenu } from 'popup-menu';
 import * as React from 'react';
-import { Context } from 'stateful-activation-context';
+import { ContainerContext, KeyContext } from 'stateful-activation-context';
 
 interface Props {
   items: (dismiss: () => void) => React.ReactFragment;
 }
 
-export class PopupMenuPersistent extends React.PureComponent<Props> {
-  static contextType = Context;
+export function PopupMenuPersistent(props: Props) {
+  const containerContext = React.useContext(ContainerContext);
+  const key = React.useContext(KeyContext);
 
-  onHide = () => {
-    this.context.activationDidChange(false);
-  }
+  const onHide = () => {
+    containerContext.activeDidChange(false, key);
+  };
 
-  onShow = () => {
-    this.context.activationDidChange(true);
-  }
+  const onShow = () => {
+    containerContext.activeDidChange(true, key);
+  };
 
-  render() {
-    return (
-      <PopupMenu onHide={this.onHide} onShow={this.onShow} items={this.props.items} />
-    );
-  }
+  return (
+    <PopupMenu
+      onHide={onHide}
+      onShow={onShow}
+      items={props.items}
+    />
+  );
 }

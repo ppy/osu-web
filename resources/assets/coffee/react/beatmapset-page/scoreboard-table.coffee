@@ -21,38 +21,49 @@ el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
 class BeatmapsetPage.ScoreboardTable extends React.PureComponent
-  render: =>
-    el _exported.StatefulActivation,
-      # RenderProps
-      render: ({ state, willUpdate }) =>
-        classMods = ['menu-active'] if state.active
-        div className: osu.classWithModifiers(bn, classMods),
-          table
-            className: "#{bn}__table"
-            thead {},
-              tr {},
-                th className: "#{bn}__header #{bn}__header--rank", osu.trans('beatmapsets.show.scoreboard.headers.rank')
-                th className: "#{bn}__header #{bn}__header--grade", ''
-                th className: "#{bn}__header #{bn}__header--score", osu.trans('beatmapsets.show.scoreboard.headers.score')
-                th className: "#{bn}__header #{bn}__header--accuracy", osu.trans('beatmapsets.show.scoreboard.headers.accuracy')
-                th className: "#{bn}__header #{bn}__header--flag", ''
-                th className: "#{bn}__header #{bn}__header--player", osu.trans('beatmapsets.show.scoreboard.headers.player')
-                th className: "#{bn}__header #{bn}__header--maxcombo", osu.trans('beatmapsets.show.scoreboard.headers.combo')
-                for stat in @props.hitTypeMapping
-                  th key: stat[0], className: "#{bn}__header #{bn}__header--hitstat", stat[0]
-                th className: "#{bn}__header #{bn}__header--miss", osu.trans('beatmapsets.show.scoreboard.headers.miss')
-                th className: "#{bn}__header #{bn}__header--pp", osu.trans('beatmapsets.show.scoreboard.headers.pp')
-                th className: "#{bn}__header #{bn}__header--mods", osu.trans('beatmapsets.show.scoreboard.headers.mods')
-                th className: "#{bn}__header #{bn}__header--popup-menu"
+  constructor: (props) ->
+    super props
 
-            tbody className: "#{bn}__body",
-              @props.scores.map (score, key) =>
-                activated = state.key == key
-                activationDidChange = (active) -> willUpdate({ active, key })
-                el _exported.StatefulActivationContext.Provider,
-                  key: key
-                  value: { key, activationDidChange }
-                  @renderRow key, { activated, score }
+    @activeDidChange = _exported.activeDidChange.bind(@)
+
+    @state =
+      active: false
+
+
+  render: =>
+    classMods = ['menu-active'] if @state.active
+
+    el _exported.ContainerContext.Provider,
+      value:
+        activeDidChange: @activeDidChange
+
+      div className: osu.classWithModifiers(bn, classMods),
+        table
+          className: "#{bn}__table"
+          thead {},
+            tr {},
+              th className: "#{bn}__header #{bn}__header--rank", osu.trans('beatmapsets.show.scoreboard.headers.rank')
+              th className: "#{bn}__header #{bn}__header--grade", ''
+              th className: "#{bn}__header #{bn}__header--score", osu.trans('beatmapsets.show.scoreboard.headers.score')
+              th className: "#{bn}__header #{bn}__header--accuracy", osu.trans('beatmapsets.show.scoreboard.headers.accuracy')
+              th className: "#{bn}__header #{bn}__header--flag", ''
+              th className: "#{bn}__header #{bn}__header--player", osu.trans('beatmapsets.show.scoreboard.headers.player')
+              th className: "#{bn}__header #{bn}__header--maxcombo", osu.trans('beatmapsets.show.scoreboard.headers.combo')
+              for stat in @props.hitTypeMapping
+                th key: stat[0], className: "#{bn}__header #{bn}__header--hitstat", stat[0]
+              th className: "#{bn}__header #{bn}__header--miss", osu.trans('beatmapsets.show.scoreboard.headers.miss')
+              th className: "#{bn}__header #{bn}__header--pp", osu.trans('beatmapsets.show.scoreboard.headers.pp')
+              th className: "#{bn}__header #{bn}__header--mods", osu.trans('beatmapsets.show.scoreboard.headers.mods')
+              th className: "#{bn}__header #{bn}__header--popup-menu"
+
+          tbody className: "#{bn}__body",
+            @props.scores.map (score, key) =>
+              activated = @state.activeKey == key
+
+              el _exported.KeyContext.Provider,
+                key: key
+                value: key
+                @renderRow key, { activated, score }
 
 
   renderRow: (index, { activated, score }) =>

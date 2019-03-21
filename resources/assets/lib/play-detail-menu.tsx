@@ -27,7 +27,6 @@ interface Props {
 
 export class PlayDetailMenu extends React.PureComponent<Props> {
   render() {
-    // FIXME: additional props are just passed through, should move to context?
     const { score } = this.props;
 
     const items = (dismiss: () => void) =>

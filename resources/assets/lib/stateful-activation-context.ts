@@ -18,7 +18,15 @@
 
 import { createContext } from 'react';
 
-export const Context = createContext({
-  activationDidChange: (active: boolean) => { /* do nothing */},
-  key: null,
+export function activeDidChange(active: boolean, key: any) {
+  this.setState({
+    active,
+    activeKey: active ? key : null,
+  });
+}
+
+export const ContainerContext = createContext({
+  activeDidChange: (active: boolean, key: any) => { /* do nothing */},
 });
+
+export const KeyContext = createContext(null);
