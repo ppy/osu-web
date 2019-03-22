@@ -1,12 +1,14 @@
 // importable coffeescript modules
 declare module 'popup-menu' {
-  interface PopupMenuProps {
-    items: (dismiss: () => void) => React.ReactFragment;
+  type Children = (dismiss: () => void) => React.ReactFragment;
+
+  interface Props {
+    children: Children;
     onHide?: () => void;
     onShow?: () => void;
   }
 
-  class PopupMenu extends React.PureComponent<PopupMenuProps, any> {}
+  class PopupMenu extends React.PureComponent<Props, any> {}
 }
 
 declare module 'report-form' {

@@ -23,7 +23,7 @@ import { Modal } from 'modal'
 
 export class PopupMenu extends PureComponent
   @defaultProps =
-    items: (_dismiss) ->
+    children: (_dismiss) ->
       # empty function
 
 
@@ -132,4 +132,4 @@ export class PopupMenu extends PureComponent
       className: "popup-menu__menu"
       div
         className: 'simple-menu simple-menu--popup-menu'
-        @props.items @dismiss
+        @props.children @dismiss

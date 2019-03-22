@@ -16,14 +16,18 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { PopupMenu } from 'popup-menu';
+import { Children, PopupMenu } from 'popup-menu';
 import * as React from 'react';
 import { ContainerContext, KeyContext } from 'stateful-activation-context';
 
 interface Props {
-  items: (dismiss: () => void) => React.ReactFragment;
+  children: Children;
 }
 
+/**
+ * Wrapper around PopupMenu that handles the persistent active state thing for it.
+ * Also a functional component to be able to use useContext.
+ */
 export function PopupMenuPersistent(props: Props) {
   const containerContext = React.useContext(ContainerContext);
   const key = React.useContext(KeyContext);
@@ -37,10 +41,8 @@ export function PopupMenuPersistent(props: Props) {
   };
 
   return (
-    <PopupMenu
-      onHide={onHide}
-      onShow={onShow}
-      items={props.items}
-    />
+    <PopupMenu onHide={onHide} onShow={onShow}>
+      {props.children}
+    </PopupMenu>
   );
 }
