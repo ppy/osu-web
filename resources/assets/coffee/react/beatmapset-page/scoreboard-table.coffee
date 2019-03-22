@@ -26,12 +26,11 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
 
     @activeDidChange = _exported.activeDidChange.bind(@)
 
-    @state =
-      active: false
+    @state = {}
 
 
   render: =>
-    classMods = ['menu-active'] if @state.active
+    classMods = ['menu-active'] if @state.activeKey?
 
     el _exported.ContainerContext.Provider,
       value:

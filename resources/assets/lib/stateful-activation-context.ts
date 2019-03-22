@@ -19,10 +19,7 @@
 import { createContext } from 'react';
 
 export function activeDidChange(active: boolean, key: any) {
-  this.setState({
-    active,
-    activeKey: active ? key : null,
-  });
+  this.setState({ activeKey: active ? key : null });
 }
 
 export const ContainerContext = createContext({
