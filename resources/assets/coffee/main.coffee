@@ -134,7 +134,7 @@ reactTurbolinks.register 'user-card-store', _exported.UserCardStore, (el) ->
 
 reactTurbolinks.register 'user-card-tooltip', _exported.UserCardTooltip, (el) ->
   container: el
-  userId: parseInt(el.dataset.userId)
+  userId: el.dataset.userId
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port

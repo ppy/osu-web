@@ -20,7 +20,7 @@ import * as React from 'react';
 import { UserCard } from 'user-card';
 
 interface PropsInterface {
-  userId: number;
+  userId: string;
 }
 
 interface StateInterface {
