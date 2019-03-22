@@ -17,9 +17,8 @@
 ###
 
 import { PlayDetailMenu } from 'play-detail-menu'
-import { createElement as el, createRef, Fragment, PureComponent } from 'react'
+import { createElement as el, PureComponent } from 'react'
 import { a, button, div, i, img, small, span } from 'react-dom-factories'
-import { ReportScore } from 'report-score'
 import { ScoreHelper } from 'score-helper'
 
 osu = window.osu
