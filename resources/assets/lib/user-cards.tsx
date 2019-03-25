@@ -17,21 +17,29 @@
  */
 
 import * as React from 'react';
-import { UserCards } from 'user-cards';
+import { UserCard } from 'user-card';
 
-interface PropsInterface {
-  data: [];
+interface Props {
+  modifiers: string[];
+  users: User[];
 }
 
-export class Main extends React.PureComponent<PropsInterface> {
-  render(): React.ReactNode {
-    const users: any = this.props.data;
 
+export class UserCards extends React.PureComponent<Props> {
+  static defaultProps = {
+    modifiers: [],
+  };
+
+  render() {
     return (
-      <div className='user-friends'>
-        <h2 className='user-friends__title'>{ osu.trans('friends.title') }</h2>
-        <div className='page-title page-title--lighter'>Users ({users.length})</div>
-          <UserCards users={users} modifiers={['friends-list']} />
+      <div className='usercard-list'>
+        <div className='usercard-list__cards'>
+          {
+            this.props.users.map((user) => {
+              return <UserCard key={user.id} modifiers={this.props.modifiers} user={user} />;
+            })
+          }
+        </div>
       </div>
     );
   }
