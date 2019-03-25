@@ -40,7 +40,7 @@ class WikiRedirect
                 60,
                 function () {
                     try {
-                        return Yaml::parse(strip_utf8_bom(OsuWiki::fetchContent('wiki/redirect.yaml')), true);
+                        return Yaml::parse(strip_utf8_bom(OsuWiki::fetchContent('wiki/redirect.yaml')));
                     } catch (GitHubNotFoundException $_e) {
                         return;
                     }
