@@ -20,7 +20,7 @@ import * as React from 'react';
 import { UserCard } from 'user-card';
 
 interface PropsInterface {
-  userId: number;
+  lookup: string;
 }
 
 interface StateInterface {
@@ -40,7 +40,7 @@ export class UserCardTooltip extends React.PureComponent<PropsInterface, StateIn
   }
 
   getUser() {
-    const url = laroute.route('users.card', { user: this.props.userId });
+    const url = laroute.route('users.card', { user: this.props.lookup });
 
     return $.ajax({
       dataType: 'json',
