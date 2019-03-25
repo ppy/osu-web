@@ -20,7 +20,6 @@
   @top: user-card;
   @avatar-size: 70px;
   @background-color: #444; // friends list page is #333
-  @status-bar-size: 30px;
   @card-item-spacing: 10px;
   @flag-width: 45px;
   @icon-height: 30px;
@@ -29,23 +28,19 @@
   @flag-gutter: 3px; // more like half of it
   @fade-duration: 220ms;
 
+  transition: all ease-in-out 120ms;
+
   display: flex;
   flex-direction: column;
+
   width: @usercard-width;
   height: @usercard-height;
   background-color: @background-color;
   margin: @card-item-spacing;
+  border-radius: 20px;
 
   // to make broken cover images less ugly
   overflow: hidden;
-
-  .fade-element(120ms);
-  border-radius: 20px;
-  // .own-layer();
-
-  &--no-margin {
-    margin: 0;
-  }
 
   &--highlightable {
     .user-cards--menu-active & {
@@ -53,12 +48,16 @@
     }
   }
 
+  &--no-margin {
+    margin: 0;
+  }
+
   &__avatar {
     border-radius: 15px;
     .full-size();
     object-fit: contain;
     background-color: @background-color;
-    transition: opacity @fade-duration linear;
+    transition: opacity ease-in-out @fade-duration;
 
     &--loader {
       .center-content();
@@ -99,7 +98,7 @@
     border-radius: 20px;
     .full-size();
     object-fit: cover;
-    transition: opacity linear @fade-duration;
+    transition: opacity ease-in-out @fade-duration;
 
     &--loading {
       opacity: 0;
@@ -110,7 +109,7 @@
     .full-size();
   }
 
-  &__background-overlay  {
+  &__background-overlay {
     .full-size();
     transition: background-color 0.2s ease-in-out;
     background-color: fade(@background-color, 60%);
@@ -182,24 +181,6 @@
     .link-plain();
     display: flex;
     flex-direction: column;
-  }
-
-  &__message {
-    .link-plain();
-    .link-white();
-    font-size: 14px;
-  }
-
-  &__message-icon {
-    &::before {
-      content: "\F075"; // .fa-comment
-    }
-
-    .@{top}__message:hover & {
-      &::before {
-        content: "\F27A"; // .fa-commenting
-      }
-    }
   }
 
   &__status {
