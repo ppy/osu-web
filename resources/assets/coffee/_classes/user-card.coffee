@@ -66,7 +66,7 @@ class @UserCard
     card = $('#js-usercard__loading-template').children().clone()[0]
     card.classList.replace 'js-react--user-card', 'js-react--user-card-tooltip'
     delete card.dataset.reactTurbolinksLoaded
-    card.dataset.userId = userId
+    card.dataset.lookup = userId
 
     options =
       events:
