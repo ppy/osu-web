@@ -47,6 +47,12 @@
     margin: 0;
   }
 
+  &--highlightable {
+    .user-cards--menu-active & {
+      pointer-events: none;
+    }
+  }
+
   &__avatar {
     border-radius: 15px;
     .full-size();
@@ -109,7 +115,7 @@
     transition: background-color 0.2s ease-in-out;
     background-color: fade(@background-color, 60%);
 
-    .@{top}:hover & {
+    .@{top}:hover &, .@{top}--active & {
       background-color: fade(lighten(@background-color, 20%), 40%);
     }
   }
@@ -141,6 +147,10 @@
     display: flex;
     pointer-events: auto;
 
+    .user-cards--menu-active & {
+      pointer-events: none;
+    }
+
     &:empty {
       display: none;
     }
@@ -155,7 +165,7 @@
       background-color: #333;
       opacity: 0;
 
-      .@{top}:hover & {
+      .@{top}:hover &, .@{top}--active & {
         opacity: 1;
       }
     }
