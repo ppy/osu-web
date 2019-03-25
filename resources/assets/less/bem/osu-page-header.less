@@ -142,7 +142,7 @@
     align-items: center;
 
     right: 10px;
-    bottom: 50px;
+    bottom: 10px;
 
     @media @desktop {
       right: 0;
@@ -300,6 +300,10 @@
   &__title-box {
     position: absolute;
     bottom: 10px;
+
+    @media @mobile {
+      padding-right: 55px;
+    }
 
     .@{top}--forum-index & {
       width: 100%;
