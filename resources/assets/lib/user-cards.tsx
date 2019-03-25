@@ -17,6 +17,7 @@
  */
 
 import * as React from 'react';
+import { activeKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
 import { UserCard } from 'user-card';
 
 interface Props {
@@ -24,23 +25,35 @@ interface Props {
   users: User[];
 }
 
-
 export class UserCards extends React.PureComponent<Props> {
   static defaultProps = {
     modifiers: [],
   };
 
+  readonly activeKeyDidChange = activeKeyDidChange.bind(this);
+  readonly state: ActiveKeyState = {};
+
   render() {
+    const classMods = this.state.activeKey != null ? ['menu-active'] : [];
+
     return (
-      <div className='user-cards'>
-        <div className='user-cards__cards'>
-          {
-            this.props.users.map((user) => {
-              return <UserCard key={user.id} modifiers={this.props.modifiers} user={user} />;
-            })
-          }
+      <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
+        <div className={osu.classWithModifiers('user-cards', classMods)}>
+          <div className='user-cards__cards'>
+            {
+              this.props.users.map((user) => {
+                const activated = this.state.activeKey === user.id;
+
+                return (
+                  <KeyContext.Provider key={user.id} value={user.id}>
+                    <UserCard activated={activated} modifiers={this.props.modifiers} user={user} />
+                  </KeyContext.Provider>
+                );
+              })
+            }
+          </div>
         </div>
-      </div>
+      </ContainerContext.Provider>
     );
   }
 }

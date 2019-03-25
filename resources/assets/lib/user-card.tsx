@@ -23,6 +23,7 @@ import * as React from 'react';
 import { SupporterIcon } from 'supporter-icon';
 
 interface PropsInterface {
+  activated: boolean;
   modifiers: string[];
   user?: User;
 }
@@ -34,6 +35,7 @@ interface StateInterface {
 
 export class UserCard extends React.PureComponent<PropsInterface, StateInterface> {
   static defaultProps = {
+    activated: false,
     modifiers: [],
   };
 
@@ -63,13 +65,12 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   }
 
   render() {
-    let usercardCss = 'user-card';
-    for (const modifier of this.props.modifiers) {
-      usercardCss += ` user-card--${modifier}`;
-    }
+    const modifiers = this.props.modifiers.slice();
+
+    modifiers.push(this.props.activated ? 'active' : 'highlightable');
 
     return (
-      <div className={usercardCss}>
+      <div className={osu.classWithModifiers('user-card', modifiers)}>
         { this.renderBackground() }
 
         <div className='user-card__card'>
