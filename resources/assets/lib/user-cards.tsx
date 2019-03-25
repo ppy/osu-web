@@ -32,8 +32,8 @@ export class UserCards extends React.PureComponent<Props> {
 
   render() {
     return (
-      <div className='usercard-list'>
-        <div className='usercard-list__cards'>
+      <div className='user-cards'>
+        <div className='user-cards__cards'>
           {
             this.props.users.map((user) => {
               return <UserCard key={user.id} modifiers={this.props.modifiers} user={user} />;
