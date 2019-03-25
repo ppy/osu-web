@@ -156,6 +156,16 @@
     .@{top}:hover & {
       opacity: 1;
     }
+
+    & .forum-post-actions {
+      flex-direction: column;
+
+      &__action {
+        @media @mobile {
+          margin: 5px 5px;
+        }
+      }
+    }
   }
 
   &__background {
