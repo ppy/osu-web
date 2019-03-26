@@ -90,6 +90,7 @@ return [
 
         'invoice' => 'Pokaż fakturę',
         'no_orders' => 'Brak zamówień do wyświetlenia.',
+        'resume' => 'Kontynuuj zamówienie',
 
         'item' => [
             'display_name' => [

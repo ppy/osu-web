@@ -197,6 +197,7 @@ return [
                 'title' => 'Tytuł',
                 'artist' => 'Wykonawca',
                 'difficulty' => 'Poziom trudności',
+                'favourites' => 'Ulubione',
                 'updated' => 'Ostatnie aktualizacje',
                 'ranked' => 'Data',
                 'rating' => 'Ocena',

@@ -19,7 +19,7 @@
  */
 
 return [
-    '_' => 'Sortir berdasarkan',
+    '_' => 'Sortir',
 
     'new' => 'Komentar Terbaru',
     'old' => 'Komentar Terlama',

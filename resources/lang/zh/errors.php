@@ -34,6 +34,9 @@ return [
         'invalid_mode' => '指定的游戏模式无效。',
         'standard_converts_only' => '此谱面难度在请求的游戏模式下分数不可用。',
     ],
+    'checkout' => [
+        'generic' => '结账时发生了一个错误',
+    ],
     'logged_out' => '你已退出，请登录后再试。',
     'supporter_only' => '要使用此功能，请先成为 osu! Supporter 。',
     'no_restricted_access' => '账户处于限制模式，无法执行该操作。',

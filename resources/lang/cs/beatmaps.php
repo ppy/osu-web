@@ -197,6 +197,7 @@ return [
                 'title' => 'Název',
                 'artist' => 'Umělec',
                 'difficulty' => 'Obtížnost',
+                'favourites' => '',
                 'updated' => 'Aktualizováno',
                 'ranked' => 'Hodnocené',
                 'rating' => 'Hodnocení',

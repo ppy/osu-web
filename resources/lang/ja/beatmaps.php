@@ -64,9 +64,9 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => '一般(:version)への投稿をここに入力',
-            'generalAll' => '一般 (全難易度) への投稿をここに入力',
-            'timeline' => 'タイムライン(:version)への投稿をここに入力',
+            'general' => '一般（:version）への投稿をここに入力',
+            'generalAll' => '一般 （全難易度）への投稿をここに入力',
+            'timeline' => 'タイムライン（:version）へ投稿するにはここに入力',
         ],
 
         'message_type' => [
@@ -117,21 +117,21 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'この譜面は:dateにApprovedになりました！',
-            'graveyard' => "この譜面は:dateから更新が止まっています・・・",
-            'loved' => 'この譜面は:dateにLovedになりました！',
-            'ranked' => 'この譜面は:dateにRankedになりました！',
+            'approved' => 'このビートマップは:dateに承認済みになりました！',
+            'graveyard' => "このビートマップは:dateから更新止まっているため放棄された可能性があります・・・",
+            'loved' => 'このビートマップは:dateにLovedに追加しました！',
+            'ranked' => 'このビートマップは:dateにランクになりました！',
             'wip' => '注：このビートマップは作者によって作成途中とされています。',
         ],
 
     ],
 
     'hype' => [
-        'button' => 'ビートマップにHypeする！',
+        'button' => 'ビートマップにHype！',
         'button_done' => 'Hype済みです！',
         'confirm' => "あなたの残りHype数は:n回です。Hypeは取り消しできません。Hypeしますか？",
-        'explanation' => 'Hypeすることで譜面に注目が集まりやすくなります。Rankedして欲しい譜面はHypeしましょう！',
-        'explanation_guest' => 'Hypeすることで譜面に注目が集まりやすくなります。ログインして譜面をHypeしましょう！',
+        'explanation' => 'このビートマップにHypeすることで注目が集まり、ノミネーションやランクがされやすくなります！',
+        'explanation_guest' => 'このビートマップにログインしてHypeすることで注目が集まり、ノミネーションやランクがされやすくなります！',
         'new_time' => ":new_timeでhype数が回復します。",
         'remaining' => 'あなたの残りHype数は:remaining回です',
         'required_text' => 'Hype: :current/:required',
@@ -155,7 +155,7 @@ return [
         'love' => 'Lovedに追加',
         'love_confirm' => 'Lovedに追加しますか？',
         'nominate' => 'ノミネート',
-        'nominate_confirm' => 'この譜面をノミネートしますか？',
+        'nominate_confirm' => 'このビートマップをノミネートしますか？',
         'nominated_by' => ':usersにノミネートされました。',
         'qualified' => '特に問題がなかった場合、:dateにランク予定です。',
         'qualified_soon' => '特に問題がなかった場合、間もなくランクされる予定です。',
@@ -180,7 +180,7 @@ return [
             'prompt' => 'キーワードを入力・・・',
             'login_required' => 'ログインして検索する。',
             'options' => '検索の詳細設定',
-            'supporter_filter' => ':filters による絞り込みにはサポーター タグが必要です',
+            'supporter_filter' => ':filters による絞り込みにはosu!サポータータグが必要です',
             'not-found' => '該当結果なし',
             'not-found-quote' => '・・・なにも見つからなかったようだ。',
             'filters' => [
@@ -197,6 +197,7 @@ return [
                 'title' => 'タイトル',
                 'artist' => 'アーティスト',
                 'difficulty' => '難易度',
+                'favourites' => 'お気に入り',
                 'updated' => '更新',
                 'ranked' => 'ランク',
                 'rating' => '評価',
@@ -206,13 +207,13 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => ':filters による絞り込みには有効な:link が必要です',
-                'link_text' => 'サポーター タグ',
+                'link_text' => 'osu!サポータータグ',
             ],
         ],
     ],
     'general' => [
         'recommended' => '推奨難易度',
-        'converts' => 'コンバート譜面を含む',
+        'converts' => 'コンバートビートマップを含む',
     ],
     'mode' => [
         'any' => '全て',
@@ -279,7 +280,7 @@ return [
         'korean' => '韓国語',
         'spanish' => 'スペイン語',
         'swedish' => 'スウェーデン語',
-        'instrumental' => 'Instrumental',
+        'instrumental' => '楽器',
         'other' => 'その他',
     ],
     'played' => [

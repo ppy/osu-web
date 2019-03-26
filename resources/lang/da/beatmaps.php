@@ -197,6 +197,7 @@ return [
                 'title' => 'Titel',
                 'artist' => 'Kunstner',
                 'difficulty' => 'Sværhedsgrad',
+                'favourites' => 'Favoritter',
                 'updated' => 'Opdateret',
                 'ranked' => 'Rangeret',
                 'rating' => '',

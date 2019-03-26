@@ -64,12 +64,12 @@ return [
 
     'update_email' => [
         'email_subject' => 'osu! メールアドレス変更の確認',
-        'update' => '適用',
+        'update' => '更新',
     ],
 
     'update_password' => [
         'email_subject' => 'osu!パスワード変更の確認',
-        'update' => '適用',
+        'update' => '更新',
     ],
 
     'playstyles' => [
@@ -88,10 +88,10 @@ return [
 
     'security' => [
         'current_session' => '現在',
-        'end_session' => 'セッションを終了',
-        'end_session_confirmation' => 'すぐにこのセッションを終了してよろしいですか？',
+        'end_session' => 'セッション終了',
+        'end_session_confirmation' => 'これによりこのデバイスでのセッションが終了します。本当によろしいですか?',
         'last_active' => '最終ログイン：',
         'title' => 'セキュリティ',
-        'web_sessions' => 'webでのセッション',
+        'web_sessions' => 'webセッション',
     ],
 ];

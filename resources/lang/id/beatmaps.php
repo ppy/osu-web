@@ -197,6 +197,7 @@ return [
                 'title' => 'Judul',
                 'artist' => 'Artis',
                 'difficulty' => 'Tingkat Kesulitan',
+                'favourites' => 'Favorit',
                 'updated' => 'Terbaru',
                 'ranked' => 'Ranked',
                 'rating' => 'Penilaian',

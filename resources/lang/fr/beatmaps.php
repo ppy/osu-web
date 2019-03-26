@@ -197,6 +197,7 @@ return [
                 'title' => 'Titre',
                 'artist' => 'Artiste',
                 'difficulty' => 'Difficulté',
+                'favourites' => 'Favoris',
                 'updated' => 'Mise à jour',
                 'ranked' => 'Classée',
                 'rating' => 'Évaluation',

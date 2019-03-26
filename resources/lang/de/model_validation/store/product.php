@@ -20,6 +20,7 @@
 
 return [
     'insufficient_stock' => 'Von diesem Artikel ist nicht mehr genug vorhanden!',
+    'must_separate' => 'Dieses Produkt muss getrennt von den anderen Produkten bezahlt werden',
     'not_available' => 'Dieser Artikel ist nicht verfügbar.',
     'too_many' => 'Pro Bestellung kannst du nur :count von diesem Artikel bestellen.',
 ];
