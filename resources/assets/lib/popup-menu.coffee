@@ -41,6 +41,7 @@ export class PopupMenu extends PureComponent
 
 
   componentDidMount: =>
+    @tooltipHideEvent = @tooltipElement().qtip('option', 'hide.event')
     $(window).on 'throttled-resize.#{@uuid}', @resize
     $(document).on "turbolinks:before-cache.#{@uuid}", () =>
       @removePortal()
@@ -62,8 +63,8 @@ export class PopupMenu extends PureComponent
     @portal.style.top = "#{Math.floor(top + $element.height() / 2)}px"
     @portal.style.left = "#{Math.floor(left + $element.width())}px"
 
-    if @context?
-      tooltipElement = $(@context).closest('.qtip')[0]
+    tooltipElement = @tooltipElement()[0]
+    if tooltipElement?
       @portal.style.zIndex = +tooltipElement.style.zIndex + 1
 
 
@@ -73,11 +74,15 @@ export class PopupMenu extends PureComponent
     if @state.active
       @resize()
       @addPortal()
+      @tooltipElement().qtip 'option', 'hide.event', false
 
       $(document).on "click.#{@uuid} keydown.#{@uuid}", @hide
       @props.onShow?()
+
     else
       @removePortal()
+      @tooltipElement().qtip 'option', 'hide.event', @tooltipHideEvent
+
       $(document).off "click.#{@uuid} keydown.#{@uuid}", @hide
       @props.onHide?()
 
@@ -106,6 +111,10 @@ export class PopupMenu extends PureComponent
 
   toggle: =>
     @setState active: !@state.active
+
+
+  tooltipElement: =>
+    $(@context).closest('.qtip')
 
 
   addPortal: =>
