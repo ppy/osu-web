@@ -156,16 +156,6 @@
     .@{top}:hover & {
       opacity: 1;
     }
-
-    & .forum-post-actions {
-      flex-direction: column;
-
-      &__action {
-        @media @mobile {
-          margin: 5px 5px;
-        }
-      }
-    }
   }
 
   &__background {
@@ -311,10 +301,6 @@
     position: absolute;
     bottom: 10px;
 
-    @media @mobile {
-      padding-right: 55px;
-    }
-
     .@{top}--forum-index & {
       width: 100%;
       // the diameter of circle thing (more or less)
@@ -340,6 +326,10 @@
 
     .@{top}--wiki & {
       bottom: 0;
+
+      @media @mobile {
+        padding-right: 55px;
+      }
     }
   }
 }
