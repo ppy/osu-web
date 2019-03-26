@@ -33,7 +33,11 @@
   display: flex;
   flex-direction: column;
 
-  width: @usercard-width;
+  // user card needs to fit into iPhone SE
+  max-width: @usercard-width;
+  min-width: @usercard-width-min;
+  width: 100%;
+
   height: @usercard-height;
   background-color: @background-color;
   margin: @card-item-spacing;
