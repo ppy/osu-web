@@ -19,9 +19,12 @@
 import { createElement as el, createRef, PureComponent } from 'react'
 import { createPortal } from 'react-dom'
 import { a, button, div, i } from 'react-dom-factories'
+import { TooltipContext } from 'tooltip-context'
 import { Modal } from 'modal'
 
 export class PopupMenu extends PureComponent
+  @contextType = TooltipContext
+
   @defaultProps =
     children: (_dismiss) ->
       # empty function
@@ -58,6 +61,10 @@ export class PopupMenu extends PureComponent
     @portal.style.position = 'absolute'
     @portal.style.top = "#{Math.floor(top + $element.height() / 2)}px"
     @portal.style.left = "#{Math.floor(left + $element.width())}px"
+
+    if @context?
+      tooltipElement = $(@context).closest('.qtip')[0]
+      @portal.style.zIndex = +tooltipElement.style.zIndex + 1
 
 
   componentDidUpdate: (_prevProps, prevState) =>

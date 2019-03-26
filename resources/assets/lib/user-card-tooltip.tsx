@@ -17,9 +17,11 @@
  */
 
 import * as React from 'react';
+import { TooltipContext } from 'tooltip-context';
 import { UserCard } from 'user-card';
 
 interface PropsInterface {
+  container: HTMLElement;
   lookup: string;
 }
 
@@ -49,7 +51,11 @@ export class UserCardTooltip extends React.PureComponent<PropsInterface, StateIn
     });
   }
 
-  render(): React.ReactNode {
-    return <UserCard user={this.state.user} />;
+  render() {
+    return (
+      <TooltipContext.Provider value={this.props.container}>
+        <UserCard user={this.state.user} />
+      </TooltipContext.Provider>
+    );
   }
 }

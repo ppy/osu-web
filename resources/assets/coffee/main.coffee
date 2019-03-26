@@ -133,6 +133,7 @@ reactTurbolinks.register 'user-card-store', _exported.UserCardStore, (el) ->
   user: JSON.parse(el.dataset.user)
 
 reactTurbolinks.register 'user-card-tooltip', _exported.UserCardTooltip, (el) ->
+  container: el
   lookup: el.dataset.lookup
 
 reactTurbolinks.register 'user-cards', _exported.UserCards, (el) ->
