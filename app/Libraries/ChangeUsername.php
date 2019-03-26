@@ -67,11 +67,11 @@ class ChangeUsername
             return $this->validationErrors();
         }
 
-        if ($this->validationErrors()->merge(UsernameValidation::validateAvailability($this->username))->isAny()) {
+        if ($this->validationErrors()->merge(UsernameValidation::validateUsersOfUsername($this->username))->isAny()) {
             return $this->validationErrors();
         }
 
-        return $this->validationErrors()->merge(UsernameValidation::validateUsersOfUsername($this->username));
+        return $this->validationErrors()->merge(UsernameValidation::validateAvailability($this->username));
     }
 
     public function validationErrorsTranslationPrefix()
