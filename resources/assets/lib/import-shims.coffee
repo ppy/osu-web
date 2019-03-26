@@ -29,6 +29,7 @@ import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { activeKeyDidChange, ContainerContext, KeyContext } from 'stateful-activation-context'
 import { StoreCheckout } from 'store-checkout'
 import { UserCard } from 'user-card'
+import { UserCards } from 'user-cards'
 import { UserCardStore } from 'user-card-store'
 import { UserCardTooltip } from 'user-card-tooltip'
 import Promise from 'promise-polyfill'
@@ -55,6 +56,7 @@ window._exported = {
   SpotlightSelectOptions
   WindowVHPatcher
   UserCard
+  UserCards
   UserCardStore
   UserCardTooltip
 }
