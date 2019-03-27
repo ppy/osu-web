@@ -67,6 +67,7 @@ class @UserCard
 
 
   onMouseOver: (event) =>
+    return if window.tooltipWithActiveMenu?
     # No user cards on mobile layout
     return if osu.isMobile()
 
