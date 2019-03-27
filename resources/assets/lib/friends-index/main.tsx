@@ -20,18 +20,24 @@ import * as React from 'react';
 import { UserCards } from 'user-cards';
 
 interface PropsInterface {
-  data: [];
+  data: {
+    online: [],
+    offline: [],
+  },
 }
 
 export class Main extends React.PureComponent<PropsInterface> {
   render(): React.ReactNode {
-    const users: any = this.props.data;
+    const online: any = this.props.data.online;
+    const offline: any = this.props.data.offline;
 
     return (
       <div className='user-friends'>
         <h2 className='user-friends__title'>{ osu.trans('friends.title') }</h2>
-        <div className='page-title page-title--lighter'>Users ({users.length})</div>
-          <UserCards users={users} modifiers={['friends-list']} />
+        <div className='page-title page-title--lighter'>{osu.trans('users.status.online')} ({online.length})</div>
+        <UserCards users={online} modifiers={['friends-list']} />
+        <div className='page-title page-title--lighter'>{osu.trans('users.status.offline')} ({offline.length})</div>
+        <UserCards users={offline} modifiers={['friends-list']} />
       </div>
     );
   }

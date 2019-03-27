@@ -51,26 +51,22 @@ class FriendsController extends Controller
 
     public function index()
     {
-        $order = request('order', 'asc');
-        $sort = request('sort', 'username'); // TODO: limit sort types
-
         $friends = Auth::user()
             ->friends()
             ->with([
                 'userProfileCustomization',
                 'country',
             ])
-            ->orderBy($sort, $order)
+            ->orderBy('username', 'asc')
             ->get();
 
-        $userJson = json_collection($friends, 'UserCompact', ['cover', 'country']);
-        if (is_api_request() || request()->expectsJson()) {
-            return $userJson;
-        } else {
-            $userlist = group_users_by_online_state($friends);
+        $userlist = group_users_by_online_state($friends);
+        $usersJson = [
+            'online' => json_collection($userlist['online'], 'UserCompact', ['cover', 'country']),
+            'offline' => json_collection($userlist['offline'], 'UserCompact', ['cover', 'country']),
+        ];
 
-            return view('friends.index', compact('userlist', 'userJson'));
-        }
+        return view('friends.index', compact('usersJson'));
     }
 
     public function store()

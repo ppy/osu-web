@@ -32,9 +32,8 @@
     @parent
 
     <script id="json-friends" type="application/json">
-        {!! json_encode($userJson) !!}
+        {!! json_encode($usersJson) !!}
     </script>
-
 
     @include('layout._extra_js', ['src' => 'js/react/friends-index.js'])
 @endsection
