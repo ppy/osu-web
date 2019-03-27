@@ -29,30 +29,30 @@ class @UserCard
     return unless userId
     return if _.find(currentUser.blocks, target_id: parseInt(userId)) # don't show cards for blocked users
 
+    # disable usercards on mobile
+    if osu.isMobile()
+      # disable existing cards when entering 'mobile' mode
+      if el._tooltip?
+        event.preventDefault()
+        $(el).qtip('api').disable()
+        el._disable_card = true
+
+      return
+
     # when qtip has already been init for current element
     if el._tooltip?
       api = $(el).qtip('api')
 
       if el._tooltip == userId
-        # disable existing cards when entering 'mobile' mode
-        if osu.isMobile()
-          event.preventDefault()
-          api.disable()
-          el._disable_card = true
-        else
-          if el._disable_card
-            el._disable_card = false
-            api.enable()
-            $(el).trigger('mouseover')
+        if el._disable_card
+          el._disable_card = false
+          api.enable()
+          $(el).trigger('mouseover')
 
         return
       else
         # wrong userId, destroy current tooltip
         api.destroy()
-
-    # disable usercards on mobile
-    if osu.isMobile()
-      return
 
     el._tooltip = userId
 
