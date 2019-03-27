@@ -20,7 +20,6 @@
 use App\Exceptions\ChangeUsernameException;
 use App\Libraries\ChangeUsername;
 use App\Models\User;
-use App\Models\UserStatistics;
 use Carbon\Carbon;
 
 // FIXME: need more tests

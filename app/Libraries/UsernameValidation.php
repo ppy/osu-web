@@ -20,7 +20,6 @@
 
 namespace App\Libraries;
 
-use App\Models\Beatmap;
 use App\Models\User;
 use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
