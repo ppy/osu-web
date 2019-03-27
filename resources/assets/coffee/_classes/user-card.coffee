@@ -24,20 +24,11 @@ class @UserCard
     $(document).on 'mouseover', '.js-usercard', @onMouseOver
 
 
-  onMouseOver: (event) =>
-    el = event.currentTarget
+  createTooltip: (el) =>
     userId = el.dataset.userId
-    return unless userId
-    return if _.find(currentUser.blocks, target_id: parseInt(userId)) # don't show cards for blocked users
-    return if @recycle(el)
-
-    # wrong userId, destroy current tooltip
-    if el._tooltip? && el._tooltip != el.dataset.userId
-      $(el).qtip('api').destroy()
-
     el._tooltip = userId
 
-    at = el.getAttribute('data-tooltip-position') ? 'right center'
+    at = el.dataset.tooltipPosition ? 'right center'
     my = switch at
       when 'top center' then 'bottom center'
       when 'left center' then 'right center'
@@ -66,6 +57,7 @@ class @UserCard
         delay: @triggerDelay
         ready: true
         effect: -> $(this).fadeTo(110, 1)
+        event: false
       hide:
         fixed: true
         delay: @triggerDelay
@@ -74,21 +66,19 @@ class @UserCard
     $(el).qtip options
 
 
-  recycle: (el) ->
-    # disable usercards on mobile
-    if osu.isMobile()
-      # disable existing cards when entering 'mobile' mode
-      if el._tooltip?
-        event.preventDefault()
-        $(el).qtip('api').disable()
+  onMouseOver: (event) =>
+    # No user cards on mobile layout
+    return if osu.isMobile()
 
-      return true
+    el = event.currentTarget
+    userId = el.dataset.userId
+    return unless userId
+    return if _.find(currentUser.blocks, target_id: parseInt(userId)) # don't show cards for blocked users
 
-    # when qtip has already been init for current element
-    if el._tooltip? && el._tooltip == el.dataset.userId
-      api = $(el).qtip('api')
-      if api.disabled
-        api.enable()
-        $(el).trigger('mouseover')
+    return @createTooltip(el) if !el._tooltip?
 
-      return true
+    if el._tooltip == el.dataset.userId
+      Timeout.set @triggerDelay, -> $(el).qtip('api').show()
+    else
+      # wrong userId, destroy current tooltip
+      $(el).qtip('api').destroy()
