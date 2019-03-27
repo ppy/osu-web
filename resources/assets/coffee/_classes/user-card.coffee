@@ -23,36 +23,17 @@ class @UserCard
   constructor: ->
     $(document).on 'mouseover', '.js-usercard', @onMouseOver
 
+
   onMouseOver: (event) =>
     el = event.currentTarget
-    userId = el.getAttribute('data-user-id')
+    userId = el.dataset.userId
     return unless userId
     return if _.find(currentUser.blocks, target_id: parseInt(userId)) # don't show cards for blocked users
+    return if @recycle(el)
 
-    # disable usercards on mobile
-    if osu.isMobile()
-      # disable existing cards when entering 'mobile' mode
-      if el._tooltip?
-        event.preventDefault()
-        $(el).qtip('api').disable()
-        el._disable_card = true
-
-      return
-
-    # when qtip has already been init for current element
-    if el._tooltip?
-      api = $(el).qtip('api')
-
-      if el._tooltip == userId
-        if el._disable_card
-          el._disable_card = false
-          api.enable()
-          $(el).trigger('mouseover')
-
-        return
-      else
-        # wrong userId, destroy current tooltip
-        api.destroy()
+    # wrong userId, destroy current tooltip
+    if el._tooltip? && el._tooltip != el.dataset.userId
+      $(el).qtip('api').destroy()
 
     el._tooltip = userId
 
@@ -91,3 +72,23 @@ class @UserCard
         effect: -> $(this).fadeTo(110, 0)
 
     $(el).qtip options
+
+
+  recycle: (el) ->
+    # disable usercards on mobile
+    if osu.isMobile()
+      # disable existing cards when entering 'mobile' mode
+      if el._tooltip?
+        event.preventDefault()
+        $(el).qtip('api').disable()
+
+      return true
+
+    # when qtip has already been init for current element
+    if el._tooltip? && el._tooltip == el.dataset.userId
+      api = $(el).qtip('api')
+      if api.disabled
+        api.enable()
+        $(el).trigger('mouseover')
+
+      return true
