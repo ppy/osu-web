@@ -197,6 +197,7 @@ return [
                 'title' => 'Назва',
                 'artist' => 'Выканаўца',
                 'difficulty' => 'Складанасць',
+                'favourites' => 'Абраныя',
                 'updated' => 'Абноўлена',
                 'ranked' => 'Ранкавана',
                 'rating' => 'Рэйтынг',

@@ -34,6 +34,9 @@ return [
         'invalid_mode' => 'Ugyldig spiltilstand er specificeret.',
         'standard_converts_only' => 'Ingen scores er tilgængelige for den anmodede spiltilstand på denne beatmap sværhedsgrad.',
     ],
+    'checkout' => [
+        'generic' => 'Der opstod en fejl under forberedelsen af ​​dit køb.',
+    ],
     'logged_out' => 'Du er blevet logget ud. Log venligst ind og prøv igen.',
     'supporter_only' => 'Du skal være supporter for at udføre denne handling.',
     'no_restricted_access' => 'Du kan ikke udføre denne handling eftersom, at din konto er begrænset.',

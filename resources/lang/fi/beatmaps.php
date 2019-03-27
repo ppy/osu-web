@@ -197,6 +197,7 @@ return [
                 'title' => 'Nimi',
                 'artist' => 'Esittäjä',
                 'difficulty' => 'Vaikeustaso',
+                'favourites' => '',
                 'updated' => 'Päivitetty',
                 'ranked' => 'Hyväksytty',
                 'rating' => 'Luokitus',

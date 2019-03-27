@@ -20,6 +20,7 @@
 
 return [
     'insufficient_stock' => 'Tätä tuotetta ei ole tarpeeksi jäljellä!',
+    'must_separate' => '',
     'not_available' => 'Tämä tuote ei ole saatavilla.',
     'too_many' => 'Voit tilata vain :count kappaletta tätä tuotetta tilausta kohden.',
 ];

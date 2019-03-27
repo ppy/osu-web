@@ -197,6 +197,7 @@ return [
                 'title' => 'Cím',
                 'artist' => 'Előadó',
                 'difficulty' => 'Nehézség',
+                'favourites' => 'Kedvencek',
                 'updated' => 'Frissítve',
                 'ranked' => 'Rangsorolt',
                 'rating' => 'Értékelés',

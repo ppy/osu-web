@@ -20,6 +20,7 @@
 
 return [
     'insufficient_stock' => 'この商品は残っていません！',
+    'must_separate' => 'この商品は他の商品と別に支払いをする必要があります。',
     'not_available' => 'この商品は利用できません。',
     'too_many' => 'この商品を注文できるのは一度の注文につき:count個までです。',
 ];

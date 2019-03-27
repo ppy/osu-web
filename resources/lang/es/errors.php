@@ -34,6 +34,9 @@ return [
         'invalid_mode' => 'Se ha especificado un modo inválido.',
         'standard_converts_only' => 'No hay puntajes disponibles para el modo solicitado en esta dificultad del Beatmap.',
     ],
+    'checkout' => [
+        'generic' => 'Ha ocurrido un error mientras preparábamos tu compra.',
+    ],
     'logged_out' => 'Tu sesión ha expirado. Por favor, inicia sesión y vuelve a intentarlo.',
     'supporter_only' => 'Debes ser supporter para usar esta característica.',
     'no_restricted_access' => 'No puedse realizar esta acción mientras tu cuenta esté en un estado restringido.',

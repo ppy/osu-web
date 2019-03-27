@@ -88,9 +88,9 @@ return [
 
     'security' => [
         'current_session' => 'это вы',
-        'end_session' => 'отозвать доступ',
+        'end_session' => 'Закончить сеанс',
         'end_session_confirmation' => 'Сеанс на этом устройстве будет немедленно завершён. Вы уверены?',
-        'last_active' => 'был активен',
+        'last_active' => 'Был активен:',
         'title' => 'Безопасность',
         'web_sessions' => 'последняя активность',
     ],

@@ -197,6 +197,7 @@ return [
                 'title' => 'Τίτλος',
                 'artist' => 'Καλλιτέχνης',
                 'difficulty' => 'Δυσκολία',
+                'favourites' => 'Αγαπημένα',
                 'updated' => 'Ενημερώθηκε',
                 'ranked' => 'Ranked',
                 'rating' => 'Βαθμολογία',

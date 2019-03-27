@@ -59,7 +59,7 @@ return [
 
         'pending_checkout' => [
             'line_1' => 'Der vorherige Bezahlvorgang wurde gestartet, aber nicht beendet.',
-            'line_2' => 'Setzte deine Zahlung fort, indem du eine Zahlungsmethode auswählst.',
+            'line_2' => 'Setze deine Zahlung fort, indem du eine Zahlungsmethode auswählst.',
         ],
     ],
 
@@ -90,6 +90,7 @@ return [
 
         'invoice' => 'Rechnung anzeigen',
         'no_orders' => 'Keine Bestellungen zum anzeigen.',
+        'resume' => 'Bezahlung fortsetzen',
 
         'item' => [
             'display_name' => [

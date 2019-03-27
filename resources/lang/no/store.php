@@ -25,7 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Gå til kassen',
-        'more_goodies' => 'Fortsett å handle',
+        'more_goodies' => 'Jeg vil se på flere produkter før jeg fullfører bestillingen',
         'shipping_fees' => 'estimert frakt',
         'title' => 'Handlevogn',
         'total' => 'total sum',
@@ -90,6 +90,7 @@ return [
 
         'invoice' => 'Vis faktura',
         'no_orders' => 'Ingen ordre å vise.',
+        'resume' => 'Tilbake til kassen',
 
         'item' => [
             'display_name' => [

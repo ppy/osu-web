@@ -90,6 +90,7 @@ return [
 
         'invoice' => 'Näytä lasku',
         'no_orders' => 'Ei tilauksia katsottavissa.',
+        'resume' => '',
 
         'item' => [
             'display_name' => [

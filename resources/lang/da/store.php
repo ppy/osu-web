@@ -90,6 +90,7 @@ return [
 
         'invoice' => 'Vis faktura',
         'no_orders' => 'Ingen ordrer til at se.',
+        'resume' => '',
 
         'item' => [
             'display_name' => [
