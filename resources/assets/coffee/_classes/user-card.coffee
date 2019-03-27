@@ -50,6 +50,8 @@ class @UserCard
       content:
         text: card
       position:
+        adjust:
+          scroll: false
         at: at
         my: my
         viewport: $(window)
