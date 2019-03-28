@@ -75,7 +75,6 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
 
     tr
       className: osu.classWithModifiers("#{bn}__body-row", classMods),
-      key: index,
 
       td className: osu.classWithModifiers(cell, ['rank']), "##{index+1}"
 
