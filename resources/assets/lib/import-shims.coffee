@@ -26,7 +26,7 @@ import { ReportUser } from 'report-user'
 import { ScoreHelper } from 'score-helper'
 import { SelectOptions } from 'select-options'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
-import { activeDidChange, ContainerContext, KeyContext } from 'stateful-activation-context'
+import { activeKeyDidChange, ContainerContext, KeyContext } from 'stateful-activation-context'
 import { StoreCheckout } from 'store-checkout'
 import { UserCard } from 'user-card'
 import { UserCardStore } from 'user-card-store'
@@ -41,7 +41,7 @@ import WindowVHPatcher from 'window-vh-patcher'
 window.Promise ?= Promise
 
 window._exported = {
-  activeDidChange
+  activeKeyDidChange
   BackToTop
   ContainerContext
   GalleryContest

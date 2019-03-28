@@ -19,7 +19,7 @@
 import { PlayDetail } from 'play-detail'
 import { createElement as el, PureComponent } from 'react'
 import { div } from 'react-dom-factories'
-import { activeDidChange, ContainerContext, KeyContext } from 'stateful-activation-context'
+import { activeKeyDidChange, ContainerContext, KeyContext } from 'stateful-activation-context'
 
 osu = window.osu
 
@@ -27,7 +27,7 @@ export class PlayDetailList extends PureComponent
   constructor: (props) ->
     super props
 
-    @activeDidChange = activeDidChange.bind(@)
+    @activeKeyDidChange = activeKeyDidChange.bind(@)
 
     @state = {}
 
@@ -37,7 +37,7 @@ export class PlayDetailList extends PureComponent
 
     el ContainerContext.Provider,
       value:
-        activeDidChange: @activeDidChange
+        activeKeyDidChange: @activeKeyDidChange
 
       div
         className: osu.classWithModifiers('play-detail-list', classMods)

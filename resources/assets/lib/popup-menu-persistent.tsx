@@ -33,11 +33,11 @@ export function PopupMenuPersistent(props: Props) {
   const key = React.useContext(KeyContext);
 
   const onHide = () => {
-    containerContext.activeDidChange(false, key);
+    containerContext.activeKeyDidChange(null);
   };
 
   const onShow = () => {
-    containerContext.activeDidChange(true, key);
+    containerContext.activeKeyDidChange(key);
   };
 
   return (

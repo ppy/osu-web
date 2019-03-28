@@ -24,7 +24,7 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @activeDidChange = _exported.activeDidChange.bind(@)
+    @activeKeyDidChange = _exported.activeKeyDidChange.bind(@)
 
     @state = {}
 
@@ -34,7 +34,7 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
 
     el _exported.ContainerContext.Provider,
       value:
-        activeDidChange: @activeDidChange
+        activeKeyDidChange: @activeKeyDidChange
 
       div className: osu.classWithModifiers(bn, classMods),
         table
