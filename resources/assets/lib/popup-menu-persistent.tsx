@@ -29,15 +29,15 @@ interface Props {
  * Also a functional component to be able to use useContext.
  */
 export function PopupMenuPersistent(props: Props) {
-  const containerContext = React.useContext(ContainerContext);
+  const container = React.useContext(ContainerContext);
   const key = React.useContext(KeyContext);
 
   const onHide = () => {
-    containerContext.activeKeyDidChange(null);
+    container.activeKeyDidChange(null);
   };
 
   const onShow = () => {
-    containerContext.activeKeyDidChange(key);
+    container.activeKeyDidChange(key);
   };
 
   return (
