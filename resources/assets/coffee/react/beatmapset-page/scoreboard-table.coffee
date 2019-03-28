@@ -57,11 +57,14 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
 
           tbody className: "#{bn}__body",
             @props.scores.map (score, index) =>
-              activated = @state.activeKey == index
-              { beatmap, countries, hitTypeMapping, scoreboardType } = @props
-
               el _exported.KeyContext.Provider,
                 key: index
                 value: index
                 el BeatmapsetPage.ScoreboardTableRow,
-                  { activated, beatmap, countries, hitTypeMapping, index, score, scoreboardType }
+                  activated: @state.activeKey == index
+                  beatmap: @props.beatmap
+                  countries: @props.countries
+                  hitTypeMapping: @props.hitTypeMapping
+                  index: index
+                  score: score
+                  scoreboardType: @props.scoreboardType
