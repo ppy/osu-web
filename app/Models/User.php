@@ -406,7 +406,7 @@ class User extends Model implements AuthenticatableContract
 
         return $this->user_lastvisit
             ->addDays(static::INACTIVE_DAYS)
-            ->addDays(intval(870*(1- pow(M_E,-$playCount/5900)) + (8*$playCount/5900)));
+            ->addDays(intval(870 * (1 - pow(M_E, -$playCount / 5900)) + (8 * $playCount / 5900)));
     }
 
     public function validateChangeUsername(string $username)
