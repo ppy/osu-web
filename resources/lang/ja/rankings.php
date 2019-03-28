@@ -36,13 +36,13 @@ return [
     ],
 
     'stat' => [
-        'accuracy' => '精度(Accuracy)',
+        'accuracy' => '精度',
         'active_users' => 'アクティブユーザー数',
         'country' => '所在国',
         'play_count' => 'プレイ回数',
         'performance' => 'パフォーマンス',
-        'total_score' => '累計スコア',
-        'ranked_score' => 'Rankedスコア',
+        'total_score' => '合計スコア',
+        'ranked_score' => 'ランクスコア',
         'average_score' => '平均スコア',
         'average_performance' => '平均パフォーマンス',
         'ss' => 'SS',

@@ -34,6 +34,9 @@ return [
         'invalid_mode' => 'Ogiltigt läge specificerat.',
         'standard_converts_only' => 'Inga poäng är tillgängliga enligt begärt läge på denna beatmap svårighetsgrad.',
     ],
+    'checkout' => [
+        'generic' => '',
+    ],
     'logged_out' => 'Du har blivit utloggad. Var vänlig logga in och försök igen .',
     'supporter_only' => 'Du måste vara en supporter för att använda denna funktion.',
     'no_restricted_access' => 'Du kan inte utföra denna återgärd medans ditt konto är begränsad.',

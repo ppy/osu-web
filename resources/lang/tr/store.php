@@ -90,6 +90,7 @@ return [
 
         'invoice' => 'Faturayı Görüntüle',
         'no_orders' => 'Görüntülenecek sipariş yok.',
+        'resume' => '',
 
         'item' => [
             'display_name' => [
@@ -114,7 +115,7 @@ return [
             'delivered' => 'Teslim edildi',
             'paid' => 'Ödendi',
             'processing' => 'Onay bekleniyor',
-            'shipped' => '',
+            'shipped' => 'Ulaştırılıyor',
         ],
     ],
 

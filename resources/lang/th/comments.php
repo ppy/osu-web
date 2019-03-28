@@ -19,51 +19,51 @@
  */
 
 return [
-    'deleted' => '',
-    'edited' => '',
-    'empty' => '',
-    'replies' => '',
-    'show_replies' => '',
-    'title' => '',
+    'deleted' => 'ถูกลบไปแล้ว',
+    'edited' => 'แก้ไขเมื่อ :timeago โดย :user',
+    'empty' => 'ยังไม่มีความคิดเห็นเลย',
+    'replies' => 'ตอบกลับ',
+    'show_replies' => 'แสดงการตอบกลับ',
+    'title' => 'ความคิดเห็น',
 
     'commentable_name' => [
-        'beatmapset' => '',
-        'build' => '',
-        'news_post' => '',
-        '_deleted' => '',
+        'beatmapset' => 'Beatmap',
+        'build' => 'การเปลี่ยนแปลง',
+        'news_post' => 'ข่าวสาร',
+        '_deleted' => 'รายการที่ถูกลบ',
     ],
 
     'editor' => [
         'textarea_hint' => [
-            '_' => '',
-            'edit' => '',
-            'new' => '',
-            'reply' => '',
+            '_' => 'กด Enter เพื่อ :action ใช้ Shift + Enter เพื่อขึ้นบรรทัดใหม่',
+            'edit' => 'บันทึก',
+            'new' => 'โพสต์',
+            'reply' => 'ตอบกลับ',
         ],
     ],
 
     'guest_button' => [
-        'new' => '',
-        'reply' => '',
+        'new' => 'เข้าสู่ระบบเพื่อแสดงความคิดเห็น',
+        'reply' => 'เข้าสู่ระบบเพื่อตอบกลับ',
     ],
 
     'index' => [
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'ความคิดเห็น :info',
+            'info' => 'รายการ',
         ],
     ],
 
     'placeholder' => [
-        'edit' => '',
-        'new' => '',
-        'reply' => '',
+        'edit' => 'แก้ไขความเห็น',
+        'new' => 'พิมพ์ความเห็นของคุณที่นี่',
+        'reply' => 'พิมพ์คำตอบกลับที่นี่',
     ],
 
     'show' => [
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'ความคิดเห็น :info',
+            'info' => 'ราย​ละเอียด',
         ],
     ],
 ];

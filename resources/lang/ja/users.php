@@ -122,17 +122,17 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'あなたのアカウントは制限されました。',
-        'message' => '制限中は他のプレイヤーとの干渉ができなくなり、自分のスコアも他人には表示されなくなります。制限のほとんどは自動的な処理で、２４時間以内に解決します。制限が不当な物だと感じた場合、<a href="mailto:accounts@ppy.sh">サポートにお問い合わせください</a>。',
+        'message' => '制限中は他のプレイヤーとの交流ができなくなり、自分のスコアも他人には表示されなくなります。制限のほとんどは自動的な処理で、通常２４時間以内に解除されます。制限が不当な物だと感じた場合、<a href="mailto:accounts@ppy.sh">サポートにお問い合わせください</a>。',
     ],
     'show' => [
-        'age' => ':age',
+        'age' => ':age歳',
         'change_avatar' => 'アバター画像の変更',
         'first_members' => '創設時からのメンバー',
         'is_developer' => 'osu!開発者',
         'is_supporter' => 'osu!サポーター',
-        'joined_at' => '登録日時 :date',
+        'joined_at' => '登録日 :date',
         'lastvisit' => '最終ログイン :date',
-        'missingtext' => '内容を再度確認してください。（ユーザーが削除されている可能性もあります）',
+        'missingtext' => '打ち間違いがないか確認してください！（ユーザーが削除されている可能性もあります）',
         'origin_country' => '所在国 :country',
         'page_description' => 'osu! - :usernameについていろいろ！',
         'previous_usernames' => '以前の名前',
@@ -146,7 +146,7 @@ return [
                 'upload' => [
                     'broken_file' => '画像の処理に失敗しました。ファイルの破損か形式が合っているかを確認してください。',
                     'button' => '画像のアップロード',
-                    'dropzone' => 'ここにドロップでアップロード',
+                    'dropzone' => 'ここにドロップしてアップロード',
                     'dropzone_info' => 'ここにドラッグ＆ドロップでアップロードが可能です。',
                     'restriction_info' => "<a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!サポーター</a>のみアップロードできます",
                     'size_info' => '推奨の画像サイズは2800x620です',
@@ -192,7 +192,7 @@ return [
                 ],
             ],
             'historical' => [
-                'empty' => 'パフォーマンス測定可能の記録がまだありません。',
+                'empty' => 'パフォーマンス測定可能な記録がまだありません。',
                 'title' => 'プレイの記録',
 
                 'monthly_playcounts' => [
@@ -200,11 +200,11 @@ return [
                     'count_label' => 'プレイ数',
                 ],
                 'most_played' => [
-                    'count' => 'times played',
-                    'title' => '最もプレイ回数の多い譜面順',
+                    'count' => 'プレイ回数',
+                    'title' => 'プレイ回数の多い譜面順',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'accuracy: :percentage',
+                    'accuracy' => '精度: :percentage',
                     'title' => '最近のプレイ（24時間以内）',
                 ],
                 'replays_watched_counts' => [
@@ -213,12 +213,12 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => '使用可能のKudosu',
+                'available' => '使用可能なKudosu',
                 'available_info' => "Kudosuは譜面の優先順位に関わるKudosu starと交換できます。これは未交換のKudosuの数です。",
                 'recent_entries' => '最近のKudosu履歴',
                 'title' => 'Kudosu!',
                 'total' => '累計Kudosu取得数',
-                'total_info' => '譜面制作のModdingなどの貢献度を表す数値です。詳細は<a href="'.osu_url('user.kudosu').'">Kudosu!</a> wikiを参照。',
+                'total_info' => '譜面制作のModdingなどの貢献度を表す数値です。詳細は<a href="'.osu_url('user.kudosu').'詳細は">this page</a>を参照。',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -234,7 +234,7 @@ return [
                         ],
 
                         'delete' => [
-                            'reset' => 'postの削除により:amount取り消し',
+                            'reset' => ':postの削除により:amount取り消し',
                         ],
 
                         'restore' => [
@@ -248,12 +248,12 @@ return [
 
                         'recalculate' => [
                             'give' => ':postのvotes再計算により:amount取得',
-                            'reset' => ':postびvotes再計算により:amount取り消し',
+                            'reset' => ':postのvotes再計算により:amount取り消し',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => ':postの投稿で:amount取得',
+                        'give' => ':postの投稿で :giverから:amount取得',
                         'reset' => ':postの:giverによるkudosuリセット',
                         'revoke' => ':postの:giverによるkudosu拒否',
                     ],
@@ -268,12 +268,12 @@ return [
                 'title' => 'メダル',
             ],
             'recent_activity' => [
-                'title' => '最近の活動',
+                'title' => '最近のアクティビティ',
             ],
             'top_ranks' => [
-                'download_replay' => 'リプレイの保存',
-                'empty' => 'まだ記録を作ってません！',
-                'not_ranked' => 'Ranked譜面のみがppを授与します。',
+                'download_replay' => 'リプレイをダウンロード',
+                'empty' => 'まだ記録がありません！',
+                'not_ranked' => 'ランクビートマップのみがppを与えます。',
                 'pp_weight' => '割合 :percentage',
                 'title' => 'ランク',
 
@@ -287,12 +287,12 @@ return [
             'account_standing' => [
                 'title' => 'アカウントの状態',
                 'bad_standing' => "<strong>:username</strong>のアカウントはルール違反の記録があります。",
-                'remaining_silence' => '<strong>:username</strong>:durationで発言禁止が解かれます。',
+                'remaining_silence' => '<strong>:username</strong>は後:duration日で再び発言ができるようになります。',
 
                 'recent_infringements' => [
                     'title' => '最近の違反',
                     'date' => '日付',
-                    'action' => '行為',
+                    'action' => 'アクション',
                     'length' => '期間',
                     'length_permanent' => '永久',
                     'description' => '詳細',
@@ -320,10 +320,10 @@ return [
             'occupation' => '職業',
             'skype' => 'Skype',
             'twitter' => 'Twitter',
-            'website' => 'サイト',
+            'website' => 'ウェブサイト',
         ],
         'not_found' => [
-            'reason_1' => '対象はユーザーネームを変更した可能性があります。',
+            'reason_1' => 'ユーザー名を変更した可能性があります。',
             'reason_2' => 'セキュリティの問題や不正利用の可能性によりアカウントが一時的に利用不可能になっている場合があります。',
             'reason_3' => '打ち間違いがないか確認してください！',
             'reason_header' => '考えられる主な理由：',
@@ -337,7 +337,7 @@ return [
             'restriction_info' => "<a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!サポーター</a>限定の機能です。",
         ],
         'post_count' => [
-            '_' => 'フォーラム投稿 :link',
+            '_' => 'フォーラム投稿数 :link',
             'count' => ':count個',
         ],
         'rank' => [
@@ -347,14 +347,14 @@ return [
             'global_simple' => '世界ランキング',
         ],
         'stats' => [
-            'hit_accuracy' => '精度（Accuracy）',
+            'hit_accuracy' => '精度',
             'level' => 'レベル :level',
             'level_progress' => '次のレベルまで',
             'maximum_combo' => '最大コンボ',
             'medals' => 'メダル',
             'play_count' => 'プレイ回数',
             'play_time' => 'プレイ時間',
-            'ranked_score' => '合計Rankedスコア',
+            'ranked_score' => '合計ランクスコア',
             'replays_watched_by_others' => 'リプレイの再生回数',
             'score_ranks' => 'スコアランク',
             'total_hits' => '合計ヒット数',

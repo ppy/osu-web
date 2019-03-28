@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => '',
-        'reply' => '',
+        'new' => 'Yorum yazmak için oturum açılsın mı',
+        'reply' => 'Cevaplamak için giriş yap',
     ],
 
     'index' => [

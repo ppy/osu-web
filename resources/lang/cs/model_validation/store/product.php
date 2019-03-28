@@ -20,6 +20,7 @@
 
 return [
     'insufficient_stock' => 'Není zde dostatečné množství tohoto zboží!',
+    'must_separate' => '',
     'not_available' => 'Tato položka není k dispozici.',
     'too_many' => 'Můžete si objednat pouze :count kusů na jednu objednávku.',
 ];

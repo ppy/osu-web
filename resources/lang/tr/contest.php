@@ -32,9 +32,9 @@ return [
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => 'Oyla',
+            'remove' => 'Oyu Kaldır',
+            'used_up' => 'Tüm oylarını kullandın',
         ],
     ],
     'entry' => [

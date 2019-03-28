@@ -65,7 +65,7 @@ return [
         'disqualify' => 'Diskalifiye',
         'issue_reopen' => 'Tekrar açılan tartışmalar',
         'issue_resolve' => 'Tartışma çözümü',
-        'kudosu_allow' => '',
+        'kudosu_allow' => 'Kudosu avansı',
         'kudosu_deny' => 'Kudosu reddi',
         'kudosu_gain' => 'Kudosu kazancı',
         'kudosu_lost' => 'Kudosu kaybı',

@@ -2,6 +2,7 @@ preserve_hierarchy: true
 files:
   - source: /resources/lang/en/**/*.php
     translation: /resources/lang/%locale%/**/%original_file_name%
+    update_option: update_as_unapproved
     languages_mapping:
       locale:
         be: be

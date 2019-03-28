@@ -20,7 +20,6 @@
 
 namespace App\Libraries;
 
-use App\Models\Beatmap;
 use App\Models\User;
 use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
@@ -108,16 +107,6 @@ class UsernameValidation
             // ranked beatmaps
             if ($user->beatmapsets()->rankedOrApproved()->exists()) {
                 return $errors->add('username', '.username_locked');
-            }
-
-            // ranks
-            foreach (Beatmap::MODES as $mode => $_modeInt) {
-                $stats = $user->statistics($mode);
-                if ($stats !== null
-                    && $stats->rank_score_index > 0
-                    && $stats->rank_score_index <= config('osu.user.username_lock_rank_limit')) {
-                    return $errors->add('username', '.username_locked');
-                }
             }
         }
 

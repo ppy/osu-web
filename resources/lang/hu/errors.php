@@ -34,6 +34,9 @@ return [
         'invalid_mode' => 'Érvénytelen mód lett megadva.',
         'standard_converts_only' => 'Nincs elérhető eredmény a kért módra ezen a beatmap nehézségen.',
     ],
+    'checkout' => [
+        'generic' => 'Hiba történt a fizetés előkészítése közben.',
+    ],
     'logged_out' => 'Ki lettél léptetve. Kérlek lépj be és próbáld újra.',
     'supporter_only' => 'Támogatónak kell lenned a funkció használatához.',
     'no_restricted_access' => 'Felfüggesztett állapot erre nem vagy alkalmas.',

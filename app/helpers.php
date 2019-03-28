@@ -643,7 +643,7 @@ function proxy_image($url)
 
     $decoded = urldecode(html_entity_decode_better($url));
 
-    if (config('osu.camo.key') === '') {
+    if (config('osu.camo.key') === null) {
         return $decoded;
     }
 

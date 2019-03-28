@@ -197,6 +197,7 @@ return [
                 'title' => 'Titre',
                 'artist' => 'Artiste',
                 'difficulty' => 'Difficulté',
+                'favourites' => 'Favoris',
                 'updated' => 'Mise à jour',
                 'ranked' => 'Classée',
                 'rating' => 'Évaluation',
@@ -303,7 +304,7 @@ return [
         'D' => 'D',
     ],
     'panel' => [
-        'playcount' => '',
+        'playcount' => 'Nombre de joueurs : :count',
         'favourites' => 'Favorites : :count',
     ],
 ];

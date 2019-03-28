@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'Το τρέχον όνομα χρήστη (:current) δεν είναι ίδιο με το (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => 'Η δωρεά είναι μικρότερη από την απαιτούμενη για το δώρο osu!supporter tag (:actual > :expected)',
     ],
 ];

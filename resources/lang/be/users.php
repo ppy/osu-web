@@ -260,7 +260,7 @@ return [
                 ],
             ],
             'me' => [
-                'title' => 'я!',
+                'title' => 'пра мяне!',
             ],
             'medals' => [
                 'empty' => "Гэты карыстальнік яшчэ нічога не атрымаў. ;_;",
@@ -330,11 +330,11 @@ return [
             'title' => 'Карыстальнік не знойдзены! ;_;',
         ],
         'page' => [
-            'button' => '',
-            'description' => '<strong>я!</strong> гэта ваша ўласнае месца ў профілю, якое можна дастасаваць.',
+            'button' => 'Рэдагаваць профіль',
+            'description' => '<strong>пра мяне!</strong> гэта ваша ўласнае месца ў профілю, якое можна дастасаваць.',
             'edit_big' => 'Рэдагаваць мяне!',
             'placeholder' => 'Напішыце змесціва старонкі тут',
-            'restriction_info' => "Вам трэба мець <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a>, каб разблакаваыь гэтую функцыю.",
+            'restriction_info' => "Вам трэба мець <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a>, каб разблакаваць гэту функцыю.",
         ],
         'post_count' => [
             '_' => 'Размясціў :link',

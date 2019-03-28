@@ -24,7 +24,7 @@ return [
         'online' => '<strong>:players</strong> бягучая колькасць гульцоў у<strong>:games</strong> гульнях',
         'peak' => 'Пік, :count актыўных карыстальнікаў',
         'players' => 'Зарэгістравана гульцоў <strong>:count</strong>',
-        'title' => '',
+        'title' => 'вітаем',
 
         'slogan' => [
             'main' => 'лепшая бясплатная рытм-гульня',
@@ -135,7 +135,7 @@ return [
         ],
         'buttons' => [
             'download' => 'Спампаваць osu!',
-            'support' => 'Патрымаць osu!',
+            'support' => 'Падтрымаць osu!',
             'store' => 'Крама osu!',
         ],
     ],

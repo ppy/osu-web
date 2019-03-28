@@ -90,6 +90,7 @@ return [
 
         'invoice' => '청구서 보기',
         'no_orders' => '주문 내역이 없습니다.',
+        'resume' => '결제 계속하기',
 
         'item' => [
             'display_name' => [

@@ -90,6 +90,7 @@ return [
 
         'invoice' => 'Xem Hóa Đơn',
         'no_orders' => 'Không có đơn đặt hàng.',
+        'resume' => '',
 
         'item' => [
             'display_name' => [

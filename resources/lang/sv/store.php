@@ -90,6 +90,7 @@ return [
 
         'invoice' => '',
         'no_orders' => '',
+        'resume' => '',
 
         'item' => [
             'display_name' => [

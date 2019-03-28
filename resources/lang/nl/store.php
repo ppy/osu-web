@@ -90,6 +90,7 @@ return [
 
         'invoice' => '',
         'no_orders' => 'Geen bestellingen om te bekijken.',
+        'resume' => '',
 
         'item' => [
             'display_name' => [

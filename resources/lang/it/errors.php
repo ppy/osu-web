@@ -34,6 +34,9 @@ return [
         'invalid_mode' => 'Modalità specificata non valida.',
         'standard_converts_only' => 'Solo la modalità osu! può avere punteggi in altre modalità.',
     ],
+    'checkout' => [
+        'generic' => '',
+    ],
     'logged_out' => 'Sei stato disconnesso. Per favore effettua di nuovo il login e riprova.',
     'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalità.',
     'no_restricted_access' => 'Non puoi fare questa azione mentre il tuo account è ristretto.',
