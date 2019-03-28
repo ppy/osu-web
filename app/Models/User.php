@@ -400,7 +400,7 @@ class User extends Model implements AuthenticatableContract
                 ->addDays(static::INACTIVE_DAYS); //base inactivity period for all accounts
             } else {
                 return $this->user_lastvisit
-                addDays(intval(870 * (1 - pow(M_E, -$playCount / 5900)) + (8 * $playCount / 5900)));
+                ->addDays(intval(870 * (1 - pow(M_E, -$playCount / 5900)) + (8 * $playCount / 5900)));
             }
         }
 
