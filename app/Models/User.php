@@ -400,13 +400,13 @@ class User extends Model implements AuthenticatableContract
                 ->addDays(static::INACTIVE_DAYS); //base inactivity period for all accounts
             } else {
                 return $this->user_lastvisit
-                ->addDays(intval(870*(1- pow(M_E,-0.45*$playCount/5900)) + (3*8*$playCount/4*5900)));
+                addDays(intval(870 * (1 - pow(M_E, -$playCount / 5900)) + (8 * $playCount / 5900)));
             }
         }
 
         return $this->user_lastvisit
             ->addDays(static::INACTIVE_DAYS)
-            ->addDays(intval(870*(1- pow(M_E,-$playCount/5900)) + (8*$playCount/5900)));    //bonus based on playcount
+            ->addDays(intval(870*(1- pow(M_E,-$playCount/5900)) + (8*$playCount/5900)));
     }
 
     public function validateChangeUsername(string $username)
