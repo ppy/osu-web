@@ -26,6 +26,7 @@ import { ReportUser } from 'report-user'
 import { ScoreHelper } from 'score-helper'
 import { SelectOptions } from 'select-options'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
+import { activeKeyDidChange, ContainerContext, KeyContext } from 'stateful-activation-context'
 import { StoreCheckout } from 'store-checkout'
 import { UserCard } from 'user-card'
 import { UserCardStore } from 'user-card-store'
@@ -40,7 +41,11 @@ import WindowVHPatcher from 'window-vh-patcher'
 window.Promise ?= Promise
 
 window._exported = {
+  activeKeyDidChange
   BackToTop
+  ContainerContext
+  GalleryContest
+  KeyContext
   PlayDetailList
   PlayDetailMenu
   ReportComment
@@ -48,7 +53,6 @@ window._exported = {
   ScoreHelper
   SelectOptions
   SpotlightSelectOptions
-  GalleryContest
   WindowVHPatcher
   UserCard
   UserCardStore

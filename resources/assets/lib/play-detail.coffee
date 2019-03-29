@@ -115,17 +115,7 @@ export class PlayDetail extends PureComponent
           className: "#{bn}__more"
           if ScoreHelper.hasMenu(score)
             el PlayDetailMenu,
-              onHide: @hide
-              onShow: @show
-              score: score
-
-
-  hide: =>
-    @props.onMenuActive?(active: false, index: @props.index)
-
-
-  show: =>
-    @props.onMenuActive?(active: true, index: @props.index)
+              { score }
 
 
   toggleCompact: =>

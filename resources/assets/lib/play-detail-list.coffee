@@ -19,6 +19,7 @@
 import { PlayDetail } from 'play-detail'
 import { createElement as el, PureComponent } from 'react'
 import { div } from 'react-dom-factories'
+import { activeKeyDidChange, ContainerContext, KeyContext } from 'stateful-activation-context'
 
 osu = window.osu
 
@@ -26,24 +27,26 @@ export class PlayDetailList extends PureComponent
   constructor: (props) ->
     super props
 
+    @activeKeyDidChange = activeKeyDidChange.bind(@)
+
     @state = {}
 
 
-  onMenuActive: ({ index, active }) =>
-    activeMenu = index if active
-    @setState { activeMenu }
-
-
   render: =>
-    classMods = ['menu-active'] if @state.activeMenu?
+    classMods = ['menu-active'] if @state.activeKey?
 
-    div
-      className: osu.classWithModifiers('play-detail-list', classMods)
-      @props.scores.map (score, i) =>
-        el PlayDetail,
-          activated: @state.activeMenu == i
-          index: i
-          key: i
-          onMenuActive: @onMenuActive
-          score: score
+    el ContainerContext.Provider,
+      value:
+        activeKeyDidChange: @activeKeyDidChange
 
+      div
+        className: osu.classWithModifiers('play-detail-list', classMods)
+
+        @props.scores.map (score, key) =>
+          activated = @state.activeKey == key
+
+          el KeyContext.Provider,
+            key: key
+            value: key
+            el PlayDetail,
+              { activated, score }

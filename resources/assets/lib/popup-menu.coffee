@@ -19,10 +19,14 @@
 import { createElement as el, createRef, PureComponent } from 'react'
 import { createPortal } from 'react-dom'
 import { a, button, div, i } from 'react-dom-factories'
-import { ReportScore } from 'report-score'
 import { Modal } from 'modal'
 
-export class PlayDetailMenu extends PureComponent
+export class PopupMenu extends PureComponent
+  @defaultProps =
+    children: (_dismiss) ->
+      # empty function
+
+
   constructor: (props) ->
     super props
 
@@ -75,6 +79,10 @@ export class PlayDetailMenu extends PureComponent
     $(document).off ".#{@uuid}"
 
 
+  dismiss: =>
+    @setState active: false
+
+
   hide: (e) =>
     return if !@state.active || Modal.isOpen()
 
@@ -105,10 +113,10 @@ export class PlayDetailMenu extends PureComponent
     @portal ?= document.createElement('div')
 
     div
-      className: 'play-detail-menu'
+      className: 'popup-menu'
       ref: @menu
       button
-        className: 'play-detail-menu__button'
+        className: 'popup-menu__button'
         type: 'button'
         onClick: @toggle
         i className: 'fas fa-ellipsis-v'
@@ -121,19 +129,7 @@ export class PlayDetailMenu extends PureComponent
     return null unless @state.active
 
     div
-      className: "play-detail-menu__menu"
+      className: "popup-menu__menu"
       div
-        className: 'simple-menu simple-menu--play-detail-menu'
-        if @props.score.replay
-          a
-            className: 'simple-menu__item js-login-required--click'
-            href: laroute.route 'scores.download',
-                    mode: @props.score.mode
-                    score: @props.score.id
-            'data-turbolinks': false
-            onClick: @toggle
-            osu.trans 'users.show.extra.top_ranks.download_replay'
-
-        if currentUser.id? && @props.score.user_id != currentUser.id
-          el ReportScore,
-            { score } = @props
+        className: 'simple-menu simple-menu--popup-menu'
+        @props.children @dismiss
