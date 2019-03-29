@@ -17,7 +17,7 @@
  */
 
 import * as React from 'react';
-import { activeKeyDidChange as contextActiveKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
+import { activeKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
 import { TooltipContext } from 'tooltip-context';
 import { UserCard } from 'user-card';
 
@@ -40,13 +40,12 @@ interface StateInterface extends ActiveKeyState {
  * This component's job is to get the data and bootstrap the actual UserCard component for tooltips.
  */
 export class UserCardTooltip extends React.PureComponent<PropsInterface, StateInterface> {
-  readonly contextActiveKeyDidChange = contextActiveKeyDidChange.bind(this);
-  readonly state: StateInterface = {};
-
-  activeKeyDidChange = (key: any) => {
+  readonly activeKeyDidChange = (key: any) => {
     window.tooltipWithActiveMenu = key;
-    this.contextActiveKeyDidChange(key);
+    activeKeyDidChange.bind(this)(key);
   }
+
+  readonly state: StateInterface = {};
 
   componentDidMount() {
     this.getUser().then((user) => {
