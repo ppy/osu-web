@@ -197,6 +197,7 @@ return [
                 'title' => '标题',
                 'artist' => '艺术家',
                 'difficulty' => '难度',
+                'favourites' => '收藏量',
                 'updated' => '已更新',
                 'ranked' => 'Ranked 时间',
                 'rating' => '评分',

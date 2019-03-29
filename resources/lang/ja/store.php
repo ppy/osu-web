@@ -90,6 +90,7 @@ return [
 
         'invoice' => '請求書を見る',
         'no_orders' => '表示できる注文がありません。',
+        'resume' => '支払いを再開',
 
         'item' => [
             'display_name' => [

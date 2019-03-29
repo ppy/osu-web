@@ -90,6 +90,7 @@ return [
 
         'invoice' => 'Számla megtekintése',
         'no_orders' => 'Nincs megtekinthető megrendelés.',
+        'resume' => 'Fizetés Folytatása',
 
         'item' => [
             'display_name' => [

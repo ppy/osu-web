@@ -27,8 +27,16 @@
     margin-right: 0;
   }
 
+  .osu-page-header--wiki & {
+    flex-direction: column;
+  }
+
   &__action {
     margin: 0 5px;
+
+    .osu-page-header--wiki & {
+      margin: 5px 5px;
+    }
 
     @media @desktop {
       margin: 5px 0;

@@ -20,6 +20,7 @@
 
 namespace App\Transformers;
 
+use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Score\Model as ScoreModel;
 use League\Fractal;
@@ -42,6 +43,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'user_id' => $score->user_id,
             'accuracy' => $score->accuracy(),
             'mode' => $score instanceof ScoreModel ? $score->getMode() : null,
+            'mode_int' => $score instanceof ScoreModel ? Beatmap::modeInt($score->getMode()) : null,
             'mods' => $score->enabled_mods,
             'score' => $score->score,
             'max_combo' => $score->maxcombo,

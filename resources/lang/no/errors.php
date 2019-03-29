@@ -34,6 +34,9 @@ return [
         'invalid_mode' => 'Ugyldig spillmodus angitt.',
         'standard_converts_only' => 'Ingen spillforsøk på dette beatmappet er tilgjengelig for den forespurte spillmodusen på denne vanskelighetsgraden.',
     ],
+    'checkout' => [
+        'generic' => 'En feil oppstod under klargjøring av kjøpet ditt.',
+    ],
     'logged_out' => 'Du har blitt avlogget. Vennligst logg på og prøv på nytt.',
     'supporter_only' => 'Du må være en osu!supporter for å bruke denne funksjonen.',
     'no_restricted_access' => 'Du kan ikke utføre denne handlingen mens kontoen din er i begrenset tilstand.',

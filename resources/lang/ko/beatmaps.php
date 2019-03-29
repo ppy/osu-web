@@ -197,6 +197,7 @@ return [
                 'title' => '제목',
                 'artist' => '아티스트',
                 'difficulty' => '난이도',
+                'favourites' => '즐겨찾기',
                 'updated' => '최근 순',
                 'ranked' => 'Ranked',
                 'rating' => '평가',

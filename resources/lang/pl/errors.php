@@ -34,6 +34,9 @@ return [
         'invalid_mode' => 'Wybrano nieprawidłowy tryb.',
         'standard_converts_only' => 'Brak wyników dla wybranego trybu na tym poziomie trudności.',
     ],
+    'checkout' => [
+        'generic' => 'Wystąpił błąd podczas przygotowywania twojego zamówienia.',
+    ],
     'logged_out' => 'Wylogowano. Zaloguj się i spróbuj ponownie.',
     'supporter_only' => 'Potrzebujesz statusu donatora osu!, aby korzystać z tej funkcji.',
     'no_restricted_access' => 'Nie możesz wykonać tej czynności podczas blokady konta.',

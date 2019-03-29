@@ -34,6 +34,9 @@ return [
         'invalid_mode' => 'Mode tidak valid.',
         'standard_converts_only' => 'Tidak ada skor yang tersedia untuk mode yang diminta pada beatmap dengan tingkat kesulitan ini.',
     ],
+    'checkout' => [
+        'generic' => 'Terjadi kesalahan ketika akan melangsungkan proses check-out.',
+    ],
     'logged_out' => 'Anda telah keluar. Mohon masuk dan coba lagi.',
     'supporter_only' => 'Anda harus menjadi supporter untuk menggunakan fitur ini.',
     'no_restricted_access' => 'Anda tidak dapat melakukan tindakan ini saat akun Anda sedang dibatasi.',

@@ -197,6 +197,7 @@ return [
                 'title' => 'Заглавие',
                 'artist' => 'Изпълнител',
                 'difficulty' => 'Трудност',
+                'favourites' => 'Любими',
                 'updated' => 'Обновен',
                 'ranked' => 'Класиран',
                 'rating' => 'Рейтинг',
@@ -227,7 +228,7 @@ return [
         'approved' => 'Одобрени',
         'qualified' => 'Квалифицирани',
         'loved' => 'Обичани',
-        'faves' => 'Фаворити',
+        'faves' => 'Любими',
         'pending' => 'Изчакващи одобрение или недовършени',
         'graveyard' => 'Гробище',
         'my-maps' => 'Моите Мапове',
@@ -304,6 +305,6 @@ return [
     ],
     'panel' => [
         'playcount' => 'Брой игри: :count',
-        'favourites' => 'Харесали: :count',
+        'favourites' => 'Любими: :count',
     ],
 ];

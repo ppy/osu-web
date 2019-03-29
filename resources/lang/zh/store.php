@@ -90,6 +90,7 @@ return [
 
         'invoice' => '查看发票',
         'no_orders' => '没有可显示的订单。',
+        'resume' => '恢复结帐',
 
         'item' => [
             'display_name' => [

@@ -34,6 +34,9 @@ return [
         'invalid_mode' => 'Invalide mode opgegeven.',
         'standard_converts_only' => 'Er zijn geen scores beschikbaar voor de gevraagde mode voor deze beatmap difficulty.',
     ],
+    'checkout' => [
+        'generic' => '',
+    ],
     'logged_out' => 'Je bent uitgelogd. Log in en probeer opnieuw.',
     'supporter_only' => 'Je moet een supporter zijn om dit te gebruiken.',
     'no_restricted_access' => 'Je mag dit niet doen terwijl je account de restricted status heeft.',

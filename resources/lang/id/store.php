@@ -90,6 +90,7 @@ return [
 
         'invoice' => 'Lihat Invoice',
         'no_orders' => 'Tidak ada pesanan yang tercatat.',
+        'resume' => 'Lanjutkan Proses Check-Out',
 
         'item' => [
             'display_name' => [

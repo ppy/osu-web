@@ -197,6 +197,7 @@ return [
                 'title' => 'Başlık',
                 'artist' => 'Sanatçı',
                 'difficulty' => 'Zorluk',
+                'favourites' => '',
                 'updated' => 'Güncellendi',
                 'ranked' => 'Sırada yer aldı',
                 'rating' => 'Derecelendirme',

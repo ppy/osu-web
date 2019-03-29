@@ -90,6 +90,7 @@ return [
 
         'invoice' => '查看收據',
         'no_orders' => '沒有訂單',
+        'resume' => '',
 
         'item' => [
             'display_name' => [

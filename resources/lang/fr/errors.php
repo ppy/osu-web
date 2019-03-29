@@ -34,6 +34,9 @@ return [
         'invalid_mode' => 'Mode spécifié invalide.',
         'standard_converts_only' => 'Aucun score n\'est disponible pour le mode sélectionné sur cette difficulté de beatmap.',
     ],
+    'checkout' => [
+        'generic' => 'Une erreur s’est produite lors de la préparation de votre commande.',
+    ],
     'logged_out' => 'Vous avez été déconnecté. Merci de vous connecter et de réessayer.',
     'supporter_only' => 'Vous devez être un osu!supporter pour utiliser cette fonctionnalité.',
     'no_restricted_access' => 'Vous ne pouvez pas effectuer cette action avec un compte restreint.',

@@ -20,6 +20,7 @@
 
 return [
     'insufficient_stock' => 'Không còn hàng của sản phẩm này!',
+    'must_separate' => '',
     'not_available' => 'Sản phẩm này không có sẵn.',
     'too_many' => 'Bạn chỉ có thể đặt mua :count sản phẩm này với mỗi đơn đặt hàng.',
 ];
