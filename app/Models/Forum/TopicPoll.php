@@ -82,6 +82,10 @@ class TopicPoll
                 $this->validationErrors()->add('max_options', '.invalid_max_options');
             }
 
+            if (($this->params['hide_results'] ?? false) && ($this->params['length_days'] ?? 0) === 0) {
+                $this->validationErrors()->add('hide_results', '.hiding_results_forever');
+            }
+
             if ($this->topic !== null && $this->topic->exists && !$this->canEdit()) {
                 $this->validationErrors()->add(
                     'edit',
