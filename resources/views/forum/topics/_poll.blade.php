@@ -60,6 +60,12 @@
                         {{ trans('forum.topics.show.poll.detail.ended', ['time' => $topic->pollEnd()]) }}
                     @endif
                 </div>
+
+                @if (!$canViewResults)
+                    <div class="forum-poll__detail forum-poll__detail--sub">
+                        {{ trans('forum.topics.show.poll.detail.results_hidden') }}
+                    </div>
+                @endif
             @endif
         </div>
 

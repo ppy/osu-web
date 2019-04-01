@@ -294,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => 'Polling will end at :time',
                     'ended' => 'Polling ended :time',
+                    'results_hidden' => 'Results will be shown after polling ends.',
                     'total' => 'Total votes: :count',
                 ],
             ],
