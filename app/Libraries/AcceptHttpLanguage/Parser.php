@@ -102,8 +102,7 @@ class Parser
             $preferredLanguage = explode('-', $preferred, 2)[0];
 
             foreach ($availableLanguages as $available) {
-                $available = strtolower($available);
-                if ($preferred === $available || $preferredLanguage === explode('-', $available, 2)[0]) {
+                if ($preferred === strtolower($available) || $preferredLanguage === explode('-', $available, 2)[0]) {
                     return $available;
                 }
             }
