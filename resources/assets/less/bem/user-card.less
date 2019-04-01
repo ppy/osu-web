@@ -28,16 +28,13 @@
   @flag-gutter: 3px; // more like half of it
   @fade-duration: 220ms;
 
+  display: inline-block;
+
   transition: all ease-in-out 120ms;
 
-  // user card needs to fit into iPhone SE
-  max-width: @user-card-width;
-  min-width: @user-card-width-min;
   width: 100%;
-
   height: @user-card-height;
   background-color: @background-color;
-  margin: @card-item-spacing;
   border-radius: 20px;
 
   // to make broken cover images less ugly
@@ -47,10 +44,6 @@
     .user-cards--menu-active & {
       pointer-events: none;
     }
-  }
-
-  &--search {
-    margin: 5px;
   }
 
   &__avatar {

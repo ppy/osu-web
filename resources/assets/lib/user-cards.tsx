@@ -39,19 +39,17 @@ export class UserCards extends React.PureComponent<Props> {
     return (
       <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
         <div className={osu.classWithModifiers('user-cards', classMods)}>
-          <div className='user-cards__cards'>
-            {
-              this.props.users.map((user) => {
-                const activated = this.state.activeKey === user.id;
+          {
+            this.props.users.map((user) => {
+              const activated = this.state.activeKey === user.id;
 
-                return (
-                  <KeyContext.Provider key={user.id} value={user.id}>
-                    <UserCard activated={activated} modifiers={this.props.modifiers} user={user} />
-                  </KeyContext.Provider>
-                );
-              })
-            }
-          </div>
+              return (
+                <KeyContext.Provider key={user.id} value={user.id}>
+                  <UserCard activated={activated} modifiers={this.props.modifiers} user={user} />
+                </KeyContext.Provider>
+              );
+            })
+          }
         </div>
       </ContainerContext.Provider>
     );
