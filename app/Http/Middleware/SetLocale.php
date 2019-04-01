@@ -45,6 +45,8 @@ class SetLocale
             $locale = presence($request->cookie('locale'));
         }
 
+        $locale = get_valid_locale($locale);
+
         if ($locale === null) {
             $accept = $request->server('HTTP_ACCEPT_LANGUAGE');
             $parser = new Parser($accept);
