@@ -113,8 +113,8 @@ class Parser
      */
     public function sanitizeAvailableLocales(array $availableLanguages)
     {
-        return array_map(function ($avaialble) {
-            return implode('-', array_filter(preg_split('/[_-]/', $avaialble), function ($part) {
+        return array_map(function ($available) {
+            return implode('-', array_filter(preg_split('/[_-]/', $available), function ($part) {
                 return !starts_with($part, 'x');
             }));
         }, $availableLanguages);
