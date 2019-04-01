@@ -16,6 +16,10 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
+<?php
+    $canViewResults = priv_check('ForumTopicPollShowResults', $topic)->can();
+?>
+
 <div class="forum-poll js-forum-poll">
     {!! Form::open([
         'route' => ['forum.topics.vote', $topic->topic_id],

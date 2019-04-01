@@ -450,6 +450,7 @@ class TopicsController extends Controller
             'options:string_split',
             'title',
             'vote_change:bool',
+            'hide_results:bool',
         ]);
     }
 

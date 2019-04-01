@@ -43,7 +43,10 @@
 
     <td class="forum-poll-row__column forum-poll-row__column--bar">
         <div class="bar bar--forum-poll {{ $pollOption['voted_by_user'] ? 'bar--forum-poll-voted' : '' }}">
-            <div class="bar__fill" style="width: {{ $percentage }}">
+            <div
+                class="bar__fill"
+                style="width: {{ $canViewResults ? $percentage : '100%' }}"
+            >
             </div>
             <div class="forum-poll-row__option-text">
                 {!! $pollOption['textHTML'] !!}
@@ -51,11 +54,13 @@
         </div>
     </td>
 
-    <td class="forum-poll-row__column forum-poll-row__column--percentage">
-        {{ $percentage }}
-    </td>
+    @if ($canViewResults)
+        <td class="forum-poll-row__column forum-poll-row__column--percentage">
+            {{ $percentage }}
+        </td>
 
-    <td class="forum-poll-row__column">
-        {{ $pollOption['total'] }}
-    </td>
+        <td class="forum-poll-row__column">
+            {{ $pollOption['total'] }}
+        </td>
+    @endif
 </tr>

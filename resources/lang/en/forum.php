@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => 'Hide the results of the poll.',
+                'hide_results_info' => 'They will be shown only after the poll concludes.',
                 'length' => 'Run poll for',
                 'length_days_suffix' => 'days',
                 'length_info' => 'Leave blank for a never ending poll',

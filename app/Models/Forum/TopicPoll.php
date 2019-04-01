@@ -107,6 +107,7 @@ class TopicPoll
                 'poll_length' => ($this->params['length_days'] ?? 0) * 3600 * 24,
                 'poll_max_options' => $this->params['max_options'],
                 'poll_vote_change' => $this->params['vote_change'] ?? false,
+                'poll_hide_results' => $this->params['hide_results'] ?? false,
             ]);
 
             $this
