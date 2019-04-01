@@ -48,12 +48,14 @@ class BeatmapsetSearch extends RecordSearch
      */
     public function getQuery()
     {
+        static $partialMatchFields = ['artist', 'artist.*', 'artist_unicode', 'creator', 'description^0.5', 'title', 'title.raw', 'title.*', 'title_unicode', 'tags^0.5'];
+
         $query = (new BoolQuery());
 
         if (present($this->params->queryString)) {
             $terms = explode(' ', $this->params->queryString);
             // results must contain at least one of the terms and boosted by containing all of them.
-            $query->must(QueryHelper::queryString($this->params->queryString, [], 'or', 1 / count($terms)));
+            $query->must(QueryHelper::queryString($this->params->queryString, $partialMatchFields, 'or', 1 / count($terms)));
             $query->should(QueryHelper::queryString($this->params->queryString, [], 'and'));
         }
 
