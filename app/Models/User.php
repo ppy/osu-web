@@ -221,7 +221,7 @@ class User extends Model implements AuthenticatableContract
         'user_interests' => 30,
     ];
 
-    private $memoized = [];
+    protected $memoized = [];
 
     private $validateCurrentPassword = false;
     private $validatePasswordConfirmation = false;
