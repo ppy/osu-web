@@ -35,7 +35,7 @@ class Parser
     /** @var array */
     private $userPreferredLanguages;
 
-    public function __construct(string $header)
+    public function __construct(?string $header = null)
     {
         $this->header = $header;
     }
