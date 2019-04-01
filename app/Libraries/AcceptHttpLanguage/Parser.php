@@ -20,7 +20,7 @@
 
 /**
  * This is a port of HttpAcceptLanguage::Parser from the http_accept_language gem
- * https://github.com/iain/http_accept_language/blob/v2.1.1/lib/http_accept_language/parser.rb
+ * https://github.com/iain/http_accept_language/blob/v2.1.1/lib/http_accept_language/parser.rb.
  */
 
 namespace App\Libraries\AcceptHttpLanguage;
@@ -48,7 +48,6 @@ class Parser
      *
      * request.userPreferredLanguages
      * $ => [ 'nl-NL', 'nl-BE', 'nl', 'en-US', 'en' ]
-     *
      */
     public function userPreferredLanguages()
     {
@@ -75,8 +74,7 @@ class Parser
      *
      *   request.preferred_language_from I18n.available_locales
      *   $ => 'nl'
-     *
-    */
+     */
     public function preferredLanguageFrom(array $array)
     {
         return array_values(array_intersect($this->userPreferredLanguages(), $array))[0] ?? null;
@@ -89,7 +87,6 @@ class Parser
      * Example:
      *
      *   request.compatibleLanguageFrom I18n.available_locales
-     *
      */
     public function compatibleLanguageFrom(array $availableLanguages)
     {
@@ -113,7 +110,6 @@ class Parser
      *
      * Example:
      * [ja_JP-x1, en-US-x4, en_UK-x5, fr-FR-x3] => [ja-JP, en-US, en-UK, fr-FR]
-     *
      */
     public function sanitizeAvailableLocales(array $availableLanguages)
     {
@@ -133,7 +129,6 @@ class Parser
      * Example:
      *
      *   request.language_region_compatible($availableLanguages)
-     *
      */
     public function languageRegionCompatibleFrom($availableLanguages)
     {
@@ -171,7 +166,9 @@ class Parser
                 throw new InvalidArgumentException('Not correctly formatted');
             }
 
-            $locale = preg_replace_callback('/-[a-z0-9]+$/i', function ($match) { return strtoupper($match[0]); }, $locale); # Uppercase territory
+            $locale = preg_replace_callback('/-[a-z0-9]+$/i', function ($match) {
+                return strtoupper($match[0]);
+            }, $locale); // Uppercase territory
             if ($locale === '*') {
                 $locale = null; // Ignore wildcards
             }
