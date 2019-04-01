@@ -32,33 +32,7 @@ class Parser
     {
         if ($this->userPreferredLanguages === null) {
             try {
-                $header = preg_replace('/\s+/', '', $this->header);
-                $header = explode(',', $header);
-                $mappings = array_map(function ($language) {
-                    $exploded = explode(';q=', $language);
-                    $locale = $exploded[0];
-                    $quality = (float) ($exploded[1] ?? 1.0);
-                    if (!preg_match('/^[a-z\-0-9]+|\*$/i', $locale)) {
-                        throw new InvalidArgumentException('Not correctly formatted');
-                    }
-
-                    $locale = preg_replace_callback('/-[a-z0-9]+$/i', function ($match) { return strtoupper($match[0]); }, $locale); # Uppercase territory
-                    if ($locale === '*') {
-                        $locale = null; // Ignore wildcards
-                    }
-
-                    return [$locale, $quality];
-                }, $header);
-
-                usort($mappings, function ($left, $right) {
-                    return $right[1] > $left[1];
-                });
-
-                $sorted = array_filter(array_map(function ($mapping) {
-                    return $mapping[0];
-                }, $mappings));
-
-                $this->userPreferredLanguages = $sorted;
+                $this->userPreferredLanguages = $this->parseHeader();
             } catch (InvalidArgumentException $_e) {
                 $this->userPreferredLanguages = [];
             }
@@ -161,5 +135,34 @@ class Parser
         }, $this->userPreferredLanguages());
 
         return array_values(array_filter($array))[0] ?? null; // .compact.first
+    }
+
+    private function parseHeader()
+    {
+        $header = preg_replace('/\s+/', '', $this->header);
+        $header = explode(',', $header);
+        $mappings = array_map(function ($language) {
+            $exploded = explode(';q=', $language);
+            $locale = $exploded[0];
+            $quality = (float) ($exploded[1] ?? 1.0);
+            if (!preg_match('/^[a-z\-0-9]+|\*$/i', $locale)) {
+                throw new InvalidArgumentException('Not correctly formatted');
+            }
+
+            $locale = preg_replace_callback('/-[a-z0-9]+$/i', function ($match) { return strtoupper($match[0]); }, $locale); # Uppercase territory
+            if ($locale === '*') {
+                $locale = null; // Ignore wildcards
+            }
+
+            return [$locale, $quality];
+        }, $header);
+
+        usort($mappings, function ($left, $right) {
+            return $right[1] > $left[1];
+        });
+
+        return array_filter(array_map(function ($mapping) {
+            return $mapping[0];
+        }, $mappings));
     }
 }
