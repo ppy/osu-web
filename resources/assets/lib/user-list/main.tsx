@@ -20,6 +20,10 @@ import * as moment from 'moment';
 import * as React from 'react';
 import { UserCards } from 'user-cards';
 
+enum SortMode {
+  LastVisit = 'last_visit',
+  Username = 'username',
+}
 
 interface Props {
   title?: string;
@@ -27,18 +31,13 @@ interface Props {
 }
 
 interface State {
-  users: User[];
+  sortMode: SortMode;
 }
 
 export class Main extends React.PureComponent<Props> {
-  readonly state: State = { users: [] };
-
-  constructor(props: Props) {
-    super(props);
-
-    this.state.users = this.props.users.slice();
-    this.state.users.sort((x, y) => moment(y.last_visit || 0).unix() - moment(x.last_visit || 0).unix());
-  }
+  readonly state: State = {
+    sortMode: SortMode.LastVisit,
+   };
 
   render(): React.ReactNode {
     return (
@@ -48,9 +47,29 @@ export class Main extends React.PureComponent<Props> {
             ? <h2 className='user-list__title'>{this.props.title}</h2>
             : null
         }
+        <button onClick={this.changeSortMode}>{this.state.sortMode}</button>
         <div className='page-title page-title--lighter'>({this.props.users.length})</div>
-        <UserCards users={this.state.users} />
+        <UserCards users={this.sortedUsers} />
       </div>
     );
+  }
+
+  private changeSortMode = () => {
+    if (this.state.sortMode === SortMode.LastVisit) {
+      this.setState({ sortMode: SortMode.Username });
+    } else {
+      this.setState({ sortMode: SortMode.LastVisit });
+    }
+  }
+
+  private get sortedUsers() {
+    const users = this.props.users.slice();
+
+    switch (this.state.sortMode) {
+      case SortMode.LastVisit:
+        return users.sort((x, y) => moment(y.last_visit || 0).unix() - moment(x.last_visit || 0).unix());
+    }
+
+    return users.sort((x, y) => x.username.localeCompare(y.username));
   }
 }
