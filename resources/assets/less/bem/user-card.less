@@ -101,6 +101,10 @@
 
   &__background-container {
     .full-size();
+
+    .@{top}--active & {
+      pointer-events: none;
+    }
   }
 
   &__background-overlay {
