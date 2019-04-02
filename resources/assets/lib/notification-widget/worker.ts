@@ -149,7 +149,7 @@ export default class Worker {
   }
 
   loadMore = () => {
-    if (!this.hasMore || this.loadingMore) {
+    if (!this.active || !this.hasMore || this.loadingMore) {
       return;
     }
 
