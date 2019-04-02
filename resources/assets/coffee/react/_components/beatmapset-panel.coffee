@@ -102,9 +102,12 @@ class @BeatmapsetPanel extends React.PureComponent
             src: beatmapset.covers.card
           div className: 'beatmapset-panel__image-overlay'
           div className: 'beatmapset-panel__status-container',
-            if beatmapset.video or beatmapset.storyboard
+            if beatmapset.video
               div className: 'beatmapset-panel__video-icon',
                 i className: 'fas fa-film fa-fw'
+            if beatmapset.storyboard
+              div className: 'beatmapset-panel__storyboard-icon',
+                i className: 'fas fa-image fa-fw'
             div className: 'beatmapset-status', beatmapset.status
 
           div className: 'beatmapset-panel__title-artist-box',
