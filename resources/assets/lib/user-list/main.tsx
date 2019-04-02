@@ -33,10 +33,10 @@ export class Main extends React.PureComponent<PropsInterface> {
     const offline: any = this.props.data.offline;
 
     return (
-      <div className='user-friends'>
+      <div className='user-list'>
         {
           this.props.title != null
-            ? <h2 className='user-friends__title'>{ this.props.title }</h2>
+            ? <h2 className='user-list__title'>{ this.props.title }</h2>
             : null
         }
         <div className='page-title page-title--lighter'>{osu.trans('users.status.online')} ({online.length})</div>
