@@ -20,7 +20,7 @@ import { Main } from 'user-list/main';
 
 reactTurbolinks.registerPersistent('user-list', Main, true, (container: HTMLElement) => {
   return {
-    data: osu.parseJson('json-users'),
     title: container.dataset.title,
+    users: osu.parseJson('json-users'),
   };
 });
