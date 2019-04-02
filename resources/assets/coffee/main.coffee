@@ -124,15 +124,16 @@ reactTurbolinks.register 'comments', CommentsManager, (el) ->
 
   props
 
-notificationWidgetWorker = new _exported.NotificationWidgetWorker()
-
-$(document).ready ->
-  notificationWidgetWorker.userId = currentUser.id
-  notificationWidgetWorker.boot()
+notificationWorker = new _exported.NotificationWidgetWorker()
+resetNotificationWorker = ->
+  notificationWorker.userId = currentUser.id
+  notificationWorker.boot()
+$(document).ready resetNotificationWorker
+$.subscribe 'user:update', resetNotificationWorker
 
 reactTurbolinks.registerPersistent 'notification', _exported.NotificationWidget, true, (el) ->
   type: el.dataset.notificationType
-  worker: notificationWidgetWorker
+  worker: notificationWorker
 
 reactTurbolinks.register 'user-card', _exported.UserCard, (el) ->
   modifiers: try JSON.parse(el.dataset.modifiers)
