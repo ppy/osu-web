@@ -16,11 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Main } from 'friends-index/main';
+import { Main } from 'user-list/main';
 
-reactTurbolinks.registerPersistent('friends-index', Main, true, (container: HTMLElement) => {
+reactTurbolinks.registerPersistent('user-list', Main, true, (container: HTMLElement) => {
   return {
-    container,
-    data: osu.parseJson('json-friends'),
+    data: osu.parseJson('json-users'),
+    title: container.dataset.title,
   };
 });

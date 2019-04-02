@@ -23,7 +23,7 @@
     ])
 
     <div class="osu-page osu-page--generic osu-page--small osu-page--dark-bg">
-        <div class="js-react--friends-index"></div>
+        <div class="js-react--user-list" data-title="{{ trans('friends.title') }}"></div>
     </div>
 
 @endsection
@@ -31,9 +31,9 @@
 @section("script")
     @parent
 
-    <script id="json-friends" type="application/json">
+    <script id="json-users" type="application/json">
         {!! json_encode($usersJson) !!}
     </script>
 
-    @include('layout._extra_js', ['src' => 'js/react/friends-index.js'])
+    @include('layout._extra_js', ['src' => 'js/react/user-list.js'])
 @endsection

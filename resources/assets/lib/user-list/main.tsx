@@ -23,7 +23,8 @@ interface PropsInterface {
   data: {
     online: [],
     offline: [],
-  },
+  };
+  title?: string;
 }
 
 export class Main extends React.PureComponent<PropsInterface> {
@@ -33,11 +34,15 @@ export class Main extends React.PureComponent<PropsInterface> {
 
     return (
       <div className='user-friends'>
-        <h2 className='user-friends__title'>{ osu.trans('friends.title') }</h2>
+        {
+          this.props.title != null
+            ? <h2 className='user-friends__title'>{ this.props.title }</h2>
+            : null
+        }
         <div className='page-title page-title--lighter'>{osu.trans('users.status.online')} ({online.length})</div>
-        <UserCards users={online} modifiers={['friends-list']} />
+        <UserCards users={online} />
         <div className='page-title page-title--lighter'>{osu.trans('users.status.offline')} ({offline.length})</div>
-        <UserCards users={offline} modifiers={['friends-list']} />
+        <UserCards users={offline} />
       </div>
     );
   }
