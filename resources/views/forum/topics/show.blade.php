@@ -75,7 +75,7 @@
             'data-force-reload' => Auth::check() === false ? '1' : '0',
         ]) !!}
             @if (priv_check('ForumTopicReply', $topic)->can())
-                <div class="osu-page osu-page--small-desktop">
+                <div class="osu-page osu-page--small">
                     @if (!$topic->isActive())
                         <div class="warning-box">
                             <div class="warning-box__icon">

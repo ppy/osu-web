@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <div class="osu-page osu-page--small-desktop">
+        <div class="osu-page osu-page--small">
             <div class="search">
                 @include('objects.search._forum_options', ['fields' => ['user' => null]])
 

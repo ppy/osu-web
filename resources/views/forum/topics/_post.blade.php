@@ -26,7 +26,7 @@
     }
 ?>
 <div
-    class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} osu-page {{ $options['large'] ? '' : 'osu-page--small-desktop' }}"
+    class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} osu-page {{ $options['large'] ? '' : 'osu-page--small' }}"
     data-post-id="{{ $post->post_id }}"
     data-post-position="{{ $options["postPosition"] }}"
 >
