@@ -60,18 +60,19 @@ export class Main extends React.PureComponent<Props> {
             ? <h2 className='user-list__title'>{this.props.title}</h2>
             : null
         }
-        <span className='user-list__sort'>
-          sort by
-          <span className='user-list__sort-select'>
-            {this.state.sortMode}
+        <div className='user-list__toolbar'>
+          <span className='user-list__sort'>
+            sort by
+            <span className='user-list__sort-select'>
+              {this.state.sortMode}
+            </span>
+            <span className='user-list__sort-select fas fa-angle-down' />
+            <PopupMenu showGlyph={false}>
+              {items}
+            </PopupMenu>
           </span>
-          <span className='user-list__sort-select fas fa-angle-down' />
-          <PopupMenu showGlyph={false}>
-            {items}
-          </PopupMenu>
-        </span>
+        </div>
 
-        <div className='page-title page-title--lighter'>({this.props.users.length})</div>
         <UserCards users={this.sortedUsers} />
       </div>
     );
