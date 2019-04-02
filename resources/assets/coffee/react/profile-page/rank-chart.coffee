@@ -85,6 +85,8 @@ class ProfilePage.RankChart extends React.Component
       y: -rank
     .filter (point) -> point.y < 0
 
+    return unless data.length > 0
+
     if data.length == 1
       data.unshift
         x: data[0].x - 1
