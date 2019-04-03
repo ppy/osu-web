@@ -30,6 +30,7 @@
 
   transition: all ease-in-out 120ms;
 
+  font-weight: 600;
   width: 100%;
   height: @user-card-height;
   background-color: @background-color;
@@ -37,6 +38,16 @@
 
   // to make broken cover images less ugly
   overflow: hidden;
+
+  &:hover, &--active {
+    &:after {
+      .full-size();
+      content: '';
+      border: 2px solid @yellow;
+      border-radius: 20px;
+      pointer-events: none;
+    }
+  }
 
   &--highlightable {
     .user-cards--menu-active & {
@@ -108,11 +119,7 @@
   &__background-overlay {
     .full-size();
     transition: background-color 0.2s ease-in-out;
-    background-color: fade(@background-color, 60%);
-
-    .@{top}:hover &, .@{top}--active & {
-      background-color: fade(lighten(@background-color, 20%), 40%);
-    }
+    background-color: #405461e6;
   }
 
   &__card {
