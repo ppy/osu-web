@@ -58,12 +58,44 @@ export class Main extends React.PureComponent<Props> {
           </div>
         </div>
 
-        <div className='osu-layout__section'>
-          <div className='osu-layout__row'>
-            <UserList users={this.props.friends} />
-          </div>
+        <div className='osu-page osu-page--users'>
+          {this.renderSelections()}
+          <UserList users={this.props.friends} />
         </div>
       </div>
+    );
+  }
+
+  renderSelections() {
+    const groups = [
+      { name: 'All', count: this.props.friends.length },
+      { name: 'Online', count: this.props.friends.filter((x) => x.is_online).length },
+    ];
+
+    return (
+      <div className='update-streams-v2'>
+        <div className='update-streams-v2__container'>
+          {
+            groups.map((group) => {
+              return this.renderOption(group.name, group.count);
+            })
+          }
+        </div>
+      </div>
+    );
+  }
+
+  renderOption(title: string, text: string|number) {
+    return (
+      <a
+        className='update-streams-v2__item'
+        href='#'
+        key={title}
+      >
+        <div className='update-streams-v2__bar u-changelog-stream--bg' />
+        <p className='update-streams-v2__row update-streams-v2__row--name'>{title}</p>
+        <p className='update-streams-v2__row update-streams-v2__row--version'>{text}</p>
+      </a>
     );
   }
 }
