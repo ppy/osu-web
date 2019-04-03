@@ -40,16 +40,22 @@ export class Main extends React.PureComponent<Props> {
     sortMode: SortMode.LastVisit,
    };
 
-  onSelected = (key: string, dismiss: () => void) => {
+  onSelected = (key: keyof typeof SortMode, dismiss: () => void) => {
     dismiss();
-    this.setState({ sortMode: key });
+    this.setState({ sortMode: SortMode[key] });
   }
 
   render(): React.ReactNode {
     const items = (dismiss: () => void) =>
-      Object.keys(SortMode).map((key) => {
+      // issue when inferring key type of enum.
+      // https://github.com/Microsoft/TypeScript/issues/17800
+      Object.keys(SortMode).map((key: keyof typeof SortMode) => {
         return (
-            <button className='simple-menu__item js-login-required--click' key={key} onClick={() => this.onSelected(SortMode[key], dismiss)}>{key}</button>
+            <button
+              className='simple-menu__item js-login-required--click'
+              key={key}
+              onClick={() => this.onSelected(key, dismiss)}>{key}
+            </button>
         );
       });
 
