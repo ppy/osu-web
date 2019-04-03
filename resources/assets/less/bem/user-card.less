@@ -23,8 +23,6 @@
   @card-item-spacing: 10px;
   @flag-width: 45px;
   @icon-height: 30px;
-  @offline-color: #000;
-  @online-color: @green;
   @flag-gutter: 3px; // more like half of it
   @fade-duration: 220ms;
 
@@ -189,16 +187,18 @@
   }
 
   &__status-icon {
-    flex: none;
-    font-size: 24px;
-    width: @avatar-size;
-    text-align: center;
-
-    color: @offline-color;
+    .circle(25px);
+    border: solid 4px #000;
 
     &--online {
-      color: @online-color;
+      border: solid 4px @green;
     }
+  }
+
+  &__status-icon-container {
+    .center-content();
+    flex: none;
+    width: @avatar-size;
   }
 
   &__status-message {

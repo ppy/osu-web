@@ -219,8 +219,8 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     if (!this.isUserLoaded) { return null; }
 
     return (
-      <div className={`user-card__status-icon user-card__status-icon--${this.isOnline ? 'online' : 'offline'}`}>
-        <span className='far fa-fw fa-circle'></span>
+      <div className='user-card__status-icon-container'>
+        <div className={`user-card__status-icon user-card__status-icon--${this.isOnline ? 'online' : 'offline'}`}></div>
       </div>
     );
   }
