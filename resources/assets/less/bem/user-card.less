@@ -40,12 +40,14 @@
   overflow: hidden;
 
   &:hover, &--active {
-    &:after {
-      .full-size();
-      content: '';
-      border: 2px solid @yellow;
-      border-radius: 20px;
-      pointer-events: none;
+    .user-cards & {
+      &:after {
+        .full-size();
+        content: '';
+        border: 2px solid @yellow;
+        border-radius: 20px;
+        pointer-events: none;
+      }
     }
   }
 
