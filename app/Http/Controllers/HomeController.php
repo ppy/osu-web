@@ -139,7 +139,7 @@ class HomeController extends Controller
 
     public function setLocale()
     {
-        $newLocale = get_valid_locale(Request::input('locale'));
+        $newLocale = get_valid_locale(Request::input('locale')) ?? config('app.fallback_locale');
         App::setLocale($newLocale);
 
         if (Auth::check()) {
