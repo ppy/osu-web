@@ -53,7 +53,7 @@ interface OsuCommon {
   timeago: (time?: string) => string;
   trans: (...args: any[]) => string;
   transChoice: (key: string, count: number, replacements?: any, locale?: string) => string;
-  urlPresence: (url?: string) => string;
+  urlPresence: (url?: string | null) => string;
   uuid: () => string;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
