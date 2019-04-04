@@ -54,9 +54,15 @@ class BeatmapsetSearch extends RecordSearch
 
         if (present($this->params->queryString)) {
             $terms = explode(' ', $this->params->queryString);
-            // results must contain at least one of the terms and boosted by containing all of them.
-            $query->must(QueryHelper::queryString($this->params->queryString, $partialMatchFields, 'or', 1 / count($terms)));
-            $query->should(QueryHelper::queryString($this->params->queryString, [], 'and'));
+
+            // the subscoping is not necessary but prevents unintentional accidents when combining other matchers
+            $query->must(
+                (new BoolQuery)
+                    // results must contain at least one of the terms and boosted by containing all of them.
+                    ->shouldMatch(1)
+                    ->should(QueryHelper::queryString($this->params->queryString, $partialMatchFields, 'or', 1 / count($terms)))
+                    ->should(QueryHelper::queryString($this->params->queryString, [], 'and'))
+            );
         }
 
         $this->addModeFilter($query);
