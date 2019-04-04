@@ -21,7 +21,7 @@ import * as React from 'react';
 export const SupporterIcon = () => {
   return (
     <span className='supporter-icon' title={osu.trans('users.show.is_supporter')}>
-      <span className='supporter-icon_heart fas fa-heart' />
+      <span className='fas fa-heart' />
     </span>
   );
 };
