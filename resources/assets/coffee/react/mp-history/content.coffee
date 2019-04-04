@@ -18,6 +18,7 @@
 
 import * as React from 'react'
 import { button, div } from 'react-dom-factories'
+import { Spinner } from 'spinner'
 el = React.createElement
 
 export class MPHistory.Content extends React.PureComponent

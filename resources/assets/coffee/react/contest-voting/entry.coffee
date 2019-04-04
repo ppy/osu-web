@@ -18,6 +18,7 @@
 
 import * as React from 'react'
 import { a,i,div,span } from 'react-dom-factories'
+import { TrackPreview } from 'track-preview'
 el = React.createElement
 
 export class Contest.Voting.Entry extends React.Component

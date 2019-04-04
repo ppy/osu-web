@@ -18,6 +18,7 @@
 
 import * as React from 'react'
 import { a, button, span, i } from 'react-dom-factories'
+import { Spinner } from 'spinner'
 el = React.createElement
 
 export BigButton = ({modifiers = [], text, icon, props = {}, extraClasses = []}) ->

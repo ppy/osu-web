@@ -16,8 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { CommentEditor } from 'comment-editor'
+import { CommentShowMore } from 'comment-show-more'
 import * as React from 'react'
 import { a, button, div, span, textarea } from 'react-dom-factories'
+import { Spinner } from 'spinner'
 
 el = React.createElement
 

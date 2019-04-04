@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { ChangelogEntry } from 'changelog-entry'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
 el = React.createElement

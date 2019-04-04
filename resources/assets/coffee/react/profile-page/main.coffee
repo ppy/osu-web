@@ -16,6 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { BlockButton } from 'block-button'
+import { NotificationBanner } from 'notification-banner'
 import * as React from 'react'
 import { a, button, div, i, li, span, ul } from 'react-dom-factories'
 el = React.createElement

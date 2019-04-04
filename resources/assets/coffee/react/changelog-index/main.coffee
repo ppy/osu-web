@@ -16,8 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { Build } from 'build'
+import { ChangelogHeaderStreams } from 'changelog-header-streams'
 import * as React from 'react'
 import { button, div, h1, p, span } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
 el = React.createElement
 
 groupChangelogBuilds = (builds) ->

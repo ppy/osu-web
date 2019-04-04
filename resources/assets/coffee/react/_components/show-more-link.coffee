@@ -17,6 +17,7 @@
 ###
 import * as React from 'react'
 import { button, span } from 'react-dom-factories'
+import { Spinner } from 'spinner'
 el = React.createElement
 bn = 'show-more-link'
 

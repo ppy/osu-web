@@ -17,6 +17,7 @@
 ###
 
 import * as React from 'react'
+import { Mod } from 'mod'
 import { div, img } from 'react-dom-factories'
 el = React.createElement
 

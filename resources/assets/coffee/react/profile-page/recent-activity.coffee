@@ -18,6 +18,7 @@
 
 import * as React from 'react'
 import { div, li, p, ul } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
 el = React.createElement
 
 export class ProfilePage.RecentActivity extends React.PureComponent

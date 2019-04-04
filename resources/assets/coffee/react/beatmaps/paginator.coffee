@@ -18,6 +18,7 @@
 
 import * as React from 'react'
 import { div, a, span, i } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
 el = React.createElement
 
 export class Beatmaps.Paginator extends React.PureComponent

@@ -18,6 +18,7 @@
 
 import * as React from 'react'
 import { div, h3, ul, li, p, span } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
 el = React.createElement
 
 export class ProfilePage.Kudosu extends React.Component

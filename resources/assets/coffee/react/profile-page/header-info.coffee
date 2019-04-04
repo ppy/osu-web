@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { FlagCountry } from 'flag-country'
 import * as React from 'react'
 import { a, div, h1, span } from 'react-dom-factories'
 el = React.createElement

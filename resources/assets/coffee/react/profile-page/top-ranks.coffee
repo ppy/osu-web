@@ -18,6 +18,7 @@
 
 import * as React from 'react'
 import { div, h2, h3, ul, li, a, p, pre, span } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
 el = React.createElement
 
 export class ProfilePage.TopRanks extends React.PureComponent

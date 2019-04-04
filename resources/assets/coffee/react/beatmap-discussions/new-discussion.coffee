@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { BigButton } from 'big-button'
 import * as React from 'react'
 import { button, div, input, label, p, i, span } from 'react-dom-factories'
 el = React.createElement

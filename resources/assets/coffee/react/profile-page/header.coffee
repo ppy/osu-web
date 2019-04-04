@@ -17,7 +17,9 @@
 ###
 
 import * as React from 'react'
+import { Img2x } from 'img2x'
 import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-factories'
+import { Spinner } from 'spinner'
 el = React.createElement
 
 

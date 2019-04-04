@@ -16,6 +16,10 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { Comment } from 'comment'
+import { CommentEditor } from 'comment-editor'
+import { CommentShowMore } from 'comment-show-more'
+import { CommentsSort } from 'comments-sort'
 import * as React from 'react'
 import { button, div, h2, span } from 'react-dom-factories'
 

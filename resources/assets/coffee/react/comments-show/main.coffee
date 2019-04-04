@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { Comment } from 'comment'
 import * as React from 'react'
 import { a, button, div, h1, li, ol, p, span } from 'react-dom-factories'
 el = React.createElement

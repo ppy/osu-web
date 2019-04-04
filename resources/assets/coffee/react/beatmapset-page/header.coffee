@@ -16,6 +16,9 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { BeatmapsetMapping } from 'beatmapset-mapping'
+import { BigButton } from 'big-button'
+import { PlaymodeTabs } from 'playmode-tabs'
 import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 el = React.createElement
