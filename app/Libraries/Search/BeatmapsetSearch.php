@@ -48,7 +48,7 @@ class BeatmapsetSearch extends RecordSearch
      */
     public function getQuery()
     {
-        static $partialMatchFields = ['artist', 'artist.*', 'artist_unicode', 'creator', 'description^0.5', 'title', 'title.raw', 'title.*', 'title_unicode', 'tags^0.5'];
+        static $partialMatchFields = ['artist', 'artist.*', 'artist_unicode', 'creator', 'title', 'title.raw', 'title.*', 'title_unicode', 'tags^0.5'];
 
         $query = (new BoolQuery());
 
