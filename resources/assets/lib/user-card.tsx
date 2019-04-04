@@ -77,7 +77,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
           <div className='user-card__content'>
             <div className='user-card__user'>
               { this.renderAvatar() }
-              <div className='user-card__username u-ellipsis-overflow'>{ this.user.username }</div>
+              <div className='user-card__username u-ellipsis-overflow'>{this.user.username}</div>
             </div>
             { this.renderIcons() }
           </div>
@@ -199,16 +199,17 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
         <div className='user-card__status'>
           { this.renderStatusIcon() }
           <div className='user-card__status-messages'>
-            <span className='user-card__status-message user-card__status-message--sub u-ellipsis-overflow'>
-              <span dangerouslySetInnerHTML={{ __html: lastSeen }}></span>
-            </span>
+            <span
+              className='user-card__status-message user-card__status-message--sub u-ellipsis-overflow'
+              dangerouslySetInnerHTML={{ __html: lastSeen }}
+            ></span>
             <span className='user-card__status-message u-ellipsis-overflow'>
               {status}
             </span>
           </div>
         </div>
         <div className='user-card__icons'>
-          { this.renderMenuButton() }
+          {this.renderMenuButton()}
         </div>
       </div>
     );
