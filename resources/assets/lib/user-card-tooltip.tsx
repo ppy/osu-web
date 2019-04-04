@@ -69,7 +69,7 @@ export class UserCardTooltip extends React.PureComponent<PropsInterface, StateIn
     return (
       <TooltipContext.Provider value={this.props.container}>
         <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
-          <KeyContext.Provider key={this.props.lookup} value={this.props.lookup}>
+          <KeyContext.Provider value={this.props.lookup}>
             <UserCard activated={activated} user={this.state.user} />
           </KeyContext.Provider>
         </ContainerContext.Provider>
