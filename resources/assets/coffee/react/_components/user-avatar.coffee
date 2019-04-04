@@ -21,7 +21,7 @@ import { div } from 'react-dom-factories'
 
 bn = 'avatar'
 
-@UserAvatar = (props) ->
+export UserAvatar = (props) ->
   if props.user.id?
     div
       className: osu.classWithModifiers(bn, props.modifiers)

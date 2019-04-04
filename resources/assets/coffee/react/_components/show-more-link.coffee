@@ -20,7 +20,7 @@ import { button, span } from 'react-dom-factories'
 el = React.createElement
 bn = 'show-more-link'
 
-@ShowMoreLink = React.forwardRef (props, ref) =>
+export ShowMoreLink = React.forwardRef (props, ref) =>
   return null unless props.hasMore || props.loading
 
   onClick = props.callback

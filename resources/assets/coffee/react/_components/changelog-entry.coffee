@@ -25,7 +25,7 @@ icon =
   fix: 'fas fa-check'
   misc: 'far fa-circle'
 
-@ChangelogEntry = ({entry}) =>
+export ChangelogEntry = ({entry}) =>
   div
     className: 'changelog-entry'
     key: entry.id

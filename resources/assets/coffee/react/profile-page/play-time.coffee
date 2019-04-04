@@ -21,7 +21,7 @@ import { span } from 'react-dom-factories'
 el = React.createElement
 
 
-ProfilePage.PlayTime = ({stats}) ->
+export ProfilePage.PlayTime = ({stats}) ->
   playTime = moment.duration stats.play_time, 'seconds'
 
   daysLeftOver = Math.floor playTime.asDays()

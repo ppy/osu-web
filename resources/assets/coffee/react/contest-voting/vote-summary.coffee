@@ -22,7 +22,7 @@ import { div, span } from 'react-dom-factories'
 baseClass = osu.classWithModifiers('contest__voting-star', ['smaller'])
 selectedClass = 'contest__voting-star--selected'
 
-Contest.Voting.VoteSummary = ({voteCount, maxVotes}) ->
+export Contest.Voting.VoteSummary = ({voteCount, maxVotes}) ->
   div null,
     for i in [0...maxVotes]
       className = baseClass

@@ -21,5 +21,5 @@ import { div } from 'react-dom-factories'
 
 bn = 'la-ball-clip-rotate'
 
-@Spinner = ({modifiers}) ->
+export Spinner = ({modifiers}) ->
   div className: osu.classWithModifiers(bn, modifiers)

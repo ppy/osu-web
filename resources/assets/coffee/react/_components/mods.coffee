@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, img } from 'react-dom-factories'
 el = React.createElement
 
-@Mods = ({modifiers = [], mods = []}) ->
+export Mods = ({modifiers = [], mods = []}) ->
     blockClass = 'mods'
     blockClass += " mods--#{mod}" for mod in modifiers
 

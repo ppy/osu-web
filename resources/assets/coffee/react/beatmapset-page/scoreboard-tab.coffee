@@ -19,7 +19,7 @@
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 
-BeatmapsetPage.ScoreboardTab = (props) ->
+export BeatmapsetPage.ScoreboardTab = (props) ->
   className = 'page-tabs__tab'
   className += ' page-tabs__tab--active' if props.active
 

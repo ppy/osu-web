@@ -19,7 +19,7 @@
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 
-@Mod = ({modifiers = [], mod}) ->
+export Mod = ({modifiers = [], mod}) ->
     blockClass = 'mod'
     blockClass += " mod--#{m}" for m in modifiers
     blockClass += " mod--#{mod}"

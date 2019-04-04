@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-@Img2x = (props) ->
+export Img2x = (props) ->
   allProps = _.extend osu.src2x(props.src), props
 
   ReactDOMFactories.img allProps, props.children

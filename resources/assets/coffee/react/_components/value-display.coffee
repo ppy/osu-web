@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div } from 'react-dom-factories'
 bn = 'value-display'
 
-@ValueDisplay = ({label, value, description, modifiers}) ->
+export ValueDisplay = ({label, value, description, modifiers}) ->
   div
     className: osu.classWithModifiers(bn, modifiers)
     div className: "#{bn}__label", label

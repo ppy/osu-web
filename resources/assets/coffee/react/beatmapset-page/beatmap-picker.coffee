@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div } from 'react-dom-factories'
 el = React.createElement
 
-BeatmapsetPage.BeatmapPicker = ({beatmaps, currentBeatmap}) ->
+export BeatmapsetPage.BeatmapPicker = ({beatmaps, currentBeatmap}) ->
   div className: 'beatmapset-beatmap-picker',
     for beatmap in beatmaps
       el BeatmapsetPage.BeatmapSelection,

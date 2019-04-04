@@ -19,7 +19,7 @@
 el = React.createElement
 
 
-ProfilePage.Rank = ({type, stats, modifiers}) ->
+export ProfilePage.Rank = ({type, stats, modifiers}) ->
   el ValueDisplay,
     modifiers: modifiers
     label: osu.trans("users.show.rank.#{type}_simple")

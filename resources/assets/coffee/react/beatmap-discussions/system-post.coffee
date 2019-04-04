@@ -22,7 +22,7 @@ el = React.createElement
 
 bn = 'beatmap-discussion-system-post'
 
-BeatmapDiscussions.SystemPost = (props) ->
+export BeatmapDiscussions.SystemPost = (props) ->
   message =
     switch props.post.message.type
       when 'resolved'

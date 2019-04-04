@@ -19,7 +19,7 @@
 el = React.createElement
 
 
-ProfilePage.Pp = ({stats}) ->
+export ProfilePage.Pp = ({stats}) ->
   el ValueDisplay,
     modifiers: ['pp']
     label: 'pp'
