@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, li, span, ul, time} = ReactDOMFactories
+import * as React from 'react'
+import { a, div, li, span, ul, time } from 'react-dom-factories'
 el = React.createElement
 
 class BeatmapDiscussions.Event extends React.PureComponent

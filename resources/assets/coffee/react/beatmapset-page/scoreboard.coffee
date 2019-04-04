@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, p} = ReactDOMFactories
+import * as React from 'react'
+import { div, h2, p } from 'react-dom-factories'
 el = React.createElement
 
 class BeatmapsetPage.Scoreboard extends React.PureComponent

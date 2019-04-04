@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, form, input, i} = ReactDOMFactories
+import * as React from 'react'
+import { div, form, input, i } from 'react-dom-factories'
 el = React.createElement
 
 class Contest.Entry.Uploader extends React.Component

@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{span, i} = ReactDOMFactories
+import * as React from 'react'
+import { span, i } from 'react-dom-factories'
 el = React.createElement
 
 elem = ({position, icon}) ->

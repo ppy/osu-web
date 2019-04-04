@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, span, p} = ReactDOMFactories
+import * as React from 'react'
+import { button, div, span, p } from 'react-dom-factories'
 el = React.createElement
 
 class ProfilePage.UserPage extends React.Component

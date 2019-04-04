@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, br, strong, h1, h4, h5} = ReactDOMFactories
+import * as React from 'react'
+import { div, span, br, strong, h1, h4, h5 } from 'react-dom-factories'
 el = React.createElement
 
 class @Status.Page extends React.Component

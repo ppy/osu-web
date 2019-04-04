@@ -16,8 +16,9 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import * as React from 'react'
+import { img, div } from 'react-dom-factories'
 el = React.createElement
-{img, div} = ReactDOMFactories
 
 class BeatmapsetPage.ScoreboardMod extends React.Component
   onClick: =>

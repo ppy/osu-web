@@ -18,6 +18,7 @@
 
 import { PlayDetailMenu } from 'play-detail-menu'
 import { createElement as el, PureComponent } from 'react'
+import * as React from 'react'
 import { a, button, div, i, img, small, span } from 'react-dom-factories'
 import { ScoreHelper } from 'score-helper'
 

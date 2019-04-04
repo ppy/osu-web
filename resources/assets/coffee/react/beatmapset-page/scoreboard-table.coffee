@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, table, tr, th, thead, tbody} = ReactDOMFactories
+import * as React from 'react'
+import { a, div, table, tr, th, thead, tbody } from 'react-dom-factories'
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 

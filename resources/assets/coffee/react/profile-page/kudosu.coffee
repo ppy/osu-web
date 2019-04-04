@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h3, ul, li, p, span} = ReactDOMFactories
+import * as React from 'react'
+import { div, h3, ul, li, p, span } from 'react-dom-factories'
 el = React.createElement
 
 class ProfilePage.Kudosu extends React.Component

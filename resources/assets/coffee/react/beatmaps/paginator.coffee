@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, a, span, i} = ReactDOMFactories
+import * as React from 'react'
+import { div, a, span, i } from 'react-dom-factories'
 el = React.createElement
 
 class Beatmaps.Paginator extends React.PureComponent

@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, a, i} = ReactDOMFactories
+import * as React from 'react'
+import { div, span, a, i } from 'react-dom-factories'
 el = React.createElement
 
 class Contest.Voting.ArtEntry extends React.Component

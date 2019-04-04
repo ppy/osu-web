@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, a, span, h1, h2} = ReactDOMFactories
+import * as React from 'react'
+import { div, a, span, h1, h2 } from 'react-dom-factories'
 el = React.createElement
 
 class MPHistory.GameHeader extends React.Component

@@ -18,6 +18,7 @@
 
 import { createElement as el, PureComponent } from 'react'
 import { ReportForm } from 'report-form'
+import * as React from 'react'
 import { a, button, div, i } from 'react-dom-factories'
 
 export class ReportScore extends PureComponent

@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, i, span, tr, td} = ReactDOMFactories
+import * as React from 'react'
+import { a, i, span, tr, td } from 'react-dom-factories'
 el = React.createElement
 
 class @TracklistTrack extends React.Component

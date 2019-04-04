@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, p} = ReactDOMFactories
+import * as React from 'react'
+import { div, p } from 'react-dom-factories'
 el = React.createElement
 
 class ProfilePage.CoverSelector extends React.PureComponent

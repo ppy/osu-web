@@ -16,8 +16,9 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import * as React from 'react'
+import { div } from 'react-dom-factories'
 el = React.createElement
-{div} = ReactDOMFactories
 
 bn = 'notification-banner-v2'
 notificationBanners = document.getElementsByClassName('js-notification-banners')

@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, li, p, ul} = ReactDOMFactories
+import * as React from 'react'
+import { div, li, p, ul } from 'react-dom-factories'
 el = React.createElement
 
 class ProfilePage.RecentActivity extends React.PureComponent

@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span} = ReactDOMFactories
+import * as React from 'react'
+import { div, span } from 'react-dom-factories'
 
 bn = 'beatmap-basic-stats'
 

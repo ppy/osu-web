@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div} = ReactDOMFactories
+import * as React from 'react'
+import { a, div } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'beatmap-list'

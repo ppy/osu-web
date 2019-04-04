@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h1, h2} = ReactDOMFactories
+import * as React from 'react'
+import { div, h1, h2 } from 'react-dom-factories'
 
 MPHistory.Header = (props) ->
   div className: 'osu-layout__row osu-layout__row--page-compact',

@@ -15,7 +15,8 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a, div, span, h3, table, thead, tbody, tr, th, td, time} = ReactDOMFactories
+import * as React from 'react'
+import { div, span, h3, table, thead, tbody, tr, th, td, time } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'profile-extra-recent-infringements'

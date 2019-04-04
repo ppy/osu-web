@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, span, i} = ReactDOMFactories
+import * as React from 'react'
+import { a, button, span, i } from 'react-dom-factories'
 el = React.createElement
 
 @BigButton = ({modifiers = [], text, icon, props = {}, extraClasses = []}) ->

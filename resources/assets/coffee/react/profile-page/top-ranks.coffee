@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, h3, ul, li, a, p, pre, span} = ReactDOMFactories
+import * as React from 'react'
+import { div, h2, h3, ul, li, a, p, pre, span } from 'react-dom-factories'
 el = React.createElement
 
 class ProfilePage.TopRanks extends React.PureComponent

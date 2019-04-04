@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, p} = ReactDOMFactories
+import * as React from 'react'
+import { a, div, p } from 'react-dom-factories'
 el = React.createElement
 
 class @ChangelogHeaderStreams extends React.PureComponent

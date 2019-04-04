@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, dd, dl, dt, h1, i, img, li, span, ul} = ReactDOMFactories
+import * as React from 'react'
+import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-factories'
 el = React.createElement
 
 

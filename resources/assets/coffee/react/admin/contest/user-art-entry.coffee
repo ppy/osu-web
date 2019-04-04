@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{br, tr, td, a, img, dl, dt, dd, div} = ReactDOMFactories
+import * as React from 'react'
+import { br, tr, td, a, img, dl, dt, dd, div } from 'react-dom-factories'
 el = React.createElement
 
 class @Admin.Contest.UserArtEntry extends React.Component

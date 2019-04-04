@@ -16,8 +16,9 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import * as React from 'react'
+import { div, img } from 'react-dom-factories'
 el = React.createElement
-{div, img} = ReactDOMFactories
 
 @Mods = ({modifiers = [], mods = []}) ->
     blockClass = 'mods'

@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, i, span} = ReactDOMFactories
+import * as React from 'react'
+import { div, h2, i, span } from 'react-dom-factories'
 el = React.createElement
 
 ProfilePage.ExtraHeader = (props) ->

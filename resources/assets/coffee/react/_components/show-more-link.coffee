@@ -15,7 +15,8 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{button, span} = ReactDOMFactories
+import * as React from 'react'
+import { button, span } from 'react-dom-factories'
 el = React.createElement
 bn = 'show-more-link'
 

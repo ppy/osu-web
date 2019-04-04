@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, i, span} = ReactDOMFactories
+import * as React from 'react'
+import { a, button, div, i, span } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
