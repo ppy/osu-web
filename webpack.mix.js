@@ -126,7 +126,8 @@ let webpackConfig = {
         include: [
           path.resolve(__dirname, "resources/assets/coffee"),
         ],
-        use: ['imports-loader?this=>window', 'coffee-loader']
+        // use: ['imports-loader?this=>window', 'coffee-loader']
+        use: ['coffee-loader']
       },
       {
         // loader for import-based coffeescript
