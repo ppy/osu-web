@@ -29,7 +29,9 @@ class NotificationRequestsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('check-user-restricted');
+        if (!$this->isAllowRestrictedUsers()) {
+            $this->middleware('check-user-restricted');
+        }
 
         return parent::__construct();
     }
