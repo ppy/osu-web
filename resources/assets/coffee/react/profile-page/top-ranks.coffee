@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, h2, h3, ul, li, a, p, pre, span } from 'react-dom-factories'
 el = React.createElement
 
-class ProfilePage.TopRanks extends React.PureComponent
+export class ProfilePage.TopRanks extends React.PureComponent
   render: =>
     div
       className: 'page-extra'

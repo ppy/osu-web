@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, span, br, strong, h1, h4, h5 } from 'react-dom-factories'
 el = React.createElement
 
-class @Status.Page extends React.Component
+export class Status.Page extends React.Component
   constructor: (props) ->
     super props
 

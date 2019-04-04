@@ -23,7 +23,7 @@ el = React.createElement
 bn = 'beatmapset-mapping'
 dateFormat = 'LL'
 
-class @BeatmapsetMapping extends React.PureComponent
+export class BeatmapsetMapping extends React.PureComponent
   render: =>
     user = @props.user ? @props.beatmapset.user
 

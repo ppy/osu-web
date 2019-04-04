@@ -21,7 +21,7 @@ import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-
 el = React.createElement
 
 
-class ProfilePage.DetailBar extends React.PureComponent
+export class ProfilePage.DetailBar extends React.PureComponent
   bn = 'profile-detail-bar'
 
 

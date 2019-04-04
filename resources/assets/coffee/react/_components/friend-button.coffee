@@ -22,7 +22,7 @@ el = React.createElement
 
 bn = 'user-action-button'
 
-class @FriendButton extends React.PureComponent
+export class FriendButton extends React.PureComponent
   @defaultProps =
     showFollowerCounter: false
     alwaysVisible: false

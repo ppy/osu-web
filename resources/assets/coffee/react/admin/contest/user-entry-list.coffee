@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, table, tr, a, tbody, h4, thead, th } from 'react-dom-factories'
 el = React.createElement
 
-class @Admin.Contest.UserEntryList extends React.Component
+export class Admin.Contest.UserEntryList extends React.Component
   constructor: (props) ->
     super props
 

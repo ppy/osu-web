@@ -21,7 +21,7 @@ import { a, div, h1, span } from 'react-dom-factories'
 el = React.createElement
 
 
-class ProfilePage.HeaderInfo extends React.PureComponent
+export class ProfilePage.HeaderInfo extends React.PureComponent
   bn = 'profile-info'
 
 

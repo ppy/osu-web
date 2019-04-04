@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, a, span, i } from 'react-dom-factories'
 el = React.createElement
 
-class Beatmaps.Paginator extends React.PureComponent
+export class Beatmaps.Paginator extends React.PureComponent
   constructor: (props) ->
     super props
 

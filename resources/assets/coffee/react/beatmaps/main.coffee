@@ -42,7 +42,7 @@ ListRender = ({ virtual, itemHeight }) ->
 BeatmapList = VirtualList()(ListRender)
 
 
-class Beatmaps.Main extends React.PureComponent
+export class Beatmaps.Main extends React.PureComponent
   constructor: (props) ->
     super props
 

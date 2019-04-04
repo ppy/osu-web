@@ -22,7 +22,7 @@ el = React.createElement
 
 bn = 'beatmap-discussion-post'
 
-class BeatmapDiscussions.NewReply extends React.PureComponent
+export class BeatmapDiscussions.NewReply extends React.PureComponent
   ACTION_ICONS =
     reply_resolve: 'fas fa-check'
     reply_reopen: 'fas fa-exclamation-circle'

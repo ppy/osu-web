@@ -20,7 +20,7 @@ import * as React from 'react'
 import { button, span } from 'react-dom-factories'
 bn = 'profile-cover-selection'
 
-class ProfilePage.CoverSelection extends React.PureComponent
+export class ProfilePage.CoverSelection extends React.PureComponent
   render: =>
     button
       className: osu.classWithModifiers(bn, @props.modifiers)

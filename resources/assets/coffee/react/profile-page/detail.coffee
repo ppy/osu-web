@@ -21,7 +21,7 @@ import { div } from 'react-dom-factories'
 el = React.createElement
 bn = 'profile-detail'
 
-class ProfilePage.Detail extends React.PureComponent
+export class ProfilePage.Detail extends React.PureComponent
   constructor: (props) ->
     super props
 

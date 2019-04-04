@@ -27,7 +27,7 @@ currentLocation = ->
   "#{document.location.pathname}#{document.location.search}"
 
 
-class ProfilePage.Main extends React.PureComponent
+export class ProfilePage.Main extends React.PureComponent
   constructor: (props) ->
     super props
 

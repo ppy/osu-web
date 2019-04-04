@@ -21,7 +21,7 @@ import { a, div, h2, h3, img, p, small, span } from 'react-dom-factories'
 el = React.createElement
 
 
-class ProfilePage.Historical extends React.PureComponent
+export class ProfilePage.Historical extends React.PureComponent
   constructor: (props) ->
     super props
 

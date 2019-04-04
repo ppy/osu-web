@@ -23,7 +23,7 @@ el = React.createElement
 bn = 'notification-banner-v2'
 notificationBanners = document.getElementsByClassName('js-notification-banners')
 
-class @NotificationBanner extends React.PureComponent
+export class NotificationBanner extends React.PureComponent
   constructor: (props) ->
     super props
 

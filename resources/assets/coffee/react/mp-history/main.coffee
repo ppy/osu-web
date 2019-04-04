@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div } from 'react-dom-factories'
 el = React.createElement
 
-class MPHistory.Main extends React.Component
+export class MPHistory.Main extends React.Component
   FETCH_LIMIT = 100
   MAXIMUM_EVENTS = 500
   REFRESH_TIMEOUT = 10000

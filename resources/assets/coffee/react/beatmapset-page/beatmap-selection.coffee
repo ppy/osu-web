@@ -20,7 +20,7 @@ import * as React from 'react'
 import { a } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapsetPage.BeatmapSelection extends React.Component
+export class BeatmapsetPage.BeatmapSelection extends React.Component
   onClick: (e) =>
     e.preventDefault()
 

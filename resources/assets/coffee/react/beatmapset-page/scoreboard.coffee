@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, h2, p } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapsetPage.Scoreboard extends React.PureComponent
+export class BeatmapsetPage.Scoreboard extends React.PureComponent
   DEFAULT_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL', 'SO']
   OSU_MODS = DEFAULT_MODS.concat('TD')
   MANIA_KEY_MODS = ['4K', '5K', '6K', '7K', '8K', '9K']

@@ -18,7 +18,7 @@
 
 el = React.createElement
 
-class ProfilePage.UserPageEditor extends React.PureComponent
+export class ProfilePage.UserPageEditor extends React.PureComponent
   render: =>
     el BBCodeEditor,
       modifiers: ['profile-page']

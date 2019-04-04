@@ -20,7 +20,7 @@ import * as React from 'react'
 import { button, div, span, p } from 'react-dom-factories'
 el = React.createElement
 
-class ProfilePage.UserPage extends React.Component
+export class ProfilePage.UserPage extends React.Component
   render: =>
     isBlank = @props.userPage.initialRaw.trim() == ''
     div className: 'page-extra page-extra--userpage',

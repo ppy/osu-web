@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapsetPage.Main extends React.Component
+export class BeatmapsetPage.Main extends React.Component
   constructor: (props) ->
     super props
 

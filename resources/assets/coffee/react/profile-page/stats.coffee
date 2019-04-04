@@ -21,7 +21,7 @@ import { div, dd, dl, dt } from 'react-dom-factories'
 el = React.createElement
 
 
-class ProfilePage.Stats extends React.PureComponent
+export class ProfilePage.Stats extends React.PureComponent
   entries = [
     'ranked_score'
     'hit_accuracy'

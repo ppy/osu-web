@@ -23,7 +23,7 @@ el = React.createElement
 
 bn = 'comment-editor'
 
-class @CommentEditor extends React.PureComponent
+export class CommentEditor extends React.PureComponent
   constructor: (props) ->
     super props
 

@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div,span } from 'react-dom-factories'
 el = React.createElement
 
-class Contest.Voting.ArtEntryList extends Contest.Voting.BaseEntryList
+export class Contest.Voting.ArtEntryList extends Contest.Voting.BaseEntryList
   render: ->
     return null unless @state.contest.entries.length > 0
 

@@ -21,7 +21,7 @@ import { button, div, h2, span } from 'react-dom-factories'
 
 el = React.createElement
 
-class @Comments extends React.PureComponent
+export class Comments extends React.PureComponent
   render: =>
     commentsByParentId = _.groupBy(@props.comments, 'parent_id')
     comments = commentsByParentId[null]

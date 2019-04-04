@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, span } from 'react-dom-factories'
 el = React.createElement
 
-class Status.Map extends React.Component
+export class Status.Map extends React.Component
   constructor: (props) ->
     super props
 

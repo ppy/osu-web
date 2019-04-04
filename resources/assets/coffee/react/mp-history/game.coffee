@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, span } from 'react-dom-factories'
 el = React.createElement
 
-class MPHistory.Game extends React.Component
+export class MPHistory.Game extends React.Component
   render: ->
     game = @props.event.game
 

@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div,a,i,span } from 'react-dom-factories'
 el = React.createElement
 
-class Contest.Voting.EntryList extends Contest.Voting.BaseEntryList
+export class Contest.Voting.EntryList extends Contest.Voting.BaseEntryList
   render: ->
     if @state.contest.best_of && @state.contest.entries.length == 0
       return div className: 'contest__voting-notice',

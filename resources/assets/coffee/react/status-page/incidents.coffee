@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, h1, h5 } from 'react-dom-factories'
 el = React.createElement
 
-class Status.Incidents extends React.Component
+export class Status.Incidents extends React.Component
   constructor: (props) ->
     super props
     @state =

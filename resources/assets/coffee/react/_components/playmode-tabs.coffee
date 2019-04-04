@@ -19,7 +19,7 @@
 import * as React from 'react'
 import { a, li, span, ul } from 'react-dom-factories'
 
-class @PlaymodeTabs extends React.Component
+export class PlaymodeTabs extends React.Component
   render: =>
     ul className: 'page-mode',
       for mode in BeatmapHelper.modes

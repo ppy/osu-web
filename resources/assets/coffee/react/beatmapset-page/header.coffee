@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapsetPage.Header extends React.Component
+export class BeatmapsetPage.Header extends React.Component
   favouritesToShow: 50
   showFavourites: (event) =>
     target = event.currentTarget

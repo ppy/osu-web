@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, img } from 'react-dom-factories'
 el = React.createElement
 
-class ProfilePage.Badges extends React.PureComponent
+export class ProfilePage.Badges extends React.PureComponent
   render: =>
     div className: 'profile-badges',
       for badge in @props.badges

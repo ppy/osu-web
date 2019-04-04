@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, span, a, i } from 'react-dom-factories'
 el = React.createElement
 
-class MPHistory.Event extends React.Component
+export class MPHistory.Event extends React.Component
   icons:
     'player-left': ['fas fa-arrow-left', 'far fa-circle']
     'player-joined': ['fas fa-arrow-right', 'far fa-circle']

@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div } from 'react-dom-factories'
 el = React.createElement
 
-class Contest.Entry.UserEntryList extends React.Component
+export class Contest.Entry.UserEntryList extends React.Component
   constructor: (props) ->
     super props
 

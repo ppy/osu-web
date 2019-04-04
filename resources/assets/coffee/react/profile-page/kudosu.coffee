@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, h3, ul, li, p, span } from 'react-dom-factories'
 el = React.createElement
 
-class ProfilePage.Kudosu extends React.Component
+export class ProfilePage.Kudosu extends React.Component
   render: =>
     div className: 'page-extra',
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit

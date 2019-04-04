@@ -20,7 +20,7 @@ import * as React from 'react'
 import { a, div, h1, p } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapDiscussions.Main extends React.PureComponent
+export class BeatmapDiscussions.Main extends React.PureComponent
   constructor: (props) ->
     super props
 

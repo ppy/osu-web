@@ -20,7 +20,7 @@ import * as React from 'react'
 import { a, div, h1, h2, p } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapDiscussions.Header extends React.PureComponent
+export class BeatmapDiscussions.Header extends React.PureComponent
   componentDidMount: =>
     @updateChart()
 

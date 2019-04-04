@@ -28,7 +28,7 @@ sections = [
   'graveyardBeatmapsets'
 ]
 
-class ProfilePage.Beatmaps extends React.PureComponent
+export class ProfilePage.Beatmaps extends React.PureComponent
   render: =>
     div
       className: 'page-extra'

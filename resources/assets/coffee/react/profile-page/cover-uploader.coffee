@@ -21,7 +21,7 @@ import { div, label, p, strong } from 'react-dom-factories'
 el = React.createElement
 
 
-class ProfilePage.CoverUploader extends React.Component
+export class ProfilePage.CoverUploader extends React.Component
   constructor: (props) ->
     super props
 

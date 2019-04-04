@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, h2, h3 } from 'react-dom-factories'
 el = React.createElement
 
-class ProfilePage.Medals extends React.PureComponent
+export class ProfilePage.Medals extends React.PureComponent
   render: =>
     @userAchievements = null
 

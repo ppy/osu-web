@@ -22,7 +22,7 @@ el = React.createElement
 
 bn = 'textual-button'
 
-class @BlockButton extends React.PureComponent
+export class BlockButton extends React.PureComponent
   constructor: (props) ->
     super props
 

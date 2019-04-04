@@ -22,7 +22,7 @@ el = React.createElement
 
 bn = 'click-to-copy'
 
-class @ClickToCopy extends React.PureComponent
+export class ClickToCopy extends React.PureComponent
   componentWillUnmount: =>
     @restoreTooltipText()
 

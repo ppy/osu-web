@@ -20,7 +20,7 @@ import * as React from 'react'
 import { a, i, span, tr, td } from 'react-dom-factories'
 el = React.createElement
 
-class @TracklistTrack extends React.Component
+export class TracklistTrack extends React.Component
   render: ->
     tr className: "tracklist__row#{if @props.track.selected then ' tracklist__row--selected' else ''}",
       td {},

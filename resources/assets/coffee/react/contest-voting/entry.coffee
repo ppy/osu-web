@@ -20,7 +20,7 @@ import * as React from 'react'
 import { a,i,div,span } from 'react-dom-factories'
 el = React.createElement
 
-class Contest.Voting.Entry extends React.Component
+export class Contest.Voting.Entry extends React.Component
   render: ->
     if @props.contest.show_votes
       votePercentage = _.round((@props.entry.results.votes / @props.totalVotes)*100, 2)

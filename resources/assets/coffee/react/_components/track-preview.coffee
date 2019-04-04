@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, a, i } from 'react-dom-factories'
 el = React.createElement
 
-class @TrackPreview extends React.Component
+export class TrackPreview extends React.Component
   constructor: (props) ->
     super props
 

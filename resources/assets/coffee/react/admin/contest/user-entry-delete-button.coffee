@@ -20,7 +20,7 @@ import * as React from 'react'
 import { br, tr, td, button, a, img, dl, dt, dd, i } from 'react-dom-factories'
 el = React.createElement
 
-class @Admin.Contest.UserEntryDeleteButton extends React.Component
+export class Admin.Contest.UserEntryDeleteButton extends React.Component
   update: (id, destroy) =>
     params =
       dataType: 'json'

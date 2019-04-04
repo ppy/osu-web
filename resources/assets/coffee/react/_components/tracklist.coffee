@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, table, thead, tbody, tr, th } from 'react-dom-factories'
 el = React.createElement
 
-class @Tracklist extends React.Component
+export class Tracklist extends React.Component
   render: ->
     return null unless @props.tracks.length > 0
 

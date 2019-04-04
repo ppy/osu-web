@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, a, span, h1, h2 } from 'react-dom-factories'
 el = React.createElement
 
-class MPHistory.GameHeader extends React.Component
+export class MPHistory.GameHeader extends React.Component
   timeFormat: 'LT'
 
   render: ->

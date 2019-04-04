@@ -20,7 +20,7 @@ import * as React from 'react'
 import { button, div } from 'react-dom-factories'
 el = React.createElement
 
-class MPHistory.Content extends React.PureComponent
+export class MPHistory.Content extends React.PureComponent
   constructor: (props) ->
     super props
 

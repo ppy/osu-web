@@ -21,7 +21,7 @@ import { a, div, table, tr, th, thead, tbody } from 'react-dom-factories'
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
-class BeatmapsetPage.ScoreboardTable extends React.PureComponent
+export class BeatmapsetPage.ScoreboardTable extends React.PureComponent
   constructor: (props) ->
     super props
 

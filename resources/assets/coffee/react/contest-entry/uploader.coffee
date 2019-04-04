@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, form, input, i } from 'react-dom-factories'
 el = React.createElement
 
-class Contest.Entry.Uploader extends React.Component
+export class Contest.Entry.Uploader extends React.Component
   constructor: (props) ->
     super props
     @state =

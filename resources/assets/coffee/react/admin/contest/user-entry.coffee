@@ -20,7 +20,7 @@ import * as React from 'react'
 import { tr, td, a, div } from 'react-dom-factories'
 el = React.createElement
 
-class @Admin.Contest.UserEntry extends React.Component
+export class Admin.Contest.UserEntry extends React.Component
   render: =>
     className = 'admin-contest-entry'
     className += ' admin-contest-entry__deleted' if @props.entry.deleted

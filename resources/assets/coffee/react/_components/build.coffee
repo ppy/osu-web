@@ -20,7 +20,7 @@ import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
 el = React.createElement
 
-class @Build extends React.PureComponent
+export class Build extends React.PureComponent
   render: =>
     blockClass = osu.classWithModifiers 'build', @props.modifiers
     entries = _.groupBy(@props.build.changelog_entries, 'category')

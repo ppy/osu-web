@@ -20,7 +20,7 @@ import * as React from 'react'
 import { button, div, h1, p, span } from 'react-dom-factories'
 el = React.createElement
 
-class CommentsIndex.Main extends React.PureComponent
+export class CommentsIndex.Main extends React.PureComponent
   constructor: (props) ->
     super props
 

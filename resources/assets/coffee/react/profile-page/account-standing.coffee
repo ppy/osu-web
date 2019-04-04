@@ -21,7 +21,7 @@ el = React.createElement
 
 bn = 'profile-extra-recent-infringements'
 
-class ProfilePage.AccountStanding extends React.PureComponent
+export class ProfilePage.AccountStanding extends React.PureComponent
   columns = ['date', 'action', 'length', 'description']
 
   render: ->

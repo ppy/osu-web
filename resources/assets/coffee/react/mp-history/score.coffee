@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, span, a } from 'react-dom-factories'
 el = React.createElement
 
-class MPHistory.Score extends React.Component
+export class MPHistory.Score extends React.Component
   firstRow: ['combo', 'accuracy', 'score']
   secondRow: ['count_geki', 'count_300', 'count_katu', 'count_100', 'count_50', 'count_miss']
 

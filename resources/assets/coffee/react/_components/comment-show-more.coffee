@@ -23,7 +23,7 @@ el = React.createElement
 
 bn = 'comment-show-more'
 
-class @CommentShowMore extends React.PureComponent
+export class CommentShowMore extends React.PureComponent
   @defaultProps = modifiers: []
 
 

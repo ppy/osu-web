@@ -21,7 +21,7 @@ import { div } from 'react-dom-factories'
 el = React.createElement
 
 
-class ProfilePage.DetailMobile extends React.PureComponent
+export class ProfilePage.DetailMobile extends React.PureComponent
   render: =>
     div className: 'profile-detail-mobile',
       if @props.stats.is_ranked

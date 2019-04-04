@@ -21,7 +21,7 @@ import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-
 el = React.createElement
 
 
-class ProfilePage.Header extends React.Component
+export class ProfilePage.Header extends React.Component
   constructor: (props) ->
     super props
 

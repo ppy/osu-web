@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, span, a, i } from 'react-dom-factories'
 el = React.createElement
 
-class Contest.Voting.ArtEntry extends React.Component
+export class Contest.Voting.ArtEntry extends React.Component
   render: ->
     votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
     isSelected = _.includes @props.selected, @props.entry.id

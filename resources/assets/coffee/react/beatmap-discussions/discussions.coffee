@@ -50,7 +50,7 @@ sortPresets =
         a.timestamp - b.timestamp
 
 
-class BeatmapDiscussions.Discussions extends React.PureComponent
+export class BeatmapDiscussions.Discussions extends React.PureComponent
   constructor: (props) ->
     super props
 
