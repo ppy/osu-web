@@ -37,7 +37,7 @@
             <table>
                 <tbody>
                     @foreach ($pollSummary['options'] as $pollOptionId => $pollOption)
-                        @include('forum.topics._poll_row', compact($pollOptionId, $pollOption, $pollSummary))
+                        @include('forum.topics._poll_row', compact('pollOptionId', 'pollOption', 'pollSummary'))
                     @endforeach
                 </tbody>
             </table>
