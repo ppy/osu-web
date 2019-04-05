@@ -160,6 +160,11 @@
         "title": {
           "type": "text",
           "fields": {
+            "_prefix": {
+              "type": "text",
+              "analyzer": "prefix",
+              "search_analyzer": "standard"
+            },
             "raw": {
               "type": "keyword"
             }
@@ -179,6 +184,30 @@
   },
   "settings": {
     "index": {
+      "analysis": {
+        "analyzer": {
+          "lowercase": {
+            "tokenizer": "lowercase"
+          },
+          "prefix": {
+            "filter": [
+              "lowercase"
+            ],
+            "tokenizer": "prefix"
+          }
+        },
+        "tokenizer": {
+          "prefix": {
+            "type": "edge_ngram",
+            "min_gram": "3",
+            "max_gram": "8",
+            "token_chars": [
+              "letter",
+              "digit"
+            ]
+          }
+        }
+      },
       "number_of_shards": "1",
       "number_of_replicas": "1"
     }
