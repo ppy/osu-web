@@ -63,7 +63,7 @@ class BeatmapMirror extends Model
 
     public static function getRandom()
     {
-        return self::where('region', null)->randomUsable()->first();
+        return self::where('regions', null)->randomUsable()->first();
     }
 
     public static function getRandomFromList(array $mirrorIds)
