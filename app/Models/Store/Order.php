@@ -558,9 +558,13 @@ class Order extends Model
         // FIXME: custom class stuff should probably not go in Order...
         switch ($product->custom_class) {
             case 'supporter-tag':
-                $targetId = $params['extraData']['target_id'];
-                $user = User::default()->where('user_id', $targetId)->firstOrFail();
-                $params['extraData']['username'] = $user->username;
+                $targetId = (int) $params['extraData']['target_id'];
+                if ($targetId === $this->user_id) {
+                    $params['extraData']['username'] = $this->user->username;
+                } else {
+                    $user = User::default()->where('user_id', $targetId)->firstOrFail();
+                    $params['extraData']['username'] = $user->username;
+                }
 
                 $params['extraData']['duration'] = SupporterTag::getDuration($params['cost']);
                 break;

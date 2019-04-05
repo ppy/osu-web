@@ -111,6 +111,7 @@ return [
         'too_long' => 'Exceeded maximum length - can only be up to :limit characters.',
 
         'change_username' => [
+            'restricted' => 'You cannot change your username while restricted.',
             'supporter_required' => [
                 '_' => 'You must have :link to change your name!',
                 'link_text' => 'supported osu!',

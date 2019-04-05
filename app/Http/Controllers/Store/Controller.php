@@ -57,4 +57,9 @@ abstract class Controller extends BaseController
             return Order::cart(Auth::user()) ?? new Order(['user_id' => Auth::user()->user_id]);
         }
     }
+
+    protected function isAllowRestrictedUsers()
+    {
+        return config('store.allow_restricted_users');
+    }
 }

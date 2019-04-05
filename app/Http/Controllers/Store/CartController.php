@@ -34,9 +34,11 @@ class CartController extends Controller
             'store',
         ]]);
 
-        $this->middleware('check-user-restricted', ['only' => [
-            'store',
-        ]]);
+        if (!$this->isAllowRestrictedUsers()) {
+            $this->middleware('check-user-restricted', ['only' => [
+                'store',
+            ]]);
+        }
 
         return parent::__construct();
     }
