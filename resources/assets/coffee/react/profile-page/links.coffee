@@ -22,7 +22,7 @@ import { a, div, span } from 'react-dom-factories'
 el = React.createElement
 
 
-export class ProfilePage.Links extends React.PureComponent
+export class Links extends React.PureComponent
   bn = 'profile-links'
 
   rowValue = (value, attributes = {}, modifiers = []) ->

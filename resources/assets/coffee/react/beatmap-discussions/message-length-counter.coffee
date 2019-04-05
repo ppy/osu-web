@@ -21,7 +21,7 @@ import { div } from 'react-dom-factories'
 
 bn = 'beatmap-discussion-message-length-counter'
 
-export BeatmapDiscussions.MessageLengthCounter = ({message, isTimeline}) ->
+export MessageLengthCounter = ({message, isTimeline}) ->
   return null if !isTimeline
 
   maxLength = BeatmapDiscussionHelper.MAX_LENGTH_TIMELINE

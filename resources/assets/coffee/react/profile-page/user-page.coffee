@@ -16,15 +16,17 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { ExtraHeader } from './extra-header'
+import { UserPageEditor } from './user-page-editor'
 import * as React from 'react'
 import { button, div, span, p } from 'react-dom-factories'
 el = React.createElement
 
-export class ProfilePage.UserPage extends React.Component
+export class UserPage extends React.Component
   render: =>
     isBlank = @props.userPage.initialRaw.trim() == ''
     div className: 'page-extra page-extra--userpage',
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+      el ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       if !@props.userPage.editing && @props.withEdit && !isBlank
         div className: 'page-extra__actions',
@@ -36,7 +38,7 @@ export class ProfilePage.UserPage extends React.Component
             span className: 'fas fa-pencil-alt'
 
       if @props.userPage.editing
-        el ProfilePage.UserPageEditor, userPage: @props.userPage
+        el UserPageEditor, userPage: @props.userPage
       else
         div className: 'page-extra__content-overflow-wrapper-outer',
           if @props.withEdit && isBlank

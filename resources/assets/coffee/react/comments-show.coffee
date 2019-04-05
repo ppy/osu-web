@@ -17,11 +17,12 @@
 ###
 
 import { CommentsManager } from 'comments-manager'
+import { Main } from './comments-show/main'
 
 reactTurbolinks.registerPersistent 'comments-show', CommentsManager, true, ->
   data = osu.parseJson('json-show')
 
-  component: CommentsShow.Main
+  component: Main
   componentProps:
     comment: data.comment
   commentBundle: data.bundle

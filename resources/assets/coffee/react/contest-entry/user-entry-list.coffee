@@ -16,11 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { Uploader } from './uploader'
+import { UserEntry } from './user-entry'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 el = React.createElement
 
-export class Contest.Entry.UserEntryList extends React.Component
+export class UserEntryList extends React.Component
   constructor: (props) ->
     super props
 
@@ -43,7 +45,7 @@ export class Contest.Entry.UserEntryList extends React.Component
     userEntries = if @state.userEntries then @state.userEntries else []
 
     entries = userEntries.map (entry, index) =>
-      el Contest.Entry.UserEntry,
+      el UserEntry,
         key: index,
         entry: entry,
         contest_id: @state.contest.id,
@@ -53,4 +55,4 @@ export class Contest.Entry.UserEntryList extends React.Component
 
     div className: 'contest-userentry-list',
       entries
-      el Contest.Entry.Uploader, contest: @state.contest, disabled: !entryOpen || (@state.userEntries.length >= @state.contest.max_entries)
+      el Uploader, contest: @state.contest, disabled: !entryOpen || (@state.userEntries.length >= @state.contest.max_entries)

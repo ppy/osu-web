@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, a, i, span } from 'react-dom-factories'
 el = React.createElement
 
-export class Beatmaps.SearchSort extends React.PureComponent
+export class SearchSort extends React.PureComponent
   render: =>
     div className: 'sort sort--beatmapsets',
       div className: 'sort__items',

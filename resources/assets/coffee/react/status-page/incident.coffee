@@ -18,9 +18,8 @@
 
 import * as React from 'react'
 import { div, span } from 'react-dom-factories'
-el = React.createElement
 
-export class Status.Incident extends React.Component
+export class Incident extends React.Component
 
   render: =>
     fromNow = moment(@props.date, 'DD-MM-YYYY HH:mm:ss').fromNow()

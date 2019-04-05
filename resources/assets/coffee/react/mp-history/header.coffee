@@ -19,7 +19,7 @@
 import * as React from 'react'
 import { div, h1, h2 } from 'react-dom-factories'
 
-export MPHistory.Header = (props) ->
+export Header = (props) ->
   div className: 'osu-layout__row osu-layout__row--page-compact',
     div className: 'osu-page-header osu-page-header--mp-history',
       div className: 'osu-page-header__title-box',

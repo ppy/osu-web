@@ -23,7 +23,7 @@ el = React.createElement
 
 bn = 'beatmap-discussion-nomination'
 
-export class BeatmapDiscussions.Nominations extends React.PureComponent
+export class Nominations extends React.PureComponent
   componentDidMount: =>
     osu.pageChange()
 

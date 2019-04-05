@@ -16,13 +16,14 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { BeatmapListItem } from './beatmap-list-item'
 import * as React from 'react'
 import { a, div } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'beatmap-list'
 
-export class BeatmapDiscussions.BeatmapList extends React.PureComponent
+export class BeatmapList extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -52,7 +53,7 @@ export class BeatmapDiscussions.BeatmapList extends React.PureComponent
           href: BeatmapDiscussionHelper.url beatmap: @props.currentBeatmap
           className: "#{bn}__item #{bn}__item--selected #{bn}__item--large js-beatmap-list-selector"
           onClick: @toggleSelector
-          el BeatmapDiscussions.BeatmapListItem, beatmap: @props.currentBeatmap, large: true, withButton: 'down'
+          el BeatmapListItem, beatmap: @props.currentBeatmap, large: true, withButton: 'down'
 
         div
           className: "#{bn}__selector"
@@ -71,7 +72,7 @@ export class BeatmapDiscussions.BeatmapList extends React.PureComponent
       key: beatmap.id
       'data-id': beatmap.id
       onClick: @selectBeatmap
-      el BeatmapDiscussions.BeatmapListItem,
+      el BeatmapListItem,
         beatmap: beatmap
         mode: 'version'
         count: count

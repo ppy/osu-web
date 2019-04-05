@@ -24,7 +24,7 @@ allUsers =
   id: null,
   text: osu.trans('beatmap_discussions.user_filter.everyone')
 
-export class BeatmapDiscussions.UserFilter extends React.PureComponent
+export class UserFilter extends React.PureComponent
   render: =>
     options = [allUsers]
     for own _id, user of @props.users

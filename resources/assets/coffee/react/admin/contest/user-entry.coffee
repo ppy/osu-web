@@ -16,11 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { UserEntryDeleteButton } from './user-entry-delete-button'
 import * as React from 'react'
 import { tr, td, a, div } from 'react-dom-factories'
 el = React.createElement
 
-export class Admin.Contest.UserEntry extends React.Component
+export class UserEntry extends React.Component
   render: =>
     className = 'admin-contest-entry'
     className += ' admin-contest-entry__deleted' if @props.entry.deleted

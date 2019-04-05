@@ -16,11 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { Voter } from './voter'
 import * as React from 'react'
 import { div, span, a, i } from 'react-dom-factories'
 el = React.createElement
 
-export class Contest.Voting.ArtEntry extends React.Component
+export class ArtEntry extends React.Component
   render: ->
     votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
     isSelected = _.includes @props.selected, @props.entry.id
@@ -64,7 +65,7 @@ export class Contest.Voting.ArtEntry extends React.Component
           'contest__vote-link-banner--smaller' if showVotes && place > 2
           'hidden' if hideVoteButton
         ]).compact().join(' ')
-        el Contest.Voting.Voter,
+        el Voter,
           key: @props.entry.id,
           entry: @props.entry,
           waitingForResponse: @props.waitingForResponse,

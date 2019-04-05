@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, h2, i, span } from 'react-dom-factories'
 el = React.createElement
 
-export ProfilePage.ExtraHeader = (props) ->
+export ExtraHeader = (props) ->
   div null,
     h2 className: 'page-extra__title', osu.trans("users.show.extra.#{props.name}.title")
     if props.withEdit

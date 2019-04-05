@@ -21,7 +21,7 @@ import { Mod } from 'mod'
 import { img, div } from 'react-dom-factories'
 el = React.createElement
 
-export class BeatmapsetPage.ScoreboardMod extends React.Component
+export class ScoreboardMod extends React.Component
   onClick: =>
     $.publish 'beatmapset:scoreboard:set', enabledMod: @props.mod
 

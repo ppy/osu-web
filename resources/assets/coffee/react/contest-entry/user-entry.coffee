@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, a, i } from 'react-dom-factories'
 el = React.createElement
 
-export class Contest.Entry.UserEntry extends React.Component
+export class UserEntry extends React.Component
   delete: (e) =>
     e.preventDefault()
 

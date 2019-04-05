@@ -22,7 +22,7 @@ el = React.createElement
 bn = 'game-mode'
 
 
-export class ProfilePage.GameModeSwitcher extends React.PureComponent
+export class GameModeSwitcher extends React.PureComponent
   constructor: (props) ->
     super props
 

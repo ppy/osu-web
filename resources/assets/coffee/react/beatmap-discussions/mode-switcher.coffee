@@ -20,7 +20,7 @@ import * as React from 'react'
 import { a, div, li, span, ul } from 'react-dom-factories'
 el = React.createElement
 
-export class BeatmapDiscussions.ModeSwitcher extends React.PureComponent
+export class ModeSwitcher extends React.PureComponent
   constructor: (props) ->
     super props
 

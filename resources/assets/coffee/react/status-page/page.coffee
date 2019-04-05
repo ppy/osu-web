@@ -16,11 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { Map } from './map'
+import { Uptime } from './uptime'
 import * as React from 'react'
 import { div, span, br, strong, h1, h4, h5 } from 'react-dom-factories'
 el = React.createElement
 
-export class Status.Page extends React.Component
+export class Page extends React.Component
   constructor: (props) ->
     super props
 
@@ -146,14 +148,14 @@ export class Status.Page extends React.Component
           div null,
             status.incidents.map (incident, id) =>
               if incident.active
-                el Status.Incident,
+                el Incident,
                   key: id
                   description: incident.description
                   active: incident.active
                   status: incident.status
                   date: incident.date
                   by: incident.by
-        el Status.Map,
+        el Map,
           servers: @state.status.servers
         div className: 'osu-layout__row--page-compact',
           h1 className: 'status-info__title',
@@ -179,7 +181,7 @@ export class Status.Page extends React.Component
               h1 className: 'status-info__data-amount',
                 osu.formatNumber(@state.status.online.score)
         div className: 'osu-layout__col-container osu-layout__col-container--with-gutter',
-          el Status.Incidents,
+          el Incidents,
             incidents: @state.status.incidents
-          el Status.Uptime,
+          el Uptime,
             charts: @state.charts

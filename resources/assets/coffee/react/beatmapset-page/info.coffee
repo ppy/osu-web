@@ -21,7 +21,7 @@ import * as React from 'react'
 import { a, button, div, h3, span, i, textarea } from 'react-dom-factories'
 el = React.createElement
 
-export class BeatmapsetPage.Info extends React.Component
+export class Info extends React.Component
   constructor: (props) ->
     super props
 

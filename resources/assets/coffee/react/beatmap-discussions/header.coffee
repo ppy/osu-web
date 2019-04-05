@@ -16,6 +16,10 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { BeatmapList } from './beatmap-list'
+import { Nominations } from './nominations'
+import { Subscribe } from './subscribe'
+import { UserFilter } from './user-filter'
 import { BeatmapBasicStats } from 'beatmap-basic-stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import { PlaymodeTabs } from 'playmode-tabs'
@@ -23,7 +27,7 @@ import * as React from 'react'
 import { a, div, h1, h2, p } from 'react-dom-factories'
 el = React.createElement
 
-export class BeatmapDiscussions.Header extends React.PureComponent
+export class Header extends React.PureComponent
   componentDidMount: =>
     @updateChart()
 
@@ -57,10 +61,10 @@ export class BeatmapDiscussions.Header extends React.PureComponent
           user: @props.users[@props.beatmapset.user_id]
 
         div className: "#{bn}__subscribe",
-          el BeatmapDiscussions.Subscribe, beatmapset: @props.beatmapset
+          el Subscribe, beatmapset: @props.beatmapset
 
       div className: "#{bn}__content #{bn}__content--nomination",
-        el BeatmapDiscussions.Nominations,
+        el Nominations,
           beatmapset: @props.beatmapset
           currentDiscussions: @props.currentDiscussions
           currentUser: @props.currentUser
@@ -100,7 +104,7 @@ export class BeatmapDiscussions.Header extends React.PureComponent
 
           div
             className: "#{bn}__filter-group"
-            el BeatmapDiscussions.BeatmapList,
+            el BeatmapList,
               beatmapset: @props.beatmapset
               currentBeatmap: @props.currentBeatmap
               currentDiscussions: @props.currentDiscussions
@@ -108,7 +112,7 @@ export class BeatmapDiscussions.Header extends React.PureComponent
 
           div
             className: "#{bn}__filter-group #{bn}__filter-group--stats"
-            el BeatmapDiscussions.UserFilter,
+            el UserFilter,
               ownerId: @props.beatmapset.user_id
               selectedUser: if @props.selectedUserId? then @props.users[@props.selectedUserId] else null
               users: @props.discussionStarters

@@ -16,11 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { Content } from './content'
+import { Header } from './header'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 el = React.createElement
 
-export class MPHistory.Main extends React.Component
+export class Main extends React.Component
   FETCH_LIMIT = 100
   MAXIMUM_EVENTS = 500
   REFRESH_TIMEOUT = 10000
@@ -50,10 +52,10 @@ export class MPHistory.Main extends React.Component
 
   render: =>
     div className: 'osu-layout__section',
-      el MPHistory.Header,
+      el Header,
         name: @props.match.name
 
-      el MPHistory.Content,
+      el Content,
         id: @props.match.id
         events: @state.events
         currentGameId: @state.currentGameId

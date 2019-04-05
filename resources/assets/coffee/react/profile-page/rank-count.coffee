@@ -21,7 +21,7 @@ import { div } from 'react-dom-factories'
 el = React.createElement
 ranks = ['XH', 'X', 'SH', 'S', 'A']
 
-export class ProfilePage.RankCount extends React.PureComponent
+export class RankCount extends React.PureComponent
   render: =>
     div className: 'profile-rank-count',
       ranks.map @renderRankCountEntry

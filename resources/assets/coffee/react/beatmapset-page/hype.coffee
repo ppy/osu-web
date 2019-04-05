@@ -23,7 +23,7 @@ el = React.createElement
 
 bn = 'beatmapset-hype'
 
-export class BeatmapsetPage.Hype extends React.PureComponent
+export class Hype extends React.PureComponent
   render: =>
     div className: bn,
       div className: "#{bn}__box #{bn}__box--description",

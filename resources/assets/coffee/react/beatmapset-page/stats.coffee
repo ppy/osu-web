@@ -21,7 +21,7 @@ import * as React from 'react'
 import { a, div, span, table, tbody, td, th, tr, i } from 'react-dom-factories'
 el = React.createElement
 
-export class BeatmapsetPage.Stats extends React.Component
+export class Stats extends React.Component
   constructor: (props) ->
     super props
 

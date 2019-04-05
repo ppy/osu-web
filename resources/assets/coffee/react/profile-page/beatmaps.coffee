@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { ExtraHeader } from './extra-header'
 import { BeatmapsetPanel } from 'beatmapset-panel'
 import * as React from 'react'
 import { div, h2, h3, ul, li, a, p, pre, span } from 'react-dom-factories'
@@ -30,11 +31,11 @@ sections = [
   'graveyardBeatmapsets'
 ]
 
-export class ProfilePage.Beatmaps extends React.PureComponent
+export class Beatmaps extends React.PureComponent
   render: =>
     div
       className: 'page-extra'
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+      el ExtraHeader, name: @props.name, withEdit: @props.withEdit
       sections.map @renderBeatmapsets
 
 

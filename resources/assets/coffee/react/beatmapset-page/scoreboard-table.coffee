@@ -16,12 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { ScoreboardTableRow } from './scoreboard-table-row'
 import * as React from 'react'
 import { a, div, table, tr, th, thead, tbody } from 'react-dom-factories'
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
-export class BeatmapsetPage.ScoreboardTable extends React.PureComponent
+export class ScoreboardTable extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -61,7 +62,7 @@ export class BeatmapsetPage.ScoreboardTable extends React.PureComponent
               el _exported.KeyContext.Provider,
                 key: index
                 value: index
-                el BeatmapsetPage.ScoreboardTableRow,
+                el ScoreboardTableRow,
                   activated: @state.activeKey == index
                   beatmap: @props.beatmap
                   countries: @props.countries

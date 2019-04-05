@@ -21,7 +21,7 @@ import * as React from 'react'
 import { a, button, div, h1, h2, p } from 'react-dom-factories'
 el = React.createElement
 
-export class BeatmapDiscussions.Subscribe extends React.PureComponent
+export class Subscribe extends React.PureComponent
   constructor: (props) ->
     super props
 

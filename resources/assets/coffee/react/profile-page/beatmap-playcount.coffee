@@ -22,7 +22,7 @@ el = React.createElement
 
 bn = 'beatmap-playcount'
 
-export class ProfilePage.BeatmapPlaycount extends React.PureComponent
+export class BeatmapPlaycount extends React.PureComponent
   render: =>
     beatmap = @props.playcount.beatmap
     beatmapset = @props.playcount.beatmapset

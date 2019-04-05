@@ -20,7 +20,7 @@ import * as React from 'react'
 import { div, a, span } from 'react-dom-factories'
 el = React.createElement
 
-export class Beatmaps.SearchFilter extends React.PureComponent
+export class SearchFilter extends React.PureComponent
   constructor: (props) ->
     super props
 

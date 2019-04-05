@@ -16,7 +16,9 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-reactTurbolinks.registerPersistent 'changelog-index', ChangelogIndex.Main, true, (el) ->
+import { Main } from './changelog-index/main'
+
+reactTurbolinks.registerPersistent 'changelog-index', Main, true, (el) ->
   container: el
   updateStreams: osu.parseJson('json-update-streams')
   data: osu.parseJson('json-index')

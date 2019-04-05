@@ -21,7 +21,7 @@ import { Img2x } from 'img2x'
 import { div, img } from 'react-dom-factories'
 el = React.createElement
 
-export class ProfilePage.AchievementBadge extends React.PureComponent
+export class AchievementBadge extends React.PureComponent
   constructor: (props) ->
     super props
 

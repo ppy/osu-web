@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { Rank } from './rank'
 import { BlockButton } from 'block-button'
 import { FriendButton } from 'friend-button'
 import * as React from 'react'
@@ -23,7 +24,7 @@ import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-
 el = React.createElement
 
 
-export class ProfilePage.DetailBar extends React.PureComponent
+export class DetailBar extends React.PureComponent
   bn = 'profile-detail-bar'
 
 
@@ -89,11 +90,11 @@ export class ProfilePage.DetailBar extends React.PureComponent
 
         if !@props.extended
           div className: "#{bn}__entry #{bn}__entry--ranking",
-            el ProfilePage.Rank, type: 'global', stats: @props.stats
+            el Rank, type: 'global', stats: @props.stats
 
         if !@props.extended
           div className: "#{bn}__entry #{bn}__entry--ranking",
-            el ProfilePage.Rank, type: 'country', stats: @props.stats
+            el Rank, type: 'country', stats: @props.stats
 
         div className: "#{bn}__entry #{bn}__entry--level",
           div

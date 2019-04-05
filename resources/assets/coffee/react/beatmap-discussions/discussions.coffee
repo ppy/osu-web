@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { Discussion } from './discussion'
 import { IconExpand } from 'icon-expand'
 import * as React from 'react'
 import { a, button, div, i, p, span } from 'react-dom-factories'
@@ -51,7 +52,7 @@ sortPresets =
         a.timestamp - b.timestamp
 
 
-export class BeatmapDiscussions.Discussions extends React.PureComponent
+export class Discussions extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -155,7 +156,7 @@ export class BeatmapDiscussions.Discussions extends React.PureComponent
     div
       key: discussion.id
       className: className
-      el BeatmapDiscussions.Discussion,
+      el Discussion,
         discussion: discussion
         users: @props.users
         currentUser: @props.currentUser

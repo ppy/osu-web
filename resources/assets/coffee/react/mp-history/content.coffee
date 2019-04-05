@@ -16,12 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { Event } from './event'
 import * as React from 'react'
 import { button, div } from 'react-dom-factories'
 import { Spinner } from 'spinner'
 el = React.createElement
 
-export class MPHistory.Content extends React.PureComponent
+export class Content extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -84,7 +85,7 @@ export class MPHistory.Content extends React.PureComponent
             div
               className: 'mp-history-events__game'
               key: event.id
-              el MPHistory.Game,
+              el Game,
                 event: event
                 teamScores: @teamScores i
                 users: @props.users
@@ -92,7 +93,7 @@ export class MPHistory.Content extends React.PureComponent
             div
               className: 'mp-history-events__event'
               key: event.id
-              el MPHistory.Event,
+              el Event,
                 event: event
                 users: @props.users
                 key: event.id

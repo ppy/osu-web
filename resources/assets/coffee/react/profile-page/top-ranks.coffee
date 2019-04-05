@@ -16,16 +16,17 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { ExtraHeader } from './extra-header'
 import * as React from 'react'
 import { div, h2, h3, ul, li, a, p, pre, span } from 'react-dom-factories'
 import { ShowMoreLink } from 'show-more-link'
 el = React.createElement
 
-export class ProfilePage.TopRanks extends React.PureComponent
+export class TopRanks extends React.PureComponent
   render: =>
     div
       className: 'page-extra'
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+      el ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       div null,
         h3 className: 'page-extra__title page-extra__title--small', osu.trans('users.show.extra.top_ranks.best.title')

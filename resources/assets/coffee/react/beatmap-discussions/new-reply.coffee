@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { MessageLengthCounter } from './message-length-counter'
 import { BigButton } from 'big-button'
 import * as React from 'react'
 import { button, div, form, input, label, span, i } from 'react-dom-factories'
@@ -23,7 +24,7 @@ el = React.createElement
 
 bn = 'beatmap-discussion-post'
 
-export class BeatmapDiscussions.NewReply extends React.PureComponent
+export class NewReply extends React.PureComponent
   ACTION_ICONS =
     reply_resolve: 'fas fa-check'
     reply_reopen: 'fas fa-exclamation-circle'
@@ -77,7 +78,7 @@ export class BeatmapDiscussions.NewReply extends React.PureComponent
       div
         className: "#{bn}__footer #{bn}__footer--notice"
         osu.trans 'beatmaps.discussions.reply_notice'
-        el BeatmapDiscussions.MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
+        el MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div
         className: "#{bn}__footer"

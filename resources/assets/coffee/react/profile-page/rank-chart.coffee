@@ -19,7 +19,7 @@
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 
-export class ProfilePage.RankChart extends React.Component
+export class RankChart extends React.Component
   constructor: (props) ->
     super props
 

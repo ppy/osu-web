@@ -19,7 +19,7 @@
 el = React.createElement
 
 
-export ProfilePage.MedalsCount = ({userAchievements}) ->
+export MedalsCount = ({userAchievements}) ->
   el ValueDisplay,
     modifiers: ['medals']
     label: osu.trans('users.show.stats.medals')

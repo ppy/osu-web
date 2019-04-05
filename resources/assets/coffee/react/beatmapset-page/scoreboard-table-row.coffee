@@ -23,7 +23,7 @@ import { a, div, tr, td } from 'react-dom-factories'
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
-export class BeatmapsetPage.ScoreboardTableRow extends React.PureComponent
+export class ScoreboardTableRow extends React.PureComponent
   render: () =>
     { activated, index, score } = @props
     classMods = if activated then ['menu-active'] else ['highlightable']

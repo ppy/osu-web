@@ -15,13 +15,15 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
+import { ExtraHeader } from './extra-header'
 import * as React from 'react'
 import { div, span, h3, table, thead, tbody, tr, th, td, time } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'profile-extra-recent-infringements'
 
-export class ProfilePage.AccountStanding extends React.PureComponent
+export class AccountStanding extends React.PureComponent
   columns = ['date', 'action', 'length', 'description']
 
   render: ->
@@ -30,7 +32,7 @@ export class ProfilePage.AccountStanding extends React.PureComponent
 
     div
       className: 'page-extra'
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: false
+      el ExtraHeader, name: @props.name, withEdit: false
 
       if latest?
         div

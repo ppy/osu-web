@@ -24,7 +24,7 @@ import * as React from 'react'
 import { a, div, h1, h2, i, li, ol, p, span } from 'react-dom-factories'
 el = React.createElement
 
-export class ChangelogBuild.Main extends React.PureComponent
+export class Main extends React.PureComponent
   componentDidMount: =>
     changelogChartLoader.initialize()
 

@@ -23,7 +23,7 @@ import { div, a } from 'react-dom-factories'
 el = React.createElement
 bn = 'beatmap-score-top'
 
-export BeatmapsetPage.ScoreTop = (props) ->
+export ScoreTop = (props) ->
   topClasses = (props.modifiers ? [])
     .map (m) -> "#{bn}--#{m}"
     .join ' '

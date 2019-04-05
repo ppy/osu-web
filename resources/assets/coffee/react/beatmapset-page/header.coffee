@@ -16,6 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { BeatmapPicker } from './beatmap-picker'
+import { Stats } from './stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import { BigButton } from 'big-button'
 import { PlaymodeTabs } from 'playmode-tabs'
@@ -23,7 +25,7 @@ import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 el = React.createElement
 
-export class BeatmapsetPage.Header extends React.Component
+export class Header extends React.Component
   favouritesToShow: 50
   showFavourites: (event) =>
     target = event.currentTarget
@@ -79,7 +81,7 @@ export class BeatmapsetPage.Header extends React.Component
 
         div className: 'beatmapset-header__box beatmapset-header__box--main',
           div className: 'beatmapset-header__beatmap-picker-box',
-            el BeatmapsetPage.BeatmapPicker,
+            el BeatmapPicker,
               beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
               currentBeatmap: @props.currentBeatmap
 
@@ -189,7 +191,7 @@ export class BeatmapsetPage.Header extends React.Component
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
           div className: 'beatmapset-status beatmapset-status--show', @props.beatmapset.status
-          el BeatmapsetPage.Stats,
+          el Stats,
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap
             timeElapsed: @props.timeElapsed

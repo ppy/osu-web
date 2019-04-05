@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { MessageLengthCounter } from './message-length-counter'
 import { BigButton } from 'big-button'
 import * as React from 'react'
 import { button, div, input, label, p, i, span } from 'react-dom-factories'
@@ -23,7 +24,7 @@ el = React.createElement
 
 bn = 'beatmap-discussion-new'
 
-export class BeatmapDiscussions.NewDiscussion extends React.PureComponent
+export class NewDiscussion extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -123,7 +124,7 @@ export class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                       # FIXME: reason should be passed from beatmap state
                       osu.trans 'beatmaps.discussions.message_placeholder_deleted_beatmap'
 
-                el BeatmapDiscussions.MessageLengthCounter,
+                el MessageLengthCounter,
                   key: 'counter'
                   message: @state.message
                   isTimeline: @isTimeline()

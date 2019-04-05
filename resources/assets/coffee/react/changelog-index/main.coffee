@@ -30,7 +30,7 @@ groupChangelogBuilds = (builds) ->
     build.created_at.substr(0, 10)
 
 
-export class ChangelogIndex.Main extends React.PureComponent
+export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 

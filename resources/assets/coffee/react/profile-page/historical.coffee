@@ -16,13 +16,15 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { BeatmapPlaycount } from './beatmap-playcount'
+import { ExtraHeader } from './extra-header'
 import * as React from 'react'
 import { a, div, h2, h3, img, p, small, span } from 'react-dom-factories'
 import { ShowMoreLink } from 'show-more-link'
 el = React.createElement
 
 
-export class ProfilePage.Historical extends React.PureComponent
+export class Historical extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -52,7 +54,7 @@ export class ProfilePage.Historical extends React.PureComponent
     div
       className: 'page-extra'
 
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+      el ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       if @hasMonthlyPlaycounts()
         div null,
@@ -72,7 +74,7 @@ export class ProfilePage.Historical extends React.PureComponent
       if @props.beatmapPlaycounts?.length
         [
           for playcount in @props.beatmapPlaycounts
-            el ProfilePage.BeatmapPlaycount,
+            el BeatmapPlaycount,
               key: playcount.beatmap.id
               playcount: playcount
           el ShowMoreLink,

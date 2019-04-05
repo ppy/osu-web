@@ -16,13 +16,16 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { NewReply } from './new-reply'
+import { Post } from './post'
+import { SystemPost } from './system-post'
 import * as React from 'react'
 import { button, div, i, span } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'beatmap-discussion'
 
-export class BeatmapDiscussions.Discussion extends React.PureComponent
+export class Discussion extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -94,7 +97,7 @@ export class BeatmapDiscussions.Discussion extends React.PureComponent
               @post reply, 'reply'
 
           if @canBeRepliedTo()
-            el BeatmapDiscussions.NewReply,
+            el NewReply,
               currentUser: @props.currentUser
               beatmapset: @props.beatmapset
               currentBeatmap: @props.currentBeatmap

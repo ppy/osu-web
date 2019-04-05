@@ -107,6 +107,7 @@ let webpackConfig = {
     modules: [
       path.resolve(__dirname, 'resources/assets/coffee'),
       path.resolve(__dirname, 'resources/assets/lib'),
+      path.resolve(__dirname, 'resources/assets/coffee/react/_components'),
       path.resolve(__dirname, 'node_modules'),
     ],
     extensions: ['*', '.js', '.coffee', '.ts'],

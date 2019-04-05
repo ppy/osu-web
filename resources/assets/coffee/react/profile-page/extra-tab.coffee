@@ -20,7 +20,7 @@ import * as React from 'react'
 import { span } from 'react-dom-factories'
 el = React.createElement
 
-export class ProfilePage.ExtraTab extends React.PureComponent
+export class ExtraTab extends React.PureComponent
   render: =>
     className = 'page-mode-link page-mode-link--profile-page'
 
