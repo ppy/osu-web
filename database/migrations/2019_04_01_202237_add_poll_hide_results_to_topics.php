@@ -14,7 +14,7 @@ class AddPollHideResultsToTopics extends Migration
     public function up()
     {
         Schema::table('phpbb_topics', function (Blueprint $table) {
-            $table->boolean('poll_hide_results')->default(0);
+            $table->boolean('poll_hide_results')->after('poll_vote_change')->default(0);
         });
     }
 

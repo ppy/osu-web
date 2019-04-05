@@ -445,12 +445,12 @@ class TopicsController extends Controller
     private function getPollParams()
     {
         return get_params(request(), 'forum_topic_poll', [
+            'hide_results:bool',
             'length_days:int',
             'max_options:int',
             'options:string_split',
             'title',
             'vote_change:bool',
-            'hide_results:bool',
         ]);
     }
 
