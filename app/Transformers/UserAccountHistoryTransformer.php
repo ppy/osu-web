@@ -33,6 +33,7 @@ class UserAccountHistoryTransformer extends Fractal\TransformerAbstract
     {
         return [
             'description' => $h->reason,
+            'supporting_url' => $h->supporting_url,
             'type' => $h->type,
             'timestamp' => json_time($h->timestamp),
             'length' => $h->period,
