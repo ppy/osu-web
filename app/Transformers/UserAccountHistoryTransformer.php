@@ -27,13 +27,13 @@ class UserAccountHistoryTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'actor',
+        'supporting_url',
     ];
 
     public function transform(UserAccountHistory $h)
     {
         return [
             'description' => $h->reason,
-            'supporting_url' => $h->supporting_url,
             'type' => $h->type,
             'timestamp' => json_time($h->timestamp),
             'length' => $h->period,
@@ -45,5 +45,10 @@ class UserAccountHistoryTransformer extends Fractal\TransformerAbstract
         if ($h->actor !== null) {
             return $this->item($h->actor, new UserCompactTransformer);
         }
+    }
+
+    public function includeSupportingUrl(UserAccountHistory $h)
+    {
+        return $this->primitive($h->supporting_url);
     }
 }
