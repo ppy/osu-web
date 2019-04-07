@@ -562,6 +562,22 @@ class Beatmapset extends Model implements AfterCommit
             ->update(['approved' => $this->approved]);
     }
 
+    public function disqualify($user)
+    {
+        if (!$this->isQualified()) {
+            return false;
+        }
+
+        DB::transaction(function () use ($user) {
+            $this->setApproved('pending', $user);
+            $this->userRatings()->delete();
+
+            dispatch(new RemoveBeatmapsetBestScores($this));
+        });
+
+        return true;
+    }
+
     public function qualify($user)
     {
         if (!$this->isPending()) {

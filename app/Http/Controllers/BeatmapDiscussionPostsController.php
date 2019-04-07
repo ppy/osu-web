@@ -164,7 +164,7 @@ class BeatmapDiscussionPostsController extends Controller
                 }
 
                 if ($disqualify) {
-                    $discussion->beatmapset->setApproved('pending', Auth::user());
+                    $discussion->beatmapset->disqualify(Auth::user());
                 }
 
                 // feels like a controller shouldn't be calling refreshCache on a model?
