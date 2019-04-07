@@ -128,8 +128,7 @@ class BeatmapDiscussionPostsController extends Controller
             if ($resetNominations) {
                 $events[] = BeatmapsetEvent::NOMINATION_RESET;
             } else {
-                $disqualify = $discussion->beatmapset->isQualified() &&
-                    priv_check('BeatmapsetDisqualify', $discussion->beatmapset)->can();
+                $disqualify = priv_check('BeatmapsetDisqualify', $discussion->beatmapset)->can();
 
                 if ($disqualify) {
                     $events[] = BeatmapsetEvent::DISQUALIFY;
