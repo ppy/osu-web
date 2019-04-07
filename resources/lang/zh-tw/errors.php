@@ -35,7 +35,7 @@ return [
         'standard_converts_only' => '此遊戲模式下的圖譜難度尚未有分數。',
     ],
     'checkout' => [
-        'generic' => '',
+        'generic' => '處理您的訂單時發生錯誤。',
     ],
     'logged_out' => '您已登出，請登入後再試。',
     'supporter_only' => '您需要成為 osu!贊助者才能使用此功能 。',
