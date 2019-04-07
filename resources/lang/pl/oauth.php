@@ -23,7 +23,7 @@ return [
 
     'authorise' => [
         'authorise' => 'Autoryzuj',
-        'request' => 'pyta o pozwolenie na dostęp do twojego konta.',
+        'request' => 'żąda pozwolenia na dostęp do twojego konta.',
         'scopes_title' => 'Ta aplikacja będzie mogła:',
         'title' => 'Prośba o autoryzację',
 
@@ -35,7 +35,7 @@ return [
 
     'login' => [
         'download' => 'Kliknij tutaj, aby pobrać grę i utworzyć konto.',
-        'label' => 'Na początek zalogujmy się na twoje konto!',
+        'label' => 'Na początek zaloguj się na swoje konto!',
         'title' => 'Logowanie do konta',
     ],
 ];

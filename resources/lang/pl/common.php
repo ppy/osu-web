@@ -67,7 +67,7 @@ return [
         'hours' => ':count_delimited godzina|:count_delimited godziny|:count_delimited godzin',
         'item' => ':count_delimited sztuka|:count_delimited sztuki|:count_delimited sztuk',
         'minute_short_unit' => 'min|min|min',
-        'minutes' => ':count minuta|:count minuty|:count minut',
+        'minutes' => ':count_delimited minuta|:count_delimited minuty|:count_delimited minut',
         'months' => ':count_delimited miesiąc|:count_delimited miesiące|:count_delimited miesięcy',
         'second_short_unit' => 's|s|s',
         'years' => ':count_delimited rok|:count_delimited lata|:count_delimited lat',

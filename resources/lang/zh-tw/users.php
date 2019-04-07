@@ -182,7 +182,7 @@ return [
                     'title' => '墳場裡的譜面',
                 ],
                 'loved' => [
-                    'title' => '',
+                    'title' => '喜歡的譜面',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked 和 Approved 的譜面',

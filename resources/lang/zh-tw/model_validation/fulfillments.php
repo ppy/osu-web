@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => '目前的使用者名稱（:current）與要撤銷變更的使用者名稱不一致（:username）',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => '要獲得 osu!supporter 的標籤，你的贊助金額還不夠喔。 (:actual > :expected)',
     ],
 ];
