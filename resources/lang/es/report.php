@@ -20,7 +20,7 @@
 
 return [
     'scores' => [
-        'button' => 'Puntuación del reporte',
+        'button' => 'Reportar puntuación',
         'title' => 'mostrar puntuación de :username ?',
     ],
 
