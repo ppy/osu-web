@@ -40,7 +40,7 @@ class Notify implements ShouldQueue
     const BEATMAPSET_RESET_NOMINATIONS = 'beatmapset_reset_nominations';
     const FORUM_TOPIC_REPLY = 'forum_topic_reply';
 
-    private $event;
+    private $name;
     private $notifiable;
     private $object;
     private $params = [];
