@@ -64,7 +64,9 @@ class Notify implements ShouldQueue
 
     public function handle()
     {
-        $this->prepare();
+        $function = camel_case("on_{$this->name}");
+        $this->$function();
+
         $this->notifiable = $this->notifiable ?? $this->object;
         $this->params['name'] = $this->name;
 
@@ -187,11 +189,5 @@ class Notify implements ShouldQueue
         ];
 
         $this->params['created_at'] = $this->object->post_time;
-    }
-
-    private function prepare()
-    {
-        $function = camel_case("on_{$this->name}");
-        $this->$function();
     }
 }
