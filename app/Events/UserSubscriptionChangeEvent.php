@@ -44,7 +44,7 @@ class UserSubscriptionChangeEvent implements ShouldBroadcast
 
     public function broadcastAs()
     {
-        return 'change';
+        return $this->action;
     }
 
     /**
@@ -59,9 +59,6 @@ class UserSubscriptionChangeEvent implements ShouldBroadcast
 
     public function broadcastWith()
     {
-        return [
-            'action' => $this->action,
-            'channel' => $this->channelName,
-        ];
+        return ['channel' => $this->channelName];
     }
 }
