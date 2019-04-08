@@ -60,8 +60,8 @@ interface OsuCommon {
   transChoice: (key: string, count: number, replacements?: any, locale?: string) => string;
   urlPresence: (url?: string) => string;
   uuid: () => string;
-  formatNumber: (num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string) => string;
-  formatNumber: (num?: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string) => string | null;
+  formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
+  formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
 }
 
 interface Country {
