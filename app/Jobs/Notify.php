@@ -32,6 +32,14 @@ class Notify implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
+    const BEATMAPSET_DISCUSSION_POST_NEW = 'beatmapset_discussion_post_new';
+    const BEATMAPSET_DISQUALIFY = 'beatmapset_disqualify';
+    const BEATMAPSET_LOVE = 'beatmapset_love';
+    const BEATMAPSET_NOMINATE = 'beatmapset_nominate';
+    const BEATMAPSET_QUALIFY = 'beatmapset_qualify';
+    const BEATMAPSET_RESET_NOMINATIONS = 'beatmapset_reset_nominations';
+    const FORUM_TOPIC_REPLY = 'forum_topic_reply';
+
     private $event;
     private $notifiable;
     private $object;
@@ -47,9 +55,9 @@ class Notify implements ShouldQueue
             ->all();
     }
 
-    public function __construct($event, $object, $source)
+    public function __construct($name, $object, $source)
     {
-        $this->event = $event;
+        $this->name = $name;
         $this->object = $object;
         $this->source = $source;
     }
@@ -58,6 +66,7 @@ class Notify implements ShouldQueue
     {
         $this->prepare();
         $this->notifiable = $this->notifiable ?? $this->object;
+        $this->params['name'] = $this->name;
 
         if (is_array($this->receiverIds)) {
             switch (count($this->receiverIds)) {
@@ -93,8 +102,6 @@ class Notify implements ShouldQueue
 
     private function onBeatmapsetDiscussionPostNew()
     {
-        $this->params['name'] = Notification::NAME_BEATMAPSET_DISCUSSION_POST_NEW;
-
         $this->notifiable = $this->object->beatmapset;
         $this->receiverIds = static::beatmapsetReceiverIds($this->notifiable);
 
@@ -108,7 +115,6 @@ class Notify implements ShouldQueue
 
     private function onBeatmapsetDisqualify()
     {
-        $this->params['name'] = Notification::NAME_BEATMAPSET_DISQUALIFY;
         $this->receiverIds = static::beatmapsetReceiverIds($this->object);
 
         $this->params['details'] = [
@@ -120,7 +126,6 @@ class Notify implements ShouldQueue
 
     private function onBeatmapsetLove()
     {
-        $this->params['name'] = Notification::NAME_BEATMAPSET_LOVE;
         $this->receiverIds = static::beatmapsetReceiverIds($this->object);
 
         $this->params['details'] = [
@@ -132,7 +137,6 @@ class Notify implements ShouldQueue
 
     private function onBeatmapsetNominate()
     {
-        $this->params['name'] = Notification::NAME_BEATMAPSET_NOMINATE;
         $this->receiverIds = static::beatmapsetReceiverIds($this->object);
 
         $this->params['details'] = [
@@ -144,7 +148,6 @@ class Notify implements ShouldQueue
 
     private function onBeatmapsetQualify()
     {
-        $this->params['name'] = Notification::NAME_BEATMAPSET_QUALIFY;
         $this->receiverIds = static::beatmapsetReceiverIds($this->object);
 
         $this->params['details'] = [
@@ -156,7 +159,6 @@ class Notify implements ShouldQueue
 
     private function onBeatmapsetResetNominations()
     {
-        $this->params['name'] = Notification::NAME_BEATMAPSET_RESET_NOMINATIONS;
         $this->receiverIds = static::beatmapsetReceiverIds($this->object);
 
         $this->params['details'] = [
@@ -168,7 +170,6 @@ class Notify implements ShouldQueue
 
     private function onForumTopicReply()
     {
-        $this->params['name'] = Notification::NAME_FORUM_TOPIC_REPLY;
         $this->notifiable = $this->object->topic;
 
         $this->receiverIds = $this->object
@@ -190,7 +191,7 @@ class Notify implements ShouldQueue
 
     private function prepare()
     {
-        $function = "on{$this->event}";
+        $function = camel_case("on_{$this->name}");
         $this->$function();
     }
 }

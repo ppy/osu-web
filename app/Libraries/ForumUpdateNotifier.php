@@ -33,7 +33,7 @@ class ForumUpdateNotifier
 
     public static function onReply($data)
     {
-        dispatch(new Notify('ForumTopicReply', $data['post'], $data['user']));
+        dispatch(new Notify(Notify::FORUM_TOPIC_REPLY, $data['post'], $data['user']));
         dispatch(new NotifyForumUpdateMail($data));
 
         (new NotifyForumUpdateSlack($data, 'reply'))->dispatchIfNeeded();
