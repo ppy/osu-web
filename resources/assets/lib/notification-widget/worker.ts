@@ -18,9 +18,9 @@
 
 import * as _ from 'lodash';
 import {computed, observable} from 'mobx';
-import NotificationJson from '../interfaces/notification-json';
-import XHRCollection from '../interfaces/xhr-collection';
-import Notification from '../models/notification';
+import NotificationJson from 'interfaces/notification-json';
+import XHRCollection from 'interfaces/xhr-collection';
+import Notification from 'models/notification';
 
 interface NotificationBundleJson {
   has_more: boolean;

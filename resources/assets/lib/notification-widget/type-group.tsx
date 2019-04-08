@@ -19,7 +19,7 @@
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import Notification from '../models/notification';
+import Notification from 'models/notification';
 import CategoryGroup from './category-group';
 import Worker from './worker';
 
