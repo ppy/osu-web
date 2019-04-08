@@ -24,6 +24,7 @@ use App\Events\NewNotificationEvent;
 use App\Models\Notification;
 use App\Models\User;
 use DB;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
@@ -65,6 +66,11 @@ class Notify implements ShouldQueue
     public function handle()
     {
         $function = camel_case("on_{$this->name}");
+        if (!method_exists($this, $function)) {
+            log_error(new Exception('Invalid event name: '.$this->name));
+
+            return;
+        }
         $this->$function();
 
         $this->notifiable = $this->notifiable ?? $this->object;
