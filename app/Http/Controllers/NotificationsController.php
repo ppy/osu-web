@@ -21,7 +21,6 @@
 namespace App\Http\Controllers;
 
 use App\Events\NotificationReadEvent;
-use App\Models\Notification;
 
 class NotificationsController extends Controller
 {
