@@ -62,7 +62,7 @@ export default class Worker {
   @observable loadingMore: boolean = false;
   @observable pmNotification = new Notification(-1);
   userId: number | null = null;
-  private active: boolean = false;
+  @observable private active: boolean = false;
   private timeout: TimeoutCollection = {};
   private ws?: WebSocket;
   private xhr: XHRCollection = {};
@@ -148,6 +148,10 @@ export default class Worker {
     } else if (isNotificationEventReadJson(data)) {
       this.markRead(data.data.ids);
     }
+  }
+
+  isActive = () => {
+    return this.active;
   }
 
   loadMore = () => {

@@ -38,7 +38,7 @@ export default class Main extends React.Component<Props, {}> {
   }
 
   render() {
-    if (currentUser.id == null) {
+    if (!this.props.worker.isActive()) {
       return null;
     }
 
