@@ -938,6 +938,20 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkForumTopicCoverStore($user, $forum)
+    {
+        $prefix = 'forum.topic_cover.store.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if (!$forum->allow_topic_covers && !$this->doCheckUser($user, 'ForumModerate', $forum)->can()) {
+            return $prefix.'forum_not_allowed';
+        }
+
+        return 'ok';
+    }
+
     public function checkForumTopicPollEdit($user, $topic)
     {
         if ($this->doCheckUser($user, 'ForumModerate', $topic->forum)->can()) {
