@@ -923,16 +923,27 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($cover->topic !== null) {
-            return $this->checkForumTopicEdit($user, $cover->topic);
-        }
-
         if ($cover->owner() === null) {
             return $prefix.'uneditable';
         }
 
         if ($cover->owner()->user_id !== $user->user_id) {
             return $prefix.'not_owner';
+        }
+
+        return 'ok';
+    }
+
+    public function checkForumTopicCoverEditByTopic($user, $topic)
+    {
+        $forumTopicCoverStorePermission = $this->doCheckUser($user, 'ForumTopicCoverStore', $topic->forum);
+        if (!$forumTopicCoverStorePermission->can()) {
+            return $forumTopicCoverStorePermission->rawMessage();
+        }
+
+        $forumTopicEditPermission = $this->doCheckUser($user, 'ForumTopicEdit', $topic);
+        if (!$forumTopicEditPermission->can()) {
+            return $forumTopicEditPermission->rawMessage();
         }
 
         return 'ok';
