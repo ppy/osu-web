@@ -16,12 +16,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { UserJSON } from 'chat/chat-api-responses';
 import ChatOrchestrator from 'chat/chat-orchestrator';
 import ChatWorker from 'chat/chat-worker';
 import RootDataStore from 'stores/root-data-store';
 import UserLoginObserver from 'user-login-observer';
 import Dispatcher from './dispatcher';
 import WindowFocusObserver from './window-focus-observer';
+
+declare global {
+  interface Window {
+    currentUser: UserJSON;
+  }
+}
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
@@ -43,8 +50,18 @@ export default class OsuCore {
     this.userLoginObserver = new UserLoginObserver(this.window, this.dispatcher);
     this.windowFocusObserver = new WindowFocusObserver(this.window, this.dispatcher);
 
-    if (currentUser !== null) {
-      this.dataStore.userStore.getOrCreate(currentUser.id, currentUser);
-    }
+    // script could load before currentUser is set, so wait until page loaded.
+    $(document).on('turbolinks:load.osu-core', () => {
+      if (window.currentUser != null) {
+        this.dataStore.userStore.getOrCreate(window.currentUser.id, window.currentUser);
+      }
+      $(document).off('turbolinks:load.osu-core');
+    });
+
+    $.subscribe('user:update', this.setUser);
+  }
+
+  private setUser(event: JQuery.Event, user: UserJSON) {
+    this.dataStore.userStore.getOrCreate(user.id, user);
   }
 }
