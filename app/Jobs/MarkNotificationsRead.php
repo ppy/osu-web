@@ -22,13 +22,13 @@ namespace App\Jobs;
 
 use App\Events\NotificationReadEvent;
 use App\Libraries\MorphMap;
+use App\Models\Beatmapset;
+use App\Models\Forum\Post as ForumPost;
 use App\Models\Notification;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
-use Exception;
-use App\Models\Beatmapset;
-use App\Models\Forum\Post as ForumPost;
 
 class MarkNotificationsRead implements ShouldQueue
 {
