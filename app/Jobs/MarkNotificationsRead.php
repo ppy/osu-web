@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Jobs\MarkNotificationsRead;
+namespace App\Jobs;
 
 use App\Events\NotificationReadEvent;
 use App\Libraries\MorphMap;
@@ -26,32 +26,65 @@ use App\Models\Notification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
+use Exception;
+use App\Models\Beatmapset;
+use App\Models\Forum\Post as ForumPost;
 
-class ForumTopic implements ShouldQueue
+class MarkNotificationsRead implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    private $post;
+    private $notifiable;
+    private $notificationTime;
+    private $object;
     private $user;
 
-    public function __construct($post, $user)
+    public function __construct($object, $user)
     {
-        $this->post = $post;
+        $this->object = $object;
         $this->user = $user;
+    }
+
+    public function forForumPost()
+    {
+        $this->notifiable = $this->object->topic()->withTrashed()->first();
+
+        if ($this->notifiable === null) {
+            throw new Exception("Can't find topic {$this->object->getKey()} of post {$this->object->getKey()}");
+        }
+
+        $this->notificationTime = $this->object->post_time;
     }
 
     public function handle()
     {
-        $topic = $this->post->topic()->withTrashed()->first();
+        try {
+            if ($this->object instanceof Beatmapset) {
+                // do nothing
+            } elseif ($this->object instanceof ForumPost) {
+                $this->forForumPost();
+            } else {
+                throw new Exception('Unknown object to be marked as read: '.get_class($this->object));
+            }
+        } catch (Exception $e) {
+            log_error($e);
 
-        if ($topic === null) {
             return;
         }
 
+        if (!isset($this->notifiable)) {
+            $this->notifiable = $this->object;
+        }
+
+        if (!isset($this->notificationTime)) {
+            $this->notificationTime = now();
+        }
+
         $notifications = Notification
-            ::where('notifiable_type', '=', MorphMap::getType($topic))
-            ->where('notifiable_id', '=', $topic->getKey())
-            ->where('created_at', '<=', $this->post->post_time);
+            ::where('notifiable_type', '=', MorphMap::getType($this->notifiable))
+            ->where('notifiable_id', '=', $this->notifiable->getKey())
+            ->where('created_at', '<=', $this->notificationTime);
+
         $userNotifications = $this->user
             ->userNotifications()
             ->where('is_read', '=', false)
