@@ -23,6 +23,7 @@ import { BigButton } from 'big-button'
 import { PlaymodeTabs } from 'playmode-tabs'
 import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
+import { UserAvatar } from 'user-avatar'
 el = React.createElement
 
 export class Header extends React.Component

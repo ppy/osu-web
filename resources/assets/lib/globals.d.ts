@@ -22,19 +22,9 @@ declare var currentUser: any;
 declare var reactTurbolinks: any;
 declare var userVerification: any;
 
-// external (to typescript) react components
-declare var BigButton: any;
-declare var Comments: any;
-declare var CommentsManager: any;
-declare var FlagCountry: any;
-declare var FriendButton: any;
-declare var Img2x: any;
+// external (to typescript) classes
 declare var LoadingOverlay: any;
-declare var ShowMoreLink: any;
-declare var Spinner: any;
-declare var SupporterIcon: any;
 declare var Timeout: any;
-declare var UserAvatar: any;
 
 // Global object types
 interface Comment {

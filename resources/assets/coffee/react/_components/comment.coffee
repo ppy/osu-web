@@ -22,6 +22,7 @@ import * as React from 'react'
 import { a, button, div, span, textarea } from 'react-dom-factories'
 import { ReportComment } from 'report-comment'
 import { Spinner } from 'spinner'
+import { UserAvatar } from 'user-avatar'
 
 el = React.createElement
 

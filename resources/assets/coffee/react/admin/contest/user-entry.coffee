@@ -19,6 +19,7 @@
 import { UserEntryDeleteButton } from './user-entry-delete-button'
 import * as React from 'react'
 import { tr, td, a, div } from 'react-dom-factories'
+import { UserAvatar } from 'user-avatar'
 el = React.createElement
 
 export class UserEntry extends React.Component
