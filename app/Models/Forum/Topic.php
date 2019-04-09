@@ -762,19 +762,6 @@ class Topic extends Model implements AfterCommit
         }
     }
 
-    public function setCover($path, $user)
-    {
-        if ($this->cover === null) {
-            TopicCover::upload($path, $user, $this);
-        } else {
-            $this->cover->storeFile($path);
-            $this->cover->user()->associate($user);
-            $this->cover->save();
-        }
-
-        return $this->fresh();
-    }
-
     public function lock($lock = true)
     {
         $this->update([
