@@ -97,7 +97,8 @@ export default class Worker {
       url = `${protocol}//${window.location.host}/home/notifications/live`;
     }
     this.ws = new WebSocket(`${url}?csrf=${token}`);
-    this.ws.onclose = this.delayedConnectWebSocket;
+    this.ws.onclose = this.destroy;
+    this.ws.onerror = this.delayedConnectWebSocket;
     this.ws.onmessage = this.handleNewEvent;
   }
 
@@ -119,6 +120,7 @@ export default class Worker {
 
   destroy = () => {
     this.active = false;
+    this.items = observable.map();
     _.forEach(this.xhr, (xhr) => xhr.abort());
     _.forEach(this.timeout, (timeout) => clearTimeout(timeout));
 
