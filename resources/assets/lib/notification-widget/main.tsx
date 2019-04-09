@@ -58,6 +58,7 @@ export default class Main extends React.Component<Props, {}> {
         <div
           className='notification-popup js-click-menu js-nav2--centered-popup'
           data-click-menu-id={this.menuId}
+          data-visibility='hidden'
         >
           <div className='notification-popup__scroll-container'>
             {this.renderTypeGroup()}
