@@ -99,26 +99,26 @@ $(document).on 'keydown', (e) ->
   $.publish 'key:esc' if e.keyCode == 27
 
 # Globally init countdown timers
-reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
+reactTurbolinks.register 'countdownTimer', _exported.CountdownTimer, (e) ->
   deadline: e.dataset.deadline
 
 # Globally init friend buttons
-reactTurbolinks.register 'friendButton', FriendButton, (target) ->
+reactTurbolinks.register 'friendButton', _exported.FriendButton, (target) ->
   container: target
   userId: parseInt(target.dataset.target)
 
 # Globally init block buttons
-reactTurbolinks.register 'blockButton', BlockButton, (target) ->
+reactTurbolinks.register 'blockButton', _exported.BlockButton, (target) ->
   container: target
   userId: parseInt(target.dataset.target)
 
-reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
+reactTurbolinks.register 'beatmapset-panel', _exported.BeatmapsetPanel, (el) ->
   JSON.parse(el.dataset.beatmapsetPanel)
 
 reactTurbolinks.register 'spotlight-select-options', _exported.SpotlightSelectOptions, ->
   osu.parseJson 'json-spotlight-select-options'
 
-reactTurbolinks.register 'comments', CommentsManager, (el) ->
+reactTurbolinks.register 'comments', _exported.CommentsManager, (el) ->
   props = JSON.parse(el.dataset.props)
   props.component = Comments
 

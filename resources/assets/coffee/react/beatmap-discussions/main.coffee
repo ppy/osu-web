@@ -21,6 +21,7 @@ import { Events } from './events'
 import { Header } from './header'
 import { ModeSwitcher } from './mode-switcher'
 import { NewDiscussion } from './new-discussion'
+import { BackToTop } from 'back-to-top'
 import * as React from 'react'
 import { a, div, h1, p } from 'react-dom-factories'
 el = React.createElement
@@ -150,7 +151,7 @@ export class Main extends React.PureComponent
             readPostIds: @state.readPostIds
             users: @users()
 
-      el window._exported.BackToTop
+      el BackToTop
 
 
   beatmaps: =>

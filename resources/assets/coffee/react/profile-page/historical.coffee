@@ -18,6 +18,7 @@
 
 import { BeatmapPlaycount } from './beatmap-playcount'
 import { ExtraHeader } from './extra-header'
+import { PlayDetailList } from 'play-detail-list'
 import * as React from 'react'
 import { a, div, h2, h3, img, p, small, span } from 'react-dom-factories'
 import { ShowMoreLink } from 'show-more-link'
@@ -99,7 +100,7 @@ export class Historical extends React.PureComponent
 
       if @props.scoresRecent?.length
         [
-          el window._exported.PlayDetailList, key: 'play-detail-list', scores: @props.scoresRecent
+          el PlayDetailList, key: 'play-detail-list', scores: @props.scoresRecent
 
           el ShowMoreLink,
             key: 'show-more-row'

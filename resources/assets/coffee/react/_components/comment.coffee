@@ -20,6 +20,7 @@ import { CommentEditor } from 'comment-editor'
 import { CommentShowMore } from 'comment-show-more'
 import * as React from 'react'
 import { a, button, div, span, textarea } from 'react-dom-factories'
+import { ReportComment } from 'report-comment'
 import { Spinner } from 'spinner'
 
 el = React.createElement
@@ -191,7 +192,7 @@ export class Comment extends React.PureComponent
 
             if @canReport()
               div className: 'comment__row-item',
-                el _exported.ReportComment,
+                el ReportComment,
                   className: 'comment__action'
                   comment: @props.comment
                   user: @userFor(@props.comment)

@@ -21,6 +21,7 @@ import { BlockButton } from 'block-button'
 import { FriendButton } from 'friend-button'
 import * as React from 'react'
 import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-factories'
+import { ReportUser } from 'report-user'
 el = React.createElement
 
 
@@ -113,7 +114,7 @@ export class DetailBar extends React.PureComponent
         modifiers: ['inline']
       items.push blockButton
 
-      reportButton = el _exported.ReportUser,
+      reportButton = el ReportUser,
         key: 'report'
         user: @props.user
         wrapperClass: 'simple-menu__item'

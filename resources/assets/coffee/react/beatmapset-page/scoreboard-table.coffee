@@ -19,6 +19,7 @@
 import { ScoreboardTableRow } from './scoreboard-table-row'
 import * as React from 'react'
 import { a, div, table, tr, th, thead, tbody } from 'react-dom-factories'
+import { activeKeyDidChange, ContainerContext, KeyContext } from 'stateful-activation-context'
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
@@ -26,7 +27,7 @@ export class ScoreboardTable extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @activeKeyDidChange = _exported.activeKeyDidChange.bind(@)
+    @activeKeyDidChange = activeKeyDidChange.bind(@)
 
     @state = {}
 
@@ -34,7 +35,7 @@ export class ScoreboardTable extends React.PureComponent
   render: =>
     classMods = ['menu-active'] if @state.activeKey?
 
-    el _exported.ContainerContext.Provider,
+    el ContainerContext.Provider,
       value:
         activeKeyDidChange: @activeKeyDidChange
 
@@ -59,7 +60,7 @@ export class ScoreboardTable extends React.PureComponent
 
           tbody className: "#{bn}__body",
             @props.scores.map (score, index) =>
-              el _exported.KeyContext.Provider,
+              el KeyContext.Provider,
                 key: index
                 value: index
                 el ScoreboardTableRow,

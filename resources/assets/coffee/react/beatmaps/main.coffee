@@ -19,12 +19,13 @@
 import { Paginator } from './paginator'
 import { SearchPanel } from './search-panel'
 import { SearchSort } from './search-sort'
+import { BackToTop } from 'back-to-top'
 import { BeatmapsetPanel } from 'beatmapset-panel'
 import { Img2x } from 'img2x'
 import * as React from 'react'
 import { a, div, p } from 'react-dom-factories'
+import VirtualList from 'react-virtual-list'
 el = React.createElement
-VirtualList = window.VirtualList
 
 ITEM_HEIGHT = 205 # needs to be known in advance to calculate size of virtual scrolling area.
 
@@ -169,7 +170,7 @@ export class Main extends React.PureComponent
             div className: 'beatmapsets__paginator',
               el(Paginator, @state.paging)
 
-      el window._exported.BackToTop,
+      el BackToTop,
         anchor: @backToTopAnchor
         ref: @backToTop
 
