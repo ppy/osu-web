@@ -21,7 +21,7 @@
 return [
     'header' => [
         'small' => '享受遊戲以外的競賽體驗。',
-        'large' => '',
+        'large' => '社群賽事',
     ],
     'voting' => [
         'over' => '這場評選的投票已經結束',
@@ -32,9 +32,9 @@ return [
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => '投他一票',
+            'remove' => '取消投票',
+            'used_up' => '您的票已經用光了。',
         ],
     ],
     'entry' => [
@@ -45,7 +45,7 @@ return [
         'over' => '感謝參與！提交已經關閉，投票即將開始。',
         'limit_reached' => '您提交的參賽文件大小超出限制',
         'drop_here' => '將您的參賽文件拖到此處',
-        'download' => '',
+        'download' => '下載 .osz 檔案',
         'wrong_type' => [
             'art' => '只接受 .jpg 和 .png 格式的文件.',
             'beatmap' => '只接受 .osu 格式的文件.',

@@ -55,6 +55,10 @@ class ChangeUsername
             return $this->validationErrors()->addTranslated('user_id', 'This user cannot be renamed');
         }
 
+        if ($this->user->isRestricted()) {
+            return $this->validationErrors()->add('username', '.change_username.restricted');
+        }
+
         if (!$this->user->hasSupported()) {
             return $this->validationErrors()->addTranslated('username', static::requireSupportedMessage());
         }

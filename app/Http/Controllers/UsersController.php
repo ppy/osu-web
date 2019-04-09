@@ -268,6 +268,7 @@ class UsersController extends Controller
 
         if (priv_check('UserSilenceShowExtendedInfo')->can() && !is_api_request()) {
             $userIncludes[] = 'account_history.actor';
+            $userIncludes[] = 'account_history.supporting_url';
         }
 
         $userArray = json_item(

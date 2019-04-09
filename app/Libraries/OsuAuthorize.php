@@ -954,6 +954,25 @@ class OsuAuthorize
         }
     }
 
+    public function checkForumTopicPollShowResults($user, $topic)
+    {
+        if (!$topic->poll_hide_results) {
+            return 'ok';
+        }
+
+        if ($this->doCheckUser($user, 'ForumModerate', $topic->forum)->can()) {
+            return 'ok';
+        }
+
+        if ($topic->pollEnd() === null || $topic->pollEnd()->isPast()) {
+            return 'ok';
+        }
+
+        if ($user !== null && $topic->posts()->withTrashed()->first()->poster_id === $user->user_id) {
+            return 'ok';
+        }
+    }
+
     public function checkForumTopicVote($user, $topic)
     {
         $prefix = 'forum.topic.vote.';

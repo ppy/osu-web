@@ -45,7 +45,10 @@ class TopicPoll
     public function fill($params)
     {
         $this->params = array_merge([
+            'hide_results' => false,
+            'length_days' => 0,
             'max_options' => 1,
+            'vote_change' => false,
         ], $params);
         $this->validated = false;
 
@@ -82,6 +85,10 @@ class TopicPoll
                 $this->validationErrors()->add('max_options', '.invalid_max_options');
             }
 
+            if ($this->params['hide_results'] && $this->params['length_days'] === 0) {
+                $this->validationErrors()->add('hide_results', '.hiding_results_forever');
+            }
+
             if ($this->topic !== null && $this->topic->exists && !$this->canEdit()) {
                 $this->validationErrors()->add(
                     'edit',
@@ -104,9 +111,10 @@ class TopicPoll
             $this->topic->update([
                 'poll_title' => $this->params['title'],
                 'poll_start' => Carbon::now(),
-                'poll_length' => ($this->params['length_days'] ?? 0) * 3600 * 24,
+                'poll_length' => $this->params['length_days'] * 3600 * 24,
                 'poll_max_options' => $this->params['max_options'],
-                'poll_vote_change' => $this->params['vote_change'] ?? false,
+                'poll_vote_change' => $this->params['vote_change'],
+                'poll_hide_results' => $this->params['hide_results'],
             ]);
 
             $this

@@ -106,6 +106,28 @@
             <span class="simple-form__info">{{ trans('forum.topics.create.poll.vote_change_info') }}</span>
         </div>
     </label>
+
+    <label class="simple-form__row">
+        <div class="simple-form__label simple-form__label--full">
+            <div class="osu-checkbox">
+                <input
+                    class="osu-checkbox__input"
+                    name="forum_topic_poll[hide_results]"
+                    type="checkbox"
+                    @if (optional($topic)->poll_hide_results)
+                        checked
+                    @endif
+                />
+                <span class="osu-checkbox__box"></span>
+                <span class="osu-checkbox__tick">
+                    <i class="fas fa-check"></i>
+                </span>
+            </div>
+
+            {{ trans('forum.topics.create.poll.hide_results') }}
+            <span class="simple-form__info">{{ trans('forum.topics.create.poll.hide_results_info') }}</span>
+        </div>
+    </label>
 </div>
 
 @if (!$edit)
