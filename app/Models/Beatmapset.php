@@ -535,6 +535,7 @@ class Beatmapset extends Model implements AfterCommit
     public function setApproved($state, $user)
     {
         $currentTime = Carbon::now();
+        $newApproved = static::STATES[$state];
 
         if ($this->isQualified() && $state === 'pending') {
             $this->previous_queue_duration = ($this->queued_at ?? $this->approved_date)->diffinSeconds();
@@ -545,7 +546,13 @@ class Beatmapset extends Model implements AfterCommit
             $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
         }
 
-        $this->approved = static::STATES[$state];
+        // if isScoreable() will change
+        if ($this->isScoreable() !== ($newApproved > 0)) {
+            $this->userRatings()->delete();
+            dispatch(new RemoveBeatmapsetBestScores($this));
+        }
+
+        $this->approved = $newApproved;
 
         if ($this->approved > 0) {
             $this->approved_date = $currentTime;
@@ -570,9 +577,6 @@ class Beatmapset extends Model implements AfterCommit
 
         DB::transaction(function () use ($user) {
             $this->setApproved('pending', $user);
-            $this->userRatings()->delete();
-
-            dispatch(new RemoveBeatmapsetBestScores($this));
         });
 
         return true;
@@ -588,7 +592,6 @@ class Beatmapset extends Model implements AfterCommit
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
 
             $this->setApproved('qualified', $user);
-            $this->userRatings()->delete();
 
             // global event
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
@@ -596,9 +599,6 @@ class Beatmapset extends Model implements AfterCommit
             // enqueue a cover check job to ensure cover images are all present
             $job = (new CheckBeatmapsetCovers($this))->onQueue('beatmap_high');
             dispatch($job);
-
-            // remove current scores
-            dispatch(new RemoveBeatmapsetBestScores($this));
         });
 
         return true;
@@ -650,12 +650,10 @@ class Beatmapset extends Model implements AfterCommit
         $this->getConnection()->transaction(function () use ($user) {
             $this->events()->create(['type' => BeatmapsetEvent::LOVE, 'user_id' => $user->user_id]);
             $this->setApproved('loved', $user);
-            $this->userRatings()->delete();
 
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
 
             dispatch((new CheckBeatmapsetCovers($this))->onQueue('beatmap_high'));
-            dispatch(new RemoveBeatmapsetBestScores($this));
         });
 
         return [
