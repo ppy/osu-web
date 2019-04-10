@@ -72,7 +72,7 @@ export default class Item extends React.Component<Props, State> {
       blockClass += ' notification-popup-item--multi';
     }
 
-    return <div className='notification-popup-item'>
+    return <div className='notification-popup-item clickable-row'>
       <div
         className='notification-popup-item__cover'
         style={{
@@ -174,7 +174,7 @@ export default class Item extends React.Component<Props, State> {
       message = osu.transChoice(`notifications.message_multi`, this.props.items.length, replacements);
     }
 
-    return <a href={this.url()} className='notification-popup-item__message'>
+    return <a href={this.url()} className='notification-popup-item__message clickable-row-link'>
       {message}
     </a>;
   }
