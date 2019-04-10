@@ -18,9 +18,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Traits;
+namespace App\Events;
 
-trait NotificationEventQueue
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+
+abstract class NotificationEventBase implements ShouldBroadcast
 {
-    public $connection = 'redis-notification';
+    public $connection;
+
+    public function __construct()
+    {
+        $this->connection = config('osu.notification.queue_connection');
+    }
 }

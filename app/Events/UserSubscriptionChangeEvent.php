@@ -21,14 +21,10 @@
 namespace App\Events;
 
 use App\Models\Notification;
-use App\Traits\NotificationEventQueue;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class UserSubscriptionChangeEvent implements ShouldBroadcast
+class UserSubscriptionChangeEvent extends NotificationEventBase
 {
-    use NotificationEventQueue;
-
     public $action;
     public $userId;
     public $channelName;
@@ -40,6 +36,8 @@ class UserSubscriptionChangeEvent implements ShouldBroadcast
      */
     public function __construct($action, $user, $notifiable)
     {
+        parent::__construct();
+
         $this->action = $action;
         $this->userId = $user->getKey();
         $this->channelName = Notification::generateChannelName($notifiable);

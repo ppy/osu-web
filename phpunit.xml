@@ -19,5 +19,6 @@
         <env name="APP_ENV" value="testing"/>
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
+        <env name="NOTIFICATION_QUEUE_CONNECTION" value="sync"/>
     </php>
 </phpunit>

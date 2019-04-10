@@ -20,14 +20,12 @@
 
 namespace App\Events;
 
-use App\Traits\NotificationEventQueue;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Queue\SerializesModels;
 
-class NewNotificationEvent implements ShouldBroadcast
+class NewNotificationEvent extends NotificationEventBase
 {
-    use NotificationEventQueue, SerializesModels;
+    use SerializesModels;
 
     public $notification;
     public $connection = 'redis-notification';
@@ -39,6 +37,8 @@ class NewNotificationEvent implements ShouldBroadcast
      */
     public function __construct($notification)
     {
+        parent::__construct();
+
         $this->notification = $notification;
     }
 

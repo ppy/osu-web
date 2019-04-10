@@ -20,14 +20,10 @@
 
 namespace App\Events;
 
-use App\Traits\NotificationEventQueue;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class UserLogoutEvent implements ShouldBroadcast
+class UserLogoutEvent extends NotificationEventBase
 {
-    use NotificationEventQueue;
-
     public $action;
     public $userId;
     public $channelName;
@@ -39,6 +35,8 @@ class UserLogoutEvent implements ShouldBroadcast
      */
     public function __construct($userId, $sessionKeys)
     {
+        parent::__construct();
+
         $this->userId = $userId;
         $this->sessionKeys = $sessionKeys;
     }

@@ -20,14 +20,13 @@
 
 namespace App\Events;
 
-use App\Traits\NotificationEventQueue;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Queue\SerializesModels;
 
-class NotificationReadEvent implements ShouldBroadcastNow
+class NotificationReadEvent extends NotificationEventBase implements ShouldBroadcastNow
 {
-    use NotificationEventQueue, SerializesModels;
+    use SerializesModels;
 
     public $notificationIds;
     public $userId;
@@ -39,6 +38,8 @@ class NotificationReadEvent implements ShouldBroadcastNow
      */
     public function __construct($userId, $notificationIds)
     {
+        parent::__construct();
+
         $this->notificationIds = $notificationIds;
         $this->userId = $userId;
     }
