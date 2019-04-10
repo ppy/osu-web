@@ -129,10 +129,6 @@ class BeatmapDiscussionPostsController extends Controller
                 $events[] = BeatmapsetEvent::NOMINATION_RESET;
             } else {
                 $disqualify = priv_check('BeatmapsetDisqualify', $discussion->beatmapset)->can();
-
-                if ($disqualify) {
-                    $events[] = BeatmapsetEvent::DISQUALIFY;
-                }
             }
         }
 
@@ -163,7 +159,7 @@ class BeatmapDiscussionPostsController extends Controller
                 }
 
                 if ($disqualify) {
-                    $discussion->beatmapset->disqualify(Auth::user());
+                    $discussion->beatmapset->disqualify(Auth::user(), $posts[0]);
                 }
 
                 // feels like a controller shouldn't be calling refreshCache on a model?

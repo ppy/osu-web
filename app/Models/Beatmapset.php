@@ -569,13 +569,15 @@ class Beatmapset extends Model implements AfterCommit
             ->update(['approved' => $this->approved]);
     }
 
-    public function disqualify($user)
+    public function disqualify($user, $post)
     {
         if (!$this->isQualified()) {
             return false;
         }
 
         DB::transaction(function () use ($user) {
+            BeatmapsetEvent::log(BeatmapsetEvent::DISQUALIFY, $user, $post)->saveOrExplode();
+
             $this->setApproved('pending', $user);
         });
 
