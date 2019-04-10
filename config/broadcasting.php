@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('BROADCAST_DRIVER', 'redis'),
+    'default' => env('BROADCAST_DRIVER', 'log'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,11 @@ return [
 
         'redis' => [
             'driver' => 'redis',
-            'connection' => 'broadcast',
+        ],
+
+        'redis-notification' => [
+            'driver' => 'redis',
+            'connection' => 'notification',
         ],
 
         'log' => [

@@ -20,15 +20,17 @@
 
 namespace App\Events;
 
+use App\Traits\NotificationEventConnection;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Queue\SerializesModels;
 
 class NewNotificationEvent implements ShouldBroadcast
 {
-    use SerializesModels;
+    use NotificationEventConnection, SerializesModels;
 
     public $notification;
+    public $connection = 'redis-notification';
 
     /**
      * Create a new event instance.

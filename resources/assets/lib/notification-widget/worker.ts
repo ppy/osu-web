@@ -91,7 +91,7 @@ export default class Worker {
     }
 
     const token = tokenEl.getAttribute('content');
-    let url = process.env.WEBSOCKET_URL;
+    let url = process.env.NOTIFICATION_ENDPOINT;
     if (url == null) {
       const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
       url = `${protocol}//${window.location.host}/home/notifications/live`;

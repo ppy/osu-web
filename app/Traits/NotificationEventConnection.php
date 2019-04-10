@@ -20,10 +20,7 @@
 
 namespace App\Traits;
 
-trait NotificationQueue
+trait NotificationEventConnection
 {
-    public function dispatch()
-    {
-        dispatch($this->onConnection('redis-notification'));
-    }
+    public $connection = 'redis-notification';
 }

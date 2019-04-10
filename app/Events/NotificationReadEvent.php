@@ -20,13 +20,14 @@
 
 namespace App\Events;
 
+use App\Traits\NotificationEventConnection;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Queue\SerializesModels;
 
 class NotificationReadEvent implements ShouldBroadcastNow
 {
-    use SerializesModels;
+    use NotificationEventConnection, SerializesModels;
 
     public $notificationIds;
     public $userId;

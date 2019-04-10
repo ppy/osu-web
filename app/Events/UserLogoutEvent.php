@@ -20,11 +20,14 @@
 
 namespace App\Events;
 
+use App\Traits\NotificationEventConnection;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class UserLogoutEvent implements ShouldBroadcast
 {
+    use NotificationEventConnection;
+
     public $action;
     public $userId;
     public $channelName;
