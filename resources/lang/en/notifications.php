@@ -55,7 +55,7 @@ return [
             '_' => 'Private message',
 
             'legacy_pm' => [
-                '_' => 'Arrival',
+                '_' => 'Legacy forum PM',
                 'legacy_pm' => ':count_delimited unread message.|:count_delimited unread messages.',
             ],
         ],
