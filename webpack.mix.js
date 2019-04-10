@@ -100,6 +100,17 @@ let webpackConfig = {
       'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
     })
   ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          name: "js/commons",
+          chunks: "initial",
+          minChunks: 2,
+        }
+      }
+    }
+  },
   resolve: {
     modules: [
       path.resolve(__dirname, 'resources/assets/coffee'),
