@@ -167,7 +167,7 @@ class @BeatmapsetPanel extends React.PureComponent
                   title: osu.trans('beatmapsets.show.details.download._')
                   className: 'beatmapset-panel__icon js-beatmapset-download-link'
                   'data-turbolinks': 'false'
-                  i className: 'fas fa-download'
+                  i className: 'fas fa-lg fa-download'
 
           div className: 'beatmapset-panel__difficulties', difficulties
       a
