@@ -17,6 +17,8 @@
 ###
 
 import { Map } from './map'
+import { Incident } from './incident'
+import { Incidents } from './incidents'
 import { Uptime } from './uptime'
 import * as React from 'react'
 import { div, span, br, strong, h1, h4, h5 } from 'react-dom-factories'

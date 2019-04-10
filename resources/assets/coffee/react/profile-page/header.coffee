@@ -18,6 +18,8 @@
 
 import { Badges } from './badges'
 import { CoverSelector } from './cover-selector'
+import { Detail } from './detail'
+import { DetailMobile } from './detail-mobile'
 import { GameModeSwitcher } from './game-mode-switcher'
 import { HeaderInfo } from './header-info'
 import { Links } from './links'

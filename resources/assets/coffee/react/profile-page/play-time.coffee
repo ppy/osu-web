@@ -18,6 +18,7 @@
 
 import * as React from 'react'
 import { span } from 'react-dom-factories'
+import { ValueDisplay } from 'value-display'
 el = React.createElement
 
 

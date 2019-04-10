@@ -17,6 +17,7 @@
 ###
 
 import * as React from 'react'
+import { ValueDisplay } from 'value-display'
 el = React.createElement
 
 
