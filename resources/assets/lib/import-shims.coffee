@@ -18,16 +18,7 @@
 
 # Import shim so that globally declared scripts can work without changes.
 
-import { BeatmapsetPanel } from 'beatmapset-panel'
-import { BlockButton } from 'block-button'
-import { CommentsManager } from 'comments-manager'
-import { CountdownTimer } from 'countdown-timer'
-import { FriendButton } from 'friend-button'
-import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { StoreCheckout } from 'store-checkout'
-import { UserCard } from 'user-card'
-import { UserCardStore } from 'user-card-store'
-import { UserCardTooltip } from 'user-card-tooltip'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
 import GalleryContest from 'gallery-contest'
@@ -37,17 +28,8 @@ import WindowVHPatcher from 'window-vh-patcher'
 window.Promise ?= Promise
 
 window._exported = {
-  BeatmapsetPanel
-  BlockButton
-  CommentsManager
-  CountdownTimer
-  FriendButton
   GalleryContest
-  SpotlightSelectOptions
   WindowVHPatcher
-  UserCard
-  UserCardStore
-  UserCardTooltip
 }
 
 # refer to variables.less
