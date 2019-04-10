@@ -20,7 +20,7 @@
 
 namespace App\Traits;
 
-trait NotificationEventConnection
+trait NotificationEventQueue
 {
     public $connection = 'redis-notification';
 }

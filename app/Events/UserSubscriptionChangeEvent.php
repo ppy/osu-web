@@ -21,13 +21,13 @@
 namespace App\Events;
 
 use App\Models\Notification;
-use App\Traits\NotificationEventConnection;
+use App\Traits\NotificationEventQueue;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class UserSubscriptionChangeEvent implements ShouldBroadcast
 {
-    use NotificationEventConnection;
+    use NotificationEventQueue;
 
     public $action;
     public $userId;
