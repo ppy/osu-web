@@ -256,10 +256,10 @@ export default class Worker {
   @computed get itemsGroupedByType() {
     const ret: Map<string, Notification[]> = new Map();
 
-    const sortedItems = _.orderBy([...this.items.values()], ['id', 'objectType'], ['desc', 'asc']);
+    const sortedItems = _.orderBy([...this.items.values()], ['id'], ['desc']);
 
     sortedItems.forEach((item) => {
-      if (item.isRead || item.objectType == null || item.objectId == null) {
+      if (item.objectType == null || item.objectId == null) {
         return;
       }
 
@@ -269,6 +269,10 @@ export default class Worker {
       if (groupedItems == null) {
         groupedItems = [];
         ret.set(key, groupedItems);
+      }
+
+      if (item.isRead) {
+        return;
       }
 
       groupedItems.push(item);
