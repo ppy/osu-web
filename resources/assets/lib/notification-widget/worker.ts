@@ -24,6 +24,7 @@ import Notification from 'models/notification';
 
 interface NotificationBundleJson {
   has_more: boolean;
+  notification_endpoint: string;
   notifications: NotificationJson[];
   unread_count: number;
 }
@@ -72,6 +73,7 @@ export default class Worker {
   userId: number | null = null;
   @observable private active: boolean = false;
   private timeout: TimeoutCollection = {};
+  private endpoint?: string;
   private ws?: WebSocket;
   private xhr: XHRCollection = {};
 
@@ -88,6 +90,10 @@ export default class Worker {
       return;
     }
 
+    if (this.endpoint == null) {
+      return;
+    }
+
     if (this.timeout.connectWebSocket != null) {
       clearTimeout(this.timeout.connectWebSocket);
     }
@@ -99,12 +105,12 @@ export default class Worker {
     }
 
     const token = tokenEl.getAttribute('content');
-    let url = process.env.NOTIFICATION_ENDPOINT;
-    if (url == null) {
+    let endpoint = this.endpoint;
+    if (endpoint[0] == '/') {
       const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-      url = `${protocol}//${window.location.host}/home/notifications/live`;
+      endpoint = `${protocol}//${window.location.host}${endpoint}`;
     }
-    this.ws = new WebSocket(`${url}?csrf=${token}`);
+    this.ws = new WebSocket(`${endpoint}?csrf=${token}`);
     this.ws.onclose = this.delayedConnectWebSocket;
     this.ws.onmessage = this.handleNewEvent;
   }
@@ -183,6 +189,8 @@ export default class Worker {
         this.actualUnreadCount = bundleJson.unread_count;
         this.hasMore = bundleJson.has_more;
         this.hasData = true;
+        this.endpoint = bundleJson.notification_endpoint;
+        this.connectWebSocket();
       }).fail(this.delayedRetryInitialLoadMore)
       .always(() => this.loadingMore = false);
   }

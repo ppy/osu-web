@@ -101,6 +101,9 @@ return [
     'legacy' => [
         'shared_interop_secret' => env('SHARED_INTEROP_SECRET', ''),
     ],
+    'notification' => [
+        'endpoint' => presence(env('NOTIFICATION_ENDPOINT'), '/home/notifications/feed'),
+    ],
     'queue' => [
         'notifications' => presence(env('QUEUE_NOTIFICATIONS')) ?? 'default',
     ],

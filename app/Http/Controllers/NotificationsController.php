@@ -67,6 +67,7 @@ class NotificationsController extends Controller
             'has_more' => $hasMore,
             'notifications' => $json,
             'unread_count' => $unreadCount,
+            'notification_endpoint' => config('osu.notification.endpoint'),
         ];
     }
 

@@ -101,7 +101,6 @@ let webpackConfig = {
       'process.env.PAYMENT_SANDBOX': JSON.stringify(paymentSandbox),
       'process.env.SHOPIFY_DOMAIN': JSON.stringify(process.env.SHOPIFY_DOMAIN),
       'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
-      'process.env.NOTIFICATION_ENDPOINT': JSON.stringify(process.env.NOTIFICATION_ENDPOINT),
     })
   ],
   resolve: {
