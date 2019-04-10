@@ -256,7 +256,7 @@ export default class Worker {
   @computed get itemsGroupedByType() {
     const ret: Map<string, Notification[]> = new Map();
 
-    const sortedItems = _.orderBy([...this.items.values()], ['objectType', 'id'], ['asc', 'desc']);
+    const sortedItems = _.orderBy([...this.items.values()], ['id', 'objectType'], ['desc', 'asc']);
 
     sortedItems.forEach((item) => {
       if (item.isRead || item.objectType == null || item.objectId == null) {
