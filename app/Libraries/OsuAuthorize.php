@@ -374,7 +374,7 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
-        if (!$user->isFullBN()) {
+        if ($user->isProbationaryBN()) {
             if ($beatmapset->playmodeCount() > 1) {
                 return $prefix.'full_bn_required_hybrid';
             }
