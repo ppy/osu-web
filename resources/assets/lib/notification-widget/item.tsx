@@ -39,6 +39,7 @@ const ITEM_CATEGORY_ICONS: IconsMap = {
   beatmapset_discussion: ['fas fa-drafting-compass', 'fas fa-comment-medical'],
   beatmapset_state: ['fas fa-drafting-compass'],
   forum_topic_reply: ['fas fa-comment-medical'],
+  legacy_pm: ['fas fa-envelope'],
 };
 
 const ITEM_NAME_ICONS: IconsMap = {
@@ -49,6 +50,7 @@ const ITEM_NAME_ICONS: IconsMap = {
   beatmapset_qualify: ['fas fa-drafting-compass', 'fas fa-check'],
   beatmapset_reset_nominations: ['fas fa-drafting-compass', 'fas fa-undo'],
   forum_topic_reply: ['fas fa-comment-medical'],
+  legacy_pm: ['fas fa-envelope'],
 };
 
 @observer
