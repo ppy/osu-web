@@ -28,14 +28,18 @@ interface NotificationBundleJson {
   unread_count: number;
 }
 
-interface NotificationEventReadJson {
+interface NotificationEventLogoutJson {
   event: string;
-  data: NotificationReadJson;
 }
 
 interface NotificationEventNewJson {
   data: NotificationJson;
   event: string;
+}
+
+interface NotificationEventReadJson {
+  event: string;
+  data: NotificationReadJson;
 }
 
 interface NotificationReadJson {
@@ -46,12 +50,16 @@ interface TimeoutCollection {
   [key: string]: number;
 }
 
-const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson => {
-  return arg.event === 'read';
+const isNotificationEventLogoutJson = (arg: any): arg is NotificationEventLogoutJson => {
+  return arg.event === 'logout';
 };
 
 const isNotificationEventNewJson = (arg: any): arg is NotificationEventNewJson => {
   return arg.event === 'new';
+};
+
+const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson => {
+  return arg.event === 'read';
 };
 
 export default class Worker {
@@ -97,8 +105,7 @@ export default class Worker {
       url = `${protocol}//${window.location.host}/home/notifications/live`;
     }
     this.ws = new WebSocket(`${url}?csrf=${token}`);
-    this.ws.onclose = this.destroy;
-    this.ws.onerror = this.delayedConnectWebSocket;
+    this.ws.onclose = this.delayedConnectWebSocket;
     this.ws.onmessage = this.handleNewEvent;
   }
 
@@ -142,7 +149,9 @@ export default class Worker {
       return;
     }
 
-    if (isNotificationEventNewJson(data)) {
+    if (isNotificationEventLogoutJson(data)) {
+      this.destroy();
+    } else if (isNotificationEventNewJson(data)) {
       this.updateFromServer(data.data);
       this.actualUnreadCount++;
     } else if (isNotificationEventReadJson(data)) {
