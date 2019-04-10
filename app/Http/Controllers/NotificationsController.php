@@ -24,6 +24,8 @@ use App\Events\NotificationReadEvent;
 
 class NotificationsController extends Controller
 {
+    const LIMIT = 51;
+
     protected $section = 'community';
     protected $actionPrefix = 'notifications_';
 
@@ -36,7 +38,6 @@ class NotificationsController extends Controller
 
     public function index()
     {
-        $limit = 51;
         $hasMore = false;
         $userNotificationsQuery = auth()
             ->user()
@@ -45,7 +46,7 @@ class NotificationsController extends Controller
             ->with('notification.source')
             ->where('is_read', false)
             ->orderBy('notification_id', 'DESC')
-            ->limit($limit);
+            ->limit(static::LIMIT);
 
         $maxId = get_int(request('max_id'));
         if (isset($maxId)) {
@@ -54,7 +55,7 @@ class NotificationsController extends Controller
 
         $userNotifications = $userNotificationsQuery->get();
 
-        if ($userNotifications->count() === $limit) {
+        if ($userNotifications->count() === static::LIMIT) {
             $hasMore = true;
             $userNotifications->pop();
         }
