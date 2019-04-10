@@ -35,10 +35,7 @@ if (mix.inProduction()) {
 }
 
 const reactComponentSet = function (name) {
-    return [[
-      ...glob.sync(`resources/assets/coffee/react/${name}/*.coffee`),
-      `resources/assets/coffee/react/${name}.coffee`,
-    ], `js/react/${name}.js`];
+    return [[`resources/assets/coffee/react/${name}.coffee`], `js/react/${name}.js`];
 }
 
 const paymentSandbox = !(process.env.PAYMENT_SANDBOX == 0
