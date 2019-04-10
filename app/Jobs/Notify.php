@@ -23,6 +23,7 @@ namespace App\Jobs;
 use App\Events\NewNotificationEvent;
 use App\Models\Notification;
 use App\Models\User;
+use App\Traits\NotificationQueue;
 use DB;
 use Exception;
 use Illuminate\Bus\Queueable;
@@ -31,7 +32,7 @@ use Illuminate\Queue\SerializesModels;
 
 class Notify implements ShouldQueue
 {
-    use Queueable, SerializesModels;
+    use NotificationQueue, Queueable, SerializesModels;
 
     const BEATMAPSET_DISCUSSION_POST_NEW = 'beatmapset_discussion_post_new';
     const BEATMAPSET_DISQUALIFY = 'beatmapset_disqualify';

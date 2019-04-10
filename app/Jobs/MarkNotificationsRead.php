@@ -25,6 +25,7 @@ use App\Libraries\MorphMap;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post as ForumPost;
 use App\Models\Notification;
+use App\Traits\NotificationQueue;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -32,7 +33,7 @@ use Illuminate\Queue\SerializesModels;
 
 class MarkNotificationsRead implements ShouldQueue
 {
-    use Queueable, SerializesModels;
+    use NotificationQueue, Queueable, SerializesModels;
 
     private $notifiable;
     private $notificationTime;

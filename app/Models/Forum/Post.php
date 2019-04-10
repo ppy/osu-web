@@ -353,6 +353,6 @@ class Post extends Model implements AfterCommit
             TopicWatch::lookupQuery($topic, $user)->update(['notify_status' => false]);
         }
 
-        dispatch(new MarkNotificationsRead($this, $user));
+        (new MarkNotificationsRead($this, $user))->dispatch();
     }
 }

@@ -166,11 +166,11 @@ class BeatmapDiscussionPostsController extends Controller
 
                 if ($disqualify) {
                     $discussion->beatmapset->setApproved('pending', Auth::user());
-                    dispatch(new Notify(Notify::BEATMAPSET_DISQUALIFY, $discussion->beatmapset, Auth::user()));
+                    (new Notify(Notify::BEATMAPSET_DISQUALIFY, $discussion->beatmapset, Auth::user()))->dispatch();
                 }
 
                 if ($resetNominations) {
-                    dispatch(new Notify(Notify::BEATMAPSET_RESET_NOMINATIONS, $discussion->beatmapset, Auth::user()));
+                    (new Notify(Notify::BEATMAPSET_RESET_NOMINATIONS, $discussion->beatmapset, Auth::user()))->dispatch();
                 }
 
                 // feels like a controller shouldn't be calling refreshCache on a model?
@@ -185,7 +185,7 @@ class BeatmapDiscussionPostsController extends Controller
         $beatmapset = $discussion->beatmapset;
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
-        dispatch(new Notify(Notify::BEATMAPSET_DISCUSSION_POST_NEW, $post, Auth::user()));
+        (new Notify(Notify::BEATMAPSET_DISCUSSION_POST_NEW, $post, Auth::user()))->dispatch();
         (new NotifyBeatmapsetUpdate([
             'user' => Auth::user(),
             'beatmapset' => $beatmapset,

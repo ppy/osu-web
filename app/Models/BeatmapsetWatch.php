@@ -56,7 +56,7 @@ class BeatmapsetWatch extends Model
             return;
         }
 
-        dispatch(new MarkNotificationsRead($beatmapset, $user));
+        (new MarkNotificationsRead($beatmapset, $user))->dispatch();
 
         return static
             ::where('beatmapset_id', '=', $beatmapset->getKey())

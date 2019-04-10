@@ -584,7 +584,7 @@ class Beatmapset extends Model implements AfterCommit
 
             // remove current scores
             dispatch(new RemoveBeatmapsetBestScores($this));
-            dispatch(new Notify(Notify::BEATMAPSET_QUALIFY, $this, $user));
+            (new Notify(Notify::BEATMAPSET_QUALIFY, $this, $user))->dispatch();
         });
 
         return true;
@@ -615,7 +615,7 @@ class Beatmapset extends Model implements AfterCommit
                 if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
                     $this->qualify($user);
                 } else {
-                    dispatch(new Notify(Notify::BEATMAPSET_NOMINATE, $this, $user));
+                    (new Notify(Notify::BEATMAPSET_NOMINATE, $this, $user))->dispatch();
                 }
             }
             $this->refreshCache();
@@ -644,7 +644,7 @@ class Beatmapset extends Model implements AfterCommit
 
             dispatch((new CheckBeatmapsetCovers($this))->onQueue('beatmap_high'));
             dispatch(new RemoveBeatmapsetBestScores($this));
-            dispatch(new Notify(Notify::BEATMAPSET_LOVE, $this, $user));
+            (new Notify(Notify::BEATMAPSET_LOVE, $this, $user))->dispatch();
         });
 
         return [
