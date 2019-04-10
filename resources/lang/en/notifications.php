@@ -52,10 +52,10 @@ return [
         ],
 
         'legacy_pm' => [
-            '_' => 'Private message',
+            '_' => 'Legacy Forum PM',
 
             'legacy_pm' => [
-                '_' => 'Legacy forum PM',
+                '_' => '',
                 'legacy_pm' => ':count_delimited unread message.|:count_delimited unread messages.',
             ],
         ],
