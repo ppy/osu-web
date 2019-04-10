@@ -76,6 +76,7 @@ class Notify implements ShouldQueue
 
         $this->notifiable = $this->notifiable ?? $this->object;
         $this->params['name'] = $this->name;
+        $this->params['details']['username'] = $this->source->username;
 
         if (is_array($this->receiverIds)) {
             switch (count($this->receiverIds)) {
@@ -115,7 +116,6 @@ class Notify implements ShouldQueue
         $this->receiverIds = static::beatmapsetReceiverIds($this->notifiable);
 
         $this->params['details'] = [
-            'username' => $this->source->username,
             'title' => $this->notifiable->title,
             'post_id' => $this->object->getKey(),
             'discussion_id' => $this->object->beatmapDiscussion->getKey(),
@@ -127,7 +127,6 @@ class Notify implements ShouldQueue
         $this->receiverIds = static::beatmapsetReceiverIds($this->object);
 
         $this->params['details'] = [
-            'username' => $this->source->username,
             'title' => $this->object->title,
             'cover_url' => $this->object->coverURL('card'),
         ];
@@ -138,7 +137,6 @@ class Notify implements ShouldQueue
         $this->receiverIds = static::beatmapsetReceiverIds($this->object);
 
         $this->params['details'] = [
-            'username' => $this->source->username,
             'title' => $this->object->title,
             'cover_url' => $this->object->coverURL('card'),
         ];
@@ -149,7 +147,6 @@ class Notify implements ShouldQueue
         $this->receiverIds = static::beatmapsetReceiverIds($this->object);
 
         $this->params['details'] = [
-            'username' => $this->source->username,
             'title' => $this->object->title,
             'cover_url' => $this->object->coverURL('card'),
         ];
@@ -160,7 +157,6 @@ class Notify implements ShouldQueue
         $this->receiverIds = static::beatmapsetReceiverIds($this->object);
 
         $this->params['details'] = [
-            'username' => $this->source->username,
             'title' => $this->object->title,
             'cover_url' => $this->object->coverURL('card'),
         ];
@@ -171,7 +167,6 @@ class Notify implements ShouldQueue
         $this->receiverIds = static::beatmapsetReceiverIds($this->object);
 
         $this->params['details'] = [
-            'username' => $this->source->username,
             'title' => $this->object->title,
             'cover_url' => $this->object->coverURL('card'),
         ];
@@ -189,7 +184,6 @@ class Notify implements ShouldQueue
             ->all();
 
         $this->params['details'] = [
-            'username' => $this->source->username,
             'title' => $this->notifiable->topic_title,
             'post_id' => $this->object->getKey(),
             'cover_url' => optional($this->notifiable->cover)->fileUrl(),
