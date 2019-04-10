@@ -424,7 +424,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!$user->isQAT()) {
+        if (!$user->isQAT() && !$user->isFullBN()) {
             return 'unauthorized';
         }
 

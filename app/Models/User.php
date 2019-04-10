@@ -682,6 +682,11 @@ class User extends Model implements AuthenticatableContract
         return $this->isGroup(UserGroup::GROUPS['bng']);
     }
 
+    public function isFullBN()
+    {
+        return $this->isBNG() && !$this->isGroup(UserGroup::GROUPS['bng_probation']);
+    }
+
     public function isHax()
     {
         return $this->isGroup(UserGroup::GROUPS['hax']);
