@@ -20,11 +20,11 @@
 
 return [
     'show' => [
-        'fallback_translation' => '要求されたページはまだ選択された言語（:language）に翻訳されていません。英語版を表示します。',
+        'fallback_translation' => '要求されたページは選択された言語（:language）に翻訳されていません。英語版を表示します。',
         'languages' => '言語',
         'missing' => '要求されたページ”:keyword”は見つかりませんでした。',
         'missing_title' => 'Not Found',
-        'missing_translation' => '要求されたページはまだ現在選択している言語には翻訳されていません。',
+        'missing_translation' => '要求されたページは選択している言語に翻訳されていません。',
         'search' => '既存のページで:linkを検索する',
         'toc' => '目次',
 
@@ -34,7 +34,7 @@ return [
         ],
 
         'translation' => [
-            'legal' => 'この翻訳は一時的に提供されています。:defaultはこの文章の原文です。',
+            'legal' => 'この翻訳は便宜上提供されています。:defaultが法的拘束力のある文章です。',
             'outdated' => 'このページには古い翻訳情報が含まれています。最新情報を確認するには:defaultを参照してください。（可能であれば翻訳にご協力ください）',
 
             'default' => '英語版',

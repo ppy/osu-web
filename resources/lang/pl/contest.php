@@ -58,8 +58,8 @@ return [
     ],
     'vote' => [
         'list' => 'głosy',
-        'count' => ':count głos|:count głosy|:count głosów',
-        'points' => ':count punkt|:count punkty|:count punktów',
+        'count' => ':count_delimited głos|:count_delimited głosy|:count_delimited głosów',
+        'points' => ':count_delimited punkt|:count_delimited punkty|:count_delimited punktów',
     ],
     'dates' => [
         'ended' => 'Zakończony :date',

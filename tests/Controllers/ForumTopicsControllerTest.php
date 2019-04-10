@@ -3,6 +3,7 @@
 use App\Models\Forum;
 use App\Models\User;
 use App\Models\UserGroup;
+use App\Models\UserStatistics\Osu as StatisticsOsu;
 
 class ForumTopicsControllerTest extends TestCase
 {
@@ -203,9 +204,15 @@ class ForumTopicsControllerTest extends TestCase
     {
         $playcount ?? $playcount = config('osu.forum.minimum_plays');
 
-        $user->monthlyPlaycounts()->create([
-            'year_month' => '0111',
-            'playcount' => $playcount,
-        ]);
+        if ($user->statisticsOsu === null) {
+            factory(StatisticsOsu::class)->create([
+                'playcount' => $playcount,
+                'user_id' => $user->getKey(),
+            ]);
+        } else {
+            $user->statisticsOsu->update(['playcount' => $playcount]);
+        }
+
+        $user->refresh();
     }
 }

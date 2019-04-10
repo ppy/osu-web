@@ -19,23 +19,23 @@
  */
 
 return [
-    'cancel' => '',
+    'cancel' => 'Cancelar',
 
     'authorise' => [
-        'authorise' => '',
-        'request' => '',
-        'scopes_title' => '',
-        'title' => '',
+        'authorise' => 'Autorizar',
+        'request' => 'está a solicitar permissão para aceder à tua conta.',
+        'scopes_title' => 'Esta aplicação será capaz de:',
+        'title' => 'Pedido de Autorização',
 
         'wrong_user' => [
-            '_' => '',
-            'logout_link' => '',
+            '_' => 'Estás autenticado como :user. :logout_link.',
+            'logout_link' => 'Clica aqui para iniciar sessão como um diferente utilizador',
         ],
     ],
 
     'login' => [
-        'download' => '',
-        'label' => '',
-        'title' => '',
+        'download' => 'Clica aqui para transferir o jogo e criar uma conta',
+        'label' => 'Primeiro, vamos entrar na tua conta!',
+        'title' => 'Login da Conta',
     ],
 ];
