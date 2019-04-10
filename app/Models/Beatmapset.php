@@ -535,7 +535,7 @@ class Beatmapset extends Model implements AfterCommit
     public function setApproved($state, $user)
     {
         $currentTime = Carbon::now();
-        $newApproved = static::STATES[$state];
+        $oldScoreable = $this->isScoreable();
 
         if ($this->isQualified() && $state === 'pending') {
             $this->previous_queue_duration = ($this->queued_at ?? $this->approved_date)->diffinSeconds();
@@ -546,13 +546,7 @@ class Beatmapset extends Model implements AfterCommit
             $this->queued_at = $currentTime->copy()->subSeconds($adjustment);
         }
 
-        // if isScoreable() will change
-        if ($this->isScoreable() !== ($newApproved > 0)) {
-            $this->userRatings()->delete();
-            dispatch(new RemoveBeatmapsetBestScores($this));
-        }
-
-        $this->approved = $newApproved;
+        $this->approved = static::STATES[$state];
 
         if ($this->approved > 0) {
             $this->approved_date = $currentTime;
@@ -567,6 +561,11 @@ class Beatmapset extends Model implements AfterCommit
         $this
             ->beatmaps()
             ->update(['approved' => $this->approved]);
+
+        if ($this->isScoreable() !== $oldScoreable) {
+            $this->userRatings()->delete();
+            dispatch(new RemoveBeatmapsetBestScores($this));
+        }
     }
 
     public function disqualify($user, $post)
