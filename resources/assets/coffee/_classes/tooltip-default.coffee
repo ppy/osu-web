@@ -133,7 +133,7 @@ class @TooltipDefault
       .text time.format('LL')
     $timeEl = $('<span>')
       .addClass 'tooltip-default__time'
-      .text "#{time.format('LT')} #{@tzString(time)}"
+      .text "#{time.format('LTS')} #{@tzString(time)}"
 
     $('<span>')
       .append $dateEl

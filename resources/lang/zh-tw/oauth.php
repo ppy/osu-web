@@ -19,7 +19,7 @@
  */
 
 return [
-    'cancel' => '',
+    'cancel' => '取消',
 
     'authorise' => [
         'authorise' => '',
@@ -28,14 +28,14 @@ return [
         'title' => '',
 
         'wrong_user' => [
-            '_' => '',
-            'logout_link' => '',
+            '_' => '您已以 :user 的身分登入。 :logout_link',
+            'logout_link' => '點擊此處以不同帳號登入。',
         ],
     ],
 
     'login' => [
-        'download' => '',
+        'download' => '點擊這裡下載遊戲並創建一個帳戶',
         'label' => '',
-        'title' => '',
+        'title' => '登入',
     ],
 ];

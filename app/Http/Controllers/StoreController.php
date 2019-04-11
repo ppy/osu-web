@@ -42,11 +42,13 @@ class StoreController extends Controller
             'postUpdateAddress',
         ]]);
 
-        $this->middleware('check-user-restricted', ['only' => [
-            'getInvoice',
-            'postNewAddress',
-            'postUpdateAddress',
-        ]]);
+        if (!$this->isAllowRestrictedUsers()) {
+            $this->middleware('check-user-restricted', ['only' => [
+                'getInvoice',
+                'postNewAddress',
+                'postUpdateAddress',
+            ]]);
+        }
 
         $this->middleware('verify-user', ['only' => [
             'getInvoice',

@@ -98,7 +98,7 @@ return [
         'username_available_soon' => 'Ta nazwa użytkownika będzie dostępna niedługo!',
         'username_invalid_characters' => 'Ta nazwa użytkownika zawiera nieprawidłowe znaki.',
         'username_in_use' => 'Ta nazwa użytkownika jest już w użyciu!',
-        'username_locked' => 'Ta nazwa użytkownika jest już zajęta!', // TODO: language for this should be slightly different.
+        'username_locked' => 'Ta nazwa użytkownika jest już w użyciu!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Używaj spacji albo znaków podkreślenia, nie obu naraz!',
         'username_no_spaces' => "Nazwa użytkownika nie może zaczynać się ani kończyć spacjami!",
         'username_not_allowed' => 'Ta nazwa użytkownika nie jest dozwolona.',

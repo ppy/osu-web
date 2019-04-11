@@ -21,8 +21,9 @@
 namespace App\Http\Middleware;
 
 use App;
+use App\Libraries\AcceptHttpLanguage\Parser;
 use Auth;
-use Carbon;
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -41,16 +42,20 @@ class SetLocale
         if (Auth::check()) {
             $locale = Auth::user()->user_lang;
         } else {
-            $locale =
-                presence($request->cookie('locale')) ??
-                locale_accept_from_http($request->server('HTTP_ACCEPT_LANGUAGE'));
+            $locale = presence($request->cookie('locale'));
         }
 
         $locale = get_valid_locale($locale);
 
+        if ($locale === null) {
+            $accept = $request->server('HTTP_ACCEPT_LANGUAGE');
+            $parser = new Parser($accept);
+            $locale = $parser->languageRegionCompatibleFrom(config('app.available_locales')) ?? config('app.fallback_locale');
+        }
+
         App::setLocale($locale);
         // Carbon setLocale normalizes the locale
-        Carbon\Carbon::setLocale($locale);
+        Carbon::setLocale($locale);
 
         return $next($request);
     }

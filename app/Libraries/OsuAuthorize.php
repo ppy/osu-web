@@ -812,7 +812,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        $plays = (int) $user->monthlyPlaycounts()->sum('playcount');
+        $plays = $user->playCount();
         $posts = $user->user_posts;
         $forInitialHelpForum = in_array($forum->forum_id, config('osu.forum.initial_help_forum_ids'), true);
 
@@ -954,6 +954,25 @@ class OsuAuthorize
         }
     }
 
+    public function checkForumTopicPollShowResults($user, $topic)
+    {
+        if (!$topic->poll_hide_results) {
+            return 'ok';
+        }
+
+        if ($this->doCheckUser($user, 'ForumModerate', $topic->forum)->can()) {
+            return 'ok';
+        }
+
+        if ($topic->pollEnd() === null || $topic->pollEnd()->isPast()) {
+            return 'ok';
+        }
+
+        if ($user !== null && $topic->posts()->withTrashed()->first()->poster_id === $user->user_id) {
+            return 'ok';
+        }
+    }
+
     public function checkForumTopicVote($user, $topic)
     {
         $prefix = 'forum.topic.vote.';
@@ -967,6 +986,11 @@ class OsuAuthorize
 
         if (!$this->doCheckUser($user, 'ForumView', $topic->forum)->can()) {
             return $prefix.'no_forum_access';
+        }
+
+        $plays = $user->playCount();
+        if ($plays < config('osu.forum.minimum_plays')) {
+            return $prefix.'play_more';
         }
 
         if (!$topic->poll_vote_change) {

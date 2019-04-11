@@ -69,7 +69,7 @@ class ChangelogIndex.Main extends React.PureComponent
           callback: @showMore
           hasMore: @state.hasMore
           loading: @state.loading
-          modifiers: ['t-dark-purple-darker', 'changelog-index']
+          modifiers: ['t-greyviolet-darker', 'changelog-index']
 
 
   renderHeaderTabs: =>

@@ -47,7 +47,7 @@ class @CommentShowMore extends React.PureComponent
       remaining = @props.total - @props.comments.length
       modifiers = ['comments']
       if 'changelog' in @props.modifiers
-        modifiers.push('t-dark-purple-darker')
+        modifiers.push('t-greyviolet-darker')
       else
         modifiers.push('t-ddd')
 

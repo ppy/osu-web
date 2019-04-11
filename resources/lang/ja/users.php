@@ -19,18 +19,18 @@
  */
 
 return [
-    'deleted' => '[削除されたユーザーです]',
+    'deleted' => '[削除されたユーザー]',
 
     'beatmapset_activities' => [
         'title' => ":userのModding履歴",
         'title_compact' => 'Modding',
 
         'discussions' => [
-            'title_recent' => '最近のディスカッション',
+            'title_recent' => '最近開始されたディスカッション',
         ],
 
         'events' => [
-            'title_recent' => '最近の出来事',
+            'title_recent' => '最近のイベント',
         ],
 
         'posts' => [
@@ -71,11 +71,11 @@ return [
         'password' => 'パスワード',
         'button' => 'ログイン',
         'button_posting' => 'ログイン中・・・',
-        'remember' => 'ログイン状態を保存する',
+        'remember' => 'ログイン状態を保持する',
         'title' => '続行するにはログインが必要です',
-        'failed' => 'サインインに失敗しました',
-        'register' => "osu!アカウントがない方はこちらから",
-        'forgot' => 'パスワードを紛失した場合',
+        'failed' => 'ログインに失敗しました',
+        'register' => "osu!アカウントを持っていませんか？新しいアカウントを作るにはこちらから",
+        'forgot' => 'パスワードを忘れましたか？',
         'beta' => [
             'main' => 'ベータアクセスは権限があるユーザーのみに付与されます',
             'small' => '(osu!サポーターは間もなくもらえます)',
@@ -85,7 +85,7 @@ return [
     ],
 
     'posts' => [
-        'title' => ':username\の投稿',
+        'title' => ':usernameの投稿',
     ],
 
     'signup' => [
