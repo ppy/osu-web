@@ -17,7 +17,6 @@
  */
 
 import * as _ from 'lodash';
-import * as moment from 'moment';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
 import { SupporterIcon } from 'supporter-icon';
