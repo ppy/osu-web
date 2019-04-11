@@ -28,12 +28,12 @@ return [
             '_' => 'Beatmap',
 
             'beatmapset_discussion' => [
-                '_' => 'Discussion',
+                '_' => 'Beatmap discussion',
                 'beatmapset_discussion_post_new' => ':username posted new message in ":title" beatmap discussion.',
             ],
 
             'beatmapset_state' => [
-                '_' => 'Approval',
+                '_' => 'Beatmap status changed',
                 'beatmapset_disqualify' => 'Beatmap ":title" has been disqualified by :username.',
                 'beatmapset_love' => 'Beatmap ":title" has been promoted as loved by :username.',
                 'beatmapset_nominate' => 'Beatmap ":title" has been nominated by :username.',
@@ -46,7 +46,7 @@ return [
             '_' => 'Forum topic',
 
             'forum_topic_reply' => [
-                '_' => 'New reply',
+                '_' => 'New forum reply',
                 'forum_topic_reply' => ':username replied to forum topic ":title".',
             ],
         ],
