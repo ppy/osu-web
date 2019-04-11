@@ -20,7 +20,6 @@
 
 namespace App\Models;
 
-use App\Jobs\MarkNotificationsRead;
 use Carbon\Carbon;
 
 /**
