@@ -72,7 +72,7 @@ export default class Item extends React.Component<Props, State> {
       blockClass += ' notification-popup-item--multi';
     }
 
-    return <div className='notification-popup-item clickable-row'>
+    return <div className='notification-popup-item clickable-row' onClick={this.markRead}>
       <div
         className='notification-popup-item__cover'
         style={{
@@ -180,6 +180,14 @@ export default class Item extends React.Component<Props, State> {
   }
 
   private markRead = () => {
+    if (this.state.markingAsRead) {
+      return;
+    }
+
+    if (this.props.items.length === 0 || this.props.items[0].id < 0) {
+      return;
+    }
+
     this.setState({ markingAsRead: true });
     const ids = this.props.items.map((i) => i.id);
 
