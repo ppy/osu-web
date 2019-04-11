@@ -102,13 +102,13 @@ export default class HeaderV3 extends React.Component<PropsInterface, {}> {
 
     return (
       <div className={classNames}>
-        <div className='header-v3__bg'></div>
-        <div className='header-v3__overlay'></div>
+        <div className='header-v3__bg'/>
+        <div className='header-v3__overlay'/>
         <div className={osuPageClasses}>
           { !this.props.compact &&
             this.renderHeaderTitle()
           }
-          { this.renderHeaderTabs() }
+          {this.renderHeaderTabs()}
         </div>
       </div>
     );

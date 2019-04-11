@@ -42,7 +42,7 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
           </a> : null
         }
 
-        { this.canReport ? <ReportScore score={score} /> : null }
+        {this.canReport ? <ReportScore score={score} /> : null}
       </>;
 
     return (
