@@ -78,6 +78,11 @@ class @UserCard
     return unless userId
     return if _.find(currentUser.blocks, target_id: parseInt(userId)) # don't show cards for blocked users
 
+    # only allow one user card tooltip visibile at a time
+    # loop because calling qtip() directly on the jquery selector only hides the first one.
+    for element in document.getElementsByClassName('qtip--user-card')
+      $(element).qtip().hide()
+
     return @createTooltip(el) if !el._tooltip?
 
     if el._tooltip == el.dataset.userId

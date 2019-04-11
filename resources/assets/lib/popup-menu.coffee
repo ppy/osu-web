@@ -102,7 +102,6 @@ export class PopupMenu extends PureComponent
     return if !event? # originalEvent gets eaten by error popup?
 
     if event.keyCode == 27 || (event.button == 0 && !@isMenuInPath(event.composedPath()))
-      @tooltipElement().qtip().hide()
       @setState active: false
 
 
