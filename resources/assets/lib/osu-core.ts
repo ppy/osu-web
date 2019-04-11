@@ -43,6 +43,7 @@ export default class OsuCore {
   constructor(window: Window) {
     this.window = window;
     // should probably figure how to conditionally or lazy initialize these so they don't all init when not needed.
+    // TODO: requires dynamic imports to lazy load modules.
     this.dispatcher = new Dispatcher();
     this.dataStore = new RootDataStore(this.dispatcher);
     this.chatWorker = new ChatWorker(this.dispatcher, this.dataStore);
