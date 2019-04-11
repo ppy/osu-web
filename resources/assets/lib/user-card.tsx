@@ -70,17 +70,17 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
 
     return (
       <div className={osu.classWithModifiers('user-card', modifiers)}>
-        { this.renderBackground() }
+        {this.renderBackground()}
 
         <div className='user-card__card'>
           <div className='user-card__content'>
             <div className='user-card__user'>
-              { this.renderAvatar() }
+              {this.renderAvatar()}
               <div className='user-card__username u-ellipsis-overflow'>{this.user.username}</div>
             </div>
-            { this.renderIcons() }
+            {this.renderIcons()}
           </div>
-          { this.renderStatusBar() }
+          {this.renderStatusBar()}
         </div>
       </div>
     );
@@ -196,7 +196,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     return (
       <div className='user-card__content user-card__content--status'>
         <div className='user-card__status'>
-          { this.renderStatusIcon() }
+          {this.renderStatusIcon()}
           <div className='user-card__status-messages'>
             <span
               className='user-card__status-message user-card__status-message--sub u-ellipsis-overflow'
