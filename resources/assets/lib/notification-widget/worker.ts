@@ -16,10 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as _ from 'lodash';
-import {computed, observable} from 'mobx';
 import NotificationJson from 'interfaces/notification-json';
 import XHRCollection from 'interfaces/xhr-collection';
+import * as _ from 'lodash';
+import { computed, observable } from 'mobx';
 import Notification from 'models/notification';
 
 interface NotificationBundleJson {
