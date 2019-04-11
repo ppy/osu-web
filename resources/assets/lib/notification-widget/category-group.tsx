@@ -73,7 +73,7 @@ export default class CategoryGroup extends React.Component<Props, State> {
           label={buttonText}
           direction={buttonDirection}
           callback={this.toggleExpand}
-          modifiers={['t-graysky']}
+          modifiers={['t-greysky']}
         />
       </div>;
     }

@@ -80,7 +80,7 @@ export default class Main extends React.Component<Props, {}> {
         callback={this.props.worker.loadMore}
         hasMore={this.props.worker.hasMore}
         loading={this.props.worker.loadingMore}
-        modifiers={['t-graysky']}
+        modifiers={['t-greysky']}
       />
     </div>;
   }
