@@ -134,7 +134,7 @@ return [
         'store' => [
             '_' => 'kauppa',
             'checkout-show' => 'kassa',
-            'getListing' => 'kaupalle',
+            'getListing' => 'listaus',
             'cart-show' => 'ostoskori',
 
             'getCheckout' => 'kassa',
