@@ -30,16 +30,16 @@ interface NotificationBundleJson {
 }
 
 interface NotificationEventLogoutJson {
-  event: string;
+  event: 'logout';
 }
 
 interface NotificationEventNewJson {
   data: NotificationJson;
-  event: string;
+  event: 'new';
 }
 
 interface NotificationEventReadJson {
-  event: string;
+  event: 'read';
   data: NotificationReadJson;
 }
 
