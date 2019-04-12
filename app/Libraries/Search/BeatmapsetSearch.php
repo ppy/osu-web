@@ -85,7 +85,7 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addBlacklistFilter($query)
     {
-        static $fields = ['artist', 'creator', 'source', 'tags'];
+        static $fields = ['artist', 'source', 'tags'];
         $bool = new BoolQuery;
 
         foreach ($fields as $field) {
