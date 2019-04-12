@@ -33,6 +33,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\DisqusImport::class,
 
+        Commands\EsCreateSearchBlacklist::class,
         Commands\EsIndexDocuments::class,
         Commands\EsIndexWiki::class,
 
