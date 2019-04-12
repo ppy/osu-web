@@ -36,9 +36,19 @@ const bn = 'notification-type-group';
 
 @observer
 export default class TypeGroup extends React.Component<Props, State> {
+  private isComponentMounted = false;
+
   state = {
     markingAsRead: false,
   };
+
+  componentDidMount() {
+    this.isComponentMounted = true;
+  }
+
+  componentWillUnmount() {
+    this.isComponentMounted = false;
+  }
 
   render() {
     if (this.props.items.length === 0) {
@@ -125,6 +135,12 @@ export default class TypeGroup extends React.Component<Props, State> {
     const ids = this.props.items.map((i) => i.id);
 
     this.props.worker.sendMarkRead(ids)
-    .fail(() => this.setState({ markingAsRead: false }));
+    .fail(() => {
+      if (!this.isComponentMounted) {
+        return;
+      }
+
+      this.setState({ markingAsRead: false })
+    });
   }
 }
