@@ -89,6 +89,10 @@ export default class Main extends React.Component<Props, {}> {
     const items: React.ReactNode[] = [];
 
     this.props.worker.itemsGroupedByType.forEach((value, key) => {
+      if (value.length === 0) {
+        return;
+      }
+
       items.push(<div key={key} className='notification-popup__item'>
         <TypeGroup
           items={value}
@@ -97,13 +101,17 @@ export default class Main extends React.Component<Props, {}> {
       </div>);
     });
 
-    if (items.length > 0) {
-      return items;
-    } else {
-      return <p className='notification-popup__empty'>
-        {osu.trans('notifications.all_read')}
-      </p>;
+    if (items.length === 0) {
+      if (this.props.worker.hasMore) {
+        items.push(<div key='empty-with-more' className='notification-popup__empty-with-more' />);
+      } else {
+        items.push(<p key='empty' className='notification-popup__empty'>
+          {osu.trans('notifications.all_read')}
+        </p>);
+      }
     }
+
+    return items;
   }
 
   private buttonClass() {

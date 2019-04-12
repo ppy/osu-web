@@ -45,8 +45,12 @@
     flex-direction: column;
   }
 
+  &__empty-with-more {
+    margin-top: -5px; // negates show-more's margin-top and rebalance the main padding
+  }
+
   &__empty {
-    margin: 5px 0;
+    margin: 10px 0 5px; // balances the main padding
     white-space: nowrap;
   }
 
