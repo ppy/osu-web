@@ -28,10 +28,13 @@ env:
     - APP_ENV=testing
     - APP_KEY=base64:q7U5qyAkedR1F6UhN0SQlUxBpAMDyfHy3NNFkqmiMqA=
     - APP_URL=http://127.0.0.1:8000
+    - BROADCAST_DRIVER=log
     - CACHE_DRIVER=redis
     - DB_USERNAME=root
     - ES_VERSION=6.6.0 ES_DOWNLOAD_URL=https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.zip
     - GITHUB_TOKEN=98cbc568911ef1e060a3a31623f2c80c1786d5ff
+    - NOTIFICATION_ENDPOINT=ws://127.0.0.1:3000
+    - NOTIFICATION_SERVER_LISTEN_PORT=3000
     - OSU_INSTALL_DEV=1
     - PAYMENT_SANDBOX=true
     - SESSION_DRIVER=redis
@@ -66,3 +69,4 @@ jobs:
 
 after_script:
   - cat elasticsearch.log
+  - test -f osu-notification-server/server.log && cat osu-notification-server/server.log

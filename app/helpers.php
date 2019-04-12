@@ -52,6 +52,11 @@ function beatmap_timestamp_format($ms)
     return sprintf('%02d:%02d.%03d', $m, $s, $ms);
 }
 
+function broadcast_notification(...$arguments)
+{
+    return (new App\Jobs\BroadcastNotification(...$arguments))->dispatch();
+}
+
 /**
  * Like Cache::remember but always save for one month or 10 * $minutes (whichever is longer)
  * and return old value if failed getting the value after it expires.

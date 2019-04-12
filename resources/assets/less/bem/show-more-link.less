@@ -30,9 +30,9 @@
   border-radius: 10000px;
   color: inherit;
 
-  .link-hover({
+  &:hover {
     color: inherit;
-  });
+  };
 
   &--beatmapsets {
     margin-bottom: 10px;
@@ -57,33 +57,41 @@
   &--t-greyseafoam-dark {
     background-color: @greyseafoam-dark;
 
-    .link-hover({
+    &:hover {
       background-color: @greyseafoam;
-    });
+    };
   }
 
   &--t-dark-purple-dark {
     background-color: @dark-purple-dark;
 
-    .link-hover({
+    &:hover {
       background-color: @dark-graypurple;
-    });
+    };
   }
 
   &--t-greyviolet-darker {
     background-color: @greyviolet-darker;
 
-    .link-hover({
+    &:hover {
       background-color: #000;
-    });
+    };
   }
 
   &--t-ddd {
     background-color: #ddd;
 
-    .link-hover({
+    &:hover {
       background-color: #ccc;
-    });
+    };
+  }
+
+  &--t-greysky {
+    background-color: @greysky;
+
+    &:hover {
+      background-color: @greysky-light;
+    };
   }
 
   &[disabled], &.js-disabled {
