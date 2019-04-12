@@ -152,7 +152,6 @@ export default class Item extends React.Component<Props, State> {
       return <button
           type='button'
           className='notification-popup-item__read-button'
-          onClick={this.markRead}
         >
           <span className='fas fa-times' />
         </button>;
