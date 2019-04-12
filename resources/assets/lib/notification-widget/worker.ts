@@ -106,7 +106,7 @@ export default class Worker {
 
     const token = tokenEl.getAttribute('content');
     let endpoint = this.endpoint;
-    if (endpoint[0] == '/') {
+    if (endpoint[0] === '/') {
       const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
       endpoint = `${protocol}//${window.location.host}${endpoint}`;
     }

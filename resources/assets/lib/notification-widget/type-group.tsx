@@ -36,11 +36,11 @@ const bn = 'notification-type-group';
 
 @observer
 export default class TypeGroup extends React.Component<Props, State> {
-  private isComponentMounted = false;
 
   state = {
     markingAsRead: false,
   };
+  private isComponentMounted = false;
 
   componentDidMount() {
     this.isComponentMounted = true;
@@ -140,7 +140,7 @@ export default class TypeGroup extends React.Component<Props, State> {
         return;
       }
 
-      this.setState({ markingAsRead: false })
+      this.setState({ markingAsRead: false });
     });
   }
 }

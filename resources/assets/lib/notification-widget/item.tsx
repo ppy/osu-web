@@ -55,11 +55,11 @@ const ITEM_NAME_ICONS: IconsMap = {
 
 @observer
 export default class Item extends React.Component<Props, State> {
-  private isComponentMounted = false;
 
   state = {
     markingAsRead: false,
   };
+  private isComponentMounted = false;
 
   componentDidMount() {
     this.isComponentMounted = true;
@@ -206,7 +206,7 @@ export default class Item extends React.Component<Props, State> {
         return;
       }
 
-      this.setState({ markingAsRead: false })
+      this.setState({ markingAsRead: false });
     });
   }
 
