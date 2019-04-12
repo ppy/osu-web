@@ -23,6 +23,7 @@ declare var reactTurbolinks: any;
 declare var userVerification: any;
 
 // external (to typescript) react components
+declare var BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
 declare var BigButton: any;
 declare var Comments: any;
 declare var CommentsManager: any;
@@ -39,6 +40,10 @@ declare var UserAvatar: any;
 // Global object types
 interface Comment {
   id: number;
+}
+
+interface BeatmapDiscussionHelperClass {
+  url(options: any, useCurrent?: boolean): string;
 }
 
 interface JQueryStatic {

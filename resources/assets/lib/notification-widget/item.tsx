@@ -227,9 +227,11 @@ export default class Item extends React.Component<Props, State> {
     if (this.props.items.length === 1) {
       switch (item.name) {
         case 'beatmapset_discussion_post_new':
-          route = 'beatmap-discussions.show';
-          params = { beatmap_discussion: item.details.discussionId };
-          break;
+          return BeatmapDiscussionHelper.url({
+            beatmapsetId: item.objectId,
+            beatmapId: item.details.beatmapId,
+            discussionId: item.details.discussionId,
+          });
         case 'beatmapset_disqualify':
           route = 'beatmapsets.discussion';
           params = { beatmapset: item.objectId };

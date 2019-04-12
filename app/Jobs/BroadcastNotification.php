@@ -111,6 +111,7 @@ class BroadcastNotification implements ShouldQueue
             'title' => $this->notifiable->title,
             'post_id' => $this->object->getKey(),
             'discussion_id' => $this->object->beatmapDiscussion->getKey(),
+            'beatmap_id' => $this->object->beatmapDiscussion->beatmap_id,
             'cover_url' => $this->notifiable->coverURL('card'),
         ];
     }
