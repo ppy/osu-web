@@ -30,17 +30,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
 
-class Notify implements ShouldQueue
+class BroadcastNotification implements ShouldQueue
 {
     use NotificationQueue, Queueable, SerializesModels;
-
-    const BEATMAPSET_DISCUSSION_POST_NEW = 'beatmapset_discussion_post_new';
-    const BEATMAPSET_DISQUALIFY = 'beatmapset_disqualify';
-    const BEATMAPSET_LOVE = 'beatmapset_love';
-    const BEATMAPSET_NOMINATE = 'beatmapset_nominate';
-    const BEATMAPSET_QUALIFY = 'beatmapset_qualify';
-    const BEATMAPSET_RESET_NOMINATIONS = 'beatmapset_reset_nominations';
-    const FORUM_TOPIC_REPLY = 'forum_topic_reply';
 
     private $name;
     private $notifiable;

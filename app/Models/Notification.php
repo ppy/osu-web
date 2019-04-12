@@ -24,6 +24,14 @@ use App\Libraries\MorphMap;
 
 class Notification extends Model
 {
+    const BEATMAPSET_DISCUSSION_POST_NEW = 'beatmapset_discussion_post_new';
+    const BEATMAPSET_DISQUALIFY = 'beatmapset_disqualify';
+    const BEATMAPSET_LOVE = 'beatmapset_love';
+    const BEATMAPSET_NOMINATE = 'beatmapset_nominate';
+    const BEATMAPSET_QUALIFY = 'beatmapset_qualify';
+    const BEATMAPSET_RESET_NOMINATIONS = 'beatmapset_reset_nominations';
+    const FORUM_TOPIC_REPLY = 'forum_topic_reply';
+
     protected $casts = [
         'details' => 'array',
     ];
