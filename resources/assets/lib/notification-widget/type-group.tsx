@@ -56,7 +56,6 @@ export default class TypeGroup extends React.Component<Props, State> {
     }
 
     const item = this.props.items[0];
-    const blockClass = bn;
 
     return <div className={bn}>
       <div className={`${bn}__header`}>

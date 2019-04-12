@@ -48,7 +48,6 @@ export default class CategoryGroup extends React.Component<Props, State> {
     let items: Notification[][];
     let expandButton: React.ReactNode = null;
     let blockClass = bn;
-    const hasToggle = this.props.items.length > 1;
 
     if (this.props.items.length === 1) {
       blockClass += ` ${bn}--single`;
