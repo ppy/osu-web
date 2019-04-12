@@ -22,16 +22,6 @@ class EsCreateSearchBlacklist extends Command
     protected $description = 'Creates the search blacklist index if it does not exist.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
