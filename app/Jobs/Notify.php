@@ -119,6 +119,7 @@ class Notify implements ShouldQueue
             'title' => $this->notifiable->title,
             'post_id' => $this->object->getKey(),
             'discussion_id' => $this->object->beatmapDiscussion->getKey(),
+            'cover_url' => $this->notifiable->coverURL('card'),
         ];
     }
 
