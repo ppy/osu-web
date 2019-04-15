@@ -78,8 +78,8 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
           div className: "#{bn}__toolbar-content #{bn}__toolbar-content--right",
             @renderShowDeletedToggle()
 
-            a
-              href: '#'
+            button
+              type: 'button'
               className: "#{bn}__toolbar-item #{bn}__toolbar-item--link"
               'data-type': 'collapse'
               onClick: @expand
@@ -89,8 +89,8 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
               span className: "#{bn}__toolbar-link-content",
                 osu.trans('beatmaps.discussions.collapse.all-collapse')
 
-            a
-              href: '#'
+            button
+              type: 'button'
               className: "#{bn}__toolbar-item #{bn}__toolbar-item--link"
               'data-type': 'expand'
               onClick: @expand
