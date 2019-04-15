@@ -98,22 +98,26 @@ export default class Main extends React.Component<Props, {}> {
         return;
       }
 
-      items.push(<div key={key} className='notification-popup__item'>
-        <TypeGroup
-          items={value}
-          worker={this.props.worker}
-        />
-      </div>);
+      items.push(
+        (
+          <div key={key} className='notification-popup__item'>
+            <TypeGroup
+              items={value}
+              worker={this.props.worker}
+            />
+          </div>
+        ),
+      );
     });
 
     if (items.length === 0) {
-      if (this.props.worker.hasMore) {
-        items.push(<div key='empty-with-more' className='notification-popup__empty-with-more' />);
-      } else {
-        items.push(<p key='empty' className='notification-popup__empty'>
+      items.push(this.props.worker.hasMore ? (
+        <div key='empty-with-more' className='notification-popup__empty-with-more' />
+      ) : (
+        <p key='empty' className='notification-popup__empty'>
           {osu.trans('notifications.all_read')}
-        </p>);
-      }
+        </p>
+      ));
     }
 
     return items;

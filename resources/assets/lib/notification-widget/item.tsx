@@ -239,8 +239,8 @@ export default class Item extends React.Component<Props, State> {
       switch (item.name) {
         case 'beatmapset_discussion_post_new':
           return BeatmapDiscussionHelper.url({
-            beatmapsetId: item.objectId,
             beatmapId: item.details.beatmapId,
+            beatmapsetId: item.objectId,
             discussionId: item.details.discussionId,
           });
         case 'beatmapset_disqualify':
