@@ -1,3 +1,5 @@
+/* tslint:disable:max-classes-per-file */
+
 // importable coffeescript modules
 declare module 'big-button' {
   class BigButton extends React.PureComponent<any> {}
