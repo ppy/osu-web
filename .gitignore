@@ -1,5 +1,6 @@
 # Local configuration.
 /.env
+/.env.dusk.local
 /.env.testing
 
 # ignore the compiled class file from artisan optimize
