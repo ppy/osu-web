@@ -70,7 +70,7 @@
             </div>
         </div>
 
-        @if (($newTopic ? priv_check('ForumTopicCoverStore', $_forum) : priv_check('ForumTopicCoverEditByTopic', $topic))->can())
+        @if (($newTopic ? priv_check('ForumTopicCoverStore', $_forum) : priv_check('ForumTopicCoverEdit', $topic))->can())
             <div class="forum-category-header__actions">
                 @include('forum._cover_editor')
             </div>

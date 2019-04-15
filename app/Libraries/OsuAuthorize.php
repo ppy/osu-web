@@ -25,6 +25,8 @@ use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\Chat\Channel;
 use App\Models\Forum\Authorize as ForumAuthorize;
+use App\Models\Forum\Topic;
+use App\Models\Forum\TopicCover;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
 use App\Models\User;
 use App\Models\UserContestEntry;
@@ -916,34 +918,35 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkForumTopicCoverEdit($user, $cover)
+    /**
+     * @param  User $user
+     * @param  Topic|TopicCover $object
+     * @return string
+     */
+    public function checkForumTopicCoverEdit($user, $object)
     {
         $prefix = 'forum.topic_cover.edit.';
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($cover->owner() === null) {
+        $topic = $object instanceof Topic ? $object : $object->topic;
+
+        if ($topic !== null) {
+            $forumTopicCoverStorePermission = $this->doCheckUser($user, 'ForumTopicCoverStore', $topic->forum);
+            if (!$forumTopicCoverStorePermission->can()) {
+                return $forumTopicCoverStorePermission->rawMessage();
+            }
+
+            return $this->checkForumTopicEdit($user, $topic);
+        }
+
+        if ($object->owner() === null) {
             return $prefix.'uneditable';
         }
 
-        if ($cover->owner()->user_id !== $user->user_id) {
+        if ($object->owner()->user_id !== $user->user_id) {
             return $prefix.'not_owner';
-        }
-
-        return 'ok';
-    }
-
-    public function checkForumTopicCoverEditByTopic($user, $topic)
-    {
-        $forumTopicCoverStorePermission = $this->doCheckUser($user, 'ForumTopicCoverStore', $topic->forum);
-        if (!$forumTopicCoverStorePermission->can()) {
-            return $forumTopicCoverStorePermission->rawMessage();
-        }
-
-        $forumTopicEditPermission = $this->doCheckUser($user, 'ForumTopicEdit', $topic);
-        if (!$forumTopicEditPermission->can()) {
-            return $forumTopicEditPermission->rawMessage();
         }
 
         return 'ok';
