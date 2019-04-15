@@ -19,6 +19,7 @@
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import { ShowMoreLink } from 'show-more-link';
 import TypeGroup from './type-group';
 import Worker from './worker';
 

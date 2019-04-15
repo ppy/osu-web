@@ -20,6 +20,7 @@ import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import Notification from 'models/notification';
 import * as React from 'react';
+import { ShowMoreLink } from 'show-more-link';
 import Item from './item';
 import Worker from './worker';
 
