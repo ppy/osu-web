@@ -119,6 +119,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'Access to requested forum is required.',
                 'over' => 'Polling is over and can not be voted on anymore.',
+                'play_more' => 'You need to play more before voting on forum.',
                 'voted' => 'Changing vote is not allowed.',
 
                 'user' => [

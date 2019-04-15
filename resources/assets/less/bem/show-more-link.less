@@ -30,9 +30,9 @@
   border-radius: 10000px;
   color: inherit;
 
-  .link-hover({
+  &:hover {
     color: inherit;
-  });
+  };
 
   &--beatmapsets {
     margin-bottom: 10px;
@@ -54,43 +54,51 @@
     margin: 10px auto 0;
   }
 
-  &--t-community-user-graygreen-darker {
-    background-color: @community-user-graygreen-darker;
+  &--t-greyseafoam-dark {
+    background-color: @greyseafoam-dark;
 
-    .link-hover({
-      background-color: @community-user-graygreen-dark;
-    });
+    &:hover {
+      background-color: @greyseafoam;
+    };
   }
 
   &--t-dark-purple-dark {
     background-color: @dark-purple-dark;
 
-    .link-hover({
+    &:hover {
       background-color: @dark-graypurple;
-    });
+    };
   }
 
-  &--t-dark-purple-darker {
-    background-color: @dark-purple-darker;
+  &--t-greyviolet-darker {
+    background-color: @greyviolet-darker;
 
-    .link-hover({
+    &:hover {
       background-color: #000;
-    });
+    };
   }
 
   &--t-ddd {
     background-color: #ddd;
 
-    .link-hover({
+    &:hover {
       background-color: #ccc;
-    });
+    };
+  }
+
+  &--t-greysky {
+    background-color: @greysky;
+
+    &:hover {
+      background-color: @greysky-light;
+    };
   }
 
   &[disabled], &.js-disabled {
     color: #ccc;
 
-    &.@{_top}--t-community-user-graygreen-darker {
-      background-color: @community-user-graygreen-darker;
+    &.@{_top}--t-greyseafoam-dark {
+      background-color: @greyseafoam-dark;
     }
 
     &.@{_top}--t-ddd {
@@ -102,8 +110,8 @@
       background-color: @dark-purple-dark;
     }
 
-    &.@{_top}--t-dark-purple-darker {
-      background-color: @dark-purple-darker;
+    &.@{_top}--t-greyviolet-darker {
+      background-color: @greyviolet-darker;
     }
   }
 

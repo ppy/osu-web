@@ -46,6 +46,7 @@ return [
         'require-login' => 'Please sign in to post or reply',
         'resolved' => 'Resolved',
         'restore' => 'restore',
+        'show_deleted' => 'Show deleted',
         'title' => 'Discussions',
 
         'collapse' => [

@@ -36,13 +36,7 @@
 
                 <div class="navbar-mobile__header-section navbar-mobile__header-section--buttons">
                     @if (Auth::check())
-                        <a
-                            href="{{ osu_url('user.inbox') }}"
-                            class="notification-icon notification-icon--mobile{{Auth::user()->notificationCount() > 0 ? ' notification-icon--glow' : ''}}"
-                        >
-                            <i class="fas fa-lg fa-fw fa-inbox notification-icon__inbox"></i>
-                            <span class="notification-icon__count">{{ Auth::user()->notificationCount() > 0 ? i18n_number_format(Auth::user()->notificationCount()) : '' }}</span>
-                        </a>
+                        <div class="js-react--notification" data-notification-type="mobile"></div>
 
                         <a
                             href="{{ route('users.show', Auth::user()->user_id) }}"
