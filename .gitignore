@@ -1,7 +1,6 @@
 # Local configuration.
-/.env
-/.env.dusk.local
-/.env.testing
+/.env*
+!/.env*.example
 
 # ignore the compiled class file from artisan optimize
 /bootstrap/compiled.php
