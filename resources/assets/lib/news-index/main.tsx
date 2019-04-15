@@ -77,48 +77,50 @@ export default class Main extends React.Component<PropsInterface, StateInterface
       key: 'news.index.title._',
     };
 
-    return <>
-      <NewsHeader
-        section='index'
-        titleTrans={titleTrans}
-      />
-      <div className='osu-page osu-page--news'>
-        <div className='news-index'>
-          {this.state.posts.map((post, i) => {
-            let containerClass = 'news-index__item';
-            if (i === 0) {
-              containerClass += ' news-index__item--first';
-            }
+    return (
+      <>
+        <NewsHeader
+          section='index'
+          titleTrans={titleTrans}
+        />
+        <div className='osu-page osu-page--news'>
+          <div className='news-index'>
+            {this.state.posts.map((post, i) => {
+              let containerClass = 'news-index__item';
+              if (i === 0) {
+                containerClass += ' news-index__item--first';
+              }
 
-            return <div key={post.id} className={containerClass}><PostItem post={post} /></div>;
-          })}
+              return <div key={post.id} className={containerClass}><PostItem post={post} /></div>;
+            })}
 
-          <div className='news-index__item news-index__item--more'>
-            <ShowMoreLink
-              callback={this.showMore}
-              hasMore={this.state.hasMore}
-              loading={this.state.loading}
-              modifiers={['t-dark-purple-dark']}
-            />
+            <div className='news-index__item news-index__item--more'>
+              <ShowMoreLink
+                callback={this.showMore}
+                hasMore={this.state.hasMore}
+                loading={this.state.loading}
+                modifiers={['t-dark-purple-dark']}
+              />
+            </div>
           </div>
         </div>
-      </div>
 
-      <AdminMenu items={[
-        {
-          component: 'button',
-          icon: 'fas fa-sync',
-          props: {
-            'data-method': 'post',
-            'data-reload-on-success': '1',
-            'data-remote': true,
-            'data-url': laroute.route('news.store'),
-            'type': 'button',
+        <AdminMenu items={[
+          {
+            component: 'button',
+            icon: 'fas fa-sync',
+            props: {
+              'data-method': 'post',
+              'data-reload-on-success': '1',
+              'data-remote': true,
+              'data-url': laroute.route('news.store'),
+              'type': 'button',
+            },
+            text: osu.trans('news.store.button'),
           },
-          text: osu.trans('news.store.button'),
-        },
-      ]} />
-    </>;
+        ]} />
+      </>
+    );
   }
 
   private showMore = () => {

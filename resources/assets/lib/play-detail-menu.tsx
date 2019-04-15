@@ -29,7 +29,7 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
   render() {
     const { score } = this.props;
 
-    const children = (dismiss: () => void) =>
+    const children = (dismiss: () => void) => (
       <>
         {
           score.replay ?
@@ -43,7 +43,8 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
         }
 
         {this.canReport ? <ReportScore score={score} /> : null}
-      </>;
+      </>
+    );
 
     return (
       <PopupMenuPersistent>

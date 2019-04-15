@@ -43,32 +43,34 @@ export default class Main extends React.Component<Props, {}> {
       return null;
     }
 
-    return <>
-      <button
-        className={this.buttonClass()}
-        data-click-menu-target={this.menuId}
-      >
-        <span className={this.mainClass()}>
-          <i className='fas fa-inbox' />
-          <span className='notification-icon__count'>
-            {this.unreadCount()}
-          </span>
-        </span>
-      </button>
-      <div className='nav-click-popup'>
-        <div
-          className='notification-popup js-click-menu js-nav2--centered-popup u-fancy-scrollbar'
-          data-click-menu-id={this.menuId}
-          data-visibility='hidden'
+    return (
+      <>
+        <button
+          className={this.buttonClass()}
+          data-click-menu-target={this.menuId}
         >
-          <div className='notification-popup__scroll-container'>
-            {this.renderTypeGroup()}
+          <span className={this.mainClass()}>
+            <i className='fas fa-inbox' />
+            <span className='notification-icon__count'>
+              {this.unreadCount()}
+            </span>
+          </span>
+        </button>
+        <div className='nav-click-popup'>
+          <div
+            className='notification-popup js-click-menu js-nav2--centered-popup u-fancy-scrollbar'
+            data-click-menu-id={this.menuId}
+            data-visibility='hidden'
+          >
+            <div className='notification-popup__scroll-container'>
+              {this.renderTypeGroup()}
 
-            {this.renderShowMoreButton()}
+              {this.renderShowMoreButton()}
+            </div>
           </div>
         </div>
-      </div>
-    </>;
+      </>
+    );
   }
 
   private renderShowMoreButton() {
@@ -76,14 +78,16 @@ export default class Main extends React.Component<Props, {}> {
       return;
     }
 
-    return <div className='notification-popup__show-more'>
-      <ShowMoreLink
-        callback={this.props.worker.loadMore}
-        hasMore={this.props.worker.hasMore}
-        loading={this.props.worker.loadingMore}
-        modifiers={['t-greysky']}
-      />
-    </div>;
+    return (
+      <div className='notification-popup__show-more'>
+        <ShowMoreLink
+          callback={this.props.worker.loadMore}
+          hasMore={this.props.worker.hasMore}
+          loading={this.props.worker.loadingMore}
+          modifiers={['t-greysky']}
+        />
+      </div>
+    );
   }
 
   private renderTypeGroup() {

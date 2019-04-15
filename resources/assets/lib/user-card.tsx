@@ -64,7 +64,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   }
 
   render() {
-    const details = this.isUserLoaded ?
+    const details = this.isUserLoaded ? (
       <div className='usercard__icons'>
         <div className='usercard__icon'>
           <a href={laroute.route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}>
@@ -96,7 +96,8 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
             </a>
           </div> : null
         }
-      </div> : null;
+      </div>
+     ) : null;
 
     let usercardCss = 'usercard';
     for (const modifier of this.props.modifiers) {
@@ -155,21 +156,25 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
         backgroundCssClass += ' usercard__background--loading';
       }
 
-      background =
+      background = (
         <>
           <img className={backgroundCssClass} onLoad={this.onBackgroundLoad} src={this.user.cover.url} />
           <div className='usercard__background-overlay'/>
-        </>;
+        </>
+      );
     } else {
       background =  <div className='usercard__background-overlay usercard__background-overlay--guest'/>;
     }
 
     if (this.isUserLoaded) {
-      backgroundLink =
-        <a href={laroute.route('users.show', { user: this.user.id })}
-           className='usercard__background-container'>
+      backgroundLink = (
+        <a
+          href={laroute.route('users.show', { user: this.user.id })}
+          className='usercard__background-container'
+        >
           {background}
-        </a>;
+        </a>
+      );
     } else {
       backgroundLink = background;
     }

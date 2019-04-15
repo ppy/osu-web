@@ -83,35 +83,37 @@ export default class Item extends React.Component<Props, State> {
       blockClass += ' notification-popup-item--multi';
     }
 
-    return <div className='notification-popup-item clickable-row' onClick={this.markRead}>
-      <div
-        className='notification-popup-item__cover'
-        style={{
-          backgroundImage: osu.urlPresence(item.details.coverUrl),
-        }}
-      >
-        <div className='notification-popup-item__cover-overlay'>
-          {this.renderCoverIcon()}
-        </div>
-      </div>
-      <div className='notification-popup-item__main'>
-        <div className='notification-popup-item__content'>
-          <div className='notification-popup-item__name'>
-            {osu.trans(`notifications.item.${item.objectType}.${item.category}._`)}
+    return (
+      <div className='notification-popup-item clickable-row' onClick={this.markRead}>
+        <div
+          className='notification-popup-item__cover'
+          style={{
+            backgroundImage: osu.urlPresence(item.details.coverUrl),
+          }}
+        >
+          <div className='notification-popup-item__cover-overlay'>
+            {this.renderCoverIcon()}
           </div>
-          {this.renderMessage()}
-          <div
-            className='notification-popup-item__time'
-            dangerouslySetInnerHTML={{
-              __html: osu.timeago(item.createdAtJson),
-            }}
-          />
         </div>
-        <div className='notification-popup-item__side-buttons'>
-          {this.renderMarkAsReadButton()}
+        <div className='notification-popup-item__main'>
+          <div className='notification-popup-item__content'>
+            <div className='notification-popup-item__name'>
+              {osu.trans(`notifications.item.${item.objectType}.${item.category}._`)}
+            </div>
+            {this.renderMessage()}
+            <div
+              className='notification-popup-item__time'
+              dangerouslySetInnerHTML={{
+                __html: osu.timeago(item.createdAtJson),
+              }}
+            />
+          </div>
+          <div className='notification-popup-item__side-buttons'>
+            {this.renderMarkAsReadButton()}
+          </div>
         </div>
       </div>
-    </div>;
+    );
   }
 
   private renderCoverIcon() {
@@ -134,9 +136,11 @@ export default class Item extends React.Component<Props, State> {
     }
 
     return icons.map((icon) => {
-      return <div key={icon} className='notification-popup-item__cover-icon'>
-        <span className={icon} />
-      </div>;
+      return (
+        <div key={icon} className='notification-popup-item__cover-icon'>
+          <span className={icon} />
+        </div>
+      );
     });
   }
 
@@ -146,16 +150,20 @@ export default class Item extends React.Component<Props, State> {
     }
 
     if (this.state.markingAsRead) {
-      return <div className='notification-popup-item__read-button'>
+      return (
+        <div className='notification-popup-item__read-button'>
           <Spinner />
-        </div>;
+        </div>
+      );
     } else {
-      return <button
+      return (
+        <button
           type='button'
           className='notification-popup-item__read-button'
         >
           <span className='fas fa-times' />
-        </button>;
+        </button>
+      );
     }
   }
 
@@ -184,9 +192,11 @@ export default class Item extends React.Component<Props, State> {
       message = osu.transChoice(`notifications.message_multi`, this.props.items.length, replacements);
     }
 
-    return <a href={this.url()} className='notification-popup-item__message clickable-row-link'>
-      {message}
-    </a>;
+    return (
+      <a href={this.url()} className='notification-popup-item__message clickable-row-link'>
+        {message}
+      </a>
+    );
   }
 
   private markRead = () => {
