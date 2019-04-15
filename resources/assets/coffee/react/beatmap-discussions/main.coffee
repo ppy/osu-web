@@ -38,14 +38,14 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
     if !@restoredState
       beatmapset = props.initial.beatmapset
-
+      showDeleted = true
       readPostIds = []
 
       for discussion in beatmapset.discussions
         for post in discussion.posts ? []
           readPostIds.push post.id
 
-      @state = {beatmapset, currentUser, readPostIds}
+      @state = {beatmapset, currentUser, readPostIds, showDeleted}
 
     # Current url takes priority over saved state.
     query = @queryFromLocation(@state.beatmapset.discussions)
@@ -61,6 +61,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     $.subscribe 'beatmapsetDiscussions:update.beatmapDiscussions', @update
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
+    $.subscribe 'beatmapDiscussionPost:toggleShowDeleted.beatmapDiscussions', @toggleShowDeleted
 
     $(document).on 'ajax:success.beatmapDiscussions', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
     $(document).on 'click.beatmapDiscussions', '.js-beatmap-discussion--jump', @jumpToClick
@@ -142,6 +143,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
             currentUser: @state.currentUser
             mode: @state.currentMode
             readPostIds: @state.readPostIds
+            showDeleted: @state.showDeleted
             users: @users()
 
       el window._exported.BackToTop
@@ -381,6 +383,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
   setPinnedNewDiscussion: (pinned) =>
     @setState pinnedNewDiscussion: pinned
+
+
+  toggleShowDeleted: =>
+    @setState showDeleted: !@state.showDeleted
 
 
   update: (_e, options) =>
