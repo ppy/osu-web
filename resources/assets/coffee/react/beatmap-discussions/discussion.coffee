@@ -173,7 +173,7 @@ export class Discussion extends React.PureComponent
   post: (post, type) =>
     return if !post.id?
 
-    elementName = if post.system then 'SystemPost' else 'Post'
+    elementName = if post.system then SystemPost else Post
 
     canModeratePosts = @props.currentUser.is_admin || @props.currentUser.is_gmt || @props.currentUser.is_qat
     canBeDeleted =
@@ -182,7 +182,7 @@ export class Discussion extends React.PureComponent
       else
         canModeratePosts || @isOwner(post)
 
-    el BeatmapDiscussions[elementName],
+    el elementName,
       key: post.id
       beatmapset: @props.beatmapset
       beatmap: @props.currentBeatmap
