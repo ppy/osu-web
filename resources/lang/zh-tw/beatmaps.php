@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => '排序：',
-            'created_at' => '',
+            'created_at' => '建立時間',
             'timeline' => '',
-            'updated_at' => '',
+            'updated_at' => '最後更新',
         ],
 
         'stats' => [
@@ -196,12 +196,12 @@ return [
             'sorting' => [
                 'title' => '',
                 'artist' => '',
-                'difficulty' => '',
+                'difficulty' => '難度',
                 'favourites' => '',
                 'updated' => '',
                 'ranked' => '',
                 'rating' => '',
-                'plays' => '',
+                'plays' => '遊玩次數',
                 'relevance' => '',
                 'nominations' => '',
             ],

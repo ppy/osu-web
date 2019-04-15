@@ -36,6 +36,8 @@ import TextareaAutosize from 'react-autosize-textarea'
 import VirtualList from 'react-virtual-list'
 import GalleryContest from 'gallery-contest'
 import WindowVHPatcher from 'window-vh-patcher'
+import NotificationWidget from 'notification-widget/main'
+import NotificationWidgetWorker from 'notification-widget/worker'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
@@ -46,6 +48,8 @@ window._exported = {
   ContainerContext
   GalleryContest
   KeyContext
+  NotificationWidget
+  NotificationWidgetWorker
   PlayDetailList
   PlayDetailMenu
   ReportComment
@@ -53,10 +57,10 @@ window._exported = {
   ScoreHelper
   SelectOptions
   SpotlightSelectOptions
-  WindowVHPatcher
   UserCard
   UserCardStore
   UserCardTooltip
+  WindowVHPatcher
 }
 
 # refer to variables.less

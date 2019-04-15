@@ -34,7 +34,7 @@ return [
     ],
 
     'show' => [
-        'by' => 'autorstwa :user',
+        'by' => 'od :user',
 
         'nav' => [
             'newer' => 'Nowsza wiadomość',

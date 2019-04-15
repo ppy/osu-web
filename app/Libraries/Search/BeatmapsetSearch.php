@@ -65,6 +65,7 @@ class BeatmapsetSearch extends RecordSearch
             );
         }
 
+        $this->addBlacklistFilter($query);
         $this->addModeFilter($query);
         $this->addRecommendedFilter($query);
         $this->addGenreFilter($query);
@@ -80,6 +81,28 @@ class BeatmapsetSearch extends RecordSearch
     public function records()
     {
         return $this->response()->records()->with('beatmaps')->get();
+    }
+
+    private function addBlacklistFilter($query)
+    {
+        static $fields = ['artist', 'source', 'tags'];
+        $bool = new BoolQuery;
+
+        foreach ($fields as $field) {
+            $bool->mustNot([
+                'terms' => [
+                    $field => [
+                        'index' => config('osu.elasticsearch.prefix').'blacklist',
+                        'type' => 'blacklist', // FIXME: change to _doc after upgrading from 6.1
+                        'id' => 'beatmapsets',
+                        // can be changed to per-field blacklist as different fields should probably have different restrictions.
+                        'path' => 'keywords',
+                    ],
+                ],
+            ]);
+        }
+
+        $query->filter($bool);
     }
 
     private function addExtraFilter($query)

@@ -5,8 +5,10 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
+use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserGroup;
+use App\Models\UserNotification;
 
 class BeatmapDiscussionPostsControllerTest extends TestCase
 {
@@ -39,6 +41,11 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     {
         $currentDiscussions = BeatmapDiscussion::count();
         $currentDiscussionPosts = BeatmapDiscussionPost::count();
+        $currentNotifications = Notification::count();
+        $currentUserNotifications = UserNotification::count();
+
+        $otherUser = factory(User::class)->create();
+        $this->beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
         $this
             ->actingAs($this->user)
@@ -55,6 +62,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this->assertSame($currentDiscussions + 1, BeatmapDiscussion::count());
         $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
+        $this->assertSame($currentNotifications + 1, Notification::count());
+        $this->assertSame($currentUserNotifications + 1, UserNotification::count());
     }
 
     public function testPostStoreNewDiscussionNoteByMapper()

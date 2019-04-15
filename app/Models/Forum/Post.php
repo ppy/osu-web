@@ -21,6 +21,7 @@
 namespace App\Models\Forum;
 
 use App\Jobs\EsIndexDocument;
+use App\Jobs\MarkNotificationsRead;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\Transactions\AfterCommit;
@@ -351,5 +352,7 @@ class Post extends Model implements AfterCommit
         if ($topic->topic_last_post_id === $this->getKey()) {
             TopicWatch::lookupQuery($topic, $user)->update(['notify_status' => false]);
         }
+
+        (new MarkNotificationsRead($this, $user))->dispatch();
     }
 }

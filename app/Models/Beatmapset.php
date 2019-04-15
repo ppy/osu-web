@@ -578,6 +578,8 @@ class Beatmapset extends Model implements AfterCommit
             BeatmapsetEvent::log(BeatmapsetEvent::DISQUALIFY, $user, $post)->saveOrExplode();
 
             $this->setApproved('pending', $user);
+
+            broadcast_notification(Notification::BEATMAPSET_DISQUALIFY, $this, $user);
         });
 
         return true;
@@ -600,6 +602,8 @@ class Beatmapset extends Model implements AfterCommit
             // enqueue a cover check job to ensure cover images are all present
             $job = (new CheckBeatmapsetCovers($this))->onQueue('beatmap_high');
             dispatch($job);
+
+            broadcast_notification(Notification::BEATMAPSET_QUALIFY, $this, $user);
         });
 
         return true;
@@ -629,6 +633,8 @@ class Beatmapset extends Model implements AfterCommit
                 $this->events()->create(['type' => BeatmapsetEvent::NOMINATE, 'user_id' => $user->user_id]);
                 if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
                     $this->qualify($user);
+                } else {
+                    broadcast_notification(Notification::BEATMAPSET_NOMINATE, $this, $user);
                 }
             }
             $this->refreshCache();
@@ -655,6 +661,8 @@ class Beatmapset extends Model implements AfterCommit
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
 
             dispatch((new CheckBeatmapsetCovers($this))->onQueue('beatmap_high'));
+
+            broadcast_notification(Notification::BEATMAPSET_LOVE, $this, $user);
         });
 
         return [

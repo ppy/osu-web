@@ -20,6 +20,7 @@
 
 namespace App\Models\Forum;
 
+use App\Events\UserSubscriptionChangeEvent;
 use App\Models\User;
 
 /**
@@ -97,12 +98,17 @@ class TopicWatch extends Model
 
             try {
                 if ($state === 'not_watching') {
+                    $notify = false;
                     $watch->delete();
                 } else {
-                    $mail = $state === 'watching_mail';
+                    $notify = $state === 'watching_mail';
 
-                    $watch->fill(['mail' => $mail])->saveOrExplode();
+                    $watch->fill(['mail' => $notify])->saveOrExplode();
                 }
+
+                $event = $notify ? 'add' : 'remove';
+
+                event(new UserSubscriptionChangeEvent($event, $user, $topic));
 
                 return $watch;
             } catch (Exception $e) {

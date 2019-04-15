@@ -1,0 +1,65 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.nav-button {
+  @_button-content-size: 16px;
+  @_icon-size: 40px;
+
+  .reset-input();
+  .circle(@_icon-size);
+  .center-content();
+  .link-plain();
+  border: 3px solid fade(#fff, 25%);
+  font-size: @_button-content-size;
+  color: #fff;
+  margin: 0 3px;
+
+  &.js-click-menu--active, &:hover {
+    background-color: fade(#000, 50%);
+    border-color: #fff;
+    color: #fff;
+  }
+
+  &--mobile {
+    .default-border-radius();
+    margin: 0 10px 0 0;
+    border: none;
+  }
+
+  &--social {
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  &--stadium {
+    width: auto;
+    border-radius: @_icon-size;
+    padding: 0 10px;
+  }
+
+  &--support {
+    &:hover {
+      color: @pink;
+    }
+  }
+
+  &__locale-current-flag {
+    height: @_button-content-size;
+  }
+}

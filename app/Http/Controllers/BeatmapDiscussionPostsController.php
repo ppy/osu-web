@@ -27,6 +27,7 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
+use App\Models\Notification;
 use Auth;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -162,6 +163,10 @@ class BeatmapDiscussionPostsController extends Controller
                     $discussion->beatmapset->disqualify(Auth::user(), $posts[0]);
                 }
 
+                if ($resetNominations) {
+                    broadcast_notification(Notification::BEATMAPSET_RESET_NOMINATIONS, $discussion->beatmapset, Auth::user());
+                }
+
                 // feels like a controller shouldn't be calling refreshCache on a model?
                 if ($resetNominations || $disqualify) {
                     $discussion->beatmapset->refreshCache();
@@ -174,6 +179,7 @@ class BeatmapDiscussionPostsController extends Controller
         $beatmapset = $discussion->beatmapset;
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
+        broadcast_notification(Notification::BEATMAPSET_DISCUSSION_POST_NEW, $post, Auth::user());
         (new NotifyBeatmapsetUpdate([
             'user' => Auth::user(),
             'beatmapset' => $beatmapset,
