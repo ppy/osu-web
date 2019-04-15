@@ -23,7 +23,13 @@
   .center-content();
   display: flex;
 
+  &--glow {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+
   &--mobile {
+    flex-direction: column;
+    padding-top: 10px;
     padding-bottom: 10px;
   }
 
@@ -42,15 +48,5 @@
     .@{top}--mobile & {
       padding-bottom: 2px;
     }
-  }
-
-  &--mobile {
-    flex-direction: column;
-    padding-top: 10px;
-    margin-right: 10px;
-  }
-
-  &--glow {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   }
 }

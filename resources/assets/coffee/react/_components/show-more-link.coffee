@@ -26,6 +26,8 @@ export ShowMoreLink = React.forwardRef (props, ref) =>
 
   onClick = props.callback
   onClick ?= -> $.publish props.event, props.data
+  icon = span className: "#{bn}__label-icon",
+    span className: "fas fa-angle-#{props.direction ? 'down'}"
 
   button
     ref: ref
@@ -36,12 +38,10 @@ export ShowMoreLink = React.forwardRef (props, ref) =>
     span className: "#{bn}__spinner",
       el Spinner
     span className: "#{bn}__label",
-      span className: "#{bn}__label-icon",
-        span className: 'fas fa-angle-down'
+      icon
       span className: "#{bn}__label-text",
-        osu.trans('common.buttons.show_more')
+        props.label ? osu.trans('common.buttons.show_more')
 
         if props.remaining?
           " (#{props.remaining})"
-      span className: "#{bn}__label-icon",
-        span className: 'fas fa-angle-down'
+      icon

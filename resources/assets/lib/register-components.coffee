@@ -5,6 +5,8 @@ import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
 import { CountdownTimer } from 'countdown-timer'
 import { FriendButton } from 'friend-button'
+import NotificationWidget from 'notification-widget/main'
+import NotificationWidgetWorker from 'notification-widget/worker'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { UserCard } from 'user-card'
 import { UserCardStore } from 'user-card-store'
@@ -37,6 +39,17 @@ reactTurbolinks.register 'comments', CommentsManager, (el) ->
   props.component = Comments
 
   props
+
+notificationWorker = new NotificationWidgetWorker()
+resetNotificationWorker = ->
+  notificationWorker.userId = currentUser.id
+  notificationWorker.boot()
+$(document).ready resetNotificationWorker
+$.subscribe 'user:update', resetNotificationWorker
+
+reactTurbolinks.registerPersistent 'notification', NotificationWidget, true, (el) ->
+  type: el.dataset.notificationType
+  worker: notificationWorker
 
 reactTurbolinks.register 'user-card', UserCard, (el) ->
   modifiers: try JSON.parse(el.dataset.modifiers)
