@@ -43,7 +43,8 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
 
   render: =>
-    return div() if @props.discussion.posts.length == 0
+    return null if !@isVisible(@props.discussion)
+    return null if @props.discussion.posts.length == 0
 
     topClasses = "#{bn} js-beatmap-discussion-jump"
     topClasses += " #{bn}--highlighted" if @state.highlighted
@@ -85,6 +86,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
           div
             className: "#{bn}__replies"
             for reply in @props.discussion.posts.slice(1)
+              continue unless @isVisible(reply)
               if reply.system && reply.message.type == 'resolved'
                 currentResolvedState = reply.message.value
                 continue if lastResolvedState == currentResolvedState
@@ -158,6 +160,10 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     @props.currentUser.id? && object.user_id == @props.currentUser.id
 
 
+  isVisible: (object) =>
+    object? && (@props.showDeleted || !object.deleted_at?)
+
+
   canDownvote: =>
     @props.currentUser.is_admin || @props.currentUser.is_gmt || @props.currentUser.is_qat || @props.currentUser.is_bng
 
@@ -171,7 +177,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
     elementName = if post.system then 'SystemPost' else 'Post'
 
-    canModeratePosts = @props.currentUser.is_admin || @props.currentUser.is_gmt || @props.currentUser.is_qat
+    canModeratePosts = BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
     canBeDeleted =
       if type == 'discussion'
         @props.discussion.current_user_attributes?.can_destroy
