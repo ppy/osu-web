@@ -52,7 +52,9 @@ export BeatmapBasicStats = ({beatmapset, beatmap}) ->
       div
         className: "#{bn}__entry"
         key: stat
-        title: osu.trans "beatmapsets.show.stats.#{stat}"
+        title: osu.trans "beatmapsets.show.stats.#{stat}",
+          if stat == 'total_length'
+            hit_length: formatDuration(beatmap['hit_length'])
         div
           className: "#{bn}__entry-icon"
           style:
