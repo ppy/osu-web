@@ -16,10 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, li, span, ul} = ReactDOMFactories
+import { Event } from './event'
+import * as React from 'react'
+import { a, div, li, span, ul } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapDiscussions.Events extends React.PureComponent
+export class Events extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -48,7 +50,7 @@ class BeatmapDiscussions.Events extends React.PureComponent
               div
                 key: event.id
                 className: 'beatmapset-events__event'
-                el BeatmapDiscussions.Event,
+                el Event,
                   event: event
                   time: createdAt
                   users: @props.users

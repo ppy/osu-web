@@ -16,10 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, img} = ReactDOMFactories
+import * as React from 'react'
+import { div, img } from 'react-dom-factories'
 el = React.createElement
 
-class ProfilePage.Badges extends React.PureComponent
+export class Badges extends React.PureComponent
   render: =>
     div className: 'profile-badges',
       for badge in @props.badges

@@ -20,15 +20,8 @@ import MainView from 'chat/main-view';
 import * as _ from 'lodash';
 import Channel from 'models/chat/channel';
 import User from 'models/user';
-import OsuCore from 'osu-core';
+import core from 'osu-core-singleton';
 
-declare global {
-  interface Window {
-    OsuCore: OsuCore;
-  }
-}
-
-const core = window.OsuCore = window.OsuCore || new OsuCore(window);
 const dataStore = core.dataStore;
 const presence: PresenceJSON = osu.parseJson('json-presence');
 

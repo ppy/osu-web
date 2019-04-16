@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {ChatChannelSwitchAction, ChatMessageAddAction, ChatMessageSendAction, ChatMessageUpdateAction} from 'actions/chat-actions';
+import { ChatChannelSwitchAction, ChatMessageAddAction, ChatMessageSendAction, ChatMessageUpdateAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
 import DispatchListener from 'dispatch-listener';

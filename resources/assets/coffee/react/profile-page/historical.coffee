@@ -16,11 +16,16 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, h2, h3, img, p, small, span} = ReactDOMFactories
+import { BeatmapPlaycount } from './beatmap-playcount'
+import { ExtraHeader } from './extra-header'
+import { PlayDetailList } from 'play-detail-list'
+import * as React from 'react'
+import { a, div, h2, h3, img, p, small, span } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
 el = React.createElement
 
 
-class ProfilePage.Historical extends React.PureComponent
+export class Historical extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -50,7 +55,7 @@ class ProfilePage.Historical extends React.PureComponent
     div
       className: 'page-extra'
 
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+      el ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       if @hasMonthlyPlaycounts()
         div null,
@@ -70,7 +75,7 @@ class ProfilePage.Historical extends React.PureComponent
       if @props.beatmapPlaycounts?.length
         [
           for playcount in @props.beatmapPlaycounts
-            el ProfilePage.BeatmapPlaycount,
+            el BeatmapPlaycount,
               key: playcount.beatmap.id
               playcount: playcount
           el ShowMoreLink,
@@ -95,7 +100,7 @@ class ProfilePage.Historical extends React.PureComponent
 
       if @props.scoresRecent?.length
         [
-          el window._exported.PlayDetailList, key: 'play-detail-list', scores: @props.scoresRecent
+          el PlayDetailList, key: 'play-detail-list', scores: @props.scoresRecent
 
           el ShowMoreLink,
             key: 'show-more-row'

@@ -18,48 +18,17 @@
 
 # Import shim so that globally declared scripts can work without changes.
 
-import { BackToTop } from 'back-to-top'
-import { PlayDetailList } from 'play-detail-list'
-import { PlayDetailMenu } from 'play-detail-menu'
-import { ReportComment } from 'report-comment'
-import { ReportUser } from 'report-user'
-import { ScoreHelper } from 'score-helper'
-import { SelectOptions } from 'select-options'
-import { SpotlightSelectOptions } from 'spotlight-select-options'
-import { activeKeyDidChange, ContainerContext, KeyContext } from 'stateful-activation-context'
 import { StoreCheckout } from 'store-checkout'
-import { UserCard } from 'user-card'
-import { UserCardStore } from 'user-card-store'
-import { UserCardTooltip } from 'user-card-tooltip'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
-import VirtualList from 'react-virtual-list'
 import GalleryContest from 'gallery-contest'
 import WindowVHPatcher from 'window-vh-patcher'
-import NotificationWidget from 'notification-widget/main'
-import NotificationWidgetWorker from 'notification-widget/worker'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
 
 window._exported = {
-  activeKeyDidChange
-  BackToTop
-  ContainerContext
   GalleryContest
-  KeyContext
-  NotificationWidget
-  NotificationWidgetWorker
-  PlayDetailList
-  PlayDetailMenu
-  ReportComment
-  ReportUser
-  ScoreHelper
-  SelectOptions
-  SpotlightSelectOptions
-  UserCard
-  UserCardStore
-  UserCardTooltip
   WindowVHPatcher
 }
 
@@ -72,4 +41,3 @@ window._styles =
 
 window.StoreCheckout = StoreCheckout
 window.TextareaAutosize = TextareaAutosize
-window.VirtualList = VirtualList

@@ -16,10 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, i} = ReactDOMFactories
+import * as React from 'react'
+import { div, i } from 'react-dom-factories'
 el = React.createElement
 
-@BeatmapIcon = (props) ->
+export BeatmapIcon = (props) ->
   beatmap = props.beatmap
 
   difficultyRating = props.overrideVersion ? BeatmapHelper.getDiffRating(beatmap.difficulty_rating)

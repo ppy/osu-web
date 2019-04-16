@@ -16,10 +16,17 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = ReactDOMFactories
+import { Header } from './header'
+import { Hype } from './hype'
+import { Info } from './info'
+import { Scoreboard } from './scoreboard'
+import { Comments } from 'comments'
+import { CommentsManager } from 'comments-manager'
+import * as React from 'react'
+import { div } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapsetPage.Main extends React.Component
+export class Main extends React.Component
   constructor: (props) ->
     super props
 
@@ -185,7 +192,7 @@ class BeatmapsetPage.Main extends React.Component
   render: ->
     div className: 'osu-layout osu-layout--full',
       div className: 'osu-layout__row osu-layout__row--page-compact',
-        el BeatmapsetPage.Header,
+        el Header,
           beatmapset: @props.beatmapset
           beatmaps: @state.beatmaps
           currentBeatmap: @state.currentBeatmap
@@ -193,20 +200,20 @@ class BeatmapsetPage.Main extends React.Component
           favcount: @state.favcount
           hasFavourited: @state.hasFavourited
 
-        el BeatmapsetPage.Info,
+        el Info,
           beatmapset: @props.beatmapset
           beatmap: @state.currentBeatmap
 
       div className: 'osu-layout__section osu-layout__section--extra',
         if @props.beatmapset.can_be_hyped
           div className: 'osu-page osu-page--generic-compact',
-            el BeatmapsetPage.Hype,
+            el Hype,
               beatmapset: @props.beatmapset
               currentUser: currentUser
 
         if @props.beatmapset.has_scores
           div className: 'osu-page osu-page--generic',
-            el BeatmapsetPage.Scoreboard,
+            el Scoreboard,
               type: @state.currentScoreboardType
               beatmap: @state.currentBeatmap
               scores: @state.scores

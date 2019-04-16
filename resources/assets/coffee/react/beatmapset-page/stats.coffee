@@ -16,10 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, span, table, tbody, td, th, tr, i} = ReactDOMFactories
+import { BeatmapBasicStats } from 'beatmap-basic-stats'
+import * as React from 'react'
+import { a, div, span, table, tbody, td, th, tr, i } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapsetPage.Stats extends React.Component
+export class Stats extends React.Component
   constructor: (props) ->
     super props
 

@@ -69,7 +69,6 @@ $(document).on 'turbolinks:load', ->
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
 @postPreview ?= new PostPreview
-@reactTurbolinks ?= new ReactTurbolinks
 @replyPreview ?= new ReplyPreview
 @scale ?= new Scale
 @search ?= new Search
@@ -98,53 +97,6 @@ $(document).on 'change', '.js-url-selector', (e) ->
 $(document).on 'keydown', (e) ->
   $.publish 'key:esc' if e.keyCode == 27
 
-# Globally init countdown timers
-reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
-  deadline: e.dataset.deadline
-
-# Globally init friend buttons
-reactTurbolinks.register 'friendButton', FriendButton, (target) ->
-  container: target
-  userId: parseInt(target.dataset.target)
-
-# Globally init block buttons
-reactTurbolinks.register 'blockButton', BlockButton, (target) ->
-  container: target
-  userId: parseInt(target.dataset.target)
-
-reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
-  JSON.parse(el.dataset.beatmapsetPanel)
-
-reactTurbolinks.register 'spotlight-select-options', _exported.SpotlightSelectOptions, ->
-  osu.parseJson 'json-spotlight-select-options'
-
-reactTurbolinks.register 'comments', CommentsManager, (el) ->
-  props = JSON.parse(el.dataset.props)
-  props.component = Comments
-
-  props
-
-notificationWorker = new _exported.NotificationWidgetWorker()
-resetNotificationWorker = ->
-  notificationWorker.userId = currentUser.id
-  notificationWorker.boot()
-$(document).ready resetNotificationWorker
-$.subscribe 'user:update', resetNotificationWorker
-
-reactTurbolinks.registerPersistent 'notification', _exported.NotificationWidget, true, (el) ->
-  type: el.dataset.notificationType
-  worker: notificationWorker
-
-reactTurbolinks.register 'user-card', _exported.UserCard, (el) ->
-  modifiers: try JSON.parse(el.dataset.modifiers)
-  user: try JSON.parse(el.dataset.user)
-
-reactTurbolinks.register 'user-card-store', _exported.UserCardStore, (el) ->
-  container: el
-  user: JSON.parse(el.dataset.user)
-
-reactTurbolinks.register 'user-card-tooltip', _exported.UserCardTooltip, (el) ->
-  lookup: el.dataset.lookup
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port

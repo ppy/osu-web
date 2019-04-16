@@ -16,10 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, p} = ReactDOMFactories
+import * as React from 'react'
+import { a, div, p } from 'react-dom-factories'
 el = React.createElement
 
-class @ChangelogHeaderStreams extends React.PureComponent
+export class ChangelogHeaderStreams extends React.PureComponent
   render: =>
     div className: osu.classWithModifiers('update-streams-v2', ['with-active' if @props.currentStreamId?]),
       div className: 'update-streams-v2__container',
