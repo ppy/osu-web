@@ -98,14 +98,15 @@ class TopicWatch extends Model
 
             try {
                 if ($state === 'not_watching') {
-                    $event = 'remove';
+                    $notify = false;
                     $watch->delete();
                 } else {
-                    $event = 'add';
-                    $mail = $state === 'watching_mail';
+                    $notify = $state === 'watching_mail';
 
-                    $watch->fill(['mail' => $mail])->saveOrExplode();
+                    $watch->fill(['mail' => $notify])->saveOrExplode();
                 }
+
+                $event = $notify ? 'add' : 'remove';
 
                 event(new UserSubscriptionChangeEvent($event, $user, $topic));
 

@@ -265,7 +265,7 @@ export default class Item extends React.Component<Props, State> {
           break;
         case 'forum_topic':
           route = 'forum.topics.show';
-          params = { topic: item.objectId };
+          params = { topic: item.objectId, start: 'unread' };
           break;
       }
     }
