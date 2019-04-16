@@ -16,10 +16,15 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, h1, h2, i, li, ol, p, span} = ReactDOMFactories
+import { Build } from 'build'
+import { ChangelogHeaderStreams } from 'changelog-header-streams'
+import { Comments } from 'comments'
+import { CommentsManager } from 'comments-manager'
+import * as React from 'react'
+import { a, div, h1, h2, i, li, ol, p, span } from 'react-dom-factories'
 el = React.createElement
 
-class ChangelogBuild.Main extends React.PureComponent
+export class Main extends React.PureComponent
   componentDidMount: =>
     changelogChartLoader.initialize()
 

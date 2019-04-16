@@ -16,5 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { Tracklist } from 'tracklist'
+
 reactTurbolinks.registerPersistent 'artistTracklist', Tracklist, true, (el) ->
   tracks: osu.parseJson el.dataset.src

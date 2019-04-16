@@ -16,10 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import * as React from 'react'
+import { Mod } from 'mod'
+import { img, div } from 'react-dom-factories'
 el = React.createElement
-{img, div} = ReactDOMFactories
 
-class BeatmapsetPage.ScoreboardMod extends React.Component
+export class ScoreboardMod extends React.Component
   onClick: =>
     $.publish 'beatmapset:scoreboard:set', enabledMod: @props.mod
 

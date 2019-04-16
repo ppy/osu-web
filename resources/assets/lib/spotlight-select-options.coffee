@@ -17,6 +17,7 @@
 ###
 
 import { createElement as el, PureComponent } from 'react'
+import * as React from 'react'
 import { a } from 'react-dom-factories'
 import { SelectOptions } from 'select-options'
 

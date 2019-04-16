@@ -91,6 +91,7 @@
     <script src="{{ mix('/js/locales/'.config('app.fallback_locale').'.js') }}" data-turbolinks-track="reload"></script>
 @endif
 
+<script src="{{ mix("js/commons.js") }}" data-turbolinks-track="reload"></script>
 <script src="{{ mix("js/app.js") }}" data-turbolinks-track="reload"></script>
 <script src="/vendor/js/timeago-locales/jquery.timeago.{{ locale_for_timeago(Lang::getLocale()) }}.js" data-turbolinks-track="reload"></script>
 <script src="//s.ppy.sh/js/site-switcher.js?{{config('osu.site-switcher-js-hash')}}" async></script>

@@ -45,7 +45,7 @@
     data-method="PUT"
 >
     <span class="btn-circle__content">
-        <i class="fas fa-envelope"></i>
+        <i class="fas fa-inbox"></i>
     </span>
 </button>
 

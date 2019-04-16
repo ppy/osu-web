@@ -196,6 +196,8 @@ Route::group(['prefix' => 'home'], function () {
     Route::resource('blocks', 'BlocksController', ['only' => ['store', 'destroy']]);
     Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
     Route::resource('news', 'NewsController', ['only' => ['index', 'show', 'store', 'update']]);
+    Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
+    Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
 
     Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
 });

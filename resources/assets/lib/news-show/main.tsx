@@ -17,6 +17,8 @@
  */
 
 import AdminMenu from 'admin-menu';
+import { Comments } from 'comments';
+import { CommentsManager } from 'comments-manager';
 import NewsPostJson from 'interfaces/news-post-json';
 import * as _ from 'lodash';
 import * as moment from 'moment';

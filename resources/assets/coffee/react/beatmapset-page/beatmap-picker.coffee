@@ -16,13 +16,15 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = ReactDOMFactories
+import { BeatmapSelection } from './beatmap-selection'
+import * as React from 'react'
+import { div } from 'react-dom-factories'
 el = React.createElement
 
-BeatmapsetPage.BeatmapPicker = ({beatmaps, currentBeatmap}) ->
+export BeatmapPicker = ({beatmaps, currentBeatmap}) ->
   div className: 'beatmapset-beatmap-picker',
     for beatmap in beatmaps
-      el BeatmapsetPage.BeatmapSelection,
+      el BeatmapSelection,
         key: beatmap.id
         beatmap: beatmap
         active: currentBeatmap.id == beatmap.id

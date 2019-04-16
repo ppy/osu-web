@@ -20,6 +20,7 @@ import * as _ from 'lodash';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
 import * as React from 'react';
+import { Spinner } from 'spinner';
 
 interface PropsInterface {
   messages: Message[];

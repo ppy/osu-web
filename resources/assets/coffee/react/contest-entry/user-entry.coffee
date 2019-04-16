@@ -16,10 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, a, i} = ReactDOMFactories
+import * as React from 'react'
+import { div, a, i } from 'react-dom-factories'
 el = React.createElement
 
-class Contest.Entry.UserEntry extends React.Component
+export class UserEntry extends React.Component
   delete: (e) =>
     e.preventDefault()
 

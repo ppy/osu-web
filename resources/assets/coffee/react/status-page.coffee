@@ -16,4 +16,6 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-reactTurbolinks.register 'status-page', Status.Page
+import { Page } from './status-page/page'
+
+reactTurbolinks.register 'status-page', Page

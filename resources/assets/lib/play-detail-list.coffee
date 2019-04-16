@@ -18,6 +18,7 @@
 
 import { PlayDetail } from 'play-detail'
 import { createElement as el, PureComponent } from 'react'
+import * as React from 'react'
 import { div } from 'react-dom-factories'
 import { activeKeyDidChange, ContainerContext, KeyContext } from 'stateful-activation-context'
 

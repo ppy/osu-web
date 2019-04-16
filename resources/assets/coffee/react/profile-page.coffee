@@ -16,7 +16,9 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-reactTurbolinks.registerPersistent 'profile-page', ProfilePage.Main, true, (target) ->
+import { Main } from './profile-page/main'
+
+reactTurbolinks.registerPersistent 'profile-page', Main, true, (target) ->
   user = osu.parseJson('json-user')
 
   user: user

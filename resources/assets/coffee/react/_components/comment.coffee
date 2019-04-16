@@ -16,13 +16,19 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, span, textarea} = ReactDOMFactories
+import { CommentEditor } from 'comment-editor'
+import { CommentShowMore } from 'comment-show-more'
+import * as React from 'react'
+import { a, button, div, span, textarea } from 'react-dom-factories'
+import { ReportComment } from 'report-comment'
+import { Spinner } from 'spinner'
+import { UserAvatar } from 'user-avatar'
 
 el = React.createElement
 
 deletedUser = username: osu.trans('users.deleted')
 
-class @Comment extends React.PureComponent
+export class Comment extends React.PureComponent
   MAX_DEPTH = 3
 
   makePreviewElement = document.createElement('div')
@@ -187,7 +193,7 @@ class @Comment extends React.PureComponent
 
             if @canReport()
               div className: 'comment__row-item',
-                el _exported.ReportComment,
+                el ReportComment,
                   className: 'comment__action'
                   comment: @props.comment
                   user: @userFor(@props.comment)
