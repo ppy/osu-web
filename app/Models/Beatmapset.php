@@ -574,7 +574,7 @@ class Beatmapset extends Model implements AfterCommit
             return false;
         }
 
-        DB::transaction(function () use ($user) {
+        DB::transaction(function () use ($user, $post) {
             BeatmapsetEvent::log(BeatmapsetEvent::DISQUALIFY, $user, $post)->saveOrExplode();
 
             $this->setApproved('pending', $user);
