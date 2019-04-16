@@ -60,6 +60,10 @@ class FriendsController extends Controller
             ->orderBy('username', 'asc')
             ->get();
 
+        if (is_api_request()) {
+            return json_collection($friends, 'UserCompact', ['cover', 'country']);
+        }
+
         $userlist = group_users_by_online_state($friends);
         $usersJson = [
             'online' => json_collection($userlist['online'], 'UserCompact', ['cover', 'country']),
