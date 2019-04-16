@@ -26,6 +26,6 @@ return [
 
     'comment' => [
         'button' => 'Zgłoś',
-        'title' => 'Zgłosić komentarz :username?',
+        'title' => 'Zgłosić komentarz gracza :username?',
     ],
 ];

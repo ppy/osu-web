@@ -86,7 +86,7 @@
         <div class="nav2__col js-nav-button--item">
             <a
                 href="{{ osu_url('social.twitter') }}"
-                class="nav2__button nav2__button--social"
+                class="nav-button nav-button--social"
                 title="Twitter"
             >
                 <span class="fab fa-twitter"></span>
@@ -96,7 +96,7 @@
         <div class="nav2__col js-nav-button--item">
             <a
                 href="{{ osu_url('social.facebook') }}"
-                class="nav2__button nav2__button--social"
+                class="nav-button nav-button--social"
                 title="Facebook"
             >
                 <span class="fab fa-facebook"></span>
@@ -106,7 +106,7 @@
         <div class="nav2__col">
             <a
                 href="{{ route('support-the-game') }}"
-                class="nav2__button nav2__button--support"
+                class="nav-button nav-button--support"
                 title="{{ trans('layout.menu.home.supportTheGame') }}"
             >
                 <span class="fas fa-heart"></span>
@@ -115,17 +115,17 @@
 
         <div class="nav2__col">
             <button
-                class="nav2__button nav2__button--stadium js-click-menu"
+                class="nav-button nav-button--stadium js-click-menu"
                 data-click-menu-target="nav2-locale-popup"
             >
                 <img
-                    class="nav2__locale-current-flag"
+                    class="nav-button__locale-current-flag"
                     alt="{{ App::getLocale() }}"
                     src="{{ flag_path(locale_flag(App::getLocale())) }}"
                 >
             </button>
 
-            <div class="nav2__click-popup">
+            <div class="nav-click-popup">
                 <div
                     class="simple-menu simple-menu--nav2 simple-menu--nav2-locales js-click-menu js-nav2--centered-popup"
                     data-click-menu-id="nav2-locale-popup"
@@ -162,31 +162,13 @@
         </div>
 
         @if (Auth::user() !== null)
-            <div class="nav2__col">
-                <a
-                    href="{{ osu_url('user.inbox') }}"
-                    class="nav2__button nav2__button--stadium"
-                >
-                    <span
-                        class="
-                            notification-icon
-                            {{ Auth::user()->notificationCount() > 0 ? 'notification-icon--glow' : '' }}
-                        "
-                    >
-                        <i class="fas fa-inbox"></i>
-
-                        <span class="notification-icon__count">
-                            {{ i18n_number_format(Auth::user()->notificationCount()) }}
-                        </span>
-                    </span>
-                </a>
-            </div>
+            <div class="nav2__col js-react--notification"></div>
         @endif
 
         <div class="nav2__col nav2__col--avatar">
             @include('layout._header_user')
 
-            <div class="nav2__click-popup nav2__click-popup--user js-user-header-popup">
+            <div class="nav-click-popup nav-click-popup--user js-user-header-popup">
                 @if (Auth::user() !== null)
                     @include('layout._popup_user')
                 @endif

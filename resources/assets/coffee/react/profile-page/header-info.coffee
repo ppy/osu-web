@@ -16,11 +16,14 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, h1, span} = ReactDOMFactories
+import { FlagCountry } from 'flag-country'
+import * as React from 'react'
+import { a, div, h1, span } from 'react-dom-factories'
+import { UserAvatar } from 'user-avatar'
 el = React.createElement
 
 
-class ProfilePage.HeaderInfo extends React.PureComponent
+export class HeaderInfo extends React.PureComponent
   bn = 'profile-info'
 
 

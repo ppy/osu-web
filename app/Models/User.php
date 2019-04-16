@@ -221,7 +221,7 @@ class User extends Model implements AuthenticatableContract
         'user_interests' => 30,
     ];
 
-    private $memoized = [];
+    protected $memoized = [];
 
     private $validateCurrentPassword = false;
     private $validatePasswordConfirmation = false;
@@ -389,13 +389,9 @@ class User extends Model implements AuthenticatableContract
             return Carbon::now()->addYears(10);
         }
 
-        $playCount = array_reduce(array_keys(Beatmap::MODES), function ($result, $mode) {
-            return $result + $this->statistics($mode, true)->value('playcount');
-        }, 0);
-
         return $this->user_lastvisit
             ->addDays(static::INACTIVE_DAYS) //base inactivity period for all accounts
-            ->addDays($playCount * 0.75);    //bonus based on playcount
+            ->addDays($this->playCount() * 0.75);    //bonus based on playcount
     }
 
     public function validateChangeUsername(string $username)
@@ -1104,6 +1100,11 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(UserAchievement::class, 'user_id');
     }
 
+    public function userNotifications()
+    {
+        return $this->hasMany(UserNotification::class, 'user_id');
+    }
+
     public function usernameChangeHistory()
     {
         return $this->hasMany(UsernameChangeHistory::class, 'user_id');
@@ -1375,7 +1376,7 @@ class User extends Model implements AuthenticatableContract
     // TODO: we should rename this to currentUserJson or something.
     public function defaultJson()
     {
-        return json_item($this, 'User', ['blocks', 'friends', 'is_admin']);
+        return json_item($this, 'User', ['blocks', 'friends', 'is_admin', 'unread_pm_count']);
     }
 
     public function supportLength()
@@ -1552,6 +1553,27 @@ class User extends Model implements AuthenticatableContract
     public function validateForPassportPasswordGrant($password)
     {
         return static::attemptLogin($this, $password) === null;
+    }
+
+    public function playCount()
+    {
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+            $unionQuery = null;
+
+            foreach (Beatmap::MODES as $key => $_value) {
+                $query = $this->statistics($key, true)->select('playcount');
+
+                if ($unionQuery === null) {
+                    $unionQuery = $query;
+                } else {
+                    $unionQuery->unionAll($query);
+                }
+            }
+
+            $this->memoized[__FUNCTION__] = $unionQuery->get()->sum('playcount');
+        }
+
+        return $this->memoized[__FUNCTION__];
     }
 
     public function profileCustomization()

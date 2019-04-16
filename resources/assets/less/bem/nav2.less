@@ -18,8 +18,6 @@
 
 .nav2 {
   @_top: nav2;
-  @_icon-size: 40px;
-  @_button-content-size: 16px;
   @_menu-gutter: 10px;
   @_link-padding-vertical: 6px;
   @_link-highlight-margin-vertical: 2px;
@@ -37,53 +35,6 @@
 
   .@{header-pinned} & {
     height: @nav2-height--pinned;
-  }
-
-  &__button {
-    .reset-input();
-    .circle(@_icon-size);
-    .center-content();
-    .link-plain();
-    border: 3px solid fade(#fff, 25%);
-    font-size: @_button-content-size;
-    color: #fff;
-    margin: 0 3px;
-
-    &.js-click-menu--active, &:hover {
-      background-color: fade(#000, 50%);
-      border-color: #fff;
-      color: #fff;
-    }
-
-    &--social {
-      &:hover {
-        color: #fff;
-      }
-    }
-
-    &--stadium {
-      width: auto;
-      border-radius: @_icon-size;
-      padding: 0 10px;
-    }
-
-    &--support {
-      &:hover {
-        color: @pink;
-      }
-    }
-  }
-
-  &__click-popup {
-    position: absolute;
-    top: 100%;
-    right: 0; // avoid overflow before repositioned
-    height: 0; // avoid covering page when the content is hidden
-    margin-top: -5px;
-
-    &--user {
-      margin-top: 5px;
-    }
   }
 
   &__col {
@@ -111,10 +62,6 @@
     &--menu {
       margin-right: auto;
     }
-  }
-
-  &__locale-current-flag {
-    height: @_button-content-size;
   }
 
   &__logo {

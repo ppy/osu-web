@@ -16,7 +16,9 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-reactTurbolinks.registerPersistent 'beatmaps', Beatmaps.Main, true, (el) ->
+import { Main } from './beatmaps/main'
+
+reactTurbolinks.registerPersistent 'beatmaps', Main, true, (el) ->
   container: el
   beatmaps: osu.parseJson('json-beatmaps')
   availableFilters: osu.parseJson('json-filters')

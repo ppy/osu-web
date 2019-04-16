@@ -16,12 +16,14 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, p, span} = ReactDOMFactories
+import { BigButton } from 'big-button'
+import * as React from 'react'
+import { div, p, span } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'beatmapset-hype'
 
-class BeatmapsetPage.Hype extends React.PureComponent
+export class Hype extends React.PureComponent
   render: =>
     div className: bn,
       div className: "#{bn}__box #{bn}__box--description",

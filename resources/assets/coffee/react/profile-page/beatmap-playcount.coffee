@@ -16,12 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, h2, h3, img, p, small, span} = ReactDOMFactories
+import * as React from 'react'
+import { a, div, h2, h3, img, p, small, span } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'beatmap-playcount'
 
-class ProfilePage.BeatmapPlaycount extends React.PureComponent
+export class BeatmapPlaycount extends React.PureComponent
   render: =>
     beatmap = @props.playcount.beatmap
     beatmapset = @props.playcount.beatmapset

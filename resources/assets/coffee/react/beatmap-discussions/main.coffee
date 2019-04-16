@@ -16,10 +16,17 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, h1, p} = ReactDOMFactories
+import { Discussions } from './discussions'
+import { Events } from './events'
+import { Header } from './header'
+import { ModeSwitcher } from './mode-switcher'
+import { NewDiscussion } from './new-discussion'
+import { BackToTop } from 'back-to-top'
+import * as React from 'react'
+import { a, div, h1, p } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapDiscussions.Main extends React.PureComponent
+export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -38,14 +45,14 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
     if !@restoredState
       beatmapset = props.initial.beatmapset
-
+      showDeleted = true
       readPostIds = []
 
       for discussion in beatmapset.discussions
         for post in discussion.posts ? []
           readPostIds.push post.id
 
-      @state = {beatmapset, currentUser, readPostIds}
+      @state = {beatmapset, currentUser, readPostIds, showDeleted}
 
     # Current url takes priority over saved state.
     query = @queryFromLocation(@state.beatmapset.discussions)
@@ -61,6 +68,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     $.subscribe 'beatmapsetDiscussions:update.beatmapDiscussions', @update
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
+    $.subscribe 'beatmapDiscussionPost:toggleShowDeleted.beatmapDiscussions', @toggleShowDeleted
 
     $(document).on 'ajax:success.beatmapDiscussions', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
     $(document).on 'click.beatmapDiscussions', '.js-beatmap-discussion--jump', @jumpToClick
@@ -89,7 +97,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
   render: =>
     div className: 'osu-layout osu-layout--full',
-      el BeatmapDiscussions.Header,
+      el Header,
         beatmaps: @groupedBeatmaps()
         beatmapset: @state.beatmapset
         currentBeatmap: @currentBeatmap()
@@ -103,7 +111,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
         selectedUserId: @state.selectedUserId
         users: @users()
 
-      el BeatmapDiscussions.ModeSwitcher,
+      el ModeSwitcher,
         innerRef: @modeSwitcherRef
         mode: @state.currentMode
         beatmapset: @state.beatmapset
@@ -114,7 +122,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       if @state.currentMode == 'events'
         div
           className: 'osu-layout__section osu-layout__section--extra'
-          el BeatmapDiscussions.Events,
+          el Events,
             events: @state.beatmapset.events
             users: @users()
             discussions: @discussions()
@@ -122,7 +130,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       else
         div
           className: 'osu-layout__section osu-layout__section--extra'
-          el BeatmapDiscussions.NewDiscussion,
+          el NewDiscussion,
             beatmapset: @state.beatmapset
             currentUser: @state.currentUser
             currentBeatmap: @currentBeatmap()
@@ -134,7 +142,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
             stickTo: @modeSwitcherRef
             autoFocus: @focusNewDiscussion
 
-          el BeatmapDiscussions.Discussions,
+          el Discussions,
             beatmapset: @state.beatmapset
             currentBeatmap: @currentBeatmap()
             currentDiscussions: @currentDiscussions()
@@ -142,9 +150,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
             currentUser: @state.currentUser
             mode: @state.currentMode
             readPostIds: @state.readPostIds
+            showDeleted: @state.showDeleted
             users: @users()
 
-      el window._exported.BackToTop
+      el BackToTop
 
 
   beatmaps: =>
@@ -381,6 +390,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
   setPinnedNewDiscussion: (pinned) =>
     @setState pinnedNewDiscussion: pinned
+
+
+  toggleShowDeleted: =>
+    @setState showDeleted: !@state.showDeleted
 
 
   update: (_e, options) =>

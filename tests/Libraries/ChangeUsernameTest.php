@@ -33,6 +33,17 @@ class ChangeUsernameTest extends TestCase
         $this->assertArrayHasKey('user_id', $errors);
     }
 
+    public function testUserIsRestricted()
+    {
+        $user = $this->createUser(['user_warnings' => 1]);
+
+        $errors = $user->validateChangeUsername('newusername')->all();
+        $expected = [trans('model_validation.user.change_username.restricted')];
+
+        $this->assertArrayHasKey('username', $errors);
+        $this->assertArraySubset($expected, $errors['username'], true);
+    }
+
     public function testUserHasNeverSupported()
     {
         $user = $this->createUser(['osu_subscriptionexpiry' => null]);

@@ -124,6 +124,13 @@ return [
             'persistent' => true,
         ],
 
+        'notification' => [
+            'host' => env('NOTIFICATION_REDIS_HOST', '127.0.0.1'),
+            'port' => get_int(env('NOTIFICATION_REDIS_PORT')) ?? 6379,
+            'database' => 0,
+            'persistent' => true,
+        ],
+
     ],
 
 ];

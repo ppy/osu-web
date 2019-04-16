@@ -16,7 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, h3, ul, li, a, p, pre, span} = ReactDOMFactories
+import { ExtraHeader } from './extra-header'
+import { BeatmapsetPanel } from 'beatmapset-panel'
+import * as React from 'react'
+import { div, h2, h3, ul, li, a, p, pre, span } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
 el = React.createElement
 
 sections = [
@@ -27,11 +31,11 @@ sections = [
   'graveyardBeatmapsets'
 ]
 
-class ProfilePage.Beatmaps extends React.PureComponent
+export class Beatmaps extends React.PureComponent
   render: =>
     div
       className: 'page-extra'
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+      el ExtraHeader, name: @props.name, withEdit: @props.withEdit
       sections.map @renderBeatmapsets
 
 
@@ -62,7 +66,7 @@ class ProfilePage.Beatmaps extends React.PureComponent
           div
             className: 'osu-layout__col',
             el ShowMoreLink,
-              modifiers: ['profile-page', 't-community-user-graygreen-darker']
+              modifiers: ['profile-page', 't-greyseafoam-dark']
               event: 'profile:showMore'
               hasMore: @props.pagination[section].hasMore
               loading: @props.pagination[section].loading

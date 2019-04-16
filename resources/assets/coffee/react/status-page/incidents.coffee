@@ -16,10 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h1, h5} = ReactDOMFactories
+import { Incident } from './incident'
+import * as React from 'react'
+import { div, h1, h5 } from 'react-dom-factories'
 el = React.createElement
 
-class Status.Incidents extends React.Component
+export class Incidents extends React.Component
   constructor: (props) ->
     super props
     @state =
@@ -42,7 +44,7 @@ class Status.Incidents extends React.Component
         ok = true
 
       if ok
-        el Status.Incident,
+        el Incident,
           key: id
           description: incident.description
           active: incident.active
