@@ -47,7 +47,7 @@ class OsuAuthorize
         $cacheKey = serialize([
             $ability,
             $user === null ? null : $user->getKey(),
-            $object === null ? null : $object->getKey(),
+            $object === null ? null : [$object->getTable(), $object->getKey()],
         ]);
 
         if (!isset($this->cache[$cacheKey])) {
