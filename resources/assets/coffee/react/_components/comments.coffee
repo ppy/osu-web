@@ -16,11 +16,16 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, h2, span} = ReactDOMFactories
+import { Comment } from 'comment'
+import { CommentEditor } from 'comment-editor'
+import { CommentShowMore } from 'comment-show-more'
+import { CommentsSort } from 'comments-sort'
+import * as React from 'react'
+import { button, div, h2, span } from 'react-dom-factories'
 
 el = React.createElement
 
-class @Comments extends React.PureComponent
+export class Comments extends React.PureComponent
   render: =>
     commentsByParentId = _.groupBy(@props.comments, 'parent_id')
     comments = commentsByParentId[null]

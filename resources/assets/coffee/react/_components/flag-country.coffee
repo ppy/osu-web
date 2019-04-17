@@ -16,12 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import * as React from 'react'
+import { span } from 'react-dom-factories'
 el = React.createElement
-{span} = ReactDOMFactories
 
 bn = 'flag-country'
 
-@FlagCountry = ({country, modifiers}) ->
+export FlagCountry = ({country, modifiers}) ->
   return null if !country?.code?
 
   blockClass = osu.classWithModifiers(bn, modifiers)

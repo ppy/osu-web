@@ -16,9 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { FlagCountry } from 'flag-country';
+import { FriendButton } from 'friend-button';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import * as React from 'react';
+import { SupporterIcon } from 'supporter-icon';
 
 interface PropsInterface {
   modifiers: string[];

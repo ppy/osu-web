@@ -230,9 +230,9 @@ class Event extends Model
         }
     }
 
-    public function parseFailure()
+    public function parseFailure($reason)
     {
-        Sentry::captureMessage('Failed parsing event', ['log'], [
+        Sentry::captureMessage("Failed parsing event: {$reason}", ['log'], [
             'extra' => [
                 'event' => $this->toArray(),
             ],
@@ -245,7 +245,7 @@ class Event extends Model
     {
         $achievement = Achievement::where(['name' => $matches['achievementName']])->first();
         if ($achievement === null) {
-            return $this->parseFailure();
+            return $this->parseFailure("unknown achievement ({$matches['achievementName']})");
         }
 
         return [
@@ -318,7 +318,7 @@ class Event extends Model
     {
         $mode = $this->stringMode($matches['mode']);
         if ($mode === null) {
-            return $this->parseFailure();
+            return $this->parseFailure("unknown mode ({$matches['mode']})");
         }
 
         return [
@@ -334,7 +334,7 @@ class Event extends Model
     {
         $mode = $this->stringMode($matches['mode']);
         if ($mode === null) {
-            return $this->parseFailure();
+            return $this->parseFailure("unknown mode ({$matches['mode']})");
         }
 
         return [
@@ -391,7 +391,7 @@ class Event extends Model
             }
 
             if ($this->details === null) {
-                $this->details = $this->parseFailure($matches);
+                $this->details = $this->parseFailure('no matching pattern');
             }
 
             $this->parsed = true;

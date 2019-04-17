@@ -16,12 +16,14 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import * as React from 'react'
+import { button, div, i, span } from 'react-dom-factories'
+import { Spinner } from 'spinner'
 el = React.createElement
-{button, div, i, span} = ReactDOMFactories
 
 bn = 'user-action-button'
 
-class @FriendButton extends React.PureComponent
+export class FriendButton extends React.PureComponent
   @defaultProps =
     showFollowerCounter: false
     alwaysVisible: false

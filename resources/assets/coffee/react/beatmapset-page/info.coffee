@@ -16,10 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, h3, span, i, textarea} = ReactDOMFactories
+import { BBCodeEditor } from 'bbcode-editor'
+import * as React from 'react'
+import { a, button, div, h3, span, i, textarea } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapsetPage.Info extends React.Component
+export class Info extends React.Component
   constructor: (props) ->
     super props
 

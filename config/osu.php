@@ -101,6 +101,10 @@ return [
     'legacy' => [
         'shared_interop_secret' => env('SHARED_INTEROP_SECRET', ''),
     ],
+    'notification' => [
+        'endpoint' => presence(env('NOTIFICATION_ENDPOINT'), '/home/notifications/feed'),
+        'queue_connection' => presence(env('NOTIFICATION_QUEUE_CONNECTION'), 'redis-notification'),
+    ],
     'search' => [
         'minimum_length' => get_int(env('SEARCH_MINIMUM_LENGTH', 2)),
 

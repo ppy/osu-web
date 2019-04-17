@@ -6,9 +6,6 @@ import './coffee/_classes/*.coffee';
 import 'jquery-pubsub.coffee';
 import 'osu_common.coffee';
 
-import 'react-namespaces.coffee';
-import './coffee/react/_components/*.coffee';
-
 import 'navbar-mobile.coffee';
 import 'spoilerbox.coffee';
 import 'store.coffee';
@@ -23,3 +20,5 @@ import 'turbolinks-overrides.coffee';
 
 import 'import-shims';  // shim imports to window
 import 'main.coffee';
+
+import 'register-components.coffee';

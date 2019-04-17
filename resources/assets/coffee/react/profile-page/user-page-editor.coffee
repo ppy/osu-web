@@ -16,9 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { BBCodeEditor } from 'bbcode-editor'
+import * as React from 'react'
 el = React.createElement
 
-class ProfilePage.UserPageEditor extends React.PureComponent
+export class UserPageEditor extends React.PureComponent
   render: =>
     el BBCodeEditor,
       modifiers: ['profile-page']

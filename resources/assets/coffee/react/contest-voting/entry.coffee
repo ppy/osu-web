@@ -16,10 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a,i,div,span} = ReactDOMFactories
+import { Voter } from './voter'
+import * as React from 'react'
+import { a,i,div,span } from 'react-dom-factories'
+import { TrackPreview } from 'track-preview'
 el = React.createElement
 
-class Contest.Voting.Entry extends React.Component
+export class Entry extends React.Component
   render: ->
     if @props.contest.show_votes
       votePercentage = _.round((@props.entry.results.votes / @props.totalVotes)*100, 2)
@@ -60,7 +63,7 @@ class Contest.Voting.Entry extends React.Component
         div className: 'contest-voting-list__title u-ellipsis-overflow', @props.entry.title
 
       div className: "contest__voting-star#{if @props.contest.show_votes then ' contest__voting-star--dark-bg' else ''}",
-        el Contest.Voting.Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, selected: @props.selected, contest: @props.contest
+        el Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, selected: @props.selected, contest: @props.contest
 
       if @props.contest.show_votes
         if @props.contest.best_of

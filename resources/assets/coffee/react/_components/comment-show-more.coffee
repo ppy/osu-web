@@ -16,13 +16,17 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, span} = ReactDOMFactories
+import * as React from 'react'
+import { button, div, span } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
+import { Spinner } from 'spinner'
+
 
 el = React.createElement
 
 bn = 'comment-show-more'
 
-class @CommentShowMore extends React.PureComponent
+export class CommentShowMore extends React.PureComponent
   @defaultProps = modifiers: []
 
 

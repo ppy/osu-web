@@ -18,6 +18,7 @@
 
 import { createElement as el, createRef, PureComponent } from 'react'
 import { createPortal } from 'react-dom'
+import * as React from 'react'
 import { a, button, div, i } from 'react-dom-factories'
 import { Modal } from 'modal'
 

@@ -16,7 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, h1, p, span} = ReactDOMFactories
+import { Build } from 'build'
+import { ChangelogHeaderStreams } from 'changelog-header-streams'
+import * as React from 'react'
+import { button, div, h1, p, span } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
 el = React.createElement
 
 groupChangelogBuilds = (builds) ->
@@ -26,7 +30,7 @@ groupChangelogBuilds = (builds) ->
     build.created_at.substr(0, 10)
 
 
-class ChangelogIndex.Main extends React.PureComponent
+export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 

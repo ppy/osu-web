@@ -16,10 +16,14 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, li, p, ul} = ReactDOMFactories
+import { AchievementBadge } from './achievement-badge'
+import { ExtraHeader } from './extra-header'
+import * as React from 'react'
+import { div, li, p, ul } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
 el = React.createElement
 
-class ProfilePage.RecentActivity extends React.PureComponent
+export class RecentActivity extends React.PureComponent
   link = (url, title) ->
     osu.link url, title, classNames: ['profile-extra-entries__link']
 
@@ -27,7 +31,7 @@ class ProfilePage.RecentActivity extends React.PureComponent
   render: =>
     div
       className: 'page-extra'
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+      el ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       if @props.recentActivity.length
         div null,
@@ -54,7 +58,7 @@ class ProfilePage.RecentActivity extends React.PureComponent
     switch event.type
       when 'achievement'
         badge = div className: 'profile-extra-entries__icon',
-          el ProfilePage.AchievementBadge,
+          el AchievementBadge,
             modifiers: ['recent-activity']
             achievement: event.achievement
             userAchievement:
