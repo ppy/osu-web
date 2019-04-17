@@ -91,9 +91,11 @@ return [
         ],
 
         'new' => [
+            'pin' => 'Pin',
             'timestamp' => 'Timestamp',
             'timestamp_missing' => 'ctrl-c in edit mode and paste in your message to add a timestamp!',
             'title' => 'New Discussion',
+            'unpin' => 'Unpin',
         ],
 
         'show' => [
@@ -125,6 +127,10 @@ return [
             'wip' => 'Note: This beatmap is marked as a work-in-progress by the creator.',
         ],
 
+        'votes' => [
+            'up' => 'Upvote this discussion',
+            'down' => 'Downvote this discussion',
+        ],
     ],
 
     'hype' => [
