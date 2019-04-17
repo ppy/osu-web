@@ -70,7 +70,7 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => '申請取り消し',
+            'disqualify' => 'Disqualify',
             'hype' => 'Hype!',
             'mapper_note' => '注意',
             'nomination_reset' => 'ノミネーションをリセット',
@@ -108,9 +108,9 @@ return [
 
         'stats' => [
             'deleted' => '削除済み',
-            'mapper_notes' => '注意',
+            'mapper_notes' => 'メモ',
             'mine' => '自分',
-            'pending' => '保留中',
+            'pending' => '未解決',
             'praises' => '称賛',
             'resolved' => '解決済み',
             'total' => '全て',
@@ -147,10 +147,10 @@ return [
         'delete' => '削除',
         'delete_own_confirm' => '譜面は削除され、あなたはプロフィール画面にリダイレクトされます。本当によろしいですか？',
         'delete_other_confirm' => 'ビートマップは削除され、あなたはユーザーのプロフィール画面にリダイレクトされます。本当によろしいですか？',
-        'disqualification_prompt' => '申請の取り消しの理由',
-        'disqualified_at' => ':time_agoに申請が取り消しされました（:reason）',
+        'disqualification_prompt' => 'Disqualification（Qualifyの取り消し）の理由',
+        'disqualified_at' => ':time_agoにDisqualifyされました(:reason).',
         'disqualified_no_reason' => '理由が明示されていません',
-        'disqualify' => '申請取り消し',
+        'disqualify' => 'Disqualify',
         'incorrect_state' => 'エラーが発生しました。ページの再読み込みを試してください。',
         'love' => 'Lovedに追加',
         'love_confirm' => 'Lovedに追加しますか？',
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => '本当によろしいですか？新しい問題を投稿すると審査中ではなくなります。',
-            'disqualify' => '本当にいいですか？これによりビートマップが認定から外され、ノミネーションがリセットされます。',
+            'disqualify' => '本当にいいですか？これによりビートマップがQualifiedから外され、ノミネーションがリセットされます。',
         ],
     ],
 
@@ -226,7 +226,7 @@ return [
         'any' => '全て',
         'ranked-approved' => 'ランク＆承認済み',
         'approved' => '承認済み',
-        'qualified' => '申請済み',
+        'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'お気に入り',
         'pending' => '保留中・製作中',
