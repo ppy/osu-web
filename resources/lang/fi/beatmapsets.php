@@ -42,7 +42,7 @@ return [
             'mapped_by' => 'luonut: :mapper',
             'qualified' => 'esihyväksytty ',
             'ranked' => 'hyväksytty ',
-            'submitted' => 'Julkaistu ',
+            'submitted' => 'julkaistu ',
             'unfavourite' => 'Poista tämä beatmapkokoelma suosikeista',
             'updated' => 'viimeisin päivitys ',
             'updated_timeago' => 'viimeksi päivitetty :timeago',

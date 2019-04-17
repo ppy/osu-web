@@ -535,6 +535,7 @@ class Beatmapset extends Model implements AfterCommit
     public function setApproved($state, $user)
     {
         $currentTime = Carbon::now();
+        $oldScoreable = $this->isScoreable();
 
         if ($this->isQualified() && $state === 'pending') {
             $this->previous_queue_duration = ($this->queued_at ?? $this->approved_date)->diffinSeconds();
@@ -560,6 +561,28 @@ class Beatmapset extends Model implements AfterCommit
         $this
             ->beatmaps()
             ->update(['approved' => $this->approved]);
+
+        if ($this->isScoreable() !== $oldScoreable) {
+            $this->userRatings()->delete();
+            dispatch(new RemoveBeatmapsetBestScores($this));
+        }
+    }
+
+    public function disqualify($user, $post)
+    {
+        if (!$this->isQualified()) {
+            return false;
+        }
+
+        DB::transaction(function () use ($user, $post) {
+            BeatmapsetEvent::log(BeatmapsetEvent::DISQUALIFY, $user, $post)->saveOrExplode();
+
+            $this->setApproved('pending', $user);
+
+            broadcast_notification(Notification::BEATMAPSET_DISQUALIFY, $this, $user);
+        });
+
+        return true;
     }
 
     public function qualify($user)
@@ -572,7 +595,6 @@ class Beatmapset extends Model implements AfterCommit
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
 
             $this->setApproved('qualified', $user);
-            $this->userRatings()->delete();
 
             // global event
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
@@ -581,8 +603,6 @@ class Beatmapset extends Model implements AfterCommit
             $job = (new CheckBeatmapsetCovers($this))->onQueue('beatmap_high');
             dispatch($job);
 
-            // remove current scores
-            dispatch(new RemoveBeatmapsetBestScores($this));
             broadcast_notification(Notification::BEATMAPSET_QUALIFY, $this, $user);
         });
 
@@ -637,12 +657,11 @@ class Beatmapset extends Model implements AfterCommit
         $this->getConnection()->transaction(function () use ($user) {
             $this->events()->create(['type' => BeatmapsetEvent::LOVE, 'user_id' => $user->user_id]);
             $this->setApproved('loved', $user);
-            $this->userRatings()->delete();
 
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
 
             dispatch((new CheckBeatmapsetCovers($this))->onQueue('beatmap_high'));
-            dispatch(new RemoveBeatmapsetBestScores($this));
+
             broadcast_notification(Notification::BEATMAPSET_LOVE, $this, $user);
         });
 

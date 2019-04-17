@@ -97,15 +97,17 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     return (
       <div className={avatarSpaceCssClass}>
         <div className='user-card__avatar user-card__avatar--loader'>
-          { !this.isUserNotFound ? <div className='la-ball-clip-rotate'></div> : null }
+          {!this.isUserNotFound ? <div className='la-ball-clip-rotate' /> : null}
         </div>
         {
-          this.isUserLoaded ? <img className='user-card__avatar user-card__avatar--main'
-                                   onError={this.onAvatarLoad} // remove spinner if error
-                                   onLoad={this.onAvatarLoad}
-                                   src={this.user.avatar_url}
-                              />
-                            : null
+          this.isUserLoaded ? (
+            <img
+              className='user-card__avatar user-card__avatar--main'
+              onError={this.onAvatarLoad} // remove spinner if error
+              onLoad={this.onAvatarLoad}
+              src={this.user.avatar_url}
+            />
+          ) : null
         }
       </div>
     );
@@ -121,21 +123,25 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
         backgroundCssClass += ' user-card__background--loading';
       }
 
-      background =
+      background = (
         <>
           <img className={backgroundCssClass} onLoad={this.onBackgroundLoad} src={this.user.cover.url} />
-          <div className='user-card__background-overlay'></div>
-        </>;
+          <div className='user-card__background-overlay' />
+        </>
+      );
     } else {
-      background = <div className='user-card__background-overlay'></div>;
+      background = <div className='user-card__background-overlay' />;
     }
 
     if (this.isUserLoaded) {
-      backgroundLink =
-        <a href={laroute.route('users.show', { user: this.user.id })}
-           className='user-card__background-container'>
+      backgroundLink = (
+        <a
+          href={laroute.route('users.show', { user: this.user.id })}
+          className='user-card__background-container'
+        >
           {background}
-        </a>;
+        </a>
+      );
     } else {
       backgroundLink = background;
     }
@@ -146,14 +152,17 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   renderMenuButton() {
     if (!this.canMessage) { return null; }
 
-    const items = (dismiss: () => void) =>
+    const items = (dismiss: () => void) => (
       <>
-        <a className='simple-menu__item js-login-required--click'
-           href={laroute.route('messages.users.show', { user: this.user.id })}
-           onClick={dismiss}>
+        <a
+          className='simple-menu__item js-login-required--click'
+          href={laroute.route('messages.users.show', { user: this.user.id })}
+          onClick={dismiss}
+        >
           {osu.trans('users.card.send_message')}
         </a>
-      </>;
+      </>
+    );
 
     return (
       <div className='user-card__icon user-card__icon--menu'>
@@ -203,7 +212,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
             <span
               className='user-card__status-message user-card__status-message--sub u-ellipsis-overflow'
               dangerouslySetInnerHTML={{ __html: lastSeen }}
-            ></span>
+            />
             <span className='user-card__status-message u-ellipsis-overflow'>
               {status}
             </span>
@@ -221,7 +230,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
 
     return (
       <div className='user-card__status-icon-container'>
-        <div className={`user-card__status-icon user-card__status-icon--${this.isOnline ? 'online' : 'offline'}`}></div>
+        <div className={`user-card__status-icon user-card__status-icon--${this.isOnline ? 'online' : 'offline'}`} />
       </div>
     );
   }

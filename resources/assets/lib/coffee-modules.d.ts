@@ -1,19 +1,26 @@
+/* tslint:disable:max-classes-per-file */
+
 // importable coffeescript modules
 declare module 'big-button' {
   class BigButton extends React.PureComponent<any> {}
 }
+
 declare module 'flag-country' {
   class FlagCountry extends React.PureComponent<any> {}
 }
+
 declare module 'friend-button' {
   class FriendButton extends React.PureComponent<any> {}
 }
+
 declare module 'img2x' {
   class Img2x extends React.PureComponent<any> {}
 }
+
 declare module 'show-more-link' {
   class ShowMoreLink extends React.PureComponent<any> {}
 }
+
 declare module 'spinner' {
   class Spinner extends React.PureComponent<any> {}
 }
@@ -27,11 +34,11 @@ declare module 'comments' {
 
 declare module 'comments-manager' {
   interface Props {
-    commentableType: string
-    commentableId: number
-    commentBundle: any
-    component: any
-    componentProps: any
+    commentableType: string;
+    commentableId: number;
+    commentBundle: any;
+    component: any;
+    componentProps: any;
   }
 
   class CommentsManager extends React.PureComponent<Props> {}

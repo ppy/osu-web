@@ -58,7 +58,7 @@ export default class MainView extends React.Component<PropsInterface, any> {
 
   render(): React.ReactNode {
     const lazerLink = 'https://github.com/ppy/osu/releases';
-    return(
+    return (
       <div>
         <HeaderV3 compact={true} theme='chat' title='Chat' />
         <Provider dataStore={this.props.dataStore} dispatcher={this.props.dispatcher}>
