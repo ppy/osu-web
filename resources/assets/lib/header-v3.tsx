@@ -38,12 +38,16 @@ export default class HeaderV3 extends React.Component<PropsInterface, {}> {
     let title;
 
     if (this.props.titleTrans != null) {
-      title = <h1
-        className='osu-page-header-v3__title-text'
-        dangerouslySetInnerHTML={{
-          __html: osu.trans(this.props.titleTrans.key, {
-            info: `<span class='osu-page-header-v3__title-highlight'>${this.props.titleTrans.info}</span>`,
-        })}} />;
+      title = (
+        <h1
+          className='osu-page-header-v3__title-text'
+          dangerouslySetInnerHTML={{
+            __html: osu.trans(this.props.titleTrans.key, {
+              info: `<span class='osu-page-header-v3__title-highlight'>${this.props.titleTrans.info}</span>`,
+            }),
+          }}
+        />
+      );
     } else {
       title = <h1 className='osu-page-header-v3__title-text'>{title}</h1>;
     }
@@ -76,9 +80,11 @@ export default class HeaderV3 extends React.Component<PropsInterface, {}> {
           linkClass += ' page-mode-v2__link--active';
         }
 
-        return <li className='page-mode-v2__item' key={`${link.url}-${link.title}`}>
-          <a className={linkClass} href={link.url}>{link.title}</a>
-        </li>;
+        return (
+          <li className='page-mode-v2__item' key={`${link.url}-${link.title}`}>
+            <a className={linkClass} href={link.url}>{link.title}</a>
+          </li>
+        );
       });
     }
 
@@ -102,13 +108,13 @@ export default class HeaderV3 extends React.Component<PropsInterface, {}> {
 
     return (
       <div className={classNames}>
-        <div className='header-v3__bg'></div>
-        <div className='header-v3__overlay'></div>
+        <div className='header-v3__bg'/>
+        <div className='header-v3__overlay'/>
         <div className={osuPageClasses}>
           { !this.props.compact &&
             this.renderHeaderTitle()
           }
-          { this.renderHeaderTabs() }
+          {this.renderHeaderTabs()}
         </div>
       </div>
     );
