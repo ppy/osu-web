@@ -16,20 +16,24 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, h3, ul, li, a, p, pre, span} = ReactDOMFactories
+import { ExtraHeader } from './extra-header'
+import { PlayDetailList } from 'play-detail-list'
+import * as React from 'react'
+import { div, h2, h3, ul, li, a, p, pre, span } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
 el = React.createElement
 
-class ProfilePage.TopRanks extends React.PureComponent
+export class TopRanks extends React.PureComponent
   render: =>
     div
       className: 'page-extra'
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+      el ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       div null,
         h3 className: 'page-extra__title page-extra__title--small', osu.trans('users.show.extra.top_ranks.best.title')
         if @props.scoresBest?.length
           div className: 'profile-extra-entries',
-            el window._exported.PlayDetailList, scores: @props.scoresBest
+            el PlayDetailList, scores: @props.scoresBest
 
             div className: 'profile-extra-entries__item',
               el ShowMoreLink,
@@ -56,7 +60,7 @@ class ProfilePage.TopRanks extends React.PureComponent
               osu.formatNumber(@props.user.scores_first_count[0])
         if @props.scoresFirsts?.length
           div className: 'profile-extra-entries',
-            el window._exported.PlayDetailList, scores: @props.scoresFirsts
+            el PlayDetailList, scores: @props.scoresFirsts
 
             div className: 'profile-extra-entries__item',
               el ShowMoreLink,

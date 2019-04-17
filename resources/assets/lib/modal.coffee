@@ -17,6 +17,7 @@
 ###
 
 import { createRef, PureComponent } from 'react'
+import * as React from 'react'
 import { div } from 'react-dom-factories'
 import { createPortal } from 'react-dom'
 

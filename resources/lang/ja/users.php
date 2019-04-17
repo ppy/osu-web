@@ -150,7 +150,7 @@ return [
                     'dropzone_info' => 'ここにドラッグ＆ドロップでアップロードが可能です。',
                     'restriction_info' => "<a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!サポーター</a>のみアップロードできます",
                     'size_info' => '推奨の画像サイズは2800x620です',
-                    'too_large' => '画像ファイルの容量が大きすぎます。',
+                    'too_large' => 'アップロードファイルが大きすぎます。',
                     'unsupported_format' => '対応している画像形式ではありません。',
                 ],
             ],
@@ -163,7 +163,7 @@ return [
 
         'extra' => [
             'followers' => ':count フォロワー',
-            'unranked' => '最近のスコアはありません',
+            'unranked' => '最近のプレイはありません',
 
             'achievements' => [
                 'achieved-on' => '取得日時 :date',
@@ -173,27 +173,27 @@ return [
             'beatmaps' => [
                 'by_artist' => 'by :artist',
                 'none' => 'まだ、空っぽ。',
-                'title' => '譜面',
+                'title' => 'ビートマップ',
 
                 'favourite' => [
-                    'title' => 'お気に入りの譜面',
+                    'title' => 'お気に入りのビートマップ',
                 ],
                 'graveyard' => [
-                    'title' => 'Graveyardの譜面',
+                    'title' => 'Graveyardのビートマップ',
                 ],
                 'loved' => [
-                    'title' => 'Lovedされた譜面',
+                    'title' => 'Lovedされたビートマップ',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'RankedかApprovedの譜面',
+                    'title' => 'ランク＆承認済みのビートマップ',
                 ],
                 'unranked' => [
-                    'title' => 'Pendingの譜面',
+                    'title' => '保留中のビートマップ',
                 ],
             ],
             'historical' => [
-                'empty' => 'パフォーマンス測定可能な記録がまだありません。',
-                'title' => 'プレイの記録',
+                'empty' => 'パフォーマンスの記録がありません。',
+                'title' => '履歴',
 
                 'monthly_playcounts' => [
                     'title' => 'プレイ回数の履歴',
@@ -201,7 +201,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'プレイ回数',
-                    'title' => 'プレイ回数の多い譜面順',
+                    'title' => 'プレイ回数の多いビートマップ',
                 ],
                 'recent_plays' => [
                     'accuracy' => '精度: :percentage',

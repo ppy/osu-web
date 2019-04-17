@@ -16,12 +16,16 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, i, span} = ReactDOMFactories
+import { MessageLengthCounter } from './message-length-counter'
+import { BigButton } from 'big-button'
+import * as React from 'react'
+import { a, button, div, i, span } from 'react-dom-factories'
+import { UserAvatar } from 'user-avatar'
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
 
-class BeatmapDiscussions.Post extends React.PureComponent
+export class Post extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -162,7 +166,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
         onKeyDown: @handleKeyDown
         value: @state.message
         innerRef: (el) => @textarea = el
-      el BeatmapDiscussions.MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
+      el MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div className: "#{bn}__actions",
         div className: "#{bn}__actions-group"

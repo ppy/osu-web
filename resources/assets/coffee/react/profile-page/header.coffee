@@ -16,11 +16,22 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, dd, dl, dt, h1, i, img, li, span, ul} = ReactDOMFactories
+import { Badges } from './badges'
+import { CoverSelector } from './cover-selector'
+import { Detail } from './detail'
+import { DetailMobile } from './detail-mobile'
+import { GameModeSwitcher } from './game-mode-switcher'
+import { HeaderInfo } from './header-info'
+import { Links } from './links'
+import { Stats } from './stats'
+import * as React from 'react'
+import { Img2x } from 'img2x'
+import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-factories'
+import { Spinner } from 'spinner'
 el = React.createElement
 
 
-class ProfilePage.Header extends React.Component
+export class Header extends React.Component
   constructor: (props) ->
     super props
 
@@ -74,35 +85,35 @@ class ProfilePage.Header extends React.Component
           @renderTournamentBanner()
           @renderTitle()
           @renderTabs()
-          el ProfilePage.GameModeSwitcher,
+          el GameModeSwitcher,
             currentMode: @props.currentMode
             user: @props.user
             withEdit: @props.withEdit
       div className: 'osu-page osu-page--users',
         div className: 'profile-header',
           div className: 'profile-header__top',
-            el ProfilePage.HeaderInfo, user: @props.user, currentMode: @props.currentMode, coverUrl: @state.coverUrl
+            el HeaderInfo, user: @props.user, currentMode: @props.currentMode, coverUrl: @state.coverUrl
 
             if !@props.user.is_bot
               el React.Fragment, null,
-                el ProfilePage.DetailMobile,
+                el DetailMobile,
                   stats: @props.stats
                   userAchievements: @props.userAchievements
                   rankHistory: @props.rankHistory
 
-                el ProfilePage.Stats, stats: @props.stats
+                el Stats, stats: @props.stats
 
           if !@props.user.is_bot
-            el ProfilePage.Detail,
+            el Detail,
               stats: @props.stats
               userAchievements: @props.userAchievements
               rankHistory: @props.rankHistory
               user: @props.user
 
           if @props.user.badges.length > 0
-            el ProfilePage.Badges, badges: @props.user.badges
+            el Badges, badges: @props.user.badges
 
-          el ProfilePage.Links, user: @props.user
+          el Links, user: @props.user
 
           @renderCoverSelector()
 
@@ -118,7 +129,7 @@ class ProfilePage.Header extends React.Component
           onClick: @toggleEdit
           span className: 'fas fa-pencil-alt'
         if @state.editing
-          el ProfilePage.CoverSelector,
+          el CoverSelector,
             canUpload: @props.user.is_supporter
             cover: @props.user.cover
 

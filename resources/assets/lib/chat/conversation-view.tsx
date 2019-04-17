@@ -21,7 +21,9 @@ import { inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
 import * as React from 'react';
+import { Spinner } from 'spinner';
 import RootDataStore from 'stores/root-data-store';
+import { UserAvatar } from 'user-avatar';
 import MessageDivider from './message-divider';
 import MessageGroup from './message-group';
 

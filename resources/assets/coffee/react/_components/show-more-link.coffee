@@ -15,11 +15,13 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{button, span} = ReactDOMFactories
+import * as React from 'react'
+import { button, span } from 'react-dom-factories'
+import { Spinner } from 'spinner'
 el = React.createElement
 bn = 'show-more-link'
 
-@ShowMoreLink = React.forwardRef (props, ref) =>
+export ShowMoreLink = React.forwardRef (props, ref) =>
   return null unless props.hasMore || props.loading
 
   onClick = props.callback

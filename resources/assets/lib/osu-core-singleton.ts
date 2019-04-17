@@ -15,47 +15,15 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+import OsuCore from 'osu-core';
 
-.u-blackout-visible {
-  z-index: @z-index--blackout-visible !important;
-}
-
-.u-ellipsis-overflow {
-  white-space: nowrap !important;
-  text-overflow: ellipsis !important;
-  overflow: hidden !important;
-}
-
-.u-ellipsis-overflow-desktop {
-  @media @desktop {
-    .u-ellipsis-overflow();
+declare global {
+  interface Window {
+    OsuCore: OsuCore;
   }
 }
 
-.u-fancy-scrollbar {
-  .fancy-scrollbar();
-}
+const core = new OsuCore(window);
+window.OsuCore = core; // for debugging
 
-// so elements with anchors as subelements don't create stacking contexts
-// that block each other.
-.u-has-anchor {
-  position: static;
-}
-
-.u-hidden {
-  display: none !important;
-}
-
-.u-hide-by-height {
-  height: 0 !important;
-  margin: 0 !important;
-  overflow: hidden !important;
-}
-
-.u-nav-float {
-  z-index: @z-index--nav-float !important;
-}
-
-.u-full-size {
-  .full-size();
-}
+export default core;

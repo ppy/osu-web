@@ -21,6 +21,7 @@ import PostJson from 'interfaces/news-post-json';
 import * as _ from 'lodash';
 import NewsHeader from 'news-header';
 import * as React from 'react';
+import { ShowMoreLink } from 'show-more-link';
 import PostItem from './post-item';
 
 interface PostsJson {

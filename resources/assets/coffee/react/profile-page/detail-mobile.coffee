@@ -16,25 +16,31 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = ReactDOMFactories
+import { MedalsCount } from './medals-count'
+import { PlayTime } from './play-time'
+import { Pp } from './pp'
+import { Rank } from './rank'
+import { RankChart } from './rank-chart'
+import * as React from 'react'
+import { div } from 'react-dom-factories'
 el = React.createElement
 
 
-class ProfilePage.DetailMobile extends React.PureComponent
+export class DetailMobile extends React.PureComponent
   render: =>
     div className: 'profile-detail-mobile',
       if @props.stats.is_ranked
         div className: 'profile-detail-mobile__item profile-detail-mobile__item--rank-chart',
-          el ProfilePage.RankChart,
+          el RankChart,
             rankHistory: @props.rankHistory
             stats: @props.stats
       div className: 'profile-detail-mobile__item',
-        el ProfilePage.Rank, type: 'global', stats: @props.stats
+        el Rank, type: 'global', stats: @props.stats
       div className: 'profile-detail-mobile__item',
-        el ProfilePage.Rank, type: 'country', stats: @props.stats
+        el Rank, type: 'country', stats: @props.stats
       div className: 'profile-detail-mobile__item',
-        el ProfilePage.PlayTime, stats: @props.stats
+        el PlayTime, stats: @props.stats
       div className: 'profile-detail-mobile__item profile-detail-mobile__item--half',
-        el ProfilePage.MedalsCount, userAchievements: @props.userAchievements
+        el MedalsCount, userAchievements: @props.userAchievements
       div className: 'profile-detail-mobile__item profile-detail-mobile__item--half',
-        el ProfilePage.Pp, stats: @props.stats
+        el Pp, stats: @props.stats

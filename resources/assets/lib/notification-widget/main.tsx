@@ -19,6 +19,7 @@
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import { ShowMoreLink } from 'show-more-link';
 import TypeGroup from './type-group';
 import Worker from './worker';
 
@@ -56,7 +57,7 @@ export default class Main extends React.Component<Props, {}> {
       </button>
       <div className='nav-click-popup'>
         <div
-          className='notification-popup js-click-menu js-nav2--centered-popup'
+          className='notification-popup js-click-menu js-nav2--centered-popup u-fancy-scrollbar'
           data-click-menu-id={this.menuId}
           data-visibility='hidden'
         >

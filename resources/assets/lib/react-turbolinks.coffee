@@ -16,7 +16,10 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-class @ReactTurbolinks
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+
+export class ReactTurbolinks
   constructor: (@components = {}) ->
     @targets = []
     $(document).on 'turbolinks:load', @destroyPersisted

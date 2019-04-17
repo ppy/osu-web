@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{span, i} = ReactDOMFactories
+import * as React from 'react'
+import { span, i } from 'react-dom-factories'
 el = React.createElement
 
 elem = ({position, icon}) ->
@@ -25,7 +26,7 @@ elem = ({position, icon}) ->
     className: "icon-stack__icon icon-stack__icon--#{position}"
     i className: "fas fa-fw fa-#{icon}"
 
-@IconExpand = ({expand = true, parentClass = ''}) ->
+export IconExpand = ({expand = true, parentClass = ''}) ->
   span
     className: "icon-stack #{parentClass}"
     span className: 'icon-stack__base',
