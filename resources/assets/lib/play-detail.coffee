@@ -16,8 +16,10 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { Mods } from 'mods'
 import { PlayDetailMenu } from 'play-detail-menu'
 import { createElement as el, PureComponent } from 'react'
+import * as React from 'react'
 import { a, button, div, i, img, small, span } from 'react-dom-factories'
 import { ScoreHelper } from 'score-helper'
 
@@ -115,17 +117,7 @@ export class PlayDetail extends PureComponent
           className: "#{bn}__more"
           if ScoreHelper.hasMenu(score)
             el PlayDetailMenu,
-              onHide: @hide
-              onShow: @show
-              score: score
-
-
-  hide: =>
-    @props.onMenuActive?(active: false, index: @props.index)
-
-
-  show: =>
-    @props.onMenuActive?(active: true, index: @props.index)
+              { score }
 
 
   toggleCompact: =>

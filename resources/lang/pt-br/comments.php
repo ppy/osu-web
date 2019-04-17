@@ -35,7 +35,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Pressione enter para :action, use Shift+Enter para adicionar nova uma nova linha.',
+            '_' => 'Pressione enter para :action, use Shift+Enter para adicionar uma nova linha.',
             'edit' => 'salvar',
             'new' => 'publicar',
             'reply' => 'responder',

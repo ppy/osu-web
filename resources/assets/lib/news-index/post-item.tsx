@@ -33,24 +33,26 @@ export default function PostItem({post}: {post: PostJson}) {
     preview = '';
   }
 
-  return <a
-    href={laroute.route('news.show', {news: post.slug})}
-    className='news-card news-card--index'
-  >
-    {cover}
-    <div className='news-card__overlay' />
-    <div className='news-card__content'>
-      <div
-        className='news-card__time js-tooltip-time'
-        title={post.published_at}
-      >
-        {moment(post.published_at).format('ll')}
-      </div>
+  return (
+    <a
+      href={laroute.route('news.show', {news: post.slug})}
+      className='news-card news-card--index'
+    >
+      {cover}
+      <div className='news-card__overlay' />
+      <div className='news-card__content'>
+        <div
+          className='news-card__time js-tooltip-time'
+          title={post.published_at}
+        >
+          {moment(post.published_at).format('ll')}
+        </div>
 
-      <div className='news-card__main'>
-        <div className='news-card__title'>{post.title}</div>
-        <div className='news-card__preview' dangerouslySetInnerHTML={{__html: preview}} />
+        <div className='news-card__main'>
+          <div className='news-card__title'>{post.title}</div>
+          <div className='news-card__preview' dangerouslySetInnerHTML={{__html: preview}} />
+        </div>
       </div>
-    </div>
-  </a>;
+    </a>
+  );
 }

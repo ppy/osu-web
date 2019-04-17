@@ -127,8 +127,8 @@ return [
             'modding-history-posts' => 'publicações de modificações do utilizador',
             'modding-history-votesGiven' => 'votos de modificações do utilizador dados',
             'modding-history-votesReceived' => 'votos de modificações do utilizador recebidos',
-            'oauth_login' => '',
-            'oauth_request' => '',
+            'oauth_login' => 'inicia sessão para oauth',
+            'oauth_request' => 'autorização oauth',
             'settings' => 'Definições',
         ],
         'store' => [

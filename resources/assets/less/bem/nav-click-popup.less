@@ -16,17 +16,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.play-detail-menu {
-  .full-size();
 
-  &__button {
-    .full-size();
-    .reset-input();
-  }
+.nav-click-popup {
+  position: absolute;
+  top: 100%;
+  right: 0; // avoid overflow before repositioned
+  height: 0; // avoid covering page when the content is hidden
+  margin-top: -5px;
 
-  &__menu {
-    position: absolute;
-    top: calc(50% + 0.9em);
-    right: 5px;
+  &--user {
+    margin-top: 5px;
   }
 }

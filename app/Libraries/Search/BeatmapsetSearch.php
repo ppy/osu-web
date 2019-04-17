@@ -48,15 +48,24 @@ class BeatmapsetSearch extends RecordSearch
      */
     public function getQuery()
     {
+        static $partialMatchFields = ['artist', 'artist.*', 'artist_unicode', 'creator', 'title', 'title.raw', 'title.*', 'title_unicode', 'tags^0.5'];
+
         $query = (new BoolQuery());
 
         if (present($this->params->queryString)) {
             $terms = explode(' ', $this->params->queryString);
-            // results must contain at least one of the terms and boosted by containing all of them.
-            $query->must(QueryHelper::queryString($this->params->queryString, [], 'or', 1 / count($terms)));
-            $query->should(QueryHelper::queryString($this->params->queryString, [], 'and'));
+
+            // the subscoping is not necessary but prevents unintentional accidents when combining other matchers
+            $query->must(
+                (new BoolQuery)
+                    // results must contain at least one of the terms and boosted by containing all of them.
+                    ->shouldMatch(1)
+                    ->should(QueryHelper::queryString($this->params->queryString, $partialMatchFields, 'or', 1 / count($terms)))
+                    ->should(QueryHelper::queryString($this->params->queryString, [], 'and'))
+            );
         }
 
+        $this->addBlacklistFilter($query);
         $this->addModeFilter($query);
         $this->addRecommendedFilter($query);
         $this->addGenreFilter($query);
@@ -72,6 +81,28 @@ class BeatmapsetSearch extends RecordSearch
     public function records()
     {
         return $this->response()->records()->with('beatmaps')->get();
+    }
+
+    private function addBlacklistFilter($query)
+    {
+        static $fields = ['artist', 'source', 'tags'];
+        $bool = new BoolQuery;
+
+        foreach ($fields as $field) {
+            $bool->mustNot([
+                'terms' => [
+                    $field => [
+                        'index' => config('osu.elasticsearch.prefix').'blacklist',
+                        'type' => 'blacklist', // FIXME: change to _doc after upgrading from 6.1
+                        'id' => 'beatmapsets',
+                        // can be changed to per-field blacklist as different fields should probably have different restrictions.
+                        'path' => 'keywords',
+                    ],
+                ],
+            ]);
+        }
+
+        $query->filter($bool);
     }
 
     private function addExtraFilter($query)

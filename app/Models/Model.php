@@ -74,6 +74,15 @@ abstract class Model extends BaseModel
         };
     }
 
+    public function refresh()
+    {
+        if (isset($this->memoized)) {
+            $this->memoized = [];
+        }
+
+        return parent::refresh();
+    }
+
     public function scopeCursorWhere($query, array $cursors, bool $isFirst = true)
     {
         if (empty($cursors)) {

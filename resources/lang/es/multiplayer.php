@@ -61,7 +61,7 @@ return [
         ],
 
         'teams' => [
-            'blue' => 'Equipo Azúl',
+            'blue' => 'Equipo Azul',
             'red' => 'Equipo Rojo',
         ],
     ],

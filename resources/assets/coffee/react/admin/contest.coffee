@@ -16,7 +16,9 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-reactTurbolinks.registerPersistent 'admin-contest-user-entry-list', Admin.Contest.UserEntryList, true, (el) ->
+import { UserEntryList } from './contest/user-entry-list'
+
+reactTurbolinks.registerPersistent 'admin-contest-user-entry-list', UserEntryList, true, (el) ->
   container: el
   contest: osu.parseJson('json-contest')
   entries: osu.parseJson('json-contest-entries')

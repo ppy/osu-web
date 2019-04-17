@@ -35,7 +35,7 @@ return [
         'standard_converts_only' => 'Não há pontuações disponíveis para o modo solicitado nesta dificuldade de beatmap.',
     ],
     'checkout' => [
-        'generic' => '',
+        'generic' => 'Ocorreu um erro ao preparar o teu pagamento.',
     ],
     'logged_out' => 'Foste desconectado. Por favor inicia sessão e tenta outra vez.',
     'supporter_only' => 'Tu tens de ser um apoiante para utilizar esta funcionalidade.',

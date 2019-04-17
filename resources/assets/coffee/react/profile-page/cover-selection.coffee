@@ -16,10 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, span} = ReactDOMFactories
+import * as React from 'react'
+import { button, span } from 'react-dom-factories'
 bn = 'profile-cover-selection'
 
-class ProfilePage.CoverSelection extends React.PureComponent
+export class CoverSelection extends React.PureComponent
   render: =>
     button
       className: osu.classWithModifiers(bn, @props.modifiers)

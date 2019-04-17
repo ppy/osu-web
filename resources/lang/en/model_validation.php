@@ -73,7 +73,8 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Duplicated option is not allowed.',
-            'grace_period_expired' => 'Can\'t edit a poll after more than :limit hours',
+            'grace_period_expired' => 'Can\'t edit a poll after more than :limit hours.',
+            'hiding_results_forever' => 'Can\'t hide results of a poll that never ends.',
             'invalid_max_options' => 'Option per user may not exceed the number of available options.',
             'minimum_one_selection' => 'A minimum of one option per user is required.',
             'minimum_two_options' => 'Need at least two options.',
@@ -111,6 +112,7 @@ return [
         'too_long' => 'Exceeded maximum length - can only be up to :limit characters.',
 
         'change_username' => [
+            'restricted' => 'You cannot change your username while restricted.',
             'supporter_required' => [
                 '_' => 'You must have :link to change your name!',
                 'link_text' => 'supported osu!',

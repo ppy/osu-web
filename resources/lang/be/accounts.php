@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => 'Налады <strong>акаўнта</strong>',
+        'title' => 'Налады <strong>ўлік. запісу</strong>',
         'title_compact' => 'налады',
         'username' => 'імя карыстальніка',
 

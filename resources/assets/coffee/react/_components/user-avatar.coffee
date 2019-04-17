@@ -16,11 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = ReactDOMFactories
+import * as React from 'react'
+import { div } from 'react-dom-factories'
 
 bn = 'avatar'
 
-@UserAvatar = (props) ->
+export UserAvatar = (props) ->
   if props.user.id?
     div
       className: osu.classWithModifiers(bn, props.modifiers)

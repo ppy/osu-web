@@ -16,12 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, li, span, ul} = ReactDOMFactories
+import * as React from 'react'
+import { a, button, div, li, span, ul } from 'react-dom-factories'
 el = React.createElement
 bn = 'game-mode'
 
 
-class ProfilePage.GameModeSwitcher extends React.PureComponent
+export class GameModeSwitcher extends React.PureComponent
   constructor: (props) ->
     super props
 

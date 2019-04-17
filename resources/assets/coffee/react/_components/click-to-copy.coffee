@@ -16,12 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import * as React from 'react'
+import { span, i, a } from 'react-dom-factories'
 el = React.createElement
-{span, i, a} = ReactDOMFactories
 
 bn = 'click-to-copy'
 
-class @ClickToCopy extends React.PureComponent
+export class ClickToCopy extends React.PureComponent
   componentWillUnmount: =>
     @restoreTooltipText()
 

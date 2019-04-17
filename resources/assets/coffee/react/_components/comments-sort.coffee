@@ -16,9 +16,10 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div} = ReactDOMFactories
+import * as React from 'react'
+import { button, div } from 'react-dom-factories'
 
-class @CommentsSort extends React.PureComponent
+export class CommentsSort extends React.PureComponent
   render: =>
     div className: osu.classWithModifiers('sort', @props.modifiers),
       div className: 'sort__items',

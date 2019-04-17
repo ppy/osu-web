@@ -16,9 +16,10 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = ReactDOMFactories
+import * as React from 'react'
+import { div } from 'react-dom-factories'
 
-class ProfilePage.RankChart extends React.Component
+export class RankChart extends React.Component
   constructor: (props) ->
     super props
 
@@ -84,6 +85,8 @@ class ProfilePage.RankChart extends React.Component
       x: i - data.length + 1
       y: -rank
     .filter (point) -> point.y < 0
+
+    return unless data.length > 0
 
     if data.length == 1
       data.unshift

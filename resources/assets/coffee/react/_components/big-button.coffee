@@ -16,10 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, span, i} = ReactDOMFactories
+import * as React from 'react'
+import { a, button, span, i } from 'react-dom-factories'
+import { Spinner } from 'spinner'
 el = React.createElement
 
-@BigButton = ({modifiers = [], text, icon, props = {}, extraClasses = []}) ->
+export BigButton = ({modifiers = [], text, icon, props = {}, extraClasses = []}) ->
   props.className = osu.classWithModifiers('btn-osu-big', modifiers)
   props.className += " #{klass}" for klass in extraClasses
 

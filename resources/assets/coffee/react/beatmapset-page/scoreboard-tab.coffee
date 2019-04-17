@@ -16,9 +16,10 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = ReactDOMFactories
+import * as React from 'react'
+import { div } from 'react-dom-factories'
 
-BeatmapsetPage.ScoreboardTab = (props) ->
+export ScoreboardTab = (props) ->
   className = 'page-tabs__tab'
   className += ' page-tabs__tab--active' if props.active
 

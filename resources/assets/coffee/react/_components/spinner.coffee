@@ -16,9 +16,10 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = ReactDOMFactories
+import * as React from 'react'
+import { div } from 'react-dom-factories'
 
 bn = 'la-ball-clip-rotate'
 
-@Spinner = ({modifiers}) ->
+export Spinner = ({modifiers}) ->
   div className: osu.classWithModifiers(bn, modifiers)

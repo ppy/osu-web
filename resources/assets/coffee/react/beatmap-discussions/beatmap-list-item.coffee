@@ -16,12 +16,14 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, i} = ReactDOMFactories
+import { BeatmapIcon } from 'beatmap-icon'
+import * as React from 'react'
+import { div, i } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'beatmap-list-item'
 
-BeatmapDiscussions.BeatmapListItem = (props) ->
+export BeatmapListItem = (props) ->
   topClasses = bn
   topClasses += " #{bn}--large" if props.large
 

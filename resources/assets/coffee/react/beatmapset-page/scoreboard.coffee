@@ -16,10 +16,15 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, p} = ReactDOMFactories
+import { ScoreTop } from './score-top'
+import { ScoreboardMod } from './scoreboard-mod'
+import { ScoreboardTab } from './scoreboard-tab'
+import { ScoreboardTable } from './scoreboard-table'
+import * as React from 'react'
+import { div, h2, p } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapsetPage.Scoreboard extends React.PureComponent
+export class Scoreboard extends React.PureComponent
   DEFAULT_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL', 'SO']
   OSU_MODS = DEFAULT_MODS.concat('TD')
   MANIA_KEY_MODS = ['4K', '5K', '6K', '7K', '8K', '9K']
@@ -75,7 +80,7 @@ class BeatmapsetPage.Scoreboard extends React.PureComponent
     div className: 'beatmapset-scoreboard',
       div className: 'page-tabs',
         for type in ['global', 'country', 'friend']
-          el BeatmapsetPage.ScoreboardTab,
+          el ScoreboardTab,
             key: type
             type: type
             active: @props.type == type
@@ -84,7 +89,7 @@ class BeatmapsetPage.Scoreboard extends React.PureComponent
         div className: 'beatmapset-scoreboard__mods-wrapper',
           div className: modsClassName,
             for mod in mods
-              el BeatmapsetPage.ScoreboardMod,
+              el ScoreboardMod,
                 key: mod
                 mod: mod
                 enabled: _.includes @props.enabledMods, mod
@@ -100,7 +105,7 @@ class BeatmapsetPage.Scoreboard extends React.PureComponent
                 div className: 'beatmap-scoreboard-top__item',
                   @scoreItem score: @props.userScore, rank: @props.userScorePosition
 
-            el BeatmapsetPage.ScoreboardTable,
+            el ScoreboardTable,
               beatmap: @props.beatmap
               scores: @props.scores
               countries: @props.countries
@@ -129,7 +134,7 @@ class BeatmapsetPage.Scoreboard extends React.PureComponent
                 __html: osu.trans 'beatmapsets.show.scoreboard.supporter-link', link: laroute.route 'support-the-game'
 
   scoreItem: ({score, rank, itemClass, modifiers}) ->
-    el BeatmapsetPage.ScoreTop,
+    el ScoreTop,
       key: rank
       score: score
       position: rank

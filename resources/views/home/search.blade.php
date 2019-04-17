@@ -50,7 +50,7 @@
             </div>
         </div>
 
-        <div class="osu-page osu-page--small-desktop">
+        <div class="osu-page osu-page--small">
             <div class="search">
                 @include('home._search_page_tabs', compact('allSearch'))
 
