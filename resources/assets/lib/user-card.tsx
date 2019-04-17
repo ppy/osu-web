@@ -73,12 +73,13 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
         </div>
 
         {
-          this.user.is_supporter ?
-          <div className='usercard__icon'>
-            <a className='usercard__link-wrapper' href={laroute.route('support-the-game')}>
-              <SupporterIcon smaller={true} />
-            </a>
-          </div> : null
+          this.user.is_supporter ? (
+            <div className='usercard__icon'>
+              <a className='usercard__link-wrapper' href={laroute.route('support-the-game')}>
+                <SupporterIcon smaller={true} />
+              </a>
+            </div>
+           ) : null
         }
 
         <div className='usercard__icon'>
@@ -86,15 +87,17 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
         </div>
 
         {
-          this.canMessage ?
-          <div className='usercard__icon'>
-            <a className='user-action-button user-action-button--message'
-              href={laroute.route('messages.users.show', { user: this.user.id })}
-              title={osu.trans('users.card.send_message')}
-            >
-              <i className='fas fa-envelope'/>
-            </a>
-          </div> : null
+          this.canMessage ? (
+            <div className='usercard__icon'>
+              <a
+                className='user-action-button user-action-button--message'
+                href={laroute.route('messages.users.show', { user: this.user.id })}
+                title={osu.trans('users.card.send_message')}
+              >
+                <i className='fas fa-envelope'/>
+              </a>
+            </div>
+          ) : null
         }
       </div>
      ) : null;
@@ -135,12 +138,14 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
           {!this.isUserNotFound ?  <div className='la-ball-clip-rotate'/> : null}
         </div>
         {
-          this.isUserLoaded ? <img className='usercard__avatar usercard__avatar--main'
-                                   onError={this.onAvatarLoad} // remove spinner if error
-                                   onLoad={this.onAvatarLoad}
-                                   src={this.user.avatar_url}
-                              />
-                            : null
+          this.isUserLoaded ? (
+            <img
+              className='usercard__avatar usercard__avatar--main'
+              onError={this.onAvatarLoad} // remove spinner if error
+              onLoad={this.onAvatarLoad}
+              src={this.user.avatar_url}
+            />
+          ) : null
         }
       </div>
     );

@@ -73,28 +73,30 @@ export default class Main extends React.Component<PropsInterface, {}> {
           />
         </div>
 
-        <AdminMenu items={[
-          {
-            component: 'a',
-            icon: 'fab fa-github',
-            props: {
-              href: this.props.post.edit_url,
+        <AdminMenu
+          items={[
+            {
+              component: 'a',
+              icon: 'fab fa-github',
+              props: {
+                href: this.props.post.edit_url,
+              },
+              text: osu.trans('wiki.show.edit.link'),
             },
-            text: osu.trans('wiki.show.edit.link'),
-          },
-          {
-            component: 'button',
-            icon: 'fas fa-sync',
-            props: {
-              'data-method': 'put',
-              'data-reload-on-success': 1,
-              'data-remote': true,
-              'data-url': laroute.route('news.update', {news: this.props.post.id}),
-              'type': 'button',
+            {
+              component: 'button',
+              icon: 'fas fa-sync',
+              props: {
+                'data-method': 'put',
+                'data-reload-on-success': 1,
+                'data-remote': true,
+                'data-url': laroute.route('news.update', {news: this.props.post.id}),
+                'type': 'button',
+              },
+              text: osu.trans('news.update.button'),
             },
-            text: osu.trans('news.update.button'),
-          },
-        ]} />
+          ]}
+        />
       </>
     );
   }

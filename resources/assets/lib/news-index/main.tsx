@@ -105,20 +105,22 @@ export default class Main extends React.Component<PropsInterface, StateInterface
           </div>
         </div>
 
-        <AdminMenu items={[
-          {
-            component: 'button',
-            icon: 'fas fa-sync',
-            props: {
-              'data-method': 'post',
-              'data-reload-on-success': '1',
-              'data-remote': true,
-              'data-url': laroute.route('news.store'),
-              'type': 'button',
+        <AdminMenu
+          items={[
+            {
+              component: 'button',
+              icon: 'fas fa-sync',
+              props: {
+                'data-method': 'post',
+                'data-reload-on-success': '1',
+                'data-remote': true,
+                'data-url': laroute.route('news.store'),
+                'type': 'button',
+              },
+              text: osu.trans('news.store.button'),
             },
-            text: osu.trans('news.store.button'),
-          },
-        ]} />
+          ]}
+        />
       </>
     );
   }

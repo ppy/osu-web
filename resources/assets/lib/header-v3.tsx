@@ -44,7 +44,9 @@ export default class HeaderV3 extends React.Component<PropsInterface, {}> {
           dangerouslySetInnerHTML={{
             __html: osu.trans(this.props.titleTrans.key, {
               info: `<span class='osu-page-header-v3__title-highlight'>${this.props.titleTrans.info}</span>`,
-          })}} />
+            }),
+          }}
+        />
       );
     } else {
       title = <h1 className='osu-page-header-v3__title-text'>{title}</h1>;
