@@ -160,7 +160,7 @@ export class FriendButton extends React.PureComponent
               span
                 key: 'normal'
                 className: "#{bn}__icon #{bn}__icon--hover-hidden"
-                i className: 'fas fa-user-friends'
+                i className: 'fas fa-user'
           ]
         else
           i className: if isFriendLimit then 'fas fa-user' else 'fas fa-user-plus'
