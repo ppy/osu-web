@@ -34,7 +34,7 @@ export class Main extends React.PureComponent<Props> {
   };
 
   readonly state = {
-    filter: 'all',
+    filter: this.filterFromUrl,
   };
 
   render() {
@@ -93,11 +93,11 @@ export class Main extends React.PureComponent<Props> {
     );
   }
 
-  renderOption(title: string, text: string|number) {
+  renderOption(title: string, text: string | number) {
     return (
       <a
         className='update-streams-v2__item'
-        href={`?${title}`}
+        href={osu.updateQueryString(null, { filter: title })}
         key={title}
         onClick={this.optionSelected(title)}
       >
@@ -110,7 +110,15 @@ export class Main extends React.PureComponent<Props> {
 
   optionSelected = (key: string) => (event: React.SyntheticEvent) => {
     event.preventDefault();
+    const url = osu.updateQueryString(null, { filter: key });
+    // FIXME: stop reloading the page
+    window.Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
     this.setState({ filter: key });
+  }
+
+  private get filterFromUrl() {
+    const url = new URL(location.href);
+    return url.searchParams.get('filter') || 'all';
   }
 
   private get filteredUsers() {
