@@ -24,9 +24,17 @@ interface Props {
   friends: User[];
 }
 
+interface State {
+  filter: string;
+}
+
 export class Main extends React.PureComponent<Props> {
   static defaultProps = {
     user: currentUser,
+  };
+
+  readonly state = {
+    filter: 'all',
   };
 
   render() {
@@ -60,7 +68,7 @@ export class Main extends React.PureComponent<Props> {
 
         <div className='osu-page osu-page--users'>
           {this.renderSelections()}
-          <UserList users={this.props.friends} />
+          <UserList users={this.filteredUsers} />
         </div>
       </div>
     );
@@ -68,8 +76,8 @@ export class Main extends React.PureComponent<Props> {
 
   renderSelections() {
     const groups = [
-      { name: 'All', count: this.props.friends.length },
-      { name: 'Online', count: this.props.friends.filter((x) => x.is_online).length },
+      { name: 'all', count: this.props.friends.length },
+      { name: 'online', count: this.props.friends.filter((x) => x.is_online).length },
     ];
 
     return (
@@ -89,13 +97,28 @@ export class Main extends React.PureComponent<Props> {
     return (
       <a
         className='update-streams-v2__item'
-        href='#'
+        href={`?${title}`}
         key={title}
+        onClick={this.optionSelected(title)}
       >
         <div className='update-streams-v2__bar u-changelog-stream--bg' />
         <p className='update-streams-v2__row update-streams-v2__row--name'>{title}</p>
         <p className='update-streams-v2__row update-streams-v2__row--version'>{text}</p>
       </a>
     );
+  }
+
+  optionSelected = (key: string) => (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    this.setState({ filter: key });
+  }
+
+  private get filteredUsers() {
+    switch (this.state.filter) {
+      case 'online':
+        return this.props.friends.filter((x) => x.is_online);
+    }
+
+    return this.props.friends;
   }
 }
