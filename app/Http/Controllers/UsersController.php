@@ -287,7 +287,7 @@ class UsersController extends Controller
 
         $rankHistory = $rankHistoryData ? json_item($rankHistoryData, 'RankHistory') : null;
 
-        if (Request::is('api/*')) {
+        if (is_api_request()) {
             $userArray['rankHistory'] = $rankHistory;
 
             return $userArray;
