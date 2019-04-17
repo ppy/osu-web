@@ -13,6 +13,7 @@
       "spaces"
     ],
     "interface-name": false,
+    "jsx-no-multiline-js": false,
     "quotemark": [true, "single"],
     "max-line-length": false,
     "member-access": false,
