@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,30 +21,30 @@
 return [
     'button' => [
         'action' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Спри наблюдението',
+            'to_1' => 'Наблюдавай',
         ],
     ],
 
     'index' => [
-        'description' => '',
-        'title_compact' => '',
-        'title_main' => '',
+        'description' => 'Тези са бийтмап дискусиите, които следвате. Ще бъдете уведомени, когато изникнат нови съобщения или актуализации.',
+        'title_compact' => 'modding списък за наблюдение',
+        'title_main' => 'Modding списък за наблюдение',
 
         'table' => [
-            'empty' => '',
-            'open_issues' => '',
-            'state' => '',
-            'title' => '',
+            'empty' => 'Не се наблюдават никакви бийтмапове.',
+            'open_issues' => 'Отворени въпроси',
+            'state' => 'Статус',
+            'title' => 'Име',
         ],
     ],
 
     'mail' => [
-        'update' => '',
+        'update' => 'Нова актуализация за бийтмапа ":title"',
     ],
 
     'status' => [
-        'read' => '',
-        'unread' => '',
+        'read' => 'Прочетено',
+        'unread' => 'Непрочетено',
     ],
 ];

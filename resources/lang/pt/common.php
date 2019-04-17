@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,25 +30,33 @@ return [
     ],
 
     'buttons' => [
+        'admin' => 'Administrador',
+        'back_to_previous' => 'Voltar à posição anterior',
+        'back_to_top' => 'Voltar ao topo',
         'cancel' => 'Cancelar',
         'change' => 'mudar',
         'click_to_copy' => 'clica para copiar para o bloco de notas',
         'click_to_copy_copied' => 'copiado para o bloco de notas!',
+        'collapse' => 'colapsar',
         'delete' => 'Apagar',
+        'edit' => 'Editar',
+        'expand' => 'expandir',
         'hide' => 'ocultar',
-        'permalink' => 'permalink',
+        'permalink' => 'link permanente',
         'permalink_copied' => 'link copiado',
         'post' => 'Publicar',
         'reply' => 'Resposta',
         'reply_reopen' => 'Responder e Reabrir',
         'reply_resolve' => 'Responder e Resolver',
         'reset' => 'Reiniciar',
+        'restore' => 'Restaurar',
         'save' => 'Guardar',
         'saving' => 'A Guardar...',
         'search' => 'Procurar',
         'see_more' => 'ver mais',
         'show' => 'mostrar',
         'show_more' => 'mostrar mais',
+        'show_more_options' => 'mostrar mais opções',
         'upload_image' => 'carregar imagem',
     ],
 
@@ -59,9 +67,17 @@ return [
         'hours' => ':count hora|:count horas',
         'item' => ':count unidade|:count unidades',
         'minute_short_unit' => 'min|mins',
+        'minutes' => ':count minuto|:count minutos',
         'months' => ':count mês|:count meses',
         'second_short_unit' => 'seg|segs',
         'years' => ':count ano|:count anos',
+    ],
+
+    'countdown' => [
+        'days' => 'dias',
+        'hours' => 'horas',
+        'minutes' => 'minutos',
+        'seconds' => 'segundos',
     ],
 
     'datetime' => [
@@ -78,7 +94,7 @@ return [
         'keyboard' => 'Teclado',
         'mouse' => 'Rato',
         'tablet' => 'Tablet',
-        'touch' => 'Ecrã Táctil',
+        'touch' => 'Ecrã Tátil',
     ],
 
     'dropzone' => [

@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,39 +16,25 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, h1, p, span} = ReactDOMFactories
+import { Comment } from 'comment'
+import * as React from 'react'
+import { button, div, h1, p, span } from 'react-dom-factories'
 el = React.createElement
 
-class CommentsIndex.Main extends React.PureComponent
+export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
     @pagination = React.createRef()
-    @id = "comments-index-#{osu.uuid()}"
-    @state =
-      comments: @props.comments
-      users: @props.users
 
 
   componentDidMount: =>
-    $.subscribe "comment:updated.#{@id}", @update
-
     pagination = document.querySelector('.js-comments-pagination').cloneNode(true)
     @pagination.current.innerHTML = ''
     @pagination.current.appendChild pagination
 
 
-  componentWillUnmount: =>
-    $.unsubscribe ".#{@id}"
-
-
   render: =>
-    usersById = _.keyBy(@state.users ? [], 'id')
-    sortedComments = _(@state.comments ? [])
-      .uniqBy('id')
-      .orderBy(['created_at', 'id'], ['desc', 'desc'])
-      .value()
-
     div null,
       div className: 'header-v3 header-v3--comments',
         div className: 'header-v3__bg'
@@ -58,11 +44,13 @@ class CommentsIndex.Main extends React.PureComponent
           @renderHeaderTabs()
 
       div className: 'osu-page osu-page--comments',
-        for comment in sortedComments
+        for comment in @props.comments
           el Comment,
             key: comment.id
             comment: comment
-            usersById: usersById
+            usersById: @props.usersById
+            userVotesByCommentId: @props.userVotesByCommentId
+            commentableMetaById: @props.commentableMetaById
             showReplies: false
             showCommentableMeta: true
             linkParent: true
@@ -80,7 +68,7 @@ class CommentsIndex.Main extends React.PureComponent
 
   renderHeaderTitle: =>
     div className: 'osu-page-header-v3 osu-page-header-v3--comments',
-      div className: 'osu-page-header-v3__title js-nav2--hidden-on-menu-access',
+      div className: 'osu-page-header-v3__title',
         div className: 'osu-page-header-v3__title-icon',
           div className: 'osu-page-header-v3__icon'
         h1
@@ -88,9 +76,3 @@ class CommentsIndex.Main extends React.PureComponent
           dangerouslySetInnerHTML:
             __html: osu.trans 'comments.index.title._',
               info: "<span class='osu-page-header-v3__title-highlight'>#{osu.trans('comments.index.title.info')}</span>"
-
-
-  update: (_event, {comment}) =>
-    @setState
-      comments: osu.updateCollection @state.comments, [comment]
-      users: osu.updateCollection @state.users, [comment.user, comment.editor]

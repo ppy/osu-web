@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,10 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{tr, td, a, div} = ReactDOMFactories
+import { UserEntryDeleteButton } from './user-entry-delete-button'
+import * as React from 'react'
+import { tr, td, a, div } from 'react-dom-factories'
+import { UserAvatar } from 'user-avatar'
 el = React.createElement
 
-class @Admin.Contest.UserEntry extends React.Component
+export class UserEntry extends React.Component
   render: =>
     className = 'admin-contest-entry'
     className += ' admin-contest-entry__deleted' if @props.entry.deleted

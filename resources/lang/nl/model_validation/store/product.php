@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,7 +19,8 @@
  */
 
 return [
-    'insufficient_stock' => 'Er is niet genoeg van dit voorwerp over!',
-    'not_available' => 'Dit voorwerp is niet beschikbaar.',
-    'too_many' => 'Je kan slechts :count van dit voorwerp bestellen per bestelling.',
+    'insufficient_stock' => 'Er is niet genoeg van dit artikel over!',
+    'must_separate' => '',
+    'not_available' => 'Dit artikel is niet beschikbaar.',
+    'too_many' => 'U kunt slechts :count van dit artikel bestellen per bestelling.',
 ];

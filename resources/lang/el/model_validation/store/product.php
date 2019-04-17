@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 return [
     'insufficient_stock' => 'Δεν έχει απομείνει αρκετό απόθεμα από αυτό το προϊόν!',
+    'must_separate' => 'Αυτό το προϊόν πρέπει να αγοραστεί ξεχωριστά από τα υπόλοιπα προϊόντα',
     'not_available' => 'Αυτό το προϊόν δεν είναι διαθέσιμο.',
     'too_many' => 'Μπορείτε να παραγγείλετε μόνο :count από αυτό το προϊόν ανά παραγγελία.',
 ];

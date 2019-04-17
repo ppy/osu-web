@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,7 +26,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Beatmappien Listaus',
+        'title' => 'Beatmapit',
         'guest_title' => 'Beatmapit',
     ],
 
@@ -34,25 +34,96 @@ return [
         'discussion' => 'Keskustelu',
 
         'details' => [
+            'approved' => 'vahvistettu ',
+            'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
+            'favourited_count' => '+ 1 muu!|+ :count muuta!',
+            'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
+            'loved' => 'rakastettu ',
             'mapped_by' => 'luonut: :mapper',
+            'qualified' => 'esihyväksytty ',
+            'ranked' => 'hyväksytty ',
             'submitted' => 'Julkaistu ',
+            'unfavourite' => 'Poista tämä beatmapkokoelma suosikeista',
             'updated' => 'viimeisin päivitys ',
             'updated_timeago' => 'viimeksi päivitetty :timeago',
-            'ranked' => 'hyväksytty ',
-            'approved' => 'vahvistettu ',
-            'qualified' => 'esihyväksytty ',
-            'loved' => 'rakastettu ',
-            'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
+
             'download' => [
                 '_' => 'Lataa',
-                'video' => 'Videon kanssa',
-                'no-video' => 'ilman Videota',
                 'direct' => '',
+                'no-video' => 'ilman videota',
+                'video' => 'videon kanssa',
             ],
-            'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
-            'unfavourite' => 'Poista nämä beatmap-setti suosikeista',
-            'favourited_count' => '+ 1 muu!|+ :count muuta!',
+
+            'login_required' => [
+                'bottom' => 'lisäomimaisuuksien käyttämiseen',
+                'top' => 'Kirjaudu sisään',
+            ],
         ],
+
+        'favourites' => [
+            'limit_reached' => 'Sinulla on liian monta lempikappaletta! Poista joitain suosikeistasi ennen uudelleenyrittämistä.',
+        ],
+
+        'hype' => [
+            'action' => 'Äänestä tätä kappaletta jos nautit sen pelaamisesta auttaaksesi sitä saamaan <strong>Ranked</strong> statuksen.',
+
+            'current' => [
+                '_' => 'Tämä kappale on tällä hetkellä :status.',
+
+                'status' => [
+                    'pending' => 'odottaa',
+                    'qualified' => 'hyväksytty',
+                    'wip' => 'keskeneräinen',
+                ],
+            ],
+        ],
+
+        'info' => [
+            'description' => 'Kuvaus',
+            'genre' => 'Tyylilaji',
+            'language' => 'Kieli',
+            'no_scores' => 'Dataa lasketaan...',
+            'points-of-failure' => 'Epäonnistumiskohdat',
+            'source' => 'Lähde',
+            'success-rate' => 'Läpäisyprosentti',
+            'tags' => 'Tunnisteet',
+            'unranked' => 'Beatmap ei ole hyväksytyssä tilassa',
+        ],
+
+        'scoreboard' => [
+            'achieved' => 'saavutettu :when',
+            'country' => 'Maakohtaiset sijoitukset',
+            'friend' => 'Kavereiden sijoitukset',
+            'global' => 'Maailmanlaajuiset sijoitukset',
+            'supporter-link' => 'Klikkaa <a href=":link">tästä</a> nähdäksesi kaikki hienot ominaisuudet mitä saat!',
+            'supporter-only' => 'Sinun täytyy olla Tukija nähdäksesi maa- ja ystäväkohtaiset sijoitukset!',
+            'title' => 'Tulokset',
+
+            'headers' => [
+                'accuracy' => 'Tarkkuus',
+                'combo' => 'Maksimikombo',
+                'miss' => 'Ohi',
+                'mods' => 'Modit',
+                'player' => 'Pelaaja',
+                'pp' => '',
+                'rank' => 'Sijoitus',
+                'score_total' => 'Kokonaispisteet',
+                'score' => 'Pisteet',
+            ],
+
+            'no_scores' => [
+                'country' => 'Kartasta ei vielä löydy maansisäisiä tuloksia!',
+                'friend' => 'Kukaan kavereistasi ei vielä ole saanut tulosta tässä mapissa!',
+                'global' => 'Tuloksia ei ole. Voisit hankkia niitä.',
+                'loading' => 'Ladataan tuloksia...',
+                'unranked' => 'Beatmap ei ole hyväksytyssä tilassa.',
+            ],
+            'score' => [
+                'first' => 'Johdossa',
+                'own' => 'Sinun parhaasi',
+            ],
+        ],
+
         'stats' => [
             'cs' => 'Ympyräkoko',
             'cs-mania' => 'Koskettimien määrä',
@@ -68,50 +139,6 @@ return [
             'rating-spread' => 'Arvioiden jakauma',
             'nominations' => 'Suositukset',
             'playcount' => 'Pelikertojen määrä',
-        ],
-        'info' => [
-            'description' => 'Kuvaus',
-            'genre' => 'Tyylilaji',
-            'language' => 'Kieli',
-            'no_scores' => 'Dataa lasketaan...',
-            'points-of-failure' => 'Epäonnistumiskohdat',
-            'source' => 'Lähde',
-            'success-rate' => 'Läpäisyprosentti',
-            'tags' => 'Tunnisteet',
-            'unranked' => 'Beatmap ei ole hyväksytyssä tilassa',
-        ],
-        'scoreboard' => [
-            'achieved' => 'saavutettu :when',
-            'country' => 'Maakohtaiset sijoitukset',
-            'friend' => 'Ystävien sijoitukset',
-            'global' => 'Maailmanlaajuiset sijoitukset',
-            'supporter-link' => 'Klikkaa <a href=":link">tästä</a> nähdäksesi kaikki hienot ominaisuudet mitä saat!',
-            'supporter-only' => 'Sinun täytyy olla Tukija nähdäksesi maa- ja ystäväkohtaiset sijoitukset!',
-            'title' => 'Tulokset',
-
-            'headers' => [
-                'accuracy' => 'Tarkkuus',
-                'combo' => 'Max Combo',
-                'miss' => 'Ohi',
-                'mods' => 'Modit',
-                'player' => 'Pelaaja',
-                'pp' => '',
-                'rank' => 'Sijoitus',
-                'score_total' => 'Kokonaispisteet',
-                'score' => 'Pisteet',
-            ],
-
-            'no_scores' => [
-                'country' => 'Kartasta ei vielä löydy maansisäisiä tuloksia!',
-                'friend' => 'Kukaan ystävistäsi ei vielä ole saanut tulosta tässä kartassa!',
-                'global' => 'Tuloksia ei ole. Ehkä voisit yrittää saada sellaisen?',
-                'loading' => 'Ladataan tuloksia...',
-                'unranked' => 'Beatmap ei ole hyväksytyssä tilassa.',
-            ],
-            'score' => [
-                'first' => 'Johdossa',
-                'own' => 'Sinun parhaasi',
-            ],
         ],
     ],
 ];

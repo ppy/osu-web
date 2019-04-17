@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Odpovídat na smazaný komentář není povoleno.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Lze hlasovat pouze o funkcích.',
@@ -64,10 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Mazání metadat beatmapy není povoleno.',
             'beatmapset_post_no_edit' => 'Editace metadat beatmapy není povoleno.',
+            'only_quote' => 'Tvoje odpověď obsahuje jenom citát.',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Duplikované možnosti nejsou povoleny.',
+            'grace_period_expired' => 'Nemůžete upravovat hlasování po více jak :limit hodinách',
             'invalid_max_options' => 'Možnost jednoho uživatele by neměla přesáhnout hodnotu povolených možností.',
             'minimum_one_selection' => 'Minimálně jedna možnost na uživatele je vyžadována.',
             'minimum_two_options' => 'Jsou vyžadovány alespoň dvě možnosti.',
@@ -92,6 +98,7 @@ return [
         'username_available_soon' => 'Toto uživatelské jméno bude k dispozici pro použití každou chvíli!',
         'username_invalid_characters' => 'Žádané uživatelské jméno obsahuje neplatné znaky.',
         'username_in_use' => 'Uživatelské jméno je již používáno!',
+        'username_locked' => 'Tohle jméno už někdo používá!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Použijte prosím podtržítka nebo mezery, ne obojí!',
         'username_no_spaces' => "Uživatelské jméno nesmí začínat nebo končit mezerou!",
         'username_not_allowed' => 'Toto uživatelské jméno není povoleno.',
@@ -110,5 +117,9 @@ return [
             ],
             'username_is_same' => 'Tohle je tvoje uživatelské jméno, hlupáku!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "Nemůžete nahlásit sám sebe!",
     ],
 ];

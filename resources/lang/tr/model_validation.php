@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Silinmiş yorumlara cevap verilemez.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Yalnızca bir özellik isteğine oy verebilirsiniz.',
@@ -64,10 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Beatmap üstverisi gönderisinin silinmesi yasaktır.',
             'beatmapset_post_no_edit' => 'Beatmap üstverisi gönderisini düzenlemek yasaktır.',
+            'only_quote' => 'Cevabınız sadece bir alıntı içeriyor.',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Yinelenen seçenekler yasaktır.',
+            'grace_period_expired' => ':limit saatten sonra bir anket düzenlenemez',
             'invalid_max_options' => 'Kullanıcı başına seçenek sayısı mevcut seçenek sayısını geçemez.',
             'minimum_one_selection' => 'Kullanıcı başına en az bir seçenek gereklidir.',
             'minimum_two_options' => 'En az iki seçenek gereklidir.',
@@ -92,6 +98,7 @@ return [
         'username_available_soon' => 'Bu kullanıcı adı hemen her an kullanıma açılabilir!',
         'username_invalid_characters' => 'İstenen kullanıcı adı geçersiz karakterler içeriyor.',
         'username_in_use' => 'Kullanıcı adı zaten kullanımda!',
+        'username_locked' => 'Kullanıcı adı zaten kullanımda!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Lütfen ya alt çizgi ya da boşluk kullanın, ikisini birden değil!',
         'username_no_spaces' => "Kullanıcı adı boşluk ile başlayamaz ya da bitemez!",
         'username_not_allowed' => 'Kullanıcı adı seçimine izin verilmiyor.',
@@ -110,5 +117,9 @@ return [
             ],
             'username_is_same' => 'Bu zaten senin kullanıcı adın, şapşal!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "Kendinizi raporlayamazsınız!",
     ],
 ];

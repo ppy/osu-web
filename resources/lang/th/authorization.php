@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'การเข้าถึง Channel ที่ร้องขอนั้นไม่ถูกอนุญาติ',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'ต้องการการอนุญาติในการเข้าถึง Channel นี้',
-                    'moderated' => 'Channel นี้อยู่ในระหว่างการควบคุม',
-                    'not_lazer' => 'คุณสามารถพูดแค่ใน #lazer ในขณะนี้',
-                ],
+        'blocked' => '',
+        'friends_only' => '',
+        'moderated' => '',
+        'no_access' => '',
+        'restricted' => '',
+    ],
 
-                'not_allowed' => 'ไม่สามารถส่งข้อความขณะถูกแบน/จำกัด/เงียบ',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => '',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'สามารถลบได้แค่โพสต์ล่าสุดเท่านั้น',

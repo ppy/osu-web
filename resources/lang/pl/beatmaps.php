@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Zapisywanie postu nie powiodło się',
+            'error' => 'Nie udało się zapisać posta',
         ],
     ],
 
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Sortowane według:',
-            'created_at' => 'data utworzenia',
-            'timeline' => 'oś czasu',
-            'updated_at' => 'ostatnie aktualizacje',
+            'created_at' => 'Data utworzenia',
+            'timeline' => 'Oś czasu',
+            'updated_at' => 'Ostatnie aktualizacje',
         ],
 
         'stats' => [
@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Usuń',
+        'delete_own_confirm' => 'Czy na pewno chcesz to zrobić? Ta beatmapa zostanie usunięta i nastąpi przekierowanie do twojego profilu.',
+        'delete_other_confirm' => 'Czy na pewno chcesz to zrobić? Ta beatmapa zostanie usunięta i nastąpi przekierowanie do profilu użytkownika.',
         'disqualification_prompt' => 'Powód dyskwalifikacji?',
         'disqualified_at' => 'Zdyskwalifkowane :time_ago (:reason).',
         'disqualified_no_reason' => 'brak określonego powodu',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Na pewno? Zgłoszenie nowego problemu zresetuje proces nominacji.',
+            'disqualify' => 'Czy na pewno chcesz to zrobić? Ta czynność odbierze tej beatmapie status zakwalifikowanej i zresetuje proces nominacji.',
         ],
     ],
 
@@ -190,15 +194,16 @@ return [
                 'played' => 'Ukończenie',
             ],
             'sorting' => [
-                'title' => 'tytuł',
-                'artist' => 'wykonawca',
-                'difficulty' => 'poziom trudności',
-                'updated' => 'data modyfikacji',
-                'ranked' => 'data',
-                'rating' => 'ocena',
-                'plays' => 'liczba zagrań',
-                'relevance' => 'trafność',
-                'nominations' => 'nominacje',
+                'title' => 'Tytuł',
+                'artist' => 'Wykonawca',
+                'difficulty' => 'Poziom trudności',
+                'favourites' => 'Polubienia',
+                'updated' => 'Ostatnie aktualizacje',
+                'ranked' => 'Data',
+                'rating' => 'Ocena',
+                'plays' => 'Liczba zagrań',
+                'relevance' => 'Trafność',
+                'nominations' => 'Nominacje',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Użycie wybranych filtrów (:filters) wymaga :link',
@@ -297,5 +302,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => 'Liczba zagrań: :count',
+        'favourites' => 'Liczba polubień: :count',
     ],
 ];

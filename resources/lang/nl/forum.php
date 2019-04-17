@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Will je deze post echt verwijderen?',
         'confirm_restore' => 'Will je deze post echt terugzetten?',
@@ -57,6 +71,10 @@ return [
             'destroy' => 'Verwijder post',
             'restore' => 'Herstel post',
             'edit' => 'Bewerk post',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -87,11 +105,11 @@ return [
             'submit' => 'Post',
 
             'necropost' => [
-                'default' => '',
+                'default' => 'Dit onderwerp is al een tijdje inactief. Maak alleen een post hier als je een specifieke reden daarvoor hebt.',
 
                 'new_topic' => [
-                    '_' => "",
-                    'create' => '',
+                    '_' => "Dit onderwerp is al een tijdje inactief. Als je geen specifieke reden om hier te posten hebt, :create in plaats daarvan.",
+                    'create' => 'maak een onderwerp aan',
                 ],
             ],
 
@@ -153,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Peiling Aanmaken',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Maak een Peiling aan',
                 'remove' => 'Annuleer aanmaken van peiling',
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'keer bekeken',
+            'feature_votes' => '',
             'replies' => 'keer beantwoordt',
+            'views' => 'keer bekeken',
         ],
 
         'issue_tag_added' => [
@@ -252,6 +273,12 @@ return [
                 'current' => 'Prioriteit: +:count',
                 'do' => 'Promoot dit verzoek',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => '{0} geen stemmen|{1} :count stem|[2,*] :count stemmen',
                     'current' => 'Je hebt :votes stemmen over.',
@@ -274,7 +301,8 @@ return [
             'to_not_watching' => 'Heeft geen bladwijzer',
             'to_watching' => 'Voeg bladwijzer toe',
             'to_watching_mail' => 'Voeg bladwijzer met notificaties toe',
-            'mail_disable' => 'Melding uitschakelen',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -57,25 +57,25 @@
                 </dl>
             </div>
             <div class="col-md-4 text-right">
-                <button
-                    data-remote="true"
-                    data-method="POST"
-                    data-url="{{ route('admin.contests.get-zip', $contest->id) }}"
-                    class="btn btn-primary"
-                >
-                    <i class="fas fa-fw fa-file-archive"></i>
-                    Download all entries as ZIP
-                </button>
+                {!! Form::open([
+                    'route' => ['admin.contests.get-zip', $contest->id],
+                    'method' => 'POST'
+                ]) !!}
+                    <button class="btn btn-primary">
+                        <i class="fas fa-fw fa-file-archive"></i>
+                        Download all entries as ZIP
+                    </button>
+                {!! Form::close() !!}
             </div>
         </div>
         <dl>
             <dt class="admin-contest__meta-row">Entry Description</dt>
             <dd class="contest">
-                <div class="contest__description">{!! Markdown::convertToHtml($contest->description_enter) !!}</div>
+                <div class="contest__description">{!! markdown($contest->description_enter) !!}</div>
             </dd>
             <dt class="admin-contest__meta-row">Voting Description</dt>
             <dd class="contest">
-                <div class="contest__description">{!! Markdown::convertToHtml($contest->description_voting) !!}</div>
+                <div class="contest__description">{!! markdown($contest->description_voting) !!}</div>
             </dd>
             @if ($contest->extra_options !== null)
                 <dt class="admin-contest__meta-row">Extra Options</dt>

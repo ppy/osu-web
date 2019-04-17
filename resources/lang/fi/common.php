@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => 'Ylläpitäjä',
+        'back_to_previous' => 'Takaisin',
+        'back_to_top' => 'Takaisin ylös',
         'cancel' => 'Peruuta',
-        'change' => 'muuta',
+        'change' => 'vaihda',
         'click_to_copy' => 'kopioi leikepöydälle',
         'click_to_copy_copied' => 'kopioitu leikepöydälle!',
+        'collapse' => 'kutista',
         'delete' => 'Poista',
+        'edit' => 'Muokkaa',
+        'expand' => 'suurenna',
         'hide' => 'piilota',
         'permalink' => 'pysyvä linkki',
         'permalink_copied' => 'linkki kopioitu',
@@ -43,12 +49,14 @@ return [
         'reply_reopen' => 'Vastaa ja uudelleenavaa',
         'reply_resolve' => 'Vastaa ja merkitse ratkaistuksi',
         'reset' => 'Nollaa',
+        'restore' => 'Palauta',
         'save' => 'Tallenna',
         'saving' => 'Tallennetaan...',
-        'search' => 'Etsi',
+        'search' => 'Hae',
         'see_more' => 'katso lisää',
         'show' => 'näytä',
         'show_more' => 'näytä lisää',
+        'show_more_options' => 'näytä lisävaihtoehtoja',
         'upload_image' => 'lataa kuva',
     ],
 
@@ -57,11 +65,19 @@ return [
         'days' => ':count päivä|:count päivää',
         'hour_short_unit' => 't|t',
         'hours' => ':count tunti|:count tuntia',
-        'item' => ':count yksikkö|:count yksikköä',
+        'item' => ':count kappale|:count kappaletta',
         'minute_short_unit' => 'm | m',
+        'minutes' => ':count_delimited minuutti|:count_delimited minuuttia',
         'months' => ':count kuukausi|:count kuukautta',
         'second_short_unit' => 's|s',
         'years' => ':count vuosi|:count vuotta',
+    ],
+
+    'countdown' => [
+        'days' => 'päivää',
+        'hours' => 'tuntia',
+        'minutes' => 'minuuttia',
+        'seconds' => 'sekuntia',
     ],
 
     'datetime' => [
@@ -82,7 +98,7 @@ return [
     ],
 
     'dropzone' => [
-        'target' => 'pudota tähän lataaksesi',
+        'target' => 'pudota tähän ladataksesi',
     ],
 
     'pagination' => [
@@ -100,8 +116,8 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count päivä sitten |:count päivää sitten',
-        'hours_ago' => ':count tunti sitten |:count tuntia sitten',
+        'days_ago' => 'eilen |:count_delimited päivää sitten',
+        'hours_ago' => ':count_delimited tunti sitten |:count_delimited tuntia sitten',
         'now' => 'nyt',
         'remaining' => 'Aikaa jäljellä',
     ],

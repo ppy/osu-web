@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user'in Modlama Geçmişi",
+        'title_compact' => 'Modlama',
 
         'discussions' => [
             'title_recent' => 'Yakın zamanda başlatılan tartışmalar',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Yüklemek için dosyayı bırak',
                     'dropzone_info' => 'Yüklemek için resmi buraya da bırakabilirsiniz',
                     'restriction_info' => "Yükleme <a href=' için uygun".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter'lara</a> özel",
-                    'size_info' => 'Kapak boyutu 2000x700 olmalı',
+                    'size_info' => 'Kapak boyutu 2800x620 olmalı',
                     'too_large' => 'Yüklenen dosya boyutu çok büyük.',
                     'unsupported_format' => 'Desteklenmeyen biçim.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Son zamanlarda oynamamış',
 
             'achievements' => [
-                'title' => 'Başarımlar',
                 'achieved-on' => ':date tarihinde başarıldı',
+                'locked' => 'Kilitli',
+                'title' => 'Başarımlar',
             ],
             'beatmaps' => [
+                'by_artist' => ':artist tarafından',
                 'none' => 'Hiç yok... şimdilik.',
                 'title' => 'Beatmapler',
 
                 'favourite' => [
-                    'title' => 'Favori Beatmapler (:count)',
+                    'title' => 'Favori Beatmapler',
                 ],
                 'graveyard' => [
-                    'title' => 'Terk Edilmiş Beatmapler (:count)',
+                    'title' => 'Terk Edilmiş Beatmapler',
                 ],
                 'loved' => [
-                    'title' => 'Sevilen Beatmapler (:count)',
+                    'title' => 'Sevilen Beatmapler',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Dereceli & Onaylanmış Beatmapler (:count)',
+                    'title' => 'Dereceli & Onaylanmış Beatmapler',
                 ],
                 'unranked' => [
-                    'title' => 'Onay Beklenen Beatmapler (:count)',
+                    'title' => 'Onay Beklenen Beatmapler',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Oyun Geçmişi',
+                    'count_label' => 'Oynamalar',
                 ],
                 'most_played' => [
                     'count' => 'oynama sayısı',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Tekrar İzlenme Geçmişi',
+                    'count_label' => 'Tekrar İzlendi',
                 ],
             ],
             'kudosu' => [
@@ -259,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Bu kullanıcı daha hiç almamış. ;_;",
+                'recent' => 'En Son',
                 'title' => 'Madalyalar',
             ],
             'recent_activity' => [
                 'title' => 'Son',
             ],
             'top_ranks' => [
+                'download_replay' => 'Tekrarı İndir',
                 'empty' => 'Henüz kayda değer bir performans kaydı yok. :(',
                 'not_ranked' => 'Sadece dereceli beatmapler pp verir.',
-                'pp' => '',
+                'pp_weight' => 'ağırlıklı: yüzde',
                 'title' => 'Dereceler',
-                'weighted_pp' => 'ağırlıklı: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'En İyi Performans',
@@ -300,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => 'Oyuncu bilgisi',
+            'info' => 'Bilgi',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'İlgi Alanları',
@@ -318,6 +330,7 @@ return [
             'title' => 'Kullanıcı bulunamadı! ;_;',
         ],
         'page' => [
+            'button' => 'Profili düzenle',
             'description' => '<strong>ben!</strong>, profil sayfanızdaki kişiselleştirilebilir bir alandır.',
             'edit_big' => 'Beni düzenle!',
             'placeholder' => 'Sayfanın içeriğini buraya yaz',
@@ -329,12 +342,16 @@ return [
         ],
         'rank' => [
             'country' => ':mode için Ülke sıralaması',
+            'country_simple' => 'Ülkesel Sıralama',
             'global' => ':mode için Dünya sıralaması',
+            'global_simple' => 'Küresel Sıralama',
         ],
         'stats' => [
             'hit_accuracy' => 'Vuruş İsabeti',
             'level' => ':level Seviye',
+            'level_progress' => 'Sonraki seviyeye ilerle',
             'maximum_combo' => 'Maksimum Kombo',
+            'medals' => 'Madalyalar',
             'play_count' => 'Toplam Oynama Sayısı',
             'play_time' => 'Toplam Oynama Süresi',
             'ranked_score' => 'Dereceli Skor',

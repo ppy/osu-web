@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,9 +47,23 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => 'Marcar fórum como lido',
+        'forums' => 'Marcar fóruns como lido',
+        'busy' => 'Marcando como lido...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'Editar uma enquete irá remover os resultados atuais!',
+
+        'actions' => [
+            'edit' => 'Editar enquete',
+        ],
+    ],
+
     'post' => [
-        'confirm_destroy' => 'Excluir mesmo a publicação?',
-        'confirm_restore' => 'Restaurar mesmo a publicação?',
+        'confirm_destroy' => 'Deseja mesmo a excluir publicação?',
+        'confirm_restore' => 'Deseja mesmo restaurar a publicação?',
         'edited' => 'Última edição por :user :when, editado :count vezes no total.',
         'posted_at' => 'publicado :when',
 
@@ -57,6 +71,10 @@ return [
             'destroy' => 'Excluir publicação',
             'restore' => 'Restaurar publicação',
             'edit' => 'Editar publicação',
+        ],
+
+        'info' => [
+            'post_count' => ':count_delimited publicação|:count_delimited publicações',
         ],
     ],
 
@@ -71,7 +89,7 @@ return [
         'go_to_latest' => 'ver a ultima publicação',
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última resposta por :user',
-        'new_topic' => 'Publicar um novo tópico',
+        'new_topic' => 'Criar novo tópico',
         'new_topic_login' => 'Conecte-se para criar um novo tópico',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escreva aqui para responder',
@@ -153,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Criação de Enquete',
 
+            'preview' => 'Pré-visualizar a publicação',
+
             'create_poll_button' => [
                 'add' => 'Criar enquete',
                 'remove' => 'Cancelar criação de enquete',
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'visualizações',
+            'feature_votes' => 'prioridade de estrela',
             'replies' => 'respostas',
+            'views' => 'visualizações',
         ],
 
         'issue_tag_added' => [
@@ -252,6 +273,12 @@ return [
                 'current' => 'Prioridade Atual: +:count',
                 'do' => 'Promover este pedido',
 
+                'info' => [
+                    '_' => 'Esse é um :feature_request. Pedidos de recursos podem ser votados por :supporters.',
+                    'feature_request' => 'pedido de recurso',
+                    'supporters' => 'supporters',
+                ],
+
                 'user' => [
                     'count' => '{0} sem votos|{1} :count voto|[2,*] :count votos',
                     'current' => 'Você tem :votes restantes.',
@@ -274,7 +301,8 @@ return [
             'to_not_watching' => 'Não marcada',
             'to_watching' => 'Marcar',
             'to_watching_mail' => 'Marcar com notificação',
-            'mail_disable' => 'Desabilitar notificação',
+            'tooltip_mail_disable' => 'Notificação está habilitada. Clique para desativar',
+            'tooltip_mail_enable' => 'Notificação está desativada. Clique para habilitar',
         ],
     ],
 ];

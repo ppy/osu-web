@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => '管理者',
+        'back_to_previous' => '直前の状態に戻す',
+        'back_to_top' => 'トップに戻る',
         'cancel' => 'キャンセル',
         'change' => '変更',
         'click_to_copy' => 'クリックでコピー',
         'click_to_copy_copied' => 'クリップボードにコピーされました！',
+        'collapse' => '折りたたむ',
         'delete' => '削除',
+        'edit' => '編集',
+        'expand' => '展開',
         'hide' => '隠す',
         'permalink' => 'パーマリンク',
         'permalink_copied' => 'コピーしました',
@@ -43,12 +49,14 @@ return [
         'reply_reopen' => '返信して再開',
         'reply_resolve' => '返信して解決',
         'reset' => 'リセット',
+        'restore' => '復元',
         'save' => '保存',
         'saving' => '保存中・・・',
         'search' => '検索',
         'see_more' => 'もっと見る',
         'show' => '表示',
         'show_more' => '展開する',
+        'show_more_options' => '詳細オプションを表示する',
         'upload_image' => '画像をアップロード',
     ],
 
@@ -59,9 +67,17 @@ return [
         'hours' => ':count時間',
         'item' => ':count個',
         'minute_short_unit' => '分',
+        'minutes' => ':count_delimited分',
         'months' => ':countヶ月',
         'second_short_unit' => '秒',
         'years' => ':count年',
+    ],
+
+    'countdown' => [
+        'days' => '日',
+        'hours' => '時間',
+        'minutes' => '分',
+        'seconds' => '秒',
     ],
 
     'datetime' => [

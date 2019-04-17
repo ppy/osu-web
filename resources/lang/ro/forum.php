@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Subiecte fixate',
     'slogan' => "este periculos să te joci singur.",
     'subforums' => 'Subforumuri',
-    'title' => 'comunitatea osu!',
+    'title' => 'forumuri osu!',
 
     'covers' => [
         'create' => [
@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => 'Marchează forumul ca citit',
+        'forums' => 'Marchează forumurile ca citite',
+        'busy' => 'Se marchează ca citit...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'Editarea unui sondaj va elimina rezultatele curente!',
+
+        'actions' => [
+            'edit' => 'Editează sondajul',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Sigur dorești să ștergi postarea?',
         'confirm_restore' => 'Sigur dorești să restaurezi postarea?',
@@ -57,6 +71,10 @@ return [
             'destroy' => 'Șterge postarea',
             'restore' => 'Restaurează postarea',
             'edit' => 'Editează postarea',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -75,7 +93,9 @@ return [
         'new_topic_login' => 'Conectează-te pentru a posta un subiect nou',
         'post_reply' => 'Postează',
         'reply_box_placeholder' => 'Scrie aici pentru a răspunde',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'de :user',
+        'started_by_verbose' => 'început de :user',
 
         'create' => [
             'preview' => 'Previzualizare',
@@ -83,6 +103,15 @@ return [
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Scrie',
             'submit' => 'Postează',
+
+            'necropost' => [
+                'default' => 'Acest subiect a fost inactiv pentru o vreme. Postează aici doar dacă ai un motiv specific.',
+
+                'new_topic' => [
+                    '_' => "Acest subiect a fost inactiv pentru o vreme. Dacă nu ai un motiv specific pentru a posta aici, te rugăm să :create în schimb.",
+                    'create' => 'creezi un subiect nou',
+                ],
+            ],
 
             'placeholder' => [
                 'body' => 'Introdu conținutul postării aici',
@@ -114,6 +143,11 @@ return [
                 'total' => 'Subiecte la care te-ai abonat',
                 'unread' => 'Subiecte cu răspunsuri noi',
             ],
+
+            'info' => [
+                'total' => 'Tu ești abonat la :total subiecte.',
+                'unread' => 'Tu ai :unread răspunsuri necitite la subiectele la care te-ai abonat.',
+            ],
         ],
 
         'topic_buttons' => [
@@ -136,6 +170,8 @@ return [
 
         'create' => [
             'create_poll' => 'Crearea unui sondaj',
+
+            'preview' => '',
 
             'create_poll_button' => [
                 'add' => 'Creează un sondaj',
@@ -161,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'vizualizări',
+            'feature_votes' => '',
             'replies' => 'răspunsuri',
+            'views' => 'vizualizări',
         ],
 
         'issue_tag_added' => [
@@ -236,6 +273,12 @@ return [
                 'current' => 'Prioritate curentă: +:count',
                 'do' => 'Promovează această cerere',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => '{0} niciun vot|{1} :count vot|[2,*] :count voturi',
                     'current' => 'Tu ai :votes rămase.',
@@ -258,7 +301,8 @@ return [
             'to_not_watching' => 'Nu este marcat',
             'to_watching' => 'Marchează',
             'to_watching_mail' => 'Marchează cu notificare',
-            'mail_disable' => 'Dezactivează notificarea',
+            'tooltip_mail_disable' => 'Notificările sunt activate. Click pentru a le dezactiva',
+            'tooltip_mail_enable' => 'Notificările sunt dezactivate. Click pentru a le activa',
         ],
     ],
 ];

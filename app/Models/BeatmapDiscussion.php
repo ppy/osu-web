@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,6 +25,29 @@ use Cache;
 use Carbon\Carbon;
 use DB;
 
+/**
+ * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussionPosts BeatmapDiscussionPost
+ * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussionVotes BeatmapDiscussionVote
+ * @property int|null $beatmap_id
+ * @property int $beatmapset_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property int|null $deleted_by_id
+ * @property int $id
+ * @property KudosuHistory $kudosuHistory
+ * @property bool $kudosu_denied
+ * @property int|null $kudosu_denied_by_id
+ * @property int|null $message_type
+ * @property bool $resolved
+ * @property int|null $resolver_id
+ * @property BeatmapDiscussionPost $startingPost
+ * @property int|null $timestamp
+ * @property \Carbon\Carbon|null $updated_at
+ * @property User $user
+ * @property int|null $user_id
+ * @property Beatmap $visibleBeatmap
+ * @property Beatmapset $visibleBeatmapset
+ */
 class BeatmapDiscussion extends Model
 {
     use Validatable;
@@ -100,7 +123,7 @@ class BeatmapDiscussion extends Model
         $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
 
         if (!$params['with_deleted']) {
-            $query->withoutDeleted();
+            $query->withoutTrashed();
         }
 
         if (!($rawParams['is_moderator'] ?? false)) {
@@ -198,7 +221,7 @@ class BeatmapDiscussion extends Model
         return
             in_array($this->attributes['message_type'] ?? null, static::KUDOSUABLE_TYPES, true) &&
             $this->user_id !== $this->beatmapset->user_id &&
-            !$this->isDeleted() &&
+            !$this->trashed() &&
             !$this->kudosu_denied;
     }
 
@@ -273,7 +296,7 @@ class BeatmapDiscussion extends Model
     {
         $systemPosts = $this
             ->beatmapDiscussionPosts()
-            ->withoutDeleted()
+            ->withoutTrashed()
             ->where('system', '=', true)
             ->orderBy('id', 'DESC')
             ->get();
@@ -519,11 +542,6 @@ class BeatmapDiscussion extends Model
         });
     }
 
-    public function isDeleted()
-    {
-        return $this->deleted_at !== null;
-    }
-
     public function userRecentVotesCount($user, $increment = false)
     {
         $key = "beatmapDiscussion:{$this->getKey()}:votes:{$user->getKey()}";
@@ -610,7 +628,7 @@ class BeatmapDiscussion extends Model
     public function scopeOpenIssues($query)
     {
         $query
-            ->withoutDeleted()
+            ->withoutTrashed()
             ->whereIn('message_type', static::RESOLVABLE_TYPES)
             ->where(function ($query) {
                 $query
@@ -620,7 +638,7 @@ class BeatmapDiscussion extends Model
             ->where('resolved', '=', false);
     }
 
-    public function scopeWithoutDeleted($query)
+    public function scopeWithoutTrashed($query)
     {
         $query->whereNull('deleted_at');
     }

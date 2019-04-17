@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,38 @@
 namespace App\Models\Store;
 
 use App\Exceptions\InsufficientStockException;
+use Carbon\Carbon;
 
+/**
+ * @property bool $allow_multiple
+ * @property \Carbon\Carbon|null $available_until
+ * @property float $base_shipping
+ * @property float|null $cost
+ * @property \Carbon\Carbon $created_at
+ * @property string|null $custom_class
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property string|null $description
+ * @property int $display_order
+ * @property bool $enabled
+ * @property string|null $header_description
+ * @property string|null $header_image
+ * @property string|null $image
+ * @property string|null $images_json
+ * @property self $masterProduct
+ * @property int|null $master_product_id
+ * @property int $max_quantity
+ * @property string $name
+ * @property float $next_shipping
+ * @property \Illuminate\Database\Eloquent\Collection $notificationRequests NotificationRequest
+ * @property int $product_id
+ * @property bool $promoted
+ * @property string|null $shopify_id
+ * @property int|null $stock
+ * @property string|null $type_mappings_json
+ * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Database\Eloquent\Collection $variations static
+ * @property int|null $weight
+ */
 class Product extends Model
 {
     protected $primaryKey = 'product_id';
@@ -35,6 +66,8 @@ class Product extends Model
         'allow_multiple' => 'boolean',
     ];
 
+    protected $dates = ['available_until'];
+
     private $images;
     private $types;
 
@@ -46,11 +79,6 @@ class Product extends Model
     public function variations()
     {
         return $this->hasMany(static::class, 'master_product_id', 'product_id');
-    }
-
-    public function category()
-    {
-        return $this->hasOne('Category');
     }
 
     public function notificationRequests()
@@ -100,6 +128,12 @@ class Product extends Model
         }
     }
 
+    public function isAvailable() : bool
+    {
+        return $this->enabled
+            && ($this->available_until === null ? true : $this->available_until->isFuture());
+    }
+
     public function typeMappings()
     {
         if ($this->masterProduct) {
@@ -127,11 +161,25 @@ class Product extends Model
         return $this->weight !== null;
     }
 
+    public function scopeAvailable($query)
+    {
+        return $query
+            ->where('enabled', true)
+            ->where(function ($q) {
+                return $q->whereNull('available_until')->orWhere('available_until', '>=', Carbon::now());
+            });
+    }
+
+    public function scopeNotAvailable($query)
+    {
+        return $query->where('available_until', '<', Carbon::now());
+    }
+
     public function scopeLatest($query)
     {
         return $query
+            ->available()
             ->where('master_product_id', null)
-            ->where('enabled', true)
             ->with('masterProduct')
             ->with('variations')
             ->orderBy('promoted', 'desc')
@@ -152,6 +200,22 @@ class Product extends Model
     public function scopeHasShipping($query)
     {
         return $query->whereNotNull('weight');
+    }
+
+    /**
+     * Returns the Shopify product variant GraphQL gid for this Product, null if it is not a Shopify item.
+     * This is currently implemented as convenience for checking the gid matches the one from the Storefront API.
+     *
+     * @return string|null
+     */
+    public function getShopifyVariantGid() : ?string
+    {
+        return $this->isShopify() ? base64_encode("gid://shopify/ProductVariant/{$this->shopify_id}") : null;
+    }
+
+    public function isShopify() : bool
+    {
+        return $this->shopify_id !== null;
     }
 
     public function productsInRange()

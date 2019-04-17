@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => '没有权限进入该频道。',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => '需要有指定频道的权限。',
-                    'moderated' => '频道已满。',
-                    'not_lazer' => '当前只能在 #lazer 聊天。',
-                ],
+        'blocked' => '无法向已加入黑名单的用户发消息，或者你已经被拉黑了。',
+        'friends_only' => '用户阻止了来自非好友的消息。',
+        'moderated' => '该频道现在正在被管制中。',
+        'no_access' => '你没有权限访问该频道。',
+        'restricted' => '在账户禁言、受限或被 ban 期间不能发消息。',
+    ],
 
-                'not_allowed' => '账户处于限制模式，无法发言。',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "无法编辑已删除的回复。",
         ],
     ],
 
@@ -75,10 +70,14 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => '没有权限编辑该板块。',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => '只有最后的回复可以被删除。',
-                'locked' => '无法删除被锁定主题的回复。',
+                'locked' => '无法删除已锁定主题的回复。',
                 'no_forum_access' => '没有权限进入该板块。',
                 'not_owner' => '只有作者能删除此回复。',
             ],
@@ -92,16 +91,16 @@ return [
             ],
 
             'store' => [
-                'play_more' => '在发帖之前先玩上两局吧！如果你在游戏时遇到问题，请在 Help and Support 版块发帖求助。',
+                'play_more' => '在发帖之前先玩上两局吧！如果你在游戏时遇到问题，请在 Help 或 中文 版块发帖求助。',
                 'too_many_help_posts' => "如果你想发更多的帖子，再多玩几把吧！如果你仍然在游戏时遇到问题请邮件联系 support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => '请编辑您的最后一条评论, 而不是多次发表。',
+                'double_post' => '请编辑您的最后一条评论, 而不是再发一遍。',
                 'locked' => '无法回复被锁定的主题。',
-                'no_forum_access' => '没有权限，无法进入该板块。',
+                'no_forum_access' => '没有权限进入该板块。',
                 'no_permission' => '没有权限，无法回复。',
 
                 'user' => [
@@ -136,8 +135,8 @@ return [
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => '指定的头图不可用。',
-                'not_owner' => '只有楼主可以编辑头图。',
+                'uneditable' => '指定的题图不可用。',
+                'not_owner' => '只有楼主可以编辑题图。',
             ],
         ],
 

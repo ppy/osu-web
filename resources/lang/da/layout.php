@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Rytmen er kun et *klik* væk!  Med Ouendan/EBA, Taiko og originale spiltilstande, såvel som en fuld funktionel beatmap-editor.',
+        'page_description' => 'osu! - Rytmen er kun et *klik* væk!  Med Ouendan/EBA, Taiko og originale spilmodes, såvel som en fuld funktionel beatmap-editor.',
     ],
 
     'menu' => [
@@ -29,12 +29,13 @@ return [
             'account-edit' => 'indstillinger',
             'friends-index' => 'venner',
             'changelog-index' => 'changelog',
-            'changelog-build' => '',
+            'changelog-build' => 'byg',
             'getDownload' => 'download',
             'getIcons' => 'ikoner',
             'groups-show' => 'grupper',
             'index' => 'dashboard',
             'legal-show' => 'information',
+            'messages-index' => 'beskeder',
             'news-index' => 'nyheder',
             'news-show' => 'nyheder',
             'password-reset-index' => 'nulstil adgangskode',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'fællesskab',
-            'dev' => '',
+            'chat' => 'chat',
+            'chat-index' => 'chat',
+            'dev' => 'udvikling',
             'getForum' => 'forum',
-            'getChat' => 'chat',
             'getLive' => 'live',
+            'comments-index' => 'kommentarer',
+            'comments-show' => 'kommentar',
             'contests' => 'konkurrencer',
             'profile' => 'profil',
             'tournaments' => 'turneringer',
@@ -114,16 +118,18 @@ return [
             'reset' => 'gendan',
             'new' => 'ny',
 
-            'messages' => 'Beskeder',
-            'settings' => 'Indstillinger',
-            'logout' => 'Log Ud',
             'help' => 'Hjælp',
+            'logout' => 'Log Ud',
+            'messages' => 'Beskeder',
             'modding-history-discussions' => 'user modding discussions',
             'modding-history-events' => 'user modding events',
             'modding-history-index' => 'user modding history',
             'modding-history-posts' => 'user modding posts',
             'modding-history-votesGiven' => 'user modding votes given',
             'modding-history-votesReceived' => 'user modding votes received',
+            'oauth_login' => '',
+            'oauth_request' => '',
+            'settings' => 'Indstillinger',
         ],
         'store' => [
             '_' => 'butik',
@@ -133,6 +139,7 @@ return [
 
             'getCheckout' => 'betaling',
             'getInvoice' => 'faktura',
+            'orders-index' => 'ordrehistorik',
             'products-show' => 'produkt',
 
             'new' => 'ny',
@@ -181,9 +188,9 @@ return [
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => 'Copyright (DMCA)',
-            'privacy' => '',
+            'privacy' => 'Privatliv',
             'server_status' => 'Server Status',
-            'source_code' => '',
+            'source_code' => 'Kildekode',
             'terms' => 'Betingelser for Brug',
         ],
     ],

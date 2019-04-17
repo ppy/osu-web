@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -40,7 +40,7 @@ return [
 
     'show' => [
         'banner' => 'Support Your Team',
-        'entered' => 'Your are registered for this tournament.<br><br>Note that this does not mean you have been assigned to a team.<br><br>Further instructions will be sent to you via email closer to the tournament date, so please ensure your osu! account\'s email address is valid!',
+        'entered' => 'You are registered for this tournament.<br><br>Please note that this does <b>not</b> mean you have been assigned to a team.<br><br>Further instructions will be sent to you via email closer to the tournament date, so please ensure your osu! account\'s email address is valid!',
         'info_page' => 'Information Page',
         'login_to_register' => 'Please :login to view registration details!',
         'not_yet_entered' => 'You are not registered for this tournament.',

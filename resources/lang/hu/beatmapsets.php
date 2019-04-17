@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,41 +34,50 @@ return [
         'discussion' => 'Beszélgetés',
 
         'details' => [
+            'approved' => 'elfogadva ',
+            'favourite' => 'A beatmap szett kedvencek közé tétele',
+            'favourited_count' => '+ 1 másik!|+ :count másik!',
+            'logged-out' => 'Beatmap letöltéshez be kell jelentkezned!',
+            'loved' => 'kedvelve ',
             'mapped_by' => 'mappolva :mapper által',
+            'qualified' => 'qualified ',
+            'ranked' => 'rangsorolva ',
             'submitted' => 'beküldve ',
+            'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
             'updated' => 'utoljára frissítve ',
             'updated_timeago' => 'utóljára frissítve: :timeago',
-            'ranked' => 'rangsorolva ',
-            'approved' => 'elfogadva ',
-            'qualified' => 'qualified ',
-            'loved' => 'kedvelve ',
-            'logged-out' => 'Beatmap letöltéshez be kell jelentkezned!',
+
             'download' => [
                 '_' => 'Letöltés',
-                'video' => 'Videóval',
-                'no-video' => 'Videó nélkül',
                 'direct' => 'osu!direct',
+                'no-video' => 'Videó nélkül',
+                'video' => 'Videóval',
             ],
-            'favourite' => 'A beatmap szett kedvencek közé tétele',
-            'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
-            'favourited_count' => '+ 1 másik!|+ :count másik!',
+
+            'login_required' => [
+                'bottom' => 'további funkciók eléréséhez',
+                'top' => 'Bejelentkezés',
+            ],
         ],
-        'stats' => [
-            'cs' => 'Kör nagyság',
-            'cs-mania' => 'Billentyűk száma',
-            'drain' => 'HP Vesztés',
-            'accuracy' => 'Pontosság',
-            'ar' => 'Közelítési arány',
-            'stars' => 'Nehézség',
-            'total_length' => 'Hossz',
-            'bpm' => 'BPM',
-            'count_circles' => 'Körök Száma',
-            'count_sliders' => 'Csúszka számláló',
-            'user-rating' => 'Felhasználói Értékelés',
-            'rating-spread' => 'Értékelési Szórás',
-            'nominations' => 'Jelölések',
-            'playcount' => 'Játékszám',
+
+        'favourites' => [
+            'limit_reached' => 'Túl sok beatmap van a kedvenceid között! Kérlek távolíts el néhányat az újrapróbálkozás előtt.',
         ],
+
+        'hype' => [
+            'action' => 'Hype-old a map-et ha élvezted rajta a játékot, hogy segíthesd a <strong>Rangsorolt</strong> állapot felé jutásban.',
+
+            'current' => [
+                '_' => 'Ez a map :status jelenleg.',
+
+                'status' => [
+                    'pending' => 'függőben',
+                    'qualified' => 'kvalifikált',
+                    'wip' => 'munkálatok alatt',
+                ],
+            ],
+        ],
+
         'info' => [
             'description' => 'Leírás',
             'genre' => 'Műfaj',
@@ -77,9 +86,10 @@ return [
             'points-of-failure' => 'Kibukási Alkalmak',
             'source' => 'Forrás',
             'success-rate' => 'Teljesítési arány',
-            'tags' => 'Cimkék',
+            'tags' => 'Címkék',
             'unranked' => 'Rangsorolatlan beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => 'elérve: :when',
             'country' => 'Országos Ranglista',
@@ -87,7 +97,7 @@ return [
             'global' => 'Globális Ranglista',
             'supporter-link' => 'Kattints <a href=":link">ide</a>,hogy megtekinthesd azt a sok jó funkciót amit kaphatsz!',
             'supporter-only' => 'Támogató kell legyél, hogy elérd a baráti és az országos ranglistát!',
-            'title' => 'Eredményjelző',
+            'title' => 'Eredménylista',
 
             'headers' => [
                 'accuracy' => 'Pontosság',
@@ -110,8 +120,25 @@ return [
             ],
             'score' => [
                 'first' => 'Az élen',
-                'own' => 'A te legjobbad',
+                'own' => 'A legjobbad',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Kör nagyság',
+            'cs-mania' => 'Billentyűk száma',
+            'drain' => 'HP Vesztés',
+            'accuracy' => 'Pontosság',
+            'ar' => 'Közelítési sebesség',
+            'stars' => 'Nehézség',
+            'total_length' => 'Hossz',
+            'bpm' => 'BPM',
+            'count_circles' => 'Körök Száma',
+            'count_sliders' => 'Sliderek Száma',
+            'user-rating' => 'Felhasználói Értékelés',
+            'rating-spread' => 'Értékelési Szórás',
+            'nominations' => 'Nominálások',
+            'playcount' => 'Játékszám',
         ],
     ],
 ];

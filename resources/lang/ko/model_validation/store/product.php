@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 return [
     'insufficient_stock' => '이 물품은 남은 재고가 없습니다!',
+    'must_separate' => '이 항목은 다른 항목과 따로 결제해야합니다',
     'not_available' => '이 항목은 아직 준비 중입니다.',
     'too_many' => '이 항목은 한 번에 :count개만 주문하실 수 있습니다.',
 ];

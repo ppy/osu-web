@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Histórico de Modificações do :user",
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Discussões recentemente iniciadas',
@@ -72,11 +73,11 @@ return [
         'button_posting' => 'A iniciar sessão...',
         'remember' => 'Lembrar este computador',
         'title' => 'Por favor inicia sessão para proceder',
-        'failed' => 'Início de sessão incorrecto',
+        'failed' => 'Início de sessão incorreto',
         'register' => "Não tens uma conta osu? Cria uma nova",
         'forgot' => 'Esqueceste-te da palavra-passe?',
         'beta' => [
-            'main' => 'O acesso beta está actualmente restrito a utilizadores privilegiados.',
+            'main' => 'O acesso beta está atualmente restrito a utilizadores privilegiados.',
             'small' => '(osu!supporters terão acesso em breve)',
         ],
 
@@ -130,7 +131,7 @@ return [
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Juntou-se em :date',
-        'lastvisit' => 'Visto pela ultima vez em :date',
+        'lastvisit' => 'Visto pela última vez em :date',
         'missingtext' => 'Poderás ter escrito mal! (ou o utilizador poderá ter sido banido)',
         'origin_country' => 'De :country',
         'page_description' => 'osu! - Tudo o que sempre quiseste saber sobre :username!',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Larga aqui para carregar',
                     'dropzone_info' => 'Também podes largar aqui a tua imagem para carregar',
                     'restriction_info' => "Carregamento disponível para <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> só",
-                    'size_info' => 'O tamanho da capa deveria ser 2000x700',
+                    'size_info' => 'O tamanho da capa deveria ser 2800x620',
                     'too_large' => 'O ficheiro carregado é demasiado grande.',
                     'unsupported_format' => 'Formato não suportado.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Nenhuma partida recente',
 
             'achievements' => [
-                'title' => 'Proezas',
                 'achieved-on' => 'Conseguida em :date',
+                'locked' => 'Bloqueado',
+                'title' => 'Proezas',
             ],
             'beatmaps' => [
+                'by_artist' => 'por :artist',
                 'none' => 'Nenhuns... por agora.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Beatmaps Favoritos (:count)',
+                    'title' => 'Beatmaps Favoritos',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps no Cemitério (:count)',
+                    'title' => 'Beatmaps no Cemitério',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps Adorados (:count)',
+                    'title' => 'Beatmaps Adorados',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmaps Classificados & Aprovados (:count)',
+                    'title' => 'Beatmaps Classificados e Aprovados',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmaps Pendentes (:count)',
+                    'title' => 'Beatmaps Pendentes',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Histórico de Jogos',
+                    'count_label' => 'Partidas',
                 ],
                 'most_played' => [
                     'count' => 'vezes jogados',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historial de Repetições Vistas',
+                    'count_label' => 'Repetições Assistidas',
                 ],
             ],
             'kudosu' => [
@@ -259,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Este utilizador ainda não conseguiu nenhuma. ;_;",
+                'recent' => 'As mais recentes',
                 'title' => 'Medalhas',
             ],
             'recent_activity' => [
                 'title' => 'Recente',
             ],
             'top_ranks' => [
+                'download_replay' => 'Transferir Repetição',
                 'empty' => 'Nenhum registo de desempenhos espectaculares ainda. :(',
                 'not_ranked' => 'Somente beatmaps classificados é que dão pp.',
-                'pp' => '',
+                'pp_weight' => 'ponderada :percentage',
                 'title' => 'Classificações',
-                'weighted_pp' => 'ponderado: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Melhor Desempenho',
@@ -284,9 +290,9 @@ return [
                 'remaining_silence' => '<strong>:username</strong> será capaz de falar outra vez em :duration.',
 
                 'recent_infringements' => [
-                    'title' => 'Infracções Recentes',
+                    'title' => 'Infrações Recentes',
                     'date' => 'data',
-                    'action' => 'acção',
+                    'action' => 'ação',
                     'length' => 'duração',
                     'length_permanent' => 'Permanente',
                     'description' => 'descrição',
@@ -300,11 +306,17 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => 'Jogador :info',
+            'info' => 'Informação',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'Interesses',
             'lastfm' => 'Last.fm',
-            'location' => 'Localização Actual',
+            'location' => 'Localização Atual',
             'occupation' => 'Ocupação',
             'skype' => '',
             'twitter' => '',
@@ -318,6 +330,7 @@ return [
             'title' => 'Utilizador não encontrado! ;_;',
         ],
         'page' => [
+            'button' => 'Editar a página de perfil',
             'description' => '<strong>eu!</strong> é uma área pessoal personalizável na tua página de perfil.',
             'edit_big' => 'Edita-me!',
             'placeholder' => 'Escreve o conteúdo da página aqui',
@@ -329,12 +342,16 @@ return [
         ],
         'rank' => [
             'country' => 'Classificação nacional para :mode',
+            'country_simple' => 'Classificação Nacional',
             'global' => 'Classificação global para :mode',
+            'global_simple' => 'Classificação Global',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão de Acertos',
             'level' => 'Nível :level',
+            'level_progress' => 'Progresso para o próximo nível',
             'maximum_combo' => 'Combo Máximo',
+            'medals' => 'Medalhas',
             'play_count' => 'Número de Partidas',
             'play_time' => 'Tempo Total de Jogo',
             'ranked_score' => 'Pontuação Classificada',

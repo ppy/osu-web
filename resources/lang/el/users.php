@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Ιστορικό Modding του χρήστη :user",
+        'title_compact' => 'Εξέταση',
 
         'discussions' => [
             'title_recent' => 'Πρόσφατα δημιουργημένες συζητήσεις',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Αφήστε εδώ για να ανεβεί',
                     'dropzone_info' => 'Μπορείτε επίσης να σύρετε την εικόνα σας εδώ για να ανεβεί',
                     'restriction_info' => "Διαθέσιμη μεταφόρτωση για <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> μόνο",
-                    'size_info' => 'Το μέγεθος του εξωφύλλου πρέπει να είναι 2000x700',
+                    'size_info' => 'Το μέγεθος του εξωφύλλου πρέπει να είναι 2800x620',
                     'too_large' => 'Το αρχείο είναι πολύ μεγάλο.',
                     'unsupported_format' => 'Μη υποστηριζόμενη μορφή.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Κανένα πρόσφατο σκορ',
 
             'achievements' => [
-                'title' => 'Επιτεύγματα',
                 'achieved-on' => 'Επιτεύχθηκε στις :date',
+                'locked' => 'Κλειδωμένο',
+                'title' => 'Επιτεύγματα',
             ],
             'beatmaps' => [
+                'by_artist' => 'από :artist',
                 'none' => 'Κανένα... ακόμα.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Αγαπημένα Beatmaps (:count)',
+                    'title' => 'Αγαπημένα Beatmaps',
                 ],
                 'graveyard' => [
-                    'title' => 'Παρατημένα Beatmaps (:count)',
+                    'title' => 'Παρατημένα Beatmaps',
                 ],
                 'loved' => [
-                    'title' => 'Loved Beatmaps (:count)',
+                    'title' => 'Loved Beatmaps',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                    'title' => 'Ranked & Approved Beatmaps',
                 ],
                 'unranked' => [
-                    'title' => 'Εκκρεμή Beatmaps (:count)',
+                    'title' => 'Εκκρεμή Beatmaps',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Ιστορικό Δραστηριότητας',
+                    'count_label' => 'Προσπάθειες',
                 ],
                 'most_played' => [
                     'count' => 'φορές που παίχτηκε',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Ιστορικό Παρακολούθησης Replay',
+                    'count_label' => 'Παρακολουθημένες Επαναλήψεις',
                 ],
             ],
             'kudosu' => [
@@ -259,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Αυτός ο χρήστης δεν έχει πάρει κανένα ακόμα. ;_;",
+                'recent' => 'Πρόσφατα',
                 'title' => 'Μετάλλια',
             ],
             'recent_activity' => [
                 'title' => 'Πρόσφατα',
             ],
             'top_ranks' => [
+                'download_replay' => 'Λήψη Επανάληψης',
                 'empty' => 'Καμία εκπληκτική επίδοση ακόμα. :(',
                 'not_ranked' => 'Μόνο τα ranked beatmaps δίνουν pp.',
-                'pp' => '',
+                'pp_weight' => 'σταθμισμένo :percentage',
                 'title' => 'Σκορ',
-                'weighted_pp' => 'σταθμισμένα: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Καλύτερες Eπιδόσεις',
@@ -300,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => 'Παίκτης :info',
+            'info' => 'Πληροφορίες',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'Ενδιαφέροντα',
@@ -318,6 +330,7 @@ return [
             'title' => 'Ο χρήστης δε βρέθηκε! ;_;',
         ],
         'page' => [
+            'button' => 'Επεξεργασία σελίδας προφίλ',
             'description' => 'To <strong>me!</strong> είναι μια προσωπική προσαρμόσιμη περιοχή στη σελίδα του προφίλ σας.',
             'edit_big' => 'Επεξεργασία!',
             'placeholder' => 'Γράψτε το περιεχόμενο της σελίδας εδώ',
@@ -329,12 +342,16 @@ return [
         ],
         'rank' => [
             'country' => 'Κατάταξη στη χώρα για το :mode',
+            'country_simple' => 'Εθνική Κατάταξη',
             'global' => 'Παγκόσμια κατάταξη για το :mode',
+            'global_simple' => 'Παγκόσμια Κατάταξη',
         ],
         'stats' => [
             'hit_accuracy' => 'Ακρίβεια Ευστοχίας',
             'level' => 'Επίπεδο :level',
+            'level_progress' => 'Πρόοδος για επόμενο επίπεδο',
             'maximum_combo' => 'Μέγιστο Combo',
+            'medals' => 'Μετάλλια',
             'play_count' => 'Αριθμός Προσπαθειών',
             'play_time' => 'Συνολικός Χρόνος Παιχνιδιού',
             'ranked_score' => 'Ranked Σκορ',

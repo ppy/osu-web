@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,41 +34,50 @@ return [
         'discussion' => 'Discusión',
 
         'details' => [
+            'approved' => 'aprobado el ',
+            'favourite' => 'Marcar como favorito este beatmapset',
+            'favourited_count' => '+ ¡1 más!|+ ¡:count más!',
+            'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier beatmap!',
+            'loved' => 'amado el ',
             'mapped_by' => 'mapeado por :mapper',
+            'qualified' => 'calificado el ',
+            'ranked' => 'clasificado en ',
             'submitted' => 'enviado en ',
+            'unfavourite' => 'Desmarcar como favorito este beatmapset',
             'updated' => 'última actualización en ',
             'updated_timeago' => 'actualizado por última vez el :timeago',
-            'ranked' => 'clasificado en ',
-            'approved' => 'aprobado el ',
-            'qualified' => 'calificado el ',
-            'loved' => 'amado el ',
-            'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier beatmap!',
+
             'download' => [
                 '_' => 'Descargar',
-                'video' => 'con Video',
-                'no-video' => 'sin Video',
                 'direct' => 'osu!direct',
+                'no-video' => 'sin Video',
+                'video' => 'con Video',
             ],
-            'favourite' => 'Marcar como favorito este beatmapset',
-            'unfavourite' => 'Desmarcar como favorito este beatmapset',
-            'favourited_count' => '+ ¡1 más!|+ ¡:count más!',
+
+            'login_required' => [
+                'bottom' => 'para acceder a más características',
+                'top' => 'Iniciar sesión',
+            ],
         ],
-        'stats' => [
-            'cs' => 'Tamaño del Círculo',
-            'cs-mania' => 'Cantidad de Teclas',
-            'drain' => 'Drenado de HP',
-            'accuracy' => 'Precisión',
-            'ar' => 'Velocidad de aproximación',
-            'stars' => 'Estrellas de Dificultad',
-            'total_length' => 'Duración',
-            'bpm' => 'BPM',
-            'count_circles' => 'Número de Círculos',
-            'count_sliders' => 'Número de Deslizadores',
-            'user-rating' => 'Valoración de los Usuarios',
-            'rating-spread' => 'Desglose de valoraciones',
-            'nominations' => 'Nominaciones',
-            'playcount' => 'Veces jugado',
+
+        'favourites' => [
+            'limit_reached' => 'Tienes demasiados beatmaps en favoritos! Por favor, desmarca algunos antes de volver a intentarlo.',
         ],
+
+        'hype' => [
+            'action' => 'Apoya este mapa si te gusto para ayudarlo a legar a <strong>Ranked</strong>.',
+
+            'current' => [
+                '_' => 'El mapa esta :status.',
+
+                'status' => [
+                    'pending' => 'pendiente',
+                    'qualified' => 'cualificado',
+                    'wip' => 'trabajo en progreso',
+                ],
+            ],
+        ],
+
         'info' => [
             'description' => 'Descripción',
             'genre' => 'Género',
@@ -80,6 +89,7 @@ return [
             'tags' => 'Etiquetas',
             'unranked' => 'Beatmap no rankeado',
         ],
+
         'scoreboard' => [
             'achieved' => 'logrado :when',
             'country' => 'Ranking Nacional',
@@ -112,6 +122,23 @@ return [
                 'first' => 'A la cabeza',
                 'own' => 'Tu mejor puntuación',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Tamaño del Círculo',
+            'cs-mania' => 'Cantidad de Teclas',
+            'drain' => 'Drenado de HP',
+            'accuracy' => 'Precisión',
+            'ar' => 'Velocidad de aproximación',
+            'stars' => 'Estrellas de Dificultad',
+            'total_length' => 'Duración',
+            'bpm' => 'BPM',
+            'count_circles' => 'Número de Círculos',
+            'count_sliders' => 'Número de Deslizadores',
+            'user-rating' => 'Valoración de los Usuarios',
+            'rating-spread' => 'Desglose de valoraciones',
+            'nominations' => 'Nominaciones',
+            'playcount' => 'Veces jugado',
         ],
     ],
 ];

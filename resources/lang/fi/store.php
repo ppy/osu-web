@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'Oijoi, korisi kanssa on ongelmia!',
         'cart_problems_edit' => 'Napsauta tästä muokataksesi sitä.',
         'declined' => 'Maksu peruutettiin.',
+        'delayed_shipping' => 'Olemme tällä hetkellä hukkumassa tilauksiin! Olet vapaa tilaamaan, mutta ole valmis odottamaan **1-2 viikkoa lisää** kunnes olemme saaneet nykyiset tilaukset lähetettyä.',
         'old_cart' => 'Korisi näyttää olevan vanhentunut ja on ladattu uudestaan, yritä uudelleen.',
         'pay' => 'Maksa Paypalilla',
+
+        'has_pending' => [
+            '_' => 'Sinulla on keskeneräisiä ostoksia, klikkaa :link nähdäksesi ne.',
+            'link_text' => 'tästä',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'Edellinen kassalla olo aloitettiin mutta ei hoidettu loppuun.',
-            'line_2' => 'Jatka tilaustasi valitsemalla maksutapa, tai :link peruuttaaksesi.',
-            'link_text' => 'klikkaa tästä',
+            'line_2' => 'Jatka maksamista valitsemalla maksutapa.',
         ],
-        'delayed_shipping' => 'Olemme tällä hetkellä hukkumassa tilauksiin! Olet vapaa tilaamaan, mutta ole valmis odottamaan **1-2 viikkoa lisää** kunnes olemme saaneet nykyiset tilaukset lähetettyä.',
     ],
 
     'discount' => 'säästä :percent%',
+
+    'invoice' => [
+        'echeck_delay' => 'Koska maksusi oli eCheck, anna maksimissaan 10 päivää että maksu pääsee PayPalin läpi!',
+        'status' => [
+            'processing' => [
+                'title' => 'Maksuasi ei ole vielä vahvistettu!',
+                'line_1' => 'Jos olet jo maksanut, me saatamme silti odottaa varmistusta maksustasi. Päivitä sivu yhden tai kahden minuutin kuluttua!',
+                'line_2' => [
+                    '_' => 'Jos sinulla on ongelmia maksun aikana, :link',
+                    'link_text' => 'klikkaa tästä jatkaaksesi maksamista',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,12 @@ return [
     ],
 
     'order' => [
+        'paid_on' => 'Tilaus laitettu :date',
+
+        'invoice' => 'Näytä lasku',
+        'no_orders' => 'Ei tilauksia katsottavissa.',
+        'resume' => '',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name käyttäjälle :username (:duration)',
@@ -83,18 +108,27 @@ return [
             'processing' => 'Et voi muokata tilaustasi, koska sitä käsitellään vielä.',
             'shipped' => 'Et voi muokata tilaustasi, sillä se on jo matkalla.',
         ],
+
+        'status' => [
+            'cancelled' => 'Peruutettu',
+            'checkout' => 'Valmistellaan',
+            'delivered' => 'Toimitettu',
+            'paid' => 'Maksettu',
+            'processing' => 'Odotetaan varmistusta',
+            'shipped' => 'Kuljetuksessa',
+        ],
     ],
 
     'product' => [
         'name' => 'Nimi',
 
         'stock' => [
-            'out' => 'Tätä tavaraa ei ole tällä hetkellä saatavissa. Tarkista myöhemmin uudelleen!',
-            'out_with_alternative' => 'Valitettavasti tämä tuote ei ole enää saatavilla. Käytä valikkoa valitaksesi toinen vaihtoehto tai tarkista myöhemmin uudelleen!',
+            'out' => 'Tätä tavaraa ei ole tällä hetkellä saatavilla. Tarkista myöhemmin uudelleen!',
+            'out_with_alternative' => 'Valitettavasti tätä tuotetta ei ole enää saatavilla. Käytä valikkoa valitaksesi toinen vaihtoehto tai tarkista myöhemmin uudelleen!',
         ],
 
         'add_to_cart' => 'Lisää koriin',
-        'notify' => 'Ilmoita minulle, kun saatavissa!',
+        'notify' => 'Ilmoita minulle, kun saatavilla!',
 
         'notification_success' => 'saat ilmoituksen, kun meillä on täydennystä. klikkaa :link peruuttaaksesi',
         'notification_remove_text' => 'tässä',
@@ -105,7 +139,7 @@ return [
     'supporter_tag' => [
         'gift' => 'lahjoita pelaajalle',
         'require_login' => [
-            '_' => '',
+            '_' => 'Sinun pitää olla :link saadaksesi osu!tukijan!',
             'link_text' => 'kirjautunut sisään',
         ],
     ],
@@ -115,7 +149,7 @@ return [
         'checking' => 'Tarkistetaan saatavuutta nimelle :username...',
         'require_login' => [
             '_' => 'Sinun on oltava :link vaihtaaksesi nimesi!',
-            'link_text' => 'kirjautunut sisään',
+            'link_text' => 'kirjautuneena sisään',
         ],
     ],
 ];

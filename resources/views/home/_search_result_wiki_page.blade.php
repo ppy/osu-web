@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2018 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -16,21 +16,30 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @foreach ($search->data() as $entry)
+    @php
+        $source = $entry->getSource();
+        $url = wiki_url($entry->path, $entry->locale);
+    @endphp
     <div class="search-result-entry">
         <a
             class="search-entry"
-            href="{{ wiki_url($entry->path, $entry->locale) }}"
+            href="{{ $url }}"
         >
             <h1 class="search-entry__row search-entry__row--title">
-                {{ $entry->title(true) }}
+                <span class="search-highlight">
+                    {!! $entry->highlightedTitle() !!}
+                </span>
+
             </h1>
 
             <p class="search-entry__row search-entry__row--excerpt">
-                {!! html_excerpt($entry->page()['output']) !!}
+                <span class="search-highlight">
+                    {!! $entry->highlights() !!}
+                </span>
             </p>
 
             <p class="search-entry__row search-entry__row--footer">
-                {{ wiki_url($entry->path, $entry->locale) }}
+                {{ $url }}
             </p>
         </a>
     </div>

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'Başlıklar',
-        'news-show' => 'gönderi',
-    ],
-
     'index' => [
-        'title' => 'osu!news',
+        'title_page' => 'osu! Haberleri',
 
         'nav' => [
             'newer' => 'En yeni gönderiler',
             'older' => 'Eski gönderiler',
         ],
+
+        'title' => [
+            '_' => 'Haber :info',
+            'info' => 'Önsayfa',
+        ],
     ],
 
     'show' => [
-        'posted' => ':time gönderildi',
+        'by' => ':user tarafından',
 
         'nav' => [
             'newer' => 'Yeni gönderiler',
             'older' => 'Eski gönderiler',
+        ],
+
+        'title' => [
+            '_' => 'Haber :info',
+            'info' => 'Mesajı Gönder',
         ],
     ],
 

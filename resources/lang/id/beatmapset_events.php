@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@ return [
     'event' => [
         'approve' => 'Approved.',
         'discussion_delete' => 'Moderator menghapus diskusi :discussion.',
-        'discussion_post_delete' => 'Moderator menghapus kiriman dari diskusi :discussion.',
+        'discussion_post_delete' => 'Moderator telah menghapus kiriman dari diskusi :discussion.',
         'discussion_post_restore' => 'Moderator mengembalikan kiriman dari diskusi :discussion.',
         'discussion_restore' => 'Moderator mengembalikan diskusi :discussion.',
         'disqualify' => 'Didiskualifikasi oleh :user. Alasan: :discussion (:text).',
@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'Laman Peristiwa Beatmapset',
+
+        'form' => [
+            'period' => 'Periode',
+            'types' => 'Jenis-Jenis',
+        ],
     ],
 
     'item' => [
         'content' => 'Isi',
         'discussion_deleted' => '[dihapus]',
         'type' => 'Jenis',
+    ],
+
+    'type' => [
+        'approve' => 'Persetujuan',
+        'discussion_delete' => 'Penghapusan topik diskusi',
+        'discussion_post_delete' => 'Penghapusan pesan balasan pada topik diskusi',
+        'discussion_post_restore' => 'Pengembalian pesan balasan yang terhapus pada topik diskusi',
+        'discussion_restore' => 'Pengembalian topik diskusi yang terhapus',
+        'disqualify' => 'Diskualifikasi',
+        'issue_reopen' => 'Pembukaan ulang topik diskusi',
+        'issue_resolve' => 'Penutupan topik diskusi',
+        'kudosu_allow' => 'Perolehan Kudosu',
+        'kudosu_deny' => 'Penolakan Kudosu',
+        'kudosu_gain' => 'Pendapatan Kudosu',
+        'kudosu_lost' => 'Penurunan Kudosu',
+        'kudosu_recalculate' => 'Perhitungan ulang kudosu',
+        'love' => 'Love',
+        'nominate' => 'Nominasi',
+        'nomination_reset' => 'Nominasi ulang',
+        'qualify' => 'Kualifikasi',
+        'rank' => 'Peringkat',
     ],
 ];

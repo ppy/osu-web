@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,6 +24,16 @@ use App\Exceptions\API;
 use App\Models\User;
 use Carbon\Carbon;
 
+/**
+ * @property string|null $allowed_groups
+ * @property int $channel_id
+ * @property \Carbon\Carbon $creation_time
+ * @property string $description
+ * @property \Illuminate\Database\Eloquent\Collection $messages Message
+ * @property int $moderated
+ * @property string $name
+ * @property mixed $type
+ */
 class Channel extends Model
 {
     protected $primaryKey = 'channel_id';
@@ -152,11 +162,6 @@ class Channel extends Model
 
     public function addUser(User $user)
     {
-        // TODO: Remove this when join restriction is lifted
-        if ($this->type !== self::TYPES['public']) {
-            return;
-        }
-
         $userChannel = new UserChannel();
         $userChannel->user()->associate($user);
         $userChannel->channel()->associate($this);
@@ -165,11 +170,6 @@ class Channel extends Model
 
     public function removeUser(User $user)
     {
-        // TODO: Remove this when join restriction is lifted
-        if ($this->type !== self::TYPES['public']) {
-            return;
-        }
-
         UserChannel::where([
             'channel_id' => $this->channel_id,
             'user_id' => $user->user_id,

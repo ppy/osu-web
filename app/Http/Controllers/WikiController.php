@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,7 +47,7 @@ class WikiController extends Controller
         if ($page->page() === null) {
             $redirectTarget = (new WikiRedirect())->resolve($path);
             if ($redirectTarget !== null && $redirectTarget !== $path) {
-                return ujs_redirect(wiki_url($redirectTarget));
+                return ujs_redirect(wiki_url('').'/'.ltrim($redirectTarget, '/'));
             }
 
             $correctPath = Wiki\Page::searchPath($path, $this->locale());
@@ -78,7 +78,11 @@ class WikiController extends Controller
             abort(404);
         }
 
+        session(['_strip_cookies' => true]);
+
         return response($image['data'], 200)
-            ->header('Content-Type', $image['type']);
+            ->header('Content-Type', $image['type'])
+            // 10 years max-age
+            ->header('Cache-Control', 'max-age=315360000, public');
     }
 }

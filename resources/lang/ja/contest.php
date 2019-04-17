@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,24 +20,32 @@
 
 return [
     'header' => [
-        'small' => 'サークルをクリックする上手さ以外で競おう。',
+        'small' => 'サークルをクリックするだけでなく様々な方法競うことができます。',
         'large' => 'コミュニティコンテスト',
     ],
     'voting' => [
         'over' => 'このコンテストの投票期間は終了しました。',
         'login_required' => '投票するにはログインが必要です。',
+
         'best_of' => [
-            'none_played' => "このコンテストに該当する譜面をプレイした事がない様です！",
+            'none_played' => "このコンテストに該当するビートマップをプレイした事がないようです！",
+        ],
+
+        'button' => [
+            'add' => '投票',
+            'remove' => '投票を削除',
+            'used_up' => '全ての投票権を使いました。',
         ],
     ],
     'entry' => [
         '_' => 'エントリー',
-        'login_required' => 'エントリーするにはログインが必要です。',
+        'login_required' => 'このコンテストにエントリーするにはログインが必要です。',
         'silenced_or_restricted' => '制限中やサイレンス中はコンテストにエントリーすることはできません。',
         'preparation' => 'このコンテストは準備中です。しばらくお待ちください！',
-        'over' => 'エントリーありがとうございます！このコンテストの提出は締め切られています。投票期間は間もなく始まります。',
+        'over' => 'エントリーありがとうございます！このコンテストの応募は締め切られています。まもなく投票が始まります。',
         'limit_reached' => 'あなたはこのコンテストのエントリー上限を超えています。',
         'drop_here' => 'エントリーをここにドロップ！',
+        'download' => '.oszをダウンロード',
         'wrong_type' => [
             'art' => 'このコンテストは.jpgか.png拡張子のファイルしか受け付けていません。',
             'beatmap' => 'このコンテストは.osu拡張子のファイルしか受け付けていません。',
@@ -50,13 +58,14 @@ return [
     ],
     'vote' => [
         'list' => '投票',
-        'count' => ':count票',
+        'count' => ':count 票',
+        'points' => ':count ポイント',
     ],
     'dates' => [
-        'ended' => '開始日 :date',
+        'ended' => '終了日 :date',
 
         'starts' => [
-            '_' => '終了日 :date',
+            '_' => '開始日 :date',
             'soon' => '間もなく™',
         ],
     ],

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,52 +34,62 @@ return [
         'discussion' => 'Обсуждение',
 
         'details' => [
+            'approved' => 'одобрен ',
+            'favourite' => 'Добавить в избранное',
+            'favourited_count' => '+ 1 другой!|+ :count других!',
+            'logged-out' => 'Вы должны войти для загрузки карты!',
+            'loved' => 'избран ',
             'mapped_by' => 'сделана :mapper',
+            'qualified' => 'квалифицирован ',
+            'ranked' => 'ранкнут ',
             'submitted' => 'опубликован ',
+            'unfavourite' => 'Удалить из избранного',
             'updated' => 'обновлён ',
             'updated_timeago' => 'обновлён :timeago',
-            'ranked' => 'ранкнут ',
-            'approved' => 'одобрен ',
-            'qualified' => 'квалифицирован ',
-            'loved' => 'избран ',
-            'logged-out' => 'Вы должны войти для загрузки карты!',
+
             'download' => [
                 '_' => 'Скачать',
-                'video' => 'с видео',
-                'no-video' => 'без видео',
                 'direct' => 'osu!direct',
+                'no-video' => 'без видео',
+                'video' => 'с видео',
             ],
-            'favourite' => 'Добавить в избранное',
-            'unfavourite' => 'Удалить из избранного',
-            'favourited_count' => '+ 1 другой!|+ :count других!',
+
+            'login_required' => [
+                'bottom' => 'чтобы скачать',
+                'top' => 'Войдите',
+            ],
         ],
-        'stats' => [
-            'cs' => 'Размер нот',
-            'cs-mania' => 'Количество нот',
-            'drain' => 'Потеря HP',
-            'accuracy' => 'Точность',
-            'ar' => 'Скорость подхода',
-            'stars' => 'Сложность',
-            'total_length' => 'Длительность',
-            'bpm' => 'BPM',
-            'count_circles' => 'Количество нот',
-            'count_sliders' => 'Количество слайдеров',
-            'user-rating' => 'Рейтинг пользователей',
-            'rating-spread' => 'Шкала рейтинга',
-            'nominations' => 'Номинации',
-            'playcount' => 'Количество игр',
+
+        'favourites' => [
+            'limit_reached' => 'У вас слишком много любимых карт! Удалите некоторые из них и попробуйте снова.',
         ],
+
+        'hype' => [
+            'action' => 'Хайпаните эту карту если вам понравилось в неё играть чтобы помочь карте получить <strong>Ранкед</strong>.',
+
+            'current' => [
+                '_' => 'Эта карта сейчас :status.',
+
+                'status' => [
+                    'pending' => 'на рассмотрении',
+                    'qualified' => 'квалифицирована',
+                    'wip' => 'работа в процессе',
+                ],
+            ],
+        ],
+
         'info' => [
             'description' => 'Описание',
             'genre' => 'Жанр',
             'language' => 'Язык',
             'no_scores' => 'Данные всё ещё обрабатываются...',
-            'points-of-failure' => 'Количество провалов',
+            'points-of-failure' => 'Шкала провалов',
             'source' => 'Источник',
             'success-rate' => 'Шанс успеха',
             'tags' => 'Теги',
             'unranked' => 'Unranked карта',
         ],
+
         'scoreboard' => [
             'achieved' => 'достигнут :when',
             'country' => 'Рейтинг стран',
@@ -112,6 +122,23 @@ return [
                 'first' => 'Лидирует',
                 'own' => 'Ваш рекорд',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Размер нот',
+            'cs-mania' => 'Количество нот',
+            'drain' => 'Потеря HP',
+            'accuracy' => 'Точность',
+            'ar' => 'Скорость подхода',
+            'stars' => 'Сложность',
+            'total_length' => 'Длительность',
+            'bpm' => 'BPM',
+            'count_circles' => 'Количество нот',
+            'count_sliders' => 'Количество слайдеров',
+            'user-rating' => 'Рейтинг пользователей',
+            'rating-spread' => 'Шкала рейтинга',
+            'nominations' => 'Номинации',
+            'playcount' => 'Количество игр',
         ],
     ],
 ];

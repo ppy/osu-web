@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,6 +27,14 @@
 
   transition: filter 200ms ease-in-out, opacity 200ms ease-in-out; // for fading in after &--masked is removed
 
+  &--mobile-app {
+    .fancy-scrollbar();
+
+    @media @mobile {
+      position: fixed;
+    }
+  }
+
   &--body {
     background-color: transparent;
 
@@ -48,6 +56,22 @@
 
   &--body-111-plain {
     background-color: #111;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  &--body-222-plain {
+    background-color: #222;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  &--body-community {
+    background-color: @community-blue-bg;
 
     &::before {
       display: none;
@@ -107,24 +131,24 @@
   }
 
   &__col {
-    width: calc(100% ~'-' 10px);
+    width: calc(100% - 10px);
     margin: 5px;
 
     &--sm-6 {
       @media @desktop {
-        width: calc((6 / 12 * 100%) ~'-' 10px);
+        width: calc((6 / 12 * 100%) - 10px);
       }
     }
 
     &--sm-4 {
       @media @desktop {
-        width: calc((4 / 12 * 100%) ~'-' 10px);
+        width: calc((4 / 12 * 100%) - 10px);
       }
     }
 
     &--sm-3 {
       @media @desktop {
-        width: calc((3 / 12 * 100%) ~'-' 10px);
+        width: calc((3 / 12 * 100%) - 10px);
       }
     }
   }
@@ -149,12 +173,12 @@
 
   &__row {
     ._width(@extra-margin: 0px) {
-      width: calc(100% ~'-' (@extra-margin * 2));
+      width: calc(100% - (@extra-margin * 2));
       max-width: (@container-sm - @extra-margin * 2);
     }
 
     ._width-desktop(@extra-margin: 0px) {
-      width: calc(100% ~'-' ((@extra-margin + @grid-gutter-width) * 2));
+      width: calc(100% - ((@extra-margin + @grid-gutter-width) * 2));
       max-width: (@container-sm - @extra-margin * 2);
     }
 
@@ -260,7 +284,7 @@
     &--landing-sitemap {
       max-width: 800px;
       margin: 35px 0 40px;
-      width: calc(100% ~'-' 20px);
+      width: calc(100% - 20px);
     }
   }
 
@@ -286,6 +310,12 @@
     &--landing-footer {
       flex: none;
       .at2x("/images/backgrounds/page-000.png", 500px, 500px);
+    }
+
+    &--users-extra {
+      flex: 1 0 auto;
+      background-color: #111;
+      padding: 10px 0;
     }
   }
 

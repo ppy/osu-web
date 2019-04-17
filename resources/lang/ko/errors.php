@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,8 +34,8 @@ return [
         'invalid_mode' => '잘못된 모드 종류입니다.',
         'standard_converts_only' => '현재 비트맵에서는 해당 모드로 점수를 기록할 수 없습니다.',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => '즐겨찾기한 비트맵이 너무 많습니다! 계속하려면 즐겨찾기를 하나 해제해주세요.',
+    'checkout' => [
+        'generic' => '결제를 준비하는 중 오류가 발생하였습니다.',
     ],
     'logged_out' => '로그아웃 되었습니다. 로그인하시고 다시 시도해보세요.',
     'supporter_only' => '이 기능을 사용하려면 서포터가 되셔야 합니다.',

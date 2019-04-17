@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'Pinned Emner',
     'slogan' => "det er farlig at spille alene.",
     'subforums' => 'Subforums',
-    'title' => '',
+    'title' => 'osu! forums',
 
     'covers' => [
         'create' => [
@@ -47,9 +47,23 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => 'Marker forum som læst',
+        'forums' => 'Marker forums som læst',
+        'busy' => 'Marker som læst...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'Redigering af en afstemning vil fjerne de aktuelle resultater!',
+
+        'actions' => [
+            'edit' => 'Rediger afstemning',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Slet opslag?',
-        'confirm_restore' => 'Gendag opslag?',
+        'confirm_restore' => 'Gendan opslag?',
         'edited' => 'Sidst redigeret af :user den :when, redigeret i alt :count gange.',
         'posted_at' => 'slået op på :when',
 
@@ -57,6 +71,10 @@ return [
             'destroy' => 'Slet opslag',
             'restore' => 'Gendan opslag',
             'edit' => 'Rediger opslag',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -67,17 +85,17 @@ return [
     ],
 
     'topic' => [
-        'deleted' => '',
+        'deleted' => 'slettede emne',
         'go_to_latest' => 'vis seneste opslag',
         'latest_post' => ':when af :user',
         'latest_reply_by' => 'seneste svar af :user',
         'new_topic' => 'Slå nyt emne op',
-        'new_topic_login' => '',
+        'new_topic_login' => 'Log ind for at kunne lave et nyt emne',
         'post_reply' => 'Slå op',
         'reply_box_placeholder' => 'Skriv her for at svare',
-        'reply_title_prefix' => '',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'af :user',
-        'started_by_verbose' => '',
+        'started_by_verbose' => 'startet af :user',
 
         'create' => [
             'preview' => 'Forhåndsvisning',
@@ -87,11 +105,11 @@ return [
             'submit' => 'Slå op',
 
             'necropost' => [
-                'default' => '',
+                'default' => 'Dette emne har været inaktiv i et stykke tid. Kun post her hvis du har en særlig grund til.',
 
                 'new_topic' => [
-                    '_' => "",
-                    'create' => '',
+                    '_' => "Dette opslag har været inaktiv i et stykke tid. Hvis du ikke har en specifik grund til at sende noget, så :create et nyt opslag istedet.",
+                    'create' => 'lav et nyt emne',
                 ],
             ],
 
@@ -144,7 +162,7 @@ return [
         '_' => 'Emner',
 
         'actions' => [
-            'login_reply' => '',
+            'login_reply' => 'Log ind for at kunne svare',
             'reply' => 'Svar',
             'reply_with_quote' => 'Citér opslag til svar',
             'search' => 'Søg',
@@ -152,6 +170,8 @@ return [
 
         'create' => [
             'create_poll' => 'Oprettelse af afstemning',
+
+            'preview' => '',
 
             'create_poll_button' => [
                 'add' => 'Lav en afstemning',
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'visninger',
+            'feature_votes' => 'stjerne prioritet',
             'replies' => 'svar',
+            'views' => 'visninger',
         ],
 
         'issue_tag_added' => [
@@ -252,6 +273,12 @@ return [
                 'current' => 'Nuværende prioritet: +:count',
                 'do' => 'Promovér denne anmodning',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => 'supportere',
+                ],
+
                 'user' => [
                     'count' => '{0} ingen stemmer|{1} :count stemme|[2,*] :count stemmer',
                     'current' => 'Du har :votes stemmer tilbage.',
@@ -271,10 +298,11 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching' => '',
-            'to_watching' => '',
-            'to_watching_mail' => '',
-            'mail_disable' => '',
+            'to_not_watching' => 'Ikke bogmærked',
+            'to_watching' => 'Bogmærke',
+            'to_watching_mail' => 'Bogmærk med notifikation',
+            'tooltip_mail_disable' => 'Notifikationer er slået til. Klik for at slå dem fra',
+            'tooltip_mail_enable' => 'Notifikationer er slået fra. Klik for at slå dem til',
         ],
     ],
 ];

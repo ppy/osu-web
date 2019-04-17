@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -41,6 +41,10 @@ class @BeatmapsetFilter
     played: 'played'
     q: 'query'
     sort: 'sort'
+
+
+  @keyToChar: ->
+    @_keyToChar ?= _.invert @charToKey
 
 
   @defaults:
@@ -100,3 +104,14 @@ class @BeatmapsetFilter
     'sort'
     'status'
   ]
+
+  @queryParamsFromFilters: (filters) ->
+    return {} if !currentUser.id?
+
+    charParams = {}
+
+    for own key, value of filters
+      if value? && @getDefault(filters, key) != value
+        charParams[@keyToChar()[key]] = value
+
+    charParams

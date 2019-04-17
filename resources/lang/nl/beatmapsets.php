@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,41 +34,50 @@ return [
         'discussion' => 'Discussie',
 
         'details' => [
+            'approved' => 'goedgekeurd op ',
+            'favourite' => 'Markeer deze beatmapset als favoriet',
+            'favourited_count' => '+1 andere!|+ :count anderen!',
+            'logged-out' => 'Je moet ingelogd zijn voordat je beatmaps kan downloaden!',
+            'loved' => 'loved op ',
             'mapped_by' => 'gemapped door :mapper',
+            'qualified' => 'gekwalificeerd op ',
+            'ranked' => 'gerankt op ',
             'submitted' => 'ingezonden op ',
+            'unfavourite' => 'Verwijder markering als favoriet',
             'updated' => 'laatst geüpdatet op ',
             'updated_timeago' => 'laatst bijgewerkt :timeago',
-            'ranked' => 'gerankt op ',
-            'approved' => 'goedgekeurd op ',
-            'qualified' => 'gekwalificeerd op ',
-            'loved' => 'loved op ',
-            'logged-out' => 'Je moet ingelogd zijn voordat je beatmaps kan downloaden!',
+
             'download' => [
                 '_' => 'downloaden',
-                'video' => 'met Video',
-                'no-video' => 'zonder video',
                 'direct' => 'osu!direct',
+                'no-video' => 'zonder video',
+                'video' => 'met Video',
             ],
-            'favourite' => 'Markeer deze beatmapset als favoriet',
-            'unfavourite' => 'Verwijder markering als favoriet',
-            'favourited_count' => '+1 andere!|+ :count anderen!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
         ],
-        'stats' => [
-            'cs' => 'Cirkelgrootte',
-            'cs-mania' => 'Aantal Lanen',
-            'drain' => 'HP Drain',
-            'accuracy' => 'Precisie',
-            'ar' => 'Benaderingssnelheid',
-            'stars' => 'Sterrenmoeilijkheid',
-            'total_length' => 'Lengte',
-            'bpm' => 'BPM',
-            'count_circles' => 'Aantal Cirkels',
-            'count_sliders' => 'Aantal Sliders',
-            'user-rating' => 'Gebruikersbeoordelingen',
-            'rating-spread' => 'Rating Verspreiding',
-            'nominations' => 'Nominaties',
-            'playcount' => 'Playcount',
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
+        ],
+
         'info' => [
             'description' => 'Beschrijving',
             'genre' => 'Genre',
@@ -80,6 +89,7 @@ return [
             'tags' => 'Labels',
             'unranked' => 'Unranked beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => 'bereikt op :when',
             'country' => 'Landranking',
@@ -112,6 +122,23 @@ return [
                 'first' => 'Aan de Leiding',
                 'own' => 'Jouw beste Rang',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Cirkelgrootte',
+            'cs-mania' => 'Aantal Lanen',
+            'drain' => 'HP Drain',
+            'accuracy' => 'Precisie',
+            'ar' => 'Benaderingssnelheid',
+            'stars' => 'Sterrenmoeilijkheid',
+            'total_length' => 'Lengte',
+            'bpm' => 'BPM',
+            'count_circles' => 'Aantal Cirkels',
+            'count_sliders' => 'Aantal Sliders',
+            'user-rating' => 'Gebruikersbeoordelingen',
+            'rating-spread' => 'Rating Verspreiding',
+            'nominations' => 'Nominaties',
+            'playcount' => 'Playcount',
         ],
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Historia modowania użytkownika :user",
+        'title_compact' => 'Modowanie',
 
         'discussions' => [
             'title_recent' => 'Ostatnio rozpoczęte dyskusje',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
                     'restriction_info' => "Aby odblokować tę funkcję, potrzebujesz <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>statusu donatora</a>.",
-                    'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2000x700',
+                    'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2800x620',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
                 ],
@@ -161,31 +162,33 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 obserwujący|:count obserwujących|:count obserwujących',
+            'followers' => ':count_delimited obserwujący|:count_delimited obserwujących|:count_delimited obserwujących',
             'unranked' => 'Brak nowych wyników',
 
             'achievements' => [
-                'title' => 'Osiągnięcia',
                 'achieved-on' => 'Odblokowane dnia :date',
+                'locked' => 'Zablokowane',
+                'title' => 'Osiągnięcia',
             ],
             'beatmaps' => [
+                'by_artist' => 'autorstwa :artist',
                 'none' => 'Jeszcze nie ma...',
                 'title' => 'Beatmapy',
 
                 'favourite' => [
-                    'title' => 'Ulubione beatmapy (:count)',
+                    'title' => 'Ulubione beatmapy',
                 ],
                 'graveyard' => [
-                    'title' => 'Porzucone beatmapy (:count)',
+                    'title' => 'Porzucone beatmapy',
                 ],
                 'loved' => [
-                    'title' => 'Ulubione społeczności (:count)',
+                    'title' => 'Ulubione beatmapy społeczności',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Rankingowe i zatwierdzone beatmapy (:count)',
+                    'title' => 'Rankingowe i zatwierdzone beatmapy',
                 ],
                 'unranked' => [
-                    'title' => 'Oczekujące beatmapy (:count)',
+                    'title' => 'Oczekujące beatmapy',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Wykres zagrań',
+                    'count_label' => 'Liczba zagrań:',
                 ],
                 'most_played' => [
                     'count' => 'liczba zagrań',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Wykres obejrzanych powtórek',
+                    'count_label' => 'Obejrzane powtórki:',
                 ],
             ],
             'kudosu' => [
@@ -259,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Ten użytkownik nie uzyskał jeszcze żadnych medali. ;_;",
+                'recent' => 'Ostatnie',
                 'title' => 'Medale',
             ],
             'recent_activity' => [
                 'title' => 'Ostatnie',
             ],
             'top_ranks' => [
+                'download_replay' => 'Pobierz powtórkę',
                 'empty' => 'Brak wyników. :(',
                 'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp.',
-                'pp' => ':amountpp',
+                'pp_weight' => 'ważone :percentage',
                 'title' => 'Wyniki',
-                'weighted_pp' => 'ważone: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Najlepsze wyniki',
@@ -300,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => 'Użytkownik » :info',
+            'info' => 'Informacje',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Zainteresowania',
@@ -318,6 +330,7 @@ return [
             'title' => 'Nie znaleziono użytkownika! ;_;',
         ],
         'page' => [
+            'button' => 'Edytuj stronę użytkownika',
             'description' => '<strong>ja!</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
@@ -325,16 +338,20 @@ return [
         ],
         'post_count' => [
             '_' => ':link',
-            'count' => ':count post na forum|:count posty na forum|:count postów na forum',
+            'count' => ':count_delimited post na forum|:count_delimited posty na forum|:count_delimited postów na forum',
         ],
         'rank' => [
             'country' => 'Pozycja w rankingu krajowym dla :mode',
+            'country_simple' => 'Ranking krajowy',
             'global' => 'Pozycja w rankingu globalnym dla :mode',
+            'global_simple' => 'Ranking globalny',
         ],
         'stats' => [
             'hit_accuracy' => 'Precyzja',
             'level' => 'Poziom :level',
+            'level_progress' => 'Postęp do następnego poziomu',
             'maximum_combo' => 'Maksymalne combo',
+            'medals' => 'Medale',
             'play_count' => 'Liczba zagrań',
             'play_time' => 'Łączny czas gry',
             'ranked_score' => 'Łączny rankingowy wynik',

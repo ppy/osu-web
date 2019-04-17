@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,7 +24,7 @@ return [
             'subject' => '非常感谢， osu! 爱你哦~',
         ],
         'supporter_gift' => [
-            'subject' => '你成为了 osu!Supporter ！',
+            'subject' => '你收到了一份礼物：osu! 支持者标签。',
         ],
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => '개인 정보',
         'friends_only' => '친구 목록에 없는 사람들이 보낸 개인 메시지를 차단하기',
+        'hide_online' => '온라인 상태 숨기기',
+    ],
+
+    'security' => [
+        'current_session' => '현재 세션',
+        'end_session' => '세션 종료',
+        'end_session_confirmation' => '이 작업은 그 장치의 세션을 즉시 종료합니다. 확실한가요?',
+        'last_active' => '최근 활동:',
+        'title' => '보안',
+        'web_sessions' => '웹 세션',
     ],
 ];

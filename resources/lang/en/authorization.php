@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -119,6 +119,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'Access to requested forum is required.',
                 'over' => 'Polling is over and can not be voted on anymore.',
+                'play_more' => 'You need to play more before voting on forum.',
                 'voted' => 'Changing vote is not allowed.',
 
                 'user' => [

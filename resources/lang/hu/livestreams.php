@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,9 @@
 return [
     'top-headers' => [
         'headline' => 'Élő Adások',
-        'description' => 'A Twitch.tv adatai alapján a lista öt percenként frissül megadott játék alapján.Kezdj te és egy élő adást és kerülj a listára.Bővebb információért az adás felállitásához, kérlek nézd meg az élő adásokról szóló wiki oldalt.',
+        'description' => 'Az adatokat 5 percenként frissítjük a twitch.tv játék szerinti listázása alapján. Nyugodtan kezdj bele a közvetítésbe, hogy felkerülj a listára! További információért az adás felállításáról kérlek nézd meg az élő adásokról szóló wiki oldalt.',
+
+        'link' => 'az élő közvetítésről szóló wiki oldal',
     ],
     'headers' => [
         'regular' => 'Jelenleg élő',

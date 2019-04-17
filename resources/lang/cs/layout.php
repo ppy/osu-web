@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => 'skupiny',
             'index' => 'nástěnka',
             'legal-show' => 'informace',
+            'messages-index' => 'soukromé zprávy',
             'news-index' => 'novinky',
             'news-show' => 'novinky',
             'password-reset-index' => 'obnovit heslo',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'komunita',
+            'chat' => 'chat',
+            'chat-index' => 'chat',
             'dev' => 'vývoj',
             'getForum' => 'Fórum',
-            'getChat' => 'chat',
             'getLive' => 'živě',
+            'comments-index' => 'komentáře',
+            'comments-show' => 'komentář',
             'contests' => 'soutěže',
             'profile' => 'profil',
             'tournaments' => 'turnaje',
@@ -114,16 +118,18 @@ return [
             'reset' => 'obnovit',
             'new' => 'nový',
 
-            'messages' => 'Zprávy',
-            'settings' => 'Nastavení',
-            'logout' => 'Odhlásit se',
             'help' => 'Nápověda',
+            'logout' => 'Odhlásit se',
+            'messages' => 'Zprávy',
             'modding-history-discussions' => 'uživatelská modding diskuze',
             'modding-history-events' => 'uživatelské modding události',
             'modding-history-index' => 'uživatelská modding historie',
             'modding-history-posts' => 'uživatelské modding příspěvky',
             'modding-history-votesGiven' => 'uživatelské modding hlasy dány',
             'modding-history-votesReceived' => 'uživatelské modding hlasy obdrženy',
+            'oauth_login' => '',
+            'oauth_request' => '',
+            'settings' => 'Nastavení',
         ],
         'store' => [
             '_' => 'obchod',
@@ -133,6 +139,7 @@ return [
 
             'getCheckout' => 'zaplatit',
             'getInvoice' => 'faktura',
+            'orders-index' => 'historie objednávek',
             'products-show' => 'produkt',
 
             'new' => 'nový',

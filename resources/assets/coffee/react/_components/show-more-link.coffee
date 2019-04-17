@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -15,25 +15,33 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{button, div} = ReactDOMFactories
+import * as React from 'react'
+import { button, span } from 'react-dom-factories'
+import { Spinner } from 'spinner'
 el = React.createElement
+bn = 'show-more-link'
 
-class @ShowMoreLink extends React.PureComponent
-  render: =>
-    blockClass = osu.classWithModifiers('show-more-link', @props.modifiers)
+export ShowMoreLink = React.forwardRef (props, ref) =>
+  return null unless props.hasMore || props.loading
 
-    if @props.loading
-      div className: blockClass, el Spinner
+  onClick = props.callback
+  onClick ?= -> $.publish props.event, props.data
+  icon = span className: "#{bn}__label-icon",
+    span className: "fas fa-angle-#{props.direction ? 'down'}"
 
-    else
-      return null unless @props.hasMore
+  button
+    ref: ref
+    type: 'button'
+    onClick: onClick
+    disabled: props.loading
+    className: osu.classWithModifiers(bn, props.modifiers)
+    span className: "#{bn}__spinner",
+      el Spinner
+    span className: "#{bn}__label",
+      icon
+      span className: "#{bn}__label-text",
+        props.label ? osu.trans('common.buttons.show_more')
 
-      button
-        type: 'button'
-        onClick: @props.callback ? @showMore
-        className: "#{blockClass} show-more-link--link"
-        osu.trans('common.buttons.show_more')
-
-
-  showMore: =>
-    $.publish @props.event, @props.data
+        if props.remaining?
+          " (#{props.remaining})"
+      icon

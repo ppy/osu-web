@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -28,6 +28,12 @@
             @foreach (footer_legal_links() as $action => $link)
                 <a class="footer__link" href="{{ $link }}">
                     {{ trans("layout.footer.legal.{$action}") }}
+                </a>
+            @endforeach
+
+            @foreach ($extraFooterLinks ?? [] as $label => $link)
+                <a class="footer__link" href="{{ $link }}">
+                    {{ $label }}
                 </a>
             @endforeach
         </div>

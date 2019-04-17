@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,6 +24,7 @@ return [
         'online' => '<strong>:players</strong> momentan online în <strong>:games</strong> jocuri',
         'peak' => 'Maxim, :count utilizatori online',
         'players' => '<strong>:count</strong> jucători înregistrați',
+        'title' => '',
 
         'slogan' => [
             'main' => 'cel mai bun joc de ritm free-to-win',

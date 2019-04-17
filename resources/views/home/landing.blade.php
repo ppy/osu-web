@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'title' => 'osu!',
+    'title' => trans('home.landing.title'),
     'blank' => 'true',
     'bodyAdditionalClasses' => 'osu-layout--body-dark'
 ])
@@ -86,7 +86,6 @@
                 <a
                     href="#"
                     class="landing-nav__link js-nav-toggle js-click-menu js-user-login--menu"
-                    title="{{ trans("users.anonymous.login_link") }}"
                     data-click-menu-target="nav2-login-box"
                 >
                     {{ trans("users.login._") }}
@@ -130,10 +129,10 @@
             </div>
 
             <div class="landing-hero__info">
-                {!! trans("home.landing.players", ['count' => number_format($stats->totalUsers)]) !!},
+                {!! trans("home.landing.players", ['count' => i18n_number_format($stats->totalUsers)]) !!},
                 {!! trans("home.landing.online", [
-                    'players' => number_format($stats->currentOnline),
-                    'games' => number_format($stats->currentGames)]
+                    'players' => i18n_number_format($stats->currentOnline),
+                    'games' => i18n_number_format($stats->currentGames)]
                 ) !!}
             </div>
 

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,19 +21,24 @@
   @_form-color: #333;
   @_background-color: #555;
 
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  z-index: @z-index--blackout;
   font-size: @font-size--title-small;
   color: #fff;
+
+  .default-border-radius();
+
+  padding: 30px @_padding @_padding;
+
+  display: flex;
+  flex: 0 1 400px;
+  flex-direction: column;
+
+  background-color: @_form-color;
+
+  @media @mobile {
+    // force content to fit into window, especially the dropdown.
+    max-width: 100vw;
+  }
+
 
   &__button {
     .reset-input();
@@ -67,23 +72,6 @@
       &:focus, &:hover, &:active {
         background-color: @red;
       }
-    }
-  }
-
-  &__content {
-    .default-border-radius();
-
-    padding: 30px @_padding @_padding;
-
-    display: flex;
-    flex: 0 1 400px;
-    flex-direction: column;
-
-    background-color: @_form-color;
-
-    @media @mobile {
-      // force content to fit into window, especially the dropdown.
-      max-width: 100vw;
     }
   }
 

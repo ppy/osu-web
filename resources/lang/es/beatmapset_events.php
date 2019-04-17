@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'Eventos del Beatmapset',
+
+        'form' => [
+            'period' => 'Período',
+            'types' => 'Tipos',
+        ],
     ],
 
     'item' => [
         'content' => 'Contenido',
         'discussion_deleted' => '[eliminado]',
         'type' => 'Tipo',
+    ],
+
+    'type' => [
+        'approve' => 'Aprovado',
+        'discussion_delete' => 'Borrar discusion',
+        'discussion_post_delete' => 'Borrar respuesta a la discusion',
+        'discussion_post_restore' => 'Recuperar respuesta a la discusion',
+        'discussion_restore' => 'Recuperar discusion',
+        'disqualify' => 'Descalificar',
+        'issue_reopen' => 'Reabrir discusion',
+        'issue_resolve' => 'Resolver discusion',
+        'kudosu_allow' => 'Permitir kudosu',
+        'kudosu_deny' => 'Denegar kudosu',
+        'kudosu_gain' => 'Ganancia de Kudosu',
+        'kudosu_lost' => 'Kudosu perdidos',
+        'kudosu_recalculate' => 'Recalculación de Kudosu',
+        'love' => 'Amor',
+        'nominate' => 'Nominación',
+        'nomination_reset' => 'Reiniciar nominacion',
+        'qualify' => 'Calificación',
+        'rank' => 'Clasificación',
     ],
 ];

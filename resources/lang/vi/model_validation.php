@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Không cho phép trả lời bình luận đã xóa.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Chỉ có thể bầu chọn một feature request.',
@@ -64,10 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Không cho phép xóa beatmap metadata.',
             'beatmapset_post_no_edit' => 'Không cho phép chỉnh sửa beatmap metadata.',
+            'only_quote' => '',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Không cho phép thêm lựa chọn trùng lặp.',
+            'grace_period_expired' => 'Không thể chỉnh sửa cuộc thăm dò sau :limit giờ',
             'invalid_max_options' => 'Số lựa chọn cho một người không được vượt quá số lựa chọn sẵn có.',
             'minimum_one_selection' => 'Yêu cầu tối thiểu một lựa chọn cho mỗi người dùng.',
             'minimum_two_options' => 'Cần ít nhất hai lựa chọn.',
@@ -92,6 +98,7 @@ return [
         'username_available_soon' => 'Tên người dùng này sẽ có sẵn để sử dụng bất cứ lúc nào!',
         'username_invalid_characters' => 'Tên người dùng đã yêu cầu chứa các ký tự không hợp lệ.',
         'username_in_use' => 'Tên người dùng đã được sử dụng!',
+        'username_locked' => '', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Vui lòng sử dụng dấu gạch dưới hoặc dấu cách, không phải cả hai!',
         'username_no_spaces' => "Tên người dùng không thể bắt đầu hoặc kết thúc bằng dấu cách!",
         'username_not_allowed' => 'Không cho phép sử dụng tên người dùng đã chọn.',
@@ -110,5 +117,9 @@ return [
             ],
             'username_is_same' => 'Đây là tên người dùng của bạn mà, đồ ngốc!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "Bạn không thể báo cáo chính mình!",
     ],
 ];

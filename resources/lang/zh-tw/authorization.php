@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,10 +22,10 @@ return [
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => '無法撤銷推薦。',
-            'has_reply' => '有回應的討論無法刪除',
+            'has_reply' => '無法刪除有回覆的討論',
         ],
         'nominate' => [
-            'exhausted' => '您今天提名的次數已達上限，請明天再試。',
+            'exhausted' => '你今天的提名次數已達上限，請明天再試。',
             'incorrect_state' => '執行操作時發生錯誤，請重新載入頁面。',
             'owner' => "不能提名自己的圖譜。",
         ],
@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => '',
+            'mapper_note_wrong_user' => '只有譜面作者或譜面管理團隊/質量保證團隊可以發布備註。',
         ],
 
         'vote' => [
@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => '沒有權限進入該頻道。',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => '需要有指定頻道的權限。',
-                    'moderated' => '頻道已滿。',
-                    'not_lazer' => '當前只能在 #lazer 聊天。',
-                ],
+        'blocked' => '無法向封鎖你或被你封鎖的人發送訊息。',
+        'friends_only' => '用戶阻止了來自非好友的訊息。',
+        'moderated' => '該頻道目前正在被管制中。',
+        'no_access' => '你沒有權限訪問該頻道。',
+        'restricted' => '你不能在帳戶被禁言、限制或封鎖的時候發送訊息。',
+    ],
 
-                'not_allowed' => '帳戶處於限制模式，無法發言。',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "無法編輯已刪除的回覆。",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => '沒有權限編輯該板塊。',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => '只有最後的回覆可以被刪除。',
@@ -99,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => '',
+                'double_post' => '請編輯您的最後一條評論，而不是再次發表。',
                 'locked' => '無法回覆被鎖定的主題。',
                 'no_forum_access' => '沒有權限，無法進入該板塊。',
                 'no_permission' => '沒有權限，無法回覆。',
@@ -159,7 +158,7 @@ return [
             'edit' => [
                 'locked' => '個人頁面被鎖定。',
                 'not_owner' => '只能編輯自己的個人頁面。',
-                'require_supporter_tag' => '',
+                'require_supporter_tag' => '需要成為支持者。',
             ],
         ],
     ],

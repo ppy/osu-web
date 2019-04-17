@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,12 +20,21 @@
 
 return [
     'header' => ':type 순위',
+
     'type' => [
         'performance' => '퍼포먼스',
         'charts' => '스포트라이트',
         'score' => '점수',
         'country' => '국가별',
     ],
+
+    'spotlight' => [
+        'end_date' => '마감일',
+        'map_count' => '맵 개수',
+        'participants' => '참가자',
+        'start_date' => '시작일',
+    ],
+
     'stat' => [
         'accuracy' => '정확도',
         'active_users' => '유저 수',

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Supprimer',
+        'delete_own_confirm' => 'Êtes-vous sûr ? La beatmap sera supprimé et vous serez redirigé vers votre profil.',
+        'delete_other_confirm' => 'Êtes-vous sûr ? La beatmap sera supprimée et vous serez redirigé vers le profil de l\'utilisateur.',
         'disqualification_prompt' => 'Raison de la disqualification?',
         'disqualified_at' => 'disqualifiée :time_ago (:reason).',
         'disqualified_no_reason' => 'aucune raison spécifiée',
@@ -152,7 +155,7 @@ return [
         'love' => 'Aimer',
         'love_confirm' => 'Vous aimez cette beatmap ?',
         'nominate' => 'Nominer',
-        'nominate_confirm' => 'Nominer cette beatmap?',
+        'nominate_confirm' => 'Nominer cette beatmap ?',
         'nominated_by' => 'nominée par :users',
         'qualified' => 'La map sera classée le :date environ, si aucun problème n\'est trouvé.',
         'qualified_soon' => 'Beatmap bientôt classée, si aucun problème n\'est trouvé.',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Êtes-vous sûr ? Poster un nouveau problème va réinitialiser le processus de nomination.',
+            'disqualify' => 'Êtes-vous sûr? Cela va supprimer la beatmap de la qualification et réinitialiser le processus de nomination.',
         ],
     ],
 
@@ -190,15 +194,16 @@ return [
                 'played' => 'Jouée',
             ],
             'sorting' => [
-                'title' => 'titre',
-                'artist' => 'artiste',
-                'difficulty' => 'difficulté',
-                'updated' => 'mise à jour',
-                'ranked' => 'classée',
-                'rating' => 'évaluation',
-                'plays' => 'parties',
-                'relevance' => 'pertinence',
-                'nominations' => 'nominations',
+                'title' => 'Titre',
+                'artist' => 'Artiste',
+                'difficulty' => 'Difficulté',
+                'favourites' => 'Favoris',
+                'updated' => 'Mise à jour',
+                'ranked' => 'Classée',
+                'rating' => 'Évaluation',
+                'plays' => 'Parties',
+                'relevance' => 'Pertinence',
+                'nominations' => 'Nominations',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Le filtrage par :filters requiert un :link actif',
@@ -297,5 +302,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => 'Nombre de joueurs : :count',
+        'favourites' => 'Favorites : :count',
     ],
 ];

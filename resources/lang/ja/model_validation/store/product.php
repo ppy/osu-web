@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,7 +19,8 @@
  */
 
 return [
-    'insufficient_stock' => 'このアイテムは残っていません！',
-    'not_available' => 'このアイテムは利用可能ではありません．',
-    'too_many' => '注文できるのは、注文ごとにこの商品の:count個のみです。',
+    'insufficient_stock' => 'この商品は残っていません！',
+    'must_separate' => 'この商品は他の商品と別に支払いをする必要があります。',
+    'not_available' => 'この商品は利用できません。',
+    'too_many' => 'この商品を注文できるのは一度の注文につき:count個までです。',
 ];

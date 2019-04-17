@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Gesorteerd op:',
-            'created_at' => 'aanmaaktijd',
-            'timeline' => 'tijdlijn',
-            'updated_at' => 'laatste update',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Verwijder',
+        'delete_own_confirm' => 'Weet je het zeker? De beatmap zal worden verwijderd en je zult worden terug gestuurd naar je profiel.',
+        'delete_other_confirm' => 'Weet je het zeker? De beatmap zal worden verwijderd en je zult worden terug gestuurd naar het profiel van de gebruiker.',
         'disqualification_prompt' => 'Reden voor diskwalificatie?',
         'disqualified_at' => 'Gediskwalificeerd :time_ago (:reason).',
         'disqualified_no_reason' => 'geen reden opgegeven',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Weet je dat zeker? Een nieuw probleem posten zal het nominatieproces resetten.',
+            'disqualify' => 'Weet je het zeker? Hierdoor zal de beatmap worden verwijderd van kwalificatie en wordt het nominatie proces gereset.',
         ],
     ],
 
@@ -190,15 +194,16 @@ return [
                 'played' => 'Gespeeld',
             ],
             'sorting' => [
-                'title' => 'titel',
-                'artist' => 'artiest',
-                'difficulty' => 'moeilijkheidsgraad',
-                'updated' => 'bijgewerkt',
-                'ranked' => 'gerankt',
-                'rating' => 'beoordeling',
-                'plays' => 'keren gespeeld',
-                'relevance' => 'relevantie',
-                'nominations' => 'nominaties',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'favourites' => 'Favorieten',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filteren met :filters vereist een :link',
@@ -297,5 +302,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

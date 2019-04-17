@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -89,7 +89,7 @@ class @LandingUserStats
     @scaleY.domain [0, d3.max(@data, (d) -> d.y)]
 
     @svgPeakText
-      .text osu.trans('home.landing.peak', count: @maxElem.y.toLocaleString())
+      .text osu.trans('home.landing.peak', count: osu.formatNumber(@maxElem.y))
     @peakTextLength = @svgPeakText.node().getComputedTextLength()
 
 

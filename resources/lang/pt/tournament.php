@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,7 +24,7 @@ return [
         'registration_period' => 'Inscrição: :start até :end',
 
         'header' => [
-            'subtitle' => 'Uma listagem de torneios activos oficialmente reconhecidos',
+            'subtitle' => 'Uma listagem de torneios ativos oficialmente reconhecidos',
             'title' => 'Torneios da Comunidade',
         ],
 
@@ -33,7 +33,7 @@ return [
         ],
 
         'state' => [
-            'current' => 'Torneios Activos',
+            'current' => 'Torneios Ativos',
             'previous' => 'Torneios Passados',
         ],
     ],
@@ -41,10 +41,10 @@ return [
     'show' => [
         'banner' => 'Apoia a Tua Equipa',
         'entered' => 'Estás inscrito(a) para este torneio.<br><br>Nota que isto não significa que foste atribuído(a) a uma equipa.<br><br>Instruções adicionais serão enviadas para ti via email próximas à data do torneio, por isso e por favor assegura-te que o endereço da tua conta email do osu! é válida!',
-        'info_page' => 'Página de informações',
+        'info_page' => 'Página de Informações',
         'login_to_register' => 'Por favor :login para veres os detalhes da inscrição!',
         'not_yet_entered' => 'Não estás inscrito(a) para este torneio.',
-        'rank_too_low' => 'Desculpa, tu não cumpres os requisitos de classificação para este torneio!',
+        'rank_too_low' => 'Desculpa, tu não cumpres os requisitos de classificação para este torneio.',
         'registration_ends' => 'As inscrições fecham em :date',
 
         'button' => [
@@ -55,8 +55,8 @@ return [
         'state' => [
             'before_registration' => 'A inscrição para este torneio ainda não foi aberta.',
             'ended' => 'Este torneio foi concluído. Consulta a página de informação para ver os resultados.',
-            'registration_closed' => 'A inscrição para este torneio fechou. Consulta a página de informação para ver as ultimas actualizações.',
-            'running' => 'Este torneio está actualmente em progresso. Consulta a página de informação para mais detalhes.',
+            'registration_closed' => 'A inscrição para este torneio fechou. Consulta a página de informação para ver as últimas atualizações.',
+            'running' => 'Este torneio está atualmente em progresso. Consulta a página de informação para mais detalhes.',
         ],
     ],
     'tournament_period' => ':start até :end',

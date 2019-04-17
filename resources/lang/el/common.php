@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => 'Διαχειριστής',
+        'back_to_previous' => 'Επιστροφή στην προηγούμενη κατάσταση',
+        'back_to_top' => 'Πίσω στην αρχή',
         'cancel' => 'Ακύρωση',
         'change' => 'κάντε αλλαγές',
         'click_to_copy' => 'κάντε κλικ για να αντιγράψετε στο πρόχειρο',
         'click_to_copy_copied' => 'αντιγράφτηκε στο πρόχειρο!',
+        'collapse' => 'σύμπτυξη',
         'delete' => 'Διαγραφή',
+        'edit' => 'Επεξεργασία',
+        'expand' => 'επέκταση',
         'hide' => 'απόκρυψη',
         'permalink' => 'permalink',
         'permalink_copied' => 'το link αντιγράφτηκε',
@@ -43,12 +49,14 @@ return [
         'reply_reopen' => 'Απάντηση και εκ νέου άνοιγμα',
         'reply_resolve' => 'Απάντηση και Αρχειοθέτηση',
         'reset' => 'Επαναφορά',
+        'restore' => 'Επαναφορά',
         'save' => 'Αποθήκευση',
         'saving' => 'Γίνεται αποθήκευση...',
         'search' => 'Αναζήτηση',
         'see_more' => 'δείτε περισσότερα',
         'show' => 'προβολή',
         'show_more' => 'εμφάνιση περισσότερων',
+        'show_more_options' => 'περισσότερες επιλογές',
         'upload_image' => 'ανεβάστε εικόνα',
     ],
 
@@ -59,9 +67,17 @@ return [
         'hours' => ':count ώρα|:count ώρες',
         'item' => ':count μονάδα|:count μονάδες',
         'minute_short_unit' => 'λεπτό|λεπτά',
+        'minutes' => ':count λεπτό|:count λεπτά',
         'months' => ':count μήνας|:count μήνες',
         'second_short_unit' => 'δευτ.|δευτ.',
         'years' => ':count χρόνος|:count χρόνια',
+    ],
+
+    'countdown' => [
+        'days' => 'μέρες',
+        'hours' => 'ώρες',
+        'minutes' => 'λεπτά',
+        'seconds' => 'δευτερόλεπτα',
     ],
 
     'datetime' => [

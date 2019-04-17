@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,23 +18,21 @@
 
 .nav2-header {
   @_top: nav2-header;
-  position: absolute;
+  position: fixed;
+  top: 0;
   width: 100%;
+  z-index: @z-index--nav-bar;
 
-  &--legacy {
-    position: relative;
-    width: auto;
-
-    @media @desktop {
-      margin-bottom: -5px;
-    }
+  &__body {
+    width: 100%;
   }
 
   &__menu-bg {
     .full-size();
     height: @nav2-header-image-height;
-    background-color: fade(#000, 70%);
+    background-color: fade(#111, 90%);
     transition-duration: 0s;
+    border-bottom: 1px solid @pink-darker;
 
     &[data-visibility=hidden] {
       transition-duration: 250ms;
@@ -43,8 +41,14 @@
 
   &__legacy-gradient-overlay {
     .full-size();
+
+    .@{header-pinned} & {
+      background-repeat-y: no-repeat; // prevents triangles from peeking through at some zoom levels.
+      background-position-y: 100%;
+    }
+
     display: block;
-    transition: all 1s ease-in-out;
+    transition: background-position @header-pinned-animation-duration / 2;
   }
 
   &__legacy-triangles {
@@ -53,6 +57,17 @@
     background-size: 640px 360px;
 
     .at2x-simple("/images/layout/nav-backgrounds/triangles-combined.png");
+  }
+
+  &__transition-overlay {
+    .full-size();
+    background-color: #222;
+    opacity: 0;
+    transition: opacity @header-pinned-animation-duration;
+
+    .@{header-pinned} & {
+      opacity: 1;
+    }
   }
 
   &__triangles {

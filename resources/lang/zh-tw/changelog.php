@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -37,7 +37,7 @@ return [
     'index' => [
         'page_title' => [
             '_' => '',
-            '_from' => '',
+            '_from' => '從 :from 以來的變化',
             '_from_to' => '',
             '_stream' => '',
             '_stream_from' => '',

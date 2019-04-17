@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Verkligen radera inlägg?',
         'confirm_restore' => 'Verkligen återställa inlägg?',
@@ -57,6 +71,10 @@ return [
             'destroy' => 'Radera inlägg',
             'restore' => 'Återställ inlägg',
             'edit' => 'Redigera inlägg',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -153,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Skapande av enkät',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Skapa en enkät',
                 'remove' => 'Avbryt skapande av enkät',
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'visningar',
+            'feature_votes' => '',
             'replies' => 'svar',
+            'views' => 'visningar',
         ],
 
         'issue_tag_added' => [
@@ -252,6 +273,12 @@ return [
                 'current' => 'Nuvarande Prioritet: +:count',
                 'do' => 'Uppmuntra denna begäran',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => '{0} ingen röst|{1} :count röst|[2,*] :count röster',
                     'current' => 'Du har :votes kvar.',
@@ -274,7 +301,8 @@ return [
             'to_not_watching' => 'Inte bokmärkt',
             'to_watching' => 'Bokmärk',
             'to_watching_mail' => 'Bokmärke med notifikation',
-            'mail_disable' => 'Stäng av notifikationer',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

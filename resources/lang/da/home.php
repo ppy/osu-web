@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,6 +24,7 @@ return [
         'online' => '<strong>:players</strong> online i øjeblikket i <strong>:games</strong> spil',
         'peak' => 'Peak, :count online brugere',
         'players' => '<strong>:count</strong> registrerede brugere',
+        'title' => 'velkommen',
 
         'slogan' => [
             'main' => 'Det bedste gratis rytmespil',
@@ -60,7 +61,7 @@ return [
         ],
 
         'mode' => [
-            'all' => 'all',
+            'all' => 'alt',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
             'user' => 'bruger',
@@ -112,7 +113,7 @@ return [
     ],
 
     'user' => [
-        'title' => '',
+        'title' => 'instrumentbræt',
         'news' => [
             'title' => 'Nyheder',
             'error' => 'Fejl ved indlæsning af nyheder, prøv at genindlæse siden?...',
@@ -127,7 +128,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '',
+            'new' => 'Nye Rangerede Beatmaps',
             'popular' => 'Populære Beatmaps',
             'by' => 'af',
             'plays' => ':count afspilninger',

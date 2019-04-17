@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,12 +16,16 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, input, label, p, i, span} = ReactDOMFactories
+import { MessageLengthCounter } from './message-length-counter'
+import { BigButton } from 'big-button'
+import * as React from 'react'
+import { button, div, input, label, p, i, span } from 'react-dom-factories'
+import { UserAvatar } from 'user-avatar'
 el = React.createElement
 
 bn = 'beatmap-discussion-new'
 
-class BeatmapDiscussions.NewDiscussion extends React.PureComponent
+export class NewDiscussion extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -29,17 +33,18 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
     @cache = {}
 
+    # FIXME: should save state on navigation?
     @state =
+      cssTop: null
       message: ''
       timestamp: null
       timestampConfirmed: false
       posting: null
-      stickable: false
-      sticky: false
 
 
   componentDidMount: =>
-    $.subscribe 'stickyHeader.newDiscussion', @checkStickability
+    $(window).on 'throttled-resize.new-discussion', @setTop
+    @inputBox?.focus() if @props.autoFocus
 
 
   componentWillUpdate: =>
@@ -47,26 +52,26 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   componentWillUnmount: =>
+    $(window).off '.new-discussion'
     @postXhr?.abort()
     @throttledPost.cancel()
-    $.unsubscribe '.newDiscussion'
 
 
   render: =>
-    topClass = 'beatmap-discussion-new-float js-sync-height--target'
-    topClass += ' beatmap-discussion-new-float--floating' if @isSticky()
+    cssClasses = 'beatmap-discussion-new-float'
+    cssClasses += ' beatmap-discussion-new-float--pinned' if @props.pinned
 
     div
-      className: topClass
-      'data-sync-height-id': 'new-discussion-box'
+      className: cssClasses
+      style:
+        top: @state.cssTop
       div className: 'beatmap-discussion-new-float__floatable',
         div
-          className: 'js-sync-height--target beatmap-discussion-new-float__spacer'
-          'data-sync-height-id': 'page-extra-tabs'
-        div
-          className: 'js-new-discussion js-sync-height--reference beatmap-discussion-new-float__content'
-          'data-sync-height-target': 'new-discussion-box'
+          className: 'beatmap-discussion-new-float__content'
+          ref: @props.innerRef
+
           @renderBox()
+
 
   renderBox: =>
     canHype =
@@ -79,6 +84,9 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       @props.currentUser.is_bng ||
       @props.currentUser.is_qat
 
+    buttonCssClasses = 'btn-circle'
+    buttonCssClasses += ' btn-circle--activated' if @props.pinned
+
     div
       className: 'osu-page osu-page--small'
       div
@@ -88,7 +96,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
           span className: 'page-title__button',
             span
-              className: "btn-circle #{'btn-circle--activated' if @state.sticky}"
+              className: buttonCssClasses
               onClick: @toggleSticky
               title: if @state.sticky then osu.trans('beatmap.discussions.new.pinned') else osu.trans('beatmap.discussions.new.unpinned')
 
@@ -100,7 +108,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
             className: "#{bn}__avatar"
             el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
 
-          div className: "#{bn}__message",
+          div className: "#{bn}__message", id: 'new',
             if @props.currentUser.id?
               [
                 el TextareaAutosize,
@@ -110,7 +118,8 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   value: if @canPost() then @state.message else ''
                   onChange: @setMessage
                   onKeyDown: @handleKeyDown
-                  onFocus: @setSticky
+                  onFocus: @onFocus
+                  innerRef: @setInputBox
                   placeholder:
                     if @canPost()
                       osu.trans "beatmaps.discussions.message_placeholder.#{@props.mode}", version: @props.currentBeatmap.version
@@ -118,9 +127,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                       # FIXME: reason should be passed from beatmap state
                       osu.trans 'beatmaps.discussions.message_placeholder_deleted_beatmap'
 
-                el BeatmapDiscussions.MessageLengthCounter,
+                el MessageLengthCounter,
                   key: 'counter'
                   message: @state.message
+                  isTimeline: @isTimeline()
               ]
             else
               osu.trans('beatmaps.discussions.require-login')
@@ -208,43 +218,58 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     !@props.currentBeatmap.deleted_at? || @props.mode == 'generalAll'
 
 
-  checkStickability: (_e, target) =>
-    # depends on ModeSwitcher
-    newState = (target == 'page-extra-tabs')
-    @setState(stickable: newState) if newState != @state.stickable
+  cssTop: (sticky) =>
+    return if !sticky || !@props.stickTo?.current?
+    window.stickyHeader.headerHeight() + @props.stickTo.current.getBoundingClientRect().height
 
 
   handleKeyDownCallback: (type, event) =>
     # Ignores SUBMIT, requiring shift-enter to add new line.
     switch type
       when InputHandler.CANCEL
-        @setState sticky: false
+        @setSticky(false)
 
 
-  isSticky: =>
-    @state.stickable && @state.sticky
+  isTimeline: =>
+    @props.mode == 'timeline'
 
 
   nearbyDiscussions: =>
     return [] if !@state.timestamp?
 
     if !@cache.nearbyDiscussions? || @cache.nearbyDiscussions.timestamp != @state.timestamp
-      discussions = []
+      discussions = {}
 
       for discussion in @props.currentDiscussions.timelineAllUsers
         continue if discussion.message_type not in ['suggestion', 'problem']
-        continue if Math.abs(discussion.timestamp - @state.timestamp) > 5000
+
+        distance = Math.abs(discussion.timestamp - @state.timestamp)
+
+        continue if distance > 5000
 
         if discussion.user_id == @props.currentUser.id
           continue if moment(discussion.updated_at).diff(moment(), 'hour') > -24
 
-        discussions.push discussion
+        category = switch
+          when distance == 0 then 'd0'
+          when distance < 100 then 'd100'
+          when distance < 1000 then 'd1000'
+          else 'other'
+
+        discussions[category] ?= []
+        discussions[category].push discussion
+
+      shownDiscussions = discussions.d0 ? discussions.d100 ? discussions.d1000 ? discussions.other ? []
 
       @cache.nearbyDiscussions =
         timestamp: @state.timestamp
-        discussions: _.sortBy discussions, 'timestamp'
+        discussions: _.sortBy shownDiscussions, 'timestamp'
 
     @cache.nearbyDiscussions.discussions
+
+
+  onFocus: =>
+    @setSticky true
 
 
   parseTimestamp: (message) =>
@@ -319,6 +344,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     'problem'
 
 
+  setInputBox: (elem) =>
+    @inputBox = elem
+
+
   setMessage: (e) =>
     message = e.currentTarget.value
     timestamp = @parseTimestamp(message) if @props.mode == 'timeline'
@@ -326,8 +355,16 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     @setState {message, timestamp}
 
 
-  setSticky: =>
-    @setState sticky: true if !@state.sticky
+  setSticky: (sticky = true) =>
+    @setState
+      cssTop: @cssTop(sticky)
+
+    @props.setPinned?(sticky)
+
+
+  setTop: =>
+    @setState
+      cssTop: @cssTop(@props.pinned)
 
 
   setTimestamp: (e) =>
@@ -357,7 +394,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   toggleSticky: =>
-    @setState sticky: !@state.sticky
+    @setSticky(!@props.pinned)
 
 
   toggleTimestampConfirmation: =>
@@ -365,9 +402,9 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   validPost: =>
-    return false if !BeatmapDiscussionHelper.validMessageLength(@state.message)
+    return false if !BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())
 
-    if @props.mode == 'timeline'
+    if @isTimeline()
       @state.timestamp? && (@nearbyDiscussions().length == 0 || @state.timestampConfirmed)
     else
       true

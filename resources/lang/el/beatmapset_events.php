@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'Γεγονότα Beatmapset',
+
+        'form' => [
+            'period' => 'Περίοδος',
+            'types' => 'Τύποι',
+        ],
     ],
 
     'item' => [
         'content' => 'Περιεχόμενο',
         'discussion_deleted' => '[διαγράφηκε]',
         'type' => 'Τύπος',
+    ],
+
+    'type' => [
+        'approve' => 'Έγκριση',
+        'discussion_delete' => 'Διαγραφή συζήτησης',
+        'discussion_post_delete' => 'Διαγραφή απάντησης συζήτησης',
+        'discussion_post_restore' => 'Αποκατάσταση απάντησης συζήτησης',
+        'discussion_restore' => 'Αποκατάσταση συζήτησης',
+        'disqualify' => 'Αποκλεισμός',
+        'issue_reopen' => 'Επανάνοιγμα συζήτησης',
+        'issue_resolve' => 'Επίλυση συζήτησης',
+        'kudosu_allow' => 'Επίδομα Kudosu',
+        'kudosu_deny' => 'Άρνηση Kudosu',
+        'kudosu_gain' => 'Κέρδος Kudosu',
+        'kudosu_lost' => 'Απώλεια Kudosu',
+        'kudosu_recalculate' => 'Επαναϋπολογισμός Kudosu',
+        'love' => 'Αγαπημένο',
+        'nominate' => 'Διορισμός',
+        'nomination_reset' => 'Επαναφορά διορισμού',
+        'qualify' => 'Προσόντα',
+        'rank' => 'Κατάταξη',
     ],
 ];

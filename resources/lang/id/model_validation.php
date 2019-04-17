@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Membalas komentar yang sudah dihapus tidak diperbolehkan.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Hanya dapat memilih permintaan fitur.',
@@ -64,10 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Menghapus posting metadata beatmap tidak diizinkan.',
             'beatmapset_post_no_edit' => 'Menyunting posting metadata beatmap tidak diizinkan.',
+            'only_quote' => 'Balasan Anda hanya berisi kutipan.',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Opsi ganda tidak diizinkan.',
+            'grace_period_expired' => 'Tidak dapat menyunting sebuah jajak pendapat setelah melebihi :limit jam',
             'invalid_max_options' => 'Pilihan per pengguna tidak boleh melebihi jumlah opsi yang tersedia.',
             'minimum_one_selection' => 'Diperlukan setidaknya satu opsi per pengguna.',
             'minimum_two_options' => 'Diperlukan setidaknya dua opsi',
@@ -92,6 +98,7 @@ return [
         'username_available_soon' => 'Nama pengguna ini dapat digunakan sekarang!',
         'username_invalid_characters' => 'Nama pengguna yang diminta mengandung karakter yang tidak valid.',
         'username_in_use' => 'Nama pengguna sudah digunakan!',
+        'username_locked' => 'Nama pengguna sudah digunakan!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Mohon gunakan garis bawah atau spasi, jangan keduanya!',
         'username_no_spaces' => "Nama pengguna tidak dapat dimulai atau diakhiri dengan spasi!",
         'username_not_allowed' => 'Pilihan nama pengguna ini tidak diizinkan.',
@@ -110,5 +117,9 @@ return [
             ],
             'username_is_same' => 'Ini nama penggunamu yang sekarang, bodoh!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "Anda tidak dapat melaporkan diri Anda sendiri!",
     ],
 ];

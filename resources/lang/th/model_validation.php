@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => '',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'สามารถเฉพาะโหวตขอลักษณะพิเศษอันเดียวเท่านั้น',
@@ -64,10 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'ไม่อนุญาตให้ลบโพสต์ beatmap metadata',
             'beatmapset_post_no_edit' => 'ไม่อนุญาตให้ดัดแปลงโพสต์ beatmap metadata',
+            'only_quote' => '',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'ตัวเลือกซ้ำกันไม่อนุญาต',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'คัวเลือกต่อคนต้องไม่เกินจำนวนตัวเลือกที่ใช้ได้',
             'minimum_one_selection' => 'ต้องการขั้นต่ำหนึ่งตัวเลือกต่อผู้เล่น',
             'minimum_two_options' => 'ต้องการอย่างน้อยสองตัวเลือก',
@@ -92,6 +98,7 @@ return [
         'username_available_soon' => 'ชื่อผู้ใช้นี้สามารถใช้งานได้ในอีกไม่นาที',
         'username_invalid_characters' => 'ชื่อผู้ใช้นี้ประกอบไปด้วยตัวอักขระที่ไม่ถูกต้อง',
         'username_in_use' => 'ชื่อผู้ใช้กำลังนี้ถูกใช้อยู่',
+        'username_locked' => '', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'กรุณาใช้ขีดใต้หรือช่องว่างอย่างใดอย่างนึง ไม่ใช่ทั้งสองอัน!',
         'username_no_spaces' => "ชื่อผู้ใช้ไม่สามารถเริ่มต้นหรือจบด้วยช่องว่าง",
         'username_not_allowed' => 'ไม่อนุญาตให้ใช้ชื่อนี้',
@@ -110,5 +117,9 @@ return [
             ],
             'username_is_same' => 'นี่คือชื่อผู้ใช้ของคุณอยู่แล้ว โง่',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

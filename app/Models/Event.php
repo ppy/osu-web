@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,20 @@ namespace App\Models;
 use Carbon\Carbon;
 use Sentry;
 
+/**
+ * @property Beatmap $beatmap
+ * @property int|null $beatmap_id
+ * @property Beatmapset $beatmapset
+ * @property int|null $beatmapset_id
+ * @property \Carbon\Carbon $date
+ * @property int $epicfactor
+ * @property int $event_id
+ * @property int $private
+ * @property string $text
+ * @property string|null $text_clean
+ * @property User $user
+ * @property int|null $user_id
+ */
 class Event extends Model
 {
     public $parsed = false;
@@ -203,16 +217,22 @@ class Event extends Model
     public function stringMode($mode)
     {
         switch ($mode) {
-            case 'osu!mania': return 'mania';
-            case 'Taiko': return 'taiko';
-            case 'osu!': return 'osu';
-            case 'Catch the Beat': return 'fruits';
+            case 'osu!mania':
+                return 'mania';
+            case 'Taiko':
+            case 'osu!taiko':
+                return 'taiko';
+            case 'osu!':
+                return 'osu';
+            case 'Catch the Beat':
+            case 'osu!catch':
+                return 'fruits';
         }
     }
 
-    public function parseFailure()
+    public function parseFailure($reason)
     {
-        Sentry::captureMessage('Failed parsing event', ['log'], [
+        Sentry::captureMessage("Failed parsing event: {$reason}", ['log'], [
             'extra' => [
                 'event' => $this->toArray(),
             ],
@@ -225,7 +245,7 @@ class Event extends Model
     {
         $achievement = Achievement::where(['name' => $matches['achievementName']])->first();
         if ($achievement === null) {
-            return $this->parseFailure();
+            return $this->parseFailure("unknown achievement ({$matches['achievementName']})");
         }
 
         return [
@@ -298,7 +318,7 @@ class Event extends Model
     {
         $mode = $this->stringMode($matches['mode']);
         if ($mode === null) {
-            return $this->parseFailure();
+            return $this->parseFailure("unknown mode ({$matches['mode']})");
         }
 
         return [
@@ -314,7 +334,7 @@ class Event extends Model
     {
         $mode = $this->stringMode($matches['mode']);
         if ($mode === null) {
-            return $this->parseFailure();
+            return $this->parseFailure("unknown mode ({$matches['mode']})");
         }
 
         return [
@@ -371,7 +391,7 @@ class Event extends Model
             }
 
             if ($this->details === null) {
-                $this->details = $this->parseFailure($matches);
+                $this->details = $this->parseFailure('no matching pattern');
             }
 
             $this->parsed = true;

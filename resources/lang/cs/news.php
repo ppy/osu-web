@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'výpis',
-        'news-show' => 'příspěvek',
-    ],
-
     'index' => [
-        'title' => 'osu!news',
+        'title_page' => 'osu!novinky',
 
         'nav' => [
             'newer' => 'Novější příspěvky',
             'older' => 'Starší příspěvky',
         ],
+
+        'title' => [
+            '_' => 'Novinky » :info',
+            'info' => 'Hlávní stránka',
+        ],
     ],
 
     'show' => [
-        'posted' => 'přidáno :time',
+        'by' => 'od :user',
 
         'nav' => [
             'newer' => 'Novější příspěvek',
             'older' => 'Starší příspěvek',
+        ],
+
+        'title' => [
+            '_' => 'Novinky » :info',
+            'info' => 'Článek',
         ],
     ],
 

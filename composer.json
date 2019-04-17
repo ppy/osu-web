@@ -21,15 +21,15 @@
     "elasticsearch/elasticsearch": "~6.0",
     "ezyang/htmlpurifier": "*",
     "graham-campbell/github": "*",
-    "graham-campbell/markdown": "*",
     "guzzlehttp/guzzle": "*",
     "itsgoingd/clockwork": ">=3.0",
     "jenssegers/agent": "^2.6",
+    "jonnybarnes/commonmark-linkify": "dev-master",
     "laravel/framework": "5.5.*",
     "laravel/passport": "*",
     "laravel/tinker": "~1.0",
     "laravelcollective/html": "5.5.*",
-    "league/commonmark": "0.16.*",
+    "league/commonmark": ">=0.16.0",
     "league/flysystem-aws-s3-v3": "^1.0",
     "league/fractal": "*",
     "league/html-to-markdown": "^4.7",
@@ -39,12 +39,14 @@
     "paypal/rest-api-sdk-php": "*",
     "sentry/sentry-laravel": "*",
     "symfony/yaml": "*",
-    "webuni/commonmark-table-extension": "*",
+    "webuni/commonmark-table-extension": ">=0.8.0",
     "xsolla/xsolla-sdk-php": "*"
   },
   "require-dev": {
+    "beyondcode/laravel-query-detector": "^1.0",
     "filp/whoops": "~2.0",
     "fzaninotto/faker": "~1.4",
+    "laravel/dusk": "^2.0",
     "mockery/mockery": "~1.0",
     "phpunit/phpunit": "~6.0",
     "symfony/css-selector": "*",
@@ -64,7 +66,10 @@
   "autoload-dev": {
     "classmap": [
       "tests/TestCase.php"
-    ]
+    ],
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
   },
   "scripts": {
     "post-root-package-install": [

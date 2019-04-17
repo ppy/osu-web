@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Sắp xếp bởi:',
-            'created_at' => 'thời gian tạo',
-            'timeline' => 'mốc thời gian',
-            'updated_at' => 'cập nhật gần đây',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Xóa',
+        'delete_own_confirm' => 'Bạn có chắc không? Beatmap sẽ bị xóa và bạn sẽ được chuyển hướng quay lại trang cá nhân của bạn.',
+        'delete_other_confirm' => 'Bạn có chắc không? Beatmap sẽ bị xóa và bạn sẽ được chuyển hướng quay trở lại trang cá nhân của người dùng.',
         'disqualification_prompt' => 'Lí do để qualify?',
         'disqualified_at' => 'Disqualified :time_ago (:reason).',
         'disqualified_no_reason' => 'không đưa ra lí do',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Bạn chắc không? Đăng một vấn đề mới sẽ thiết lập lại quá trình đề cử (nomination).',
+            'disqualify' => 'Bạn chắc không? Việc này sẽ loại bỏ beatmap khỏi qualify và thiết lập lại quá trình đề cử.',
         ],
     ],
 
@@ -190,15 +194,16 @@ return [
                 'played' => 'Đã chơi',
             ],
             'sorting' => [
-                'title' => 'tiêu đề',
-                'artist' => 'nghệ sĩ',
-                'difficulty' => 'độ khó',
-                'updated' => 'ngày cập nhật',
-                'ranked' => 'ngày xếp hạng',
-                'rating' => 'đánh giá',
-                'plays' => 'lượt chơi',
-                'relevance' => 'độ liên quan',
-                'nominations' => 'số đề cử',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'favourites' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Lọc theo :filters cần một :link đang hoạt động',
@@ -297,5 +302,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

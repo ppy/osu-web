@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => 'grupos',
             'index' => 'panel',
             'legal-show' => 'información',
+            'messages-index' => 'mensajes',
             'news-index' => 'noticias',
             'news-show' => 'noticias',
             'password-reset-index' => 'reestablecer contraseña',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'comunidad',
+            'chat' => 'chat',
+            'chat-index' => 'chat',
             'dev' => 'desarrollo',
             'getForum' => 'foros',
-            'getChat' => 'chat',
             'getLive' => 'en vivo',
+            'comments-index' => 'comentarios',
+            'comments-show' => 'comentario',
             'contests' => 'concursos',
             'profile' => 'perfil',
             'tournaments' => 'torneos',
@@ -114,16 +118,18 @@ return [
             'reset' => 'recuperar',
             'new' => 'nuevo',
 
-            'messages' => 'Mensajes',
-            'settings' => 'Ajustes',
-            'logout' => 'Cerrar sesión',
             'help' => 'Ayuda',
+            'logout' => 'Cerrar sesión',
+            'messages' => 'Mensajes',
             'modding-history-discussions' => 'discusiones sobre modding',
             'modding-history-events' => 'eventos sobre modding',
             'modding-history-index' => 'historial de moddding del usuario',
             'modding-history-posts' => 'publicaciones de modding del usuario',
             'modding-history-votesGiven' => 'votos dados sobre modding del usuario',
             'modding-history-votesReceived' => 'votos recibidos sobre modding del usuario',
+            'oauth_login' => 'inicia sesión para oauth',
+            'oauth_request' => 'autorización oauth',
+            'settings' => 'Ajustes',
         ],
         'store' => [
             '_' => 'tienda',
@@ -133,6 +139,7 @@ return [
 
             'getCheckout' => 'caja',
             'getInvoice' => 'factura',
+            'orders-index' => 'historial de pedidos',
             'products-show' => 'producto',
 
             'new' => 'nuevo',

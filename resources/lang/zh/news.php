@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => '列表',
-        'news-show' => '新闻',
-    ],
-
     'index' => [
-        'title' => 'osu!新闻',
+        'title_page' => 'osu! 新闻',
 
         'nav' => [
             'newer' => '下一条新闻',
             'older' => '上一条新闻',
         ],
+
+        'title' => [
+            '_' => '新闻：:info',
+            'info' => '首页',
+        ],
     ],
 
     'show' => [
-        'posted' => ':time 推送',
+        'by' => '作者：:user',
 
         'nav' => [
             'newer' => '下一条新闻',
             'older' => '上一条新闻',
+        ],
+
+        'title' => [
+            '_' => '新闻：:info',
+            'info' => '发表',
         ],
     ],
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,6 +24,7 @@ return [
         'online' => 'Jelenleg <strong>:players</strong> játszik <strong>:games</strong> játékban',
         'peak' => 'Csúcsfokon, :count játékos volt elérhető',
         'players' => '<strong>:count</strong> regisztrált játékos',
+        'title' => 'üdv',
 
         'slogan' => [
             'main' => 'a legeslegjobb ingyen játszható ritmusjáték',
@@ -32,7 +33,7 @@ return [
     ],
 
     'search' => [
-        'advanced_link' => 'Összetett kereső',
+        'advanced_link' => 'Részletes keresés',
         'button' => 'Keresés',
         'empty_result' => 'Nincs találat!',
         'missing_query' => 'Minimum :n karatkerrel keress',
@@ -82,7 +83,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => "kezdjük<br>el!",
+        'tagline' => "vágjunk<br>bele!",
         'action' => 'osu! letöltése',
         'os' => [
             'windows' => 'Windows rendszerre',
@@ -94,21 +95,21 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'hozz létre fiókot',
-                'description' => 'kövesse az utasításokat, amikor kezdődik a játék belépéshez vagy regisztráláshoz',
+                'description' => 'kövesd a játék indításakor felugró utasításokat belépéshez vagy regisztráláshoz',
             ],
             'download' => [
-                'title' => 'Játék letöltése',
-                'description' => 'nyomja meg a gombot a telepítő letöltéséhez, majd indítsa el!',
+                'title' => 'játék letöltése',
+                'description' => 'nyomd meg a fenti gombot a telepítő letöltéséhez, majd indítsd el!',
             ],
             'beatmaps' => [
                 'title' => 'beatmap-ek beszerzése',
                 'description' => [
-                    '_' => ':browse a beatmap lista hatalmas ajánlatából és kezdj játszani!',
-                    'browse' => 'tallóz',
+                    '_' => ':browse felhasználók által létrehozott hatalmas beatmap könyvtárban és kezd játszani!',
+                    'browse' => 'böngéssz',
                 ],
             ],
         ],
-        'video-guide' => 'segitő videó',
+        'video-guide' => 'videó útmutató',
     ],
 
     'user' => [
@@ -128,25 +129,25 @@ return [
         ],
         'beatmaps' => [
             'new' => 'Új Rangsorolt Beatmap-ek',
-            'popular' => 'Felkapott beatmapek',
-            'by' => ':user által',
+            'popular' => 'Népszerű beatmap-ek',
+            'by' => 'által',
             'plays' => 'játszva :count alkalommal',
         ],
         'buttons' => [
             'download' => 'osu! letöltése',
             'support' => 'osu! támogatása',
-            'store' => 'osu!store',
+            'store' => 'osu!bolt',
         ],
     ],
 
     'support-osu' => [
-        'title' => 'Wow!',
+        'title' => 'Hűha!',
         'subtitle' => 'Úgy néz ki nagyon jól szórakozol! :D',
         'body' => [
-            'part-1' => 'Tudtad-e, hogy az osu! reklámok nélkül van fenntartva, és teljesen a játékosok támogatásán alapul a fejlesztés és a futtatási költség?',
-            'part-2' => 'Tudtad-e, hogy az osu! támogatásával olyan hasznos dolgokat kapsz mint például a <strong>játékon belüli letöltés</strong> ami autómatikusan dolgozni kezd nező módban és multiplayer játékokban?',
+            'part-1' => 'Tudtad, hogy az osu! reklámok nélkül van fenntartva, és teljesen a játékosi támogatásra hagyatkozik a fenntartási és fejlesztési költségekhez?',
+            'part-2' => 'És azt tudtad, hogy az osu! támogatásával egy rakás hasznos funkciót kapsz, mint például a <strong>játékon belüli letöltés</strong> ami automatikusan életbe lép megfigyelőként és többjátékos módban?',
         ],
-        'find-out-more' => 'Kattints ide, hogy többet megtudj!',
-        'download-starting' => "Oh, ne aggódj - a letöltésed már elindult ;)",
+        'find-out-more' => 'További információért kattints ide!',
+        'download-starting' => "Oh, és ne aggódj - a letöltésedet már elindítottuk ;)",
     ],
 ];

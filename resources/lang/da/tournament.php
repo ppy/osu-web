@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -39,7 +39,7 @@ return [
     ],
 
     'show' => [
-        'banner' => '',
+        'banner' => 'Support dit hold',
         'entered' => 'Du er nu tilmeldt turneringen.<br><br>Vær opmærksom på, at dette ikke betyder, at du skal være tilmeldt et hold..<br><br>Mere info vil blive sendt til dig på din email-adresse, så vær venligst sikker på, at din kontos email-adresse er gyldig!',
         'info_page' => 'Informationsside',
         'login_to_register' => 'Vær venlig at :login for at se tilmeldingsinformation!',
@@ -56,7 +56,7 @@ return [
             'before_registration' => 'Registrering til denne turnering er ikke åbnet endnu.',
             'ended' => 'Denne turnering er konkluderet. Tjek informationssiden for resultater.',
             'registration_closed' => 'Registrering til denne turnering er lukket. Tjek informationssiden for seneste opdateringer.',
-            'running' => '',
+            'running' => 'Denne turnering er i øjeblikket i gang. Tjek informationssiden for flere detaljer.',
         ],
     ],
     'tournament_period' => ':start til :end',

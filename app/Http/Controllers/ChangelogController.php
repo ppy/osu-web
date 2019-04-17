@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -127,13 +127,13 @@ class ChangelogController extends Controller
         $buildJson = json_item($build, 'Build', [
             'changelog_entries', 'changelog_entries.github_user', 'versions',
         ]);
-        $commentBundle = new CommentBundle($build);
+        $commentBundle = CommentBundle::forEmbed($build);
 
         $chartConfig = Cache::remember(
-            "chart_config_{$build['update_stream']['id']}",
+            "chart_config:v2:{$build->updateStream->getKey()}",
             config('osu.changelog.build_history_interval'),
             function () use ($build) {
-                return $this->chartConfig($build['update_stream']);
+                return $this->chartConfig($build->updateStream);
             });
 
         return view('changelog.build', compact('build', 'buildJson', 'chartConfig', 'commentBundle'));
@@ -157,7 +157,7 @@ class ChangelogController extends Controller
 
     private function chartConfig($stream)
     {
-        $history = BuildPropagationHistory::changelog($stream['id'] ?? null, config('osu.changelog.chart_days'))->get();
+        $history = BuildPropagationHistory::changelog(optional($stream)->getKey(), config('osu.changelog.chart_days'))->get();
 
         if ($stream === null) {
             $chartOrder = array_map(function ($b) {
@@ -165,7 +165,7 @@ class ChangelogController extends Controller
             }, $this->updateStreams);
         } else {
             $chartOrder = $this->buildChartOrder($history);
-            $streamName = kebab_case($stream['display_name']);
+            $streamName = kebab_case($stream->pretty_name);
         }
 
         return [

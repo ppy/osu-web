@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -50,6 +50,11 @@ function beatmap_timestamp_format($ms)
     $s = $s % 60;
 
     return sprintf('%02d:%02d.%03d', $m, $s, $ms);
+}
+
+function broadcast_notification(...$arguments)
+{
+    return (new App\Jobs\BroadcastNotification(...$arguments))->dispatch();
 }
 
 /**
@@ -205,14 +210,6 @@ function get_valid_locale($requestedLocale)
     if (in_array($requestedLocale, config('app.available_locales'), true)) {
         return $requestedLocale;
     }
-
-    return array_first(
-        config('app.available_locales'),
-        function ($value) use ($requestedLocale) {
-            return starts_with($requestedLocale, $value);
-        },
-        config('app.fallback_locale')
-    );
 }
 
 function html_entity_decode_better($string)
@@ -255,19 +252,11 @@ function locale_name($locale)
 function locale_for_moment($locale)
 {
     if ($locale === 'en') {
-        return;
+        return 'en-gb';
     }
 
     if ($locale === 'zh') {
         return 'zh-cn';
-    }
-
-    if ($locale === 'zh-hk') {
-        return 'zh-hk';
-    }
-
-    if ($locale === 'zh-tw') {
-        return 'zh-tw';
     }
 
     return $locale;
@@ -293,6 +282,19 @@ function log_error($exception)
     if (config('sentry.dsn')) {
         Sentry::captureException($exception);
     }
+}
+
+function markdown($input, $preset = 'default')
+{
+    static $converter;
+
+    App\Libraries\Markdown\OsuMarkdown::PRESETS[$preset] ?? $preset = 'default';
+
+    if (!isset($converter[$preset])) {
+        $converter[$preset] = new App\Libraries\Markdown\OsuMarkdown($preset);
+    }
+
+    return $converter[$preset]->load($input)->html();
 }
 
 function mysql_escape_like($string)
@@ -427,6 +429,14 @@ function to_sentence($array, $key = 'common.array_and')
     }
 }
 
+// Handles case where crowdin fills in untranslated key with empty string.
+function trans_exists($key, $locale)
+{
+    $translated = app('translator')->get($key, [], $locale, false);
+
+    return present($translated) && $translated !== $key;
+}
+
 function obscure_email($email)
 {
     $email = explode('@', $email);
@@ -461,7 +471,7 @@ function currency($price, $precision = 2, $zeroShowFree = true)
         return 'free!';
     }
 
-    return 'US$'.number_format($price, $precision);
+    return 'US$'.i18n_number_format($price, null, null, $precision);
 }
 
 /**
@@ -495,7 +505,7 @@ function i18n_view($view)
 
 function is_api_request()
 {
-    return Request::is('api/*');
+    return request()->is('api/*');
 }
 
 function is_sql_unique_exception($ex)
@@ -555,7 +565,9 @@ function link_to_user($user_id, $user_name = null, $user_color = null)
     $style = user_color_style($user_color, 'color');
 
     if ($user_id) {
-        $user_url = e(route('users.show', $user_id));
+        // FIXME: remove `rawurlencode` workaround when fixed upstream.
+        // Reference: https://github.com/laravel/framework/issues/26715
+        $user_url = e(route('users.show', rawurlencode($user_id)));
 
         return "<a class='user-name js-usercard' data-user-id='{$user_id}' href='{$user_url}' style='{$style}'>{$user_name}</a>";
     } else {
@@ -594,7 +606,9 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 
 function wiki_url($page = 'Welcome', $locale = null)
 {
-    $params = compact('page');
+    // FIXME: remove `rawurlencode` workaround when fixed upstream.
+    // Reference: https://github.com/laravel/framework/issues/26715
+    $params = ['page' => str_replace('%2F', '/', rawurlencode($page))];
 
     if (present($locale) && $locale !== App::getLocale()) {
         $params['locale'] = $locale;
@@ -626,7 +640,7 @@ function proxy_image($url)
 
     $decoded = urldecode(html_entity_decode_better($url));
 
-    if (config('osu.camo.key') === '') {
+    if (config('osu.camo.key') === null) {
         return $decoded;
     }
 
@@ -674,6 +688,7 @@ function nav_links()
     ];
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
+        'chat' => route('chat.index'),
         'contests' => route('contests.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('livestreams.index'),
@@ -688,7 +703,7 @@ function nav_links()
         'getWiki' => wiki_url('Welcome'),
         'getFaq' => wiki_url('FAQ'),
         'getRules' => wiki_url('Rules'),
-        'getSupport' => wiki_url('Help_Center'),
+        'getSupport' => wiki_url('Help_Centre'),
     ];
 
     return $links;
@@ -792,6 +807,21 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null
     }
 
     return $formatter->format($datetime);
+}
+
+function i18n_number_format($number, $style = null, $pattern = null, $precision = null, $locale = null)
+{
+    $formatter = NumberFormatter::create(
+        $locale ?? App::getLocale(),
+        $style ?? NumberFormatter::DEFAULT_STYLE,
+        $pattern
+    );
+
+    if ($precision !== null) {
+        $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, $precision);
+    }
+
+    return $formatter->format($number);
 }
 
 function i18n_time($datetime, $format = IntlDateFormatter::LONG)
@@ -1043,16 +1073,18 @@ function get_params($input, $namespace, $keys)
 
     $params = [];
 
-    foreach ($keys as $keyAndType) {
-        $keyAndType = explode(':', $keyAndType);
+    if (is_array($input)) {
+        foreach ($keys as $keyAndType) {
+            $keyAndType = explode(':', $keyAndType);
 
-        $key = $keyAndType[0];
-        $type = $keyAndType[1] ?? null;
+            $key = $keyAndType[0];
+            $type = $keyAndType[1] ?? null;
 
-        if (array_has($input, $key)) {
-            $value = get_param_value(array_get($input, $key), $type);
+            if (array_has($input, $key)) {
+                $value = get_param_value(array_get($input, $key), $type);
 
-            array_set($params, $key, $value);
+                array_set($params, $key, $value);
+            }
         }
     }
 
@@ -1119,7 +1151,11 @@ function parse_time_to_carbon($value)
     }
 
     if (is_string($value)) {
-        return Carbon\Carbon::parse($value);
+        try {
+            return Carbon\Carbon::parse($value);
+        } catch (Exception $_e) {
+            return;
+        }
     }
 
     if ($value instanceof Carbon\Carbon) {
@@ -1219,14 +1255,15 @@ function suffixed_number_format($number)
 
 function suffixed_number_format_tag($number)
 {
-    return "<span title='".number_format($number)."'>".suffixed_number_format($number).'</span>';
+    return "<span title='".i18n_number_format($number)."'>".suffixed_number_format($number).'</span>';
 }
 
 // formats a number as a percentage with a fixed number of precision
 // e.g.: 98.3 -> 98.30%
 function format_percentage($number, $precision = 2)
 {
-    return sprintf("%.{$precision}f%%", round($number, $precision));
+    // the formatter assumes decimal number while the function receives percentage number.
+    return i18n_number_format($number / 100, NumberFormatter::PERCENT, null, $precision);
 }
 
 function group_users_by_online_state($users)

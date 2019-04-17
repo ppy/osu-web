@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,8 +26,15 @@ return [
     'voting' => [
         'over' => 'Η ψηφοφορία για αυτόν τον διαγωνισμό έχει λήξει',
         'login_required' => 'Παρακαλώ συνδεθείτε για να ψηφίσετε.',
+
         'best_of' => [
             'none_played' => "Φαίνεται ότι δεν έχετε παίξει κάποιο beatmap που πληροί τα κριτήρια για αυτόν τον διαγωνισμό!",
+        ],
+
+        'button' => [
+            'add' => 'Ψηφίστε',
+            'remove' => 'Αφαίρεση ψήφου',
+            'used_up' => 'Έχετε χρησιμοποιήσει όλες σας τις ψήφους',
         ],
     ],
     'entry' => [
@@ -38,6 +45,7 @@ return [
         'over' => 'Σας ευχαριστούμε για τις καταχωρήσεις σας! Οι υποβολές έχουν κλείσει για αυτόν τον διαγωνισμό και η ψηφοφορία θα ανοίξει σύντομα.',
         'limit_reached' => 'Έχετε φτάσει το όριο καταχωρήσεων για αυτόν τον διαγωνισμό',
         'drop_here' => 'Αφήστε την καταχώρησή σας εδώ',
+        'download' => 'Λήψη .osz',
         'wrong_type' => [
             'art' => 'Μόνο .jpg και .png αρχεία είναι αποδεκτά για αυτόν τον διαγωνισμό.',
             'beatmap' => 'Μόνο .osu αρχεία είναι αποδεκτά για αυτόν τον διαγωνισμό.',
@@ -50,7 +58,8 @@ return [
     ],
     'vote' => [
         'list' => 'ψήφοι',
-        'count' => '1 ψήφος|:count ψήφοι',
+        'count' => ':count ψήφος|:count ψήφοι',
+        'points' => ':count πόντος|:count πόντοι',
     ],
     'dates' => [
         'ended' => 'Τελείωσε στις :date',

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,30 +25,34 @@ return [
     'wrong_confirmation' => 'A megerősítés nem egyezik.',
 
     'beatmap_discussion_post' => [
-        'discussion_locked' => 'A megbeszélés zárt.',
+        'discussion_locked' => 'A megbeszélés zárolva van.',
         'first_post' => 'Nem lehet a kezdő posztot törölni.',
     ],
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Időbélyeg meg van adva, de a beatmap hiányzik.',
-        'beatmapset_no_hype' => "Beatmap-eket nem lehet népszerűsíteni.",
-        'hype_requires_null_beatmap' => 'A népszerűsítés az Általános (összes nehézség) részlegen végzendő.',
-        'invalid_beatmap_id' => 'Érvénytelen nehézség van megadva.',
-        'invalid_beatmapset_id' => 'Érvénytelen beatmap van megadva.',
-        'locked' => 'A megbeszélés zárva van.',
+        'beatmapset_no_hype' => "A beatmap-et nem lehet hype-olni.",
+        'hype_requires_null_beatmap' => 'A Hype-olás az Általános (összes nehézség) szekcióban végzendő.',
+        'invalid_beatmap_id' => 'Érvénytelen nehézség lett megadva.',
+        'invalid_beatmapset_id' => 'Érvénytelen beatmap lett megadva.',
+        'locked' => 'A megbeszélés zárolva van.',
 
         'hype' => [
-            'guest' => 'A népszerűsítéshez be kell lépned.',
-            'hyped' => 'Már népszerűsítetted ezt a beatmap-et.',
-            'limit_exceeded' => 'Az összes népszerűsítési esélyed elhasználtad.',
-            'not_hypeable' => 'Ez beatmap nem lehet népszerűsítve',
-            'owner' => 'Saját beatmap-ed nem lehet népszerűsíteni.',
+            'guest' => 'A hype-oláshoz bejelentkezve kell lenned.',
+            'hyped' => 'Már hype-oltad ezt a beatmap-et.',
+            'limit_exceeded' => 'Az összes hype-odat elhasználtad.',
+            'not_hypeable' => 'Ezt a beatmap-et nem lehet hype-olni',
+            'owner' => 'Saját beatmap-et nem lehet hype-olni.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Megadott időbélyeg későbbi mint a beatmap hossza.',
+            'exceeds_beatmapset_length' => 'A megadott időbélyeg későbbi mint a beatmap hossza.',
             'negative' => "Időbélyeg nem lehet negatív.",
         ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => 'Törölt hozzászólásokra nem lehet válaszolni.',
     ],
 
     'forum' => [
@@ -64,10 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Beatmap metaadat törlése nem engedélyezett.',
             'beatmapset_post_no_edit' => 'Beatmap metaadat poszt szerkesztése nem engedélyezett.',
+            'only_quote' => 'A válaszod csak egy idézetet tartalmaz.',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Duplikálás nem engedélyezett.',
+            'grace_period_expired' => 'Nem lehet szerkeszteni a szavazást több mint :limit óra után',
             'invalid_max_options' => 'Felhasználónkénti opciók száma nem haladhatja meg az elérhető opciók mennyiségét.',
             'minimum_one_selection' => 'Minimum egy opció kell felhasználónként.',
             'minimum_two_options' => 'Legalább 2 választási lehetőség kell.',
@@ -92,13 +98,14 @@ return [
         'username_available_soon' => 'Ez a felhasználónév bármelyik pillanatban elérhető lehet!',
         'username_invalid_characters' => 'A kért felhasználónév nem felhasználható karaktereket tartalmaz.',
         'username_in_use' => 'Foglalt felhasználónév!',
+        'username_locked' => 'A név már használatban van!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Vagy alsóvonalat használj, vagy space gomb lenyomásával üres teret, nem menő mind a kettő!',
         'username_no_spaces' => "A felhasználóneved nem kezdődhet és nem is végződhet üres hellyel!",
         'username_not_allowed' => 'Ez a felhasználónév nem engedett.',
-        'username_too_short' => 'Felhasználónév túl rövid.',
-        'username_too_long' => 'Túl hosszú felhasználónév.',
+        'username_too_short' => 'A kért felhasználónév túl rövid.',
+        'username_too_long' => 'A kért felhasználónév túl hosszú.',
         'weak' => 'Feketelistás jelszó.',
-        'wrong_current_password' => 'Helytelen jelszó.',
+        'wrong_current_password' => 'A jelenlegi jelszó nem megfelelő.',
         'wrong_email_confirmation' => 'Email megerősítés nem egyezik.',
         'wrong_password_confirmation' => 'Jelszó megerősítés nem egyezik.',
         'too_long' => 'Elérted a maximum hosszúságot - maximum :limit karaktert használhatsz.',
@@ -110,5 +117,9 @@ return [
             ],
             'username_is_same' => 'Már ez a felhasználóneved te butus!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "Nem jelentheted magadat!",
     ],
 ];

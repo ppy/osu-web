@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,7 +26,7 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Olet saavuttanut suosittelurajan tälle päivälle, yritä huomenna uudelleen.',
-            'incorrect_state' => 'Virhe toiminnon suorittamisessa, kokeile päivittää sivu.',
+            'incorrect_state' => 'Virhe toimintoa suorittaessa, kokeile sivun päivittämistä.',
             'owner' => "Omaa beatmappia ei voi suositella.",
         ],
         'resolve' => [
@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => '',
+            'mapper_note_wrong_user' => 'Ainoastaan beatmapin omistaja, suosittelija tai QAT-ryhmän jäsen voi lisätä muistiinpanoja.',
         ],
 
         'vote' => [
@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Pääsy kohdekanavalle ei ole sallittu.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Pääsy kohdekanavaan vaaditaan.',
-                    'moderated' => 'Kanava on tällä hetkellä valvotussa tilassa.',
-                    'not_lazer' => 'Voit puhua toistaiseksi vain #lazer kanavalla.',
-                ],
+        'blocked' => 'Et voi lähettää viestejä käyttäjälle, joka on estänyt sinut tai jonka olet estänyt.',
+        'friends_only' => 'Käyttäjä on estänyt viestit henkilöiltä, jotka eivät ole hänen kaverilistassaan.',
+        'moderated' => 'Tätä kanavaa moderoidaan.',
+        'no_access' => 'Sinulla ei ole oikeuksia tälle kanavalle.',
+        'restricted' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai bännättynä.',
+    ],
 
-                'not_allowed' => 'Viestiä ei voi lähettää porttikiellossa, rajoitetussa tilassa tai mykistettynä.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Poistettuja viestejä ei voi mukata.",
         ],
     ],
 
@@ -75,16 +70,20 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Sinulla ei ole oikeutta moderoida tätä foorumia.',
+        ],
+
         'post' => [
             'delete' => [
-                'only_last_post' => 'Vain viimeinen viesti voidaan poistaa.',
+                'only_last_post' => 'Vain viimeisin viesti voidaan poistaa.',
                 'locked' => 'Lukitun aiheen viestejä ei voi poistaa.',
                 'no_forum_access' => 'Pääsy kyseiselle foorumille vaaditaan.',
                 'not_owner' => 'Vain lähettäjä voi poistaa viestin.',
             ],
 
             'edit' => [
-                'deleted' => 'Poistettua viestiä ei voi muokata.',
+                'deleted' => 'Poistettuja viestejä ei voi muokata.',
                 'locked' => 'Viestin muokkaaminen on estetty.',
                 'no_forum_access' => 'Pääsy kyseiselle foorumille vaaditaan.',
                 'not_owner' => 'Vain lähettäjä voi muokata viestiä.',
@@ -102,7 +101,7 @@ return [
                 'double_post' => 'Muokkaa entistä postaustasi sen sijaan kun postaat uuden.',
                 'locked' => 'Et voi vastata lukittuun aiheeseen.',
                 'no_forum_access' => 'Pääsy kyseiselle foorumille vaaditaan.',
-                'no_permission' => 'Ei oikeutta vastata.',
+                'no_permission' => 'Ei vastausoikeutta.',
 
                 'user' => [
                     'require_login' => 'Kirjaudu sisään vastataksesi.',
@@ -120,7 +119,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'Pääsy kyseiselle foorumille vaaditaan.',
                 'over' => 'Äänestys on ohi eikä siinä voi enää äänestää.',
-                'voted' => 'Äänen muuttamista ei ole sallittu.',
+                'voted' => 'Äänen vaihtaminen ei ole sallittua.',
 
                 'user' => [
                     'require_login' => 'Kirjaudu sisään äänestääksesi.',
@@ -159,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'Käyttäjäsivu on lukittu.',
                 'not_owner' => 'Voit muokata vain omaa käyttäjäsivuasi.',
-                'require_supporter_tag' => 'osu!tukija tägi tarvitaan.',
+                'require_supporter_tag' => 'osu!supporter-tagi vaaditaan.',
             ],
         ],
     ],

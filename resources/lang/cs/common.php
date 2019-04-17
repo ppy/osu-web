@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => 'Admin',
+        'back_to_previous' => 'Zpátky na předchozí pozici',
+        'back_to_top' => 'Zpátky nahoru',
         'cancel' => 'Zrušit',
         'change' => 'změnit',
         'click_to_copy' => 'klikněte pro zkopírování do schránky',
         'click_to_copy_copied' => 'zkopírováno do schránky!',
+        'collapse' => 'zabalit',
         'delete' => 'Smazat',
+        'edit' => 'Upravit',
+        'expand' => 'rozbalit',
         'hide' => 'skrýt',
         'permalink' => 'trvalý odkaz',
         'permalink_copied' => 'odkaz zkopírován',
@@ -43,12 +49,14 @@ return [
         'reply_reopen' => 'Odpovědět a znovu otevřít',
         'reply_resolve' => 'Odpovědět a archivovat',
         'reset' => 'Resetovat',
+        'restore' => 'Obnovit',
         'save' => 'Uložit',
         'saving' => 'Ukládání...',
         'search' => 'Hledat',
         'see_more' => 'zobrazit více',
         'show' => 'zobrazit',
         'show_more' => 'zobrazit více',
+        'show_more_options' => 'zobrazit více možností',
         'upload_image' => 'nahrát obrázek',
     ],
 
@@ -59,9 +67,17 @@ return [
         'hours' => ':count hodina|:count hodin',
         'item' => ':count jednotka|:count jednotek',
         'minute_short_unit' => 'min',
+        'minutes' => ':count minuta|:count minuty|:count minut',
         'months' => ':count měsíc|:count měsíců',
         'second_short_unit' => 'sek',
         'years' => ':count rok|:count let',
+    ],
+
+    'countdown' => [
+        'days' => 'dnů',
+        'hours' => 'hodin',
+        'minutes' => 'minut',
+        'seconds' => 'sekund',
     ],
 
     'datetime' => [

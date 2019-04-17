@@ -10,7 +10,7 @@ class UsersControllerTest extends TestCase
      */
     public function testStore()
     {
-        $this->expectException(InvalidArgumentException::class);
+        config()->set('osu.user.allow_registration', true);
 
         $this
             ->json('POST', route('users.store'), [
@@ -28,9 +28,9 @@ class UsersControllerTest extends TestCase
 
     public function testStoreWithCountry()
     {
-        $this->expectException(InvalidArgumentException::class);
+        config()->set('osu.user.allow_registration', true);
 
-        $country = factory(Country::class)->create();
+        $country = Country::inRandomOrder()->first() ?? factory(Country::class)->create();
 
         $this
             ->json('POST', route('users.store'), [

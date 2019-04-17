@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,13 +16,14 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, a, time} = ReactDOMFactories
+import * as React from 'react'
+import { div, span, a, time } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'beatmapset-mapping'
 dateFormat = 'LL'
 
-class @BeatmapsetMapping extends React.PureComponent
+export class BeatmapsetMapping extends React.PureComponent
   render: =>
     user = @props.user ? @props.beatmapset.user
 

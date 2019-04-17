@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 return [
     'insufficient_stock' => 'Няма достатъчно останали бройки от този артикул!',
+    'must_separate' => 'Този артикул трябва да бъде платен отделно от другите продукти',
     'not_available' => 'Артикулът не е наличен.',
     'too_many' => 'Можете да поръчате само :count от този артикул.',
 ];

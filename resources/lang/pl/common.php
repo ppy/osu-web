@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => 'Administrator',
+        'back_to_previous' => 'Powrót do poprzedniej pozycji',
+        'back_to_top' => 'Powrót na górę',
         'cancel' => 'Anuluj',
         'change' => 'zmień',
         'click_to_copy' => 'kliknij, aby skopiować',
         'click_to_copy_copied' => 'skopiowano do schowka!',
+        'collapse' => 'zwiń',
         'delete' => 'Usuń',
+        'edit' => 'Edytuj',
+        'expand' => 'rozwiń',
         'hide' => 'ukryj',
         'permalink' => 'odnośnik bezpośredni',
         'permalink_copied' => 'odnośnik skopiowany',
@@ -43,25 +49,35 @@ return [
         'reply_reopen' => 'Odpowiedz i otwórz ponownie',
         'reply_resolve' => 'Odpowiedz i rozwiąż',
         'reset' => 'Zresetuj',
+        'restore' => 'Przywróć',
         'save' => 'Zapisz',
         'saving' => 'Zapisywanie...',
         'search' => 'Szukaj',
         'see_more' => 'zobacz więcej',
         'show' => 'pokaż',
         'show_more' => 'pokaż więcej',
+        'show_more_options' => 'pokaż więcej opcji',
         'upload_image' => 'prześlij zdjęcie',
     ],
 
     'count' => [
-        'badges' => ':count odznaka|:count odznaki|:count odznak',
-        'days' => ':count dzień|:count dni|:count dni',
+        'badges' => ':count_delimited odznaka|:count_delimited odznaki|:count_delimited odznak',
+        'days' => ':count_delimited dzień|:count_delimited dni|:count_delimited dni',
         'hour_short_unit' => 'godz.|godz.|godz.',
-        'hours' => ':count godzina|:count godziny|:count godzin',
-        'item' => ':count sztuka|:count sztuki|:count sztuk',
+        'hours' => ':count_delimited godzina|:count_delimited godziny|:count_delimited godzin',
+        'item' => ':count_delimited sztuka|:count_delimited sztuki|:count_delimited sztuk',
         'minute_short_unit' => 'min|min|min',
-        'months' => ':count miesiąc|:count miesiące|:count miesięcy',
+        'minutes' => ':count_delimited minuta|:count_delimited minuty|:count_delimited minut',
+        'months' => ':count_delimited miesiąc|:count_delimited miesiące|:count_delimited miesięcy',
         'second_short_unit' => 's|s|s',
-        'years' => ':count rok|:count lata|:count lat',
+        'years' => ':count_delimited rok|:count_delimited lata|:count_delimited lat',
+    ],
+
+    'countdown' => [
+        'days' => 'dni',
+        'hours' => 'godzin',
+        'minutes' => 'minut',
+        'seconds' => 'sekund',
     ],
 
     'datetime' => [
@@ -100,8 +116,8 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count dzień temu|:count dni temu|:count dni temu',
-        'hours_ago' => ':count godzinę temu|:count godziny temu|:count godzin temu',
+        'days_ago' => ':count_delimited dzień temu|:count_delimited dni temu|:count_delimited dni temu',
+        'hours_ago' => ':count_delimited godzinę temu|:count_delimited godziny temu|:count_delimited godzin temu',
         'now' => 'teraz',
         'remaining' => 'Pozostało',
     ],

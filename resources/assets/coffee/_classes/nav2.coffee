@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -18,13 +18,10 @@
 
 class @Nav2
   constructor: ->
-    @hiddenOnMenuAccess = document.getElementsByClassName('js-nav2--hidden-on-menu-access')
     @menuBg = document.getElementsByClassName('js-nav2--menu-bg')
 
-    addEventListener 'turbolinks:load', @setLoginBoxElements
     $.subscribe 'click-menu:current', @autoCenterPopup
-    $.subscribe 'menu:current', @adjustElementsVisibility
-    $(window).on 'throttled-resize, throttled-scroll', @stickLogin
+    $.subscribe 'menu:current', @showMenuBg
 
 
   autoCenterPopup: (_e, currentMenu) =>
@@ -49,7 +46,6 @@ class @Nav2
     $(window).on 'throttled-resize.nav2-center-popup', doCenter
     osu.pageChangeImmediate() if @loginBoxVisible()
     doCenter()
-    @stickLogin()
     currentPopup.querySelector('.js-nav2--autofocus')?.focus()
 
 
@@ -83,27 +79,11 @@ class @Nav2
     popup.style.transform = "translateX(#{finalLeft}px)"
 
 
-  adjustElementsVisibility: (_e, currentMenu) =>
-    shown = _.startsWith(currentMenu, 'nav2-menu-popup-')
-
-    Fade.toggle(item, !shown) for item in @hiddenOnMenuAccess
-    Fade.toggle @menuBg[0], shown
-
-
   loginBoxVisible: =>
     @currentMenu == 'nav2-login-box'
 
 
-  stickLogin: =>
-    return unless @loginBoxVisible()
+  showMenuBg: (_e, currentMenu) =>
+    shown = _.startsWith(currentMenu, 'nav2-menu-popup-')
 
-    @loginBox.style.position =
-      if @loginPopupReference.getBoundingClientRect().top < 0
-        'fixed'
-      else
-        ''
-
-
-  setLoginBoxElements: =>
-    @loginPopupReference = document.querySelector('.js-nav2--login-box-reference')
-    @loginBox = document.querySelector('.js-nav2--login-box')
+    Fade.toggle @menuBg[0], shown

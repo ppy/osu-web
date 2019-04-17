@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
 ###
 
 import { createElement as el, PureComponent } from 'react'
+import * as React from 'react'
 import { a } from 'react-dom-factories'
 import { SelectOptions } from 'select-options'
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => 'csoportok',
             'index' => 'áttekintés',
             'legal-show' => 'információ',
+            'messages-index' => 'üzenetek',
             'news-index' => 'újdonságok',
             'news-show' => 'újdonságok',
             'password-reset-index' => 'jelszó visszaállítása',
@@ -57,7 +58,7 @@ return [
             'beatmap_discussions-index' => 'beatmap viták',
             'beatmapset-watches-index' => 'modolási figyelőlista',
             'beatmapset_discussion_votes-index' => 'beatmap vita szavazatok',
-            'beatmapset_events-index' => 'beatmapszet események',
+            'beatmapset_events-index' => 'beatmapszett események',
             'index' => 'lista',
             'packs' => 'csomagok',
             'show' => 'információ',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'közösség',
+            'chat' => 'chat',
+            'chat-index' => 'chat',
             'dev' => 'fejlesztés',
             'getForum' => 'fórumok',
-            'getChat' => 'chat',
             'getLive' => 'élő',
+            'comments-index' => 'hozzászólások',
+            'comments-show' => 'hozzászólás',
             'contests' => 'versenyek',
             'profile' => 'profil',
             'tournaments' => 'versenyek',
@@ -114,16 +118,18 @@ return [
             'reset' => 'visszaállitás',
             'new' => 'új',
 
-            'messages' => 'Üzenetek',
-            'settings' => 'Beállitások',
-            'logout' => 'Kilépés',
             'help' => 'Súgó',
+            'logout' => 'Kijelentkezés',
+            'messages' => 'Üzenetek',
             'modding-history-discussions' => 'felhasználói modoló megbeszélések',
             'modding-history-events' => 'felhasználói modoló események',
             'modding-history-index' => 'felhasználói modoló előzmények',
             'modding-history-posts' => 'felhasználói modoló előzmények',
             'modding-history-votesGiven' => 'felhasználói modoló szavazat adva',
             'modding-history-votesReceived' => 'felhasználói modoló szavazat kapva',
+            'oauth_login' => 'jelentkezz be az oauth-ért',
+            'oauth_request' => 'oauth felhatalmazás',
+            'settings' => 'Beállitások',
         ],
         'store' => [
             '_' => 'áruház',
@@ -133,6 +139,7 @@ return [
 
             'getCheckout' => 'fizetés',
             'getInvoice' => 'számla',
+            'orders-index' => 'rendelési előzmények',
             'products-show' => 'termék',
 
             'new' => 'új',
@@ -166,8 +173,8 @@ return [
         'general' => [
             '_' => 'Általános',
             'home' => 'Főoldal',
-            'changelog-index' => 'Változások listája',
-            'beatmaps' => 'Beatmap lista',
+            'changelog-index' => 'Változtatások',
+            'beatmaps' => 'Beatmap Lista',
             'download' => 'osu! letöltése',
             'wiki' => 'Wiki',
         ],
@@ -179,7 +186,7 @@ return [
             'report' => 'Hiba Jelentése',
         ],
         'legal' => [
-            '_' => 'Jogok és állapot',
+            '_' => 'Jogok és Állapot',
             'copyright' => 'Szerzői jog (DMCA)',
             'privacy' => 'Adatvédelem',
             'server_status' => 'Szerver Állapot',
@@ -191,7 +198,7 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Hiányzó Oldal',
-            'description' => "Bocsánat, de az oldal, amit kértél nincs itt!",
+            'description' => "Bocsi, de a kért oldal nem itt van!",
         ],
         '403' => [
             'error' => "Nem kellene itt lenned.",
@@ -203,26 +210,26 @@ return [
         ],
         '405' => [
             'error' => 'Hiányzó Oldal',
-            'description' => "Bocsánat, de az oldal, amit kértél nincs itt!",
+            'description' => "Bocsi, de a kért oldal nem itt van!",
         ],
         '500' => [
-            'error' => 'Oh ne! Valami összetört! ;_;',
+            'error' => 'Jaj ne! Valami elromlott! ;_;',
             'description' => "Automatikusan értesítve vagyunk minden hibáról.",
         ],
         'fatal' => [
-            'error' => 'Jaj ne! Valami összetört (martined)! ;_;',
+            'error' => 'Jaj ne! Valami (nagyon) elromlott! ;_;',
             'description' => "Automatikusan értesítve vagyunk minden hibáról.",
         ],
         '503' => [
-            'error' => 'Karbantartás miatt leállitva!',
-            'description' => "A karbantartás általában 5 másodperc és akár 10 perc is lehet. Ha bármi esetben tovább tartana , lásd :link linket bővebb információért.",
+            'error' => 'Karbantartás miatt szünetel!',
+            'description' => "A karbantartás általában 5 másodperc és 10 perc közötti időt vesz igénybe. Ha esetleg tovább tartana, lásd :link bővebb információért.",
             'link' => [
                 'text' => '',
                 'href' => '',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "Mindenesetre, itt egy kód amit a supportnak tudsz adni!",
+        'reference' => "Mindenesetre itt egy kód amit az ügyfélszolgálatnak tudsz adni!",
     ],
 
     'popup_login' => [
@@ -239,7 +246,7 @@ return [
         ],
 
         'register' => [
-            'info' => "Uram, önnek kell egy fiók. Nem is értem miért nem rendelkezik még egyel?",
+            'info' => "Önnek szüksége van egy fiókra uram. Miért nem rendelkezik még egyel?",
             'title' => "Nincs még fiókod?",
         ],
     ],

@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -18,50 +18,62 @@
 
 class @Gallery
   constructor: ->
-    @pswp = document.getElementsByClassName('pswp')
+    @container = document.getElementsByClassName('pswp')
 
     $(document).on 'click', '.js-gallery', @initiateOpen
     $(document).on 'click', '.js-gallery-thumbnail', @switchPreview
 
+    $(document).on 'turbolinks:before-cache', ->
+      $('.js-gallery--container').remove()
+
 
   initiateOpen: (e) =>
-      $target = $(e.currentTarget)
-      return if $target.parents('a').length
+    $target = $(e.currentTarget)
+    return if $target.parents('a').length
 
-      e.preventDefault()
-      @open $target
-
-
-  open: ($target) =>
-    galleryId = $target.attr('data-gallery-id')
+    e.preventDefault()
     index = parseInt $target.attr('data-index'), 10
+    galleryId = $target.attr('data-gallery-id')
+    @open {galleryId, index}
 
-    gallery = new PhotoSwipe @pswp[0],
+
+  open: ({galleryId, index}) =>
+    container = @container[0].cloneNode(true)
+    container.classList.add 'js-gallery--container'
+    document.body.appendChild container
+
+    pswp = new PhotoSwipe container,
       PhotoSwipeUI_Default
       @data galleryId
       showHideOpacity: true
       getThumbBoundsFn: @thumbBoundsFn(galleryId)
       index: index
       history: false
+      timeToIdle: null
 
+    if _.startsWith(galleryId, 'contest-')
+      new _exported.GalleryContest(container, pswp)
 
-    gallery.init()
+    pswp.init()
+
+    $(document).one 'gallery:close', ->
+      # ignore any failures (in case already destroyed)
+      try pswp.close()
 
 
   data: (galleryId) ->
-    $(".js-gallery[data-gallery-id='#{galleryId}']").map (_i, el) ->
-      src = el.getAttribute('data-src') || el.getAttribute('href')
-      {
-        msrc: src
-        src: src
-        w: parseInt el.getAttribute('data-width'), 10
-        h: parseInt el.getAttribute('data-height'), 10
-      }
-    .get()
+    for el in document.querySelectorAll(".js-gallery[data-gallery-id='#{galleryId}']")
+      src = el.getAttribute('data-src') ? el.getAttribute('href')
+
+      element: el
+      msrc: src
+      src: src
+      w: parseInt el.getAttribute('data-width'), 10
+      h: parseInt el.getAttribute('data-height'), 10
 
 
   thumbBoundsFn: (galleryId) =>
-    return (i) =>
+    (i) =>
       $thumb = $(".js-gallery[data-gallery-id='#{galleryId}'][data-index='#{i}']")
       thumbPos = $thumb.offset()
 
@@ -83,11 +95,9 @@ class @Gallery
       scale = Math.max thumbDim[0] / imageDim[0], thumbDim[1] / imageDim[1]
       scaledImageDim = imageDim.map (s) -> s * scale
 
-      {
-        x: center[0] - scaledImageDim[0] / 2
-        y: center[1] - scaledImageDim[1] / 2
-        w: scaledImageDim[0]
-      }
+      x: center[0] - scaledImageDim[0] / 2
+      y: center[1] - scaledImageDim[1] / 2
+      w: scaledImageDim[0]
 
 
   switchPreview: (e) =>

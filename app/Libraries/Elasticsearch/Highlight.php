@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,9 +33,13 @@ class Highlight implements Queryable
     /**
      * @return $this
      */
-    public function field(string $name)
+    public function field(string $name, ?array $options = null)
     {
-        $this->fields[] = $name;
+        if ($options === null) {
+            $options = new \stdClass();
+        }
+
+        $this->fields[$name] = $options;
 
         return $this;
     }
@@ -70,14 +74,9 @@ class Highlight implements Queryable
      */
     public function toArray() : array
     {
-        $fields = [];
-        foreach ($this->fields as $name) {
-            $fields[$name] = new \stdClass();
-        }
-
         return [
             'fragment_size' => $this->fragmentSize,
-            'fields' => $fields,
+            'fields' => $this->fields,
             'number_of_fragments' => $this->numberOfFragments,
         ];
     }

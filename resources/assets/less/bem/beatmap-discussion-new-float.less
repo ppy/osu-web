@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,6 +34,12 @@
   margin-bottom: 10px;
   pointer-events: none;
 
+  &--pinned {
+    position: sticky;
+    z-index: 1;
+    // top will be calulated by the component.
+  }
+
   &__content {
     .bg();
     padding-top: 10px;
@@ -43,19 +49,5 @@
   &__floatable {
     .own-layer();
     width: 100%;
-
-    .@{top}--floating & {
-      position: fixed;
-      z-index: @z-index--fixed-bar;
-      top: 0;
-    }
-  }
-
-  &__spacer {
-    display: none;
-
-    .@{top}--floating & {
-      display: block;
-    }
   }
 }

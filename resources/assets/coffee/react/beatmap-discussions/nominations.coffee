@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,12 +16,14 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, p, span} = ReactDOMFactories
+import { BigButton } from 'big-button'
+import * as React from 'react'
+import { a, button, div, p, span } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'beatmap-discussion-nomination'
 
-class BeatmapDiscussions.Nominations extends React.PureComponent
+export class Nominations extends React.PureComponent
   componentDidMount: =>
     osu.pageChange()
 
@@ -208,15 +210,15 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
             # implies mapCanBeNominated
             else
-              span null,
+              div null,
                 if disqualification?
-                  span null,
-                    span
-                      dangerouslySetInnerHTML:
-                        __html: @resetReason(disqualification)
-                    ' ' # spacer
+                  div
+                    className: "#{bn}__note-row"
+                    dangerouslySetInnerHTML:
+                      __html: @resetReason(disqualification)
                 if nominationReset?
-                  span
+                  div
+                    className: "#{bn}__note-row"
                     dangerouslySetInnerHTML:
                       __html: @resetReason(nominationReset)
           if nominators.length > 0

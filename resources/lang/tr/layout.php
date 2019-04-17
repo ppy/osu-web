@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => 'gruplar',
             'index' => 'kontrol paneli',
             'legal-show' => 'bilgi',
+            'messages-index' => 'mesajlar',
             'news-index' => 'haberler',
             'news-show' => 'haberler',
             'password-reset-index' => 'şifreni sıfırla',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'topluluk',
+            'chat' => 'sohbet',
+            'chat-index' => 'sohbet',
             'dev' => 'geliştirme',
             'getForum' => 'forumlar',
-            'getChat' => 'sohbet',
             'getLive' => 'canlı',
+            'comments-index' => 'yorumlar',
+            'comments-show' => 'yorum',
             'contests' => 'yarışmalar',
             'profile' => 'profil',
             'tournaments' => 'turnuvalar',
@@ -114,16 +118,18 @@ return [
             'reset' => 'kurtar',
             'new' => 'yeni',
 
-            'messages' => 'Mesajlar',
-            'settings' => 'Ayarlar',
-            'logout' => 'Çıkış Yap',
             'help' => 'Yardım',
+            'logout' => 'Çıkış Yap',
+            'messages' => 'Mesajlar',
             'modding-history-discussions' => 'kullanıcı modlama tartışmaları',
             'modding-history-events' => 'kullanıcı modlama etkinlikleri',
             'modding-history-index' => 'kullanıcı modlama geçmişi',
             'modding-history-posts' => 'kullanıcı modlama gönderileri',
             'modding-history-votesGiven' => 'kullanıcı verilen modlama oyları',
             'modding-history-votesReceived' => 'kullanıcı alınan modlama oyları',
+            'oauth_login' => '',
+            'oauth_request' => '',
+            'settings' => 'Ayarlar',
         ],
         'store' => [
             '_' => 'mağaza',
@@ -133,6 +139,7 @@ return [
 
             'getCheckout' => 'ödeme',
             'getInvoice' => 'fatura',
+            'orders-index' => 'sipariş geçmişi',
             'products-show' => 'ürün',
 
             'new' => 'yeni',

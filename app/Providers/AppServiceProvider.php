@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,9 +20,10 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\RequireScopes;
 use App\Http\Middleware\StartSession;
+use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
-use App\Models\Comment;
 use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
@@ -39,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Relation::morphMap(Comment::COMMENTABLES);
+        Relation::morphMap(array_flip(MorphMap::MAP));
 
         Validator::extend('mixture', function ($attribute, $value, $parameters, $validator) {
             return preg_match('/[\d]/', $value) === 1 && preg_match('/[^\d\s]/', $value) === 1;
@@ -72,6 +73,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton('OsuAuthorize', function () {
             return new OsuAuthorize();
+        });
+
+        $this->app->singleton(RequireScopes::class, function () {
+            return new RequireScopes;
         });
 
         // The middleware breaks without this. Not sure why.

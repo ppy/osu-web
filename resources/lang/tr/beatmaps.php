@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Şuna göre sıralandı:',
-            'created_at' => 'oluşturulma zamanı',
-            'timeline' => 'zaman çizgisi',
-            'updated_at' => 'son güncelleme',
+            'created_at' => 'Oluşturulma zamanı',
+            'timeline' => 'Zaman Çizgisi',
+            'updated_at' => 'Son güncelleme',
         ],
 
         'stats' => [
@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Sil',
+        'delete_own_confirm' => 'Emin misin? Beatmap silinecek ve profiline yönlendirileceksin.',
+        'delete_other_confirm' => 'Emin misin? Beatmap silinecek ve kullanıcının profiline yönlendirileceksin.',
         'disqualification_prompt' => 'Diskalifiye sebebi nedir?',
         'disqualified_at' => ':time_ago: diskalifiye edildi (:reason).',
         'disqualified_no_reason' => 'bir sebep belirtilmedi',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Emin misin? Yeni bir sorun bildirmek aday gösterme sürecini sıfırlayacaktır.',
+            'disqualify' => 'Emin misiniz? Bu beatmap\'in niteliğini silecek ve adaylık süresine sıfırlayacak.',
         ],
     ],
 
@@ -190,15 +194,16 @@ return [
                 'played' => 'Oynanmışlık',
             ],
             'sorting' => [
-                'title' => 'isim',
-                'artist' => 'sanatçı',
-                'difficulty' => 'zorluk',
-                'updated' => 'güncel',
-                'ranked' => 'dereceli',
-                'rating' => 'derece',
-                'plays' => 'oynanma',
-                'relevance' => 'alaka',
-                'nominations' => 'adaylıklar',
+                'title' => 'Başlık',
+                'artist' => 'Sanatçı',
+                'difficulty' => 'Zorluk',
+                'favourites' => '',
+                'updated' => 'Güncellendi',
+                'ranked' => 'Sırada yer aldı',
+                'rating' => 'Derecelendirme',
+                'plays' => 'Oynamalar',
+                'relevance' => 'Alaka düzeyi',
+                'nominations' => 'Adaylıklar',
             ],
             'supporter_filter_quote' => [
                 '_' => ':filters ile filtrelemek için aktif bir :link gerekli',
@@ -297,5 +302,9 @@ return [
         'B' => '',
         'C' => '',
         'D' => '',
+    ],
+    'panel' => [
+        'playcount' => 'Oynanma sayısı',
+        'favourites' => 'Favoriler',
     ],
 ];

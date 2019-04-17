@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,9 +33,11 @@ return [
             'refresh' => 'Aktualisieren',
         ],
 
-        'outdated' => [
-            '_' => 'Diese Seite zeigt eine veraltete Übersetzung. Schau dir die :default für den neusten Stand an (und überlege, ob du vielleicht beim Übersetzen hilfst)!',
-            'default' => 'englische Version',
+        'translation' => [
+            'legal' => 'Diese Übersetzung wird nur für die Bequemlichkeit bereitgestellt. Das original :default ist die einzige grundlegende und tadellose Version dieses Textes.',
+            'outdated' => 'Diese Seite enthält eine veraltete Übersetzung des ursprünglichen Inhalts. Bitte schaue dir :default für genauere Informationen an (und überlege die Übersetzung zu aktualisieren, wenn du die Möglichkeit dazu hast)!',
+
+            'default' => 'Englische Version',
         ],
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,6 +21,7 @@
 return [
     'buttons' => [
       'add' => 'เพิ่มเพื่อน',
+      'disabled' => '',
       'remove' => 'ลบเพื่อน',
     ],
 

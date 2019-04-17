@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => 'grup',
             'index' => 'dasbor',
             'legal-show' => 'informasi',
+            'messages-index' => 'pesan',
             'news-index' => 'berita',
             'news-show' => 'berita',
             'password-reset-index' => 'setel ulang kata sandi',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'komunitas',
+            'chat' => 'chat',
+            'chat-index' => 'chat',
             'dev' => 'pengembangan',
             'getForum' => 'forum',
-            'getChat' => 'obrolan',
             'getLive' => 'siaran langsung',
+            'comments-index' => 'komentar',
+            'comments-show' => 'komentar',
             'contests' => 'kontes',
             'profile' => 'profil',
             'tournaments' => 'turnamen',
@@ -114,16 +118,18 @@ return [
             'reset' => 'pulihkan',
             'new' => 'baru',
 
-            'messages' => 'Pesan',
-            'settings' => 'Pengaturan',
-            'logout' => 'Keluar',
             'help' => 'bantuan',
+            'logout' => 'Keluar',
+            'messages' => 'Pesan',
             'modding-history-discussions' => 'diskusi modding pengguna',
             'modding-history-events' => 'peristiwa modding pengguna',
             'modding-history-index' => 'riwayat modding pengguna',
             'modding-history-posts' => 'postingan modding pengguna',
             'modding-history-votesGiven' => 'suara modding yang diberikan pengguna',
             'modding-history-votesReceived' => 'suara modding yang diterima pengguna',
+            'oauth_login' => 'masuk untuk oauth',
+            'oauth_request' => 'otorisasi oauth',
+            'settings' => 'Pengaturan',
         ],
         'store' => [
             '_' => 'toko',
@@ -133,6 +139,7 @@ return [
 
             'getCheckout' => 'periksa',
             'getInvoice' => 'faktur',
+            'orders-index' => 'riwayat transaksi',
             'products-show' => 'produk',
 
             'new' => 'baru',

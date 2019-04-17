@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -190,9 +190,13 @@ class AccountController extends Controller
 
         priv_check('UserPageEdit', $user)->ensureCan();
 
-        $user = $user->updatePage(Request::input('body'));
+        try {
+            $user = $user->updatePage(Request::input('body'));
 
-        return ['html' => $user->userPage->bodyHTML];
+            return ['html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']])];
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
+        }
     }
 
     public function updatePassword()

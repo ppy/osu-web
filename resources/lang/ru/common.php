@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,25 +30,33 @@ return [
     ],
 
     'buttons' => [
+        'admin' => 'Администратор',
+        'back_to_previous' => 'Возвратить предыдущее состояние',
+        'back_to_top' => 'В начало',
         'cancel' => 'Отмена',
         'change' => 'изменить',
         'click_to_copy' => 'нажмите чтобы скопировать',
         'click_to_copy_copied' => 'скопировано!',
+        'collapse' => 'свернуть',
         'delete' => 'Удалить',
+        'edit' => 'Изменить',
+        'expand' => 'развернуть',
         'hide' => 'скрыть',
         'permalink' => 'прямая ссылка',
         'permalink_copied' => 'ссылка скопирована',
-        'post' => 'Публикация',
+        'post' => 'Опубликовать',
         'reply' => 'Ответить',
         'reply_reopen' => 'Ответить и возобновить',
         'reply_resolve' => 'Ответить и разрешить',
         'reset' => 'Сбросить',
+        'restore' => 'Восстановить',
         'save' => 'Сохранить',
         'saving' => 'Сохранение...',
         'search' => 'Найти',
         'see_more' => 'показать ещё',
         'show' => 'показать',
         'show_more' => 'показать больше',
+        'show_more_options' => 'показать больше опций',
         'upload_image' => 'выбрать файл',
     ],
 
@@ -59,9 +67,17 @@ return [
         'hours' => ':count час|:count часа|:count часов',
         'item' => ':count единица|:count единицы|:count единиц',
         'minute_short_unit' => 'мин',
+        'minutes' => ':count минута|:count минуты|:count минут',
         'months' => ':count месяц|:count месяца|:count месяцев',
         'second_short_unit' => 'сек',
         'years' => ':count год|:count года|:count лет',
+    ],
+
+    'countdown' => [
+        'days' => 'дней',
+        'hours' => 'часов',
+        'minutes' => 'минут',
+        'seconds' => 'секунд',
     ],
 
     'datetime' => [

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Models\Changelog;
 use App\Models\ChangelogEntry;
 
 class ChangelogEntryTest extends TestCase
@@ -29,7 +30,7 @@ class ChangelogEntryTest extends TestCase
         $this->assertSame(null, $entry->messageHTML());
 
         $entry->message = "---\nVisible";
-        $this->assertSame("<p>Visible</p>\n", $entry->messageHTML());
+        $this->assertSame("<div class='changelog-md'><p class=\"changelog-md__paragraph\">Visible</p>\n</div>", $entry->messageHTML());
 
         $entry->message = "Hidden\n---";
         $this->assertSame(null, $entry->messageHTML());
@@ -47,6 +48,34 @@ class ChangelogEntryTest extends TestCase
         $this->assertSame(null, $entry->messageHTML());
 
         $entry->message = "Hidden\n\n---\nVisible";
-        $this->assertSame("<p>Visible</p>\n", $entry->messageHTML());
+        $this->assertSame("<div class='changelog-md'><p class=\"changelog-md__paragraph\">Visible</p>\n</div>", $entry->messageHTML());
+    }
+
+    public function testConvertLegacyChangelogWithTitle()
+    {
+        $title = 'Some title';
+        $legacy = new Changelog(['message' => $title]);
+        $converted = ChangelogEntry::convertLegacy($legacy);
+        $this->assertSame($title, $converted->title);
+        $this->assertNull($converted->messageHTML());
+    }
+
+    public function testConvertLegacyChangelogWithTitleAndMessage()
+    {
+        $title = 'Some title';
+        $message = 'Some message';
+        $legacy = new Changelog(['message' => "{$title}\n\n---\n{$message}"]);
+        $converted = ChangelogEntry::convertLegacy($legacy);
+        $this->assertSame($title, $converted->title);
+        $this->assertSame("<div class='changelog-md'><p class=\"changelog-md__paragraph\">{$message}</p>\n</div>", $converted->messageHTML());
+    }
+
+    public function testConvertLegacyChangelogWithMessage()
+    {
+        $message = 'Some message';
+        $legacy = new Changelog(['message' => "---\n{$message}"]);
+        $converted = ChangelogEntry::convertLegacy($legacy);
+        $this->assertSame($message, $converted->title);
+        $this->assertNull($converted->messageHTML());
     }
 }

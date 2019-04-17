@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -49,31 +49,21 @@
     border-color: lighten(@community-grayblue-tile-background, 5%);
   }
 
-  &__container {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &__left-content {
-    float: left;
-    padding: 15px;
-    padding-top: 10px;
-    overflow: hidden;
-    @media @mobile {
-      padding-right: 0;
-    }
-  }
-
-  &__right-content {
-    float: right;
-    padding: 10px;
-    flex-shrink: 0;
-  }
-
   &--entry {
     border-color: @pink;
     &:hover {
       border-color: lighten(@pink, 5%);
+    }
+  }
+
+  &--hidden {
+    opacity: 0.5;
+  }
+
+  &--results {
+    border-color: @green;
+    &:hover {
+      border-color: lighten(@green, 5%);
     }
   }
 
@@ -84,10 +74,39 @@
     }
   }
 
-  &--results {
-    border-color: @green;
-    &:hover {
-      border-color: lighten(@green, 5%);
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__date {
+    font-size: 12px;
+    @media @mobile {
+      font-size: 10px;
+    }
+    color: @community-grayblue-text;
+  }
+
+  &__image {
+    transition: 0.2s ease-in-out;
+    width: 80px;
+    height: 70px;
+    background-size: cover;
+    background-position: center center;
+    float: left;
+    @media @mobile {
+      width: 50px;
+      height: 90px;
+    }
+  }
+
+  &__left-content {
+    float: left;
+    padding: 15px;
+    padding-top: 10px;
+    overflow: hidden;
+    @media @mobile {
+      padding-right: 0;
     }
   }
 
@@ -102,12 +121,10 @@
     }
   }
 
-  &__date {
-    font-size: 12px;
-    @media @mobile {
-      font-size: 10px;
-    }
-    color: @community-grayblue-text;
+  &__right-content {
+    float: right;
+    padding: 10px;
+    flex-shrink: 0;
   }
 
   &__type {
@@ -116,19 +133,6 @@
     font-size: 15px;
     @media @mobile {
       font-size: 13px;
-    }
-  }
-
-  &__image {
-    transition: 0.2s ease-in-out;
-    width: 80px;
-    height: 70px;
-    background-size: cover;
-    background-position: center center;
-    float: left;
-    @media @mobile {
-      width: 50px;
-      height: 90px;
     }
   }
 }

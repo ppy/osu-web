@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Seřazeno podle:',
-            'created_at' => 'čas vytvoření',
-            'timeline' => 'časová osa',
-            'updated_at' => 'poslední aktualizace',
+            'created_at' => 'Čas vytvoření',
+            'timeline' => 'Časová osa',
+            'updated_at' => 'Poslední aktualizace',
         ],
 
         'stats' => [
@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Vymazat',
+        'delete_own_confirm' => 'Jste si jistý? Tahle beatmapa bude smazána a pošleme vás zpátky na váš profil.',
+        'delete_other_confirm' => 'Jste si jistý? Tahle beatmapa bude smazána a pošleme vás zpátky na profil uživatele.',
         'disqualification_prompt' => 'Důvod pro diskvalifikaci?',
         'disqualified_at' => 'Diskvalifikována před :time_ago (:reason).',
         'disqualified_no_reason' => 'žádný důvod nebyl určen',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Jsi si jist? Vytvořením nové připomínky se nominační proces resetuje.',
+            'disqualify' => 'Jste si jistý? Tohle odstraní beatmapu z kvalifikování a vyresetuje nominační proces.',
         ],
     ],
 
@@ -190,15 +194,16 @@ return [
                 'played' => 'Již hrané',
             ],
             'sorting' => [
-                'title' => 'název',
-                'artist' => 'interpret',
-                'difficulty' => 'obtížnost',
-                'updated' => 'aktualizováno',
-                'ranked' => 'ohodnocené',
-                'rating' => 'hodnocení',
-                'plays' => 'hráno',
-                'relevance' => 'relevance',
-                'nominations' => 'nominace',
+                'title' => 'Název',
+                'artist' => 'Umělec',
+                'difficulty' => 'Obtížnost',
+                'favourites' => '',
+                'updated' => 'Aktualizováno',
+                'ranked' => 'Hodnocené',
+                'rating' => 'Hodnocení',
+                'plays' => 'Zahraní',
+                'relevance' => 'Relevance',
+                'nominations' => 'Nominace',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtrování podle :filters vyžaduje aktivní :link',
@@ -297,5 +302,9 @@ return [
         'B' => '',
         'C' => '',
         'D' => '',
+    ],
+    'panel' => [
+        'playcount' => 'Počet zahrání: :count',
+        'favourites' => 'V oblíbených: :count',
     ],
 ];

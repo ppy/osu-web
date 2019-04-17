@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -32,7 +32,6 @@ class @Forum
     @_userCanModerateDiv = document.getElementsByClassName('js-forum__topic-user-can-moderate')
     @_postsCounter = document.getElementsByClassName('js-forum__posts-counter')
     @_postsProgress = document.getElementsByClassName('js-forum__posts-progress')
-    @_stickyHeaderTopic = document.getElementsByClassName('js-forum-topic-headernav')
     @posts = document.getElementsByClassName('js-forum-post')
     @loadMoreLinks = document.getElementsByClassName('js-forum-posts-show-more')
 
@@ -45,8 +44,6 @@ class @Forum
     $(document).on 'click', '.js-post-url', @postUrlClick
     $(document).on 'submit', '.js-forum-posts-jump-to', @jumpToSubmit
     $(document).on 'keyup', @keyboardNavigation
-
-    $.subscribe 'stickyHeader', @stickHeader
 
 
   userCanModerate: ->
@@ -67,20 +64,24 @@ class @Forum
 
   totalPosts: =>
     return null if @_totalPostsDiv.length == 0
-    parseInt @_totalPostsDiv[0].textContent, 10
+    parseInt @_totalPostsDiv[0].dataset.total, 10
 
 
   setTotalPosts: (n) =>
-    $(@_totalPostsDiv).text(n)
+    $(@_totalPostsDiv)
+      .text osu.formatNumber(n)
+      .attr 'data-total', n
 
 
   deletedPosts: ->
     return null if @_deletedPostsDiv.length == 0
-    parseInt @_deletedPostsDiv[0].textContent, 10
+    parseInt @_deletedPostsDiv[0].dataset.total, 10
 
 
   setDeletedPosts: (n) ->
-    $(@_deletedPostsDiv).text(n)
+    $(@_deletedPostsDiv)
+      .text osu.formatNumber(n)
+      .attr 'data-total', n
 
 
   setCounter: (currentPost) =>
@@ -89,7 +90,7 @@ class @Forum
     @setTotalPosts(@currentPostPosition) if @currentPostPosition > @totalPosts()
     window.reloadUrl = @postUrlN @currentPostPosition
 
-    @_postsCounter[0].textContent = @currentPostPosition
+    @_postsCounter[0].textContent = osu.formatNumber @currentPostPosition
     @_postsProgress[0].style.width = "#{100 * @currentPostPosition / @totalPosts()}%"
 
 
@@ -115,7 +116,6 @@ class @Forum
     lastPostLoaded = @lastPostLoaded()
 
     $('.js-forum__posts-show-more--next')
-      .closest('div')
       .toggleClass 'hidden', lastPostLoaded
 
     if !@userCanModerate()
@@ -129,14 +129,13 @@ class @Forum
     return if @_postsCounter.length == 0
 
     currentPost = null
-    anchorHeight = window.innerHeight * 0.5
 
     if osu.bottomPage()
       currentPost = @posts[@posts.length - 1]
     else
       for post in @posts
         postTop = post.getBoundingClientRect().top
-        if postTop <= anchorHeight
+        if Math.floor(window.stickyHeader.scrollOffset(postTop)) <= 0
           currentPost = post
         else
           break
@@ -155,7 +154,7 @@ class @Forum
     postN = Math.min(postN, @totalPosts())
 
     $post = $(".js-forum-post[data-post-position='#{postN}']")
-    @_postsCounter[0].textContent = postN
+    @_postsCounter[0].textContent = osu.formatNumber postN
 
     if $post.length
       @scrollTo $post.attr('data-post-id')
@@ -175,24 +174,27 @@ class @Forum
 
     try @jumpTo n
 
+
   scrollTo: (postId) =>
     post = document.querySelector(".js-forum-post[data-post-id='#{postId}']")
 
     return unless post
 
-    if @postPosition(post) == 1
-      postTop = 0
-    else
-      postDim = post.getBoundingClientRect()
-      windowHeight = window.innerHeight
+    postTop = if @postPosition(post) == 1
+                0
+              else
+                $(post).offset().top
 
-      postTop = window.pageYOffset + postDim.top
+    postTop = window.stickyHeader.scrollOffset(postTop) if postTop != 0
 
-      offset = (windowHeight - postDim.height) / 2
-      # FIXME: compute height using new header target
-      offset = Math.max(offset, 60)
+    # using jquery smooth scrollTo will cause unwanted events to trigger on the way down.
+    window.scrollTo window.pageXOffset, postTop
+    @highlightPost post
 
-    window.scrollTo 0, postTop - offset
+
+  highlightPost: (post) ->
+    $('.js-forum-post--highlighted').removeClass('js-forum-post--highlighted')
+    $(post).addClass('js-forum-post--highlighted')
 
 
   initialScrollTo: =>
@@ -215,19 +217,12 @@ class @Forum
     "#{document.location.pathname}?n=#{postN}"
 
 
-  stickHeader: (_e, target) =>
-    return unless @_stickyHeaderTopic.length
-
-    if target == 'forum-topic-headernav'
-      Fade.in @_stickyHeaderTopic[0]
-    else
-      Fade.out @_stickyHeaderTopic[0]
-
-
   showMore: (e) =>
     e.preventDefault()
-    $link = $(e.target)
-    $linkDiv = $link.closest('div')
+
+    return if e.currentTarget.classList.contains('js-disabled')
+
+    $link = $(e.currentTarget)
     mode = $link.data('mode')
 
     options =
@@ -242,7 +237,7 @@ class @Forum
       $refPost = $('.js-forum-post').last()
       options['start'] = $refPost.data('post-id') + 1
 
-    $linkDiv.addClass 'loading'
+    $link.addClass 'js-disabled'
 
     $.get(window.canonicalUrl, options)
     .done (data) =>
@@ -250,11 +245,11 @@ class @Forum
       scrollReferenceTop = scrollReference.getBoundingClientRect().top
 
       if mode == 'previous'
-        $linkDiv.after data
+        $link.after data
         toRemoveStart = @maxPosts
         toRemoveEnd = @posts.length
       else
-        $linkDiv.before data
+        $link.before data
         toRemoveStart = 0
         toRemoveEnd = @posts.length - @maxPosts
 
@@ -277,7 +272,7 @@ class @Forum
       $link.attr 'data-failed', '0'
 
     .always ->
-      $linkDiv.removeClass 'loading'
+      $link.removeClass 'js-disabled'
     .fail ->
       $link.attr 'data-failed', '1'
 

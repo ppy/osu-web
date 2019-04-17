@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,8 +20,10 @@
 
 return [
     'top-headers' => [
-        'headline' => 'Live-lähetykset',
+        'headline' => 'Suorat lähetykset',
         'description' => 'Tiedot haetaan twitch.tv:n listauksesta viiden minuutin välein. Voit vapaasti aloittaa striimaamisen ja saada itsesi listalle! Lisää tietoja aloittelemisesta löydät striimaamista käsittelevästä wiki-artikkelista.',
+
+        'link' => 'wikisivu livestriimaamisesta',
     ],
     'headers' => [
         'regular' => 'Parhaillaan striimaavat',

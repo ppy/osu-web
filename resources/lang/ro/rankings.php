@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,12 +20,21 @@
 
 return [
     'header' => 'Clasificare :type',
+
     'type' => [
         'performance' => 'performanță',
         'charts' => 'În lumina reflectoarelor',
         'score' => 'scor',
         'country' => 'pe țară',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Data încheierii',
+        'map_count' => 'Număr de mape',
+        'participants' => 'Participanți',
+        'start_date' => 'Data începerii',
+    ],
+
     'stat' => [
         'accuracy' => 'Precizie',
         'active_users' => 'Utilizatori activi',

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,6 +18,7 @@
 
 .osu-page-header-v3 {
   @_top: osu-page-header-v3;
+  @_icon-margin-right: 20px;
 
   padding: @gutter @gutter 0;
 
@@ -25,17 +26,36 @@
     padding: 0;
   }
 
+  @media @mobile {
+    display: none;
+  }
+
   &__icon {
     width: 100%;
     padding-bottom: 100%;
     border-radius: 50%;
-    background-size: (@gutter-desktop - 30px);
+    background-size: (@gutter-desktop - @_icon-margin-right - 10px);
     background-position: center;
     background-repeat: no-repeat;
 
     .@{_top}--changelog & {
-      box-shadow: inset 0 0 0 2px @dark-purple;
+      box-shadow: inset 0 0 0 2px @violet;
       background-image: url('/images/icons/changelog.svg');
+    }
+
+    .@{_top}--chat & {
+      box-shadow: inset 0 0 0 2px @community-blue;
+      background-image: url('/images/icons/chat.svg');
+    }
+
+    .@{_top}--news & {
+      box-shadow: inset 0 0 0 2px @violet;
+      background-image: url('/images/icons/news.svg');
+    }
+
+    .@{_top}--users & {
+      box-shadow: inset 0 0 0 2px @seafoam;
+      background-image: url('/images/icons/profile.svg');
     }
   }
 
@@ -46,17 +66,29 @@
 
   &__title-icon {
     width: @gutter-desktop;
-    padding-right: 20px;
+    padding-right: @_icon-margin-right;
     flex: none;
   }
 
   &__title-highlight {
     .@{_top}--changelog & {
-      color: @dark-purple;
+      color: @violet;
+    }
+
+    .@{_top}--chat & {
+      color: @community-blue;
     }
 
     .@{_top}--comments & {
       color: @blue;
+    }
+
+    .@{_top}--news & {
+      color: @violet;
+    }
+
+    .@{_top}--users & {
+      color: @seafoam;
     }
   }
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => 'groups',
             'index' => 'dashboard',
             'legal-show' => 'information',
+            'messages-index' => 'messages',
             'news-index' => 'news',
             'news-show' => 'news',
             'password-reset-index' => 'reset password',
@@ -77,9 +78,10 @@ return [
         ],
         'community' => [
             '_' => 'community',
+            'chat' => 'chat',
+            'chat-index' => 'chat',
             'dev' => 'development',
             'getForum' => 'forums',
-            'getChat' => 'chat',
             'getLive' => 'live',
             'comments-index' => 'comments',
             'comments-show' => 'comment',
@@ -116,16 +118,18 @@ return [
             'reset' => 'recover',
             'new' => 'new',
 
-            'messages' => 'Messages',
-            'settings' => 'Settings',
-            'logout' => 'Sign Out',
             'help' => 'Help',
+            'logout' => 'Sign Out',
+            'messages' => 'Messages',
             'modding-history-discussions' => 'user modding discussions',
             'modding-history-events' => 'user modding events',
             'modding-history-index' => 'user modding history',
             'modding-history-posts' => 'user modding posts',
             'modding-history-votesGiven' => 'user modding votes given',
             'modding-history-votesReceived' => 'user modding votes received',
+            'oauth_login' => 'sign in for oauth',
+            'oauth_request' => 'oauth authorisation',
+            'settings' => 'Settings',
         ],
         'store' => [
             '_' => 'store',

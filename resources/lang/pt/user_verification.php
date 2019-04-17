@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -41,8 +41,8 @@ return [
 
     'errors' => [
         'expired' => 'Código de verificação expirado, novo email de verificação enviado.',
-        'incorrect_key' => 'Código de verificação incorrecto.',
-        'retries_exceeded' => 'Código de verificação incorrecto. Limite de tentativas excedido, novo email de verificação enviado.',
+        'incorrect_key' => 'Código de verificação incorreto.',
+        'retries_exceeded' => 'Código de verificação incorreto. Limite de tentativas excedido, novo email de verificação enviado.',
         'reissued' => 'Código de verificação reenviado, novo email de verificação enviado.',
         'unknown' => 'Ocorreu um problema desconhecido, novo email de verificação enviado.',
     ],

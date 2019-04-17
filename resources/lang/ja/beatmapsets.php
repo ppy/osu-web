@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,39 +20,110 @@
 
 return [
     'availability' => [
-        'disabled' => 'この譜面は現在ダウンロード不可能です。',
-        'parts-removed' => '権利者の申し立てによりこの譜面は部分的に削除されています。',
+        'disabled' => 'このビートマップは現在ダウンロード不可能です。',
+        'parts-removed' => '権利者の申し立てによりこのビートマップは部分的に削除されています。',
         'more-info' => '詳細はこちらです。',
     ],
 
     'index' => [
-        'title' => '譜面リスト',
-        'guest_title' => '譜面',
+        'title' => 'ビートマップリスト',
+        'guest_title' => 'ビートマップ',
     ],
 
     'show' => [
         'discussion' => 'ディスカッション',
 
         'details' => [
-            'mapped_by' => '作者 :mapper',
+            'approved' => '承認日時 ',
+            'favourite' => 'ビートマップセットをお気に入りに追加する',
+            'favourited_count' => '+ そのほか:count人！',
+            'logged-out' => 'ビートマップをダウンロードするにはログインが必要です！',
+            'loved' => 'lovedに追加された日 ',
+            'mapped_by' => '作者 by :mapper',
+            'qualified' => '申請された日 ',
+            'ranked' => 'ランクされた日 ',
             'submitted' => '投稿日 ',
-            'updated' => '最後の更新 ',
+            'unfavourite' => 'ビートマップをお気に入りから外す',
+            'updated' => '最終更新日',
             'updated_timeago' => '最終更新時刻: :timeago',
-            'ranked' => 'ranked日時 ',
-            'approved' => 'approved日時 ',
-            'qualified' => 'qualified日時 ',
-            'loved' => 'loved日時 ',
-            'logged-out' => '譜面をダウンロードするにはログインが必要です！',
+
             'download' => [
                 '_' => 'ダウンロード',
-                'video' => '動画あり',
-                'no-video' => '動画なし',
                 'direct' => 'osu!direct',
+                'no-video' => '動画なし',
+                'video' => '動画あり',
             ],
-            'favourite' => '譜面をお気に入りに追加する',
-            'unfavourite' => '譜面をお気に入りから外す',
-            'favourited_count' => '+ そのほか:count人！',
+
+            'login_required' => [
+                'bottom' => 'より多くの機能にアクセスする',
+                'top' => 'サインイン',
+            ],
         ],
+
+        'favourites' => [
+            'limit_reached' => 'お気に入りのビートマップが多すぎます！お気に入りを外してから再試行してください。',
+        ],
+
+        'hype' => [
+            'action' => 'もしこのビートマップが良かった場合、Hypeすることでビートマップのステータスが<strong>ランク</strong>状態になります。',
+
+            'current' => [
+                '_' => 'このビートマップは現在:statusです。',
+
+                'status' => [
+                    'pending' => '保留中',
+                    'qualified' => '申請済',
+                    'wip' => '作業中',
+                ],
+            ],
+        ],
+
+        'info' => [
+            'description' => '概要',
+            'genre' => 'ジャンル',
+            'language' => '言語',
+            'no_scores' => 'データはまだ現在計算中です・・・',
+            'points-of-failure' => '失敗地点',
+            'source' => 'ソース',
+            'success-rate' => 'クリア率',
+            'tags' => 'タグ',
+            'unranked' => 'ランクなしのビートマップ',
+        ],
+
+        'scoreboard' => [
+            'achieved' => '達成日 :when',
+            'country' => '国別ランキング',
+            'friend' => 'フレンドランキング',
+            'global' => '世界ランキング',
+            'supporter-link' => '<a href=":link">ここ</a>をクリックする事でサポーターの詳細が見れます。',
+            'supporter-only' => 'フレンドランキングと国別ランキングを利用するにはosu!サポータータグが必要です！',
+            'title' => 'スコアボード',
+
+            'headers' => [
+                'accuracy' => '精度',
+                'combo' => '最大コンボ',
+                'miss' => 'ミス',
+                'mods' => 'Mods',
+                'player' => 'プレイヤー',
+                'pp' => 'pp',
+                'rank' => '順位',
+                'score_total' => '合計スコア',
+                'score' => 'スコア',
+            ],
+
+            'no_scores' => [
+                'country' => 'あなたの国のプレイヤーで記録を作った人はまだいません！',
+                'friend' => 'あなたのフレンドで記録を作った人はまだいません！',
+                'global' => 'まだ記録はありません。一番乗りを目指そう！',
+                'loading' => 'スコアの読み込み中・・・',
+                'unranked' => 'Unrankedのビートマップです。',
+            ],
+            'score' => [
+                'first' => 'In the Lead',
+                'own' => 'あなたのベスト',
+            ],
+        ],
+
         'stats' => [
             'cs' => 'サークルサイズ',
             'cs-mania' => 'キー数',
@@ -68,50 +139,6 @@ return [
             'rating-spread' => '評価分布',
             'nominations' => 'ノミネーション',
             'playcount' => 'プレイ数',
-        ],
-        'info' => [
-            'description' => '説明文',
-            'genre' => 'ジャンル',
-            'language' => '言語',
-            'no_scores' => 'データはまだ現在計算中です・・・',
-            'points-of-failure' => 'Fail地点',
-            'source' => 'ソース',
-            'success-rate' => 'クリア率',
-            'tags' => 'タグ',
-            'unranked' => 'Unranked譜面',
-        ],
-        'scoreboard' => [
-            'achieved' => '達成日 :when',
-            'country' => '国別ランキング',
-            'friend' => 'フレンドランキング',
-            'global' => '世界ランキング',
-            'supporter-link' => '<a href=":link">ここ</a>をクリックする事でサポーターの詳細が見れます。',
-            'supporter-only' => 'フレンドランキングと国別ランキングを利用するにはサポータータグが必要です！',
-            'title' => 'スコアボード',
-
-            'headers' => [
-                'accuracy' => 'Accuracy',
-                'combo' => 'Max Combo',
-                'miss' => 'Miss',
-                'mods' => 'Mods',
-                'player' => 'Player',
-                'pp' => 'pp',
-                'rank' => 'Rank',
-                'score_total' => 'Total Score',
-                'score' => 'Score',
-            ],
-
-            'no_scores' => [
-                'country' => 'あなたの国からのプレイヤーで記録を作った人はまだいません！',
-                'friend' => 'あなたのフレンドで記録を作った人はまだいません!',
-                'global' => 'まだ記録はありません。一番乗りを目指そう！',
-                'loading' => 'スコアの読み込み中・・・',
-                'unranked' => 'Unranked譜面です。',
-            ],
-            'score' => [
-                'first' => 'In the Lead',
-                'own' => 'Your Best',
-            ],
         ],
     ],
 ];

@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,10 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, h3, span, i, textarea} = ReactDOMFactories
+import { BBCodeEditor } from 'bbcode-editor'
+import * as React from 'react'
+import { a, button, div, h3, span, i, textarea } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapsetPage.Info extends React.Component
+export class Info extends React.Component
   constructor: (props) ->
     super props
 
@@ -218,7 +220,7 @@ class BeatmapsetPage.Info extends React.Component
 
               div
                 className: 'beatmap-success-rate__percentage'
-                title: "#{@props.beatmap.passcount.toLocaleString()} / #{@props.beatmap.playcount.toLocaleString()}"
+                title: "#{osu.formatNumber(@props.beatmap.passcount)} / #{osu.formatNumber(@props.beatmap.playcount)}"
                 'data-tooltip-position': 'bottom center'
                 style:
                   marginLeft: "#{percentage}%"

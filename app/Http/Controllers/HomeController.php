@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -53,7 +53,7 @@ class HomeController extends Controller
     {
         $post = new Post(['post_text' => Request::input('text')]);
 
-        return $post->bodyHTML;
+        return $post->bodyHTML();
     }
 
     public function downloadQuotaCheck()
@@ -68,19 +68,6 @@ class HomeController extends Controller
         return view('home.download');
     }
 
-    public function getIcons()
-    {
-        return view('home.icons')
-        ->with('icons', [
-            'osu',
-            'mode-osu',
-            'mode-mania',
-            'mode-fruits',
-            'mode-taiko',
-            'social-patreon',
-        ]);
-    }
-
     public function index()
     {
         $host = Request::getHttpHost();
@@ -91,7 +78,7 @@ class HomeController extends Controller
         }
 
         if (Auth::check()) {
-            $news = NewsPost::default()->get();
+            $news = NewsPost::default()->limit(NewsPost::DASHBOARD_LIMIT + 1)->get();
             $newBeatmapsets = Beatmapset::latestRankedOrApproved();
             $popularBeatmapsetsPlaycount = Beatmapset::mostPlayedToday();
             $popularBeatmapsetIds = array_keys($popularBeatmapsetsPlaycount);
@@ -112,7 +99,25 @@ class HomeController extends Controller
 
     public function messageUser($user)
     {
-        return ujs_redirect("https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u={$user}");
+        // TODO: REMOVE ONCE COMPLETELY LIVE
+        $canWebChat = false;
+        if (Auth::check()) {
+            if (Auth::user()->isPrivileged()) {
+                $canWebChat = true;
+            }
+            if (config('osu.chat.webchat_enabled_supporter') && Auth::user()->isSupporter()) {
+                $canWebChat = true;
+            }
+            if (config('osu.chat.webchat_enabled_all')) {
+                $canWebChat = true;
+            }
+        }
+
+        if (!$canWebChat) {
+            return ujs_redirect("https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u={$user}");
+        } else {
+            return ujs_redirect(route('chat.index', ['sendto' => $user]));
+        }
     }
 
     public function osuSupportPopup()
@@ -134,7 +139,7 @@ class HomeController extends Controller
 
     public function setLocale()
     {
-        $newLocale = get_valid_locale(Request::input('locale'));
+        $newLocale = get_valid_locale(Request::input('locale')) ?? config('app.fallback_locale');
         App::setLocale($newLocale);
 
         if (Auth::check()) {
@@ -174,10 +179,10 @@ class HomeController extends Controller
                 'expiration' => $expiration,
                 // purchased
                 'dollars' => currency($dollars, 2, false),
-                'tags' => number_format($tags),
+                'tags' => i18n_number_format($tags),
                 // gifted
                 'giftedDollars' => currency($giftedDollars, 2, false),
-                'giftedTags' => number_format($giftedTags),
+                'giftedTags' => i18n_number_format($giftedTags),
             ];
 
             if ($current) {

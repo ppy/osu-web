@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span} = ReactDOMFactories
+import * as React from 'react'
+import { div, span } from 'react-dom-factories'
 
 bn = 'beatmap-basic-stats'
 
@@ -32,7 +33,7 @@ formatDuration = (value) ->
     "#{m}:#{_.padStart s, 2, 0}"
 
 
-@BeatmapBasicStats = ({beatmapset, beatmap}) ->
+export BeatmapBasicStats = ({beatmapset, beatmap}) ->
   div
     className: bn
     for stat in ['total_length', 'bpm', 'count_circles', 'count_sliders']
@@ -46,12 +47,14 @@ formatDuration = (value) ->
         if stat == 'total_length'
           formatDuration value
         else
-          value.toLocaleString()
+          osu.formatNumber(value)
 
       div
         className: "#{bn}__entry"
         key: stat
-        title: osu.trans "beatmapsets.show.stats.#{stat}"
+        title: osu.trans "beatmapsets.show.stats.#{stat}",
+          if stat == 'total_length'
+            hit_length: formatDuration(beatmap['hit_length'])
         div
           className: "#{bn}__entry-icon"
           style:

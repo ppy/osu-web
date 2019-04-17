@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,7 +19,7 @@
  */
 
 return [
-    'title' => 'Palauta salasana',
+    'title' => 'Nollaa salasana',
 
     'button' => [
         'cancel' => 'Peruuta',
@@ -35,8 +35,8 @@ return [
     'error' => [
         'contact_support' => 'Ota yhteyttä tukeen palauttaakesi käyttäjä.',
         'is_privileged' => 'Ota yhteyttä peppyyn ebin :-D',
-        'missing_key' => 'Vaadittu.',
-        'too_many_tries' => 'Liikaa epäonnistuneita yrityksiä.',
+        'missing_key' => 'Vaaditaan.',
+        'too_many_tries' => 'Liian monta epäonnistunutta yritystä.',
         'user_not_found' => 'Käyttäjää ei ole olemassa.',
         'wrong_key' => 'Virheellinen koodi.',
     ],

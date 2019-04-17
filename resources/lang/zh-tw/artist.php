@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -45,5 +45,12 @@ return [
         '_' => '樂曲',
         'count' => ':count 首音樂',
         'exclusive' => 'osu! 獨享',
+    ],
+
+    'tracklist' => [
+        'title' => '標題',
+        'length' => '長度',
+        'bpm' => 'bpm',
+        'genre' => '類型',
     ],
 ];

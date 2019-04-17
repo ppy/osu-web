@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -36,7 +36,7 @@ return [
 
     'index' => [
         'page_title' => [
-            '_' => 'változtatások listája',
+            '_' => 'változtatások listázása',
             '_from' => 'változtatások :from óta',
             '_from_to' => ':from és :to közötti változtatások',
             '_stream' => ':stream változtatások',
@@ -55,7 +55,7 @@ return [
     'support' => [
         'heading' => 'Tetszik ez a frissítés?',
         'text_1' => 'Támogasd az osu! további fejlesztését és :link még ma!',
-        'text_1_link' => 'legyél támogató',
-        'text_2' => 'Nem csak a gyors fejlesztést segíted, de még sok extra funkciót és egyediségi lehetőséget kapsz!',
+        'text_1_link' => 'válj támogatóvá',
+        'text_2' => 'Nem csak a gyors fejlesztést segíted, de még sok extra funkciót és személyre szabási lehetőséget kapsz!',
     ],
 ];

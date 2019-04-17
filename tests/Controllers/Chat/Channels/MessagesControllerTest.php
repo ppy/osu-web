@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -56,44 +56,44 @@ class MessagesControllerTest extends TestCase
     //region GET /chat/channels/[channel_id] - Get Channel Messages (public)
     public function testChannelShowPublicWhenGuest() // fail
     {
-        $this->json('GET', route('api.chat.channels.messages.index', ['channel_id' => $this->publicChannel->channel_id]))
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->publicChannel->channel_id]))
             ->assertStatus(401);
     }
 
     public function testChannelShowPublicWhenUnjoined() // fail
     {
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.channels.messages.index', ['channel_id' => $this->publicChannel->channel_id]))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->publicChannel->channel_id]))
             ->assertStatus(404);
     }
 
     public function testChannelShowPublicWhenJoined() // success
     {
-        $this->actingAs($this->user, 'api')
-            ->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->user->user_id,
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->user->user_id,
             ]));
 
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.channels.messages.index', ['channel_id' => $this->publicChannel->channel_id]))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->publicChannel->channel_id]))
             ->assertStatus(200);
         // TODO: Add check for messages being present?
     }
 
     //endregion
 
-    //region GET /chat/channels/[channel_id] - Get Channel Messages (private)
+    //region GET /chat/channels/[channel] - Get Channel Messages (private)
     public function testChannelShowPrivateWhenGuest() // fail
     {
-        $this->json('GET', route('api.chat.channels.messages.index', ['channel_id' => $this->privateChannel->channel_id]))
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->privateChannel->channel_id]))
             ->assertStatus(401);
     }
 
     public function testChannelShowPrivateWhenNotJoined() // fail
     {
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.channels.messages.index', ['channel_id' => $this->privateChannel->channel_id]))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->privateChannel->channel_id]))
             ->assertStatus(404);
     }
 
@@ -104,24 +104,24 @@ class MessagesControllerTest extends TestCase
             'channel_id' => $this->privateChannel->channel_id,
         ]);
 
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.channels.messages.index', ['channel_id' => $this->privateChannel->channel_id]))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->privateChannel->channel_id]))
             ->assertStatus(200);
     }
 
     //endregion
 
-    //region GET /chat/channels/[channel_id] - Get Channel Messages (pm)
+    //region GET /chat/channels/[channel] - Get Channel Messages (pm)
     public function testChannelShowPMWhenGuest() // fail
     {
-        $this->json('GET', route('api.chat.channels.messages.index', ['channel_id' => $this->pmChannel->channel_id]))
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->pmChannel->channel_id]))
             ->assertStatus(401);
     }
 
     public function testChannelShowPMWhenNotJoined() // fail
     {
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.channels.messages.index', ['channel_id' => $this->pmChannel->channel_id]))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->pmChannel->channel_id]))
             ->assertStatus(404);
     }
 
@@ -138,8 +138,8 @@ class MessagesControllerTest extends TestCase
             'channel_id' => $pmChannel->channel_id,
         ]);
 
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.channels.messages.index', ['channel_id' => $pmChannel->channel_id]))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $pmChannel->channel_id]))
             ->assertStatus(404);
     }
 
@@ -151,8 +151,8 @@ class MessagesControllerTest extends TestCase
             'channel_id' => $pmChannel->channel_id,
         ]);
 
-        $this->actingAs($this->user, 'api')
-            ->json('GET', route('api.chat.channels.messages.index', ['channel_id' => $pmChannel->channel_id]))
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $pmChannel->channel_id]))
             ->assertStatus(200);
         // TODO: Add check for messages being present?
     }
@@ -164,17 +164,17 @@ class MessagesControllerTest extends TestCase
     {
         $this->json(
             'POST',
-            route('api.chat.channels.messages.store', ['channel_id' => $this->publicChannel->channel_id]),
+            route('api.chat.channels.messages.store', ['channel' => $this->publicChannel->channel_id]),
             ['message' => self::$faker->sentence()]
         )->assertStatus(401);
     }
 
     public function testChannelSendWhenUnjoined() // fail
     {
-        $this->actingAs($this->user, 'api')
-            ->json(
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json(
                 'POST',
-                route('api.chat.channels.messages.store', ['channel_id' => $this->publicChannel->channel_id]),
+                route('api.chat.channels.messages.store', ['channel' => $this->publicChannel->channel_id]),
                 ['message' => self::$faker->sentence()]
             )
             ->assertStatus(403);
@@ -184,16 +184,17 @@ class MessagesControllerTest extends TestCase
     {
         $message = self::$faker->sentence();
 
-        $this->actingAs($this->user, 'api')
-            ->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->user->user_id,
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->user->user_id,
             ]));
 
-        $this->actingAs($this->user, 'api')
-            ->json(
+        $this->actAsScopedUser($this->user, ['*']);
+
+        $this->json(
                 'POST',
-                route('api.chat.channels.messages.store', ['channel_id' => $this->publicChannel->channel_id]),
+                route('api.chat.channels.messages.store', ['channel' => $this->publicChannel->channel_id]),
                 ['message' => $message]
             )
             ->assertStatus(200)
@@ -204,10 +205,10 @@ class MessagesControllerTest extends TestCase
     {
         $moderatedChannel = factory(Chat\Channel::class)->states('public')->create(['moderated' => true]);
 
-        $this->actingAs($this->user, 'api')
-            ->json(
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json(
                 'POST',
-                route('api.chat.channels.messages.store', ['channel_id' => $moderatedChannel->channel_id]),
+                route('api.chat.channels.messages.store', ['channel' => $moderatedChannel->channel_id]),
                 ['message' => self::$faker->sentence()]
             )
             ->assertStatus(403);
@@ -229,10 +230,10 @@ class MessagesControllerTest extends TestCase
             'zebra_id' => $this->anotherUser->user_id,
         ]);
 
-        $this->actingAs($this->user, 'api')
-            ->json(
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json(
                 'POST',
-                route('api.chat.channels.messages.store', ['channel_id' => $pmChannel->channel_id]),
+                route('api.chat.channels.messages.store', ['channel' => $pmChannel->channel_id]),
                 ['message' => self::$faker->sentence()]
             )
             ->assertStatus(403);
@@ -254,10 +255,10 @@ class MessagesControllerTest extends TestCase
             'zebra_id' => $this->user->user_id,
         ]);
 
-        $this->actingAs($this->user, 'api')
-            ->json(
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json(
                 'POST',
-                route('api.chat.channels.messages.store', ['channel_id' => $pmChannel->channel_id]),
+                route('api.chat.channels.messages.store', ['channel' => $pmChannel->channel_id]),
                 ['message' => self::$faker->sentence()]
             )
             ->assertStatus(403);
@@ -276,10 +277,10 @@ class MessagesControllerTest extends TestCase
             'channel_id' => $pmChannel->channel_id,
         ]);
 
-        $this->actingAs($this->restrictedUser, 'api')
-            ->json(
+        $this->actAsScopedUser($this->restrictedUser, ['*']);
+        $this->json(
                 'POST',
-                route('api.chat.channels.messages.store', ['channel_id' => $pmChannel->channel_id]),
+                route('api.chat.channels.messages.store', ['channel' => $pmChannel->channel_id]),
                 ['message' => self::$faker->sentence()]
             )
             ->assertStatus(403);
@@ -287,16 +288,16 @@ class MessagesControllerTest extends TestCase
 
     public function testChannelSendWhenRestrictedToPublic() // fail
     {
-        $this->actingAs($this->restrictedUser, 'api')
-            ->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->restrictedUser->user_id,
+        $this->actAsScopedUser($this->restrictedUser, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->restrictedUser->user_id,
             ]));
 
-        $this->actingAs($this->restrictedUser, 'api')
-            ->json(
+        $this->actAsScopedUser($this->restrictedUser, ['*']);
+        $this->json(
                 'POST',
-                route('api.chat.channels.messages.store', ['channel_id' => $this->publicChannel->channel_id]),
+                route('api.chat.channels.messages.store', ['channel' => $this->publicChannel->channel_id]),
                 ['message' => self::$faker->sentence()]
             )
             ->assertStatus(403);
@@ -315,10 +316,10 @@ class MessagesControllerTest extends TestCase
             'channel_id' => $pmChannel->channel_id,
         ]);
 
-        $this->actingAs($this->user, 'api')
-            ->json(
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json(
                 'POST',
-                route('api.chat.channels.messages.store', ['channel_id' => $pmChannel->channel_id]),
+                route('api.chat.channels.messages.store', ['channel' => $pmChannel->channel_id]),
                 ['message' => self::$faker->sentence()]
             )
             ->assertStatus(404);
@@ -337,10 +338,10 @@ class MessagesControllerTest extends TestCase
             'channel_id' => $pmChannel->channel_id,
         ]);
 
-        $this->actingAs($this->silencedUser, 'api')
-            ->json(
+        $this->actAsScopedUser($this->silencedUser, ['*']);
+        $this->json(
                 'POST',
-                route('api.chat.channels.messages.store', ['channel_id' => $pmChannel->channel_id]),
+                route('api.chat.channels.messages.store', ['channel' => $pmChannel->channel_id]),
                 ['message' => self::$faker->sentence()]
             )
             ->assertStatus(403);
@@ -348,16 +349,16 @@ class MessagesControllerTest extends TestCase
 
     public function testChannelSendWhenSilencedToPublic() // fail
     {
-        $this->actingAs($this->silencedUser, 'api')
-            ->json('PUT', route('api.chat.channels.join', [
-                'channel_id' => $this->publicChannel->channel_id,
-                'user_id' => $this->silencedUser->user_id,
+        $this->actAsScopedUser($this->silencedUser, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
+                'channel' => $this->publicChannel->channel_id,
+                'user' => $this->silencedUser->user_id,
             ]));
 
-        $this->actingAs($this->silencedUser, 'api')
-            ->json(
+        $this->actAsScopedUser($this->silencedUser, ['*']);
+        $this->json(
                 'POST',
-                route('api.chat.channels.messages.store', ['channel_id' => $this->publicChannel->channel_id]),
+                route('api.chat.channels.messages.store', ['channel' => $this->publicChannel->channel_id]),
                 ['message' => self::$faker->sentence()]
             )
             ->assertStatus(403);

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,7 +25,7 @@ return [
     ],
 
     'incidents' => [
-        'title' => 'Incidentes Activos',
+        'title' => 'Incidentes Ativos',
         'automated' => 'automatizado',
     ],
 
@@ -34,7 +34,7 @@ return [
             'users' => 'Utilizadores Online nas últimas 24 Horas',
             'score' => 'Submissões de Pontuação nas últimas 24 Horas',
         ],
-        'current' => 'Utilizadores Online Actuais',
+        'current' => 'Utilizadores Online Atuais',
         'score' => 'Submissões de Pontuação por Segundo',
     ],
 
@@ -49,7 +49,7 @@ return [
         ],
 
         'uptime' => [
-            'title' => 'Tempo Activo',
+            'title' => 'Tempo Ativo',
             'graphs' => [
                 'server' => 'servidor',
                 'web' => 'web',

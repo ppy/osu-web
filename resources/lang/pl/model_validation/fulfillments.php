@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'Obecna nazwa użytkownika (:current) nie jest taka sama jak zmiana do cofnięcia (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Podana kwota jest niewystarczająca, by podarować status donatora (:actual > :expected)',
+        'insufficient_paid' => 'Podana kwota jest niewystarczająca, by podarować status donatora osu! (:actual > :expected)',
     ],
 ];

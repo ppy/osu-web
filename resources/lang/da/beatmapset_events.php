@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,7 +25,7 @@ return [
         'discussion_post_delete' => 'Moderator slettede et opslag fra diskussionen :discussion.',
         'discussion_post_restore' => 'Moderator gendannede et opslag fra diskussionen :discussion.',
         'discussion_restore' => 'Moderator gendannede diskussionen :discussion.',
-        'disqualify' => '',
+        'disqualify' => 'Diskvalificeret af :user. Årsag: :discussion (:text).',
         'disqualify_legacy' => 'Diskvalificeret af :user. Årsag: :text.',
         'issue_reopen' => 'Løste problem :discussion genåbnet.',
         'issue_resolve' => 'Problem :discussion markeret som løst.',
@@ -34,20 +34,46 @@ return [
         'kudosu_gain' => 'Diskussionen :discussion af :user modtog nok stemmer for at modtage kudosu.',
         'kudosu_lost' => 'Diskussionen :discussion by :user mistede stemmer, og det givne kudosu er blevet inddraget.',
         'kudosu_recalculate' => 'Diskussionen :discussion har fået sin kudosu givelser genberegnet.',
-        'love' => '',
+        'love' => 'Elsket af :user',
         'nominate' => 'Nomineret af :user.',
         'nomination_reset' => 'Nyt problem :discussion udløste en nomineringsnulstilling.',
-        'qualify' => '',
+        'qualify' => 'Denne beatmap har nået det krævede antal nomineringer og er blevet kvalificeret.',
         'rank' => 'Ranked.',
     ],
 
     'index' => [
-        'title' => '',
+        'title' => 'Beatmapset Begivenheder',
+
+        'form' => [
+            'period' => 'Periode',
+            'types' => 'Skriver',
+        ],
     ],
 
     'item' => [
-        'content' => '',
+        'content' => 'Indhold',
         'discussion_deleted' => '[slettet]',
-        'type' => '',
+        'type' => 'Skriv',
+    ],
+
+    'type' => [
+        'approve' => 'Godkendelse',
+        'discussion_delete' => 'Diskussion sletning',
+        'discussion_post_delete' => 'Diskussion svar sletning',
+        'discussion_post_restore' => 'Diskussion svar restoration',
+        'discussion_restore' => 'Diskussion restoration',
+        'disqualify' => 'Diskvalifikation',
+        'issue_reopen' => 'Diskussion genåbning',
+        'issue_resolve' => 'Diskussion løsning',
+        'kudosu_allow' => 'Kudosu Tilgængelighed',
+        'kudosu_deny' => 'Kudosu nægtelse',
+        'kudosu_gain' => 'Kudosu tjent',
+        'kudosu_lost' => 'Kudosu mistet',
+        'kudosu_recalculate' => 'Kudosu genberegning',
+        'love' => 'Kærlighed',
+        'nominate' => 'Nominering',
+        'nomination_reset' => 'Nulstilling af nominering',
+        'qualify' => 'Kvalifikation',
+        'rank' => 'Rangering',
     ],
 ];

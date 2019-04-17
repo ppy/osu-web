@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,8 +34,8 @@ return [
         'invalid_mode' => 'Επιλέχτηκε μη έγκυρη λειτουργία.',
         'standard_converts_only' => 'Τα σκορ δεν είναι διαθέσιμα για τη λειτουργία που ζητήσατε στη συγκεκριμένη δυσκολία αυτού του beatmap.',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'Έχετε πολλά maps στα αγαπημένα! Παρακαλώ αφαιρέστε ένα πριν συνεχίσετε.',
+    'checkout' => [
+        'generic' => 'Παρουσιάστηκε κάποιο σφάλμα στην προετοιμασία της αγοράς σας.',
     ],
     'logged_out' => 'Έχετε αποσυνδεθεί. Παρακαλώ ξανασυνδεθείτε και επαναπροσπαθήστε.',
     'supporter_only' => 'Πρέπει να είστε supporter για να χρησιμοποιήσετε αυτήν τη λειτουργία.',

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'confirmation' => 'Сигурни ли сте?',
-    'confirmation_unsaved' => '',
+    'confirmation_unsaved' => 'Незапазените промени ще бъдат загубени. Сигурни ли сте?',
     'saved' => 'Запазено',
 
     'array_and' => [
@@ -30,25 +30,33 @@ return [
     ],
 
     'buttons' => [
+        'admin' => 'Админ',
+        'back_to_previous' => 'Връщане към предишния изглед',
+        'back_to_top' => 'Обратно към началото',
         'cancel' => 'Отмяна',
         'change' => 'промяна',
         'click_to_copy' => 'щракнете, за да копирате в клипборда',
         'click_to_copy_copied' => 'копиранo в клипборда!',
+        'collapse' => 'свиване',
         'delete' => 'Изтрий',
+        'edit' => 'Редактирай',
+        'expand' => 'разгъване',
         'hide' => 'скрий',
-        'permalink' => '',
+        'permalink' => 'постоянен линк',
         'permalink_copied' => 'линк копиран',
-        'post' => 'Пост',
+        'post' => 'Публикувай',
         'reply' => 'Отговори',
-        'reply_reopen' => '',
-        'reply_resolve' => '',
+        'reply_reopen' => 'Отговори и възстанови',
+        'reply_resolve' => 'Отговори и разреши',
         'reset' => 'Нулирай',
+        'restore' => 'Възстанови',
         'save' => 'Запази',
         'saving' => 'Запазване...',
         'search' => 'Търсене',
         'see_more' => 'виж още',
         'show' => 'покажи',
         'show_more' => 'покажи още',
+        'show_more_options' => 'покажи още опции',
         'upload_image' => 'качи снимка',
     ],
 
@@ -59,9 +67,17 @@ return [
         'hours' => ':count ч|:count ч',
         'item' => ':count брой|:count броя',
         'minute_short_unit' => 'мин|мин',
+        'minutes' => ':count минута|:count минути',
         'months' => ':count месец|:count месеца',
         'second_short_unit' => 'сек|сек',
         'years' => ':count година|:count години',
+    ],
+
+    'countdown' => [
+        'days' => 'дни',
+        'hours' => 'часове',
+        'minutes' => 'минути',
+        'seconds' => 'секунди',
     ],
 
     'datetime' => [

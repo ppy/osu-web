@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -31,6 +31,12 @@
     min-height: @nav2-header-image-height;
   }
 
+  &--chat {
+    @media @desktop {
+      margin-bottom: -210px;
+    }
+  }
+
   &__bg {
     .full-size();
     background-color: @_background-color;
@@ -38,9 +44,22 @@
     background-size: (@container-sm + @_background-side-overflow * 2) auto;
     background-repeat: no-repeat;
     z-index: @z-index--header-bg;
+    display: none;
+
+    @media @desktop {
+      display: block;
+    }
 
     .@{_top}--changelog & {
       .at2x-simple('/images/headers/changelog.jpg');
+    }
+
+    .@{_top}--chat & {
+      .at2x-simple('/images/headers/chat.jpg');
+    }
+
+    .@{_top}--news & {
+      .at2x-simple('/images/headers/news.png');
     }
   }
 
@@ -59,12 +78,31 @@
       fade(@_background-color, 25%) (@container-sm + @_background-side-overflow + @_background-side-overflow / 2),
       fade(@_background-color, 50%) (@container-sm + @_background-side-overflow + @_background-side-overflow * 3 / 4),
       @_background-color);
+    display: none;
 
     // top to bottom overlay
     &::before {
       content: '';
       .full-size();
       background-image: linear-gradient(to bottom, @_background-color, transparent);
+    }
+
+    @media @desktop {
+      display: block;
+    }
+  }
+
+  &__spinner {
+    .center-content();
+    .full-size();
+    font-size: 60px; // icon size
+    background-color: fade(#000, 50%);
+    color: #fff;
+    padding-top: @nav2-height--pinned;
+    display: none;
+
+    @media @desktop {
+      display: flex;
     }
   }
 }

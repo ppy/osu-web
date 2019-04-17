@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -36,10 +36,10 @@ return [
         'title' => 'Beatmap Diskussioner',
 
         'form' => [
-            '_' => '',
+            '_' => 'Søg',
             'deleted' => 'Inkluder slettede diskussioner',
-            'types' => '',
-            'username' => '',
+            'types' => 'Meddelelsestyper',
+            'username' => 'Brugernavn',
 
             'user' => [
                 'label' => 'Bruger',
@@ -49,9 +49,9 @@ return [
     ],
 
     'item' => [
-        'created_at' => '',
+        'created_at' => 'Opslag dato',
         'deleted_at' => 'Sletnings dato',
-        'message_type' => '',
+        'message_type' => 'Skriv',
         'permalink' => 'Permalink',
     ],
 

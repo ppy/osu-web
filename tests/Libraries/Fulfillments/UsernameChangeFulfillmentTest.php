@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,6 +25,7 @@ use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use App\Models\User;
 use App\Models\UsernameChangeHistory;
+use Carbon\Carbon;
 use TestCase;
 
 class UsernameChangeFulfillmentTest extends TestCase
@@ -33,7 +34,7 @@ class UsernameChangeFulfillmentTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create();
+        $this->user = factory(User::class)->create(['osu_subscriptionexpiry' => Carbon::now()]);
         $this->order = factory(Order::class, 'paid')->create(['user_id' => $this->user->user_id]);
     }
 

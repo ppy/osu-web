@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,9 +24,10 @@ return [
         'online' => '現在<strong>:players</strong>人オンラインでマルチ部屋数<strong>:games</strong>',
         'peak' => '最高オンライン数:count',
         'players' => '累計登録者数<strong>:count</strong>人',
+        'title' => 'ようこそ！',
 
         'slogan' => [
-            'main' => '基本料無料で最高のリズムゲーム',
+            'main' => '基本無料で最高のリズムゲーム',
             'sub' => 'リズムはもう、その指先に',
         ],
     ],
@@ -40,9 +41,9 @@ return [
         'title' => '検索結果',
 
         'beatmapset' => [
-            'more' => '他:count件の譜面検索結果',
-            'more_simple' => '他の譜面検索結果を見る',
-            'title' => '譜面',
+            'more' => '他:count件のビートマップ検索結果',
+            'more_simple' => 'もっとビートマップの検索結果を見る',
+            'title' => 'ビートマップ',
         ],
 
         'forum_post' => [
@@ -61,7 +62,7 @@ return [
 
         'mode' => [
             'all' => '全て',
-            'beatmapset' => '譜面',
+            'beatmapset' => 'ビートマップ',
             'forum_post' => 'フォーラム',
             'user' => 'プレイヤー',
             'wiki_page' => 'wiki',
@@ -69,14 +70,14 @@ return [
 
         'user' => [
             'more' => '他:count件のプレイヤー検索結果',
-            'more_simple' => '他のプレイヤー検索結果を見る',
+            'more_simple' => 'もっとプレイヤーの検索結果を見る',
             'more_hidden' => 'プレイヤー検索は最大:max件までです。絞り込む事をおすすめします。',
             'title' => 'プレイヤー',
         ],
 
         'wiki_page' => [
             'link' => 'wikiを検索',
-            'more_simple' => '他のwiki検索結果を見る',
+            'more_simple' => 'もっとwikiの検索結果を見る',
             'title' => 'Wiki',
         ],
     ],
@@ -101,9 +102,9 @@ return [
                 'description' => '上のボタンからインストーラーをダウンロードして、実行しよう！',
             ],
             'beatmaps' => [
-                'title' => '譜面を取得する',
+                'title' => 'ビートマップを取得',
                 'description' => [
-                    '_' => ':browseから好きな譜面をユーザーたちが作成した膨大な数の譜面から見つけよう！',
+                    '_' => ':browseからユーザーが作った膨大な数のビートマップから好きなビートマップを見つけて遊ぼう！',
                     'browse' => 'ここ',
                 ],
             ],

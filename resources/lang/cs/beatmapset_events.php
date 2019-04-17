@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'Události beatmapsetu',
+
+        'form' => [
+            'period' => 'Období',
+            'types' => 'Typy',
+        ],
     ],
 
     'item' => [
         'content' => 'Obsah',
         'discussion_deleted' => '[odstraněno]',
         'type' => 'Typ',
+    ],
+
+    'type' => [
+        'approve' => 'Schválení',
+        'discussion_delete' => 'Odstranění diskuze',
+        'discussion_post_delete' => 'Odstranění odpovědí diskuze',
+        'discussion_post_restore' => 'Obnovení odpovědí diskuze',
+        'discussion_restore' => 'Obnovení diskuze',
+        'disqualify' => 'Diskvalifikace',
+        'issue_reopen' => 'Znovuotevření diskuze',
+        'issue_resolve' => 'Vyřešení diskuze',
+        'kudosu_allow' => 'Příspěvek Kudosu',
+        'kudosu_deny' => 'Odmítnutí Kudosu',
+        'kudosu_gain' => 'Zisk Kudosu',
+        'kudosu_lost' => 'Ztráta Kudosu',
+        'kudosu_recalculate' => 'Přepočet Kudosu',
+        'love' => 'Obliba',
+        'nominate' => 'Nominace',
+        'nomination_reset' => 'Resetování nominací',
+        'qualify' => 'Kvalifikace',
+        'rank' => 'Hodnocení',
     ],
 ];

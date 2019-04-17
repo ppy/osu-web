@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Op een verwijderde comment reageren is niet toegestaan.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Kan alleen maar stemmen op een feature aanvraag.',
@@ -64,10 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Beatmap metadata post verwijderen is niet toegestaan.',
             'beatmapset_post_no_edit' => 'Beatmap metadata post bewerken is niet toegestaan.',
+            'only_quote' => '',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Een optie dupliceren is niet toegestaan.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Opties per gebruiker mag niet groter zijn dan het aantal opties.',
             'minimum_one_selection' => 'Minstens een optie per gebruiker is vereist.',
             'minimum_two_options' => 'Moet ten minste twee opties hebben.',
@@ -92,6 +98,7 @@ return [
         'username_available_soon' => 'Deze gebruikersnaam kan elk moment beschikbaar worden!',
         'username_invalid_characters' => 'De opgevraagde gebruikersnaam bevat ongeldige tekens.',
         'username_in_use' => 'Gebruikersnaam is al in gebruik!',
+        'username_locked' => '', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Gebruik oftewel underscores of spaties, niet beide!',
         'username_no_spaces' => "Gebruikersnaam kan niet beginnen of eindigen met spaties!",
         'username_not_allowed' => 'Deze gebruikersnaam is niet toegestaan.',
@@ -110,5 +117,9 @@ return [
             ],
             'username_is_same' => 'Dit is je gebruikersnaam al, dommerik!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

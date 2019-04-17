@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, a} = ReactDOMFactories
+import * as React from 'react'
+import { div, span, a } from 'react-dom-factories'
 el = React.createElement
 
 icon =
@@ -24,7 +25,7 @@ icon =
   fix: 'fas fa-check'
   misc: 'far fa-circle'
 
-@ChangelogEntry = ({entry}) =>
+export ChangelogEntry = ({entry}) =>
   div
     className: 'changelog-entry'
     key: entry.id

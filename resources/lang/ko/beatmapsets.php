@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,41 +34,50 @@ return [
         'discussion' => '토론',
 
         'details' => [
+            'approved' => 'approved된 날짜: ',
+            'favourite' => '즐겨찾기',
+            'favourited_count' => '및 +1명의 사람!|및 +:count명의 사람들!',
+            'logged-out' => '로그인 후 비트맵을 다운로드하세요!',
+            'loved' => 'loved된 날짜: ',
             'mapped_by' => ':mapper님의 맵',
+            'qualified' => 'qualified된 날짜: ',
+            'ranked' => 'ranked된 날짜: ',
             'submitted' => '만든 날짜: ',
+            'unfavourite' => '즐겨찾기 해제',
             'updated' => '마지막 수정 날짜: ',
             'updated_timeago' => ':timeago에 마지막으로 수정됨',
-            'ranked' => 'ranked된 날짜: ',
-            'approved' => 'approved된 날짜: ',
-            'qualified' => 'qualified된 날짜: ',
-            'loved' => 'loved된 날짜: ',
-            'logged-out' => '로그인 후 비트맵을 다운로드하세요!',
+
             'download' => [
                 '_' => '다운로드',
-                'video' => '영상 포함',
-                'no-video' => '영상 미포함',
                 'direct' => 'osu!다이렉트',
+                'no-video' => '영상 미포함',
+                'video' => '영상 포함',
             ],
-            'favourite' => '즐겨찾기',
-            'unfavourite' => '즐겨찾기 해제',
-            'favourited_count' => '및 +1명의 사람!|및 +:count명의 사람들!',
+
+            'login_required' => [
+                'bottom' => '하여 더 많은 기능 사용',
+                'top' => '로그인',
+            ],
         ],
-        'stats' => [
-            'cs' => 'Circle Size',
-            'cs-mania' => '키 개수',
-            'drain' => 'HP Drain',
-            'accuracy' => 'Accuracy',
-            'ar' => 'Approach Rate',
-            'stars' => 'Star Difficulty',
-            'total_length' => '길이',
-            'bpm' => 'BPM',
-            'count_circles' => 'Circle Count',
-            'count_sliders' => 'Slider Count',
-            'user-rating' => '유저 평점',
-            'rating-spread' => '평점 분포도',
-            'nominations' => '지명',
-            'playcount' => '플레이 횟수',
+
+        'favourites' => [
+            'limit_reached' => '즐겨찾기 한 비트맵이 너무 많습니다! 계속하기 전에 즐겨찾기 수를 줄여주세요.',
         ],
+
+        'hype' => [
+            'action' => '이 맵을 즐기셨다면 홍보해서 <strong>Ranked</strong> 상태가 될 수 있게 도와주세요.',
+
+            'current' => [
+                '_' => '이 맵은 현재 :status 상태입니다.',
+
+                'status' => [
+                    'pending' => 'pending',
+                    'qualified' => 'qualified',
+                    'wip' => '제작 중',
+                ],
+            ],
+        ],
+
         'info' => [
             'description' => '설명',
             'genre' => '장르',
@@ -80,6 +89,7 @@ return [
             'tags' => '태그',
             'unranked' => 'Unranked beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => ':when에 달성함',
             'country' => '국가 순위',
@@ -112,6 +122,23 @@ return [
                 'first' => '순위권',
                 'own' => '내 최고 점수',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Circle Size',
+            'cs-mania' => '키 개수',
+            'drain' => 'HP Drain',
+            'accuracy' => 'Accuracy',
+            'ar' => 'Approach Rate',
+            'stars' => 'Star Difficulty',
+            'total_length' => '길이',
+            'bpm' => 'BPM',
+            'count_circles' => 'Circle Count',
+            'count_sliders' => 'Slider Count',
+            'user-rating' => '유저 평점',
+            'rating-spread' => '평점 분포도',
+            'nominations' => '지명',
+            'playcount' => '플레이 횟수',
         ],
     ],
 ];

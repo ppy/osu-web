@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => '',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => '只能給新特性請求投票。',
@@ -64,10 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => '不允許刪除譜面信息帖。',
             'beatmapset_post_no_edit' => '不允許編輯譜面信息帖。',
+            'only_quote' => '',
         ],
 
         'topic_poll' => [
             'duplicate_options' => '不允許重複的選項。',
+            'grace_period_expired' => '',
             'invalid_max_options' => '每人可選的選項不能超出總選項數。',
             'minimum_one_selection' => '每人至少可選一項。',
             'minimum_two_options' => '需要至少兩個選項。',
@@ -92,6 +98,7 @@ return [
         'username_available_soon' => '该用户名即将可用！',
         'username_invalid_characters' => '用户名中包含非法字符。',
         'username_in_use' => '用户名已经被使用！',
+        'username_locked' => '', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => '请在下划线和空格间选一个，不要混用！',
         'username_no_spaces' => "用户名不能以空格开头或结束。",
         'username_not_allowed' => '不允许使用该用户名。',
@@ -110,5 +117,9 @@ return [
             ],
             'username_is_same' => '这就是你的用户名，Baka！',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

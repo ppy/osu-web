@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - リズムはもう、その指先に！  某応援団や某太鼓のゲームをモチーフにしたゲームモードやオリジナルのゲームモードも楽しめて、譜面作成までも完全に行えるゲームです。',
+        'page_description' => 'osu! - リズムはもう、その指先に！応援団や太鼓をモチーフにしたゲームモード、オリジナルのゲームモード、そしてレベルエディタも備えています。',
     ],
 
     'menu' => [
@@ -35,24 +35,25 @@ return [
             'groups-show' => 'グループ',
             'index' => 'ダッシュボード',
             'legal-show' => 'インフォメーション',
+            'messages-index' => 'メッセージ',
             'news-index' => 'お知らせ',
             'news-show' => 'お知らせ',
             'password-reset-index' => 'パスワードのリセット',
             'search' => '検索',
-            'supportTheGame' => '支援する',
-            'team' => 'osu!チーム',
+            'supportTheGame' => 'ゲームを支援する',
+            'team' => 'osu!team',
         ],
         'help' => [
             '_' => 'ヘルプ',
             'getFaq' => 'FAQ',
             'getRules' => 'ルール',
-            'getSupport' => '本当にサポートが必要です！',
+            'getSupport' => 'サポートが必要です！',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
-            '_' => '譜面',
-            'artists' => '推奨アーティスト',
+            '_' => 'ビートマップ',
+            'artists' => 'おすすめアーティスト',
             'beatmap_discussion_posts-index' => 'ディスカッション投稿',
             'beatmap_discussions-index' => 'ディスカッション',
             'beatmapset-watches-index' => 'moddingウォッチリスト',
@@ -70,17 +71,20 @@ return [
             '_' => 'ランキング',
             'index' => 'パフォーマンス',
             'performance' => 'パフォーマンス',
-            'charts' => 'チャート',
+            'charts' => 'スポットライト',
             'score' => 'スコア',
             'country' => '国別',
             'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'コミュニティ',
+            'chat' => 'チャット',
+            'chat-index' => 'チャット',
             'dev' => '開発',
             'getForum' => 'フォーラム',
-            'getChat' => 'チャット',
             'getLive' => '配信',
+            'comments-index' => 'コメント',
+            'comments-show' => 'コメント',
             'contests' => 'コンテスト',
             'profile' => 'プロフィール',
             'tournaments' => 'トーナメント',
@@ -114,16 +118,18 @@ return [
             'reset' => 'リセット',
             'new' => '新しい',
 
-            'messages' => 'メッセージ',
-            'settings' => '設定',
-            'logout' => 'ログアウト',
             'help' => 'ヘルプ',
+            'logout' => 'ログアウト',
+            'messages' => 'メッセージ',
             'modding-history-discussions' => 'ユーザーモッディングの議論',
             'modding-history-events' => 'ユーザーモッディングイベント',
             'modding-history-index' => 'ユーザーのビートマップセットのアクティビティ',
             'modding-history-posts' => 'ユーザーモッディングポスト',
             'modding-history-votesGiven' => 'ユーザーモッディングあげた投票',
             'modding-history-votesReceived' => 'ユーザーモッディング貰った投票',
+            'oauth_login' => 'oauthでログインする。',
+            'oauth_request' => 'oauth認証',
+            'settings' => '設定',
         ],
         'store' => [
             '_' => 'ストア',
@@ -133,6 +139,7 @@ return [
 
             'getCheckout' => '精算',
             'getInvoice' => '送り状',
+            'orders-index' => '注文履歴',
             'products-show' => '製品',
 
             'new' => 'new',
@@ -222,39 +229,39 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "念の為に、サポートに提示できるコードが表示されます。",
+        'reference' => "念の為に、サポートに提示できるコードを表示します。",
     ],
 
     'popup_login' => [
         'login' => [
-            'email' => 'Eメールアドレス',
+            'email' => 'メールアドレス',
             'forgot' => "ログイン情報を忘れた",
             'password' => 'パスワード',
             'title' => '続行するにはログインしてください',
 
             'error' => [
-                'email' => "ユーザー名かEメールか存在しません",
+                'email' => "ユーザー名かEメールが存在しません",
                 'password' => 'パスワードが一致しませんでした。',
             ],
         ],
 
         'register' => [
             'info' => "アカウントが必要です。作ってみませんか？",
-            'title' => "アカウントが必要です",
+            'title' => "アカウントを持っていませんか？",
         ],
     ],
 
     'popup_user' => [
         'links' => [
             'account-edit' => '設定',
-            'friends' => 'フレンド',
+            'friends' => 'フレンドリスト',
             'logout' => 'ログアウト',
             'profile' => 'プロフィール',
         ],
     ],
 
     'popup_search' => [
-        'initial' => '入力で検索！',
+        'initial' => '入力して検索',
         'retry' => '検索に失敗しました。クリックでリトライします。',
     ],
 ];

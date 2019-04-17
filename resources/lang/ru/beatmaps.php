@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -96,14 +96,14 @@ return [
         ],
 
         'show' => [
-            'title' => ':title сделанный :mapper',
+            'title' => ':title от :mapper',
         ],
 
         'sort' => [
             '_' => 'Отсортировано по:',
             'created_at' => 'дате создания',
-            'timeline' => 'графику',
-            'updated_at' => 'дате обновления',
+            'timeline' => 'хронологии',
+            'updated_at' => 'дате изменения',
         ],
 
         'stats' => [
@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Удалить',
+        'delete_own_confirm' => 'Уверены? Карта будет удалена, и вы будете перенаправлены обратно в свой профиль.',
+        'delete_other_confirm' => 'Уверены? Карта будет удалена, и вы будете перенаправлены в профиль пользователя.',
         'disqualification_prompt' => 'Причина для дисквалификации?',
         'disqualified_at' => 'дисквалифицирован :time_ago (:reason).',
         'disqualified_no_reason' => 'причина не указана',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Вы уверены? Сообщение о новой проблеме сбросит статус номинации.',
+            'disqualify' => 'Уверены? Карта будет снята с квалификации и статус номинирования будет сброшен.',
         ],
     ],
 
@@ -176,7 +180,7 @@ return [
             'prompt' => 'начните вводить ключевые слова ...',
             'login_required' => 'Войдите, чтобы искать.',
             'options' => 'Больше настроек поиска',
-            'supporter_filter' => 'Фильтрация по :filters требует наличия активной подписки osu!supporter',
+            'supporter_filter' => 'Фильтрация по :filters требует наличия osu!supporter',
             'not-found' => 'нет результатов',
             'not-found-quote' => '... увы, ничего не найдено.',
             'filters' => [
@@ -190,15 +194,16 @@ return [
                 'played' => 'Сыграно',
             ],
             'sorting' => [
-                'title' => 'название',
-                'artist' => 'исполнитель',
-                'difficulty' => 'сложность',
-                'updated' => 'обновлено',
-                'ranked' => 'рейтинговые',
-                'rating' => 'рейтинг',
-                'plays' => 'количество игр',
-                'relevance' => 'релевантность',
-                'nominations' => 'номинации',
+                'title' => 'названию',
+                'artist' => 'исполнителю',
+                'difficulty' => 'сложности',
+                'favourites' => 'Избранное',
+                'updated' => 'дате обновления',
+                'ranked' => 'дате ранка',
+                'rating' => 'рейтингу',
+                'plays' => 'количеству игр',
+                'relevance' => 'релевантности',
+                'nominations' => 'номинациям',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Фильтрация по :filters требует :link',
@@ -297,5 +302,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => 'Количество игр: :count',
+        'favourites' => 'В любимых: :count',
     ],
 ];

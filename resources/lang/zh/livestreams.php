@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,9 @@
 return [
     'top-headers' => [
         'headline' => '直播中心',
-        'description' => '每 5 分钟从 twitch.tv 更新一次列表，想要出现在列表中？快来直播吧！更多相关信息，请查阅我们的 Wiki 界面。',
+        'description' => '每 5 分钟从 twitch.tv 更新一次列表，想要出现在列表中？快来直播吧！更多相关信息，请查阅 :link 。',
+
+        'link' => 'wiki 上关于直播的内容',
     ],
     'headers' => [
         'regular' => '正在直播',

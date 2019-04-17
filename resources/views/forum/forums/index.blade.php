@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -56,5 +56,13 @@
                 @include("forum.forums._forums", ["forums" => $category->subforums])
             </div>
         @endforeach
+
+        <div class="forum-category col-sm-12">
+            <div class="forums">
+                <div class="forums__forum forums__forum--mark-as-read">
+                    @include('forum.forums._mark_as_read')
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

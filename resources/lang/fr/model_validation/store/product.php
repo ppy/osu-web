@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 return [
     'insufficient_stock' => 'Il n\'y a plus assez d\'exemplaires de cet article en stock !',
+    'must_separate' => 'Cet élément doit être commandé séparément des autres éléments',
     'not_available' => 'Cet article n\'est pas disponible.',
     'too_many' => 'Vous ne pouvez acheter que :count fois cet objet par commande.',
 ];

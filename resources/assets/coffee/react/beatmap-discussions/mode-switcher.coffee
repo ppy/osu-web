@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,42 +16,26 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, li, span, ul} = ReactDOMFactories
+import * as React from 'react'
+import { a, div, li, span, ul } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapDiscussions.ModeSwitcher extends React.PureComponent
+export class ModeSwitcher extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @state =
-      tabsSticky: false
-
-
-  componentDidMount: =>
-    $.subscribe 'stickyHeader.beatmapDiscussionsMode', @tabsStick
-    osu.pageChange()
-
-
-  componentWillUnmount: =>
-    $.unsubscribe '.beatmapDiscussionsMode'
-
 
   render: =>
-    div
-      className: "page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
+    [
+      div
+        className: 'page-extra-tabs-before'
+        key: 'page-extra-tabs-before'
 
       div
-        className: 'js-sticky-header'
-        'data-sticky-header-target': 'page-extra-tabs'
+        className: 'page-extra-tabs'
+        key: 'page-extra-tabs'
+        ref: @props.innerRef
 
-      div
-        className: 'page-extra-tabs__padding js-sync-height--target'
-        'data-sync-height-id': 'page-extra-tabs'
-        'data-sticky-header-target': 'page-extra-tabs'
-
-      div
-        className: 'page-extra-tabs__floatable js-sync-height--reference js-mode-switcher'
-        'data-sync-height-target': 'page-extra-tabs'
         div className: 'osu-page',
           ul className: 'page-mode page-mode--page-extra-tabs',
             for mode in ['generalAll', 'general', 'timeline', 'events']
@@ -78,11 +62,7 @@ class BeatmapDiscussions.ModeSwitcher extends React.PureComponent
                     span className: 'page-mode-link__badge',
                       _.size(@props.currentDiscussions.byFilter[@props.currentFilter][mode])
                   span className: 'page-mode-link__stripe'
-
-
-  tabsStick: (_e, target) =>
-    newState = (target == 'page-extra-tabs')
-    @setState(tabsSticky: newState) if newState != @state.tabsSticky
+    ]
 
 
   switch: (e) =>

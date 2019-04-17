@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,58 @@
 
 namespace App\Models\Forum;
 
+use App\Models\User;
+use Carbon\Carbon;
+
+/**
+ * @property ForumCover $cover
+ * @property int $display_on_index
+ * @property int $enable_icons
+ * @property bool $enable_indexing
+ * @property int $enable_prune
+ * @property bool $enable_sigs
+ * @property string $forum_desc
+ * @property string $forum_desc_bitfield
+ * @property int $forum_desc_options
+ * @property string $forum_desc_uid
+ * @property int $forum_flags
+ * @property int $forum_id
+ * @property string $forum_image
+ * @property int $forum_last_post_id
+ * @property string $forum_last_post_subject
+ * @property int $forum_last_post_time
+ * @property string $forum_last_poster_colour
+ * @property int $forum_last_poster_id
+ * @property string $forum_last_poster_name
+ * @property string $forum_link
+ * @property string $forum_name
+ * @property mixed $forum_parents
+ * @property string $forum_password
+ * @property int $forum_posts
+ * @property string $forum_rules
+ * @property string $forum_rules_bitfield
+ * @property string $forum_rules_link
+ * @property int $forum_rules_options
+ * @property string $forum_rules_uid
+ * @property int $forum_status
+ * @property int $forum_style
+ * @property int $forum_topics
+ * @property int $forum_topics_per_page
+ * @property int $forum_topics_real
+ * @property int $forum_type
+ * @property Post $lastPost
+ * @property int $left_id
+ * @property array|null $moderator_groups
+ * @property static $parentForum
+ * @property int $parent_id
+ * @property int $prune_days
+ * @property int $prune_freq
+ * @property int $prune_next
+ * @property int $prune_viewed
+ * @property int $right_id
+ * @property \Illuminate\Database\Eloquent\Collection $subforums static
+ * @property \Illuminate\Database\Eloquent\Collection $topics Topic
+ */
 class Forum extends Model
 {
     protected $table = 'phpbb_forums';
@@ -67,6 +119,13 @@ class Forum extends Model
         }
 
         return $lastTopics ?? [];
+    }
+
+    public static function markAllAsRead(User $user)
+    {
+        $user->update(['user_lastmark' => Carbon::now()]);
+        ForumTrack::where('user_id', $user->getKey())->delete();
+        TopicTrack::where('user_id', $user->getKey())->delete();
     }
 
     public function categorySlug()
@@ -204,7 +263,9 @@ class Forum extends Model
     // feature forum shall have extra features like sorting and voting
     public function isFeatureForum()
     {
-        return $this->forum_id === config('osu.forum.feature_forum_id');
+        $id = config('osu.forum.feature_forum_id');
+
+        return $this->forum_id === $id || isset($this->forum_parents[$id]);
     }
 
     public function topicsAdded($count)
@@ -286,6 +347,18 @@ class Forum extends Model
     public function isOpen()
     {
         return $this->forum_type === 1;
+    }
+
+    public function markAsRead(User $user)
+    {
+        $forumTrack = ForumTrack::firstOrNew([
+            'user_id' => $user->getKey(),
+            'forum_id' => $this->getKey(),
+        ]);
+        $forumTrack->mark_time = Carbon::now();
+        $forumTrack->save();
+
+        TopicTrack::where('user_id', $user->getKey())->where('forum_id', $this->getKey())->delete();
     }
 
     public function toMetaDescription()

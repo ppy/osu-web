@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => 'Mark forum as read',
+        'forums' => 'Mark forums as read',
+        'busy' => 'Marking as read...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'Editing a poll will remove the current results!',
+
+        'actions' => [
+            'edit' => 'Edit poll',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Really delete post?',
         'confirm_restore' => 'Really restore post?',
@@ -57,6 +71,10 @@ return [
             'destroy' => 'Delete post',
             'restore' => 'Restore post',
             'edit' => 'Edit post',
+        ],
+
+        'info' => [
+            'post_count' => ':count_delimited post|:count_delimited posts',
         ],
     ],
 
@@ -70,7 +88,7 @@ return [
         'deleted' => 'deleted topic',
         'go_to_latest' => 'view latest post',
         'latest_post' => ':when by :user',
-        'latest_reply_by' => 'latest reply by :user',
+        'latest_reply_by' => 'last reply by :user',
         'new_topic' => 'New topic',
         'new_topic_login' => 'Sign in to post new topic',
         'post_reply' => 'Post',
@@ -153,12 +171,16 @@ return [
         'create' => [
             'create_poll' => 'Poll Creation',
 
+            'preview' => 'Post Preview',
+
             'create_poll_button' => [
                 'add' => 'Create a poll',
                 'remove' => 'Cancel creating a poll',
             ],
 
             'poll' => [
+                'hide_results' => 'Hide the results of the poll.',
+                'hide_results_info' => 'They will be shown only after the poll concludes.',
                 'length' => 'Run poll for',
                 'length_days_suffix' => 'days',
                 'length_info' => 'Leave blank for a never ending poll',
@@ -177,8 +199,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'views',
+            'feature_votes' => 'star priority',
             'replies' => 'replies',
+            'views' => 'views',
         ],
 
         'issue_tag_added' => [
@@ -252,8 +275,14 @@ return [
                 'current' => 'Current Priority: +:count',
                 'do' => 'Promote this request',
 
+                'info' => [
+                    '_' => 'This is a :feature_request. Feature requests can be voted up by :supporters.',
+                    'feature_request' => 'feature request',
+                    'supporters' => 'supporters',
+                ],
+
                 'user' => [
-                    'count' => '{0} no vote|{1} :count vote|[2,*] :count votes',
+                    'count' => '{0} no votes|{1} :count_delimited vote|[2,*] :count_delimited votes',
                     'current' => 'You have :votes remaining.',
                     'not_enough' => "You don't have any more votes remaining",
                 ],
@@ -265,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => 'Polling will end at :time',
                     'ended' => 'Polling ended :time',
+                    'results_hidden' => 'Results will be shown after polling ends.',
                     'total' => 'Total votes: :count',
                 ],
             ],
@@ -274,7 +304,8 @@ return [
             'to_not_watching' => 'Not bookmarked',
             'to_watching' => 'Bookmark',
             'to_watching_mail' => 'Bookmark with notification',
-            'mail_disable' => 'Disable notification',
+            'tooltip_mail_disable' => 'Notification is enabled. Click to disable',
+            'tooltip_mail_enable' => 'Notification is disabled. Click to enable',
         ],
     ],
 ];

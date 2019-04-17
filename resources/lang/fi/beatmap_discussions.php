@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,7 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'poistettu',
-        'title' => 'Beatmap Keskustelu',
+        'title' => 'Beatmapkeskustelut',
 
         'form' => [
             '_' => 'Hae',
@@ -77,7 +77,7 @@ return [
     'user' => [
         'admin' => 'ylläpitäjä',
         'bng' => 'suosittelija',
-        'owner' => 'kartanluoja',
+        'owner' => 'mappaaja',
         'qat' => 'qat',
     ],
 

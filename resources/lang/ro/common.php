@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Ești sigur?',
+    'confirmation_unsaved' => 'Modificările nesalvate vor fi pierdute. Ești sigur?',
     'saved' => 'Salvat',
 
     'array_and' => [
@@ -29,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => '',
+        'back_to_previous' => 'Revino la poziția anterioară',
+        'back_to_top' => 'Înapoi sus',
         'cancel' => 'Anulează',
         'change' => 'modifică',
         'click_to_copy' => 'faceți clic pentru a copia în clipboard',
         'click_to_copy_copied' => 'copiat în clipboard!',
+        'collapse' => '',
         'delete' => 'Șterge',
+        'edit' => 'Editează',
+        'expand' => '',
         'hide' => 'ascunde',
         'permalink' => 'link permanent',
         'permalink_copied' => 'link copiat',
@@ -42,12 +49,14 @@ return [
         'reply_reopen' => 'Răspundeți și deschideți din nou',
         'reply_resolve' => 'Răspunde și rezolvă',
         'reset' => 'Resetează',
+        'restore' => 'Restaurează',
         'save' => 'Salvează',
         'saving' => 'Se salvează...',
         'search' => 'Caută',
         'see_more' => 'vezi mai mult',
         'show' => 'arată',
         'show_more' => 'arată mai mult',
+        'show_more_options' => '',
         'upload_image' => 'încarcă imaginea',
     ],
 
@@ -58,9 +67,17 @@ return [
         'hours' => ':count oră|:count ore',
         'item' => ':count element|:count elemente',
         'minute_short_unit' => 'minut|minute',
+        'minutes' => ':count minut|:count minute',
         'months' => ':count lună|:count luni',
         'second_short_unit' => 'secundă|secunde',
         'years' => ':count an|:count ani',
+    ],
+
+    'countdown' => [
+        'days' => 'zile',
+        'hours' => 'ore',
+        'minutes' => 'minute',
+        'seconds' => 'secunde',
     ],
 
     'datetime' => [

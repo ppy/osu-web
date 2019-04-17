@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,36 +19,41 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => '',
-        'news-show' => '',
-    ],
-
     'index' => [
-        'title' => '',
+        'title_page' => 'osu!новини',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'По-нови публикации',
+            'older' => 'По-стари публикации',
+        ],
+
+        'title' => [
+            '_' => 'Новини :info',
+            'info' => 'Главна страница',
         ],
     ],
 
     'show' => [
-        'posted' => '',
+        'by' => 'от :user',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'По-нова публикация',
+            'older' => 'По-стара публикация',
+        ],
+
+        'title' => [
+            '_' => 'Новини :info',
+            'info' => 'Публикувай',
         ],
     ],
 
     'store' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Актуализиране',
+        'ok' => 'Списъкът е актуализиран.',
     ],
 
     'update' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Актуализирай',
+        'ok' => 'Публикацията е актуализирана.',
     ],
 ];

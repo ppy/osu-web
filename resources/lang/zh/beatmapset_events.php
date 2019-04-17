@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,7 +27,7 @@ return [
         'discussion_restore' => '管理员恢复了 :discussion 。',
         'disqualify' => '由于 :discussion (:text) 被 :user DQ。',
         'disqualify_legacy' => '该谱面因为 :text 被 DQ。',
-        'issue_reopen' => '问题 :discussion 被重新打开。',
+        'issue_reopen' => '已解决问题 :discussion 被重新打开。',
         'issue_resolve' => '问题 :discussion 被标记为 “已解决”。',
         'kudosu_allow' => '讨论 :discussion 的 kudosu 移除操作已被重置。',
         'kudosu_deny' => '讨论 :discussion 所得的 kudosu 被移除。',
@@ -36,18 +36,44 @@ return [
         'kudosu_recalculate' => '讨论 :discussion 所得的 kudosu 已经重新计算。',
         'love' => '受到 :user 的喜爱',
         'nominate' => '被 :user 提名。',
-        'nomination_reset' => '新问题 :discussion 导致提名被重置。',
+        'nomination_reset' => '新问题 :discussion（:text）导致提名被重置。',
         'qualify' => '这张谱面已经有了足够数量的提名并已经 Qualified。',
         'rank' => 'Ranked.',
     ],
 
     'index' => [
         'title' => '谱面事件',
+
+        'form' => [
+            'period' => '时期',
+            'types' => '类型',
+        ],
     ],
 
     'item' => [
         'content' => '内容',
         'discussion_deleted' => '[已删除]',
         'type' => '类型',
+    ],
+
+    'type' => [
+        'approve' => '被 Approved',
+        'discussion_delete' => '删除讨论',
+        'discussion_post_delete' => '删除讨论的回复',
+        'discussion_post_restore' => '恢复已删除的讨论的回复',
+        'discussion_restore' => '恢复已删除的讨论',
+        'disqualify' => '取消 Qualified',
+        'issue_reopen' => '讨论重新打开',
+        'issue_resolve' => '讨论被解决',
+        'kudosu_allow' => '给予 Kudosu',
+        'kudosu_deny' => '收回 Kudosu',
+        'kudosu_gain' => '获得 Kudosu',
+        'kudosu_lost' => '失去 Kudosu',
+        'kudosu_recalculate' => '重新计算 Kudosu',
+        'love' => '被 Loved',
+        'nominate' => '提名',
+        'nomination_reset' => '重置提名',
+        'qualify' => '被 Qualified',
+        'rank' => '被 Ranked',
     ],
 ];

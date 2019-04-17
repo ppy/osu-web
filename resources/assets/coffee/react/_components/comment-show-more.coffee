@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,13 +16,20 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, span} = ReactDOMFactories
+import * as React from 'react'
+import { button, div, span } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
+import { Spinner } from 'spinner'
+
 
 el = React.createElement
 
 bn = 'comment-show-more'
 
-class @CommentShowMore extends React.PureComponent
+export class CommentShowMore extends React.PureComponent
+  @defaultProps = modifiers: []
+
+
   constructor: (props) ->
     super props
 
@@ -30,17 +37,39 @@ class @CommentShowMore extends React.PureComponent
       loading: false
 
 
+  componentWillUnmount: =>
+    @xhr?.abort()
+
+
   render: =>
+    return null if @props.comments.length >= @props.total
+    return null unless (@props.moreComments[@props.parent?.id ? null] ? true)
+
     blockClass = osu.classWithModifiers bn, @props.modifiers
 
-    div className: blockClass,
-      if @state.loading
-        el Spinner
+    if 'top' in @props.modifiers
+      remaining = @props.total - @props.comments.length
+      modifiers = ['comments']
+      if 'changelog' in @props.modifiers
+        modifiers.push('t-greyviolet-darker')
       else
-        button
-          className: "#{bn}__link"
-          onClick: @load
-          @props.label ? osu.trans('common.buttons.show_more')
+        modifiers.push('t-ddd')
+
+      el ShowMoreLink,
+        loading: @state.loading
+        hasMore: true
+        callback: @load
+        modifiers: modifiers
+        remaining: remaining
+    else
+      div className: blockClass,
+        if @state.loading
+          el Spinner
+        else
+          button
+            className: "#{bn}__link"
+            onClick: @load
+            @props.label ? osu.trans('common.buttons.show_more')
 
 
   load: =>
@@ -49,12 +78,20 @@ class @CommentShowMore extends React.PureComponent
     params =
       commentable_type: @props.parent?.commentable_type ? @props.commentableType
       commentable_id: @props.parent?.commentable_id ? @props.commentableId
-      parent_id: @props.parent?.id ? ''
-      last_loaded_id: @props.after ? ''
+      parent_id: @props.parent?.id ? 0
+      sort: @props.sort
 
-    $.ajax laroute.route('comments.index', params),
+    lastComment = _.last(@props.comments)
+    if lastComment?
+      params.cursor =
+        id: lastComment.id
+        created_at: lastComment.created_at
+        votes_count: lastComment.votes_count
+
+    @xhr = $.ajax laroute.route('comments.index'),
+      data: params
       dataType: 'json'
     .done (data) =>
-      $.publish 'comments:added', comments: data
-    .fail =>
+      $.publish 'comments:added', commentBundle: data
+    .always =>
       @setState loading: false

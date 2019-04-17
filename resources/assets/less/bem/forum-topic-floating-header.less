@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,24 +17,16 @@
  */
 
 .forum-topic-floating-header {
-  width: 100%;
-  position: fixed;
-  backface-visibility: hidden;
+  font-style: normal;
+  font-size: @font-size--title-small-2;
   color: #fff;
-  transition: opacity 120ms linear;
-  top: 0;
-  left: 0;
+  flex: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1.2; // prevent cut off from u-ellipsis-overflow
 
-  // TODO: figure out if `z-index: 0` in `data-visibility=hidden` can be removed.
-  && {
-    z-index: @z-index--forum-topic-headernav;
-  }
-
-  &__stripe {
-    height: 10px;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
+  &__title-link {
+    .link-white();
+    .link-plain();
   }
 }

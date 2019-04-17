@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => 'Login to comment',
-        'reply' => 'Login to reply',
+        'new' => 'Sign in to comment',
+        'reply' => 'Sign in to reply',
     ],
 
     'index' => [

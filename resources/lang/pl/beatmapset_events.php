@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'Historia zdarzeń zestawów beatmap',
+
+        'form' => [
+            'period' => 'Okres',
+            'types' => 'Rodzaje',
+        ],
     ],
 
     'item' => [
         'content' => 'Zawartość',
         'discussion_deleted' => '[usunięte]',
         'type' => 'Typ',
+    ],
+
+    'type' => [
+        'approve' => 'Zatwierdzenie',
+        'discussion_delete' => 'Usunięcie dyskusji',
+        'discussion_post_delete' => 'Usunięcie odpowiedzi w dyskusji',
+        'discussion_post_restore' => 'Przywrócenie odpowiedzi w dyskusji',
+        'discussion_restore' => 'Przywrócenie dyskusji',
+        'disqualify' => 'Dyskwalifikacja',
+        'issue_reopen' => 'Ponowne otworzenie dyskusji',
+        'issue_resolve' => 'Zakończenie dyskusji',
+        'kudosu_allow' => 'Zezwolenie na otrzymanie kudosu',
+        'kudosu_deny' => 'Odrzucenie otrzymania kudosu',
+        'kudosu_gain' => 'Zdobycie kudosu',
+        'kudosu_lost' => 'Utrata kudosu',
+        'kudosu_recalculate' => 'Przekalkulowanie kudosu',
+        'love' => 'Nadanie statusu ulubionej społeczności',
+        'nominate' => 'Nominacja',
+        'nomination_reset' => 'Zresetowanie nominacji',
+        'qualify' => 'Kwalifikacja',
+        'rank' => 'Nadanie statusu rankingowego',
     ],
 ];

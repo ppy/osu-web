@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,12 +20,21 @@
 
 return [
     'header' => 'Xếp Hạng Theo :type',
+
     'type' => [
         'performance' => 'Performance',
         'charts' => 'Tiêu điểm',
         'score' => 'Điểm',
         'country' => 'Quốc Gia',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Ngày Kết thúc',
+        'map_count' => 'Số Lần Chơi',
+        'participants' => 'Người tham gia',
+        'start_date' => 'Ngày Bắt đầu',
+    ],
+
     'stat' => [
         'accuracy' => 'Độ Chính Xác',
         'active_users' => 'Số người đang hoạt động',

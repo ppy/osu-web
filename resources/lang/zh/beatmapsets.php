@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'availability' => [
         'disabled' => '该谱面现在无法下载。',
-        'parts-removed' => '应作者/第三方版权持有者的要求，这张谱面已经下架。',
+        'parts-removed' => '应 歌曲作者/第三方版权持有者 的要求，这张谱面已经下架。',
         'more-info' => '点击这里查看更多信息。',
     ],
 
@@ -34,41 +34,50 @@ return [
         'discussion' => '讨论',
 
         'details' => [
+            'approved' => 'approved 于 ',
+            'favourite' => '收藏这张谱面',
+            'favourited_count' => '还有很多人...',
+            'logged-out' => '下载谱面前请先登录！',
+            'loved' => 'loved 于 ',
             'mapped_by' => '作者: :mapper',
+            'qualified' => 'qualified 于 ',
+            'ranked' => 'ranked 于 ',
             'submitted' => '提交于 ',
+            'unfavourite' => '取消收藏',
             'updated' => '上次更新于 ',
             'updated_timeago' => '上次更新于 :timeago',
-            'ranked' => 'ranked 于 ',
-            'approved' => 'approved 于 ',
-            'qualified' => 'qualified 于 ',
-            'loved' => 'loved 于 ',
-            'logged-out' => '下载谱面前请先登录！',
+
             'download' => [
                 '_' => '下载',
-                'video' => '带视频',
-                'no-video' => '不带视频',
                 'direct' => 'osu!direct',
+                'no-video' => '不带视频',
+                'video' => '带视频',
             ],
-            'favourite' => '收藏这张谱面',
-            'unfavourite' => '取消收藏',
-            'favourited_count' => '还有很多人...',
+
+            'login_required' => [
+                'bottom' => '以使用更多的功能',
+                'top' => '登录',
+            ],
         ],
-        'stats' => [
-            'cs' => '圆圈大小',
-            'cs-mania' => '键位数量',
-            'drain' => '掉血速度',
-            'accuracy' => '准确率',
-            'ar' => '缩圈速度',
-            'stars' => '难度星级',
-            'total_length' => '长度',
-            'bpm' => 'BPM',
-            'count_circles' => '圆圈总数',
-            'count_sliders' => '滑条总数',
-            'user-rating' => '玩家评价',
-            'rating-spread' => '评分情况',
-            'nominations' => '提名状态',
-            'playcount' => '游玩次数',
+
+        'favourites' => [
+            'limit_reached' => '谱面收藏数超出限制，请删除一些后再试。',
         ],
+
+        'hype' => [
+            'action' => '如果你觉得这张谱面很好玩，推荐它来帮助它发展到<strong>Ranked</strong>状态。',
+
+            'current' => [
+                '_' => '这张谱面正处于 :status 状态。',
+
+                'status' => [
+                    'pending' => 'pending',
+                    'qualified' => 'qualified',
+                    'wip' => '制作中',
+                ],
+            ],
+        ],
+
         'info' => [
             'description' => '介绍',
             'genre' => '流派',
@@ -80,6 +89,7 @@ return [
             'tags' => '标签',
             'unranked' => 'Unranked 谱面',
         ],
+
         'scoreboard' => [
             'achieved' => '在 :when 达成',
             'country' => '国内排名',
@@ -112,6 +122,23 @@ return [
                 'first' => '领衔者',
                 'own' => '你的最佳成绩',
             ],
+        ],
+
+        'stats' => [
+            'cs' => '圆圈大小',
+            'cs-mania' => '键位数量',
+            'drain' => '掉血速度',
+            'accuracy' => '准确率',
+            'ar' => '缩圈速度',
+            'stars' => '难度星级',
+            'total_length' => '长度',
+            'bpm' => 'BPM',
+            'count_circles' => '圆圈总数',
+            'count_sliders' => '滑条总数',
+            'user-rating' => '玩家评价',
+            'rating-spread' => '评分情况',
+            'nominations' => '提名状态',
+            'playcount' => '游玩次数',
         ],
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => 'Označit fórum jako přečtené',
+        'forums' => 'Označit fóra jako přečtená',
+        'busy' => 'Označuju jako přečtené...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'Změna v hlasování vymaže stávající výsledky!',
+
+        'actions' => [
+            'edit' => 'Upravit hlasování',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Opravdu chcete příspěvek odstranit?',
         'confirm_restore' => 'Opravdu chcete příspěvek obnovit?',
@@ -57,6 +71,10 @@ return [
             'destroy' => 'Odstranit příspěvek',
             'restore' => 'Obnovit příspěvek',
             'edit' => 'Upravit příspěvek',
+        ],
+
+        'info' => [
+            'post_count' => ':count_delimited příspěvek|:count_delimited příspěvky|:count_delimited příspěvků',
         ],
     ],
 
@@ -87,11 +105,11 @@ return [
             'submit' => 'Odeslat',
 
             'necropost' => [
-                'default' => '',
+                'default' => 'Tohle téma bylo neaktivní už nějakou dobu. Napište pouze jesli k tomu máš důvod.',
 
                 'new_topic' => [
-                    '_' => "",
-                    'create' => '',
+                    '_' => "Toto téma je neaktivní už nějakou dobu. Pokud nemáte důvod k napsaní, prosím :create radši.",
+                    'create' => 'vytvoř nové téma',
                 ],
             ],
 
@@ -153,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Vytvoření ankety',
 
+            'preview' => 'Náhled příspěvku',
+
             'create_poll_button' => [
                 'add' => 'Vytvořit anketu',
                 'remove' => 'Zrušit vytváření ankety',
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'zobrazení',
+            'feature_votes' => 'priorita hvězd',
             'replies' => 'odpovědi',
+            'views' => 'zobrazení',
         ],
 
         'issue_tag_added' => [
@@ -252,6 +273,12 @@ return [
                 'current' => 'Aktuální priorita: +:count',
                 'do' => 'Promovat tento požadavek',
 
+                'info' => [
+                    '_' => 'Tohle je :feature_request. Žádosti o nové funkce mohou dostávat hlasy od :supporters.',
+                    'feature_request' => 'žádost o novou funkci',
+                    'supporters' => 'podporovatelů',
+                ],
+
                 'user' => [
                     'count' => '{0} žádné hlasy | {1} :count hlas | [2,*] :count hlasů',
                     'current' => 'Zbývá vám :votes.',
@@ -274,7 +301,8 @@ return [
             'to_not_watching' => 'Nezáložkováno',
             'to_watching' => 'Záložka',
             'to_watching_mail' => 'Záložka s oznámením',
-            'mail_disable' => 'Vypnout oznámení',
+            'tooltip_mail_disable' => 'Notifikace je zapnutá. Klikněte pro vypnutí',
+            'tooltip_mail_enable' => 'Notifikace je vypnutá. Klikněte pro zapnutí',
         ],
     ],
 ];

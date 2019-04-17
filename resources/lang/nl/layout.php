@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => 'groepen',
             'index' => 'dashboard',
             'legal-show' => 'informatie',
+            'messages-index' => '',
             'news-index' => 'nieuws',
             'news-show' => 'nieuws',
             'password-reset-index' => 'wachtwoord resetten',
@@ -70,17 +71,20 @@ return [
             '_' => 'rankings',
             'index' => 'prestaties',
             'performance' => 'prestatie',
-            'charts' => 'grafieken',
+            'charts' => 'in de schijnwerpers',
             'score' => 'score',
             'country' => 'land',
             'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'community',
+            'chat' => '',
+            'chat-index' => '',
             'dev' => 'ontwikkeling',
             'getForum' => 'forum',
-            'getChat' => 'chat',
             'getLive' => 'live',
+            'comments-index' => 'commentaar',
+            'comments-show' => 'comment',
             'contests' => 'wedstrijden',
             'profile' => 'profiel',
             'tournaments' => 'toernooien',
@@ -114,16 +118,18 @@ return [
             'reset' => 'herstellen',
             'new' => 'nieuw',
 
-            'messages' => 'Berichten',
-            'settings' => 'Instellingen',
-            'logout' => 'Uitloggen',
             'help' => 'Help',
+            'logout' => 'Uitloggen',
+            'messages' => 'Berichten',
             'modding-history-discussions' => 'gebruiker mod discussie',
             'modding-history-events' => 'gebruiker mod evenementen',
             'modding-history-index' => 'gebruiker mod geschiedenis',
             'modding-history-posts' => 'gebruiker mod post',
             'modding-history-votesGiven' => 'gebruiker mod stemmen gegeven',
             'modding-history-votesReceived' => 'gebruiker mod stemmen ontvangen',
+            'oauth_login' => '',
+            'oauth_request' => '',
+            'settings' => 'Instellingen',
         ],
         'store' => [
             '_' => 'winkel',
@@ -133,6 +139,7 @@ return [
 
             'getCheckout' => 'afrekenen',
             'getInvoice' => 'factuur',
+            'orders-index' => 'order geschiedenis',
             'products-show' => 'artikel',
 
             'new' => 'nieuw',

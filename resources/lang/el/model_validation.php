@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Δεν επιτρέπεται η απάντηση σε διαγραμμένο σχόλιο.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Μπορείτε να ψηφίσετε μόνο ένα αίτημα χαρακτηριστικών.',
@@ -64,10 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Η διαγραφή του post για τα μεταδεδομένα το beatmap δεν είναι επιτρεπτή.',
             'beatmapset_post_no_edit' => 'Η επεξεργασία του post για τα μεταδεδομένα το beatmap δεν είναι επιτρεπτή.',
+            'only_quote' => 'Η απάντησή σας περιέχει μόνο μία αναφορά.',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Η επιλογή για διπλασιασμό δεν είναι επιτρεπτή.',
+            'grace_period_expired' => 'Δεν είναι δυνατή επεξεργασία δημοσκόπησης μετά από :limit + ώρες',
             'invalid_max_options' => 'Η επιλογή ανά χρήστη ίσως υπερβαίνει τον αριθμό των διαθέσιμων επιλογών.',
             'minimum_one_selection' => 'Το ελάχιστο που απαιτείται είναι μία επιλογή ανά χρήστη.',
             'minimum_two_options' => 'Χρειάζονται τουλάχιστον δύο επιλογές.',
@@ -92,6 +98,7 @@ return [
         'username_available_soon' => 'Αυτό το όνομα χρήστη θα είναι διαθέσιμο σύντομα!',
         'username_invalid_characters' => 'Το ζητούμενο όνομα χρήστη περιέχει μη έγκυρους χαρακτήρες.',
         'username_in_use' => 'Το όνομα χρήστη χρησιμοποιείται ήδη!',
+        'username_locked' => 'Το όνομα χρήστη χρησιμοποιείται ήδη!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Παρακαλώ χρησιμοποιείστε κάτω παύλες ή κενά, όχι και τα δύο!',
         'username_no_spaces' => "Το όνομα χρήστη δε μπορεί να ξεκινάει ή να τελειώνει με κενά!",
         'username_not_allowed' => 'Η επιλογή αυτού του ονόματος χρήστη δεν επιτρέπεται.',
@@ -110,5 +117,9 @@ return [
             ],
             'username_is_same' => 'Αυτό είναι ήδη το όνομα χρήστη σου, χαζούλη!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "Δεν μπορείτε να αποκλέισετε τον εαυτό σας!",
     ],
 ];

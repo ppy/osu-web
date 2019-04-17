@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Sorterade efter:',
-            'created_at' => 'skapelsedatum',
-            'timeline' => 'tidslinje',
-            'updated_at' => 'senaste uppdatering',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => '',
+        'delete_own_confirm' => '',
+        'delete_other_confirm' => '',
         'disqualification_prompt' => 'Anledning för diskvalificering?',
         'disqualified_at' => 'Diskvalificerad :time_ago (:reason).',
         'disqualified_no_reason' => 'inget anledning specificerad',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Är du säker? Lägga upp ett nytt problem kommer återställa nomineringar.',
+            'disqualify' => '',
         ],
     ],
 
@@ -190,15 +194,16 @@ return [
                 'played' => 'Spelade',
             ],
             'sorting' => [
-                'title' => 'titel',
-                'artist' => 'artist',
-                'difficulty' => 'svårighetsgrad',
-                'updated' => 'uppdaterad',
-                'ranked' => 'rankad',
-                'rating' => 'omdöme',
-                'plays' => 'spelad',
-                'relevance' => 'relevans',
-                'nominations' => 'nomineringar',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'favourites' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtrering av :filters kräver en aktiv :link',
@@ -297,5 +302,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

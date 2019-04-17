@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -42,7 +42,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     public function getPaymentProvider()
     {
-        return 'paypal';
+        return Order::PROVIDER_PAYPAL;
     }
 
     public function getPaymentTransactionId()
@@ -160,7 +160,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
             if ($this->getNotificationType() === NotificationType::REFUND) {
                 if ($this->getOrderNumber() === null) {
                     $order = Order::withPayments()
-                        ->wherePaymentTransactionId($this['parent_txn_id'], 'paypal')
+                        ->wherePaymentTransactionId($this['parent_txn_id'], Order::PROVIDER_PAYPAL)
                         ->first();
                 } else {
                     $order = Order::withPayments()

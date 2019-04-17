@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => '요청하신 채널로의 입장이 허용되지 않았습니다.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => '대상 채널에 접근하기 위한 권한이 필요합니다.',
-                    'moderated' => '현재 채널이 관리 중입니다.',
-                    'not_lazer' => '현재 #lazer에서만 채팅할 수 있습니다.',
-                ],
+        'blocked' => '당신을 차단하였거나 당신이 차단한 유저에게 메시지를 보낼 수 없습니다.',
+        'friends_only' => '해당 유저는 친구가 아닌 유저의 메시지를 차단한 상태입니다.',
+        'moderated' => '채널은 현재 관리 중입니다.',
+        'no_access' => '해당 채널에 대한 접근 권한이 없습니다.',
+        'restricted' => '침목이나 제한, 밴이 된 상태인 동안에는 메시지를 보낼 수 없습니다.',
+    ],
 
-                'not_allowed' => '차단/제한/침묵 상태에서는 메시지를 보낼 수 없습니다.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "삭제된 게시물을 수정 할 수 없습니다.",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => '이 포럼을 관리할 권한이 없습니다.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => '마지막 답글만 삭제할 수 있습니다.',

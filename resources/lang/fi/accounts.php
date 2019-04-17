@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => 'Yksityisyys',
         'friends_only' => 'estä yksityisviestit henkilöiltä jotka eivät ole kaverilistallasi',
+        'hide_online' => 'piilota online-tilasi',
+    ],
+
+    'security' => [
+        'current_session' => 'nykyinen',
+        'end_session' => 'Sulje istunto',
+        'end_session_confirmation' => 'Suljetaanko istuntosi kyseisellä laitteella?',
+        'last_active' => 'Viimeksi aktiivisena',
+        'title' => 'Turvallisuus',
+        'web_sessions' => 'aktiiviset istunnot',
     ],
 ];

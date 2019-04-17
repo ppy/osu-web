@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,41 +34,50 @@ return [
         'discussion' => 'Discuție',
 
         'details' => [
+            'approved' => 'aprobat pe ',
+            'favourite' => 'Adaugă acest beatmapset la favorite',
+            'favourited_count' => '+ 1 alta!|+ :count alte!',
+            'logged-out' => 'Trebuie să te autentifici înainte de a descărca vreun beatmap!',
+            'loved' => 'loved pe ',
             'mapped_by' => 'mapat de :mapper',
+            'qualified' => 'calificat pe ',
+            'ranked' => 'clasat pe ',
             'submitted' => 'trimis pe ',
+            'unfavourite' => 'Elimină acest beatmapset de la favorite',
             'updated' => 'ultima dată actualizat ',
             'updated_timeago' => 'ultima dată actualizat :timeago',
-            'ranked' => 'clasat pe ',
-            'approved' => 'aprobat pe ',
-            'qualified' => 'calificat pe ',
-            'loved' => 'loved pe ',
-            'logged-out' => 'Trebuie să te autentifici înainte de a descărca vreun beatmap!',
+
             'download' => [
                 '_' => 'Descarcă',
-                'video' => 'cu videoclip',
-                'no-video' => 'fără videoclip',
                 'direct' => '',
+                'no-video' => 'fără videoclip',
+                'video' => 'cu videoclip',
             ],
-            'favourite' => 'Adaugă acest beatmapset la favorite',
-            'unfavourite' => 'Elimină acest beatmapset de la favorite',
-            'favourited_count' => '+ 1 alta!|+ :count alte!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
         ],
-        'stats' => [
-            'cs' => 'Dimensiunea cercului',
-            'cs-mania' => 'Numărul de taste',
-            'drain' => 'Scurgere HP',
-            'accuracy' => 'Precizie',
-            'ar' => 'Viteza de apropiere',
-            'stars' => 'Dificultatea de stele',
-            'total_length' => 'Durată',
-            'bpm' => 'BPM',
-            'count_circles' => 'Numărul de cercuri',
-            'count_sliders' => 'Numărul de glisări',
-            'user-rating' => 'Evaluarea jucătorului',
-            'rating-spread' => 'Clasament grafic',
-            'nominations' => 'Nominalizări',
-            'playcount' => 'Numărul de jucări',
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
+
+        'hype' => [
+            'action' => 'Hype această mapă dacă ți-a plăcut să o joci, astfel încât să progreseze la stadiul de <strong>Clasat</strong>.',
+
+            'current' => [
+                '_' => 'Această mapă este în prezent :status.',
+
+                'status' => [
+                    'pending' => 'în așteptare',
+                    'qualified' => 'calificată',
+                    'wip' => 'muncă în desfășurare',
+                ],
+            ],
+        ],
+
         'info' => [
             'description' => 'Descriere',
             'genre' => 'Gen',
@@ -80,6 +89,7 @@ return [
             'tags' => 'Tag-uri',
             'unranked' => 'Beatmap neclasificat',
         ],
+
         'scoreboard' => [
             'achieved' => 'realizat :when',
             'country' => 'Clasament pe țară',
@@ -112,6 +122,23 @@ return [
                 'first' => 'În top',
                 'own' => 'Cel mai bun',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Dimensiunea cercului',
+            'cs-mania' => 'Numărul de taste',
+            'drain' => 'Scurgere HP',
+            'accuracy' => 'Precizie',
+            'ar' => 'Viteza de apropiere',
+            'stars' => 'Dificultatea de stele',
+            'total_length' => 'Durată',
+            'bpm' => 'BPM',
+            'count_circles' => 'Numărul de cercuri',
+            'count_sliders' => 'Numărul de glisări',
+            'user-rating' => 'Evaluarea jucătorului',
+            'rating-spread' => 'Clasament grafic',
+            'nominations' => 'Nominalizări',
+            'playcount' => 'Numărul de jucări',
         ],
     ],
 ];

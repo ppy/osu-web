@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,16 +30,16 @@ return [
             'owner' => "Saját beatmap-et nem lehet ajánlani.",
         ],
         'resolve' => [
-            'not_owner' => 'Csak a fonál indítója és a beatmap készítője tudja megoldottnak jelölni a beszélgetést.',
+            'not_owner' => 'Csak a poszt szerzője és a beatmap készítője tudja megoldottnak jelölni az adott problémát.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Csak a beatmap tulajdonos vagy nomináló/QAT csoporttag posztolhat mappelői megjegyzést.',
+            'mapper_note_wrong_user' => 'Csak a beatmap tulajdonos vagy jelölő/QAT csoporttag posztolhat készítői megjegyzést.',
         ],
 
         'vote' => [
-            'limit_exceeded' => 'Kérlek várj egy keveset, újabb szavazat leadása előtt',
-            'owner' => "Nem szavazhatsz a saját megbeszéléseden.",
+            'limit_exceeded' => 'Kérlek várj egy keveset újabb szavazat leadása előtt',
+            'owner' => "Nem szavazhatsz a saját posztodra.",
             'wrong_beatmapset_state' => 'Csak függő beatmap beszélgetéseken lehet szavazni.',
         ],
     ],
@@ -52,60 +52,59 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'A kért csatornához a hozzáférés nincs engedélyezve.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'A célcsatornához hozzáférési jog szükséges.',
-                    'moderated' => 'A csatorna jelenleg moderálva van.',
-                    'not_lazer' => 'Jelenleg csak a #lazer-ben beszélhetsz.',
-                ],
+        'blocked' => 'Nem küldhetsz üzenetet olyan felhasználónak akiket letiltottál, vagy téged tiltottak le.',
+        'friends_only' => 'A felhasználó letiltotta a baráti listáján nem szereplő emberek üzeneteinek fogadását.',
+        'moderated' => 'A csatorna jelenleg moderálva van.',
+        'no_access' => 'Nincs hozzáférésed a csatornához.',
+        'restricted' => 'Nem küldhetsz üzeneteket némított, felfüggesztett vagy kitiltott állapotban.',
+    ],
 
-                'not_allowed' => 'Nem küldhetsz üzenetet kitiltott/felfüggesztett/némított állapotban.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Törölt posztot nem lehet szerkeszteni.",
         ],
     ],
 
     'contest' => [
-        'voting_over' => 'Nem változtathatod meg a szavazatod, mert ez a verseny szavazási ideje lejárt.',
+        'voting_over' => 'Nem változtathatod meg a szavazatod, mert ennek a versenynek a szavazási ideje lejárt.',
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Nincs engedélyed ennek a fórumnak a moderálására.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Csak az utolsó posztot lehet törölni.',
                 'locked' => 'Lezárt téma posztját nem lehet törölni.',
                 'no_forum_access' => 'A kért fórumhoz hozzáférési jog szükséges.',
-                'not_owner' => 'Csak a posztoló törölheti a posztot.',
+                'not_owner' => 'Csak a szerző törölheti a posztot.',
             ],
 
             'edit' => [
                 'deleted' => 'Törölt posztot nem lehet szerkeszteni.',
                 'locked' => 'A posztot nem lehet szerkeszteni.',
                 'no_forum_access' => 'A kért fórumhoz hozzáférési jog szükséges.',
-                'not_owner' => 'Csak a posztoló szerkesztheti a posztot.',
+                'not_owner' => 'Csak a szerző szerkesztheti a posztot.',
                 'topic_locked' => 'Lezárt téma posztját nem lehet szerkeszteni.',
             ],
 
             'store' => [
-                'play_more' => 'Kérlek próbáld ki a játékot, fórumra való posztolás előtt! Ha valami problémád merül fel játék közben, kérlek írj egy posztot a "Help" vagy a "Support" fórumra.',
-                'too_many_help_posts' => "Többet kell játszanod a játékkal, további posztolás előtt. Ha még mindig nehézségeid merülnek fel a játék kapcsán, írj egy e-mailt erre a címre: support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => 'Kérlek próbáld ki a játékot mielőtt a fórumra posztolnál! Ha valami problémád merül fel játék közben, kérlek írj egy posztot a "Help" vagy a "Support" fórumra.',
+                'too_many_help_posts' => "Többet kell játszanod a játékkal további posztolás előtt. Ha még mindig nehézségeid merülnek fel a játék kapcsán, írj egy e-mailt erre a címre: support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
                 'double_post' => 'Kérlek módosítsd az utolsó posztodat az újraposztolás helyett.',
-                'locked' => 'Nem lehet válaszolni egy zárt fonálra.',
+                'locked' => 'Nem lehet válaszolni egy lezárt témára.',
                 'no_forum_access' => 'A kért fórumra belépési engedély szükséges.',
                 'no_permission' => 'Nincs jogosultságod válaszolni.',
 
                 'user' => [
-                    'require_login' => 'Kérlek jelentkezz be, hogy tudj válaszolni.',
+                    'require_login' => 'Kérlek jelentkezz be, hogy válaszolni tudj.',
                     'restricted' => "Nem válaszolhatsz felfüggesztett állapotban.",
                     'silenced' => "Nem válaszolhatsz némított állapotban.",
                 ],
@@ -120,10 +119,10 @@ return [
             'vote' => [
                 'no_forum_access' => 'A kért fórumhoz hozzáférési jog szükséges.',
                 'over' => 'A szavazás lejárt, és többé nem szavazhatsz rá.',
-                'voted' => 'A szavazat változtatása nem engedélyezett.',
+                'voted' => 'A szavazat megváltoztatása nem engedélyezett.',
 
                 'user' => [
-                    'require_login' => 'Kérlek jelentkezz be, hogy szavazhass.',
+                    'require_login' => 'Kérlek jelentkezz be, hogy tudj szavazni.',
                     'restricted' => "Nem szavazhatsz felfüggesztett állapotban.",
                     'silenced' => "Nem szavazhatsz némított állapotban.",
                 ],

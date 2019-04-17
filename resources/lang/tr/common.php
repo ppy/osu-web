@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => 'Yönetici',
+        'back_to_previous' => 'Bir önceki pozisyona dön',
+        'back_to_top' => 'Yukarıya geri dön',
         'cancel' => 'İptal',
         'change' => 'değiştir',
         'click_to_copy' => 'panoya kopyalamak için tıklayın',
         'click_to_copy_copied' => 'panoya kopyalandı!',
+        'collapse' => 'daraltın',
         'delete' => 'Sil',
+        'edit' => 'Düzenle',
+        'expand' => 'genişletin',
         'hide' => 'gizle',
         'permalink' => 'kalıcı bağlantı',
         'permalink_copied' => 'bağlantı kopyalandı',
@@ -43,12 +49,14 @@ return [
         'reply_reopen' => 'Cevapla ve Yeniden Aç',
         'reply_resolve' => 'Yanıtla ve Çözümle',
         'reset' => 'Sıfırla',
+        'restore' => 'Restore et',
         'save' => 'Kaydet',
         'saving' => 'Kaydediliyor...',
         'search' => 'Arama',
         'see_more' => 'daha fazla',
         'show' => 'göster',
         'show_more' => 'daha fazla göster',
+        'show_more_options' => 'daha fazla seçenek göster',
         'upload_image' => 'görsel yükle',
     ],
 
@@ -59,9 +67,17 @@ return [
         'hours' => ':count saat|:count saat',
         'item' => ':count birim|:count birim',
         'minute_short_unit' => 'dk|dk',
+        'minutes' => ':count dakika |:count dakika',
         'months' => ':count ay|:count ay',
         'second_short_unit' => 'sn|sn',
         'years' => ':count yıl|:count yıl',
+    ],
+
+    'countdown' => [
+        'days' => 'gün',
+        'hours' => 'saat',
+        'minutes' => 'dakika',
+        'seconds' => 'saniye',
     ],
 
     'datetime' => [

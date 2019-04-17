@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2018 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -50,7 +50,7 @@
                 <div class="spotlight-info__item-header">
                     {{ trans('rankings.spotlight.participants') }}
                 </div>
-                {{ number_format($scoreCount) }}
+                {{ i18n_number_format($scoreCount) }}
             </div>
         </div>
     </div>

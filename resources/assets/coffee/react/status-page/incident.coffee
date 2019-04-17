@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,39 +16,24 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span} = ReactDOMFactories
-el = React.createElement
+import * as React from 'react'
+import { div, span } from 'react-dom-factories'
 
-class Status.Incident extends React.Component
-  propTypes =
-    description: React.PropTypes.string.isRequired
-    active : React.PropTypes.bool.isRequired
-    status: React.PropTypes.string.isRequired
-    date: React.PropTypes.string.isRequired
-    by: React.PropTypes.string.isRequired
-
-  constructor: (props) ->
-    super props
+export class Incident extends React.Component
 
   render: =>
     fromNow = moment(@props.date, 'DD-MM-YYYY HH:mm:ss').fromNow()
 
-    div
-      className: 'status-incident'
-      div
-        className: "status-incident__state status-incident__state--#{@props.status}"
-      div
-        className: 'status-incident__content'
-        div
-          className: 'status-incident__info'
+    div className: 'status-incident',
+      div className: "status-incident__state status-incident__state--#{@props.status}"
+      div className: 'status-incident__content',
+        div className: 'status-incident__info',
           span className: 'status-incident__info-date',
             "#{fromNow}, "
           span className: 'status-incident__info-by',
             if _.isEmpty(@props.by) then osu.trans('status_page.incidents.automated') else "by #{@props.by}"
-        div
-          className: 'status-incident__desc'
-          span
-            className: 'status-incident__desc--resolved' unless !@props.active
+        div className: 'status-incident__desc',
+          span className: ('status-incident__desc--resolved' unless !@props.active),
             @props.description
-          span
+          span null,
             " #{osu.trans('status_page.recent.incidents.state.' + @props.status)}!"

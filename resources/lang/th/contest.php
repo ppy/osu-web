@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,8 +26,15 @@ return [
     'voting' => [
         'over' => 'การโหวตนั้นได้สิ้นสุดลงแล้ว',
         'login_required' => 'กรุณาเข้าสู่ระบบเพื่อทำการโหวต',
+
         'best_of' => [
             'none_played' => "ดูเหมือนคุณจะไม่ได้เล่น beatmap ที่เข้าประกวดอยู่นะ",
+        ],
+
+        'button' => [
+            'add' => '',
+            'remove' => '',
+            'used_up' => '',
         ],
     ],
     'entry' => [
@@ -38,6 +45,7 @@ return [
         'over' => 'ขอบคุณที่เข้าร่วมการประกวดในครั้งนี้ เราได้ปิดรับผลงานสำหรับการประกวดครั้งนี้แล้วและการโหวตจะเริ่มขึ้นเร็วๆนี้',
         'limit_reached' => 'คุณถึงขีดจำกัดของปริมาณงานที่ส่งเข้าประกวดได้แล้ว',
         'drop_here' => 'ส่งงานของคุณตรงนี้',
+        'download' => '',
         'wrong_type' => [
             'art' => 'เฉพาะไฟล์นามสกุล .jpg และ .png เท่านั้นที่สามารถส่งเข้าประกวดได้',
             'beatmap' => 'เฉพาะไฟล์นามสกุล .osu เท่านั้นที่สามารถส่งเข้าประกวดได้',
@@ -50,7 +58,8 @@ return [
     ],
     'vote' => [
         'list' => 'โหวต',
-        'count' => '1 โหวต|:count โหวต',
+        'count' => '',
+        'points' => '',
     ],
     'dates' => [
         'ended' => 'สิ้นสุดเมื่อวันที่ :date',

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,8 +26,15 @@ return [
     'voting' => [
         'over' => 'Je kan niet meer stemmen in deze wedstrijd',
         'login_required' => 'Log in om te kunnen stemmen.',
+
         'best_of' => [
             'none_played' => "Het lijkt erop dat je geen van de beatmaps in deze wedstrijd hebt gespeeld!",
+        ],
+
+        'button' => [
+            'add' => '',
+            'remove' => '',
+            'used_up' => '',
         ],
     ],
     'entry' => [
@@ -38,6 +45,7 @@ return [
         'over' => 'Bedankt voor de inzendingen! Inzendingen zijn gesloten voor deze wedstrijd en stemmen gaan binnenkort openen.',
         'limit_reached' => 'Je hebt de limiet voor inschrijvingen bereikt',
         'drop_here' => 'Sleep je inzending hier',
+        'download' => 'Download .osz',
         'wrong_type' => [
             'art' => 'Alleen .jpg en .png bestanden worden geaccepteerd voor deze wedstrijd.',
             'beatmap' => 'Alleen .osu bestanden worden geaccepteerd voor deze wedstrijd.',
@@ -50,7 +58,8 @@ return [
     ],
     'vote' => [
         'list' => 'stemmen',
-        'count' => '1 stem|:count stemmen',
+        'count' => ':count stem|:count stemmen',
+        'points' => ':count punt|:count punten',
     ],
     'dates' => [
         'ended' => 'Gesloten :date',

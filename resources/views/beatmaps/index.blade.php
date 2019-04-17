@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -31,6 +31,16 @@
     which isn't supported by hhvm (v8js).
   --}}
 @endsection
+
+{{-- empty sections so placeholders render for react to fill in --}}
+@if (auth()->check())
+    @section('sticky-header-breadcrumbs')
+    @endsection
+
+    @section('sticky-header-content')
+    @endsection
+@endif
+
 
 @section("script")
   @parent

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -97,7 +97,7 @@
                 title="{{ trans('forum.topics.index.views') }}"
                 data-tooltip-position="right center"
             >
-                {{ number_format($topic->topic_views) }}
+                {{ i18n_number_format($topic->topic_views) }}
                 <i class="fas fa-eye"></i>
             </div>
 
@@ -105,9 +105,19 @@
                 title="{{ trans('forum.topics.index.replies') }}"
                 data-tooltip-position="right center"
             >
-                {{ number_format($topic->topic_replies) }}
+                {{ i18n_number_format($topic->topic_replies) }}
                 <i class="far fa-comment"></i>
             </div>
+
+            @if ($topic->isFeatureTopic())
+                <div
+                    title="{{ trans('forum.topics.index.feature_votes') }}"
+                    data-tooltip-position="right center"
+                >
+                    {{ i18n_number_format($topic->osu_starpriority) }}
+                    <i class="far fa-star"></i>
+                </div>
+            @endif
         </div>
 
         <div class="forum-topic-entry__content forum-topic-entry__content--right">

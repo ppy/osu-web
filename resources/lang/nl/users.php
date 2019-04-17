@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user's modding geschiedenis",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'Recent gestarte discussies',
@@ -66,7 +67,7 @@ return [
     'login' => [
         '_' => 'Inloggen',
         'locked_ip' => 'je IP adres is vergrendeld. Wacht enkele minuten.',
-        'username' => 'Gebruikernaam',
+        'username' => 'Gebruikersnaam',
         'password' => 'Wachtwoord',
         'button' => 'Inloggen',
         'button_posting' => 'Inloggen...',
@@ -76,7 +77,7 @@ return [
         'register' => "Heb je geen osu! account? Maak een nieuwe",
         'forgot' => 'Wachtwoord vergeten?',
         'beta' => [
-            'main' => 'Beta toegang is alleen voor bepaalde gebruikers.',
+            'main' => 'Beta toegang is momenteel beperkt voor bepaalde gebruikers.',
             'small' => '(osu!supporters krijgen binnenkort in)',
         ],
 
@@ -98,16 +99,16 @@ return [
     ],
     'logout_confirm' => 'Weet je zeker dat je wilt uitloggen? :(',
     'report' => [
-        'button_text' => '',
-        'comments' => '',
+        'button_text' => 'rapporteer',
+        'comments' => 'Aanvullende opmerkingen',
         'placeholder' => '',
-        'reason' => '',
+        'reason' => 'Reden',
         'thanks' => '',
         'title' => '',
 
         'actions' => [
             'send' => '',
-            'cancel' => '',
+            'cancel' => 'Annuleren',
         ],
 
         'options' => [
@@ -120,8 +121,8 @@ return [
         ],
     ],
     'restricted_banner' => [
-        'title' => 'Je account is gerestricteerd!',
-        'message' => 'Zolang je gerestricteerd bent, kan je niet communiceren met andere spelers en kan enkel jij je scores zien. Meestal is dit het resultaat van een geautomatiseerd proces en wordt het binnen 24 uur verwijderd. Als je in beroep wil gaan, <a href="mailto:accounts@ppy.sh">contacteer dan support</a>.',
+        'title' => 'Je account is gerestrict!',
+        'message' => 'Zolang je gerestrict bent, kan je niet communiceren met andere spelers en kan enkel jij je scores zien. Meestal is dit het resultaat van een geautomatiseerd proces en wordt het binnen 24 uur verwijderd. Als je in beroep wil gaan, <a href="mailto:accounts@ppy.sh">contacteer dan support</a>.',
     ],
     'show' => [
         'age' => ':age jaar oud',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Drop hier om te uploaden',
                     'dropzone_info' => 'Je kunt je afbeelding ook hier droppen om te uploaden',
                     'restriction_info' => "Uploaden alleen beschikbaar voor <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
-                    'size_info' => 'Cover grootte moet 2000x700 zijn',
+                    'size_info' => 'Cover grootte moet 2800x620 zijn',
                     'too_large' => 'Het geüploade bestand is te groot.',
                     'unsupported_format' => 'Niet ondersteund formaat.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Geen recente plays',
 
             'achievements' => [
-                'title' => 'Prestaties',
                 'achieved-on' => 'Behaald op :date',
+                'locked' => '',
+                'title' => 'Prestaties',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'Nog geen...',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Favoriete Beatmaps (:count)',
+                    'title' => 'Favoriete Beatmaps',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps in het kerkhof (:count)',
+                    'title' => 'Beatmaps in het kerkhof',
                 ],
                 'loved' => [
-                    'title' => 'Geliefde Beatmappen (:count)',
+                    'title' => 'Geliefde Beatmaps',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Gerankte & Goedgekeurde Beatmaps (:count)',
+                    'title' => 'Gerankte & Goedgekeurde Beatmaps',
                 ],
                 'unranked' => [
-                    'title' => 'Afwachtende Beatmaps (:count)',
+                    'title' => 'Afwachtende Beatmaps',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Speelgeschiedenis',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'keer gespeeld',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Replays Gekeken Geschiedenis',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -259,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Deze gebruiker heeft er nog geen ;_;",
+                'recent' => '',
                 'title' => 'Medailles',
             ],
             'recent_activity' => [
                 'title' => 'Recent',
             ],
             'top_ranks' => [
+                'download_replay' => '',
                 'empty' => 'Nog geen geweldige prestatiegegevens. :(',
                 'not_ranked' => 'Enkel gerankte beatmaps geven pp.',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'Ranks',
-                'weighted_pp' => 'gewogen: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Beste Prestatie',
@@ -300,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => '',
             'interests' => 'Interesses',
@@ -318,6 +330,7 @@ return [
             'title' => 'Gebruiker niet gevonden! ;_;',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>ik!</strong> is een persoonlijk bewerkbaar gedeelte van je profiel.',
             'edit_big' => 'Bewerk me!',
             'placeholder' => 'Typ pagina inhoud hier',
@@ -329,12 +342,16 @@ return [
         ],
         'rank' => [
             'country' => 'Landelijke rank voor :mode',
+            'country_simple' => '',
             'global' => 'Globale rank voor :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Precisie',
             'level' => 'Level :level',
+            'level_progress' => '',
             'maximum_combo' => 'Maximum Combo',
+            'medals' => '',
             'play_count' => 'Play Count',
             'play_time' => 'Totale Speeltijd',
             'ranked_score' => 'Gerankte Score',

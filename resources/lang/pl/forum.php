@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => 'Oznacz forum jako przeczytane',
+        'forums' => 'Oznacz fora jako przeczytane',
+        'busy' => 'Oznaczanie jako przeczytane...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'Edycja ankiety usunie dotychczasowe wyniki!',
+
+        'actions' => [
+            'edit' => 'Edytuj ankietę',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Czy na pewno chcesz usunąć post?',
         'confirm_restore' => 'Czy na pewno chcesz przywrócić post?',
@@ -57,6 +71,10 @@ return [
             'destroy' => 'Usuń post',
             'restore' => 'Przywróć post',
             'edit' => 'Edytuj post',
+        ],
+
+        'info' => [
+            'post_count' => ':count_delimited post|:count_delimited posty|:count_delimited postów',
         ],
     ],
 
@@ -153,8 +171,10 @@ return [
         'create' => [
             'create_poll' => 'Tworzenie ankiety',
 
+            'preview' => 'Podgląd wątku',
+
             'create_poll_button' => [
-                'add' => 'Stwórz ankietę',
+                'add' => 'Utwórz ankietę',
                 'remove' => 'Anuluj tworzenie ankiety',
             ],
 
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'wyświetleń',
+            'feature_votes' => 'priorytet',
             'replies' => 'odpowiedzi',
+            'views' => 'wyświetleń',
         ],
 
         'issue_tag_added' => [
@@ -252,8 +273,14 @@ return [
                 'current' => 'Priorytet: +:count',
                 'do' => 'Nagłośnij tę prośbę',
 
+                'info' => [
+                    '_' => 'To jest :feature_request. Na prośby o funkcję mogą głosować tylko :supporters.',
+                    'feature_request' => 'prośba o funkcję',
+                    'supporters' => 'donatorzy',
+                ],
+
                 'user' => [
-                    'count' => '{0} brak głosów|{1} :count głos|[2,*] :count głosów',
+                    'count' => '{0} 0 głosów|{1} :count_delimited głos|[2,4] :count_delimited głosy|{5,*} :count_delimited głosów',
                     'current' => 'Pozostało ci :votes głosów.',
                     'not_enough' => "Nie posiadasz żadnych głosów",
                 ],
@@ -274,7 +301,8 @@ return [
             'to_not_watching' => 'Nie subskrybuj',
             'to_watching' => 'Subskrybuj',
             'to_watching_mail' => 'Subskrybuj z powiadomieniami',
-            'mail_disable' => 'Wyłącz powiadomienia',
+            'tooltip_mail_disable' => 'Powiadomienia są włączone. Kliknij tutaj, aby je wyłączyć.',
+            'tooltip_mail_enable' => 'Powiadomienia są wyłączone. Kliknij tutaj, aby je włączyć.',
         ],
     ],
 ];

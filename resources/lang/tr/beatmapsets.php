@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,41 +34,50 @@ return [
         'discussion' => 'Tartışma',
 
         'details' => [
+            'approved' => 'tarihinde onaylandı ',
+            'favourite' => 'Haritayı favorilere ekle',
+            'favourited_count' => '+ 1 kişi tarafından!|+ :count kişi tarafından!',
+            'logged-out' => 'Herhangi bir beatmapi indirmeden önce giriş yapmalısınız!',
+            'loved' => 'sevilme tarihi: ',
             'mapped_by' => ':mapper tarafından yapıldı',
+            'qualified' => 'aday olma tarihi ',
+            'ranked' => 'dereceli olma tarihi: ',
             'submitted' => 'gönderilme tarihi: ',
+            'unfavourite' => 'Haritayı favorilerden çıkar',
             'updated' => 'son güncelleme ',
             'updated_timeago' => 'son güncelleme :timeago',
-            'ranked' => 'dereceli olma tarihi: ',
-            'approved' => 'tarihinde onaylandı ',
-            'qualified' => 'aday olma tarihi ',
-            'loved' => 'sevilme tarihi: ',
-            'logged-out' => 'Herhangi bir beatmapi indirmeden önce giriş yapmalısınız!',
+
             'download' => [
                 '_' => 'İndir',
-                'video' => 'Video ile',
-                'no-video' => 'Video olmadan',
                 'direct' => '',
+                'no-video' => 'Video olmadan',
+                'video' => 'Video ile',
             ],
-            'favourite' => 'Haritayı favorilere ekle',
-            'unfavourite' => 'Haritayı favorilerden çıkar',
-            'favourited_count' => '+ 1 kişi tarafından!|+ :count kişi tarafından!',
+
+            'login_required' => [
+                'bottom' => 'daha fazla özelliğe erişmek için',
+                'top' => 'Oturum Aç',
+            ],
         ],
-        'stats' => [
-            'cs' => 'Daire Boyutu',
-            'cs-mania' => 'Tuş Sayısı',
-            'drain' => 'HP Drain',
-            'accuracy' => 'İsabetlilik',
-            'ar' => 'Yaklaşım Oranı',
-            'stars' => 'Zorluk',
-            'total_length' => 'Uzunluk',
-            'bpm' => 'BPM',
-            'count_circles' => 'Daire Sayısı',
-            'count_sliders' => 'Slider Sayısı',
-            'user-rating' => 'Kullanıcı Derecelendirmesi',
-            'rating-spread' => 'Değerlendirme Puanı',
-            'nominations' => 'Adaylıklar',
-            'playcount' => 'Oynama sayısı',
+
+        'favourites' => [
+            'limit_reached' => 'Favorilerinizde çok fazla beatmap\'iniz var! Lütfen devam etmeden önce birini çıkartın.',
         ],
+
+        'hype' => [
+            'action' => '<strong>Dereceli</strong> statüsüne erişmesi için eğer beğendiyseniz bu haritayı gazlayın.',
+
+            'current' => [
+                '_' => 'Bu harita şu an :status.',
+
+                'status' => [
+                    'pending' => 'beklemede',
+                    'qualified' => 'nitelikli',
+                    'wip' => 'yapım aşamasında',
+                ],
+            ],
+        ],
+
         'info' => [
             'description' => 'Açıklama',
             'genre' => 'Tür',
@@ -80,6 +89,7 @@ return [
             'tags' => 'Etiketler',
             'unranked' => 'Derecelendirilmemiş beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => ':when oynandı',
             'country' => 'Ülke sıralaması',
@@ -112,6 +122,23 @@ return [
                 'first' => 'Lider',
                 'own' => 'En İyi Skorun',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Daire Boyutu',
+            'cs-mania' => 'Tuş Sayısı',
+            'drain' => 'HP Drain',
+            'accuracy' => 'İsabetlilik',
+            'ar' => 'Yaklaşım Oranı',
+            'stars' => 'Zorluk',
+            'total_length' => 'Uzunluk',
+            'bpm' => 'BPM',
+            'count_circles' => 'Daire Sayısı',
+            'count_sliders' => 'Slider Sayısı',
+            'user-rating' => 'Kullanıcı Derecelendirmesi',
+            'rating-spread' => 'Değerlendirme Puanı',
+            'nominations' => 'Adaylıklar',
+            'playcount' => 'Oynama sayısı',
         ],
     ],
 ];

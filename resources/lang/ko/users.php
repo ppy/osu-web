@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user님의 모딩 기록",
+        'title_compact' => '모딩',
 
         'discussions' => [
             'title_recent' => '최근 시작된 토론',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => '업로드하려면 여기에 끌어놓으세요',
                     'dropzone_info' => '이쪽에 이미지를 끌어놓아 업로드할수도 있습니다',
                     'restriction_info' => "<a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!서포터</a>만 업로드할 수 있습니다",
-                    'size_info' => '표지 크기는 2000x700 이여야 합니다',
+                    'size_info' => '표지 크기는 2800x620 이여야 합니다',
                     'too_large' => '업로드된 파일이 너무 큽니다.',
                     'unsupported_format' => '지원되지 않는 확장자입니다.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => '최근 플레이가 없습니다',
 
             'achievements' => [
-                'title' => '업적',
                 'achieved-on' => ':date에 달성함',
+                'locked' => '잠김',
+                'title' => '업적',
             ],
             'beatmaps' => [
+                'by_artist' => 'by :artist',
                 'none' => '아직... 없네요...',
                 'title' => '비트맵',
 
                 'favourite' => [
-                    'title' => '즐겨찾기한 비트맵 (:count)',
+                    'title' => '즐겨찾기한 비트맵',
                 ],
                 'graveyard' => [
-                    'title' => '무덤에 간 비트맵 (:count)',
+                    'title' => '무덤에 간 비트맵',
                 ],
                 'loved' => [
-                    'title' => 'Loved 비트맵 (:count)',
+                    'title' => 'Loved 비트맵',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked / Approved 된 비트맵 (:count개)',
+                    'title' => 'Ranked / Approved 된 비트맵',
                 ],
                 'unranked' => [
-                    'title' => 'Pending 비트맵 (:count)',
+                    'title' => 'Pending 비트맵',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => '플레이 기록',
+                    'count_label' => '플레이 횟수',
                 ],
                 'most_played' => [
                     'count' => '플레이 횟수',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => '리플레이가 재생된 횟수',
+                    'count_label' => '리플레이 재생 횟수',
                 ],
             ],
             'kudosu' => [
@@ -259,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "아직 아무런 메달도 받지 못했네요. ;_;",
+                'recent' => '최근 획득',
                 'title' => '메달',
             ],
             'recent_activity' => [
                 'title' => '최근 활동',
             ],
             'top_ranks' => [
+                'download_replay' => '리플레이 다운로드',
                 'empty' => '아직 이렇다 할 플레이 기록이 없네요. :(',
                 'not_ranked' => '랭크된 비트맵만 pp를 줍니다.',
-                'pp' => ':amountpp',
+                'pp_weight' => '가중치 :percentage',
                 'title' => '랭크',
-                'weighted_pp' => '가중치 적용: :pp (:percentage)',
 
                 'best' => [
                     'title' => '최고 성과',
@@ -300,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '플레이어 :info',
+            'info' => '정보',
+        ],
+
         'info' => [
             'discord' => '디스코드',
             'interests' => '관심 분야',
@@ -318,6 +330,7 @@ return [
             'title' => '사용자를 찾을 수 없습니다! ;_;',
         ],
         'page' => [
+            'button' => '프로필 페이지 수정',
             'description' => '<strong>me!</strong>는 유저 프로필 페이지에서 개인이 꾸밀 수 있는 공간입니다.',
             'edit_big' => 'me! 수정하기',
             'placeholder' => '페이지에 들어갈 내용을 입력하세요.',
@@ -329,16 +342,20 @@ return [
         ],
         'rank' => [
             'country' => ':mode 국가 순위',
+            'country_simple' => '국가 순위',
             'global' => ':mode 세계 순위',
+            'global_simple' => '세계 순위',
         ],
         'stats' => [
             'hit_accuracy' => '정확도',
             'level' => '레벨 :level',
+            'level_progress' => '다음 레벨까지의 진척도',
             'maximum_combo' => '최대 콤보',
+            'medals' => '메달',
             'play_count' => '플레이 횟수',
             'play_time' => '총 플레이 시간',
             'ranked_score' => '기록된 점수',
-            'replays_watched_by_others' => '다른 플레이어가 관전한 횟수',
+            'replays_watched_by_others' => '리플레이가 재생된 횟수',
             'score_ranks' => '점수 순위',
             'total_hits' => '총 타격 횟수',
             'total_score' => '총 점수',

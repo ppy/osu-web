@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,6 +25,17 @@ use DB;
 use Illuminate\Database\Schema\Blueprint;
 use Schema;
 
+/**
+ * @property string $acronym
+ * @property bool $active
+ * @property int $chart_id
+ * @property \Carbon\Carbon|null $chart_month
+ * @property \Carbon\Carbon|null $end_date
+ * @property bool $mode_specific
+ * @property string $name
+ * @property \Carbon\Carbon|null $start_date
+ * @property string $type
+ */
 class Spotlight extends Model
 {
     public const PERIODIC_TYPES = ['bestof', 'monthly'];

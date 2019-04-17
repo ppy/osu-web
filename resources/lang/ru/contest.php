@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,8 +26,15 @@ return [
     'voting' => [
         'over' => 'Голосование окончено',
         'login_required' => 'Войдите для голосования.',
+
         'best_of' => [
             'none_played' => "Не похоже чтобы вы играли в те карты, которые участвуют в этом конкурсе.",
+        ],
+
+        'button' => [
+            'add' => 'Голосовать',
+            'remove' => 'Отменить голос',
+            'used_up' => 'Вы уже использовали все свои голоса',
         ],
     ],
     'entry' => [
@@ -38,6 +45,7 @@ return [
         'over' => 'Благодарим за ваши заявки на участие в этом конкурсе! Голосование начнется в ближайшее время.',
         'limit_reached' => 'Вы исчерпали количество заявок для этого конкурса.',
         'drop_here' => 'Брось свою заявку сюда',
+        'download' => 'Скачать .osz',
         'wrong_type' => [
             'art' => 'Только файлы формата .jpg и .png разрешены для этого конкурса.',
             'beatmap' => 'Только файлы формата .osu разрешены для этого конкурса.',
@@ -51,6 +59,7 @@ return [
     'vote' => [
         'list' => 'голосов',
         'count' => ':count голос|:count голоса|:count голосов',
+        'points' => ':count очко|:count очка|:count очков',
     ],
     'dates' => [
         'ended' => 'Окончено :date',

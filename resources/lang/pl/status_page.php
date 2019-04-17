@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -62,7 +62,7 @@ return [
             'month' => 'miesiąc',
             'all_time' => 'od zawsze',
             'last_week' => 'ostatni tydzień',
-            'weeks_ago' => ':count tydzień temu|:count tygodnie temu|:count tygodni temu',
+            'weeks_ago' => ':count_delimited tydzień temu|:count_delimited tygodnie temu:count_delimited tygodni temu',
         ],
     ],
 ];

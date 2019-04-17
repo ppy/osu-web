@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Nu îți poți anula hype-ul.',
+            'is_hype' => 'Nu poți anula hype-ul.',
             'has_reply' => 'Nu se poate șterge o discuție cu răspunsuri',
         ],
         'nominate' => [
@@ -31,6 +31,10 @@ return [
         ],
         'resolve' => [
             'not_owner' => 'Numai cel ce a început subiectul sau proprietarul acestui beatmap pot rezolva o discuție.',
+        ],
+
+        'store' => [
+            'mapper_note_wrong_user' => 'Doar proprietarul beatmapului sau nominatorul/membru din QAT pot posta note de mapper.',
         ],
 
         'vote' => [
@@ -48,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Accesul la canalul solicitat nu este permis.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Accesul la canalul solicitat este necesar.',
-                    'moderated' => 'Acest canal este moderat în prezent.',
-                    'not_lazer' => 'În prezent poți vorbi doar în #lazer.',
-                ],
+        'blocked' => 'Nu poți trimite mesaje unui utilizator care te-a blocat sau pe care l-ai blocat.',
+        'friends_only' => 'Utilizatorul blochează mesajele de la oameni care nu sunt pe lista lor de prieteni.',
+        'moderated' => 'Canalul este moderat în prezent.',
+        'no_access' => 'Nu ai acces la acest canal.',
+        'restricted' => 'Nu poți trimite mesaje cât timp ești amuțit, restricționat sau interzis.',
+    ],
 
-                'not_allowed' => 'Nu poți trimite mesaje cât timp ești interzis/restricționat/amuțit.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Nu poți edita o postare ștearsă.",
         ],
     ],
 
@@ -71,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Nu ai permisiunea de a modera acest forum.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Doar ultima postare poate fi ștearsă.',
@@ -95,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Tocmai ce ai postat ceva. Așteaptă puțin sau editează-ți ultima postare.',
+                'double_post' => 'Te rugăm să editezi ultima postare în loc să postezi din nou.',
                 'locked' => 'Nu se poate răspunde la o discuție închisă.',
                 'no_forum_access' => 'Accesul la forumul solicitat este necesar.',
                 'no_permission' => 'Nu ai permisiunea de a răspunde.',
@@ -155,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'Pagina utilizatorului este închisă.',
                 'not_owner' => 'Îți poți edita doar propria pagină de utilizator.',
-                'require_supporter_tag' => 'Eticheta de suporter este necesară.',
+                'require_supporter_tag' => 'eticheta de suporter osu! este necesară.',
             ],
         ],
     ],

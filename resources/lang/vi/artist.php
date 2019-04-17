@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,7 +19,7 @@
  */
 
 return [
-    'page_description' => 'Nghệ sĩ nổi bật của osu!',
+    'page_description' => 'Nghệ sĩ tiêu biểu của osu!',
     'title' => 'Nghệ sĩ nổi bật',
 
     'admin' => [
@@ -45,5 +45,12 @@ return [
         '_' => 'Bài hát',
         'count' => ':count bài hát',
         'exclusive' => 'độc quyền cho osu',
+    ],
+
+    'tracklist' => [
+        'title' => 'tiêu đề',
+        'length' => 'độ dài',
+        'bpm' => 'bpm',
+        'genre' => 'thể loại',
     ],
 ];

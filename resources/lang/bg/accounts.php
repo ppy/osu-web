@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,25 +20,25 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Настройки</strong> на Акаунта',
+        'title' => '<strong>Профилни</strong> настройки',
         'title_compact' => 'настройки',
-        'username' => 'име',
+        'username' => 'потребителско име',
 
         'avatar' => [
             'title' => 'Аватар',
         ],
 
         'email' => [
-            'current' => 'сегашен имейл',
+            'current' => 'текущ имейл',
             'new' => 'нов имейл',
-            'new_confirmation' => 'потвърдете нов имейл',
+            'new_confirmation' => 'потвърдете новия имейл',
             'title' => 'Имейл',
         ],
 
         'password' => [
-            'current' => 'сегашна парола',
+            'current' => 'текуща парола',
             'new' => 'нова парола',
-            'new_confirmation' => 'потвърдете нова парола',
+            'new_confirmation' => 'потвърдете новата парола',
             'title' => 'Парола',
         ],
 
@@ -58,18 +58,18 @@ return [
 
         'signature' => [
             'title' => 'Подпис',
-            'update' => 'запази',
+            'update' => 'обнови',
         ],
     ],
 
     'update_email' => [
         'email_subject' => 'потвърдете смяната на osu! имейла',
-        'update' => 'запази',
+        'update' => 'обнови',
     ],
 
     'update_password' => [
         'email_subject' => 'подвърдете смяната на osu! парола',
-        'update' => 'запази',
+        'update' => 'обнови',
     ],
 
     'playstyles' => [
@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => 'Поверителност',
         'friends_only' => 'Блокирай лични съобщения от хора с който не си приятел',
+        'hide_online' => 'скриване на вашето онлайн присъствие',
+    ],
+
+    'security' => [
+        'current_session' => 'текущ',
+        'end_session' => 'Прекрати сесията',
+        'end_session_confirmation' => 'Това непосредствено ще прекрати сесията ви на това устройство. Сигурни ли сте?',
+        'last_active' => 'Последно активен:',
+        'title' => 'Сигурност',
+        'web_sessions' => 'уеб сесии',
     ],
 ];

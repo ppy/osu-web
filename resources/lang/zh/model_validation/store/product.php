@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 return [
     'insufficient_stock' => '该物品存货不足!',
-    'not_available' => '这件物品暂时不可用',
+    'must_separate' => '这件物品必须与其他物品分开结账',
+    'not_available' => '该物品暂时不可用',
     'too_many' => '每个订单你只能订购 :count 个此物品。',
 ];

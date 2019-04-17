@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,8 @@ return [
     'top-headers' => [
         'headline' => 'Transmisiuni în direct',
         'description' => 'Datele sunt preluate de pe twitch.tv la fiecare cinci minute, pe baza listei de directoare. Simte-te liber să începi difuzarea live și să apari pe listă! Pentru mai multe informații despre modul de configurare, te rugăm să consulți pagina wiki de live streaming.',
+
+        'link' => 'pagina wiki de live streaming',
     ],
     'headers' => [
         'regular' => 'Streaming în prezent',

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,7 +26,7 @@ return [
 
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Keskustelu on lukittu.',
-        'first_post' => 'Aloitusviestiä ei voi poistaa.',
+        'first_post' => 'Aloitusviestiä ei voida poistaa.',
     ],
 
     'beatmapset_discussion' => [
@@ -51,9 +51,13 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Poistettuun kommenttiin ei voida vastata.',
+    ],
+
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Voi äänestää vain ominaisuutta.',
+            'not_feature_topic' => 'Vain ominaisuutta voi äänestää.',
             'not_enough_feature_votes' => 'Ei tarpeeksi ääniä.',
         ],
 
@@ -62,12 +66,14 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Beatmapin metatietoviestiä ei voi poistaa.',
-            'beatmapset_post_no_edit' => 'Beatmapin metatietoviestiä ei voi muokata.',
+            'beatmapset_post_no_delete' => 'Beatmapin metatietoviestiä ei voida poistaa.',
+            'beatmapset_post_no_edit' => 'Beatmapin metatietoviestiä ei voida muokata.',
+            'only_quote' => 'Sinun vastauksesi sisältää ainoastaan lainauksen.',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Identtiset valinnat eivät ole sallittuja.',
+            'grace_period_expired' => 'Äänestystä ei voi muokata :limit tunnin jälkeen',
             'invalid_max_options' => 'Valinnat käyttäjää kohti eivät voi ylittää kaikkien valintojen määrää.',
             'minimum_one_selection' => 'Vähintään yksi valinta käyttäjää kohti on vaadittu.',
             'minimum_two_options' => 'Tarvitsee ainakin kaksi valintaa.',
@@ -83,7 +89,7 @@ return [
     'user' => [
         'contains_username' => 'Salasana ei saa sisältää käyttäjätunnusta.',
         'email_already_used' => 'Tämä sähköpostiosoite on jo käytössä.',
-        'invalid_country' => 'Maa ei ole tietokannassa.',
+        'invalid_country' => 'Maata ei ole tietokannassa.',
         'invalid_discord' => 'Virheellinen Discord käyttäjänimi.',
         'invalid_email' => "Ei näytä kelvolliselta sähköpostiosoitteelta.",
         'too_short' => 'Uusi salasana on liian lyhyt.',
@@ -92,6 +98,7 @@ return [
         'username_available_soon' => 'Tämä nimi on käytössä millä hetkellä hyvänsä!',
         'username_invalid_characters' => 'Käyttäjätunnus sisältää virheellisiä merkkejä.',
         'username_in_use' => 'Käyttäjätunnus on jo käytössä!',
+        'username_locked' => 'Käyttäjänimi on jo käytössä!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Käytä joko alaviivoja tai välilyöntejä, ei molempia!',
         'username_no_spaces' => "Käyttäjätunnus ei voi alkaa tai loppua välilyönneillä!",
         'username_not_allowed' => 'Tätä käyttäjätunnusta ei ole sallittu.',
@@ -110,5 +117,9 @@ return [
             ],
             'username_is_same' => 'Tämä on jo käyttäjänimesi, höpsö!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "Et voi ilmiantaa itseäsi!",
     ],
 ];

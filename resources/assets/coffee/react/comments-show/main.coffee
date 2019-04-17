@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,37 +16,14 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, h1, li, ol, p, span} = ReactDOMFactories
+import { Comment } from 'comment'
+import * as React from 'react'
+import { a, button, div, h1, li, ol, p, span } from 'react-dom-factories'
 el = React.createElement
 
-class CommentsShow.Main extends React.PureComponent
-  constructor: (props) ->
-    super props
-
-    @id = "comments-show-#{osu.uuid()}"
-
-    comments = osu.updateCollection @props.comments, [@props.comment]
-    users = osu.updateCollection @props.users, [@props.comment.user, @props.comment.editor]
-
-    @state = {comments, users}
-
-
-  componentDidMount: =>
-    $.subscribe "comments:added.#{@id}", @appendBundle
-    $.subscribe "comment:updated.#{@id}", @update
-
-
-  componentWillUnmount: =>
-    $.unsubscribe ".#{@id}"
-
-
+export class Main extends React.PureComponent
   render: =>
-    commentsByParentId = _(@state.comments)
-      .uniqBy('id')
-      .orderBy(['created_at', 'id'], ['desc', 'desc'])
-      .groupBy('parent_id')
-      .value()
-    usersById = _.keyBy(@state.users ? [], 'id')
+    commentsByParentId = _.groupBy(@props.comments, 'parent_id')
 
     mainComment = commentsByParentId[@props.comment.parent_id][0]
     children = commentsByParentId[mainComment.id] ? []
@@ -62,19 +39,15 @@ class CommentsShow.Main extends React.PureComponent
       div className: 'osu-page osu-page--comment',
         el Comment,
           comment: mainComment
-          usersById: usersById
+          parent: @props.comment.parent
+          usersById: @props.usersById
+          userVotesByCommentId: @props.userVotesByCommentId
+          commentableMetaById: @props.commentableMetaById
+          commentsByParentId: commentsByParentId
+          moreComments: @props.moreComments
           showCommentableMeta: true
           depth: 0
-          childrenArray: children
           linkParent: true
-          for comment in children
-            el Comment,
-              key: comment.id
-              comment: comment
-              parent: mainComment
-              commentsByParentId: commentsByParentId
-              usersById: usersById
-              depth: 1
 
 
   renderHeaderTabs: =>
@@ -94,7 +67,7 @@ class CommentsShow.Main extends React.PureComponent
 
   renderHeaderTitle: =>
     div className: 'osu-page-header-v3 osu-page-header-v3--comments',
-      div className: 'osu-page-header-v3__title js-nav2--hidden-on-menu-access',
+      div className: 'osu-page-header-v3__title',
         div className: 'osu-page-header-v3__title-icon',
           div className: 'osu-page-header-v3__icon'
         h1
@@ -102,15 +75,3 @@ class CommentsShow.Main extends React.PureComponent
           dangerouslySetInnerHTML:
             __html: osu.trans 'comments.show.title._',
               info: "<span class='osu-page-header-v3__title-highlight'>#{osu.trans('comments.show.title.info')}</span>"
-
-
-  appendBundle: (_events, {comments}) =>
-    @setState
-      comments: osu.updateCollection @state.comments, comments.comments
-      users: osu.updateCollection @state.users, comments.users
-
-
-  update: (_event, {comment}) =>
-    @setState
-      comments: osu.updateCollection @state.comments, comment
-      users: osu.updateCollection @state.users, [comment.user, comment.editor]

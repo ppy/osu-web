@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,9 +22,10 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => '',
+            'big_description' => 'Rakastatko osua!?<br/>
+                                Tue osun kehittämistä! :D',
             'small_description' => '',
-            'support_button' => 'Haluan tukea osu!:a',
+            'support_button' => 'Haluan tukea osu!a',
         ],
 
         'dev_quote' => 'osu! on täysin ilmainen peli, mutta sen pystyssä pitäminen ei todellakaan ole ilmaista.
@@ -40,28 +41,28 @@ return [
         'supporter_status' => [
             'contribution' => 'Kiitos tuestasi tähän saakka! Olet tukenut kokonaisuudessaan :dollars :tags tukijaostoksella!',
             'gifted' => 'Tagiostoksistasi :giftedTags on lahjoitettu (yhteensä :giftedDollars), kuinka anteliasta!',
-            'not_yet' => "Et vielä ole Tukija :(",
-            'title' => 'Nykyinen tukija-tila',
+            'not_yet' => "Et ole vielä tukija :(",
+            'title' => 'Tukemisesi tämänhetkinen tila',
             'valid_until' => 'Nykyinen tukijatagi on voimassa :date asti!',
             'was_valid_until' => 'Tukijatagisi oli voimassa :date asti.',
         ],
 
         'why_support' => [
-            'title' => 'Miksi tukisin osu!:a?',
+            'title' => 'Miksi tukisin osu!a?',
             'blocks' => [
                 'dev' => 'Kehitetty ja ylläpidetty yhden australialaisen henkilön voimin',
-                'time' => 'Ylläpito on niin aikaavievää, että osu!:a ei voi kutsua enään "harrastukseksi".',
+                'time' => 'Ylläpito vie niin paljon aikaa, että tätä ei voi kutsua enää "harrastukseksi".',
                 'ads' => 'Mainoksia ei ole missään. <br/><br/>
  Toisin kuin 99.95% verkosta, me emme tee voittoa tunkemalla asioita naamallesi.',
-                'goodies' => 'Sinä saat ylimääräisiä ominaisuuksia käyttöösi!',
+                'goodies' => 'Saat lisäominaisuuksia käyttöösi!',
             ],
         ],
 
         'perks' => [
-            'title' => 'Ai? Mitä saan?!',
+            'title' => 'Aha. No mitä minä sitten saan?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'nopea ja helppo tapa etsiä beatmappejä ilman tarvetta poistua pelistä.',
+                'description' => 'Nopea ja helppo tapa etsiä beatmappejä ilman tarvetta poistua pelistä.',
             ],
 
             'auto_downloads' => [
@@ -70,12 +71,12 @@ return [
             ],
 
             'upload_more' => [
-                'title' => 'Lähetä lisää',
+                'title' => 'Lataa enemmän',
                 'description' => 'Lisäpaikkoja vireillä oleville beatmapeille jokaista hyväksyttyä beatmappiä vastaan. (Max. 10)',
             ],
 
             'early_access' => [
-                'title' => 'Ennakkojulkaisu',
+                'title' => 'Ennakkojulkaisut',
                 'description' => 'Pääsy uusimpiin versioihin, joissa voit kokeilla uusia ominaisuuksia ennen päivitysten julkaisua!',
             ],
 
@@ -106,7 +107,7 @@ return [
 
             'skinnables' => [
                 'title' => 'Ulkonäöllisyyksiä',
-                'description' => 'Lisää muokattavia pelinsisäisiä kohteita, kuten päävalikon tausta.',
+                'description' => 'Lisää muokattavia pelinsisäisiä kohteita, kuten esimerkiksi päävalikon taustakuva.',
             ],
 
             'feature_votes' => [
@@ -116,7 +117,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Lajitteluasetuksia',
-                'description' => 'Näet beatmapin maa-, ystävä- ja modikohtaiset sijoitukset pelissä.',
+                'description' => 'Näet beatmapin maa-, kaveri- ja modikohtaiset sijoitukset pelissä.',
             ],
 
             'feel_special' => [
@@ -132,7 +133,7 @@ return [
 
         'convinced' => [
             'title' => 'Vakuutuin! :D',
-            'support' => 'tue osu!:a',
+            'support' => 'tue osua!',
             'gift' => 'tai lahjoita Tukija toiselle pelaajalle',
             'instructions' => 'klikkaa sydäntä jatkaaksesi osu!kauppaan',
         ],

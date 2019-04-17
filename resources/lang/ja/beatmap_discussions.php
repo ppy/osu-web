@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -32,52 +32,52 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => '削除されています',
-        'title' => 'ディスカッション',
+        'deleted_beatmap' => '削除済み',
+        'title' => 'ビートマップディスカッション',
 
         'form' => [
             '_' => '検索',
-            'deleted' => '削除されたディスカッションを含む',
+            'deleted' => '削除されたディスカッションを含める',
             'types' => 'メッセージの種類',
             'username' => 'ユーザー名',
 
             'user' => [
                 'label' => 'ユーザー',
-                'overview' => '活動概要',
+                'overview' => 'アクティビティ',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => '投稿日時',
-        'deleted_at' => '削除日時',
+        'created_at' => '投稿日',
+        'deleted_at' => '削除日',
         'message_type' => 'タイプ',
         'permalink' => 'パーマリンク',
     ],
 
     'nearby_posts' => [
-        'confirm' => '自分の懸念点はまだ挙げられていません',
+        'confirm' => '私が知りたいことに関する投稿はまだありません',
         'notice' => ':timestamp付近に他の投稿(:existing_timestamps)があります。投稿する前に確認してください。',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => '返信にはログインが必要です',
-            'user' => '返信',
+            'guest' => 'ログインして返信する',
+            'user' => '返信する',
         ],
     ],
 
     'system' => [
         'resolved' => [
             'true' => ':userに解決済とマークされました',
-            'false' => ':userに未解決とマークされました',
+            'false' => ':userによって再開されました。',
         ],
     ],
 
     'user' => [
-        'admin' => '管理人',
+        'admin' => '管理者',
         'bng' => 'ノミネーター',
-        'owner' => '譜面作者',
+        'owner' => 'マッパー',
         'qat' => 'qat',
     ],
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,31 +19,38 @@
  */
 
 return [
-    'page_description' => 'osu!推奨アーティスト',
-    'title' => '推奨アーティスト',
+    'page_description' => 'osu!の注目アーティスト',
+    'title' => '注目アーティスト',
 
     'admin' => [
-        'hidden' => 'ARTIST IS CURRENTLY HIDDEN',
+        'hidden' => 'アーティストは現在非表示にされています',
     ],
 
     'beatmaps' => [
-        '_' => '譜面',
-        'download' => '譜面のテンプレートをダウンロード ',
-        'download-na' => '譜面のテンプレートはまだ用意されていません',
+        '_' => 'ビートマップ',
+        'download' => 'ビートマップのテンプレートをダウンロード ',
+        'download-na' => 'ビートマップのテンプレートはまだ用意されていません',
     ],
 
     'index' => [
-        'description' => 'osu!推奨アーティストはosu!との協力でゲームにさまざまな楽曲を提供しているアーティストたちです。このアーティストたちはosu!チームに楽曲の譜面化への適性を見込まれて選ばれました。中にはosu!限定の楽曲を提供しているアーティストも存在します。<br><br>このセクションの楽曲は譜面としてタイミングは既に設定してあり、osu!内のみでの使用が認可されています。',
+        'description' => '注目アーティストは私達とコラボレーションしているアーティストで、新しいオリジナル楽曲を提供しています。注目アーティストと提供されたオリジナル楽曲は、楽曲が素晴らしく、ビートマップに適しているとしてosu! teamに選ばれました。注目アーティストの中にはosu!限定の楽曲を提供しているアーティストも存在します。<br><br>ここにある全ての楽曲はタイミングが設定された.oszファイルとして提供されており、正式にosu!とosu!関連コンテンツで使用が許可されています。',
     ],
 
     'links' => [
-        'osu' => 'プロフィール',
-        'site' => '公式サイト',
+        'osu' => 'osu!のプロフィール',
+        'site' => '公式ウェブサイト',
     ],
 
     'songs' => [
-        '_' => '楽曲',
+        '_' => '楽曲一覧',
         'count' => ':count 曲',
-        'exclusive' => 'osu!限定',
+        'exclusive' => 'osu! 限定',
+    ],
+
+    'tracklist' => [
+        'title' => '曲名',
+        'length' => '長さ',
+        'bpm' => 'bpm',
+        'genre' => 'ジャンル',
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,7 +27,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Estas são as discussões do beatmap que estás a seguir. Serás notificado quando houver novas publicações ou actualizações.',
+        'description' => 'Estas são as discussões do beatmap que estás a seguir. Serás notificado quando houver novas publicações ou atualizações.',
         'title_compact' => 'lista de observação de modificações',
         'title_main' => 'Lista de Observação de Modificações',
 
@@ -40,7 +40,7 @@ return [
     ],
 
     'mail' => [
-        'update' => 'Nova actualização para o beatmap ":title"',
+        'update' => 'Nova atualização para o beatmap ":title"',
     ],
 
     'status' => [

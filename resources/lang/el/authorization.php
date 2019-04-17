@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Δεν επιτρέπεται η πρόσβαση σε αυτό το κανάλι.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Απαιτείται άδεια για αυτό το κανάλι.',
-                    'moderated' => 'Το κανάλι βρίσκεται υπό παρακολούθηση.',
-                    'not_lazer' => 'Μπορείτε να μιλήσετε μόνο στο #lazer αυτή τη στιγμή.',
-                ],
+        'blocked' => 'Αδυναμία αποστολής σε χρήστη που σας έχει ή έχετε αποκλείσει.',
+        'friends_only' => 'Ο χρήστης αποκλείει μηνύματα απο άτομα εκτός της λίστας φίλων του.',
+        'moderated' => 'Το κανάλι βρίσκεται υπό παρακολούθηση.',
+        'no_access' => 'Δεν έχετε πρόσβαση σε αυτό το κανάλι.',
+        'restricted' => 'Δεν μπορείτε να στείλετε μηνύματα ενώ είστε σιγασμένος, περιορισμένος ή απαγορευμένος.',
+    ],
 
-                'not_allowed' => 'Το μήνυμα δε μπορεί να σταλθεί όταν είστε banned/restricted/silenced.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Δεν μπορείτε να επεξεργαστείτε διαγραμμένη δημοσίευση.",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Δεν έχει άδεια να εποπτεύσετε αυτό το φόρουμ.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Μόνο η τελευταία δημοσίευση μπορεί να διαγραφεί.',

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => '그룹',
             'index' => '대시보드',
             'legal-show' => '정보',
+            'messages-index' => '메시지',
             'news-index' => '소식',
             'news-show' => '소식',
             'password-reset-index' => '비밀번호 재설정',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => '커뮤니티',
+            'chat' => '채팅',
+            'chat-index' => '채팅',
             'dev' => '개발',
             'getForum' => '포럼',
-            'getChat' => '채팅',
             'getLive' => '라이브 스트림',
+            'comments-index' => '댓글',
+            'comments-show' => '댓글',
             'contests' => '콘테스트',
             'profile' => '프로필',
             'tournaments' => '대회',
@@ -114,16 +118,18 @@ return [
             'reset' => '복원',
             'new' => '새',
 
-            'messages' => '메시지',
-            'settings' => '설정',
-            'logout' => '로그아웃',
             'help' => '도움말',
+            'logout' => '로그아웃',
+            'messages' => '메시지',
             'modding-history-discussions' => '유저 모딩 토론',
             'modding-history-events' => '유저 모딩 활동',
             'modding-history-index' => '유저 모딩 기록',
             'modding-history-posts' => '유저 모딩 글',
             'modding-history-votesGiven' => '유저가 준 모딩 투표',
             'modding-history-votesReceived' => '유저가 받은 모딩 투표',
+            'oauth_login' => 'OAuth로 로그인',
+            'oauth_request' => 'OAuth 인증',
+            'settings' => '설정',
         ],
         'store' => [
             '_' => '상점',
@@ -133,6 +139,7 @@ return [
 
             'getCheckout' => '결제',
             'getInvoice' => '청구서',
+            'orders-index' => '주문 내역',
             'products-show' => '상품',
 
             'new' => '새',

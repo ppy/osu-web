@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,8 +20,11 @@
 
 namespace App\Models\Forum;
 
-use Illuminate\Database\Eloquent\Builder;
-
+/**
+ * @property int $forum_id
+ * @property int $mark_time
+ * @property int $user_id
+ */
 class ForumTrack extends Model
 {
     protected $table = 'phpbb_forums_track';
@@ -30,12 +33,5 @@ class ForumTrack extends Model
     protected $dates = ['mark_time'];
     protected $dateFormat = 'U';
 
-    // Allows save/update/delete to work with composite primary keys.
-    protected function setKeysForSaveQuery(Builder $query)
-    {
-        return $query->where([
-            'forum_id' => $this->forum_id,
-            'user_id' => $this->user_id,
-        ]);
-    }
+    protected $primaryKeys = ['forum_id', 'user_id'];
 }

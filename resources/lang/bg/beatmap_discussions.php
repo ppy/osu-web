@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Трябва да влезете в профила си за да редактирате.',
+            'null_user' => 'Влезте в профила си, за да редактирате.',
             'system_generated' => 'Системно-генерираният пост не може да бъде редактиран.',
             'wrong_user' => 'Трябва да сте собственик на този пост да редактирате.',
         ],
@@ -36,10 +36,10 @@ return [
         'title' => 'Бийтмап Дискусии',
 
         'form' => [
-            '_' => '',
+            '_' => 'Търсене',
             'deleted' => 'Включете изтрити дискусии',
-            'types' => '',
-            'username' => '',
+            'types' => 'Тип съобщения',
+            'username' => 'Потребителско име',
 
             'user' => [
                 'label' => 'Потребител',
@@ -52,7 +52,7 @@ return [
         'created_at' => 'Дата на публикуване',
         'deleted_at' => 'Дата на изтриване',
         'message_type' => 'Вид',
-        'permalink' => 'Постоянна връзка',
+        'permalink' => 'Постоянен линк',
     ],
 
     'nearby_posts' => [

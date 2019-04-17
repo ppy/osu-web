@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -38,7 +38,7 @@ return [
         'password' => [
             'current' => 'jelenlegi jelszó',
             'new' => 'új jelszó',
-            'new_confirmation' => 'új jelszó megerősítése',
+            'new_confirmation' => 'jelszó megerősítése',
             'title' => 'Jelszó',
         ],
 
@@ -82,6 +82,16 @@ return [
 
     'privacy' => [
         'title' => 'Adatvédelem',
-        'friends_only' => 'Privát üzenetek tiltása olyan személyektől, akik nincsenek a barát listádon',
+        'friends_only' => 'privát üzenetek tiltása olyan személyektől, akik nincsenek a baráti listádon',
+        'hide_online' => 'online állapot elrejtése',
+    ],
+
+    'security' => [
+        'current_session' => 'jelenlegi',
+        'end_session' => 'Munkamenet befejezése',
+        'end_session_confirmation' => 'Ez azonnal befejezi a munkamenetet az eszközön. Biztos vagy benne?',
+        'last_active' => 'Utoljára aktív:',
+        'title' => 'Biztonság',
+        'web_sessions' => 'webes munkamenetek',
     ],
 ];

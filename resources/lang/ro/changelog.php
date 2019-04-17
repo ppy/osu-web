@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,10 @@ return [
     'feed_title' => 'flux',
     'generic' => 'Remedierea bug-urilor și îmbunătățiri minore.',
 
+    'build' => [
+        'title' => 'schimbări în :version',
+    ],
+
     'builds' => [
         'users_online' => ':count_delimited utilizator online|:count_delimited utilizatori online',
     ],
@@ -31,6 +35,17 @@ return [
     ],
 
     'index' => [
+        'page_title' => [
+            '_' => 'jurnalul modificărilor',
+            '_from' => 'modificări din :from',
+            '_from_to' => 'modificări între :from și :to',
+            '_stream' => 'modificări în :stream',
+            '_stream_from' => 'modificări în :stream din :from',
+            '_stream_from_to' => 'modificări în :stream între :from și :to',
+            '_stream_to' => 'modificări în :stream până în :to',
+            '_to' => 'modificări până în :to',
+        ],
+
         'title' => [
             '_' => 'Jurnalul modificărilor :info',
             'info' => 'Listare',

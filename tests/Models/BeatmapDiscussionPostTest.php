@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,11 +20,76 @@
 use App\Exceptions\ModelNotSavedException;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
+use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\User;
 
 class BeatmapDiscussionPostTest extends TestCase
 {
+    public function testMessageCharacterLimitGeneralAll()
+    {
+        $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
+        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $user = factory(User::class)->create();
+        $discussion = BeatmapDiscussion::create([
+            'beatmapset_id' => $beatmapset->getKey(),
+            'user_id' => $user->getKey(),
+            'message_type' => 'suggestion',
+        ]);
+
+        $post = $discussion->beatmapDiscussionPosts()->make([
+            'user_id' => $user->getKey(),
+            'message' => str_repeat('a', 2000),
+        ]);
+
+        $this->assertTrue($post->isValid());
+    }
+
+    public function testMessageCharacterLimitGeneral()
+    {
+        $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
+        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $user = factory(User::class)->create();
+        $discussion = BeatmapDiscussion::create([
+            'beatmapset_id' => $beatmapset->getKey(),
+            'beatmap_id' => $beatmap->getKey(),
+            'user_id' => $user->getKey(),
+            'message_type' => 'suggestion',
+        ]);
+
+        $post = $discussion->beatmapDiscussionPosts()->make([
+            'user_id' => $user->getKey(),
+            'message' => str_repeat('a', 2000),
+        ]);
+
+        $this->assertTrue($post->isValid());
+    }
+
+    public function testMessageCharacterLimitTimeline()
+    {
+        $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
+        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $user = factory(User::class)->create();
+        $discussion = BeatmapDiscussion::create([
+            'beatmapset_id' => $beatmapset->getKey(),
+            'beatmap_id' => $beatmap->getKey(),
+            'user_id' => $user->getKey(),
+            'message_type' => 'suggestion',
+            'timestamp' => 0,
+        ]);
+
+        $post = $discussion->beatmapDiscussionPosts()->make([
+            'user_id' => $user->getKey(),
+            'message' => str_repeat('a', 2000),
+        ]);
+
+        $this->assertFalse($post->isValid());
+
+        $post->message = str_repeat('b', BeatmapDiscussionPost::MESSAGE_LIMIT_TIMELINE);
+
+        $this->assertTrue($post->isValid());
+    }
+
     public function testSoftDeleteOrExplode()
     {
         $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);

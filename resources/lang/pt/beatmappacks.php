@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,10 +23,10 @@ return [
         'blurb' => [
             'important' => 'LÊ ISTO ANTES DE TRANSFERIR',
             'instruction' => [
-                '_' => "Instalação: Uma vez transferido um pacote, extrai o .rar para o teu Directório de Canções do osu!.
+                '_' => "Instalação: Uma vez transferido um pacote, extrai o .rar para o teu Diretório de Canções do osu!.
                     Todas as canções estão .ZIPadas e/ou .OSZadas dentro do pacote, por isso o osu! irá precisar de extrair, por ele próprio, os beatmaps da próxima vez que fores para o Modo de jogo.
                     :scary extrai os ZIPs/OSZs por ti próprio,
-                    ou os beatmaps vão-se apresentar de forma incorrecta no osu! e não irão funcionar correctamente.",
+                    ou os beatmaps vão-se apresentar de forma incorreta no osu! e não irão funcionar corretamente.",
                 'scary' => 'NÃO',
             ],
             'note' => [
@@ -35,7 +35,7 @@ return [
             ],
         ],
         'title' => 'Pacotes Beatmap',
-        'description' => 'Colecções pré-empacotadas de beatmaps baseadas num tema em comum.',
+        'description' => 'Coleções pré-empacotadas de beatmaps baseadas num tema em comum.',
     ],
 
     'show' => [

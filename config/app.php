@@ -37,7 +37,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG'),
+    'debug' => env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -89,6 +89,7 @@ return [
         'en',
 
         // sort by name
+        'be',
         'bg',
         'cs',
         'da',
@@ -103,11 +104,13 @@ return [
         'ja',
         'ko',
         'nl',
+        'no',
         'pl',
         'pt',
         'pt-br',
         'ro',
         'ru',
+        'sk',
         'sv',
         'th',
         'tr',
@@ -178,6 +181,7 @@ return [
          * Laravel Framework Service Providers...
          */
         Illuminate\Auth\AuthServiceProvider::class,
+        Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
         Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
@@ -204,7 +208,6 @@ return [
         /*
          * Package Service Providers...
          */
-        GrahamCampbell\Markdown\MarkdownServiceProvider::class,
         GrahamCampbell\GitHub\GitHubServiceProvider::class,
         Maknz\Slack\SlackServiceProvider::class,
         Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
@@ -216,7 +219,7 @@ return [
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
@@ -286,7 +289,6 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 
-        'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
         'GitHub' => GrahamCampbell\GitHub\Facades\GitHub::class,
 
         'Slack' => Maknz\Slack\Facades\Slack::class,

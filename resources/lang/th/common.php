@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => '',
+        'back_to_previous' => '',
+        'back_to_top' => '',
         'cancel' => 'ยกเลิก',
         'change' => 'เปลี่ยน',
         'click_to_copy' => 'คลิกเพื่อคัดลอกไปยังคลิปบอร์ด',
         'click_to_copy_copied' => 'คัดลอกไปยังคลิปบอร์ดแล้ว',
+        'collapse' => '',
         'delete' => 'ลบ',
+        'edit' => '',
+        'expand' => '',
         'hide' => 'ซ่อน',
         'permalink' => 'ลิงก์ถาวร',
         'permalink_copied' => 'คัดลอกลิ้งค์แล้ว',
@@ -43,12 +49,14 @@ return [
         'reply_reopen' => 'ตอบกลับ และเปิดใหม่',
         'reply_resolve' => 'ตอบกลับ และแก้ไข',
         'reset' => 'รีเซ็ต',
+        'restore' => '',
         'save' => 'บันทึก',
         'saving' => 'กำลังบันทึก...',
         'search' => 'ค้นหา',
         'see_more' => 'ดูเพิ่มเติม',
         'show' => 'แสดง',
         'show_more' => 'แสดงเพิ่มเติม',
+        'show_more_options' => '',
         'upload_image' => 'อัพโหลดรูปภาพ',
     ],
 
@@ -59,9 +67,17 @@ return [
         'hours' => ':count ชั่วโมง|:count ชั่วโมง',
         'item' => ':count อัน|:count อัน',
         'minute_short_unit' => 'นาที|นาที',
+        'minutes' => '',
         'months' => ':count เดือน|:count เดือน',
         'second_short_unit' => 'วินาที|วินาที',
         'years' => ':count ปี|:count ปี',
+    ],
+
+    'countdown' => [
+        'days' => '',
+        'hours' => '',
+        'minutes' => '',
+        'seconds' => '',
     ],
 
     'datetime' => [

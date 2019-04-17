@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,41 +34,50 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
+            'approved' => 'godkänd den ',
+            'favourite' => 'Favorisera denna beatmapset',
+            'favourited_count' => '+ 1 annan!|+ :count andra!',
+            'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!',
+            'loved' => 'älskad den ',
             'mapped_by' => 'skapad av :mapper',
+            'qualified' => 'kvalificerad den ',
+            'ranked' => 'rankad den ',
             'submitted' => 'uppladdad den ',
+            'unfavourite' => 'Ta bort favorisering på denna beatmapset',
             'updated' => 'senast uppdaterad den ',
             'updated_timeago' => 'senast ändrad :timeago',
-            'ranked' => 'rankad den ',
-            'approved' => 'godkänd den ',
-            'qualified' => 'kvalificerad den ',
-            'loved' => 'älskad den ',
-            'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!',
+
             'download' => [
                 '_' => 'Ladda Ner',
-                'video' => 'med Video',
-                'no-video' => 'utan Video',
                 'direct' => 'osu!direct',
+                'no-video' => 'utan Video',
+                'video' => 'med Video',
             ],
-            'favourite' => 'Favorisera denna beatmapset',
-            'unfavourite' => 'Ta bort favorisering på denna beatmapset',
-            'favourited_count' => '+ 1 annan!|+ :count andra!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
         ],
-        'stats' => [
-            'cs' => 'Cirkel Storlek',
-            'cs-mania' => 'Antal Tangenter',
-            'drain' => 'HP Tömning',
-            'accuracy' => 'Precision',
-            'ar' => 'Approach Hastighet',
-            'stars' => 'Stjärn Svårighetsgrad',
-            'total_length' => 'Längd',
-            'bpm' => 'BPM',
-            'count_circles' => 'Antal Cirklar',
-            'count_sliders' => 'Antal Sliders',
-            'user-rating' => 'Användar Betyg',
-            'rating-spread' => 'Betyg Spridning',
-            'nominations' => 'Nomineringar',
-            'playcount' => 'Speltid',
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
+        ],
+
         'info' => [
             'description' => 'Beskrivning',
             'genre' => 'Genre',
@@ -80,6 +89,7 @@ return [
             'tags' => 'Taggar',
             'unranked' => 'Ej rankad beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => 'uppnått :when',
             'country' => 'Nationell rankning',
@@ -112,6 +122,23 @@ return [
                 'first' => 'Leder',
                 'own' => 'Ditt Bästa',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Cirkel Storlek',
+            'cs-mania' => 'Antal Tangenter',
+            'drain' => 'HP Tömning',
+            'accuracy' => 'Precision',
+            'ar' => 'Approach Hastighet',
+            'stars' => 'Stjärn Svårighetsgrad',
+            'total_length' => 'Längd',
+            'bpm' => 'BPM',
+            'count_circles' => 'Antal Cirklar',
+            'count_sliders' => 'Antal Sliders',
+            'user-rating' => 'Användar Betyg',
+            'rating-spread' => 'Betyg Spridning',
+            'nominations' => 'Nomineringar',
+            'playcount' => 'Speltid',
         ],
     ],
 ];

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,14 +17,19 @@
  */
 
 .bbcode-spoilerbox {
-  @top: bbcode-spoilerbox;
+  @_top: bbcode-spoilerbox;
+  @_profile-page: bbcode--profile-page;
 
   &__arrow {
     display: inline-block;
     color: @gray;
-    margin-right: 10px;
+    margin-right: 5px;
 
-    .@{top}.js-spoilerbox--open & {
+    .@{_profile-page} & {
+      color: #ccc;
+    }
+
+    .@{_top}.js-spoilerbox--open & {
       transform: rotate(90deg);
     }
   }
@@ -32,23 +37,35 @@
   &__body {
     display: none;
 
-    .@{top}.js-spoilerbox--open & {
+    .@{_top}.js-spoilerbox--open & {
       .default-border-radius();
       display: block;
       background: #ddd;
       padding: 20px;
       margin-top: 4px;
+
+      .@{_profile-page} & {
+        background-color: #333;
+      }
     }
   }
 
   &__link {
+    .reset-input();
     color: #333;
     font-weight: bold;
 
-    &:focus,
-    &:hover,
-    &:active {
+    .link-hover({
       color: #111;
+      text-decoration: underline;
+    });
+
+    .@{_profile-page} & {
+      color: #ccc;
+
+      .link-hover({
+        color: #eee;
+      });
     }
   }
 }

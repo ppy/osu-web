@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":users Moddingverlauf",
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Letztens gestartete Diskussionen',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Zum Hochladen hier ablegen',
                     'dropzone_info' => 'Du kannst das Bild auch hier ablegen, um es hochzuladen',
                     'restriction_info' => "Nur <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!-Supporter</a> können hochladen",
-                    'size_info' => 'Banner sollte 2000x700 groß sein',
+                    'size_info' => 'Banner sollte 2800x620 groß sein',
                     'too_large' => 'Datei ist zu groß.',
                     'unsupported_format' => 'Format wird nicht unterstützt.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Keine Plays in letzter Zeit',
 
             'achievements' => [
-                'title' => 'Erfolge',
                 'achieved-on' => 'Erreicht am :date',
+                'locked' => 'Gesperrt',
+                'title' => 'Erfolge',
             ],
             'beatmaps' => [
+                'by_artist' => 'von :artist',
                 'none' => '(Noch) keine.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Lieblings-Beatmaps (:count)',
+                    'title' => 'Lieblings-Beatmaps',
                 ],
                 'graveyard' => [
-                    'title' => 'Begrabene Beatmaps (:count)',
+                    'title' => 'Begrabene Beatmaps',
                 ],
                 'loved' => [
-                    'title' => 'Loved Beatmaps (:count)',
+                    'title' => 'Loved Beatmaps',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                    'title' => 'Ranked & Approved Beatmaps',
                 ],
                 'unranked' => [
-                    'title' => 'Pending Beatmaps (:count)',
+                    'title' => 'Pending Beatmaps',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Play-Verlauf',
+                    'count_label' => 'Spiele',
                 ],
                 'most_played' => [
                     'count' => 'mal gespielt',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Angeschaute Wiederholungen',
+                    'count_label' => 'Wiederholungen angeschaut',
                 ],
             ],
             'kudosu' => [
@@ -259,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Dieser Nutzer hat noch keine erhalten. ;_;",
+                'recent' => 'Neuste',
                 'title' => 'Medaillen',
             ],
             'recent_activity' => [
                 'title' => 'Neulich',
             ],
             'top_ranks' => [
+                'download_replay' => 'Replay downloaden',
                 'empty' => 'Noch keine Performance-Rekorde. :(',
                 'not_ranked' => 'Nur Ranked Beatmaps geben PP.',
-                'pp' => ':amountpp',
+                'pp_weight' => ':percentage gewichtet',
                 'title' => 'Ränge',
-                'weighted_pp' => 'gewichtet: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Beste Performance',
@@ -300,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => 'Spieler :info',
+            'info' => 'Info',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Interessen',
@@ -318,6 +330,7 @@ return [
             'title' => 'Benutzer nicht gefunden! ;_;',
         ],
         'page' => [
+            'button' => 'Profil bearbeiten',
             'description' => '<strong>me!</strong> ist ein persönlicher Bereich auf deinem osu!-Profil, den du nach deinem Belieben anpassen kannst.',
             'edit_big' => 'me! bearbeiten',
             'placeholder' => 'Seiteninhalt hier eingeben',
@@ -329,12 +342,16 @@ return [
         ],
         'rank' => [
             'country' => 'Länderrang im Modus :mode',
+            'country_simple' => 'Länder-Rangliste',
             'global' => 'Globaler Rang im Modus :mode',
+            'global_simple' => 'Globale Rangliste',
         ],
         'stats' => [
             'hit_accuracy' => 'Genauigkeit',
             'level' => 'Level :level',
+            'level_progress' => 'Fortschritt bis zum nächsten Level',
             'maximum_combo' => 'Höchste Combo',
+            'medals' => 'Medaillen',
             'play_count' => 'Play-Anzahl',
             'play_time' => 'Gesamtspielzeit',
             'ranked_score' => 'Punktzahl auf Ranglisten',

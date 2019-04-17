@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -74,7 +74,7 @@ class @ChangelogChart
   loadData: ->
     @config = osu.parseJson 'json-chart-config'
 
-    data = @normalizeData @config.build_history
+    {data, hasData} = @normalizeData @config.build_history
 
     stack = d3.stack()
       .keys @config.order
@@ -85,7 +85,7 @@ class @ChangelogChart
 
     @hasData = @config.build_history? &&
       @config.build_history.length > 0 &&
-      _.some(@config.build_history, (b) -> b.user_count > 0)
+      hasData
 
 
     @resize()
@@ -178,7 +178,7 @@ class @ChangelogChart
     @tooltipName
       .attr 'class', "changelog-chart__text changelog-chart__text--name changelog-chart__text--#{labelModifier}"
       .text currentLabel
-    @tooltipUserCount.text @data[dataRow][pos].data[currentLabel].user_count.toLocaleString()
+    @tooltipUserCount.text osu.formatNumber(@data[dataRow][pos].data[currentLabel].user_count)
     @tooltipDate.text @data[dataRow][pos].data.date_formatted
 
     tooltipWidth = @tooltip.node().getBoundingClientRect().width
@@ -215,24 +215,40 @@ class @ChangelogChart
 
 
 
-  normalizeData: (data) ->
+  normalizeData: (rawData) ->
     # normalize the user count values
     # and parse data into a form digestible by d3.stack()
 
-    for own timestamp, values of _.groupBy data, 'created_at'
-      sum = _.sumBy values, 'user_count'
+    resetLabel = null
+    hasData = null
 
-      # parse date stored in strings to JS Date object for use by
-      # d3 domains, and format it into a string shown on the tooltip
-      m = moment values[0].created_at
+    data =
+      for own timestamp, values of _.groupBy rawData, 'created_at'
+        sum = _.sumBy values, 'user_count'
 
-      obj =
-        created_at: timestamp
-        date: m.toDate()
-        date_formatted: m.format 'YYYY/MM/DD'
+        if sum == 0
+          fakedVal = _.find(values, label: resetLabel) if resetLabel?
+          unless fakedVal?
+            fakedVal = _.last(values)
+            resetLabel = fakedVal.label
+          fakedVal.user_count = 1
+          sum = 1
+        else
+          hasData ?= true
 
-      for val in values
-        val.normalized = val.user_count / sum
-        obj[val.label] = val
+        # parse date stored in strings to JS Date object for use by
+        # d3 domains, and format it into a string shown on the tooltip
+        m = moment values[0].created_at
 
-      obj
+        obj =
+          created_at: timestamp
+          date: m.toDate()
+          date_formatted: m.format 'YYYY/MM/DD'
+
+        for val in values
+          val.normalized = val.user_count / sum
+          obj[val.label] = val
+
+        obj
+
+    {data, hasData}

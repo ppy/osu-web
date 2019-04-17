@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => '',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Kan endast rösta på funktion begäran.',
@@ -64,10 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Radera beatmap metadata inlägg är inte tillåtet.',
             'beatmapset_post_no_edit' => 'Redigera beatmap metadata inlägg är inte tillåtet.',
+            'only_quote' => '',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Duplicerade val är ej tillåtet.',
+            'grace_period_expired' => '',
             'invalid_max_options' => 'Val per användare får inte överskrida antalet tillgängliga val.',
             'minimum_one_selection' => 'Minst ett val per användare krävs.',
             'minimum_two_options' => 'Behöver åtminstone två val.',
@@ -92,6 +98,7 @@ return [
         'username_available_soon' => 'Detta användarnamn kommer att bli tillgängligt vilken minut som helst!',
         'username_invalid_characters' => 'Det begärda användarnamnet innehåller ogiltiga tecken.',
         'username_in_use' => 'Användarnamnet används redan!',
+        'username_locked' => '', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Använd antingen understreck eller blanksteg, inte båda!',
         'username_no_spaces' => "Användarnamn kan inte börja eller sluta med blanksteg!",
         'username_not_allowed' => 'Det valda användarnamnet är inte tillåtet.',
@@ -110,5 +117,9 @@ return [
             ],
             'username_is_same' => 'Detta är redan ditt användarnamn, dumbom!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "",
     ],
 ];

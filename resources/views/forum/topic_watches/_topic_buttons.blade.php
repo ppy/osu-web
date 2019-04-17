@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -34,7 +34,7 @@
 <button
     type="button"
     class="btn-circle btn-circle--topic-entry {{ $watch->mail ? 'btn-circle--activated' : '' }}"
-    title="{{ trans('forum.topics.watch.'.($watch->mail ? 'mail_disable' : 'to_watching_mail')) }}"
+    title="{{ trans('forum.topics.watch.'.($watch->mail ? 'tooltip_mail_disable' : 'tooltip_mail_enable')) }}"
     data-url="{{ route('forum.topic-watches.update', [
         $topic,
         'state' => $watch->mail ? 'watching' : 'watching_mail',
@@ -45,7 +45,7 @@
     data-method="PUT"
 >
     <span class="btn-circle__content">
-        <i class="fas fa-envelope"></i>
+        <i class="fas fa-inbox"></i>
     </span>
 </button>
 

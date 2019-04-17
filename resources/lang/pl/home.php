@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,6 +24,7 @@ return [
         'online' => '<strong>:players</strong> użytkowników jest obecnie online w <strong>:games</strong> meczach',
         'peak' => ':count użytkowników online',
         'players' => '<strong>:count</strong> zarejestrowanych użytkowników',
+        'title' => 'witaj',
 
         'slogan' => [
             'main' => 'darmowa gra rytmiczna',
@@ -114,12 +115,12 @@ return [
     'user' => [
         'title' => 'przegląd',
         'news' => [
-            'title' => 'Wiadomości',
+            'title' => 'Aktualności',
             'error' => 'Wystąpił błąd, spróbuj odświeżyć stronę.',
         ],
         'header' => [
             'welcome' => 'Witaj, <strong>:username</strong>!',
-            'messages' => 'Masz :count nową wiadomość|Masz :count nowe wiadomości|Masz :count nowych wiadomości',
+            'messages' => 'Masz :count_delimited nową wiadomość|Masz :count_delimited nowe wiadomości|Masz :count_delimited nowych wiadomości',
             'stats' => [
                 'friends' => 'Znajomi online',
                 'games' => 'Mecze',

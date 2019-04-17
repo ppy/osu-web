@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -47,8 +47,7 @@
                     tabindex="1"
                     name="title"
                     type="text"
-                    value="{{ Request::old("title") }}"
-                    placeholder="{{ trans("forum.topic.create.placeholder.title") }}"
+                    placeholder="{{ $titlePlaceholder ?? trans("forum.topic.create.placeholder.title") }}"
                     maxlength="{{ App\Models\Forum\Topic::MAX_FIELD_LENGTHS['topic_title'] }}"
                 />
             @else
@@ -78,6 +77,6 @@
     </div>
 
     @if (!$newTopic)
-        <div class="forum-topic-header__sticky-marker js-sticky-header" data-sticky-header-target="forum-topic-headernav"></div>
+        <div class="forum-topic-header__sticky-marker js-sticky-header"></div>
     @endif
 </div>

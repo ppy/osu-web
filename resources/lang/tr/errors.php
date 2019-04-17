@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,8 +34,8 @@ return [
         'invalid_mode' => 'Geçersiz mod seçildi.',
         'standard_converts_only' => 'Bu beatmap zorluğunda seçilen mod\'da şuanda skor mevcut değil.',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'Favorilerinizde çok fazla beatmap\'iniz var! Lütfen devam etmeden önce birini çıkartın.',
+    'checkout' => [
+        'generic' => '',
     ],
     'logged_out' => 'Oturumunuz kapatıldı. Lütfen giriş yapın ve tekrar deneyin.',
     'supporter_only' => 'Bu özelliği kullanabilmeniz için supporter olmanız gerekmektedir.',

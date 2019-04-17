@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -72,5 +72,9 @@
     flex-wrap: wrap;
     align-items: baseline;
     margin: 0 (-@gutter-mobile);
+
+    .beatmapsets-search--sticky & {
+      margin: 0 -4px; // should be -5px but the A character seems to leak out 1px on the left.
+    }
   }
 }

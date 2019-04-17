@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -21,11 +21,16 @@
 $(document).on 'click', 'a[href^="#"]', (e) ->
   href = e.currentTarget.href
   targetId = decodeURIComponent href[href.indexOf('#') + 1..]
+
+  return if targetId == ''
+
   target = document.getElementById targetId
 
   return if !target?
 
   e.preventDefault()
+  # still behaves weird in cases where push/popping state wouldn't normally result in a scroll.
+  Turbolinks.controller.advanceHistory href if location.href != href
   target.scrollIntoView()
 
 

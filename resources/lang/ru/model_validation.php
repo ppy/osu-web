@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Нельзя ответить на удалённый комментарий.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Можно только проголосовать за запрос функции.',
@@ -64,10 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Нельзя удалить метаданные карты.',
             'beatmapset_post_no_edit' => 'Нельзя изменить метаданные карты.',
+            'only_quote' => 'Ваш ответ содержит только цитату.',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Повторение вариантов недопустимо.',
+            'grace_period_expired' => 'Нельзя отредактировать опрос спустя :limit часов',
             'invalid_max_options' => 'Вариант на пользователя не может превышать количество доступных опций.',
             'minimum_one_selection' => 'Требуется минимум один вариант для каждого пользователя.',
             'minimum_two_options' => 'Нужно как минимум два варианта.',
@@ -92,6 +98,7 @@ return [
         'username_available_soon' => 'Это имя будет доступно для выбора в любую минуту!',
         'username_invalid_characters' => 'Выбранное имя содержит недопустимые символы.',
         'username_in_use' => 'Это имя уже используется!',
+        'username_locked' => 'Это имя уже используется!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Пожалуйста не используйте пробелы и подчёркивания одновременно!',
         'username_no_spaces' => "Имя не может начинаться и заканчиваться пробелами!",
         'username_not_allowed' => 'Это имя недоступно.',
@@ -110,5 +117,9 @@ return [
             ],
             'username_is_same' => 'Это имя уже используется!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "Вы не можете пожаловаться на себя!",
     ],
 ];

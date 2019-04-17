@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,9 +16,16 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, p} = ReactDOMFactories
+import { Paginator } from './paginator'
+import { SearchPanel } from './search-panel'
+import { SearchSort } from './search-sort'
+import { BackToTop } from 'back-to-top'
+import { BeatmapsetPanel } from 'beatmapset-panel'
+import { Img2x } from 'img2x'
+import * as React from 'react'
+import { a, div, p } from 'react-dom-factories'
+import VirtualList from 'react-virtual-list'
 el = React.createElement
-VirtualList = window.VirtualList
 
 ITEM_HEIGHT = 205 # needs to be known in advance to calculate size of virtual scrolling area.
 
@@ -41,23 +48,22 @@ ListRender = ({ virtual, itemHeight }) ->
 BeatmapList = VirtualList()(ListRender)
 
 
-class Beatmaps.Main extends React.PureComponent
+export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @url = location.href
-    @xhr = {}
-
     prevState = JSON.parse(props.container.dataset.reactState ? '{}')
 
-    @state = prevState.state if prevState.url == location.href
+    @state = prevState.state unless _.isEmpty(prevState)
     @state ?= _.extend
-      beatmaps: @props.beatmaps
+      beatmaps: @props.beatmaps.beatmapsets
       paging:
-        page: 1
-        url: laroute.route('beatmapsets.search')
+        cursor: @props.beatmaps.cursor
         loading: false
-        more: @props.beatmaps.length > 0
+        more: @props.beatmaps.cursor? && @props.beatmaps.total > @props.beatmaps.beatmapsets.length
+        total: @props.beatmaps.total
+        url: laroute.route('beatmapsets.search')
+      recommendedDifficulty: @props.beatmaps.recommended_difficulty
       loading: false
       filters: null
       isExpanded: null
@@ -85,26 +91,36 @@ class Beatmaps.Main extends React.PureComponent
   componentDidMount: =>
     $(document).on 'beatmap:load_more.beatmaps', @loadMore
     $(document).on 'beatmap:search:start.beatmaps', @search
-    $(document).on 'beatmap:search:done.beatmaps', @hideLoader
     $(document).on 'beatmap:search:filtered.beatmaps', @updateFilters
-    $(document).on 'turbolinks:before-visit.beatmaps', @recordUrl
     $(document).on 'turbolinks:before-cache.beatmaps', @saveState
     $(window).on 'resize.beatmaps', @updateColumnCount
+
+
+  componentDidUpdate: (_prevProps, prevState) =>
+    return if _.isEqual(prevState.filters, @state.filters)
+
+    $(document).trigger 'beatmap:search:start'
+    url = encodeURI laroute.route('beatmapsets.index', BeatmapsetFilter.queryParamsFromFilters(@state.filters))
+    Turbolinks
+      .controller
+      .pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
 
 
   componentWillUnmount: =>
     $(document).off '.beatmaps'
     $(window).off '.beatmaps'
-    xhr.abort() for own _type, xhr of @xhr when xhr?
+    @xhr?.abort()
 
 
   render: =>
     searchBackground = @state.beatmaps[0]?.covers?.cover
     supporterFilters = @supporterFiltersTrans()
+    listCssClasses = 'beatmapsets'
+    listCssClasses += ' beatmapsets--dimmed' if @state.loading
 
     div
       className: 'osu-layout__section'
-      el Beatmaps.SearchPanel,
+      el SearchPanel,
         innerRef: @backToTopAnchor
         background: searchBackground
         availableFilters: @props.availableFilters
@@ -112,11 +128,17 @@ class Beatmaps.Main extends React.PureComponent
         filterDefaults: BeatmapsetFilter.getDefaults(@state.filters)
         expand: @expand
         isExpanded: @state.isExpanded
+        recommendedDifficulty: @state.recommendedDifficulty
 
-      div className: 'osu-layout__row osu-layout__row--page-compact',
-        div className: "beatmapsets #{'beatmapsets--dimmed' if @state.loading}",
+      div className: 'js-sticky-header'
+
+      div
+        className: 'osu-layout__row osu-layout__row--page-compact'
+        div className: listCssClasses,
           if currentUser.id?
-            el Beatmaps.SearchSort, sorting: @sorting(), filters: @state.filters
+            div
+              className: 'beatmapsets__sort'
+              el SearchSort, sorting: @sorting(), filters: @state.filters
 
           div
             className: 'beatmapsets__content'
@@ -144,9 +166,11 @@ class Beatmaps.Main extends React.PureComponent
                     title: osu.trans("beatmaps.listing.search.not-found")
                   osu.trans("beatmaps.listing.search.not-found-quote")
 
-          el(Beatmaps.Paginator, paging: @state.paging) unless @isSupporterMissing()
+          if !@isSupporterMissing()
+            div className: 'beatmapsets__paginator',
+              el(Paginator, @state.paging)
 
-      el window._exported.BackToTop,
+      el BackToTop,
         anchor: @backToTopAnchor
         ref: @backToTop
 
@@ -162,29 +186,38 @@ class Beatmaps.Main extends React.PureComponent
           link: link
 
 
-  buildSearchQuery: =>
-    return {} if !currentUser.id?
-
-    params = _.extend {}, @state.filters
-
-    keyToChar = _.invert BeatmapsetFilter.charToKey
-    charParams = {}
-
-    for own key, value of params
-      if value? && BeatmapsetFilter.getDefault(params, key) != value
-        charParams[keyToChar[key]] = value
-
-    charParams
-
-
   expand: (e) =>
     e.preventDefault()
 
     @setState isExpanded: !@state.isExpanded
 
 
-  hideLoader: =>
-    @setState loading: false
+  fetchNewState: (newQuery = false) =>
+    @fetchResults(newQuery)
+    .then (data) =>
+      beatmaps = if newQuery then data.beatmapsets else @state.beatmaps.concat(data.beatmapsets)
+
+      beatmaps: beatmaps
+      loading: false
+      paging:
+        cursor: data.cursor
+        more: data.cursor? && data.total > beatmaps.length
+        url: @state.paging.url
+      recommendedDifficulty: data.recommended_difficulty
+    .catch (error) ->
+      throw error unless error.readyState == 0
+
+
+  fetchResults: (newQuery) =>
+    params = BeatmapsetFilter.queryParamsFromFilters(@state.filters)
+    params.cursor = @state.paging.cursor if !newQuery
+
+    @xhr = $.ajax @state.paging.url,
+      method: 'get'
+      dataType: 'json'
+      data: params
+
+    osu.promisify @xhr
 
 
   isSupporterMissing: =>
@@ -200,62 +233,28 @@ class Beatmaps.Main extends React.PureComponent
 
     @setState paging: pagingState
 
-    @xhr.pagination = $.ajax @state.paging.url,
-      method: 'get'
-      dataType: 'json'
-      data: _.extend @buildSearchQuery(), page: @state.paging.page + 1
-    .done (data) =>
-      more = data.length > 0
-
-      @setState
-        beatmaps: [].concat(@state.beatmaps, data)
-        paging:
-          page: @state.paging.page + (if more then 1 else 0)
-          url: @state.paging.url
-          more: more
-        loading: false
-
-
-  recordUrl: =>
-    @url = location.href
+    @fetchNewState().then (newState) =>
+      @setState newState
 
 
   saveState: =>
-    @props.container.dataset.reactState = JSON.stringify({@state, @url})
+    @props.container.dataset.reactState = JSON.stringify({@state})
     @componentWillUnmount()
 
 
   search: =>
-    @xhr.search?.abort()
+    @xhr?.abort()
 
-    params = @buildSearchQuery()
-    newUrl = laroute.route 'beatmapsets.index', params
+    return Promise.resolve() if @isSupporterMissing()
 
-    return if "#{location.pathname}#{location.search}" == newUrl || @isSupporterMissing()
-
-    @showLoader()
+    @setState loading: true
     @backToTop.current.reset()
 
-    @xhr.search = $.ajax @state.paging.url,
-      method: 'get'
-      dataType: 'json'
-      data: params
-    .done (data) =>
-      newState =
-        beatmaps: data
-        paging:
-          page: 1
-          url: @state.paging.url
-          loading: false
-          more: data.length > 0
-        loading: false
+    @fetchNewState(true).then (newState) =>
+      cutoff = @backToTopAnchor.current.getBoundingClientRect().top
+      window.scrollTo window.pageXOffset, window.pageYOffset + cutoff if cutoff < 0
 
-      @setState newState, ->
-        $(document).trigger 'beatmap:search:done'
-
-
-  showLoader: =>
-    @setState loading: true
+      @setState newState
 
 
   sorting: =>
@@ -265,18 +264,16 @@ class Beatmaps.Main extends React.PureComponent
 
 
   stateFromUrl: =>
-    params = location.search.substr(1).split('&')
+    params = new URL(location).searchParams
 
     expand = false
 
     filters = {}
 
-    for part in params
-      [key, value] = part.split('=')
-      value = decodeURIComponent(value)
-      key = BeatmapsetFilter.charToKey[key]
+    for own char, key of BeatmapsetFilter.charToKey
+      value = params.get(char)
 
-      continue if !key? || value.length == 0
+      continue if !value? || value.length == 0
 
       value = BeatmapsetFilter.castFromString[key](value) if BeatmapsetFilter.castFromString[key]
       expand = true if key in BeatmapsetFilter.expand
@@ -303,13 +300,4 @@ class Beatmaps.Main extends React.PureComponent
     if @state.filters.query != newFilters.query || @state.filters.status != newFilters.status
       newFilters.sort = null
 
-    newFilters = BeatmapsetFilter.fillDefaults(newFilters)
-
-    if !_.isEqual @state.filters, newFilters
-      @setState filters: newFilters, ->
-        $(document).trigger 'beatmap:search:start'
-        # copied from https://github.com/turbolinks/turbolinks/pull/61
-        url = encodeURI laroute.route('beatmapsets.index', @buildSearchQuery())
-        Turbolinks
-          .controller
-          .pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
+    @setState filters: BeatmapsetFilter.fillDefaults(newFilters)

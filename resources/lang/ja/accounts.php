@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -29,21 +29,21 @@ return [
         ],
 
         'email' => [
-            'current' => '現在のEメール',
-            'new' => '新しいEメール',
-            'new_confirmation' => 'Eメールの確認',
-            'title' => 'Eメール',
+            'current' => '現在のメールアドレス',
+            'new' => '新しいメールアドレス',
+            'new_confirmation' => '新しいメールアドレス（再入力）',
+            'title' => 'メールアドレス',
         ],
 
         'password' => [
             'current' => '現在のパスワード',
             'new' => '新しいパスワード',
-            'new_confirmation' => 'パスワードの確認',
+            'new_confirmation' => '新しいパスワード（再入力）',
             'title' => 'パスワード',
         ],
 
         'profile' => [
-            'title' => 'プロフィールの編集',
+            'title' => 'プロフィール',
 
             'user' => [
                 'user_from' => '現在地',
@@ -63,13 +63,13 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu!Eメール変更の確認',
-        'update' => '適用',
+        'email_subject' => 'osu! メールアドレス変更の確認',
+        'update' => '更新',
     ],
 
     'update_password' => [
         'email_subject' => 'osu!パスワード変更の確認',
-        'update' => '適用',
+        'update' => '更新',
     ],
 
     'playstyles' => [
@@ -82,6 +82,16 @@ return [
 
     'privacy' => [
         'title' => 'プライバシー',
-        'friends_only' => '友達リストにいない人からプライベートメッセージをブロックする',
+        'friends_only' => 'フレンドリストにいない人からのプライベートメッセージをブロックする',
+        'hide_online' => 'オンライン状態を隠す',
+    ],
+
+    'security' => [
+        'current_session' => '現在',
+        'end_session' => 'セッション終了',
+        'end_session_confirmation' => 'これによりこのデバイスでのセッションが終了します。本当によろしいですか?',
+        'last_active' => '最終ログイン：',
+        'title' => 'セキュリティ',
+        'web_sessions' => 'webセッション',
     ],
 ];

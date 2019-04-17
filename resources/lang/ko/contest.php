@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,8 +26,15 @@ return [
     'voting' => [
         'over' => '현재 콘테스트의 투표가 종료되었습니다.',
         'login_required' => '투표하려면 로그인해주세요.',
+
         'best_of' => [
             'none_played' => "이 콘테스트에서 평가할 어떤 맵도 플레이하지 않으신 것 같네요.",
+        ],
+
+        'button' => [
+            'add' => '투표',
+            'remove' => '투표 제거',
+            'used_up' => '모든 투표권을 사용했습니다',
         ],
     ],
     'entry' => [
@@ -38,6 +45,7 @@ return [
         'over' => '콘테스트에 참가해주셔서 감사합니다! 작품 제출이 마감되었고, 곧 투표가 시작됩니다.',
         'limit_reached' => '이 콘테스트에서 참가 가능한 작품 수를 초과했습니다.',
         'drop_here' => '참가할 작품을 이곳에 끌어넣어주세요.',
+        'download' => '.osz 파일 다운로드',
         'wrong_type' => [
             'art' => '이 콘테스트에서는 .jpg 파일과 .png 파일만 등록할 수 있습니다.',
             'beatmap' => '이 콘테스트에서는 .osu 파일만 등록할 수 있습니다.',
@@ -50,7 +58,8 @@ return [
     ],
     'vote' => [
         'list' => '투표',
-        'count' => ':count 표 받음',
+        'count' => ':count표',
+        'points' => ':count포인트',
     ],
     'dates' => [
         'ended' => ':date 에 끝났습니다',

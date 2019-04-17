@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Ordenado por:',
-            'created_at' => 'tiempo de creación',
-            'timeline' => 'línea de tiempo',
-            'updated_at' => 'última actualización',
+            'created_at' => 'Tiempo de creación',
+            'timeline' => 'Línea de tiempo',
+            'updated_at' => 'Última actualización',
         ],
 
         'stats' => [
@@ -144,13 +144,16 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Borrar',
+        'delete_own_confirm' => '¿Estás seguro? El beatmap será eliminado y serás redirijido de vuelta a tu perfil.',
+        'delete_other_confirm' => '¿Estás seguro? El beatmap será eliminado y serás redirijido de vuelta al perfil de usuario.',
         'disqualification_prompt' => '¿Motivo de la descalificación?',
         'disqualified_at' => 'Descalificado :time_ago (:reason).',
         'disqualified_no_reason' => 'motivo no especificado',
         'disqualify' => 'Descalificar',
         'incorrect_state' => 'Error al realizar esa acción, intente actualizando la página.',
-        'love' => '',
-        'love_confirm' => '',
+        'love' => 'Amor',
+        'love_confirm' => '¿Te encanta este beatmap?',
         'nominate' => 'Nominar',
         'nominate_confirm' => '¿Nominar este Beatmap?',
         'nominated_by' => 'nominado por :users',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => '¿Estás seguro? Publicar un nuevo problema reiniciará todas las nominaciones.',
+            'disqualify' => '¿Estás seguro? Esto removerá el beatmap de qualifying y reiniciará el proceso de nominación.',
         ],
     ],
 
@@ -190,15 +194,16 @@ return [
                 'played' => 'Jugado',
             ],
             'sorting' => [
-                'title' => 'título',
-                'artist' => 'artista',
-                'difficulty' => 'dificultad',
-                'updated' => 'actualizado',
-                'ranked' => 'rankeado',
-                'rating' => 'calificación',
-                'plays' => 'veces jugadas',
-                'relevance' => 'relevancia',
-                'nominations' => 'nominaciones',
+                'title' => 'Título',
+                'artist' => 'Artista',
+                'difficulty' => 'Dificultad',
+                'favourites' => 'Favoritos',
+                'updated' => 'Actualizado',
+                'ranked' => 'Ranked',
+                'rating' => 'Calificación',
+                'plays' => 'Veces jugado',
+                'relevance' => 'Relevancia',
+                'nominations' => 'Nominaciones',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Necesitas un :link activo para filtrar por :filters',
@@ -224,7 +229,7 @@ return [
         'qualified' => 'Calificados',
         'loved' => 'Amados',
         'faves' => 'Favoritos',
-        'pending' => '',
+        'pending' => 'Pendiente y trabajo en progreso',
         'graveyard' => 'Abandonados',
         'my-maps' => 'Mis mapas',
     ],
@@ -297,5 +302,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => 'Número de jugadores: :count',
+        'favourites' => 'Favoritos: :count',
     ],
 ];

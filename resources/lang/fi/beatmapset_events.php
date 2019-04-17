@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,20 +34,46 @@ return [
         'kudosu_gain' => 'Keskustelu :discussion käyttäjältä :user sai tarpeeksi ääniä kudosua varten.',
         'kudosu_lost' => 'Keskustelu :discussion käyttäjältä :user menetti ääniä ja annettu kudosu on poistettu.',
         'kudosu_recalculate' => 'Keskustelun :discussion kudosu on uudelleenlaskettu.',
-        'love' => '',
+        'love' => ':user rakastaa',
         'nominate' => 'Käyttäjän :user suosittelema.',
         'nomination_reset' => 'Uusi ongelma :discussion (:text) nollasi suositukset.',
-        'qualify' => '',
+        'qualify' => 'Tämä beatmap sai vaaditun määrän suosituksia tarkasteluvaihetta varten.',
         'rank' => 'Hyväksytty.',
     ],
 
     'index' => [
         'title' => 'Beatmapin Tapahtumat',
+
+        'form' => [
+            'period' => 'Piste',
+            'types' => 'Tyypit',
+        ],
     ],
 
     'item' => [
         'content' => 'Sisältö',
         'discussion_deleted' => '[poistettu]',
         'type' => 'Tyyppi',
+    ],
+
+    'type' => [
+        'approve' => 'Hyväksyntä',
+        'discussion_delete' => 'Poista keskustelu',
+        'discussion_post_delete' => 'Keskustelun vastauksen poistaminen',
+        'discussion_post_restore' => 'Keskustelun vastauksen palautus',
+        'discussion_restore' => 'Keskustelun palauttaminen',
+        'disqualify' => 'Epähyväksyntä',
+        'issue_reopen' => 'Keskustelun uudelleenavaaminen',
+        'issue_resolve' => 'Keskustelun ratkaiseminen',
+        'kudosu_allow' => 'Kusodun hyväksyntä',
+        'kudosu_deny' => 'Kusodun kieltäminen',
+        'kudosu_gain' => 'Kusodun ansaitseminen',
+        'kudosu_lost' => 'Kusodun menettäminen',
+        'kudosu_recalculate' => 'Kusodun uudelleenlaskenta',
+        'love' => 'Rakkaus',
+        'nominate' => 'Äänestetty',
+        'nomination_reset' => 'Äänestyksen resetointi',
+        'qualify' => 'Hyväksyntä',
+        'rank' => 'Luokittelu',
     ],
 ];

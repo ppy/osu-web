@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -26,7 +26,7 @@
     }
 ?>
 <div
-    class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} osu-page {{ $options['large'] ? '' : 'osu-page--small-desktop' }}"
+    class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} osu-page {{ $options['large'] ? '' : 'osu-page--small' }}"
     data-post-id="{{ $post->post_id }}"
     data-post-position="{{ $options["postPosition"] }}"
 >
@@ -49,7 +49,7 @@
 
             <div class="forum-post__content forum-post__content--main">
                 <div class="forum-post-content {{ $options['contentExtraClasses'] ?? '' }}">
-                    {!! $post->bodyHTML !!}
+                    {!! $post->bodyHTML() !!}
                 </div>
             </div>
 

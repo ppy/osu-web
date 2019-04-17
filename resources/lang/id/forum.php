@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => 'Tandai forum ini sebagai telah terbaca',
+        'forums' => 'Tandai forum-forum ini sebagai telah terbaca',
+        'busy' => 'Menandai sebagai telah terbaca...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'Mengubah isi dari suatu jajak pendapat akan menghilangkan semua hasil yang sudah tercatat saat ini!',
+
+        'actions' => [
+            'edit' => 'Sunting jajak pendapat',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Yakin menghapus post?',
         'confirm_restore' => 'Yakin mengembalikan post?',
@@ -57,6 +71,10 @@ return [
             'destroy' => 'Hapus Kiriman',
             'restore' => 'Kembalikan post',
             'edit' => 'Sunting post',
+        ],
+
+        'info' => [
+            'post_count' => ':count_delimited postingan',
         ],
     ],
 
@@ -153,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Pembuatan Jajak Pendapat',
 
+            'preview' => 'Pratinjau Postingan',
+
             'create_poll_button' => [
                 'add' => 'Buat jajak pendapat',
                 'remove' => 'Batal membuat jajak pendapat',
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'kali dilihat',
+            'feature_votes' => 'prioritas',
             'replies' => 'balasan',
+            'views' => 'kali dilihat',
         ],
 
         'issue_tag_added' => [
@@ -252,6 +273,12 @@ return [
                 'current' => 'Prioritas saat ini: +:count',
                 'do' => 'Promosikan permintaan ini',
 
+                'info' => [
+                    '_' => 'Ini adalah sebuah :feature_request. Fitur-fitur yang diajukan dapat di-vote lebih lanjut oleh :supporters.',
+                    'feature_request' => 'permintaan fitur',
+                    'supporters' => 'para supporter',
+                ],
+
                 'user' => [
                     'count' => '{0} tidak ada suara|{1} :count suara|[2,*] :count suara',
                     'current' => 'Anda memiliki :votes tersisa.',
@@ -274,7 +301,8 @@ return [
             'to_not_watching' => 'Tidak dimarkahi',
             'to_watching' => 'Markah',
             'to_watching_mail' => 'Markah dengan notifikasi',
-            'mail_disable' => 'Nonaktifkan notifikasi',
+            'tooltip_mail_disable' => 'Anda sedang mengaktifkan notifikasi otomatis untuk topik ini. Klik di sini untuk menonaktifkan notifikasi otomatis',
+            'tooltip_mail_enable' => 'Anda sedang tidak mengaktifkan notifikasi otomatis untuk topik ini. Klik di sini untuk mengaktifkan notifikasi otomatis',
         ],
     ],
 ];

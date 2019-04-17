@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,14 +20,21 @@
 
 return [
     'header' => [
-        'small' => 'Competi in più modi oltre che a cliccare cerchi.',
+        'small' => 'Competi in altri modi oltre che a cliccare cerchi.',
         'large' => 'Contest della Comunità',
     ],
     'voting' => [
         'over' => 'Le votazioni per questo contest sono terminate',
         'login_required' => 'Per favore effettua il login per votare.',
+
         'best_of' => [
             'none_played' => "Sembra che tu non abbia giocato nessuna beatmap che si qualificasse per questo contest!",
+        ],
+
+        'button' => [
+            'add' => 'Vota',
+            'remove' => 'Rimuovi voto',
+            'used_up' => 'Hai usato tutti i tuoi voti',
         ],
     ],
     'entry' => [
@@ -38,19 +45,21 @@ return [
         'over' => 'Grazie per le tue iscrizioni! Le richieste sono terminate per questo contest e le votazioni avverrano presto.',
         'limit_reached' => 'Hai raggiunto il limite massimo di iscrizioni per questo contest',
         'drop_here' => 'Trascina la tua iscrizione qui',
+        'download' => 'Scarica .osz',
         'wrong_type' => [
             'art' => 'Solo file .jpg e .png sono accettati per questo contest.',
             'beatmap' => 'Solo file .osu sono accettati per questo contest.',
             'music' => 'Solo file .mp3 sono accettati per questo contest.',
         ],
-        'too_big' => 'Le iscrizioni per questo contest possono solo essere fino a :limit.',
+        'too_big' => 'Le iscrizioni per questo contest non possono essere più grandi di :limit.',
     ],
     'beatmaps' => [
         'download' => 'Scarica iscrizione',
     ],
     'vote' => [
         'list' => 'voti',
-        'count' => '1 voto|:count voti',
+        'count' => ':count voto|:count voti',
+        'points' => ':count punto|:count punti',
     ],
     'dates' => [
         'ended' => 'Terminato :date',

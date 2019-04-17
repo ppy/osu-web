@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,12 +16,19 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, br, strong, h1, h4, h5} = ReactDOMFactories
+import { Map } from './map'
+import { Incident } from './incident'
+import { Incidents } from './incidents'
+import { Uptime } from './uptime'
+import * as React from 'react'
+import { div, span, br, strong, h1, h4, h5 } from 'react-dom-factories'
 el = React.createElement
 
-class @Status.Page extends React.Component
+export class Page extends React.Component
   constructor: (props) ->
     super props
+
+    @chartArea = React.createRef()
 
     @state =
       status: window.osuStatus
@@ -87,11 +94,10 @@ class @Status.Page extends React.Component
           else
             osu.transChoice('common.time.hours_ago', -d)
         y: (d) =>
-          (d).toLocaleString()
+          osu.formatNumber(d)
 
-      tooltipFormats =
-        x: (d) =>
-          "#{formats.x(d)}"
+      infoBoxFormats =
+        x: (d) -> "#{formats.x(d)}"
 
       scales =
         x: d3.scaleLinear()
@@ -99,12 +105,14 @@ class @Status.Page extends React.Component
 
       options =
         formats: formats
-        tooltipFormats: tooltipFormats
+        infoBoxFormats: infoBoxFormats
         scales: scales
         tickValues: tickValues
         domains: domains
+        circleLine: true
+        modifiers: ['status-page']
 
-      @_statsChart = new LineChart(@refs.chartArea, options)
+      @_statsChart = new LineChart(@chartArea.current, options)
       @_statsChart.margins.bottom = 65
       @_statsChart.xAxis.tickPadding 5
 
@@ -142,21 +150,19 @@ class @Status.Page extends React.Component
           div null,
             status.incidents.map (incident, id) =>
               if incident.active
-                el Status.Incident,
+                el Incident,
                   key: id
                   description: incident.description
                   active: incident.active
                   status: incident.status
                   date: incident.date
                   by: incident.by
-        el Status.Map,
+        el Map,
           servers: @state.status.servers
         div className: 'osu-layout__row--page-compact',
           h1 className: 'status-info__title',
             (if @state.graph == 'users' then osu.trans('status_page.online.title.users') else osu.trans('status_page.online.title.score'))
-          div
-            ref: 'chartArea'
-            className: 'chart'
+          div className: 'chart', ref: @chartArea
           div className: 'status-info__container',
             div className: 'status-info__border',
               null
@@ -166,7 +172,7 @@ class @Status.Page extends React.Component
               h4 className: 'status-info__data-title',
                 osu.trans('status_page.online.current')
               h1 className: 'status-info__data-amount',
-                @state.status.online.current.toLocaleString()
+                osu.formatNumber(@state.status.online.current)
             div className: 'status-info__separator',
               null
             div
@@ -175,9 +181,9 @@ class @Status.Page extends React.Component
               h4 className: 'status-info__data-title',
                 osu.trans('status_page.online.score')
               h1 className: 'status-info__data-amount',
-                @state.status.online.score.toLocaleString()
+                osu.formatNumber(@state.status.online.score)
         div className: 'osu-layout__col-container osu-layout__col-container--with-gutter',
-          el Status.Incidents,
+          el Incidents,
             incidents: @state.status.incidents
-          el Status.Uptime,
+          el Uptime,
             charts: @state.charts

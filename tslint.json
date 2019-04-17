@@ -1,0 +1,30 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {},
+  "rules": {
+    "curly": [true, "ignore-same-line"],
+    "eofline": true,
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "interface-name": false,
+    "quotemark": [true, "single"],
+    "max-line-length": false,
+    "member-access": false,
+    "member-ordering": false,
+    "no-arg": true,
+    "no-bitwise": true,
+    "no-console": {
+      "severity": "warning"
+    },
+    "triple-equals": [
+      true,
+      "allow-null-check"
+    ]
+  },
+  "rulesDirectory": []
+}

@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,10 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, i, span} = ReactDOMFactories
+import { ChangelogEntry } from 'changelog-entry'
+import * as React from 'react'
+import { a, div, i, span } from 'react-dom-factories'
 el = React.createElement
 
-class @Build extends React.PureComponent
+export class Build extends React.PureComponent
   render: =>
     blockClass = osu.classWithModifiers 'build', @props.modifiers
     entries = _.groupBy(@props.build.changelog_entries, 'category')

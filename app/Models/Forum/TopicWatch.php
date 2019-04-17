@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,9 +20,17 @@
 
 namespace App\Models\Forum;
 
+use App\Events\UserSubscriptionChangeEvent;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * @property bool $mail
+ * @property bool $notify_status
+ * @property Topic $topic
+ * @property int $topic_id
+ * @property User $user
+ * @property int $user_id
+ */
 class TopicWatch extends Model
 {
     protected $table = 'phpbb_topics_watch';
@@ -32,6 +40,8 @@ class TopicWatch extends Model
     ];
 
     public $timestamps = false;
+
+    protected $primaryKeys = ['topic_id', 'user_id'];
 
     public static function unreadCount($user)
     {
@@ -88,12 +98,17 @@ class TopicWatch extends Model
 
             try {
                 if ($state === 'not_watching') {
+                    $notify = false;
                     $watch->delete();
                 } else {
-                    $mail = $state === 'watching_mail';
+                    $notify = $state === 'watching_mail';
 
-                    $watch->fill(['mail' => $mail])->saveOrExplode();
+                    $watch->fill(['mail' => $notify])->saveOrExplode();
                 }
+
+                $event = $notify ? 'add' : 'remove';
+
+                event(new UserSubscriptionChangeEvent($event, $user, $topic));
 
                 return $watch;
             } catch (Exception $e) {
@@ -147,11 +162,5 @@ class TopicWatch extends Model
         } else {
             return 'not_watching';
         }
-    }
-
-    // Allows save/update/delete to work with composite primary keys.
-    protected function setKeysForSaveQuery(Builder $query)
-    {
-        return $query->lookupQuery($this->topic_id, $this->user_id);
     }
 }

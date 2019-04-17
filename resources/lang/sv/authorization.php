@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Åtkomst till begärd kanal tillåts inte.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Åtkomst till kanal behövs',
-                    'moderated' => 'Kanalen modereras just nu.',
-                    'not_lazer' => 'Du kan endast prata i #lazer just nu.',
-                ],
+        'blocked' => 'Kan inte skicka meddelanden till en användare som blockerar dig eller som du har blockerat.',
+        'friends_only' => 'Användaren blockerar meddelanden från personer inte på sin vänlista.',
+        'moderated' => '',
+        'no_access' => 'Du har inte behörighet till denna kanal.',
+        'restricted' => 'Du kan inte skicka meddelanden medan du är tystad, avstängd eller bannad.',
+    ],
 
-                'not_allowed' => 'Kan ej skicka meddelande medan man är bannad/begränsad/tystad.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Kan ej redigera raderade inlägg.",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Inget tillstånd för att moderera detta forum.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Endast sista inlägget kan raderas.',

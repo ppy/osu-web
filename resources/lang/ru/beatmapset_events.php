@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'События карты',
+
+        'form' => [
+            'period' => 'Период',
+            'types' => 'Типы',
+        ],
     ],
 
     'item' => [
         'content' => 'Контент',
         'discussion_deleted' => '[удалено]',
         'type' => 'Тип',
+    ],
+
+    'type' => [
+        'approve' => 'Одобрено',
+        'discussion_delete' => 'Удаление дискуссии',
+        'discussion_post_delete' => 'Удаление ответов в дискуссии',
+        'discussion_post_restore' => 'Восстановление ответов в дискуссии',
+        'discussion_restore' => 'Восстановление дискуссии',
+        'disqualify' => 'Дисквалификация',
+        'issue_reopen' => 'Возобновление обсуждения',
+        'issue_resolve' => 'Обсуждение решения',
+        'kudosu_allow' => 'Квота Kudosu',
+        'kudosu_deny' => 'Отказ в Kudosu',
+        'kudosu_gain' => 'Получение Kudosu',
+        'kudosu_lost' => 'Потеря Kudosu',
+        'kudosu_recalculate' => 'Перерасчет Kudosu',
+        'love' => 'Любовь',
+        'nominate' => 'Номинация',
+        'nomination_reset' => 'Сброс номинации',
+        'qualify' => 'Квалификация',
+        'rank' => 'Рейтинг',
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,41 +34,50 @@ return [
         'discussion' => 'Diskusi',
 
         'details' => [
+            'approved' => 'berstatus Approved sejak ',
+            'favourite' => 'Masukkan beatmapset ini ke dalam daftar Favorit Anda',
+            'favourited_count' => '+ :count lagi!',
+            'logged-out' => 'Anda harus masuk sebelum mengunduh beatmap!',
+            'loved' => 'berstatus Loved sejak ',
             'mapped_by' => 'dibuat oleh :mapper',
+            'qualified' => 'berstatus Qualified sejak ',
+            'ranked' => 'berstatus Ranked sejak ',
             'submitted' => 'diunggah pada ',
+            'unfavourite' => 'Hapus beatmapset ini dari daftar Favorit Anda',
             'updated' => 'terakhir diperbarui pada ',
             'updated_timeago' => 'terakhir diperbarui :timeago',
-            'ranked' => 'berstatus Ranked sejak ',
-            'approved' => 'berstatus Approved sejak ',
-            'qualified' => 'berstatus Qualified sejak ',
-            'loved' => 'berstatus Loved sejak ',
-            'logged-out' => 'Anda harus masuk sebelum mengunduh beatmap!',
+
             'download' => [
                 '_' => 'Unduh',
-                'video' => 'dengan Video',
-                'no-video' => 'tanpa Video',
                 'direct' => 'osu!direct',
+                'no-video' => 'tanpa Video',
+                'video' => 'dengan Video',
             ],
-            'favourite' => 'Masukkan beatmapset ini ke dalam daftar Favorit Anda',
-            'unfavourite' => 'Hapus beatmapset ini dari daftar Favorit Anda',
-            'favourited_count' => '+ :count lagi!',
+
+            'login_required' => [
+                'bottom' => 'untuk mengakses lebih banyak fitur',
+                'top' => 'Masuk',
+            ],
         ],
-        'stats' => [
-            'cs' => 'Circle Size',
-            'cs-mania' => 'Key Amount',
-            'drain' => 'HP Drain',
-            'accuracy' => 'Accuracy',
-            'ar' => 'Approach Rate',
-            'stars' => 'Star Difficulty',
-            'total_length' => 'Durasi',
-            'bpm' => 'BPM',
-            'count_circles' => 'Jumlah Circle',
-            'count_sliders' => 'Jumlah Slider',
-            'user-rating' => 'Nilai Pengguna',
-            'rating-spread' => 'Persebaran Nilai Pengguna',
-            'nominations' => 'Nominasi',
-            'playcount' => 'Jumlah Dimainkan',
+
+        'favourites' => [
+            'limit_reached' => 'Beatmap yang telah Anda favorit terlalu banyak! Mohon hapus beberapa sebelum melanjutkan.',
         ],
+
+        'hype' => [
+            'action' => 'Apabila Anda menyukai beatmap ini, berikanlah hype Anda untuk mendorong beatmap ini selangkah lebih dekat menuju status <strong>Ranked</strong>.',
+
+            'current' => [
+                '_' => 'Map ini sedang berstatus :status.',
+
+                'status' => [
+                    'pending' => 'pending',
+                    'qualified' => 'qualified',
+                    'wip' => 'dalam pengerjaan',
+                ],
+            ],
+        ],
+
         'info' => [
             'description' => 'Deskripsi',
             'genre' => 'Aliran',
@@ -80,6 +89,7 @@ return [
             'tags' => 'Tag',
             'unranked' => 'Beatmap ini tidak berstatus Ranked.',
         ],
+
         'scoreboard' => [
             'achieved' => 'dicapai pada :when',
             'country' => 'Peringkat Negara',
@@ -112,6 +122,23 @@ return [
                 'first' => 'Di Posisi Pertama',
                 'own' => 'Rekor Anda',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Circle Size',
+            'cs-mania' => 'Key Amount',
+            'drain' => 'HP Drain',
+            'accuracy' => 'Accuracy',
+            'ar' => 'Approach Rate',
+            'stars' => 'Star Difficulty',
+            'total_length' => 'Durasi',
+            'bpm' => 'BPM',
+            'count_circles' => 'Jumlah Circle',
+            'count_sliders' => 'Jumlah Slider',
+            'user-rating' => 'Nilai Pengguna',
+            'rating-spread' => 'Persebaran Nilai Pengguna',
+            'nominations' => 'Nominasi',
+            'playcount' => 'Jumlah Dimainkan',
         ],
     ],
 ];

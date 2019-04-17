@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => '',
+        'back_to_previous' => 'Terug naar vorige positie',
+        'back_to_top' => 'Terug naar boven',
         'cancel' => 'Annuleer',
         'change' => 'verander',
         'click_to_copy' => 'klik op naar klembord kopiëren',
         'click_to_copy_copied' => 'gekopiëerd naar klembord!',
+        'collapse' => '',
         'delete' => 'Verwijder',
+        'edit' => 'Bewerk',
+        'expand' => '',
         'hide' => 'verbergen',
         'permalink' => 'permalink',
         'permalink_copied' => 'link gekopieerd',
@@ -43,12 +49,14 @@ return [
         'reply_reopen' => 'Beantwoord en Heropen',
         'reply_resolve' => 'Beantwoord en Los op',
         'reset' => 'Herstel',
+        'restore' => 'Herstel',
         'save' => 'Opslaan',
         'saving' => 'Opslaan...',
         'search' => 'Zoeken',
         'see_more' => 'toon meer',
         'show' => 'weergeven',
         'show_more' => 'toon meer',
+        'show_more_options' => '',
         'upload_image' => 'upload afbeelding',
     ],
 
@@ -59,9 +67,17 @@ return [
         'hours' => ':count uur|:count uren',
         'item' => ':count stuk|:count stuks',
         'minute_short_unit' => 'minuut|minuten',
+        'minutes' => '',
         'months' => ':count maand|:count maanden',
         'second_short_unit' => 'second|seconden',
         'years' => ':count jaar|:count jaar',
+    ],
+
+    'countdown' => [
+        'days' => 'dagen',
+        'hours' => 'uren',
+        'minutes' => 'minuten',
+        'seconds' => 'seconden',
     ],
 
     'datetime' => [

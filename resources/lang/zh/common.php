@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => '管理员',
+        'back_to_previous' => '返回上一位置',
+        'back_to_top' => '回到顶部',
         'cancel' => '取消',
         'change' => '更改',
         'click_to_copy' => '点击以复制到剪贴板',
         'click_to_copy_copied' => '已经复制到剪贴板！',
+        'collapse' => '折叠',
         'delete' => '删除',
+        'edit' => '编辑',
+        'expand' => '展开',
         'hide' => '隐藏',
         'permalink' => '静态链接',
         'permalink_copied' => '链接已复制',
@@ -43,12 +49,14 @@ return [
         'reply_reopen' => '回复并重新打开',
         'reply_resolve' => '回复并标记为已解决',
         'reset' => '重置',
+        'restore' => '恢复',
         'save' => '保存',
         'saving' => '保存中...',
         'search' => '搜索',
         'see_more' => '查看更多',
         'show' => '显示',
         'show_more' => '显示更多',
+        'show_more_options' => '显示更多选项',
         'upload_image' => '上传图片',
     ],
 
@@ -59,9 +67,17 @@ return [
         'hours' => ':count 小时',
         'item' => ':count 个',
         'minute_short_unit' => '分钟',
+        'minutes' => ':count 分钟',
         'months' => ':count 个月',
         'second_short_unit' => '秒',
         'years' => ':count 年',
+    ],
+
+    'countdown' => [
+        'days' => '天',
+        'hours' => '小时',
+        'minutes' => '分钟',
+        'seconds' => '秒',
     ],
 
     'datetime' => [

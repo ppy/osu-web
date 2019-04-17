@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,23 +23,29 @@
   @_line-margin: 10px;
   @_top: comment;
   @_spacing: 10px;
+  @_gutter-desktop-left: (@gutter-desktop + 10px);
+  @_gutter-desktop-right: @gutter-desktop;
 
   margin-top: @_spacing;
   font-size: @font-size--normal-2;
   color: #555;
-  border-bottom: 0 solid #ccc;
+  border-bottom: 0 solid #ddd;
 
   &--top {
-    .default-gutter();
     border-bottom-width: 1px;
-    margin-top: 0;
-    padding-top: @_spacing;
     padding-bottom: @_spacing;
+    padding-left: @gutter;
+    padding-right: @gutter;
+
+    @media @desktop {
+      padding-left: @_gutter-desktop-left;
+      padding-right: @_gutter-desktop-right;
+    }
   }
 
   &--changelog {
     color: @changelog-fg;
-    border-bottom-color: fade(@dark-purple-darker, 50%);
+    border-bottom-color: @changelog-border-bg;
   }
 
   &__action {
@@ -51,7 +57,7 @@
     }
 
     &--active {
-      font-weight: bold;
+      color: @green;
     }
 
     &--permalink {
@@ -88,12 +94,41 @@
     padding: 10px 0;
   }
 
+  &__float-container {
+    position: absolute;
+    height: @_avatar;
+    top: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+
+    &--left {
+      justify-content: flex-end;
+      left: -@_gutter-desktop-left;
+      width: @_gutter-desktop-left;
+
+      .@{_top}--top > & {
+        left: 0;
+      }
+    }
+
+    &--right {
+      justify-content: flex-start;
+      right: -@_gutter-desktop-right;
+      width: @_gutter-desktop-right;
+
+      .@{_top}--top > & {
+        right: 0;
+      }
+    }
+  }
+
   &__line {
     position: absolute;
     top: (@_avatar + @_line-margin);
     left: (floor((@_avatar - @_line-width) / 2));
     width: @_line-width;
-    height: calc(100% ~'-' (@_avatar + @_line-margin * 2));
+    height: calc(100% - (@_avatar + @_line-margin * 2));
     background-color: #999;
     border-radius: 10000px;
 
@@ -120,6 +155,11 @@
     .content-font();
     margin: 2px 0;
     word-wrap: break-word;
+
+    > *:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
 
     h1 {
       color: inherit;
@@ -149,10 +189,6 @@
     h6 {
       color: inherit;
       font-size: 1em;
-    }
-
-    p {
-      margin: 0;
     }
 
     .@{_top}--changelog & {
@@ -225,12 +261,7 @@
 
   &__top-show-replies {
     .reset-input();
-    position: absolute;
-    left: 20px;
-    height: @_avatar;
     width: @_avatar;
-    top: @_spacing;
-    left: (@gutter-desktop - @_avatar - @_avatar-margin);
     font-size: 18px; // icon size
     display: none;
 

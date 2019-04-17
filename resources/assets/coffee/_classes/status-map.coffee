@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -66,7 +66,7 @@ class @StatusMap
           .duration(1000)
           .attr('r', @circleSize + 20)
           .style('opacity', 0)
-          .each 'end', =>
+          .on 'end', =>
             target
               .attr('r', @circleSize)
               .style('opacity', 1)

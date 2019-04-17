@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,18 +19,27 @@
  */
 
 return [
-    'header' => ':type Tilasto',
+    'header' => ':type tilastot',
+
     'type' => [
         'performance' => 'Suorituskyky',
         'charts' => 'Valokeilassa',
         'score' => 'Piste',
         'country' => 'Maa',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Päättymispäivä',
+        'map_count' => 'Kappalekerrat',
+        'participants' => 'Osallistujat',
+        'start_date' => 'Aloituspäivä',
+    ],
+
     'stat' => [
         'accuracy' => 'Tarkkuus',
         'active_users' => 'Aktiiviset käyttäjät',
         'country' => 'Maa',
-        'play_count' => 'Pelaukset',
+        'play_count' => 'Pelikerrat',
         'performance' => 'Suorituskyky',
         'total_score' => 'Kokonaispisteet',
         'ranked_score' => 'Pisteet (hyväksytyt)',

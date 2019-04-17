@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,98 +20,125 @@
 
 return [
     'availability' => [
-        'disabled' => '',
-        'parts-removed' => '',
-        'more-info' => '',
+        'disabled' => 'Този бийтмап в момента не може да бъде итеглен.',
+        'parts-removed' => 'Части от този бийтмап са премахнати по искане на създателя или притежателя на авторските права.',
+        'more-info' => 'Щракнете тук за още информация.',
     ],
 
     'index' => [
-        'title' => '',
-        'guest_title' => '',
+        'title' => 'Списък с бийтмапове',
+        'guest_title' => 'Бийтмапове',
     ],
 
     'show' => [
-        'discussion' => '',
+        'discussion' => 'Дискусия',
 
         'details' => [
-            'mapped_by' => '',
-            'submitted' => '',
-            'updated' => '',
-            'updated_timeago' => '',
-            'ranked' => '',
-            'approved' => '',
-            'qualified' => '',
-            'loved' => '',
-            'logged-out' => '',
+            'approved' => 'одобрен на ',
+            'favourite' => 'Харесай този бийтмап сет',
+            'favourited_count' => '+ 1 друг!|+ :count други!',
+            'logged-out' => 'Трябва да сте влезли в акаунта си преди да е възможно да теглите бийтмапове!',
+            'loved' => 'обичан на ',
+            'mapped_by' => 'съпоставено от :mapper',
+            'qualified' => 'квалифициран на ',
+            'ranked' => 'класиран на ',
+            'submitted' => 'публикуван на ',
+            'unfavourite' => 'Премахни от харесани бийтмап сетове',
+            'updated' => 'последно актуализиран на ',
+            'updated_timeago' => 'последно актуализиран :timeago',
+
             'download' => [
-                '_' => '',
-                'video' => '',
-                'no-video' => '',
+                '_' => 'Изтегли',
                 'direct' => '',
+                'no-video' => 'без видео',
+                'video' => 'с видео',
             ],
-            'favourite' => '',
-            'unfavourite' => '',
-            'favourited_count' => '',
+
+            'login_required' => [
+                'bottom' => 'за достъп до повече функции',
+                'top' => 'Влизане',
+            ],
         ],
-        'stats' => [
-            'cs' => '',
-            'cs-mania' => '',
-            'drain' => '',
-            'accuracy' => '',
-            'ar' => '',
-            'stars' => '',
-            'total_length' => '',
-            'bpm' => '',
-            'count_circles' => '',
-            'count_sliders' => '',
-            'user-rating' => '',
-            'rating-spread' => '',
-            'nominations' => '',
-            'playcount' => '',
+
+        'favourites' => [
+            'limit_reached' => 'Имате прекалено много харесани бийтмапове. Моля махнете няколко от списъка и опитайте отново.',
         ],
+
+        'hype' => [
+            'action' => 'Надъхай този бийтмап ако ви е харесал и искате да помогнете за развитието и <strong>класирането</strong> му.',
+
+            'current' => [
+                '_' => 'Този мап в момента е :status.',
+
+                'status' => [
+                    'pending' => 'изчакващ',
+                    'qualified' => 'квалифициран',
+                    'wip' => 'работа в процес',
+                ],
+            ],
+        ],
+
         'info' => [
-            'description' => '',
-            'genre' => '',
-            'language' => '',
-            'no_scores' => '',
-            'points-of-failure' => '',
-            'source' => '',
-            'success-rate' => '',
-            'tags' => '',
-            'unranked' => '',
+            'description' => 'Описание',
+            'genre' => 'Жанр',
+            'language' => 'Език',
+            'no_scores' => 'Информацията все още се обработва...',
+            'points-of-failure' => 'Връхни точки на провал',
+            'source' => 'Източник',
+            'success-rate' => 'Степен на успех (%)',
+            'tags' => 'Тагове',
+            'unranked' => 'Некласиран бийтмап',
         ],
+
         'scoreboard' => [
-            'achieved' => '',
-            'country' => '',
-            'friend' => '',
-            'global' => '',
-            'supporter-link' => '',
-            'supporter-only' => '',
-            'title' => '',
+            'achieved' => 'постигнато на :when',
+            'country' => 'Държавно класиране',
+            'friend' => 'Приятелско класиране',
+            'global' => 'Глобално класиране',
+            'supporter-link' => 'Щракнете <a href=":link">тук</a>, за да видите всички хубави екстри, които получаваш!',
+            'supporter-only' => 'Трябва да сте osu!supporter, за да имате достъп до държавното и приятелско класиране!',
+            'title' => 'Табло за точки',
 
             'headers' => [
-                'accuracy' => '',
-                'combo' => '',
-                'miss' => '',
-                'mods' => '',
-                'player' => '',
+                'accuracy' => 'Прецизност',
+                'combo' => 'Макс комбо',
+                'miss' => 'Пропуски',
+                'mods' => 'Модове',
+                'player' => 'Играч',
                 'pp' => '',
-                'rank' => '',
-                'score_total' => '',
-                'score' => '',
+                'rank' => 'Ранг',
+                'score_total' => 'Общ брой точки',
+                'score' => 'Точки',
             ],
 
             'no_scores' => [
-                'country' => '',
-                'friend' => '',
-                'global' => '',
-                'loading' => '',
-                'unranked' => '',
+                'country' => 'Никой от твоята държава не е играл тази карта все още!',
+                'friend' => 'Никой от твоите приятели не е играл тази карта все още!',
+                'global' => 'Все още няма резултати. Може би се пробвайте да зададете няколко?',
+                'loading' => 'Зареждане на резултатите...',
+                'unranked' => 'Некласиран бийтмап.',
             ],
             'score' => [
-                'first' => '',
-                'own' => '',
+                'first' => 'Начело',
+                'own' => 'Твоят най-добър',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Големина на кръгчетата',
+            'cs-mania' => 'Брой клавиши',
+            'drain' => 'HP Изтощаване',
+            'accuracy' => 'Прецизност',
+            'ar' => 'Скорост на наближаване',
+            'stars' => 'Трудност',
+            'total_length' => 'Продължителност',
+            'bpm' => 'BPM',
+            'count_circles' => 'Брой кръгчета',
+            'count_sliders' => 'Брой слайдери',
+            'user-rating' => 'Потребителски рейтинг',
+            'rating-spread' => 'Разпределение на рейтинга',
+            'nominations' => 'Номинации',
+            'playcount' => 'Брой игри',
         ],
     ],
 ];

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -18,4 +18,6 @@
 @php
     $template = ($legacyNav ?? true) ? 'objects._notification_banner_v1' : 'objects._notification_banner_v2';
 @endphp
-@include($template, compact('type', 'title', 'message'))
+@push('notification_banners')
+    @include($template, compact('type', 'title', 'message'))
+@endpush

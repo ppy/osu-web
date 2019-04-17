@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '账户设置',
+        'title' => '<strong>账户</strong>设置',
         'title_compact' => '设置',
         'username' => '用户名',
 
@@ -63,12 +63,12 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! 帐户邮箱更改',
+        'email_subject' => 'osu! 帐户邮箱更改确认',
         'update' => '更新',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! 帐户密码更改',
+        'email_subject' => 'osu! 帐户密码更改确认',
         'update' => '更新',
     ],
 
@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => '隐私',
         'friends_only' => '屏蔽来自陌生人的私信',
+        'hide_online' => '隐藏在线状态',
+    ],
+
+    'security' => [
+        'current_session' => '当前',
+        'end_session' => '终止会话',
+        'end_session_confirmation' => '这将立刻结束该设备上的会话，你确定吗？',
+        'last_active' => '上次使用：',
+        'title' => '安全',
+        'web_sessions' => '浏览器会话',
     ],
 ];

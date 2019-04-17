@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,10 +20,19 @@
 
 namespace App\Models;
 
+/**
+ * @property Group $group
+ * @property int $group_id
+ * @property int $group_leader
+ * @property User $user
+ * @property int $user_id
+ * @property int $user_pending
+ */
 class UserGroup extends Model
 {
     protected $table = 'phpbb_user_group';
     public $timestamps = false;
+    protected $primaryKeys = ['user_id', 'group_id'];
 
     // taken from current forum
     const GROUPS = [

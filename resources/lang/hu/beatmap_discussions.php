@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -37,13 +37,13 @@ return [
 
         'form' => [
             '_' => 'Keresés',
-            'deleted' => 'Törölt megbeszélések tartalmazása',
-            'types' => 'Üzenet típusok',
+            'deleted' => 'Törölt beszélgetések mellékelése',
+            'types' => 'Üzenettípusok',
             'username' => 'Felhasználónév',
 
             'user' => [
                 'label' => 'Felhasználó',
-                'overview' => 'Tevékenység áttekintő',
+                'overview' => 'Tevékenység áttekintés',
             ],
         ],
     ],
@@ -52,12 +52,12 @@ return [
         'created_at' => 'Beküldés időpontja',
         'deleted_at' => 'Törlés dátuma',
         'message_type' => 'Típus',
-        'permalink' => 'Állandó hivatkozás',
+        'permalink' => 'Permalink',
     ],
 
     'nearby_posts' => [
         'confirm' => 'Egy poszt sem foglalkozik a problémámmal',
-        'notice' => 'Posztolás előtt kérlek nézd meg a :timestamp (:existing_timestamps) körüli posztokat.',
+        'notice' => 'Már vannak posztok :timestamp (:existing_timestamps) körül. Kérlek nézd meg posztolás előtt.',
     ],
 
     'reply' => [
@@ -77,7 +77,7 @@ return [
     'user' => [
         'admin' => 'admin',
         'bng' => 'nomináló',
-        'owner' => 'mappoló',
+        'owner' => 'készítő',
         'qat' => 'qat',
     ],
 

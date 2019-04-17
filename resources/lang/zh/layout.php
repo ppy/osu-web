@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => '用户组',
             'index' => '看板',
             'legal-show' => '信息',
+            'messages-index' => '消息',
             'news-index' => '新闻',
             'news-show' => '新闻',
             'password-reset-index' => '重置密码',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => '社区',
+            'chat' => '聊天',
+            'chat-index' => '聊天',
             'dev' => '开发',
             'getForum' => '论坛',
-            'getChat' => '聊天',
             'getLive' => '直播',
+            'comments-index' => '评论',
+            'comments-show' => '评论',
             'contests' => '评选',
             'profile' => '个人资料',
             'tournaments' => '官方比赛',
@@ -114,16 +118,18 @@ return [
             'reset' => '重置',
             'new' => '新增',
 
-            'messages' => '信息',
-            'settings' => '设置',
-            'logout' => '退出',
             'help' => '帮助',
+            'logout' => '退出',
+            'messages' => '信息',
             'modding-history-discussions' => '用户摸图讨论',
             'modding-history-events' => '用户摸图事件',
             'modding-history-index' => '用户摸图历史',
             'modding-history-posts' => '用户摸图帖',
             'modding-history-votesGiven' => '用户摸图投票数',
             'modding-history-votesReceived' => '用户摸图获得票数',
+            'oauth_login' => '登录以授权',
+            'oauth_request' => 'OAuth 授权',
+            'settings' => '设置',
         ],
         'store' => [
             '_' => '商店',
@@ -133,6 +139,7 @@ return [
 
             'getCheckout' => '结账',
             'getInvoice' => '发票',
+            'orders-index' => '历史订单',
             'products-show' => '商品',
 
             'new' => '新增',

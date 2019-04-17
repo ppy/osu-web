@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,7 +23,7 @@ return [
     'generic' => 'Vikojen korjauksia ja pieniä parannuksia.',
 
     'build' => [
-        'title' => '',
+        'title' => 'muutokset versiossa :version',
     ],
 
     'builds' => [
@@ -36,14 +36,14 @@ return [
 
     'index' => [
         'page_title' => [
-            '_' => '',
-            '_from' => '',
-            '_from_to' => '',
-            '_stream' => '',
-            '_stream_from' => '',
-            '_stream_from_to' => '',
-            '_stream_to' => '',
-            '_to' => '',
+            '_' => 'muutosloki',
+            '_from' => 'muutoksen :from jälkeen',
+            '_from_to' => 'muutokset välillä :from - :to',
+            '_stream' => ':stream muutokset',
+            '_stream_from' => 'muutoksia :stream\'ssa :from lähtien',
+            '_stream_from_to' => 'muutoksia :stream\'ssa :from ja :to välillä',
+            '_stream_to' => 'muutoksia :stream\'ssa :to asti',
+            '_to' => 'muutokset :to asti',
         ],
 
         'title' => [
@@ -53,9 +53,9 @@ return [
     ],
 
     'support' => [
-        'heading' => 'Onko tämä päivitys mieleesi?',
-        'text_1' => 'Tue osu!:n kehittämistä ja :link tänään!',
-        'text_1_link' => 'ryhdy tukijaksi',
+        'heading' => 'Piditkö tästä päivityksestä?',
+        'text_1' => 'Tue osu!:n kehittämistä ja :link jo tänään!',
+        'text_1_link' => 'ryhdy osu!n tukijaksi',
         'text_2' => 'Tukesi ei ainoastaan nopeuta pelin kehittämistä, vaan saat myös lisätoimintoja sekä enemmän muokkausvapautta!',
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,17 +20,44 @@
 
 namespace App\Models;
 
+use App\Libraries\MorphMap;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 
+/**
+ * @property mixed $commentable
+ * @property int|null $commentable_id
+ * @property mixed|null $commentable_type
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property int|null $deleted_by_id
+ * @property int|null $disqus_id
+ * @property int|null $disqus_parent_id
+ * @property string|null $disqus_thread_id
+ * @property array|null $disqus_user_data
+ * @property \Carbon\Carbon|null $edited_at
+ * @property int|null $edited_by_id
+ * @property User $editor
+ * @property int $id
+ * @property string $message
+ * @property static $parent
+ * @property int|null $parent_id
+ * @property \Illuminate\Database\Eloquent\Collection $replies static
+ * @property int $replies_count_cache
+ * @property \Carbon\Carbon|null $updated_at
+ * @property User $user
+ * @property int|null $user_id
+ * @property \Illuminate\Database\Eloquent\Collection $votes CommentVote
+ * @property int $votes_count_cache
+ */
 class Comment extends Model
 {
-    use Validatable;
+    use Reportable, Validatable;
 
     const COMMENTABLES = [
-        'beatmapset' => Beatmapset::class,
-        'build' => Build::class,
-        'news_post' => NewsPost::class,
+        MorphMap::MAP[Beatmapset::class],
+        MorphMap::MAP[Build::class],
+        MorphMap::MAP[NewsPost::class],
     ];
 
     // FIXME: decide on good number.
@@ -47,7 +74,12 @@ class Comment extends Model
 
     public static function isValidType($type)
     {
-        return array_key_exists($type, static::COMMENTABLES);
+        return in_array($type, static::COMMENTABLES, true);
+    }
+
+    public function scopeWithoutTrashed($query)
+    {
+        return $query->whereNull('deleted_at');
     }
 
     public function commentable()
@@ -73,6 +105,11 @@ class Comment extends Model
     public function replies()
     {
         return $this->hasMany(static::class, 'parent_id');
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(CommentVote::class);
     }
 
     public function setCommentableTypeAttribute($value)
@@ -101,7 +138,7 @@ class Comment extends Model
         if ($this->isDirty('parent_id') && $this->parent_id !== null) {
             if ($this->parent === null) {
                 $this->validationErrors()->add('parent_id', 'invalid');
-            } elseif ($this->parent->isDeleted()) {
+            } elseif ($this->parent->trashed()) {
                 $this->validationErrors()->add('parent_id', '.deleted_parent');
             }
         }
@@ -139,6 +176,14 @@ class Comment extends Model
                 $this->parent->increment('replies_count_cache');
             }
 
+            if ($this->isDirty('deleted_at')) {
+                if (isset($this->deleted_at)) {
+                    $this->votes_count_cache = 0;
+                } else {
+                    $this->votes_count_cache = $this->votes()->count();
+                }
+            }
+
             return parent::save($options);
         });
     }
@@ -148,7 +193,7 @@ class Comment extends Model
         return presence($this->disqus_user_data['name'] ?? null);
     }
 
-    public function isDeleted()
+    public function trashed()
     {
         return $this->deleted_at !== null;
     }
@@ -164,5 +209,13 @@ class Comment extends Model
     public function restore()
     {
         return $this->update(['deleted_at' => null]);
+    }
+
+    protected function newReportableExtraParams() : array
+    {
+        return [
+            'reason' => 'Spam', // TODO: probably want more options
+            'user_id' => $this->user_id,
+        ];
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => 'Forumu okundu olarak işaretle',
+        'forums' => 'Forumları okundu olarak işaretle',
+        'busy' => 'Okundu olarak işaretleniyor...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'Bir anketi düzenlemek mevcut sonuçlarını siler!',
+
+        'actions' => [
+            'edit' => 'Anketi düzenle',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Gerçekten gönderiyi silmek istiyor musun?',
         'confirm_restore' => 'Gönderiyi geri yükle?',
@@ -57,6 +71,10 @@ return [
             'destroy' => 'Gönderiyi sil',
             'restore' => 'Gönderiyi geri getir',
             'edit' => 'Gönderiyi düzenle',
+        ],
+
+        'info' => [
+            'post_count' => ': sınırlandırılmış mesaj sayısı |: sınırlandırılmış mesaj sayıları',
         ],
     ],
 
@@ -153,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Anket oluşturma',
 
+            'preview' => 'Yazı önizleme',
+
             'create_poll_button' => [
                 'add' => 'Anket oluştur',
                 'remove' => 'Anket oluşturmayı iptal et',
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'görülme',
+            'feature_votes' => 'yıldız öncelik',
             'replies' => 'yanıt',
+            'views' => 'görülme',
         ],
 
         'issue_tag_added' => [
@@ -252,6 +273,12 @@ return [
                 'current' => 'Mevcut Öncelik: +:count',
                 'do' => 'Bu isteği destekle',
 
+                'info' => [
+                    '_' => 'Bu bir: özellik isteğidir. Özellik istekleri aşağıdakiler tarafından oylanabilir: destek Personeli.',
+                    'feature_request' => 'özellik isteği',
+                    'supporters' => 'destek Personeli',
+                ],
+
                 'user' => [
                     'count' => '{0} oy yok|{1} :count oy|[2,*] :count oy',
                     'current' => ':votes oyunuz var.',
@@ -274,7 +301,8 @@ return [
             'to_not_watching' => 'Kayıtlı değil',
             'to_watching' => 'Kaydet',
             'to_watching_mail' => 'Bildirimlerle beraber kaydet',
-            'mail_disable' => 'Bildirimleri devre dışı bırak',
+            'tooltip_mail_disable' => 'Bildirim etkin. Devre dışı bırakmak için tıklayın',
+            'tooltip_mail_enable' => 'Bildirim devre dışı. Etkinleştirmek için tıklayın',
         ],
     ],
 ];

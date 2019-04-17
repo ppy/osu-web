@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,15 +21,12 @@
 namespace App\Libraries;
 
 use App\Models\Comment;
+use App\Models\CommentVote;
 use App\Models\User;
 
 class CommentBundle
 {
-    const DEFAULT_PAGE = 1;
-    const DEFAULT_LIMIT = 50;
-
     public $depth;
-    public $filterByParentId;
     public $includeCommentableMeta;
     public $includeParent;
     public $params;
@@ -37,56 +34,70 @@ class CommentBundle
     private $commentable;
     private $comments;
     private $lastLoadedId;
+    private $user;
+
+    public static function forEmbed($commentable)
+    {
+        return new static($commentable, ['params' => ['parent_id' => 0]]);
+    }
 
     public function __construct($commentable, $options = [])
     {
         $this->commentable = $commentable;
 
-        $this->params = [
-            'parent_id' => null,
-            'last_loaded_id' => null,
-            'limit' => static::DEFAULT_LIMIT,
-            'page' => static::DEFAULT_PAGE,
-        ];
-        $this->setParams($options['params'] ?? []);
+        $this->params = new CommentBundleParams($options['params'] ?? []);
 
         $this->comments = $options['comments'] ?? null;
+        $this->additionalComments = $options['additionalComments'] ?? [];
         $this->depth = $options['depth'] ?? 2;
-        $this->filterByParentId = $options['filterByParentId'] ?? true;
         $this->includeCommentableMeta = $options['includeCommentableMeta'] ?? false;
         $this->includeParent = $options['includeParent'] ?? false;
+        $this->user = $options['user'] ?? auth()->user();
     }
 
     public function toArray()
     {
+        $hasMore = false;
+
         if (isset($this->comments)) {
             $comments = $this->comments;
         } else {
             $comments = $this->getComments($this->commentsQuery(), false);
 
-            $nestedComments = null;
+            if ($comments->count() > $this->params->limit) {
+                $hasMore = true;
+                $comments->pop();
+            }
+
+            $nestedParentIds = $comments->pluck('id');
 
             for ($i = 0; $i < $this->depth; $i++) {
-                if ($i === 0) {
-                    $parentIds = $comments->pluck('id');
-                } else {
-                    $parentIds = $nestedComments->pluck('id');
-                }
-
-                $nestedComments = $this->getComments(Comment::whereIn('parent_id', $parentIds));
+                $ids = $nestedParentIds->toArray();
+                sort($ids);
+                $nestedComments = $this->getComments(Comment::whereIn('parent_id', $nestedParentIds));
+                $nestedParentIds = $nestedComments->pluck('id');
                 $comments = $comments->concat($nestedComments);
             }
         }
 
-        $users = $this->getUsers($comments);
+        $comments = $comments->concat($this->additionalComments);
 
         $result = [
             'comments' => json_collection($comments, 'Comment', $this->commentIncludes()),
-            'users' => json_collection($users, 'UserCompact'),
+            'has_more' => $hasMore,
+            'has_more_id' => $this->params->parentId,
+            'user_votes' => $this->getUserVotes($comments),
+            'users' => json_collection($this->getUsers($comments), 'UserCompact'),
         ];
 
-        if ($this->params['parent_id'] === null && $this->filterByParentId) {
+        if ($this->params->parentId === 0 || $this->params->parentId === null) {
             $result['top_level_count'] = $this->commentsQuery()->whereNull('parent_id')->count();
+            $result['total'] = $this->commentsQuery()->count();
+        }
+
+        if ($this->includeCommentableMeta) {
+            $commentables = $comments->pluck('commentable')->concat([null]);
+            $result['commentable_meta'] = json_collection($commentables, 'CommentableMeta');
         }
 
         return $result;
@@ -95,10 +106,6 @@ class CommentBundle
     public function commentIncludes()
     {
         $includes = [];
-
-        if ($this->includeCommentableMeta) {
-            $includes[] = 'commentable_meta';
-        }
 
         if ($this->includeParent) {
             $includes[] = 'parent';
@@ -116,60 +123,38 @@ class CommentBundle
         }
     }
 
-    public function setParams($input)
-    {
-        if (array_key_exists('parent_id', $input)) {
-            $this->params['parent_id'] = get_int($input['parent_id']);
-        }
-        if (array_key_exists('last_loaded_id', $input)) {
-            $this->params['last_loaded_id'] = get_int($input['last_loaded_id']);
-        }
-        if (array_key_exists('limit', $input)) {
-            $this->params['limit'] = clamp(get_int($input['limit']), 1, 100);
-        }
-        if (array_key_exists('page', $input)) {
-            $this->params['page'] = max(get_int($input['page']), 1);
-        }
-    }
-
-    public function getParams()
-    {
-        $params = [];
-
-        if ($this->params['last_loaded_id'] !== null) {
-            $params['last_loaded_id'] = $this->params['last_loaded_id'];
-        }
-
-        if ($this->params['parent_id'] !== null) {
-            $params['parent_id'] = $this->params['parent_id'];
-        }
-
-        if ($this->params['page'] !== static::DEFAULT_PAGE) {
-            $params['page'] = $this->params['page'];
-        }
-
-        if ($this->params['limit'] !== static::DEFAULT_LIMIT) {
-            $params['limit'] = $this->params['limit'];
-        }
-
-        return $params;
-    }
-
     private function getComments($query, $isChildren = true)
     {
+        $sort = $this->params->sortDbOptions();
+        $sorted = false;
+        $queryLimit = $this->params->limit;
+
         if (!$isChildren) {
-            // FIXME: This should be replaced with multi-column comparison
-            // which also includes the created_at, in line with actual ORDER BY
-            // used in the final query.
-            if ($this->params['last_loaded_id'] !== null) {
-                $query->where('id', '<', $this->params['last_loaded_id']);
+            if ($this->params->filterByParentId()) {
+                $query->where(['parent_id' => $this->params->parentIdForWhere()]);
             }
 
-            if ($this->filterByParentId) {
-                $query->where(['parent_id' => $this->params['parent_id']]);
+            $queryLimit++;
+            $queryCursor = [];
+            $hasValidCursor = true;
+
+            foreach ($sort as $column => $order) {
+                $key = $column === 'votes_count_cache' ? 'votesCount' : camel_case($column);
+                $value = $this->params->cursor[$key];
+                if (isset($value)) {
+                    $queryCursor[] = compact('column', 'order', 'value');
+                } else {
+                    $hasValidCursor = false;
+                    break;
+                }
             }
 
-            $query->offset($this->params['limit'] * ($this->params['page'] - 1));
+            if ($hasValidCursor) {
+                $query->cursorWhere($queryCursor);
+                $sorted = true;
+            } else {
+                $query->offset($this->params->limit * ($this->params->page - 1));
+            }
         }
 
         if ($this->includeCommentableMeta) {
@@ -180,11 +165,26 @@ class CommentBundle
             $query->with('parent');
         }
 
-        return $query
-            ->orderBy('created_at', 'DESC')
-            ->orderBy('id', 'DESC')
-            ->limit($this->params['limit'])
-            ->get();
+        if (!$sorted) {
+            foreach ($sort as $column => $order) {
+                $query->orderBy($column, $order);
+            }
+        }
+
+        return $query->limit($queryLimit)->get();
+    }
+
+    private function getUserVotes($comments)
+    {
+        if ($this->user === null) {
+            return [];
+        }
+
+        $ids = $comments->pluck('id');
+
+        return CommentVote::where(['user_id' => $this->user->getKey()])
+            ->whereIn('comment_id', $ids)
+            ->pluck('comment_id');
     }
 
     private function getUsers($comments)

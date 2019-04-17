@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,24 +20,32 @@
 
 return [
     'header' => [
-        'small' => 'Versenyezz másképp mint csak kör klikkelésben.',
+        'small' => 'Versenyezz kör kattintgatáson kívüli módokban.',
         'large' => 'Közösségi Versenyek',
     ],
     'voting' => [
-        'over' => 'Az adott versenyre való szavazás véget ért',
+        'over' => 'Erre a versenyre már véget ért a szavazás',
         'login_required' => 'Kérlek jelentkezz be a szavazáshoz.',
+
         'best_of' => [
-            'none_played' => "Úgy tünik, hogy egyetlen beatmapet sem játszottál ami megfelelne ennek a versenynek!",
+            'none_played' => "Úgy tűnik, hogy egyetlen beatmap-et sem játszottál ami megfelelne ennek a versenynek!",
+        ],
+
+        'button' => [
+            'add' => 'Szavazás',
+            'remove' => 'Szavazat eltávolítása',
+            'used_up' => 'Felhasználtad az összes szavazatodat',
         ],
     ],
     'entry' => [
         '_' => 'jelentkezés',
         'login_required' => 'Kérlek jelentkezz be a versenyhez való csatlakozáshoz.',
-        'silenced_or_restricted' => 'Felfügesztve illetve némítva nem jelentkezhetsz versenyekre.',
-        'preparation' => 'Jelenleg előkészitkük ezt a versenyt. Kérjük, hogy várj türelmesen!',
-        'over' => 'Köszönjük a jelentkezéseiteket! A beküldési lehetőség zárult erre a versenyre és a szavazást hamarosan indul.',
-        'limit_reached' => 'Elérted a jelentkezési limitet erre a versenyre',
-        'drop_here' => 'Húzd a jeletkezésed ide',
+        'silenced_or_restricted' => 'Felfüggesztve illetve némítva nem jelentkezhetsz versenyekre.',
+        'preparation' => 'Ez a verseny előkészítés alatt áll. Kérjük várj türelmesen!',
+        'over' => 'Köszönjük a jelentkezéseidet! A beküldési lehetőség lezárult erre a versenyre és a szavazás hamarosan indul.',
+        'limit_reached' => 'Elérted a jelentkezési limited erre a versenyre',
+        'drop_here' => 'Húzd a jelentkezésedet ide',
+        'download' => '.osz letöltése',
         'wrong_type' => [
             'art' => 'Csak .jpg és .png kiterjesztésű fájlok engedélyezettek erre a versenyre.',
             'beatmap' => 'Csak .osu kiterjesztésű fájlok engedélyezettek erre a versenyre.',
@@ -50,19 +58,20 @@ return [
     ],
     'vote' => [
         'list' => 'szavazatok',
-        'count' => '1 szavazat|:count szavazat',
+        'count' => ':count szavazat|:count szavazatok',
+        'points' => ':count pont|:count pontok',
     ],
     'dates' => [
         'ended' => 'Vége: :date',
 
         'starts' => [
-            '_' => 'Kezdete: :dare',
+            '_' => 'Kezdete: :date',
             'soon' => 'hamarosan™',
         ],
     ],
     'states' => [
-        'entry' => 'A jelentkezések nyitottak',
-        'voting' => 'A szavazás megkezdődött',
-        'results' => 'Az eredmények megvannak',
+        'entry' => 'Nyitott Jelentkezés',
+        'voting' => 'Szavazás Folyamatban',
+        'results' => 'Kihirdetett Eredmény',
     ],
 ];

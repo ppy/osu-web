@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,8 +33,10 @@ return [
             'refresh' => 'Frissítés',
         ],
 
-        'outdated' => [
-            '_' => 'Ez az oldal, az eredeti tartalom egy elavult fordítását tartalmazza. Kérlek, nézd meg a(z) :default oldalt a legpontosabb információkért (és ha teheted, fontold meg a fordítás frissítését)!',
+        'translation' => [
+            'legal' => 'Ez a fordítás csak kényelemre lett szolgáltatva. Az eredeti :default marad az egyetlen jogilag kötelező érvényű változata ennek a szövegnek.',
+            'outdated' => 'Ez az oldal elavult fordítást tartalmaz az eredeti tartalomról. Az :default tartalmazza a legpontosabb információt, kérlek ezt tekintsd meg (és ha képes vagy rá, fontold meg a fordítás frissítését is)!',
+
             'default' => 'Angol verzió',
         ],
     ],

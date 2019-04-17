@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'liste',
-        'news-show' => 'opslag',
-    ],
-
     'index' => [
-        'title' => 'osu!news',
+        'title_page' => 'osu!nyheder',
 
         'nav' => [
             'newer' => 'Nyere indlæg',
             'older' => 'Ældre indlæg',
         ],
+
+        'title' => [
+            '_' => 'Nyheder :info',
+            'info' => '',
+        ],
     ],
 
     'show' => [
-        'posted' => 'slået op :time',
+        'by' => 'af :user',
 
         'nav' => [
             'newer' => 'Nyere indlæg',
             'older' => 'Ældre indlæg',
+        ],
+
+        'title' => [
+            '_' => 'Nyheder :info',
+            'info' => 'Slå op',
         ],
     ],
 

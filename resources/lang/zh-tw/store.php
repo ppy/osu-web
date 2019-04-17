@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -48,17 +48,36 @@ return [
         'cart_problems' => '糟糕，您的購物車出現問題！',
         'cart_problems_edit' => '點擊此處以編輯。',
         'declined' => '付款被取消。',
+        'delayed_shipping' => '感謝您的訂購，由於近期湧入訂單過多，故該訂單恐將**延後1~2週的時間**',
         'old_cart' => '您的購物車已過期，請重試。',
         'pay' => '使用 Paypal 付款',
+
+        'has_pending' => [
+            '_' => '客官您還有結帳還沒完成呢，點選 :link 查看他們',
+            'link_text' => '這裡',
+        ],
+
         'pending_checkout' => [
             'line_1' => '先前的訂單尚未完成',
-            'line_2' => '透過選擇付款方式來恢復訂單，或者 :link 取消訂單。',
-            'link_text' => '點擊這裡',
+            'line_2' => '透過選擇付款方式來恢復訂單。',
         ],
-        'delayed_shipping' => '感謝您的訂購，由於近期湧入訂單過多，故該訂單恐將**延後1~2週的時間**',
     ],
 
     'discount' => '折扣 :percent%',
+
+    'invoice' => [
+        'echeck_delay' => '',
+        'status' => [
+            'processing' => [
+                'title' => '您的付款尚未被確認!',
+                'line_1' => '如果您已經付款, 我們可能還在等待收到您付款的確認。請在一兩分鐘內重新整理此頁面!',
+                'line_2' => [
+                    '_' => '如果您在結帳時遇到問題，請查看 :link',
+                    'link_text' => '點擊這裡繼續您的結帳',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,12 @@ return [
     ],
 
     'order' => [
+        'paid_on' => '下訂單 :date',
+
+        'invoice' => '查看收據',
+        'no_orders' => '沒有訂單',
+        'resume' => '',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name 給 :username （:duration）',
@@ -82,6 +107,15 @@ return [
             'paid' => '您不能修改您的訂單，因為它已經支付。',
             'processing' => '您不能修改正在處理的訂單。',
             'shipped' => '您不能修改已經出貨的訂單。',
+        ],
+
+        'status' => [
+            'cancelled' => '已取消',
+            'checkout' => '準備中…',
+            'delivered' => '已送達',
+            'paid' => '已付款',
+            'processing' => '待確認',
+            'shipped' => '',
         ],
     ],
 
@@ -105,7 +139,7 @@ return [
     'supporter_tag' => [
         'gift' => '要贈與的玩家',
         'require_login' => [
-            '_' => '',
+            '_' => '您需要 :link 以獲得 osu!supporter 標籤！',
             'link_text' => '登入',
         ],
     ],

@@ -2,14 +2,17 @@ preserve_hierarchy: true
 files:
   - source: /resources/lang/en/**/*.php
     translation: /resources/lang/%locale%/**/%original_file_name%
+    update_option: update_as_unapproved
     languages_mapping:
       locale:
+        be: be
         bg: bg
         cs: cs
         da: da
         de: de
         el: el
         es-ES: es
+        fi-FI: fi
         fi: fi
         fr: fr
         hu: hu
@@ -18,11 +21,13 @@ files:
         ja: ja
         ko: ko
         nl: nl
+        'no': 'no'
         pl: pl
-        pt-PT: pt
         pt-BR: pt-br
-        ro-RO: ro
+        pt-PT: pt
+        ro: ro
         ru: ru
+        sk-SK: sk
         sv-SE: sv
         th: th
         tr: tr

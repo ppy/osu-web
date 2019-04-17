@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -25,8 +25,7 @@ class @StatusChart
     outerRadius = Math.min(width, height) / 2
     innerRadius = outerRadius / 4.7 * 4
 
-    @defaultArc = d3.svg
-            .arc()
+    @defaultArc = d3.arc()
             .innerRadius(innerRadius)
             .outerRadius(outerRadius)
             .startAngle(0)

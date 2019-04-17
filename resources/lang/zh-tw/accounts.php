@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => '隱私政策',
         'friends_only' => '過濾來自好友以外的訊息',
+        'hide_online' => '隱藏在線狀態',
+    ],
+
+    'security' => [
+        'current_session' => '目前',
+        'end_session' => '終止會話',
+        'end_session_confirmation' => '你確定要立刻結束該設備上的會話嗎？',
+        'last_active' => '上次使用：',
+        'title' => '安全',
+        'web_sessions' => '瀏覽器會話',
     ],
 ];

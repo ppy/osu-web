@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -89,7 +89,7 @@ return [
     'security' => [
         'current_session' => 'current',
         'end_session' => 'End Session',
-        'end_session_confirmation' => 'This will immedietely end your session on that device. Are you sure?',
+        'end_session_confirmation' => 'This will immediately end your session on that device. Are you sure?',
         'last_active' => 'Last active:',
         'title' => 'Security',
         'web_sessions' => 'web sessions',

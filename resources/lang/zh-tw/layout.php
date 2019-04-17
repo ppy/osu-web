@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => '群組',
             'index' => '看板',
             'legal-show' => '資訊',
+            'messages-index' => '',
             'news-index' => '新聞',
             'news-show' => '新聞',
             'password-reset-index' => '重設密碼',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => '社群',
+            'chat' => '',
+            'chat-index' => '',
             'dev' => '開發',
             'getForum' => '論壇',
-            'getChat' => '聊天',
             'getLive' => '直播',
+            'comments-index' => '',
+            'comments-show' => '',
             'contests' => '評選',
             'profile' => '個人簡介',
             'tournaments' => '官方比賽',
@@ -114,16 +118,18 @@ return [
             'reset' => '復原',
             'new' => '新增',
 
-            'messages' => '訊息',
-            'settings' => '設定',
-            'logout' => '登出',
             'help' => '幫助',
+            'logout' => '登出',
+            'messages' => '訊息',
             'modding-history-discussions' => '使用者摸圖討論區',
             'modding-history-events' => '使用者摸圖事件',
             'modding-history-index' => '使用者摸圖歷史紀錄',
             'modding-history-posts' => '使用者摸圖貼文',
             'modding-history-votesGiven' => '使用者摸圖投票數',
             'modding-history-votesReceived' => '使用者摸圖得票数',
+            'oauth_login' => '',
+            'oauth_request' => '',
+            'settings' => '設定',
         ],
         'store' => [
             '_' => '商店',
@@ -133,6 +139,7 @@ return [
 
             'getCheckout' => '結帳',
             'getInvoice' => '發票',
+            'orders-index' => '',
             'products-show' => '商品',
 
             'new' => '最新消息',

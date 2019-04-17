@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -38,12 +38,26 @@ return [
     ],
 
     'email' => [
-        'new_reply' => '[osu!] ":title"に新しい投稿があります',
+        'new_reply' => '[osu!] トピック":title"に新しい返信があります',
     ],
 
     'forums' => [
         'topics' => [
             'empty' => 'トピックがありません！',
+        ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => 'フォーラムを既読にする',
+        'forums' => 'フォーラムを既読にする',
+        'busy' => '既読にする・・・',
+    ],
+
+    'poll' => [
+        'edit_warning' => '編集中の投票フォームは現在の編集状況が削除されます！',
+
+        'actions' => [
+            'edit' => '投票を編集',
         ],
     ],
 
@@ -57,6 +71,10 @@ return [
             'destroy' => '投稿を削除',
             'restore' => '投稿を復元',
             'edit' => '投稿を編集',
+        ],
+
+        'info' => [
+            'post_count' => ':count_delimited 投稿|:count_delimited 投稿',
         ],
     ],
 
@@ -87,11 +105,11 @@ return [
             'submit' => '投稿',
 
             'necropost' => [
-                'default' => '',
+                'default' => 'このトピックはしばらくの間アクティブではありません。そのため、特別な理由がある場合のみここに投稿されます。',
 
                 'new_topic' => [
-                    '_' => "",
-                    'create' => '',
+                    '_' => "このトピックはしばらくアクティブになっていません。特別な理由がある場合、:createをしてください。",
+                    'create' => '新規トピックを作成',
                 ],
             ],
 
@@ -153,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'ポールの作成',
 
+            'preview' => '投稿のプレビュー',
+
             'create_poll_button' => [
                 'add' => 'ポールを作成',
                 'remove' => 'ポールの作成をキャンセル',
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => '観覧数',
+            'feature_votes' => 'スタープライオリティ',
             'replies' => '返信数',
+            'views' => '観覧数',
         ],
 
         'issue_tag_added' => [
@@ -252,6 +273,12 @@ return [
                 'current' => '現在の優先度： +:count',
                 'do' => 'このリクエストを推進する',
 
+                'info' => [
+                    '_' => 'これは:feature_requestです。機能の提案は:supportersが投票することができます。',
+                    'feature_request' => '機能の提案',
+                    'supporters' => 'サポーター',
+                ],
+
                 'user' => [
                     'count' => '{0} 投票なし|[1,*] :count票',
                     'current' => '自分の持ち票数は:votes回です。',
@@ -274,7 +301,8 @@ return [
             'to_not_watching' => 'ブックマーク無し',
             'to_watching' => 'ブックマーク',
             'to_watching_mail' => 'ブックマーク（通知あり）',
-            'mail_disable' => '通知を無効にする',
+            'tooltip_mail_disable' => '通知は有効です。クリックして無効化',
+            'tooltip_mail_enable' => '通知は無効です。クリックして有効化',
         ],
     ],
 ];

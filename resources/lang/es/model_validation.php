@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Responder a un comentario eliminado no esta permitido.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Solo se puede votar en solicitudes de características.',
@@ -64,10 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Eliminar la publicación de los metadatos del beatmapa no está permitido.',
             'beatmapset_post_no_edit' => 'Editar la publicación de los metadatos del mapa no está permitido.',
+            'only_quote' => 'Tu respuesta sólo contiene una cita.',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Opciones duplicadas no permitidas.',
+            'grace_period_expired' => 'No se puede editar una encuesta después de :limit horas',
             'invalid_max_options' => 'La opciones por usuario no pueden exceder el número de opciones disponibles.',
             'minimum_one_selection' => 'Se requiere un mínimo de una opción por usuario.',
             'minimum_two_options' => 'Se necesitan al menos dos opciones.',
@@ -92,6 +98,7 @@ return [
         'username_available_soon' => '¡Este nombre de usuario estará disponible para su uso en cualquier momento!',
         'username_invalid_characters' => 'El nombre de usuario solicitado tiene carácteres inválidos.',
         'username_in_use' => '¡El nombre de usuario ya está en uso!',
+        'username_locked' => '¡El nombre de usuario ya está en uso!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Por favor utiliza guiones bajos o espacios, ¡no ambas!',
         'username_no_spaces' => "¡El nombre no puede iniciar o finalizar con espacios!",
         'username_not_allowed' => 'Esta elección de nombre de usuario no está permitida.',
@@ -110,5 +117,9 @@ return [
             ],
             'username_is_same' => '¡Este ya es tu nombre de usuario, tonto!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "¡No puedes denunciarte a ti mismo!",
     ],
 ];

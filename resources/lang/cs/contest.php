@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,8 +26,15 @@ return [
     'voting' => [
         'over' => 'Hlasování pro tuto soutěž bylo ukončeno',
         'login_required' => 'Pro hlasování se prosím přihlaš.',
+
         'best_of' => [
             'none_played' => "Vypadá to, že nemáš zahranou žádnou mapu, která je kvalifikovaná na tuto soutěž!",
+        ],
+
+        'button' => [
+            'add' => 'Hlasovat',
+            'remove' => 'Odebrat hlas',
+            'used_up' => 'Využil jsi všechny svoje hlasy',
         ],
     ],
     'entry' => [
@@ -38,6 +45,7 @@ return [
         'over' => 'Díky za vaše vstupy! Podání byla uzavřena a hlasování se brzy otevře.',
         'limit_reached' => 'Dosáhl jsi limitu vstupů pro tuto soutěž',
         'drop_here' => 'Tvůj vstup přetáhni sem',
+        'download' => 'Stáhnout .osz',
         'wrong_type' => [
             'art' => 'Pouze .jpg a ,png soubory jsou přijímány pro tuto soutěž.',
             'beatmap' => 'Pouze .osu soubory jsou přijímány pro tuto soutěž.',
@@ -50,7 +58,8 @@ return [
     ],
     'vote' => [
         'list' => 'hlasy',
-        'count' => '1 hlas|:count hlasů',
+        'count' => ':count hlas|:count hlasů',
+        'points' => ':count bod|:count bodů',
     ],
     'dates' => [
         'ended' => 'Ukončeno :date',

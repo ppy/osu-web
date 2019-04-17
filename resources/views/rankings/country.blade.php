@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -64,7 +64,7 @@
                         </a>
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ number_format($score->user_count) }}
+                        {{ i18n_number_format($score->user_count) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {!! suffixed_number_format_tag($score->play_count) !!}
@@ -79,7 +79,7 @@
                         {!! suffixed_number_format_tag(round($score->performance)) !!}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ number_format(round($score->performance / max($score->user_count, 1))) }}
+                        {{ i18n_number_format(round($score->performance / max($score->user_count, 1))) }}
                     </td>
                 </tr>
             @endforeach

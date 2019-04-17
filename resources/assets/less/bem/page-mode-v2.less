@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,26 +25,35 @@
   .default-text-shadow();
   display: flex;
   list-style: none;
-  padding: 0 (@gutter-desktop + @gutter - 10px);
+  padding: 0;
   margin: 0;
   width: 100%;
 
   @media @desktop {
     padding: 0 (@gutter-desktop - 10px);
+    min-height: @_bar-active-height;
   }
 
   &::after {
     content: '';
     width: 100%;
     height: @_bar-height;
-    position: absolute;
     bottom: 0;
     left: 0;
+    @media @desktop {
+      position: absolute;
+    }
   }
 
   &--changelog {
     &::after {
-      background-color: @dark-purple;
+      background-color: @violet;
+    }
+  }
+
+  &--chat {
+    &::after {
+      background-color: @community-blue;
     }
   }
 
@@ -54,8 +63,24 @@
     }
   }
 
+  &--news {
+    &::after {
+      background-color: @violet;
+    }
+  }
+
+  &--users {
+    &::after {
+      background-color: @seafoam;
+    }
+  }
+
   &__item {
     display: flex;
+
+    @media @mobile {
+      display: none;
+    }
 
     & + &::before {
       content: '›';
@@ -63,11 +88,23 @@
       margin: 0 5px;
 
       .@{_top}--changelog & {
-        color: @dark-purple;
+        color: @violet;
+      }
+
+      .@{_top}--chat & {
+        color: @community-blue;
       }
 
       .@{_top}--comments & {
         color: @blue;
+      }
+
+      .@{_top}--news & {
+        color: @violet;
+      }
+
+      .@{_top}--users & {
+        display: none;
       }
     }
   }
@@ -79,6 +116,10 @@
     margin: 0 5px;
     transition: all 100ms;
 
+    @media @mobile {
+      display: none;
+    }
+
     &::before {
       content: '';
       position: absolute;
@@ -86,11 +127,12 @@
       left: @_link-padding;
       height: @_bar-active-height;
       border-radius: 1000px;
-      width: calc(100% ~'-' (2 * @_link-padding));
+      width: calc(100% - (2 * @_link-padding));
       transition: inherit;
       will-change: transform;
       pointer-events: none;
       transform: scaleY(0);
+      z-index: @z-index--page-header; // prevent page content from covering the bottom poart
     }
 
     &:hover::before {
@@ -98,10 +140,18 @@
     }
 
     .@{_top}--changelog & {
-      color: @dark-purple;
+      color: @violet;
 
       &::before {
-        background-color: @dark-purple;
+        background-color: @violet;
+      }
+    }
+
+    .@{_top}--chat & {
+      color: @community-blue;
+
+      &::before {
+        background-color: @community-blue;
       }
     }
 
@@ -110,6 +160,22 @@
 
       &::before {
         background-color: @blue;
+      }
+    }
+
+    .@{_top}--news & {
+      color: @violet;
+
+      &::before {
+        background-color: @violet;
+      }
+    }
+
+    .@{_top}--users & {
+      color: @seafoam;
+
+      &::before {
+        background-color: @seafoam;
       }
     }
 

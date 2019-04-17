@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => 'Отметить раздел прочитанным',
+        'forums' => 'Отметить разделы прочитанными',
+        'busy' => 'Отмечается как прочитанное...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'Изменение опроса сбросит текущие ответы!',
+
+        'actions' => [
+            'edit' => 'Изменить опрос',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Удалить ответ?',
         'confirm_restore' => 'Восстановить ответ?',
@@ -57,6 +71,10 @@ return [
             'destroy' => 'Удалить ответ',
             'restore' => 'Восстановить ответ',
             'edit' => 'Редактировать ответ',
+        ],
+
+        'info' => [
+            'post_count' => ':count_delimited пост|:count_delimited поста|:count_delimited постов',
         ],
     ],
 
@@ -153,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Создание опроса',
 
+            'preview' => 'Предпросмотр',
+
             'create_poll_button' => [
                 'add' => 'Прикрепить опрос',
                 'remove' => 'Отменить опрос',
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'просмотров',
+            'feature_votes' => 'количество голосов',
             'replies' => 'ответов',
+            'views' => 'просмотров',
         ],
 
         'issue_tag_added' => [
@@ -252,6 +273,12 @@ return [
                 'current' => 'Текущий приоритет: +:count',
                 'do' => 'Продвинуть данный запрос',
 
+                'info' => [
+                    '_' => 'Это :feature_request. За идею можно проголосовать только с :supporters.',
+                    'feature_request' => 'предложенная идея',
+                    'supporters' => 'osu!supporter',
+                ],
+
                 'user' => [
                     'count' => ':count голос|:count голоса|:count голосов',
                     'current' => 'У вас осталось :votes голосов.',
@@ -274,7 +301,8 @@ return [
             'to_not_watching' => 'Не в закладках',
             'to_watching' => 'Заметка',
             'to_watching_mail' => 'В закладки с оповещением',
-            'mail_disable' => 'Отключить уведомления',
+            'tooltip_mail_disable' => 'Уведомления включены. Нажмите, чтобы отключить',
+            'tooltip_mail_enable' => 'Уведомления отключены. Нажмите, чтобы включить',
         ],
     ],
 ];

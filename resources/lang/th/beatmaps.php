@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'เรียงตาม:',
-            'created_at' => 'เวลาที่สร้าง',
-            'timeline' => 'ไทม์ไลน์',
-            'updated_at' => 'อัพเดทล่าสุด',
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => '',
+        'delete_own_confirm' => '',
+        'delete_other_confirm' => '',
         'disqualification_prompt' => 'เหตุผลในการตัดสิทธิ์?',
         'disqualified_at' => 'ถูกตัดสิทธิ์เมื่อ :time_ago เพราะ (:reason)',
         'disqualified_no_reason' => 'ไม่มีเหตุผลที่ระบุไว้',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'คุณแน่ใจหรือ? ในการโพสต์ปัญหาใหม่จะรีเซ็ตการเสนอชื่อ',
+            'disqualify' => '',
         ],
     ],
 
@@ -190,15 +194,16 @@ return [
                 'played' => 'เคยเล่นแล้ว',
             ],
             'sorting' => [
-                'title' => 'ชื่อ',
-                'artist' => 'ศิลปิน',
-                'difficulty' => 'ระดับความยาก',
-                'updated' => 'เพิ่งอัพเดต',
-                'ranked' => 'จัดอันดับแล้ว',
-                'rating' => 'คะแนน',
-                'plays' => 'จำนวนการเล่น',
-                'relevance' => 'ความเกี่ยวข้อง',
-                'nominations' => 'เสนอชื่อเข้าชิง',
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'favourites' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
             ],
             'supporter_filter_quote' => [
                 '_' => 'กรองโดย :filters ต้องมี :link ทำงานอยู่',
@@ -297,5 +302,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -29,8 +29,8 @@ return [
         ],
 
         'dev_quote' => 'osu! 是一款完全免费的游戏，但是经营它却不是免费的。在我们租用服务器和高速网络、维护系统及社区、向比赛提供奖品、提供疑难解答以及让玩家们开心的同时，osu! 已经消耗了大量的金钱！噢，别忘了我们是凭着爱好在做 osu! ，没有任何的广告合作！
-            <br/><br/>osu! 由我一个人运营着，
-            为了维护 osu! 我已经辞去了我的日常工作，
+            <br/><br/>大部分时间里，osu! 由我一个人运营着，
+            为了维护 osu! 我不得不辞去日常工作，
             而我时常感受到使 osu! 维持我所期望的质量是一件很艰难的事情，
             我以个人的名义感谢至今为止所有支持 osu! 的人，
             也包括继续支持 osu! 的所有人 :)。',
@@ -84,7 +84,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => '谱面筛选器',
-                'description' => '更多角度的去筛选谱面。',
+                'description' => '可在搜索谱面时以更多角度筛选。',
             ],
 
             'yellow_fellow' => [

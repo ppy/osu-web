@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 return [
     'insufficient_stock' => 'Данный товар отсутствует в требуемом количестве!',
+    'must_separate' => 'Этот товар должен быть куплен отдельно от другого товара',
     'not_available' => 'Этот товар недоступен.',
     'too_many' => 'Вы можете заказать только :count шт. этого товара за раз.',
 ];

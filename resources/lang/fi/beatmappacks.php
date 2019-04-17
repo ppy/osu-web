@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,13 +25,13 @@ return [
             'instruction' => [
                 '_' => "Asennus: Kun paketti on ladattu, pura .rar tiedosto osu! Songs kansioon.
                  Kappaleet ovat vielä .zip ja/tai .osz muodossa paketin sisällä, joten osu! purkaa beatmapit seuraavalla pelikerrallla.
-                 :scary pura .zip/.osz tiedostoja itse,
+                 :scary pura .zip/.osz-tiedostoja itse,
                  tai beatmapit eivät näy oikein pelissä eivätkä toimi kunnolla.",
                 'scary' => 'ÄLÄ',
             ],
             'note' => [
-                '_' => 'Huomaa myös, että on erittäin suositeltavaa :scary, koska vanhimmat kappaleet ovat paljon huonompia kuin viimeaikaiset kappaleet.',
-                'scary' => 'ladata kokoelmat viimeisimmästä aikaisimpaan',
+                '_' => 'Huomaa myös, että on erittäin suositeltavaa :scary, koska vanhimmat mapit ovat paljon huonompia kuin uusimmat mapit.',
+                'scary' => 'ladata uusimpia kokoelmia vanhojen sijaan',
             ],
         ],
         'title' => 'Beatmap Kokoelmat',
@@ -42,19 +42,19 @@ return [
         'download' => 'Lataa',
         'item' => [
             'cleared' => 'läpäisty',
-            'not_cleared' => 'ei selvitetty',
+            'not_cleared' => 'ei läpäisty',
         ],
     ],
 
     'mode' => [
         'artist' => 'Esittäjä/Albumi',
-        'chart' => 'Parrasvalo',
+        'chart' => 'Valokeilassa',
         'standard' => 'Tavallinen',
         'theme' => 'Teema',
     ],
 
     'require_login' => [
         '_' => 'Sinun täytyy olla :link ladataksesi',
-        'link_text' => 'kirjautunut sisään',
+        'link_text' => 'kirjautuneena sisään',
     ],
 ];

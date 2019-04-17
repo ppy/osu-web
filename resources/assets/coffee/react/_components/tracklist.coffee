@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,10 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, table, thead, tbody, tr, th} = ReactDOMFactories
+import * as React from 'react'
+import { div, table, thead, tbody, tr, th } from 'react-dom-factories'
+import { TracklistTrack } from 'tracklist-track'
 el = React.createElement
 
-class @Tracklist extends React.Component
+export class Tracklist extends React.Component
   render: ->
     return null unless @props.tracks.length > 0
 

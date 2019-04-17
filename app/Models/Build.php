@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,23 @@ namespace App\Models;
 
 use Carbon\Carbon;
 
+/**
+ * @property bool $allow_bancho
+ * @property int $allow_ranking
+ * @property int $build_id
+ * @property \Illuminate\Database\Eloquent\Collection $changelogEntries ChangelogEntry
+ * @property \Illuminate\Database\Eloquent\Collection $changelogs Changelog
+ * @property Comment $comments
+ * @property \Carbon\Carbon $date
+ * @property mixed|null $hash
+ * @property mixed|null $last_hash
+ * @property \Illuminate\Database\Eloquent\Collection $propagationHistories BuildPropagationHistory
+ * @property int|null $stream_id
+ * @property int $test_build
+ * @property UpdateStream $updateStream
+ * @property int $users
+ * @property string|null $version
+ */
 class Build extends Model
 {
     public $timestamps = false;

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -25,7 +25,7 @@
     ];
 @endphp
 <div class="beatmap-discussions__discussion beatmapset-activities__discussion-post">
-    <div class="beatmap-discussion beatmapset-activities__post-grow{{ $discussion->isDeleted() ? ' beatmap-discussion--deleted' : ''}}">
+    <div class="beatmap-discussion beatmapset-activities__post-grow{{ $discussion->trashed() ? ' beatmap-discussion--deleted' : ''}}">
         <div class="beatmap-discussion-timestamp__icons-container">
             <div class="beatmap-discussion-timestamp__icons">
                 <a href="{{ route('beatmapsets.discussion', $discussion->beatmapset) }}#/{{ $discussion->getKey() }}">

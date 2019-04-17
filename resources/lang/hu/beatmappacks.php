@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,24 +30,24 @@ Mivel az összes szám .zip és/vagy .osz kiterjesztésű, ezért a következő 
             ],
             'note' => [
                 '_' => 'Valamint vedd figyelembe, hogy erősen javasolt a :scary, mivel a régebbi pályák minősége jóval alacsonyabb az újakéhoz képest.',
-                'scary' => 'a legújabb pályák letöltése',
+                'scary' => 'legújabb csomagok letöltése',
             ],
         ],
         'title' => 'Beatmap Csomagok',
-        'description' => 'Előre csomagolt közös témájú beatmap kollekciók.',
+        'description' => 'Előre csomagolt, általános témákat körbeölelő beatmap gyűjtemények.',
     ],
 
     'show' => [
         'download' => 'Letöltés',
         'item' => [
             'cleared' => 'lejátszott',
-            'not_cleared' => 'kijátszatlan',
+            'not_cleared' => 'nem játszott',
         ],
     ],
 
     'mode' => [
         'artist' => 'Előadó/Album',
-        'chart' => 'Kiemeltek',
+        'chart' => 'Reflektorfény',
         'standard' => 'Standard',
         'theme' => 'Téma',
     ],

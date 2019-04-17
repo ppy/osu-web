@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,8 @@ return [
     'top-headers' => [
         'headline' => 'Livestreams',
         'description' => 'Die Daten werden alle fünf Minuten von twitch.tv geladen und basieren auf dem "Durchsuchen"-Verzeichnis. Fang\' ruhig selber an zu streamen und komm auf diese Liste! Wenn du mehr Informationen brauchst, schau\' dir die Wiki-Seite zu Livestreaming an.',
+
+        'link' => 'die Wiki-Seite auf Livestreams',
     ],
     'headers' => [
         'regular' => 'Aktuelle Streams',

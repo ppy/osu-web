@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -28,6 +28,57 @@
 .fade-element(@duration, @type: ease-in-out, @target: all) {
   transition: @target @duration @type;
 }
+
+.fancy-scrollbar() {
+  /* Turn on custom 8px wide scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px; /* 1px wider than Lion. */
+    /* This is more usable for users trying to click it. */
+    background-color: rgba(255,255,255,0);
+    -webkit-border-radius: 100px;
+  }
+  /* hover effect for both scrollbar area, and scrollbar 'thumb' */
+  ::-webkit-scrollbar:hover {
+    background-color: rgba(0, 0, 0, 0.09);
+  }
+
+  ::-webkit-scrollbar:horizontal {
+    height: 10px;
+  }
+
+  /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+  ::-webkit-scrollbar-thumb {
+    /* This is the EXACT color of Mac OS scrollbars.
+      Yes, I pulled out digital color meter */
+    background: rgba(255,255,255,0.5);
+    -webkit-border-radius: 100px;
+    background-clip: padding-box;
+    border: 2px solid rgba(255, 255, 255, 0);
+    min-height: 10px; /*Prevent it from getting too small */
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: rgba(255,255,255,0.61); /* Some darker color when you click it */
+    -webkit-border-radius: 100px;
+  }
+}
+
+.fragment-target-fn(@offset: 0) {
+  position: static; // relative will still block pointer-events
+
+  &[id]::before {
+    content: '';
+    display: block;
+    height: @nav2-height--pinned + @offset;
+    margin: -(@nav2-height--pinned + @offset) 0 0;
+    pointer-events: none;
+
+    @media @mobile {
+      height: @navbar-height + @offset;
+      margin: -(@navbar-height + @offset) 0 0;
+    }
+  }
+}
+
 
 .default-border-radius() {
   border-radius: @border-radius-base;
@@ -71,7 +122,15 @@
   color: @blue-light;
 
   .link-hover({
-    color: @blue-light;
+    color: @blue-lighter;
+  });
+}
+
+.link-blue-dark() {
+  color: @blue-dark;
+
+  .link-hover({
+    color: @blue;
   });
 }
 
@@ -193,6 +252,11 @@
   align-items: center;
 }
 
+.at2x(@url, @w: auto, @h: auto) {
+  .at2x-simple(@url);
+  background-size: @w @h;
+}
+
 .at2x-simple(@url) {
   @url2x: replace(@url, "(\.[^.]+)$", "@2x$1");
   background-image: url(@url);
@@ -215,6 +279,15 @@
   top: 0;
   height: 100%;
   width: 100%;
+}
+
+// used to account rounding error in chrome where 100% is few pixels short to the actual 100%.
+.full-size-overflow() {
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  right: -10px;
+  bottom: -10px;
 }
 
 .btn-bg() {
@@ -247,4 +320,15 @@
 .default-font() {
   font-family: @font-default;
   font-family: var(--font-default-override, var(--font-default));
+}
+
+.webkit-line-clamp(@lines) {
+  // Magic line-clamping on webkit browsers (safari, chrome, etc).
+  // Other browsers won't show ellipses.
+  display: -webkit-box;
+  -webkit-line-clamp: @lines;
+  // It's required to tell autoprefixer to ignore the following line.
+  // Reference: https://github.com/postcss/autoprefixer/issues/1141
+  /* autoprefixer: ignore next */
+  -webkit-box-orient: vertical;
 }

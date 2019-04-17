@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,8 +34,8 @@ return [
         'invalid_mode' => 'Mode tidak valid.',
         'standard_converts_only' => 'Tidak ada skor yang tersedia untuk mode yang diminta pada beatmap dengan tingkat kesulitan ini.',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'Anda memiliki terlalu banyak beatmap favorit! Mohon hapus satu sebelum melanjutkan.',
+    'checkout' => [
+        'generic' => 'Terjadi kesalahan ketika akan melangsungkan proses check-out.',
     ],
     'logged_out' => 'Anda telah keluar. Mohon masuk dan coba lagi.',
     'supporter_only' => 'Anda harus menjadi supporter untuk menggunakan fitur ini.',

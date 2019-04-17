@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'availability' => [
-        'disabled' => '該圖譜現在無法下載。',
+        'disabled' => '該譜面現在無法下載。',
         'parts-removed' => '因作者或第三方版權擁有者的要求，故該圖譜已經下架。',
         'more-info' => '點擊這裡查看更多訊息。',
     ],
@@ -34,41 +34,50 @@ return [
         'discussion' => '討論',
 
         'details' => [
+            'approved' => '批准於 ',
+            'favourite' => '收藏這張圖譜',
+            'favourited_count' => '還有很多人...',
+            'logged-out' => '下載圖譜前請先登入！',
+            'loved' => 'loved 於 ',
             'mapped_by' => '由 :mapper 製作',
+            'qualified' => '提名於 ',
+            'ranked' => '進榜於 ',
             'submitted' => '發佈於 ',
+            'unfavourite' => '取消收藏',
             'updated' => '上次更新於 ',
             'updated_timeago' => '最後更新時間 :timeago',
-            'ranked' => '進榜於 ',
-            'approved' => '批准於 ',
-            'qualified' => '提名於 ',
-            'loved' => 'loved 於 ',
-            'logged-out' => '下載圖譜前請先登入！',
+
             'download' => [
                 '_' => '下載',
-                'video' => '含影像',
-                'no-video' => '不含影像',
                 'direct' => 'osu!direct',
+                'no-video' => '不含影像',
+                'video' => '含影像',
             ],
-            'favourite' => '收藏這張圖譜',
-            'unfavourite' => '取消收藏',
-            'favourited_count' => '還有很多人...',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
         ],
-        'stats' => [
-            'cs' => '縮圈大小',
-            'cs-mania' => '鍵位數量',
-            'drain' => '扣血速度',
-            'accuracy' => '準確率',
-            'ar' => '縮圈速度',
-            'stars' => '難度星級',
-            'total_length' => '長度',
-            'bpm' => 'BPM',
-            'count_circles' => '圓圈總數',
-            'count_sliders' => '滑條總數',
-            'user-rating' => '玩家評價',
-            'rating-spread' => '評分情況',
-            'nominations' => '提名',
-            'playcount' => '遊玩次数',
+
+        'favourites' => [
+            'limit_reached' => '',
         ],
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
+        ],
+
         'info' => [
             'description' => '詳情',
             'genre' => '曲風',
@@ -80,6 +89,7 @@ return [
             'tags' => '標籤',
             'unranked' => '未進榜圖譜',
         ],
+
         'scoreboard' => [
             'achieved' => '在 :when 達成',
             'country' => '國內排行榜',
@@ -112,6 +122,23 @@ return [
                 'first' => '領先者',
                 'own' => '您的最佳成績',
             ],
+        ],
+
+        'stats' => [
+            'cs' => '縮圈大小',
+            'cs-mania' => '鍵位數量',
+            'drain' => '扣血速度',
+            'accuracy' => '準確率',
+            'ar' => '縮圈速度',
+            'stars' => '難度星級',
+            'total_length' => '長度',
+            'bpm' => 'BPM',
+            'count_circles' => '圓圈總數',
+            'count_sliders' => '滑條總數',
+            'user-rating' => '玩家評價',
+            'rating-spread' => '評分情況',
+            'nominations' => '提名',
+            'playcount' => '遊玩次数',
         ],
     ],
 ];

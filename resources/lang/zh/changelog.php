@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -42,8 +42,8 @@ return [
             '_stream' => ':stream 中的更新',
             '_stream_from' => '自 :from 以来 :stream 中的更新',
             '_stream_from_to' => '从 :from 到 :to 以来 :stream 中的更新',
-            '_stream_to' => '',
-            '_to' => '',
+            '_stream_to' => ':stream 当中到 :to 为止的更改',
+            '_to' => '到 :to 为止的更改',
         ],
 
         'title' => [

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -51,6 +51,10 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Répondre à un commentaire supprimé n\'est pas autorisé.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Vous pouvez seulement voter pour une fonction.',
@@ -64,10 +68,12 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Supprimer les métadonnées d\'une beatmap n\'est pas autorisé.',
             'beatmapset_post_no_edit' => 'Modifier les métadonnées d\'une beatmap n\'est pas autorisé.',
+            'only_quote' => 'Votre réponse ne contient qu\'une citation.',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Les options dupliquées ne sont pas autorisées.',
+            'grace_period_expired' => 'Impossible d’éditer un sondage après plus de :limit heures',
             'invalid_max_options' => 'Le nombre de réponses par utilisateur ne devrait pas dépasser le nombre de réponses.',
             'minimum_one_selection' => 'Un minimum d\'une réponse par utilisateur est nécessaire.',
             'minimum_two_options' => 'Au moins 2 réponses nécéssaires.',
@@ -92,6 +98,7 @@ return [
         'username_available_soon' => 'Ce nom d\'utilisateur sera disponible dans quelques instants !',
         'username_invalid_characters' => 'Le nom d\'utilisateur contient des caractères invalides.',
         'username_in_use' => 'Le nom d\'utilisateur est déjà utilisé !',
+        'username_locked' => 'Nom d\'utilisateur déjà utilisé !', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Merci d\'utiliser soit des underscores ou des espaces, pas les deux ensemble !',
         'username_no_spaces' => "Le nom d'utilisateur ne peut pas commencer ou terminer avec des espaces",
         'username_not_allowed' => 'Ce nom d\'utilisateur n\'est pas autorisé.',
@@ -110,5 +117,9 @@ return [
             ],
             'username_is_same' => 'C\'est déjà votre nom d\'utilisateur en fait...',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "Vous ne pouvez pas vous signaler vous-même !",
     ],
 ];

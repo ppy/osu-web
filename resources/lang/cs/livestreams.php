@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,9 @@
 return [
     'top-headers' => [
         'headline' => 'Živá vysílání',
-        'description' => 'Data o vysílajích jsou načítáná každých pět minut z osu! kategorie stránky twitch.tv. Neboj se začít vysílat. Může tu být i tvůj stream! Pro více informací jak na to se prosím podívej na wiki stránku o živém vysílání.',
+        'description' => 'Data o vysílajích jsou načítáná každých pět minut z osu! kategorie stránky twitch.tv. Neboj se začít vysílat. Může tu být i tvůj stream! Pro více informací jak na to se prosím podívej na :link.',
+
+        'link' => 'wiki stránku o živém vysílání',
     ],
     'headers' => [
         'regular' => 'Právě probíhající vysílání',

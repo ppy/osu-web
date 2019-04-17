@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Sortir berdasarkan:',
-            'created_at' => 'waktu pembuatan',
-            'timeline' => 'linimasa',
-            'updated_at' => 'pembaruan terakhir',
+            'created_at' => 'Tanggal pembuatan',
+            'timeline' => 'Linimasa',
+            'updated_at' => 'Pembaruan terakhir',
         ],
 
         'stats' => [
@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Hapus',
+        'delete_own_confirm' => 'Apa Anda yakin? Beatmap yang dipilih akan dihapus dan Anda akan dialihkan kembali ke profil Anda.',
+        'delete_other_confirm' => 'Apa Anda yakin? Beatmap yang dipilih akan dihapus dan Anda akan dialihkan kembali ke profil pengguna.',
         'disqualification_prompt' => 'Alasan diskualifikasi?',
         'disqualified_at' => 'Didiskualifikasi :time_ago (:reason).',
         'disqualified_no_reason' => 'tidak ada alasan yang diberikan',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Apakah kamu yakin? Memposting masalah baru akan mengulang proses nominasi.',
+            'disqualify' => 'Apakah Anda yakin? Tindakan ini akan menghilangkan status Qualified beatmap ini dan mengulang proses nominasi dari awal.',
         ],
     ],
 
@@ -190,15 +194,16 @@ return [
                 'played' => 'Telah Dimainkan',
             ],
             'sorting' => [
-                'title' => 'judul',
-                'artist' => 'artis',
-                'difficulty' => 'tingkat kesulitan',
-                'updated' => 'terbaru',
-                'ranked' => 'ranked',
-                'rating' => 'penilaian',
-                'plays' => 'jumlah dimainkan',
-                'relevance' => 'relevansi',
-                'nominations' => 'nominasi',
+                'title' => 'Judul',
+                'artist' => 'Artis',
+                'difficulty' => 'Tingkat Kesulitan',
+                'favourites' => 'Favorit',
+                'updated' => 'Terbaru',
+                'ranked' => 'Ranked',
+                'rating' => 'Penilaian',
+                'plays' => 'Jumlah Dimainkan',
+                'relevance' => 'Relevansi',
+                'nominations' => 'Nominasi',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Penyaringan dengan :filters memerlukan :link aktif',
@@ -297,5 +302,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => 'Jumlah dimainkan: :count',
+        'favourites' => 'Jumlah favorit: :count',
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,8 @@ return [
     'top-headers' => [
         'headline' => 'Livestreams',
         'description' => 'Dataen her er hentet fra twitch.tv hvert femte minut baseret på listen over livestreams. Begynd bare at streame løs for at få dig selv på listen! For mere information om, hvordan du kommer i gang, tjek vores livestreaming wikiside ud.',
+
+        'link' => 'wiki-siden omkring livestreaming',
     ],
     'headers' => [
         'regular' => 'Streamer i øjeblikket',

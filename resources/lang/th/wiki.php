@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,9 +33,11 @@ return [
             'refresh' => 'รีเฟรช',
         ],
 
-        'outdated' => [
-            '_' => 'เนื้อหาหน้านี้ที่แปลภาษาแล้วยังไม่ถูกปรับปรุงให้เป็นข้อมูลล่าสุด กรุณาดู :default เพื่อข้อมูลที่แม่นยำกว่านี้ (หากต้องการช่วยเหลือปรับปรุงการแปลภาษาให้ทันสมัยขึ้น คุณสามารถช่วยพวกเราได้)!',
-            'default' => 'ฉบับภาษาอังกฤษ',
+        'translation' => [
+            'legal' => '',
+            'outdated' => '',
+
+            'default' => '',
         ],
     ],
 ];

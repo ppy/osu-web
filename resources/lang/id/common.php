@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => 'Admin',
+        'back_to_previous' => 'Kembali ke posisi sebelumnya',
+        'back_to_top' => 'Kembali ke atas',
         'cancel' => 'Batal',
         'change' => 'ubah',
         'click_to_copy' => 'klik untuk menyalin',
         'click_to_copy_copied' => 'tersalin!',
+        'collapse' => 'tutup',
         'delete' => 'Hapus',
+        'edit' => 'Sunting',
+        'expand' => 'perluas',
         'hide' => 'sembunyikan',
         'permalink' => 'tautan',
         'permalink_copied' => 'tautan tersalin',
@@ -43,12 +49,14 @@ return [
         'reply_reopen' => 'Balas dan Buka Kembali',
         'reply_resolve' => 'Balas dan Tandai Selesai',
         'reset' => 'Atur Ulang',
+        'restore' => 'Pulihkan',
         'save' => 'Simpan',
         'saving' => 'Menyimpan...',
         'search' => 'Cari',
         'see_more' => 'perlihatkan lebih banyak',
         'show' => 'tampilkan',
         'show_more' => 'tampilkan lebih banyak',
+        'show_more_options' => 'tampilkan pilihan lainnya',
         'upload_image' => 'unggah gambar',
     ],
 
@@ -59,9 +67,17 @@ return [
         'hours' => ':count jam',
         'item' => ':count unit',
         'minute_short_unit' => 'menit|menit',
+        'minutes' => ':count menit |:count menit',
         'months' => ':count bulan',
         'second_short_unit' => 'detik|detik',
         'years' => ':count tahun',
+    ],
+
+    'countdown' => [
+        'days' => 'hari',
+        'hours' => 'jam',
+        'minutes' => 'menit',
+        'seconds' => 'detik',
     ],
 
     'datetime' => [

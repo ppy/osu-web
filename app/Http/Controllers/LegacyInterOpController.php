@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,8 +21,12 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\RegenerateBeatmapsetCover;
+use App\Libraries\Session\Store as SessionStore;
+use App\Libraries\UserBestScoresCheck;
+use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\NewsPost;
+use App\Models\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class LegacyInterOpController extends Controller
@@ -59,6 +63,24 @@ class LegacyInterOpController extends Controller
     public function refreshBeatmapsetCache($id)
     {
         Beatmapset::findOrFail($id)->refreshCache();
+
+        return ['success' => true];
+    }
+
+    public function userBestScoresCheck($id)
+    {
+        $user = User::findOrFail($id);
+
+        foreach (Beatmap::MODES as $mode => $_v) {
+            (new UserBestScoresCheck($user))->run($mode);
+        }
+
+        return ['success' => true];
+    }
+
+    public function userSessionsDestroy($id)
+    {
+        SessionStore::destroy($id);
 
         return ['success' => true];
     }

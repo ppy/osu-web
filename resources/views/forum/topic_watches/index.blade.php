@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -35,7 +35,7 @@
                             {{ trans('forum.topic_watches.index.box.total') }}
                         </div>
                         <div class="js-forum-topic-watch--total osu-page-header__status-text">
-                            {{ number_format($counts['total']) }}
+                            {{ i18n_number_format($counts['total']) }}
                         </div>
                     </div>
 
@@ -44,7 +44,7 @@
                             {{ trans('forum.topic_watches.index.box.unread') }}
                         </div>
                         <div class="js-forum-topic-watch--unread osu-page-header__status-text">
-                            {{ number_format($counts['unread']) }}
+                            {{ i18n_number_format($counts['unread']) }}
                         </div>
                     </div>
                 </div>

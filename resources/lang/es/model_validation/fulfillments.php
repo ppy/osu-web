@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'El nombre de usuario actual (:current) no es el mismo nombre de usuario que se está intentando revocar (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'La donación es menor a la mínima necesitada para el regalo de una tag de supporter (:actual > :expected)',
+        'insufficient_paid' => 'La donación es menor a la mínima necesitada para el osu!supporter (:actual > :expected)',
     ],
 ];

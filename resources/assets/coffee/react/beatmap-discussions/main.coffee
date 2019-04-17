@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,15 +16,22 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, h1, p} = ReactDOMFactories
+import { Discussions } from './discussions'
+import { Events } from './events'
+import { Header } from './header'
+import { ModeSwitcher } from './mode-switcher'
+import { NewDiscussion } from './new-discussion'
+import { BackToTop } from 'back-to-top'
+import * as React from 'react'
+import { a, div, h1, p } from 'react-dom-factories'
 el = React.createElement
 
-modeSwitcher = document.getElementsByClassName('js-mode-switcher')
-newDiscussion = document.getElementsByClassName('js-new-discussion')
-
-class BeatmapDiscussions.Main extends React.PureComponent
+export class Main extends React.PureComponent
   constructor: (props) ->
     super props
+
+    @modeSwitcherRef = React.createRef()
+    @newDiscussionRef = React.createRef()
 
     @checkNewTimeoutDefault = 10000
     @checkNewTimeoutMax = 60000
@@ -33,17 +40,19 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @xhr = {}
     @state = JSON.parse(props.container.dataset.beatmapsetDiscussionState ? null)
     @restoredState = @state?
+    # FIXME: update url handler to recognize this instead
+    @focusNewDiscussion = document.location.hash == '#new'
 
     if !@restoredState
       beatmapset = props.initial.beatmapset
-
+      showDeleted = true
       readPostIds = []
 
       for discussion in beatmapset.discussions
         for post in discussion.posts ? []
           readPostIds.push post.id
 
-      @state = {beatmapset, currentUser, readPostIds}
+      @state = {beatmapset, currentUser, readPostIds, showDeleted}
 
     # Current url takes priority over saved state.
     query = @queryFromLocation(@state.beatmapset.discussions)
@@ -59,6 +68,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     $.subscribe 'beatmapsetDiscussions:update.beatmapDiscussions', @update
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
+    $.subscribe 'beatmapDiscussionPost:toggleShowDeleted.beatmapDiscussions', @toggleShowDeleted
 
     $(document).on 'ajax:success.beatmapDiscussions', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
     $(document).on 'click.beatmapDiscussions', '.js-beatmap-discussion--jump', @jumpToClick
@@ -70,6 +80,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
   componentWillUpdate: =>
     @cache = {}
+    @focusNewDiscussion = false
 
 
   componentDidUpdate: =>
@@ -86,7 +97,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
   render: =>
     div className: 'osu-layout osu-layout--full',
-      el BeatmapDiscussions.Header,
+      el Header,
         beatmaps: @groupedBeatmaps()
         beatmapset: @state.beatmapset
         currentBeatmap: @currentBeatmap()
@@ -100,7 +111,8 @@ class BeatmapDiscussions.Main extends React.PureComponent
         selectedUserId: @state.selectedUserId
         users: @users()
 
-      el BeatmapDiscussions.ModeSwitcher,
+      el ModeSwitcher,
+        innerRef: @modeSwitcherRef
         mode: @state.currentMode
         beatmapset: @state.beatmapset
         currentBeatmap: @currentBeatmap()
@@ -110,7 +122,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       if @state.currentMode == 'events'
         div
           className: 'osu-layout__section osu-layout__section--extra'
-          el BeatmapDiscussions.Events,
+          el Events,
             events: @state.beatmapset.events
             users: @users()
             discussions: @discussions()
@@ -118,14 +130,19 @@ class BeatmapDiscussions.Main extends React.PureComponent
       else
         div
           className: 'osu-layout__section osu-layout__section--extra'
-          el BeatmapDiscussions.NewDiscussion,
+          el NewDiscussion,
             beatmapset: @state.beatmapset
             currentUser: @state.currentUser
             currentBeatmap: @currentBeatmap()
             currentDiscussions: @currentDiscussions()
+            innerRef: @newDiscussionRef
             mode: @state.currentMode
+            pinned: @state.pinnedNewDiscussion
+            setPinned: @setPinnedNewDiscussion
+            stickTo: @modeSwitcherRef
+            autoFocus: @focusNewDiscussion
 
-          el BeatmapDiscussions.Discussions,
+          el Discussions,
             beatmapset: @state.beatmapset
             currentBeatmap: @currentBeatmap()
             currentDiscussions: @currentDiscussions()
@@ -133,7 +150,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
             currentUser: @state.currentUser
             mode: @state.currentMode
             readPostIds: @state.readPostIds
+            showDeleted: @state.showDeleted
             users: @users()
+
+      el BackToTop
 
 
   beatmaps: =>
@@ -322,11 +342,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
       $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
 
       target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
-      offset = 0
-      for header in [modeSwitcher, newDiscussion] when header[0]?
-        offset += header[0].getBoundingClientRect().height * -1
+      offsetTop = target.offset().top - @modeSwitcherRef.current.getBoundingClientRect().height
+      offsetTop -= @newDiscussionRef.current.getBoundingClientRect().height if @state.pinnedNewDiscussion
 
-      $(window).stop().scrollTo target, 500, offset: offset
+      $(window).stop().scrollTo window.stickyHeader.scrollOffset(offsetTop), 500
 
     @update null, newState
 
@@ -367,6 +386,14 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
   setCurrentPlaymode: (e, {mode}) =>
     @update e, playmode: mode
+
+
+  setPinnedNewDiscussion: (pinned) =>
+    @setState pinnedNewDiscussion: pinned
+
+
+  toggleShowDeleted: =>
+    @setState showDeleted: !@state.showDeleted
 
 
   update: (_e, options) =>

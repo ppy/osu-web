@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -87,7 +87,7 @@ abstract class Search extends HasSearch implements Queryable
             $query = $this->toArray();
             // some arguments need to be stripped from the body as they're not supported by count.
             $body = $query['body'];
-            foreach (['from', 'size', 'sort', 'timeout', '_source'] as $key) {
+            foreach (['from', 'highlight', 'search_after', 'size', 'sort', 'timeout', '_source'] as $key) {
                 unset($body[$key]);
             }
 
@@ -120,6 +120,27 @@ abstract class Search extends HasSearch implements Queryable
     }
 
     /**
+     * @return array|null
+     */
+    public function getSortCursor()
+    {
+        $last = array_last($this->response()->hits());
+        if ($last !== null && array_key_exists('sort', $last)) {
+            $fields = array_map(function ($sort) {
+                return $sort->field;
+            }, $this->params->sorts);
+
+            $casted = array_map(function ($value) {
+                // stringify all ints since javascript doesn't like big ints.
+                // fortunately the minimum value is PHP_INT_MIN instead of the equivalent double.
+                return is_int($value) ? (string) $value : $value;
+            }, $last['sort']);
+
+            return array_combine($fields, $casted);
+        }
+    }
+
+    /**
      * Returns if the total number of results found is greater than the allowed limit.
      *
      * @return bool
@@ -141,6 +162,16 @@ abstract class Search extends HasSearch implements Queryable
         return $this->response;
     }
 
+    /**
+     * @return $this
+     */
+    public function searchAfter(?array $searchAfter)
+    {
+        $this->params->searchAfter = $searchAfter;
+
+        return $this;
+    }
+
     public function setAggregations(array $aggregations)
     {
         $this->aggregations = $aggregations;
@@ -152,13 +183,18 @@ abstract class Search extends HasSearch implements Queryable
     public function toArray() : array
     {
         $body = [
-            'from' => $this->params->from,
-            'size' => $this->getQuerySize(),
+            'size' => $this->getQuerySize(), // TODO: this probably shouldn't be calculated if search_after is used.
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
             }, $this->params->sorts),
             'timeout' => config('osu.elasticsearch.search_timeout'),
         ];
+
+        if (isset($this->params->searchAfter)) {
+            $body['search_after'] = $this->params->searchAfter;
+        } else {
+            $body['from'] = $this->params->from;
+        }
 
         if (isset($this->highlight)) {
             $body['highlight'] = $this->highlight->toArray();

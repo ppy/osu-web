@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,26 +16,29 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, i, span, p} = ReactDOMFactories
+import { ExtraHeader } from './extra-header'
+import { UserPageEditor } from './user-page-editor'
+import * as React from 'react'
+import { button, div, span, p } from 'react-dom-factories'
 el = React.createElement
 
-class ProfilePage.UserPage extends React.Component
+export class UserPage extends React.Component
   render: =>
     isBlank = @props.userPage.initialRaw.trim() == ''
     div className: 'page-extra page-extra--userpage',
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+      el ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       if !@props.userPage.editing && @props.withEdit && !isBlank
         div className: 'page-extra__actions',
           button
             type: 'button'
-            className: 'btn-circle'
+            title: osu.trans('users.show.page.button')
+            className: 'profile-page-toggle'
             onClick: @editStart
-            span className: 'btn-circle__content',
-              i className: 'fas fa-pencil-alt'
+            span className: 'fas fa-pencil-alt'
 
       if @props.userPage.editing
-        el ProfilePage.UserPageEditor, userPage: @props.userPage
+        el UserPageEditor, userPage: @props.userPage
       else
         div className: 'page-extra__content-overflow-wrapper-outer',
           if @props.withEdit && isBlank
@@ -54,18 +57,18 @@ class ProfilePage.UserPage extends React.Component
       button
         className: 'profile-extra-user-page__new-content   btn-osu btn-osu--lite btn-osu--profile-page-edit'
         onClick: @editStart
-        disabled: !@props.user.is_supporter
+        disabled: !@props.user.has_supported
         osu.trans 'users.show.page.edit_big'
 
       p className: 'profile-extra-user-page__new-content profile-extra-user-page__new-content--icon',
-        i className: 'fas fa-edit'
+        span className: 'fas fa-edit'
 
       p
         className: 'profile-extra-user-page__new-content'
         dangerouslySetInnerHTML:
           __html: osu.trans 'users.show.page.description'
 
-      if !@props.user.is_supporter
+      if !@props.user.has_supported
         p
           className: 'profile-extra-user-page__new-content'
           dangerouslySetInnerHTML:

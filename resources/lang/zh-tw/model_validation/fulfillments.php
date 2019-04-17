@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => '目前的使用者名稱（:current）與要撤銷變更的使用者名稱不一致（:username）',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '讓該使用者成為贊助者所需的贊助金額不足（:actual > :expected）',
+        'insufficient_paid' => '要獲得 osu!supporter 的標籤，你的贊助金額還不夠喔。 (:actual > :expected)',
     ],
 ];

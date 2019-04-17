@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,7 +33,7 @@ return [
         'beatmap_missing' => 'Marcação de tempo é especificada mas beatmap está faltando.',
         'beatmapset_no_hype' => "Beatmap não pode ser hypado.",
         'hype_requires_null_beatmap' => 'Hype deve ser feito na seção Geral (todas as dificuldades).',
-        'invalid_beatmap_id' => 'Dificuldade inválida especificada.',
+        'invalid_beatmap_id' => 'Dificuldade especificada inválida.',
         'invalid_beatmapset_id' => 'Beatmap inválido especificado.',
         'locked' => 'Discussão está trancada.',
 
@@ -51,24 +51,30 @@ return [
         ],
     ],
 
+    'comment' => [
+        'deleted_parent' => 'Não é permitido responder comentários excluídos.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Só pode votar um pedido de recurso.',
-            'not_enough_feature_votes' => 'Sem votos suficientes.',
+            'not_enough_feature_votes' => 'Votos suficientes.',
         ],
 
         'poll_vote' => [
-            'invalid' => 'Opção inválida especificada.',
+            'invalid' => 'Opção especificada inválida.',
         ],
 
         'post' => [
             'beatmapset_post_no_delete' => 'Deletar postagem de metadados de um beatmap não é permitido.',
             'beatmapset_post_no_edit' => 'Editar postagem de metadados de um beatmap não é permitido.',
+            'only_quote' => 'Sua resposta contém apenas uma citação.',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Opção duplicada não é permitida.',
-            'invalid_max_options' => 'Opção por usuário não deve exceder o número de opções disponíveis.',
+            'grace_period_expired' => 'Não é possível editar uma enquete após :limit horas',
+            'invalid_max_options' => 'Opções por usuário não deve exceder o número de opções disponíveis.',
             'minimum_one_selection' => 'É necessário no mínimo uma opção por usuário.',
             'minimum_two_options' => 'É necessário no mínimo duas opções.',
             'too_many_options' => 'Número máximo de opções permitidas excedido.',
@@ -92,6 +98,7 @@ return [
         'username_available_soon' => 'Este nome de usuário estará disponível a qualquer momento!',
         'username_invalid_characters' => 'O nome de usuário contém caracteres inválidos.',
         'username_in_use' => 'Nome de usuário já está em uso!',
+        'username_locked' => 'Nome de usuário já está em uso!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Por favor use underscores ou espaços, não os dois!',
         'username_no_spaces' => "Nome de usuário não pode começar ou terminar com espaços!",
         'username_not_allowed' => 'Nome de usuário não permitido.',
@@ -110,5 +117,9 @@ return [
             ],
             'username_is_same' => 'Este já é seu nome de usuário, bobinho!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "Você não pode se denunciar!",
     ],
 ];

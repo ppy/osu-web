@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,12 +20,17 @@
 
 return [
     'index' => [
+        'none_running' => 'Nu sunt turnee care rulează în acest moment, te rugăm să verifici înapoi mai târziu!',
+        'registration_period' => 'Înscriere: :start la :end',
+
         'header' => [
             'subtitle' => 'O listă de turnee active și oficial recunoscute',
             'title' => 'Turnee comunitare',
         ],
-        'none_running' => 'Nu sunt turnee care rulează în acest moment, te rugăm să verifici înapoi mai târziu!',
-        'registration_period' => 'Înscriere: :start la :end',
+
+        'item' => [
+            'registered' => 'Jucători înregistrați',
+        ],
 
         'state' => [
             'current' => 'Turnee în desfășurare',

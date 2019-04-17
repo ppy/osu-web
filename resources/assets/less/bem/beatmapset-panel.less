@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,7 +19,7 @@
 .beatmapset-panel {
   @top: beatmapset-panel;
   @padding: 10px;
-  @hover-transition-duration: 120ms;
+  @hover-transition-duration: 150ms;
   .own-layer();
   color: @text-color;
 
@@ -121,7 +121,7 @@
   &__panel {
     .own-layer();
     .default-box-shadow();
-    .default-border-radius();
+    border-radius: @border-radius-base + 2px @border-radius-base + 2px @border-radius-base @border-radius-base;
 
     width: 100%;
     background: #fff;
@@ -167,23 +167,12 @@
     display: flex;
   }
 
-  &__status {
-    background: fade(black, 50%);
-    padding: 0 15px;
-    border-radius: 14px;
-    font-size: 12px;
-    line-height: 28px;
-    font-style: normal;
-    font-weight: 600;
-    text-transform: uppercase;
-
-    .fade-element(@hover-transition-duration);
-  }
-
   &__status-container {
     display: flex;
     position: absolute;
     margin: 5px;
+
+    .fade-element(@hover-transition-duration);
 
     .@{top}:hover & {
       opacity: 0;
@@ -213,7 +202,7 @@
     position: absolute;
     left: @padding;
     bottom: @padding;
-    width: calc(100% ~'-' (@padding * 2));
+    width: calc(100% - (@padding * 2));
   }
 
   &__video-icon {
@@ -223,7 +212,5 @@
     padding: 0px 5px;
     margin-right: 5px;
     border-radius: 14px;
-
-    .fade-element(@hover-transition-duration);
   }
 }

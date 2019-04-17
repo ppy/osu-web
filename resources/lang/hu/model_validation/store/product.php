@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 return [
     'insufficient_stock' => 'Ebből a tárgyból nem maradt elegendő!',
+    'must_separate' => 'Ezt a tárgyat a többitől elkülönítve kell kifizetni',
     'not_available' => 'Ez a tárgy nem elérhető.',
     'too_many' => 'Csak :count darabot tudsz rendelni ebből a tárgyból.',
 ];

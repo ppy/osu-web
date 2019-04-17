@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Sortiert nach:',
-            'created_at' => 'erstellungsdatum',
-            'timeline' => 'timeline',
-            'updated_at' => 'letzter aktualisierung',
+            'created_at' => 'Erstellungszeitpunkt',
+            'timeline' => 'Timeline',
+            'updated_at' => 'Letzte Aktualisierung',
         ],
 
         'stats' => [
@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Löschen',
+        'delete_own_confirm' => 'Bist du sicher? Die Beatmap wird gelöscht und du wirst auf dein Profil zurückgeleitet.',
+        'delete_other_confirm' => 'Bist du sicher? Die Beatmap wird gelöscht und du wirst auf das Profil zurückgeleitet.',
         'disqualification_prompt' => 'Grund für die Disqualifizierung?',
         'disqualified_at' => 'Disqualifiziert :time_ago (:reason).',
         'disqualified_no_reason' => 'kein grund angegeben',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Bist du dir sicher? Der Nominierungsprozess wird durch das neue Problem zurückgesetzt.',
+            'disqualify' => 'Bist du sicher? Das wird die Beatmap von der Qualifiezierung entfernen und den Nominierungsprozess zurücksetzen.',
         ],
     ],
 
@@ -190,15 +194,16 @@ return [
                 'played' => 'Gespielt',
             ],
             'sorting' => [
-                'title' => 'titel',
-                'artist' => 'künstler',
-                'difficulty' => 'schwierigkeit',
-                'updated' => 'zuletzt aktualisiert',
-                'ranked' => 'ranked',
-                'rating' => 'bewertung',
-                'plays' => 'plays',
-                'relevance' => 'relevanz',
-                'nominations' => 'nominierungen',
+                'title' => 'Titel',
+                'artist' => 'Künstler',
+                'difficulty' => 'Schwierigkeit',
+                'favourites' => 'Favoriten',
+                'updated' => 'Zuletzt aktualisiert',
+                'ranked' => 'Ranked',
+                'rating' => 'Bewertung',
+                'plays' => 'Plays',
+                'relevance' => 'Relevanz',
+                'nominations' => 'Nominierungen',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Du benötigst einen aktiven :link, um nach :filters zu filtern',
@@ -297,5 +302,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => 'Anzahl der Spiele: :count',
+        'favourites' => 'Favoriten: :count',
     ],
 ];

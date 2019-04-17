@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -89,6 +89,8 @@ return [
         'paid_on' => 'Order placed :date',
 
         'invoice' => 'View Invoice',
+        'no_orders' => 'No orders to view.',
+        'resume' => 'Resume Checkout',
 
         'item' => [
             'display_name' => [
@@ -113,7 +115,7 @@ return [
             'delivered' => 'Delivered',
             'paid' => 'Paid',
             'processing' => 'Pending confirmation',
-            'shipped' => 'In Transit',
+            'shipped' => 'Shipped',
         ],
     ],
 

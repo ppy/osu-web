@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,39 +23,39 @@ return [
     'generic' => 'Fejlrettelser og små forbedringer.',
 
     'build' => [
-        'title' => '',
+        'title' => 'ændringer i :version',
     ],
 
     'builds' => [
-        'users_online' => '',
+        'users_online' => ':count_delimited bruger online|:count_delimited brugere online',
     ],
 
     'entry' => [
-        'by' => '',
+        'by' => 'af :user',
     ],
 
     'index' => [
         'page_title' => [
-            '_' => '',
-            '_from' => '',
-            '_from_to' => '',
-            '_stream' => '',
-            '_stream_from' => '',
-            '_stream_from_to' => '',
-            '_stream_to' => '',
-            '_to' => '',
+            '_' => 'udgivelses noter',
+            '_from' => 'ændringer siden :from',
+            '_from_to' => 'ændringer mellem :from og :to',
+            '_stream' => 'ændringer i :stream',
+            '_stream_from' => 'ændringer i :stream siden :from',
+            '_stream_from_to' => 'ændringer i :stream mellem :from og :to',
+            '_stream_to' => 'ændringer i :stream op til :to',
+            '_to' => 'ændringer op til :to',
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Ændringsoversigt :info',
+            'info' => 'Listning',
         ],
     ],
 
     'support' => [
         'heading' => 'Elsker du denne opdatering?',
-        'text_1' => '',
-        'text_1_link' => '',
+        'text_1' => 'Støt yderligere udvikling af osu! og bliv en :link i dag!',
+        'text_1_link' => 'osu! supporter',
         'text_2' => 'Ikke blot vil du hjælpe hastighed udvikling, men du vil også få nogle ekstra funktioner og tilpasninger!',
     ],
 ];

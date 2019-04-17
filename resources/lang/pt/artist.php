@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,11 +19,11 @@
  */
 
 return [
-    'page_description' => 'Featured artists no osu!',
-    'title' => 'Featured Artists',
+    'page_description' => 'Artistas destacados no osu!',
+    'title' => 'Artistas Destacados',
 
     'admin' => [
-        'hidden' => 'O ARTISTA ESTÁ ACTUALMENTE OCULTO',
+        'hidden' => 'O ARTISTA ESTÁ ATUALMENTE OCULTO',
     ],
 
     'beatmaps' => [
@@ -33,7 +33,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Featured artists são artistas dos quais estamos a trabalhar em colaboração com o objectivo de trazer musicas novas e originais para o osu!. Estes artistas e uma selecção de faixas deles foram escolhidas pela equipa do osu! como sendo fantásticas e adequadas para mapeamento. Alguns destes featured artists também criaram faixas novas exclusivas para usar no osu!.<br><br>Todas as faixas nesta secção são fornecidas como ficheiros pré-temporizados .osz e foram oficialmente licenciados para uso no osu! e conteúdo relacionado com o osu.',
+        'description' => 'Artistas destacados são artistas com os quais estamos a trabalhar em colaboração com o objetivo de trazer musicas novas e originais para o osu!. Estes artistas e uma seleção de faixas deles foram escolhidas pela equipa do osu! como sendo fantásticas e adequadas para mapeamento. Alguns destes artistas destacados também criaram faixas novas exclusivas para usar no osu!.<br><br>Todas as faixas nesta secção são fornecidas como ficheiros pré-temporizados .osz e foram oficialmente licenciados para uso no osu! e conteúdo relacionado com o osu.',
     ],
 
     'links' => [
@@ -43,7 +43,14 @@ return [
 
     'songs' => [
         '_' => 'Canções',
-        'count' => ':count canções|:count canções',
+        'count' => ':count canção|:count canções',
         'exclusive' => 'exclusivo osu!',
+    ],
+
+    'tracklist' => [
+        'title' => 'título',
+        'length' => 'duração',
+        'bpm' => 'bpm',
+        'genre' => 'género',
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,31 +24,31 @@ return [
             'important' => 'ダウンロード前に必ず読んでください',
             'instruction' => [
                 '_' => "インストールするには：ダウンロードが完了次第.rarファイルをosu!のSongsフォルダに中身を解凍してください。
-                    osu!が次回譜面の読み込みを開始する時に圧縮されている譜面ファイル(zip/osz)を自動的に取り込みます。
-                    :scaryにzip/oszファイルを手動で解凍しないでください。譜面の取り込みに失敗して正常に譜面が表示されなくなります。",
-                'scary' => '絶対',
+                    osu!が次回ビートマップの読み込みを開始する時に圧縮されているビートマップファイル（zip/osz）を自動的に取り込みます。
+                    :scaryにzip/oszファイルを手動で解凍しないでください。ビートマップの取り込みに失敗して正常にビートマップが表示されなくなります。",
+                'scary' => '絶対に',
             ],
             'note' => [
-                '_' => ':scary作成日時が古い譜面はクオリティが低い傾向があります。',
-                'scary' => '最新の譜面を優先してダウンロードしてください。',
+                '_' => ':scary作成日時が古いビートマップはクオリティが低い可能性があります。',
+                'scary' => '最新のビートマップを優先してダウンロードしてください。',
             ],
         ],
-        'title' => '譜面パック',
-        'description' => '共通のテーマを有する譜面を寄せ集めたパックです。',
+        'title' => 'ビートマップパック',
+        'description' => '共通のテーマを有するビートマップを集めたパックです。',
     ],
 
     'show' => [
         'download' => 'ダウンロード',
         'item' => [
-            'cleared' => 'クリア済み',
-            'not_cleared' => '未クリア',
+            'cleared' => '消去しました',
+            'not_cleared' => '未消去',
         ],
     ],
 
     'mode' => [
         'artist' => 'アーティスト/アルバム',
-        'chart' => 'チャート',
-        'standard' => '基本パック',
+        'chart' => 'スポットライト',
+        'standard' => 'スタンダードパック',
         'theme' => 'テーマ',
     ],
 

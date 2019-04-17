@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user's Modding History",
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Recently started discussions',
@@ -48,13 +49,13 @@ return [
     'blocks' => [
         'banner_text' => 'You have blocked this user.',
         'blocked_count' => 'blocked users (:count)',
-        'hide_profile' => 'hide profile',
+        'hide_profile' => 'Hide profile',
         'not_blocked' => 'That user is not blocked.',
-        'show_profile' => 'show profile',
+        'show_profile' => 'Show profile',
         'too_many' => 'Block limit reached.',
         'button' => [
-            'block' => 'block',
-            'unblock' => 'unblock',
+            'block' => 'Block',
+            'unblock' => 'Unblock',
         ],
     ],
 
@@ -98,7 +99,7 @@ return [
     ],
     'logout_confirm' => 'Are you sure you want to sign out? :(',
     'report' => [
-        'button_text' => 'report',
+        'button_text' => 'Report',
         'comments' => 'Additional Comments',
         'placeholder' => 'Please provide any information you believe could be useful.',
         'reason' => 'Reason',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
                     'restriction_info' => "Upload available for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> only",
-                    'size_info' => 'Cover size should be 2000x700',
+                    'size_info' => 'Cover size should be 2800x620',
                     'too_large' => 'Uploaded file is too large.',
                     'unsupported_format' => 'Unsupported format.',
                 ],
@@ -161,31 +162,33 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 follower|:count followers',
+            'followers' => ':count_delimited follower|:count_delimited followers',
             'unranked' => 'No recent plays',
 
             'achievements' => [
-                'title' => 'Achievements',
                 'achieved-on' => 'Achieved on :date',
+                'locked' => 'Locked',
+                'title' => 'Achievements',
             ],
             'beatmaps' => [
+                'by_artist' => 'by :artist',
                 'none' => 'None... yet.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Favourite Beatmaps (:count)',
+                    'title' => 'Favourite Beatmaps',
                 ],
                 'graveyard' => [
-                    'title' => 'Graveyarded Beatmaps (:count)',
+                    'title' => 'Graveyarded Beatmaps',
                 ],
                 'loved' => [
-                    'title' => 'Loved Beatmaps (:count)',
+                    'title' => 'Loved Beatmaps',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                    'title' => 'Ranked & Approved Beatmaps',
                 ],
                 'unranked' => [
-                    'title' => 'Pending Beatmaps (:count)',
+                    'title' => 'Pending Beatmaps',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Play History',
+                    'count_label' => 'Plays',
                 ],
                 'most_played' => [
                     'count' => 'times played',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Replays Watched History',
+                    'count_label' => 'Replays Watched',
                 ],
             ],
             'kudosu' => [
@@ -259,6 +264,7 @@ return [
             ],
             'medals' => [
                 'empty' => "This user hasn't gotten any yet. ;_;",
+                'recent' => 'Latest',
                 'title' => 'Medals',
             ],
             'recent_activity' => [
@@ -268,9 +274,8 @@ return [
                 'download_replay' => 'Download Replay',
                 'empty' => 'No awesome performance records yet. :(',
                 'not_ranked' => 'Only ranked beatmaps give out pp.',
-                'pp' => ':amountpp',
+                'pp_weight' => 'weighted :percentage',
                 'title' => 'Ranks',
-                'weighted_pp' => 'weighted: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Best Performance',
@@ -301,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => 'Player :info',
+            'info' => 'Info',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Interests',
@@ -319,6 +330,7 @@ return [
             'title' => 'User not found! ;_;',
         ],
         'page' => [
+            'button' => 'Edit profile page',
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
@@ -326,16 +338,20 @@ return [
         ],
         'post_count' => [
             '_' => 'Contributed :link',
-            'count' => ':count forum post|:count forum posts',
+            'count' => ':count_delimited forum post|:count_delimited forum posts',
         ],
         'rank' => [
             'country' => 'Country rank for :mode',
+            'country_simple' => 'Country Ranking',
             'global' => 'Global rank for :mode',
+            'global_simple' => 'Global Ranking',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Accuracy',
             'level' => 'Level :level',
+            'level_progress' => 'Progress to next level',
             'maximum_combo' => 'Maximum Combo',
+            'medals' => 'Medals',
             'play_count' => 'Play Count',
             'play_time' => 'Total Play Time',
             'ranked_score' => 'Ranked Score',

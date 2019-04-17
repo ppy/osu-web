@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,8 +26,15 @@ return [
     'voting' => [
         'over' => 'Głosowanie dla tego konkursu zostało zakończone',
         'login_required' => 'Zaloguj się, aby zagłosować!',
+
         'best_of' => [
             'none_played' => "Wygląda na to, że żadna z beatmap kwalifikujących się do tego konkursu nie została przez ciebie zagrana.",
+        ],
+
+        'button' => [
+            'add' => 'Zagłosuj',
+            'remove' => 'Cofnij głos',
+            'used_up' => 'Nie masz już więcej głosów',
         ],
     ],
     'entry' => [
@@ -38,6 +45,7 @@ return [
         'over' => 'Dziękujemy za zgłoszenia! Przesyłanie prac zakończyło się i wkrótce rozpocznie się głosowanie.',
         'limit_reached' => 'Osiągnięto limit zgłoszeń dla tego konkursu',
         'drop_here' => 'Tutaj umieść swoje zgłoszenie',
+        'download' => 'Pobierz plik .osz',
         'wrong_type' => [
             'art' => 'Jedynie pliki o rozszerzeniach .jpg czy .png są dozwolone w tym konkursie.',
             'beatmap' => 'Jedynie pliki o rozszerzeniu .osu są dozwolone w tym konkursie.',
@@ -50,7 +58,8 @@ return [
     ],
     'vote' => [
         'list' => 'głosy',
-        'count' => '1 głos|:count głosy|:count głosów',
+        'count' => ':count_delimited głos|:count_delimited głosy|:count_delimited głosów',
+        'points' => ':count_delimited punkt|:count_delimited punkty|:count_delimited punktów',
     ],
     'dates' => [
         'ended' => 'Zakończony :date',

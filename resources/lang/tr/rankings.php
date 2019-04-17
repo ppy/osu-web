@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,12 +20,21 @@
 
 return [
     'header' => ':type Sıralaması',
+
     'type' => [
         'performance' => 'Performans',
         'charts' => 'Öne Çıkanlar',
         'score' => 'Skor',
         'country' => 'Ülke',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Bitiş Tarihi',
+        'map_count' => 'Map Sayısı',
+        'participants' => 'Katılımcılar',
+        'start_date' => 'Başlangıç Tarihi',
+    ],
+
     'stat' => [
         'accuracy' => 'İsabetlilik',
         'active_users' => 'Aktif Kullanıcılar',

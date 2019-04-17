@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,13 +23,13 @@ return [
     'title' => 'Препоръчани изпълнители',
 
     'admin' => [
-        'hidden' => 'ИЗПЪЛНИТЕЛЯТ Е СКРИТ В МОМЕНТА',
+        'hidden' => 'ИЗПЪЛНИТЕЛЯТ Е В МОМЕНТА СКРИТ',
     ],
 
     'beatmaps' => [
         '_' => 'Бийтмапове',
         'download' => 'Изтегли Бийтмап Шаблон',
-        'download-na' => 'Няма Бийтмап Шаблон все още',
+        'download-na' => 'Все още няма бийтмап шаблон',
     ],
 
     'index' => [
@@ -44,6 +44,13 @@ return [
     'songs' => [
         '_' => 'Песни',
         'count' => ':count песен|:count песни',
-        'exclusive' => 'osu! ексклузивен',
+        'exclusive' => 'ексклузивно за osu!',
+    ],
+
+    'tracklist' => [
+        'title' => 'заглавие',
+        'length' => 'времетраене',
+        'bpm' => 'bpm',
+        'genre' => 'жанр',
     ],
 ];

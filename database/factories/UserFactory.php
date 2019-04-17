@@ -25,7 +25,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     // Generate a random unique ID
     $userid = null;
     while ($userid === null) {
-        if (!in_array($uid = rand(1, 600000), $existing_ids, true)) {
+        if (!in_array($uid = rand(2, 600000), $existing_ids, true)) {
             $userid = $uid;
         }
     }
@@ -40,10 +40,16 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         $country_ac = '';
     }
 
+    // cache password hash to speed up tests (by not repeatedly calculating the same hash over and over)
+    static $password = null;
+    if ($password === null) {
+        $password = password_hash(md5('password'), PASSWORD_BCRYPT);
+    }
+
     return [
         'username' => $username,
         'user_id' => $userid,
-        'user_password' => password_hash(md5('password'), PASSWORD_BCRYPT),
+        'user_password' => $password,
         'user_email' => $faker->safeEmail,
         'user_lastvisit' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now
         'user_posts' => rand(1, 500),

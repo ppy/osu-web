@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'Beatmap Seti Etkinlikleri',
+
+        'form' => [
+            'period' => 'Zaman Periyodu',
+            'types' => 'Türler',
+        ],
     ],
 
     'item' => [
         'content' => 'İçerik',
         'discussion_deleted' => '[silindi]',
         'type' => 'Tür',
+    ],
+
+    'type' => [
+        'approve' => 'Onay',
+        'discussion_delete' => 'Tartışma silindi',
+        'discussion_post_delete' => 'Tartışma yanıtı silme',
+        'discussion_post_restore' => 'Tartışma yanıtı geri getirme',
+        'discussion_restore' => 'Tartışma geri getirme',
+        'disqualify' => 'Diskalifiye',
+        'issue_reopen' => 'Tekrar açılan tartışmalar',
+        'issue_resolve' => 'Tartışma çözümü',
+        'kudosu_allow' => 'Kudosu avansı',
+        'kudosu_deny' => 'Kudosu reddi',
+        'kudosu_gain' => 'Kudosu kazancı',
+        'kudosu_lost' => 'Kudosu kaybı',
+        'kudosu_recalculate' => 'Kudosu tekrar hesaplama',
+        'love' => 'Love',
+        'nominate' => 'Adaylık',
+        'nomination_reset' => 'Adaylık Sıfırlama',
+        'qualify' => 'Adaylık',
+        'rank' => 'Sıralama',
     ],
 ];

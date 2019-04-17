@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -15,6 +15,8 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
+# TODO: migrate to store.ts.
 
 import { StorePaypal } from 'store-paypal'
 import { StoreXsolla } from 'store-xsolla'
@@ -36,8 +38,7 @@ export class StoreCheckout
         when 'xsolla' then init['xsolla'] = StoreXsolla.promiseInit(orderNumber)
 
     $(@CHECKOUT_SELECTOR).on 'click.checkout', (event) =>
-      provider = event.target.dataset.provider
-      orderId = event.target.dataset.orderId
+      { orderId, provider } = event.target.dataset
       # sanity
       return unless provider?
       LoadingOverlay.show()
@@ -51,17 +52,18 @@ export class StoreCheckout
 
 
   @startPayment: (params) ->
-    switch params.provider
+    { orderId, provider, url } = params
+    switch provider
       when 'centili'
         new Promise (resolve) ->
-          window.location = params.url
+          window.location.href = url
 
       when 'free'
-        window.osu.promisify $.post(laroute.route('store.checkout.store', orderId: params.orderId, completed: '1'))
+        window.osu.promisify $.post(laroute.route('store.checkout.store', { orderId, provider }))
 
       when 'paypal'
-        StorePaypal.fetchApprovalLink(params.orderId).then (link) ->
-          window.location = link
+        StorePaypal.fetchApprovalLink(orderId).then (link) ->
+          window.location.href = link
 
       when 'xsolla'
         new Promise (resolve) ->

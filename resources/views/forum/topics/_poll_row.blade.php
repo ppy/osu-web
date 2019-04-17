@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -21,8 +21,8 @@
 ?>
 
 <tr class="forum-poll-row {{ $pollOption['voted_by_user'] ? 'forum-poll-row--voted' : '' }}">
-    <td class="forum-poll-row__column forum-poll-row__column--option-text">
-        <label class="forum-poll-row__option-text-container">
+    <td class="forum-poll-row__column">
+        <label class="forum-poll-row__checkbox-container">
             @if (priv_check('ForumTopicVote', $topic)->can())
                 <div class="osu-checkbox">
                     <input
@@ -38,25 +38,29 @@
                     </span>
                 </div>
             @endif
-
-            <span class="forum-poll-row__option-text">
-                {!! $pollOption['textHTML'] !!}
-            </span>
         </label>
     </td>
 
     <td class="forum-poll-row__column forum-poll-row__column--bar">
         <div class="bar bar--forum-poll {{ $pollOption['voted_by_user'] ? 'bar--forum-poll-voted' : '' }}">
-            <div class="bar__fill" style="width: {{ $percentage }}">
+            <div
+                class="bar__fill"
+                style="width: {{ $canViewResults ? $percentage : '100%' }}"
+            >
+            </div>
+            <div class="forum-poll-row__option-text">
+                {!! $pollOption['textHTML'] !!}
             </div>
         </div>
     </td>
 
-    <td class="forum-poll-row__column forum-poll-row__column--percentage">
-        {{ $percentage }}
-    </td>
+    @if ($canViewResults)
+        <td class="forum-poll-row__column forum-poll-row__column--percentage">
+            {{ $percentage }}
+        </td>
 
-    <td class="forum-poll-row__column">
-        {{ $pollOption['total'] }}
-    </td>
+        <td class="forum-poll-row__column">
+            {{ $pollOption['total'] }}
+        </td>
+    @endif
 </tr>

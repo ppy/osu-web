@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => '',
+        'back_to_previous' => '',
+        'back_to_top' => '',
         'cancel' => 'Avbryt',
         'change' => 'ändra',
         'click_to_copy' => 'klicka för att kopiera till urklipp',
         'click_to_copy_copied' => 'kopierad till urklipp!',
+        'collapse' => '',
         'delete' => 'Radera',
+        'edit' => '',
+        'expand' => '',
         'hide' => 'dölj',
         'permalink' => 'permalänk',
         'permalink_copied' => 'länk kopierad',
@@ -43,12 +49,14 @@ return [
         'reply_reopen' => 'Svara och Öppna Igen',
         'reply_resolve' => 'Svara och Lös',
         'reset' => 'Återställ',
+        'restore' => '',
         'save' => 'Spara',
         'saving' => 'Sparar...',
         'search' => 'Sök',
         'see_more' => 'se mer',
         'show' => 'visa',
         'show_more' => 'visa mer',
+        'show_more_options' => '',
         'upload_image' => 'ladda upp bild',
     ],
 
@@ -59,9 +67,17 @@ return [
         'hours' => ':count timme|:count timmar',
         'item' => ':count enhet|:count enheter',
         'minute_short_unit' => 'm|m',
+        'minutes' => '',
         'months' => ':count månad|:count månader',
         'second_short_unit' => 's|s',
         'years' => ':count år|:count år',
+    ],
+
+    'countdown' => [
+        'days' => '',
+        'hours' => '',
+        'minutes' => '',
+        'seconds' => '',
     ],
 
     'datetime' => [

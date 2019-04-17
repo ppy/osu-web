@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -31,14 +31,14 @@ return [
         'email' => [
             'current' => 'Aktuelle E-Mail Adresse',
             'new' => 'Neue E-Mail',
-            'new_confirmation' => 'e-mail bestätigen',
+            'new_confirmation' => 'E-Mail bestätigen',
             'title' => 'E-Mail',
         ],
 
         'password' => [
             'current' => 'aktuelles passwort',
             'new' => 'neues passwort',
-            'new_confirmation' => 'passwort bestätigen',
+            'new_confirmation' => 'Passwort bestätigen',
             'title' => 'Passwort',
         ],
 
@@ -47,7 +47,7 @@ return [
 
             'user' => [
                 'user_from' => 'aktueller standort',
-                'user_interests' => 'interessen',
+                'user_interests' => 'Interessen',
                 'user_msnm' => 'skype',
                 'user_occ' => 'beschäftigung',
                 'user_twitter' => 'twitter',
@@ -74,14 +74,24 @@ return [
 
     'playstyles' => [
         'title' => 'Spielstil',
-        'mouse' => 'maus',
-        'keyboard' => 'tastatur',
-        'tablet' => 'tablet',
+        'mouse' => 'Maus',
+        'keyboard' => 'Tastatur',
+        'tablet' => 'Tablet',
         'touch' => 'touch',
     ],
 
     'privacy' => [
         'title' => 'Privatsphäre',
         'friends_only' => 'Blockiere Nachrichten von Benutzern, die nicht auf deiner Freundesliste sind',
+        'hide_online' => 'Online-Status verstecken',
+    ],
+
+    'security' => [
+        'current_session' => 'Aktuell',
+        'end_session' => 'Sitzung beenden',
+        'end_session_confirmation' => 'Das wird deine Sitzung auf diesem Gerät sofort beenden. Bist du sicher?',
+        'last_active' => 'Zuletzt aktiv:',
+        'title' => 'Sicherheit',
+        'web_sessions' => 'Sitzungen',
     ],
 ];

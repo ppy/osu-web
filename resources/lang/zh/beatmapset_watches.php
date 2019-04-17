@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -28,12 +28,12 @@ return [
 
     'index' => [
         'description' => '这里是你关注的谱面，你会在它们更新或者有新讨论的时候收到通知。',
-        'title_compact' => '摸图',
-        'title_main' => '摸图',
+        'title_compact' => '谱面关注列表',
+        'title_main' => '谱面关注列表',
 
         'table' => [
             'empty' => '没有正在关注的谱面',
-            'open_issues' => '打开的问题',
+            'open_issues' => '待解决的问题',
             'state' => '状态',
             'title' => '标题',
         ],

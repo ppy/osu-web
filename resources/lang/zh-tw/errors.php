@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,8 +34,8 @@ return [
         'invalid_mode' => '指定的遊戲模式無效。',
         'standard_converts_only' => '此遊戲模式下的圖譜難度尚未有分數。',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => '您收藏的圖譜已達上限，請取消一張再試。',
+    'checkout' => [
+        'generic' => '處理您的訂單時發生錯誤。',
     ],
     'logged_out' => '您已登出，請登入後再試。',
     'supporter_only' => '您需要成為 osu!贊助者才能使用此功能 。',

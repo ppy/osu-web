@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,7 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, h1, p, span} = ReactDOMFactories
+import { Build } from 'build'
+import { ChangelogHeaderStreams } from 'changelog-header-streams'
+import * as React from 'react'
+import { button, div, h1, p, span } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
 el = React.createElement
 
 groupChangelogBuilds = (builds) ->
@@ -26,7 +30,7 @@ groupChangelogBuilds = (builds) ->
     build.created_at.substr(0, 10)
 
 
-class ChangelogIndex.Main extends React.PureComponent
+export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -69,7 +73,7 @@ class ChangelogIndex.Main extends React.PureComponent
           callback: @showMore
           hasMore: @state.hasMore
           loading: @state.loading
-          modifiers: ['changelog-index']
+          modifiers: ['t-greyviolet-darker', 'changelog-index']
 
 
   renderHeaderTabs: =>
@@ -81,7 +85,7 @@ class ChangelogIndex.Main extends React.PureComponent
 
   renderHeaderTitle: =>
     div className: 'osu-page-header-v3 osu-page-header-v3--changelog',
-      div className: 'osu-page-header-v3__title js-nav2--hidden-on-menu-access',
+      div className: 'osu-page-header-v3__title',
         div className: 'osu-page-header-v3__title-icon',
           div className: 'osu-page-header-v3__icon'
         h1

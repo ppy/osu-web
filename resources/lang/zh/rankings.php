@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,12 +20,21 @@
 
 return [
     'header' => ':type 排名',
+
     'type' => [
         'performance' => '表现',
         'charts' => '月赛',
         'score' => '总分',
         'country' => '国家',
     ],
+
+    'spotlight' => [
+        'end_date' => '截止日期',
+        'map_count' => '谱面数量',
+        'participants' => '参与人数',
+        'start_date' => '开始日期',
+    ],
+
     'stat' => [
         'accuracy' => '准确率',
         'active_users' => '活跃用户',

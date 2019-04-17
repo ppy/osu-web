@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'Beatmapset händelser',
+
+        'form' => [
+            'period' => '',
+            'types' => '',
+        ],
     ],
 
     'item' => [
         'content' => 'Innehåll',
         'discussion_deleted' => '[raderad]',
         'type' => 'Typ',
+    ],
+
+    'type' => [
+        'approve' => '',
+        'discussion_delete' => '',
+        'discussion_post_delete' => '',
+        'discussion_post_restore' => '',
+        'discussion_restore' => '',
+        'disqualify' => '',
+        'issue_reopen' => '',
+        'issue_resolve' => '',
+        'kudosu_allow' => '',
+        'kudosu_deny' => '',
+        'kudosu_gain' => '',
+        'kudosu_lost' => '',
+        'kudosu_recalculate' => '',
+        'love' => '',
+        'nominate' => '',
+        'nomination_reset' => '',
+        'qualify' => '',
+        'rank' => '',
     ],
 ];

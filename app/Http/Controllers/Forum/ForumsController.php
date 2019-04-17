@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,6 +21,7 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Models\Forum\Forum;
+use App\Models\Forum\Topic;
 use App\Models\Forum\TopicTrack;
 use App\Transformers\Forum\ForumCoverTransformer;
 use Auth;
@@ -54,6 +55,22 @@ class ForumsController extends Controller
         return view('forum.forums.index', compact('forums', 'lastTopics'));
     }
 
+    public function markAsRead()
+    {
+        if (Auth::check()) {
+            $forumId = get_int(request('forum_id'));
+            if ($forumId === null) {
+                Forum::markAllAsRead(Auth::user());
+            } else {
+                $forum = Forum::findOrFail($forumId);
+                priv_check('ForumView', $forum)->ensureCan();
+                $forum->markAsRead(Auth::user());
+            }
+        }
+
+        return js_view('layout.ujs-reload');
+    }
+
     public function search()
     {
         $topicId = Request::input('topic_id');
@@ -74,7 +91,7 @@ class ForumsController extends Controller
         $forum = Forum::with('subforums.subforums')->findOrFail($id);
         $lastTopics = Forum::lastTopics($forum);
 
-        $sort = explode('_', Request::input('sort'));
+        $sort = Request::input('sort') ?? Topic::DEFAULT_SORT;
         $withReplies = Request::input('with_replies', '');
 
         priv_check('ForumView', $forum)->ensureCan();
@@ -86,11 +103,30 @@ class ForumsController extends Controller
 
         $showDeleted = priv_check('ForumModerate', $forum)->can();
 
-        $pinnedTopics = $forum->topics()->pinned()->showDeleted($showDeleted)->orderBy('topic_type', 'desc')->recent()->get();
-        $topics = $forum->topics()->normal()->showDeleted($showDeleted)->recent(compact('sort', 'withReplies'))->paginate(30);
+        $pinnedTopics = $forum->topics()
+            ->with('forum')
+            ->pinned()
+            ->showDeleted($showDeleted)
+            ->orderBy('topic_type', 'desc')
+            ->recent()
+            ->get();
+        $topics = $forum->topics()
+            ->with('forum')
+            ->normal()
+            ->showDeleted($showDeleted)
+            ->recent(compact('sort', 'withReplies'))
+            ->paginate(30);
 
         $topicReadStatus = TopicTrack::readStatus(Auth::user(), $pinnedTopics, $topics);
 
-        return view('forum.forums.show', compact('forum', 'topics', 'pinnedTopics', 'topicReadStatus', 'cover', 'lastTopics'));
+        return view('forum.forums.show', compact(
+            'cover',
+            'forum',
+            'lastTopics',
+            'pinnedTopics',
+            'sort',
+            'topicReadStatus',
+            'topics'
+        ));
     }
 }

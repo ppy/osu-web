@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -28,22 +28,29 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmap',
-        'download' => 'Scarica Template della Mappa',
+        'download' => 'Scarica il Template della Mappa',
         'download-na' => 'Template della Mappa non ancora disponibile',
     ],
 
     'index' => [
-        'description' => 'Gli artisti in primo piano sono artisti con i quali stiamo collaborando con lo scopo di portare musica nuova ed originale su osu!. Questi artisti e alcuni dei loro brani sono stati scelti dal team di osu! per essere adatti e sfiziosi per il mapping. Alcuni di questi artisti in primo piano hanno creato inoltre nuovi brani esclusivi per osu!. <br><br>Tutti i brani in questa sezione vengono forniti come file .osz prefatti e sono stati ufficialmente autorizzati per essere utilizzati su osu! e tutto ciò che ne concerne.',
+        'description' => 'Gli artisti in primo piano sono artisti con i quali stiamo collaborando con lo scopo di portare musica nuova ed originale su osu!. Questi artisti e alcuni dei loro brani sono stati scelti dal team di osu! per essere adatti e sfiziosi per il mapping. Alcuni di questi artisti in primo piano hanno creato inoltre nuovi brani esclusivi per osu!. <br><br>Tutti i brani in questa sezione vengono forniti come file .osz già a tempo e sono stati ufficialmente autorizzati per essere utilizzati su osu! e tutto ciò che ne concerne.',
     ],
 
     'links' => [
-        'osu' => 'osu! profilo',
+        'osu' => 'Profilo di osu!',
         'site' => 'Sito Ufficiale',
     ],
 
     'songs' => [
-        '_' => 'Brani',
-        'count' => ':count brano |:count brani',
-        'exclusive' => 'osu! esclusiva',
+        '_' => 'Canzoni',
+        'count' => ':count canzone |:count canzoni',
+        'exclusive' => 'Esclusiva di osu!',
+    ],
+
+    'tracklist' => [
+        'title' => 'titolo',
+        'length' => 'durata',
+        'bpm' => 'bpm',
+        'genre' => 'genere',
     ],
 ];

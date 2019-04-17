@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -92,7 +92,7 @@ class PaypalController extends Controller
 
         $order = Order::where('user_id', Auth::user()->user_id)->processing()->find($orderId);
         if ($order) {
-            (new OrderCheckout($order, 'paypal'))->failCheckout();
+            (new OrderCheckout($order, Order::PROVIDER_PAYPAL))->failCheckout();
         }
 
         return $this->setAndRedirectCheckoutError($order, trans('store.checkout.declined'));

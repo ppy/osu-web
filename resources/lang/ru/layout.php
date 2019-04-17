@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => 'группы',
             'index' => 'главная',
             'legal-show' => 'информация',
+            'messages-index' => 'сообщения',
             'news-index' => 'новости',
             'news-show' => 'новости',
             'password-reset-index' => 'сброс пароля',
@@ -52,7 +53,7 @@ return [
         ],
         'beatmaps' => [
             '_' => 'карты',
-            'artists' => 'featured artists',
+            'artists' => 'osu!featured artists',
             'beatmap_discussion_posts-index' => 'публикации в обсуждений карты',
             'beatmap_discussions-index' => 'обсуждения карты',
             'beatmapset-watches-index' => 'подписки на карты',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'сообщество',
+            'chat' => 'сообщения',
+            'chat-index' => 'сообщения',
             'dev' => 'разработка',
             'getForum' => 'форумы',
-            'getChat' => 'chat',
             'getLive' => 'прямые трансляции',
+            'comments-index' => 'комментарии',
+            'comments-show' => 'комментарий',
             'contests' => 'конкурсы',
             'profile' => 'профиль',
             'tournaments' => 'турниры',
@@ -114,16 +118,18 @@ return [
             'reset' => 'восстановить',
             'new' => 'новый',
 
-            'messages' => 'Сообщения',
-            'settings' => 'Настройки',
-            'logout' => 'Выход',
             'help' => 'Помощь',
+            'logout' => 'Выход',
+            'messages' => 'Сообщения',
             'modding-history-discussions' => 'обсуждение',
             'modding-history-events' => 'история событий',
             'modding-history-index' => 'активность карты пользователя',
             'modding-history-posts' => 'история публикаций',
             'modding-history-votesGiven' => 'голоса',
             'modding-history-votesReceived' => 'полученные голоса',
+            'oauth_login' => 'вход для oauth',
+            'oauth_request' => 'авторизация oauth',
+            'settings' => 'Настройки',
         ],
         'store' => [
             '_' => 'магазин',
@@ -133,6 +139,7 @@ return [
 
             'getCheckout' => 'проверка',
             'getInvoice' => 'чек',
+            'orders-index' => 'история заказов',
             'products-show' => 'товар',
 
             'new' => 'новый',
@@ -228,7 +235,7 @@ return [
     'popup_login' => [
         'login' => [
             'email' => 'почта или никнейм',
-            'forgot' => "Я забыл свои данные",
+            'forgot' => "я не помню, помогите",
             'password' => 'пароль',
             'title' => 'Войдите для продолжения',
 
@@ -240,7 +247,7 @@ return [
 
         'register' => [
             'info' => "Вам нужен аккаунт, сэр. Почему у вас его всё ещё нет?",
-            'title' => "У вас нет аккаунта?",
+            'title' => "Нет аккаунта?",
         ],
     ],
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => 'Contrassegna il forum come già letto',
+        'forums' => 'Contrassegna i forum come già letti',
+        'busy' => 'Contrassegnando come già letti...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'Modificare un sondaggio rimuoverà i risultati attuali!',
+
+        'actions' => [
+            'edit' => 'Modifica sondaggio',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Vuoi veramente eliminare il post?',
         'confirm_restore' => 'Vuoi veramente ripristinare il post?',
@@ -57,6 +71,10 @@ return [
             'destroy' => 'Elimina post',
             'restore' => 'Ripristina post',
             'edit' => 'Modifica post',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -87,10 +105,10 @@ return [
             'submit' => 'Invia',
 
             'necropost' => [
-                'default' => 'Questa discussione è inattivo da un bel po\' di tempo. Posta solo se hai una motivazione in particolare.',
+                'default' => 'Questa discussione è inattiva da un bel po\' di tempo. Posta solo se hai una motivazione in particolare.',
 
                 'new_topic' => [
-                    '_' => "Questa discussione è inattivo da un bel po' di tempo. Se non hai un motivo in particolare per postare, per favore :create uno.",
+                    '_' => "Questa discussione è inattiva da un bel po' di tempo. Se non hai un motivo in particolare per postare qui, per favore :create.",
                     'create' => 'crea una nuova discussione',
                 ],
             ],
@@ -153,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Creazione Sondaggio',
 
+            'preview' => 'Anteprima del post',
+
             'create_poll_button' => [
                 'add' => 'Crea un sondaggio',
                 'remove' => 'Cancella la creazione del sondaggio',
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'visualizzazioni',
+            'feature_votes' => 'priorità stella',
             'replies' => 'risposte',
+            'views' => 'visualizzazioni',
         ],
 
         'issue_tag_added' => [
@@ -252,6 +273,12 @@ return [
                 'current' => 'Priorità Attuale: +:count',
                 'do' => 'Promuovi questa richiesta',
 
+                'info' => [
+                    '_' => 'Questa è una :feature_request. Le richieste di nuove funzionalità possono essere votate dai :supporters.',
+                    'feature_request' => 'richiedi una funzionalità',
+                    'supporters' => 'sostenitori',
+                ],
+
                 'user' => [
                     'count' => '{0} nessun voto|{1} :count voto|[2,*] :count voti',
                     'current' => 'Hai :votes rimanenti.',
@@ -274,7 +301,8 @@ return [
             'to_not_watching' => 'Non preferito',
             'to_watching' => 'Preferito',
             'to_watching_mail' => 'Preferito con notifica',
-            'mail_disable' => 'Disabilita notifiche',
+            'tooltip_mail_disable' => 'Le notifiche sono abilitate. Premi per disabilitarle',
+            'tooltip_mail_enable' => 'Le notifiche sono disabilitate. Premi per abilitarle',
         ],
     ],
 ];

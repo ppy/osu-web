@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'confirmation' => '¿Estás seguro?',
-    'confirmation_unsaved' => '',
+    'confirmation_unsaved' => 'Se perderán todos los cambios sin guardar. ¿Está seguro?',
     'saved' => 'Guardado',
 
     'array_and' => [
@@ -30,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => 'Administrador',
+        'back_to_previous' => 'Volver a la última posición',
+        'back_to_top' => 'Ir arriba',
         'cancel' => 'Cancelar',
         'change' => 'cambiar',
         'click_to_copy' => 'haz clic para copiarlo al portapapeles',
         'click_to_copy_copied' => '¡copiado al portapapeles!',
+        'collapse' => 'colapsar',
         'delete' => 'Eliminar',
+        'edit' => 'Editar',
+        'expand' => 'expandir',
         'hide' => 'ocultar',
         'permalink' => 'permalink',
         'permalink_copied' => 'enlace copiado',
@@ -43,12 +49,14 @@ return [
         'reply_reopen' => 'Responder y reabrir',
         'reply_resolve' => 'Responder y resolver',
         'reset' => 'Reiniciar',
+        'restore' => 'Restaurar',
         'save' => 'Guardar',
         'saving' => 'Guardando...',
         'search' => 'Buscar',
         'see_more' => 'ver más',
         'show' => 'mostrar',
         'show_more' => 'mostrar más',
+        'show_more_options' => 'mostrar más opciones',
         'upload_image' => 'subir imagen',
     ],
 
@@ -59,9 +67,17 @@ return [
         'hours' => ':count hora|:count horas',
         'item' => ':count unidad|:count unidades',
         'minute_short_unit' => 'min|mins',
+        'minutes' => ':count minuto|:count minutos',
         'months' => ':count mes|:count meses',
         'second_short_unit' => 'seg|segs',
         'years' => ':count año|:count años',
+    ],
+
+    'countdown' => [
+        'days' => 'días',
+        'hours' => 'horas',
+        'minutes' => 'minutos',
+        'seconds' => 'segundos',
     ],
 
     'datetime' => [

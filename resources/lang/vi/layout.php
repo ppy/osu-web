@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => 'nhóm',
             'index' => 'tổng quan',
             'legal-show' => 'thông tin',
+            'messages-index' => 'tin nhắn',
             'news-index' => 'tin tức',
             'news-show' => 'tin tức',
             'password-reset-index' => 'đặt lại mật khẩu',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'cộng đồng',
+            'chat' => 'chat',
+            'chat-index' => 'chat',
             'dev' => 'phát triển',
             'getForum' => 'diễn đàn',
-            'getChat' => 'chat',
             'getLive' => 'live stream',
+            'comments-index' => 'bình luận',
+            'comments-show' => 'bình luận',
             'contests' => 'cuộc thi',
             'profile' => 'trang cá nhân',
             'tournaments' => 'giải đấu',
@@ -114,16 +118,18 @@ return [
             'reset' => 'khôi phục',
             'new' => 'mới',
 
-            'messages' => 'Tin Nhắn',
-            'settings' => 'Cài Đặt',
-            'logout' => 'Đăng Xuất',
             'help' => 'Trợ Giúp',
+            'logout' => 'Đăng Xuất',
+            'messages' => 'Tin Nhắn',
             'modding-history-discussions' => 'thảo luận modding của người dùng',
             'modding-history-events' => 'sự kiện modding của người dùng',
             'modding-history-index' => 'lịch sử modding của người dùng',
             'modding-history-posts' => 'bài đăng modding của người dùng',
             'modding-history-votesGiven' => 'modding votes đã cho của người dùng',
             'modding-history-votesReceived' => 'modding votes đã nhận của người dùng',
+            'oauth_login' => '',
+            'oauth_request' => '',
+            'settings' => 'Cài Đặt',
         ],
         'store' => [
             '_' => 'cửa hàng',
@@ -133,6 +139,7 @@ return [
 
             'getCheckout' => 'thanh toán',
             'getInvoice' => 'hóa đơn',
+            'orders-index' => 'lịch sử đơn hàng',
             'products-show' => 'mặt hàng',
 
             'new' => 'mới',

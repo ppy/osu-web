@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => 'Amministratore',
+        'back_to_previous' => 'Torna alla posizione precedente',
+        'back_to_top' => 'Torna in cima',
         'cancel' => 'Cancella',
         'change' => 'modifica',
         'click_to_copy' => 'clicca per copiare negli appunti',
         'click_to_copy_copied' => 'copiato negli appunti!',
+        'collapse' => 'comprimi',
         'delete' => 'Elimina',
+        'edit' => 'Modifica',
+        'expand' => 'espandi',
         'hide' => 'nascondi',
         'permalink' => 'permalink',
         'permalink_copied' => 'link copiato',
@@ -43,12 +49,14 @@ return [
         'reply_reopen' => 'Rispondi e Riapri',
         'reply_resolve' => 'Rispondi e Risolvi',
         'reset' => 'Resetta',
+        'restore' => 'Ripristina',
         'save' => 'Salva',
         'saving' => 'Salvataggio in corso...',
         'search' => 'Cerca',
         'see_more' => 'mostra altro',
         'show' => 'mostra',
         'show_more' => 'mostra altro',
+        'show_more_options' => 'mostra più opzioni',
         'upload_image' => 'carica immagine',
     ],
 
@@ -59,9 +67,17 @@ return [
         'hours' => ':count ora|:count ore',
         'item' => ':count unità|:count unità',
         'minute_short_unit' => 'minuto|minuti',
+        'minutes' => ':count minuto |:count minuti',
         'months' => ':count mese|:count mesi',
         'second_short_unit' => 'secondo|secondi',
         'years' => ':count anno|:count anni',
+    ],
+
+    'countdown' => [
+        'days' => 'giorni',
+        'hours' => 'ore',
+        'minutes' => 'minuti',
+        'seconds' => 'secondi',
     ],
 
     'datetime' => [
@@ -70,7 +86,7 @@ return [
             'php' => 'MMMM y',
         ],
         'year_month_short' => [
-            'moment' => 'MMM YYY',
+            'moment' => 'MMM YYYY',
         ],
     ],
 

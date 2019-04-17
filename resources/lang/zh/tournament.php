@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -45,7 +45,7 @@ return [
         'login_to_register' => '请 :login 以查看报名细节！',
         'not_yet_entered' => '你还没有报名此次比赛。',
         'rank_too_low' => '抱歉，你还没有达到本次比赛的排名要求！',
-        'registration_ends' => '报名于 :date 结束',
+        'registration_ends' => '报名将于 :date 结束',
 
         'button' => [
             'cancel' => '取消报名',

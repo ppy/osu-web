@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,8 +34,8 @@ return [
         'invalid_mode' => 'Указан недопустимый мод.',
         'standard_converts_only' => 'Результатов для запрашиваемого мода нет.',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'У вас слишком много избранных карт! Удалите одну из них для продолжения.',
+    'checkout' => [
+        'generic' => 'Произошла ошибка при обработке заказа.',
     ],
     'logged_out' => 'Вы вышли из аккаунта. Пожалуйста войдите и попробуйте ещё раз.',
     'supporter_only' => 'Вы должны иметь osu!supporter для использования этой возможности.',

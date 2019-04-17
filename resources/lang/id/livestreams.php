@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,8 +22,10 @@ return [
     'top-headers' => [
         'headline' => 'Siaran Langsung',
         'description' => 'Data diambil dari twitch.tv setiap lima menit berdasarkan daftar direktori. Jangan ragu untuk memulai siaran dan daftarkan dirimu! Untuk informasi lebih lanjut tentang cara penyiapan, mohon kunjungi laman wiki bagian siaran langsung.',
+
+        'link' => 'halaman wiki yang membahas tentang siaran langsung',
     ],
     'headers' => [
-        'regular' => 'Sedang Siaran Langsung',
+        'regular' => 'Sedang Bersiaran Langsung',
     ],
 ];

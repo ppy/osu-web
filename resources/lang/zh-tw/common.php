@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'confirmation' => '確定？',
-    'confirmation_unsaved' => '',
+    'confirmation_unsaved' => '未被修改的將不會保存。你確定嗎？',
     'saved' => '儲存',
 
     'array_and' => [
@@ -30,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => '',
+        'back_to_previous' => '返回到上一個位置',
+        'back_to_top' => '返回頂部',
         'cancel' => '取消',
         'change' => '變更',
         'click_to_copy' => '點擊以複製到剪貼簿',
         'click_to_copy_copied' => '已複製到剪貼簿！',
+        'collapse' => '',
         'delete' => '刪除',
+        'edit' => '編輯',
+        'expand' => '',
         'hide' => '隱藏',
         'permalink' => '永久連結',
         'permalink_copied' => '連結已複製',
@@ -43,12 +49,14 @@ return [
         'reply_reopen' => '回覆並重新打開',
         'reply_resolve' => '回覆並標記為已解決',
         'reset' => '重設',
+        'restore' => '復原',
         'save' => '儲存',
         'saving' => '儲存中...',
         'search' => '搜尋',
         'see_more' => '查看更多',
         'show' => '顯示',
         'show_more' => '顯示更多',
+        'show_more_options' => '',
         'upload_image' => '上傳圖片',
     ],
 
@@ -59,9 +67,17 @@ return [
         'hours' => ':count 小時',
         'item' => ':count 個',
         'minute_short_unit' => '分',
+        'minutes' => '',
         'months' => ':count 個月',
         'second_short_unit' => '秒',
         'years' => ':count 年',
+    ],
+
+    'countdown' => [
+        'days' => '天',
+        'hours' => '小時',
+        'minutes' => '分鐘',
+        'seconds' => '秒',
     ],
 
     'datetime' => [

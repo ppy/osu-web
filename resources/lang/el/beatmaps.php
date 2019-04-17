@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Ταξινόμηση κατά:',
-            'created_at' => 'ημερομηνία δημιουργίας',
-            'timeline' => 'χρονολόγιο',
-            'updated_at' => 'τελευταία ενημέρωση',
+            'created_at' => 'Ημερομηνία δημιουργίας',
+            'timeline' => 'Χρονολόγιο',
+            'updated_at' => 'Τελευταία ενημέρωση',
         ],
 
         'stats' => [
@@ -144,6 +144,9 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Διαγραφή',
+        'delete_own_confirm' => 'Είστε σίγουρος; Το beatmap θα διαγραφεί και θα ανακατευθυνθείτε πίσω στο προφίλ σας.',
+        'delete_other_confirm' => 'Είστε σίγουρος; Το beatmap θα διαγραφεί και θα ανακατευθυνθείτε πίσω στο προφίλ του χρήστη.',
         'disqualification_prompt' => 'Λόγος αποκλεισμού;',
         'disqualified_at' => 'Disqualified :time_ago (:reason).',
         'disqualified_no_reason' => 'δεν έχει καθοριστεί κάποιος λόγος',
@@ -168,6 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Είστε σίγουροι; Η δημοσίευση ενός νέου προβλήματος θα επανεκκινήσει την διαδικασία υποψηφιότητας.',
+            'disqualify' => 'Είστε σίγουρος; Αυτό θα αφαιρέσει το beatmap απο τα προκριματικά και θα επαναφέρει την διαδικασία πιστοποίησης.',
         ],
     ],
 
@@ -190,15 +194,16 @@ return [
                 'played' => 'Που έχετε παίξει',
             ],
             'sorting' => [
-                'title' => 'τίτλος',
-                'artist' => 'καλλιτέχνης',
-                'difficulty' => 'δυσκολία',
-                'updated' => 'ενημερωμένο',
-                'ranked' => 'ranked',
-                'rating' => 'βαθμολογία',
-                'plays' => 'προσπάθειες',
-                'relevance' => 'σχετικότητα',
-                'nominations' => 'nominations',
+                'title' => 'Τίτλος',
+                'artist' => 'Καλλιτέχνης',
+                'difficulty' => 'Δυσκολία',
+                'favourites' => 'Αγαπημένα',
+                'updated' => 'Ενημερώθηκε',
+                'ranked' => 'Ranked',
+                'rating' => 'Βαθμολογία',
+                'plays' => 'Προσπάθειες',
+                'relevance' => 'Συνάφεια',
+                'nominations' => 'Nominations',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Το φιλτράρισμα κατά :filters απαιτεί ένα ενεργό :link',
@@ -297,5 +302,9 @@ return [
         'B' => '',
         'C' => '',
         'D' => '',
+    ],
+    'panel' => [
+        'playcount' => 'Φορές που παίχτηκε: :count',
+        'favourites' => 'Αγαπημένα: :count',
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,11 +30,11 @@ return [
             'owner' => "Eigene Beatmaps können nicht nominiert werden.",
         ],
         'resolve' => [
-            'not_owner' => 'Nur der Thread- oder Beatmapersteller kann die Diskussion für gelöst erklären.',
+            'not_owner' => 'Nur der Thread- oder Beatmapersteller kann die Diskussion beilegen.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Nur der Beatmap Urheber oder ein Nominator/QAT Mitglied kann Mapper Notizen posten.',
+            'mapper_note_wrong_user' => 'Nur der Beatmapersteller oder ein Nominator/QAT Mitglied kann Notizen erstellen.',
         ],
 
         'vote' => [
@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Zugang zum angeforderten Kanal wurde verwehrt.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Zugang zum Kanal wurde verwehrt.',
-                    'moderated' => 'Der Kanal wird momentan moderiert.',
-                    'not_lazer' => 'Momentan kannst du nur in #lazer sprechen.',
-                ],
+        'blocked' => 'Du kannst keine Nachrichten an einen Benutzer senden, der dich oder den du blockiert hast.',
+        'friends_only' => 'Der Benutzer blockiert alle Nachrichten von Personen, die nicht auf seiner Freundesliste sind.',
+        'moderated' => 'Dieser Kanal wird derzeit moderiert.',
+        'no_access' => 'Du hast kein Zugriff auf diesen Kanal.',
+        'restricted' => 'Du kannst keine Nachrichten senden während du stumm geschaltet oder gesperrt bist.',
+    ],
 
-                'not_allowed' => 'Gebannt, restricted oder stummgeschaltet kann man keine Nachrichten senden.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Der gelöschte Beitrag kann nicht bearbeitet werden.",
         ],
     ],
 
@@ -75,19 +70,23 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Keine Berechtigung, dieses Forum zu moderieren.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Nur der letzte Beitrag kann gelöscht werden.',
                 'locked' => 'Beiträge in gesperrten Threads können nicht gelöscht werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
-                'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag löschen',
+                'not_owner' => 'Nur der Autor kann den Beitrag löschen.',
             ],
 
             'edit' => [
                 'deleted' => 'Gelöschte Beiträge können nicht bearbeitet werden.',
                 'locked' => 'Dieser Beitrag ist gesperrt und kann nicht bearbeitet werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
-                'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag bearbeiten.',
+                'not_owner' => 'Nur der Autor kann den Beitrag bearbeiten.',
                 'topic_locked' => 'Beiträge in gesperrten Threads können nicht bearbeitet werden.',
             ],
 

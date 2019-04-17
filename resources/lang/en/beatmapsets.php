@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,41 +34,50 @@ return [
         'discussion' => 'Discussion',
 
         'details' => [
+            'approved' => 'approved on ',
+            'favourite' => 'Favourite this beatmapset',
+            'favourited_count' => '+ :count_delimited other!|+ :count_delimited others!',
+            'logged-out' => 'You need to sign in before downloading any beatmaps!',
+            'loved' => 'loved on ',
             'mapped_by' => 'mapped by :mapper',
+            'qualified' => 'qualified on ',
+            'ranked' => 'ranked on ',
             'submitted' => 'submitted on ',
+            'unfavourite' => 'Unfavourite this beatmapset',
             'updated' => 'last updated on ',
             'updated_timeago' => 'last updated :timeago',
-            'ranked' => 'ranked on ',
-            'approved' => 'approved on ',
-            'qualified' => 'qualified on ',
-            'loved' => 'loved on ',
-            'logged-out' => 'You need to sign in before downloading any beatmaps!',
+
             'download' => [
                 '_' => 'Download',
-                'video' => 'with Video',
-                'no-video' => 'without Video',
                 'direct' => 'osu!direct',
+                'no-video' => 'without Video',
+                'video' => 'with Video',
             ],
-            'favourite' => 'Favourite this beatmapset',
-            'unfavourite' => 'Unfavourite this beatmapset',
-            'favourited_count' => '+ 1 other!|+ :count others!',
+
+            'login_required' => [
+                'bottom' => 'to access more features',
+                'top' => 'Sign In',
+            ],
         ],
-        'stats' => [
-            'cs' => 'Circle Size',
-            'cs-mania' => 'Key Amount',
-            'drain' => 'HP Drain',
-            'accuracy' => 'Accuracy',
-            'ar' => 'Approach Rate',
-            'stars' => 'Star Difficulty',
-            'total_length' => 'Length',
-            'bpm' => 'BPM',
-            'count_circles' => 'Circle Count',
-            'count_sliders' => 'Slider Count',
-            'user-rating' => 'User Rating',
-            'rating-spread' => 'Rating Spread',
-            'nominations' => 'Nominations',
-            'playcount' => 'Playcount',
+
+        'favourites' => [
+            'limit_reached' => 'You have too many favourited beatmaps! Please unfavourite some before trying again.',
         ],
+
+        'hype' => [
+            'action' => 'Hype this map if you enjoyed playing it to help it progress to <strong>Ranked</strong> status.',
+
+            'current' => [
+                '_' => 'This map is currently :status.',
+
+                'status' => [
+                    'pending' => 'pending',
+                    'qualified' => 'qualified',
+                    'wip' => 'work in progress',
+                ],
+            ],
+        ],
+
         'info' => [
             'description' => 'Description',
             'genre' => 'Genre',
@@ -80,6 +89,7 @@ return [
             'tags' => 'Tags',
             'unranked' => 'Unranked beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => 'achieved :when',
             'country' => 'Country Ranking',
@@ -112,6 +122,23 @@ return [
                 'first' => 'In the Lead',
                 'own' => 'Your Best',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Circle Size',
+            'cs-mania' => 'Key Amount',
+            'drain' => 'HP Drain',
+            'accuracy' => 'Accuracy',
+            'ar' => 'Approach Rate',
+            'stars' => 'Star Difficulty',
+            'total_length' => 'Length (Drain length: :hit_length)',
+            'bpm' => 'BPM',
+            'count_circles' => 'Circle Count',
+            'count_sliders' => 'Slider Count',
+            'user-rating' => 'User Rating',
+            'rating-spread' => 'Rating Spread',
+            'nominations' => 'Nominations',
+            'playcount' => 'Playcount',
         ],
     ],
 ];

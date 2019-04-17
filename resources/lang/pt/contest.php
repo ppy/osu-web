@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,18 +26,26 @@ return [
     'voting' => [
         'over' => 'A votação para este concurso terminou',
         'login_required' => 'Por favor inicia sessão para votar.',
+
         'best_of' => [
             'none_played' => "Não parece que jogaste nenhuns beatmaps que se qualificam para este concurso!",
+        ],
+
+        'button' => [
+            'add' => 'Votar',
+            'remove' => 'Remover voto',
+            'used_up' => 'Usaste todos os teus votos',
         ],
     ],
     'entry' => [
         '_' => 'inscrição',
         'login_required' => 'Por favor inicia sessão para entrar no concurso.',
         'silenced_or_restricted' => 'Não podes entrar em concursos enquanto restrito ou silenciado.',
-        'preparation' => 'Actualmente, estamos a preparar este concurso. Por favor espera pacientemente!',
+        'preparation' => 'Atualmente, estamos a preparar este concurso. Por favor espera pacientemente!',
         'over' => 'Obrigado pelas tuas inscrições! As submissões foram fechadas para este concurso e a votação irá abrir em breve.',
         'limit_reached' => 'Chegaste ao limite de inscrições para este concurso',
         'drop_here' => 'Larga a tua inscrição aqui',
+        'download' => 'Transferir .osz',
         'wrong_type' => [
             'art' => 'Somente ficheiros .jpg e .png são aceites para este concurso.',
             'beatmap' => 'Somente ficheiros .osu são aceites para este concurso.',
@@ -50,7 +58,8 @@ return [
     ],
     'vote' => [
         'list' => 'votos',
-        'count' => '1 voto|:count votos',
+        'count' => ':count voto|:count votos',
+        'points' => ':count ponto|:count pontos',
     ],
     'dates' => [
         'ended' => 'Terminou em :date',

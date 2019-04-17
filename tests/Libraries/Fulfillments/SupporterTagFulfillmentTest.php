@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -59,8 +59,8 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $donor->refresh();
         $this->assertTrue($donor->osu_subscriber);
-        $this->assertEquals($expectedExpiry, $donor->osu_subscriptionexpiry);
-        $this->assertEquals(2, $donor->osu_featurevotes);
+        $this->assertTrue($expectedExpiry->equalTo($donor->osu_subscriptionexpiry));
+        $this->assertSame(2, $donor->osu_featurevotes);
     }
 
     public function testDonateSupporterTagToOthers()
@@ -88,12 +88,12 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->assertTrue($giftee->osu_subscriber);
 
         // donor's expiry should not change.
-        $this->assertEquals($expectedExpiry, $giftee->osu_subscriptionexpiry);
-        $this->assertEquals($today, $donor->osu_subscriptionexpiry);
+        $this->assertTrue($expectedExpiry->equalTo($giftee->osu_subscriptionexpiry));
+        $this->assertTrue($today->equalTo($donor->osu_subscriptionexpiry));
 
         // votes go to donor.
-        $this->assertEquals(2, $donor->osu_featurevotes);
-        $this->assertEquals(0, $giftee->osu_featurevotes);
+        $this->assertSame(2, $donor->osu_featurevotes);
+        $this->assertSame(0, $giftee->osu_featurevotes);
     }
 
     public function testMailDonateSupporterTagToOthers()
@@ -141,8 +141,8 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->refresh();
         // Should only apply one supporter tag.
         $this->assertTrue($donor->osu_subscriber);
-        $this->assertEquals($expectedExpiry, $donor->osu_subscriptionexpiry);
-        $this->assertEquals(2, $donor->osu_featurevotes);
+        $this->assertTrue($expectedExpiry->equalTo($donor->osu_subscriptionexpiry));
+        $this->assertSame(2, $donor->osu_featurevotes);
     }
 
     public function testAlreadyFulfilledOrder()
@@ -159,8 +159,8 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->refresh();
         // Should not apply any supporter tags
         $this->assertFalse($donor->osu_subscriber);
-        $this->assertEquals($expectedExpiry, $donor->osu_subscriptionexpiry);
-        $this->assertEquals(0, $donor->osu_featurevotes);
+        $this->assertTrue($expectedExpiry->equalTo($donor->osu_subscriptionexpiry));
+        $this->assertSame(0, $donor->osu_featurevotes);
     }
 
     public function testRevokeDonateSupporterTagToSelf()
@@ -188,8 +188,8 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $donor->refresh();
 
-        $this->assertEquals($expectedExpiry, $donor->osu_subscriptionexpiry);
-        $this->assertEquals(0, $donor->osu_featurevotes);
+        $this->assertTrue($expectedExpiry->equalTo($donor->osu_subscriptionexpiry));
+        $this->assertSame(0, $donor->osu_featurevotes);
         $this->assertFalse($donor->osu_subscriber);
     }
 
@@ -204,6 +204,8 @@ class SupporterTagFulfillmentTest extends TestCase
             'osu_subscriptionexpiry' => $today->copy()->addMonthsNoOverflow(2),
         ]);
 
+        $oldExpiry = $donor->osu_subscriptionexpiry;
+
         $this->createDonationOrderItem($this->order, $this->user, true, true);
         $this->createDonationOrderItem($this->order, $this->user, true, false);
 
@@ -213,8 +215,8 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->refresh();
 
         // there should be 1 month left.
-        $this->assertEquals($today->copy()->addMonthsNoOverflow(1), $donor->osu_subscriptionexpiry);
-        $this->assertEquals(2, $donor->osu_featurevotes);
+        $this->assertTrue($oldExpiry->subMonthsNoOverflow(1)->equalTo($donor->osu_subscriptionexpiry));
+        $this->assertSame(2, $donor->osu_featurevotes);
         $this->assertTrue($donor->osu_subscriber);
     }
 
@@ -237,8 +239,8 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $donor->refresh();
 
-        $this->assertEquals($today->copy()->addMonthsNoOverflow(2), $donor->osu_subscriptionexpiry);
-        $this->assertEquals(4, $donor->osu_featurevotes);
+        $this->assertTrue($today->copy()->addMonthsNoOverflow(2)->equalTo($donor->osu_subscriptionexpiry));
+        $this->assertSame(4, $donor->osu_featurevotes);
         $this->assertTrue($donor->osu_subscriber);
     }
 
@@ -260,8 +262,8 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $donor->refresh();
         $this->assertTrue($donor->osu_subscriber);
-        $this->assertEquals($expectedExpiry, $donor->osu_subscriptionexpiry);
-        $this->assertEquals(2, $donor->osu_featurevotes);
+        $this->assertTrue($expectedExpiry->equalTo($donor->osu_subscriptionexpiry));
+        $this->assertSame(2, $donor->osu_featurevotes);
     }
 
     private function createDonationOrderItem($order, $giftee, $cancelled = false, $run = false)

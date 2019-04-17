@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -59,7 +59,7 @@
         </div>
     </div>
 
-    <div class="osu-layout__row osu-layout__row--page-compact">
+    <div class="osu-page osu-page--generic-compact">
         @if ($forum->subforums()->exists())
             <div class="forum-topics forum-topics--subforums">
                 <h2 class="forum-topics__title">{{ trans("forum.subforums") }}</h2>
@@ -74,38 +74,46 @@
                 'topics' => $pinnedTopics,
             ])
         @endif
+    </div>
 
-        <div id="topics">
-            @if (count($topics) > 0 || $forum->isOpen())
-                <div class="forum-topics-spacer">
-                    <div class="forum-topics-spacer__buttons">
-                        @include('forum.forums._new_topic', compact('forum'))
-                    </div>
+    <div class="osu-page osu-page--generic-compact osu-page--has-anchor" id="topics">
+        @include('forum.forums._topics_sort', compact('forum'))
+
+        @if (count($topics) > 0 || $forum->isOpen())
+            <div class="forum-topics-spacer">
+                <div class="forum-topics-spacer__group forum-topics-spacer__group--left">
+                    @include('forum.forums._new_topic', compact('forum'))
                 </div>
 
-                @include('forum.forums._topics', [
-                    'title' => trans('forum.topics._'),
-                    'topics' => $topics,
-                ])
+                <div class="forum-topics-spacer__group forum-topics-spacer__group--right">
+                    @include('forum.forums._mark_as_read', compact('forum'))
+                </div>
+            </div>
 
-                <div class="forum-topics-spacer forum-topics-spacer--pager">
-                    <div class="forum-topics-spacer__buttons">
-                        @include('forum.forums._new_topic', compact('forum'))
-                    </div>
+            @include('forum.forums._topics', [
+                'title' => trans('forum.topics._'),
+                'topics' => $topics,
+            ])
 
-                    <div class="forum-topics-spacer__pager">
-                        @include('objects._pagination_v0', ['object' => $topics
-                            ->fragment('topics')
-                            ->appends([
-                                'sort' => Request::input('sort'),
-                                'with_replies' => Request::input('with_replies'),
-                            ])
+            <div class="forum-topics-spacer forum-topics-spacer--pager">
+                <div class="forum-topics-spacer__group forum-topics-spacer__group--left">
+                    @include('forum.forums._new_topic', compact('forum'))
+                </div>
+
+                <div class="forum-topics-spacer__group forum-topics-spacer__group--pager">
+                    @include('objects._pagination_v0', ['object' => $topics
+                        ->fragment('topics')
+                        ->appends([
+                            'sort' => Request::input('sort'),
+                            'with_replies' => Request::input('with_replies'),
                         ])
-                    </div>
-
-                    <div class="forum-topics-spacer__buttons">{{-- keeps pager centred --}}</div>
+                    ])
                 </div>
-            @endif
-        </div>
+
+                <div class="forum-topics-spacer__group forum-topics-spacer__group--right">
+                    @include('forum.forums._mark_as_read', compact('forum'))
+                </div>
+            </div>
+        @endif
     </div>
 @endsection

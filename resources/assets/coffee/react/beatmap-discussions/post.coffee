@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,12 +16,16 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, i, span} = ReactDOMFactories
+import { MessageLengthCounter } from './message-length-counter'
+import { BigButton } from 'big-button'
+import * as React from 'react'
+import { a, button, div, i, span } from 'react-dom-factories'
+import { UserAvatar } from 'user-avatar'
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
 
-class BeatmapDiscussions.Post extends React.PureComponent
+export class Post extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -162,7 +166,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
         onKeyDown: @handleKeyDown
         value: @state.message
         innerRef: (el) => @textarea = el
-      el BeatmapDiscussions.MessageLengthCounter, message: @state.message
+      el MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div className: "#{bn}__actions",
         div className: "#{bn}__actions-group"
@@ -286,8 +290,13 @@ class BeatmapDiscussions.Post extends React.PureComponent
                 'data-confirm': osu.trans('common.confirmation')
                 osu.trans('beatmaps.discussions.allow_kudosu')
 
+
   clearPermalinkClicked: =>
     @setState permalinkTimer: null
+
+
+  isTimeline: =>
+    @props.discussion.timestamp?
 
 
   permalink: (e) =>
@@ -337,4 +346,4 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
 
   validPost: =>
-    BeatmapDiscussionHelper.validMessageLength(@state.message)
+    BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())

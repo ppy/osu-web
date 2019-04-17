@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => 'grupper',
             'index' => 'kontrollpanel',
             'legal-show' => 'information',
+            'messages-index' => '',
             'news-index' => 'nyheter',
             'news-show' => 'nyheter',
             'password-reset-index' => 'återställ lösenord',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'gemenskap',
+            'chat' => '',
+            'chat-index' => '',
             'dev' => 'utveckling',
             'getForum' => 'forum',
-            'getChat' => 'chatt',
             'getLive' => 'live',
+            'comments-index' => '',
+            'comments-show' => '',
             'contests' => 'tävlingar',
             'profile' => 'profil',
             'tournaments' => 'turneringar',
@@ -114,16 +118,18 @@ return [
             'reset' => 'återhämta',
             'new' => 'ny',
 
-            'messages' => 'Meddelanden',
-            'settings' => 'Inställningar',
-            'logout' => 'Logga Ut',
             'help' => 'Hjälp',
+            'logout' => 'Logga Ut',
+            'messages' => 'Meddelanden',
             'modding-history-discussions' => 'användarmoddingsdiskussioner',
             'modding-history-events' => 'användarmoddningsinlägg',
             'modding-history-index' => 'användarmoddingshistorik',
             'modding-history-posts' => 'användarmoddingsinlägg',
             'modding-history-votesGiven' => 'användarmoddingsröster givna',
             'modding-history-votesReceived' => 'användarmoddningsröster givna',
+            'oauth_login' => '',
+            'oauth_request' => '',
+            'settings' => 'Inställningar',
         ],
         'store' => [
             '_' => 'butik',
@@ -133,6 +139,7 @@ return [
 
             'getCheckout' => 'checka ut',
             'getInvoice' => 'faktura',
+            'orders-index' => '',
             'products-show' => 'produkt',
 
             'new' => 'ny',

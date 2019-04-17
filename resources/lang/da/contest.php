@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,13 +21,20 @@
 return [
     'header' => [
         'small' => 'Konkurrér på flere måder end bare at klikke på cirkler.',
-        'large' => '',
+        'large' => 'Fællesskabsturnerninger',
     ],
     'voting' => [
         'over' => 'Afstemning for denne konkurrence er sluit',
         'login_required' => 'Log venligst ind for at stemme.',
+
         'best_of' => [
             'none_played' => "Det ser ikke ud som om, at du har spillet nogle beatmaps, som kvalificerer sig til denne konkurrence!",
+        ],
+
+        'button' => [
+            'add' => 'Stem',
+            'remove' => 'Fjern stemme',
+            'used_up' => 'Du har brugt alle dine stemmer',
         ],
     ],
     'entry' => [
@@ -38,6 +45,7 @@ return [
         'over' => 'Tak for jeres bidrag! Indsendelsen for denne konkurrence er slut, og afstemning vil finde sted snarest!.',
         'limit_reached' => 'Du har nået dit maksimale antal bidrag for denne konkurrence',
         'drop_here' => 'Aflever dit bidrag her',
+        'download' => 'Download .osz',
         'wrong_type' => [
             'art' => 'Kun .jpg og .png filer er accepteret i denne konkurrence.',
             'beatmap' => 'Kun .osu filer er accepteret i denne konkurrence.',
@@ -50,7 +58,8 @@ return [
     ],
     'vote' => [
         'list' => 'stemmer',
-        'count' => '1 stemme|:count stemmer',
+        'count' => ':count stemme|:count stemmer',
+        'points' => ':count point|:count point',
     ],
     'dates' => [
         'ended' => 'Sluttede den :date',

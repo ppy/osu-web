@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -48,17 +48,36 @@ return [
         'cart_problems' => '¡Oh oh, hay problemas con tu carrito!',
         'cart_problems_edit' => 'Haz clic aquí para editarlo.',
         'declined' => 'El pago ha sido cancelado.',
+        'delayed_shipping' => '¡Ahora mismo estamos sobresaturados de pedidos! Eres bienvenido en solicitar tu orden, pero porfavor considera que hay un **retraso adicional de 1-2 semanas** mientras nos ponemos al día con órdenes ya existentes.',
         'old_cart' => 'Tu carrito parecía estar desactualizado y fue reiniciado, por favor intenta de nuevo.',
         'pay' => 'Pagar con PayPal',
+
+        'has_pending' => [
+            '_' => 'Tienes pedidos incompletos, haga clic :link para verlos.',
+            'link_text' => 'aquí',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'Un anterior pago ha sido iniciado pero no fue completado.',
-            'line_2' => 'Reanuda tu pago seleccionando un método de pago, o :link para cancelar.',
-            'link_text' => 'haz clic aquí',
+            'line_2' => 'Reanuda tu pago seleccionando un método de pago.',
         ],
-        'delayed_shipping' => '¡Ahora mismo estamos sobresaturados de pedidos! Eres bienvenido en solicitar tu orden, pero porfavor considera que hay un **retraso adicional de 1-2 semanas** mientras nos ponemos al día con órdenes ya existentes.',
     ],
 
     'discount' => 'ahorra un :percent%',
+
+    'invoice' => [
+        'echeck_delay' => 'Como su pago fue un \'eCheck\', por favor, permita hasta 10 días extra para que el pago se reciba a través de PayPal!',
+        'status' => [
+            'processing' => [
+                'title' => '¡Aún no se ha confirmado tu pago!',
+                'line_1' => 'Si ya ha pagado, puede que nosotros aún estemos esperando para la confirmación de tu compra. ¡Por favor recarga la pagina dentro de unos minutos!',
+                'line_2' => [
+                    '_' => 'Si ha encontrado un problema durante la compra, :link',
+                    'link_text' => 'haz clic aquí para reanudar tu pago',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,12 @@ return [
     ],
 
     'order' => [
+        'paid_on' => 'Pedido :date',
+
+        'invoice' => 'Ver factura',
+        'no_orders' => 'No hay ordenes para ver.',
+        'resume' => 'Reanudar pago',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name para :username (:duration)',
@@ -82,6 +107,15 @@ return [
             'paid' => 'No puedes modificar tu orden porque ya ha sido pagada.',
             'processing' => 'No puedes modificar tu orden mientras está siendo procesada.',
             'shipped' => 'No puedes modificar tu orden porque ya ha sido enviada.',
+        ],
+
+        'status' => [
+            'cancelled' => 'Cancelado',
+            'checkout' => 'Preparando',
+            'delivered' => 'Enviado',
+            'paid' => 'Pagado',
+            'processing' => 'Confirmación pendiente',
+            'shipped' => 'En tránsito',
         ],
     ],
 
@@ -105,7 +139,7 @@ return [
     'supporter_tag' => [
         'gift' => 'regalar al jugador',
         'require_login' => [
-            '_' => '',
+            '_' => '¡Necesitas ser :link para tener un osu!supporter!',
             'link_text' => 'sesión iniciada',
         ],
     ],

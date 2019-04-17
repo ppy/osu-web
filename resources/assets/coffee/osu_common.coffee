@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -103,9 +103,22 @@
     JSON.parse document.getElementById(id)?.text ? null
 
 
+  storeJson: (id, object) ->
+    json = JSON.stringify object
+    element = document.getElementById(id)
+
+    if !element?
+      element = document.createElement 'script'
+      element.id = id
+      element.type = 'application/json'
+      document.body.appendChild element
+
+    element.text = json
+
+
   # make a clone of json-like object (object with simple values)
   jsonClone: (object) ->
-    JSON.parse JSON.stringify(object)
+    JSON.parse JSON.stringify(object ? null)
 
 
   isInputElement: (el) ->
@@ -142,7 +155,7 @@
 
   src2x: (mainUrl) ->
     src: mainUrl
-    srcSet: "#{mainUrl} 1x, #{mainUrl.replace(/(\.[^.]+)$/, '@2x$1')} 2x"
+    srcSet: "#{mainUrl} 1x, #{mainUrl?.replace(/(\.[^.]+)$/, '@2x$1')} 2x"
 
 
   link: (url, text, options = {}) ->
@@ -176,7 +189,38 @@
     return "#{bytes} B" if (bytes < k)
 
     i = Math.floor(Math.log(bytes) / Math.log(k))
-    return "#{(bytes / Math.pow(k, i)).toFixed(decimals)} #{suffixes[i]}"
+    "#{osu.formatNumber(bytes / Math.pow(k, i), decimals)} #{suffixes[i]}"
+
+
+  formatNumber: (number, precision, options, locale) ->
+    return null unless number?
+
+    options ?= {}
+
+    if precision?
+      options.minimumFractionDigits = precision
+      options.maximumFractionDigits = precision
+
+    number.toLocaleString locale ? currentLocale, options
+
+
+  formatNumberSuffixed: (number, precision, options = {}) ->
+    suffixes = ['', 'k', 'm', 'b', 't']
+    k = 1000
+
+    format = (n) ->
+      options ?= {}
+
+      if precision?
+        options.minimumFractionDigits = precision
+        options.maximumFractionDigits = precision
+
+      n.toLocaleString 'en', options
+
+    return "#{format number}" if (number < k)
+
+    i = Math.min suffixes.length - 1, Math.floor(Math.log(number) / Math.log(k))
+    "#{format(number / Math.pow(k, i))}#{suffixes[i]}"
 
 
   reloadPage: (keepScroll = true) ->
@@ -244,7 +288,11 @@
 
 
   presence: (string) ->
-    if string? && string != '' then string else null
+    if osu.present(string) then string else null
+
+
+  present: (string) ->
+    string? && string != ''
 
 
   promisify: (deferred) ->
@@ -254,18 +302,10 @@
       .fail reject
 
 
-  trans: (key, replacements, locale) ->
-    if locale?
-      initialLocale = Lang.getLocale()
-      Lang.setLocale locale
-      translated = Lang.get(key, replacements)
-      Lang.setLocale initialLocale
+  trans: (key, replacements = {}, locale) ->
+    locale = fallbackLocale unless osu.transExists(key, locale)
 
-      translated
-    else
-      translated = Lang.get(key, replacements) if Lang.has(key)
-
-      osu.presence(translated) ? osu.trans(key, replacements, fallbackLocale)
+    Lang.get(key, replacements, locale)
 
 
   transArray: (array, key = 'common.array_and') ->
@@ -281,31 +321,28 @@
 
 
   transChoice: (key, count, replacements = {}, locale) ->
-    replacements.count_delimited ?= count.toLocaleString()
-
-    if locale?
+    if !osu.transExists(key, locale)
+      locale = fallbackLocale
       initialLocale = Lang.getLocale()
       Lang.setLocale locale
-      translated = Lang.choice(key, count, replacements)
-      Lang.setLocale initialLocale
 
-      translated
-    else
-      translated = Lang.choice(key, count, replacements) if Lang.has(key)
+    replacements.count_delimited ?= osu.formatNumber(count, null, null, locale)
+    translated = Lang.choice(key, count, replacements, locale)
 
-      osu.presence(translated) ? osu.transChoice(key, count, replacements, fallbackLocale)
+    Lang.setLocale initialLocale if initialLocale?
+
+    translated
+
+
+  # Handles case where crowdin fills in untranslated key with empty string.
+  transExists: (key, locale) ->
+    translated = Lang.get(key, null, locale)
+
+    osu.present(translated) && translated != key
 
 
   uuid: ->
     Turbolinks.uuid() # no point rolling our own
-
-
-  # Update collection item with newItems and remove old items.
-  updateCollection: (collection, newItems) ->
-    _(newItems)
-      .concat(collection)
-      .uniqBy('id')
-      .value()
 
 
   updateQueryString: (url, params) ->

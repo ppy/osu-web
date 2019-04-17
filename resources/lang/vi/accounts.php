@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => 'Quyền Riêng Tư',
         'friends_only' => 'chặn tin nhắn từ những người không có trong danh sách bạn bè của bạn',
+        'hide_online' => 'ẩn sự hoạt động trực tuyến của bạn',
+    ],
+
+    'security' => [
+        'current_session' => 'hiện tại',
+        'end_session' => 'Kết thúc Phiên',
+        'end_session_confirmation' => 'Việc này sẽ ngay lập tức kết thúc phiên của bạn trên thiết bị đó. Bạn chắc chứ?',
+        'last_active' => 'Hoạt động lần cuối:',
+        'title' => 'Bảo mật',
+        'web_sessions' => 'phiên trên web',
     ],
 ];

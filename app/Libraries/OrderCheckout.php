@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 namespace App\Libraries;
 
+use App\Exceptions\InvariantException;
 use App\Libraries\Payments\InvalidOrderStateException;
 use App\Models\Store\Order;
 use App\Models\User;
@@ -38,10 +39,18 @@ class OrderCheckout
      */
     private $provider;
 
-    public function __construct(Order $order, string $provider = null)
+    /** @var string|null */
+    private $providerReference;
+
+    public function __construct(Order $order, ?string $provider = null, ?string $providerReference = null)
     {
+        if ($provider === Order::PROVIDER_SHOPIFY && $providerReference === null) {
+            throw new InvariantException('shopify provider requires a providerReference (checkout id).');
+        }
+
         $this->order = $order;
         $this->provider = $provider;
+        $this->providerReference = $providerReference;
     }
 
     /**
@@ -63,18 +72,26 @@ class OrderCheckout
     /**
      * @return string[]
      */
-    public function allowedCheckoutTypes()
+    public function allowedCheckoutProviders()
     {
-        $allowed = ['paypal'];
-        if ($this->allowCentiliPayment()) {
-            $allowed[] = 'centili';
+        if ($this->order->isShouldShopify()) {
+            return [Order::PROVIDER_SHOPIFY];
         }
 
-        if ($this->allowXsollaPayment()) {
-            $allowed[] = 'xsolla';
+        if ($this->order->getTotal() > 0) {
+            $allowed = [Order::PROVIDER_PAYPAL];
+            if ($this->allowCentiliPayment()) {
+                $allowed[] = Order::PROVIDER_CENTILLI;
+            }
+
+            if ($this->allowXsollaPayment()) {
+                $allowed[] = Order::PROVIDER_XSOLLA;
+            }
+
+            return $allowed;
         }
 
-        return $allowed;
+        return [Order::PROVIDER_FREE];
     }
 
     /**
@@ -103,6 +120,11 @@ class OrderCheckout
 
     public function beginCheckout()
     {
+        // something that shouldn't happen just happened.
+        if (!in_array($this->provider, $this->allowedCheckoutProviders(), true)) {
+            throw new InvariantException("{$this->provider} not in allowed checkout providers.");
+        }
+
         DB::connection('mysql-store')->transaction(function () {
             $order = $this->order->lockSelf();
             if (!$order->canCheckout()) {
@@ -112,7 +134,7 @@ class OrderCheckout
             }
 
             $order->status = 'processing';
-            $order->transaction_id = $this->provider;
+            $order->transaction_id = $this->newOrderTransactionId();
             $order->reserveItems();
 
             $order->saveorExplode();
@@ -166,6 +188,7 @@ class OrderCheckout
      */
     public function validate()
     {
+        $shouldShopify = $this->order->isShouldShopify();
         // TODO: nested indexed ValidationError...somehow.
         $itemErrors = [];
         $items = $this->order->items()->with('product')->get();
@@ -176,17 +199,20 @@ class OrderCheckout
             }
 
             // Checkout process level validations, should not be part of OrderItem validation.
-            if ($item->product === null || !$item->product->enabled) {
+            if ($item->product === null || !$item->product->isAvailable()) {
                 $messages[] = trans('model_validation/store/product.not_available');
             }
 
-            // TODO: probably can combine max_quantity and inStock check and message.
             if (!$item->product->inStock($item->quantity)) {
                 $messages[] = trans('model_validation/store/product.insufficient_stock');
             }
 
             if ($item->quantity > $item->product->max_quantity) {
                 $messages[] = trans('model_validation/store/product.too_many', ['count' => $item->product->max_quantity]);
+            }
+
+            if ($shouldShopify && !$item->product->isShopify()) {
+                $messages[] = trans('model_validation/store/product.must_separate');
             }
 
             $customClass = $item->getCustomClassInstance();
@@ -230,5 +256,10 @@ class OrderCheckout
     private function allowXsollaPayment()
     {
         return !$this->order->requiresShipping();
+    }
+
+    private function newOrderTransactionId()
+    {
+        return $this->provider === Order::PROVIDER_SHOPIFY ? "{$this->provider}-{$this->providerReference}" : $this->provider;
     }
 }

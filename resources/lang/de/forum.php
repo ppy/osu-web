@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => 'Forum als gelesen markieren',
+        'forums' => 'Foren als gelesen markieren',
+        'busy' => 'Als gelesen markieren...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'Beim bearbeiten einer Umfrage, werden die aktuellen Ergebnisse gelöscht!',
+
+        'actions' => [
+            'edit' => 'Umfrage bearbeiten',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Post entfernen?',
         'confirm_restore' => 'Post wiederherstellen?',
@@ -57,6 +71,10 @@ return [
             'destroy' => 'Post löschen',
             'restore' => 'Post wiederherstellen',
             'edit' => 'Post bearbeiten',
+        ],
+
+        'info' => [
+            'post_count' => ':count_delimited Beitrag | :count_delimited Beiträge',
         ],
     ],
 
@@ -153,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Abstimmung erstellen',
 
+            'preview' => 'Beitragsvorschau',
+
             'create_poll_button' => [
                 'add' => 'Erstelle eine Abstimmung',
                 'remove' => 'Brich die Abstimmungserstellung ab',
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'Aufrufe',
+            'feature_votes' => 'Sternpriorität',
             'replies' => 'Antworten',
+            'views' => 'Aufrufe',
         ],
 
         'issue_tag_added' => [
@@ -252,6 +273,12 @@ return [
                 'current' => 'Aktuelle Priorität: +:count',
                 'do' => 'Priorität hinzufügen',
 
+                'info' => [
+                    '_' => 'Dies ist ein :feature_request. Funktionsvorschläge können nur von :supporters abgestimmt werden.',
+                    'feature_request' => 'Funktionsvorschlag',
+                    'supporters' => 'Unterstützer',
+                ],
+
                 'user' => [
                     'count' => '{0} Keine Stimme|{1} :count Stimme|[2,*] :count Stimmen',
                     'current' => 'Du hast noch :votes.',
@@ -274,7 +301,8 @@ return [
             'to_not_watching' => 'Kein Lesezeichen gesetzt',
             'to_watching' => 'Lesezeichen setzen',
             'to_watching_mail' => 'Lesezeichen setzen und benachrichtigt werden',
-            'mail_disable' => 'Benachrichtigungen deaktivieren',
+            'tooltip_mail_disable' => 'Benachrichtigungen sind aktiviert. Klicken, zum deaktivieren',
+            'tooltip_mail_enable' => 'Benachrichtigungen sind deaktiviert. Klicken, zum aktivieren',
         ],
     ],
 ];

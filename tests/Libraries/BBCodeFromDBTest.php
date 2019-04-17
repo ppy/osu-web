@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -36,6 +36,18 @@ class BBCodeFromDBTest extends TestCase
             $referenceOutput = $this->normalizeHTML("<div class='bbcode'>".file_get_contents($htmlFilePath).'</div>');
 
             $this->assertSame($referenceOutput, $output);
+        }
+    }
+
+    public function testRemoveBlockQuotes()
+    {
+        $path = __DIR__.'/bbcode_examples/remove_quotes';
+
+        foreach (glob("$path/*.db.txt") as $dbFilePath) {
+            $expectedFilePath = preg_replace('/\.db\.txt$/', '.expected.txt', $dbFilePath);
+            $text = BBCodeFromDB::removeBlockQuotes(file_get_contents($dbFilePath));
+
+            $this->assertStringEqualsFile($expectedFilePath, $text);
         }
     }
 }

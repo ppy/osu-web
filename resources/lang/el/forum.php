@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => 'Επισήμανση forum ως αναγνωσμένo',
+        'forums' => 'Επισήμανση forum ως αναγνωσμένα',
+        'busy' => 'Σήμανση ως αναγνωσμένου...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'Η επεξεργασία δημοσκόπησης θα καταργήσει τα τρέχοντα αποτελέσματα!',
+
+        'actions' => [
+            'edit' => 'Επεξεργασία δημοσκόπησης',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Σίγουρα διαγραφή της δημοσίευσης;',
         'confirm_restore' => 'Σίγουρα επαναφορά της δημοσίευσης;',
@@ -57,6 +71,10 @@ return [
             'destroy' => 'Διαγραφή δημοσίευσης',
             'restore' => 'Επαναφορά δημοσίευσης',
             'edit' => 'Επεξεργασία δημοσίευσης',
+        ],
+
+        'info' => [
+            'post_count' => ':count_delimited δημοσίευση|:count_delimited δημοσιεύσεις',
         ],
     ],
 
@@ -153,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Δημιουργία ψηφοφορίας',
 
+            'preview' => 'Προεπισκόπηση Δημοσίευσης',
+
             'create_poll_button' => [
                 'add' => 'Δημιούργησε ψηφοφορία',
                 'remove' => 'Ακύρωση δημιουργίας ψηφοφορίας',
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'προβολές',
+            'feature_votes' => 'βάσει αστεριών',
             'replies' => 'απαντήσεις',
+            'views' => 'προβολές',
         ],
 
         'issue_tag_added' => [
@@ -252,6 +273,12 @@ return [
                 'current' => 'Τρέχουσα Προτεραιότητα +:count',
                 'do' => 'Προαγωγή αυτού του αιτήματος',
 
+                'info' => [
+                    '_' => 'Αυτό είναι ένα :feature_request. Τα αιτήματα για λειτουργίες μπορούν να ψηφισθούν από τους :supporters.',
+                    'feature_request' => 'αίτημα για λειτουργία',
+                    'supporters' => 'supporters',
+                ],
+
                 'user' => [
                     'count' => '{0} καμία ψήφος|{1} :count ψήφος|[2,*] :count ψήφοι',
                     'current' => 'Σας απομένουν :votes.',
@@ -274,7 +301,8 @@ return [
             'to_not_watching' => 'Χωρίς σελιδοδείκτη',
             'to_watching' => 'Βάλτε Σελιδοδείκτη',
             'to_watching_mail' => 'Βάλτε σελιδοδείκτη με ειδοποίηση',
-            'mail_disable' => 'Απενεργοποίηση ειδοποιήσεων',
+            'tooltip_mail_disable' => 'Η Ειδοποίηση είναι ενεργοποιημένη. Κάντε κλικ για να απενεργοποίηση',
+            'tooltip_mail_enable' => 'Η ειδοποίηση είναι απενεργοποιημένη. Κάντε κλικ για ενεργοποίηση',
         ],
     ],
 ];

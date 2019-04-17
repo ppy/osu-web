@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -29,14 +29,14 @@ return [
         ],
 
         'email' => [
-            'current' => 'email actual',
+            'current' => 'email atual',
             'new' => 'novo email',
             'new_confirmation' => 'confirmação do email',
             'title' => 'Email',
         ],
 
         'password' => [
-            'current' => 'palavra-passe actual',
+            'current' => 'palavra-passe atual',
             'new' => 'nova palavra-passe',
             'new_confirmation' => 'confirmação da palavra-passe',
             'title' => 'Palavra-passe',
@@ -46,7 +46,7 @@ return [
             'title' => 'Perfil',
 
             'user' => [
-                'user_from' => 'localização actual',
+                'user_from' => 'localização atual',
                 'user_interests' => 'interesses',
                 'user_msnm' => '',
                 'user_occ' => 'ocupação',
@@ -58,18 +58,18 @@ return [
 
         'signature' => [
             'title' => 'Assinatura',
-            'update' => 'actualizar',
+            'update' => 'atualizar',
         ],
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! confirmação da alteração de email',
-        'update' => 'actualizar',
+        'email_subject' => 'Confirmação da alteração de email do osu!',
+        'update' => 'atualizar',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! confirmação da alteração da palavra-passe',
-        'update' => 'actualizar',
+        'email_subject' => 'Confirmação da alteração da palavra-passe do osu!',
+        'update' => 'atualizar',
     ],
 
     'playstyles' => [
@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => 'Privacidade',
         'friends_only' => 'bloquear mensagens privadas de pessoas que não estejam na tua lista de amigos',
+        'hide_online' => 'ocultar a tua presença online',
+    ],
+
+    'security' => [
+        'current_session' => 'atual',
+        'end_session' => 'Terminar Sessão',
+        'end_session_confirmation' => 'Isto irá imediatamente terminar a tua sessão nesse dispositivo. Tens a certeza?',
+        'last_active' => 'Ativo pela última vez:',
+        'title' => 'Segurança',
+        'web_sessions' => 'sessões web',
     ],
 ];

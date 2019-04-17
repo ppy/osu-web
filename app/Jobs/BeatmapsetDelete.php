@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,7 +23,9 @@ namespace App\Jobs;
 use App\Exceptions\AuthorizationException;
 use App\Models\Beatmapset;
 use App\Models\Event;
+use App\Models\Log;
 use App\Models\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -55,10 +57,21 @@ class BeatmapsetDelete implements ShouldQueue
         }
 
         $this->beatmapset->getConnection()->transaction(function () {
-            Event::generate(
-                'beatmapsetDelete',
-                ['beatmapset' => $this->beatmapset, 'user' => $this->user]
-            );
+            if ($this->beatmapset->user_id === $this->user->user_id) {
+                Event::generate(
+                    'beatmapsetDelete',
+                    ['beatmapset' => $this->beatmapset, 'user' => $this->user]
+                );
+            } else {
+                Log::log([
+                    'log_data' => array_only($this->beatmapset->getAttributes(), ['beatmapset_id', 'title']),
+                    'log_time' => Carbon::now(),
+                    'log_type' => Log::LOG_BEATMAPSET_MOD,
+                    'log_ip' => request()->ip(),
+                    'log_operation' => 'LOG_BEATMAPSET_DELETE',
+                    'user_id' => $this->user->user_id,
+                ]);
+            }
 
             // won't update already deleted beatmaps which is what we want.
             $this->beatmapset->beatmaps()->delete();

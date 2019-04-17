@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -32,6 +32,7 @@ class SupporterTagFulfillment extends OrderFulfiller
 {
     const TAGGED_NAME = 'supporter-tag';
 
+    private $continued;
     private $fulfillers;
     private $orderItems;
     private $minimumRequired = 0; // do not read this field outside of minimumRequired()
@@ -40,6 +41,7 @@ class SupporterTagFulfillment extends OrderFulfiller
     {
         $this->throwOnFail($this->validateRun());
 
+        $this->continued = $this->order->user->supporterTagPurchases()->exists();
         $fulfillers = $this->getOrderItemFulfillers();
 
         foreach ($fulfillers as $fulfiller) {
@@ -94,13 +96,13 @@ class SupporterTagFulfillment extends OrderFulfiller
         $isGift = count($gifts) !== 0;
 
         Event::generate(
-            $donor->hasSupported() ? 'userSupportAgain' : 'userSupportFirst',
+            $this->continued ? 'userSupportAgain' : 'userSupportFirst',
             ['user' => $donor, 'date' => $this->order->paid_at]
         );
 
         if (present($donor->user_email)) {
             Mail::to($donor->user_email)
-                ->queue(new \App\Mail\DonationThanks($donor, $totalDuration, $donationTotal, $isGift));
+                ->queue(new \App\Mail\DonationThanks($donor, $totalDuration, $donationTotal, $isGift, $this->continued));
         } else {
             Log::warning("User ({$$donor->getKey()}) does not have an email address set!");
         }

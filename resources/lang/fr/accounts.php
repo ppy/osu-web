@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => 'Confidentialité',
         'friends_only' => 'Bloque les messages privés des personnes qui ne sont pas dans votre liste d’amis',
+        'hide_online' => 'masquer votre présence en ligne',
+    ],
+
+    'security' => [
+        'current_session' => 'actuel',
+        'end_session' => 'Mettre fin à la session',
+        'end_session_confirmation' => 'Ceci va immédiatement mettre fin à votre session sur cet appareil. Êtes-vous sûr ?',
+        'last_active' => 'Dernière activité:',
+        'title' => 'Sécurité',
+        'web_sessions' => 'sessions web',
     ],
 ];

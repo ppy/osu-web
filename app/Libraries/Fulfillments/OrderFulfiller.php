@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,6 +30,7 @@ abstract class OrderFulfiller implements Fulfillable
 
     const TAGGED_NAME = 'order-fulfiller';
 
+    /** @var Order */
     protected $order;
 
     public function __construct(Order $order)
@@ -56,7 +57,7 @@ abstract class OrderFulfiller implements Fulfillable
         return $this->order;
     }
 
-    protected function throwOnFail($valid)
+    protected function throwOnFail(bool $valid = false)
     {
         if (!$valid) {
             $this->throwValidationFailed(new FulfillmentException($this->validationErrors()));

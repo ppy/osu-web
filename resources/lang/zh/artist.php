@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,7 +33,7 @@ return [
     ],
 
     'index' => [
-        'description' => '为了给 osu! 带来新的原创歌曲，我们正在和一些艺术家合作。他们的部分专辑被 osu! 团队选中作为制谱的绝佳素材。有的艺术家还为 osu! 提供了高质量的新专辑。<br><br>这些专辑均提供了预先准备的 .osz 文件，并且已经获得了官方授权(在 osu! 及其周边内容中使用)',
+        'description' => '为了给 osu! 带来新的原创歌曲，我们正在和一些艺术家合作。他们的部分专辑被 osu! 团队选中作为制谱的绝佳素材。有的艺术家还为 osu! 提供了高质量的新专辑。<br><br>这些专辑均提供了预先准备的 .osz 文件，并且已经获得了官方授权，允许在 osu! 及其周边内容中使用。',
     ],
 
     'links' => [
@@ -45,5 +45,12 @@ return [
         '_' => '单曲',
         'count' => ':count 首音乐',
         'exclusive' => 'osu! 独享',
+    ],
+
+    'tracklist' => [
+        'title' => '歌曲名',
+        'length' => '时长',
+        'bpm' => 'BPM',
+        'genre' => '流派',
     ],
 ];

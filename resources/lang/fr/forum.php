@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => 'Marquer le forum comme lu',
+        'forums' => 'Marquer les forums comme lus',
+        'busy' => 'Marquer comme lu...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'Éditer un sondage supprimera les résultats actuels !',
+
+        'actions' => [
+            'edit' => 'Éditer le sondage',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Voulez-vous vraiment supprimer ce post ?',
         'confirm_restore' => 'Voulez-vous vraiment restaurer ce post ?',
@@ -57,6 +71,10 @@ return [
             'destroy' => 'Supprimer le post',
             'restore' => 'Restaurer le post',
             'edit' => 'Modifier le post',
+        ],
+
+        'info' => [
+            'post_count' => ':count_delimited discussion|:count_delimited discussions',
         ],
     ],
 
@@ -153,6 +171,8 @@ return [
         'create' => [
             'create_poll' => 'Créer un sondage',
 
+            'preview' => 'Aperçu de la discussion',
+
             'create_poll_button' => [
                 'add' => 'Créer un sondage',
                 'remove' => 'Annuler la création du sondage',
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'vues',
+            'feature_votes' => 'priorité d\'étoiles',
             'replies' => 'réponses',
+            'views' => 'vues',
         ],
 
         'issue_tag_added' => [
@@ -252,6 +273,12 @@ return [
                 'current' => 'Priorité : +:count',
                 'do' => 'Promouvoir cette requête',
 
+                'info' => [
+                    '_' => 'Il s\'agit d\'une :feature_request. Les demandes de fonctionnalité peuvent être votées par des :supporters.',
+                    'feature_request' => 'demande de fonctionnalité',
+                    'supporters' => 'supporters',
+                ],
+
                 'user' => [
                     'count' => '{0} pas de vote|{1} :count vote|[2,*] :count votes',
                     'current' => 'Il vous reste :votes.',
@@ -274,7 +301,8 @@ return [
             'to_not_watching' => 'Vous ne suivez pas ce sujet',
             'to_watching' => 'Suivre',
             'to_watching_mail' => 'Suivre avec notifications',
-            'mail_disable' => 'Désactiver les notifications',
+            'tooltip_mail_disable' => 'La notification est activée. Cliquez pour désactiver',
+            'tooltip_mail_enable' => 'La notification est désactivée. Cliquez pour activer',
         ],
     ],
 ];

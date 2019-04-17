@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,41 +34,50 @@ return [
         'discussion' => 'Diskuze',
 
         'details' => [
+            'approved' => 'schváleno:',
+            'favourite' => 'Přidat do mých oblíbených',
+            'favourited_count' => '+ 1 ostatní!|+ :count ostatních!',
+            'logged-out' => 'Pro stahování beatmap musíš být přihlášen!',
+            'loved' => 'amorem zasažené:',
             'mapped_by' => 'beatmapu vytvořil :mapper',
+            'qualified' => 'kvalifikováno:',
+            'ranked' => 'hodnocené od:',
             'submitted' => 'nahráno:',
+            'unfavourite' => 'Odebrat z mých oblíbených',
             'updated' => 'naposledy upraveno:',
             'updated_timeago' => 'naposledy aktualizováno :timeago',
-            'ranked' => 'hodnocené od:',
-            'approved' => 'schváleno:',
-            'qualified' => 'kvalifikováno:',
-            'loved' => 'amorem zasažené:',
-            'logged-out' => 'Pro stahování beatmap musíš být přihlášen!',
+
             'download' => [
                 '_' => 'Stáhnout',
-                'video' => 's Videem',
-                'no-video' => 'bez Videa',
                 'direct' => '',
+                'no-video' => 'bez Videa',
+                'video' => 's Videem',
             ],
-            'favourite' => 'Přidat do mých oblíbených',
-            'unfavourite' => 'Odebrat z mých oblíbených',
-            'favourited_count' => '+ 1 ostatní!|+ :count ostatních!',
+
+            'login_required' => [
+                'bottom' => 'pro přístup k dalším funkcím',
+                'top' => 'Přihlašte se',
+            ],
         ],
-        'stats' => [
-            'cs' => 'Velikost koleček',
-            'cs-mania' => 'Počet kláves',
-            'drain' => 'Vysávání životů',
-            'accuracy' => 'Přesnost',
-            'ar' => 'Rychlost zjevování koleček',
-            'stars' => 'Počet hvězd',
-            'total_length' => 'Délka',
-            'bpm' => 'BPM',
-            'count_circles' => 'Počet koleček',
-            'count_sliders' => 'Počet sliderů',
-            'user-rating' => 'Uživatelské hodnocení',
-            'rating-spread' => 'Graf hodnocení',
-            'nominations' => 'Nominace',
-            'playcount' => 'Počet zahrání',
+
+        'favourites' => [
+            'limit_reached' => 'Máte příliš map v oblibených! Než to budete zkoušet znova, nějakou odstraňte.',
         ],
+
+        'hype' => [
+            'action' => 'Dejte Hype téhle mapě, pokud jste si užili její hraní a pomocte jí se dostat do <strong>Hodnoceného</strong> stavu.',
+
+            'current' => [
+                '_' => 'Tato mapa je právě :status.',
+
+                'status' => [
+                    'pending' => 'čekající',
+                    'qualified' => 'kvalifikované',
+                    'wip' => 'rozpracované',
+                ],
+            ],
+        ],
+
         'info' => [
             'description' => 'Popis',
             'genre' => 'Žánr',
@@ -80,6 +89,7 @@ return [
             'tags' => 'Tagy',
             'unranked' => 'Nehodnocená beatmapa',
         ],
+
         'scoreboard' => [
             'achieved' => 'dosaženo :when',
             'country' => 'Státní žebříčky',
@@ -112,6 +122,23 @@ return [
                 'first' => 'V čele',
                 'own' => 'Vaše nejlepší',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Velikost koleček',
+            'cs-mania' => 'Počet kláves',
+            'drain' => 'Vysávání životů',
+            'accuracy' => 'Přesnost',
+            'ar' => 'Rychlost zjevování koleček',
+            'stars' => 'Počet hvězd',
+            'total_length' => 'Délka',
+            'bpm' => 'BPM',
+            'count_circles' => 'Počet koleček',
+            'count_sliders' => 'Počet sliderů',
+            'user-rating' => 'Uživatelské hodnocení',
+            'rating-spread' => 'Graf hodnocení',
+            'nominations' => 'Nominace',
+            'playcount' => 'Počet zahrání',
         ],
     ],
 ];

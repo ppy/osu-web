@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,19 +21,19 @@
 return [
     'pinned_topics' => 'Kiinnitetyt Aiheet',
     'slogan' => "on vaarallista pelata yksin.",
-    'subforums' => 'Alaforumit',
-    'title' => 'osu! foorumit',
+    'subforums' => 'Alafoorumit',
+    'title' => 'osu!-foorumit',
 
     'covers' => [
         'create' => [
             '_' => 'Aseta kansikuva',
             'button' => 'Lataa kuva',
-            'info' => 'Kansikuvan koko kuuluisi olla :dimensions. Voit upottaa kuvan myös tähän.',
+            'info' => 'Kansikuvan koon kuuluisi olla :dimensions. Voit upottaa kuvan myös tähän.',
         ],
 
         'destroy' => [
             '_' => 'Poista kansikuva',
-            'confirm' => 'Oletko varma, että haluat poistaa kansikuvan?',
+            'confirm' => 'Haluatko varmasti poistaa kansikuvan?',
         ],
     ],
 
@@ -44,6 +44,20 @@ return [
     'forums' => [
         'topics' => [
             'empty' => 'Ei aiheita!',
+        ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => 'Merkitse luetuksi',
+        'forums' => 'Merkitse luetuksi',
+        'busy' => 'Merkitään luetuksi...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'Äänestyksen muokkaaminen poistaa tämänhetkiset tulokset!',
+
+        'actions' => [
+            'edit' => 'Muokkaa äänestystä',
         ],
     ],
 
@@ -58,6 +72,10 @@ return [
             'restore' => 'Palauta viesti',
             'edit' => 'Muokkaa viestiä',
         ],
+
+        'info' => [
+            'post_count' => ':count_delimited viesti|:count_delimited viestiä',
+        ],
     ],
 
     'search' => [
@@ -68,7 +86,7 @@ return [
 
     'topic' => [
         'deleted' => 'poistettu aihe',
-        'go_to_latest' => 'katso viimeisin viesti',
+        'go_to_latest' => 'näytä viimeisin viesti',
         'latest_post' => ':when käyttäjältä :user',
         'latest_reply_by' => 'viimeisimmän vastauksen jätti :user',
         'new_topic' => 'Lähetä uusi aihe',
@@ -77,7 +95,7 @@ return [
         'reply_box_placeholder' => 'Kirjoita vastauksesi tähän',
         'reply_title_prefix' => 'Re',
         'started_by' => 'tehnyt :user',
-        'started_by_verbose' => '',
+        'started_by_verbose' => 'aloittanut :user',
 
         'create' => [
             'preview' => 'Esikatselu',
@@ -90,7 +108,7 @@ return [
                 'default' => 'Tämä aihealue on ollut epäaktiivinen lähiaikoina. Postaa tänne vain jos sinulla on hyvä syy siihen.',
 
                 'new_topic' => [
-                    '_' => "",
+                    '_' => "Tämä aihe on ollut epäaktiivisena jo pidemmän aikaa. :create jos sinulla ei ole hyvää syytä lähettää viestiä.",
                     'create' => 'luo uusi aihe',
                 ],
             ],
@@ -123,11 +141,11 @@ return [
 
             'box' => [
                 'total' => 'Seurattuja aiheita',
-                'unread' => 'Aiheita uusilla vastauksilla',
+                'unread' => 'Aiheita joissa uusia vastauksia',
             ],
 
             'info' => [
-                'total' => 'Olet seurannut :total aihetta.',
+                'total' => ':total aihetta seurattavana.',
                 'unread' => 'Sinulla on :unread lukematonta vastausta seuratuissa aiheissa.',
             ],
         ],
@@ -144,7 +162,7 @@ return [
         '_' => 'Aiheet',
 
         'actions' => [
-            'login_reply' => 'Kirjaudu sisään Vastataksesi',
+            'login_reply' => 'Kirjaudu sisään vastataksesi',
             'reply' => 'Vastaa',
             'reply_with_quote' => 'Lainaa viestiä vastaukseen',
             'search' => 'Hae',
@@ -152,6 +170,8 @@ return [
 
         'create' => [
             'create_poll' => 'Äänestyksen Luonti',
+
+            'preview' => 'Viestin esikatselu',
 
             'create_poll_button' => [
                 'add' => 'Luo äänestys',
@@ -161,7 +181,7 @@ return [
             'poll' => [
                 'length' => 'Pidä äänestystä auki',
                 'length_days_suffix' => 'päivää',
-                'length_info' => 'Jätä tyhjä jos haluat loputtoman kyselyn',
+                'length_info' => 'Jätä tyhjäksi jos haluat kyselyn kestävän ikuisesti',
                 'max_options' => 'Vastauksia per käyttäjä',
                 'max_options_info' => 'Määrä vaihtoehtoja, joita käyttäjä voi valita äänestyksen aikana.',
                 'options' => 'Asetukset',
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'katsomiskertaa',
+            'feature_votes' => 'tähtitaso',
             'replies' => 'vastausta',
+            'views' => 'katsomiskertaa',
         ],
 
         'issue_tag_added' => [
@@ -224,11 +245,11 @@ return [
         ],
 
         'lock' => [
-            'is_locked' => 'Tämä aihe on lukittu, eikä ole voidaan vastata',
+            'is_locked' => 'Tämä aihe on lukittu, eikä siihen voida vastata',
             'to_0' => 'Avaa aihe',
             'to_0_done' => 'Aihe on avattu',
             'to_1' => 'Lukitse aihe',
-            'to_1_done' => 'Aihe on lukittu',
+            'to_1_done' => 'Aihe lukittu',
         ],
 
         'moderate_move' => [
@@ -237,25 +258,31 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Irrota aihe',
-            'to_0_done' => 'Aihe on irrotettu',
+            'to_0_done' => 'Aihe irrotettu',
             'to_1' => 'Kiinnitä aihe',
-            'to_1_done' => 'Aihe on kiinnitetty',
+            'to_1_done' => 'Aihe kiinnitetty',
             'to_2' => 'Kiinnitä aihe ja merkkaa ilmoitukseksi',
             'to_2_done' => 'Aihe on kiinnitetty ja merkattu ilmoitukseksi',
         ],
 
         'show' => [
-            'deleted-posts' => 'Poistetut aiheet',
+            'deleted-posts' => 'Poistetut viestit',
             'total_posts' => 'Vastauksia',
 
             'feature_vote' => [
                 'current' => 'Tärkeys tällä hetkellä: +:count',
-                'do' => 'Ehdota tätä pyyntöä',
+                'do' => 'Ehdota tätä',
+
+                'info' => [
+                    '_' => 'Tämä on :feature_request. :supporters voivat äänestää ominaisuuspyyntöjä.',
+                    'feature_request' => 'ominaisuuspyyntö',
+                    'supporters' => 'tukijat',
+                ],
 
                 'user' => [
                     'count' => '{0} ei ääniä |{1}:count ääni|[2,*]:count ääntä',
                     'current' => 'Sinulla on :votes jäljellä.',
-                    'not_enough' => "Sinulla ei ole enään ääniä jäljellä",
+                    'not_enough' => "Sinulla ei ole enää ääniä jäljellä",
                 ],
             ],
 
@@ -274,7 +301,8 @@ return [
             'to_not_watching' => 'Lisäämättä kirjanmerkkeihin',
             'to_watching' => 'Kirjanmerkkeihin',
             'to_watching_mail' => 'Kirjanmerkkeihin ilmoituksella',
-            'mail_disable' => 'Poista ilmoitukset käytöstä',
+            'tooltip_mail_disable' => 'Ilmoitus on päällä. Klikkaa poistaaksesi käytöstä',
+            'tooltip_mail_enable' => 'Ilmoitus on pois käytöstä. Klikkaa laittaaksesi päälle',
         ],
     ],
 ];

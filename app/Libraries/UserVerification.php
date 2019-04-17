@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -42,6 +42,12 @@ class UserVerification
 
     public function initiate()
     {
+        // Workaround race condition causing $this->issue() to be called in parallel.
+        // Mainly observed when logging in as privileged user.
+        if ($this->request->ajax() && $this->request->is('home/notifications')) {
+            return response(null, 401);
+        }
+
         $email = $this->user->user_email;
 
         if (!present($this->request->session()->get('verification_key'))) {

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => 'grupos',
             'index' => 'dashboard',
             'legal-show' => 'informação',
+            'messages-index' => 'mensagens',
             'news-index' => 'notícias',
             'news-show' => 'notícias',
             'password-reset-index' => 'redefinir senha',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'comunidade',
+            'chat' => 'chat',
+            'chat-index' => 'chat',
             'dev' => 'desenvolvimento',
             'getForum' => 'fóruns',
-            'getChat' => 'chat',
             'getLive' => 'transmissões',
+            'comments-index' => 'comentários',
+            'comments-show' => 'comentário',
             'contests' => 'concursos',
             'profile' => 'perfil',
             'tournaments' => 'torneios',
@@ -114,16 +118,18 @@ return [
             'reset' => 'recuperar',
             'new' => 'novo',
 
-            'messages' => 'Mensagens',
-            'settings' => 'Configurações',
-            'logout' => 'Desconectar',
             'help' => 'Ajuda',
+            'logout' => 'Desconectar',
+            'messages' => 'Mensagens',
             'modding-history-discussions' => 'discussões de modding',
             'modding-history-events' => 'eventos de modding',
             'modding-history-index' => 'histórico de modding do usuário',
             'modding-history-posts' => 'postagens de modding do usuário',
             'modding-history-votesGiven' => 'votos de modding dados',
             'modding-history-votesReceived' => 'votos de modding recebidos',
+            'oauth_login' => 'conecte-se para autenticar',
+            'oauth_request' => 'autorização oauth',
+            'settings' => 'Configurações',
         ],
         'store' => [
             '_' => 'loja',
@@ -133,6 +139,7 @@ return [
 
             'getCheckout' => 'comprar',
             'getInvoice' => 'fatura',
+            'orders-index' => 'histórico de pedidos',
             'products-show' => 'produto',
 
             'new' => 'novo',
@@ -190,7 +197,7 @@ return [
 
     'errors' => [
         '404' => [
-            'error' => 'Página não encontrada',
+            'error' => 'Página Não Encontrada',
             'description' => "Lamentamos, mas a página que você procura não está aqui!",
         ],
         '403' => [

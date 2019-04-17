@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Nie posiadasz dostępu do tego kanału.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Nie posiadasz dostępu do tego kanału.',
-                    'moderated' => 'Kanał jest obecnie w trybie tylko dla moderatorów.',
-                    'not_lazer' => 'Obecnie możesz pisać tylko na kanale #lazer.',
-                ],
+        'blocked' => 'Nie możesz wysłać wiadomości do użytkownika, którego blokujesz lub który cię blokuje.',
+        'friends_only' => 'Ten użytkownik blokuje wiadomości od osób spoza listy znajomych.',
+        'moderated' => 'Ten kanał jest obecnie w trybie tylko dla moderatorów.',
+        'no_access' => 'Nie masz dostępu do tego kanału.',
+        'restricted' => 'Nie możesz wysyłać wiadomości podczas uciszenia czy blokady konta.',
+    ],
 
-                'not_allowed' => 'Nie możesz wysyłać wiadomości podczas uciszenia bądź blokady konta',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Nie możesz edytować usuniętego posta.",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Nie posiadasz uprawnień do moderowania tego forum.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Tylko ostatni post może zostać usunięty.',
@@ -92,8 +91,8 @@ return [
             ],
 
             'store' => [
-                'play_more' => 'Zagraj w osu! przed rozpoczęciem pisania na forum! Jeżeli masz jakiś problem, utwórz post w forum Help bądź Support.',
-                'too_many_help_posts' => "Musisz zagrać w osu! przed utworzeniem kolejnych postów. Jeżeli nadal doświadczasz problemów, napisz na adres e-mail support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => 'Zagraj w osu! przed rozpoczęciem pisania na forum! Jeżeli masz jakiś problem, utwórz nowy wątek w forum dot. pomocy.',
+                'too_many_help_posts' => "Musisz zagrać w osu! przed utworzeniem kolejnych postów. Jeżeli nadal doświadczasz problemów, wyślij wiadomość na adres e-mail support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 

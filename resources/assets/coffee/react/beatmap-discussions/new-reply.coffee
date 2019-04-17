@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,12 +16,16 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, form, input, label, span, i} = ReactDOMFactories
+import { MessageLengthCounter } from './message-length-counter'
+import { BigButton } from 'big-button'
+import * as React from 'react'
+import { button, div, form, input, label, span, i } from 'react-dom-factories'
+import { UserAvatar } from 'user-avatar'
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
 
-class BeatmapDiscussions.NewReply extends React.PureComponent
+export class NewReply extends React.PureComponent
   ACTION_ICONS =
     reply_resolve: 'fas fa-check'
     reply_reopen: 'fas fa-exclamation-circle'
@@ -75,7 +79,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       div
         className: "#{bn}__footer #{bn}__footer--notice"
         osu.trans 'beatmaps.discussions.reply_notice'
-        el BeatmapDiscussions.MessageLengthCounter, message: @state.message
+        el MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div
         className: "#{bn}__footer"
@@ -151,13 +155,18 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         @throttledPost(event)
 
 
+  isTimeline: =>
+    @props.discussion.timestamp?
+
+
   post: (event) =>
     return if !@validPost()
     LoadingOverlay.show()
 
     @postXhr?.abort()
 
-    action = event.currentTarget.dataset.action
+    # in case the event came from input box, do 'reply'.
+    action = event.currentTarget.dataset.action ? 'reply'
     @setState posting: action
 
     resolved = switch action
@@ -193,4 +202,4 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
 
   validPost: =>
-    BeatmapDiscussionHelper.validMessageLength(@state.message)
+    BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())

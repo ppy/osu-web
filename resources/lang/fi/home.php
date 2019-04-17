@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,6 +24,7 @@ return [
         'online' => '<strong>:players</strong> online-tilassa <strong>:games</strong> pelaamassa',
         'peak' => 'Huipussaan :count käyttäjää paikalla',
         'players' => '<strong>:count</strong> rekisteröitynyttä pelaajaa',
+        'title' => 'tervetuloa',
 
         'slogan' => [
             'main' => 'parastakin parempi ilmainen rytmipeli',
@@ -36,8 +37,8 @@ return [
         'button' => 'Hae',
         'empty_result' => 'Mitään ei löytynyt!',
         'missing_query' => 'Tarvitaan vähintään :n merkin pituinen hakusana',
-        'placeholder' => 'kirjoita etsiäksesi',
-        'title' => 'Etsi',
+        'placeholder' => 'kirjoita hakeaksesi',
+        'title' => 'Hae',
 
         'beatmapset' => [
             'more' => ':count lisää hakutulosta',
@@ -53,9 +54,9 @@ return [
 
             'label' => [
                 'forum' => 'etsi foorumeista',
-                'forum_children' => 'etsi myös alafoorumit',
+                'forum_children' => 'etsi myös alafoorumeilta',
                 'topic_id' => 'aihe #',
-                'username' => 'luoja',
+                'username' => 'tekijä',
             ],
         ],
 
@@ -103,7 +104,7 @@ return [
             'beatmaps' => [
                 'title' => 'hanki beatmappeja',
                 'description' => [
-                    '_' => ':browse laajaa käyttäjien luomaa rytmikarttakirjastoa ja ryhdy pelaamaan!',
+                    '_' => ':browse käyttäjien luomaa laajaa beatmapkokoelmaa ja ryhdy pelaamaan!',
                     'browse' => 'selaa',
                 ],
             ],
@@ -115,13 +116,13 @@ return [
         'title' => 'hallinta',
         'news' => [
             'title' => 'Uutiset',
-            'error' => 'Virhe ladattaessa uutisia, yritä päivittää sivu?...',
+            'error' => 'Virhe ladattaessa uutisia. Kokeile sivun päivittämistä.',
         ],
         'header' => [
-            'welcome' => 'Hei, <strong>:username</strong>!',
-            'messages' => 'Sinulla on :count uusi viesti|Sinulla on :count uutta viestiä',
+            'welcome' => 'Hei <strong>:username</strong>!',
+            'messages' => 'Sinulle on :count uusi viesti|Sinulle on :count uutta viestiä',
             'stats' => [
-                'friends' => 'Ystäviä Paikalla',
+                'friends' => 'Kavereita paikalla',
                 'games' => 'Pelejä',
                 'online' => 'Käyttäjiä paikalla',
             ],
@@ -143,10 +144,10 @@ return [
         'title' => 'Vau!',
         'subtitle' => 'Sinulla taitaa olla hauskaa! :D',
         'body' => [
-            'part-1' => 'Tiesitkö että osu! toimii ilman mainoksia ja turvautuu pelaajien tukeen sen kehitys- ja käyttökustannuksissa?',
+            'part-1' => 'Tiesitkö että osu!a pidetään yllä ilman mainoksia ja turvautuu pelaajien tukeen sen kehitys- ja käyttökustannuksissa?',
             'part-2' => 'Tiesitkö myös että osua! tukemalla saat kasan hyödyllisiä ominaisuuksia, kuten <strong>pelinsisäisen beatmappien lataamisen</strong> joka aktivoituu automaattisesti moninpelissä ja katsojatilassa?',
         ],
         'find-out-more' => 'Klikkaa tästä lisätietoja!',
-        'download-starting' => "Ai, ja älä huoli - latauksesi on jo aloitettu ;)",
+        'download-starting' => "Niin, ja älä huoli - latauksesi on jo aloitettu ;)",
     ],
 ];

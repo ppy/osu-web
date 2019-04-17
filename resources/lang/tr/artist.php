@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -45,5 +45,12 @@ return [
         '_' => 'Şarkılar',
         'count' => ':count şarkı|:count şarkı',
         'exclusive' => 'osu!\'ya özel',
+    ],
+
+    'tracklist' => [
+        'title' => 'şarkının adı',
+        'length' => 'uzunluk',
+        'bpm' => 'bpm',
+        'genre' => 'tür',
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -28,6 +28,7 @@ use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\Elasticsearch;
 use App\Models\Log;
+use App\Models\Notification;
 use App\Models\User;
 use App\Traits\Validatable;
 use Carbon\Carbon;
@@ -35,11 +36,62 @@ use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
+/**
+ * @property Beatmapset $beatmapset
+ * @property TopicCover $cover
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property \Illuminate\Database\Eloquent\Collection $featureVotes FeatureVote
+ * @property Forum $forum
+ * @property int $forum_id
+ * @property int $icon_id
+ * @property \Illuminate\Database\Eloquent\Collection $logs Log
+ * @property mixed $osu_lastreplytype
+ * @property int $osu_starpriority
+ * @property \Illuminate\Database\Eloquent\Collection $pollOptions PollOption
+ * @property \Illuminate\Database\Eloquent\Collection $pollVotes PollVote
+ * @property bool $poll_hide_results
+ * @property int $poll_last_vote
+ * @property int $poll_length
+ * @property mixed $poll_length_days
+ * @property int $poll_max_options
+ * @property int $poll_start
+ * @property string $poll_title
+ * @property bool $poll_vote_change
+ * @property \Illuminate\Database\Eloquent\Collection $posts Post
+ * @property bool $topic_approved
+ * @property int $topic_attachment
+ * @property int $topic_bumped
+ * @property int $topic_bumper
+ * @property int $topic_first_post_id
+ * @property string $topic_first_poster_colour
+ * @property string $topic_first_poster_name
+ * @property int $topic_id
+ * @property int $topic_last_post_id
+ * @property string $topic_last_post_subject
+ * @property int $topic_last_post_time
+ * @property string $topic_last_poster_colour
+ * @property int $topic_last_poster_id
+ * @property string $topic_last_poster_name
+ * @property int $topic_last_view_time
+ * @property int $topic_moved_id
+ * @property int $topic_poster
+ * @property int $topic_replies
+ * @property int $topic_replies_real
+ * @property int $topic_reported
+ * @property int $topic_status
+ * @property int $topic_time
+ * @property int $topic_time_limit
+ * @property string $topic_title
+ * @property int $topic_type
+ * @property int $topic_views
+ * @property \Illuminate\Database\Eloquent\Collection $userTracks TopicTrack
+ * @property \Illuminate\Database\Eloquent\Collection $watches TopicWatch
+ */
 class Topic extends Model implements AfterCommit
 {
     use Elasticsearch\TopicTrait, SoftDeletes, Validatable;
 
-    const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
+    const DEFAULT_SORT = 'new';
 
     const STATUS_LOCKED = 1;
     const STATUS_UNLOCKED = 0;
@@ -75,6 +127,7 @@ class Topic extends Model implements AfterCommit
     private $_issueTags;
 
     protected $casts = [
+        'poll_hide_results' => 'boolean',
         'poll_vote_change' => 'boolean',
         'topic_approved' => 'boolean',
     ];
@@ -92,7 +145,7 @@ class Topic extends Model implements AfterCommit
 
         $topic->getConnection()->transaction(function () use ($forum, $topic, $params, $poll) {
             $topic->saveOrExplode();
-            $topic->addPostOrExplode($params['user'], $params['body']);
+            $topic->addPostOrExplode($params['user'], $params['body'], false);
 
             if ($poll !== null) {
                 $topic->poll($poll)->save();
@@ -107,7 +160,7 @@ class Topic extends Model implements AfterCommit
         return $topic->fresh();
     }
 
-    public function addPostOrExplode($poster, $body)
+    public function addPostOrExplode($poster, $body, $isReply = true)
     {
         $post = new Post([
             'post_text' => $body,
@@ -118,14 +171,15 @@ class Topic extends Model implements AfterCommit
             'post_time' => Carbon::now(),
         ]);
 
-        $this->getConnection()->transaction(function () use ($post) {
+        $this->getConnection()->transaction(function () use ($post, $isReply) {
             $post->saveOrExplode();
 
-            $this->postsAdded(1);
+            $this->postsAdded($isReply ? 1 : 0);
             optional($this->forum)->postsAdded(1);
 
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, 1);
+                $post->user->refresh();
             }
         });
 
@@ -155,6 +209,7 @@ class Topic extends Model implements AfterCommit
 
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, -1);
+                $post->user->refresh();
             }
 
             return true;
@@ -173,7 +228,10 @@ class Topic extends Model implements AfterCommit
                 $this->restore();
             }
 
-            optional($post->user)->refreshForumCache($this->forum, 1);
+            if ($post->user !== null) {
+                $post->user->refreshForumCache($this->forum, 1);
+                $post->user->refresh();
+            }
         });
 
         return true;
@@ -270,6 +328,11 @@ class Topic extends Model implements AfterCommit
         return $this->hasMany(Log::class, 'topic_id');
     }
 
+    public function notifications()
+    {
+        return $this->morphMany(Notification::class, 'notifiable');
+    }
+
     public function featureVotes()
     {
         return $this->hasMany(FeatureVote::class, 'topic_id');
@@ -298,6 +361,11 @@ class Topic extends Model implements AfterCommit
     public function setPollLastVoteAttribute($value)
     {
         $this->attributes['poll_last_vote'] = get_timestamp_or_zero($value);
+    }
+
+    public function getPollLengthDaysAttribute()
+    {
+        return $this->attributes['poll_length'] / 86400;
     }
 
     public function getPollStartAttribute($value)
@@ -486,27 +554,15 @@ class Topic extends Model implements AfterCommit
 
     public function scopePresetSort($query, $sort)
     {
-        switch ($sort[0] ?? null) {
+        $tieBreakerOrder = 'desc';
+
+        switch ($sort) {
             case 'feature-votes':
-                $sortField = 'osu_starpriority';
+                $query->orderBy('osu_starpriority', 'desc');
                 break;
         }
 
-        $sortField ?? ($sortField = static::DEFAULT_ORDER_COLUMN);
-
-        switch ($sort[1] ?? null) {
-            case 'asc':
-                $sortOrder = $sort[1];
-                break;
-        }
-
-        $sortOrder ?? ($sortOrder = 'desc');
-
-        $query->orderBy($sortField, $sortOrder);
-
-        if ($sortField !== static::DEFAULT_ORDER_COLUMN) {
-            $query->orderBy(static::DEFAULT_ORDER_COLUMN, 'desc');
-        }
+        $query->orderBy('topic_last_post_time', $tieBreakerOrder);
     }
 
     public function scopeRecent($query, $params = null)
@@ -627,7 +683,7 @@ class Topic extends Model implements AfterCommit
 
     public function isIssue()
     {
-        return in_array($this->forum_id, config('osu.forum.help_forum_ids'), true);
+        return in_array($this->forum_id, config('osu.forum.issue_forum_ids'), true);
     }
 
     public function postsAdded($count)
@@ -774,7 +830,7 @@ class Topic extends Model implements AfterCommit
 
     public function isFeatureTopic()
     {
-        return $this->forum->isFeatureForum();
+        return $this->topic_type === static::TYPES['normal'] && $this->forum->isFeatureForum();
     }
 
     public function poll($poll = null)

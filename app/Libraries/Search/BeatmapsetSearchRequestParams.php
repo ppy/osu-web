@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -36,6 +36,10 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         $this->user = $user;
         $this->from = $this->pageAsFrom(get_int($request['page']));
+
+        if (is_array($request['cursor'])) {
+            $this->searchAfter = array_values($request['cursor']);
+        }
 
         if ($this->user !== null) {
             $this->queryString = es_query_escape_with_caveats($request['q'] ?? $request['query']);
@@ -149,6 +153,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             'artist' => 'artist.raw',
             'creator' => 'creator.raw',
             'difficulty' => 'difficulties.difficultyrating',
+            'favourites' => 'favourite_count',
             'nominations' => 'nominations',
             'plays' => 'play_count',
             'ranked' => 'approved_date',

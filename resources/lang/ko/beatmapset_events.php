@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -43,11 +43,37 @@ return [
 
     'index' => [
         'title' => 'Beatmapset Events',
+
+        'form' => [
+            'period' => '기간',
+            'types' => '종류',
+        ],
     ],
 
     'item' => [
         'content' => '내용',
         'discussion_deleted' => '[삭제됨]',
         'type' => '종류',
+    ],
+
+    'type' => [
+        'approve' => '승인',
+        'discussion_delete' => '토론 삭제',
+        'discussion_post_delete' => '토론 답글 삭제',
+        'discussion_post_restore' => '토론 답글 복원',
+        'discussion_restore' => '토론 복원',
+        'disqualify' => '실격',
+        'issue_reopen' => '토론 재개',
+        'issue_resolve' => '토론 해결',
+        'kudosu_allow' => 'Kudosu 허용',
+        'kudosu_deny' => 'Kudosu 거부',
+        'kudosu_gain' => 'Kudosu 획득',
+        'kudosu_lost' => 'Kudosu 잃음',
+        'kudosu_recalculate' => 'Kudosu 재계산',
+        'love' => '러브',
+        'nominate' => '지명',
+        'nomination_reset' => '지명 재설정',
+        'qualify' => '자격',
+        'rank' => '랭킹',
     ],
 ];

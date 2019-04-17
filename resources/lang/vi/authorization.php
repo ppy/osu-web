@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Không được phép truy cập vào kênh đã yêu cầu.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Bắt buộc truy cập vào kênh được chỉ định.',
-                    'moderated' => 'Kênh hiện đang được kiểm duyệt.',
-                    'not_lazer' => 'Bạn chỉ có thể chat trên #lazer tại thời điểm này.',
-                ],
+        'blocked' => 'Không thể nhắn tin cho người dùng đã chặn bạn hoặc bạn đã chặn.',
+        'friends_only' => 'Người dùng đang chặn tin nhắn từ những người không trong danh sách bạn của họ.',
+        'moderated' => 'Kênh hiện đang được kiểm duyệt.',
+        'no_access' => 'Bạn không có quyền truy cập vào kênh này.',
+        'restricted' => 'Bạn không thể gửi tin nhắn trong khi bị im lặng, bị hạn chế hoặc bị cấm (ban).',
+    ],
 
-                'not_allowed' => 'Không thể gửi tin nhắn trong khi bị ban/hạn chế/im lặng.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Không thể chỉnh sửa bài đăng đã bị xóa.",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Không cần sự cho phép để kiểm duyệt diễn đàn này.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Chỉ có thể xóa bài đăng cuối cùng.',

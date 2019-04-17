@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => '',
+        'back_to_previous' => 'Trở về vị trí trước',
+        'back_to_top' => 'Quay lại đầu trang',
         'cancel' => 'Hủy',
         'change' => 'đổi',
         'click_to_copy' => 'click để sao chép vào bộ nhớ tạm',
         'click_to_copy_copied' => 'đã sao chép vào bộ nhớ tạm!',
+        'collapse' => '',
         'delete' => 'Xóa',
+        'edit' => 'Chỉnh sửa',
+        'expand' => '',
         'hide' => 'ẩn',
         'permalink' => 'permalink',
         'permalink_copied' => 'đã sao chép link',
@@ -43,25 +49,35 @@ return [
         'reply_reopen' => 'Trả lời và mở lại',
         'reply_resolve' => 'Trả lời và giải quyết',
         'reset' => 'Reset',
+        'restore' => 'Khôi phục',
         'save' => 'Lưu',
         'saving' => 'Đang lưu...',
         'search' => 'Tìm Kiếm',
         'see_more' => 'xem thêm',
         'show' => 'hiện',
         'show_more' => 'hiển thị thêm',
+        'show_more_options' => '',
         'upload_image' => 'tải ảnh lên',
     ],
 
     'count' => [
         'badges' => ':count huy hiệu',
         'days' => ':count ngày',
-        'hour_short_unit' => 'hr|hrs',
+        'hour_short_unit' => 'giờ',
         'hours' => ':count giờ',
         'item' => ':count đơn vị',
-        'minute_short_unit' => 'min|mins',
+        'minute_short_unit' => 'phút',
+        'minutes' => ':count phút',
         'months' => ':count tháng',
-        'second_short_unit' => 'sec|secs',
+        'second_short_unit' => 'giây',
         'years' => ':count năm',
+    ],
+
+    'countdown' => [
+        'days' => 'ngày',
+        'hours' => 'giờ',
+        'minutes' => 'phút',
+        'seconds' => 'giây',
     ],
 
     'datetime' => [

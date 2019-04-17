@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => 'beatmap șters',
+        'difference' => 'cu :difference puncte',
+        'failed' => 'EȘUAT',
         'header' => 'Meciuri multijucător',
-        'team-types' => [
-            'head-to-head' => 'Cap la cap',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
-        ],
+        'in-progress' => '(meci în desfășurare)',
+        'in_progress_spinner_label' => 'meci în desfășurare',
+        'loading-events' => 'Se încarcă evenimentele...',
+        'winner' => ':team câștigă',
+
         'events' => [
             'player-left' => ':user a părăsit meciul',
             'player-joined' => ':user s-a alăturat meciului',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'meciul a fost desființat',
             'host-changed-no-user' => 'gazda s-a schimbat',
         ],
-        'in-progress' => '(meci în desfășurare)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Precizie',
@@ -50,16 +52,18 @@ return [
                 'score' => 'Scor',
             ],
         ],
-        'failed' => 'EȘUAT',
+
+        'team-types' => [
+            'head-to-head' => 'Cap la cap',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
+        ],
+
         'teams' => [
             'blue' => 'Echipa albastră',
             'red' => 'Echipa roșie',
         ],
-        'winner' => ':team câștigă',
-        'difference' => 'cu :difference puncte',
-        'loading-events' => 'Se încarcă evenimentele...',
-        'more-events' => 'vezi tot...',
-        'beatmap-deleted' => 'beatmap șters',
     ],
     'game' => [
         'scoring-type' => [

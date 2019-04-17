@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,13 @@ namespace App\Models;
 use Carbon\Carbon;
 use DB;
 
+/**
+ * @property Build $build
+ * @property int $build_id
+ * @property \Carbon\Carbon $created_at
+ * @property int $id
+ * @property int $user_count
+ */
 class BuildPropagationHistory extends Model
 {
     public $timestamps = false;

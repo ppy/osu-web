@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => '刪除此回覆？',
         'confirm_restore' => '恢復此回覆？',
@@ -57,6 +71,10 @@ return [
             'destroy' => '刪除回覆',
             'restore' => '恢復回覆',
             'edit' => '編輯回覆',
+        ],
+
+        'info' => [
+            'post_count' => '',
         ],
     ],
 
@@ -75,9 +93,9 @@ return [
         'new_topic_login' => '登錄以發表新主題',
         'post_reply' => '發表',
         'reply_box_placeholder' => '輸入回覆',
-        'reply_title_prefix' => '',
+        'reply_title_prefix' => 'Re',
         'started_by' => '發表人： :user',
-        'started_by_verbose' => '',
+        'started_by_verbose' => '由 :user 發起',
 
         'create' => [
             'preview' => '預覽',
@@ -90,8 +108,8 @@ return [
                 'default' => '',
 
                 'new_topic' => [
-                    '_' => "",
-                    'create' => '',
+                    '_' => "此主題不被討論一段時間了。如果你沒有在這裡發文的具體理由, 請用 :create 代替。",
+                    'create' => '建立一個新的主題',
                 ],
             ],
 
@@ -153,6 +171,8 @@ return [
         'create' => [
             'create_poll' => '建立投票',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => '建立投票',
                 'remove' => '取消建立投票',
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => '瀏覽數',
+            'feature_votes' => '',
             'replies' => '回覆數',
+            'views' => '瀏覽數',
         ],
 
         'issue_tag_added' => [
@@ -252,6 +273,12 @@ return [
                 'current' => '當前優先順序: +:count',
                 'do' => '提升這個請求',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
                     'count' => '{0} 沒有票|[1,*] :count 票',
                     'current' => '剩下 :votes 票.',
@@ -274,7 +301,8 @@ return [
             'to_not_watching' => '未訂閱',
             'to_watching' => '訂閱',
             'to_watching_mail' => '訂閱並開啟電子郵件通知',
-            'mail_disable' => '關閉電子郵件通知',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
 ];

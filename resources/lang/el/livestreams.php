@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,8 @@ return [
     'top-headers' => [
         'headline' => 'Ζωντανές Μεταδόσεις',
         'description' => 'Τα δεδομένα αποστέλλονται από το twitch.tv κάθε πέντε λεπτά με βάση την καταχώρηση καταλόγου. Νιώστε ελεύθεροι να στριμάρετε και να μπείτε στη λίστα! Για περισσότερες πληροφορίες στο πώς να κάνετε τις ρυθμίσεις, ανατρέξτε στην σελίδα wiki στο live streaming.',
+
+        'link' => 'η σελίδα wiki σε ζωντανή μετάδοση',
     ],
     'headers' => [
         'regular' => 'Αυτή τη Στιγμή Στριμάρουν',

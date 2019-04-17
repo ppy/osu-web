@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,12 +20,12 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Konto</strong>indstillinger',
+        'title' => '<strong>Konto</strong> Indstillinger',
         'title_compact' => 'indstillinger',
         'username' => 'brugernavn',
 
         'avatar' => [
-            'title' => 'Avatar',
+            'title' => 'Profilbillede',
         ],
 
         'email' => [
@@ -83,5 +83,15 @@ return [
     'privacy' => [
         'title' => 'Privacy',
         'friends_only' => 'Bloker private beskeder fra folk, der ikke er på din venneliste',
+        'hide_online' => 'skjul din online status',
+    ],
+
+    'security' => [
+        'current_session' => 'nuværende',
+        'end_session' => 'Afslut Session',
+        'end_session_confirmation' => 'Dette vil straks afslutte sessionen på enheden. Er du sikker?',
+        'last_active' => 'Sidst aktiv:',
+        'title' => 'Sikkerhed',
+        'web_sessions' => 'websessioner',
     ],
 ];

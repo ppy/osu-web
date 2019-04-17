@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'Current username (:current) is not the same as change to revoke (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Donation is less than required for supporter tag gift (:actual > :expected)',
+        'insufficient_paid' => '',
     ],
 ];

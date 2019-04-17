@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -46,27 +46,22 @@ return [
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'I post automaticamente generati non possono essere modificati.',
-            'not_owner' => 'Solo l\'autore del post può editarlo.',
+            'system_generated' => 'I post generati automaticamente non possono essere modificati.',
+            'not_owner' => 'Solo l\'autore del post può modificarlo.',
         ],
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'L\'accesso al canale richiesto non è permesso.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'È richiesto l\'accesso al canale di destinazione.',
-                    'moderated' => 'Il canale è momentaneamente moderato.',
-                    'not_lazer' => 'Puoi parlare solo in #lazer al momento.',
-                ],
+        'blocked' => 'Non puoi inviare messaggi ad un utente che ti sta bloccando o che hai bloccato.',
+        'friends_only' => 'L\'utente sta bloccando messaggi da parte dei non-amici.',
+        'moderated' => 'Quel canale è attualmente moderato.',
+        'no_access' => 'Non hai accesso a quel canale.',
+        'restricted' => 'Non puoi inviare messaggi mentre sei silenziato, ristretto o bannato.',
+    ],
 
-                'not_allowed' => 'Non puoi inviare un messaggio mentre sei bannato/ristretto/silenziato.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Impossibile modificare un post cancellato.",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Non sei autorizzato a moderare questo forum.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Solo l\'ultimo post può essere eliminato.',
@@ -85,7 +84,7 @@ return [
 
             'edit' => [
                 'deleted' => 'Impossibile modificare un post cancellato.',
-                'locked' => 'Il post è bloccato dall\'effettuare modifiche.',
+                'locked' => 'Non è permesso effettuare modifiche in questo post.',
                 'no_forum_access' => 'È richiesto l\'accesso al forum.',
                 'not_owner' => 'Solo l\'autore del post lo può modificare.',
                 'topic_locked' => 'Non puoi modificare i post di un topic bloccato.',
@@ -159,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'La pagina utente è bloccata.',
                 'not_owner' => 'Puoi modificare solo la tua pagina utente.',
-                'require_supporter_tag' => 'è necessario avere un tag supporter.',
+                'require_supporter_tag' => 'è necessario avere una supporter tag.',
             ],
         ],
     ],

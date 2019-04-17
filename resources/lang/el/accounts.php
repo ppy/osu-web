@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -84,5 +84,15 @@ return [
     'privacy' => [
         'title' => 'Απόρρητο',
         'friends_only' => 'Αποκλεισμός των ιδιωτικών μηνυμάτων από άτομα που δεν βρίσκονται στη λίστα φίλων σας',
+        'hide_online' => 'απόκρυψη παρουσίας',
+    ],
+
+    'security' => [
+        'current_session' => 'τρέχουσα',
+        'end_session' => 'Λήξη Συνεδρίας',
+        'end_session_confirmation' => 'Αυτό θα λήξει τη συνεδρία σας σε αυτή την συσκευή. Είστε σίγουρος;',
+        'last_active' => 'Τελευταία ενεργός:',
+        'title' => 'Ασφάλεια',
+        'web_sessions' => 'συνεδρίες',
     ],
 ];

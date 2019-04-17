@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,16 +47,34 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => 'Marcar o fórum como visto',
+        'forums' => 'Marcar os fóruns como vistos',
+        'busy' => 'A marcar como visto...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'Editar uma sondagem irá remover os resultados atuais!',
+
+        'actions' => [
+            'edit' => 'Editar sondagem',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Queres mesmo apagar a publicação?',
         'confirm_restore' => 'Queres mesmo restaurar a publicação?',
-        'edited' => 'Editado pela ultima vez por :user :when, editado :count vezes no total.',
+        'edited' => 'Editado pela última vez por :user :when, editado :count vezes no total.',
         'posted_at' => 'publicado :when',
 
         'actions' => [
             'destroy' => 'Eliminar publicação',
             'restore' => 'Restaurar publicação',
             'edit' => 'Editar publicação',
+        ],
+
+        'info' => [
+            'post_count' => ':count_delimited publicação|:count_delimited publicações',
         ],
     ],
 
@@ -71,7 +89,7 @@ return [
         'go_to_latest' => 'ver ultima publicação',
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última resposta por :user',
-        'new_topic' => 'Publicar um novo tópico',
+        'new_topic' => 'Novo tópico',
         'new_topic_login' => 'Inicia sessão para publicar um novo tópico',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escreve aqui para responder',
@@ -87,10 +105,10 @@ return [
             'submit' => 'Publicar',
 
             'necropost' => [
-                'default' => 'Este tópico tem estado inactivo há já algum tempo. Publica aqui só se tiveres uma razão específica para o fazer.',
+                'default' => 'Este tópico tem estado inativo há já algum tempo. Publica aqui só se tiveres uma razão específica para o fazer.',
 
                 'new_topic' => [
-                    '_' => "Este tópico tem estado inactivo há já algum tempo. Se não tiveres uma razão específica para publicar aqui, por favor :create como alternativa.",
+                    '_' => "Este tópico tem estado inativo há já algum tempo. Se não tiveres uma razão específica para publicar aqui, por favor :create como alternativa.",
                     'create' => 'criar um novo tópico',
                 ],
             ],
@@ -128,7 +146,7 @@ return [
 
             'info' => [
                 'total' => 'Subscreveste a :total tópicos.',
-                'unread' => 'Tu tens :unread respostas não-lidas a tópicos subscritos.',
+                'unread' => 'Tu tens :unread respostas não lidas a tópicos subscritos.',
             ],
         ],
 
@@ -153,9 +171,11 @@ return [
         'create' => [
             'create_poll' => 'Criação de Sondagem',
 
+            'preview' => 'Publicar Amostra',
+
             'create_poll_button' => [
                 'add' => 'Criar uma sondagem',
-                'remove' => 'Cancelar a criação de uma sondagem',
+                'remove' => 'Cancelar a criação duma sondagem',
             ],
 
             'poll' => [
@@ -163,12 +183,12 @@ return [
                 'length_days_suffix' => 'dias',
                 'length_info' => 'Deixa em branco para uma sondagem interminável',
                 'max_options' => 'Opções por utilizador',
-                'max_options_info' => 'Este é o número de opções que cada utilizador poderá seleccionar ao votar.',
+                'max_options_info' => 'Este é o número de opções que cada utilizador poderá selecionar ao votar.',
                 'options' => 'Opções',
                 'options_info' => 'Coloca cada conjunto de opções numa nova linha. Poderás inserir até 10 opções.',
                 'title' => 'Pergunta',
                 'vote_change' => 'Permitir re-votação.',
-                'vote_change_info' => 'Se activada, os utilizadores são capazes de alterar o seu voto.',
+                'vote_change_info' => 'Se ativada, os utilizadores são capazes de alterar o seu voto.',
             ],
         ],
 
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => 'visualizações',
+            'feature_votes' => 'prioridade estrela',
             'replies' => 'respostas',
+            'views' => 'visualizações',
         ],
 
         'issue_tag_added' => [
@@ -249,8 +270,14 @@ return [
             'total_posts' => 'Publicações Totais',
 
             'feature_vote' => [
-                'current' => 'Prioridade Actual: +:count',
+                'current' => 'Prioridade Atual: +:count',
                 'do' => 'Promover este pedido',
+
+                'info' => [
+                    '_' => 'Isto é um :feature_request. Pedidos de características e funcionalidades podem ser votados por :supporters.',
+                    'feature_request' => 'solicitação de características/funcionalidades',
+                    'supporters' => 'apoiantes',
+                ],
 
                 'user' => [
                     'count' => '{0} sem voto|{1} :count voto|[2,*] :count votos',
@@ -272,9 +299,10 @@ return [
 
         'watch' => [
             'to_not_watching' => 'Não marcado',
-            'to_watching' => 'Marcado',
-            'to_watching_mail' => 'Marcado com notificação',
-            'mail_disable' => 'Desactivar notificação',
+            'to_watching' => 'Marcador',
+            'to_watching_mail' => 'Marcador com notificação',
+            'tooltip_mail_disable' => 'A notificação está ativada. Clica para desativares',
+            'tooltip_mail_enable' => 'A notificação está desativada. Clica para ativares',
         ],
     ],
 ];

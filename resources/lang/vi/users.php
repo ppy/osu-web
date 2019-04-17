@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Lịch Sử Modding Của :user",
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Cuộc thảo luận gần đây',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'Thả vào đây để tải lên',
                     'dropzone_info' => 'Bạn cũng có thể thả hình ảnh vào đây để tải lên',
                     'restriction_info' => "Tải lên chỉ có sẵn cho <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>người hỗ trợ osu!</a>",
-                    'size_info' => 'Kích cỡ ảnh bìa nên là 2000x700',
+                    'size_info' => 'Kích cỡ ảnh bìa nên là 2800x620',
                     'too_large' => 'Tệp đã tải lên quá lơn.',
                     'unsupported_format' => 'Định dạng không được hỗ trợ.',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'Không chơi gần đây',
 
             'achievements' => [
-                'title' => 'Huy hiệu',
                 'achieved-on' => 'Đạt được vào :date',
+                'locked' => 'Đã khóa',
+                'title' => 'Huy hiệu',
             ],
             'beatmaps' => [
+                'by_artist' => 'bởi :artist',
                 'none' => 'Chưa có... gì cả.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Beatmap Yêu Thích (:count)',
+                    'title' => 'Beatmap Yêu Thích',
                 ],
                 'graveyard' => [
-                    'title' => 'Graveyarded Beatmaps (:count)',
+                    'title' => 'Graveyarded Beatmaps',
                 ],
                 'loved' => [
-                    'title' => 'Loved Beatmaps (:count)',
+                    'title' => 'Loved Beatmaps',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận (:count)',
+                    'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmap Đang Chờ (:count)',
+                    'title' => 'Beatmap Đang Chờ',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Lịch Sử Chơi',
+                    'count_label' => 'Lượt Chơi',
                 ],
                 'most_played' => [
                     'count' => 'số lần chơi',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Lịch Sử Replay Được Xem',
+                    'count_label' => 'Replay Đã Xem',
                 ],
             ],
             'kudosu' => [
@@ -259,17 +264,18 @@ return [
             ],
             'medals' => [
                 'empty' => "Người dùng này chưa có huy chương nào cả. ;_;",
+                'recent' => 'Gần Nhất',
                 'title' => 'Huy Chương',
             ],
             'recent_activity' => [
                 'title' => 'Gần Đây',
             ],
             'top_ranks' => [
+                'download_replay' => 'Tải Xuống Replay',
                 'empty' => 'Chưa ghi nhận thành tích tuyệt vời nào. :(',
                 'not_ranked' => 'Chỉ có beatmap được xếp hạng mới có pp.',
-                'pp' => ':amountpp',
+                'pp_weight' => 'trọng số :percentage',
                 'title' => 'Xếp Hạng',
-                'weighted_pp' => 'trọng số: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Thực Hiện Tốt Nhất',
@@ -300,6 +306,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => ':info Người Chơi',
+            'info' => 'Thông Tin',
+        ],
+
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Sở Thích',
@@ -318,6 +330,7 @@ return [
             'title' => 'Không tìm thấy người dùng! ;_;',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>tôi!</strong> là một khu vực cá nhân có thể tùy chỉnh trong trang cá nhân của bạn.',
             'edit_big' => 'Chỉnh sửa tôi!',
             'placeholder' => 'Nhập nội dung trang vào đây',
@@ -329,12 +342,16 @@ return [
         ],
         'rank' => [
             'country' => 'Hạng quốc gia cho :mode',
+            'country_simple' => 'Hạng Quốc Gia',
             'global' => 'Hạng quốc tế cho :mode',
+            'global_simple' => 'Hạng Toàn Cầu',
         ],
         'stats' => [
             'hit_accuracy' => 'Độ Chính Xác',
             'level' => 'Level :level',
+            'level_progress' => 'Tiến độ qua level tiếp theo',
             'maximum_combo' => 'Combo Cao Nhất',
+            'medals' => 'Huy Chương',
             'play_count' => 'Số Lần Chơi',
             'play_time' => 'Tổng Thời Gian Chơi',
             'ranked_score' => 'Điểm Được Xếp Hạng',

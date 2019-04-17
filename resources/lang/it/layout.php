@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,7 @@ return [
             'groups-show' => 'gruppi',
             'index' => 'dashboard',
             'legal-show' => 'informazioni',
+            'messages-index' => 'messaggi',
             'news-index' => 'notizie',
             'news-show' => 'notizie',
             'password-reset-index' => 'reimposta password',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'comunità',
+            'chat' => 'chat',
+            'chat-index' => 'chat',
             'dev' => 'sviluppo',
             'getForum' => 'forum',
-            'getChat' => 'chat',
-            'getLive' => 'dirette',
+            'getLive' => 'live',
+            'comments-index' => 'commenti',
+            'comments-show' => 'commenta',
             'contests' => 'concorsi',
             'profile' => 'profilo',
             'tournaments' => 'tornei',
@@ -114,16 +118,18 @@ return [
             'reset' => 'recupera',
             'new' => 'nuovo',
 
-            'messages' => 'Messaggi',
-            'settings' => 'Impostazioni',
-            'logout' => 'Disconnettiti',
             'help' => 'Aiuto',
+            'logout' => 'Disconnettiti',
+            'messages' => 'Messaggi',
             'modding-history-discussions' => 'discussioni di modding tra utenti',
             'modding-history-events' => 'eventi di modding tra utenti',
             'modding-history-index' => 'cronologia di modding tra utenti',
             'modding-history-posts' => 'post di modding tra utenti',
             'modding-history-votesGiven' => 'i voti dei giocatori per le modifiche sono stati inviati',
             'modding-history-votesReceived' => 'i voti dei giocatori per le modifiche sono stati ricevuti',
+            'oauth_login' => '',
+            'oauth_request' => '',
+            'settings' => 'Impostazioni',
         ],
         'store' => [
             '_' => 'negozio',
@@ -133,6 +139,7 @@ return [
 
             'getCheckout' => 'cassa',
             'getInvoice' => 'fattura',
+            'orders-index' => 'ordini',
             'products-show' => 'prodotto',
 
             'new' => 'nuovo',

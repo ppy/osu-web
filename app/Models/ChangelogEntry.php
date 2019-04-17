@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,8 +22,25 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Exception;
-use Markdown;
 
+/**
+ * @property \Illuminate\Database\Eloquent\Collection $builds Build
+ * @property string|null $category
+ * @property \Carbon\Carbon|null $created_at
+ * @property GithubUser $githubUser
+ * @property int|null $github_pull_request_id
+ * @property int|null $github_user_id
+ * @property int $id
+ * @property bool $major
+ * @property string|null $message
+ * @property bool $private
+ * @property Repository $repository
+ * @property int|null $repository_id
+ * @property string|null $title
+ * @property string|null $type
+ * @property \Carbon\Carbon|null $updated_at
+ * @property string|null $url
+ */
 class ChangelogEntry extends Model
 {
     protected $casts = [
@@ -33,8 +50,18 @@ class ChangelogEntry extends Model
 
     public static function convertLegacy($changelog)
     {
+        $message = $changelog->message;
+        $splitMessage = static::splitMessage($message);
+        $title = $splitMessage[0];
+
+        if ($title === null) {
+            $title = $splitMessage[1];
+            $message = null;
+        }
+
         return new static([
-            'title' => $changelog->message,
+            'title' => $title,
+            'message' => $message,
             'url' => $changelog->url,
             'category' => $changelog->category,
             'type' => $changelog->prefix,
@@ -88,6 +115,27 @@ class ChangelogEntry extends Model
             ]),
             'repository' => null,
         ]);
+    }
+
+    public static function splitMessage($message)
+    {
+        if (!present($message)) {
+            return [null, null];
+        }
+
+        static $separator = "\n\n---\n";
+        // prepended with \n\n just in case the message starts with ---\n (blank first part).
+        $message = "\n\n".trim(str_replace("\r\n", "\n", $message));
+        $splitPos = strpos($message, $separator);
+
+        if ($splitPos === false) {
+            $splitPos = strlen($message);
+        }
+
+        return [
+            presence(trim(substr($message, 0, $splitPos))),
+            presence(trim(substr($message, $splitPos + strlen($separator)))),
+        ];
     }
 
     public function builds()
@@ -148,29 +196,10 @@ class ChangelogEntry extends Model
 
     public function messageHTML()
     {
-        if (!present($this->message)) {
-            return;
+        list($private, $public) = static::splitMessage($this->message);
+
+        if ($public !== null) {
+            return markdown($public, 'changelog_entry');
         }
-
-        static $separator = "\n\n---\n";
-        static $openingSeparator = "---\n";
-
-        $origMessage = trim(str_replace("\r\n", "\n", $this->message));
-
-        if (starts_with($origMessage, $openingSeparator)) {
-            $publicMessageStart = strlen($openingSeparator);
-        } else {
-            $publicMessageStart = strpos($origMessage, $separator);
-
-            if ($publicMessageStart === false) {
-                return;
-            } else {
-                $publicMessageStart += strlen($separator);
-            }
-        }
-
-        $message = trim(substr($origMessage, $publicMessageStart));
-
-        return present($message) ? Markdown::convertToHtml($message) : null;
     }
 }

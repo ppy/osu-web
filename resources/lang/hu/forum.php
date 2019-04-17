@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,14 +21,14 @@
 return [
     'pinned_topics' => 'Kitűzött Témák',
     'slogan' => "egyedül játszani veszélyes.",
-    'subforums' => 'Mellékfórum',
+    'subforums' => 'Mellékfórumok',
     'title' => 'osu! fórumok',
 
     'covers' => [
         'create' => [
-            '_' => 'Boritókép beállitása',
+            '_' => 'Borítókép megadása',
             'button' => 'Kép feltöltése',
-            'info' => 'A boritó mérete :dimensions kell, hogy legyen.A kép feltöltését idehúzással is megteheted.',
+            'info' => 'A boritókép mérete :dimensions kell hogy legyen. A kép feltöltését idehúzással is megteheted.',
         ],
 
         'destroy' => [
@@ -43,27 +43,45 @@ return [
 
     'forums' => [
         'topics' => [
-            'empty' => 'Nincs téma!',
+            'empty' => 'Nincsenek témák!',
+        ],
+    ],
+
+    'mark_as_read' => [
+        'forum' => 'Fórum megjelölése olvasottként',
+        'forums' => 'Fórumok megjelölése olvasottként',
+        'busy' => 'Olvasottnak jelölés...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'A szavazás szerkesztése eltávolítja a jelenlegi eredményeket!',
+
+        'actions' => [
+            'edit' => 'Szavazás szerkesztése',
         ],
     ],
 
     'post' => [
         'confirm_destroy' => 'Biztosan törlöd a posztot?',
-        'confirm_restore' => 'Biztosan visszaállitod a posztot?',
+        'confirm_restore' => 'Biztosan visszaállítod a posztot?',
         'edited' => 'Utoljára módosítva :user által :when, módosítva :count alkalommal.',
         'posted_at' => 'posztolva :when',
 
         'actions' => [
             'destroy' => 'Poszt törlése',
-            'restore' => 'Poszt helyreállítása',
+            'restore' => 'Poszt visszaállítása',
             'edit' => 'Poszt szerkesztése',
+        ],
+
+        'info' => [
+            'post_count' => ':count_delimited poszt|-:count_delimited poszt',
         ],
     ],
 
     'search' => [
         'go_to_post' => 'Ugrás a poszthoz',
-        'post_number_input' => 'írja be a poszt számát',
-        'total_posts' => ':posts_count teljes posztol száma',
+        'post_number_input' => 'írd be a poszt számát',
+        'total_posts' => ':posts_count posztok száma',
     ],
 
     'topic' => [
@@ -71,10 +89,10 @@ return [
         'go_to_latest' => 'utolsó poszt megtekintése',
         'latest_post' => ':when :user által',
         'latest_reply_by' => 'legutóbbi hozzászólás: :user',
-        'new_topic' => 'Új téma posztolása',
+        'new_topic' => 'Új téma',
         'new_topic_login' => 'Jelentkezz be új téma nyitásához',
         'post_reply' => 'Poszt',
-        'reply_box_placeholder' => 'Válasz írásához kattintson ide',
+        'reply_box_placeholder' => 'Ide írj a válaszoláshoz',
         'reply_title_prefix' => 'Válasz',
         'started_by' => ':user által',
         'started_by_verbose' => ':user által indítva',
@@ -97,14 +115,14 @@ return [
 
             'placeholder' => [
                 'body' => 'Ide írja a tartalmat',
-                'title' => 'Kattintson ide a cím hozzáadásához',
+                'title' => 'Kattints ide a cím megadásához',
             ],
         ],
 
         'jump' => [
-            'enter' => 'egyedi poszt szám hozzáadásához kattintson ide',
-            'first' => 'ugrás első poszthoz',
-            'last' => 'ugrás előző poszthoz',
+            'enter' => 'specifikus poszt szám megadásához kattints ide',
+            'first' => 'ugrás az első poszthoz',
+            'last' => 'ugrás az utolsó poszthoz',
             'next' => '10 poszt átugrása',
             'previous' => 'visszalépni 10 posztot',
         ],
@@ -117,24 +135,24 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Fórum feliratkozások',
+            'title' => 'Fórum Feliratkozások',
             'title_compact' => 'fórum feliratkozások',
             'title_main' => 'Fórum <strong>Feliratkozások</strong>',
 
             'box' => [
-                'total' => 'Felíratkozott témák',
+                'total' => 'Követett témák',
                 'unread' => 'Témák új válaszokkal',
             ],
 
             'info' => [
-                'total' => 'Te felíratkoztál :total témára.',
-                'unread' => ':unread választ nem olvastál el a felíratkozott témáidban.',
+                'total' => ':total témára vagy feliratkozva.',
+                'unread' => ':unread választ nem olvastál el a követett témáidban.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Leíratkozol a témáról?',
+                'confirmation' => 'Leiratkozol a témáról?',
                 'title' => 'Leiratkozás',
             ],
         ],
@@ -151,11 +169,13 @@ return [
         ],
 
         'create' => [
-            'create_poll' => 'Szavazás készítése',
+            'create_poll' => 'Szavazás Létrehozása',
+
+            'preview' => 'Poszt előnézet',
 
             'create_poll_button' => [
-                'add' => 'Kérdőív létrehozása',
-                'remove' => 'Kérdőív létrehozásának megszakítása',
+                'add' => 'Szavazás létrehozása',
+                'remove' => 'Szavazás létrehozásának megszakítása',
             ],
 
             'poll' => [
@@ -163,11 +183,11 @@ return [
                 'length_days_suffix' => 'nap',
                 'length_info' => 'Hagyja üresen a soha véget nem érő szavazást',
                 'max_options' => 'Felhasználónkénti beállítások',
-                'max_options_info' => 'Ez a szám mutatja mennyit szavazhat egy felhasználó.',
+                'max_options_info' => 'Ez a szám mutatja mennyi lehetőséget választhat egy felhasználó.',
                 'options' => 'Beállítások',
-                'options_info' => 'Minden lehetőséget új sorba írj, 10 lehetőséget is megadhat.',
+                'options_info' => 'Minden opció kerüljön új sorba. 10 opciót lehet megadni.',
                 'title' => 'Kérdés',
-                'vote_change' => 'Újboli szavazás megengedése.',
+                'vote_change' => 'Újraszavazás engedélyezése.',
                 'vote_change_info' => 'Ha engedélyezve van, a felhasználók változtathatják a szavazatukat.',
             ],
         ],
@@ -177,58 +197,59 @@ return [
         ],
 
         'index' => [
-            'views' => 'megtekintések',
+            'feature_votes' => 'csillagos prioritás',
             'replies' => 'válaszok',
+            'views' => 'megtekintések',
         ],
 
         'issue_tag_added' => [
-            'to_0' => '"Hozzáadott" címke eltávolítása',
-            'to_0_done' => '"Hozzáadott" címke eltávolítva',
-            'to_1' => '“Added” címke hozzáadása',
-            'to_1_done' => '“Added” címke hozzáadva',
+            'to_0' => '"added" címke eltávolítása',
+            'to_0_done' => '"added" címke eltávolítva',
+            'to_1' => '“added” címke hozzáadása',
+            'to_1_done' => '“added” címke hozzáadva',
         ],
 
         'issue_tag_assigned' => [
-            'to_0' => '“Assigned” címke eltávolítása',
-            'to_0_done' => '“Assigned” címke eltávolítva',
-            'to_1' => '“Assigned” címke hozzáadása',
-            'to_1_done' => '“Assigned” címke hozzáadva',
+            'to_0' => '“assigned” címke eltávolítása',
+            'to_0_done' => '“assigned” címke eltávolítva',
+            'to_1' => '“assigned” címke hozzáadása',
+            'to_1_done' => '“assigned” címke hozzáadva',
         ],
 
         'issue_tag_confirmed' => [
-            'to_0' => '“Confirmed” címke eltávolítása',
-            'to_0_done' => '“Confirmed” címke eltávolítva',
-            'to_1' => '“Confirmed” címke hozzáadása',
-            'to_1_done' => '“Confirmed” címke hozzáadva',
+            'to_0' => '“confirmed” címke eltávolítása',
+            'to_0_done' => '“confirmed” címke eltávolítva',
+            'to_1' => '“confirmed” címke hozzáadása',
+            'to_1_done' => '“confirmed” címke hozzáadva',
         ],
 
         'issue_tag_duplicate' => [
-            'to_0' => '“Duplicate” címke eltávolítása',
-            'to_0_done' => '“Duplicate” címke eltávolítva',
-            'to_1' => '“Duplicate” címke hozzáadása',
-            'to_1_done' => '“Duplicate” címke hozzáadva',
+            'to_0' => '“duplicate” címke eltávolítása',
+            'to_0_done' => '“duplicate” címke eltávolítva',
+            'to_1' => '“duplicate” címke hozzáadása',
+            'to_1_done' => '“duplicate” címke hozzáadva',
         ],
 
         'issue_tag_invalid' => [
-            'to_0' => '“Invalid” címke eltávolítása',
-            'to_0_done' => '“Invalid” címke eltávolítva',
-            'to_1' => '“Invalid” címke hozzáadása',
-            'to_1_done' => '“Invalid” címke hozzáadva',
+            'to_0' => '“invalid” címke eltávolítása',
+            'to_0_done' => '“invalid” címke eltávolítva',
+            'to_1' => '“invalid” címke hozzáadása',
+            'to_1_done' => '“invalid” címke hozzáadva',
         ],
 
         'issue_tag_resolved' => [
-            'to_0' => '“Resolved” címke eltávolítása',
-            'to_0_done' => '“Resolved” címke eltávolítva',
-            'to_1' => '“Resolved” címke hozzáadása',
-            'to_1_done' => '“Resolved” címke hozzáadva',
+            'to_0' => '“resolved” címke eltávolítása',
+            'to_0_done' => '“resolved” címke eltávolítva',
+            'to_1' => '“resolved” címke hozzáadása',
+            'to_1_done' => '“resolved” címke hozzáadva',
         ],
 
         'lock' => [
             'is_locked' => 'Ez a téma zárva van és nem lehet rá válaszolni',
             'to_0' => 'Téma feloldása',
             'to_0_done' => 'A téma fel lett oldva',
-            'to_1' => 'Téma lezárása',
-            'to_1_done' => 'A téma le lett zárva',
+            'to_1' => 'Téma zárolása',
+            'to_1_done' => 'A téma zárolva lett',
         ],
 
         'moderate_move' => [
@@ -236,12 +257,12 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => 'Téma kiszögelésének visszavonása',
-            'to_0_done' => 'A téma kiszögelésének eltávolítása megtörtént',
-            'to_1' => 'Téma kiszögelése',
-            'to_1_done' => 'A téma kiszögelése megtörtént',
-            'to_2' => 'Téma kiszögelése és bejelentésként kiaállítása',
-            'to_2_done' => 'Téma kiszögelvevés bejelentésként kiállítva',
+            'to_0' => 'Téma kitűzésének visszavonása',
+            'to_0_done' => 'A téma kitűzése visszavonva',
+            'to_1' => 'Téma kitűzése',
+            'to_1_done' => 'A téma ki lett tűzve',
+            'to_2' => 'Téma kitűzése és bejelentésnek jelölése',
+            'to_2_done' => 'Téma kitűzve és bejelentésnek jelölve',
         ],
 
         'show' => [
@@ -250,7 +271,13 @@ return [
 
             'feature_vote' => [
                 'current' => 'Jelenlegi prioritás: +:count',
-                'do' => 'Kérés támogatása',
+                'do' => 'Kérés promotálása',
+
+                'info' => [
+                    '_' => 'Ez egy :feature_request. A funkciókérések felszavazhatóak :supporters által.',
+                    'feature_request' => 'funkciókérés',
+                    'supporters' => 'támogatók',
+                ],
 
                 'user' => [
                     'count' => '{0} nincs szavazat|{1} :count szavazat|[2,*] :count szavazat',
@@ -274,7 +301,8 @@ return [
             'to_not_watching' => 'Nincs könyvjelzőnek állítva',
             'to_watching' => 'Könyvjelző',
             'to_watching_mail' => 'Könyvjelző értesítéssel',
-            'mail_disable' => 'Értesítések kikapcsolása',
+            'tooltip_mail_disable' => 'Értesítés engedélyezve van. Ide kattintva letilthatod',
+            'tooltip_mail_enable' => 'Értesítés le van tiltva. Ide kattintva engedélyezheted',
         ],
     ],
 ];

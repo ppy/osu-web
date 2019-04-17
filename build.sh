@@ -3,9 +3,11 @@
 set -u
 set -e
 
-# the user when provisioning is `vagrant`, but files are created by `www-data`
-# don't fail if permissions don't get set on all files (useful when reloading the container)
-chmod -R 777 storage bootstrap/cache || true
+# The user when provisioning is different than the user running actual php workers (in production).
+if [ -z "${OSU_SKIP_CACHE_PERMISSION_OVERRIDE:-}" ]; then
+    # Don't fail if permissions don't get set on all files.
+    chmod -R 777 storage bootstrap/cache || true
+fi
 
 if [ ! -d node_modules ]; then
   mkdir -p ~/node_modules
@@ -24,7 +26,11 @@ php composer.phar config -g github-oauth.github.com 98cbc568911ef1e060a3a31623f2
 
 rm -f bootstrap/cache/*.php bootstrap/cache/*.json
 
-php composer.phar install
+if [ -z "${OSU_INSTALL_DEV:-}" ]; then
+  php composer.phar install --no-dev
+else
+  php composer.phar install
+fi
 
 php artisan view:clear
 
@@ -34,15 +40,9 @@ if [ -z "${OSU_SKIP_DB_MIGRATION:-}" ]; then
 fi
 
 php artisan passport:keys
-php artisan lang:js resources/assets/js/messages.js
 php artisan laroute:generate
-
-if [ ! "${APP_DEBUG:-false}" = "true" ]
-then
-  php artisan config:cache
-  php artisan route:cache
-fi
 
 command -v yarn || npm install -g yarn
 yarn
+yarn run generate-localizations
 yarn run production

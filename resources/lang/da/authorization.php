@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => '',
+            'mapper_note_wrong_user' => 'Kun ejeren af dette beatmap eller en nominator/QAT group member kan sende map notes.',
         ],
 
         'vote' => [
@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Adgang til den anmodede kanal er nægtet.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Adgang til den anmodede kanal er nødvendig.',
-                    'moderated' => 'Kanal er i øjeblikket modereret.',
-                    'not_lazer' => 'Du kan i øjeblikket kun tale i #lazer.',
-                ],
+        'blocked' => 'Du kan ikke sende denne besked, enten har brugeren blokeret dig eller du har blokeret brugeren.',
+        'friends_only' => 'Brugeren blokere beskeder fra folk der ikke er på deres venneliste.',
+        'moderated' => 'Denne kanal er i øjeblikket modereret.',
+        'no_access' => 'Du har ikke adgang til denne kanal.',
+        'restricted' => 'Du kan ikke sende beskeder nå du er muted eller banned.',
+    ],
 
-                'not_allowed' => 'Kan ikke sende besked imens du er bannet/begrænset/mutet.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Kan ikke redigere slettede opslag.",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Ingen tilladelse til at moderere dette forum.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Kun sidste opslag kan blive slettet.',
@@ -99,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => '',
+                'double_post' => 'Rediger din seneste besked i stedet for at lave en ny.',
                 'locked' => 'Kan ikke svare en låst tråd.',
                 'no_forum_access' => 'Adgang til det anmodede forum er nødvendig.',
                 'no_permission' => 'Du har ikke tilladelse til at svare.',
@@ -159,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'Brugerside er låst.',
                 'not_owner' => 'Du kan kun redigere din egen brugerside.',
-                'require_supporter_tag' => '',
+                'require_supporter_tag' => 'osu!supporter tag er påkrævet.',
             ],
         ],
     ],

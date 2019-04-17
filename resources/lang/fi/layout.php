@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,17 +27,18 @@ return [
         'home' => [
             '_' => 'etusivu',
             'account-edit' => 'asetukset',
-            'friends-index' => 'ystävät',
-            'changelog-index' => 'päivityshistoria',
+            'friends-index' => 'kaverit',
+            'changelog-index' => 'muutosloki',
             'changelog-build' => 'versio',
             'getDownload' => 'lataa',
             'getIcons' => 'kuvakkeet',
             'groups-show' => 'ryhmät',
             'index' => 'hallinta',
             'legal-show' => 'tiedot',
+            'messages-index' => 'viestit',
             'news-index' => 'uutiset',
             'news-show' => 'uutiset',
-            'password-reset-index' => 'palauta salasana',
+            'password-reset-index' => 'nollaa salasana',
             'search' => 'haku',
             'supportTheGame' => 'tue peliä',
             'team' => 'tiimi',
@@ -53,10 +54,10 @@ return [
         'beatmaps' => [
             '_' => 'beatmapit',
             'artists' => 'suositellut artistit',
-            'beatmap_discussion_posts-index' => 'viestit karttakeskusteluissa',
-            'beatmap_discussions-index' => 'karttakeskustelut',
+            'beatmap_discussion_posts-index' => 'viestit beatmapkeskusteluissa',
+            'beatmap_discussions-index' => 'beatmapkeskustelut',
             'beatmapset-watches-index' => 'modiseuranta',
-            'beatmapset_discussion_votes-index' => 'äänet karttakeskusteluissa',
+            'beatmapset_discussion_votes-index' => 'äänet beatmapkeskusteluissa',
             'beatmapset_events-index' => 'beatmapin tapahtumat',
             'index' => 'listaus',
             'packs' => 'kokoelmat',
@@ -64,7 +65,7 @@ return [
         ],
         'beatmapsets' => [
             '_' => 'beatmapit',
-            'discussion' => 'modaus',
+            'discussion' => 'modaaminen',
         ],
         'rankings' => [
             '_' => 'tilastot',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'yhteisö',
+            'chat' => 'viestit',
+            'chat-index' => 'viestit',
             'dev' => 'kehitystyö',
             'getForum' => 'foorumit',
-            'getChat' => 'chat',
-            'getLive' => 'livenä',
+            'getLive' => 'suorat',
+            'comments-index' => 'kommentit',
+            'comments-show' => 'kommentti',
             'contests' => 'kilpailut',
             'profile' => 'profiili',
             'tournaments' => 'turnaukset',
@@ -114,25 +118,28 @@ return [
             'reset' => 'palauta',
             'new' => 'uusi',
 
-            'messages' => 'Viestit',
-            'settings' => 'Asetukset',
-            'logout' => 'Kirjaudu ulos',
             'help' => 'Apua',
+            'logout' => 'Kirjaudu ulos',
+            'messages' => 'Viestit',
             'modding-history-discussions' => 'käyttäjän modauskeskustelut',
             'modding-history-events' => 'käyttäjän modaustapahtumat',
             'modding-history-index' => 'käyttäjän modaushistoria',
             'modding-history-posts' => 'käyttäjän modausviestit',
             'modding-history-votesGiven' => 'käyttäjän antamat modausäänet',
             'modding-history-votesReceived' => 'käyttäjän saamat modausäänet',
+            'oauth_login' => '',
+            'oauth_request' => '',
+            'settings' => 'Asetukset',
         ],
         'store' => [
             '_' => 'kauppa',
             'checkout-show' => 'kassa',
-            'getListing' => 'listaus',
+            'getListing' => 'kaupalle',
             'cart-show' => 'ostoskori',
 
             'getCheckout' => 'kassa',
             'getInvoice' => 'lasku',
+            'orders-index' => 'tilaushistoria',
             'products-show' => 'tuote',
 
             'new' => 'uusi',
@@ -164,9 +171,9 @@ return [
 
     'footer' => [
         'general' => [
-            '_' => 'Yleinen',
-            'home' => 'Aloitus',
-            'changelog-index' => 'Muutoshistoria',
+            '_' => 'Yleiset',
+            'home' => 'Etusivu',
+            'changelog-index' => 'Muutosloki',
             'beatmaps' => 'Beatmapit',
             'download' => 'Lataa osu!',
             'wiki' => 'Wiki',
@@ -175,7 +182,7 @@ return [
             '_' => 'Ohjeet & Yhteisö',
             'faq' => 'Usein kysytyt kysymykset',
             'forum' => 'Keskustelupalsta',
-            'livestreams' => 'Live-lähetykset',
+            'livestreams' => 'Suorat lähetykset',
             'report' => 'Ilmoita ongelmasta',
         ],
         'legal' => [
@@ -195,27 +202,27 @@ return [
         ],
         '403' => [
             'error' => "Sinun ei pitäisi olla täällä.",
-            'description' => 'Voit silti yrittää mennä takaisin.',
+            'description' => 'Voisit silti yrittää mennä takaisin.',
         ],
         '401' => [
             'error' => "Sinun ei pitäisi olla täällä.",
-            'description' => 'Voit silti yrittää mennä takaisin. Tai kirjautua sisään.',
+            'description' => 'Voisit silti yrittää mennä takaisin. Tai ehkäpä kirjautua sisään.',
         ],
         '405' => [
             'error' => 'Sivu puuttuu',
             'description' => "Pahoittelut, mutta sivu jota hait ei ole täällä!",
         ],
         '500' => [
-            'error' => 'O ou! Jotain hajosi! ;_;',
+            'error' => 'Hupsista! Jotain taisi hajota! ;_;',
             'description' => "Meille tulee automaattisesti jokaisesta virheestä ilmoitus.",
         ],
         'fatal' => [
-            'error' => 'O ou! Jotain hajosi (pahasti)! ;_;',
+            'error' => 'Nyt taisi jokin hajota... ja pahasti ;_;',
             'description' => "Meille tulee automaattisesti jokaisesta virheestä ilmoitus.",
         ],
         '503' => [
-            'error' => 'Alhaalla huollon ajaksi!',
-            'description' => "Huolto yleensä kestää viidestä sekunnista kymmeneen minuuttiin. Jos me emme toimi vielä sen jälkeen, mene katsomaan :link lisäinformaatiota varten.",
+            'error' => 'Suljettu huollon ajaksi!',
+            'description' => "Huolto kestää yleensä viidestä sekunnista kymmeneen minuuttiin. Jos huolto kestää pidempään, käy katsomassa :link lisätietoja varten.",
             'link' => [
                 'text' => '',
                 'href' => '',
@@ -240,14 +247,14 @@ return [
 
         'register' => [
             'info' => "Tarvitset käyttäjän hyvä mies. Miksei sinulla ole jo sellaista?",
-            'title' => "Etkö ole vielä rekisteröitynyt?",
+            'title' => "Eikö sinulla ole vielä käyttäjää?",
         ],
     ],
 
     'popup_user' => [
         'links' => [
             'account-edit' => 'Asetukset',
-            'friends' => 'Ystävät',
+            'friends' => 'Kaverit',
             'logout' => 'Kirjaudu ulos',
             'profile' => 'Profiili',
         ],

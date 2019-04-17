@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -48,17 +48,36 @@ return [
         'cart_problems' => 'Uh oh, có vấn đề với giỏ hàng của bạn!',
         'cart_problems_edit' => 'Nhấp vào đây để chỉnh sửa nó.',
         'declined' => 'Thanh toán đã bị hủy.',
+        'delayed_shipping' => 'Hiện tại chúng tôi đang có một lượng đơn hàng rất lớn! Bạn vẫn có thể thoải mái đặt hàng, nhưng vui lòng đợi **thêm 1-2 tuần** trong khi chúng tôi bắt kịp với những đơn hàng hiện tại.',
         'old_cart' => 'Giỏ hàng của bạn đã hết hạn và đã được nạp lại, vui lòng thử lại sau.',
         'pay' => 'Thanh toán với Paypal',
+
+        'has_pending' => [
+            '_' => 'Bạn có thanh toán chưa hoàn thành, nhấp vào :link để xem.',
+            'link_text' => 'đây',
+        ],
+
         'pending_checkout' => [
             'line_1' => 'Lần thanh toán trước đã bắt đầu nhưng chưa kết thúc.',
-            'line_2' => 'Tiếp tục thanh toán bằng cách chọn một phương thức thanh toán, hoặc :link để hủy.',
-            'link_text' => 'nhấp vào đây',
+            'line_2' => 'Tiếp tục thanh toán bằng cách chọn một cách thanh toán.',
         ],
-        'delayed_shipping' => 'Hiện tại chúng tôi đang có một lượng đơn hàng rất lớn! Bạn vẫn có thể thoải mái đặt hàng, nhưng vui lòng đợi **thêm 1-2 tuần** trong khi chúng tôi bắt kịp với những đơn hàng hiện tại.',
     ],
 
     'discount' => 'tiết kiệm :percent%',
+
+    'invoice' => [
+        'echeck_delay' => 'Vì bạn thanh toán bằng eCheck, hãy chờ thêm tối đa 10 ngày để thanh toán qua khỏi PayPal!',
+        'status' => [
+            'processing' => [
+                'title' => 'Thanh toán của bạn chưa được xác nhận!',
+                'line_1' => 'Nếu bạn đã thanh toán, chúng tôi có thể vẫn đang đợi xác nhận của thanh toán của bạn. Hãy tải lại trang này trong khoảng một đến hai phút!',
+                'line_2' => [
+                    '_' => 'Nếu bạn gặp sự cố trong quá trình thanh toán, :link',
+                    'link_text' => 'nhấp vào đây để tiếp tục quá trình thanh toán',
+                ],
+            ],
+        ],
+    ],
 
     'mail' => [
         'payment_completed' => [
@@ -67,6 +86,12 @@ return [
     ],
 
     'order' => [
+        'paid_on' => 'Đã đặt hàng :date',
+
+        'invoice' => 'Xem Hóa Đơn',
+        'no_orders' => 'Không có đơn đặt hàng.',
+        'resume' => '',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name cho :username (:duration)',
@@ -82,6 +107,15 @@ return [
             'paid' => 'Bạn không thể chỉnh sửa đơn hàng vì nó đã được thanh toán.',
             'processing' => 'Bạn không thể chỉnh sửa đơn hàng trong khi nó đang được xử lý.',
             'shipped' => 'Bạn không thể chỉnh sửa đơn hàng vì nó đã được vận chuyển.',
+        ],
+
+        'status' => [
+            'cancelled' => 'Đã Hủy',
+            'checkout' => 'Đang Chuẩn Bị',
+            'delivered' => 'Đã Giao Hàng',
+            'paid' => 'Đã Thanh Toán',
+            'processing' => 'Đang chờ xác nhận',
+            'shipped' => '',
         ],
     ],
 

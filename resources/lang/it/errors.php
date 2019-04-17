@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,11 +34,11 @@ return [
         'invalid_mode' => 'Modalità specificata non valida.',
         'standard_converts_only' => 'Solo la modalità osu! può avere punteggi in altre modalità.',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'Hai troppe beatmaps preferite! Si prega di de-preferirne una prima di continuare.',
+    'checkout' => [
+        'generic' => '',
     ],
-    'logged_out' => 'Sei stato disconesso. Per favore effettua di nuovo il login e riprova.',
+    'logged_out' => 'Sei stato disconnesso. Per favore effettua di nuovo il login e riprova.',
     'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalità.',
-    'no_restricted_access' => 'Non puoi fare questa azione mentre il tuo account è nello stato di ristretto.',
+    'no_restricted_access' => 'Non puoi fare questa azione mentre il tuo account è ristretto.',
     'unknown' => 'Si è verificato un errore sconosciuto.',
 ];

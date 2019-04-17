@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2018 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,7 +16,9 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-reactTurbolinks.registerPersistent 'changelog-index', ChangelogIndex.Main, true, (el) ->
+import { Main } from './changelog-index/main'
+
+reactTurbolinks.registerPersistent 'changelog-index', Main, true, (el) ->
   container: el
   updateStreams: osu.parseJson('json-update-streams')
   data: osu.parseJson('json-index')

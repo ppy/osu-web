@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,13 +21,20 @@
 return [
     'header' => [
         'small' => 'Concurează în mai multe moduri decât doar făcând clic pe cercuri.',
-        'large' => 'Concursuri comunitare osu!',
+        'large' => 'Concursuri comunitare',
     ],
     'voting' => [
         'over' => 'Votarea pentru acest concurs s-a încheiat',
         'login_required' => 'Te rugăm să te autentifici pentru a vota.',
+
         'best_of' => [
             'none_played' => "Nu pare să fi jucat niciun beatmap care se califică pentru acest concurs!",
+        ],
+
+        'button' => [
+            'add' => 'Votează',
+            'remove' => 'Retrage votul',
+            'used_up' => 'Ți-ai folosit toate voturile',
         ],
     ],
     'entry' => [
@@ -38,6 +45,7 @@ return [
         'over' => 'Îți mulțumim pentru intrările tale! Înscrierile s-au închis pentru acest concurs și votarea se va deschide în curând.',
         'limit_reached' => 'Ai atins limita de intrări în acest concurs',
         'drop_here' => 'Trage intrarea ta aici',
+        'download' => 'Descarcă .osz',
         'wrong_type' => [
             'art' => 'Numai fișierele de tip .jpg și .png sunt acceptate pentru acest concurs.',
             'beatmap' => 'Numai fișierele de tip .osu sunt acceptate pentru acest concurs.',
@@ -50,7 +58,8 @@ return [
     ],
     'vote' => [
         'list' => 'voturi',
-        'count' => '1 vot|:count voturi',
+        'count' => ':count vot|:count voturi|:count de voturi',
+        'points' => ':count punct|:count puncte|:count de puncte',
     ],
     'dates' => [
         'ended' => 'S-a terminat pe :date',

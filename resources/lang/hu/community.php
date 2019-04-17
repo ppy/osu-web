@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,21 +27,20 @@ return [
             'support_button' => 'Támogatni szeretném az osu!-t',
         ],
 
-        'dev_quote' => 'az osu! egy teljesen ingyenes játék  viszont futtatni annál kevésbé ingyenes.
-
-A szerverek müködtetésével és a magas minőségű sávszélesség kezelésével, mintúgy a renszer és a közösség karbantartásával is, a versenyekre a díjak biztosítása, választ adni a feltett kérdésekre és alapjában az embereket boldogan tartani, az osu! elégge sok pénzt igényel a müködtetéshez.
-
-Oh, és ne felejtsük azt a tényt sem, hogy mindezt reklámok és olcsó toolbárokkal való partnerkedés és hasonlók nélkül csináljuk!
-
-<br/><br/>A nap végére a játék még mindig főként csak saját magam által futtatott, kire legtöbbször "peppy"-ként tekintetek.
-
-Ott kellett hagynom a munkám, hogy lépést tudjak tartani az osu!-val, és néha szenvedek, hogy megtartsam azokat az alapokat amelyeket szeretnék.
-
-Szeretném személyes köszönetemet küldeni azoknak akik eddig már döntöttek az osu! támogatása mellett, és azoknak is akik továbbra is támogatják ezt a csodálatos játékot, szintúgy a közösséget a jövőben :).',
+        'dev_quote' => 'Az osu! egy teljesen ingyenes játék, a fenntartása viszont már kevésbé mondható annak.
+        A szerverek és a magas minőségű nemzetközi sávszélesség üzembe helyezése, a rendszerek és a közösség fenntartása, a díjak                                                         
+        szolgáltatása versenyekre, a felhasználók kérdéseinek megválaszolása valamint a boldogságuk fenntartása, mindezek között az osu! 
+        elég jelentős összeget emészt fel.
+        Oh, és ne feledjük azt a tényt sem, hogy mindezt reklámok, olcsó toolbar-okkal való partnerség és hasonló badarságok nélkül szolgáltatjuk!
+            <br/><br/>Mindezt beleszámítva, az osu!-t nagyrészt én tartom fenn, akit "peppy"-ként ismerhettek.
+            Ott kellett hagynom a munkámat, hogy lépést tarthassak az osu!-val,
+            és előfordul, hogy küszködnöm kell az általam elvárt színvonal fenntartásáért.
+            Személyes köszönetemet szeretném küldeni azoknak akik eddig az osu! támogatása mellett döntöttek,
+            és azoknak szintúgy, akik a jövőben is támogatni fogják ezt a csodálatos játékot és közösséget :).',
 
         'supporter_status' => [
             'contribution' => 'Köszönjük az eddigi támogatásodat! Összesen :dollars adománnyal járultál hozzá :tags: cím vásárlással!',
-            'gifted' => 'A tagvásárlásaidból :giftedTags ajándék volt (ami :giftedDollars ajándékozás) milyen segítőkész!',
+            'gifted' => 'A cím vételeidből :giftedTags ajándékozott (eddig összesen :giftedDollars ajándékozott), milyen nagylelkű!',
             'not_yet' => "Nincsen támogatói címed még :(",
             'title' => 'Jelenlegi támogatói állapot',
             'valid_until' => 'A jelenlegi támogatói címed eddig érvényes: :date!',
@@ -51,9 +50,10 @@ Szeretném személyes köszönetemet küldeni azoknak akik eddig már döntötte
         'why_support' => [
             'title' => 'Miért kellene támogatnom az osu!-t!?',
             'blocks' => [
-                'dev' => 'Fejlesztett és karbantartott egy srác által Ausztráliából',
-                'time' => 'Annyi időt elvesz a futtatása, hogy már hobbinak nem nevezhető.',
-                'ads' => 'Egyetlen reklám sincs <br/><br/> Ellentétben mint az internet 99.95%-án, mi nem profitálunk ha az arcodba nyomunk dolgokat.',
+                'dev' => 'Nagyrészt egy ausztrál fickó által fejlesztve és karbantartva',
+                'time' => 'A fenntartása annyi időt emészt fel, hogy már nem nagyon nevezhető "hobbinak".',
+                'ads' => 'Egyetlen reklám sincs. <br/><br/>
+                        A web 99.95%-ával ellentétben, mi nem abból profitálunk, hogy dolgokat nyomunk az arcodba.',
                 'goodies' => 'Kapsz néhány extra jóságot!',
             ],
         ],
@@ -62,27 +62,27 @@ Szeretném személyes köszönetemet küldeni azoknak akik eddig már döntötte
             'title' => 'Oh? Mit is kapok?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'gyors és egyszerüen elérés beatmap kereséshez a játék elhagyása nélkül.',
+                'description' => 'gyors és egyszerű beatmap keresés a játék elhagyása nélkül.',
             ],
 
             'auto_downloads' => [
                 'title' => 'Automatikus Letöltések',
-                'description' => 'Automatikus letöltés többjátékos módban, mások nézése közben, vagy linkre kattintva a chatben!',
+                'description' => 'Automatikus letöltés többjátékos módban, mások nézése közben, vagy linkre kattintva a chat-ben!',
             ],
 
             'upload_more' => [
                 'title' => 'Tölts fel többet',
-                'description' => 'Még több függőben lévő beatmap hely (rankolt beatmap esetén) 10 felé.',
+                'description' => 'Még több függőben lévő beatmap hely (rangsorolt beatmap-onként) maximum 10-ig.',
             ],
 
             'early_access' => [
                 'title' => 'Korai Hozzáférés',
-                'description' => 'Lehetőség korai hozzáféréshez, ahol kipróbálhatsz új funkciókat megjelenés előtt!',
+                'description' => 'Korai hozzáférés új kiadásokhoz amikben új funkciókat próbálhatsz ki mielőtt publikusak lennének!',
             ],
 
             'customisation' => [
                 'title' => 'Testreszabás',
-                'description' => 'Tedd egyedivé a profilod egy teljesen egyedi felhasználói fiókkal.',
+                'description' => 'Tedd egyedivé a profilod egy teljesen testre szabható felhasználói oldallal.',
             ],
 
             'beatmap_filters' => [
@@ -91,18 +91,18 @@ Szeretném személyes köszönetemet küldeni azoknak akik eddig már döntötte
             ],
 
             'yellow_fellow' => [
-                'title' => 'Sárga pajtárs',
-                'description' => 'Légy észrevehető játékon belül az új világos sárga felhasználó neveddel.',
+                'title' => 'Sárga Kiemelés',
+                'description' => 'Légy észrevehető játékon belül az új fényes sárga felhasználóneveddel.',
             ],
 
             'speedy_downloads' => [
                 'title' => 'Gyors Letöltések',
-                'description' => 'Egyszerűbb letöltési megkötések, főleg osu!direct használata közben.',
+                'description' => 'Kevésbé szigorú letöltési korlátozások, főleg az osu!direct használatánál.',
             ],
 
             'change_username' => [
                 'title' => 'Felhasználónév Csere',
-                'description' => 'A lehetőség a felhasználóneved megváltosztatására bármi féle további költség nélkül (csak egyszer)',
+                'description' => 'Lehetőség a felhasználóneved költségmentes megváltoztatására. (maximum egyszer)',
             ],
 
             'skinnables' => [
@@ -111,22 +111,22 @@ Szeretném személyes köszönetemet küldeni azoknak akik eddig már döntötte
             ],
 
             'feature_votes' => [
-                'title' => 'Funkció szavazás',
-                'description' => 'Funkciókra való szavazási lehetőség (havi 2)',
+                'title' => 'Funkció Szavazások',
+                'description' => 'Szavazások funkció kérelmekre. (havi 2)',
             ],
 
             'sort_options' => [
                 'title' => 'Rendezési Beállítások',
-                'description' => 'A lehetőség országos / baráti / mod-specikus beatmap rankolás megtekintése játékon belül.',
+                'description' => 'A lehetőség országos / baráti / mod-specifikus beatmap ranglétra megtekintésére játékon belül.',
             ],
 
             'feel_special' => [
-                'title' => 'Érezd magad egyedinek',
-                'description' => 'A melegitő és pezsgő érzés azáltal, hogy segitesz az osu!-t akadálymentesen futtatni!',
+                'title' => 'Érezd magad különlegesnek',
+                'description' => 'A meleg és bolyhos érzés attól, hogy segíted az osu! problémamentes működését!',
             ],
 
             'more_to_come' => [
-                'title' => 'Több hamarosan',
+                'title' => 'Több is jön',
                 'description' => '',
             ],
         ],
@@ -134,8 +134,8 @@ Szeretném személyes köszönetemet küldeni azoknak akik eddig már döntötte
         'convinced' => [
             'title' => 'Meggyőztél! :D',
             'support' => 'osu! támogatása!',
-            'gift' => 'vagy támogató tag küldése másik játékosnak',
-            'instructions' => 'kattints a szívet ábrázoló gombra, hogy továbblépj az osu!store-ba',
+            'gift' => 'vagy ajándékozz támogatói címet más játékosoknak',
+            'instructions' => 'kattints a szívet ábrázoló gombra, hogy továbblépj az osu!boltba',
         ],
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => 'Admin',
+        'back_to_previous' => 'Vissza az előző pozícióra',
+        'back_to_top' => 'Vissza a lap tetejére',
         'cancel' => 'Mégse',
         'change' => 'változtat',
         'click_to_copy' => 'kattints ide a vágólapra helyezéshez',
         'click_to_copy_copied' => 'vágólapra helyezve!',
+        'collapse' => 'összecsuk',
         'delete' => 'Törlés',
+        'edit' => 'Szerkesztés',
+        'expand' => 'kibont',
         'hide' => 'elrejtés',
         'permalink' => 'állandó hivatkozás',
         'permalink_copied' => 'hivatkozás másolva',
@@ -43,12 +49,14 @@ return [
         'reply_reopen' => 'Válaszolás és újranyitás',
         'reply_resolve' => 'Válaszolás és megoldás',
         'reset' => 'Visszaállítás',
+        'restore' => 'Visszaállítás',
         'save' => 'Mentés',
         'saving' => 'Mentés...',
         'search' => 'Keresés',
-        'see_more' => 'részletek',
+        'see_more' => 'továbbiak mutatása',
         'show' => 'mutat',
         'show_more' => 'több megjelenítése',
+        'show_more_options' => 'további opciók mutatása',
         'upload_image' => 'kép feltöltése',
     ],
 
@@ -59,9 +67,17 @@ return [
         'hours' => ':count óra|:count óra',
         'item' => ':count egység|:count egység',
         'minute_short_unit' => 'p|p',
+        'minutes' => ':count perc |:count percek',
         'months' => ':count hónap|:count hónap',
         'second_short_unit' => 'mp|mp',
         'years' => ':count év|:count év',
+    ],
+
+    'countdown' => [
+        'days' => 'nap',
+        'hours' => 'óra',
+        'minutes' => 'perc',
+        'seconds' => 'másodperc',
     ],
 
     'datetime' => [
@@ -107,6 +123,6 @@ return [
     ],
 
     'title' => [
-        'notice' => 'Figyelmeztetés',
+        'notice' => 'Értesítés',
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,7 +27,7 @@ return [
     ],
 
     'builds' => [
-        'users_online' => ':count_delimited usuário online|:count_delimited usuários online',
+        'users_online' => ':count_delimited usuários online|:count_delimited usuários online',
     ],
 
     'entry' => [
@@ -47,13 +47,13 @@ return [
         ],
 
         'title' => [
-            '_' => 'Registro de Alterações :info',
+            '_' => 'Lista de Alterações: :info',
             'info' => 'Listagem',
         ],
     ],
 
     'support' => [
-        'heading' => 'Amou esta atualização?',
+        'heading' => 'Amou essa atualização?',
         'text_1' => 'Ajude o desenvolvimento do osu! e :link hoje!',
         'text_1_link' => 'torne-se um osu!supporter',
         'text_2' => 'Além de você ajudar a agilizar o desenvolvimento, você também ganha umas coisinhas especiais!',

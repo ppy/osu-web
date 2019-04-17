@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,8 +34,8 @@ return [
         'invalid_mode' => '指定的游戏模式无效。',
         'standard_converts_only' => '此谱面难度在请求的游戏模式下分数不可用。',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => '谱面收藏数超出限制，请删除一个后再试。',
+    'checkout' => [
+        'generic' => '结账时发生了一个错误',
     ],
     'logged_out' => '你已退出，请登录后再试。',
     'supporter_only' => '要使用此功能，请先成为 osu! Supporter 。',

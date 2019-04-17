@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -85,7 +85,7 @@ return [
             'timeline' => 'Aikajana',
             'scopes' => [
                 'general' => 'Tämä vaikeustaso',
-                'generalAll' => 'Kaikki vaikeusasteet',
+                'generalAll' => 'Kaikki vaikeustasot',
             ],
         ],
 
@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Lajiteltu:',
-            'created_at' => 'luontiaika',
-            'timeline' => 'aikajana',
-            'updated_at' => 'viimeisin päivitys',
+            'created_at' => 'Luomisaika',
+            'timeline' => 'Aikajana',
+            'updated_at' => 'Viimeisin päivitys',
         ],
 
         'stats' => [
@@ -117,10 +117,10 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'Tämä rytmikartta hyväksyttiiin :date!',
+            'approved' => 'Tämä beatmappi hyväksyttiiin :date!',
             'graveyard' => "Tätä beatmappia ei ole päivitetty sitten :date ja sen tekijä on todennäköisesti hyljännyt sen...",
             'loved' => 'Tämä beatmap lisättiin Rakastettuihin :date!',
-            'ranked' => 'Tämä rytmikartta hyväksyttiin :date!',
+            'ranked' => 'Tämä beatmap hyväksyttiin :date!',
             'wip' => 'Huomaa: Tämän beatmapin tekijä on merkannut sen keskeneräiseksi.',
         ],
 
@@ -144,71 +144,76 @@ return [
     ],
 
     'nominations' => [
+        'delete' => 'Poista',
+        'delete_own_confirm' => 'Oletko varma? Tämä beatmap poistetaan ja sinut uudelleenohjataan takaisin profiiliisi.',
+        'delete_other_confirm' => 'Oletko varma? Tämä beatmap poistetaan ja sinut uudelleenohjataan käyttäjän profiiliin.',
         'disqualification_prompt' => 'Syy hylkäykseen?',
-        'disqualified_at' => 'Hyväksyminen peruuntui :time_ago (:reason).',
+        'disqualified_at' => 'Hylättiin :time_ago sitten (:reason).',
         'disqualified_no_reason' => 'ei määriteltyä syytä',
         'disqualify' => 'Hylkää',
-        'incorrect_state' => 'Virhe suorittaessa toimintaa, kokeile ladata sivu uudelleen.',
-        'love' => '',
-        'love_confirm' => '',
+        'incorrect_state' => 'Virhe toiminnon suorittamisessa, kokeile päivittää sivu.',
+        'love' => 'Rakasta',
+        'love_confirm' => 'Rakasta tätä beatmappia?',
         'nominate' => 'Suosittele',
         'nominate_confirm' => 'Suosittele tätä beatmappia?',
         'nominated_by' => 'suositellut :users',
-        'qualified' => 'Arvioidaan hyväksyttävän :date, mikäli mitään ongelmia ei löydy.',
-        'qualified_soon' => 'Arvioidaan hyväksyttävän pian, mikäli mitään ongelmia ei löydy.',
+        'qualified' => 'Arvioidaan hyväksyttävän :date, mikäli ongelmia ei löydy.',
+        'qualified_soon' => 'Arvioidaan hyväksyttävän pian, mikäli ongelmia ei löydy.',
         'required_text' => 'Suositukset: :current/:required',
         'reset_message_deleted' => 'poistettu',
         'title' => 'Suositusten Tila',
-        'unresolved_issues' => 'On edelleen olemassa ongelmia, jotka pitää käsitellä.',
+        'unresolved_issues' => 'Vanhat ongelmat on ratkaistava ensin.',
 
         'reset_at' => [
-            'nomination_reset' => 'Suositusprosessi nollaantui :time_ago käyttäjän :user toimesta uudella ongelmalla :discussion (:message).',
-            'disqualify' => 'Hyväksyminen peruuntui :time_ago käyttäjän :user toimesta uudella ongelman takia :discussion (:message).',
+            'nomination_reset' => 'Suositteluprosessi nollaantui :time_ago sitten käyttäjän :user uuden ongelman vuoksi :discussion (:message).',
+            'disqualify' => 'Hyväksyminen peruuntui :time_ago sitten käyttäjän :user uuden ongelman vuoksi :discussion (:message).',
         ],
 
         'reset_confirm' => [
             'nomination_reset' => 'Oletko varma? Uuden ongelman lähettäminen kumoaa suositusprosessin.',
+            'disqualify' => 'Oletko varma? Tämä poistaa kappaleen hyväksynnästä ja resetoi äänestysprosessin.',
         ],
     ],
 
     'listing' => [
         'search' => [
             'prompt' => 'anna hakusana...',
-            'login_required' => '',
-            'options' => 'Lisää Haku-asetuksia',
-            'supporter_filter' => '',
+            'login_required' => 'Kirjaudu sisään hakeaksesi.',
+            'options' => 'Lisää Hakuasetuksia',
+            'supporter_filter' => 'Tunnisteella :filters rajaaminen vaatii aktiivisen osu!supporter-tagin',
             'not-found' => 'ei tuloksia',
             'not-found-quote' => '... Eip, mitään ei löytynyt.',
             'filters' => [
                 'general' => 'Yleinen',
                 'mode' => 'Pelitila',
-                'status' => '',
+                'status' => 'Luokat',
                 'genre' => 'Tyylilaji',
                 'language' => 'Kieli',
                 'extra' => 'extra',
                 'rank' => 'Luokitus',
-                'played' => 'Pelattu',
+                'played' => 'Pelatut',
             ],
             'sorting' => [
-                'title' => 'nimi',
-                'artist' => 'artisti',
-                'difficulty' => 'vaikeustaso',
-                'updated' => 'päivitetty',
-                'ranked' => 'hyväksytty',
-                'rating' => 'arvosana',
-                'plays' => 'pelaukset',
-                'relevance' => 'osuvuus',
-                'nominations' => 'suositukset',
+                'title' => 'Nimi',
+                'artist' => 'Esittäjä',
+                'difficulty' => 'Vaikeustaso',
+                'favourites' => '',
+                'updated' => 'Päivitetty',
+                'ranked' => 'Hyväksytty',
+                'rating' => 'Luokitus',
+                'plays' => 'Pelikerrat',
+                'relevance' => 'Osuvuus',
+                'nominations' => 'Äänestykset',
             ],
             'supporter_filter_quote' => [
-                '_' => 'Tunnisteen :filters rajaamiseksi on oltava aktiivinen :link',
-                'link_text' => '',
+                '_' => 'Rajataksesi tunnisteella :filters sinulla on oltava aktiivinen :link',
+                'link_text' => 'osu!supporter-tagi',
             ],
         ],
     ],
     'general' => [
         'recommended' => 'Suositeltu vaikeustaso',
-        'converts' => 'Sisällä konvertoidut beatmapit',
+        'converts' => 'Sisällytä muunnetut beatmapit',
     ],
     'mode' => [
         'any' => 'Kaikki',
@@ -224,7 +229,7 @@ return [
         'qualified' => 'Esihyväksytty',
         'loved' => 'Rakastettu',
         'faves' => 'Suosikit',
-        'pending' => '',
+        'pending' => 'Vireillä & WIP',
         'graveyard' => 'Hautausmaa',
         'my-maps' => 'Omat kartat',
     ],
@@ -266,21 +271,21 @@ return [
     ],
     'language' => [
         'any' => '',
-        'english' => 'Englanti',
-        'chinese' => 'Kiina',
-        'french' => 'Ranska',
-        'german' => 'Saksa',
-        'italian' => 'Italia',
-        'japanese' => 'Japani',
-        'korean' => 'Korea',
-        'spanish' => 'Espanja',
-        'swedish' => 'Ruotsi',
+        'english' => 'englanti',
+        'chinese' => 'kiina',
+        'french' => 'ranska',
+        'german' => 'saksa',
+        'italian' => 'italia',
+        'japanese' => 'japani',
+        'korean' => 'korea',
+        'spanish' => 'espanja',
+        'swedish' => 'ruotsi',
         'instrumental' => 'Instrumentaalinen',
         'other' => 'Muu',
     ],
     'played' => [
         'any' => 'Kaikki',
-        'played' => 'Pelattu',
+        'played' => 'Pelatut',
         'unplayed' => 'Pelaamaton',
     ],
     'extra' => [
@@ -297,5 +302,9 @@ return [
         'B' => '',
         'C' => '',
         'D' => '',
+    ],
+    'panel' => [
+        'playcount' => 'Pelikerrat :count',
+        'favourites' => 'Suosikit :count',
     ],
 ];

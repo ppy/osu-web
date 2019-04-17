@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -52,21 +52,16 @@ return [
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Toegang tot dit kanaal is niet toegestaan.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Toegang tot dit kanaal is vereist.',
-                    'moderated' => 'Kanaal wordt op het moment gemodereerd.',
-                    'not_lazer' => 'Je kan op dit moment enkel in #lazer praten.',
-                ],
+        'blocked' => 'Kan geen bericht versturen naar een gebruiker die jou blokkeert of die jij geblokkeerd hebt.',
+        'friends_only' => 'Gebruiker blokkeert berichten van mensen die niet op de vriendenlijst staan.',
+        'moderated' => 'Dat kanaal wordt op dit moment gemodereerd.',
+        'no_access' => 'Je hebt geen toegang tot dat kanaal.',
+        'restricted' => 'Je kunt geen berichten versturen wanneer je het zwijgen is opgelegd, wanneer je bent beperkt of verbannen.',
+    ],
 
-                'not_allowed' => 'Je kunt geen berichten sturen terwijl je verbannen/gerestricteerd/gesilenced bent.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Je kunt geen verwijderde berichten bewerken.",
         ],
     ],
 
@@ -75,6 +70,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'Geen rechten om dit forum de modereren.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Alleen de laatste post kan worden verwijderd.',

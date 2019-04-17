@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,20 +20,26 @@
 
 namespace App\Exceptions;
 
+use App\Libraries\ValidationErrors;
 use Exception;
 
 class ChangeUsernameException extends Exception
 {
-    private $errors = [];
+    private $errors;
 
-    public function __construct(array $errors = [], Exception $previous = null)
+    public function __construct($errors, Exception $previous = null)
     {
-        $message = implode("\n", $errors);
+        if ($errors instanceof ValidationErrors) {
+            $message = $errors->toSentence();
+            $this->errors = $errors;
+        } else {
+            $message = $errors;
+        }
+
         parent::__construct($message, 0, $previous);
-        $this->errors = $errors;
     }
 
-    public function getErrors()
+    public function getErrors() : ValidationErrors
     {
         return $this->errors;
     }

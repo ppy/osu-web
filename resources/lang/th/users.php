@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user's ประวัติการมอด",
+        'title_compact' => '',
 
         'discussions' => [
             'title_recent' => 'การสนทนาล่าสุด',
@@ -148,7 +149,7 @@ return [
                     'dropzone' => 'วางที่นี่เพื่ออัพโหลด',
                     'dropzone_info' => 'นอกจากนี้คุณยังสามารถวางรูปภาพเพื่ออัปโหลด',
                     'restriction_info' => "อัพโหลดพร้อมแล้ว สำหรับ <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!ผู้สนับสนุน</a> เท่านั้น",
-                    'size_info' => 'รูปภาพหน้าปกควรจะมีขนาด 2000x700',
+                    'size_info' => 'รูปภาพหน้าปกควรจะมีขนาด 2800x620',
                     'too_large' => 'ไฟล์มีขนาดใหญ่เกินไป',
                     'unsupported_format' => 'ไม่รองรับไฟล์นามสกุลนี้',
                 ],
@@ -165,27 +166,29 @@ return [
             'unranked' => 'ยังไม่มีการเล่น',
 
             'achievements' => [
-                'title' => 'รางวัลความสำเร็จ',
                 'achieved-on' => 'สำเร็จเมื่อวันที่ :date',
+                'locked' => '',
+                'title' => 'รางวัลความสำเร็จ',
             ],
             'beatmaps' => [
+                'by_artist' => '',
                 'none' => 'ยังไม่มี... อะ.',
                 'title' => 'บีทแมพ',
 
                 'favourite' => [
-                    'title' => 'บีทแมพที่ชื่นชอบ (:count)',
+                    'title' => 'บีทแมพที่ชื่นชอบ',
                 ],
                 'graveyard' => [
-                    'title' => 'สุสานบีทแมพ (:count)',
+                    'title' => 'สุสานบีทแมพ',
                 ],
                 'loved' => [
                     'title' => '',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ (:count)',
+                    'title' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
                 ],
                 'unranked' => [
-                    'title' => 'บีทแมพที่กำลังทำ (:count)',
+                    'title' => 'บีทแมพที่กำลังทำ',
                 ],
             ],
             'historical' => [
@@ -194,6 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'ประวัติการเล่น',
+                    'count_label' => '',
                 ],
                 'most_played' => [
                     'count' => 'จำนวนครั้งที่เล่น',
@@ -205,6 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'ประวัติการดูรีเพลย์',
+                    'count_label' => '',
                 ],
             ],
             'kudosu' => [
@@ -260,17 +265,18 @@ return [
             ],
             'medals' => [
                 'empty' => "ผู้ใช้คนนี้ยังไม่มีอะไรเลย. ;_;",
+                'recent' => '',
                 'title' => 'เหรียญตรา',
             ],
             'recent_activity' => [
                 'title' => 'ล่า​สุด',
             ],
             'top_ranks' => [
+                'download_replay' => '',
                 'empty' => 'ยังไม่มี performance ที่เจ๋งๆบันทึกไว้เลย . :(',
                 'not_ranked' => 'บีทแมพแรงค์เท่านั้นที่ให้พีพี',
-                'pp' => ':amountpp',
+                'pp_weight' => '',
                 'title' => 'อันดับ',
-                'weighted_pp' => 'weighted: :pp (:percentage)',
 
                 'best' => [
                     'title' => 'Performance ที่ดีที่สุด',
@@ -301,6 +307,12 @@ return [
                 ],
             ],
         ],
+
+        'header_title' => [
+            '_' => '',
+            'info' => '',
+        ],
+
         'info' => [
             'discord' => 'ดิสคอร์ด',
             'interests' => 'สิ่งที่สนใจ',
@@ -319,6 +331,7 @@ return [
             'title' => 'ไม่พบผู้ใช้นี้',
         ],
         'page' => [
+            'button' => '',
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
@@ -330,12 +343,16 @@ return [
         ],
         'rank' => [
             'country' => 'อันดับประเทศของ :mode',
+            'country_simple' => '',
             'global' => 'อันดับทั่วโลกของ :mode',
+            'global_simple' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'ความแม่นยำเฉลี่ย',
             'level' => 'เลเวล :level',
+            'level_progress' => '',
             'maximum_combo' => 'คอมโบสูงสุด',
+            'medals' => '',
             'play_count' => 'จำนวนครั้งที่เล่น',
             'play_time' => 'เวลาการเล่นทั้งหมด',
             'ranked_score' => 'คะแนนแรงค์',

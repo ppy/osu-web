@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,11 +30,17 @@ return [
     ],
 
     'buttons' => [
+        'admin' => 'Admin',
+        'back_to_previous' => 'Voltar para posição anterior',
+        'back_to_top' => 'Voltar ao topo',
         'cancel' => 'Cancelar',
         'change' => 'mudar',
         'click_to_copy' => 'clique para copiar',
         'click_to_copy_copied' => 'copiado para a área de transferência!',
+        'collapse' => 'recolher',
         'delete' => 'Excluir',
+        'edit' => 'Editar',
+        'expand' => 'expandir',
         'hide' => 'ocultar',
         'permalink' => 'permalink',
         'permalink_copied' => 'link copiado',
@@ -43,12 +49,14 @@ return [
         'reply_reopen' => 'Responder e Reabrir',
         'reply_resolve' => 'Responder e Resolver',
         'reset' => 'Reiniciar',
+        'restore' => 'Restaurar',
         'save' => 'Salvar',
         'saving' => 'Salvando...',
         'search' => 'Pesquisar',
         'see_more' => 'ver mais',
         'show' => 'exibir',
         'show_more' => 'mostrar mais',
+        'show_more_options' => 'mostrar mais opções',
         'upload_image' => 'enviar imagem',
     ],
 
@@ -59,9 +67,17 @@ return [
         'hours' => ':count hora|:count horas',
         'item' => ':count unidade|:count unidades',
         'minute_short_unit' => 'min|mins',
+        'minutes' => ':count minuto|:count minutos',
         'months' => ':count mês|:count meses',
         'second_short_unit' => 'seg|segs',
         'years' => ':count ano|:count anos',
+    ],
+
+    'countdown' => [
+        'days' => 'dias',
+        'hours' => 'horas',
+        'minutes' => 'minutos',
+        'seconds' => 'segundos',
     ],
 
     'datetime' => [

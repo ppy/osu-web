@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,8 +33,10 @@ return [
             'refresh' => 'Aktualizovat',
         ],
 
-        'outdated' => [
-            '_' => 'Tato stránka obsahuje zastaralý překlad původního obsahu. Zkontrolujte prosím :default pro nejpřesnější informace (a jestli můžete, zkuste prosím tento překlad aktualizovat sami)!',
+        'translation' => [
+            'legal' => 'Tento překlad je poskytnutý jen pro vaše pohodlí. Původní :default by měla být jedinou právně závazní verzí tohoto textu.',
+            'outdated' => 'Tato stránka obsahuje zastaralý překlad původního obsahu. Prosím, koukněte na :default pro co nejvíc přesné informace (a zvažujte aktualizaci překladu, pokud je to možné pomoci)!',
+
             'default' => 'Anglická verze',
         ],
     ],

@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -38,6 +38,9 @@ $(document).on 'turbolinks:load', ->
 
 # ensure currentUser is updated early enough.
 @currentUserObserver ?= new CurrentUserObserver
+@throttledWindowEvents ?= new ThrottledWindowEvents
+@syncHeight ?= new SyncHeight
+@stickyHeader ?= new StickyHeader
 
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
@@ -66,14 +69,10 @@ $(document).on 'turbolinks:load', ->
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
 @postPreview ?= new PostPreview
-@reactTurbolinks ?= new ReactTurbolinks
 @replyPreview ?= new ReplyPreview
 @scale ?= new Scale
 @search ?= new Search
 @stickyFooter ?= new StickyFooter
-@stickyHeader ?= new StickyHeader
-@syncHeight ?= new SyncHeight
-@throttledWindowEvents ?= new ThrottledWindowEvents
 @timeago ?= new Timeago
 @tooltipBeatmap ?= new TooltipBeatmap
 @tooltipDefault ?= new TooltipDefault
@@ -81,7 +80,6 @@ $(document).on 'turbolinks:load', ->
 @userCard ?= new UserCard
 @userLogin ?= new UserLogin
 @userVerification ?= new UserVerification
-@wiki ?= new Wiki
 
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
@@ -89,6 +87,7 @@ $(document).on 'turbolinks:load', ->
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
 @twitchPlayer ?= new TwitchPlayer(@turbolinksReload)
+_exported.WindowVHPatcher.init(window)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
@@ -98,28 +97,6 @@ $(document).on 'change', '.js-url-selector', (e) ->
 $(document).on 'keydown', (e) ->
   $.publish 'key:esc' if e.keyCode == 27
 
-# Globally init countdown timers
-reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
-  deadline: e.dataset.deadline
-
-# Globally init friend buttons
-reactTurbolinks.register 'friendButton', FriendButton, (target) ->
-  container: target
-  user_id: parseInt(target.dataset.target)
-
-# Globally init block buttons
-reactTurbolinks.register 'blockButton', BlockButton, (target) ->
-  container: target
-  user_id: parseInt(target.dataset.target)
-
-reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
-  JSON.parse(el.dataset.beatmapsetPanel)
-
-reactTurbolinks.register 'spotlight-select-options', _exported.SpotlightSelectOptions, ->
-  osu.parseJson 'json-spotlight-select-options'
-
-reactTurbolinks.register 'comments', Comments, (el) ->
-  JSON.parse(el.dataset.comments)
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port

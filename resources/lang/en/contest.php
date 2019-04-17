@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,8 +26,15 @@ return [
     'voting' => [
         'over' => 'Voting for this contest has ended',
         'login_required' => 'Please sign in to vote.',
+
         'best_of' => [
             'none_played' => "It doesn't look like you played any beatmaps that qualify for this contest!",
+        ],
+
+        'button' => [
+            'add' => 'Vote',
+            'remove' => 'Remove vote',
+            'used_up' => 'You have used up all your votes',
         ],
     ],
     'entry' => [
@@ -51,8 +58,8 @@ return [
     ],
     'vote' => [
         'list' => 'votes',
-        'count' => ':count vote|:count votes',
-        'points' => ':count point|:count points',
+        'count' => ':count_delimited vote|:count_delimited votes',
+        'points' => ':count_delimited point|:count_delimited points',
     ],
     'dates' => [
         'ended' => 'Ended :date',

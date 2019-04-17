@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -68,10 +68,13 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Deleting beatmap metadata post is not allowed.',
             'beatmapset_post_no_edit' => 'Editing beatmap metadata post is not allowed.',
+            'only_quote' => 'Your reply contains only a quote.',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Duplicated option is not allowed.',
+            'grace_period_expired' => 'Can\'t edit a poll after more than :limit hours.',
+            'hiding_results_forever' => 'Can\'t hide results of a poll that never ends.',
             'invalid_max_options' => 'Option per user may not exceed the number of available options.',
             'minimum_one_selection' => 'A minimum of one option per user is required.',
             'minimum_two_options' => 'Need at least two options.',
@@ -96,6 +99,7 @@ return [
         'username_available_soon' => 'This username will be available for use any minute now!',
         'username_invalid_characters' => 'The requested username contains invalid characters.',
         'username_in_use' => 'Username is already in use!',
+        'username_locked' => 'Username is already in use!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Please use either underscores or spaces, not both!',
         'username_no_spaces' => "Username can't start or end with spaces!",
         'username_not_allowed' => 'This username choice is not allowed.',
@@ -108,11 +112,16 @@ return [
         'too_long' => 'Exceeded maximum length - can only be up to :limit characters.',
 
         'change_username' => [
+            'restricted' => 'You cannot change your username while restricted.',
             'supporter_required' => [
                 '_' => 'You must have :link to change your name!',
                 'link_text' => 'supported osu!',
             ],
             'username_is_same' => 'This is already your username, silly!',
         ],
+    ],
+
+    'user_report' => [
+        'self' => "You can't report yourself!",
     ],
 ];

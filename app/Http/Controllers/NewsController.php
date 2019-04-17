@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,22 +30,35 @@ class NewsController extends Controller
 
     public function index()
     {
-        return view('news.index', [
-            'posts' => NewsPost::default()->paginate(),
-        ]);
+        $search = NewsPost::search(array_merge(['limit' => 12], request()->all()));
+
+        $postsJson = [
+            'news_posts' => json_collection($search['query']->get(), 'NewsPost', ['preview']),
+            'search' => $search['params'],
+        ];
+
+        if (request()->expectsJson()) {
+            return $postsJson;
+        } else {
+            return view('news.index', compact('postsJson'));
+        }
     }
 
     public function show($slug)
     {
         $post = NewsPost::lookupAndSync($slug);
 
-        if ($post === null || $post->published_at === null) {
+        if ($post === null) {
             abort(404);
         }
 
-        $commentBundle = new CommentBundle($post);
-
-        return view('news.show', compact('post', 'commentBundle'));
+        return view('news.show', [
+            'post' => $post,
+            'postJson' => [
+                'post' => json_item($post, 'NewsPost', ['content', 'navigation']),
+                'comment_bundle' => CommentBundle::forEmbed($post)->toArray(),
+            ],
+        ]);
     }
 
     public function store()

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -47,6 +47,20 @@ return [
         ],
     ],
 
+    'mark_as_read' => [
+        'forum' => '标记版块为已读',
+        'forums' => '标记版块为已读',
+        'busy' => '标记为已读…',
+    ],
+
+    'poll' => [
+        'edit_warning' => '编辑投票将清空当前投票结果！',
+
+        'actions' => [
+            'edit' => '编辑投票',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => '删除此回复？',
         'confirm_restore' => '恢复此回复？',
@@ -57,6 +71,10 @@ return [
             'destroy' => '删除回复',
             'restore' => '恢复回复',
             'edit' => '编辑回复',
+        ],
+
+        'info' => [
+            'post_count' => ':count_delimited 帖子',
         ],
     ],
 
@@ -70,14 +88,14 @@ return [
         'deleted' => '已删除的主题',
         'go_to_latest' => '查看最后的帖子',
         'latest_post' => ':when :user',
-        'latest_reply_by' => '最后回复: :user',
+        'latest_reply_by' => '最后回复： :user',
         'new_topic' => '发表新主题',
         'new_topic_login' => '登录以发表新主题',
         'post_reply' => '发表',
         'reply_box_placeholder' => '输入回复',
         'reply_title_prefix' => '回复',
         'started_by' => '发帖人： :user',
-        'started_by_verbose' => '',
+        'started_by_verbose' => '由 :user 发起',
 
         'create' => [
             'preview' => '预览',
@@ -90,7 +108,7 @@ return [
                 'default' => '这个主题已经有一段时间无活动了。除非你有特殊的理由，否则不要在这里回复。',
 
                 'new_topic' => [
-                    '_' => "",
+                    '_' => "此主题已有一段时间不活跃了。如果你没有特别的理由一定要发表在这里，请另行 :create 。",
                     'create' => '创建一个新主题',
                 ],
             ],
@@ -153,6 +171,8 @@ return [
         'create' => [
             'create_poll' => '创建投票',
 
+            'preview' => '发帖预览',
+
             'create_poll_button' => [
                 'add' => '创建投票',
                 'remove' => '取消创建投票',
@@ -177,8 +197,9 @@ return [
         ],
 
         'index' => [
-            'views' => '查看数',
+            'feature_votes' => '星级优先级',
             'replies' => '回复数',
+            'views' => '查看数',
         ],
 
         'issue_tag_added' => [
@@ -246,11 +267,17 @@ return [
 
         'show' => [
             'deleted-posts' => '删除主题',
-            'total_posts' => '总主题数量',
+            'total_posts' => '讨论总数',
 
             'feature_vote' => [
                 'current' => '当前优先级: +:count',
                 'do' => '提升这个请求',
+
+                'info' => [
+                    '_' => '这是一个 :feature_request。:supporters 可以为新功能请求投票。',
+                    'feature_request' => '新功能请求',
+                    'supporters' => 'osu! 支持者',
+                ],
 
                 'user' => [
                     'count' => ':count 票',
@@ -274,7 +301,8 @@ return [
             'to_not_watching' => '未订阅',
             'to_watching' => '订阅',
             'to_watching_mail' => '订阅并启用邮件通知',
-            'mail_disable' => '禁用邮件通知',
+            'tooltip_mail_disable' => '通知已启用。点击禁用',
+            'tooltip_mail_enable' => '通知已禁用。点击启用',
         ],
     ],
 ];

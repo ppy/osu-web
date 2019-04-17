@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'lista',
-        'news-show' => 'poszt',
-    ],
-
     'index' => [
-        'title' => 'osu!hírek',
+        'title_page' => 'osu!hírek',
 
         'nav' => [
             'newer' => 'Újabb posztok',
             'older' => 'Régebbi posztok',
         ],
+
+        'title' => [
+            '_' => 'Hírek :info',
+            'info' => 'Címlap',
+        ],
     ],
 
     'show' => [
-        'posted' => 'posztolva :time-kor',
+        'by' => ':user által',
 
         'nav' => [
             'newer' => 'Újabb poszt',
             'older' => 'Régebbi poszt',
+        ],
+
+        'title' => [
+            '_' => 'Hírek :info',
+            'info' => 'Poszt',
         ],
     ],
 

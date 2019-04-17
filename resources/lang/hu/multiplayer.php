@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,7 +24,7 @@ return [
         'difference' => ':difference különbséggel',
         'failed' => 'ELBUKOTT',
         'header' => 'Többjátékos meccsek',
-        'in-progress' => '(a mérkőzés folyamatban van)',
+        'in-progress' => '(a meccs folyamatban)',
         'in_progress_spinner_label' => 'a meccs folyamatban',
         'loading-events' => 'Események betöltése...',
         'winner' => ':team nyer',

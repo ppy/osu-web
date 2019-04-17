@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,8 +35,9 @@ return [
             'groups-show' => 'grupy',
             'index' => 'przegląd',
             'legal-show' => 'informacje',
-            'news-index' => 'wiadomości',
-            'news-show' => 'wiadomości',
+            'messages-index' => 'wiadomości',
+            'news-index' => 'aktualności',
+            'news-show' => 'aktualności',
             'password-reset-index' => 'zresetuj hasło',
             'search' => 'wyszukiwarka',
             'supportTheGame' => 'wspomóż grę',
@@ -77,10 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'społeczność',
+            'chat' => 'czat',
+            'chat-index' => 'czat',
             'dev' => 'rozwój',
             'getForum' => 'forum',
-            'getChat' => 'czat',
             'getLive' => 'na żywo',
+            'comments-index' => 'komentarze',
+            'comments-show' => 'komentarz',
             'contests' => 'konkursy',
             'profile' => 'profil',
             'tournaments' => 'turnieje',
@@ -114,16 +118,18 @@ return [
             'reset' => 'odzyskaj dostęp',
             'new' => 'nowy',
 
-            'messages' => 'Wiadomości',
-            'settings' => 'Ustawienia',
-            'logout' => 'Wyloguj się',
             'help' => 'Pomoc',
+            'logout' => 'Wyloguj się',
+            'messages' => 'Wiadomości',
             'modding-history-discussions' => 'dyskusje',
             'modding-history-events' => 'historia zdarzeń',
             'modding-history-index' => 'historia użytkownika',
             'modding-history-posts' => 'historia postów',
             'modding-history-votesGiven' => 'głosy oddane',
             'modding-history-votesReceived' => 'głosy otrzymane',
+            'oauth_login' => 'zaloguj się, aby użyć oauth',
+            'oauth_request' => 'autoryzacja oauth',
+            'settings' => 'Ustawienia',
         ],
         'store' => [
             '_' => 'sklep',
@@ -132,7 +138,8 @@ return [
             'cart-show' => 'koszyk',
 
             'getCheckout' => 'płatność',
-            'getInvoice' => 'paragon',
+            'getInvoice' => 'faktura',
+            'orders-index' => 'historia zamówień',
             'products-show' => 'produkt',
 
             'new' => 'nowy',

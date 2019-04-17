@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,6 +25,17 @@ use App\Traits\Imageable;
 use DB;
 use Exception;
 
+/**
+ * @property \Carbon\Carbon|null $created_at
+ * @property string|null $ext
+ * @property string|null $hash
+ * @property int $id
+ * @property Topic $topic
+ * @property int|null $topic_id
+ * @property \Carbon\Carbon|null $updated_at
+ * @property User $user
+ * @property int|null $user_id
+ */
 class TopicCover extends Model
 {
     use Imageable;

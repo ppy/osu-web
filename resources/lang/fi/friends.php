@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,17 +20,18 @@
 
 return [
     'buttons' => [
-      'add' => 'lisää ystävä',
-      'remove' => 'poista ystävä',
+      'add' => 'lisää kaveri',
+      'disabled' => 'kaverit',
+      'remove' => 'poista kaveri',
     ],
 
     'state' => [
-      'friends' => 'ystävät',
+      'friends' => 'kaverit',
       'mutual' => 'yhteinen',
     ],
 
-    'title' => 'Ystävät',
-    'title_compact' => 'ystävät',
+    'title' => 'Kaverit',
+    'title_compact' => 'kaverit',
 
-    'too_many' => 'Ystäväraja saavutettu.',
+    'too_many' => 'Kaverilista täynnä',
 ];

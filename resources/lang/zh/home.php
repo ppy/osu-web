@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,6 +24,7 @@ return [
         'online' => '<strong>:players</strong> 名在线玩家, <strong>:games</strong> 个游戏房间',
         'peak' => '最高在线人数 :count 人',
         'players' => '<strong>:count</strong> 名已注册玩家',
+        'title' => '欢迎',
 
         'slogan' => [
             'main' => '棒到不行的免费音乐游戏',

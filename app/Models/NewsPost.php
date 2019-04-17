@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,16 +21,29 @@
 namespace App\Models;
 
 use App\Exceptions\GitHubNotFoundException;
-use App\Libraries\OsuMarkdownProcessor;
+use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use Carbon\Carbon;
 use Exception;
 
+/**
+ * @property Comment $comments
+ * @property \Carbon\Carbon|null $created_at
+ * @property string|null $hash
+ * @property int $id
+ * @property array|null $page
+ * @property \Carbon\Carbon|null $published_at
+ * @property string $slug
+ * @property string|null $tumblr_id
+ * @property \Carbon\Carbon|null $updated_at
+ * @property string|null $version
+ */
 class NewsPost extends Model
 {
     // in minutes
     const CACHE_DURATION = 86400;
     const VERSION = 3;
+    const DASHBOARD_LIMIT = 8;
 
     protected $casts = [
         'page' => 'array',
@@ -52,14 +65,44 @@ class NewsPost extends Model
 
         $post->sync();
 
-        if ($post->page !== null) {
+        if ($post->page !== null && $post->published_at !== null && $post->published_at->isPast()) {
             return $post;
         }
     }
 
     public static function pageVersion()
     {
-        return static::VERSION.'.'.OsuMarkdownProcessor::VERSION;
+        return static::VERSION.'.'.OsuMarkdown::VERSION;
+    }
+
+    public static function search($params)
+    {
+        $query = static::published();
+
+        $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 1, 21);
+
+        // implies default sorting.
+        $cursor['id'] = get_int($params['cursor']['id'] ?? null);
+        $cursor['published_at'] = parse_time_to_carbon($params['cursor']['published_at'] ?? null);
+
+        if ($cursor['id'] !== null && $cursor['published_at'] !== null) {
+            $query->cursorWhere([
+                ['column' => 'published_at', 'order' => 'DESC', 'value' => $cursor['published_at']],
+                ['column' => 'id', 'order' => 'DESC', 'value' => $cursor['id']],
+            ]);
+        } else {
+            $query->orderBy('published_at', 'DESC')->orderBy('id', 'DESC');
+        }
+
+        $query->limit($limit);
+
+        return [
+            'query' => $query,
+            'params' => [
+                'cursor' => $cursor,
+                'limit' => $limit,
+            ],
+        ];
     }
 
     public static function syncAll()
@@ -119,7 +162,13 @@ class NewsPost extends Model
 
     public function scopeDefault($query)
     {
-        $query->whereNotNull('published_at')->orderBy('published_at', 'DESC');
+        return $query->published()->orderBy('published_at', 'DESC');
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->whereNotNull('published_at')
+            ->where('published_at', '<=', Carbon::now());
     }
 
     public function filename()
@@ -152,8 +201,8 @@ class NewsPost extends Model
     public function newer()
     {
         if (!array_key_exists('newer', $this->adjacent)) {
-            $this->adjacent['newer'] = static::select('slug')
-                ->where('published_at', '>=', $this->published_at)
+            $this->adjacent['newer'] = static
+                ::where('published_at', '>=', $this->published_at)
                 ->where('id', '<>', $this->getKey())
                 ->orderBy('published_at', 'ASC')
                 ->orderBy('id', 'ASC')
@@ -166,8 +215,8 @@ class NewsPost extends Model
     public function older()
     {
         if (!array_key_exists('older', $this->adjacent)) {
-            $this->adjacent['older'] = static::select('slug')
-                ->where('published_at', '<=', $this->published_at)
+            $this->adjacent['older'] = static
+                ::where('published_at', '<=', $this->published_at)
                 ->where('id', '<>', $this->getKey())
                 ->orderBy('published_at', 'DESC')
                 ->orderBy('id', 'DESC')
@@ -199,11 +248,9 @@ class NewsPost extends Model
 
         $rawPage = $file->content();
 
-        $this->page = OsuMarkdownProcessor::process($rawPage, [
-            'html_input' => 'allow',
-            'path' => route('news.show', $this->slug),
-            'block_modifiers' => ['news'],
-        ]);
+        $this->page = (new OsuMarkdown('news', [
+            'relative_url_root' => route('news.show', $this->slug),
+        ]))->load($rawPage)->toArray();
 
         $this->version = static::pageVersion();
         $this->published_at = $this->pagePublishedAt();

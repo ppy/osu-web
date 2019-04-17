@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,10 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,a,i,span} = ReactDOMFactories
+import { BeatmapIcon } from 'beatmap-icon'
+import { Img2x } from 'img2x'
+import * as React from 'react'
+import { div,a,i,span } from 'react-dom-factories'
 el = React.createElement
 
-class @BeatmapsetPanel extends React.PureComponent
+export class BeatmapsetPanel extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -54,10 +57,14 @@ class @BeatmapsetPanel extends React.PureComponent
 
     showHypeCounts = _.includes ['wip', 'pending', 'graveyard'], beatmapset.status
     if showHypeCounts
-      currentHype = beatmapset.hype.current.toLocaleString()
-      requiredHype = beatmapset.hype.required.toLocaleString()
-      currentNominations = beatmapset.nominations.current.toLocaleString()
-      requiredNominations = beatmapset.nominations.required.toLocaleString()
+      currentHype = osu.formatNumber(beatmapset.hype.current)
+      requiredHype = osu.formatNumber(beatmapset.hype.required)
+      currentNominations = osu.formatNumber(beatmapset.nominations.current)
+      requiredNominations = osu.formatNumber(beatmapset.nominations.required)
+
+    playCount = osu.formatNumber(beatmapset.play_count)
+
+    favouriteCount = osu.formatNumber(beatmapset.favourite_count)
 
     # arbitrary number
     maxDisplayedDifficulty = 10
@@ -101,7 +108,7 @@ class @BeatmapsetPanel extends React.PureComponent
             if beatmapset.video or beatmapset.storyboard
               div className: 'beatmapset-panel__video-icon',
                 i className: 'fas fa-film fa-fw'
-            div className: 'beatmapset-panel__status', beatmapset.status
+            div className: 'beatmapset-status', beatmapset.status
 
           div className: 'beatmapset-panel__title-artist-box',
             div className: 'u-ellipsis-overflow beatmapset-panel__header-text beatmapset-panel__header-text--title',
@@ -119,12 +126,12 @@ class @BeatmapsetPanel extends React.PureComponent
                   span className: 'beatmapset-panel__count-number', currentNominations
                   i className: 'fas fa-thumbs-up fa-fw'
             else
-              div className: 'beatmapset-panel__count',
-                span className: 'beatmapset-panel__count-number', beatmapset.play_count.toLocaleString()
+              div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.panel.playcount', count: playCount),
+                span className: 'beatmapset-panel__count-number', playCount
                 i className: 'fas fa-fw fa-play-circle'
 
-            div className: 'beatmapset-panel__count',
-              span className: 'beatmapset-panel__count-number', beatmapset.favourite_count.toLocaleString()
+            div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.panel.favourites', count: favouriteCount),
+              span className: 'beatmapset-panel__count-number', favouriteCount
               i className: 'fas fa-fw fa-heart'
 
           div
@@ -160,9 +167,10 @@ class @BeatmapsetPanel extends React.PureComponent
               if currentUser?.id
                 a
                   href: laroute.route 'beatmapsets.download', beatmapset: beatmapset.id
+                  title: osu.trans('beatmapsets.show.details.download._')
                   className: 'beatmapset-panel__icon js-beatmapset-download-link'
                   'data-turbolinks': 'false'
-                  i className: 'fas fa-download'
+                  i className: 'fas fa-lg fa-download'
 
           div className: 'beatmapset-panel__difficulties', difficulties
       a

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'lista',
-        'news-show' => 'wiadomość',
-    ],
-
     'index' => [
-        'title' => 'Wiadomości ze świata osu!',
+        'title_page' => 'aktualności',
 
         'nav' => [
             'newer' => 'Nowsze wiadomości',
             'older' => 'Starsze wiadomości',
         ],
+
+        'title' => [
+            '_' => 'Aktualności » :info',
+            'info' => 'Strona główna',
+        ],
     ],
 
     'show' => [
-        'posted' => 'opublikowane :time',
+        'by' => 'od :user',
 
         'nav' => [
             'newer' => 'Nowsza wiadomość',
             'older' => 'Starsza wiadomość',
+        ],
+
+        'title' => [
+            '_' => 'Aktualności » :info',
+            'info' => 'Wiadomość',
         ],
     ],
 

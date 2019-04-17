@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,11 +20,42 @@
 
 namespace App\Models;
 
+use App\Exceptions\ValidationException;
+use App\Libraries\MorphMap;
+use App\Models\Score\Best;
 use App\Models\Score\Best\Model as BestModel;
+use App\Traits\Validatable;
 
+/**
+ * @property string $comments
+ * @property int $mode
+ * @property mixed $reason
+ * @property int $report_id
+ * @property mixed $reportable
+ * @property int|null $reportable_id
+ * @property mixed|null $reportable_type
+ * @property User $reporter
+ * @property int $reporter_id
+ * @property mixed $score
+ * @property int $score_id
+ * @property mixed $score_type
+ * @property \Carbon\Carbon $timestamp
+ * @property User $user
+ * @property int $user_id
+ */
 class UserReport extends Model
 {
+    use Validatable;
+
     const CREATED_AT = 'timestamp';
+    const REPORTABLES = [
+        MorphMap::MAP[Best\Fruits::class],
+        MorphMap::MAP[Best\Mania::class],
+        MorphMap::MAP[Best\Osu::class],
+        MorphMap::MAP[Best\Taiko::class],
+        MorphMap::MAP[Comment::class],
+        MorphMap::MAP[User::class],
+    ];
 
     protected $table = 'osu_user_reports';
     protected $primaryKey = 'report_id';
@@ -32,6 +63,11 @@ class UserReport extends Model
     protected $dates = ['timestamp'];
 
     public $timestamps = false;
+
+    public function reportable()
+    {
+        return $this->morphTo();
+    }
 
     public function reporter()
     {
@@ -43,13 +79,41 @@ class UserReport extends Model
         return $this->morphTo();
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function getScoreTypeAttribute()
     {
         return BestModel::getClass($this->mode);
     }
 
-    public function user()
+    public function isValid()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        $this->validationErrors()->reset();
+
+        if ($this->user_id === $this->reporter_id) {
+            $this->validationErrors()->add(
+                'user_id',
+                '.self'
+            );
+        }
+
+        return $this->validationErrors()->isEmpty();
+    }
+
+    public function save(array $options = [])
+    {
+        if (!$this->isValid()) {
+            throw new ValidationException($this->validationErrors());
+        }
+
+        return parent::save();
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'user_report';
     }
 }
