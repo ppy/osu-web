@@ -66,6 +66,8 @@ jobs:
       name: "phpunit"
     - script: ./bin/run_dusk.sh
       name: "browser tests"
+    - script: ./bin/run_tslint.sh
+      name: "tslint"
 
 after_script:
   - cat elasticsearch.log
