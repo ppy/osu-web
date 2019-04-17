@@ -98,7 +98,7 @@ export class NewDiscussion extends React.PureComponent
             span
               className: buttonCssClasses
               onClick: @toggleSticky
-              title: if @state.sticky then osu.trans('beatmaps.discussions.new.pinned') else osu.trans('beatmaps.discussions.new.unpinned')
+              title: if @props.pinned then osu.trans('beatmaps.discussions.new.pinned') else osu.trans('beatmaps.discussions.new.unpinned')
 
               span className: 'btn-circle__content',
                 i className: 'fas fa-thumbtack'
