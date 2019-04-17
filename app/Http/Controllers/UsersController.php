@@ -231,6 +231,10 @@ class UsersController extends Controller
         $user = User::lookup($id, null, true);
 
         if ($user === null || !priv_check('UserShow', $user)->can()) {
+            if (is_api_request() || request()->expectsJson()) {
+                abort(404);
+            }
+
             return response()->view('users.show_not_found')->setStatusCode(404);
         }
 
@@ -283,7 +287,7 @@ class UsersController extends Controller
 
         $rankHistory = $rankHistoryData ? json_item($rankHistoryData, 'RankHistory') : null;
 
-        if (Request::is('api/*')) {
+        if (is_api_request()) {
             $userArray['rankHistory'] = $rankHistory;
 
             return $userArray;

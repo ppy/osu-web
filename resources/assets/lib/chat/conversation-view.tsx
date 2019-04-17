@@ -79,7 +79,7 @@ export default class ConversationView extends React.Component<any, any> {
     const channel = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
 
     if (!channel) {
-      return(<div className='conversation' />);
+      return <div className='conversation' />;
     }
 
     const lazerLink = 'https://github.com/ppy/osu/releases';

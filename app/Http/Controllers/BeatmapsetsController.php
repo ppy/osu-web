@@ -96,7 +96,7 @@ class BeatmapsetsController extends Controller
             ]
         );
 
-        if (Request::is('api/*')) {
+        if (is_api_request()) {
             return $set;
         } else {
             $commentBundle = CommentBundle::forEmbed($beatmapset);

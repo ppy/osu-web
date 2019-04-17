@@ -129,12 +129,7 @@ class BeatmapDiscussionPostsController extends Controller
             if ($resetNominations) {
                 $events[] = BeatmapsetEvent::NOMINATION_RESET;
             } else {
-                $disqualify = $discussion->beatmapset->isQualified() &&
-                    priv_check('BeatmapsetDisqualify', $discussion->beatmapset)->can();
-
-                if ($disqualify) {
-                    $events[] = BeatmapsetEvent::DISQUALIFY;
-                }
+                $disqualify = priv_check('BeatmapsetDisqualify', $discussion->beatmapset)->can();
             }
         }
 
@@ -165,8 +160,7 @@ class BeatmapDiscussionPostsController extends Controller
                 }
 
                 if ($disqualify) {
-                    $discussion->beatmapset->setApproved('pending', Auth::user());
-                    broadcast_notification(Notification::BEATMAPSET_DISQUALIFY, $discussion->beatmapset, Auth::user());
+                    $discussion->beatmapset->disqualify(Auth::user(), $posts[0]);
                 }
 
                 if ($resetNominations) {
