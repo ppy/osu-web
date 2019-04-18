@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Sadece beatmap sahibi ya da nominatör/QAT grup üyesi mapper notu gönderebilir.',
+            'mapper_note_wrong_user' => 'Sadece beatmap sahibi ya da nominatör/NAT grup üyesi mapper notu gönderebilir.',
         ],
 
         'vote' => [

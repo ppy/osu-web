@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Adnotacje mogą być dodawane tylko przez twórcę mapy, nominatora lub członka QAT.',
+            'mapper_note_wrong_user' => 'Adnotacje mogą być dodawane tylko przez twórcę mapy, nominatora lub członka NAT.',
         ],
 
         'vote' => [

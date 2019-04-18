@@ -36,7 +36,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Only beatmap owner or nominator/QAT group member can post mapper notes.',
+            'mapper_note_wrong_user' => 'Only beatmap owner or nominator/NAT group member can post mapper notes.',
         ],
 
         'vote' => [

@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Iba vlastník mapy alebo nominátor/člen skupiny QAT môžu písať poznámky mappera.',
+            'mapper_note_wrong_user' => 'Iba vlastník mapy alebo nominátor/člen skupiny NAT môžu písať poznámky mappera.',
         ],
 
         'vote' => [

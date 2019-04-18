@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Nur der Beatmapersteller oder ein Nominator/QAT Mitglied kann Notizen erstellen.',
+            'mapper_note_wrong_user' => 'Nur der Beatmapersteller oder ein Nominator/NAT Mitglied kann Notizen erstellen.',
         ],
 
         'vote' => [

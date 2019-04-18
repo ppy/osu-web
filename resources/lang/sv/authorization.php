@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Endast beatmap ägaren eller nominator/QAT gruppmedlem kan publicera kart anteckningar.',
+            'mapper_note_wrong_user' => 'Endast beatmap ägaren eller nominator/NAT gruppmedlem kan publicera kart anteckningar.',
         ],
 
         'vote' => [

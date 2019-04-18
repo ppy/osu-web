@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Solo il creatore della beatmap, i nominatori e membri del QAT possono postare note.',
+            'mapper_note_wrong_user' => 'Solo il creatore della beatmap, i nominatori e membri del NAT possono postare note.',
         ],
 
         'vote' => [

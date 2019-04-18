@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Doar proprietarul beatmapului sau nominatorul/membru din QAT pot posta note de mapper.',
+            'mapper_note_wrong_user' => 'Doar proprietarul beatmapului sau nominatorul/membru din NAT pot posta note de mapper.',
         ],
 
         'vote' => [

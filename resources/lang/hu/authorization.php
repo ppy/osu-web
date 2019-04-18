@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Csak a beatmap tulajdonos vagy jelölő/QAT csoporttag posztolhat készítői megjegyzést.',
+            'mapper_note_wrong_user' => 'Csak a beatmap tulajdonos vagy jelölő/NAT csoporttag posztolhat készítői megjegyzést.',
         ],
 
         'vote' => [

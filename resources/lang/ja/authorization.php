@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'ビートマップの所有者か、管理者/QATグループのメンバーのみマッパーノートに投稿できます。',
+            'mapper_note_wrong_user' => 'ビートマップの所有者か、管理者/NATグループのメンバーのみマッパーノートに投稿できます。',
         ],
 
         'vote' => [

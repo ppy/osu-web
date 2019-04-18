@@ -658,9 +658,9 @@ class User extends Model implements AuthenticatableContract
     |
     */
 
-    public function isQAT()
+    public function isNAT()
     {
-        return $this->isGroup(UserGroup::GROUPS['qat']);
+        return $this->isGroup(UserGroup::GROUPS['nat']);
     }
 
     public function isAdmin()
@@ -746,7 +746,7 @@ class User extends Model implements AuthenticatableContract
             || $this->isMod()
             || $this->isGMT()
             || $this->isBNG()
-            || $this->isQAT();
+            || $this->isNAT();
     }
 
     public function isBanned()
