@@ -21,6 +21,7 @@ import { FriendButton } from 'friend-button';
 import * as _ from 'lodash';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
+import { Spinner } from 'spinner';
 import { SupporterIcon } from 'supporter-icon';
 
 interface PropsInterface {
@@ -89,15 +90,18 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   }
 
   renderAvatar() {
-    let avatarSpaceCssClass = 'user-card__avatar-space';
-    if (!this.state.avatarLoaded) {
-      avatarSpaceCssClass += ' user-card__avatar-space--loading';
+    const avatarSpaceModifiers: string[] = [];
+    const spinnerModifiers: string[] = [];
+    if (this.state.avatarLoaded) {
+      spinnerModifiers.push('stop');
+    } else {
+      avatarSpaceModifiers.push('loading');
     }
 
     return (
-      <div className={avatarSpaceCssClass}>
+      <div className={osu.classWithModifiers('user-card__avatar-space', avatarSpaceModifiers)}>
         <div className='user-card__avatar user-card__avatar--loader'>
-          {!this.isUserNotFound ? <div className='la-ball-clip-rotate' /> : null}
+          {!this.isUserNotFound ? <Spinner modifiers={spinnerModifiers} /> : null}
         </div>
         {
           this.isUserLoaded ? (

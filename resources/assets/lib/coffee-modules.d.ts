@@ -22,7 +22,11 @@ declare module 'show-more-link' {
 }
 
 declare module 'spinner' {
-  class Spinner extends React.PureComponent<any> {}
+  interface Props {
+    modifiers?: string[];
+  }
+
+  class Spinner extends React.PureComponent<Props> {}
 }
 declare module 'user-avatar' {
   class UserAvatar extends React.PureComponent<any> {}
