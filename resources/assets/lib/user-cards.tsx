@@ -45,7 +45,7 @@ export class UserCards extends React.PureComponent<Props> {
 
               return (
                 <KeyContext.Provider key={user.id} value={user.id}>
-                  <UserCard activated={activated} modifiers={this.props.modifiers} user={user} />
+                  <UserCard activated={activated} modifiers={['has-outline', ...this.props.modifiers]} user={user} />
                 </KeyContext.Provider>
               );
             })

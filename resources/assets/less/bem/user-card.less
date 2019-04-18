@@ -39,15 +39,13 @@
   // to make broken cover images less ugly
   overflow: hidden;
 
-  &:hover, &--active {
-    .user-cards & {
-      &::after {
-        .full-size();
-        content: '';
-        border: 2px solid @yellow;
-        border-radius: 20px;
-        pointer-events: none;
-      }
+  &--has-outline::after {
+    .@{top}:hover&, .@{top}--active& {
+      .full-size();
+      content: '';
+      border: 2px solid @yellow;
+      border-radius: 20px;
+      pointer-events: none;
     }
   }
 
