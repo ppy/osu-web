@@ -28,7 +28,6 @@ class NewNotificationEvent extends NotificationEventBase
     use SerializesModels;
 
     public $notification;
-    public $connection = 'redis-notification';
 
     /**
      * Create a new event instance.
