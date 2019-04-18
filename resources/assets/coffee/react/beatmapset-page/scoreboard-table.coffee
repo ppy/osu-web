@@ -16,15 +16,18 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, table, tr, th, thead, tbody} = ReactDOMFactories
+import { ScoreboardTableRow } from './scoreboard-table-row'
+import * as React from 'react'
+import { a, div, table, tr, th, thead, tbody } from 'react-dom-factories'
+import { activeKeyDidChange, ContainerContext, KeyContext } from 'stateful-activation-context'
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
-class BeatmapsetPage.ScoreboardTable extends React.PureComponent
+export class ScoreboardTable extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @activeKeyDidChange = _exported.activeKeyDidChange.bind(@)
+    @activeKeyDidChange = activeKeyDidChange.bind(@)
 
     @state = {}
 
@@ -32,7 +35,7 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
   render: =>
     classMods = ['menu-active'] if @state.activeKey?
 
-    el _exported.ContainerContext.Provider,
+    el ContainerContext.Provider,
       value:
         activeKeyDidChange: @activeKeyDidChange
 
@@ -57,10 +60,10 @@ class BeatmapsetPage.ScoreboardTable extends React.PureComponent
 
           tbody className: "#{bn}__body",
             @props.scores.map (score, index) =>
-              el _exported.KeyContext.Provider,
+              el KeyContext.Provider,
                 key: index
                 value: index
-                el BeatmapsetPage.ScoreboardTableRow,
+                el ScoreboardTableRow,
                   activated: @state.activeKey == index
                   beatmap: @props.beatmap
                   countries: @props.countries

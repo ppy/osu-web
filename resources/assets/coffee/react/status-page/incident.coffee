@@ -16,10 +16,10 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span} = ReactDOMFactories
-el = React.createElement
+import * as React from 'react'
+import { div, span } from 'react-dom-factories'
 
-class Status.Incident extends React.Component
+export class Incident extends React.Component
 
   render: =>
     fromNow = moment(@props.date, 'DD-MM-YYYY HH:mm:ss').fromNow()

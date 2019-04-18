@@ -16,10 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, em, form, i, label, option, select, span, strong, textarea} = ReactDOMFactories
+import * as React from 'react'
+import { button, div, em, form, i, label, option, select, span, strong, textarea } from 'react-dom-factories'
 el = React.createElement
 
-class @BBCodeEditor extends React.Component
+export class BBCodeEditor extends React.Component
   componentDidMount: =>
     @sizeSelect.value = ''
     @body.selectionEnd = 0

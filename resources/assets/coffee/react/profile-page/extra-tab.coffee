@@ -16,10 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{span} = ReactDOMFactories
+import * as React from 'react'
+import { span } from 'react-dom-factories'
 el = React.createElement
 
-class ProfilePage.ExtraTab extends React.PureComponent
+export class ExtraTab extends React.PureComponent
   render: =>
     className = 'page-mode-link page-mode-link--profile-page'
 

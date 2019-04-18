@@ -16,12 +16,14 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, p, span} = ReactDOMFactories
+import { BigButton } from 'big-button'
+import * as React from 'react'
+import { a, button, div, p, span } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'beatmap-discussion-nomination'
 
-class BeatmapDiscussions.Nominations extends React.PureComponent
+export class Nominations extends React.PureComponent
   componentDidMount: =>
     osu.pageChange()
 

@@ -16,10 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, table, tr, a, tbody, h4, thead, th} = ReactDOMFactories
+import { UserEntry } from './user-entry'
+import { UserArtEntry } from './user-art-entry'
+import * as React from 'react'
+import { div, table, tr, a, tbody, h4, thead, th } from 'react-dom-factories'
 el = React.createElement
 
-class @Admin.Contest.UserEntryList extends React.Component
+export class UserEntryList extends React.Component
   constructor: (props) ->
     super props
 
@@ -78,7 +81,7 @@ class @Admin.Contest.UserEntryList extends React.Component
       if @props.contest.type == 'art'
         table className: 'table table-striped table-bordered table-hover admin-contest__table',
           tbody {}, entries.map (entry) ->
-            el @Admin.Contest.UserArtEntry,
+            el UserArtEntry,
               key: entry.id
               entry: entry
 
@@ -92,6 +95,6 @@ class @Admin.Contest.UserEntryList extends React.Component
               th className: 'admin-contest__table-column--button'
 
           tbody {}, entries.map (entry) ->
-            el @Admin.Contest.UserEntry,
+            el UserEntry,
               key: entry.id
               entry: entry

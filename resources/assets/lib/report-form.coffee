@@ -18,6 +18,7 @@
 
 import { Modal } from 'modal'
 import { createElement as el, createRef, PureComponent } from 'react'
+import * as React from 'react'
 import { button, div, i, span, textarea } from 'react-dom-factories'
 import { SelectOptions } from 'select-options'
 

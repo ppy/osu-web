@@ -30,11 +30,11 @@ return [
                 'scary' => 'ÄLÄ',
             ],
             'note' => [
-                '_' => 'Huomaa myös, että on erittäin suositeltavaa :scary, koska vanhimmat mapit ovat paljon huonompia kuin uusimmat mapit.',
+                '_' => 'Huomaa myös, että on erittäin suositeltavaa :scary, koska vanhemmat mapit ovat paljon huonompia kuin uudemmat mapit.',
                 'scary' => 'ladata uusimpia kokoelmia vanhojen sijaan',
             ],
         ],
-        'title' => 'Beatmap Kokoelmat',
+        'title' => 'Beatmap-Kokoelmat',
         'description' => 'Valmiiksi pakattuja beatmap kokoelmia perustuen yleisiin teemoihin.',
     ],
 

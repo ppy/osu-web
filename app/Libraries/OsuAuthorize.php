@@ -438,7 +438,7 @@ class OsuAuthorize
             return 'unauthorized';
         }
 
-        if ($beatmapset->approved !== Beatmapset::STATES['qualified']) {
+        if (!$beatmapset->isQualified()) {
             return 'beatmap_discussion.nominate.incorrect_state';
         }
 

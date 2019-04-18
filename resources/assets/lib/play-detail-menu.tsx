@@ -29,21 +29,24 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
   render() {
     const { score } = this.props;
 
-    const children = (dismiss: () => void) =>
+    const children = (dismiss: () => void) => (
       <>
         {
-          score.replay ?
-          <a className='simple-menu__item js-login-required--click'
-            data-turbolinks={false}
-            href={laroute.route('scores.download', { mode: score.mode, score: score.id })}
-            onClick={dismiss}
-          >
-            {osu.trans('users.show.extra.top_ranks.download_replay')}
-          </a> : null
+          score.replay ? (
+            <a
+              className='simple-menu__item js-login-required--click'
+              data-turbolinks={false}
+              href={laroute.route('scores.download', { mode: score.mode, score: score.id })}
+              onClick={dismiss}
+            >
+              {osu.trans('users.show.extra.top_ranks.download_replay')}
+            </a>
+           ) : null
         }
 
-        { this.canReport ? <ReportScore score={score} /> : null }
-      </>;
+        {this.canReport ? <ReportScore score={score} /> : null}
+      </>
+    );
 
     return (
       <PopupMenuPersistent>

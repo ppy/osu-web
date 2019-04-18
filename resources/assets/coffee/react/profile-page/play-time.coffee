@@ -16,11 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{span} = ReactDOMFactories
+import * as React from 'react'
+import { span } from 'react-dom-factories'
+import { ValueDisplay } from 'value-display'
 el = React.createElement
 
 
-ProfilePage.PlayTime = ({stats}) ->
+export PlayTime = ({stats}) ->
   playTime = moment.duration stats.play_time, 'seconds'
 
   daysLeftOver = Math.floor playTime.asDays()

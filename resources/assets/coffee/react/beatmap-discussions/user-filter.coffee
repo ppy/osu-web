@@ -16,14 +16,16 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a} = ReactDOMFactories
+import * as React from 'react'
+import { a } from 'react-dom-factories'
+import { SelectOptions } from 'select-options'
 el = React.createElement
 
 allUsers =
   id: null,
   text: osu.trans('beatmap_discussions.user_filter.everyone')
 
-class BeatmapDiscussions.UserFilter extends React.PureComponent
+export class UserFilter extends React.PureComponent
   render: =>
     options = [allUsers]
     for own _id, user of @props.users
@@ -34,7 +36,7 @@ class BeatmapDiscussions.UserFilter extends React.PureComponent
                else
                  id: null, text: osu.trans('beatmap_discussions.user_filter.label')
 
-    el _exported.SelectOptions,
+    el SelectOptions,
       bn: 'beatmap-discussions-user-filter'
       renderItem: @renderItem
       onItemSelected: @onItemSelected

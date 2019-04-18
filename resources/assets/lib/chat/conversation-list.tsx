@@ -30,12 +30,7 @@ export default class ConversationList extends React.Component<any, {}> {
     const conversationList: React.ReactNode[] = [];
 
     nonPmChannels.forEach((conversation) => {
-      conversationList.push(
-        <ConversationListItem
-            key={conversation.channelId}
-            channelId={conversation.channelId}
-        />,
-      );
+      conversationList.push(<ConversationListItem key={conversation.channelId} channelId={conversation.channelId} />);
     });
 
     if (nonPmChannels.length > 0 && pmChannels.length > 0) {
@@ -45,18 +40,9 @@ export default class ConversationList extends React.Component<any, {}> {
     }
 
     pmChannels.forEach((conversation) => {
-      conversationList.push(
-        <ConversationListItem
-            key={conversation.channelId}
-            channelId={conversation.channelId}
-        />,
-      );
+      conversationList.push(<ConversationListItem key={conversation.channelId} channelId={conversation.channelId} />);
     });
 
-    return(
-      <div className='chat-conversation-list'>
-        {conversationList}
-      </div>
-    );
+    return <div className='chat-conversation-list'>{conversationList}</div>;
   }
 }

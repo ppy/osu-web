@@ -17,6 +17,7 @@
 ###
 
 import { createElement as el, PureComponent } from 'react'
+import * as React from 'react'
 import { button, span, i } from 'react-dom-factories'
 import { ReportForm } from 'report-form'
 

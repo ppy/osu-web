@@ -1,0 +1,105 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.notification-popup-item {
+  @_top: notification-popup-item;
+
+  display: flex;
+  width: 100%;
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &__cover {
+    border-radius: @border-radius-large 0 0 @border-radius-large;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 60px;
+    flex: none;
+  }
+
+  &__cover-icon {
+    & + & {
+      margin-left: 2px;
+    }
+  }
+
+  &__cover-overlay {
+    .full-size();
+    .center-content();
+    border-radius: @border-radius-large 0 0 @border-radius-large;
+    background-color: fade(#000, 60%);
+  }
+
+  &__main {
+    border-radius: 0 @border-radius-large @border-radius-large 0;
+    background-color: @greysky;
+    flex: 1;
+    padding: 5px 0 5px 10px;
+    display: flex;
+    min-width: 0;
+
+    .@{_top}:hover &::before {
+      .full-size();
+      content: '';
+      background-color: fade(#fff, 10%);
+      border-radius: 0 @border-radius-large @border-radius-large 0;
+    }
+  }
+
+  &__message {
+    .link-plain();
+    .link-white();
+    margin: 5px 0;
+    font-size: @font-size--title-small;
+    word-wrap: break-word;
+  }
+
+  &__name {
+    font-weight: bold;
+    font-size: @font-size--small;
+    text-transform: uppercase;
+  }
+
+  &__read-button {
+    .reset-input();
+    color: @greysky-light;
+    padding: 2px;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  &__side-buttons {
+    .center-content();
+    width: 16px;
+    flex: none;
+    margin: 0 10px;
+  }
+
+  &__time {
+    font-size: @font-size--small;
+    color: @greysky-light;
+  }
+}

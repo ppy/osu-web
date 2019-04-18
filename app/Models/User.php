@@ -1110,6 +1110,11 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(UserAchievement::class, 'user_id');
     }
 
+    public function userNotifications()
+    {
+        return $this->hasMany(UserNotification::class, 'user_id');
+    }
+
     public function usernameChangeHistory()
     {
         return $this->hasMany(UsernameChangeHistory::class, 'user_id');
@@ -1381,7 +1386,7 @@ class User extends Model implements AuthenticatableContract
     // TODO: we should rename this to currentUserJson or something.
     public function defaultJson()
     {
-        return json_item($this, 'User', ['blocks', 'friends', 'is_admin']);
+        return json_item($this, 'User', ['blocks', 'friends', 'is_admin', 'unread_pm_count']);
     }
 
     public function supportLength()

@@ -16,11 +16,16 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, tr, td} = ReactDOMFactories
+import { FlagCountry } from 'flag-country'
+import { Mods } from 'mods'
+import { PlayDetailMenu } from 'play-detail-menu'
+import * as React from 'react'
+import { a, div, tr, td } from 'react-dom-factories'
+import { ScoreHelper } from 'score-helper'
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
-class BeatmapsetPage.ScoreboardTableRow extends React.PureComponent
+export class ScoreboardTableRow extends React.PureComponent
   render: () =>
     { activated, index, score } = @props
     classMods = if activated then ['menu-active'] else ['highlightable']
@@ -80,6 +85,6 @@ class BeatmapsetPage.ScoreboardTableRow extends React.PureComponent
         el Mods, modifiers: ['scoreboard'], mods: score.mods
 
       td className: "#{bn}__popup-menu",
-        if _exported.ScoreHelper.hasMenu(score)
-          el _exported.PlayDetailMenu,
+        if ScoreHelper.hasMenu(score)
+          el PlayDetailMenu,
             { score }

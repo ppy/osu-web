@@ -22,23 +22,18 @@ declare var currentUser: any;
 declare var reactTurbolinks: any;
 declare var userVerification: any;
 
-// external (to typescript) react components
-declare var BigButton: any;
-declare var Comments: any;
-declare var CommentsManager: any;
-declare var FlagCountry: any;
-declare var FriendButton: any;
-declare var Img2x: any;
+// external (to typescript) classes
+declare var BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
 declare var LoadingOverlay: any;
-declare var ShowMoreLink: any;
-declare var Spinner: any;
-declare var SupporterIcon: any;
 declare var Timeout: any;
-declare var UserAvatar: any;
 
 // Global object types
 interface Comment {
   id: number;
+}
+
+interface BeatmapDiscussionHelperClass {
+  url(options: any, useCurrent?: boolean): string;
 }
 
 interface JQueryStatic {
@@ -55,10 +50,13 @@ interface OsuCommon {
   popup: (message: string, type: string) => void;
   presence: (str?: string | null) => string | null;
   promisify: (xhr: JQueryXHR) => Promise<any>;
-  timeago: (time: string) => string;
+  timeago: (time?: string) => string;
   trans: (...args: any[]) => string;
-  urlPresence: (url: string) => string;
+  transChoice: (key: string, count: number, replacements?: any, locale?: string) => string;
+  urlPresence: (url?: string) => string;
   uuid: () => string;
+  formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
+  formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
 }
 
 interface Country {
@@ -94,7 +92,8 @@ interface User {
   last_visit?: string;
   pm_friends_only: boolean;
   profile_colour?: string;
-  username: string
+  unread_pm_count?: number;
+  username: string;
 }
 
 interface TooltipDefault {

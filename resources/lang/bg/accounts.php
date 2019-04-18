@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Профилни</strong> настройки',
+        'title' => 'Настройки на <strong>профила</strong>',
         'title_compact' => 'настройки',
         'username' => 'потребителско име',
 
@@ -58,7 +58,7 @@ return [
 
         'signature' => [
             'title' => 'Подпис',
-            'update' => 'обнови',
+            'update' => 'актуализирайте',
         ],
     ],
 
@@ -68,7 +68,7 @@ return [
     ],
 
     'update_password' => [
-        'email_subject' => 'подвърдете смяната на osu! парола',
+        'email_subject' => 'подвърдете смяната на osu! паролата',
         'update' => 'обнови',
     ],
 
@@ -89,7 +89,7 @@ return [
     'security' => [
         'current_session' => 'текущ',
         'end_session' => 'Прекрати сесията',
-        'end_session_confirmation' => 'Това непосредствено ще прекрати сесията ви на това устройство. Сигурни ли сте?',
+        'end_session_confirmation' => 'Това незабавно ще прекрати сесията Ви на съответното устройство. Сигурни ли сте?',
         'last_active' => 'Последно активен:',
         'title' => 'Сигурност',
         'web_sessions' => 'уеб сесии',

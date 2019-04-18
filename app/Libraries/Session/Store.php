@@ -20,6 +20,7 @@
 
 namespace App\Libraries\Session;
 
+use App\Events\UserLogoutEvent;
 use App\Libraries\UserVerification;
 use Auth;
 use Illuminate\Support\Str;
@@ -36,7 +37,9 @@ class Store extends \Illuminate\Session\Store
             return;
         }
 
-        Redis::del(array_merge([static::listKey($userId)], static::keys($userId)));
+        $keys = static::keys($userId);
+        event(new UserLogoutEvent($userId, $keys));
+        Redis::del(array_merge([static::listKey($userId)], $keys));
     }
 
     public static function isUsingRedis()
@@ -99,6 +102,7 @@ class Store extends \Illuminate\Session\Store
             $userId = static::parseKey($key)['userId'];
         }
 
+        event(new UserLogoutEvent($userId, [$key]));
         Redis::srem(static::listKey($userId), $key);
         Redis::del($key);
     }

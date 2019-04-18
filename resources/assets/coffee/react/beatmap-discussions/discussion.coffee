@@ -16,12 +16,16 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, i, span} = ReactDOMFactories
+import { NewReply } from './new-reply'
+import { Post } from './post'
+import { SystemPost } from './system-post'
+import * as React from 'react'
+import { button, div, i, span } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'beatmap-discussion'
 
-class BeatmapDiscussions.Discussion extends React.PureComponent
+export class Discussion extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -43,7 +47,8 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
 
   render: =>
-    return div() if @props.discussion.posts.length == 0
+    return null if !@isVisible(@props.discussion)
+    return null if @props.discussion.posts.length == 0
 
     topClasses = "#{bn} js-beatmap-discussion-jump"
     topClasses += " #{bn}--highlighted" if @state.highlighted
@@ -85,6 +90,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
           div
             className: "#{bn}__replies"
             for reply in @props.discussion.posts.slice(1)
+              continue unless @isVisible(reply)
               if reply.system && reply.message.type == 'resolved'
                 currentResolvedState = reply.message.value
                 continue if lastResolvedState == currentResolvedState
@@ -93,7 +99,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
               @post reply, 'reply'
 
           if @canBeRepliedTo()
-            el BeatmapDiscussions.NewReply,
+            el NewReply,
               currentUser: @props.currentUser
               beatmapset: @props.beatmapset
               currentBeatmap: @props.currentBeatmap
@@ -124,6 +130,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
       'data-score': score
       disabled: disabled
       onClick: @doVote
+      title: osu.trans("beatmaps.discussions.votes.#{type}")
       i className: "fas fa-#{icon}"
       span className: "#{vbn}__count",
         @props.discussion.votes[type]
@@ -158,6 +165,10 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     @props.currentUser.id? && object.user_id == @props.currentUser.id
 
 
+  isVisible: (object) =>
+    object? && (@props.showDeleted || !object.deleted_at?)
+
+
   canDownvote: =>
     @props.currentUser.is_admin || @props.currentUser.is_gmt || @props.currentUser.is_qat || @props.currentUser.is_bng
 
@@ -169,16 +180,16 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
   post: (post, type) =>
     return if !post.id?
 
-    elementName = if post.system then 'SystemPost' else 'Post'
+    elementName = if post.system then SystemPost else Post
 
-    canModeratePosts = @props.currentUser.is_admin || @props.currentUser.is_gmt || @props.currentUser.is_qat
+    canModeratePosts = BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
     canBeDeleted =
       if type == 'discussion'
         @props.discussion.current_user_attributes?.can_destroy
       else
         canModeratePosts || @isOwner(post)
 
-    el BeatmapDiscussions[elementName],
+    el elementName,
       key: post.id
       beatmapset: @props.beatmapset
       beatmap: @props.currentBeatmap

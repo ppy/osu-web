@@ -16,13 +16,17 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h3, ul, li, p, span} = ReactDOMFactories
+import { ExtraHeader } from './extra-header'
+import * as React from 'react'
+import { div, h3, ul, li, p, span } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
+import { ValueDisplay } from 'value-display'
 el = React.createElement
 
-class ProfilePage.Kudosu extends React.Component
+export class Kudosu extends React.Component
   render: =>
     div className: 'page-extra',
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+      el ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       div className: 'kudosu-box',
         el ValueDisplay,
@@ -67,7 +71,7 @@ class ProfilePage.Kudosu extends React.Component
 
           li className: 'profile-extra-entries__item',
             el ShowMoreLink,
-              modifiers: ['profile-page', 't-community-user-graygreen-darker']
+              modifiers: ['profile-page', 't-greyseafoam-dark']
               event: 'profile:showMore'
               hasMore: @props.pagination.recentlyReceivedKudosu.hasMore
               loading: @props.pagination.recentlyReceivedKudosu.loading
