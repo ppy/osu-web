@@ -56,8 +56,8 @@
   }
 
   &__avatar {
-    border-radius: 15px;
     .full-size();
+    border-radius: 15px;
     object-fit: contain;
     background-color: @background-color;
     transition: opacity ease-in-out @fade-duration;
@@ -65,24 +65,27 @@
     .@{top}__avatar-space--loading & {
       opacity: 0;
     }
-
-    &--loader {
-      .center-content();
-      color: #fff;
-      font-size: 14px;
-      background: fade(#fff, 10%);
-      opacity: 0;
-
-      .@{top}__avatar-space--loading & {
-        opacity: 0.25;
-      }
-    }
   }
 
   &__avatar-space {
     width: @avatar-size;
     height: @avatar-size;
     flex: none;
+  }
+
+  &__avatar-spinner {
+    .full-size();
+    .center-content();
+    border-radius: 15px;
+    color: #fff;
+    font-size: 14px;
+    background: fade(#fff, 10%);
+    transition: opacity ease-in-out @fade-duration;
+    opacity: 0;
+
+    .@{top}__avatar-space--loading & {
+      opacity: 0.25;
+    }
   }
 
   &__background {

@@ -100,13 +100,13 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
 
     return (
       <div className={osu.classWithModifiers('user-card__avatar-space', avatarSpaceModifiers)}>
-        <div className='user-card__avatar user-card__avatar--loader'>
+        <div className='user-card__avatar-spinner'>
           {!this.isUserNotFound ? <Spinner modifiers={spinnerModifiers} /> : null}
         </div>
         {
           this.isUserLoaded ? (
             <img
-              className='user-card__avatar user-card__avatar--main'
+              className='user-card__avatar'
               onError={this.onAvatarLoad} // remove spinner if error
               onLoad={this.onAvatarLoad}
               src={this.user.avatar_url}
