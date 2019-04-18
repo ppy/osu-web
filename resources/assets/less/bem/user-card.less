@@ -62,6 +62,10 @@
     background-color: @background-color;
     transition: opacity ease-in-out @fade-duration;
 
+    .@{top}__avatar-space--loading & {
+      opacity: 0;
+    }
+
     &--loader {
       .center-content();
       color: #fff;
@@ -74,18 +78,9 @@
         animation-iteration-count: 1;
       }
 
-      .@{top}__avatar-space--loading && {
-        visibility: visible;
+      .@{top}__avatar-space--loading & {
         opacity: 0.25;
-
-        .la-ball-clip-rotate::before {
-          animation: ball-clip-rotate 0.75s linear infinite;
-        }
       }
-    }
-
-    .@{top}__avatar-space--loading & {
-      opacity: 0;
     }
   }
 
