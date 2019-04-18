@@ -24,10 +24,10 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 abstract class NotificationEventBase implements ShouldBroadcast
 {
-    public $connection;
+    public $broadcastQueue;
 
     public function __construct()
     {
-        $this->connection = config('osu.notification.queue_connection');
+        $this->broadcastQueue = config('osu.notification.queue_name');
     }
 }
