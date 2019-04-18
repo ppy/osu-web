@@ -20,6 +20,7 @@ import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import Notification from 'models/notification';
 import * as React from 'react';
+import { ShowMoreLink } from 'show-more-link';
 import Item from './item';
 import Worker from './worker';
 
@@ -66,25 +67,29 @@ export default class CategoryGroup extends React.Component<Props, State> {
         buttonDirection = 'down';
       }
 
-      expandButton = <div className={`${bn}__expand-button`}>
-        <ShowMoreLink
-          hasMore={true}
-          label={buttonText}
-          direction={buttonDirection}
-          callback={this.toggleExpand}
-          modifiers={['t-greysky']}
-        />
-      </div>;
+      expandButton = (
+        <div className={`${bn}__expand-button`}>
+          <ShowMoreLink
+            hasMore={true}
+            label={buttonText}
+            direction={buttonDirection}
+            callback={this.toggleExpand}
+            modifiers={['t-greysky']}
+          />
+        </div>
+      );
     }
 
-    return <div className={blockClass}>
-      {items.map((item) => {
-        return <div key={item[0].id} className='notification-category-group__item'>
-          <Item items={item} worker={this.props.worker} />
-        </div>;
-      })}
-      {expandButton}
-    </div>;
+    return (
+      <div className={blockClass}>
+        {items.map((item) => {
+          return <div key={item[0].id} className='notification-category-group__item'>
+            <Item items={item} worker={this.props.worker} />
+          </div>;
+        })}
+        {expandButton}
+      </div>
+    );
   }
 
   toggleExpand = () => {

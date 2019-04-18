@@ -16,7 +16,20 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, i, li, span, ul} = ReactDOMFactories
+import { AccountStanding } from './account-standing'
+import { ExtraTab } from './extra-tab'
+import { Beatmaps } from './beatmaps'
+import { Header } from './header'
+import { Historical } from './historical'
+import { Kudosu } from './kudosu'
+import { Medals } from './medals'
+import { RecentActivity } from './recent-activity'
+import { TopRanks } from './top-ranks'
+import { UserPage } from './user-page'
+import { BlockButton } from 'block-button'
+import { NotificationBanner } from 'notification-banner'
+import * as React from 'react'
+import { a, button, div, i, li, span, ul } from 'react-dom-factories'
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
@@ -26,7 +39,7 @@ currentLocation = ->
   "#{document.location.pathname}#{document.location.search}"
 
 
-class ProfilePage.Main extends React.PureComponent
+export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -160,7 +173,7 @@ class ProfilePage.Main extends React.PureComponent
                         osu.trans('users.blocks.show_profile')
 
       div className: "osu-layout osu-layout--full#{if isBlocked && !@state.forceShow then ' osu-layout--masked' else ''}",
-        el ProfilePage.Header,
+        el Header,
           user: @state.user
           stats: @state.user.statistics
           currentMode: @state.currentMode
@@ -182,7 +195,7 @@ class ProfilePage.Main extends React.PureComponent
                     'data-page-id': m
                     onClick: @tabClick
                     href: "##{m}"
-                    el ProfilePage.ExtraTab,
+                    el ExtraTab,
                       page: m
                       currentPage: @state.currentPage
                       currentMode: @state.currentMode
@@ -218,21 +231,21 @@ class ProfilePage.Main extends React.PureComponent
         props:
           userPage: @state.userPage
           user: @state.user
-        component: ProfilePage.UserPage
+        component: UserPage
 
       when 'recent_activity'
         props:
           pagination: @state.showMorePagination
           recentActivity: @state.recentActivity
           user: @state.user
-        component: ProfilePage.RecentActivity
+        component: RecentActivity
 
       when 'kudosu'
         props:
           user: @state.user
           recentlyReceivedKudosu: @state.recentlyReceivedKudosu
           pagination: @state.showMorePagination
-        component: ProfilePage.Kudosu
+        component: Kudosu
 
       when 'top_ranks'
         props:
@@ -241,7 +254,7 @@ class ProfilePage.Main extends React.PureComponent
           scoresFirsts: @state.scoresFirsts
           currentMode: @state.currentMode
           pagination: @state.showMorePagination
-        component: ProfilePage.TopRanks
+        component: TopRanks
 
       when 'beatmaps'
         props:
@@ -258,7 +271,7 @@ class ProfilePage.Main extends React.PureComponent
             unrankedBeatmapsets: @state.user.unranked_beatmapset_count[0]
             graveyardBeatmapsets: @state.user.graveyard_beatmapset_count[0]
           pagination: @state.showMorePagination
-        component: ProfilePage.Beatmaps
+        component: Beatmaps
 
       when 'medals'
         props:
@@ -266,7 +279,7 @@ class ProfilePage.Main extends React.PureComponent
           userAchievements: @props.userAchievements
           currentMode: @state.currentMode
           user: @state.user
-        component: ProfilePage.Medals
+        component: Medals
 
       when 'historical'
         props:
@@ -275,12 +288,12 @@ class ProfilePage.Main extends React.PureComponent
           user: @state.user
           currentMode: @state.currentMode
           pagination: @state.showMorePagination
-        component: ProfilePage.Historical
+        component: Historical
 
       when 'account_standing'
         props:
           user: @state.user
-        component: ProfilePage.AccountStanding
+        component: AccountStanding
 
 
   showMore: (e, {name, url, perPage = 20}) =>

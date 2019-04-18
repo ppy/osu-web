@@ -19,6 +19,7 @@
 import { ChatMessageSendAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
+import { BigButton } from 'big-button';
 import DispatchListener from 'dispatch-listener';
 import * as _ from 'lodash';
 import { inject, observer } from 'mobx-react';
@@ -89,7 +90,8 @@ export default class InputBox extends React.Component<any, any> implements Dispa
 
     return (
       <div className='chat-input'>
-        <input className={`chat-input__box${disableInput ? ' chat-input__box--disabled' : ''}`}
+        <input
+          className={`chat-input__box${disableInput ? ' chat-input__box--disabled' : ''}`}
           name='textbox'
           placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
           onKeyDown={this.checkIfEnterPressed}

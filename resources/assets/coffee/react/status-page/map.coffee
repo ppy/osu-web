@@ -16,10 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span} = ReactDOMFactories
+import * as React from 'react'
+import { div, span } from 'react-dom-factories'
 el = React.createElement
 
-class Status.Map extends React.Component
+export class Map extends React.Component
   constructor: (props) ->
     super props
 

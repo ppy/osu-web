@@ -44,9 +44,11 @@ export default function NewsHeader(props: PropsInterface) {
     });
   }
 
-  return <HeaderV3
-    theme='news'
-    titleTrans={props.titleTrans}
-    links={links}
-  />;
+  return (
+    <HeaderV3
+      theme='news'
+      titleTrans={props.titleTrans}
+      links={links}
+    />
+  );
 }

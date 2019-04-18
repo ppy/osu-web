@@ -16,10 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, a, span, i} = ReactDOMFactories
+import * as React from 'react'
+import { div, a, span, i } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
 el = React.createElement
 
-class Beatmaps.Paginator extends React.PureComponent
+export class Paginator extends React.PureComponent
   constructor: (props) ->
     super props
 

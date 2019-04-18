@@ -16,6 +16,9 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { CommentsManager } from 'comments-manager'
+import { Main } from './comments-index/main'
+
 reactTurbolinks.registerPersistent 'comments-index', CommentsManager, true, ->
-  component: CommentsIndex.Main
+  component: Main
   commentBundle: osu.parseJson('json-index')

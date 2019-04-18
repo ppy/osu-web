@@ -16,10 +16,17 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, h1, p} = ReactDOMFactories
+import { Discussions } from './discussions'
+import { Events } from './events'
+import { Header } from './header'
+import { ModeSwitcher } from './mode-switcher'
+import { NewDiscussion } from './new-discussion'
+import { BackToTop } from 'back-to-top'
+import * as React from 'react'
+import { a, div, h1, p } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapDiscussions.Main extends React.PureComponent
+export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -90,7 +97,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
   render: =>
     div className: 'osu-layout osu-layout--full',
-      el BeatmapDiscussions.Header,
+      el Header,
         beatmaps: @groupedBeatmaps()
         beatmapset: @state.beatmapset
         currentBeatmap: @currentBeatmap()
@@ -104,7 +111,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
         selectedUserId: @state.selectedUserId
         users: @users()
 
-      el BeatmapDiscussions.ModeSwitcher,
+      el ModeSwitcher,
         innerRef: @modeSwitcherRef
         mode: @state.currentMode
         beatmapset: @state.beatmapset
@@ -115,7 +122,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       if @state.currentMode == 'events'
         div
           className: 'osu-layout__section osu-layout__section--extra'
-          el BeatmapDiscussions.Events,
+          el Events,
             events: @state.beatmapset.events
             users: @users()
             discussions: @discussions()
@@ -123,7 +130,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       else
         div
           className: 'osu-layout__section osu-layout__section--extra'
-          el BeatmapDiscussions.NewDiscussion,
+          el NewDiscussion,
             beatmapset: @state.beatmapset
             currentUser: @state.currentUser
             currentBeatmap: @currentBeatmap()
@@ -135,7 +142,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
             stickTo: @modeSwitcherRef
             autoFocus: @focusNewDiscussion
 
-          el BeatmapDiscussions.Discussions,
+          el Discussions,
             beatmapset: @state.beatmapset
             currentBeatmap: @currentBeatmap()
             currentDiscussions: @currentDiscussions()
@@ -146,7 +153,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
             showDeleted: @state.showDeleted
             users: @users()
 
-      el window._exported.BackToTop
+      el BackToTop
 
 
   beatmaps: =>

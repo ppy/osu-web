@@ -16,11 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = ReactDOMFactories
+import * as React from 'react'
+import { div } from 'react-dom-factories'
 
 bn = 'beatmap-discussion-message-length-counter'
 
-BeatmapDiscussions.MessageLengthCounter = ({message, isTimeline}) ->
+export MessageLengthCounter = ({message, isTimeline}) ->
   return null if !isTimeline
 
   maxLength = BeatmapDiscussionHelper.MAX_LENGTH_TIMELINE

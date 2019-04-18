@@ -16,6 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { UserEntryList } from './contest-entry/user-entry-list'
+
 propsFunction = ->
   data = osu.parseJson('json-contest')
   userEntries = osu.parseJson('json-userEntries')
@@ -24,4 +26,4 @@ propsFunction = ->
     userEntries: userEntries
   }
 
-reactTurbolinks.register 'userContestEntry', Contest.Entry.UserEntryList, propsFunction
+reactTurbolinks.register 'userContestEntry', UserEntryList, propsFunction

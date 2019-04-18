@@ -16,12 +16,14 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import * as React from 'react'
+import { button, div, i, span } from 'react-dom-factories'
+import { Spinner } from 'spinner'
 el = React.createElement
-{button, div, i, span} = ReactDOMFactories
 
 bn = 'textual-button'
 
-class @BlockButton extends React.PureComponent
+export class BlockButton extends React.PureComponent
   constructor: (props) ->
     super props
 

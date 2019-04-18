@@ -21,10 +21,9 @@
 namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Queue\SerializesModels;
 
-class NotificationReadEvent extends NotificationEventBase implements ShouldBroadcastNow
+class NotificationReadEvent extends NotificationEventBase
 {
     use SerializesModels;
 

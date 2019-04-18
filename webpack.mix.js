@@ -35,10 +35,7 @@ if (mix.inProduction()) {
 }
 
 const reactComponentSet = function (name) {
-    return [[
-      ...glob.sync(`resources/assets/coffee/react/${name}/*.coffee`),
-      `resources/assets/coffee/react/${name}.coffee`,
-    ], `js/react/${name}.js`];
+    return [[`resources/assets/coffee/react/${name}.coffee`], `js/react/${name}.js`];
 }
 
 const paymentSandbox = !(process.env.PAYMENT_SANDBOX == 0
@@ -103,10 +100,22 @@ let webpackConfig = {
       'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
     })
   ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          name: "js/commons",
+          chunks: "initial",
+          minChunks: 2,
+        }
+      }
+    }
+  },
   resolve: {
     modules: [
       path.resolve(__dirname, 'resources/assets/coffee'),
       path.resolve(__dirname, 'resources/assets/lib'),
+      path.resolve(__dirname, 'resources/assets/coffee/react/_components'),
       path.resolve(__dirname, 'node_modules'),
     ],
     extensions: ['*', '.js', '.coffee', '.ts'],
@@ -126,16 +135,17 @@ let webpackConfig = {
         include: [
           path.resolve(__dirname, "resources/assets/coffee"),
         ],
+        exclude: [
+          path.resolve(__dirname, "resources/assets/coffee/react"),
+        ],
         use: ['imports-loader?this=>window', 'coffee-loader']
       },
       {
         // loader for import-based coffeescript
         test: /\.coffee$/,
         include: [
+          path.resolve(__dirname, "resources/assets/coffee/react"),
           path.resolve(__dirname, "resources/assets/lib"),
-        ],
-        exclude: [
-          path.resolve(__dirname, "resources/assets/coffee"),
         ],
         use: ['coffee-loader']
       }

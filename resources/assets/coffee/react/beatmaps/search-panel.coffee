@@ -16,10 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, a, i, input, h1, h2, li, ol, span} = ReactDOMFactories
+import { SearchFilter } from './search-filter'
+import * as React from 'react'
+import { div, a, i, input, h1, h2, li, ol, span } from 'react-dom-factories'
 el = React.createElement
 
-class Beatmaps.SearchPanel extends React.PureComponent
+export class SearchPanel extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -129,7 +131,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
 
   renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>
-    el Beatmaps.SearchFilter,
+    el SearchFilter,
       filters: @props.filters
       name: name
       title: osu.trans("beatmaps.listing.search.filters.#{name}") if showTitle

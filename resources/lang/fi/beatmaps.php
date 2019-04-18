@@ -179,7 +179,7 @@ return [
         'search' => [
             'prompt' => 'anna hakusana...',
             'login_required' => 'Kirjaudu sisään hakeaksesi.',
-            'options' => 'Lisää Hakuasetuksia',
+            'options' => 'Enemmän Hakuasetuksia',
             'supporter_filter' => 'Tunnisteella :filters rajaaminen vaatii aktiivisen osu!supporter-tagin',
             'not-found' => 'ei tuloksia',
             'not-found-quote' => '... Eip, mitään ei löytynyt.',
@@ -197,7 +197,7 @@ return [
                 'title' => 'Nimi',
                 'artist' => 'Esittäjä',
                 'difficulty' => 'Vaikeustaso',
-                'favourites' => '',
+                'favourites' => 'Suosikit',
                 'updated' => 'Päivitetty',
                 'ranked' => 'Hyväksytty',
                 'rating' => 'Luokitus',
@@ -235,7 +235,7 @@ return [
     ],
     'genre' => [
         'any' => 'Kaikki',
-        'unspecified' => 'Määrittelemättömät',
+        'unspecified' => 'Määrittelemätön',
         'video-game' => 'Videopeli',
         'anime' => 'Anime',
         'rock' => 'Rock',

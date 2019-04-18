@@ -16,10 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import * as React from 'react'
+import { ValueDisplay } from 'value-display'
 el = React.createElement
 
 
-ProfilePage.Rank = ({type, stats, modifiers}) ->
+export Rank = ({type, stats, modifiers}) ->
   el ValueDisplay,
     modifiers: modifiers
     label: osu.trans("users.show.rank.#{type}_simple")

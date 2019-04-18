@@ -221,7 +221,7 @@ return [
                 'total_info' => 'Perustuu käyttäjän tekemään vaikutukseen beatmappien moderoinnissa. Katso <a href="'.osu_url('user.kudosu').'">tämä sivu</a> saadaksesi lisätietoja.',
 
                 'entry' => [
-                    'amount' => ':amount kudosun| :amount kudosua',
+                    'amount' => ':amount kudosun',
                     'empty' => "Tämä käyttäjä ei ole saanut yhtään kudosua!",
 
                     'beatmap_discussion' => [
@@ -286,7 +286,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Tilin tila',
-                'bad_standing' => "käyttäjä <strong>:username</strong> käyttäjä ei ole hyvällä mallilla :(",
+                'bad_standing' => "<strong>:username</strong> ei ole käyttäytynyt hyvin :(",
                 'remaining_silence' => '<strong>:username</strong> pystyy puhumaan seuraavan kerran :duration.',
 
                 'recent_infringements' => [

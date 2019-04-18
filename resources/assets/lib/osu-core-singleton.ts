@@ -15,16 +15,15 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+import OsuCore from 'osu-core';
 
-import * as React from 'react';
-
-export default class ChatLogo extends React.Component<any, any> {
-  render(): React.ReactNode {
-    return (
-      <div className='chat-logo'>
-        <div className='chat-logo__icon'/>
-        <div className='chat-logo__title'>{osu.trans('chat.title')}</div>
-      </div>
-    );
+declare global {
+  interface Window {
+    OsuCore: OsuCore;
   }
 }
+
+const core = new OsuCore(window);
+window.OsuCore = core; // for debugging
+
+export default core;

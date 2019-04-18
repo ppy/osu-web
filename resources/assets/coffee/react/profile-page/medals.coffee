@@ -16,10 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, h3} = ReactDOMFactories
+import { AchievementBadge } from './achievement-badge'
+import { ExtraHeader } from './extra-header'
+import * as React from 'react'
+import { div, h2, h3 } from 'react-dom-factories'
 el = React.createElement
 
-class ProfilePage.Medals extends React.PureComponent
+export class Medals extends React.PureComponent
   render: =>
     @userAchievements = null
 
@@ -39,7 +42,7 @@ class ProfilePage.Medals extends React.PureComponent
 
     div
       className: 'page-extra'
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+      el ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       if recentAchievements.length > 0
         div className: 'page-extra__recent-medals-box',
@@ -50,7 +53,7 @@ class ProfilePage.Medals extends React.PureComponent
               div
                 className: 'page-extra__recent-medal'
                 key: achievement.achievement_id
-                el ProfilePage.AchievementBadge,
+                el AchievementBadge,
                   achievement: @props.achievements[achievement.achievement_id]
                   userAchievement: achievement
                   modifiers: ['dynamic-height']
@@ -84,7 +87,7 @@ class ProfilePage.Medals extends React.PureComponent
     div
       key: achievement.id
       className: 'medals-group__medal'
-      el ProfilePage.AchievementBadge,
+      el AchievementBadge,
         modifiers: ['listing']
         achievement: achievement
         userAchievement: @userAchievement achievement.id

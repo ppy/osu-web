@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span} = ReactDOMFactories
+import * as React from 'react'
+import { div, span } from 'react-dom-factories'
 
 bn = 'beatmap-basic-stats'
 
@@ -32,7 +33,7 @@ formatDuration = (value) ->
     "#{m}:#{_.padStart s, 2, 0}"
 
 
-@BeatmapBasicStats = ({beatmapset, beatmap}) ->
+export BeatmapBasicStats = ({beatmapset, beatmap}) ->
   div
     className: bn
     for stat in ['total_length', 'bpm', 'count_circles', 'count_sliders']

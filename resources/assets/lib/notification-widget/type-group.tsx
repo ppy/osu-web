@@ -20,6 +20,7 @@ import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import Notification from 'models/notification';
 import * as React from 'react';
+import { Spinner } from 'spinner';
 import CategoryGroup from './category-group';
 import Worker from './worker';
 
@@ -57,22 +58,24 @@ export default class TypeGroup extends React.Component<Props, State> {
 
     const item = this.props.items[0];
 
-    return <div className={bn}>
-      <div className={`${bn}__header`}>
-        <div className={`${bn}__type`}>
-          {osu.trans(`notifications.item.${item.objectType}._`)}
+    return (
+      <div className={bn}>
+        <div className={`${bn}__header`}>
+          <div className={`${bn}__type`}>
+            {osu.trans(`notifications.item.${item.objectType}._`)}
 
-          <span className={`${bn}__count`}>
-            {osu.formatNumber(this.props.items.length)}
-          </span>
+            <span className={`${bn}__count`}>
+              {osu.formatNumber(this.props.items.length)}
+            </span>
+          </div>
+
+          {this.renderMarkAllReadButton()}
         </div>
-
-        {this.renderMarkAllReadButton()}
+        <div className={`${bn}__items`}>
+          {this.renderItems()}
+        </div>
       </div>
-      <div className={`${bn}__items`}>
-        {this.renderItems()}
-      </div>
-    </div>;
+    );
   }
 
   private renderItems() {
@@ -112,21 +115,24 @@ export default class TypeGroup extends React.Component<Props, State> {
     let markingAsReadSpinner: React.ReactNode = null;
 
     if (this.state.markingAsRead) {
-      markingAsReadSpinner =
+      markingAsReadSpinner = (
         <span className={`${bn}__clear-all-spinner`}>
           <Spinner />
-        </span>;
+        </span>
+      );
       markAllReadClass += ` ${bn}__clear-all--disabled`;
     }
 
-    return <button
+    return (
+      <button
         className={markAllReadClass}
         type='button'
         onClick={this.markRead}
       >
         {markingAsReadSpinner}
         {osu.trans('notifications.mark_all_read')}
-      </button>;
+      </button>
+    );
   }
 
   private markRead = () => {
