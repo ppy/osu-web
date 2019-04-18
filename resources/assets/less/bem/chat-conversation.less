@@ -90,7 +90,7 @@
     text-align: center;
     height: 1.5em;
 
-    &:before {
+    &::before {
       content: '';
       background: @yellow;
       position: absolute;
@@ -100,7 +100,7 @@
       height: 1px;
     }
 
-    &:after {
+    &::after {
       content: attr(data-content);
       position: relative;
       display: inline-block;

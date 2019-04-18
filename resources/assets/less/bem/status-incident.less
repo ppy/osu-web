@@ -44,7 +44,7 @@
 
   &--no-line {
     .status-incident__state {
-      &:before, &:after {
+      &::before, &::after {
         content: none;
       }
     }
@@ -72,20 +72,20 @@
       background: @unknown;
     }
 
-    &:before, &:after {
+    &::before, &::after {
       content: ' ';
       position: absolute;
       background: #999;
     }
 
-    &:before {
+    &::before {
       width: 3px;
       height: 68px;
       top: 16px;
       left: 13px;
     }
 
-    &:after {
+    &::after {
       width: 3px;
       height: 62px;
       top: -62px;
