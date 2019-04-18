@@ -103,7 +103,7 @@ return [
     ],
     'notification' => [
         'endpoint' => presence(env('NOTIFICATION_ENDPOINT'), '/home/notifications/feed'),
-        'queue_connection' => presence(env('NOTIFICATION_QUEUE_CONNECTION'), 'redis-notification'),
+        'queue_name' => presence(env('NOTIFICATION_QUEUE'), 'notification'),
     ],
     'search' => [
         'minimum_length' => get_int(env('SEARCH_MINIMUM_LENGTH', 2)),
