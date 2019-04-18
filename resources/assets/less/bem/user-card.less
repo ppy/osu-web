@@ -61,9 +61,10 @@
     object-fit: contain;
     background-color: @background-color;
     transition: opacity ease-in-out @fade-duration;
+    opacity: 0;
 
-    .@{top}__avatar-space--loading & {
-      opacity: 0;
+    &--loaded {
+      opacity: 1;
     }
   }
 
@@ -81,10 +82,12 @@
     font-size: 14px;
     background: fade(#fff, 10%);
     transition: opacity ease-in-out @fade-duration;
-    opacity: 0;
+    opacity: 0.25;
 
-    .@{top}__avatar-space--loading & {
-      opacity: 0.25;
+    &--loaded {
+      // needs display: none or element to be removed to remove the layer in Safari
+      // but can't transition a display change...
+      opacity: 0;
     }
   }
 

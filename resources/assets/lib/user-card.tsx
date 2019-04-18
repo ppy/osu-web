@@ -90,23 +90,17 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   }
 
   renderAvatar() {
-    const avatarSpaceModifiers: string[] = [];
-    const spinnerModifiers: string[] = [];
-    if (this.state.avatarLoaded) {
-      spinnerModifiers.push('stop');
-    } else {
-      avatarSpaceModifiers.push('loading');
-    }
+    const modifiers = this.state.avatarLoaded ? ['loaded'] : [];
 
     return (
-      <div className={osu.classWithModifiers('user-card__avatar-space', avatarSpaceModifiers)}>
-        <div className='user-card__avatar-spinner'>
-          {!this.isUserNotFound ? <Spinner modifiers={spinnerModifiers} /> : null}
+      <div className='user-card__avatar-space'>
+        <div className={osu.classWithModifiers('user-card__avatar-spinner', modifiers)}>
+          {!this.isUserNotFound ? <Spinner modifiers={modifiers} /> : null}
         </div>
         {
           this.isUserLoaded ? (
             <img
-              className='user-card__avatar'
+              className={osu.classWithModifiers('user-card__avatar', modifiers)}
               onError={this.onAvatarLoad} // remove spinner if error
               onLoad={this.onAvatarLoad}
               src={this.user.avatar_url}
