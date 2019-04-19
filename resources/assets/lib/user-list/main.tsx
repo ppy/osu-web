@@ -52,9 +52,11 @@ export class Main extends React.PureComponent<Props> {
       Object.keys(SortMode).map((key: keyof typeof SortMode) => {
         return (
             <button
-              className='simple-menu__item js-login-required--click'
+              className='simple-menu__item'
               key={key}
-              onClick={() => this.onSelected(key, dismiss)}>{key}
+              onClick={() => this.onSelected(key, dismiss)}
+            >
+              {osu.trans(`users.sort.${SortMode[key]}`)}
             </button>
         );
       });
@@ -63,9 +65,9 @@ export class Main extends React.PureComponent<Props> {
       <div className='user-list'>
         <div className='user-list__toolbar'>
           <span className='user-list__sort'>
-            sort by
+            {osu.trans('users.sort._')}
             <span className='user-list__sort-select'>
-              {this.state.sortMode}
+              {osu.trans(`users.sort.${this.state.sortMode}`)}
             </span>
             <span className='user-list__sort-select fas fa-angle-down' />
             <PopupMenu showGlyph={false}>

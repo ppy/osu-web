@@ -361,7 +361,15 @@ return [
             'total_score' => 'Total Score',
         ],
     ],
+
+    'sort' => [
+        '_' => 'sort by',
+        'last_visit' => 'recently active',
+        'username' => 'username',
+    ],
+
     'status' => [
+        'all' => 'All',
         'online' => 'Online',
         'offline' => 'Offline',
     ],

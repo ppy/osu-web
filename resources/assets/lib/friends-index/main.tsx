@@ -101,8 +101,8 @@ export class Main extends React.PureComponent<Props> {
 
   renderSelections() {
     const groups = [
-      { name: 'all', count: this.props.friends.length },
-      { name: 'online', count: this.props.friends.filter((x) => x.is_online).length },
+      { key: 'all', count: this.props.friends.length },
+      { key: 'online', count: this.props.friends.filter((x) => x.is_online).length },
     ];
 
     return (
@@ -110,7 +110,7 @@ export class Main extends React.PureComponent<Props> {
         <div className='update-streams-v2__container'>
           {
             groups.map((group) => {
-              return this.renderOption(group.name, group.count, group.name === this.state.filter);
+              return this.renderOption(group.key, group.count, group.key === this.state.filter);
             })
           }
         </div>
@@ -118,21 +118,21 @@ export class Main extends React.PureComponent<Props> {
     );
   }
 
-  renderOption(title: string, text: string | number, active = false) {
+  renderOption(key: string, text: string | number, active = false) {
     // FIXME: change all the names
     const modifiers = active ? ['active'] : [];
     let className = osu.classWithModifiers('update-streams-v2__item', modifiers);
-    className += ` t-changelog-stream--${title}`;
+    className += ` t-changelog-stream--${key}`;
 
     return (
       <a
         className={className}
-        href={osu.updateQueryString(null, { filter: title })}
-        key={title}
-        onClick={this.optionSelected(title)}
+        href={osu.updateQueryString(null, { filter: key })}
+        key={key}
+        onClick={this.optionSelected(key)}
       >
         <div className='update-streams-v2__bar u-changelog-stream--bg' />
-        <p className='update-streams-v2__row update-streams-v2__row--name'>{title}</p>
+        <p className='update-streams-v2__row update-streams-v2__row--name'>{osu.trans(`users.status.${key}`)}</p>
         <p className='update-streams-v2__row update-streams-v2__row--version'>{text}</p>
       </a>
     );
