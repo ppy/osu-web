@@ -18,6 +18,7 @@
 
 import * as React from 'react';
 import { Main as UserList } from 'user-list/main';
+import { string } from 'prop-types';
 
 interface Props {
   user: User;
@@ -81,11 +82,11 @@ export class Main extends React.PureComponent<Props> {
     ];
 
     return (
-      <div className='update-streams-v2'>
+      <div className='update-streams-v2 update-streams-v2--with-active'>
         <div className='update-streams-v2__container'>
           {
             groups.map((group) => {
-              return this.renderOption(group.name, group.count);
+              return this.renderOption(group.name, group.count, group.name === this.state.filter);
             })
           }
         </div>
@@ -93,10 +94,15 @@ export class Main extends React.PureComponent<Props> {
     );
   }
 
-  renderOption(title: string, text: string | number) {
+  renderOption(title: string, text: string | number, active = false) {
+    // FIXME: change all the names
+    const modifiers = active ? ['active'] : [];
+    let className = osu.classWithModifiers('update-streams-v2__item', modifiers);
+    className += ` t-changelog-stream--${title}`;
+
     return (
       <a
-        className='update-streams-v2__item'
+        className={className}
         href={osu.updateQueryString(null, { filter: title })}
         key={title}
         onClick={this.optionSelected(title)}
