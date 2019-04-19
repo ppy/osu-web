@@ -112,7 +112,7 @@ export class Main extends React.PureComponent<Props> {
     event.preventDefault();
     const url = osu.updateQueryString(null, { filter: key });
     // FIXME: stop reloading the page
-    window.Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
+    Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
     this.setState({ filter: key });
   }
 

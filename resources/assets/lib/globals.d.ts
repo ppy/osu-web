@@ -13,7 +13,8 @@ declare var window: Window;
 
 // libraries
 declare var laroute: any;
-declare var Turbolinks: Turbolinks;
+// TODO: Turbolinks 5.3 is Typescript, so this should be updated then.
+declare var Turbolinks: TurbolinksStatic;
 
 // our helpers
 declare var tooltipDefault: TooltipDefault;
@@ -101,6 +102,16 @@ interface TooltipDefault {
   remove: (el: HTMLElement) => void;
 }
 
-interface Turbolinks {
-  visit: (url: string) => void;
+interface TurbolinksAction {
+  action: "advance" | "replace" | "restore";
+}
+
+interface TurbolinksStatic {
+  controller: any;
+  supported: boolean;
+
+  clearCache(): void;
+  setProgressBarDelay(delayInMilliseconds: number): void;
+  visit(location: string, options?: TurbolinksAction): void;
+  uuid(): string;
 }
