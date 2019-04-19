@@ -68,7 +68,7 @@
     <script>
         Sentry.init({
             debug: {!! json_encode(config('app.debug')) !!},
-            dsn: {!! json_encode(config('services.sentry_js.dsn')) !!},
+            dsn: {!! json_encode(config('services.sentry.public_dsn')) !!},
             ignoreErrors: [
                 // Random plugins/extensions
                 'top.GLOBALS'
