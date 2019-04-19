@@ -32,13 +32,15 @@ interface Props {
 }
 
 interface State {
+  filter: string;
   sortMode: SortMode;
 }
 
 export class Main extends React.PureComponent<Props> {
   readonly state: State = {
+    filter: this.filterFromUrl,
     sortMode: SortMode.LastVisit,
-   };
+  };
 
   onSelected = (key: keyof typeof SortMode, dismiss: () => void) => {
     dismiss();
@@ -62,27 +64,77 @@ export class Main extends React.PureComponent<Props> {
       });
 
     return (
-      <div className='user-list'>
-        <div className='user-list__toolbar'>
-          <span className='user-list__sort'>
-            {osu.trans('users.sort._')}
-            <span className='user-list__sort-select'>
-              {osu.trans(`users.sort.${this.state.sortMode}`)}
+      <>
+        {this.renderSelections()}
+        <div className='user-list'>
+          <div className='user-list__toolbar'>
+            <span className='user-list__sort'>
+              {osu.trans('users.sort._')}
+              <span className='user-list__sort-select'>
+                {osu.trans(`users.sort.${this.state.sortMode}`)}
+              </span>
+              <span className='user-list__sort-select fas fa-angle-down' />
+              <PopupMenu showGlyph={false}>
+                {items}
+              </PopupMenu>
             </span>
-            <span className='user-list__sort-select fas fa-angle-down' />
-            <PopupMenu showGlyph={false}>
-              {items}
-            </PopupMenu>
-          </span>
-        </div>
+          </div>
 
-        <UserCards users={this.sortedUsers} />
+          <UserCards users={this.sortedUsers} />
+        </div>
+      </>
+    );
+  }
+
+  renderSelections() {
+    const groups = [
+      { key: 'all', count: this.props.users.length },
+      { key: 'online', count: this.props.users.filter((user) => user.is_online).length },
+    ];
+
+    return (
+      <div className='update-streams-v2 update-streams-v2--with-active'>
+        <div className='update-streams-v2__container'>
+          {
+            groups.map((group) => {
+              return this.renderOption(group.key, group.count, group.key === this.state.filter);
+            })
+          }
+        </div>
       </div>
     );
   }
 
+  renderOption(key: string, text: string | number, active = false) {
+    // FIXME: change all the names
+    const modifiers = active ? ['active'] : [];
+    let className = osu.classWithModifiers('update-streams-v2__item', modifiers);
+    className += ` t-changelog-stream--${key}`;
+
+    return (
+      <a
+        className={className}
+        href={osu.updateQueryString(null, { filter: key })}
+        key={key}
+        onClick={this.optionSelected(key)}
+      >
+        <div className='update-streams-v2__bar u-changelog-stream--bg' />
+        <p className='update-streams-v2__row update-streams-v2__row--name'>{osu.trans(`users.status.${key}`)}</p>
+        <p className='update-streams-v2__row update-streams-v2__row--version'>{text}</p>
+      </a>
+    );
+  }
+
+  optionSelected = (key: string) => (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    const url = osu.updateQueryString(null, { filter: key });
+    // FIXME: stop reloading the page
+    Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
+    this.setState({ filter: key });
+  }
+
   private get sortedUsers() {
-    const users = this.props.users.slice();
+    const users = this.filteredUsers.slice();
 
     switch (this.state.sortMode) {
       case SortMode.LastVisit:
@@ -90,5 +142,19 @@ export class Main extends React.PureComponent<Props> {
     }
 
     return users.sort((x, y) => x.username.localeCompare(y.username));
+  }
+
+  private get filterFromUrl() {
+    const url = new URL(location.href);
+    return url.searchParams.get('filter') || 'all';
+  }
+
+  private get filteredUsers() {
+    switch (this.state.filter) {
+      case 'online':
+        return this.props.users.filter((user) => user.is_online);
+    }
+
+    return this.props.users;
   }
 }

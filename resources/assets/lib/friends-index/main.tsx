@@ -24,17 +24,9 @@ interface Props {
   friends: User[];
 }
 
-interface State {
-  filter: string;
-}
-
 export class Main extends React.PureComponent<Props> {
   static defaultProps = {
     user: currentUser,
-  };
-
-  readonly state = {
-    filter: this.filterFromUrl,
   };
 
   render() {
@@ -64,8 +56,7 @@ export class Main extends React.PureComponent<Props> {
         </div>
 
         <div className='osu-page osu-page--users'>
-          {this.renderSelections()}
-          <UserList users={this.filteredUsers} />
+          <UserList users={this.props.friends} />
         </div>
       </div>
     );
@@ -97,66 +88,5 @@ export class Main extends React.PureComponent<Props> {
         })}
       </div>
     );
-  }
-
-  renderSelections() {
-    const groups = [
-      { key: 'all', count: this.props.friends.length },
-      { key: 'online', count: this.props.friends.filter((x) => x.is_online).length },
-    ];
-
-    return (
-      <div className='update-streams-v2 update-streams-v2--with-active'>
-        <div className='update-streams-v2__container'>
-          {
-            groups.map((group) => {
-              return this.renderOption(group.key, group.count, group.key === this.state.filter);
-            })
-          }
-        </div>
-      </div>
-    );
-  }
-
-  renderOption(key: string, text: string | number, active = false) {
-    // FIXME: change all the names
-    const modifiers = active ? ['active'] : [];
-    let className = osu.classWithModifiers('update-streams-v2__item', modifiers);
-    className += ` t-changelog-stream--${key}`;
-
-    return (
-      <a
-        className={className}
-        href={osu.updateQueryString(null, { filter: key })}
-        key={key}
-        onClick={this.optionSelected(key)}
-      >
-        <div className='update-streams-v2__bar u-changelog-stream--bg' />
-        <p className='update-streams-v2__row update-streams-v2__row--name'>{osu.trans(`users.status.${key}`)}</p>
-        <p className='update-streams-v2__row update-streams-v2__row--version'>{text}</p>
-      </a>
-    );
-  }
-
-  optionSelected = (key: string) => (event: React.SyntheticEvent) => {
-    event.preventDefault();
-    const url = osu.updateQueryString(null, { filter: key });
-    // FIXME: stop reloading the page
-    Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
-    this.setState({ filter: key });
-  }
-
-  private get filterFromUrl() {
-    const url = new URL(location.href);
-    return url.searchParams.get('filter') || 'all';
-  }
-
-  private get filteredUsers() {
-    switch (this.state.filter) {
-      case 'online':
-        return this.props.friends.filter((x) => x.is_online);
-    }
-
-    return this.props.friends;
   }
 }
