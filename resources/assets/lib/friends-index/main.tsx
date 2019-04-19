@@ -18,7 +18,6 @@
 
 import * as React from 'react';
 import { Main as UserList } from 'user-list/main';
-import { string } from 'prop-types';
 
 interface Props {
   user: User;
@@ -59,10 +58,7 @@ export class Main extends React.PureComponent<Props> {
                 </h1>
               </div>
 
-              {/* header tabs */}
-              <div className='page-mode-v2 page-mode-v2--users'>
-                <span className='page-mode-v2__link page-mode-v2__link--active'>Friends</span>
-              </div>
+              {this.renderHeaderTabs()}
             </div>
           </div>
         </div>
@@ -71,6 +67,34 @@ export class Main extends React.PureComponent<Props> {
           {this.renderSelections()}
           <UserList users={this.filteredUsers} />
         </div>
+      </div>
+    );
+  }
+
+  renderHeaderTabs() {
+    const list = [
+      { title: 'Dashboard', key: 'home' },
+      { title: 'News', key: 'news.index' },
+      { title: 'Friends', key: 'friends.index', active: true },
+      { title: 'Forum Subs', key: 'forum.topic-watches.index' },
+      { title: 'Modding Watchlist', key: 'beatmapsets.watches.index' },
+      { title: 'Settings', key: 'account.edit' },
+    ];
+
+    return (
+      <div className='page-mode-v2 page-mode-v2--users'>
+        {list.map((item) => {
+          return (
+            <li className='page-mode-v2__item' key={item.title}>
+              <a
+                className={`page-mode-v2__link ${item.active ? 'page-mode-v2__link--active' : ''}`}
+                href={laroute.route(item.key)}
+              >
+                {item.title}
+              </a>
+            </li>
+          );
+        })}
       </div>
     );
   }
