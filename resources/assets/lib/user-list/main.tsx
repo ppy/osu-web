@@ -61,11 +61,6 @@ export class Main extends React.PureComponent<Props> {
 
     return (
       <div className='user-list'>
-        {
-          this.props.title != null
-            ? <h2 className='user-list__title'>{this.props.title}</h2>
-            : null
-        }
         <div className='user-list__toolbar'>
           <span className='user-list__sort'>
             sort by
