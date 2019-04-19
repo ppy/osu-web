@@ -62,29 +62,18 @@
     var fallbackLocale = {!! json_encode(config('app.fallback_locale')) !!};
 </script>
 
-<script src="{{ mix("js/vendor.js") }}" data-turbolinks-track="reload"></script>
-@if(config('services.sentry.public_dsn') !== '')
-    <script src="//cdn.ravenjs.com/3.17.0/raven.min.js" crossorigin="anonymous"></script>
+@if(config('services.sentry_js.dsn') !== null)
+    <script src="https://browser.sentry-cdn.com/5.1.0/bundle.min.js" crossorigin="anonymous"></script>
     <script>
-        var ravenOptions = {
-            release: '{{ config('osu.git-sha') }}',
-            ignoreErrors: [
-                // Random plugins/extensions
-                'top.GLOBALS'
-            ],
-            ignoreUrls: [
-                // Chrome/Firefox extensions
-                /extensions\//i,
-                /^chrome:\/\//i,
-                /^resource:\/\//i,
-                // Errors caused by spyware/adware junk
-                /^\/loaders\//i
-            ]
-        }
-        Raven.config('{{ config('services.sentry.public_dsn') }}', ravenOptions).install();
-        Raven.setUserContext({lang: currentLocale});
+        Sentry.init({
+            debug: {!! json_encode(config('app.debug')) !!},
+            dsn: {!! json_encode(config('services.sentry_js.dsn')) !!},
+            release: {!! json_encode(config('osu.git-sha')) !!},
+            whitelistUrls: [/^{!! preg_quote(config('app.url'), '/') !!}\/.*\.js(?:\?.*)?$/],
+        });
     </script>
 @endif
+<script src="{{ mix("js/vendor.js") }}" data-turbolinks-track="reload"></script>
 <script src="{{ mix("js/app-deps.js") }}" data-turbolinks-track="reload"></script>
 <script src="{{ mix('/js/locales/'.app()->getLocale().'.js') }}" data-turbolinks-track="reload"></script>
 @if (config('app.fallback_locale') !== app()->getLocale())

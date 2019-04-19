@@ -22,7 +22,7 @@ const mix = require('laravel-mix');
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
-const SentryPlugin = require('webpack-sentry-plugin');
+const SentryCliPlugin = require('@sentry/webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 // .js doesn't support globbing by itself, so we need to glob
@@ -41,6 +41,15 @@ const reactComponentSet = function (name) {
 const paymentSandbox = !(process.env.PAYMENT_SANDBOX == 0
                          || process.env.PAYMENT_SANDBOX === 'false'
                          || !process.env.PAYMENT_SANDBOX)
+
+// override some sentry env
+for (const i of ['SENTRY_AUTH_TOKEN', 'SENTRY_ORG', 'SENTRY_PROJECT']) {
+  const override = process.env[`JS_${i}`];
+
+  if (override != null) {
+    process.env[i] = override;
+  }
+}
 
 // relative from root?
 const node_root = 'node_modules';
@@ -153,26 +162,17 @@ let webpackConfig = {
   }
 };
 
-if (!mix.inProduction() || process.env.SENTRY_RELEASE == 1) {
-  webpackConfig['devtool'] = '#source-map';
-}
+webpackConfig.devtool = 'source-map';
 
-if (process.env.SENTRY_RELEASE == 1) {
-  webpackConfig['plugins'].push(
-    new SentryPlugin({
-      organisation: process.env.SENTRY_ORG,
-      project: process.env.SENTRY_PROJ,
-      apiKey: process.env.SENTRY_API_KEY,
-
-      deleteAfterCompile: true,
-      exclude: /\.css(\.map)?$/,
-      release: function() {
-        return process.env.GIT_SHA
-      },
-      filenameTransform: function(filename) {
-        return '~' + filename
-      }
-    })
+if (process.env.SENTRY_RELEASE === '1') {
+  webpackConfig.plugins.push(
+    // Additional configurations are set using environment variable.
+    // https://docs.sentry.io/cli/configuration/
+    new SentryCliPlugin({
+      ignore: '/vendor/js/',
+      include: './public/',
+      release: process.env.GIT_SHA,
+    }),
   );
 }
 
