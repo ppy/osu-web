@@ -72,6 +72,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'is_gmt' => $user->isGMT(),
             'is_nat' => $user->isNAT(),
             'is_bng' => $user->isBNG(),
+            'is_full_bn' => $user->isFullBN(),
             'is_bot' => $user->isBot(),
             'is_active' => $user->isActive(),
             'interests' => $user->user_interests,
