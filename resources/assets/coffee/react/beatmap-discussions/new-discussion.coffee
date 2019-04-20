@@ -287,8 +287,6 @@ export class NewDiscussion extends React.PureComponent
 
     type = e.currentTarget.dataset.type
 
-    userCanResetNominations = currentUser.is_admin || currentUser.is_nat || currentUser.is_bng
-
     if type == 'problem'
       problemType = @problemType()
 
