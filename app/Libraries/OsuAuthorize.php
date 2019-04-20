@@ -434,7 +434,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!$user->isNAT() && !$user->isFullBN()) {
+        if (!$user->isNAT() && !$user->isFullBN() && !$user->isGMT()) {
             return 'unauthorized';
         }
 
