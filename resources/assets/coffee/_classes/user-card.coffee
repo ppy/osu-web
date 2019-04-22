@@ -60,6 +60,7 @@ class @UserCard
       show:
         delay: @triggerDelay
         ready: true
+        solo: true
         effect: -> $(this).fadeTo(110, 1)
       hide:
         fixed: true
@@ -70,6 +71,7 @@ class @UserCard
 
 
   onMouseOver: (event) =>
+
     return if window.tooltipWithActiveMenu?
     # No user cards on mobile layout
     return if osu.isMobile()
@@ -78,11 +80,6 @@ class @UserCard
     userId = el.dataset.userId
     return unless userId
     return if _.find(currentUser.blocks, target_id: parseInt(userId)) # don't show cards for blocked users
-
-    # only allow one user card tooltip visibile at a time
-    # loop because calling qtip() directly on the jquery selector only hides the first one.
-    for element in document.getElementsByClassName('qtip--user-card')
-      $(element).qtip().hide()
 
     return @createTooltip(el) if !el._tooltip?
 
