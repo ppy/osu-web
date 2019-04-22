@@ -16,10 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { ArtEntry } from './art-entry'
 import { BaseEntryList } from './base-entry-list'
 import { VoteSummary } from './vote-summary'
 import * as React from 'react'
-import { div,span } from 'react-dom-factories'
+import { div, span } from 'react-dom-factories'
 el = React.createElement
 
 export class ArtEntryList extends BaseEntryList
