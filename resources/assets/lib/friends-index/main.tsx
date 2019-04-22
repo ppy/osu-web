@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import HeaderV3 from 'header-v3';
 import * as React from 'react';
 import { Main as UserList } from 'user-list/main';
 
@@ -30,62 +31,30 @@ export class Main extends React.PureComponent<Props> {
   };
 
   render() {
+    const links = [
+      { title: 'Dashboard', url: laroute.route('home') },
+      { title: 'News', url: laroute.route('news.index') },
+      { title: 'Friends', url: laroute.route('friends.index'), active: true },
+      { title: 'Forum Subs', url: laroute.route('forum.topic-watches.index') },
+      { title: 'Modding Watchlist', url: laroute.route('beatmapsets.watches.index') },
+      { title: 'Settings', url: laroute.route('account.edit') },
+    ];
+
     return (
       <div className='osu-layout osu-layout--full'>
-        {/* header */}
-        <div className='header-v3 header-v3--users'>
-          <div
-            className='header-v3__bg'
-            style={{ backgroundImage: osu.urlPresence(this.props.user.cover.custom_url) }}
-          />
-          <div className='header-v3__overlay' />
-          <div className='osu-page osu-page--header-v3'>
-            {/* header title */}
-            <div className='osu-page-header-v3 osu-page-header-v3--users'>
-              <div className='osu-page-header-v3__title'>
-                <div className='osu-page-header-v3__title-icon'>
-                  <div className='osu-page-header-v3__icon' />
-                </div>
-                <h1 className='osu-page-header-v3__title-text'>Home <span className='osu-page-header-v3__title-highlight'>Friends</span>
-                </h1>
-              </div>
-
-              {this.renderHeaderTabs()}
-            </div>
-          </div>
-        </div>
+        <HeaderV3
+          backgroundImage={this.props.user.cover.custom_url}
+          links={links}
+          theme='users'
+          titleTrans={{
+            info: osu.trans('friends.index.title.info'),
+            key: 'friends.index.title._',
+          }}
+        />
 
         <div className='osu-page osu-page--users'>
           <UserList users={this.props.friends} />
         </div>
-      </div>
-    );
-  }
-
-  renderHeaderTabs() {
-    const list = [
-      { title: 'Dashboard', key: 'home' },
-      { title: 'News', key: 'news.index' },
-      { title: 'Friends', key: 'friends.index', active: true },
-      { title: 'Forum Subs', key: 'forum.topic-watches.index' },
-      { title: 'Modding Watchlist', key: 'beatmapsets.watches.index' },
-      { title: 'Settings', key: 'account.edit' },
-    ];
-
-    return (
-      <div className='page-mode-v2 page-mode-v2--users'>
-        {list.map((item) => {
-          return (
-            <li className='page-mode-v2__item' key={item.title}>
-              <a
-                className={`page-mode-v2__link ${item.active ? 'page-mode-v2__link--active' : ''}`}
-                href={laroute.route(item.key)}
-              >
-                {item.title}
-              </a>
-            </li>
-          );
-        })}
       </div>
     );
   }
