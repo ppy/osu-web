@@ -40,7 +40,10 @@ class @OsuAudio
 
     @urlSet url
     @publish 'initializing'
-    @player().play()
+    promise = @player().play()
+    # old api returns undefined
+    promise?.catch (error) ->
+      throw error unless error.name == 'AbortError'
 
 
   player: =>
