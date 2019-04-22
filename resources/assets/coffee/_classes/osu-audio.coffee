@@ -43,7 +43,8 @@ class @OsuAudio
     promise = @player().play()
     # old api returns undefined
     promise?.catch (error) ->
-      throw error unless error.name == 'AbortError'
+      return if error.name == 'AbortError' || error.name == 'NotSupportedError' && !osu.present(@player.src)
+      throw error
 
 
   player: =>
