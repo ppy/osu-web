@@ -38,13 +38,13 @@ export class Main extends React.PureComponent<Props> {
             className='header-v3__bg'
             style={{ backgroundImage: osu.urlPresence(this.props.user.cover.custom_url) }}
           />
-          <div className='header-v3__overlay'></div>
+          <div className='header-v3__overlay' />
           <div className='osu-page osu-page--header-v3'>
             {/* header title */}
             <div className='osu-page-header-v3 osu-page-header-v3--users'>
               <div className='osu-page-header-v3__title js-nav2--hidden-on-menu-access'>
                 <div className='osu-page-header-v3__title-icon'>
-                  <div className='osu-page-header-v3__icon'></div>
+                  <div className='osu-page-header-v3__icon' />
                 </div>
                 <h1 className='osu-page-header-v3__title-text'>Home <span className='osu-page-header-v3__title-highlight'>Friends</span>
                 </h1>
