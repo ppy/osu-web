@@ -173,6 +173,7 @@ class BroadcastNotification implements ShouldQueue
         $this->receiverIds = $this->object
             ->topic
             ->watches()
+            ->where('mail', true)
             ->where('user_id', '<>', $this->source->getKey())
             ->pluck('user_id')
             ->all();

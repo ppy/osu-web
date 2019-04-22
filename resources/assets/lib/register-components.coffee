@@ -11,6 +11,7 @@ import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { UserCard } from 'user-card'
 import { UserCardStore } from 'user-card-store'
 import { UserCardTooltip } from 'user-card-tooltip'
+import { UserCards } from 'user-cards'
 
 window.reactTurbolinks ?= new ReactTurbolinks()
 
@@ -62,3 +63,7 @@ reactTurbolinks.register 'user-card-store', UserCardStore, (el) ->
 reactTurbolinks.register 'user-card-tooltip', UserCardTooltip, (el) ->
   container: el
   lookup: el.dataset.lookup
+
+reactTurbolinks.register 'user-cards', UserCards, (el) ->
+  modifiers: try JSON.parse(el.dataset.modifiers)
+  users: try JSON.parse(el.dataset.users)

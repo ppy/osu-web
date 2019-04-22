@@ -22,8 +22,12 @@ export function activeKeyDidChange(key: any) {
   this.setState({ activeKey: key });
 }
 
+export interface State {
+  activeKey?: any;
+}
+
 export const ContainerContext = createContext({
   activeKeyDidChange: (key: any) => { /* do nothing */},
 });
 
-export const KeyContext = createContext(null);
+export const KeyContext = createContext<any>(null);
