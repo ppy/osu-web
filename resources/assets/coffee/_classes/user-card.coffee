@@ -22,6 +22,8 @@ class @UserCard
 
   constructor: ->
     $(document).on 'mouseover', '.js-usercard', @onMouseOver
+    $.subscribe 'popup-menu:resume-tooltips.user-card', @resume
+    $.subscribe 'popup-menu:suspend-tooltips.user-card', @suspend
 
 
   createTooltip: (el) =>
@@ -59,7 +61,6 @@ class @UserCard
         delay: @triggerDelay
         ready: true
         effect: -> $(this).fadeTo(110, 1)
-        event: false
       hide:
         fixed: true
         delay: @triggerDelay
@@ -85,8 +86,14 @@ class @UserCard
 
     return @createTooltip(el) if !el._tooltip?
 
-    if el._tooltip == el.dataset.userId
-      Timeout.set @triggerDelay, -> $(el).qtip('api').show()
-    else
+    if el._tooltip != el.dataset.userId
       # wrong userId, destroy current tooltip
       $(el).qtip('api').destroy()
+
+
+  resume: ->
+    $('.qtip--user-card').qtip('option', 'show.event', 'mouseenter')
+
+
+  suspend: ->
+    $('.qtip--user-card').qtip('option', 'show.event', false)

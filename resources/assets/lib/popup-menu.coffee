@@ -76,6 +76,7 @@ export class PopupMenu extends PureComponent
       @resize()
       @addPortal()
       @tooltipElement().qtip 'option', 'hide.event', false
+      $.publish 'popup-menu:suspend-tooltips'
 
       $(document).on "click.#{@uuid} keydown.#{@uuid}", @hide
       @props.onShow?()
@@ -83,6 +84,7 @@ export class PopupMenu extends PureComponent
     else
       @removePortal()
       @tooltipElement().qtip 'option', 'hide.event', @tooltipHideEvent
+      $.publish 'popup-menu:resume-tooltips'
 
       $(document).off "click.#{@uuid} keydown.#{@uuid}", @hide
       @props.onHide?()
