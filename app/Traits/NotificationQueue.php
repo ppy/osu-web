@@ -24,6 +24,6 @@ trait NotificationQueue
 {
     public function dispatch()
     {
-        dispatch($this->onConnection(config('osu.notification.queue_connection')));
+        dispatch($this->onQueue(config('osu.notification.queue_name')));
     }
 }

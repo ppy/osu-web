@@ -104,7 +104,7 @@ let webpackConfig = {
     splitChunks: {
       cacheGroups: {
         commons: {
-          name: "js/commons",
+          name: "/js/commons",
           chunks: "initial",
           minChunks: 2,
         }

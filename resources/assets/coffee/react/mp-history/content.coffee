@@ -17,6 +17,7 @@
 ###
 
 import { Event } from './event'
+import { Game } from './game'
 import * as React from 'react'
 import { button, div } from 'react-dom-factories'
 import { Spinner } from 'spinner'

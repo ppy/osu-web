@@ -18,7 +18,7 @@
 
 import { ExtraHeader } from './extra-header'
 import * as React from 'react'
-import { div, span, h3, table, thead, tbody, tr, th, td, time } from 'react-dom-factories'
+import { a, div, span, h3, table, thead, tbody, tr, th, td, time } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'profile-extra-recent-infringements'
