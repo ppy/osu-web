@@ -42,7 +42,7 @@ export class Main extends React.PureComponent<Props> {
           <div className='osu-page osu-page--header-v3'>
             {/* header title */}
             <div className='osu-page-header-v3 osu-page-header-v3--users'>
-              <div className='osu-page-header-v3__title js-nav2--hidden-on-menu-access'>
+              <div className='osu-page-header-v3__title'>
                 <div className='osu-page-header-v3__title-icon'>
                   <div className='osu-page-header-v3__icon' />
                 </div>

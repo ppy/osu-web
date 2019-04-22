@@ -54,7 +54,7 @@ export default class HeaderV3 extends React.Component<PropsInterface, {}> {
 
     return (
       <div className={classNames}>
-        <div className='osu-page-header-v3__title js-nav2--hidden-on-menu-access'>
+        <div className='osu-page-header-v3__title'>
           <div className='osu-page-header-v3__title-icon'>
             <div className='osu-page-header-v3__icon' />
           </div>
