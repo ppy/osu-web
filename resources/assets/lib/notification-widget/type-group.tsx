@@ -64,9 +64,7 @@ export default class TypeGroup extends React.Component<Props, State> {
           <div className={`${bn}__type`}>
             {osu.trans(`notifications.item.${item.objectType}._`)}
 
-            <span className={`${bn}__count`}>
-              {osu.formatNumber(this.props.items.length)}
-            </span>
+            {this.renderNotificationCount()}
           </div>
 
           {this.renderMarkAllReadButton()}
@@ -132,6 +130,18 @@ export default class TypeGroup extends React.Component<Props, State> {
         {markingAsReadSpinner}
         {osu.trans('notifications.mark_all_read')}
       </button>
+    );
+  }
+
+  private renderNotificationCount() {
+    if (this.props.items.length === 1 && this.props.items[0].objectType === 'legacy_pm') {
+      return null;
+    }
+
+    return (
+      <span className={`${bn}__count`}>
+        {osu.formatNumber(this.props.items.length)}
+      </span>
     );
   }
 

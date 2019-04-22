@@ -67,11 +67,11 @@ export default class Worker {
   @observable actualUnreadCount: number = -1;
   @observable hasData: boolean = false;
   @observable hasMore: boolean = true;
-  @observable items = observable.map<number, Notification>();
   @observable loadingMore: boolean = false;
   @observable pmNotification = new Notification(-1);
   userId: number | null = null;
   @observable private active: boolean = false;
+  @observable private items = observable.map<number, Notification>();
   private timeout: TimeoutCollection = {};
   private endpoint?: string;
   private ws?: WebSocket;
@@ -241,7 +241,7 @@ export default class Worker {
       count = 0;
     }
 
-    this.pmNotification = this.updateFromServer({
+    this.pmNotification.updateFromJson({
       id: -1,
       name: 'legacy_pm',
 
@@ -249,7 +249,7 @@ export default class Worker {
       object_type: 'legacy_pm',
 
       details: { count },
-      is_read: count === 0,
+      is_read: false,
     });
   }
 
@@ -257,6 +257,7 @@ export default class Worker {
     const ret: Map<string, Notification[]> = new Map();
 
     const sortedItems = _.orderBy([...this.items.values()], ['id'], ['desc']);
+    sortedItems.unshift(this.pmNotification);
 
     sortedItems.forEach((item) => {
       if (item.objectType == null || item.objectId == null) {
