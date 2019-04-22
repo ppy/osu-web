@@ -115,7 +115,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     let background: React.ReactNode;
     let backgroundLink: React.ReactNode;
 
-    if (this.user.cover && this.user.cover.url && this.isOnline) {
+    if (this.user.cover && this.user.cover.url) {
       let backgroundCssClass = 'user-card__background';
       if (!this.state.backgroundLoaded) {
         backgroundCssClass += ' user-card__background--loading';
