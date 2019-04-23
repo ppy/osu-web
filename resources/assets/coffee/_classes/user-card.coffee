@@ -22,8 +22,6 @@ class @UserCard
 
   constructor: ->
     $(document).on 'mouseover', '.js-usercard', @onMouseOver
-    $.subscribe 'popup-menu:resume-tooltips.user-card', @resume
-    $.subscribe 'popup-menu:suspend-tooltips.user-card', @suspend
 
 
   createTooltip: (el) =>
@@ -45,6 +43,7 @@ class @UserCard
     options =
       events:
         render: reactTurbolinks.boot
+        show: @shouldShow
       style:
         classes: 'qtip--user-card'
         def: false
@@ -87,11 +86,5 @@ class @UserCard
       $(el).qtip('api').destroy()
 
 
-  resume: ->
-    $('.js-usercard:data(qtip)').qtip('enable')
-
-
-  suspend: ->
-    # qtips can be created but not yet attached to the document,
-    # so instead the elements where they've been initialized have to be found.
-    $('.js-usercard:data(qtip)').qtip('disable')
+  shouldShow: (event) ->
+    event.preventDefault() if window.tooltipWithActiveMenu? || osu.isMobile()

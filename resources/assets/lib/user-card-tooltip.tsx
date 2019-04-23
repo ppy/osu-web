@@ -42,13 +42,6 @@ interface StateInterface extends ActiveKeyState {
 export class UserCardTooltip extends React.PureComponent<PropsInterface, StateInterface> {
   readonly activeKeyDidChange = (key: any) => {
     window.tooltipWithActiveMenu = key;
-
-    if (key == null) {
-      $.publish('popup-menu:resume-tooltips');
-    } else {
-      $.publish('popup-menu:suspend-tooltips');
-    }
-
     activeKeyDidChange.bind(this)(key);
   }
 
