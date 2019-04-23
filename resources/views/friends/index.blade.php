@@ -23,9 +23,17 @@
     ])
 
     <div class="osu-page osu-page--generic osu-page--small osu-page--dark-bg">
-        <div class="user-friends">
-            <h2 class="user-friends__title">{{trans('friends.title')}}</h2>
-            @include('objects._userlist', ['userlist' => $userlist])
-        </div>
+        <div class="js-react--user-list" data-title="{{ trans('friends.title') }}"></div>
     </div>
+
+@endsection
+
+@section("script")
+    @parent
+
+    <script id="json-users" type="application/json">
+        {!! json_encode($usersJson) !!}
+    </script>
+
+    @include('layout._extra_js', ['src' => 'js/react/user-list.js'])
 @endsection
