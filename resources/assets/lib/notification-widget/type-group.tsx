@@ -18,6 +18,7 @@
 
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
+import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import * as React from 'react';
 import { Spinner } from 'spinner';
@@ -134,7 +135,7 @@ export default class TypeGroup extends React.Component<Props, State> {
   }
 
   private renderNotificationCount() {
-    if (this.props.items.length === 1 && this.props.items[0].objectType === 'legacy_pm') {
+    if (this.props.items.length === 1 && this.props.items[0] instanceof LegacyPmNotification) {
       return null;
     }
 
