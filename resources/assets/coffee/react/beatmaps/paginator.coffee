@@ -52,7 +52,7 @@ export class Paginator extends React.PureComponent
 
 
   autoPagerOnScroll: =>
-    return if !@props.more || @props.loading || !@autoPagerTarget.current?
+    return if @props.error? || !@props.more || @props.loading || !@autoPagerTarget.current?
 
     currentTarget = @autoPagerTarget.current.getBoundingClientRect().top
     target = document.documentElement.clientHeight + @autoPagerTriggerDistance

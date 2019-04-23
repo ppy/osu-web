@@ -168,7 +168,10 @@ export class Main extends React.PureComponent
 
           if !@isSupporterMissing()
             div className: 'beatmapsets__paginator',
-              el(Paginator, @state.paging)
+              el Paginator,
+                error: @state.error
+                loading: @state.paging.loading
+                more: @state.paging.more
 
       el BackToTop,
         anchor: @backToTopAnchor
@@ -198,6 +201,7 @@ export class Main extends React.PureComponent
       beatmaps = if newQuery then data.beatmapsets else @state.beatmaps.concat(data.beatmapsets)
 
       beatmaps: beatmaps
+      error: null
       loading: false
       paging:
         cursor: data.cursor
@@ -236,6 +240,7 @@ export class Main extends React.PureComponent
       @setState newState
 
     .catch (error) =>
+      osu.ajaxError error
       @setState
         error: error
         paging: _.extend {}, @state.paging, loading: false
@@ -262,6 +267,7 @@ export class Main extends React.PureComponent
       @setState newState
 
     .catch (error) =>
+      osu.ajaxError error
       @setState
         error: error
         loading: false
