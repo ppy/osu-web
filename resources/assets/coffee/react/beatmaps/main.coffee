@@ -228,13 +228,17 @@ export class Main extends React.PureComponent
     if @state.loading || @state.paging.loading || !@state.paging.more
       return
 
-    pagingState = _.extend {}, @state.paging
-    pagingState.loading = true
+    @setState
+      paging: _.extend {}, @state.paging, loading: true
 
-    @setState paging: pagingState
-
-    @fetchNewState().then (newState) =>
+    @fetchNewState()
+    .then (newState) =>
       @setState newState
+
+    .catch (error) =>
+      @setState
+        error: error
+        paging: _.extend {}, @state.paging, loading: false
 
 
   saveState: =>
@@ -250,11 +254,18 @@ export class Main extends React.PureComponent
     @setState loading: true
     @backToTop.current.reset()
 
-    @fetchNewState(true).then (newState) =>
+    @fetchNewState(true)
+    .then (newState) =>
       cutoff = @backToTopAnchor.current.getBoundingClientRect().top
       window.scrollTo window.pageXOffset, window.pageYOffset + cutoff if cutoff < 0
 
       @setState newState
+
+    .catch (error) =>
+      @setState
+        error: error
+        loading: false
+        paging: {}
 
 
   sorting: =>
