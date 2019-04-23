@@ -71,7 +71,6 @@ class @UserCard
 
 
   onMouseOver: (event) =>
-
     return if window.tooltipWithActiveMenu?
     # No user cards on mobile layout
     return if osu.isMobile()
@@ -89,8 +88,10 @@ class @UserCard
 
 
   resume: ->
-    $('.qtip--user-card').qtip('option', 'show.event', 'mouseenter')
+    $('.js-usercard:data(qtip)').qtip('enable')
 
 
   suspend: ->
-    $('.qtip--user-card').qtip('option', 'show.event', false)
+    # qtips can be created but not yet attached to the document,
+    # so instead the elements where they've been initialized have to be found.
+    $('.js-usercard:data(qtip)').qtip('disable')
