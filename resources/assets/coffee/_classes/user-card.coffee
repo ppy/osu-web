@@ -36,7 +36,8 @@ class @UserCard
 
     # react should override the existing content after mounting
     card = $('#js-usercard__loading-template').children().clone()[0]
-    card.classList.replace 'js-react--user-card', 'js-react--user-card-tooltip'
+    card.classList.remove 'js-react--user-card'
+    card.classList.add 'js-react--user-card-tooltip'
     delete card.dataset.reactTurbolinksLoaded
     card.dataset.lookup = userId
 
