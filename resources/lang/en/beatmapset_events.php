@@ -22,9 +22,11 @@ return [
     'event' => [
         'approve' => 'Approved.',
         'discussion_delete' => 'Moderator deleted discussion :discussion.',
+        'discussion_lock' => 'Discussion for this beatmap has been disabled. (:text)',
         'discussion_post_delete' => 'Moderator deleted post from discussion :discussion.',
         'discussion_post_restore' => 'Moderator restored post from discussion :discussion.',
         'discussion_restore' => 'Moderator restored discussion :discussion.',
+        'discussion_unlock' => 'Discussion for this beatmap has been enabled.',
         'disqualify' => 'Disqualified by :user. Reason: :discussion (:text).',
         'disqualify_legacy' => 'Disqualified by :user. Reason: :text.',
         'issue_reopen' => 'Resolved issue :discussion reopened.',

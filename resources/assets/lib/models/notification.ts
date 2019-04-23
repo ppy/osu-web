@@ -26,7 +26,9 @@ interface CategoryMap {
 }
 
 const CATEGORY_MAP: CategoryMap = {
+  beatmapset_discussion_lock: 'beatmapset_discussion',
   beatmapset_discussion_post_new: 'beatmapset_discussion',
+  beatmapset_discussion_unlock: 'beatmapset_discussion',
   beatmapset_disqualify: 'beatmapset_state',
   beatmapset_love: 'beatmapset_state',
   beatmapset_nominate: 'beatmapset_state',

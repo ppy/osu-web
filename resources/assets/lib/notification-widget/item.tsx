@@ -37,14 +37,16 @@ interface IconsMap {
 }
 
 const ITEM_CATEGORY_ICONS: IconsMap = {
-  beatmapset_discussion: ['fas fa-drafting-compass', 'fas fa-comment-medical'],
+  beatmapset_discussion: ['fas fa-drafting-compass', 'fas fa-comment'],
   beatmapset_state: ['fas fa-drafting-compass'],
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
 };
 
 const ITEM_NAME_ICONS: IconsMap = {
+  beatmapset_discussion_lock: ['fas fa-drafting-compass', 'fas fa-lock'],
   beatmapset_discussion_post_new: ['fas fa-drafting-compass', 'fas fa-comment-medical'],
+  beatmapset_discussion_unlock: ['fas fa-drafting-compass', 'fas fa-unlock'],
   beatmapset_disqualify: ['fas fa-drafting-compass', 'far fa-times-circle'],
   beatmapset_love: ['fas fa-drafting-compass', 'fas fa-heart'],
   beatmapset_nominate: ['fas fa-drafting-compass', 'fas fa-vote-yea'],
@@ -237,12 +239,20 @@ export default class Item extends React.Component<Props, State> {
 
     if (this.props.items.length === 1) {
       switch (item.name) {
+        case 'beatmapset_discussion_lock':
+          route = 'beatmapsets.discussion';
+          params = { beatmapset: item.objectId };
+          break;
         case 'beatmapset_discussion_post_new':
           return BeatmapDiscussionHelper.url({
             beatmapId: item.details.beatmapId,
             beatmapsetId: item.objectId,
             discussionId: item.details.discussionId,
           });
+        case 'beatmapset_discussion_unlock':
+          route = 'beatmapsets.discussion';
+          params = { beatmapset: item.objectId };
+          break;
         case 'beatmapset_disqualify':
           route = 'beatmapsets.discussion';
           params = { beatmapset: item.objectId };

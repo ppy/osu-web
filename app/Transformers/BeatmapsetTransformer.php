@@ -81,6 +81,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'status' => $beatmapset->status(),
             'has_scores' => $beatmapset->hasScores(),
             'discussion_enabled' => $beatmapset->discussion_enabled,
+            'discussion_locked' => $beatmapset->discussion_locked,
             'can_be_hyped' => $beatmapset->canBeHyped(),
             'hype' => [
                 'current' => $beatmapset->hype,
