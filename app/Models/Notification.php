@@ -24,7 +24,9 @@ use App\Libraries\MorphMap;
 
 class Notification extends Model
 {
+    const BEATMAPSET_DISCUSSION_LOCK = 'beatmapset_discussion_lock';
     const BEATMAPSET_DISCUSSION_POST_NEW = 'beatmapset_discussion_post_new';
+    const BEATMAPSET_DISCUSSION_UNLOCK = 'beatmapset_discussion_unlock';
     const BEATMAPSET_DISQUALIFY = 'beatmapset_disqualify';
     const BEATMAPSET_LOVE = 'beatmapset_love';
     const BEATMAPSET_NOMINATE = 'beatmapset_nominate';

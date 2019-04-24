@@ -102,6 +102,26 @@ class BroadcastNotification implements ShouldQueue
         }
     }
 
+    private function onBeatmapsetDiscussionLock()
+    {
+        $this->receiverIds = static::beatmapsetReceiverIds($this->object);
+
+        $this->params['details'] = [
+            'title' => $this->object->title,
+            'cover_url' => $this->object->coverURL('card'),
+        ];
+    }
+
+    private function onBeatmapsetDiscussionUnlock()
+    {
+        $this->receiverIds = static::beatmapsetReceiverIds($this->object);
+
+        $this->params['details'] = [
+            'title' => $this->object->title,
+            'cover_url' => $this->object->coverURL('card'),
+        ];
+    }
+
     private function onBeatmapsetDiscussionPostNew()
     {
         $this->notifiable = $this->object->beatmapset;
