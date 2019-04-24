@@ -21,6 +21,25 @@ class @Polyfills
     @customEvent()
     @localStorage()
     @mathTrunc()
+    @composedPath()
+
+
+  # Event.composedPath polyfill for Edge.
+  # Actual composedPath logic is a bit more complicated but this works for our usage
+  # until it gets implemented in Edge.
+  composedPath: ->
+    return if typeof Event.prototype.composedPath == 'function'
+
+    Event.prototype.composedPath = ->
+      target = @target
+      path = []
+      while target.parentNode?
+        path.push target
+        target = target.parentNode
+
+      path.push document, window
+
+      return path
 
 
   # For IE9+.
