@@ -55,6 +55,7 @@ use Illuminate\Database\QueryException;
  * @property \Carbon\Carbon|null $deleted_at
  * @property string|null $difficulty_names
  * @property bool $discussion_enabled
+ * @property bool $discussion_locked
  * @property string $displaytitle
  * @property bool $download_disabled
  * @property string|null $download_disabled_url
@@ -110,6 +111,7 @@ class Beatmapset extends Model implements AfterCommit
         'storyboard' => 'boolean',
         'video' => 'boolean',
         'discussion_enabled' => 'boolean',
+        'discussion_locked' => 'boolean',
     ];
 
     protected $dates = [
@@ -566,6 +568,34 @@ class Beatmapset extends Model implements AfterCommit
             $this->userRatings()->delete();
             dispatch(new RemoveBeatmapsetBestScores($this));
         }
+    }
+
+    public function discussionLock($user, $reason)
+    {
+        if ($this->discussion_locked) {
+            return;
+        }
+
+        DB::transaction(function () use ($user, $reason) {
+            BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_LOCK, $user, $this, [
+                'reason' => $reason,
+            ])->saveOrExplode();
+            $this->update(['discussion_locked' => true]);
+            broadcast_notification(Notification::BEATMAPSET_DISCUSSION_LOCK, $this, $user);
+        });
+    }
+
+    public function discussionUnlock($user)
+    {
+        if (!$this->discussion_locked) {
+            return;
+        }
+
+        DB::transaction(function () use ($user) {
+            BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_UNLOCK, $user, $this)->saveOrExplode();
+            $this->update(['discussion_locked' => false]);
+            broadcast_notification(Notification::BEATMAPSET_DISCUSSION_UNLOCK, $this, $user);
+        });
     }
 
     public function disqualify($user, $post)
