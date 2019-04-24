@@ -19,12 +19,12 @@
 .user-card {
   @top: user-card;
   @avatar-border-radius: 6px;
-  @avatar-size: 70px;
+  @avatar-size: 60px;
   @background-color: #444; // friends list page is #333
   @card-border-radius: 10px;
   @card-item-spacing: 10px;
-  @flag-width: 45px;
-  @icon-height: 30px;
+  @flag-width: @icon-height * 1.5;
+  @icon-height: 26px; // starts becoming a muddled mess lower than this.
   @flag-gutter: 6px;
   @fade-duration: 220ms;
 
@@ -154,7 +154,7 @@
   &__icon {
     height: @icon-height;
     width: @icon-height;
-    font-size: 14px;
+    font-size: @icon-height / 2;
 
     display: flex;
     pointer-events: auto;
