@@ -18,7 +18,7 @@
 
 el = React.createElement
 
-class @CommentsManager extends React.PureComponent
+export class CommentsManager extends React.PureComponent
   SORTS: ['new', 'old', 'top']
 
 

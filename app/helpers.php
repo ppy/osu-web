@@ -52,6 +52,11 @@ function beatmap_timestamp_format($ms)
     return sprintf('%02d:%02d.%03d', $m, $s, $ms);
 }
 
+function broadcast_notification(...$arguments)
+{
+    return (new App\Jobs\BroadcastNotification(...$arguments))->dispatch();
+}
+
 /**
  * Like Cache::remember but always save for one month or 10 * $minutes (whichever is longer)
  * and return old value if failed getting the value after it expires.
@@ -205,14 +210,6 @@ function get_valid_locale($requestedLocale)
     if (in_array($requestedLocale, config('app.available_locales'), true)) {
         return $requestedLocale;
     }
-
-    return array_first(
-        config('app.available_locales'),
-        function ($value) use ($requestedLocale) {
-            return starts_with($requestedLocale, $value);
-        },
-        config('app.fallback_locale')
-    );
 }
 
 function html_entity_decode_better($string)

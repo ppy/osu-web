@@ -16,7 +16,9 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-reactTurbolinks.registerPersistent 'beatmapset-page', BeatmapsetPage.Main, true, (target) ->
+import { Main } from './beatmapset-page/main'
+
+reactTurbolinks.registerPersistent 'beatmapset-page', Main, true, (target) ->
   beatmapset: osu.parseJson('json-beatmapset')
   countries: _.keyBy osu.parseJson('json-countries'), 'code'
   container: target

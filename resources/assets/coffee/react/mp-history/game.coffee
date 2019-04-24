@@ -16,10 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span} = ReactDOMFactories
+import { GameHeader } from './game-header'
+import { Score } from './score'
+import * as React from 'react'
+import { div, span } from 'react-dom-factories'
 el = React.createElement
 
-class MPHistory.Game extends React.Component
+export class Game extends React.Component
   render: ->
     game = @props.event.game
 
@@ -38,14 +41,14 @@ class MPHistory.Game extends React.Component
     scores = _.orderBy scores, ['teamRank', 'score'], ['asc', 'desc']
 
     div className: 'mp-history-game',
-      el MPHistory.GameHeader,
+      el GameHeader,
         beatmap: game.beatmap ? @deletedBeatmap
         beatmapset: game.beatmap?.beatmapset ? @deletedBeatmapset
         game: game
 
       div className: className,
         scores.map (m) =>
-          el MPHistory.Score,
+          el Score,
             score: m
             mode: game.mode
             users: @props.users

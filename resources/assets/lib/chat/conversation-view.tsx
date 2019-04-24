@@ -21,7 +21,9 @@ import { inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';
 import * as React from 'react';
+import { Spinner } from 'spinner';
 import RootDataStore from 'stores/root-data-store';
+import { UserAvatar } from 'user-avatar';
 import MessageDivider from './message-divider';
 import MessageGroup from './message-group';
 
@@ -77,7 +79,7 @@ export default class ConversationView extends React.Component<any, any> {
     const channel = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
 
     if (!channel) {
-      return(<div className='conversation' />);
+      return <div className='conversation' />;
     }
 
     const lazerLink = 'https://github.com/ppy/osu/releases';

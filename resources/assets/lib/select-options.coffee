@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import * as React from 'react'
 import { a, i, div } from 'react-dom-factories'
 import { createRef, PureComponent } from 'react'
 

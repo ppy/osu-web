@@ -16,6 +16,10 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
+<?php
+    $canViewResults = priv_check('ForumTopicPollShowResults', $topic)->can();
+?>
+
 <div class="forum-poll js-forum-poll">
     {!! Form::open([
         'route' => ['forum.topics.vote', $topic->topic_id],
@@ -37,7 +41,7 @@
             <table>
                 <tbody>
                     @foreach ($pollSummary['options'] as $pollOptionId => $pollOption)
-                        @include('forum.topics._poll_row', compact($pollOptionId, $pollOption, $pollSummary))
+                        @include('forum.topics._poll_row', compact('pollOptionId', 'pollOption', 'pollSummary'))
                     @endforeach
                 </tbody>
             </table>
@@ -56,6 +60,12 @@
                         {{ trans('forum.topics.show.poll.detail.ended', ['time' => $topic->pollEnd()]) }}
                     @endif
                 </div>
+
+                @if (!$canViewResults)
+                    <div class="forum-poll__detail forum-poll__detail--sub">
+                        {{ trans('forum.topics.show.poll.detail.results_hidden') }}
+                    </div>
+                @endif
             @endif
         </div>
 

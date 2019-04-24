@@ -16,10 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, li, span, ul} = ReactDOMFactories
+import * as React from 'react'
+import { a, div, li, span, ul } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapDiscussions.ModeSwitcher extends React.PureComponent
+export class ModeSwitcher extends React.PureComponent
   constructor: (props) ->
     super props
 

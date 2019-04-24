@@ -16,7 +16,9 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-reactTurbolinks.registerPersistent 'changelog-build', ChangelogBuild.Main, true, (el) ->
+import { Main } from './changelog-build/main'
+
+reactTurbolinks.registerPersistent 'changelog-build', Main, true, (el) ->
   container: el
   updateStreams: osu.parseJson('json-update-streams')
   build: osu.parseJson('json-build')

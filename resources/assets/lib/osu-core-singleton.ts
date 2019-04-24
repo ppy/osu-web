@@ -15,23 +15,15 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+import OsuCore from 'osu-core';
 
-.user-friends {
-  &__title {
-    padding: 0 0 10px 20px;
-    font-size: @font-size--header-title;
-    font-weight: 100;
-    color: @pink-light;
-
-    display: flex;
-    align-items: flex-end;
-
-    @media @desktop {
-      padding-left: 10px;
-    }
-
-    &--smaller {
-      font-size: @font-size--header-subtitle;
-    }
+declare global {
+  interface Window {
+    OsuCore: OsuCore;
   }
 }
+
+const core = new OsuCore(window);
+window.OsuCore = core; // for debugging
+
+export default core;

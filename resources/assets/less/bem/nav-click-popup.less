@@ -16,12 +16,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.usercard-list {
-  max-width: @screen-sm-min;
-  margin: 0 auto;
 
-  &__cards {
-    display: flex;
-    flex-wrap: wrap;
+.nav-click-popup {
+  position: absolute;
+  top: 100%;
+  right: 0; // avoid overflow before repositioned
+  height: 0; // avoid covering page when the content is hidden
+  margin-top: -5px;
+
+  &--user {
+    margin-top: 5px;
   }
 }

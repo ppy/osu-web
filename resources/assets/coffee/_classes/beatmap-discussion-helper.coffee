@@ -28,6 +28,12 @@ class @BeatmapDiscussionHelper
   @FILTERS = ['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total']
 
 
+  @canModeratePosts: (user) =>
+    user ?= currentUser
+
+    user.is_admin || user.is_gmt || user.is_qat
+
+
   # text should be pre-escaped.
   @discussionLinkify: (text) =>
     currentUrl = new URL(window.location)

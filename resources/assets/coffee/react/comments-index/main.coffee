@@ -16,10 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, h1, p, span} = ReactDOMFactories
+import { Comment } from 'comment'
+import * as React from 'react'
+import { button, div, h1, p, span } from 'react-dom-factories'
 el = React.createElement
 
-class CommentsIndex.Main extends React.PureComponent
+export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 

@@ -50,9 +50,11 @@ export default class GalleryContestVoteButton extends React.PureComponent<PropsI
   }
 
   render() {
-    return <button ref={this.mainRef} className={this.mainClass()} onClick={this.vote} title={this.buttonTitle()}>
-      <span className={this.iconClass()} />
-    </button>;
+    return (
+      <button ref={this.mainRef} className={this.mainClass()} onClick={this.vote} title={this.buttonTitle()}>
+        <span className={this.iconClass()} />
+      </button>
+    );
   }
 
   private button() {

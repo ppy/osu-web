@@ -39,8 +39,8 @@ return [
             'favourited_count' => '+ そのほか:count人！',
             'logged-out' => 'ビートマップをダウンロードするにはログインが必要です！',
             'loved' => 'lovedに追加された日 ',
-            'mapped_by' => '作者 by :mapper',
-            'qualified' => '申請された日 ',
+            'mapped_by' => '作者 :mapper',
+            'qualified' => 'qualifiedされた日',
             'ranked' => 'ランクされた日 ',
             'submitted' => '投稿日 ',
             'unfavourite' => 'ビートマップをお気に入りから外す',
@@ -72,7 +72,7 @@ return [
 
                 'status' => [
                     'pending' => '保留中',
-                    'qualified' => '申請済',
+                    'qualified' => 'qualified',
                     'wip' => '作業中',
                 ],
             ],

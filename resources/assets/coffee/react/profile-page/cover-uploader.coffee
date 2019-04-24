@@ -16,11 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, label, p, strong} = ReactDOMFactories
+import { CoverSelection } from './cover-selection'
+import * as React from 'react'
+import { div, label, p, strong } from 'react-dom-factories'
 el = React.createElement
 
 
-class ProfilePage.CoverUploader extends React.Component
+export class CoverUploader extends React.Component
   constructor: (props) ->
     super props
 
@@ -66,7 +68,7 @@ class ProfilePage.CoverUploader extends React.Component
     labelClass += ' disabled' unless @props.canUpload
 
     div className: 'profile-cover-uploader',
-      el ProfilePage.CoverSelection,
+      el CoverSelection,
         url: @props.cover.custom_url
         thumbUrl: @props.cover.custom_url
         isSelected: !@props.cover.id?

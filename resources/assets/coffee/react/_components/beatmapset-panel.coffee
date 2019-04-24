@@ -16,10 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,a,i,span} = ReactDOMFactories
+import { BeatmapIcon } from 'beatmap-icon'
+import { Img2x } from 'img2x'
+import * as React from 'react'
+import { div,a,i,span } from 'react-dom-factories'
 el = React.createElement
 
-class @BeatmapsetPanel extends React.PureComponent
+export class BeatmapsetPanel extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -170,7 +173,7 @@ class @BeatmapsetPanel extends React.PureComponent
                   title: osu.trans('beatmapsets.show.details.download._')
                   className: 'beatmapset-panel__icon js-beatmapset-download-link'
                   'data-turbolinks': 'false'
-                  i className: 'fas fa-download'
+                  i className: 'fas fa-lg fa-download'
 
           div className: 'beatmapset-panel__difficulties', difficulties
       a

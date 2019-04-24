@@ -131,7 +131,7 @@ return [
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
             'stars' => 'Star Difficulty',
-            'total_length' => 'Length',
+            'total_length' => 'Length (Drain length: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Circle Count',
             'count_sliders' => 'Slider Count',

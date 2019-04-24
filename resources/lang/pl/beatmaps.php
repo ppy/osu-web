@@ -197,7 +197,7 @@ return [
                 'title' => 'Tytuł',
                 'artist' => 'Wykonawca',
                 'difficulty' => 'Poziom trudności',
-                'favourites' => 'Ulubione',
+                'favourites' => 'Polubienia',
                 'updated' => 'Ostatnie aktualizacje',
                 'ranked' => 'Data',
                 'rating' => 'Ocena',
@@ -305,6 +305,6 @@ return [
     ],
     'panel' => [
         'playcount' => 'Liczba zagrań: :count',
-        'favourites' => 'Polubiło: :count',
+        'favourites' => 'Liczba polubień: :count',
     ],
 ];

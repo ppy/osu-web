@@ -16,10 +16,14 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,a,i,span} = ReactDOMFactories
+import { BaseEntryList } from './base-entry-list'
+import { Entry } from './entry'
+import { VoteSummary } from './vote-summary'
+import * as React from 'react'
+import { div,a,i,span } from 'react-dom-factories'
 el = React.createElement
 
-class Contest.Voting.EntryList extends Contest.Voting.BaseEntryList
+export class EntryList extends BaseEntryList
   render: ->
     if @state.contest.best_of && @state.contest.entries.length == 0
       return div className: 'contest__voting-notice',
@@ -34,7 +38,7 @@ class Contest.Voting.EntryList extends Contest.Voting.BaseEntryList
       totalVotes = _.sumBy @state.contest.entries, (i) -> i.results.votes
 
     entries = @state.contest.entries.map (entry, index) =>
-      el Contest.Voting.Entry,
+      el Entry,
         key: entry.id,
         rank: index + 1,
         entry: entry,
@@ -55,5 +59,5 @@ class Contest.Voting.EntryList extends Contest.Voting.BaseEntryList
           div className: 'contest-voting-list__header-title', osu.trans('contest.entry._')
           div className: 'contest-voting-list__header-votesummary',
             div className: 'contest__vote-summary-text', osu.trans('contest.vote.list')
-            el Contest.Voting.VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
+            el VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
       div {}, entries

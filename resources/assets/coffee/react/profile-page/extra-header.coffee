@@ -16,10 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, i, span} = ReactDOMFactories
+import * as React from 'react'
+import { div, h2, i, span } from 'react-dom-factories'
 el = React.createElement
 
-ProfilePage.ExtraHeader = (props) ->
+export ExtraHeader = (props) ->
   div null,
     h2 className: 'page-extra__title', osu.trans("users.show.extra.#{props.name}.title")
     if props.withEdit

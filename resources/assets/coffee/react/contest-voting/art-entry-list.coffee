@@ -16,10 +16,14 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,span} = ReactDOMFactories
+import { ArtEntry } from './art-entry'
+import { BaseEntryList } from './base-entry-list'
+import { VoteSummary } from './vote-summary'
+import * as React from 'react'
+import { div, span } from 'react-dom-factories'
 el = React.createElement
 
-class Contest.Voting.ArtEntryList extends Contest.Voting.BaseEntryList
+export class ArtEntryList extends BaseEntryList
   render: ->
     return null unless @state.contest.entries.length > 0
 
@@ -27,7 +31,7 @@ class Contest.Voting.ArtEntryList extends Contest.Voting.BaseEntryList
       totalVotes = _.sumBy @state.contest.entries, (i) -> i.results.votes
 
     entries = @state.contest.entries.map (entry, index) =>
-      el Contest.Voting.ArtEntry,
+      el ArtEntry,
         key: index,
         displayIndex: index,
         entry: entry,
@@ -44,7 +48,7 @@ class Contest.Voting.ArtEntryList extends Contest.Voting.BaseEntryList
     div className: 'contest__art-list',
       div className: 'contest__vote-summary--art',
         span className: 'contest__vote-summary-text contest__vote-summary-text--art', 'votes'
-        el Contest.Voting.VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
+        el VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
 
       if @state.contest.show_votes
         div {},

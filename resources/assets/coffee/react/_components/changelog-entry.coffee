@@ -16,7 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, a} = ReactDOMFactories
+import * as React from 'react'
+import { div, span, a } from 'react-dom-factories'
 el = React.createElement
 
 icon =
@@ -24,7 +25,7 @@ icon =
   fix: 'fas fa-check'
   misc: 'far fa-circle'
 
-@ChangelogEntry = ({entry}) =>
+export ChangelogEntry = ({entry}) =>
   div
     className: 'changelog-entry'
     key: entry.id

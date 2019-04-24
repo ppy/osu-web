@@ -15,12 +15,15 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, span, h3, table, thead, tbody, tr, th, td, time} = ReactDOMFactories
+
+import { ExtraHeader } from './extra-header'
+import * as React from 'react'
+import { a, div, span, h3, table, thead, tbody, tr, th, td, time } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'profile-extra-recent-infringements'
 
-class ProfilePage.AccountStanding extends React.PureComponent
+export class AccountStanding extends React.PureComponent
   columns = ['date', 'action', 'length', 'description']
 
   render: ->
@@ -29,7 +32,7 @@ class ProfilePage.AccountStanding extends React.PureComponent
 
     div
       className: 'page-extra'
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: false
+      el ExtraHeader, name: @props.name, withEdit: false
 
       if latest?
         div
@@ -100,7 +103,11 @@ class ProfilePage.AccountStanding extends React.PureComponent
           className: "#{bn}__table-cell #{bn}__table-cell--description"
           span
             className: "#{bn}__description"
-            event.description
+            if currentUser.is_admin && event.supporting_url?
+              a href: event.supporting_url, event.description
+            else
+              event.description
+
             if currentUser.is_admin && event.actor?
               span
                 className: "#{bn}__actor"

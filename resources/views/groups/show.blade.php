@@ -28,7 +28,17 @@
             </div>
         </div>
     </div>
-    <div class="osu-page osu-page--generic osu-page--dark-bg">
-        @include('objects._userlist', ['userlist' => $userlist])
+    <div class="osu-page osu-page--generic osu-page--small osu-page--dark-bg">
+        <div class="js-react--user-list"></div>
     </div>
+@endsection
+
+@section("script")
+    @parent
+
+    <script id="json-users" type="application/json">
+        {!! json_encode($usersJson) !!}
+    </script>
+
+    @include('layout._extra_js', ['src' => 'js/react/user-list.js'])
 @endsection

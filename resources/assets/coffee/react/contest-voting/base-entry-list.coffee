@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-class Contest.Voting.BaseEntryList extends React.Component
+export class BaseEntryList extends React.Component
   constructor: (props) ->
     super props
 

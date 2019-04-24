@@ -47,7 +47,6 @@ return [
             'queue' => 'default',
             'retry_after' => 305, // our longest job timeout is 5m, plus 5s to allow time for workers to be killed
         ],
-
     ],
 
     /*
