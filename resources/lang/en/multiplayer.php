@@ -23,7 +23,7 @@ return [
         'beatmap-deleted' => 'deleted beatmap',
         'difference' => 'by :difference',
         'failed' => 'FAILED',
-        'header' => 'Multiplayer Matches',
+        'header' => 'Multi Matches',
         'in-progress' => '(match in progress)',
         'in_progress_spinner_label' => 'match in progress',
         'loading-events' => 'Loading events...',
