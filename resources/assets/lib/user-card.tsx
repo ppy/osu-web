@@ -76,12 +76,16 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
         {this.renderBackground()}
 
         <div className='user-card__card'>
-          <div className='user-card__content'>
+          <div className='user-card__content user-card__content--details'>
             <div className='user-card__user'>
               {this.renderAvatar()}
-              <div className='user-card__username u-ellipsis-overflow'>{this.user.username}</div>
             </div>
-            {this.renderIcons()}
+            <div className='user-card__details'>
+              {this.renderIcons()}
+              <div className='user-card__username'>
+                <div className='u-ellipsis-overflow'>{this.user.username}</div>
+              </div>
+            </div>
           </div>
           {this.renderStatusBar()}
         </div>
@@ -115,7 +119,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     let background: React.ReactNode;
     let backgroundLink: React.ReactNode;
 
-    if (this.user.cover && this.user.cover.url && this.isOnline) {
+    if (this.user.cover && this.user.cover.url) {
       let backgroundCssClass = 'user-card__background';
       if (!this.state.backgroundLoaded) {
         backgroundCssClass += ' user-card__background--loading';

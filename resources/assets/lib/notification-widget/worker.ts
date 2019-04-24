@@ -20,6 +20,7 @@ import NotificationJson from 'interfaces/notification-json';
 import XHRCollection from 'interfaces/xhr-collection';
 import * as _ from 'lodash';
 import { computed, observable } from 'mobx';
+import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 
 interface NotificationBundleJson {
@@ -67,11 +68,11 @@ export default class Worker {
   @observable actualUnreadCount: number = -1;
   @observable hasData: boolean = false;
   @observable hasMore: boolean = true;
-  @observable items = observable.map<number, Notification>();
   @observable loadingMore: boolean = false;
-  @observable pmNotification = new Notification(-1);
+  @observable pmNotification = new LegacyPmNotification();
   userId: number | null = null;
   @observable private active: boolean = false;
+  @observable private items = observable.map<number, Notification>();
   private timeout: TimeoutCollection = {};
   private endpoint?: string;
   private ws?: WebSocket;
@@ -242,22 +243,14 @@ export default class Worker {
       count = 0;
     }
 
-    this.pmNotification = this.updateFromServer({
-      id: -1,
-      name: 'legacy_pm',
-
-      object_id: -1,
-      object_type: 'legacy_pm',
-
-      details: { count },
-      is_read: count === 0,
-    });
+    this.pmNotification.details.count = count;
   }
 
   @computed get itemsGroupedByType() {
     const ret: Map<string, Notification[]> = new Map();
 
     const sortedItems = _.orderBy([...this.items.values()], ['id'], ['desc']);
+    sortedItems.unshift(this.pmNotification);
 
     sortedItems.forEach((item) => {
       if (item.objectType == null || item.objectId == null) {

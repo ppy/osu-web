@@ -18,12 +18,14 @@
 
 .user-card {
   @top: user-card;
+  @avatar-border-radius: 6px;
   @avatar-size: 70px;
   @background-color: #444; // friends list page is #333
+  @card-border-radius: 10px;
   @card-item-spacing: 10px;
   @flag-width: 45px;
   @icon-height: 30px;
-  @flag-gutter: 3px; // more like half of it
+  @flag-gutter: 6px;
   @fade-duration: 220ms;
 
   display: inline-block;
@@ -34,7 +36,7 @@
   width: 100%;
   height: @user-card-height;
   background-color: @background-color;
-  border-radius: 20px;
+  border-radius: @card-border-radius;
 
   // to make broken cover images less ugly
   overflow: hidden;
@@ -44,7 +46,7 @@
       .full-size();
       content: '';
       border: 2px solid @yellow;
-      border-radius: 20px;
+      border-radius: @card-border-radius;
       pointer-events: none;
     }
   }
@@ -57,7 +59,7 @@
 
   &__avatar {
     .full-size();
-    border-radius: 15px;
+    border-radius: @avatar-border-radius;
     object-fit: contain;
     background-color: @background-color;
     transition: opacity ease-in-out @fade-duration;
@@ -77,7 +79,7 @@
   &__avatar-spinner {
     .full-size();
     .center-content();
-    border-radius: 15px;
+    border-radius: @avatar-border-radius;
     color: #fff;
     font-size: 14px;
     background: fade(#fff, 10%);
@@ -94,7 +96,7 @@
   &__background {
     // to prevent annoying white-pixel artefacts appearing due to
     // browsers not handling 'overflow: hidden' properly
-    border-radius: 20px;
+    border-radius: @card-border-radius;
     .full-size();
     object-fit: cover;
     transition: opacity ease-in-out @fade-duration;
@@ -115,7 +117,7 @@
   &__background-overlay {
     .full-size();
     transition: background-color 0.2s ease-in-out;
-    background-color: fade(@greysky, 90%);
+    background-color: fade(@greysky, 60%);
   }
 
   &__card {
@@ -127,23 +129,37 @@
   }
 
   &__content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     padding: @card-item-spacing;
 
-    &--status {
-      align-items: center;
+    &--details {
+      display: grid;
+      grid-template-columns: @avatar-size 1fr;
     }
+
+    &--status {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__details {
+    display: grid;
+    grid-template-rows: @icon-height 1fr;
+    margin-left: @card-item-spacing;
   }
 
   &__icon {
     height: @icon-height;
     width: @icon-height;
 
-    margin: 0 @flag-gutter;
     display: flex;
     pointer-events: auto;
+
+    & + & {
+      margin-left: @flag-gutter;
+    }
 
     .user-cards--menu-active & {
       pointer-events: none;
@@ -172,7 +188,7 @@
   &__icons {
     display: flex;
     flex: none;
-    justify-content: flex-end;
+    // justify-content: flex-end;
   }
 
   &__link-wrapper {
@@ -228,7 +244,9 @@
   }
 
   &__username {
-    margin-left: @card-item-spacing;
+    display: flex;
+    align-items: center;
     font-style: italic;
+    min-width: 0;
   }
 }
