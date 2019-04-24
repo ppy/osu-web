@@ -71,7 +71,8 @@
             dsn: {!! json_encode(config('services.sentry.public_dsn')) !!},
             ignoreErrors: [
                 // Random plugins/extensions
-                'top.GLOBALS'
+                'top.GLOBALS',
+                /class is a reserved identifier$/
             ],
             ignoreUrls: [
                 // Chrome/Firefox extensions
