@@ -79,9 +79,11 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
           <div className='user-card__content'>
             <div className='user-card__user'>
               {this.renderAvatar()}
+            </div>
+            <div className='user-card__details'>
+              {this.renderIcons()}
               <div className='user-card__username u-ellipsis-overflow'>{this.user.username}</div>
             </div>
-            {this.renderIcons()}
           </div>
           {this.renderStatusBar()}
         </div>

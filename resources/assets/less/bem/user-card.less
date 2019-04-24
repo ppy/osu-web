@@ -20,6 +20,7 @@
   @top: user-card;
   @avatar-size: 70px;
   @background-color: #444; // friends list page is #333
+  @card-border-radius: 10px;
   @card-item-spacing: 10px;
   @flag-width: 45px;
   @icon-height: 30px;
@@ -34,7 +35,7 @@
   width: 100%;
   height: @user-card-height;
   background-color: @background-color;
-  border-radius: 20px;
+  border-radius: @card-border-radius;
 
   // to make broken cover images less ugly
   overflow: hidden;
@@ -44,7 +45,7 @@
       .full-size();
       content: '';
       border: 2px solid @yellow;
-      border-radius: 20px;
+      border-radius: @card-border-radius;
       pointer-events: none;
     }
   }
@@ -57,7 +58,7 @@
 
   &__avatar {
     .full-size();
-    border-radius: 15px;
+    border-radius: 6px;
     object-fit: contain;
     background-color: @background-color;
     transition: opacity ease-in-out @fade-duration;
@@ -77,7 +78,7 @@
   &__avatar-spinner {
     .full-size();
     .center-content();
-    border-radius: 15px;
+    border-radius: 6px;
     color: #fff;
     font-size: 14px;
     background: fade(#fff, 10%);
@@ -94,7 +95,7 @@
   &__background {
     // to prevent annoying white-pixel artefacts appearing due to
     // browsers not handling 'overflow: hidden' properly
-    border-radius: 20px;
+    border-radius: @card-border-radius;
     .full-size();
     object-fit: cover;
     transition: opacity ease-in-out @fade-duration;
@@ -129,12 +130,17 @@
   &__content {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    // justify-content: space-between;
     padding: @card-item-spacing;
 
     &--status {
       align-items: center;
     }
+  }
+
+  &__details {
+    margin-left: @card-item-spacing;
+    flex-direction: column;
   }
 
   &__icon {
@@ -172,7 +178,7 @@
   &__icons {
     display: flex;
     flex: none;
-    justify-content: flex-end;
+    // justify-content: flex-end;
   }
 
   &__link-wrapper {
@@ -228,7 +234,6 @@
   }
 
   &__username {
-    margin-left: @card-item-spacing;
     font-style: italic;
   }
 }
