@@ -24,7 +24,7 @@
   @card-item-spacing: 10px;
   @flag-width: 45px;
   @icon-height: 30px;
-  @flag-gutter: 3px; // more like half of it
+  @flag-gutter: 6px;
   @fade-duration: 220ms;
 
   display: inline-block;
@@ -116,7 +116,7 @@
   &__background-overlay {
     .full-size();
     transition: background-color 0.2s ease-in-out;
-    background-color: fade(@greysky, 90%);
+    background-color: fade(@greysky, 60%);
   }
 
   &__card {
@@ -130,26 +130,30 @@
   &__content {
     display: flex;
     flex-direction: row;
-    // justify-content: space-between;
     padding: @card-item-spacing;
 
     &--status {
       align-items: center;
+      justify-content: space-between;
     }
   }
 
   &__details {
+    display: grid;
+    grid-template-rows: @icon-height 1fr;
     margin-left: @card-item-spacing;
-    flex-direction: column;
   }
 
   &__icon {
     height: @icon-height;
     width: @icon-height;
 
-    margin: 0 @flag-gutter;
     display: flex;
     pointer-events: auto;
+
+    & + & {
+      margin-left: @flag-gutter;
+    }
 
     .user-cards--menu-active & {
       pointer-events: none;
@@ -234,6 +238,8 @@
   }
 
   &__username {
+    display: flex;
+    align-items: center;
     font-style: italic;
   }
 }
