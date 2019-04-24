@@ -128,11 +128,16 @@
   }
 
   &__content {
-    display: flex;
-    flex-direction: row;
     padding: @card-item-spacing;
 
+    &--details {
+      display: grid;
+      grid-template-columns: @avatar-size 1fr;
+    }
+
     &--status {
+      display: flex;
+      flex-direction: row;
       align-items: center;
       justify-content: space-between;
     }
@@ -241,5 +246,6 @@
     display: flex;
     align-items: center;
     font-style: italic;
+    min-width: 0;
   }
 }
