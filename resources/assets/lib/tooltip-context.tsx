@@ -16,26 +16,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.user-list-item {
-  @top: user-list-item;
+import { createContext } from 'react';
 
-  display: flex;
-  .default-border-radius();
-  background: #555;
-  align-items: center;
-  justify-content: space-between;
-  margin: 5px 0px;
-  padding: 2px 10px;
-  transition: 100ms ease-in-out;
-
-  &:hover {
-    background: lighten(#555, 5%);
-  }
-
-  &__link {
-    display: flex;
-    align-items: center;
-    .link-plain();
-    .link-gray-light();
-  }
-}
+export const TooltipContext: React.Context<HTMLElement|undefined> = createContext(undefined);

@@ -41,7 +41,11 @@ class GroupsController extends Controller
             ->get();
 
         $userlist = group_users_by_online_state($users);
+        $usersJson = [
+            'online' => json_collection($userlist['online'], 'UserCompact', ['cover', 'country']),
+            'offline' => json_collection($userlist['offline'], 'UserCompact', ['cover', 'country']),
+        ];
 
-        return view('groups.show', compact('group', 'userlist'));
+        return view('groups.show', compact('group', 'usersJson'));
     }
 }

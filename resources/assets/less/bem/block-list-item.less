@@ -16,22 +16,26 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.user-friends {
-  &__title {
-    padding: 0 0 10px 20px;
-    font-size: @font-size--header-title;
-    font-weight: 100;
-    color: @pink-light;
+.block-list-item {
+  @top: block-list-item;
 
+  display: flex;
+  .default-border-radius();
+  background: #555;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0px;
+  padding: 2px 10px;
+  transition: 100ms ease-in-out;
+
+  &:hover {
+    background: lighten(#555, 5%);
+  }
+
+  &__link {
     display: flex;
-    align-items: flex-end;
-
-    @media @desktop {
-      padding-left: 10px;
-    }
-
-    &--smaller {
-      font-size: @font-size--header-subtitle;
-    }
+    align-items: center;
+    .link-plain();
+    .link-gray-light();
   }
 }
