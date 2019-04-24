@@ -18,6 +18,7 @@
 
 .user-card {
   @top: user-card;
+  @avatar-border-radius: 6px;
   @avatar-size: 70px;
   @background-color: #444; // friends list page is #333
   @card-border-radius: 10px;
@@ -58,7 +59,7 @@
 
   &__avatar {
     .full-size();
-    border-radius: 6px;
+    border-radius: @avatar-border-radius;
     object-fit: contain;
     background-color: @background-color;
     transition: opacity ease-in-out @fade-duration;
@@ -78,7 +79,7 @@
   &__avatar-spinner {
     .full-size();
     .center-content();
-    border-radius: 6px;
+    border-radius: @avatar-border-radius;
     color: #fff;
     font-size: 14px;
     background: fade(#fff, 10%);
