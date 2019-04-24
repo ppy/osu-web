@@ -124,7 +124,8 @@ export default class ChannelStore implements DispatchListener {
   }
 
   findPM(userId: number): Channel | null {
-    for (const [, channel] of this.channels) {
+    // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
+    for (let [, channel] of this.channels) {
       if (channel.type !== 'PM') {
         continue;
       }
