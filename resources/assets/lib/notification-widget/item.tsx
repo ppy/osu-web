@@ -18,6 +18,7 @@
 
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
+import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import * as React from 'react';
 import { Spinner } from 'spinner';
@@ -183,7 +184,7 @@ export default class Item extends React.Component<Props, State> {
     if (this.props.items.length === 1) {
       const key = `notifications.item.${item.objectType}.${item.category}.${item.name}`;
 
-      if (item.name === 'legacy_pm') {
+      if (item instanceof LegacyPmNotification) {
         message = osu.transChoice(key, item.details.count, replacements);
       } else {
         message = osu.trans(key, replacements);
@@ -228,7 +229,7 @@ export default class Item extends React.Component<Props, State> {
 
     const item = this.props.items[0];
 
-    if (item.name === 'legacy_pm') {
+    if (item instanceof LegacyPmNotification) {
       return '/forum/ucp.php?i=pm&folder=inbox';
     }
 
