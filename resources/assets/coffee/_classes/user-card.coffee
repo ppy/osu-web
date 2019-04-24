@@ -43,6 +43,7 @@ class @UserCard
     options =
       events:
         render: reactTurbolinks.boot
+        show: @shouldShow
       style:
         classes: 'qtip--user-card'
         def: false
@@ -58,8 +59,8 @@ class @UserCard
       show:
         delay: @triggerDelay
         ready: true
+        solo: true
         effect: -> $(this).fadeTo(110, 1)
-        event: false
       hide:
         fixed: true
         delay: @triggerDelay
@@ -78,15 +79,12 @@ class @UserCard
     return unless userId
     return if _.find(currentUser.blocks, target_id: parseInt(userId)) # don't show cards for blocked users
 
-    # only allow one user card tooltip visibile at a time
-    # loop because calling qtip() directly on the jquery selector only hides the first one.
-    for element in document.getElementsByClassName('qtip--user-card')
-      $(element).qtip().hide()
-
     return @createTooltip(el) if !el._tooltip?
 
-    if el._tooltip == el.dataset.userId
-      Timeout.set @triggerDelay, -> $(el).qtip('api').show()
-    else
+    if el._tooltip != el.dataset.userId
       # wrong userId, destroy current tooltip
       $(el).qtip('api').destroy()
+
+
+  shouldShow: (event) ->
+    event.preventDefault() if window.tooltipWithActiveMenu? || osu.isMobile()
