@@ -325,7 +325,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
 
@@ -457,7 +457,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
     }
