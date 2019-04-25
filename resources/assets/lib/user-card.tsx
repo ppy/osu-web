@@ -179,8 +179,11 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     return (
       <div className='user-card__icons'>
         <div className='user-card__icon user-card__icon--flag'>
-          <a href={laroute.route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}>
-            <FlagCountry country={this.user.country} modifiers={['user-card']} />
+          <a
+            className='user-card__link-wrapper'
+            href={laroute.route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}
+          >
+            <FlagCountry country={this.user.country} modifiers={['full']} />
           </a>
         </div>
 
