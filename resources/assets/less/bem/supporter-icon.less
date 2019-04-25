@@ -17,20 +17,10 @@
  */
 
 .supporter-icon {
-  @top: supporter-icon;
-  font-size: 14px;
+  .center-content();
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
   color: white;
-
-  &--smaller {
-    font-size: 10px;
-  }
-
-  &__heart {
-    font-size: 0.8em;
-    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
-
-    .@{top}--smaller & {
-      font-size: 0.9em;
-    }
-  }
+  background-color: @pink;
 }

@@ -16,11 +16,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.search {
-  .inner-shadow-top();
-  .default-box-shadow();
-  padding: 0 0 20px;
-  background-color: #222;
-  color: #fff;
-  margin-bottom: 10px;
+import { observable } from 'mobx';
+import Notification from './notification';
+
+export default class LegacyPmNotification extends Notification {
+  @observable details = { count: 0 };
+  name = 'legacy_pm';
+  objectId = -1;
+  objectType = 'legacy_pm';
+  isRead = false;
+
+  constructor() {
+    super(-1);
+  }
 }

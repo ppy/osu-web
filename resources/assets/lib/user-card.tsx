@@ -19,11 +19,13 @@
 import { FlagCountry } from 'flag-country';
 import { FriendButton } from 'friend-button';
 import * as _ from 'lodash';
-import * as moment from 'moment';
+import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
+import { Spinner } from 'spinner';
 import { SupporterIcon } from 'supporter-icon';
 
 interface PropsInterface {
+  activated: boolean;
   modifiers: string[];
   user?: User;
 }
@@ -35,6 +37,7 @@ interface StateInterface {
 
 export class UserCard extends React.PureComponent<PropsInterface, StateInterface> {
   static defaultProps = {
+    activated: false,
     modifiers: [],
   };
 
@@ -64,83 +67,44 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   }
 
   render() {
-    const details = this.isUserLoaded ? (
-      <div className='usercard__icons'>
-        <div className='usercard__icon'>
-          <a href={laroute.route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}>
-            <FlagCountry country={this.user.country}/>
-          </a>
-        </div>
-
-        {
-          this.user.is_supporter ? (
-            <div className='usercard__icon'>
-              <a className='usercard__link-wrapper' href={laroute.route('support-the-game')}>
-                <SupporterIcon smaller={true} />
-              </a>
-            </div>
-           ) : null
-        }
-
-        <div className='usercard__icon'>
-          <FriendButton userId={this.user.id} />
-        </div>
-
-        {
-          this.canMessage ? (
-            <div className='usercard__icon'>
-              <a
-                className='user-action-button user-action-button--message'
-                href={laroute.route('messages.users.show', { user: this.user.id })}
-                title={osu.trans('users.card.send_message')}
-              >
-                <i className='fas fa-envelope'/>
-              </a>
-            </div>
-          ) : null
-        }
-      </div>
-     ) : null;
-
-    let usercardCss = 'usercard';
-    for (const modifier of this.props.modifiers) {
-      usercardCss += ` usercard--${modifier}`;
-    }
+    const modifiers = this.props.modifiers.slice();
+    // Setting the active modifiers from the parent causes unwanted renders unless deep comparison is used.
+    modifiers.push(this.props.activated ? 'active' : 'highlightable');
 
     return (
-      <div className={usercardCss}>
+      <div className={osu.classWithModifiers('user-card', modifiers)}>
         {this.renderBackground()}
 
-        <div className='usercard__card'>
-          <div className='usercard__card-content'>
-            {this.renderAvatar()}
-
-            <div className='usercard__metadata'>
-              <div className='usercard__username'>{this.user.username}</div>
-              {details}
+        <div className='user-card__card'>
+          <div className='user-card__content user-card__content--details'>
+            <div className='user-card__user'>
+              {this.renderAvatar()}
+            </div>
+            <div className='user-card__details'>
+              {this.renderIcons()}
+              <div className='user-card__username'>
+                <div className='u-ellipsis-overflow'>{this.user.username}</div>
+              </div>
             </div>
           </div>
-          {this.renderOnlineStatus()}
+          {this.renderStatusBar()}
         </div>
       </div>
     );
   }
 
   renderAvatar() {
-    let avatarSpaceCssClass = 'usercard__avatar-space';
-    if (!this.state.avatarLoaded) {
-      avatarSpaceCssClass += ' usercard__avatar-space--loading';
-    }
+    const modifiers = this.state.avatarLoaded ? ['loaded'] : [];
 
     return (
-      <div className={avatarSpaceCssClass}>
-        <div className='usercard__avatar usercard__avatar--loader'>
-          {!this.isUserNotFound ?  <div className='la-ball-clip-rotate'/> : null}
+      <div className='user-card__avatar-space'>
+        <div className={osu.classWithModifiers('user-card__avatar-spinner', modifiers)}>
+          {!this.isUserNotFound ? <Spinner modifiers={modifiers} /> : null}
         </div>
         {
           this.isUserLoaded ? (
             <img
-              className='usercard__avatar usercard__avatar--main'
+              className={osu.classWithModifiers('user-card__avatar', modifiers)}
               onError={this.onAvatarLoad} // remove spinner if error
               onLoad={this.onAvatarLoad}
               src={this.user.avatar_url}
@@ -156,26 +120,26 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     let backgroundLink: React.ReactNode;
 
     if (this.user.cover && this.user.cover.url) {
-      let backgroundCssClass = 'usercard__background';
+      let backgroundCssClass = 'user-card__background';
       if (!this.state.backgroundLoaded) {
-        backgroundCssClass += ' usercard__background--loading';
+        backgroundCssClass += ' user-card__background--loading';
       }
 
       background = (
         <>
           <img className={backgroundCssClass} onLoad={this.onBackgroundLoad} src={this.user.cover.url} />
-          <div className='usercard__background-overlay'/>
+          <div className='user-card__background-overlay' />
         </>
       );
     } else {
-      background =  <div className='usercard__background-overlay usercard__background-overlay--guest'/>;
+      background = <div className='user-card__background-overlay' />;
     }
 
     if (this.isUserLoaded) {
       backgroundLink = (
         <a
           href={laroute.route('users.show', { user: this.user.id })}
-          className='usercard__background-container'
+          className='user-card__background-container'
         >
           {background}
         </a>
@@ -187,23 +151,103 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     return backgroundLink;
   }
 
-  renderOnlineStatus() {
+  renderMenuButton() {
+    if (!this.canMessage) { return null; }
+
+    const items = (dismiss: () => void) => (
+      <>
+        <a
+          className='simple-menu__item js-login-required--click'
+          href={laroute.route('messages.users.show', { user: this.user.id })}
+          onClick={dismiss}
+        >
+          {osu.trans('users.card.send_message')}
+        </a>
+      </>
+    );
+
+    return (
+      <div className='user-card__icon user-card__icon--menu'>
+        <PopupMenuPersistent>{items}</PopupMenuPersistent>
+      </div>
+    );
+  }
+
+  renderIcons() {
     if (!this.isUserLoaded) { return null; }
 
-    const title = this.user.last_visit && moment(this.user.last_visit).fromNow();
     return (
-      <div className={`usercard__status-bar usercard__status-bar--${this.user.is_online ? 'online' : 'offline'}`}>
-        <span className='far fa-fw fa-circle usercard__status-icon'/>
-        <span className='usercard__status-message' title={title}>
-          {this.user.is_online ? osu.trans('users.status.online') : osu.trans('users.status.offline')}
-        </span>
+      <div className='user-card__icons'>
+        <div className='user-card__icon user-card__icon--flag'>
+          <a
+            className='user-card__link-wrapper'
+            href={laroute.route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}
+          >
+            <FlagCountry country={this.user.country} modifiers={['full']} />
+          </a>
+        </div>
+
+        {
+          this.user.is_supporter ?
+          <div className='user-card__icon'>
+            <a className='user-card__link-wrapper' href={laroute.route('support-the-game')}>
+              <SupporterIcon />
+            </a>
+          </div> : null
+        }
+
+        <div className='user-card__icon'>
+          <FriendButton userId={this.user.id} modifiers={['user-card']} />
+        </div>
+      </div>
+    );
+  }
+
+  renderStatusBar() {
+    if (!this.isUserLoaded) { return null; }
+
+    const lastSeen = this.user.last_visit ? osu.trans('users.show.lastvisit', { date: osu.timeago(this.user.last_visit) }) : '';
+    const status = this.isOnline ? osu.trans('users.status.online') : osu.trans('users.status.offline');
+
+    return (
+      <div className='user-card__content user-card__content--status'>
+        <div className='user-card__status'>
+          {this.renderStatusIcon()}
+          <div className='user-card__status-messages'>
+            <span
+              className='user-card__status-message user-card__status-message--sub u-ellipsis-overflow'
+              dangerouslySetInnerHTML={{ __html: lastSeen }}
+            />
+            <span className='user-card__status-message u-ellipsis-overflow'>
+              {status}
+            </span>
+          </div>
+        </div>
+        <div className='user-card__icons'>
+          {this.renderMenuButton()}
+        </div>
+      </div>
+    );
+  }
+
+  renderStatusIcon() {
+    if (!this.isUserLoaded) { return null; }
+
+    return (
+      <div className='user-card__status-icon-container'>
+        <div className={`user-card__status-icon user-card__status-icon--${this.isOnline ? 'online' : 'offline'}`} />
       </div>
     );
   }
 
   private get canMessage() {
-    return currentUser != null
-       && _.find(currentUser.blocks, { target_id: this.user.id }) == null;
+    return !_.isEmpty(currentUser)
+      && currentUser.id !== this.user.id
+      && _.find(currentUser.blocks, { target_id: this.user.id }) == null;
+  }
+
+  private get isOnline() {
+    return this.user.is_online;
   }
 
   private get isUserLoaded() {

@@ -29,7 +29,9 @@ return [
 
             'beatmapset_discussion' => [
                 '_' => 'Beatmap discussion',
+                'beatmapset_discussion_lock' => 'Beatmap ":title" has been locked for discussion.',
                 'beatmapset_discussion_post_new' => ':username posted new message in ":title" beatmap discussion.',
+                'beatmapset_discussion_unlock' => 'Beatmap ":title" has been unlocked for discussion.',
             ],
 
             'beatmapset_state' => [

@@ -325,6 +325,14 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
+        if ($user->isGMT() || $user->isQAT()) {
+            return 'ok';
+        }
+
+        if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
+            return 'beatmap_discussion_post.store.beatmapset_locked';
+        }
+
         return 'ok';
     }
 
@@ -443,6 +451,15 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkBeatmapsetDiscussionLock($user)
+    {
+        $this->ensureLoggedIn($user);
+
+        if ($user->isGMT() || $user->isQAT()) {
+            return 'ok';
+        }
     }
 
     public function checkBeatmapsetEventViewUserId($user, $event)

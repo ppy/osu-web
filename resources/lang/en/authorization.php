@@ -51,6 +51,9 @@ return [
             'system_generated' => 'Automatically generated post can not be edited.',
             'not_owner' => 'Only the poster can edit post.',
         ],
+        'store' => [
+            'beatmapset_locked' => 'This beatmap is locked for discussion.',
+        ],
     ],
 
     'chat' => [

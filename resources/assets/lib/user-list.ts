@@ -16,11 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.search {
-  .inner-shadow-top();
-  .default-box-shadow();
-  padding: 0 0 20px;
-  background-color: #222;
-  color: #fff;
-  margin-bottom: 10px;
-}
+import { Main } from 'user-list/main';
+
+reactTurbolinks.registerPersistent('user-list', Main, true, (container: HTMLElement) => {
+  return {
+    data: osu.parseJson('json-users'),
+    title: container.dataset.title,
+  };
+});

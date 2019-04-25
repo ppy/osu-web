@@ -23,40 +23,12 @@ class @UserCard
   constructor: ->
     $(document).on 'mouseover', '.js-usercard', @onMouseOver
 
-  onMouseOver: (event) =>
-    el = event.currentTarget
-    userId = el.getAttribute('data-user-id')
-    return unless userId
-    return if _.find(currentUser.blocks, target_id: parseInt(userId)) # don't show cards for blocked users
 
-    # when qtip has already been init for current element
-    if el._tooltip?
-      api = $(el).qtip('api')
-
-      if el._tooltip == userId
-        # disable existing cards when entering 'mobile' mode
-        if osu.isMobile()
-          event.preventDefault()
-          api.disable()
-          el._disable_card = true
-        else
-          if el._disable_card
-            el._disable_card = false
-            api.enable()
-            $(el).trigger('mouseover')
-
-        return
-      else
-        # wrong userId, destroy current tooltip
-        api.destroy()
-
-    # disable usercards on mobile
-    if osu.isMobile()
-      return
-
+  createTooltip: (el) =>
+    userId = el.dataset.userId
     el._tooltip = userId
 
-    at = el.getAttribute('data-tooltip-position') ? 'right center'
+    at = el.dataset.tooltipPosition ? 'right center'
     my = switch at
       when 'top center' then 'bottom center'
       when 'left center' then 'right center'
@@ -64,27 +36,31 @@ class @UserCard
 
     # react should override the existing content after mounting
     card = $('#js-usercard__loading-template').children().clone()[0]
-    card.classList.replace 'js-react--user-card', 'js-react--user-card-tooltip'
+    card.classList.remove 'js-react--user-card'
+    card.classList.add 'js-react--user-card-tooltip'
     delete card.dataset.reactTurbolinksLoaded
     card.dataset.lookup = userId
 
     options =
       events:
         render: reactTurbolinks.boot
+        show: @shouldShow
       style:
+        classes: 'qtip--user-card'
         def: false
         tip: false
-        width: 280
-        height: 130
       content:
         text: card
       position:
+        adjust:
+          scroll: false
         at: at
         my: my
         viewport: $(window)
       show:
         delay: @triggerDelay
         ready: true
+        solo: true
         effect: -> $(this).fadeTo(110, 1)
       hide:
         fixed: true
@@ -92,3 +68,24 @@ class @UserCard
         effect: -> $(this).fadeTo(110, 0)
 
     $(el).qtip options
+
+
+  onMouseOver: (event) =>
+    return if window.tooltipWithActiveMenu?
+    # No user cards on mobile layout
+    return if osu.isMobile()
+
+    el = event.currentTarget
+    userId = el.dataset.userId
+    return unless userId
+    return if _.find(currentUser.blocks, target_id: parseInt(userId)) # don't show cards for blocked users
+
+    return @createTooltip(el) if !el._tooltip?
+
+    if el._tooltip != el.dataset.userId
+      # wrong userId, destroy current tooltip
+      $(el).qtip('api').destroy()
+
+
+  shouldShow: (event) ->
+    event.preventDefault() if window.tooltipWithActiveMenu? || osu.isMobile()

@@ -29,6 +29,7 @@ class @CurrentUserObserver
   reinit: =>
     @setAvatars()
     @setCovers()
+    @setSentryUser()
 
 
   setAvatars: (elements) =>
@@ -51,3 +52,10 @@ class @CurrentUserObserver
     window.currentUser = data
 
     @reinit()
+
+
+  setSentryUser: ->
+    return unless Sentry?
+
+    Sentry.configureScope (scope) ->
+      scope.setUser id: currentUser.id, username: currentUser.username
