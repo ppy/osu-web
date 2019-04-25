@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Alleen de eigenaar van deze beatmap of een nominator/NAT groepslid kan mapper notities posten.',
+            'mapper_note_wrong_user' => 'Alleen de eigenaar van deze beatmap of een nominator/QAT groepslid kan mapper notities posten.',
         ],
 
         'vote' => [

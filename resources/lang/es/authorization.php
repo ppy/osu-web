@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Sólo el dueño del beatmap o un miembro de un grupo de nominaciones/NAT puede publicar notas de mapeador.',
+            'mapper_note_wrong_user' => 'Sólo el dueño del beatmap o un miembro de un grupo de nominaciones/QAT puede publicar notas de mapeador.',
         ],
 
         'vote' => [

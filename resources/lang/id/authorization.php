@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Hanya pembuat beatmap atau anggota nominator/NAT yang dapat memposting catatan mapper.',
+            'mapper_note_wrong_user' => 'Hanya pembuat beatmap atau anggota nominator/QAT yang dapat memposting catatan mapper.',
         ],
 
         'vote' => [

@@ -78,7 +78,7 @@ return [
         'admin' => 'διαχειριστής',
         'bng' => 'nominator',
         'owner' => 'δημιουργός',
-        'nat' => 'nat',
+        'qat' => 'qat',
     ],
 
     'user_filter' => [

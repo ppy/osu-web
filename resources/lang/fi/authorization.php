@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Ainoastaan beatmapin omistaja, suosittelija tai NAT-ryhmän jäsen voi lisätä muistiinpanoja.',
+            'mapper_note_wrong_user' => 'Ainoastaan beatmapin omistaja, suosittelija tai QAT-ryhmän jäsen voi lisätä muistiinpanoja.',
         ],
 
         'vote' => [

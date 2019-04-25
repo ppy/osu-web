@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Μόνο ο ιδιοκτήτης ή κάποιος nominator/μέλος του NAT γκρουπ του beatmap μπορεί να δημοσιεύσει σημειώσεις τύπου mapper.',
+            'mapper_note_wrong_user' => 'Μόνο ο ιδιοκτήτης ή κάποιος nominator/μέλος του QAT γκρουπ του beatmap μπορεί να δημοσιεύσει σημειώσεις τύπου mapper.',
         ],
 
         'vote' => [

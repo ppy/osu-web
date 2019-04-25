@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Chỉ chủ beatmap hoặc người đề cử/thành viên NAT mới có thể đăng ghi chú mapper.',
+            'mapper_note_wrong_user' => 'Chỉ chủ beatmap hoặc người đề cử/thành viên QAT mới có thể đăng ghi chú mapper.',
         ],
 
         'vote' => [

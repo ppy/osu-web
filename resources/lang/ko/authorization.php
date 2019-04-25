@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => '비트맵 소유자나 nominator/NAT그룹 구성원만이 mapper notes를 작성할 수 있습니다.',
+            'mapper_note_wrong_user' => '비트맵 소유자나 nominator/QAT그룹 구성원만이 mapper notes를 작성할 수 있습니다.',
         ],
 
         'vote' => [

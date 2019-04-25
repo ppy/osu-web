@@ -34,7 +34,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Kun ejeren af dette beatmap eller en nominator/NAT group member kan sende map notes.',
+            'mapper_note_wrong_user' => 'Kun ejeren af dette beatmap eller en nominator/QAT group member kan sende map notes.',
         ],
 
         'vote' => [
