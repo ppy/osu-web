@@ -120,12 +120,7 @@ export class NewDiscussion extends React.PureComponent
                   onKeyDown: @handleKeyDown
                   onFocus: @onFocus
                   innerRef: @setInputBox
-                  placeholder:
-                    if @canPost()
-                      osu.trans "beatmaps.discussions.message_placeholder.#{@props.mode}", version: @props.currentBeatmap.version
-                    else
-                      # FIXME: reason should be passed from beatmap state
-                      osu.trans 'beatmaps.discussions.message_placeholder_deleted_beatmap'
+                  placeholder: @messagePlaceholder()
 
                 el MessageLengthCounter,
                   key: 'counter'
@@ -215,7 +210,8 @@ export class NewDiscussion extends React.PureComponent
 
 
   canPost: =>
-    !@props.currentBeatmap.deleted_at? || @props.mode == 'generalAll'
+    (!@props.beatmapset.discussion_locked || BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)) &&
+    (!@props.currentBeatmap.deleted_at? || @props.mode == 'generalAll')
 
 
   cssTop: (sticky) =>
@@ -232,6 +228,16 @@ export class NewDiscussion extends React.PureComponent
 
   isTimeline: =>
     @props.mode == 'timeline'
+
+
+  messagePlaceholder: =>
+    if @canPost()
+      osu.trans "beatmaps.discussions.message_placeholder.#{@props.mode}", version: @props.currentBeatmap.version
+    else
+      if @props.beatmapset.discussion_locked
+        osu.trans 'beatmaps.discussions.message_placeholder_locked'
+      else
+        osu.trans 'beatmaps.discussions.message_placeholder_deleted_beatmap'
 
 
   nearbyDiscussions: =>
