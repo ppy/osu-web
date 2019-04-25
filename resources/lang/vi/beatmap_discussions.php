@@ -78,7 +78,6 @@ return [
         'admin' => 'admin',
         'bng' => 'người đề cử',
         'owner' => 'mapper',
-        'qat' => 'qat',
     ],
 
     'user_filter' => [
