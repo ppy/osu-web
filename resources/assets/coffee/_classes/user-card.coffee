@@ -22,6 +22,10 @@ class @UserCard
 
   constructor: ->
     $(document).on 'mouseover', '.js-usercard', @onMouseOver
+    $(document).on 'mousedown keydown', @handleForceHide
+    $(document).on 'mouseenter', '.js-react--user-card-tooltip', @onMouseEnter
+    $(document).on 'mouseleave', '.js-react--user-card-tooltip', @onMouseLeave
+    $(document).on 'turbolinks:before-cache', @onBeforeCache
 
 
   createTooltip: (el) =>
@@ -60,7 +64,6 @@ class @UserCard
       show:
         delay: @triggerDelay
         ready: true
-        solo: true
         effect: -> $(this).fadeTo(110, 1)
       hide:
         fixed: true
@@ -68,6 +71,23 @@ class @UserCard
         effect: -> $(this).fadeTo(110, 0)
 
     $(el).qtip options
+
+
+  handleForceHide: (e) =>
+    $('.qtip--user-card').qtip('hide') if (e.keyCode == 27 || e.button == 0) && !@inCard
+
+
+  onBeforeCache: =>
+    @inCard = false
+    window.tooltipWithActiveMenu = null
+
+
+  onMouseEnter: =>
+    @inCard = true
+
+
+  onMouseLeave: =>
+    @inCard = false
 
 
   onMouseOver: (event) =>
