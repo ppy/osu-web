@@ -60,7 +60,6 @@ class @UserCard
       show:
         delay: @triggerDelay
         ready: true
-        solo: true
         effect: -> $(this).fadeTo(110, 1)
       hide:
         fixed: true
