@@ -119,6 +119,11 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     let background: React.ReactNode;
     let backgroundLink: React.ReactNode;
 
+    const overlayCssClass = osu.classWithModifiers(
+      'user-card__background-overlay',
+      this.isOnline ? ['online'] : [],
+    );
+
     if (this.user.cover && this.user.cover.url) {
       let backgroundCssClass = 'user-card__background';
       if (!this.state.backgroundLoaded) {
@@ -128,11 +133,11 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
       background = (
         <>
           <img className={backgroundCssClass} onLoad={this.onBackgroundLoad} src={this.user.cover.url} />
-          <div className='user-card__background-overlay' />
+          <div className={overlayCssClass} />
         </>
       );
     } else {
-      background = <div className='user-card__background-overlay' />;
+      background = <div className={overlayCssClass} />;
     }
 
     if (this.isUserLoaded) {

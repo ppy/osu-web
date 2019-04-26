@@ -32,7 +32,6 @@
 
   transition: all ease-in-out 120ms;
 
-  font-weight: 600;
   width: 100%;
   height: @user-card-height;
   background-color: @background-color;
@@ -117,7 +116,11 @@
   &__background-overlay {
     .full-size();
     transition: background-color 0.2s ease-in-out;
-    background-color: fade(@greysky, 60%);
+    background-color: fade(@greysky, 70%);
+
+    &--online {
+      background-color: fade(@greysky, 60%);
+    }
   }
 
   &__card {
@@ -213,7 +216,7 @@
     border: solid 4px #000;
 
     &--online {
-      border: solid 4px @green;
+      border: solid 4px @green-light;
     }
   }
 
@@ -251,5 +254,6 @@
     align-items: center;
     font-style: italic;
     min-width: 0;
+    font-weight: 600;
   }
 }
