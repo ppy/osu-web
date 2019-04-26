@@ -22,7 +22,7 @@ class @UserCard
 
   constructor: ->
     $(document).on 'mouseover', '.js-usercard', @onMouseOver
-    $(document).on 'keydown', @onKeyDown
+    $(document).on 'mousedown keydown', @handleForceHide
     $(document).on 'mouseenter', '.js-react--user-card-tooltip', @onMouseEnter
     $(document).on 'mouseleave', '.js-react--user-card-tooltip', @onMouseLeave
     $(document).on 'turbolinks:before-cache', @onBeforeCache
@@ -73,13 +73,13 @@ class @UserCard
     $(el).qtip options
 
 
+  handleForceHide: (e) =>
+    $('.qtip--user-card').qtip('hide') if (e.keyCode == 27 || e.button == 0) && !@inCard
+
+
   onBeforeCache: =>
     @inCard = false
     window.tooltipWithActiveMenu = null
-
-
-  onKeyDown: (e) =>
-    $('.qtip--user-card').qtip('hide') if e.keyCode == 27 && !@inCard
 
 
   onMouseEnter: =>
