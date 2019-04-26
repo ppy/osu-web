@@ -25,6 +25,7 @@ class @UserCard
     $(document).on 'keydown', @onKeyDown
     $(document).on 'mouseenter', '.js-react--user-card-tooltip', @onMouseEnter
     $(document).on 'mouseleave', '.js-react--user-card-tooltip', @onMouseLeave
+    $(document).on 'turbolinks:before-cache', @onBeforeCache
 
 
   createTooltip: (el) =>
@@ -70,6 +71,11 @@ class @UserCard
         effect: -> $(this).fadeTo(110, 0)
 
     $(el).qtip options
+
+
+  onBeforeCache: =>
+    @inCard = false
+    window.tooltipWithActiveMenu = null
 
 
   onKeyDown: (e) =>
