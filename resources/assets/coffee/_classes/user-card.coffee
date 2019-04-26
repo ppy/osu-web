@@ -82,11 +82,11 @@ class @UserCard
     $('.qtip--user-card').qtip('hide') if e.keyCode == 27 && !@inCard
 
 
-  onMouseEnter: () =>
+  onMouseEnter: =>
     @inCard = true
 
 
-  onMouseLeave: () =>
+  onMouseLeave: =>
     @inCard = false
 
 
