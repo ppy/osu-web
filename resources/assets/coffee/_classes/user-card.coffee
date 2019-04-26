@@ -22,6 +22,9 @@ class @UserCard
 
   constructor: ->
     $(document).on 'mouseover', '.js-usercard', @onMouseOver
+    $(document).on 'keydown', @onKeyDown
+    $(document).on 'mouseenter', '.js-react--user-card-tooltip', @onMouseEnter
+    $(document).on 'mouseleave', '.js-react--user-card-tooltip', @onMouseLeave
 
 
   createTooltip: (el) =>
@@ -67,6 +70,18 @@ class @UserCard
         effect: -> $(this).fadeTo(110, 0)
 
     $(el).qtip options
+
+
+  onKeyDown: (e) =>
+    $('.qtip--user-card').qtip('hide') if e.keyCode == 27 && !@inCard
+
+
+  onMouseEnter: () =>
+    @inCard = true
+
+
+  onMouseLeave: () =>
+    @inCard = false
 
 
   onMouseOver: (event) =>
