@@ -377,6 +377,10 @@ class TopicsController extends Controller
             return error_popup($e->getMessage());
         }
 
+        if (Auth::user()->topic_auto_subscribe) {
+            TopicWatch::setState($topic, Auth::user(), 'watching_mail');
+        }
+
         ForumUpdateNotifier::onNew([
             'topic' => $topic,
             'post' => $topic->posts->last(),

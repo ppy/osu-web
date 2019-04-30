@@ -95,6 +95,7 @@ use Request;
  * @property \Illuminate\Database\Eloquent\Collection $storeAddresses Store\Address
  * @property \Illuminate\Database\Eloquent\Collection $supporterTagPurchases UserDonation
  * @property \Illuminate\Database\Eloquent\Collection $supporterTags UserDonation
+ * @property boolean $topic_auto_subscribe
  * @property \Illuminate\Database\Eloquent\Collection $userAchievements UserAchievement
  * @property \Illuminate\Database\Eloquent\Collection $userGroups UserGroup
  * @property Forum\Post $userPage
@@ -190,6 +191,7 @@ class User extends Model implements AuthenticatableContract
 
     protected $casts = [
         'osu_subscriber' => 'boolean',
+        'topic_auto_subscribe' => 'boolean',
         'user_allow_pm' => 'boolean',
         'user_allow_viewonline' => 'boolean',
         'user_timezone' => 'float',
