@@ -95,7 +95,7 @@ use Request;
  * @property \Illuminate\Database\Eloquent\Collection $storeAddresses Store\Address
  * @property \Illuminate\Database\Eloquent\Collection $supporterTagPurchases UserDonation
  * @property \Illuminate\Database\Eloquent\Collection $supporterTags UserDonation
- * @property boolean $topic_auto_subscribe
+ * @property bool $topic_auto_subscribe
  * @property \Illuminate\Database\Eloquent\Collection $userAchievements UserAchievement
  * @property \Illuminate\Database\Eloquent\Collection $userGroups UserGroup
  * @property Forum\Post $userPage
