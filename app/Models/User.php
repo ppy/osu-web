@@ -1691,7 +1691,8 @@ class User extends Model implements AuthenticatableContract
                 $this->validationErrors()->add('user_email', '.invalid_email');
             }
 
-            if (static::where('user_id', '<>', $this->getKey())->where('user_email', '=', $this->user_email)->exists()) {
+            // NB: the user part of an email address is case-sensitive.
+            if (static::where('user_id', '<>', $this->getKey())->where('user_email', '=', mb_strtolower($this->user_email))->exists()) {
                 $this->validationErrors()->add('user_email', '.email_already_used');
             }
         }
