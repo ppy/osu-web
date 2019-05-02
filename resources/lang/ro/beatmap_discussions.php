@@ -78,7 +78,6 @@ return [
         'admin' => 'admin',
         'bng' => 'nominalizator',
         'owner' => 'mapper',
-        'qat' => 'qat',
     ],
 
     'user_filter' => [

@@ -82,7 +82,7 @@ export class NewDiscussion extends React.PureComponent
     canPostNote =
       @props.currentUser.id == @props.beatmapset.user_id ||
       @props.currentUser.is_bng ||
-      @props.currentUser.is_qat
+      @props.currentUser.is_nat
 
     buttonCssClasses = 'btn-circle'
     buttonCssClasses += ' btn-circle--activated' if @props.pinned
@@ -293,8 +293,6 @@ export class NewDiscussion extends React.PureComponent
 
     type = e.currentTarget.dataset.type
 
-    userCanResetNominations = currentUser.is_admin || currentUser.is_qat || currentUser.is_bng
-
     if type == 'problem'
       problemType = @problemType()
 
@@ -337,12 +335,12 @@ export class NewDiscussion extends React.PureComponent
 
 
   problemType: =>
-    canDisqualify = currentUser.is_admin || currentUser.is_qat
+    canDisqualify = currentUser.is_admin || currentUser.is_nat || currentUser.is_full_bn || currentUser.is_gmt
     willDisqualify = @props.beatmapset.status == 'qualified'
 
     return 'disqualify' if canDisqualify && willDisqualify
 
-    canReset = currentUser.is_admin || currentUser.is_qat || currentUser.is_bng
+    canReset = currentUser.is_admin || currentUser.is_nat || currentUser.is_bng
     willReset = @props.beatmapset.status == 'pending' && @props.beatmapset.nominations.current > 0
 
     return 'nomination_reset' if canReset && willReset

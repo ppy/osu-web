@@ -834,13 +834,23 @@ class Beatmapset extends Model implements AfterCommit
         return $this->currentNominationCount() > 0;
     }
 
+    public function playmodes()
+    {
+        return $this->beatmaps->pluck('playmode')->unique();
+    }
+
+    public function playmodeCount()
+    {
+        return $this->playmodes()->count();
+    }
+
     public function rankingETA()
     {
         if (!$this->isQualified()) {
             return;
         }
 
-        $modes = $this->beatmaps->pluck('playmode')->unique()->toArray();
+        $modes = $this->playmodes()->toArray();
 
         $queueSize = static::qualified()
             ->whereHas('beatmaps', function ($query) use ($modes) {
@@ -884,6 +894,23 @@ class Beatmapset extends Model implements AfterCommit
     public function nominationsSinceReset()
     {
         return $this->eventsSinceReset()->nominations();
+    }
+
+    public function hasFullBNNomination()
+    {
+        return $this->nominationsSinceReset()
+            ->with('user')
+            ->get()
+            ->pluck('user')
+            ->contains(function ($user) {
+                return $user->isFullBN();
+            });
+    }
+
+    public function requiresFullBNNomination()
+    {
+        return $this->currentNominationCount() === $this->requiredNominationCount() - 1
+            && !$this->hasFullBNNomination();
     }
 
     public function status()

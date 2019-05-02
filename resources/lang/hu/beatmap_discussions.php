@@ -78,7 +78,6 @@ return [
         'admin' => 'admin',
         'bng' => 'nomináló',
         'owner' => 'készítő',
-        'qat' => 'qat',
     ],
 
     'user_filter' => [

@@ -78,7 +78,6 @@ return [
         'admin' => 'admin',
         'bng' => 'nominator',
         'owner' => 'twórca',
-        'qat' => 'qat',
     ],
 
     'user_filter' => [
