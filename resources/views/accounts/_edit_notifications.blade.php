@@ -28,10 +28,10 @@
                 <label class="account-edit-entry__checkbox">
                     <div class="osu-checkbox">
                         <input
-                            name="user[topic_auto_subscribe]"
+                            name="user[user_notify]"
                             class="osu-checkbox__input js-account-edit__input"
                             type="checkbox"
-                            @if (Auth::user()->topic_auto_subscribe)
+                            @if (Auth::user()->user_notify)
                                 checked
                             @endif
                         >

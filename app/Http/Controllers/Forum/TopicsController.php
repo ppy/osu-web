@@ -377,7 +377,7 @@ class TopicsController extends Controller
             return error_popup($e->getMessage());
         }
 
-        if (Auth::user()->topic_auto_subscribe) {
+        if (Auth::user()->user_notify) {
             TopicWatch::setState($topic, Auth::user(), 'watching_mail');
         }
 

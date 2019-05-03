@@ -95,7 +95,6 @@ use Request;
  * @property \Illuminate\Database\Eloquent\Collection $storeAddresses Store\Address
  * @property \Illuminate\Database\Eloquent\Collection $supporterTagPurchases UserDonation
  * @property \Illuminate\Database\Eloquent\Collection $supporterTags UserDonation
- * @property bool $topic_auto_subscribe
  * @property \Illuminate\Database\Eloquent\Collection $userAchievements UserAchievement
  * @property \Illuminate\Database\Eloquent\Collection $userGroups UserGroup
  * @property Forum\Post $userPage
@@ -141,7 +140,7 @@ use Request;
  * @property string $user_msnm
  * @property int $user_new_privmsg
  * @property string $user_newpasswd
- * @property int $user_notify
+ * @property bool $user_notify
  * @property int $user_notify_pm
  * @property int $user_notify_type
  * @property string|null $user_occ
@@ -191,9 +190,9 @@ class User extends Model implements AuthenticatableContract
 
     protected $casts = [
         'osu_subscriber' => 'boolean',
-        'topic_auto_subscribe' => 'boolean',
         'user_allow_pm' => 'boolean',
         'user_allow_viewonline' => 'boolean',
+        'user_notify' => 'boolean',
         'user_timezone' => 'float',
     ];
 
