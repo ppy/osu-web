@@ -73,7 +73,7 @@ namespace App\Models;
  * @property string $user_msnm
  * @property int $user_new_privmsg
  * @property string $user_newpasswd
- * @property int $user_notify
+ * @property bool $user_notify
  * @property int $user_notify_pm
  * @property int $user_notify_type
  * @property string|null $user_occ
