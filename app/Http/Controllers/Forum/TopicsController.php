@@ -377,7 +377,7 @@ class TopicsController extends Controller
             return error_popup($e->getMessage());
         }
 
-        if (Auth::user()->user_notify) {
+        if (Auth::user()->user_notify || $forum->isHelpForum()) {
             TopicWatch::setState($topic, Auth::user(), 'watching_mail');
         }
 
