@@ -80,7 +80,7 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionAllowOrDenyKudosu($user, $discussion)
     {
-        if ($user !== null && ($user->isBNG() || $user->isGMT() || $user->isQAT())) {
+        if ($user !== null && ($user->isBNG() || $user->isGMT() || $user->isNAT())) {
             return 'ok';
         }
     }
@@ -92,7 +92,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
 
@@ -127,7 +127,7 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionModerate($user)
     {
-        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
+        if ($user !== null && ($user->isGMT() || $user->isNAT())) {
             return 'ok';
         }
     }
@@ -155,7 +155,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
 
@@ -164,7 +164,7 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionRestore($user, $discussion)
     {
-        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
+        if ($user !== null && ($user->isGMT() || $user->isNAT())) {
             return 'ok';
         }
     }
@@ -181,7 +181,7 @@ class OsuAuthorize
             }
         }
 
-        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
+        if ($user !== null && ($user->isGMT() || $user->isNAT())) {
             return 'ok';
         }
     }
@@ -192,7 +192,7 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
 
         if ($discussion->message_type === 'mapper_note') {
-            if ($user->getKey() !== $discussion->beatmapset->user_id && !$user->isQAT() && !$user->isBNG()) {
+            if ($user->getKey() !== $discussion->beatmapset->user_id && !$user->isNAT() && !$user->isBNG()) {
                 return 'beatmap_discussion.store.mapper_note_wrong_user';
             }
         }
@@ -214,7 +214,7 @@ class OsuAuthorize
         ];
 
         if (!in_array($discussion->beatmapset->approved, $votableStates, true)) {
-            if (!$user->isBNG() && !$user->isGMT() && !$user->isQAT()) {
+            if (!$user->isBNG() && !$user->isGMT() && !$user->isNAT()) {
                 return $prefix.'wrong_beatmapset_state';
             }
         }
@@ -223,7 +223,7 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
-        if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+        if ($user->isBNG() || $user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
 
@@ -255,7 +255,7 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
-        if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+        if ($user->isBNG() || $user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
 
@@ -273,7 +273,7 @@ class OsuAuthorize
             return $prefix.'system_generated';
         }
 
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
 
@@ -304,7 +304,7 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionPostRestore($user, $post)
     {
-        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
+        if ($user !== null && ($user->isGMT() || $user->isNAT())) {
             return 'ok';
         }
     }
@@ -315,7 +315,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
+        if ($user !== null && ($user->isGMT() || $user->isNAT())) {
             return 'ok';
         }
     }
@@ -325,7 +325,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
 
@@ -344,7 +344,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$beatmapset->isScoreable() && ($user->isGMT() || $user->isQAT())) {
+        if (!$beatmapset->isScoreable() && ($user->isGMT() || $user->isNAT())) {
             return 'ok';
         }
     }
@@ -353,7 +353,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!($user->isGMT() || $user->isQAT() || $user->isGroup(UserGroup::GROUPS['loved']))) {
+        if (!($user->isGMT() || $user->isNAT() || $user->isGroup(UserGroup::GROUPS['loved']))) {
             return 'unauthorized';
         }
 
@@ -366,7 +366,7 @@ class OsuAuthorize
 
         static $prefix = 'beatmap_discussion.nominate.';
 
-        if (!$user->isBNG() && !$user->isQAT()) {
+        if (!$user->isBNG() && !$user->isNAT()) {
             return 'unauthorized';
         }
 
@@ -382,6 +382,16 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
+        if ($user->isProbationaryBN()) {
+            if ($beatmapset->playmodeCount() > 1) {
+                return $prefix.'full_bn_required_hybrid';
+            }
+
+            if ($beatmapset->requiresFullBNNomination()) {
+                return $prefix.'full_bn_required';
+            }
+        }
+
         return 'ok';
     }
 
@@ -389,7 +399,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!$user->isBNG() && !$user->isQAT()) {
+        if (!$user->isBNG() && !$user->isNAT()) {
             return 'unauthorized';
         }
 
@@ -407,7 +417,7 @@ class OsuAuthorize
         }
 
         if ($user !== null) {
-            if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+            if ($user->isBNG() || $user->isGMT() || $user->isNAT()) {
                 return 'ok';
             }
 
@@ -421,7 +431,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->user_id === $beatmapset->user_id || $user->isGMT() || $user->isQAT()) {
+        if ($user->user_id === $beatmapset->user_id || $user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
 
@@ -432,7 +442,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!$user->isQAT()) {
+        if (!$user->isNAT() && !$user->isFullBN() && !$user->isGMT()) {
             return 'unauthorized';
         }
 
@@ -447,14 +457,14 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
     }
 
     public function checkBeatmapsetEventViewUserId($user, $event)
     {
-        if ($user !== null && $user->isQAT()) {
+        if ($user !== null && $user->isNAT()) {
             return 'ok';
         }
 
@@ -616,7 +626,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
     }
@@ -727,7 +737,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
 

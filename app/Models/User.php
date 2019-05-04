@@ -659,9 +659,9 @@ class User extends Model implements AuthenticatableContract
     |
     */
 
-    public function isQAT()
+    public function isNAT()
     {
-        return $this->isGroup(UserGroup::GROUPS['qat']);
+        return $this->isGroup(UserGroup::GROUPS['nat']);
     }
 
     public function isAdmin()
@@ -677,6 +677,16 @@ class User extends Model implements AuthenticatableContract
     public function isBNG()
     {
         return $this->isGroup(UserGroup::GROUPS['bng']);
+    }
+
+    public function isProbationaryBN()
+    {
+        return $this->isBNG() && !$this->isFullBN();
+    }
+
+    public function isFullBN()
+    {
+        return $this->isGroup(UserGroup::GROUPS['bng_full']);
     }
 
     public function isHax()
@@ -737,7 +747,7 @@ class User extends Model implements AuthenticatableContract
             || $this->isMod()
             || $this->isGMT()
             || $this->isBNG()
-            || $this->isQAT();
+            || $this->isNAT();
     }
 
     public function isBanned()

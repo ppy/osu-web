@@ -461,11 +461,11 @@ export class Nominations extends React.PureComponent
 
 
   userCanNominate: =>
-    !@userIsOwner() && (@props.currentUser.is_admin || @props.currentUser.is_bng || @props.currentUser.is_qat)
+    !@userIsOwner() && (@props.currentUser.is_admin || @props.currentUser.is_bng || @props.currentUser.is_nat)
 
 
   userCanDisqualify: =>
-    !@userIsOwner() && (@props.currentUser.is_admin || @props.currentUser.is_qat)
+    !@userIsOwner() && (@props.currentUser.is_admin || @props.currentUser.is_nat || @props.currentUser.is_full_bn || @props.currentUser.is_gmt)
 
 
   userIsOwner: =>
