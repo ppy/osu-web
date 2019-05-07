@@ -108,7 +108,7 @@ class DisqusImport extends Command
         $id = (int) $thread->attributes('dsq', true)->id;
         $link = (string) $thread->link;
 
-        list($commentableType, $commentableId) =
+        [$commentableType, $commentableId] =
             $this->findBeatmapset($legacyId, $link) ??
             $this->findBuild($legacyId) ??
             $this->findNewsPost($legacyId) ??
