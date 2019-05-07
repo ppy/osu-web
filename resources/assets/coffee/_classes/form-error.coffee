@@ -72,7 +72,7 @@ class @FormError
     state = if errors.length > 0 then 'error' else ''
 
     $(el)
-      .closest 'label'
+      .closest 'label, .js-form-error--field'
       .attr 'data-form-error-state', state
       .find '.js-form-error--error'
       .text errors.join(' ')
