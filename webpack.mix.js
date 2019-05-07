@@ -208,7 +208,6 @@ mix
 .ts('resources/assets/lib/news-index.ts', 'js/react/news-index.js')
 .ts('resources/assets/lib/news-show.ts', 'js/react/news-show.js')
 .ts('resources/assets/lib/store-bootstrap.ts', 'js/store-bootstrap.js')
-.ts('resources/assets/lib/user-list.ts', 'js/react/user-list.js')
 .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/timeago/locales', 'public/vendor/js/timeago-locales')
