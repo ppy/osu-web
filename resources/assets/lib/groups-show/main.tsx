@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,31 +16,34 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers;
+import HeaderV3 from 'header-v3';
+import * as React from 'react';
+import { Main as UserList } from 'user-list/main';
 
-use App\Models\Group;
+interface Group {
+  group_name: string;
+  group_desc?: string;
+}
 
-class GroupsController extends Controller
-{
-    protected $section = 'home';
-    protected $actionPrefix = 'groups-';
+interface Props {
+  group: Group;
+  users: User[];
+}
 
-    public function show($id)
-    {
-        $group = Group::visible()->findOrFail($id);
+export class Main extends React.PureComponent<Props> {
+  render() {
+    return (
+      <div className='osu-layout osu-layout--full'>
+        <HeaderV3
+          backgroundImage='/images/headers/generic.jpg'
+          theme='users'
+          title={this.props.group.group_name}
+        />
 
-        $users = $group->users()
-            ->with([
-                'country',
-                'userProfileCustomization',
-            ])
-            ->default()
-            ->orderBy('username', 'asc')
-            ->get();
-
-        $groupJson = $group->only('group_name', 'group_desc');
-        $usersJson = json_collection($users, 'UserCompact', ['cover', 'country']);
-
-        return view('groups.show', compact('groupJson', 'usersJson'));
-    }
+        <div className='osu-page osu-page--users'>
+          <UserList users={this.props.users} />
+        </div>
+      </div>
+    );
+  }
 }

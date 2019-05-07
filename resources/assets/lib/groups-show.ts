@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,31 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers;
+import { Main } from 'groups-show/main';
 
-use App\Models\Group;
-
-class GroupsController extends Controller
-{
-    protected $section = 'home';
-    protected $actionPrefix = 'groups-';
-
-    public function show($id)
-    {
-        $group = Group::visible()->findOrFail($id);
-
-        $users = $group->users()
-            ->with([
-                'country',
-                'userProfileCustomization',
-            ])
-            ->default()
-            ->orderBy('username', 'asc')
-            ->get();
-
-        $groupJson = $group->only('group_name', 'group_desc');
-        $usersJson = json_collection($users, 'UserCompact', ['cover', 'country']);
-
-        return view('groups.show', compact('groupJson', 'usersJson'));
-    }
-}
+reactTurbolinks.registerPersistent('groups-show', Main, true, (container: HTMLElement) => {
+  return {
+    group: osu.parseJson('json-group'),
+    users: osu.parseJson('json-users'),
+  };
+});
