@@ -90,7 +90,7 @@ class ChangelogController extends Controller
     {
         $token = config('osu.changelog.github_token');
 
-        list($algo, $signature) = explode('=', request()->header('X-Hub-Signature'));
+        [$algo, $signature] = explode('=', request()->header('X-Hub-Signature'));
         $hash = hash_hmac($algo, request()->getContent(), $token);
 
         if (!hash_equals((string) $hash, (string) $signature)) {

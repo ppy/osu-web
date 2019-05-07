@@ -455,7 +455,7 @@ class Order extends Model
     {
         // locking bottleneck
         $this->getConnection()->transaction(function () {
-            list($items, $products) = $this->lockForReserve();
+            [$items, $products] = $this->lockForReserve();
 
             $items->each->releaseProduct();
         });
@@ -465,7 +465,7 @@ class Order extends Model
     {
         // locking bottleneck
         $this->getConnection()->transaction(function () {
-            list($items, $products) = $this->lockForReserve();
+            [$items, $products] = $this->lockForReserve();
             $items->each->reserveProduct();
         });
     }
