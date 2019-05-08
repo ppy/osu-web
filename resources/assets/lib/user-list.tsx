@@ -18,6 +18,7 @@
 
 import * as moment from 'moment';
 import * as React from 'react';
+import { Sort } from 'sort';
 import { UserCards } from 'user-cards';
 
 enum SortMode {
@@ -81,37 +82,19 @@ export class UserList extends React.PureComponent<Props> {
   }
 
   renderSorter() {
-    const sortOrders =
     // issue when inferring key type of enum.
     // https://github.com/Microsoft/TypeScript/issues/17800
-    Object.keys(SortMode).map((key: keyof typeof SortMode) => {
-      const value = SortMode[key];
-
-      let cssClasses = 'sort__item sort__item--button';
-      if (this.state.sortMode === value) {
-        cssClasses += ' sort__item--active';
-      }
-
-      return (
-        // TODO: save order into url?
-        <button
-          className={cssClasses}
-          data-value={value}
-          key={key}
-          onClick={this.onSortSelected}
-        >
-          {osu.trans(`users.sort.${value}`)}
-        </button>
-      );
+    const values = Object.keys(SortMode).map((key: keyof typeof SortMode) => {
+      return SortMode[key];
     });
 
     return (
-      <div className='sort sort--user-list'>
-        <div className='sort__items'>
-          <span className='sort__item sort__item--title'>{osu.trans('sort._')}</span>
-          {sortOrders}
-        </div>
-      </div>
+      <Sort
+        modifiers={['user-list']}
+        onSortSelected={this.onSortSelected}
+        sortMode={this.state.sortMode}
+        values={values}
+      />
     );
   }
 
