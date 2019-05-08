@@ -43,15 +43,16 @@ export class UserList extends React.PureComponent<Props> {
   };
 
   onSortSelected = (event: React.SyntheticEvent) => {
-    const target = event.target as HTMLElement;
-    const url = osu.updateQueryString(null, { user_sort: target.dataset.value });
+    const value = (event.currentTarget as HTMLElement).dataset.value;
+    const url = osu.updateQueryString(null, { user_sort: value });
 
     Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
-    this.setState({ sortMode: target.dataset.value });
+    this.setState({ sortMode: value });
   }
 
-  optionSelected = (key: string) => (event: React.SyntheticEvent) => {
+  optionSelected = (event: React.SyntheticEvent) => {
     event.preventDefault();
+    const key = (event.currentTarget as HTMLElement).dataset.key;
     const url = osu.updateQueryString(null, { filter: key });
 
     Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
@@ -118,9 +119,10 @@ export class UserList extends React.PureComponent<Props> {
     return (
       <a
         className={className}
+        data-key={key}
         href={osu.updateQueryString(null, { filter: key })}
         key={key}
-        onClick={this.optionSelected(key)}
+        onClick={this.optionSelected}
       >
         <div className='update-streams-v2__bar u-changelog-stream--bg' />
         <p className='update-streams-v2__row update-streams-v2__row--name'>{osu.trans(`users.status.${key}`)}</p>
