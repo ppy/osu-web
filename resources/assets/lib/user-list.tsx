@@ -43,8 +43,7 @@ export class UserList extends React.PureComponent<Props> {
 
   onSortSelected = (event: React.MouseEvent) => {
     const target = event.target as HTMLAnchorElement;
-    const key = target.dataset.key as keyof typeof SortMode;
-    this.setState({ sortMode: SortMode[key] });
+    this.setState({ sortMode: target.dataset.value });
   }
 
   render(): React.ReactNode {
@@ -86,8 +85,10 @@ export class UserList extends React.PureComponent<Props> {
     // issue when inferring key type of enum.
     // https://github.com/Microsoft/TypeScript/issues/17800
     Object.keys(SortMode).map((key: keyof typeof SortMode) => {
+      const value = SortMode[key];
+
       let cssClasses = 'sort__item sort__item--button';
-      if (this.state.sortMode === SortMode[key]) {
+      if (this.state.sortMode === value) {
         cssClasses += ' sort__item--active';
       }
 
@@ -95,11 +96,11 @@ export class UserList extends React.PureComponent<Props> {
         // TODO: save order into url?
         <button
           className={cssClasses}
-          data-key={key}
+          data-value={value}
           key={key}
           onClick={this.onSortSelected}
         >
-          {osu.trans(`users.sort.${SortMode[key]}`)}
+          {osu.trans(`users.sort.${value}`)}
         </button>
       );
     });
