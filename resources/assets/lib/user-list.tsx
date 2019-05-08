@@ -39,11 +39,14 @@ interface State {
 export class UserList extends React.PureComponent<Props> {
   readonly state: State = {
     filter: this.filterFromUrl,
-    sortMode: SortMode.LastVisit,
+    sortMode: this.sortFromUrl,
   };
 
   onSortSelected = (event: React.MouseEvent) => {
-    const target = event.target as HTMLAnchorElement;
+    const target = event.target as HTMLElement;
+    const url = osu.updateQueryString(null, { sort: target.dataset.value });
+
+    Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
     this.setState({ sortMode: target.dataset.value });
   }
 
@@ -149,5 +152,10 @@ export class UserList extends React.PureComponent<Props> {
     }
 
     return this.props.users;
+  }
+
+  private get sortFromUrl() {
+    const url = new URL(location.href);
+    return url.searchParams.get('sort') || SortMode.LastVisit;
   }
 }

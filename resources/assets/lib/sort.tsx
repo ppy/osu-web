@@ -34,7 +34,6 @@ export class Sort extends React.PureComponent<Props> {
       }
 
       return (
-        // TODO: save order into url?
         <button
           className={cssClasses}
           data-value={value}
