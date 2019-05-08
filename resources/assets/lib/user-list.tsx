@@ -42,12 +42,20 @@ export class UserList extends React.PureComponent<Props> {
     sortMode: this.sortFromUrl,
   };
 
-  onSortSelected = (event: React.MouseEvent) => {
+  onSortSelected = (event: React.SyntheticEvent) => {
     const target = event.target as HTMLElement;
     const url = osu.updateQueryString(null, { sort: target.dataset.value });
 
     Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
     this.setState({ sortMode: target.dataset.value });
+  }
+
+  optionSelected = (key: string) => (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    const url = osu.updateQueryString(null, { filter: key });
+
+    Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
+    this.setState({ filter: key });
   }
 
   render(): React.ReactNode {
@@ -119,14 +127,6 @@ export class UserList extends React.PureComponent<Props> {
         <p className='update-streams-v2__row update-streams-v2__row--version'>{text}</p>
       </a>
     );
-  }
-
-  optionSelected = (key: string) => (event: React.SyntheticEvent) => {
-    event.preventDefault();
-    const url = osu.updateQueryString(null, { filter: key });
-    // FIXME: stop reloading the page
-    Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
-    this.setState({ filter: key });
   }
 
   private get sortedUsers() {
