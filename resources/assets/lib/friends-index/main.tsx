@@ -18,7 +18,7 @@
 
 import HeaderV3 from 'header-v3';
 import * as React from 'react';
-import { Main as UserList } from 'user-list/main';
+import { UserList } from 'user-list';
 
 interface Props {
   user: User;

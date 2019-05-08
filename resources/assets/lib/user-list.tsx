@@ -36,7 +36,7 @@ interface State {
   sortMode: SortMode;
 }
 
-export class Main extends React.PureComponent<Props> {
+export class UserList extends React.PureComponent<Props> {
   readonly state: State = {
     filter: this.filterFromUrl,
     sortMode: SortMode.LastVisit,
