@@ -45,11 +45,13 @@ export class CommentsManager extends React.PureComponent
         loadingSort: null
         currentSort: 'new'
         moreComments: {}
+        showDeleted: false
 
 
   componentDidMount: =>
     $.subscribe "comments:added.#{@id}", @appendBundle
     $.subscribe "comments:sort.#{@id}", @updateSort
+    $.subscribe "comments:toggle-show-deleted.#{@id}", @toggleShowDeleted
     $.subscribe "comment:updated.#{@id}", @update
     $.subscribe "commentVote:added.#{@id}", @addVote
     $.subscribe "commentVote:removed.#{@id}", @removeVote
@@ -126,6 +128,10 @@ export class CommentsManager extends React.PureComponent
 
   saveState: =>
     osu.storeJson @jsonStorageId(), @state
+
+
+  toggleShowDeleted: =>
+    @setState showDeleted: !@state.showDeleted
 
 
   updateSort: (_event, {sort}) =>
