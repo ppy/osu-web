@@ -21,10 +21,11 @@ import * as React from 'react';
 import { Sort } from 'sort';
 import { UserCards } from 'user-cards';
 
-enum SortMode {
-  LastVisit = 'last_visit',
-  Username = 'username',
-}
+type Filter = 'all' | 'online';
+type SortMode = 'last_visit' | 'username';
+
+const filters = ['all', 'online'];
+const sortModes = ['last_visit', 'username'];
 
 interface Props {
   title?: string;
@@ -32,7 +33,7 @@ interface Props {
 }
 
 interface State {
-  filter: string;
+  filter: Filter;
   sortMode: SortMode;
 }
 
@@ -94,18 +95,12 @@ export class UserList extends React.PureComponent<Props> {
   }
 
   renderSorter() {
-    // issue when inferring key type of enum.
-    // https://github.com/Microsoft/TypeScript/issues/17800
-    const values = Object.keys(SortMode).map((key: keyof typeof SortMode) => {
-      return SortMode[key];
-    });
-
     return (
       <Sort
         modifiers={['user-list']}
         onSortSelected={this.onSortSelected}
         sortMode={this.state.sortMode}
-        values={values}
+        values={sortModes}
       />
     );
   }
@@ -135,7 +130,7 @@ export class UserList extends React.PureComponent<Props> {
     const users = this.filteredUsers.slice();
 
     switch (this.state.sortMode) {
-      case SortMode.LastVisit:
+      case 'username':
         return users.sort((x, y) => moment(y.last_visit || 0).unix() - moment(x.last_visit || 0).unix());
     }
 
@@ -144,7 +139,13 @@ export class UserList extends React.PureComponent<Props> {
 
   private get filterFromUrl() {
     const url = new URL(location.href);
-    return url.searchParams.get('filter') || 'all';
+    // force invalid values to default.
+    const value = url.searchParams.get('filter') || '';
+    if (filters.indexOf(value) > -1) {
+      return value as Filter;
+    }
+
+    return 'all';
   }
 
   private get filteredUsers() {
@@ -159,8 +160,11 @@ export class UserList extends React.PureComponent<Props> {
   private get sortFromUrl() {
     const url = new URL(location.href);
     // force invalid values to default.
-    const value = (url.searchParams.get('sort') || SortMode.LastVisit) as keyof typeof SortMode;
-    const sort = SortMode[value] as SortMode;
-    return sort || SortMode.LastVisit;
+    const value = url.searchParams.get('user_sort') || '';
+    if (sortModes.indexOf(value) > -1) {
+      return value as SortMode;
+    }
+
+    return 'last_visit';
   }
 }
