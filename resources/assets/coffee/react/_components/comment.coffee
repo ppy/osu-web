@@ -18,6 +18,7 @@
 
 import { CommentEditor } from 'comment-editor'
 import { CommentShowMore } from 'comment-show-more'
+import DeletedCommentsCount from 'deleted-comments-count'
 import * as React from 'react'
 import { a, button, div, span, textarea } from 'react-dom-factories'
 import { ReportComment } from 'report-comment'
@@ -42,6 +43,7 @@ export class Comment extends React.PureComponent
 
 
   @defaultProps =
+    showDeleted: true
     showReplies: true
 
 
@@ -237,19 +239,9 @@ export class Comment extends React.PureComponent
       if @props.showReplies && @props.comment.replies_count > 0
         div
           className: repliesClass
-          for comment in children
-            el Comment,
-              key: comment.id
-              comment: comment
-              commentsByParentId: @props.commentsByParentId
-              usersById: @props.usersById
-              userVotesByCommentId: @props.userVotesByCommentId
-              commentableMetaById: @props.commentableMetaById
-              depth: @props.depth + 1
-              parent: @props.comment
-              modifiers: @props.modifiers
-              currentSort: @props.currentSort
-              moreComments: @props.moreComments
+          children.map @renderComment
+
+          el DeletedCommentsCount, { comments: children, showDeleted: @props.showDeleted }
 
           el CommentShowMore,
             parent: @props.comment
@@ -259,6 +251,24 @@ export class Comment extends React.PureComponent
             total: @props.comment.replies_count
             modifiers: @props.modifiers
             label: osu.trans('comments.show_replies') if children.length == 0
+
+
+  renderComment: (comment) =>
+    return null if comment.deleted_at? && !@props.showDeleted
+
+    el Comment,
+      key: comment.id
+      comment: comment
+      commentsByParentId: @props.commentsByParentId
+      usersById: @props.usersById
+      userVotesByCommentId: @props.userVotesByCommentId
+      commentableMetaById: @props.commentableMetaById
+      depth: @props.depth + 1
+      parent: @props.comment
+      modifiers: @props.modifiers
+      currentSort: @props.currentSort
+      moreComments: @props.moreComments
+      showDeleted: @props.showDeleted
 
 
   renderVoteButton: =>
