@@ -156,6 +156,9 @@ export class UserList extends React.PureComponent<Props> {
 
   private get sortFromUrl() {
     const url = new URL(location.href);
-    return url.searchParams.get('sort') || SortMode.LastVisit;
+    // force invalid values to default.
+    const value = (url.searchParams.get('sort') || SortMode.LastVisit) as keyof typeof SortMode;
+    const sort = SortMode[value] as SortMode;
+    return sort || SortMode.LastVisit;
   }
 }
