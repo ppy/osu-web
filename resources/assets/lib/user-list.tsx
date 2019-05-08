@@ -44,7 +44,7 @@ export class UserList extends React.PureComponent<Props> {
 
   onSortSelected = (event: React.SyntheticEvent) => {
     const target = event.target as HTMLElement;
-    const url = osu.updateQueryString(null, { sort: target.dataset.value });
+    const url = osu.updateQueryString(null, { user_sort: target.dataset.value });
 
     Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
     this.setState({ sortMode: target.dataset.value });
