@@ -18,12 +18,14 @@
 
 .sort {
   @_top: sort;
+  @_color--user-list: @seafoam;
   @_item-margin: 5px;
   @_hover-bg: #ddd;
   @_hover-bg--beatmapsets: #eee;
   @_hover-bg--beatmapset-discussions: #eee;
   @_hover-bg--changelog: @greyviolet-darker;
   @_hover-bg--forum-topics: #ddd;
+  @_hover-bg--user-list: @greyseafoam-light;
 
   .default-gutter();
   display: flex;
@@ -43,6 +45,10 @@
     border-bottom: 1px solid #ddd;
   }
 
+  &--user-list {
+    padding: 0;
+  }
+
   &__item {
     .reset-input();
     margin: @_item-margin;
@@ -52,6 +58,10 @@
 
     .@{_top}--changelog & {
       color: inherit;
+    }
+
+    .@{_top}--user-list & {
+      color: @_color--user-list;
     }
 
     &--button {
@@ -89,6 +99,13 @@
           background-color: @_hover-bg--forum-topics;
         });
       }
+
+      .@{_top}--user-list & {
+        .link-hover({
+          background-color: @greyseafoam-light;
+          color: @_color--user-list;
+        });
+      }
     }
 
     &--title {
@@ -124,6 +141,15 @@
 
       .@{_top}--forum-topics & {
         background-color: @_hover-bg--forum-topics;
+      }
+
+      .@{_top}--user-list & {
+        background-color: @greyseafoam-light;
+        color: #fff;
+
+        .link-hover({
+          color: #fff;
+        });
       }
     }
   }

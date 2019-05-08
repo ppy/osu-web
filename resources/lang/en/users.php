@@ -363,9 +363,9 @@ return [
     ],
 
     'sort' => [
-        '_' => 'sort by',
-        'last_visit' => 'recently active',
-        'username' => 'username',
+        '_' => 'Sort by',
+        'last_visit' => 'Recently active',
+        'username' => 'Username',
     ],
 
     'status' => [

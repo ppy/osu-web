@@ -17,7 +17,6 @@
  */
 
 import * as moment from 'moment';
-import { PopupMenu } from 'popup-menu';
 import * as React from 'react';
 import { UserCards } from 'user-cards';
 
@@ -42,42 +41,19 @@ export class UserList extends React.PureComponent<Props> {
     sortMode: SortMode.LastVisit,
   };
 
-  onSelected = (key: keyof typeof SortMode, dismiss: () => void) => {
-    dismiss();
+  onSortSelected = (event: React.MouseEvent) => {
+    const target = event.target as HTMLAnchorElement;
+    const key = target.dataset.key as keyof typeof SortMode;
     this.setState({ sortMode: SortMode[key] });
   }
 
   render(): React.ReactNode {
-    const items = (dismiss: () => void) =>
-      // issue when inferring key type of enum.
-      // https://github.com/Microsoft/TypeScript/issues/17800
-      Object.keys(SortMode).map((key: keyof typeof SortMode) => {
-        return (
-            <button
-              className='simple-menu__item'
-              key={key}
-              onClick={() => this.onSelected(key, dismiss)}
-            >
-              {osu.trans(`users.sort.${SortMode[key]}`)}
-            </button>
-        );
-      });
-
     return (
       <>
         {this.renderSelections()}
         <div className='user-list'>
           <div className='user-list__toolbar'>
-            <span className='user-list__sort'>
-              {osu.trans('users.sort._')}
-              <span className='user-list__sort-select'>
-                {osu.trans(`users.sort.${this.state.sortMode}`)}
-              </span>
-              <span className='user-list__sort-select fas fa-angle-down' />
-              <PopupMenu showGlyph={false}>
-                {items}
-              </PopupMenu>
-            </span>
+            {this.renderSorter()}
           </div>
 
           <UserCards users={this.sortedUsers} />
@@ -100,6 +76,39 @@ export class UserList extends React.PureComponent<Props> {
               return this.renderOption(group.key, group.count, group.key === this.state.filter);
             })
           }
+        </div>
+      </div>
+    );
+  }
+
+  renderSorter() {
+    const sortOrders =
+    // issue when inferring key type of enum.
+    // https://github.com/Microsoft/TypeScript/issues/17800
+    Object.keys(SortMode).map((key: keyof typeof SortMode) => {
+      let cssClasses = 'sort__item sort__item--button';
+      if (this.state.sortMode === SortMode[key]) {
+        cssClasses += ' sort__item--active';
+      }
+
+      return (
+        // TODO: save order into url?
+        <button
+          className={cssClasses}
+          data-key={key}
+          key={key}
+          onClick={this.onSortSelected}
+        >
+          {osu.trans(`users.sort.${SortMode[key]}`)}
+        </button>
+      );
+    });
+
+    return (
+      <div className='sort sort--user-list'>
+        <div className='sort__items'>
+          <span className='sort__item sort__item--title'>{osu.trans('sort._')}</span>
+          {sortOrders}
         </div>
       </div>
     );
