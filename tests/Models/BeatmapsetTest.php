@@ -17,11 +17,13 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Exceptions\AuthorizationException;
 use App\Models\Beatmap;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\UserGroup;
 use App\Models\UserNotification;
 
 class BeatmapsetTest extends TestCase
@@ -84,6 +86,61 @@ class BeatmapsetTest extends TestCase
         $this->assertSame($notifications + 1, Notification::count());
         $this->assertSame($notifications + 1, UserNotification::count());
         $this->assertTrue($beatmapset->fresh()->isQualified());
+    }
+
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testLimitedBNGNominatingBNGNominated()
+    {
+        $beatmapset = $this->createBeatmapset();
+        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        factory(BeatmapMirror::class)->states('default')->create();
+
+        $user = factory(User::class)->create();
+        $user->userGroups()->create(['group_id' => UserGroup::GROUPS['bng']]);
+        $beatmapset->nominate($user);
+
+        $nominator = factory(User::class)->create();
+        $nominator->userGroups()->create(['group_id' => UserGroup::GROUPS['bng_limited']]);
+
+        priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
+    }
+
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testLimitedBNGNominatingNATNominated()
+    {
+        $beatmapset = $this->createBeatmapset();
+        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        factory(BeatmapMirror::class)->states('default')->create();
+
+        $user = factory(User::class)->create();
+        $user->userGroups()->create(['group_id' => UserGroup::GROUPS['nat']]);
+        $beatmapset->nominate($user);
+
+        $nominator = factory(User::class)->create();
+        $nominator->userGroups()->create(['group_id' => UserGroup::GROUPS['bng_limited']]);
+
+        priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
+    }
+
+    public function testLimitedBNGNominatingLimitedBNGNominated()
+    {
+        $beatmapset = $this->createBeatmapset();
+        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        factory(BeatmapMirror::class)->states('default')->create();
+
+        $user = factory(User::class)->create();
+        $user->userGroups()->create(['group_id' => UserGroup::GROUPS['bng_limited']]);
+        $beatmapset->nominate($user);
+
+        $nominator = factory(User::class)->create();
+        $nominator->userGroups()->create(['group_id' => UserGroup::GROUPS['bng_limited']]);
+
+        $this->expectException(AuthorizationException::class);
+        priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
     }
 
     private function createBeatmapset($params = [])
