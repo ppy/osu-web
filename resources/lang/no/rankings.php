@@ -22,7 +22,7 @@ return [
     'header' => ':type Rangering',
 
     'type' => [
-        'performance' => 'Prestajon',
+        'performance' => 'Prestasjon',
         'charts' => 'Rampelyset',
         'score' => 'Poengsum',
         'country' => 'Land',
@@ -43,8 +43,8 @@ return [
         'performance' => 'Prestasjon',
         'total_score' => 'Total Poengsum',
         'ranked_score' => 'Rangert Poengsum',
-        'average_score' => 'Gj. Snit. Poeng',
-        'average_performance' => 'Gj. Snit. Prest.',
+        'average_score' => 'Gjennomsnitt Poengsum',
+        'average_performance' => 'Gjenomsnitt Prestasjon.',
         'ss' => '',
         's' => '',
         'a' => '',

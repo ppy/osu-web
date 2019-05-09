@@ -66,7 +66,7 @@ return [
         'message_placeholder' => [
             'general' => '在此处输入以发布到常规 (:version)',
             'generalAll' => '在此处输入以发布到常规 (所有难度)',
-            'timeline' => '在此处输入以发布到时间线 (:version)',
+            'timeline' => '在此处输入以发布到时间轴 (:version)',
         ],
 
         'message_type' => [
@@ -82,7 +82,7 @@ return [
         'mode' => [
             'events' => '历史',
             'general' => '常规 :scope',
-            'timeline' => '时间线',
+            'timeline' => '时间轴',
             'scopes' => [
                 'general' => '当前难度',
                 'generalAll' => '所有难度',
@@ -102,7 +102,7 @@ return [
         'sort' => [
             '_' => '排序：',
             'created_at' => '创建时间',
-            'timeline' => '时间线',
+            'timeline' => '时间轴',
             'updated_at' => '最后更新时间',
         ],
 
@@ -110,7 +110,7 @@ return [
             'deleted' => '已删除',
             'mapper_notes' => '备注',
             'mine' => '我的',
-            'pending' => 'Pending',
+            'pending' => '待处理',
             'praises' => '赞',
             'resolved' => '已解决',
             'total' => '所有',

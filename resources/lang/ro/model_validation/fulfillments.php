@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => 'Donaţia ta este mai mică decât este necesar pentru a primi o insignă de suporter osu! (:actual > :expected)',
     ],
 ];

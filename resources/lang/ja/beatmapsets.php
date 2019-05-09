@@ -34,18 +34,18 @@ return [
         'discussion' => 'ディスカッション',
 
         'details' => [
-            'approved' => '承認日時 ',
+            'approved' => 'Approved日 ',
             'favourite' => 'ビートマップセットをお気に入りに追加する',
             'favourited_count' => '+ そのほか:count人！',
             'logged-out' => 'ビートマップをダウンロードするにはログインが必要です！',
-            'loved' => 'lovedに追加された日 ',
+            'loved' => 'loved追加日 ',
             'mapped_by' => '作者 :mapper',
             'qualified' => 'qualifiedされた日',
-            'ranked' => 'ランクされた日 ',
+            'ranked' => 'Ranked日 ',
             'submitted' => '投稿日 ',
             'unfavourite' => 'ビートマップをお気に入りから外す',
-            'updated' => '最終更新日',
-            'updated_timeago' => '最終更新時刻: :timeago',
+            'updated' => '最終更新 ',
+            'updated_timeago' => '最終更新 :timeago',
 
             'download' => [
                 '_' => 'ダウンロード',
@@ -56,7 +56,7 @@ return [
 
             'login_required' => [
                 'bottom' => 'より多くの機能にアクセスする',
-                'top' => 'サインイン',
+                'top' => 'ログイン',
             ],
         ],
 
@@ -65,14 +65,14 @@ return [
         ],
 
         'hype' => [
-            'action' => 'もしこのビートマップが良かった場合、Hypeすることでビートマップのステータスが<strong>ランク</strong>状態になります。',
+            'action' => 'もしこのビートマップが良かった場合、Hypeすることでビートマップのステータスが<strong>Ranked</strong>状態になります。',
 
             'current' => [
                 '_' => 'このビートマップは現在:statusです。',
 
                 'status' => [
-                    'pending' => '保留中',
-                    'qualified' => 'qualified',
+                    'pending' => 'Pending',
+                    'qualified' => 'Qualified',
                     'wip' => '作業中',
                 ],
             ],
@@ -83,11 +83,11 @@ return [
             'genre' => 'ジャンル',
             'language' => '言語',
             'no_scores' => 'データはまだ現在計算中です・・・',
-            'points-of-failure' => '失敗地点',
+            'points-of-failure' => 'Fail地点',
             'source' => 'ソース',
             'success-rate' => 'クリア率',
             'tags' => 'タグ',
-            'unranked' => 'ランクなしのビートマップ',
+            'unranked' => 'Unrankedビートマップ',
         ],
 
         'scoreboard' => [
@@ -95,7 +95,7 @@ return [
             'country' => '国別ランキング',
             'friend' => 'フレンドランキング',
             'global' => '世界ランキング',
-            'supporter-link' => '<a href=":link">ここ</a>をクリックする事でサポーターの詳細が見れます。',
+            'supporter-link' => '<a href=":link">ここ</a>をクリックする事でosu!サポーターの詳細が見れます。',
             'supporter-only' => 'フレンドランキングと国別ランキングを利用するにはosu!サポータータグが必要です！',
             'title' => 'スコアボード',
 

@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Du må være logget på for å redigere.',
+            'null_user' => 'Du må være logget inn for å redigere.',
             'system_generated' => 'Systemgenererte innlegg kan ikke redigeres.',
             'wrong_user' => 'Du må være eier av innlegget for å redigere.',
         ],
@@ -62,7 +62,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Logg på for å svare',
+            'guest' => 'Logg inn for å svare',
             'user' => 'Svar',
         ],
     ],
@@ -78,6 +78,7 @@ return [
         'admin' => 'admin',
         'bng' => 'nominator',
         'owner' => 'mapper',
+        'qat' => 'qat',
     ],
 
     'user_filter' => [

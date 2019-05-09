@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited bài đăng',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Tạo Thăm Dò Ý Kiến',
 
-            'preview' => '',
+            'preview' => 'Xem Lại Bài Đăng',
 
             'create_poll_button' => [
                 'add' => 'Tạo một cuộc thăm dò',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'ưu tiên sao',
             'replies' => 'câu trả lời',
             'views' => 'lượt xem',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => 'Thúc đẩy yêu cầu này',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Đây là một :feature_request. Yêu cầu tính năng có thể được bỏ phiếu bởi :supporters.',
+                    'feature_request' => 'yêu cầu tính năng',
+                    'supporters' => 'người hỗ trợ',
                 ],
 
                 'user' => [

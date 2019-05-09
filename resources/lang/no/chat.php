@@ -20,7 +20,7 @@
 
 return [
     'coming_soon' => 'kommer snart',
-    'limitation_notice' => 'Merk: Bare folk som bruker <a href=":lazer_link">osu!lazer</a> eller den nye nettsiden vil motta direktemeldinger gjennom dette syetemet. <br/>Hvis du er usikker, send dem en melding via <a href=":oldpm_link">den gamle forumsiden for private meldinger</a> isteden.',
+    'limitation_notice' => 'Merk: Bare folk som bruker <a href=":lazer_link">osu!lazer</a> eller den nye nettsiden vil motta direktemeldinger gjennom dette syetemet. <br/>Hvis du er usikker, send dem en melding via <a href=":oldpm_link">private meldinger på den gamle forumsiden</a> isteden.',
     'talking_in' => 'snakker i :channel',
     'talking_with' => 'snakker med :name',
     'title_compact' => 'chat',
@@ -43,7 +43,7 @@ return [
     ],
     'no-conversations' => [
         'howto' => "Start samtaler gjennom en brukers profil eller deres brukerkort.",
-        'lazer' => 'Offentlige kanaler som du deltar via <a href=":link">osu!lazer</a> vil også bli synlig her.',
+        'lazer' => 'Offentlige kanaler som du deltar i via <a href=":link">osu!lazer</a> vil også bli synlig her.',
         'pm_limitations' => 'Bare folk som bruker <a href=":link">osu!lazer</a> eller den nye nettsiden vil motta direktemeldinger.',
         'title' => 'ingen samtaler ennå',
     ],

@@ -23,7 +23,7 @@ return [
         'header' => [
             // size in font-size
             'big_description' => 'Elsker du osu!?<br/>
-                                Støtt utviklerne av osu! :D',
+                                Støtt utviklingen av osu! :D',
             'small_description' => '',
             'support_button' => 'Jeg vil støtte osu!',
         ],
@@ -50,8 +50,8 @@ return [
         'why_support' => [
             'title' => 'Hvorfor burde jeg støtte osu!?',
             'blocks' => [
-                'dev' => 'Hovedsakelig ttviklet og vedlikeholdt av en fyr i Australia',
-                'time' => 'Det tar så mye tid å holde det kjørende at det ikke lenger er mulig å kalle det en "hobby".',
+                'dev' => 'Hovedsakelig utviklet og vedlikeholdt av en fyr i Australia',
+                'time' => 'Det tar så mye tid å vedlikeholde det at det ikke lenger er mulig å kalle det en "hobby".',
                 'ads' => 'Ingen annonser noen steder. <br/><br/>
                         I motsetning til 99.95% av websider, tjener vi ikke på å skyve ting i ansiktet ditt.',
                 'goodies' => 'Du får noen ekstra godbiter!',
@@ -67,7 +67,7 @@ return [
 
             'auto_downloads' => [
                 'title' => 'Automatiske nedlastinger',
-                'description' => 'Automatisk nedlasting mens du er i flerspiller spill, tilskuer andre, eller klikker på hyperkoblinger i chatten!',
+                'description' => 'Automatiske nedlastinger når du deltar i flerspiller spill, mens du ser på andre, eller hvis du klikker på hyperkoblinger i chatten!',
             ],
 
             'upload_more' => [
@@ -77,7 +77,7 @@ return [
 
             'early_access' => [
                 'title' => 'Tidlig tilgang',
-                'description' => 'Tilgang til tidlig utgivelser, hvor du kan prøve nye funksjoner før de går offentlige!',
+                'description' => 'Tilgang til tidlig utgivelser, hvor du kan prøve nye funksjoner før de blir offentlige!',
             ],
 
             'customisation' => [
@@ -117,7 +117,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Sorteringsalternativer',
-                'description' => 'Evnen til å se landsrangering / vennerangering / modifikasjons-spesifikke rangeringer på beatmaps i spillet.',
+                'description' => 'Evnen til å se landsrangering / vennerangering / modifikasjons-spesifikke rangeringer i spillet.',
             ],
 
             'feel_special' => [

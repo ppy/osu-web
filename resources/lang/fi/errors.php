@@ -35,7 +35,7 @@ return [
         'standard_converts_only' => 'Tuloksia valitulle pelimuodolle ei löydy tässä vaikeustasossa.',
     ],
     'checkout' => [
-        'generic' => '',
+        'generic' => 'Ostoksesi valmistelussa tapahtui virhe.',
     ],
     'logged_out' => 'Sinut on kirjattu ulos. Kirjaudu sisään ja yritä uudelleen.',
     'supporter_only' => 'Sinun täytyy olla Tukija käyttääksesi tätä ominaisuutta.',
