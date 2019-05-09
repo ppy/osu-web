@@ -91,10 +91,6 @@ export default class Worker {
       return;
     }
 
-    if (this.endpoint == null) {
-      return;
-    }
-
     if (this.timeout.connectWebSocket != null) {
       clearTimeout(this.timeout.connectWebSocket);
     }
