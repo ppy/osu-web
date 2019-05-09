@@ -40,6 +40,10 @@
   // to make broken cover images less ugly
   overflow: hidden;
 
+  .qtip--user-card & {
+    width: @user-card-width;
+  }
+
   &--has-outline::after {
     .@{top}:hover&, .@{top}--active& {
       .full-size();
