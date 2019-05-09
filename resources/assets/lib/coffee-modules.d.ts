@@ -1,6 +1,17 @@
 /* tslint:disable:max-classes-per-file */
 
 // importable coffeescript modules
+declare module 'block-button' {
+  interface Props {
+    modifiers?: string[];
+    userId: number;
+    wrapperClass?: string;
+  }
+
+  class BlockButton extends React.PureComponent<Props> {}
+}
+
+
 declare module 'big-button' {
   class BigButton extends React.PureComponent<any> {}
 }
@@ -80,4 +91,14 @@ declare module 'report-score' {
   }
 
   class ReportScore extends React.PureComponent<Props> {}
+}
+
+declare module 'report-user' {
+  interface Props {
+    modifiers?: string[];
+    user: User;
+    wrapperClass?: string;
+  }
+
+  class ReportUser extends React.PureComponent<Props> {}
 }
