@@ -64,10 +64,6 @@ export class PopupMenu extends PureComponent
     @portal.style.top = "#{Math.floor(top + $element.height() / 2)}px"
     @portal.style.left = "#{Math.floor(left + $element.width())}px"
 
-    tooltipElement = @tooltipElement()[0]
-    if tooltipElement?
-      @portal.style.zIndex = +tooltipElement.style.zIndex + 1
-
 
   componentDidUpdate: (_prevProps, prevState) =>
     return if prevState.active == @state.active
