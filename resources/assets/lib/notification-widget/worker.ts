@@ -326,6 +326,6 @@ export default class Worker {
       ret++;
     }
 
-    return ret;
+    return Math.max(ret, 0);
   }
 }
