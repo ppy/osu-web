@@ -170,7 +170,8 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
               href={laroute.route('messages.users.show', { user: this.user.id })}
               onClick={dismiss}
             >
-              {osu.trans('users.card.send_message')}
+              <span className='fas fa-envelope' />
+              {` ${osu.trans('users.card.send_message')}`}
             </a>
           ) : null
         }
