@@ -88,10 +88,7 @@ class BeatmapsetTest extends TestCase
     public function testLimitedBNGNominatingBNGNominated()
     {
         $beatmapset = $this->createBeatmapset();
-
-        $user = factory(User::class)->create();
-        $user->userGroups()->create(['group_id' => UserGroup::GROUPS['bng']]);
-        $beatmapset->nominate($user);
+        $this->fillNominationsExceptLast($beatmapset, 'bng');
 
         $nominator = factory(User::class)->create();
         $nominator->userGroups()->create(['group_id' => UserGroup::GROUPS['bng_limited']]);
@@ -105,10 +102,7 @@ class BeatmapsetTest extends TestCase
     public function testLimitedBNGNominatingNATNominated()
     {
         $beatmapset = $this->createBeatmapset();
-
-        $user = factory(User::class)->create();
-        $user->userGroups()->create(['group_id' => UserGroup::GROUPS['nat']]);
-        $beatmapset->nominate($user);
+        $this->fillNominationsExceptLast($beatmapset, 'nat');
 
         $nominator = factory(User::class)->create();
         $nominator->userGroups()->create(['group_id' => UserGroup::GROUPS['bng_limited']]);
@@ -119,10 +113,7 @@ class BeatmapsetTest extends TestCase
     public function testLimitedBNGNominatingLimitedBNGNominated()
     {
         $beatmapset = $this->createBeatmapset();
-
-        $user = factory(User::class)->create();
-        $user->userGroups()->create(['group_id' => UserGroup::GROUPS['bng_limited']]);
-        $beatmapset->nominate($user);
+        $this->fillNominationsExceptLast($beatmapset, 'bng_limited');
 
         $nominator = factory(User::class)->create();
         $nominator->userGroups()->create(['group_id' => UserGroup::GROUPS['bng_limited']]);
@@ -150,5 +141,25 @@ class BeatmapsetTest extends TestCase
         factory(BeatmapMirror::class)->states('default')->create();
 
         return $beatmapset;
+    }
+
+    /**
+     * Fills a beatmpaset's nominations until one nomination left to qualify.
+     *
+     * @param Beatmapset $beatmapset Beatmapset to fill the nominations for.
+     * @param string $group A least one nomination will be by a user from this group.
+     *
+     * @return void
+     */
+    private function fillNominationsExceptLast(Beatmapset $beatmapset, string $group)
+    {
+        $user = factory(User::class)->create();
+        $user->userGroups()->create(['group_id' => UserGroup::GROUPS[$group]]);
+        $beatmapset->nominate($user);
+
+        $count = $beatmapset->requiredNominationCount() - $beatmapset->currentNominationCount() - 1;
+        for ($i = 0; $i < $count; $i++) {
+            $beatmapset->nominate(factory(User::class)->create());
+        }
     }
 }
