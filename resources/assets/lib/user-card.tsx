@@ -176,8 +176,8 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
           ) : null
         }
 
-        <BlockButton modifiers={['inline']} userId={this.user.id} wrapperClass='simple-menu__item' />
-        <ReportUser modifiers={['inline']} user={this.user} wrapperClass='simple-menu__item' />
+        <BlockButton onClick={dismiss} modifiers={['inline']} userId={this.user.id} wrapperClass='simple-menu__item' />
+        <ReportUser onFormClose={dismiss} modifiers={['inline']} user={this.user} wrapperClass='simple-menu__item' />
       </>
     );
 

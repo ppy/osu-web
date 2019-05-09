@@ -3,6 +3,7 @@
 // importable coffeescript modules
 declare module 'block-button' {
   interface Props {
+    onClick?: () => void;
     modifiers?: string[];
     userId: number;
     wrapperClass?: string;
@@ -95,6 +96,7 @@ declare module 'report-score' {
 
 declare module 'report-user' {
   interface Props {
+    onFormClose?: () => void;
     modifiers?: string[];
     user: User;
     wrapperClass?: string;

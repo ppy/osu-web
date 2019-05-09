@@ -24,6 +24,9 @@ el = React.createElement
 bn = 'textual-button'
 
 export class BlockButton extends React.PureComponent
+  @defaultProps =
+    onClick: -> # do nothing
+
   constructor: (props) ->
     super props
 
@@ -47,6 +50,7 @@ export class BlockButton extends React.PureComponent
 
 
   clicked: (e) =>
+    @props.onClick()
     return if !confirm osu.trans('common.confirmation')
 
     @setState loading: true, =>

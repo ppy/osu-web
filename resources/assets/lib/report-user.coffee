@@ -24,6 +24,9 @@ import { ReportForm } from 'report-form'
 bn = 'textual-button'
 
 export class ReportUser extends PureComponent
+  @defaultProps =
+    onClick: -> # do nothing
+
   constructor: (props) ->
     super props
 
@@ -67,6 +70,8 @@ export class ReportUser extends PureComponent
 
 
   onFormClose: =>
+    @props.onFormClose()
+
     @setState
       disabled: false
       showingForm: false
