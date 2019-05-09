@@ -55,6 +55,7 @@ return [
         'search' => 'Search',
         'see_more' => 'see more',
         'show' => 'show',
+        'show_deleted' => 'Show deleted',
         'show_more' => 'show more',
         'show_more_options' => 'show more options',
         'upload_image' => 'upload image',

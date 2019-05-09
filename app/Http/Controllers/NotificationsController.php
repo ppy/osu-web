@@ -50,7 +50,7 @@ class NotificationsController extends Controller
 
         $maxId = get_int(request('max_id'));
         if (isset($maxId)) {
-            $userNotificationsQuery->where('id', '<=', $maxId);
+            $userNotificationsQuery->where('notification_id', '<=', $maxId);
         }
 
         $userNotifications = $userNotificationsQuery->get();
