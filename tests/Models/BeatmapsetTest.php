@@ -32,8 +32,6 @@ class BeatmapsetTest extends TestCase
     {
         $user = factory(User::class)->create();
         $beatmapset = $this->createBeatmapset();
-        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        factory(BeatmapMirror::class)->states('default')->create();
 
         $notifications = Notification::count();
         $userNotifications = UserNotification::count();
@@ -52,8 +50,6 @@ class BeatmapsetTest extends TestCase
     {
         $user = factory(User::class)->create();
         $beatmapset = $this->createBeatmapset();
-        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        factory(BeatmapMirror::class)->states('default')->create();
 
         $notifications = Notification::count();
         $userNotifications = UserNotification::count();
@@ -72,8 +68,6 @@ class BeatmapsetTest extends TestCase
     {
         $user = factory(User::class)->create();
         $beatmapset = $this->createBeatmapset();
-        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        factory(BeatmapMirror::class)->states('default')->create();
 
         $notifications = Notification::count();
         $userNotifications = UserNotification::count();
@@ -94,8 +88,6 @@ class BeatmapsetTest extends TestCase
     public function testLimitedBNGNominatingBNGNominated()
     {
         $beatmapset = $this->createBeatmapset();
-        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        factory(BeatmapMirror::class)->states('default')->create();
 
         $user = factory(User::class)->create();
         $user->userGroups()->create(['group_id' => UserGroup::GROUPS['bng']]);
@@ -113,8 +105,6 @@ class BeatmapsetTest extends TestCase
     public function testLimitedBNGNominatingNATNominated()
     {
         $beatmapset = $this->createBeatmapset();
-        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        factory(BeatmapMirror::class)->states('default')->create();
 
         $user = factory(User::class)->create();
         $user->userGroups()->create(['group_id' => UserGroup::GROUPS['nat']]);
@@ -129,8 +119,6 @@ class BeatmapsetTest extends TestCase
     public function testLimitedBNGNominatingLimitedBNGNominated()
     {
         $beatmapset = $this->createBeatmapset();
-        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        factory(BeatmapMirror::class)->states('default')->create();
 
         $user = factory(User::class)->create();
         $user->userGroups()->create(['group_id' => UserGroup::GROUPS['bng_limited']]);
@@ -157,6 +145,10 @@ class BeatmapsetTest extends TestCase
             $params['user_id'] = $user->getKey();
         }
 
-        return factory(Beatmapset::class)->create(array_merge($defaultParams, $params));
+        $beatmapset = factory(Beatmapset::class)->create(array_merge($defaultParams, $params));
+        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        factory(BeatmapMirror::class)->states('default')->create();
+
+        return $beatmapset;
     }
 }
