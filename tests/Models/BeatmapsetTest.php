@@ -82,10 +82,7 @@ class BeatmapsetTest extends TestCase
         $this->assertTrue($beatmapset->fresh()->isQualified());
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
-    public function testLimitedBNGNominatingBNGNominated()
+    public function testLimitedBNGQualifyingNominationBNGNominated()
     {
         $beatmapset = $this->createBeatmapset();
         $this->fillNominationsExceptLast($beatmapset, 'bng');
@@ -94,12 +91,11 @@ class BeatmapsetTest extends TestCase
         $nominator->userGroups()->create(['group_id' => UserGroup::GROUPS['bng_limited']]);
 
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
+        $beatmapset->nominate($nominator);
+        $this->assertTrue($beatmapset->isQualified());
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
-    public function testLimitedBNGNominatingNATNominated()
+    public function testLimitedBNGQualifyingNominationNATNominated()
     {
         $beatmapset = $this->createBeatmapset();
         $this->fillNominationsExceptLast($beatmapset, 'nat');
@@ -108,9 +104,11 @@ class BeatmapsetTest extends TestCase
         $nominator->userGroups()->create(['group_id' => UserGroup::GROUPS['bng_limited']]);
 
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
+        $beatmapset->nominate($nominator);
+        $this->assertTrue($beatmapset->isQualified());
     }
 
-    public function testLimitedBNGNominatingLimitedBNGNominated()
+    public function testLimitedBNGQualifyingNominationLimitedBNGNominated()
     {
         $beatmapset = $this->createBeatmapset();
         $this->fillNominationsExceptLast($beatmapset, 'bng_limited');
@@ -122,7 +120,7 @@ class BeatmapsetTest extends TestCase
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
     }
 
-    private function createBeatmapset($params = [])
+    private function createBeatmapset($params = []) : Beatmapset
     {
         $defaultParams = [
             'discussion_enabled' => true,
