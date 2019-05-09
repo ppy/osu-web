@@ -83,7 +83,6 @@ export default class Worker {
     this.active = this.userId != null;
     this.updatePmNotification();
     this.loadMore();
-    this.connectWebSocket();
     $(document).on('turbolinks:load', this.updatePmNotification);
   }
 
