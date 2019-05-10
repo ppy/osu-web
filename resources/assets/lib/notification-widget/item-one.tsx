@@ -19,19 +19,10 @@
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import LegacyPmNotification from 'models/legacy-pm-notification';
-import Notification from 'models/notification';
 import * as React from 'react';
 import { Spinner } from 'spinner';
-import Worker from './worker';
-
-interface Props {
-  item: Notification;
-  worker: Worker;
-}
-
-interface State {
-  markingAsRead: boolean;
-}
+import ItemProps from './item-props';
+import { withMarkRead, WithMarkReadProps } from './with-mark-read';
 
 interface IconsMap {
   [key: string]: string[];
@@ -50,27 +41,12 @@ const ITEM_NAME_ICONS: IconsMap = {
   legacy_pm: ['fas fa-envelope'],
 };
 
-@observer
-export default class ItemOne extends React.Component<Props, State> {
-
-  state = {
-    markingAsRead: false,
-  };
-  private isComponentMounted = false;
-
-  componentDidMount() {
-    this.isComponentMounted = true;
-  }
-
-  componentWillUnmount() {
-    this.isComponentMounted = false;
-  }
-
+export default withMarkRead(observer(class ItemOne extends React.Component<ItemProps & WithMarkReadProps, {}> {
   render() {
     const item = this.props.item;
 
     return (
-      <div className='notification-popup-item clickable-row' onClick={this.markRead}>
+      <div className='notification-popup-item clickable-row' onClick={this.props.markRead}>
         <div
           className='notification-popup-item__cover'
           style={{
@@ -83,12 +59,12 @@ export default class ItemOne extends React.Component<Props, State> {
         </div>
         <div className='notification-popup-item__main'>
           <div className='notification-popup-item__content'>
-            <div className='notification-popup-item__name'>
+            <div className='notification-popup-item__row notification-popup-item__row--name'>
               {osu.trans(`notifications.item.${item.objectType}.${item.category}._`)}
             </div>
             {this.renderMessage()}
             <div
-              className='notification-popup-item__time'
+              className='notification-popup-item__row notification-popup-item__row--time'
               dangerouslySetInnerHTML={{
                 __html: osu.timeago(item.createdAtJson),
               }}
@@ -100,28 +76,6 @@ export default class ItemOne extends React.Component<Props, State> {
         </div>
       </div>
     );
-  }
-
-  private markRead = () => {
-    if (this.state.markingAsRead) {
-      return;
-    }
-
-    if (this.props.item.id < 0) {
-      return;
-    }
-
-    this.setState({ markingAsRead: true });
-    const ids = [this.props.item.id];
-
-    this.props.worker.sendMarkRead(ids)
-    .fail(() => {
-      if (!this.isComponentMounted) {
-        return;
-      }
-
-      this.setState({ markingAsRead: false });
-    });
   }
 
   private renderCoverIcon() {
@@ -147,11 +101,11 @@ export default class ItemOne extends React.Component<Props, State> {
   }
 
   private renderMarkAsReadButton() {
-    if (this.props.item.id < 0) {
+    if (!this.props.canMarkRead) {
       return null;
     }
 
-    if (this.state.markingAsRead) {
+    if (this.props.markingAsRead) {
       return (
         <div className='notification-popup-item__read-button'>
           <Spinner />
@@ -187,7 +141,7 @@ export default class ItemOne extends React.Component<Props, State> {
     }
 
     return (
-      <a href={this.url()} className='notification-popup-item__message clickable-row-link'>
+      <a href={this.url()} className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'>
         {message}
       </a>
     );
@@ -248,4 +202,4 @@ export default class ItemOne extends React.Component<Props, State> {
       return laroute.route(route, params);
     }
   }
-}
+}));

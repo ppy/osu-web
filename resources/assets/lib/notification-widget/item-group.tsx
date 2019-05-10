@@ -23,16 +23,11 @@ import Notification from 'models/notification';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import ItemCompact from './item-compact';
-import Worker from './worker';
-
-interface Props {
-  items: Notification[];
-  worker: Worker;
-}
+import ItemProps from './item-props';
+import { withMarkRead, WithMarkReadProps } from './with-mark-read';
 
 interface State {
   expanded: boolean;
-  markingAsRead: boolean;
 }
 
 interface IconsMap {
@@ -46,45 +41,21 @@ const ITEM_CATEGORY_ICONS: IconsMap = {
   legacy_pm: ['fas fa-envelope'],
 };
 
-const ITEM_NAME_ICONS: IconsMap = {
-  beatmapset_discussion_lock: ['fas fa-drafting-compass', 'fas fa-lock'],
-  beatmapset_discussion_post_new: ['fas fa-drafting-compass', 'fas fa-comment-medical'],
-  beatmapset_discussion_unlock: ['fas fa-drafting-compass', 'fas fa-unlock'],
-  beatmapset_disqualify: ['fas fa-drafting-compass', 'far fa-times-circle'],
-  beatmapset_love: ['fas fa-drafting-compass', 'fas fa-heart'],
-  beatmapset_nominate: ['fas fa-drafting-compass', 'fas fa-vote-yea'],
-  beatmapset_qualify: ['fas fa-drafting-compass', 'fas fa-check'],
-  beatmapset_reset_nominations: ['fas fa-drafting-compass', 'fas fa-undo'],
-  forum_topic_reply: ['fas fa-comment-medical'],
-  legacy_pm: ['fas fa-envelope'],
-};
-
-@observer
-export default class ItemGroup extends React.Component<Props, State> {
+export default withMarkRead(observer(class ItemGroup extends React.Component<ItemProps & WithMarkReadProps, State> {
   state = {
     expanded: false,
-    markingAsRead: false,
   };
-  private isComponentMounted = false;
-
-  componentDidMount() {
-    this.isComponentMounted = true;
-  }
-
-  componentWillUnmount() {
-    this.isComponentMounted = false;
-  }
 
   render() {
     if (this.props.items.length === 0) {
       return null;
     }
 
-    const item = this.props.items[0];
+    const item = this.props.item;
 
     return (
       <div className='notification-popup-item-group'>
-        <div className='notification-popup-item notification-popup-item--group clickable-row' onClick={this.markReadFallback}>
+        <div className='notification-popup-item notification-popup-item--group clickable-row' onClick={this.props.markReadFallback}>
           <div
             className='notification-popup-item__cover'
             style={{
@@ -97,12 +68,12 @@ export default class ItemGroup extends React.Component<Props, State> {
           </div>
           <div className='notification-popup-item__main'>
             <div className='notification-popup-item__content'>
-              <div className='notification-popup-item__name'>
+              <div className='notification-popup-item__row notification-popup-item__row--name'>
                 {osu.trans(`notifications.item.${item.objectType}.${item.category}._`)}
               </div>
               {this.renderMessage()}
               <div
-                className='notification-popup-item__time'
+                className='notification-popup-item__row notification-popup-item__row--time'
                 dangerouslySetInnerHTML={{
                   __html: osu.timeago(item.createdAtJson),
                 }}
@@ -119,34 +90,6 @@ export default class ItemGroup extends React.Component<Props, State> {
         {this.renderItems()}
       </div>
     );
-  }
-
-  private markRead = () => {
-    if (this.state.markingAsRead) {
-      return;
-    }
-
-    if (this.props.items.length === 0 || this.props.items[0].id < 0) {
-      return;
-    }
-
-    this.setState({ markingAsRead: true });
-    const ids = this.props.items.map((i) => i.id);
-
-    this.props.worker.sendMarkRead(ids)
-    .fail(() => {
-      if (!this.isComponentMounted) {
-        return;
-      }
-
-      this.setState({ markingAsRead: false });
-    });
-  }
-
-  private markReadFallback = (event: React.MouseEvent<HTMLElement>) => {
-    if (!osu.isClickable(event.target as HTMLElement)) {
-      this.markRead();
-    }
   }
 
   private renderCoverIcon() {
@@ -197,7 +140,7 @@ export default class ItemGroup extends React.Component<Props, State> {
   private renderItem = (item: Notification) => {
     return (
       <div className='notification-popup-item-group__item' key={item.id}>
-        <ItemCompact item={item} worker={this.props.worker} />
+        <ItemCompact item={item} items={[item]} worker={this.props.worker} />
       </div>
     );
   }
@@ -211,11 +154,11 @@ export default class ItemGroup extends React.Component<Props, State> {
   }
 
   private renderMarkAsReadButton() {
-    if (this.props.items[0].id < 0) {
+    if (!this.props.canMarkRead) {
       return null;
     }
 
-    if (this.state.markingAsRead) {
+    if (this.props.markingAsRead) {
       return (
         <div className='notification-popup-item__read-button'>
           <Spinner />
@@ -226,7 +169,7 @@ export default class ItemGroup extends React.Component<Props, State> {
         <button
           type='button'
           className='notification-popup-item__read-button'
-          onClick={this.markRead}
+          onClick={this.props.markRead}
         >
           <span className='fas fa-times' />
         </button>
@@ -240,7 +183,7 @@ export default class ItemGroup extends React.Component<Props, State> {
     }
 
     return (
-      <a href={this.url()} className='notification-popup-item__message clickable-row-link'>
+      <a href={this.url()} className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'>
         {this.props.items[0].details.title}
       </a>
     );
@@ -251,11 +194,7 @@ export default class ItemGroup extends React.Component<Props, State> {
   }
 
   private url() {
-    if (this.props.items.length === 0) {
-      return;
-    }
-
-    const item = this.props.items[0];
+    const item = this.props.item;
 
     if (item instanceof LegacyPmNotification) {
       return '/forum/ucp.php?i=pm&folder=inbox';
@@ -279,4 +218,4 @@ export default class ItemGroup extends React.Component<Props, State> {
       return laroute.route(route, params);
     }
   }
-}
+}));
