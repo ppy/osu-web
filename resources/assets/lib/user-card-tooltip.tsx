@@ -42,50 +42,15 @@ interface StateInterface extends ActiveKeyState {
 }
 
 const triggerDelay = 200;
-const userCardTooltipSelector = '.qtip--user-card';
+const userCardTooltipClass = 'qtip--user-card';
 let inCard = false;
 let tooltipWithActiveMenu: any;
 
-function onMouseEnter() {
-  inCard = true;
-}
-
-function onMouseLeave() {
-  inCard = false;
-}
-
-function onMouseOver(event: JQueryEventObject) {
-  if (tooltipWithActiveMenu != null) { return; }
-  if (osu.isMobile()) { return; }
-
-  const el = event.currentTarget as HTMLElement;
-  const userId = el.dataset.userId;
-  if (userId == null) { return; }
-  // don't show cards for blocked users
-  if (_.find(currentUser.blocks, { target_id: parseInt(userId, 10)})) { return; }
-
-  if (el._tooltip == null) {
-    return createTooltip(el);
-  }
-
-  if (el._tooltip !== el.dataset.userId) {
-    // wrong userId, destroy current tooltip
-    $(el).qtip('api').destroy();
-  }
-}
-
-function onBeforeCache() {
-  inCard = false;
-  tooltipWithActiveMenu = null;
-}
-
-function handleForceHide(event: JQueryEventObject) {
-  if (inCard) { return; }
-  if (event.keyCode === 27
-    || (event.button === 0 && tooltipWithActiveMenu == null)) {
-      $(userCardTooltipSelector).qtip('hide');
-  }
-}
+$(document).on('mouseover', '.js-usercard', onMouseOver);
+$(document).on('mousedown keydown', handleForceHide);
+$(document).on('mouseenter', '.js-react--user-card-tooltip', onMouseEnter);
+$(document).on('mouseleave', '.js-react--user-card-tooltip', onMouseLeave);
+$(document).on('turbolinks:before-cache', onBeforeCache);
 
 function createTooltip(element: HTMLElement) {
   const userId = element.dataset.userId;
@@ -123,13 +88,54 @@ function createTooltip(element: HTMLElement) {
       ready: true,
     },
     style: {
-      classes: 'qtip--user-card',
+      classes: userCardTooltipClass,
       def: false,
       tip: false,
     },
   };
 
   $(element).qtip(options);
+}
+
+function handleForceHide(event: JQueryEventObject) {
+  if (inCard) { return; }
+  if (event.keyCode === 27
+    || (event.button === 0 && tooltipWithActiveMenu == null)) {
+      $(`.${userCardTooltipClass}`).qtip('hide');
+  }
+}
+
+function onBeforeCache() {
+  inCard = false;
+  tooltipWithActiveMenu = null;
+}
+
+function onMouseEnter() {
+  inCard = true;
+}
+
+function onMouseLeave() {
+  inCard = false;
+}
+
+function onMouseOver(event: JQueryEventObject) {
+  if (tooltipWithActiveMenu != null) { return; }
+  if (osu.isMobile()) { return; }
+
+  const el = event.currentTarget as HTMLElement;
+  const userId = el.dataset.userId;
+  if (userId == null) { return; }
+  // don't show cards for blocked users
+  if (_.find(currentUser.blocks, { target_id: parseInt(userId, 10)})) { return; }
+
+  if (el._tooltip == null) {
+    return createTooltip(el);
+  }
+
+  if (el._tooltip !== el.dataset.userId) {
+    // wrong userId, destroy current tooltip
+    $(el).qtip('api').destroy();
+  }
 }
 
 function showEffect() {
@@ -139,17 +145,12 @@ function showEffect() {
 function hideEffect() {
   $(this).fadeTo(110, 0);
 }
+
 function shouldShow(event: JQueryEventObject) {
   if (tooltipWithActiveMenu != null || osu.isMobile()) {
     event.preventDefault();
   }
 }
-
-$(document).on('mouseover', '.js-usercard', onMouseOver);
-$(document).on('mousedown keydown', handleForceHide);
-$(document).on('mouseenter', '.js-react--user-card-tooltip', onMouseEnter);
-$(document).on('mouseleave', '.js-react--user-card-tooltip', onMouseLeave);
-$(document).on('turbolinks:before-cache', onBeforeCache);
 
 /**
  * This component's job is to get the data and bootstrap the actual UserCard component for tooltips.
@@ -159,7 +160,7 @@ export class UserCardTooltip extends React.PureComponent<PropsInterface, StateIn
     tooltipWithActiveMenu = key;
     activeKeyDidChange.bind(this)(key);
     if (key == null) {
-      $(userCardTooltipSelector).qtip('hide');
+      $(`.${userCardTooltipClass}`).qtip('hide');
     }
   }
 
