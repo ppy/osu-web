@@ -25,7 +25,7 @@ import { Spinner } from 'spinner';
 import Worker from './worker';
 
 interface Props {
-  items: Notification[];
+  item: Notification;
   worker: Worker;
 }
 
@@ -36,13 +36,6 @@ interface State {
 interface IconsMap {
   [key: string]: string[];
 }
-
-const ITEM_CATEGORY_ICONS: IconsMap = {
-  beatmapset_discussion: ['fas fa-drafting-compass', 'fas fa-comment'],
-  beatmapset_state: ['fas fa-drafting-compass'],
-  forum_topic_reply: ['fas fa-comment-medical'],
-  legacy_pm: ['fas fa-envelope'],
-};
 
 const ITEM_NAME_ICONS: IconsMap = {
   beatmapset_discussion_lock: ['fas fa-drafting-compass', 'fas fa-lock'],
@@ -58,7 +51,7 @@ const ITEM_NAME_ICONS: IconsMap = {
 };
 
 @observer
-export default class Item extends React.Component<Props, State> {
+export default class ItemOne extends React.Component<Props, State> {
 
   state = {
     markingAsRead: false,
@@ -74,17 +67,7 @@ export default class Item extends React.Component<Props, State> {
   }
 
   render() {
-    if (this.props.items.length === 0) {
-      return null;
-    }
-
-    const item = this.props.items[0];
-
-    let blockClass = 'notification-popup-item';
-
-    if (this.props.items.length > 0) {
-      blockClass += ' notification-popup-item--multi';
-    }
+    const item = this.props.item;
 
     return (
       <div className='notification-popup-item clickable-row' onClick={this.markRead}>
@@ -119,20 +102,36 @@ export default class Item extends React.Component<Props, State> {
     );
   }
 
-  private renderCoverIcon() {
-    if (this.props.items.length === 0) {
-      return null;
+  private markRead = () => {
+    if (this.state.markingAsRead) {
+      return;
     }
 
-    const item = this.props.items[0];
+    if (this.props.item.id < 0) {
+      return;
+    }
+
+    this.setState({ markingAsRead: true });
+    const ids = [this.props.item.id];
+
+    this.props.worker.sendMarkRead(ids)
+    .fail(() => {
+      if (!this.isComponentMounted) {
+        return;
+      }
+
+      this.setState({ markingAsRead: false });
+    });
+  }
+
+  private renderCoverIcon() {
+    const item = this.props.item;
 
     if (item.name == null || item.category == null) {
       return null;
     }
 
-    const icons = this.props.items.length === 1
-      ? ITEM_NAME_ICONS[item.name]
-      : ITEM_CATEGORY_ICONS[item.category];
+    const icons = ITEM_NAME_ICONS[item.name];
 
     if (icons == null) {
       return null;
@@ -148,7 +147,7 @@ export default class Item extends React.Component<Props, State> {
   }
 
   private renderMarkAsReadButton() {
-    if (this.props.items[0].id < 0) {
+    if (this.props.item.id < 0) {
       return null;
     }
 
@@ -171,11 +170,7 @@ export default class Item extends React.Component<Props, State> {
   }
 
   private renderMessage() {
-    if (this.props.items.length === 0) {
-      return null;
-    }
-
-    const item = this.props.items[0];
+    const item = this.props.item;
     let message: string;
 
     const replacements = {
@@ -183,16 +178,12 @@ export default class Item extends React.Component<Props, State> {
       username: item.details.username,
     };
 
-    if (this.props.items.length === 1) {
-      const key = `notifications.item.${item.objectType}.${item.category}.${item.name}`;
+    const key = `notifications.item.${item.objectType}.${item.category}.${item.name}`;
 
-      if (item instanceof LegacyPmNotification) {
-        message = osu.transChoice(key, item.details.count, replacements);
-      } else {
-        message = osu.trans(key, replacements);
-      }
+    if (item instanceof LegacyPmNotification) {
+      message = osu.transChoice(key, item.details.count, replacements);
     } else {
-      message = osu.transChoice(`notifications.message_multi`, this.props.items.length, replacements);
+      message = osu.trans(key, replacements);
     }
 
     return (
@@ -202,34 +193,8 @@ export default class Item extends React.Component<Props, State> {
     );
   }
 
-  private markRead = () => {
-    if (this.state.markingAsRead) {
-      return;
-    }
-
-    if (this.props.items.length === 0 || this.props.items[0].id < 0) {
-      return;
-    }
-
-    this.setState({ markingAsRead: true });
-    const ids = this.props.items.map((i) => i.id);
-
-    this.props.worker.sendMarkRead(ids)
-    .fail(() => {
-      if (!this.isComponentMounted) {
-        return;
-      }
-
-      this.setState({ markingAsRead: false });
-    });
-  }
-
   private url() {
-    if (this.props.items.length === 0) {
-      return;
-    }
-
-    const item = this.props.items[0];
+    const item = this.props.item;
 
     if (item instanceof LegacyPmNotification) {
       return '/forum/ucp.php?i=pm&folder=inbox';
@@ -238,58 +203,45 @@ export default class Item extends React.Component<Props, State> {
     let route: string = '';
     let params: any;
 
-    if (this.props.items.length === 1) {
-      switch (item.name) {
-        case 'beatmapset_discussion_lock':
-          route = 'beatmapsets.discussion';
-          params = { beatmapset: item.objectId };
-          break;
-        case 'beatmapset_discussion_post_new':
-          return BeatmapDiscussionHelper.url({
-            beatmapId: item.details.beatmapId,
-            beatmapsetId: item.objectId,
-            discussionId: item.details.discussionId,
-          });
-        case 'beatmapset_discussion_unlock':
-          route = 'beatmapsets.discussion';
-          params = { beatmapset: item.objectId };
-          break;
-        case 'beatmapset_disqualify':
-          route = 'beatmapsets.discussion';
-          params = { beatmapset: item.objectId };
-          break;
-        case 'beatmapset_love':
-          route = 'beatmapsets.show';
-          params = { beatmapset: item.objectId };
-          break;
-        case 'beatmapset_nominate':
-          route = 'beatmapsets.discussion';
-          params = { beatmapset: item.objectId };
-          break;
-        case 'beatmapset_qualify':
-          route = 'beatmapsets.discussion';
-          params = { beatmapset: item.objectId };
-          break;
-        case 'beatmapset_reset_nominations':
-          route = 'beatmapsets.discussion';
-          params = { beatmapset: item.objectId };
-          break;
-        case 'forum_topic_reply':
-          route = 'forum.posts.show';
-          params = { post: item.details.postId };
-          break;
-      }
-    } else {
-      switch (item.objectType) {
-        case 'beatmapset':
-          route = 'beatmapsets.discussion';
-          params = { beatmapset: item.objectId };
-          break;
-        case 'forum_topic':
-          route = 'forum.topics.show';
-          params = { topic: item.objectId, start: 'unread' };
-          break;
-      }
+    switch (item.name) {
+      case 'beatmapset_discussion_lock':
+        route = 'beatmapsets.discussion';
+        params = { beatmapset: item.objectId };
+        break;
+      case 'beatmapset_discussion_post_new':
+        return BeatmapDiscussionHelper.url({
+          beatmapId: item.details.beatmapId,
+          beatmapsetId: item.objectId,
+          discussionId: item.details.discussionId,
+        });
+      case 'beatmapset_discussion_unlock':
+        route = 'beatmapsets.discussion';
+        params = { beatmapset: item.objectId };
+        break;
+      case 'beatmapset_disqualify':
+        route = 'beatmapsets.discussion';
+        params = { beatmapset: item.objectId };
+        break;
+      case 'beatmapset_love':
+        route = 'beatmapsets.show';
+        params = { beatmapset: item.objectId };
+        break;
+      case 'beatmapset_nominate':
+        route = 'beatmapsets.discussion';
+        params = { beatmapset: item.objectId };
+        break;
+      case 'beatmapset_qualify':
+        route = 'beatmapsets.discussion';
+        params = { beatmapset: item.objectId };
+        break;
+      case 'beatmapset_reset_nominations':
+        route = 'beatmapsets.discussion';
+        params = { beatmapset: item.objectId };
+        break;
+      case 'forum_topic_reply':
+        route = 'forum.posts.show';
+        params = { post: item.details.postId };
+        break;
     }
 
     if (route != null) {

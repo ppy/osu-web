@@ -29,18 +29,26 @@ return [
 
             'beatmapset_discussion' => [
                 '_' => 'Beatmap discussion',
-                'beatmapset_discussion_lock' => 'Beatmap ":title" has been locked for discussion.',
-                'beatmapset_discussion_post_new' => ':username posted new message in ":title" beatmap discussion.',
-                'beatmapset_discussion_unlock' => 'Beatmap ":title" has been unlocked for discussion.',
+                'beatmapset_discussion_lock' => 'Beatmap ":title" has been locked for discussion',
+                'beatmapset_discussion_lock_compact' => 'Locked for discussion',
+                'beatmapset_discussion_post_new' => ':username posted new message in ":title" beatmap discussion',
+                'beatmapset_discussion_post_new_compact' => ':username posted new message',
+                'beatmapset_discussion_unlock' => 'Beatmap ":title" has been unlocked for discussion',
+                'beatmapset_discussion_unlock_compact' => 'Unlocked for discussion',
             ],
 
             'beatmapset_state' => [
                 '_' => 'Beatmap status changed',
-                'beatmapset_disqualify' => 'Beatmap ":title" has been disqualified by :username.',
-                'beatmapset_love' => 'Beatmap ":title" has been promoted as loved by :username.',
-                'beatmapset_nominate' => 'Beatmap ":title" has been nominated by :username.',
-                'beatmapset_qualify' => 'Beatmap ":title" has been gotten enough nominations and thus queued for ranking.',
-                'beatmapset_reset_nominations' => 'Issue posted by :username reset nomination of beatmap ":title" ',
+                'beatmapset_disqualify' => 'Beatmap ":title" has been disqualified by :username',
+                'beatmapset_disqualify_compact' => 'Disqualified by :username',
+                'beatmapset_love' => 'Beatmap ":title" has been promoted as loved by :username',
+                'beatmapset_love_compact' => 'Promoted as loved by :username',
+                'beatmapset_nominate' => 'Beatmap ":title" has been nominated by :username',
+                'beatmapset_nominate_compact' => 'Nominated by :username',
+                'beatmapset_qualify' => 'Beatmap ":title" has been gotten enough nominations and thus queued for ranking',
+                'beatmapset_qualify_compact' => 'Queued for ranking',
+                'beatmapset_reset_nominations' => 'Issue posted by :username reset nomination of beatmap ":title"',
+                'beatmapset_reset_nominations_compact' => 'Issue posted by :username reset nomination',
             ],
         ],
 
@@ -49,7 +57,8 @@ return [
 
             'forum_topic_reply' => [
                 '_' => 'New forum reply',
-                'forum_topic_reply' => ':username replied to forum topic ":title".',
+                'forum_topic_reply' => ':username replied to ":title"',
+                'forum_topic_reply_compact' => ':username replied',
             ],
         ],
 
@@ -58,7 +67,7 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited unread message.|:count_delimited unread messages.',
+                'legacy_pm' => ':count_delimited unread message|:count_delimited unread messages',
             ],
         ],
     ],

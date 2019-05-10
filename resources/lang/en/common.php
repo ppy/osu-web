@@ -71,6 +71,7 @@ return [
         'minutes' => ':count_delimited minute|:count_delimited minutes',
         'months' => ':count_delimited month|:count_delimited months',
         'second_short_unit' => 'sec|secs',
+        'update' => ':count_delimited update|:count_delimited updates',
         'years' => ':count_delimited year|:count_delimited years',
     ],
 

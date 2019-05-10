@@ -22,7 +22,8 @@ import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import * as React from 'react';
 import { Spinner } from 'spinner';
-import CategoryGroup from './category-group';
+import ItemGroup from './item-group';
+import ItemOne from './item-one';
 import Worker from './worker';
 
 interface Props {
@@ -77,6 +78,20 @@ export default class TypeGroup extends React.Component<Props, State> {
     );
   }
 
+  private markRead = () => {
+    this.setState({ markingAsRead: true });
+    const ids = this.props.items.map((i) => i.id);
+
+    this.props.worker.sendMarkRead(ids)
+    .fail(() => {
+      if (!this.isComponentMounted) {
+        return;
+      }
+
+      this.setState({ markingAsRead: false });
+    });
+  }
+
   private renderItems() {
     const categoryGroup: Map<string, Notification[]> = new Map();
 
@@ -99,7 +114,21 @@ export default class TypeGroup extends React.Component<Props, State> {
     const items: React.ReactNode[] = [];
 
     categoryGroup.forEach((value, key) => {
-      items.push(<CategoryGroup key={key} items={value} worker={this.props.worker} />);
+      if (value.length === 0) {
+        return;
+      }
+
+      let item: React.ReactNode;
+
+      if (value.length === 1) {
+        item = <ItemOne item={value[0]} worker={this.props.worker} />;
+      } else if (value.length > 1) {
+        item = <ItemGroup items={value} worker={this.props.worker} />;
+      }
+
+      items.push(
+        <div className={`${bn}__item`} key={key}>{item}</div>,
+      );
     });
 
     return items;
@@ -144,19 +173,5 @@ export default class TypeGroup extends React.Component<Props, State> {
         {osu.formatNumber(this.props.items.length)}
       </span>
     );
-  }
-
-  private markRead = () => {
-    this.setState({ markingAsRead: true });
-    const ids = this.props.items.map((i) => i.id);
-
-    this.props.worker.sendMarkRead(ids)
-    .fail(() => {
-      if (!this.isComponentMounted) {
-        return;
-      }
-
-      this.setState({ markingAsRead: false });
-    });
   }
 }

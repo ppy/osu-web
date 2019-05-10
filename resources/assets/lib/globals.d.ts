@@ -45,6 +45,7 @@ interface JQueryStatic {
 interface OsuCommon {
   ajaxError: (xhr: JQueryXHR) => void;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
+  isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
   parseJson: (id: string) => any;
   popup: (message: string, type: string) => void;

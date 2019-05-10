@@ -34,14 +34,19 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-color: @greysky-darker;
     width: 60px;
     flex: none;
+
+    .@{_top}--compact & {
+      border-radius: @border-radius-large;
+      margin-left: 10px;
+      width: 50px;
+    }
   }
 
   &__cover-icon {
-    & + & {
-      margin-left: 2px;
-    }
+    margin: 0 1px;
   }
 
   &__cover-overlay {
@@ -49,6 +54,14 @@
     .center-content();
     border-radius: @border-radius-large 0 0 @border-radius-large;
     background-color: fade(#000, 60%);
+
+    .@{_top}--compact & {
+      background-color: transparent;
+    }
+  }
+
+  &__expand {
+    margin-top: 10px;
   }
 
   &__main {
@@ -64,6 +77,14 @@
       content: '';
       background-color: fade(#fff, 10%);
       border-radius: 0 @border-radius-large @border-radius-large 0;
+    }
+
+    .@{_top}--compact & {
+      background-color: transparent;
+    }
+
+    .@{_top}--group & {
+      background-color: lighten(@greysky, 10%);
     }
   }
 
