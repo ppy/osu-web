@@ -47,7 +47,6 @@ let inCard = false;
 let tooltipWithActiveMenu: any;
 
 $(document).on('mouseover', '.js-usercard', onMouseOver);
-$(document).on('mousedown keydown', handleForceHide);
 $(document).on('mouseenter', '.js-react--user-card-tooltip', onMouseEnter);
 $(document).on('mouseleave', '.js-react--user-card-tooltip', onMouseLeave);
 $(document).on('turbolinks:before-cache', onBeforeCache);
@@ -95,14 +94,6 @@ function createTooltip(element: HTMLElement) {
   };
 
   $(element).qtip(options);
-}
-
-function handleForceHide(event: JQueryEventObject) {
-  if (inCard) { return; }
-  if (event.keyCode === 27
-    || (event.button === 0 && tooltipWithActiveMenu == null)) {
-      $(`.${userCardTooltipClass}`).qtip('hide');
-  }
 }
 
 function onBeforeCache() {
@@ -159,7 +150,9 @@ export class UserCardTooltip extends React.PureComponent<PropsInterface, StateIn
   readonly activeKeyDidChange = (key: any) => {
     tooltipWithActiveMenu = key;
     activeKeyDidChange.bind(this)(key);
-    if (key == null) {
+    // close the tooltip if cursor is known to be not within the card
+    // when the menu closes.
+    if (key == null && !inCard) {
       $(`.${userCardTooltipClass}`).qtip('hide');
     }
   }
