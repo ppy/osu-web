@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import * as _ from 'lodash';
 import * as React from 'react';
 import { activeKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
 import { TooltipContext } from 'tooltip-context';
@@ -23,7 +24,7 @@ import { UserCard } from 'user-card';
 
 declare global {
   interface Window {
-    tooltipWithActiveMenu?: React.Component;
+    tooltipWithActiveMenu?: any;
   }
 }
 
@@ -34,6 +35,114 @@ interface PropsInterface {
 
 interface StateInterface extends ActiveKeyState {
   user?: User;
+}
+
+const triggerDelay = 200;
+let inCard = false;
+
+$(document).on('mouseover', '.js-usercard', onMouseOver);
+$(document).on('mousedown keydown', handleForceHide);
+$(document).on('mouseenter', '.js-react--user-card-tooltip', onMouseEnter);
+$(document).on('mouseleave', '.js-react--user-card-tooltip', onMouseLeave);
+$(document).on('turbolinks:before-cache', onBeforeCache);
+
+function onMouseEnter() {
+  inCard = true;
+}
+
+function onMouseLeave() {
+  inCard = false;
+}
+
+function onMouseOver(event: MouseEvent) {
+  if (window.tooltipWithActiveMenu != null) { return; }
+  if (osu.isMobile()) { return; }
+
+  const el = event.currentTarget as HTMLElement;
+  const userId = el.dataset.userId;
+  if (userId == null) { return; }
+  // don't show cards for blocked users
+  if (_.find(currentUser.blocks, { target_id: parseInt(userId, 10)})) { return; }
+
+  if (el._tooltip == null) {
+    return createTooltip(el);
+  }
+
+  if (el._tooltip !== el.dataset.userId) {
+    // wrong userId, destroy current tooltip
+    $(el).qtip('api').destroy();
+  }
+}
+
+function onBeforeCache() {
+  inCard = false;
+  window.tooltipWithActiveMenu = null;
+}
+
+function handleForceHide(e: MouseEvent|KeyboardEvent) {
+  if (inCard) { return; }
+  if (e.keyCode === 27
+    || (e.button === 0 && window.tooltipWithActiveMenu == null)) {
+      $('.qtip--user-card').qtip('hide');
+  }
+}
+
+function createTooltip(el: HTMLElement) {
+  const userId = el.dataset.userId;
+  el._tooltip = userId;
+
+  // react should override the existing content after mounting
+  const card = $('#js-usercard__loading-template').children().clone()[0];
+  card.classList.remove('js-react--user-card');
+  card.classList.add('js-react--user-card-tooltip');
+  delete card.dataset.reactTurbolinksLoaded;
+  card.dataset.lookup = userId;
+
+  const options = {
+    content: {
+      text: card,
+    },
+    events: {
+      render: reactTurbolinks.boot,
+      show: shouldShow,
+    },
+    hide: {
+      delay: triggerDelay,
+      effect: hideEffect,
+      fixed: true,
+    },
+    position: {
+      adjust: { scroll: false },
+      at: 'right center',
+      my: 'left center',
+      viewport: $(window),
+    },
+    show: {
+      delay: triggerDelay,
+      effect: showEffect,
+      ready: true,
+    },
+    style: {
+      classes: 'qtip--user-card',
+      def: false,
+      tip: false,
+    },
+  };
+
+  $(el).qtip(options);
+}
+
+function showEffect() {
+  $(this).fadeTo(110, 1);
+}
+
+function hideEffect() {
+  $(this).fadeTo(110, 0);
+}
+function shouldShow(event: JQuery.Event) {
+  if (window.tooltipWithActiveMenu != null || osu.isMobile()) {
+    event.preventDefault();
+  }
 }
 
 /**
