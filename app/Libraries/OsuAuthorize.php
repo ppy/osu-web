@@ -28,7 +28,6 @@ use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
 use App\Models\User;
 use App\Models\UserContestEntry;
-use App\Models\UserGroup;
 use Carbon\Carbon;
 
 class OsuAuthorize
