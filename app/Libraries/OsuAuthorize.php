@@ -353,7 +353,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!($user->isGMT() || $user->isNAT() || $user->isProjectLoved())) {
+        if (!$user->isProjectLoved()) {
             return 'unauthorized';
         }
 
