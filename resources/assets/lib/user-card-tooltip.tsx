@@ -23,8 +23,12 @@ import { TooltipContext } from 'tooltip-context';
 import { UserCard } from 'user-card';
 
 declare global {
-  interface Window {
-    tooltipWithActiveMenu?: any;
+  interface HTMLElement {
+    _tooltip?: string;
+  }
+
+  interface JQuery {
+    qtip(...args: any): any;
   }
 }
 
@@ -38,13 +42,9 @@ interface StateInterface extends ActiveKeyState {
 }
 
 const triggerDelay = 200;
+const userCardTooltipSelector = '.qtip--user-card';
 let inCard = false;
-
-$(document).on('mouseover', '.js-usercard', onMouseOver);
-$(document).on('mousedown keydown', handleForceHide);
-$(document).on('mouseenter', '.js-react--user-card-tooltip', onMouseEnter);
-$(document).on('mouseleave', '.js-react--user-card-tooltip', onMouseLeave);
-$(document).on('turbolinks:before-cache', onBeforeCache);
+let tooltipWithActiveMenu: any;
 
 function onMouseEnter() {
   inCard = true;
@@ -54,8 +54,8 @@ function onMouseLeave() {
   inCard = false;
 }
 
-function onMouseOver(event: MouseEvent) {
-  if (window.tooltipWithActiveMenu != null) { return; }
+function onMouseOver(event: JQueryEventObject) {
+  if (tooltipWithActiveMenu != null) { return; }
   if (osu.isMobile()) { return; }
 
   const el = event.currentTarget as HTMLElement;
@@ -76,20 +76,20 @@ function onMouseOver(event: MouseEvent) {
 
 function onBeforeCache() {
   inCard = false;
-  window.tooltipWithActiveMenu = null;
+  tooltipWithActiveMenu = null;
 }
 
-function handleForceHide(e: MouseEvent|KeyboardEvent) {
+function handleForceHide(event: JQueryEventObject) {
   if (inCard) { return; }
-  if (e.keyCode === 27
-    || (e.button === 0 && window.tooltipWithActiveMenu == null)) {
-      $('.qtip--user-card').qtip('hide');
+  if (event.keyCode === 27
+    || (event.button === 0 && tooltipWithActiveMenu == null)) {
+      $(userCardTooltipSelector).qtip('hide');
   }
 }
 
-function createTooltip(el: HTMLElement) {
-  const userId = el.dataset.userId;
-  el._tooltip = userId;
+function createTooltip(element: HTMLElement) {
+  const userId = element.dataset.userId;
+  element._tooltip = userId;
 
   // react should override the existing content after mounting
   const card = $('#js-usercard__loading-template').children().clone()[0];
@@ -129,7 +129,7 @@ function createTooltip(el: HTMLElement) {
     },
   };
 
-  $(el).qtip(options);
+  $(element).qtip(options);
 }
 
 function showEffect() {
@@ -139,19 +139,28 @@ function showEffect() {
 function hideEffect() {
   $(this).fadeTo(110, 0);
 }
-function shouldShow(event: JQuery.Event) {
-  if (window.tooltipWithActiveMenu != null || osu.isMobile()) {
+function shouldShow(event: JQueryEventObject) {
+  if (tooltipWithActiveMenu != null || osu.isMobile()) {
     event.preventDefault();
   }
 }
+
+$(document).on('mouseover', '.js-usercard', onMouseOver);
+$(document).on('mousedown keydown', handleForceHide);
+$(document).on('mouseenter', '.js-react--user-card-tooltip', onMouseEnter);
+$(document).on('mouseleave', '.js-react--user-card-tooltip', onMouseLeave);
+$(document).on('turbolinks:before-cache', onBeforeCache);
 
 /**
  * This component's job is to get the data and bootstrap the actual UserCard component for tooltips.
  */
 export class UserCardTooltip extends React.PureComponent<PropsInterface, StateInterface> {
   readonly activeKeyDidChange = (key: any) => {
-    window.tooltipWithActiveMenu = key;
+    tooltipWithActiveMenu = key;
     activeKeyDidChange.bind(this)(key);
+    if (key == null) {
+      $(userCardTooltipSelector).qtip('hide');
+    }
   }
 
   readonly state: StateInterface = {};
