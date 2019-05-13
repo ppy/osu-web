@@ -62,6 +62,10 @@ class FriendsController extends Controller
 
         $usersJson = json_collection($friends, 'UserCompact', ['cover', 'country']);
 
+        if (is_api_request()) {
+            return $usersJson;
+        }
+
         return view('friends.index', compact('usersJson'));
     }
 
