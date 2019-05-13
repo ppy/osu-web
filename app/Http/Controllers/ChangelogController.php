@@ -39,14 +39,6 @@ class ChangelogController extends Controller
     {
         $this->getUpdateStreams();
 
-        $chartConfig = Cache::remember(
-            'chart_config_global',
-            config('osu.changelog.build_history_interval'),
-            function () {
-                return $this->chartConfig(null);
-            }
-        );
-
         $search = [
             'stream' => presence(request('stream')),
             'from' => presence(request('from')),
@@ -83,6 +75,14 @@ class ChangelogController extends Controller
         if (request()->expectsJson()) {
             return $indexJson;
         } else {
+            $chartConfig = Cache::remember(
+                'chart_config_global',
+                config('osu.changelog.build_history_interval'),
+                function () {
+                    return $this->chartConfig(null);
+                }
+            );
+
             return view('changelog.index', compact('chartConfig', 'indexJson'));
         }
     }
