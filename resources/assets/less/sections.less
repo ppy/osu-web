@@ -86,6 +86,11 @@
 .fn-changelog-stream(web);
 .fn-changelog-stream(wiki);
 
+// Actually user filters, not changelog streams
+.fn-changelog-stream(all);
+.fn-changelog-stream(online);
+
+// FIXME: change to something more generic like selection filter
 .fn-changelog-stream(@stream) {
   @color-name: "changelog-stream--@{stream}";
 
@@ -99,7 +104,3 @@
     }
   }
 }
-
-// FIXME: change
-.fn-changelog-stream(all);
-.fn-changelog-stream(online);
