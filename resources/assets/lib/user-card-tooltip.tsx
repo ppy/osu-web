@@ -18,7 +18,7 @@
 
 import * as _ from 'lodash';
 import * as React from 'react';
-import { activeKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
+import { activeKeyDidChange as contextActiveKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
 import { TooltipContext } from 'tooltip-context';
 import { UserCard } from 'user-card';
 
@@ -151,7 +151,7 @@ function shouldShow(event: JQueryEventObject) {
 export class UserCardTooltip extends React.PureComponent<PropsInterface, StateInterface> {
   readonly activeKeyDidChange = (key: any) => {
     tooltipWithActiveMenu = key;
-    activeKeyDidChange.bind(this)(key);
+    this.contextActiveKeyDidChange(key);
     // close the tooltip if cursor is known to be not within the card
     // when the menu closes.
     if (key == null && !inCard) {
@@ -159,6 +159,7 @@ export class UserCardTooltip extends React.PureComponent<PropsInterface, StateIn
     }
   }
 
+  readonly contextActiveKeyDidChange = contextActiveKeyDidChange.bind(this);
   readonly state: StateInterface = {};
 
   componentDidMount() {
