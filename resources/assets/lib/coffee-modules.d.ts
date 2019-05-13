@@ -12,7 +12,6 @@ declare module 'block-button' {
   class BlockButton extends React.PureComponent<Props> {}
 }
 
-
 declare module 'big-button' {
   class BigButton extends React.PureComponent<any> {}
 }
