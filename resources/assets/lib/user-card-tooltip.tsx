@@ -51,18 +51,8 @@ $(document).on('mouseenter', '.js-react--user-card-tooltip', onMouseEnter);
 $(document).on('mouseleave', '.js-react--user-card-tooltip', onMouseLeave);
 $(document).on('turbolinks:before-cache', onBeforeCache);
 
-function createTooltip(element: HTMLElement) {
-  const userId = element.dataset.userId;
-  element._tooltip = userId;
-
-  // react should override the existing content after mounting
-  const card = $('#js-usercard__loading-template').children().clone()[0];
-  card.classList.remove('js-react--user-card');
-  card.classList.add('js-react--user-card-tooltip');
-  delete card.dataset.reactTurbolinksLoaded;
-  card.dataset.lookup = userId;
-
-  const options = {
+function createTooltipOptions(card: HTMLElement) {
+  return {
     content: {
       text: card,
     },
@@ -92,8 +82,20 @@ function createTooltip(element: HTMLElement) {
       tip: false,
     },
   };
+}
 
-  $(element).qtip(options);
+function createTooltip(element: HTMLElement) {
+  const userId = element.dataset.userId;
+  element._tooltip = userId;
+
+  // react should override the existing content after mounting
+  const card = $('#js-usercard__loading-template').children().clone()[0];
+  card.classList.remove('js-react--user-card');
+  card.classList.add('js-react--user-card-tooltip');
+  delete card.dataset.reactTurbolinksLoaded;
+  card.dataset.lookup = userId;
+
+  $(element).qtip(createTooltipOptions(card));
 }
 
 function onBeforeCache() {
