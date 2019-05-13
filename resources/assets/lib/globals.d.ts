@@ -58,7 +58,7 @@ interface OsuCommon {
   uuid: () => string;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
-  updateQueryString(url: string | null, params: {}): string;
+  updateQueryString(url: string | null, params: { [key: string]: string | undefined }): string;
 }
 
 interface Country {
