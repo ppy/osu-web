@@ -52,7 +52,7 @@ abstract class Model extends BaseModel
         'XH' => 'xh_rank_count',
     ];
 
-    public function replayFile()
+    public function replayFile() : ?ReplayFile
     {
         if ($this->replay) {
             return new ReplayFile($this);
