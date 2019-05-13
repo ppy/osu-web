@@ -75,6 +75,7 @@ class ChangelogController extends Controller
         ]);
 
         $indexJson = [
+            'streams' => $this->updateStreams,
             'builds' => $buildsJson,
             'search' => $search,
         ];
