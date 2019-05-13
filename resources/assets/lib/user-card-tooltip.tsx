@@ -41,7 +41,6 @@ interface StateInterface extends ActiveKeyState {
   user?: User;
 }
 
-const triggerDelay = 200;
 const userCardTooltipClass = 'qtip--user-card';
 let inCard = false;
 let tooltipWithActiveMenu: any;
@@ -61,7 +60,7 @@ function createTooltipOptions(card: HTMLElement) {
       show: shouldShow,
     },
     hide: {
-      delay: triggerDelay,
+      delay: 220,
       effect: hideEffect,
       fixed: true,
     },
@@ -72,7 +71,7 @@ function createTooltipOptions(card: HTMLElement) {
       viewport: $(window),
     },
     show: {
-      delay: triggerDelay,
+      delay: 200,
       effect: showEffect,
       ready: true,
     },
