@@ -137,7 +137,11 @@ class ChangelogController extends Controller
                 return $this->chartConfig($build->updateStream);
             });
 
-        return view('changelog.build', compact('build', 'buildJson', 'chartConfig', 'commentBundle'));
+        if (request()->expectsJson()) {
+            return $buildJson;
+        } else {
+            return view('changelog.build', compact('build', 'buildJson', 'chartConfig', 'commentBundle'));
+        }
     }
 
     private function getUpdateStreams()
