@@ -55,7 +55,6 @@ declare module 'popup-menu' {
     children: Children;
     onHide?: () => void;
     onShow?: () => void;
-    showGlyph?: boolean;
   }
 
   class PopupMenu extends React.PureComponent<Props, any> {}

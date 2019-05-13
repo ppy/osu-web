@@ -29,7 +29,6 @@ export class PopupMenu extends PureComponent
   @defaultProps =
     children: (_dismiss) ->
       # empty function
-    showGlyph: true
 
 
   constructor: (props) ->
@@ -137,7 +136,7 @@ export class PopupMenu extends PureComponent
         className: 'popup-menu__button'
         type: 'button'
         onClick: @toggle
-        i className: 'fas fa-ellipsis-v' if @props.showGlyph
+        i className: 'fas fa-ellipsis-v'
 
       createPortal @renderMenu(), @portal
 
