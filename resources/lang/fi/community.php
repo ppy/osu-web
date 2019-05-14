@@ -30,9 +30,9 @@ return [
 
         'dev_quote' => 'osu! on täysin ilmainen peli, mutta sen pystyssä pitäminen ei todellakaan ole ilmaista.
         Palvelimien järjestämisen ja korkealaatuisen kansainvälisen kaistan lisäksi järjestelmän -ja yhteisön ylläpito,  
-        palkintojen tarjoaminen kilpailuihin, tukipyyntöihin vastaaminen ja yleisesti porukan pitäminen tyytyväisenä kuluttaa huomattavan summan rahaa!
-        Äläkä unohda, teemme tämän kaiken ilman mainoksia, työkalupalkkeja tai vastaavia.
-            <br/><br/>Minä, joka yleisimmin tunnetaan nimellä "peppy" pitää osun! toiminnassa suurilta osin yksinään.
+        palkintojen tarjoaminen kilpailuihin, tukipyyntöihin vastaaminen ja yleisesti porukan pitäminen tyytyväisenä kuluttaa huomattavan määrän rahaa!
+        Äläkä unohda, että teemme tämän kaiken ilman mainoksia, työkalupalkkeja tai vastaavia.
+            <br/><br/>Minä, joka yleisimmin tunnetaan nimestä "peppy" pidän osun! toiminnassa suurilta osin yksin.
             Jouduin Lopettamaan päivätyöni pysyäkseni osun! mukana
             ja silti itse asettamieni laatuvaatimusten pitäminen on ajoittain hankalaa.
             Haluaisin henkilökohtaisesti kiittää kaikkia, jotka ovat tukeneet osun! toimintaa tähän mennessä 
@@ -77,7 +77,7 @@ return [
 
             'early_access' => [
                 'title' => 'Ennakkojulkaisut',
-                'description' => 'Pääsy uusimpiin versioihin, joissa voit kokeilla uusia ominaisuuksia ennen päivitysten julkaisua!',
+                'description' => 'Pääsy uusimpiin versioihin, joissa voit kokeilla uusia ominaisuuksia ennen niiden julkaisua!',
             ],
 
             'customisation' => [
@@ -86,13 +86,13 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Beatmappien Suodatus',
+                'title' => 'Beatmap Suodattimet',
                 'description' => 'Suodata beatmappien hakua pelatun, pelaamattoman sekä kartassa saavutetun luokituksen mukaan.',
             ],
 
             'yellow_fellow' => [
                 'title' => 'Keltainen Kaveri',
-                'description' => 'Sinut tunnistaa pelinsisäisissä keskusteluissa kirkkaankeltaisesta käyttäjänimen väristä.',
+                'description' => 'Saat pelinsisäisiin keskusteluihin keltaisen käyttäjänimen, jolla sinut otetaan varmasti huomioon.',
             ],
 
             'speedy_downloads' => [

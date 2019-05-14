@@ -49,7 +49,7 @@ return [
 
     'store' => [
         'button' => 'Oppdater',
-        'ok' => 'Listing oppdatert.',
+        'ok' => 'Oppdatert katalog.',
     ],
 
     'update' => [

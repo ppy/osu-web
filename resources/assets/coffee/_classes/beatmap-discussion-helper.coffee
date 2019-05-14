@@ -31,7 +31,7 @@ class @BeatmapDiscussionHelper
   @canModeratePosts: (user) =>
     user ?= currentUser
 
-    user.is_admin || user.is_gmt || user.is_qat
+    user.is_admin || user.is_gmt || user.is_nat
 
 
   # text should be pre-escaped.
@@ -127,7 +127,7 @@ class @BeatmapDiscussionHelper
 
 
   @moderationGroup: (user) =>
-    _.intersection(_.concat(user.default_group, user.groups), ['qat', 'bng'])[0]
+    _.intersection(_.concat(user.default_group, user.groups), ['nat', 'bng', 'bng_limited'])[0]
 
 
   @previewMessage = (message) =>

@@ -353,7 +353,7 @@ return [
             'maximum_combo' => 'Suurin combo',
             'medals' => 'Mitalit',
             'play_count' => 'Pelikertoja',
-            'play_time' => 'Pelaamisaika yhteensä',
+            'play_time' => 'Pelattu aika',
             'ranked_score' => 'Tilastopisteet',
             'replays_watched_by_others' => 'Muiden Katsomat Uusinnat',
             'score_ranks' => 'Luokitukset',

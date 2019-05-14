@@ -55,7 +55,7 @@
       width: @slider-callout--width + @callout-extension;
     }
 
-    &:after, &:before {
+    &::after, &::before {
       top: 100%;
       left: 50%;
       border: solid transparent;
@@ -67,7 +67,7 @@
       transform: scaleX(0.5);
     }
 
-    &:after {
+    &::after {
       border-top-color: #333;
       border-width: @slider-callout--arrow-height;
       margin-left: -@slider-callout--arrow-height;

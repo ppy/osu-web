@@ -28,7 +28,7 @@ return [
 
         'slogan' => [
             'main' => 'det besteste gratis-å-vinne rytmespillet',
-            'sub' => 'rytme er bare et klikk unna',
+            'sub' => 'rytmen er bare et klikk unna',
         ],
     ],
 
@@ -36,7 +36,7 @@ return [
         'advanced_link' => 'Avansert søk',
         'button' => 'Søk',
         'empty_result' => 'Ingenting funnet!',
-        'missing_query' => 'Søkeord med minimum :n tegn er påkrevd',
+        'missing_query' => 'Søkeord må minst være :n tegn',
         'placeholder' => 'skriv for å søke',
         'title' => 'Søk',
 
@@ -76,7 +76,7 @@ return [
         ],
 
         'wiki_page' => [
-            'link' => 'Søk i Wikien',
+            'link' => 'Søk i wikien',
             'more_simple' => 'Se flere wiki søkeresultater',
             'title' => 'Wiki',
         ],
@@ -90,7 +90,7 @@ return [
             'macos' => 'for macOS',
             'linux' => 'for Linux',
         ],
-        'mirror' => 'mirror',
+        'mirror' => 'alternativ link',
         'macos-fallback' => 'macOS brukere',
         'steps' => [
             'register' => [
@@ -99,13 +99,13 @@ return [
             ],
             'download' => [
                 'title' => 'last ned spillet',
-                'description' => 'klikk på knappen over for å laste ned installasjonsprogrammet, så kjør det!',
+                'description' => 'klikk på knappen over for å laste ned installasjonsprogrammet, så kjører det!',
             ],
             'beatmaps' => [
                 'title' => 'skaff beatmaps',
                 'description' => [
                     '_' => ':browse det enorme biblioteket av brukerskapte beatmaps og begynn å spill!',
-                    'browse' => 'bla igjennom',
+                    'browse' => 'bla gjennom',
                 ],
             ],
         ],
@@ -120,11 +120,11 @@ return [
         ],
         'header' => [
             'welcome' => 'Hei, <strong>:username</strong>!',
-            'messages' => 'Du har :count ny melding|Du har :count nye meldinger',
+            'messages' => 'Du har :count_delimited ny melding|Du har :count_delimited nye meldinger',
             'stats' => [
                 'friends' => 'Tilkoblede Venner',
-                'games' => 'Spill',
-                'online' => 'Påloggede Brukere',
+                'games' => 'Lobbyer',
+                'online' => 'Tilkoblede Brukere',
             ],
         ],
         'beatmaps' => [
@@ -142,12 +142,12 @@ return [
 
     'support-osu' => [
         'title' => 'Wow!',
-        'subtitle' => 'Du ser ut til å ha det bra! :D',
+        'subtitle' => 'Du ser ut som du trives! :D',
         'body' => [
             'part-1' => 'Visste du, at osu! kjører uten reklamering, og er avhengig av spillernes støtte for sin utvikling og driftskostnader?',
             'part-2' => 'Visste du også, at ved å støtte osu! får du en haug med nyttige funksjoner, som for eksempel <strong>nedlasting i spillet</strong> som automatisk laster ned maps mens du ser på andre eller spiller i flerspillerspill?',
         ],
-        'find-out-more' => 'Klikk her for å finne ut mere!',
+        'find-out-more' => 'Klikk her for å finne ut mer!',
         'download-starting' => "Åh, og ikke bekymre deg - nedlastingen din har allerede begynt :)",
     ],
 ];

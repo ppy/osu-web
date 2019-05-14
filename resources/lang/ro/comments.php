@@ -29,7 +29,7 @@ return [
     'commentable_name' => [
         'beatmapset' => 'Beatmap',
         'build' => 'Jurnal modificări',
-        'news_post' => 'Noutăți',
+        'news_post' => 'Ştiri',
         '_deleted' => 'Articol șters',
     ],
 

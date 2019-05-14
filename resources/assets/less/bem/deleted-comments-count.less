@@ -16,22 +16,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.user-friends {
-  &__title {
-    padding: 0 0 10px 20px;
-    font-size: @font-size--header-title;
-    font-weight: 100;
-    color: @pink-light;
+.deleted-comments-count {
+  font-size: @font-size--title-small;
+  padding-top: 10px;
 
-    display: flex;
-    align-items: flex-end;
+  &--top {
+    .default-gutter();
+    padding-bottom: 10px;
+  }
 
-    @media @desktop {
-      padding-left: 10px;
-    }
-
-    &--smaller {
-      font-size: @font-size--header-subtitle;
-    }
+  &__icon {
+    margin-right: 5px;
   }
 }

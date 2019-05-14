@@ -17,13 +17,22 @@
  */
 
 import * as React from 'react';
+import { activeKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
+import { TooltipContext } from 'tooltip-context';
 import { UserCard } from 'user-card';
 
+declare global {
+  interface Window {
+    tooltipWithActiveMenu?: React.Component;
+  }
+}
+
 interface PropsInterface {
+  container: HTMLElement;
   lookup: string;
 }
 
-interface StateInterface {
+interface StateInterface extends ActiveKeyState {
   user?: User;
 }
 
@@ -31,6 +40,11 @@ interface StateInterface {
  * This component's job is to get the data and bootstrap the actual UserCard component for tooltips.
  */
 export class UserCardTooltip extends React.PureComponent<PropsInterface, StateInterface> {
+  readonly activeKeyDidChange = (key: any) => {
+    window.tooltipWithActiveMenu = key;
+    activeKeyDidChange.bind(this)(key);
+  }
+
   readonly state: StateInterface = {};
 
   componentDidMount() {
@@ -49,7 +63,17 @@ export class UserCardTooltip extends React.PureComponent<PropsInterface, StateIn
     });
   }
 
-  render(): React.ReactNode {
-    return <UserCard user={this.state.user} />;
+  render() {
+    const activated = this.state.activeKey === this.props.lookup;
+
+    return (
+      <TooltipContext.Provider value={this.props.container}>
+        <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
+          <KeyContext.Provider value={this.props.lookup}>
+            <UserCard activated={activated} user={this.state.user} />
+          </KeyContext.Provider>
+        </ContainerContext.Provider>
+      </TooltipContext.Provider>
+    );
   }
 }

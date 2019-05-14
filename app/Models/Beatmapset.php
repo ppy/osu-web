@@ -55,6 +55,7 @@ use Illuminate\Database\QueryException;
  * @property \Carbon\Carbon|null $deleted_at
  * @property string|null $difficulty_names
  * @property bool $discussion_enabled
+ * @property bool $discussion_locked
  * @property string $displaytitle
  * @property bool $download_disabled
  * @property string|null $download_disabled_url
@@ -110,6 +111,7 @@ class Beatmapset extends Model implements AfterCommit
         'storyboard' => 'boolean',
         'video' => 'boolean',
         'discussion_enabled' => 'boolean',
+        'discussion_locked' => 'boolean',
     ];
 
     protected $dates = [
@@ -568,6 +570,34 @@ class Beatmapset extends Model implements AfterCommit
         }
     }
 
+    public function discussionLock($user, $reason)
+    {
+        if ($this->discussion_locked) {
+            return;
+        }
+
+        DB::transaction(function () use ($user, $reason) {
+            BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_LOCK, $user, $this, [
+                'reason' => $reason,
+            ])->saveOrExplode();
+            $this->update(['discussion_locked' => true]);
+            broadcast_notification(Notification::BEATMAPSET_DISCUSSION_LOCK, $this, $user);
+        });
+    }
+
+    public function discussionUnlock($user)
+    {
+        if (!$this->discussion_locked) {
+            return;
+        }
+
+        DB::transaction(function () use ($user) {
+            BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_UNLOCK, $user, $this)->saveOrExplode();
+            $this->update(['discussion_locked' => false]);
+            broadcast_notification(Notification::BEATMAPSET_DISCUSSION_UNLOCK, $this, $user);
+        });
+    }
+
     public function disqualify($user, $post)
     {
         if (!$this->isQualified()) {
@@ -804,13 +834,23 @@ class Beatmapset extends Model implements AfterCommit
         return $this->currentNominationCount() > 0;
     }
 
+    public function playmodes()
+    {
+        return $this->beatmaps->pluck('playmode')->unique();
+    }
+
+    public function playmodeCount()
+    {
+        return $this->playmodes()->count();
+    }
+
     public function rankingETA()
     {
         if (!$this->isQualified()) {
             return;
         }
 
-        $modes = $this->beatmaps->pluck('playmode')->unique()->toArray();
+        $modes = $this->playmodes()->toArray();
 
         $queueSize = static::qualified()
             ->whereHas('beatmaps', function ($query) use ($modes) {
@@ -854,6 +894,23 @@ class Beatmapset extends Model implements AfterCommit
     public function nominationsSinceReset()
     {
         return $this->eventsSinceReset()->nominations();
+    }
+
+    public function hasFullBNNomination()
+    {
+        return $this->nominationsSinceReset()
+            ->with('user')
+            ->get()
+            ->pluck('user')
+            ->contains(function ($user) {
+                return $user->isNAT() || $user->isFullBN();
+            });
+    }
+
+    public function requiresFullBNNomination()
+    {
+        return $this->currentNominationCount() === $this->requiredNominationCount() - 1
+            && !$this->hasFullBNNomination();
     }
 
     public function status()

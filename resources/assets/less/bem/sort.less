@@ -25,7 +25,7 @@
   @_hover-bg--changelog: @greyviolet-darker;
   @_hover-bg--forum-topics: #ddd;
 
-  .default-gutter();
+  padding: 0;
   display: flex;
   font-size: @font-size--normal;
 
@@ -58,36 +58,36 @@
       .link-plain();
       color: #555;
 
-      .link-hover({
+      &:hover {
         background-color: @_hover-bg;
         color: #555;
-      });
+      };
 
       .@{_top}--beatmapset-discussions & {
-        .link-hover({
+        &:hover {
           background-color: @_hover-bg--beatmapset-discussions;
-        });
+        }
       }
 
       .@{_top}--beatmapsets & {
-        .link-hover({
+        &:hover {
           background-color: @_hover-bg--beatmapsets;
-        });
+        }
       }
 
       .@{_top}--changelog & {
         color: #ddd;
 
-        .link-hover({
+        &:hover {
           background-color: @_hover-bg--changelog;
           color: #ddd;
-        });
+        }
       }
 
       .@{_top}--forum-topics & {
-        .link-hover({
+        &:hover {
           background-color: @_hover-bg--forum-topics;
-        });
+        }
       }
     }
 
@@ -101,9 +101,9 @@
       color: @pink-darker;
       font-weight: bold;
 
-      .link-hover({
+      &:hover {
         color: @pink-darker;
-      });
+      };
 
       .@{_top}--beatmapset-discussions & {
         background-color: @_hover-bg--beatmapset-discussions;
@@ -117,9 +117,9 @@
         background-color: @_hover-bg--changelog;
         color: @pink;
 
-        .link-hover({
+        &:hover {
           color: @pink;
-        });
+        }
       }
 
       .@{_top}--forum-topics & {

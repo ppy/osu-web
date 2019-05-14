@@ -17,6 +17,8 @@
  */
 
 .notification-popup-item {
+  @_top: notification-popup-item;
+
   display: flex;
   width: 100%;
 
@@ -56,6 +58,13 @@
     padding: 5px 0 5px 10px;
     display: flex;
     min-width: 0;
+
+    .@{_top}:hover &::before {
+      .full-size();
+      content: '';
+      background-color: fade(#fff, 10%);
+      border-radius: 0 @border-radius-large @border-radius-large 0;
+    }
   }
 
   &__message {
@@ -74,6 +83,12 @@
 
   &__read-button {
     .reset-input();
+    color: @greysky-light;
+    padding: 2px;
+
+    &:hover {
+      color: #fff;
+    }
   }
 
   &__side-buttons {

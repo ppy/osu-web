@@ -23,6 +23,7 @@ namespace App\Models\ReplayViewCount;
 /**
  * @property int $play_count
  * @property int $score_id
+ * @property int $version
  */
 class Osu extends Model
 {
