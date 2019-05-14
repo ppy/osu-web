@@ -41,7 +41,7 @@ export class Event extends React.Component
 
     div className: 'mp-history-event',
       div className: 'mp-history-event__time',
-        moment(@props.event.timestamp).format 'LT'
+        moment(@props.event.timestamp).format 'LTS'
       div className: "mp-history-event__type mp-history-event__type--#{event_type}",
         @icons[event_type].map (m) ->
           i key: m, className: m
