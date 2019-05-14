@@ -46,5 +46,5 @@ export class UserEntry extends React.Component
           osu.formatBytes(@props.entry.filesize)
 
       td className: 'admin-contest-entry__column admin-contest-entry__column--button',
-        el Admin.Contest.UserEntryDeleteButton,
+        el UserEntryDeleteButton,
           entry: @props.entry
