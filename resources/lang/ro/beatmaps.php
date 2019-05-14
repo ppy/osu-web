@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Sortat după:',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'created_at' => 'Data creării',
+            'timeline' => 'Cronologie',
+            'updated_at' => 'Ultima actualizare',
         ],
 
         'stats' => [
@@ -194,16 +194,16 @@ return [
                 'played' => 'Jucat',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'favourites' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'Titlu',
+                'artist' => 'Artist',
+                'difficulty' => 'Dificultate',
+                'favourites' => 'Favorite',
+                'updated' => 'Actualizat',
+                'ranked' => 'Clasat',
+                'rating' => 'Evaluare',
+                'plays' => 'Jocuri',
+                'relevance' => 'Relevanţă',
+                'nominations' => 'Nominalizări',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Ai nevoie de un :link activ pentru a filtra prin :filters',
@@ -304,7 +304,7 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => 'Numărul de jocuri :count',
+        'favourites' => 'Favorite :count',
     ],
 ];

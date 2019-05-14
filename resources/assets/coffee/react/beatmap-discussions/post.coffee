@@ -70,6 +70,8 @@ export class Post extends React.PureComponent
     userBadge =
       if @isOwner()
         'owner'
+      else if @userModerationGroup() == 'bng_limited'
+        'bng'
       else
         @userModerationGroup()
 

@@ -78,14 +78,14 @@ return [
             'delete' => [
                 'only_last_post' => 'Vain viimeisin viesti voidaan poistaa.',
                 'locked' => 'Lukitun aiheen viestejä ei voi poistaa.',
-                'no_forum_access' => 'Pääsy kyseiselle foorumille vaaditaan.',
+                'no_forum_access' => 'Tarvitset pääsyn tälle foorumille.',
                 'not_owner' => 'Vain lähettäjä voi poistaa viestin.',
             ],
 
             'edit' => [
                 'deleted' => 'Poistettuja viestejä ei voi muokata.',
                 'locked' => 'Viestin muokkaaminen on estetty.',
-                'no_forum_access' => 'Pääsy kyseiselle foorumille vaaditaan.',
+                'no_forum_access' => 'Tarvitset pääsyn tälle foorumille.',
                 'not_owner' => 'Vain lähettäjä voi muokata viestiä.',
                 'topic_locked' => 'Lukitun aiheen viestiä ei voi muokata.',
             ],
@@ -98,7 +98,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Muokkaa entistä postaustasi sen sijaan kun postaat uuden.',
+                'double_post' => 'Muokkaa edellistä viestiä uuden lähettämisen sijaan.',
                 'locked' => 'Et voi vastata lukittuun aiheeseen.',
                 'no_forum_access' => 'Pääsy kyseiselle foorumille vaaditaan.',
                 'no_permission' => 'Ei vastausoikeutta.',
@@ -112,13 +112,13 @@ return [
 
             'store' => [
                 'no_forum_access' => 'Pääsy kyseiselle foorumille vaaditaan.',
-                'no_permission' => 'Uuden aiheen luontiin ei ole oikeuksia.',
+                'no_permission' => 'Oikeudet uuden aiheen luomiseen puuttuvat.',
                 'forum_closed' => 'Foorumi on suljettu, eikä siihen voi lähettää viestejä.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'Pääsy kyseiselle foorumille vaaditaan.',
-                'over' => 'Äänestys on ohi eikä siinä voi enää äänestää.',
+                'no_forum_access' => 'Tarvitset pääsyn tälle foorumille.',
+                'over' => 'Äänestys on loppunut eikä uusia ääniä voida antaa.',
                 'voted' => 'Äänen vaihtaminen ei ole sallittua.',
 
                 'user' => [
@@ -129,7 +129,7 @@ return [
             ],
 
             'watch' => [
-                'no_forum_access' => 'Pääsy kyseiselle foorumille vaaditaan.',
+                'no_forum_access' => 'Tarvitset pääsyn tälle foorumille.',
             ],
         ],
 
@@ -158,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'Käyttäjäsivu on lukittu.',
                 'not_owner' => 'Voit muokata vain omaa käyttäjäsivuasi.',
-                'require_supporter_tag' => 'osu!supporter-tagi vaaditaan.',
+                'require_supporter_tag' => 'Sinun on oltava Tukija.',
             ],
         ],
     ],

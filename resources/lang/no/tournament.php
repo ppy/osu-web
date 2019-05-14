@@ -40,7 +40,7 @@ return [
 
     'show' => [
         'banner' => 'Støtt laget ditt',
-        'entered' => 'Du er registret for denne turneringen.<br><br>Merk at dette ikke betyr at du har blitt tildelt et lag.<br><br>Videre instruksjoner vil bli sendt til deg via e-post når vi nærmer oss starten på turneringen, så vennligst kontroller at osu! brukermailen din er gyldig!',
+        'entered' => 'Du er registret for denne turneringen.<br><br>Merk at dette betyr <b>ikke</b> at du har blitt tildelt et lag.<br><br>Videre instruksjoner vil bli sendt til deg via e-post når vi nærmer oss starten på turneringen, så vennligst kontroller at osu! e-mailen din er gyldig!',
         'info_page' => 'Informasjonsside',
         'login_to_register' => 'Vennligst :login for å se registreringsdetaljene!',
         'not_yet_entered' => 'Du er ikke registret for denne turneringen.',

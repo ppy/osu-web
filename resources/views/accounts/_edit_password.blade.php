@@ -30,7 +30,7 @@
 
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
-            <div class="account-edit-entry" data-password-field="current_password">
+            <div class="account-edit-entry js-form-error--field">
                 <input
                     class="account-edit-entry__input"
                     name="user[current_password]"
@@ -47,7 +47,7 @@
         </div>
 
         <div class="account-edit__input-group">
-            <div class="account-edit-entry" data-password-field="password">
+            <div class="account-edit-entry js-form-error--field">
                 <input
                     class="account-edit-entry__input js-form-confirmation"
                     name="user[password]"
@@ -62,10 +62,7 @@
                 <div class="account-edit-entry__error js-form-error--error"></div>
             </div>
 
-            <div
-                class="account-edit-entry"
-                data-password-field="password_confirmation"
-            >
+            <div class="account-edit-entry js-form-error--field">
                 <input
                     class="account-edit-entry__input js-form-confirmation"
                     name="user[password_confirmation]"

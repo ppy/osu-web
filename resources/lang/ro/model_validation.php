@@ -68,7 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Ștergerea metadatei unui beatmap nu este permisă.',
             'beatmapset_post_no_edit' => 'Editarea metadatei unui beatmap nu este permisă.',
-            'only_quote' => '',
+            'only_quote' => 'Răspunsul tău conţine doar un citat.',
         ],
 
         'topic_poll' => [
@@ -98,7 +98,7 @@ return [
         'username_available_soon' => 'Acest nume de utilizator va fi disponibil pentru utilizare în orice moment de acum!',
         'username_invalid_characters' => 'Numele de utilizator solicitat conține caractere invalide.',
         'username_in_use' => 'Numele de utilizator este deja folosit!',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_locked' => 'Numele de utilizator este deja luat!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Te rugăm să folosești fie underscore, fie spații, nu ambele!',
         'username_no_spaces' => "Numele de utilizator nu poate începe sau termina cu spații!",
         'username_not_allowed' => 'Acest nume de utilizator nu este permis.',

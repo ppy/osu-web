@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,24 +16,33 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'cancel' => 'Peruuta',
+import * as React from 'react';
 
-    'authorise' => [
-        'authorise' => 'Salli',
-        'request' => 'pyytää lupaa yhdistää tilillesi.',
-        'scopes_title' => 'Tämä sovellus voi:',
-        'title' => 'Yhdistyspyyntö',
+interface CommentJson {
+  deleted_at: string | null;
+}
 
-        'wrong_user' => [
-            '_' => 'Olet kirjautunut sisään käyttäjänä :user:. :logout_link.',
-            'logout_link' => 'Paina tästä kirjautuaksesi sisään toisella käyttäjällä',
-        ],
-    ],
+interface Props {
+  comments: CommentJson[];
+  modifiers: string[] | undefined;
+  showDeleted: boolean;
+}
 
-    'login' => [
-        'download' => 'Paina tästä ladataksesi pelin ja luodaksesi käyttäjän',
-        'label' => 'Ensiksi, kirjaudutaan käyttäjällesi!',
-        'title' => 'Kirjaudu Käyttäjälle',
-    ],
-];
+export default class DeletedCommentsCount extends React.Component<Props, {}> {
+  render() {
+    const deletedCount = this.props.comments.filter((c) => c.deleted_at != null).length;
+
+    if (this.props.showDeleted || deletedCount === 0) {
+      return null;
+    }
+
+    return (
+      <div className={osu.classWithModifiers('deleted-comments-count', this.props.modifiers)}>
+        <span className='deleted-comments-count__icon'>
+          <span className='far fa-trash-alt' />
+        </span>
+          {osu.transChoice('comments.deleted_count', deletedCount)}
+      </div>
+    );
+  }
+}

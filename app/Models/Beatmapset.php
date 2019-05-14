@@ -903,7 +903,7 @@ class Beatmapset extends Model implements AfterCommit
             ->get()
             ->pluck('user')
             ->contains(function ($user) {
-                return $user->isFullBN();
+                return $user->isNAT() || $user->isFullBN();
             });
     }
 

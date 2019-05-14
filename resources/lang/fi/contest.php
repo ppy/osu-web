@@ -54,7 +54,7 @@ return [
         'too_big' => 'Tähän kilpailuun voi lähettää korkeintaan :limit työtä.',
     ],
     'beatmaps' => [
-        'download' => 'Lataa tuotos',
+        'download' => 'Lataa ehdokas',
     ],
     'vote' => [
         'list' => 'äänet',
@@ -70,8 +70,8 @@ return [
         ],
     ],
     'states' => [
-        'entry' => 'Osallistuminen Avoinna',
-        'voting' => 'Äänestys on alkanut',
+        'entry' => 'Avoinna',
+        'voting' => 'Äänestys Alkanut',
         'results' => 'Tulokset Julkistettu',
     ],
 ];

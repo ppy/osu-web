@@ -676,17 +676,17 @@ class User extends Model implements AuthenticatableContract
 
     public function isBNG()
     {
-        return $this->isGroup(UserGroup::GROUPS['bng']);
-    }
-
-    public function isProbationaryBN()
-    {
-        return $this->isBNG() && !$this->isFullBN();
+        return $this->isFullBN() || $this->isLimitedBN();
     }
 
     public function isFullBN()
     {
-        return $this->isGroup(UserGroup::GROUPS['bng_full']);
+        return $this->isGroup(UserGroup::GROUPS['bng']);
+    }
+
+    public function isLimitedBN()
+    {
+        return $this->isGroup(UserGroup::GROUPS['bng_limited']);
     }
 
     public function isHax()
@@ -712,6 +712,11 @@ class User extends Model implements AuthenticatableContract
     public function isRegistered()
     {
         return $this->isGroup(UserGroup::GROUPS['default']);
+    }
+
+    public function isProjectLoved()
+    {
+        return $this->isGroup(UserGroup::GROUPS['loved']);
     }
 
     public function isBot()

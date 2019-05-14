@@ -53,7 +53,7 @@ return [
         ],
         'beatmaps' => [
             '_' => 'ビートマップ',
-            'artists' => 'おすすめアーティスト',
+            'artists' => '注目アーティスト',
             'beatmap_discussion_posts-index' => 'ディスカッション投稿',
             'beatmap_discussions-index' => 'ディスカッション',
             'beatmapset-watches-index' => 'moddingウォッチリスト',

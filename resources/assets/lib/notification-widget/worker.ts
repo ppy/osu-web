@@ -75,7 +75,7 @@ export default class Worker {
   @observable private items = observable.map<number, Notification>();
   private timeout: TimeoutCollection = {};
   private endpoint?: string;
-  private ws?: WebSocket;
+  private ws: WebSocket | null | undefined;
   private xhr: XHRCollection = {};
 
   boot = () => {
@@ -87,7 +87,7 @@ export default class Worker {
   }
 
   connectWebSocket = () => {
-    if (!this.active) {
+    if (!this.active || this.endpoint == null || this.ws != null) {
       return;
     }
 
@@ -121,6 +121,7 @@ export default class Worker {
       return;
     }
 
+    this.ws = null;
     this.timeout.connectWebSocket = setTimeout(this.connectWebSocket, 10000);
   }
 

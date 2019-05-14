@@ -196,7 +196,7 @@ class ChangelogEntry extends Model
 
     public function messageHTML()
     {
-        list($private, $public) = static::splitMessage($this->message);
+        [$private, $public] = static::splitMessage($this->message);
 
         if ($public !== null) {
             return markdown($public, 'changelog_entry');

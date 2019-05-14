@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,24 +16,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'cancel' => 'Peruuta',
+.deleted-comments-count {
+  font-size: @font-size--title-small;
+  padding-top: 10px;
 
-    'authorise' => [
-        'authorise' => 'Salli',
-        'request' => 'pyytää lupaa yhdistää tilillesi.',
-        'scopes_title' => 'Tämä sovellus voi:',
-        'title' => 'Yhdistyspyyntö',
+  &--top {
+    .default-gutter();
+    padding-bottom: 10px;
+  }
 
-        'wrong_user' => [
-            '_' => 'Olet kirjautunut sisään käyttäjänä :user:. :logout_link.',
-            'logout_link' => 'Paina tästä kirjautuaksesi sisään toisella käyttäjällä',
-        ],
-    ],
-
-    'login' => [
-        'download' => 'Paina tästä ladataksesi pelin ja luodaksesi käyttäjän',
-        'label' => 'Ensiksi, kirjaudutaan käyttäjällesi!',
-        'title' => 'Kirjaudu Käyttäjälle',
-    ],
-];
+  &__icon {
+    margin-right: 5px;
+  }
+}

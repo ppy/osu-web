@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Oprettelse af afstemning',
 
-            'preview' => '',
+            'preview' => 'Indlæg forhåndsvisning',
 
             'create_poll_button' => [
                 'add' => 'Lav en afstemning',

@@ -62,15 +62,15 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Virkelig slette innlegget?',
-        'confirm_restore' => 'Virkelig gjenopprette innlegget?',
+        'confirm_destroy' => 'Vil du virkelig slette innlegget?',
+        'confirm_restore' => 'Vil du virkelig gjenopprette innlegget?',
         'edited' => 'Sist endret av :user :when, redigert :count ganger totalt.',
         'posted_at' => 'lagt ut :when',
 
         'actions' => [
             'destroy' => 'Slett innlegg',
             'restore' => 'Gjenopprett innlegg',
-            'edit' => 'Rediger innlegg',
+            'edit' => 'Rediger innlegget',
         ],
 
         'info' => [
@@ -102,10 +102,10 @@ return [
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Skriv',
-            'submit' => 'Innlegg',
+            'submit' => 'Del',
 
             'necropost' => [
-                'default' => 'Dette emnet har vært inaktivt i en stund. Skriv et svar bare hvis du har en spesifikk grunn til å gjøre det.',
+                'default' => 'Dette emnet har vært inaktivt i en stund. Svar bare hvis du har en spesifikk grunn til å gjøre det.',
 
                 'new_topic' => [
                     '_' => "Dette emne har vært inaktivt i en stund. Hvis du ikke har en spesifikk grunn til å svare her, vennligst :create istedenfor.",
@@ -114,7 +114,7 @@ return [
             ],
 
             'placeholder' => [
-                'body' => 'Skriv innhold til innlegget her',
+                'body' => 'Skriv innholdet til innlegget her',
                 'title' => 'Klikk her for å sette tittelen',
             ],
         ],

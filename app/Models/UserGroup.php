@@ -47,7 +47,7 @@ class UserGroup extends Model
         'bng' => 28,
         'bot' => 29,
         'loved' => 31,
-        'bng_full' => 32,
+        'bng_limited' => 32,
     ];
 
     public function group()

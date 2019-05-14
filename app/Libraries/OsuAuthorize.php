@@ -28,7 +28,6 @@ use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
 use App\Models\User;
 use App\Models\UserContestEntry;
-use App\Models\UserGroup;
 use Carbon\Carbon;
 
 class OsuAuthorize
@@ -353,7 +352,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!($user->isGMT() || $user->isNAT() || $user->isGroup(UserGroup::GROUPS['loved']))) {
+        if (!$user->isProjectLoved()) {
             return 'unauthorized';
         }
 
@@ -382,7 +381,7 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
-        if ($user->isProbationaryBN()) {
+        if ($user->isLimitedBN()) {
             if ($beatmapset->playmodeCount() > 1) {
                 return $prefix.'full_bn_required_hybrid';
             }

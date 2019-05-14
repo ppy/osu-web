@@ -25,7 +25,7 @@ return [
     ],
 
     'comment' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Báo cáo',
+        'title' => 'Báo cáo bình luận của :username?',
     ],
 ];
