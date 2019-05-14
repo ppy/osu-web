@@ -130,11 +130,12 @@ export class UserList extends React.PureComponent<Props> {
     const users = this.filteredUsers.slice();
 
     switch (this.state.sortMode) {
-      case 'last_visit':
+      case 'username':
+        return users.sort((x, y) => x.username.localeCompare(y.username));
+
+      default:
         return users.sort((x, y) => moment(y.last_visit || 0).diff(moment(x.last_visit || 0)));
     }
-
-    return users.sort((x, y) => x.username.localeCompare(y.username));
   }
 
   private get filterFromUrl() {
