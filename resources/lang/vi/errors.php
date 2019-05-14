@@ -35,7 +35,7 @@ return [
         'standard_converts_only' => 'Không có điểm số cho chế độ được yêu cầu trong độ khó của beatmap này.',
     ],
     'checkout' => [
-        'generic' => '',
+        'generic' => 'Đã xảy ra lỗi khi chuẩn bị thanh toán.',
     ],
     'logged_out' => 'Bạn đã đăng xuất. Hãy đăng nhập và thử lại.',
     'supporter_only' => 'Bạn phải là người hỗ trợ để sử dụng tính năng này.',

@@ -21,11 +21,11 @@
 return [
     'top-headers' => [
         'headline' => 'Direktesendinger',
-        'description' => 'Data hentes fra twitch.tv hvert femte minutt basert på katalogslisten. Start gjerne med å strømme og få deg selv opplistet! For mer informasjon om hvordan oppsettet fungerer, vennligst sjekk wikisiden for livestrømming.',
+        'description' => 'Data hentes fra twitch.tv hvert femte minutt basert på katalogslisten. Start gjerne med å strømme og få deg selv opplistet! For mer informasjon om hvordan oppsettet fungerer, vennligst sjekk wikisiden for direktesending :link.',
 
-        'link' => 'wikisiden om strømming',
+        'link' => 'wikisiden på direktesendinger',
     ],
     'headers' => [
-        'regular' => 'Strømmer for øyeblikket',
+        'regular' => 'Direktesender for øyeblikket',
     ],
 ];

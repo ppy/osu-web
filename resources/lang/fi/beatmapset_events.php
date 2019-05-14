@@ -37,7 +37,7 @@ return [
         'love' => ':user rakastaa',
         'nominate' => 'Käyttäjän :user suosittelema.',
         'nomination_reset' => 'Uusi ongelma :discussion (:text) nollasi suositukset.',
-        'qualify' => 'Tämä beatmap sai vaaditun määrän suosituksia tarkasteluvaihetta varten.',
+        'qualify' => 'Tämä beatmap sai vaaditun määrän suosituksia hyväksymisvaihetta varten.',
         'rank' => 'Hyväksytty.',
     ],
 

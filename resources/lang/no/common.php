@@ -31,7 +31,7 @@ return [
 
     'buttons' => [
         'admin' => 'Admin',
-        'back_to_previous' => 'Gå tilbake til forrige posisjon',
+        'back_to_previous' => 'Returner til forrige posisjon',
         'back_to_top' => 'Tilbake til toppen',
         'cancel' => 'Avbryt',
         'change' => 'endre',
@@ -44,7 +44,7 @@ return [
         'hide' => 'skjul',
         'permalink' => 'permalenke',
         'permalink_copied' => 'lenke kopiert',
-        'post' => 'Innlegg',
+        'post' => 'Del',
         'reply' => 'Svar',
         'reply_reopen' => 'Svar og åpne igjen',
         'reply_resolve' => 'Svar og marker som løst',
@@ -61,16 +61,16 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count merke|:count merker',
-        'days' => ':count dag|:count dager',
+        'badges' => ':count_delimited merke|:count_delimited merker',
+        'days' => ':count_delimited dag|:count_delimited dager',
         'hour_short_unit' => 't|t',
-        'hours' => ':count time|:count timer',
-        'item' => ':count enhet|:count enheter',
+        'hours' => ':count_delimited time|:count_delimited timer',
+        'item' => ':count_delimited enhet|:count_delimited enheter',
         'minute_short_unit' => 'm|m',
-        'minutes' => ':count minutt|:count minutter',
-        'months' => ':count måned|:count måneder',
+        'minutes' => '::count_delimited minutt|:count_delimited minutter',
+        'months' => '::count_delimited måned|:count_delimited måneder',
         'second_short_unit' => 's|s',
-        'years' => ':count år|:count år',
+        'years' => ':count_delimited år|:count_delimited år',
     ],
 
     'countdown' => [

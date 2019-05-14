@@ -90,7 +90,7 @@ return [
 
         'invoice' => 'Xem Hóa Đơn',
         'no_orders' => 'Không có đơn đặt hàng.',
-        'resume' => '',
+        'resume' => 'Tiếp Tục Thanh Toán',
 
         'item' => [
             'display_name' => [
@@ -115,7 +115,7 @@ return [
             'delivered' => 'Đã Giao Hàng',
             'paid' => 'Đã Thanh Toán',
             'processing' => 'Đang chờ xác nhận',
-            'shipped' => '',
+            'shipped' => 'Đã giao hàng',
         ],
     ],
 

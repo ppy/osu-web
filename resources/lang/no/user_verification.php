@@ -20,13 +20,13 @@
 
 return [
     'box' => [
-        'sent' => 'En e-post har blitt sendt til :mail med en bekreftelseskode. Skriv in koden.',
+        'sent' => 'En e-post har blitt sendt til :mail med en bekreftelseskode. Skriv inn koden.',
         'title' => 'Kontobekreftelse',
         'verifying' => 'Verifiserer...',
         'issuing' => 'Sender ny kode...',
 
         'info' => [
-            'check_spam' => "Husk å sjekke spam-mappen din, hvis du ikke kan finne e-posten.",
+            'check_spam' => "Husk å sjekke spam-mappen din hvis du ikke finner e-posten.",
             'recover' => "Hvis du ikke får tilgang til e-post kontoen din eller har glemt hva du brukte, vennligst følg denne :link.",
             'recover_link' => 'e-post gjenopprettingsprosess her',
             'reissue' => 'Du kan også :reissue_link eller :logout_link.',
@@ -36,14 +36,14 @@ return [
     ],
 
     'email' => [
-        'subject' => 'osu! kontobekreftelse',
+        'subject' => 'bekreftelse av osu! konto',
     ],
 
     'errors' => [
         'expired' => 'Bekreftelseskoden har utløpt, ny bekreftelsesmail sendt.',
         'incorrect_key' => 'Ugyldig bekreftelseskode.',
-        'retries_exceeded' => 'Ugyldig bekreftelseskode. Antall tillatte forsøk overskredet, ny verifikasjonsmail sendt.',
+        'retries_exceeded' => 'Ugyldig bekreftelseskode. Antall tillatte forsøk overskredet, ny bekreftelsesmail sendt.',
         'reissued' => 'Bekreftelseskoden har blitt gjenutgitt, ny bekreftelsesmail sendt.',
-        'unknown' => 'Et ukjent problem har forekommet, ny verifikasjonsmail sendt.',
+        'unknown' => 'Et ukjent problem har forekommet, ny bekreftelsesmail sendt.',
     ],
 ];

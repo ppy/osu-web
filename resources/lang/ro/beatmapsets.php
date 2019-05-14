@@ -55,13 +55,13 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => 'pentru a accesa mai multe avantaje',
+                'top' => 'Autentificare',
             ],
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => 'Ai prea multe beatmaps favorite! Te rugăm să mai elimini câteva înainte de a încerca din nou.',
         ],
 
         'hype' => [
@@ -138,7 +138,7 @@ return [
             'user-rating' => 'Evaluarea jucătorului',
             'rating-spread' => 'Clasament grafic',
             'nominations' => 'Nominalizări',
-            'playcount' => 'Numărul de jucări',
+            'playcount' => 'Numărul de jocuri',
         ],
     ],
 ];
