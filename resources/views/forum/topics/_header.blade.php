@@ -16,12 +16,13 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <?php
+    $_forum = $forum ?? $topic->forum;
     $headerCover = $cover['fileUrl'] ?? $cover['defaultFileUrl'] ?? null;
     $newTopic = !isset($topic);
 ?>
 <div class="osu-page">
     @include('forum._header_breadcrumb', [
-        'forum' => $forum ?? $topic->forum,
+        'forum' => $_forum,
     ])
 
     <div
@@ -69,7 +70,7 @@
             </div>
         </div>
 
-        @if ($newTopic || priv_check('ForumTopicEdit', $topic)->can())
+        @if (($newTopic ? priv_check('ForumTopicCoverStore', $_forum) : priv_check('ForumTopicCoverEdit', $topic))->can())
             <div class="forum-category-header__actions">
                 @include('forum._cover_editor')
             </div>

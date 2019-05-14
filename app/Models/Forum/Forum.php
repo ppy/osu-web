@@ -24,6 +24,7 @@ use App\Models\User;
 use Carbon\Carbon;
 
 /**
+ * @property bool $allow_topic_covers
  * @property ForumCover $cover
  * @property int $display_on_index
  * @property int $enable_icons
@@ -82,6 +83,7 @@ class Forum extends Model
     public $timestamps = false;
 
     protected $casts = [
+        'allow_topic_covers' => 'boolean',
         'enable_indexing' => 'boolean',
         'enable_sigs' => 'boolean',
         'moderator_groups' => 'array',
