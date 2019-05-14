@@ -268,6 +268,11 @@ class Forum extends Model
         return $this->forum_id === $id || isset($this->forum_parents[$id]);
     }
 
+    public function isHelpForum()
+    {
+        return $this->forum_id === config('osu.forum.help_forum_id');
+    }
+
     public function topicsAdded($count)
     {
         $this->getConnection()->transaction(function () use ($count) {

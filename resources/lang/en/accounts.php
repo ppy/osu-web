@@ -86,6 +86,11 @@ return [
         'hide_online' => 'hide your online presence',
     ],
 
+    'notifications' => [
+        'title' => 'Notifications',
+        'topic_auto_subscribe' => 'automatically subscribe to forum topics that you post',
+    ],
+
     'security' => [
         'current_session' => 'current',
         'end_session' => 'End Session',
