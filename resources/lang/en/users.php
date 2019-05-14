@@ -362,12 +362,6 @@ return [
         ],
     ],
 
-    'sort' => [
-        '_' => 'Sort by',
-        'last_visit' => 'Recently active',
-        'username' => 'Username',
-    ],
-
     'status' => [
         'all' => 'All',
         'online' => 'Online',

@@ -40,7 +40,7 @@ export class Sort extends React.PureComponent<Props> {
           key={value}
           onClick={this.props.onSortSelected}
         >
-          {osu.trans(`users.sort.${value}`)}
+          {osu.trans(`sort.${value}`)}
         </button>
       );
     });
