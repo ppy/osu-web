@@ -47,7 +47,7 @@ export class UserList extends React.PureComponent<Props> {
     const value = (event.currentTarget as HTMLElement).dataset.value;
     const url = osu.updateQueryString(null, { user_sort: value });
 
-    Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
+    Turbolinks.controller.advanceHistory(url);
     this.setState({ sortMode: value });
   }
 
@@ -56,7 +56,7 @@ export class UserList extends React.PureComponent<Props> {
     const key = (event.currentTarget as HTMLElement).dataset.key;
     const url = osu.updateQueryString(null, { filter: key });
 
-    Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
+    Turbolinks.controller.advanceHistory(url);
     this.setState({ filter: key });
   }
 
