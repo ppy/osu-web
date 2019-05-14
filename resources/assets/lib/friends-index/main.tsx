@@ -30,21 +30,21 @@ export class Main extends React.PureComponent<Props> {
     user: currentUser,
   };
 
-  render() {
-    const links = [
-      { title: 'Dashboard', url: laroute.route('home') },
-      { title: 'News', url: laroute.route('news.index') },
-      { title: 'Friends', url: laroute.route('friends.index'), active: true },
-      { title: 'Forum Subs', url: laroute.route('forum.topic-watches.index') },
-      { title: 'Modding Watchlist', url: laroute.route('beatmapsets.watches.index') },
-      { title: 'Settings', url: laroute.route('account.edit') },
-    ];
+  static readonly links = [
+    { title: 'Dashboard', url: laroute.route('home') },
+    { title: 'News', url: laroute.route('news.index') },
+    { title: 'Friends', url: laroute.route('friends.index'), active: true },
+    { title: 'Forum Subs', url: laroute.route('forum.topic-watches.index') },
+    { title: 'Modding Watchlist', url: laroute.route('beatmapsets.watches.index') },
+    { title: 'Settings', url: laroute.route('account.edit') },
+  ];
 
+  render() {
     return (
       <div className='osu-layout osu-layout--full'>
         <HeaderV3
           backgroundImage={this.props.user.cover.custom_url}
-          links={links}
+          links={Main.links}
           theme='users'
           titleTrans={{
             info: osu.trans('friends.index.title.info'),
