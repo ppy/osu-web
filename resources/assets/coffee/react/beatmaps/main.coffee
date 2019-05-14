@@ -101,9 +101,7 @@ export class Main extends React.PureComponent
 
     $(document).trigger 'beatmap:search:start'
     url = encodeURI laroute.route('beatmapsets.index', BeatmapsetFilter.queryParamsFromFilters(@state.filters))
-    Turbolinks
-      .controller
-      .pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
+    Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
 
 
   componentWillUnmount: =>
@@ -247,7 +245,6 @@ export class Main extends React.PureComponent
 
   saveState: =>
     @props.container.dataset.reactState = JSON.stringify({@state})
-    @componentWillUnmount()
 
 
   search: =>
