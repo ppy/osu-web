@@ -130,7 +130,7 @@ export class UserList extends React.PureComponent<Props> {
     const users = this.filteredUsers.slice();
 
     switch (this.state.sortMode) {
-      case 'username':
+      case 'last_visit':
         return users.sort((x, y) => moment(y.last_visit || 0).unix() - moment(x.last_visit || 0).unix());
     }
 
