@@ -22,7 +22,7 @@ import { div, a, span, h1, h2 } from 'react-dom-factories'
 el = React.createElement
 
 export class GameHeader extends React.Component
-  timeFormat: 'LT'
+  timeFormat: 'LTS'
 
   render: ->
     timeStart = moment(@props.game.start_time).format @timeFormat
