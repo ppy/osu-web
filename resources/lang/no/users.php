@@ -38,7 +38,7 @@ return [
         ],
 
         'votes_received' => [
-            'title_most' => 'Mest stemt på (siste 3 måneder)',
+            'title_most' => 'Mest oppstemt på (de siste 3 månedene)',
         ],
 
         'votes_made' => [
@@ -49,13 +49,13 @@ return [
     'blocks' => [
         'banner_text' => 'Du har blokkerte denne brukeren.',
         'blocked_count' => 'blokkerte brukere (:count)',
-        'hide_profile' => 'skjul profil',
+        'hide_profile' => 'Skjul profil',
         'not_blocked' => 'Den brukeren er ikke blokkert.',
-        'show_profile' => 'vis profil',
+        'show_profile' => 'Vis profil',
         'too_many' => 'Maks antall blokkerte personer nådd.',
         'button' => [
-            'block' => 'blokker',
-            'unblock' => 'fjern blokkering',
+            'block' => 'Blokker',
+            'unblock' => 'Fjern blokkering',
         ],
     ],
 
@@ -65,11 +65,11 @@ return [
     ],
 
     'login' => [
-        '_' => 'Logg på',
+        '_' => 'Logg inn',
         'locked_ip' => 'IP-adressen din er blokkert. Vennligst vent et par minutter.',
         'username' => 'Brukernavn',
         'password' => 'Passord',
-        'button' => 'Logg på',
+        'button' => 'Logg inn',
         'button_posting' => 'Logger inn...',
         'remember' => 'Husk denne datamaskinen',
         'title' => 'Vennligst logg inn for å fortsette',
@@ -99,15 +99,15 @@ return [
     ],
     'logout_confirm' => 'Er du sikker på at du vil logge ut? :(',
     'report' => [
-        'button_text' => 'anmeld',
+        'button_text' => 'Anmeld',
         'comments' => 'Ytterlige Kommentarer',
-        'placeholder' => 'Vennligst angi hva som helst informasjon som du tror kan være nyttig.',
+        'placeholder' => 'Vennligst angi hva som helst av informasjon som du tror kan være nyttig.',
         'reason' => 'Årsak',
-        'thanks' => 'Takk for din anmelding!',
+        'thanks' => 'Takk for din anmeldelse!',
         'title' => 'Anmeld :username?',
 
         'actions' => [
-            'send' => 'Send Anmelding',
+            'send' => 'Send Anmeldelse',
             'cancel' => 'Avbryt',
         ],
 
@@ -208,7 +208,7 @@ return [
                     'title' => 'Nylige spillforsøk (24t)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Repriser Sett Historikk',
+                    'title' => 'Historikk For Repriser',
                     'count_label' => 'Repriser Sett',
                 ],
             ],
@@ -226,29 +226,29 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Mottok :amount fra kudosu nekte opphevelse i modding innlegget :post',
+                            'give' => 'Mottok :amount fra opphevelse av nektet kudosu i modding innlegget :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Nektet :amount for moddinginnlegget :post',
+                            'reset' => 'Nektet :amount fra modding innlegget i :post',
                         ],
 
                         'delete' => [
-                            'reset' => 'Tapte :amount fra sletting av moddinginnlegg i :post',
+                            'reset' => 'Tapte :amount fra sletting av modding innlegget i :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Mottok :amount fra gjenopprettelsen av moddinginnlegg i :post',
+                            'give' => 'Mottok :amount fra gjenopprettelse av modding innlegget i :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Mottok :amount fra å få stemmer på moddinginnlegget i :post',
-                            'reset' => 'Tapte :amount fra å miste stemmer på moddinginnlegget i :post',
+                            'give' => 'Mottok :amount fra å få stemmer på modding innlegget i :post',
+                            'reset' => 'Tapte :amount fra å miste stemmer på modding innlegget i :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Mottok :amount fra stemmeomberegningen på modding innlegget i :post',
-                            'reset' => 'Tapte :amount fra stemmeomberegningen på modding innlegget i :post',
+                            'give' => 'Mottok :amount fra omberegning av stemmer i modding innlegget :post',
+                            'reset' => 'Tapte :amount fra omberegning av stemmer i modding innlegget :post',
                         ],
                     ],
 
@@ -260,7 +260,7 @@ return [
                 ],
             ],
             'me' => [
-                'title' => 'me!',
+                'title' => 'om meg!',
             ],
             'medals' => [
                 'empty' => "Denne brukeren har ikke fått noen ennå. ;_;",
@@ -332,7 +332,7 @@ return [
         'page' => [
             'button' => 'Rediger profil',
             'description' => '<strong>me!</strong> er et personlig egendefinerbart område på profilsiden din.',
-            'edit_big' => 'Rediger me!',
+            'edit_big' => 'Rediger "om meg!"',
             'placeholder' => 'Skriv sideinnhold her',
             'restriction_info' => "Du må være en <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> for å låse opp denne funksjonen.",
         ],
@@ -350,19 +350,19 @@ return [
             'hit_accuracy' => 'Presisjon',
             'level' => 'Nivå :level',
             'level_progress' => 'Fremgang til neste nivå',
-            'maximum_combo' => 'Maksimal Kombo',
+            'maximum_combo' => 'Maks kombo nådd',
             'medals' => 'Medaljer',
             'play_count' => 'Antall Spillforsøk',
             'play_time' => 'Total Spilletid',
             'ranked_score' => 'Rangert Poengsum',
-            'replays_watched_by_others' => 'Pepriser Sett av Andre',
+            'replays_watched_by_others' => 'Repriser Sett av Andre',
             'score_ranks' => 'Poengsum Rangering',
             'total_hits' => 'Totale Treff',
             'total_score' => 'Samlet Poengsum',
         ],
     ],
     'status' => [
-        'online' => 'Påkoblet',
+        'online' => 'Tilkoblet',
         'offline' => 'Frakoblet',
     ],
     'store' => [

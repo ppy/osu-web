@@ -53,7 +53,7 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'fremhevede artister',
+            'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'beatmapdiskusjonsinnlegg',
             'beatmap_discussions-index' => 'beatmapdiskusjoner',
             'beatmapset-watches-index' => 'modding overvåkningsliste',
@@ -82,7 +82,7 @@ return [
             'chat-index' => 'chat',
             'dev' => 'utvikling',
             'getForum' => 'forum',
-            'getLive' => 'live',
+            'getLive' => 'direktesendinger',
             'comments-index' => 'kommentarer',
             'comments-show' => 'kommentar',
             'contests' => 'konkurranser',
@@ -97,7 +97,7 @@ return [
             'forum-forums-show' => 'forum',
         ],
         'multiplayer' => [
-            '_' => 'flerspiller',
+            '_' => 'flerspill',
             'show' => 'kamp',
         ],
         'error' => [
@@ -111,7 +111,7 @@ return [
         ],
         'user' => [
             '_' => 'bruker',
-            'getLogin' => 'logg på',
+            'getLogin' => 'logg inn',
             'disabled' => 'deaktivert',
 
             'register' => 'registrer',
@@ -179,7 +179,7 @@ return [
             'wiki' => 'Wiki',
         ],
         'help' => [
-            '_' => 'Hjelp & Felleskap',
+            '_' => 'Hjelp & Samfunn',
             'faq' => 'Ofte Stilte Spørsmål',
             'forum' => 'Brukerforum',
             'livestreams' => 'Direktesendinger',
@@ -198,7 +198,7 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Siden mangler',
-            'description' => "Beklager, men siden du forespurte er ikke her!",
+            'description' => "Beklager, men siden som du forespurte er ikke her!",
         ],
         '403' => [
             'error' => "Du burde ikke være her.",
@@ -240,7 +240,7 @@ return [
             'title' => 'Logg på for å fortsette',
 
             'error' => [
-                'email' => "Brukernavnet eller e-postadressen eksisterer ikke",
+                'email' => "Brukernavn eller e-postadresse eksisterer ikke",
                 'password' => 'Ugyldig passord',
             ],
         ],

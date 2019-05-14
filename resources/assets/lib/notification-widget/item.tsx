@@ -80,12 +80,6 @@ export default class Item extends React.Component<Props, State> {
 
     const item = this.props.items[0];
 
-    let blockClass = 'notification-popup-item';
-
-    if (this.props.items.length > 0) {
-      blockClass += ' notification-popup-item--multi';
-    }
-
     return (
       <div className='notification-popup-item clickable-row' onClick={this.markRead}>
         <div

@@ -21,11 +21,11 @@
 return [
     'header' => [
         'small' => 'Konkurrer i flere måter enn bare å trykke på sirkler.',
-        'large' => 'Felleskapskonkurranser',
+        'large' => 'Fellesskapskonkurranser',
     ],
     'voting' => [
         'over' => 'Avstemmingen for denne konkurransen har avsluttet',
-        'login_required' => 'Vennligst logg på for å stemme.',
+        'login_required' => 'Vennligst logg inn for å stemme.',
 
         'best_of' => [
             'none_played' => "Det ser ikke ut som du har spilt noen av beatmappene som kvaliseres for denne konkurransen!",
@@ -38,31 +38,31 @@ return [
         ],
     ],
     'entry' => [
-        '_' => 'påmelding',
-        'login_required' => 'Vennligst logg på for å delta i konkurransen.',
+        '_' => 'deltager',
+        'login_required' => 'Vennligst logg inn for å delta i konkurransen.',
         'silenced_or_restricted' => 'Du kan ikke bli med i konkurranser mens du er begrenset eller stum.',
         'preparation' => 'Vi driver for tiden å forbereder denne konkurransen. Vennligst vent tålmodig!',
-        'over' => 'Takk for dine påmeldinger! Muligheten for innleveringer har lukket seg for denne konkurransen og avstemning vil åpne snart.',
-        'limit_reached' => 'Du har nådd påmeldingsgrensen for denne konkurransen',
-        'drop_here' => 'Slipp påmeldingen din her',
+        'over' => 'Takk for dine bidrag! Påmeldingen for denne konkurransen har stengt og avstemningen vil åpne snart.',
+        'limit_reached' => 'Du har nådd maks antall bidrag for denne konkurransen',
+        'drop_here' => 'Slipp bidraget ditt her',
         'download' => 'Last ned .osz',
         'wrong_type' => [
             'art' => 'Bare .jpg og .png filer er akseptert for denne konkurransen.',
             'beatmap' => 'Bare .osu filer er akseptert for denne konkurransen.',
-            'music' => 'Bare .mp3 filer er aksepter for denne konkurransen.',
+            'music' => 'Bare .mp3 filer er akseptert for denne konkurransen.',
         ],
-        'too_big' => 'Påmeldinger for denne konkurransen kan bare være opp til :limit.',
+        'too_big' => 'Bidrag til denne konkurransen kan maks være :limit.',
     ],
     'beatmaps' => [
-        'download' => 'Last ned Påmeldingen',
+        'download' => 'Last ned bidraget',
     ],
     'vote' => [
         'list' => 'stemmer',
-        'count' => ':count stemme|:count stemmer',
-        'points' => ':count poeng|:count poeng',
+        'count' => ':count_delimited stemme|:count_delimited stemmer',
+        'points' => ':count_delimited poeng|:count_delimited poeng',
     ],
     'dates' => [
-        'ended' => 'Avslutter :date',
+        'ended' => 'Avsluttet :date',
 
         'starts' => [
             '_' => 'Starter :date',

@@ -713,6 +713,11 @@ class User extends Model implements AuthenticatableContract
         return $this->isGroup(UserGroup::GROUPS['default']);
     }
 
+    public function isProjectLoved()
+    {
+        return $this->isGroup(UserGroup::GROUPS['loved']);
+    }
+
     public function isBot()
     {
         return $this->group_id === UserGroup::GROUPS['bot'];

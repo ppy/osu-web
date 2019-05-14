@@ -22,7 +22,7 @@ return [
     'not_negative' => ':attribute kan ikke være negativ.',
     'required' => ':attribute kreves.',
     'too_long' => ':attribute overskrider maksimumslengden - kan bare være opp til :limit tegn.',
-    'wrong_confirmation' => 'Bekreftelse stemmer ikke.',
+    'wrong_confirmation' => 'Bekreftelsen stemmer ikke.',
 
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Diskusjonen er låst.',
@@ -46,7 +46,7 @@ return [
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Angitte tidsstempler er utenfor lengden til beatmappen.',
+            'exceeds_beatmapset_length' => 'Angitte tidsstempler er utenfor lengden til beatmappet.',
             'negative' => "Tidsstempler kan ikke være negative.",
         ],
     ],
@@ -66,8 +66,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Sletting av beatmap metadata innlegg er ikke tillatt.',
-            'beatmapset_post_no_edit' => 'Redigering av beatmap metadata innlegg er ikke tillatt.',
+            'beatmapset_post_no_delete' => 'Sletting av beatmap metadata innlegget er ikke tillatt.',
+            'beatmapset_post_no_edit' => 'Redigering av beatmap metadata innlegget er ikke tillatt.',
             'only_quote' => 'Svaret ditt inneholder kun et sitat.',
         ],
 
@@ -77,7 +77,7 @@ return [
             'invalid_max_options' => 'Alternativer valgt av hver bruker kan ikke overskride antall tilgjengelige valg.',
             'minimum_one_selection' => 'Minimum et valg pr. bruker kreves.',
             'minimum_two_options' => 'Trenger minst to valgalternativer.',
-            'too_many_options' => 'Overskredet maksimalt antall tillatte alternativer.',
+            'too_many_options' => 'Overskredet maksimal antall tillatte alternativer.',
         ],
 
         'topic_vote' => [
@@ -90,8 +90,8 @@ return [
         'contains_username' => 'Passord kan ikke inneholde brukernavnet ditt.',
         'email_already_used' => 'E-postadressen er allerede i bruk.',
         'invalid_country' => 'Land er ikke i databasen.',
-        'invalid_discord' => 'Discord brukernavn er ugyldig.',
-        'invalid_email' => "Dette synes ikke til å være en gyldig e-postadresse.",
+        'invalid_discord' => 'Discord brukernavnet er ugyldig.',
+        'invalid_email' => "Dette ser ikke ut til å være en gyldig e-postadresse.",
         'too_short' => 'Nytt passord er for kort.',
         'unknown_duplicate' => 'Brukernavn eller e-postadresse er allerede i bruk.',
         'username_available_in' => 'Dette brukernavnet vil bli tilgjengelig for bruk om :duration.',
@@ -106,8 +106,8 @@ return [
         'username_too_long' => 'Forespurte brukernavn er for langt.',
         'weak' => 'Svartelistet passord.',
         'wrong_current_password' => 'Nåværende passord er feil.',
-        'wrong_email_confirmation' => 'Bekreftning av e-post samsvarer ikke.',
-        'wrong_password_confirmation' => 'Passordene er ulike.',
+        'wrong_email_confirmation' => 'E-postene samsvarer ikke.',
+        'wrong_password_confirmation' => 'Passordene samsvarer ikke.',
         'too_long' => 'Overskrider maksimumslengden - kan bare være opp til :limit tegn.',
 
         'change_username' => [

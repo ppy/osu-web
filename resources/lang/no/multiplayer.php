@@ -25,7 +25,7 @@ return [
         'failed' => 'MISLYKTES',
         'header' => 'Flerspillerkamper',
         'in-progress' => '(spill pågår)',
-        'in_progress_spinner_label' => 'kamp pågår',
+        'in_progress_spinner_label' => 'spill pågår',
         'loading-events' => 'Laster hendelser...',
         'winner' => ':team vinner',
 
@@ -48,7 +48,7 @@ return [
         'score' => [
             'stats' => [
                 'accuracy' => 'Presisjon',
-                'combo' => 'Combo',
+                'combo' => 'Kombo',
                 'score' => 'Poeng',
             ],
         ],
@@ -68,7 +68,7 @@ return [
     'game' => [
         'scoring-type' => [
             'score' => 'Høyeste poengsum',
-            'accuracy' => 'Høyeste nøyaktighet',
+            'accuracy' => 'Høyeste presisjon',
             'combo' => 'Høyeste combo',
             'scorev2' => 'Poengsum V2',
         ],
