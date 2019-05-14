@@ -32,7 +32,6 @@ export class Main extends React.PureComponent<Props> {
 
   static readonly links = [
     { title: 'Dashboard', url: laroute.route('home') },
-    { title: 'News', url: laroute.route('news.index') },
     { title: 'Friends', url: laroute.route('friends.index'), active: true },
     { title: 'Forum Subs', url: laroute.route('forum.topic-watches.index') },
     { title: 'Modding Watchlist', url: laroute.route('beatmapsets.watches.index') },
