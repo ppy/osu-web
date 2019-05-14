@@ -131,7 +131,7 @@ export class UserList extends React.PureComponent<Props> {
 
     switch (this.state.sortMode) {
       case 'last_visit':
-        return users.sort((x, y) => moment(y.last_visit || 0).unix() - moment(x.last_visit || 0).unix());
+        return users.sort((x, y) => moment(y.last_visit || 0).diff(moment(x.last_visit || 0)));
     }
 
     return users.sort((x, y) => x.username.localeCompare(y.username));
