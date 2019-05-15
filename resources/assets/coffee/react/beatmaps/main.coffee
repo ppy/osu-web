@@ -235,6 +235,7 @@ export class Main extends React.PureComponent
 
     @fetchNewState()
     .then (newState) =>
+      return unless newState?
       @setState newState
 
     .catch (error) =>
@@ -259,6 +260,7 @@ export class Main extends React.PureComponent
 
     @fetchNewState(true)
     .then (newState) =>
+      return unless newState?
       cutoff = @backToTopAnchor.current.getBoundingClientRect().top
       window.scrollTo window.pageXOffset, window.pageYOffset + cutoff if cutoff < 0
 
