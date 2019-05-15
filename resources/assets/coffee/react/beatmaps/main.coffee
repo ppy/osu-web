@@ -52,6 +52,8 @@ export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @debouncedSearch = _.debounce @search, 500
+
     prevState = JSON.parse(props.container.dataset.reactState ? '{}')
 
     @state = prevState.state unless _.isEmpty(prevState)
@@ -90,7 +92,7 @@ export class Main extends React.PureComponent
 
   componentDidMount: =>
     $(document).on 'beatmap:load_more.beatmaps', @loadMore
-    $(document).on 'beatmap:search:start.beatmaps', @search
+    $(document).on 'beatmap:search:start.beatmaps', @debouncedSearch
     $(document).on 'beatmap:search:filtered.beatmaps', @updateFilters
     $(document).on 'turbolinks:before-cache.beatmaps', @saveState
     $(window).on 'resize.beatmaps', @updateColumnCount
@@ -100,13 +102,12 @@ export class Main extends React.PureComponent
     return if _.isEqual(prevState.filters, @state.filters)
 
     $(document).trigger 'beatmap:search:start'
-    url = encodeURI laroute.route('beatmapsets.index', BeatmapsetFilter.queryParamsFromFilters(@state.filters))
-    Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
 
 
   componentWillUnmount: =>
     $(document).off '.beatmaps'
     $(window).off '.beatmaps'
+    @debouncedSearch.cancel
     @xhr?.abort()
 
 
@@ -249,6 +250,9 @@ export class Main extends React.PureComponent
 
   search: =>
     @xhr?.abort()
+
+    url = encodeURI laroute.route('beatmapsets.index', BeatmapsetFilter.queryParamsFromFilters(@state.filters))
+    Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
 
     return Promise.resolve() if @isSupporterMissing()
 
