@@ -53,7 +53,7 @@ export default withMarkRead(observer(class ItemGroup extends React.Component<Ite
           </div>
           <div className='notification-popup-item__main'>
             <div className='notification-popup-item__content'>
-              <div className='notification-popup-item__row notification-popup-item__row--name'>
+              <div className='notification-popup-item__row notification-popup-item__row--category'>
                 {osu.trans(`notifications.item.${this.props.item.objectType}.${this.props.item.category}._`)}
               </div>
               {this.renderMessage()}

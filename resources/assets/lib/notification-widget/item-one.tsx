@@ -28,14 +28,12 @@ import { withMarkRead, WithMarkReadProps } from './with-mark-read';
 
 export default withMarkRead(observer(class ItemOne extends React.Component<ItemProps & WithMarkReadProps, {}> {
   render() {
-    const item = this.props.item;
-
     return (
       <div className='notification-popup-item clickable-row' onClick={this.props.markRead}>
         <div
           className='notification-popup-item__cover'
           style={{
-            backgroundImage: osu.urlPresence(item.details.coverUrl),
+            backgroundImage: osu.urlPresence(this.props.item.details.coverUrl),
           }}
         >
           <div className='notification-popup-item__cover-overlay'>
@@ -44,16 +42,9 @@ export default withMarkRead(observer(class ItemOne extends React.Component<ItemP
         </div>
         <div className='notification-popup-item__main'>
           <div className='notification-popup-item__content'>
-            <div className='notification-popup-item__row notification-popup-item__row--name'>
-              {osu.trans(`notifications.item.${item.objectType}.${item.category}._`)}
-            </div>
+            {this.renderCategory()}
             {this.renderMessage()}
-            <div
-              className='notification-popup-item__row notification-popup-item__row--time'
-              dangerouslySetInnerHTML={{
-                __html: osu.timeago(item.createdAtJson),
-              }}
-            />
+            {this.renderTime()}
           </div>
           <div className='notification-popup-item__side-buttons'>
             {this.renderMarkAsReadButton()}
@@ -61,6 +52,16 @@ export default withMarkRead(observer(class ItemOne extends React.Component<ItemP
         </div>
       </div>
     );
+  }
+
+  private renderCategory() {
+    const label = osu.trans(`notifications.item.${this.props.item.objectType}.${this.props.item.category}._`);
+
+    if (label === '') {
+      return null;
+    }
+
+    return <div className='notification-popup-item__row notification-popup-item__row--category'>{label}</div>;
   }
 
   private renderCoverIcon() {
@@ -107,6 +108,21 @@ export default withMarkRead(observer(class ItemOne extends React.Component<ItemP
       <a href={urlOne(this.props.item)} className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'>
         {messageOne(this.props.item)}
       </a>
+    );
+  }
+
+  private renderTime() {
+    if (this.props.item.createdAtJson == null) {
+      return null;
+    }
+
+    return (
+      <div
+        className='notification-popup-item__row notification-popup-item__row--time'
+        dangerouslySetInnerHTML={{
+          __html: osu.timeago(this.props.item.createdAtJson),
+        }}
+      />
     );
   }
 }));
