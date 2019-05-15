@@ -96,7 +96,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title 作成 by :mapper',
+            'title' => ':title 作成 :mapper',
         ],
 
         'sort' => [
@@ -108,7 +108,7 @@ return [
 
         'stats' => [
             'deleted' => '削除済み',
-            'mapper_notes' => 'メモ',
+            'mapper_notes' => '注意',
             'mine' => '自分',
             'pending' => '未解決',
             'praises' => '称賛',
@@ -117,11 +117,11 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'このビートマップは:dateに承認済みになりました！',
+            'approved' => 'このビートマップは:dateにApprovedになりました！',
             'graveyard' => "このビートマップは:dateから更新止まっているため放棄された可能性があります・・・",
             'loved' => 'このビートマップは:dateにLovedに追加しました！',
-            'ranked' => 'このビートマップは:dateにランクになりました！',
-            'wip' => '注：このビートマップは作者によって作成途中とされています。',
+            'ranked' => 'このビートマップは:dateにRankedになりました！',
+            'wip' => '注意：このビートマップは作者によって作成途中とされています。',
         ],
 
     ],
@@ -130,8 +130,8 @@ return [
         'button' => 'ビートマップにHype！',
         'button_done' => 'Hype済みです！',
         'confirm' => "あなたの残りHype数は:n回です。Hypeは取り消しできません。Hypeしますか？",
-        'explanation' => 'このビートマップにHypeすることで注目が集まり、ノミネーションやランクがされやすくなります！',
-        'explanation_guest' => 'このビートマップにログインしてHypeすることで注目が集まり、ノミネーションやランクがされやすくなります！',
+        'explanation' => 'このビートマップにHypeすることで注目が集まり、ノミネーションやRankedがされやすくなります！',
+        'explanation_guest' => 'このビートマップにログインしてHypeすることで注目が集まり、ノミネーションやRankedがされやすくなります！',
         'new_time' => ":new_timeでhype数が回復します。",
         'remaining' => 'あなたの残りHype数は:remaining回です',
         'required_text' => 'Hype: :current/:required',
@@ -140,16 +140,16 @@ return [
     ],
 
     'feedback' => [
-        'button' => 'コメントを残す',
+        'button' => 'フィードバックを残す',
     ],
 
     'nominations' => [
         'delete' => '削除',
-        'delete_own_confirm' => '譜面は削除され、あなたはプロフィール画面にリダイレクトされます。本当によろしいですか？',
-        'delete_other_confirm' => 'ビートマップは削除され、あなたはユーザーのプロフィール画面にリダイレクトされます。本当によろしいですか？',
+        'delete_own_confirm' => '本当によろしいですか？ビートマップは削除され、プロフィール画面にリダイレクトされます。',
+        'delete_other_confirm' => '本当によろしいですか？ビートマップは削除され、ユーザーのプロフィール画面にリダイレクトされます。',
         'disqualification_prompt' => 'Disqualification（Qualifyの取り消し）の理由',
         'disqualified_at' => ':time_agoにDisqualifyされました(:reason).',
-        'disqualified_no_reason' => '理由が明示されていません',
+        'disqualified_no_reason' => '理由が設定されていません',
         'disqualify' => 'Disqualify',
         'incorrect_state' => 'エラーが発生しました。ページの再読み込みを試してください。',
         'love' => 'Lovedに追加',
@@ -157,7 +157,7 @@ return [
         'nominate' => 'ノミネート',
         'nominate_confirm' => 'このビートマップをノミネートしますか？',
         'nominated_by' => ':usersにノミネートされました。',
-        'qualified' => '特に問題がなかった場合、:dateにランク予定です。',
+        'qualified' => '特に問題がなかった場合、:dateにranked予定です。',
         'qualified_soon' => '特に問題がなかった場合、間もなくランクされる予定です。',
         'required_text' => 'ノミネート数: :current/:required',
         'reset_message_deleted' => '削除済み',
@@ -165,13 +165,13 @@ return [
         'unresolved_issues' => 'まだ未解決の問題があります。',
 
         'reset_at' => [
-            'nomination_reset' => ':userが:time_agoに新しい問題:discussion (:message)によりノミネーションをリセットしました。',
-            'disqualify' => ':userが:time_agoに新しい問題:discussion (:message)によりDisqualifyしました。',
+            'nomination_reset' => 'ノミネーション審査が:userによる新しい問題:discussion （:message）により、:time_agoにリセットされました。',
+            'disqualify' => ':userの新しい問題:discussion（:message）により、:time_agoにDisqualifyしました。',
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '本当によろしいですか？新しい問題を投稿すると審査中ではなくなります。',
-            'disqualify' => '本当にいいですか？これによりビートマップがQualifiedから外され、ノミネーションがリセットされます。',
+            'nomination_reset' => '本当によろしいですか？新しい問題を投稿するとノミネーション審査中ではなくなります。',
+            'disqualify' => '本当によろしいですか？これによりビートマップがQualifiedから外され、ノミネーション審査がリセットされます。',
         ],
     ],
 
@@ -190,7 +190,7 @@ return [
                 'genre' => 'ジャンル',
                 'language' => '言語',
                 'extra' => '追加情報',
-                'rank' => 'ランク取得日',
+                'rank' => 'Rank取得日',
                 'played' => 'プレイ済み',
             ],
             'sorting' => [
@@ -199,7 +199,7 @@ return [
                 'difficulty' => '難易度',
                 'favourites' => 'お気に入り',
                 'updated' => '更新',
-                'ranked' => 'ランク',
+                'ranked' => 'Ranked',
                 'rating' => '評価',
                 'plays' => 'プレイ数',
                 'relevance' => '関連性',
@@ -213,7 +213,7 @@ return [
     ],
     'general' => [
         'recommended' => '推奨難易度',
-        'converts' => 'コンバートビートマップを含む',
+        'converts' => 'コンバートビートマップを含める',
     ],
     'mode' => [
         'any' => '全て',
@@ -224,12 +224,12 @@ return [
     ],
     'status' => [
         'any' => '全て',
-        'ranked-approved' => 'ランク＆承認済み',
-        'approved' => '承認済み',
+        'ranked-approved' => 'Ranked & Approved',
+        'approved' => 'Approved',
         'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'お気に入り',
-        'pending' => '保留中・製作中',
+        'pending' => 'Pending & WIP',
         'graveyard' => 'Graveyard',
         'my-maps' => 'マイマップ',
     ],
@@ -290,13 +290,13 @@ return [
     ],
     'extra' => [
         'video' => '動画あり',
-        'storyboard' => 'Storyboardあり',
+        'storyboard' => 'ストーリーボードあり',
     ],
     'rank' => [
         'any' => '全て',
-        'XH' => '銀SS',
+        'XH' => 'Silver SS',
         'X' => 'SS',
-        'SH' => '銀S',
+        'SH' => 'Silver S',
         'S' => 'S',
         'A' => 'A',
         'B' => 'B',

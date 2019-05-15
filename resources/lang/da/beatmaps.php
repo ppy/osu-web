@@ -200,7 +200,7 @@ return [
                 'favourites' => 'Favoritter',
                 'updated' => 'Opdateret',
                 'ranked' => 'Rangeret',
-                'rating' => '',
+                'rating' => 'Vurdering',
                 'plays' => 'Afspilninger',
                 'relevance' => '',
                 'nominations' => 'Nomineringer',

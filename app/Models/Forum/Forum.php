@@ -24,6 +24,7 @@ use App\Models\User;
 use Carbon\Carbon;
 
 /**
+ * @property bool $allow_topic_covers
  * @property ForumCover $cover
  * @property int $display_on_index
  * @property int $enable_icons
@@ -82,6 +83,7 @@ class Forum extends Model
     public $timestamps = false;
 
     protected $casts = [
+        'allow_topic_covers' => 'boolean',
         'enable_indexing' => 'boolean',
         'enable_sigs' => 'boolean',
         'moderator_groups' => 'array',
@@ -266,6 +268,11 @@ class Forum extends Model
         $id = config('osu.forum.feature_forum_id');
 
         return $this->forum_id === $id || isset($this->forum_parents[$id]);
+    }
+
+    public function isHelpForum()
+    {
+        return $this->forum_id === config('osu.forum.help_forum_id');
     }
 
     public function topicsAdded($count)

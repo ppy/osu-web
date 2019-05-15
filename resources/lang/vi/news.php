@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu!news',
 
         'nav' => [
             'newer' => 'Bài đăng mới hơn',
@@ -28,13 +28,13 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => ':info Tin Tức',
+            'info' => 'Trang Nhất',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => 'bởi :user',
 
         'nav' => [
             'newer' => 'Bài đăng mới hơn',
@@ -42,8 +42,8 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => ':info Tin Tức',
+            'info' => 'Bài Đăng',
         ],
     ],
 

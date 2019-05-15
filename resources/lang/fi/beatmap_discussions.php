@@ -78,6 +78,7 @@ return [
         'admin' => 'ylläpitäjä',
         'bng' => 'suosittelija',
         'owner' => 'mappaaja',
+        'qat' => 'qat',
     ],
 
     'user_filter' => [

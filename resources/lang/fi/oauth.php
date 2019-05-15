@@ -19,23 +19,23 @@
  */
 
 return [
-    'cancel' => '',
+    'cancel' => 'Peruuta',
 
     'authorise' => [
-        'authorise' => '',
-        'request' => '',
-        'scopes_title' => '',
-        'title' => '',
+        'authorise' => 'Salli',
+        'request' => 'pyytää lupaa yhdistää tilillesi.',
+        'scopes_title' => 'Tämä sovellus voi:',
+        'title' => 'Yhdistyspyyntö',
 
         'wrong_user' => [
-            '_' => '',
-            'logout_link' => '',
+            '_' => 'Olet kirjautunut sisään käyttäjänä :user:. :logout_link.',
+            'logout_link' => 'Paina tästä kirjautuaksesi sisään toisella käyttäjällä',
         ],
     ],
 
     'login' => [
-        'download' => '',
-        'label' => '',
-        'title' => '',
+        'download' => 'Paina tästä ladataksesi pelin ja luodaksesi käyttäjän',
+        'label' => 'Ensiksi, kirjaudutaan käyttäjällesi!',
+        'title' => 'Kirjaudu Käyttäjälle',
     ],
 ];
