@@ -22,6 +22,7 @@ import LegacyPmNotification from 'models/legacy-pm-notification';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import ItemProps from './item-props';
+import { one as url } from './url';
 import { withMarkRead, WithMarkReadProps } from './with-mark-read';
 
 interface IconsMap {
@@ -141,65 +142,9 @@ export default withMarkRead(observer(class ItemOne extends React.Component<ItemP
     }
 
     return (
-      <a href={this.url()} className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'>
+      <a href={url(this.props.item)} className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'>
         {message}
       </a>
     );
-  }
-
-  private url() {
-    const item = this.props.item;
-
-    if (item instanceof LegacyPmNotification) {
-      return '/forum/ucp.php?i=pm&folder=inbox';
-    }
-
-    let route: string = '';
-    let params: any;
-
-    switch (item.name) {
-      case 'beatmapset_discussion_lock':
-        route = 'beatmapsets.discussion';
-        params = { beatmapset: item.objectId };
-        break;
-      case 'beatmapset_discussion_post_new':
-        return BeatmapDiscussionHelper.url({
-          beatmapId: item.details.beatmapId,
-          beatmapsetId: item.objectId,
-          discussionId: item.details.discussionId,
-        });
-      case 'beatmapset_discussion_unlock':
-        route = 'beatmapsets.discussion';
-        params = { beatmapset: item.objectId };
-        break;
-      case 'beatmapset_disqualify':
-        route = 'beatmapsets.discussion';
-        params = { beatmapset: item.objectId };
-        break;
-      case 'beatmapset_love':
-        route = 'beatmapsets.show';
-        params = { beatmapset: item.objectId };
-        break;
-      case 'beatmapset_nominate':
-        route = 'beatmapsets.discussion';
-        params = { beatmapset: item.objectId };
-        break;
-      case 'beatmapset_qualify':
-        route = 'beatmapsets.discussion';
-        params = { beatmapset: item.objectId };
-        break;
-      case 'beatmapset_reset_nominations':
-        route = 'beatmapsets.discussion';
-        params = { beatmapset: item.objectId };
-        break;
-      case 'forum_topic_reply':
-        route = 'forum.posts.show';
-        params = { post: item.details.postId };
-        break;
-    }
-
-    if (route != null) {
-      return laroute.route(route, params);
-    }
   }
 }));

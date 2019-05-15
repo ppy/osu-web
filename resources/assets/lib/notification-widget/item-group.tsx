@@ -18,12 +18,12 @@
 
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
-import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import ItemCompact from './item-compact';
 import ItemProps from './item-props';
+import { group as url } from './url';
 import { withMarkRead, WithMarkReadProps } from './with-mark-read';
 
 interface State {
@@ -183,39 +183,13 @@ export default withMarkRead(observer(class ItemGroup extends React.Component<Ite
     }
 
     return (
-      <a href={this.url()} className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'>
-        {this.props.items[0].details.title}
+      <a href={url(this.props.item)} className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'>
+        {this.props.item.details.title}
       </a>
     );
   }
 
   private toggleExpand = () => {
     this.setState({ expanded: !this.state.expanded });
-  }
-
-  private url() {
-    const item = this.props.item;
-
-    if (item instanceof LegacyPmNotification) {
-      return '/forum/ucp.php?i=pm&folder=inbox';
-    }
-
-    let route: string = '';
-    let params: any;
-
-    switch (item.objectType) {
-      case 'beatmapset':
-        route = 'beatmapsets.discussion';
-        params = { beatmapset: item.objectId };
-        break;
-      case 'forum_topic':
-        route = 'forum.topics.show';
-        params = { topic: item.objectId, start: 'unread' };
-        break;
-    }
-
-    if (route != null) {
-      return laroute.route(route, params);
-    }
   }
 }));
