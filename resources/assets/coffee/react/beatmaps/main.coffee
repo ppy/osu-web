@@ -216,12 +216,10 @@ export class Main extends React.PureComponent
     params = BeatmapsetFilter.queryParamsFromFilters(@state.filters)
     params.cursor = @state.paging.cursor if !newQuery
 
-    @xhr = $.ajax @state.paging.url,
+    $.ajax @state.paging.url,
       method: 'get'
       dataType: 'json'
       data: params
-
-    osu.promisify @xhr
 
 
   isSupporterMissing: =>
