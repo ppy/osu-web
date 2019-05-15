@@ -39,7 +39,7 @@ export function messageCompact(item: Notification) {
 }
 
 export function messageGroup(item: Notification) {
-  return this.props.item.details.title;
+  return item.details.title;
 }
 
 export function messageOne(item: Notification) {
