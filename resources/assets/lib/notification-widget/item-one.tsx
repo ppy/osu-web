@@ -22,106 +22,26 @@ import { nameToIcons } from 'notification-maps/icons';
 import { messageOne } from 'notification-maps/message';
 import { urlOne } from 'notification-maps/url';
 import * as React from 'react';
-import { Spinner } from 'spinner';
+import Item from './item';
 import ItemProps from './item-props';
 import { withMarkRead, WithMarkReadProps } from './with-mark-read';
 
 export default withMarkRead(observer(class ItemOne extends React.Component<ItemProps & WithMarkReadProps, {}> {
   render() {
     return (
-      <div className='notification-popup-item clickable-row' onClick={this.props.markRead}>
-        <div
-          className='notification-popup-item__cover'
-          style={{
-            backgroundImage: osu.urlPresence(this.props.item.details.coverUrl),
-          }}
-        >
-          <div className='notification-popup-item__cover-overlay'>
-            {this.renderCoverIcon()}
-          </div>
-        </div>
-        <div className='notification-popup-item__main'>
-          <div className='notification-popup-item__content'>
-            {this.renderCategory()}
-            {this.renderMessage()}
-            {this.renderTime()}
-          </div>
-          <div className='notification-popup-item__side-buttons'>
-            {this.renderMarkAsReadButton()}
-          </div>
-        </div>
-      </div>
-    );
-  }
+      <Item
+        canMarkRead={this.props.canMarkRead}
+        markRead={this.props.markRead}
+        markReadFallback={this.props.markReadFallback}
+        markingAsRead={this.props.markingAsRead}
 
-  private renderCategory() {
-    const label = osu.trans(`notifications.item.${this.props.item.objectType}.${this.props.item.category}._`);
-
-    if (label === '') {
-      return null;
-    }
-
-    return <div className='notification-popup-item__row notification-popup-item__row--category'>{label}</div>;
-  }
-
-  private renderCoverIcon() {
-    const icons = nameToIcons[this.props.item.name || ''];
-
-    if (icons == null) {
-      return null;
-    }
-
-    return icons.map((icon) => {
-      return (
-        <div key={icon} className='notification-popup-item__cover-icon'>
-          <span className={icon} />
-        </div>
-      );
-    });
-  }
-
-  private renderMarkAsReadButton() {
-    if (!this.props.canMarkRead) {
-      return null;
-    }
-
-    if (this.props.markingAsRead) {
-      return (
-        <div className='notification-popup-item__read-button'>
-          <Spinner />
-        </div>
-      );
-    } else {
-      return (
-        <button
-          type='button'
-          className='notification-popup-item__read-button'
-        >
-          <span className='fas fa-times' />
-        </button>
-      );
-    }
-  }
-
-  private renderMessage() {
-    return (
-      <a href={urlOne(this.props.item)} className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'>
-        {messageOne(this.props.item)}
-      </a>
-    );
-  }
-
-  private renderTime() {
-    if (this.props.item.createdAtJson == null) {
-      return null;
-    }
-
-    return (
-      <div
-        className='notification-popup-item__row notification-popup-item__row--time'
-        dangerouslySetInnerHTML={{
-          __html: osu.timeago(this.props.item.createdAtJson),
-        }}
+        icons={nameToIcons[this.props.item.name || '']}
+        item={this.props.item}
+        message={messageOne(this.props.item)}
+        modifiers={['one']}
+        url={urlOne(this.props.item)}
+        withCategory={true}
+        withCoverImage={true}
       />
     );
   }

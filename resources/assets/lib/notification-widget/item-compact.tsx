@@ -22,83 +22,27 @@ import { nameToIconsCompact } from 'notification-maps/icons';
 import { messageCompact } from 'notification-maps/message';
 import { urlOne } from 'notification-maps/url';
 import * as React from 'react';
-import { Spinner } from 'spinner';
+import Item from './item';
 import ItemProps from './item-props';
 import { withMarkRead, WithMarkReadProps } from './with-mark-read';
 
 export default withMarkRead(observer(class ItemCompact extends React.Component<ItemProps & WithMarkReadProps, {}> {
   render() {
-    const item = this.props.item;
-
     return (
-      <div className='notification-popup-item notification-popup-item--compact clickable-row' onClick={this.props.markRead}>
-        <div className='notification-popup-item__cover'>
-          <div className='notification-popup-item__cover-overlay'>
-            {this.renderCoverIcon()}
-          </div>
-        </div>
-        <div className='notification-popup-item__main'>
-          <div className='notification-popup-item__content'>
-            {this.renderMessage()}
-            <div
-              className='notification-popup-item__row notification-popup-item__row--time'
-              dangerouslySetInnerHTML={{
-                __html: osu.timeago(item.createdAtJson),
-              }}
-            />
-          </div>
-          <div className='notification-popup-item__side-buttons'>
-            {this.renderMarkAsReadButton()}
-          </div>
-        </div>
-      </div>
-    );
-  }
+      <Item
+        canMarkRead={this.props.canMarkRead}
+        markRead={this.props.markRead}
+        markReadFallback={this.props.markReadFallback}
+        markingAsRead={this.props.markingAsRead}
 
-  private renderCoverIcon() {
-    const icons = nameToIconsCompact[this.props.item.name || ''];
-
-    if (icons == null) {
-      return null;
-    }
-
-    return icons.map((icon) => {
-      return (
-        <div key={icon} className='notification-popup-item__cover-icon'>
-          <span className={icon} />
-        </div>
-      );
-    });
-  }
-
-  private renderMarkAsReadButton() {
-    if (!this.props.canMarkRead) {
-      return null;
-    }
-
-    if (this.props.markingAsRead) {
-      return (
-        <div className='notification-popup-item__read-button'>
-          <Spinner />
-        </div>
-      );
-    } else {
-      return (
-        <button
-          type='button'
-          className='notification-popup-item__read-button'
-        >
-          <span className='fas fa-times' />
-        </button>
-      );
-    }
-  }
-
-  private renderMessage() {
-    return (
-      <a href={urlOne(this.props.item)} className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'>
-        {messageCompact(this.props.item)}
-      </a>
+        icons={nameToIconsCompact[this.props.item.name || '']}
+        item={this.props.item}
+        message={messageCompact(this.props.item)}
+        modifiers={['compact']}
+        url={urlOne(this.props.item)}
+        withCategory={false}
+        withCoverImage={false}
+      />
     );
   }
 }));
