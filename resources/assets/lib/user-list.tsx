@@ -24,8 +24,8 @@ import { UserCards } from 'user-cards';
 type Filter = 'all' | 'online' | 'offline';
 type SortMode = 'last_visit' | 'username';
 
-const filters = ['all', 'online', 'offline'];
-const sortModes = ['last_visit', 'username'];
+const filters: Filter[] = ['all', 'online', 'offline'];
+const sortModes: SortMode[] = ['last_visit', 'username'];
 
 interface Props {
   title?: string;
@@ -76,18 +76,12 @@ export class UserList extends React.PureComponent<Props> {
   }
 
   renderSelections() {
-    const groups = [
-      { key: 'all', count: this.props.users.length },
-      { key: 'online', count: this.props.users.filter((user) => user.is_online).length },
-      { key: 'offline', count: this.props.users.filter((user) => !user.is_online).length },
-    ];
-
     return (
       <div className='update-streams-v2 update-streams-v2--with-active update-streams-v2--user-list'>
         <div className='update-streams-v2__container'>
           {
-            groups.map((group) => {
-              return this.renderOption(group.key, group.count, group.key === this.state.filter);
+            filters.map((filter) => {
+              return this.renderOption(filter, this.getFilteredUsers(filter).length, filter === this.state.filter);
             })
           }
         </div>
@@ -129,39 +123,18 @@ export class UserList extends React.PureComponent<Props> {
 
   private get filterFromUrl() {
     const url = new URL(location.href);
-    // force invalid values to default.
-    const value = url.searchParams.get('filter') || '';
-    if (filters.indexOf(value) > -1) {
-      return value as Filter;
-    }
 
-    return 'all';
-  }
-
-  private get filteredUsers() {
-    switch (this.state.filter) {
-      case 'online':
-        return this.props.users.filter((user) => user.is_online);
-      case 'offline':
-        return this.props.users.filter((user) => !user.is_online);
-    }
-
-    return this.props.users;
+    return this.getAllowedQueryStringValue(filters, url.searchParams.get('filter'));
   }
 
   private get sortFromUrl() {
     const url = new URL(location.href);
-    // force invalid values to default.
-    const value = url.searchParams.get('user_sort') || '';
-    if (sortModes.indexOf(value) > -1) {
-      return value as SortMode;
-    }
 
-    return 'last_visit';
+    return this.getAllowedQueryStringValue(sortModes, url.searchParams.get('user_sort'));
   }
 
   private get sortedUsers() {
-    const users = this.filteredUsers.slice();
+    const users = this.getFilteredUsers(this.state.filter).slice();
 
     switch (this.state.sortMode) {
       case 'username':
@@ -169,6 +142,27 @@ export class UserList extends React.PureComponent<Props> {
 
       default:
         return users.sort((x, y) => moment(y.last_visit || 0).diff(moment(x.last_visit || 0)));
+    }
+  }
+
+  private getAllowedQueryStringValue<T>(allowed: T[], value: unknown) {
+    const casted = value as T;
+    if (allowed.indexOf(casted) > -1) {
+      return casted;
+    }
+
+    return allowed[0];
+  }
+
+  private getFilteredUsers(filter: Filter) {
+    // TODO: should be cached or something
+    switch (filter) {
+      case 'online':
+        return this.props.users.filter((user) => user.is_online);
+      case 'offline':
+        return this.props.users.filter((user) => !user.is_online);
+      default:
+        return this.props.users;
     }
   }
 }
