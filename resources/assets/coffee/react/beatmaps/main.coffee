@@ -102,6 +102,7 @@ export class Main extends React.PureComponent
     return if _.isEqual(prevState.filters, @state.filters)
 
     $(document).trigger 'beatmap:search:start'
+    @setState loading: true
 
 
   componentWillUnmount: =>
@@ -256,7 +257,6 @@ export class Main extends React.PureComponent
 
     return Promise.resolve() if @isSupporterMissing()
 
-    @setState loading: true
     @backToTop.current.reset()
 
     @fetchNewState(true)
