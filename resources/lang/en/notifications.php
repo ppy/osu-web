@@ -21,7 +21,6 @@
 return [
     'all_read' => 'All notifications read!',
     'mark_all_read' => 'Clear all',
-    'message_multi' => ':count_delimited new update on ":title".|:count_delimited new updates on ":title".',
 
     'item' => [
         'beatmapset' => [
