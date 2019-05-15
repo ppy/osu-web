@@ -47,19 +47,13 @@ export default withMarkRead(observer(class ItemGroup extends React.Component<Ite
   };
 
   render() {
-    if (this.props.items.length === 0) {
-      return null;
-    }
-
-    const item = this.props.item;
-
     return (
       <div className='notification-popup-item-group'>
         <div className='notification-popup-item notification-popup-item--group clickable-row' onClick={this.props.markReadFallback}>
           <div
             className='notification-popup-item__cover'
             style={{
-              backgroundImage: osu.urlPresence(item.details.coverUrl),
+              backgroundImage: osu.urlPresence(this.props.item.details.coverUrl),
             }}
           >
             <div className='notification-popup-item__cover-overlay'>
@@ -69,13 +63,13 @@ export default withMarkRead(observer(class ItemGroup extends React.Component<Ite
           <div className='notification-popup-item__main'>
             <div className='notification-popup-item__content'>
               <div className='notification-popup-item__row notification-popup-item__row--name'>
-                {osu.trans(`notifications.item.${item.objectType}.${item.category}._`)}
+                {osu.trans(`notifications.item.${this.props.item.objectType}.${this.props.item.category}._`)}
               </div>
               {this.renderMessage()}
               <div
                 className='notification-popup-item__row notification-popup-item__row--time'
                 dangerouslySetInnerHTML={{
-                  __html: osu.timeago(item.createdAtJson),
+                  __html: osu.timeago(this.props.item.createdAtJson),
                 }}
               />
               <div className='notification-popup-item__expand'>
@@ -93,17 +87,11 @@ export default withMarkRead(observer(class ItemGroup extends React.Component<Ite
   }
 
   private renderCoverIcon() {
-    if (this.props.items.length === 0) {
+    if (this.props.item.name == null || this.props.item.category == null) {
       return null;
     }
 
-    const item = this.props.items[0];
-
-    if (item.name == null || item.category == null) {
-      return null;
-    }
-
-    const icons = ITEM_CATEGORY_ICONS[item.category];
+    const icons = ITEM_CATEGORY_ICONS[this.props.item.category];
 
     if (icons == null) {
       return null;
@@ -178,10 +166,6 @@ export default withMarkRead(observer(class ItemGroup extends React.Component<Ite
   }
 
   private renderMessage() {
-    if (this.props.items.length === 0) {
-      return null;
-    }
-
     return (
       <a href={url(this.props.item)} className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'>
         {this.props.item.details.title}
