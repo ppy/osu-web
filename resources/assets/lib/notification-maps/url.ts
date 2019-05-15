@@ -23,7 +23,7 @@ function legacyPmUrl() {
   return '/forum/ucp.php?i=pm&folder=inbox';
 }
 
-export function group(item: Notification) {
+export function urlGroup(item: Notification) {
   if (item instanceof LegacyPmNotification) {
     return legacyPmUrl();
   }
@@ -47,7 +47,7 @@ export function group(item: Notification) {
   }
 }
 
-export function one(item: Notification) {
+export function urlOne(item: Notification) {
   if (item instanceof LegacyPmNotification) {
     return legacyPmUrl();
   }

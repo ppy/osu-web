@@ -19,27 +19,18 @@
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import Notification from 'models/notification';
+import { categoryToIcons } from 'notification-maps/icons';
+import { messageGroup } from 'notification-maps/message';
+import { urlGroup } from 'notification-maps/url';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import ItemCompact from './item-compact';
 import ItemProps from './item-props';
-import { group as url } from './url';
 import { withMarkRead, WithMarkReadProps } from './with-mark-read';
 
 interface State {
   expanded: boolean;
 }
-
-interface IconsMap {
-  [key: string]: string[];
-}
-
-const ITEM_CATEGORY_ICONS: IconsMap = {
-  beatmapset_discussion: ['fas fa-drafting-compass', 'fas fa-comment'],
-  beatmapset_state: ['fas fa-drafting-compass'],
-  forum_topic_reply: ['fas fa-comment-medical'],
-  legacy_pm: ['fas fa-envelope'],
-};
 
 export default withMarkRead(observer(class ItemGroup extends React.Component<ItemProps & WithMarkReadProps, State> {
   state = {
@@ -87,11 +78,7 @@ export default withMarkRead(observer(class ItemGroup extends React.Component<Ite
   }
 
   private renderCoverIcon() {
-    if (this.props.item.name == null || this.props.item.category == null) {
-      return null;
-    }
-
-    const icons = ITEM_CATEGORY_ICONS[this.props.item.category];
+    const icons = categoryToIcons[this.props.item.category || ''];
 
     if (icons == null) {
       return null;
@@ -167,8 +154,8 @@ export default withMarkRead(observer(class ItemGroup extends React.Component<Ite
 
   private renderMessage() {
     return (
-      <a href={url(this.props.item)} className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'>
-        {this.props.item.details.title}
+      <a href={urlGroup(this.props.item)} className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'>
+        {messageGroup(this.props.item)}
       </a>
     );
   }
