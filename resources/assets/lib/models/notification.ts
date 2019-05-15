@@ -18,7 +18,6 @@
 
 import * as _ from 'lodash';
 import { computed, observable } from 'mobx';
-import * as moment from 'moment';
 import { nameToCategory } from 'notification-maps/category';
 import NotificationJson from '../interfaces/notification-json';
 
