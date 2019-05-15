@@ -34,7 +34,6 @@ export class SearchPanel extends React.PureComponent
     @contentPortal = document.createElement('div')
 
     @prevText = null
-    @debouncedSubmit = _.debounce @submit, 500
     @breadcrumbsElement = window.stickyHeader.breadcrumbsElement()
     @contentElement = window.stickyHeader.contentElement()
 
@@ -52,7 +51,6 @@ export class SearchPanel extends React.PureComponent
 
   componentWillUnmount: =>
     $(document).off '.search-panel'
-    @debouncedSubmit.cancel()
 
 
   render: =>
@@ -118,8 +116,9 @@ export class SearchPanel extends React.PureComponent
           showTitle: false
 
 
-  onChange: (event) =>
-    @debouncedSubmit event.target.value
+  onChange: (event) ->
+    query = event.target.value
+    $(document).trigger 'beatmap:search:filtered', query: query.trim()
 
 
   renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>
@@ -225,7 +224,3 @@ export class SearchPanel extends React.PureComponent
       @pinnedInputRef.current.focus()
     else if !pinned && document.activeElement == @pinnedInputRef.current
       @inputRef.current.focus()
-
-
-  submit: (query) ->
-    $(document).trigger 'beatmap:search:filtered', query: query.trim()
