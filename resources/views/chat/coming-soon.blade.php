@@ -28,7 +28,7 @@
         <div class="header-v3__overlay"></div>
         <div class="osu-page osu-page--header-v3">
             <div class="osu-page-header-v3 osu-page-header-v3--chat">
-                <div class="osu-page-header-v3__title js-nav2--hidden-on-menu-access">
+                <div class="osu-page-header-v3__title">
                     <div class="osu-page-header-v3__title-icon">
                         <div class="osu-page-header-v3__icon"></div>
                     </div>

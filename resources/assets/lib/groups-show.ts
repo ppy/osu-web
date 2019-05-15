@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,27 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'buttons' => [
-      'add' => 'add friend',
-      'disabled' => 'friends',
-      'remove' => 'remove friend',
-    ],
+import { Main } from 'groups-show/main';
 
-    'index' => [
-        'title' => [
-            '_' => 'Home :info',
-            'info' => 'Friends',
-        ],
-    ],
-
-    'state' => [
-      'friends' => 'friends',
-      'mutual' => 'mutual',
-    ],
-
-    'title' => 'Friends',
-    'title_compact' => 'friends',
-
-    'too_many' => 'Friend limit reached',
-];
+reactTurbolinks.registerPersistent('groups-show', Main, true, (container: HTMLElement) => {
+  return {
+    group: osu.parseJson('json-group'),
+    users: osu.parseJson('json-users'),
+  };
+});
