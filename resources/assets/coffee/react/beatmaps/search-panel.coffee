@@ -38,9 +38,6 @@ export class SearchPanel extends React.PureComponent
     @breadcrumbsElement = window.stickyHeader.breadcrumbsElement()
     @contentElement = window.stickyHeader.contentElement()
 
-    @state =
-      query: @props.filters.query
-
 
   componentDidMount: =>
     $(document).on 'sticky-header:sticking.search-panel', @setHeaderPinned
@@ -51,10 +48,6 @@ export class SearchPanel extends React.PureComponent
 
     @breadcrumbsElement?.appendChild @breadcrumbsPortal
     @contentElement?.appendChild @contentPortal
-
-
-  componentDidUpdate: (prevProps, prevState) =>
-    @debouncedSubmit @state.query if prevState.query != @state.query
 
 
   componentWillUnmount: =>
@@ -108,7 +101,7 @@ export class SearchPanel extends React.PureComponent
           name: 'search'
           onChange: @onChange
           placeholder: osu.trans('beatmaps.listing.search.prompt')
-          value: @state.query
+          value: @props.filters.query
         div className: 'beatmapsets-search__icon',
           i className: 'fas fa-search'
 
@@ -126,8 +119,7 @@ export class SearchPanel extends React.PureComponent
 
 
   onChange: (event) =>
-    @setState
-      query: event.target.value
+    @debouncedSubmit event.target.value
 
 
   renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>
@@ -180,7 +172,7 @@ export class SearchPanel extends React.PureComponent
           name: 'search'
           onChange: @onChange
           placeholder: osu.trans('beatmaps.listing.search.prompt')
-          value: @state.query
+          value: @props.filters.query
         div className: 'beatmapsets-search__icon',
           i className: 'fas fa-search'
 
