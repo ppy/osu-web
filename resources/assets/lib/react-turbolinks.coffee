@@ -21,6 +21,7 @@ import * as ReactDOM from 'react-dom'
 
 export class ReactTurbolinks
   constructor: (@components = {}) ->
+    @navigated = false
     @targets = []
     $(document).on 'turbolinks:load', @destroyPersisted
     $(document).on 'turbolinks:load', @boot
@@ -37,6 +38,8 @@ export class ReactTurbolinks
 
 
   destroy: =>
+      @navigated = true
+
       for own _name, component of @components
         for target in component.targets
           continue if target.dataset.reactTurbolinksLoaded != '1'
@@ -45,6 +48,8 @@ export class ReactTurbolinks
 
 
   destroyPersisted: =>
+    return unless @navigated
+
     ReactDOM.unmountComponentAtNode(target) while target = @targets.pop()
 
 
