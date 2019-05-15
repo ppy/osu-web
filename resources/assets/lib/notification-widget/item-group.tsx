@@ -63,7 +63,7 @@ export default withMarkRead(observer(class ItemGroup extends React.Component<Ite
                   __html: osu.timeago(this.props.item.createdAtJson),
                 }}
               />
-              <div className='notification-popup-item__expand'>
+              <div className='notification-popup-item__row'>
                 {this.renderExpandButton()}
               </div>
             </div>
