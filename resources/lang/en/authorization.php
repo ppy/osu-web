@@ -144,6 +144,9 @@ return [
                 'uneditable' => 'Invalid cover specified.',
                 'not_owner' => 'Only owner can edit cover.',
             ],
+            'store' => [
+                'forum_not_allowed' => 'This forum does not accept topic covers.',
+            ],
         ],
 
         'view' => [

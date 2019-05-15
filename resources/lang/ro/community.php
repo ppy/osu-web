@@ -28,13 +28,13 @@ return [
             'support_button' => 'Vreau să sprijin osu!',
         ],
 
-        'dev_quote' => 'osu! este un joc complet gratuit, dar să-l rulezi, cu siguranță, nu este așa gratis. 
+        'dev_quote' => 'osu! este un joc complet gratuit, dar pentru a-l rula, cu siguranță, nu este așa gratis. 
         Între costurile de punere în funcțiune a serverelor și a lățimii de bandă internațională de înaltă calitate, timpul petrecut pentru menținerea sistemului și a comunității,
         oferind premii pentru competiții, răspunzând la întrebările de asistență și, în general, păstrând lumea fericită, osu! consumă o cantitate destul de mare de bani!
-        Oh, și nu uita faptul că noi o facem fără nicio publicitate sau parteneriat cu alte instrumente prostești și altele!
+        Oh, și nu uita de faptul că noi o facem fără nicio publicitate sau parteneriat cu alte chestii prostești și altele!
             <br/><br/>osu! este la sfârșitul zilei în mare parte condus de mine, probabil mă știi cel mai bine sub numele de "peppy".
             A trebuit să renunț la slujba mea pentru a ține pasul cu osu!,
-            și uneori mă străduiesc să mențin standardele la care mă lupt.
+            și uneori mă străduiesc să mențin standardele pentru care mă lupt.
             Mi-ar plăcea să ofer mulțumirile mele personale celor care au sprijinit osu! până acum,
             și la fel de mult celor ce continuă să sprijine acest joc uimitor și comunitatea în viitor :).',
 
@@ -50,10 +50,10 @@ return [
         'why_support' => [
             'title' => 'De ce ar trebui să sprijin osu!?',
             'blocks' => [
-                'dev' => 'Dezvoltat și menținut predominant de un tip în Australia',
-                'time' => 'Ia atât de mult timp să-l mențin că nu mai poate fi posibil să-l numesc un "hobby".',
+                'dev' => 'Dezvoltat și menținut în mare parte de un singur tip în Australia',
+                'time' => 'Ia atât de mult timp să-l mențin încât nu mai poate fi posibil să-l numesc un "hobby".',
                 'ads' => 'Niciun anunț oriunde.<br/><br/>
-                        Spre deosebire de 99.95% din web, noi nu profităm prin a-ți aunca lucruri în față.',
+                        Spre deosebire de 99.95% din web, noi nu profităm prin a-ți arunca lucruri în față.',
                 'goodies' => 'Primești niște avantaje suplimentare!',
             ],
         ],
@@ -67,7 +67,7 @@ return [
 
             'auto_downloads' => [
                 'title' => 'Descărcări automate',
-                'description' => 'Descărcări automate când joci multiplayer, când îi urmărești pe alții, sau când dai clic pe link-uri în chat!',
+                'description' => 'Descărcări automate când joci în modul multiplayer, când îi urmărești pe alții, sau când dai clic pe link-uri în chat!',
             ],
 
             'upload_more' => [
@@ -122,7 +122,7 @@ return [
 
             'feel_special' => [
                 'title' => 'Simte-te special',
-                'description' => 'Sentimentul special de a participa la buna funcționare osu!',
+                'description' => 'Sentimentul special şi călduros de a participa la buna funcționare a osu!',
             ],
 
             'more_to_come' => [
@@ -134,7 +134,7 @@ return [
         'convinced' => [
             'title' => 'Sunt convins! :D',
             'support' => 'sprijină osu!',
-            'gift' => 'sau oferiți altor jucători',
+            'gift' => 'sau oferă altor jucători',
             'instructions' => 'Faceți clic pe butonul în formă de inimă pentru a merge la magazinul osu!',
         ],
     ],

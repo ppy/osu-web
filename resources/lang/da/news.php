@@ -29,7 +29,7 @@ return [
 
         'title' => [
             '_' => 'Nyheder :info',
-            'info' => '',
+            'info' => 'Forside',
         ],
     ],
 

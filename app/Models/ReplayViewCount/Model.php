@@ -20,7 +20,6 @@
 
 namespace App\Models\ReplayViewCount;
 
-use App\Libraries\ReplayFile;
 use App\Models\Model as BaseModel;
 use App\Models\Score\Best as ScoreBest;
 
@@ -40,10 +39,5 @@ abstract class Model extends BaseModel
         $class = ScoreBest::class.'\\'.static::suffix();
 
         return $this->belongsTo($class, 'score_id');
-    }
-
-    public function file()
-    {
-        return new ReplayFile($this);
     }
 }

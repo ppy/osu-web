@@ -24,7 +24,7 @@ return [
         'online' => '<strong>:players</strong> momentan online în <strong>:games</strong> jocuri',
         'peak' => 'Maxim, :count utilizatori online',
         'players' => '<strong>:count</strong> jucători înregistrați',
-        'title' => '',
+        'title' => 'bine ai venit',
 
         'slogan' => [
             'main' => 'cel mai bun joc de ritm free-to-win',

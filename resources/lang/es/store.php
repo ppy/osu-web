@@ -25,7 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Pagar',
-        'more_goodies' => 'Quiero ver más manjares antes de completar el pedido',
+        'more_goodies' => 'Quiero ver más productos antes de completar el pedido',
         'shipping_fees' => 'gastos de envío',
         'title' => 'Carrito de compras',
         'total' => 'total',

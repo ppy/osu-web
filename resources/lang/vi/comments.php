@@ -43,8 +43,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => '',
-        'reply' => '',
+        'new' => 'Đăng nhập để bình luận',
+        'reply' => 'Đăng nhập để trả lời',
     ],
 
     'index' => [

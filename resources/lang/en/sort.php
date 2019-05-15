@@ -21,9 +21,11 @@
 return [
     '_' => 'Sort by',
 
+    'last_visit' => 'Recently active',
     'new' => 'Recent',
     'old' => 'Old',
     'top' => 'Top',
+    'username' => 'Username',
 
     'forum_topics' => [
         'new' => 'Last reply',
