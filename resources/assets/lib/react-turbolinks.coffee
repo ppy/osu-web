@@ -29,22 +29,22 @@ export class ReactTurbolinks
 
 
   boot: =>
-      for own _name, component of @components
-        for target in component.targets
-          continue if target.dataset.reactTurbolinksLoaded == '1'
-          target.dataset.reactTurbolinksLoaded = '1'
-          @targets.push target
-          ReactDOM.render React.createElement(component.element, component.propsFunction(target)), target
+    for own _name, component of @components
+      for target in component.targets
+        continue if target.dataset.reactTurbolinksLoaded == '1'
+        target.dataset.reactTurbolinksLoaded = '1'
+        @targets.push target
+        ReactDOM.render React.createElement(component.element, component.propsFunction(target)), target
 
 
   destroy: =>
-      @navigated = true
+    @navigated = true
 
-      for own _name, component of @components
-        for target in component.targets
-          continue if target.dataset.reactTurbolinksLoaded != '1'
-          target.dataset.reactTurbolinksLoaded = null
-          ReactDOM.unmountComponentAtNode target if !component.persistent
+    for own _name, component of @components
+      for target in component.targets
+        continue if target.dataset.reactTurbolinksLoaded != '1'
+        target.dataset.reactTurbolinksLoaded = null
+        ReactDOM.unmountComponentAtNode target if !component.persistent
 
 
   destroyPersisted: =>
