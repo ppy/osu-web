@@ -82,7 +82,7 @@ export class UserList extends React.PureComponent<Props> {
     ];
 
     return (
-      <div className='update-streams-v2 update-streams-v2--with-active'>
+      <div className='update-streams-v2 update-streams-v2--with-active update-streams-v2--user-list'>
         <div className='update-streams-v2__container'>
           {
             groups.map((group) => {
