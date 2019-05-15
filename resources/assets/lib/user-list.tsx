@@ -21,10 +21,10 @@ import * as React from 'react';
 import { Sort } from 'sort';
 import { UserCards } from 'user-cards';
 
-type Filter = 'all' | 'online';
+type Filter = 'all' | 'online' | 'offline';
 type SortMode = 'last_visit' | 'username';
 
-const filters = ['all', 'online'];
+const filters = ['all', 'online', 'offline'];
 const sortModes = ['last_visit', 'username'];
 
 interface Props {
@@ -79,6 +79,7 @@ export class UserList extends React.PureComponent<Props> {
     const groups = [
       { key: 'all', count: this.props.users.length },
       { key: 'online', count: this.props.users.filter((user) => user.is_online).length },
+      { key: 'offline', count: this.props.users.filter((user) => !user.is_online).length },
     ];
 
     return (
@@ -153,6 +154,8 @@ export class UserList extends React.PureComponent<Props> {
     switch (this.state.filter) {
       case 'online':
         return this.props.users.filter((user) => user.is_online);
+      case 'offline':
+        return this.props.users.filter((user) => !user.is_online);
     }
 
     return this.props.users;
