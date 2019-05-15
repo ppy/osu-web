@@ -69,8 +69,8 @@ export class Main extends React.PureComponent
       loading: false
       filters: null
       isExpanded: null
-      @stateFromUrl()
 
+    @state = _.extend @state, @stateFromUrl()
     @state.columnCount = @columnCount()
 
     @backToTop = React.createRef()
