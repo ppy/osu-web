@@ -127,18 +127,6 @@ export class UserList extends React.PureComponent<Props> {
     );
   }
 
-  private get sortedUsers() {
-    const users = this.filteredUsers.slice();
-
-    switch (this.state.sortMode) {
-      case 'username':
-        return users.sort((x, y) => x.username.localeCompare(y.username));
-
-      default:
-        return users.sort((x, y) => moment(y.last_visit || 0).diff(moment(x.last_visit || 0)));
-    }
-  }
-
   private get filterFromUrl() {
     const url = new URL(location.href);
     // force invalid values to default.
@@ -170,5 +158,17 @@ export class UserList extends React.PureComponent<Props> {
     }
 
     return 'last_visit';
+  }
+
+  private get sortedUsers() {
+    const users = this.filteredUsers.slice();
+
+    switch (this.state.sortMode) {
+      case 'username':
+        return users.sort((x, y) => x.username.localeCompare(y.username));
+
+      default:
+        return users.sort((x, y) => moment(y.last_visit || 0).diff(moment(x.last_visit || 0)));
+    }
   }
 }
