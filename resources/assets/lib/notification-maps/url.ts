@@ -19,84 +19,36 @@
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 
-function legacyPmUrl() {
-  return '/forum/ucp.php?i=pm&folder=inbox';
-}
-
 export function urlGroup(item: Notification) {
-  if (item instanceof LegacyPmNotification) {
-    return legacyPmUrl();
-  }
-
-  let route: string = '';
-  let params: any;
-
   switch (item.objectType) {
     case 'beatmapset':
-      route = 'beatmapsets.discussion';
-      params = { beatmapset: item.objectId };
-      break;
+      return laroute.route('beatmapsets.discussion', { beatmapset: item.objectId });
     case 'forum_topic':
-      route = 'forum.topics.show';
-      params = { topic: item.objectId, start: 'unread' };
-      break;
-  }
-
-  if (route !== '') {
-    return laroute.route(route, params);
+      return laroute.route('forum.topics.show', { topic: item.objectId, start: 'unread' });
   }
 }
 
 export function urlSingular(item: Notification) {
   if (item instanceof LegacyPmNotification) {
-    return legacyPmUrl();
+    return '/forum/ucp.php?i=pm&folder=inbox';
   }
-
-  let route: string = '';
-  let params: any;
 
   switch (item.name) {
     case 'beatmapset_discussion_lock':
-      route = 'beatmapsets.discussion';
-      params = { beatmapset: item.objectId };
-      break;
+    case 'beatmapset_discussion_unlock':
+    case 'beatmapset_disqualify':
+    case 'beatmapset_love':
+    case 'beatmapset_nominate':
+    case 'beatmapset_qualify':
+    case 'beatmapset_reset_nominations':
+      return laroute.route('beatmapsets.discussion', { beatmapset: item.objectId });
     case 'beatmapset_discussion_post_new':
       return BeatmapDiscussionHelper.url({
         beatmapId: item.details.beatmapId,
         beatmapsetId: item.objectId,
         discussionId: item.details.discussionId,
       });
-    case 'beatmapset_discussion_unlock':
-      route = 'beatmapsets.discussion';
-      params = { beatmapset: item.objectId };
-      break;
-    case 'beatmapset_disqualify':
-      route = 'beatmapsets.discussion';
-      params = { beatmapset: item.objectId };
-      break;
-    case 'beatmapset_love':
-      route = 'beatmapsets.show';
-      params = { beatmapset: item.objectId };
-      break;
-    case 'beatmapset_nominate':
-      route = 'beatmapsets.discussion';
-      params = { beatmapset: item.objectId };
-      break;
-    case 'beatmapset_qualify':
-      route = 'beatmapsets.discussion';
-      params = { beatmapset: item.objectId };
-      break;
-    case 'beatmapset_reset_nominations':
-      route = 'beatmapsets.discussion';
-      params = { beatmapset: item.objectId };
-      break;
     case 'forum_topic_reply':
-      route = 'forum.posts.show';
-      params = { post: item.details.postId };
-      break;
-  }
-
-  if (route !== '') {
-    return laroute.route(route, params);
+      return laroute.route('forum.posts.show', { post: item.details.postId });
   }
 }
