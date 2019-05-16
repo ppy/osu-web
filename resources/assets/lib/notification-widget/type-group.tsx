@@ -23,8 +23,8 @@ import Notification from 'models/notification';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import ItemGroup from './item-group';
-import ItemSingular from './item-singular';
 import ItemProps from './item-props';
+import ItemSingular from './item-singular';
 import { withMarkRead, WithMarkReadProps } from './with-mark-read';
 
 interface State {
