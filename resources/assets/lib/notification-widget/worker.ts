@@ -74,6 +74,7 @@ export default class Worker {
   @observable private active: boolean = false;
   @observable private items = observable.map<number, Notification>();
   private refreshing = false;
+  private needsRefresh = false;
   private timeout: TimeoutCollection = {};
   private endpoint?: string;
   private ws: WebSocket | null | undefined;
@@ -108,6 +109,7 @@ export default class Worker {
       endpoint = `${protocol}//${window.location.host}${endpoint}`;
     }
     this.ws = new WebSocket(`${endpoint}?csrf=${token}`);
+    this.ws.onopen = () => this.refresh();
     this.ws.onclose = this.delayedConnectWebSocket;
     this.ws.onmessage = this.handleNewEvent;
   }
@@ -119,7 +121,7 @@ export default class Worker {
 
     this.ws = null;
     this.timeout.connectWebSocket = setTimeout(() => {
-      this.refresh();
+      this.needsRefresh = true;
       this.connectWebSocket();
     }, 10000);
   }
@@ -211,8 +213,8 @@ export default class Worker {
     }
   }
 
-  refresh(maxId?: number) {
-    if (!this.active || this.refreshing) {
+  refresh = (maxId?: number) => {
+    if (!this.active || this.refreshing || !this.needsRefresh) {
       return;
     }
 
@@ -221,8 +223,10 @@ export default class Worker {
     const params = { with_read: true, max_id: maxId };
 
     this.xhr.refresh = $.get(laroute.route('notifications.index'), params)
-      .always(() => this.refreshing = false)
-      .done((bundleJson: NotificationBundleJson) => {
+      .always(() => {
+        this.refreshing = false;
+        this.needsRefresh = false;
+      }).done((bundleJson: NotificationBundleJson) => {
         const oldestNotification = _.minBy(bundleJson.notifications, 'id');
         const minLoadedId = this.minLoadedId;
 
@@ -235,6 +239,7 @@ export default class Worker {
           minLoadedId != null &&
           oldestNotification.id > minLoadedId
         ) {
+          this.needsRefresh = true;
           this.refresh(oldestNotification.id - 1);
         }
       });
