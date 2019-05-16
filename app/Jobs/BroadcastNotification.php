@@ -21,6 +21,7 @@
 namespace App\Jobs;
 
 use App\Events\NewNotificationEvent;
+use App\Models\Chat\Channel;
 use App\Models\Notification;
 use App\Models\User;
 use App\Traits\NotificationQueue;
@@ -183,6 +184,29 @@ class BroadcastNotification implements ShouldQueue
         $this->params['details'] = [
             'title' => $this->object->title,
             'cover_url' => $this->object->coverURL('card'),
+        ];
+    }
+
+    private function onChannelMessage()
+    {
+        $channel = Channel::findOrFail($this->object->channel_id);
+        $users = $channel->users()->pluck('user_id');
+
+        $this->receiverIds =
+            array_values(
+                array_filter(
+                    $users->toArray(),
+                    function ($k) {
+                        return $k != $this->source->user_id;
+                    }
+                )
+            );
+
+        $this->notifiable = $this->object->channel;
+
+        $this->params['details'] = [
+            'title' => truncate($this->object->content, 36),
+            'cover_url' => $this->source->user_avatar,
         ];
     }
 

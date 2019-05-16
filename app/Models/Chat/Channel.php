@@ -21,6 +21,7 @@
 namespace App\Models\Chat;
 
 use App\Exceptions\API;
+use App\Models\Notification;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -155,6 +156,10 @@ class Channel extends Model
         $userChannel = UserChannel::where(['channel_id' => $this->channel_id, 'user_id' => $sender->user_id])->first();
         if ($userChannel) {
             $userChannel->update(['last_read_id' => $message->message_id]);
+        }
+
+        if ($this->isPM()) {
+            broadcast_notification(Notification::CHANNEL_MESSAGE, $message, $sender);
         }
 
         return $message;
