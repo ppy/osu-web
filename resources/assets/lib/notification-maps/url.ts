@@ -42,7 +42,7 @@ export function urlGroup(item: Notification) {
       break;
   }
 
-  if (route != null) {
+  if (route !== '') {
     return laroute.route(route, params);
   }
 }
@@ -96,7 +96,7 @@ export function urlSingular(item: Notification) {
       break;
   }
 
-  if (route != null) {
+  if (route !== '') {
     return laroute.route(route, params);
   }
 }
