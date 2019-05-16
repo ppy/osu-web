@@ -550,11 +550,12 @@ class OsuAuthorize
         $prefix = 'chat.';
 
         $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user, $prefix);
 
         if ($channel->type === Channel::TYPES['public']) {
             return 'ok';
         }
+
+        $this->ensureCleanRecord($user, $prefix);
 
         // FIXME: needs further check before allowing other types.
         if (false) {

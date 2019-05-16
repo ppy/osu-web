@@ -15,17 +15,13 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', [
+    'bodyAdditionalClasses' => 'osu-layout--body-222-plain',
+    'legacyNav' => false,
+])
 
 @section('content')
-    @include('home._user_header_default', [
-        'title' => trans('home.user.header.welcome', ['username' => Auth::user()->username])
-    ])
-
-    <div class="osu-page osu-page--generic osu-page--small osu-page--dark-bg">
-        <div class="js-react--user-list" data-title="{{ trans('friends.title') }}"></div>
-    </div>
-
+    <div class="js-react--friends-index osu-layout osu-layout--full"></div>
 @endsection
 
 @section("script")
@@ -35,5 +31,5 @@
         {!! json_encode($usersJson) !!}
     </script>
 
-    @include('layout._extra_js', ['src' => 'js/react/user-list.js'])
+    @include('layout._extra_js', ['src' => 'js/react/friends-index.js'])
 @endsection

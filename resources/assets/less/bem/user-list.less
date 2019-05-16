@@ -17,21 +17,12 @@
  */
 
 .user-list {
-  &__title {
-    padding: 0 0 10px 20px;
-    font-size: @font-size--header-title;
-    font-weight: 100;
-    color: @pink-light;
+  padding: 0 0 20px;
 
+  &__toolbar {
     display: flex;
-    align-items: flex-end;
-
-    @media @desktop {
-      padding-left: 10px;
-    }
-
-    &--smaller {
-      font-size: @font-size--header-subtitle;
-    }
+    padding: 20px 40px;
+    font-size: @font-size--title-small;
+    justify-content: flex-end;
   }
 }
