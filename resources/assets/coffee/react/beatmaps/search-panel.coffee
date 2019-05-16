@@ -41,12 +41,11 @@ export class SearchPanel extends React.PureComponent
   componentDidMount: =>
     $(document).on 'sticky-header:sticking.search-panel', @setHeaderPinned
     $(document).on 'turbolinks:before-cache.search-panel', () =>
-      # componentWillUnmount is called too late for Beatmaps.
-      @breadcrumbsElement?.removeChild @breadcrumbsPortal
-      @contentElement?.removeChild @contentPortal
+      @unmountPortal @breadcrumbsPortal, @breadcrumbsElement
+      @unmountPortal @contentPortal, @contentElement
 
-    @breadcrumbsElement?.appendChild @breadcrumbsPortal
-    @contentElement?.appendChild @contentPortal
+    @mountPortal @breadcrumbsPortal, @breadcrumbsElement
+    @mountPortal @contentPortal, @contentElement
 
 
   componentWillUnmount: =>
@@ -224,3 +223,12 @@ export class SearchPanel extends React.PureComponent
       @pinnedInputRef.current.focus()
     else if !pinned && document.activeElement == @pinnedInputRef.current
       @inputRef.current.focus()
+
+
+  mountPortal: (portal, root) ->
+    root?.appendChild portal
+
+
+  unmountPortal: (portal, root) ->
+    if portal.offsetParent?
+      root?.removeChild portal
