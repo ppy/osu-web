@@ -125,7 +125,6 @@ export class Main extends React.PureComponent
         background: searchBackground
         availableFilters: @props.availableFilters
         filters: @state.filters
-        filterDefaults: BeatmapsetFilter.getDefaults(@state.filters)
         expand: @expand
         isExpanded: @state.isExpanded
         recommendedDifficulty: @state.recommendedDifficulty

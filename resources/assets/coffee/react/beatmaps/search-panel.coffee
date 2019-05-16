@@ -124,7 +124,6 @@ export class SearchPanel extends React.PureComponent
       name: name
       title: osu.trans("beatmaps.listing.search.filters.#{name}") if showTitle
       options: options
-      default: @props.filterDefaults[name]
       multiselect: multiselect
       recommendedDifficulty: @props.recommendedDifficulty
       selected: @props.filters[name]

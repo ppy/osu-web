@@ -77,7 +77,7 @@ export class SearchFilter extends React.PureComponent
     if @props.multiselect
       _(@currentSelection())[if @selected(i) then 'without' else 'concat'](i).sort().join('.')
     else
-      if @selected(i) then @props.default else i
+      if @selected(i) then BeatmapsetFilter.defaults[name] else i
 
 
   selected: (i) =>
