@@ -185,7 +185,7 @@ return [
                     'title' => 'Lovedされたビートマップ',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'ランク＆承認済みのビートマップ',
+                    'title' => 'Ranked & Approvedのビートマップ',
                 ],
                 'unranked' => [
                     'title' => '保留中のビートマップ',

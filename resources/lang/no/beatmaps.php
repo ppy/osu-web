@@ -43,7 +43,7 @@ return [
         'message_type_select' => 'Velg kommentartype',
         'reply_notice' => 'Trykk enter for å svare.',
         'reply_placeholder' => 'Skriv din respons her',
-        'require-login' => 'Vennligst logg på for å skrive et innlegg eller svare',
+        'require-login' => 'Vennligst logg inn for å skrive et innlegg eller svare',
         'resolved' => 'Løst',
         'restore' => 'gjenopprett',
         'title' => 'Diskusjoner',
@@ -162,7 +162,7 @@ return [
         'required_text' => 'Nominasjoner :current/:required',
         'reset_message_deleted' => 'slettet',
         'title' => 'Nominasjon Status',
-        'unresolved_issues' => 'Det er fortsatt uløste problemer som må tas opp først.',
+        'unresolved_issues' => 'Det er fortsatt uløste problemer som må løses først.',
 
         'reset_at' => [
             'nomination_reset' => 'Nominasjonsprosessen ble tilbakestilt :time_ago av :user med et nytt problem :discussion (:message).',
@@ -178,7 +178,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'skriv inn nøkkelord...',
-            'login_required' => 'Logg på for å søke.',
+            'login_required' => 'Logg inn for å søke.',
             'options' => 'Flere søkemuligheter',
             'supporter_filter' => 'Filtrering ved bruk av :filters krever en aktiv osu!supporter tag',
             'not-found' => 'ingen treff',
@@ -206,7 +206,7 @@ return [
                 'nominations' => 'Nominasjoner',
             ],
             'supporter_filter_quote' => [
-                '_' => 'Filtrering av :filters krever en aktiv :link',
+                '_' => 'Filtrering ved bruk av :filters krever en aktiv :link',
                 'link_text' => 'osu!supporter tag',
             ],
         ],

@@ -30,19 +30,19 @@ return [
                 'scary' => 'ÄLÄ',
             ],
             'note' => [
-                '_' => 'Huomaa myös, että on erittäin suositeltavaa :scary, koska vanhemmat mapit ovat paljon huonompia kuin uudemmat mapit.',
+                '_' => 'Huomaa myös, että on erittäin suositeltavaa :scary, koska vanhemmat mapit ovat paljon huonompia kuin uudet.',
                 'scary' => 'ladata uusimpia kokoelmia vanhojen sijaan',
             ],
         ],
         'title' => 'Beatmap-Kokoelmat',
-        'description' => 'Valmiiksi pakattuja beatmap kokoelmia perustuen yleisiin teemoihin.',
+        'description' => 'Valmiiksi kasattuja beatmap kokoelmia, joissa yhdistyy tietty teema.',
     ],
 
     'show' => [
         'download' => 'Lataa',
         'item' => [
             'cleared' => 'läpäisty',
-            'not_cleared' => 'ei läpäisty',
+            'not_cleared' => 'läpäisemätön',
         ],
     ],
 

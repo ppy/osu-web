@@ -189,7 +189,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                     'title' => 'Beatmap Classificate e Approvate',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmap In Attesa (:count)',
+                    'title' => 'Beatmap In Attesa',
                 ],
             ],
             'historical' => [

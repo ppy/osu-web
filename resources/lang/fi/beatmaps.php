@@ -27,7 +27,7 @@ return [
 
     'discussion-votes' => [
         'update' => [
-            'error' => 'Äänen päivittäminen epäonnistui',
+            'error' => 'Äänen päivitys ei onnistunut',
         ],
     ],
 
@@ -55,7 +55,7 @@ return [
 
         'empty' => [
             'empty' => 'Keskustelut puuttuu!',
-            'hidden' => 'Mikään keskustelu ei vastaa valittua suodatinta.',
+            'hidden' => 'Yksikään keskusteluista ei täsmää hakuehtoihisi.',
         ],
 
         'message_hint' => [
@@ -118,7 +118,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Tämä beatmappi hyväksyttiiin :date!',
-            'graveyard' => "Tätä beatmappia ei ole päivitetty sitten :date ja sen tekijä on todennäköisesti hyljännyt sen...",
+            'graveyard' => "Tätä beatmappia ei ole päivitetty sitten :date ja sen tekijä on todennäköisesti hylännyt sen...",
             'loved' => 'Tämä beatmap lisättiin Rakastettuihin :date!',
             'ranked' => 'Tämä beatmap hyväksyttiin :date!',
             'wip' => 'Huomaa: Tämän beatmapin tekijä on merkannut sen keskeneräiseksi.',
@@ -147,7 +147,7 @@ return [
         'delete' => 'Poista',
         'delete_own_confirm' => 'Oletko varma? Tämä beatmap poistetaan ja sinut uudelleenohjataan takaisin profiiliisi.',
         'delete_other_confirm' => 'Oletko varma? Tämä beatmap poistetaan ja sinut uudelleenohjataan käyttäjän profiiliin.',
-        'disqualification_prompt' => 'Syy hylkäykseen?',
+        'disqualification_prompt' => 'Hylkäyksen syy?',
         'disqualified_at' => 'Hylättiin :time_ago sitten (:reason).',
         'disqualified_no_reason' => 'ei määriteltyä syytä',
         'disqualify' => 'Hylkää',
@@ -171,7 +171,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'Oletko varma? Uuden ongelman lähettäminen kumoaa suositusprosessin.',
-            'disqualify' => 'Oletko varma? Tämä poistaa kappaleen hyväksynnästä ja resetoi äänestysprosessin.',
+            'disqualify' => 'Oletko varma? Tämä poistaa beatmapin esihyväksytyistä ja kumoaa suositusprosessin.',
         ],
     ],
 
@@ -182,7 +182,7 @@ return [
             'options' => 'Enemmän Hakuasetuksia',
             'supporter_filter' => 'Tunnisteella :filters rajaaminen vaatii aktiivisen osu!supporter-tagin',
             'not-found' => 'ei tuloksia',
-            'not-found-quote' => '... Eip, mitään ei löytynyt.',
+            'not-found-quote' => '... mitään ei löytynyt.',
             'filters' => [
                 'general' => 'Yleinen',
                 'mode' => 'Pelitila',

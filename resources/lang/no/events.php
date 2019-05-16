@@ -19,7 +19,7 @@
  */
 
 return [
-    'achievement' => '<strong><em>:user</em></strong> har opplåst "<strong>:achievement</strong>" medaljen!',
+    'achievement' => '<strong><em>:user</em></strong> har oppnådd "<strong>:achievement</strong>" medaljen!',
     'beatmap_playcount' => ':beatmap har blitt spilt :count ganger!',
     'beatmapset_approve' => ':beatmapset av <strong>:user</strong> har blitt :approval!',
     'beatmapset_delete' => ':beatmapset har blitt slettet.',

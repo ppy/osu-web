@@ -23,7 +23,7 @@ return [
 
     'authorise' => [
         'authorise' => '',
-        'request' => '',
+        'request' => 'anmoder om tilladelse til at få adgang til din konto.',
         'scopes_title' => 'Denne applikation vil være i stand til at:',
         'title' => '',
 

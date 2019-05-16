@@ -32,10 +32,10 @@ return [
     'online' => [
         'title' => [
             'users' => 'Påloggede Brukere i de siste 24 timene',
-            'score' => 'Spillresultat Innleveringer i de siste 24 timene',
+            'score' => 'Bidrag av Spillresultater i de siste 24 timene',
         ],
         'current' => 'Nåværende Påloggede Brukere',
-        'score' => 'Spillresultat Innleveringer per Sekund',
+        'score' => 'Bidrag av Spillresultater per Sekund',
     ],
 
     'recent' => [
@@ -62,7 +62,7 @@ return [
             'month' => 'måned',
             'all_time' => 'all tid',
             'last_week' => 'forrige uke',
-            'weeks_ago' => ':count uke siden|:count uker siden',
+            'weeks_ago' => ':count_delimited uke siden|:count_delimited uker siden',
         ],
     ],
 ];

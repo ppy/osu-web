@@ -68,7 +68,7 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Không cho phép xóa beatmap metadata.',
             'beatmapset_post_no_edit' => 'Không cho phép chỉnh sửa beatmap metadata.',
-            'only_quote' => '',
+            'only_quote' => 'Câu trả lời của bạn chỉ có một trích dẫn.',
         ],
 
         'topic_poll' => [
@@ -98,7 +98,7 @@ return [
         'username_available_soon' => 'Tên người dùng này sẽ có sẵn để sử dụng bất cứ lúc nào!',
         'username_invalid_characters' => 'Tên người dùng đã yêu cầu chứa các ký tự không hợp lệ.',
         'username_in_use' => 'Tên người dùng đã được sử dụng!',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_locked' => 'Tên người dùng đã được sử dụng!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Vui lòng sử dụng dấu gạch dưới hoặc dấu cách, không phải cả hai!',
         'username_no_spaces' => "Tên người dùng không thể bắt đầu hoặc kết thúc bằng dấu cách!",
         'username_not_allowed' => 'Không cho phép sử dụng tên người dùng đã chọn.',

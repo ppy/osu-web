@@ -16,33 +16,33 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import HeaderV3 from 'header-v3';
 import * as React from 'react';
-import { UserCards } from 'user-cards';
+import { UserList } from 'user-list';
 
-interface PropsInterface {
-  data: {
-    online: [],
-    offline: [],
-  };
-  title?: string;
+interface Group {
+  group_name: string;
+  group_desc?: string;
 }
 
-export class Main extends React.PureComponent<PropsInterface> {
-  render(): React.ReactNode {
-    const online: any = this.props.data.online;
-    const offline: any = this.props.data.offline;
+interface Props {
+  group: Group;
+  users: User[];
+}
 
+export class Main extends React.PureComponent<Props> {
+  render() {
     return (
-      <div className='user-list'>
-        {
-          this.props.title != null
-            ? <h2 className='user-list__title'>{this.props.title}</h2>
-            : null
-        }
-        <div className='page-title page-title--lighter'>{osu.trans('users.status.online')} ({online.length})</div>
-        <UserCards users={online} />
-        <div className='page-title page-title--lighter'>{osu.trans('users.status.offline')} ({offline.length})</div>
-        <UserCards users={offline} />
+      <div className='osu-layout osu-layout--full'>
+        <HeaderV3
+          backgroundImage='/images/headers/generic.jpg'
+          theme='users'
+          title={this.props.group.group_name}
+        />
+
+        <div className='osu-page osu-page--users'>
+          <UserList users={this.props.users} />
+        </div>
       </div>
     );
   }

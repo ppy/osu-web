@@ -43,7 +43,7 @@ return [
 
     'songs' => [
         '_' => 'Sange',
-        'count' => ':count sang|:count sange',
+        'count' => ':count_delimited sang|:count_delimited sange',
         'exclusive' => 'osu! exklusive',
     ],
 

@@ -17,7 +17,7 @@
  */
 
 export default interface HeaderV3Link {
-  active: boolean;
+  active?: boolean;
   title: string;
   url: string;
 }

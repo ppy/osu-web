@@ -361,7 +361,9 @@ return [
             'total_score' => 'Total Score',
         ],
     ],
+
     'status' => [
+        'all' => 'All',
         'online' => 'Online',
         'offline' => 'Offline',
     ],

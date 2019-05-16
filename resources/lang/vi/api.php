@@ -30,7 +30,7 @@ return [
         'identify' => 'Nhận diện và đọc trang cá nhân công khai của bạn.',
 
         'friends' => [
-            'read' => '',
+            'read' => 'Xem những ai bạn đang theo dõi.',
         ],
     ],
 ];

@@ -21,27 +21,34 @@ import * as ReactDOM from 'react-dom'
 
 export class ReactTurbolinks
   constructor: (@components = {}) ->
+    @documentReady = false
     @targets = []
-    $(document).on 'turbolinks:load', @destroyPersisted
-    $(document).on 'turbolinks:load', @boot
-    $(document).on 'turbolinks:before-cache', @destroy
+    $(document).on 'turbolinks:load', =>
+      @documentReady = true
+      @destroyPersisted()
+      @boot()
+    $(document).on 'turbolinks:before-cache', =>
+      @documentReady = false
+      @destroy()
 
 
   boot: =>
-      for own _name, component of @components
-        for target in component.targets
-          continue if target.dataset.reactTurbolinksLoaded == '1'
-          target.dataset.reactTurbolinksLoaded = '1'
-          @targets.push target
-          ReactDOM.render React.createElement(component.element, component.propsFunction(target)), target
+    return unless @documentReady
+
+    for own _name, component of @components
+      for target in component.targets
+        continue if target.dataset.reactTurbolinksLoaded == '1'
+        target.dataset.reactTurbolinksLoaded = '1'
+        @targets.push target
+        ReactDOM.render React.createElement(component.element, component.propsFunction(target)), target
 
 
   destroy: =>
-      for own _name, component of @components
-        for target in component.targets
-          continue if target.dataset.reactTurbolinksLoaded != '1'
-          target.dataset.reactTurbolinksLoaded = null
-          ReactDOM.unmountComponentAtNode target if !component.persistent
+    for own _name, component of @components
+      for target in component.targets
+        continue if target.dataset.reactTurbolinksLoaded != '1'
+        target.dataset.reactTurbolinksLoaded = null
+        ReactDOM.unmountComponentAtNode target if !component.persistent
 
 
   destroyPersisted: =>

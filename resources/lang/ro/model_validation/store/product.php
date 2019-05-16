@@ -20,7 +20,7 @@
 
 return [
     'insufficient_stock' => 'Nu mai sunt suficiente produse în stoc!',
-    'must_separate' => '',
+    'must_separate' => 'Acest produs trebuie să fie verificat separat de celelalte produse',
     'not_available' => 'Acest produs nu este disponibil.',
     'too_many' => 'Poți comanda doar :count bucăți din acest produs per comandă.',
 ];
