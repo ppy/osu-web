@@ -30,7 +30,7 @@ return [
                 '_' => 'Beatmap discussion',
                 'beatmapset_discussion_lock' => 'Discussion on ":title" has been locked',
                 'beatmapset_discussion_lock_compact' => 'Discussion was locked',
-                'beatmapset_discussion_post_new' => 'New beatmap discussion post on ":title" by :username',
+                'beatmapset_discussion_post_new' => 'New post on ":title" by :username',
                 'beatmapset_discussion_post_new_compact' => 'New beatmap discussion post by :username',
                 'beatmapset_discussion_unlock' => 'Discussion on ":title" has been unlocked',
                 'beatmapset_discussion_unlock_compact' => 'Discussion was unlocked',
