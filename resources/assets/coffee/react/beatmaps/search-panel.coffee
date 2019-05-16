@@ -40,16 +40,14 @@ export class SearchPanel extends React.PureComponent
 
   componentDidMount: =>
     $(document).on 'sticky-header:sticking.search-panel', @setHeaderPinned
-    $(document).on 'turbolinks:before-cache.search-panel', () =>
-      @unmountPortal @breadcrumbsPortal, @breadcrumbsElement
-      @unmountPortal @contentPortal, @contentElement
-
     @mountPortal @breadcrumbsPortal, @breadcrumbsElement
     @mountPortal @contentPortal, @contentElement
 
 
   componentWillUnmount: =>
     $(document).off '.search-panel'
+    @unmountPortal @breadcrumbsPortal, @breadcrumbsElement
+    @unmountPortal @contentPortal, @contentElement
 
 
   render: =>
