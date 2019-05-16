@@ -19,14 +19,14 @@
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import { nameToIcons } from 'notification-maps/icons';
-import { messageOne } from 'notification-maps/message';
-import { urlOne } from 'notification-maps/url';
+import { messageSingular } from 'notification-maps/message';
+import { urlSingular } from 'notification-maps/url';
 import * as React from 'react';
 import Item from './item';
 import ItemProps from './item-props';
 import { withMarkRead, WithMarkReadProps } from './with-mark-read';
 
-export default withMarkRead(observer(class ItemOne extends React.Component<ItemProps & WithMarkReadProps, {}> {
+export default withMarkRead(observer(class ItemSingular extends React.Component<ItemProps & WithMarkReadProps, {}> {
   render() {
     return (
       <Item
@@ -37,9 +37,9 @@ export default withMarkRead(observer(class ItemOne extends React.Component<ItemP
 
         icons={nameToIcons[this.props.item.name || '']}
         item={this.props.item}
-        message={messageOne(this.props.item)}
+        message={messageSingular(this.props.item)}
         modifiers={['one']}
-        url={urlOne(this.props.item)}
+        url={urlSingular(this.props.item)}
         withCategory={true}
         withCoverImage={true}
       />

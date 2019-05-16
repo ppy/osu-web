@@ -23,7 +23,7 @@ import Notification from 'models/notification';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import ItemGroup from './item-group';
-import ItemOne from './item-one';
+import ItemSingular from './item-singular';
 import ItemProps from './item-props';
 import { withMarkRead, WithMarkReadProps } from './with-mark-read';
 
@@ -85,7 +85,7 @@ export default withMarkRead(observer(class TypeGroup extends React.Component<Ite
         return;
       }
 
-      const Component = value.length === 1 ? ItemOne : ItemGroup;
+      const Component = value.length === 1 ? ItemSingular : ItemGroup;
 
       items.push((
         <div className={`${bn}__item`} key={key}>

@@ -20,7 +20,7 @@ import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import { nameToIconsCompact } from 'notification-maps/icons';
 import { messageCompact } from 'notification-maps/message';
-import { urlOne } from 'notification-maps/url';
+import { urlSingular } from 'notification-maps/url';
 import * as React from 'react';
 import Item from './item';
 import ItemProps from './item-props';
@@ -39,7 +39,7 @@ export default withMarkRead(observer(class ItemCompact extends React.Component<I
         item={this.props.item}
         message={messageCompact(this.props.item)}
         modifiers={['compact']}
-        url={urlOne(this.props.item)}
+        url={urlSingular(this.props.item)}
         withCategory={false}
         withCoverImage={false}
       />

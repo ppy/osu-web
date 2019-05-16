@@ -47,7 +47,7 @@ export function urlGroup(item: Notification) {
   }
 }
 
-export function urlOne(item: Notification) {
+export function urlSingular(item: Notification) {
   if (item instanceof LegacyPmNotification) {
     return legacyPmUrl();
   }

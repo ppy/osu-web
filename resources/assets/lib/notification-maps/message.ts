@@ -42,7 +42,7 @@ export function messageGroup(item: Notification) {
   return item.details.title;
 }
 
-export function messageOne(item: Notification) {
+export function messageSingular(item: Notification) {
   let message: string;
 
   const replacements = {
