@@ -16,7 +16,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import { nameToIcons } from 'notification-maps/icons';
 import { messageSingular } from 'notification-maps/message';

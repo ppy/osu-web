@@ -16,7 +16,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as _ from 'lodash';
 import * as React from 'react';
 import ItemProps from './item-props';
 
