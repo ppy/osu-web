@@ -16,11 +16,14 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { BeatmapSearchContext } from 'beatmap-search-context'
 import * as React from 'react'
 import { div, a, i, span } from 'react-dom-factories'
 el = React.createElement
 
 export class SearchSort extends React.PureComponent
+  @contextType = BeatmapSearchContext
+
   render: =>
     div className: 'sort sort--beatmapsets',
       div className: 'sort__items',
@@ -53,14 +56,14 @@ export class SearchSort extends React.PureComponent
       relevance: false
       nominations: false
 
-    if !_.isEmpty(@props.filters.query)
+    if !_.isEmpty(@context.query)
       fields.relevance = true
 
-    if @props.filters.status in [4, 5]
+    if @context.status in [4, 5]
       fields.updated = true
       fields.nominations = true
       fields.plays = false
-    else if @props.filters.status == 6
+    else if @context.status == 6
       fields.updated = true
       fields.ranked = true
     else

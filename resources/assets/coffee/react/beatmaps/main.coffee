@@ -19,6 +19,7 @@
 import { Paginator } from './paginator'
 import { SearchPanel } from './search-panel'
 import { SearchSort } from './search-sort'
+import { BeatmapSearchContext } from 'beatmap-search-context'
 import { BackToTop } from 'back-to-top'
 import { BeatmapsetPanel } from 'beatmapset-panel'
 import { Img2x } from 'img2x'
@@ -67,7 +68,6 @@ export class Main extends React.PureComponent
         url: laroute.route('beatmapsets.search')
       recommendedDifficulty: @props.beatmaps.recommended_difficulty
       loading: false
-      filters: null
       isExpanded: null
 
     @state = _.extend @state, @stateFromUrl()
@@ -120,57 +120,59 @@ export class Main extends React.PureComponent
 
     div
       className: 'osu-layout__section'
-      el SearchPanel,
-        innerRef: @backToTopAnchor
-        background: searchBackground
-        availableFilters: @props.availableFilters
-        filters: @state.filters
-        expand: @expand
-        isExpanded: @state.isExpanded
-        recommendedDifficulty: @state.recommendedDifficulty
+      el BeatmapSearchContext.Provider,
+        value: @state.filters
+        el SearchPanel,
+          innerRef: @backToTopAnchor
+          background: searchBackground
+          availableFilters: @props.availableFilters
+          expand: @expand
+          isExpanded: @state.isExpanded
+          recommendedDifficulty: @state.recommendedDifficulty
 
-      div className: 'js-sticky-header'
+        div className: 'js-sticky-header'
 
-      div
-        className: 'osu-layout__row osu-layout__row--page-compact'
-        div className: listCssClasses,
-          if currentUser.id?
+        div
+          className: 'osu-layout__row osu-layout__row--page-compact'
+          div className: listCssClasses,
+            if currentUser.id?
+              div
+                className: 'beatmapsets__sort'
+                el SearchSort,
+                  sorting: @sorting()
+
             div
-              className: 'beatmapsets__sort'
-              el SearchSort, sorting: @sorting(), filters: @state.filters
-
-          div
-            className: 'beatmapsets__content'
-            if @isSupporterMissing()
-              div className: 'beatmapsets__empty',
-                el Img2x,
-                  src: '/images/layout/beatmaps/supporter-required.png'
-                  alt: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterFilters)
-                  title: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterFilters)
-
-                @renderLinkToSupporterTag(supporterFilters)
-
-            else
-              if @state.beatmaps.length > 0
-                el BeatmapList,
-                  items: _.chunk(@state.beatmaps, @state.columnCount)
-                  itemBuffer: 5
-                  itemHeight: ITEM_HEIGHT
-
-              else
+              className: 'beatmapsets__content'
+              if @isSupporterMissing()
                 div className: 'beatmapsets__empty',
                   el Img2x,
-                    src: '/images/layout/beatmaps/not-found.png'
-                    alt: osu.trans("beatmaps.listing.search.not-found")
-                    title: osu.trans("beatmaps.listing.search.not-found")
-                  osu.trans("beatmaps.listing.search.not-found-quote")
+                    src: '/images/layout/beatmaps/supporter-required.png'
+                    alt: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterFilters)
+                    title: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterFilters)
 
-          if !@isSupporterMissing()
-            div className: 'beatmapsets__paginator',
-              el Paginator,
-                error: @state.error
-                loading: @state.paging.loading
-                more: @state.paging.more
+                  @renderLinkToSupporterTag(supporterFilters)
+
+              else
+                if @state.beatmaps.length > 0
+                  el BeatmapList,
+                    items: _.chunk(@state.beatmaps, @state.columnCount)
+                    itemBuffer: 5
+                    itemHeight: ITEM_HEIGHT
+
+                else
+                  div className: 'beatmapsets__empty',
+                    el Img2x,
+                      src: '/images/layout/beatmaps/not-found.png'
+                      alt: osu.trans("beatmaps.listing.search.not-found")
+                      title: osu.trans("beatmaps.listing.search.not-found")
+                    osu.trans("beatmaps.listing.search.not-found-quote")
+
+            if !@isSupporterMissing()
+              div className: 'beatmapsets__paginator',
+                el Paginator,
+                  error: @state.error
+                  loading: @state.paging.loading
+                  more: @state.paging.more
 
       el BackToTop,
         anchor: @backToTopAnchor
