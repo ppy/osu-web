@@ -27,7 +27,9 @@ export class ReactTurbolinks
       @documentReady = true
       @destroyPersisted()
       @boot()
-    $(document).on 'turbolinks:before-cache', @destroy
+    $(document).on 'turbolinks:before-cache', =>
+      @documentReady = false
+      @destroy()
 
 
   boot: =>
