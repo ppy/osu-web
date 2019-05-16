@@ -46,7 +46,7 @@ return [
                 'beatmapset_nominate_compact' => 'Beatmap was nominated',
                 'beatmapset_qualify' => '":title" has gained enough nominations and entered the ranking queue',
                 'beatmapset_qualify_compact' => 'Beatmap entered ranking queue',
-                'beatmapset_reset_nominations' => 'Nomination of ":title" has been reset due to a new issue being posted',
+                'beatmapset_reset_nominations' => 'Nomination of ":title" has been reset',
                 'beatmapset_reset_nominations_compact' => 'Nomination was reset',
             ],
         ],
