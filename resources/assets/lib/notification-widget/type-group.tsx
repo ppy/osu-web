@@ -63,7 +63,7 @@ export default withMarkRead(observer(class TypeGroup extends React.Component<Ite
     const categoryGroup: Map<string, Notification[]> = new Map();
 
     this.props.items.forEach((item) => {
-      if (item.objectId == null || item.name == null) {
+      if (item.objectId == null || item.name == null || item.category == null) {
         return;
       }
 
