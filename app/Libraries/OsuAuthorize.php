@@ -364,6 +364,7 @@ class OsuAuthorize
     public function checkBeatmapsetNominate($user, $beatmapset)
     {
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         static $prefix = 'beatmap_discussion.nominate.';
 
