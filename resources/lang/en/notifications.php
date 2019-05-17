@@ -51,6 +51,17 @@ return [
             ],
         ],
 
+        'channel' => [
+            '_' => 'Chat',
+
+            'channel' => [
+                '_' => 'New message',
+                'channel_message' => ':username says ":title"',
+                'channel_message_compact' => ':title',
+                'channel_message_group' => 'from :username',
+            ],
+        ],
+
         'forum_topic' => [
             '_' => 'Forum topic',
 
