@@ -31,11 +31,12 @@ export function messageCompact(item: Notification) {
   if (item.objectType === 'channel') {
     key += `.${item.details.type}`;
   }
+  key = `${key}.${item.name}_compact`;
 
   if (item instanceof LegacyPmNotification) {
-    message = osu.transChoice(`${key}.${item.name}_compact`, item.details.count, replacements);
+    message = osu.transChoice(key, item.details.count, replacements);
   } else {
-    message = osu.trans(`${key}.${item.name}_compact`, replacements);
+    message = osu.trans(key, replacements);
   }
 
   return message;
@@ -68,11 +69,12 @@ export function messageSingular(item: Notification) {
   if (item.objectType === 'channel') {
     key += `.${item.details.type}`;
   }
+  key = `${key}.${item.name}`;
 
   if (item instanceof LegacyPmNotification) {
-    message = osu.transChoice(`${key}.${item.name}`, item.details.count, replacements);
+    message = osu.transChoice(key, item.details.count, replacements);
   } else {
-    message = osu.trans(`${key}.${item.name}`, replacements);
+    message = osu.trans(key, replacements);
   }
 
   return message;
