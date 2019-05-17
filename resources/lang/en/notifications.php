@@ -56,9 +56,11 @@ return [
 
             'channel' => [
                 '_' => 'New message',
-                'channel_message' => ':username says ":title"',
-                'channel_message_compact' => ':title',
-                'channel_message_group' => 'from :username',
+                'pm' => [
+                    'channel_message' => ':username says ":title"',
+                    'channel_message_compact' => ':title',
+                    'channel_message_group' => 'from :username',
+                ],
             ],
         ],
 

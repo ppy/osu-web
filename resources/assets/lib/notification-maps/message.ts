@@ -27,12 +27,15 @@ export function messageCompact(item: Notification) {
     username: item.details.username,
   };
 
-  const key = `notifications.item.${item.objectType}.${item.category}.${item.name}_compact`;
+  let key = `notifications.item.${item.objectType}.${item.category}`;
+  if (item.objectType === 'channel') {
+    key += `.${item.details.type}`;
+  }
 
   if (item instanceof LegacyPmNotification) {
-    message = osu.transChoice(key, item.details.count, replacements);
+    message = osu.transChoice(`${key}.${item.name}_compact`, item.details.count, replacements);
   } else {
-    message = osu.trans(key, replacements);
+    message = osu.trans(`${key}.${item.name}_compact`, replacements);
   }
 
   return message;
@@ -45,7 +48,7 @@ export function messageGroup(item: Notification) {
       username: item.details.username,
     };
 
-    const key = `notifications.item.${item.objectType}.${item.category}.${item.name}_group`;
+    const key = `notifications.item.${item.objectType}.${item.category}.${item.details.type}.${item.name}_group`;
 
     return osu.trans(key, replacements);
   }
@@ -61,12 +64,15 @@ export function messageSingular(item: Notification) {
     username: item.details.username,
   };
 
-  const key = `notifications.item.${item.objectType}.${item.category}.${item.name}`;
+  let key = `notifications.item.${item.objectType}.${item.category}`;
+  if (item.objectType === 'channel') {
+    key += `.${item.details.type}`;
+  }
 
   if (item instanceof LegacyPmNotification) {
-    message = osu.transChoice(key, item.details.count, replacements);
+    message = osu.transChoice(`${key}.${item.name}`, item.details.count, replacements);
   } else {
-    message = osu.trans(key, replacements);
+    message = osu.trans(`${key}.${item.name}`, replacements);
   }
 
   return message;

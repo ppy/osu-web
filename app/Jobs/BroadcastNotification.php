@@ -195,6 +195,7 @@ class BroadcastNotification implements ShouldQueue
 
         $this->params['details'] = [
             'title' => truncate($this->object->content, 36),
+            'type' => strtolower($channel->type),
             'cover_url' => $this->source->user_avatar,
         ];
     }
