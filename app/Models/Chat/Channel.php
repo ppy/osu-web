@@ -20,6 +20,7 @@
 
 namespace App\Models\Chat;
 
+use App\Events\UserSubscriptionChangeEvent;
 use App\Exceptions\API;
 use App\Models\Notification;
 use App\Models\User;
@@ -171,14 +172,24 @@ class Channel extends Model
         $userChannel->user()->associate($user);
         $userChannel->channel()->associate($this);
         $userChannel->save();
+
+        if ($this->isPM()) {
+            event(new UserSubscriptionChangeEvent('add', $user, $userChannel->channel));
+        }
     }
 
     public function removeUser(User $user)
     {
-        UserChannel::where([
+        $userChannel = UserChannel::where([
             'channel_id' => $this->channel_id,
             'user_id' => $user->user_id,
-        ])->delete();
+        ]);
+
+        if ($this->isPM()) {
+            event(new UserSubscriptionChangeEvent('remove', $user, $userChannel->channel));
+        }
+
+        $userChannel->delete();
     }
 
     public function hasUser(User $user)
