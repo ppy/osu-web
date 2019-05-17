@@ -16,47 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.notification-type-group {
-  width: 100%;
+import Notification from 'models/notification';
+import Worker from './worker';
 
-  &__clear-all {
-    .reset-input();
-    font-size: @font-size--title-small;
-    text-transform: uppercase;
-
-    &--disabled {
-      pointer-events: none;
-    }
-  }
-
-  &__clear-all-spinner {
-    margin-right: 5px;
-    font-size: 75%;
-  }
-
-  &__count {
-    color: @yellow;
-    margin-left: 10px;
-  }
-
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 0 5px;
-  }
-
-  &__item {
-    margin: 1px 0;
-  }
-
-  &__items {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__type {
-    font-size: @font-size--title-small;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
+export default interface ItemProps {
+  item: Notification;
+  items: Notification[];
+  worker: Worker;
 }

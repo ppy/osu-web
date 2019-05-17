@@ -99,19 +99,15 @@ class ChatController extends Controller
         $channel = Channel::where('name', $channelName)->first();
 
         if (!$channel) {
-            $channel = DB::transaction(function () use ($userIds, $channelName) {
+            $channel = DB::transaction(function () use ($targetUser, $channelName) {
                 $channel = new Channel();
                 $channel->name = $channelName;
                 $channel->type = Channel::TYPES['pm'];
                 $channel->description = ''; // description is not nullable
                 $channel->save();
 
-                foreach ($userIds as $id) {
-                    $userChannel = new UserChannel();
-                    $userChannel->user_id = $id;
-                    $userChannel->channel_id = $channel->channel_id;
-                    $userChannel->save();
-                }
+                $channel->addUser(Auth::user());
+                $channel->addUser($targetUser);
 
                 return $channel;
             });

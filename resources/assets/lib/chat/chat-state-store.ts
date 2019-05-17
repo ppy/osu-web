@@ -32,6 +32,7 @@ export default class ChatStateStore implements DispatchListener {
 
   @observable selected: number = -1;
   @observable lastReadId: number = -1;
+  @observable autoScroll: boolean = false;
 
   constructor(root: RootDataStore, parent: UIStateStore, dispatcher: Dispatcher) {
     this.root = root;
@@ -48,6 +49,7 @@ export default class ChatStateStore implements DispatchListener {
       }
     } else if (dispatchedAction instanceof ChatMessageSendAction) {
       this.lastReadId = this.root.channelStore.getOrCreate(dispatchedAction.message.channelId).lastMessageId;
+      this.autoScroll = true;
     } else if (dispatchedAction instanceof UserLogoutAction) {
       this.flushStore();
     }
