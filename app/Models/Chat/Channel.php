@@ -183,7 +183,7 @@ class Channel extends Model
         $userChannel = UserChannel::where([
             'channel_id' => $this->channel_id,
             'user_id' => $user->user_id,
-        ]);
+        ])->first();
 
         if ($this->isPM()) {
             event(new UserSubscriptionChangeEvent('remove', $user, $userChannel->channel));
