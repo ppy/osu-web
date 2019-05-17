@@ -49,7 +49,7 @@ export class PlayDetail extends PureComponent
       div className: "#{bn}__group #{bn}__group--top",
         div
           className: "#{bn}__icon #{bn}__icon--main"
-          div className: "score-rank-v2 score-rank-v2--full score-rank-v2--#{score.rank}"
+          div className: "score-rank score-rank--full score-rank--#{score.rank}"
 
         div className: "#{bn}__detail",
           a
@@ -79,7 +79,7 @@ export class PlayDetail extends PureComponent
         div className: "#{bn}__score-detail #{bn}__score-detail--score",
           div
             className: "#{bn}__icon #{bn}__icon--extra"
-            div className: "score-rank-v2 score-rank-v2--full score-rank-v2--#{score.rank}"
+            div className: "score-rank score-rank--full score-rank--#{score.rank}"
           div className: "#{bn}__score-detail-top-right",
             div
               className: "#{bn}__accuracy-and-weighted-pp"
