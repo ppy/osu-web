@@ -254,11 +254,12 @@ export default class Worker {
     sortedItems.unshift(this.pmNotification);
 
     sortedItems.forEach((item) => {
-      if (item.objectType == null || item.objectId == null) {
+      const key = item.displayType;
+
+      if (key == null) {
         return;
       }
 
-      const key = item.objectType;
       let groupedItems = ret.get(key);
 
       if (groupedItems == null) {

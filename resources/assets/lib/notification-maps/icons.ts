@@ -38,6 +38,7 @@ export const nameToIcons: IconsMap = {
   beatmapset_reset_nominations: ['fas fa-drafting-compass', 'fas fa-undo'],
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
+  user_achievement_unlock: ['fas fa-trophy'],
 };
 
 export const nameToIconsCompact: IconsMap = {

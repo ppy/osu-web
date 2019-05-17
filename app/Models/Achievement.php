@@ -59,4 +59,9 @@ class Achievement extends Model
             ->where('enabled', true)
             ->where('slug', '<>', '');
     }
+
+    public function iconUrl()
+    {
+        return '/images/badges/user-achievements/'.e($this->slug).'.png';
+    }
 }

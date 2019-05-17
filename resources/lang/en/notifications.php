@@ -69,5 +69,14 @@ return [
                 'legacy_pm' => ':count_delimited unread message|:count_delimited unread messages',
             ],
         ],
+
+        'user_achievement' => [
+            '_' => 'Medals',
+
+            'user_achievement_unlock' => [
+                '_' => 'New medal',
+                'user_achievement_unlock' => 'Unlocked ":title"!',
+            ],
+        ],
     ],
 ];

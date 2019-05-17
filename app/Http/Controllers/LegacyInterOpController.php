@@ -23,10 +23,14 @@ namespace App\Http\Controllers;
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\UserBestScoresCheck;
+use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
+use App\Models\Event;
 use App\Models\NewsPost;
+use App\Models\Notification;
 use App\Models\User;
+use Exception;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class LegacyInterOpController extends Controller
@@ -65,6 +69,28 @@ class LegacyInterOpController extends Controller
         Beatmapset::findOrFail($id)->refreshCache();
 
         return ['success' => true];
+    }
+
+    public function userAchievement($id, $achievementId, $beatmapId)
+    {
+        $user = User::findOrFail($id);
+        $achievement = Achievement::findOrFail($achievementId);
+
+        try {
+            $userAchievement = $user->userAchievements()->create([
+                'achievement_id' => $achievement->getKey(),
+                'beatmap_id' => $beatmapId,
+            ]);
+        } catch (Exception $e) {
+            if (is_sql_unique_exception($e)) {
+                return error_popup('user already unlocked the specified achievement');
+            }
+
+            throw $e;
+        }
+
+        Event::generate('achievement', compact('achievement', 'user'));
+        broadcast_notification(Notification::USER_ACHIEVEMENT_UNLOCK, $achievement, $user);
     }
 
     public function userBestScoresCheck($id)

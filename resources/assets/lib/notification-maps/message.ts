@@ -27,7 +27,7 @@ export function messageCompact(item: Notification) {
     username: item.details.username,
   };
 
-  const key = `notifications.item.${item.objectType}.${item.category}.${item.name}_compact`;
+  const key = `notifications.item.${item.displayType}.${item.category}.${item.name}_compact`;
 
   if (item instanceof LegacyPmNotification) {
     message = osu.transChoice(key, item.details.count, replacements);
@@ -50,7 +50,7 @@ export function messageSingular(item: Notification) {
     username: item.details.username,
   };
 
-  const key = `notifications.item.${item.objectType}.${item.category}.${item.name}`;
+  const key = `notifications.item.${item.displayType}.${item.category}.${item.name}`;
 
   if (item instanceof LegacyPmNotification) {
     message = osu.transChoice(key, item.details.count, replacements);
