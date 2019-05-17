@@ -16,19 +16,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import Filters from 'beatmap-search-filters';
-import { createContext } from 'react';
-
-const filterDefaults: Filters = {
-  extra: '',
-  general: '',
-  genre: null,
-  language: null,
-  mode: null,
-  played: null,
-  query: '',
-  rank: '',
-  status: 0,
-};
-
-export const BeatmapSearchContext = createContext(filterDefaults);
+export default interface BeatmapSearchFilters {
+  extra: string;
+  general: string;
+  genre: string | null;
+  language: string | null;
+  mode: string | null;
+  played: string | null;
+  query: string;
+  rank: string;
+  sort?: string;
+  status: number;
+}

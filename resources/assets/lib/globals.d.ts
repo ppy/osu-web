@@ -24,6 +24,7 @@ declare var reactTurbolinks: any;
 declare var userVerification: any;
 
 // external (to typescript) classes
+declare var BeatmapsetFilter: any;
 declare var BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
 declare var LoadingOverlay: any;
 declare var Timeout: any;

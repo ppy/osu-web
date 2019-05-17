@@ -42,6 +42,21 @@ class @BeatmapsetFilter
     q: 'query'
     sort: 'sort'
 
+  @filtersFromUrl: (url) ->
+    params = new URL(url).searchParams
+
+    filters = {}
+
+    for own char, key of BeatmapsetFilter.charToKey
+      value = params.get(char)
+
+      continue if !value? || value.length == 0
+
+      value = BeatmapsetFilter.castFromString[key](value) if BeatmapsetFilter.castFromString[key]
+      filters[key] = value
+
+    filters
+
 
   @keyToChar: ->
     @_keyToChar ?= _.invert @charToKey
@@ -115,3 +130,9 @@ class @BeatmapsetFilter
         charParams[@keyToChar()[key]] = value
 
     charParams
+
+
+  # For UI purposes; server-side has it's own check.
+  @supporterRequired: (filters) ->
+    _.reject ['played', 'rank'], (name) ->
+      _.isEmpty filters[name]
