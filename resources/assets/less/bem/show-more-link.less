@@ -50,6 +50,11 @@
     margin: 5px auto 10px;
   }
 
+  &--notification-group {
+    font-size: @font-size--small;
+    color: @greysky-light;
+  }
+
   &--profile-page {
     margin: 10px auto 0;
   }
@@ -128,6 +133,7 @@
 
   &__label {
     opacity: 1;
+    margin: 0 -5px;
 
     .@{_top}[disabled] &, .@{_top}.js-disabled & {
       opacity: 0;
@@ -136,14 +142,19 @@
 
   &__label-icon {
     color: @yellow;
+    margin: 0 5px;
 
     .@{_top}--t-ddd & {
       color: @yellow-dark;
     }
+
+    .@{_top}--notification-group & {
+      color: #fff;
+    }
   }
 
   &__label-text {
-    margin: 0 10px;
+    margin: 0 5px;
     text-transform: uppercase;
   }
 }

@@ -16,94 +16,34 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as _ from 'lodash';
 import { observer } from 'mobx-react';
-import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import * as React from 'react';
 import { Spinner } from 'spinner';
-import Worker from './worker';
+import { WithMarkReadProps } from './with-mark-read';
 
-interface Props {
-  items: Notification[];
-  worker: Worker;
+interface Props extends WithMarkReadProps {
+  expandButton?: React.ReactNode;
+  icons?: string[];
+  item: Notification;
+  message: string;
+  modifiers: string[];
+  url: string;
+  withCategory: boolean;
+  withCoverImage: boolean;
 }
 
-interface State {
-  markingAsRead: boolean;
-}
-
-interface IconsMap {
-  [key: string]: string[];
-}
-
-const ITEM_CATEGORY_ICONS: IconsMap = {
-  beatmapset_discussion: ['fas fa-drafting-compass', 'fas fa-comment'],
-  beatmapset_state: ['fas fa-drafting-compass'],
-  forum_topic_reply: ['fas fa-comment-medical'],
-  legacy_pm: ['fas fa-envelope'],
-};
-
-const ITEM_NAME_ICONS: IconsMap = {
-  beatmapset_discussion_lock: ['fas fa-drafting-compass', 'fas fa-lock'],
-  beatmapset_discussion_post_new: ['fas fa-drafting-compass', 'fas fa-comment-medical'],
-  beatmapset_discussion_unlock: ['fas fa-drafting-compass', 'fas fa-unlock'],
-  beatmapset_disqualify: ['fas fa-drafting-compass', 'far fa-times-circle'],
-  beatmapset_love: ['fas fa-drafting-compass', 'fas fa-heart'],
-  beatmapset_nominate: ['fas fa-drafting-compass', 'fas fa-vote-yea'],
-  beatmapset_qualify: ['fas fa-drafting-compass', 'fas fa-check'],
-  beatmapset_reset_nominations: ['fas fa-drafting-compass', 'fas fa-undo'],
-  forum_topic_reply: ['fas fa-comment-medical'],
-  legacy_pm: ['fas fa-envelope'],
-};
-
-@observer
-export default class Item extends React.Component<Props, State> {
-
-  state = {
-    markingAsRead: false,
-  };
-  private isComponentMounted = false;
-
-  componentDidMount() {
-    this.isComponentMounted = true;
-  }
-
-  componentWillUnmount() {
-    this.isComponentMounted = false;
-  }
-
+export default observer(class Item extends React.Component<Props, {}> {
   render() {
-    if (this.props.items.length === 0) {
-      return null;
-    }
-
-    const item = this.props.items[0];
-
     return (
-      <div className='notification-popup-item clickable-row' onClick={this.markRead}>
-        <div
-          className='notification-popup-item__cover'
-          style={{
-            backgroundImage: osu.urlPresence(item.details.coverUrl),
-          }}
-        >
-          <div className='notification-popup-item__cover-overlay'>
-            {this.renderCoverIcon()}
-          </div>
-        </div>
+      <div className={this.blockClass()} onClick={this.props.markReadFallback}>
+        {this.renderCover()}
         <div className='notification-popup-item__main'>
           <div className='notification-popup-item__content'>
-            <div className='notification-popup-item__name'>
-              {osu.trans(`notifications.item.${item.objectType}.${item.category}._`)}
-            </div>
+            {this.renderCategory()}
             {this.renderMessage()}
-            <div
-              className='notification-popup-item__time'
-              dangerouslySetInnerHTML={{
-                __html: osu.timeago(item.createdAtJson),
-              }}
-            />
+            {this.renderTime()}
+            {this.renderExpandButton()}
           </div>
           <div className='notification-popup-item__side-buttons'>
             {this.renderMarkAsReadButton()}
@@ -113,26 +53,47 @@ export default class Item extends React.Component<Props, State> {
     );
   }
 
-  private renderCoverIcon() {
-    if (this.props.items.length === 0) {
+  private blockClass() {
+    return `clickable-row ${osu.classWithModifiers('notification-popup-item', this.props.modifiers)}`;
+  }
+
+  private renderCategory() {
+    if (!this.props.withCategory) {
       return null;
     }
 
-    const item = this.props.items[0];
+    const label = osu.trans(`notifications.item.${this.props.item.objectType}.${this.props.item.category}._`);
 
-    if (item.name == null || item.category == null) {
+    if (label === '') {
       return null;
     }
 
-    const icons = this.props.items.length === 1
-      ? ITEM_NAME_ICONS[item.name]
-      : ITEM_CATEGORY_ICONS[item.category];
+    return <div className='notification-popup-item__row notification-popup-item__row--category'>{label}</div>;
+  }
 
-    if (icons == null) {
+  private renderCover() {
+    const coverUrl = this.props.withCoverImage ? this.props.item.details.coverUrl : null;
+
+    return (
+      <div
+        className='notification-popup-item__cover'
+        style={{
+          backgroundImage: osu.urlPresence(coverUrl),
+        }}
+      >
+        <div className='notification-popup-item__cover-overlay'>
+          {this.renderCoverIcons()}
+        </div>
+      </div>
+    );
+  }
+
+  private renderCoverIcons() {
+    if (this.props.icons == null) {
       return null;
     }
 
-    return icons.map((icon) => {
+    return this.props.icons.map((icon) => {
       return (
         <div key={icon} className='notification-popup-item__cover-icon'>
           <span className={icon} />
@@ -141,12 +102,20 @@ export default class Item extends React.Component<Props, State> {
     });
   }
 
-  private renderMarkAsReadButton() {
-    if (this.props.items[0].id < 0) {
+  private renderExpandButton() {
+    if (this.props.expandButton == null) {
       return null;
     }
 
-    if (this.state.markingAsRead) {
+    return <div className='notification-popup-item__row'>{this.props.expandButton}</div>;
+  }
+
+  private renderMarkAsReadButton() {
+    if (!this.props.canMarkRead) {
+      return null;
+    }
+
+    if (this.props.markingAsRead) {
       return (
         <div className='notification-popup-item__read-button'>
           <Spinner />
@@ -157,6 +126,7 @@ export default class Item extends React.Component<Props, State> {
         <button
           type='button'
           className='notification-popup-item__read-button'
+          onClick={this.props.markRead}
         >
           <span className='fas fa-times' />
         </button>
@@ -165,129 +135,25 @@ export default class Item extends React.Component<Props, State> {
   }
 
   private renderMessage() {
-    if (this.props.items.length === 0) {
-      return null;
-    }
-
-    const item = this.props.items[0];
-    let message: string;
-
-    const replacements = {
-      title: item.details.title,
-      username: item.details.username,
-    };
-
-    if (this.props.items.length === 1) {
-      const key = `notifications.item.${item.objectType}.${item.category}.${item.name}`;
-
-      if (item instanceof LegacyPmNotification) {
-        message = osu.transChoice(key, item.details.count, replacements);
-      } else {
-        message = osu.trans(key, replacements);
-      }
-    } else {
-      message = osu.transChoice(`notifications.message_multi`, this.props.items.length, replacements);
-    }
-
     return (
-      <a href={this.url()} className='notification-popup-item__message clickable-row-link'>
-        {message}
+      <a href={this.props.url} className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'>
+        {this.props.message}
       </a>
     );
   }
 
-  private markRead = () => {
-    if (this.state.markingAsRead) {
+  private renderTime() {
+    if (this.props.item.createdAtJson == null) {
       return;
     }
 
-    if (this.props.items.length === 0 || this.props.items[0].id < 0) {
-      return;
-    }
-
-    this.setState({ markingAsRead: true });
-    const ids = this.props.items.map((i) => i.id);
-
-    this.props.worker.sendMarkRead(ids)
-    .fail(() => {
-      if (!this.isComponentMounted) {
-        return;
-      }
-
-      this.setState({ markingAsRead: false });
-    });
+    return (
+      <div
+        className='notification-popup-item__row notification-popup-item__row--time'
+        dangerouslySetInnerHTML={{
+          __html: osu.timeago(this.props.item.createdAtJson),
+        }}
+      />
+    );
   }
-
-  private url() {
-    if (this.props.items.length === 0) {
-      return;
-    }
-
-    const item = this.props.items[0];
-
-    if (item instanceof LegacyPmNotification) {
-      return '/forum/ucp.php?i=pm&folder=inbox';
-    }
-
-    let route: string = '';
-    let params: any;
-
-    if (this.props.items.length === 1) {
-      switch (item.name) {
-        case 'beatmapset_discussion_lock':
-          route = 'beatmapsets.discussion';
-          params = { beatmapset: item.objectId };
-          break;
-        case 'beatmapset_discussion_post_new':
-          return BeatmapDiscussionHelper.url({
-            beatmapId: item.details.beatmapId,
-            beatmapsetId: item.objectId,
-            discussionId: item.details.discussionId,
-          });
-        case 'beatmapset_discussion_unlock':
-          route = 'beatmapsets.discussion';
-          params = { beatmapset: item.objectId };
-          break;
-        case 'beatmapset_disqualify':
-          route = 'beatmapsets.discussion';
-          params = { beatmapset: item.objectId };
-          break;
-        case 'beatmapset_love':
-          route = 'beatmapsets.show';
-          params = { beatmapset: item.objectId };
-          break;
-        case 'beatmapset_nominate':
-          route = 'beatmapsets.discussion';
-          params = { beatmapset: item.objectId };
-          break;
-        case 'beatmapset_qualify':
-          route = 'beatmapsets.discussion';
-          params = { beatmapset: item.objectId };
-          break;
-        case 'beatmapset_reset_nominations':
-          route = 'beatmapsets.discussion';
-          params = { beatmapset: item.objectId };
-          break;
-        case 'forum_topic_reply':
-          route = 'forum.posts.show';
-          params = { post: item.details.postId };
-          break;
-      }
-    } else {
-      switch (item.objectType) {
-        case 'beatmapset':
-          route = 'beatmapsets.discussion';
-          params = { beatmapset: item.objectId };
-          break;
-        case 'forum_topic':
-          route = 'forum.topics.show';
-          params = { topic: item.objectId, start: 'unread' };
-          break;
-      }
-    }
-
-    if (route != null) {
-      return laroute.route(route, params);
-    }
-  }
-}
+});

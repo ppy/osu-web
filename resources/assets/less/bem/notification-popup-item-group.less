@@ -16,29 +16,20 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.notification-category-group {
+.notification-popup-item-group {
   @_top: notification-category-group;
-  background-color: @greysky-dark;
-  border-radius: @border-radius-large;
+  background-color: @greysky;
+  border-radius: (@border-radius-large + 10px) (@border-radius-large + 10px) @border-radius-large @border-radius-large;
   display: flex;
   flex-direction: column;
 
-  & + & {
-    margin-top: 2px;
-  }
-
-  &--single {
-    background-color: transparent;
-  }
-
-  &__expand-button {
-    align-self: center;
-    margin: 5px 0;
-  }
-
   &__item {
-    & + & {
-      margin-top: 2px;
-    }
+    margin: 1px 0;
+  }
+
+  &__items {
+    padding: 9px 0;
+    display: flex;
+    flex-direction: column;
   }
 }
