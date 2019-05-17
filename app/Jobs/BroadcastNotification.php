@@ -190,18 +190,7 @@ class BroadcastNotification implements ShouldQueue
     private function onChannelMessage()
     {
         $channel = Channel::findOrFail($this->object->channel_id);
-        $users = $channel->users()->pluck('user_id');
-
-        $this->receiverIds =
-            array_values(
-                array_filter(
-                    $users->toArray(),
-                    function ($k) {
-                        return $k !== $this->source->user_id;
-                    }
-                )
-            );
-
+        $this->receiverIds = $channel->users()->pluck('user_id')->all();
         $this->notifiable = $this->object->channel;
 
         $this->params['details'] = [
