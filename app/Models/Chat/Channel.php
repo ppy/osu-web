@@ -185,11 +185,13 @@ class Channel extends Model
             'user_id' => $user->user_id,
         ])->first();
 
-        if ($this->isPM()) {
-            event(new UserSubscriptionChangeEvent('remove', $user, $userChannel->channel));
-        }
+        if ($userChannel) {
+            if ($this->isPM()) {
+                event(new UserSubscriptionChangeEvent('remove', $user, $userChannel->channel));
+            }
 
-        $userChannel->delete();
+            $userChannel->delete();
+        }
     }
 
     public function hasUser(User $user)
