@@ -136,7 +136,11 @@ export default observer(class Item extends React.Component<Props, {}> {
 
   private renderMessage() {
     return (
-      <a href={this.props.url} className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'>
+      <a
+        onClick={this.props.markRead}
+        href={this.props.url}
+        className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'
+      >
         {this.props.message}
       </a>
     );
