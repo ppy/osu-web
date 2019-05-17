@@ -197,7 +197,7 @@ class BroadcastNotification implements ShouldQueue
                 array_filter(
                     $users->toArray(),
                     function ($k) {
-                        return $k != $this->source->user_id;
+                        return $k !== $this->source->user_id;
                     }
                 )
             );

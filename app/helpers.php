@@ -227,8 +227,9 @@ function html_excerpt($body, $limit = 300)
 
 function truncate(String $text, $limit = 100)
 {
-    if (mb_strlen($text) > $limit)
-        return mb_substr($text, 0, $limit - 1) . '...';
+    if (mb_strlen($text) > $limit) {
+        return mb_substr($text, 0, $limit - 1).'...';
+    }
 
     return $text;
 }
