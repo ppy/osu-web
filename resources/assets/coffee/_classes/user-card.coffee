@@ -104,7 +104,7 @@ class @UserCard
 
     if el._tooltip != el.dataset.userId
       # wrong userId, destroy current tooltip
-      $(el).qtip('api').destroy()
+      $(el).qtip('api')?.destroy()
 
 
   shouldShow: (event) ->
