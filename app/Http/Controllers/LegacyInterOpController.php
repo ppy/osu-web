@@ -71,7 +71,7 @@ class LegacyInterOpController extends Controller
         return ['success' => true];
     }
 
-    public function userAchievement($id, $achievementId, $beatmapId)
+    public function userAchievement($id, $achievementId, $beatmapId = null)
     {
         $user = User::findOrFail($id);
         $achievement = Achievement::findOrFail($achievementId);
