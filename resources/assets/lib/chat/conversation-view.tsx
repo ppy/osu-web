@@ -38,14 +38,15 @@ export default class ConversationView extends React.Component<any, any> {
   }
 
   componentDidUpdate = () => {
-    let chatView = this.chatViewRef.current;
-    if (!chatView)
+    const chatView = this.chatViewRef.current;
+    if (!chatView) {
       return;
+    }
 
     if (this.props.dataStore.uiState.chat.autoScroll) {
       $(chatView).scrollTop(chatView.scrollHeight);
     }
-  };
+  }
 
   noCanSendMessage(): React.ReactNode {
     const dataStore: RootDataStore = this.props.dataStore;
@@ -82,11 +83,11 @@ export default class ConversationView extends React.Component<any, any> {
   }
 
   onScroll = () => {
-    let chatView = this.chatViewRef.current;
+    const chatView = this.chatViewRef.current;
     if (chatView) {
       this.props.dataStore.uiState.chat.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
     }
-  };
+  }
 
   render(): React.ReactNode {
     const dataStore: RootDataStore = this.props.dataStore;
