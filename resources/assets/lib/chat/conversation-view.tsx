@@ -30,15 +30,22 @@ import MessageGroup from './message-group';
 @inject('dataStore')
 @observer
 export default class ConversationView extends React.Component<any, any> {
+  private chatViewRef = React.createRef<HTMLInputElement>();
+
   componentDidMount() {
     this.componentDidUpdate();
+    $(window).on('throttled-scroll', _.throttle(this.onScroll, 1000));
   }
 
-  componentDidUpdate() {
-    // if ($('.chat-conversation').length > 0) {
-    //   $('.chat-conversation').scrollTop($('.chat-conversation')[0].scrollHeight);
-    // }
-  }
+  componentDidUpdate = () => {
+    let chatView = this.chatViewRef.current;
+    if (!chatView)
+      return;
+
+    if (this.props.dataStore.uiState.chat.autoScroll) {
+      $(chatView).scrollTop(chatView.scrollHeight);
+    }
+  };
 
   noCanSendMessage(): React.ReactNode {
     const dataStore: RootDataStore = this.props.dataStore;
@@ -73,6 +80,13 @@ export default class ConversationView extends React.Component<any, any> {
       );
     }
   }
+
+  onScroll = () => {
+    let chatView = this.chatViewRef.current;
+    if (chatView) {
+      this.props.dataStore.uiState.chat.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
+    }
+  };
 
   render(): React.ReactNode {
     const dataStore: RootDataStore = this.props.dataStore;
@@ -126,7 +140,7 @@ export default class ConversationView extends React.Component<any, any> {
     });
 
     return (
-      <div className='chat-conversation'>
+      <div className='chat-conversation' onScroll={this.onScroll} ref={this.chatViewRef}>
         <div className='chat-conversation__new-chat-avatar'>
           <UserAvatar user={{id: 0, avatar_url: channel.icon}} />
         </div>
