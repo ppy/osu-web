@@ -23,6 +23,8 @@ export function urlGroup(item: Notification) {
   switch (item.objectType) {
     case 'beatmapset':
       return laroute.route('beatmapsets.discussion', { beatmapset: item.objectId });
+    case 'channel':
+      return laroute.route('chat.index', { sendto: item.sourceUserId });
     case 'forum_topic':
       return laroute.route('forum.topics.show', { topic: item.objectId, start: 'unread' });
   }
@@ -48,6 +50,8 @@ export function urlSingular(item: Notification) {
         beatmapsetId: item.objectId,
         discussionId: item.details.discussionId,
       });
+    case 'channel_message':
+      return laroute.route('chat.index', { sendto: item.sourceUserId });
     case 'forum_topic_reply':
       return laroute.route('forum.posts.show', { post: item.details.postId });
   }
