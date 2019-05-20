@@ -43,6 +43,7 @@ export const nameToCategory: CategoryMap = {
   beatmapset_nominate: 'beatmapset_state',
   beatmapset_qualify: 'beatmapset_state',
   beatmapset_reset_nominations: 'beatmapset_state',
+  channel_message: 'channel',
   forum_topic_reply: 'forum_topic_reply',
   legacy_pm: 'legacy_pm',
   user_achievement_unlock: 'user_achievement_unlock',

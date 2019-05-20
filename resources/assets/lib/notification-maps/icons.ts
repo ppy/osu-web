@@ -23,6 +23,7 @@ interface IconsMap {
 export const categoryToIcons: IconsMap = {
   beatmapset_discussion: ['fas fa-drafting-compass', 'fas fa-comment'],
   beatmapset_state: ['fas fa-drafting-compass'],
+  channel: ['fas fa-comments'],
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
 };
@@ -36,6 +37,7 @@ export const nameToIcons: IconsMap = {
   beatmapset_nominate: ['fas fa-drafting-compass', 'fas fa-vote-yea'],
   beatmapset_qualify: ['fas fa-drafting-compass', 'fas fa-check'],
   beatmapset_reset_nominations: ['fas fa-drafting-compass', 'fas fa-undo'],
+  channel_message: ['fas fa-comments'],
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
   user_achievement_unlock: ['fas fa-trophy'],
@@ -50,6 +52,7 @@ export const nameToIconsCompact: IconsMap = {
   beatmapset_nominate: ['fas fa-vote-yea'],
   beatmapset_qualify: ['fas fa-check'],
   beatmapset_reset_nominations: ['fas fa-undo'],
+  channel_message: ['fas fa-comments'],
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
 };
