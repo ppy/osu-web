@@ -63,6 +63,7 @@ export default class ChatOrchestrator implements DispatchListener {
 
     const channelStore = this.rootDataStore.channelStore;
     transaction(() => {
+      uiState.autoScroll = false;
       const channel = channelStore.getOrCreate(channelId);
 
       if (!channel.newChannel) {
