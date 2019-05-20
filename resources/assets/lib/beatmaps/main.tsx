@@ -1,0 +1,174 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+import { BackToTop } from 'back-to-top';
+import { BeatmapSearchContext } from 'beatmap-search-context';
+import Filters from 'beatmap-search-filters';
+import AvailableFilters from 'beatmaps/available-filters';
+import { debounce, extend, isEqual } from 'lodash';
+import { action, computed, Lambda, observe } from 'mobx';
+import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
+import * as React from 'react';
+import { SearchContent } from 'react/beatmaps/search-content';
+import { instance as uiState } from './ui-state-store';
+
+const store = core.dataStore.beatmapSearchStore;
+
+interface Props {
+  availableFilters: AvailableFilters;
+  beatmaps: any;
+  container: HTMLElement;
+}
+
+@observer
+export class Main extends React.Component<Props> {
+  readonly backToTop = React.createRef<BackToTop>();
+  readonly backToTopAnchor = React.createRef<HTMLElement>();
+  beatmapsetsCount = 0;
+  readonly debouncedSearch = debounce(this.search, 500);
+
+  filterObserverDispose: Lambda;
+
+  constructor(props: Props) {
+    super(props);
+
+    // populate initial values
+    store.initialize(uiState.filters, props.beatmaps);
+
+    this.filterObserverDispose = observe(uiState, 'filters', (change) => {
+      if (!isEqual(change.oldValue, change.newValue)) {
+        const url = encodeURI(laroute.route('beatmapsets.index', BeatmapsetFilter.queryParamsFromFilters(uiState.filters)));
+        Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
+
+        this.debouncedSearch(this.beatmapsetsCount);
+      }
+    });
+  }
+
+  componentDidMount() {
+    $(document).on('beatmap:load_more.beatmaps', this.loadMore);
+    $(document).on('beatmap:search:filtered.beatmaps', this.updateFilters);
+
+    this.fetchNewState();
+  }
+
+  componentWillUnmount() {
+    $(document).off('.beatmaps');
+    $(window).off('.beatmaps');
+
+    if (this.filterObserverDispose) { this.filterObserverDispose(); }
+    this.debouncedSearch.cancel();
+  }
+
+  expand = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    uiState.isExpanded = true;
+  }
+
+  async fetchNewState(from = 0) {
+    return store.get(uiState.filters, from)
+    .then((data) => {
+      uiState.isPaging = false;
+      uiState.loading = false;
+      uiState.hasMore = data.hasMore && data.beatmapsets.length < data.total;
+      uiState.recommendedDifficulty = data.recommended_difficulty;
+    })
+    .catch((error) => {
+      uiState.isPaging = false;
+      uiState.loading = false;
+      if (error.readyState !== 0) { throw error; }
+    });
+  }
+
+  @action
+  loadMore = () => {
+    if (uiState.isPaging || uiState.loading || !uiState.hasMore) {
+      return;
+    }
+
+    this.search(this.beatmapsetsCount);
+  }
+
+  render() {
+    this.beatmapsetsCount = store.getBeatmapsets(uiState.filters).length; // workaround to make SearchContent update
+
+    return (
+      // <div>{store.getBeatmapsets(uiState.filters).length}</div>
+      <div className='osu-layout__section'>
+        <BeatmapSearchContext.Provider value={uiState.filters}>
+          <SearchContent
+            availableFilters={this.props.availableFilters}
+            backToTopAnchor={this.backToTopAnchor}
+            beatmaps={store.getBeatmapsets(uiState.filters)}
+            expand={this.expand}
+            hasMore={uiState.hasMore}
+            isPaging={uiState.isPaging}
+          />
+          <BackToTop anchor={this.backToTopAnchor} ref={this.backToTop} />
+        </BeatmapSearchContext.Provider>
+      </div>
+    );
+  }
+
+  @action
+  search(from = 0) {
+    if (this.isSupporterMissing || from < 0) {
+      return Promise.resolve();
+    }
+
+    if (from > 0) {
+      uiState.isPaging = true;
+    } else {
+      uiState.loading = true;
+      if (this.backToTop.current) this.backToTop.current.reset();
+    }
+
+    this.fetchNewState(from)
+    .then(() => {
+      if (from === 0 && this.backToTopAnchor.current) {
+        const cutoff = this.backToTopAnchor.current.getBoundingClientRect().top;
+        if (cutoff < 0) {
+          window.scrollTo(window.pageXOffset, window.pageYOffset + cutoff);
+        }
+      }
+    })
+    .catch(osu.ajaxError);
+  }
+
+  @computed
+  get isSupporterMissing() {
+    return !currentUser.is_supporter && BeatmapsetFilter.supporterRequired(uiState.filters).length > 0;
+  }
+
+  @action
+  updateFilters = (event: any, newFilters: Partial<Filters>) => {
+    const filters = extend({}, uiState.filters, newFilters);
+
+    if (uiState.filters.query !== filters.query
+      || uiState.filters.status !== filters.status) {
+      filters.sort = null;
+    }
+
+    // actual filter values are not observable yet.
+    uiState.filters = BeatmapsetFilter.fillDefaults(filters);
+    // for (const key of Object.keys(filters)) {
+    //   uiState.filters[key] = filters[key];
+    // }
+  }
+}

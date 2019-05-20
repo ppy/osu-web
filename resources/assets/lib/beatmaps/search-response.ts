@@ -16,21 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import Dispatcher from 'dispatcher';
-import BeatmapSearchStore from 'stores/beatmap-search-store';
-import ChannelStore from './channel-store';
-import UIStateStore from './ui-state-store';
-import UserStore from './user-store';
-
-export default class RootDataStore {
-  uiState: UIStateStore;
-  beatmapSearchStore: BeatmapSearchStore = new BeatmapSearchStore();
-  channelStore: ChannelStore;
-  userStore: UserStore;
-
-  constructor(dispatcher: Dispatcher) {
-    this.uiState = new UIStateStore(this, dispatcher);
-    this.channelStore = new ChannelStore(this, dispatcher);
-    this.userStore = new UserStore(this, dispatcher);
-  }
+export default interface SearchResponse {
+  beatmapsets: any[];
+  cursor: JSON;
+  recommended_difficulty: number;
+  total: number;
 }

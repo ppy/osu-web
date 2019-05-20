@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-import { Main } from './beatmaps/main'
+import { Main } from 'beatmaps/main'
 
 reactTurbolinks.registerPersistent 'beatmaps', Main, true, (el) ->
   container: el

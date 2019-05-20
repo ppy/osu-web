@@ -25,6 +25,6 @@ export default interface BeatmapSearchFilters {
   played: string | null;
   query: string;
   rank: string;
-  sort?: string;
+  sort?: string | null;
   status: number;
 }

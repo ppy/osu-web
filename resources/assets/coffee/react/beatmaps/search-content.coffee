@@ -21,11 +21,15 @@ import { SearchPanel } from './search-panel'
 import { SearchSort } from './search-sort'
 import { BeatmapSearchContext } from 'beatmap-search-context'
 import { BeatmapsetPanel } from 'beatmapset-panel'
+import { instance as uiState } from 'beatmaps/ui-state-store'
 import { Img2x } from 'img2x'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, div, p } from 'react-dom-factories'
 import VirtualList from 'react-virtual-list'
+
 el = React.createElement
+store = core.dataStore.beatmapSearchStore
 
 ITEM_HEIGHT = 205 # needs to be known in advance to calculate size of virtual scrolling area.
 
@@ -48,102 +52,117 @@ ListRender = ({ virtual, itemHeight }) ->
 BeatmapList = VirtualList()(ListRender)
 
 
-export SearchContent = (props) ->
-  [columnCount, setColumnCount] = React.useState(if osu.isDesktop() then 2 else 1)
-  React.useEffect () ->
-    # FIXME: fires more times than necessary?
-    $(window).on 'resize.beatmaps-search-content', () ->
-      count = if osu.isDesktop() then 2 else 1
+export class SearchContent extends React.Component
+  constructor: (props) ->
+    super props
+
+    @state =
+      columnCount: @calculateColumnCount()
+
+
+  calculateColumnCount: ->
+    if osu.isDesktop() then 2 else 1
+
+
+  componentDidMount: =>
+    $(window).on 'resize.beatmaps-search-content', () =>
       # The list component has to be recreated for correct sizing.
-      BeatmapList = VirtualList()(ListRender) if columnCount != count
-      setColumnCount count
+      count = @calculateColumnCount()
+      if @state.columnCount != count
+        BeatmapList = VirtualList()(ListRender)
+        @setState columnCount: count
 
-    () ->
-      $(window).off '.beatmaps-search-content'
 
-  filters = React.useContext(BeatmapSearchContext)
 
-  searchBackground = props.beatmaps?[0]?.covers?.cover
-  supporterFilters = supporterFiltersTrans(filters)
-  supporterMissing = isSupporterMissing(filters)
-  listCssClasses = 'beatmapsets'
-  listCssClasses += ' beatmapsets--dimmed' if props.loading
+  componentWillUnmount: ->
+    $(window).off '.beatmaps-search-content'
 
-  el React.Fragment, null,
-    el SearchPanel,
-      innerRef: props.backToTopAnchor
-      background: searchBackground
-      availableFilters: props.availableFilters
-      expand: props.expand
-      isExpanded: props.isExpanded
-      recommendedDifficulty: props.recommendedDifficulty
 
-    div className: 'js-sticky-header'
+  render: ->
+    beatmapsets = uiState.beatmapsets
+    filters = uiState.filters # React.useContext(BeatmapSearchContext)
 
-    div
-      className: 'osu-layout__row osu-layout__row--page-compact'
-      div className: listCssClasses,
-        if currentUser.id?
+    searchBackground = if beatmapsets.length > 0 then beatmapsets[0].covers?.cover else null
+    supporterFilters = @supporterFiltersTrans(filters)
+    supporterMissing = @isSupporterMissing(filters)
+    listCssClasses = 'beatmapsets'
+    listCssClasses += ' beatmapsets--dimmed' if uiState.loading
+
+    el React.Fragment, null,
+      el SearchPanel,
+        innerRef: @props.backToTopAnchor
+        background: searchBackground
+        availableFilters: @props.availableFilters
+        expand: @props.expand
+        isExpanded: uiState.isExpanded
+        recommendedDifficulty: uiState.recommendedDifficulty
+
+      div className: 'js-sticky-header'
+
+      div
+        className: 'osu-layout__row osu-layout__row--page-compact'
+        div className: listCssClasses,
+          if currentUser.id?
+            div
+              className: 'beatmapsets__sort'
+              el SearchSort,
+                sorting: @sorting(filters)
+
           div
-            className: 'beatmapsets__sort'
-            el SearchSort,
-              sorting: sorting(filters)
-
-        div
-          className: 'beatmapsets__content'
-          if supporterMissing
-            div className: 'beatmapsets__empty',
-              el Img2x,
-                src: '/images/layout/beatmaps/supporter-required.png'
-                alt: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterFilters)
-                title: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterFilters)
-
-              renderLinkToSupporterTag(supporterFilters)
-
-          else
-            if props.beatmaps.length > 0
-              el BeatmapList,
-                items: _.chunk(props.beatmaps, columnCount)
-                itemBuffer: 5
-                itemHeight: ITEM_HEIGHT
-
-            else
+            className: 'beatmapsets__content'
+            if supporterMissing
               div className: 'beatmapsets__empty',
                 el Img2x,
-                  src: '/images/layout/beatmaps/not-found.png'
-                  alt: osu.trans("beatmaps.listing.search.not-found")
-                  title: osu.trans("beatmaps.listing.search.not-found")
-                osu.trans("beatmaps.listing.search.not-found-quote")
+                  src: '/images/layout/beatmaps/supporter-required.png'
+                  alt: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterFilters)
+                  title: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterFilters)
 
-        if !supporterMissing
-          div className: 'beatmapsets__paginator',
-            el Paginator,
-              error: props.error
-              loading: props.isPaging
-              more: props.hasMore
+                @renderLinkToSupporterTag(supporterFilters)
 
+            else
+              if beatmapsets.length > 0
+                el BeatmapList,
+                  items: _.chunk(beatmapsets, @state.columnCount)
+                  itemBuffer: 5
+                  itemHeight: ITEM_HEIGHT
 
-sorting = (filters) ->
-  [field, order] = filters.sort.split('_')
+              else
+                div className: 'beatmapsets__empty',
+                  el Img2x,
+                    src: '/images/layout/beatmaps/not-found.png'
+                    alt: osu.trans("beatmaps.listing.search.not-found")
+                    title: osu.trans("beatmaps.listing.search.not-found")
+                  osu.trans("beatmaps.listing.search.not-found-quote")
 
-  { field, order }
-
-
-isSupporterMissing = (filters) ->
-  !currentUser.is_supporter && BeatmapsetFilter.supporterRequired(filters).length > 0
-
-
-renderLinkToSupporterTag = (filters) ->
-  url = laroute.route('store.products.show', product: 'supporter-tag')
-  link = "<a href=\"#{url}\">#{osu.trans 'beatmaps.listing.search.supporter_filter_quote.link_text'}</a>"
-
-  p
-    dangerouslySetInnerHTML:
-      __html: osu.trans 'beatmaps.listing.search.supporter_filter_quote._',
-        filters: filters
-        link: link
+          if !supporterMissing
+            div className: 'beatmapsets__paginator',
+              el Paginator,
+                # error: @props.error
+                loading: uiState.isPaging
+                more: uiState.hasMore
 
 
-supporterFiltersTrans = (filters) ->
-  osu.transArray _.map BeatmapsetFilter.supporterRequired(filters), (name) ->
-    osu.trans "beatmaps.listing.search.filters.#{name}"
+  sorting: (filters) ->
+    [field, order] = filters.sort.split('_')
+
+    { field, order }
+
+
+  isSupporterMissing: (filters) ->
+    !currentUser.is_supporter && BeatmapsetFilter.supporterRequired(filters).length > 0
+
+
+  renderLinkToSupporterTag: (filters) ->
+    url = laroute.route('store.products.show', product: 'supporter-tag')
+    link = "<a href=\"#{url}\">#{osu.trans 'beatmaps.listing.search.supporter_filter_quote.link_text'}</a>"
+
+    p
+      dangerouslySetInnerHTML:
+        __html: osu.trans 'beatmaps.listing.search.supporter_filter_quote._',
+          filters: filters
+          link: link
+
+
+  supporterFiltersTrans: (filters) ->
+    osu.transArray _.map BeatmapsetFilter.supporterRequired(filters), (name) ->
+      osu.trans "beatmaps.listing.search.filters.#{name}"
