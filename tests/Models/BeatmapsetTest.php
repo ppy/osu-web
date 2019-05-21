@@ -120,6 +120,25 @@ class BeatmapsetTest extends TestCase
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
     }
 
+    public function testRank()
+    {
+        $beatmapset = $this->createBeatmapset([
+            'approved' => Beatmapset::STATES['qualified'],
+        ]);
+
+        $notifications = Notification::count();
+        $userNotifications = UserNotification::count();
+
+        $otherUser = factory(User::class)->create();
+        $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
+
+        $beatmapset->rank();
+
+        $this->assertTrue($beatmapset->fresh()->isRanked());
+        $this->assertSame($notifications + 1, UserNotification::count());
+        $this->assertSame($notifications + 1, Notification::count());
+    }
+
     private function createBeatmapset($params = []) : Beatmapset
     {
         $defaultParams = [
