@@ -137,8 +137,6 @@ export class Discussion extends React.PureComponent
 
 
   doVote: (e) =>
-    downvoting = e.currentTarget.dataset.score == '-1'
-
     LoadingOverlay.show()
 
     @voteXhr?.abort()
