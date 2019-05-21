@@ -18,7 +18,7 @@
 
 import Filters from 'beatmap-search-filters';
 import { intersection } from 'lodash';
-import { computed, observable } from 'mobx';
+import { action, observable } from 'mobx';
 import core from 'osu-core-singleton';
 
 const store = core.dataStore.beatmapSearchStore;
@@ -31,9 +31,29 @@ export class UIStateStore {
   @observable filters: Filters = BeatmapsetFilter.fillDefaults(BeatmapsetFilter.filtersFromUrl(location.href));
   @observable isExpanded = intersection(Object.keys(BeatmapsetFilter.filtersFromUrl(location.href)), BeatmapsetFilter.expand).length > 0;
 
-  @computed
-  get beatmapsets() {
-    return store.getBeatmapsets(this.filters);
+  @observable currentBeatmapsets = store.getBeatmapsets(this.filters);
+
+  @action
+  async performSearch(filters: Filters, from = 0) {
+    if (from === 0) {
+      this.loading = true;
+    } else {
+      this.isPaging = true;
+    }
+
+    return store.get(filters, from)
+    .then((data) => {
+      this.isPaging = false;
+      this.loading = false;
+      this.hasMore = data.hasMore && data.beatmapsets.length < data.total;
+      this.recommendedDifficulty = data.recommended_difficulty;
+      this.currentBeatmapsets = store.getBeatmapsets(filters);
+    })
+    .catch((error) => {
+      this.isPaging = false;
+      this.loading = false;
+      if (error.readyState !== 0) { throw error; }
+    });
   }
 }
 

@@ -55,6 +55,7 @@ export class Main extends React.Component<Props> {
       if (!isEqual(change.oldValue, change.newValue)) {
         const url = encodeURI(laroute.route('beatmapsets.index', BeatmapsetFilter.queryParamsFromFilters(uiState.filters)));
         Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
+        uiState.loading = true;
 
         this.debouncedSearch(this.beatmapsetsCount);
       }
@@ -82,18 +83,7 @@ export class Main extends React.Component<Props> {
   }
 
   async fetchNewState(from = 0) {
-    return store.get(uiState.filters, from)
-    .then((data) => {
-      uiState.isPaging = false;
-      uiState.loading = false;
-      uiState.hasMore = data.hasMore && data.beatmapsets.length < data.total;
-      uiState.recommendedDifficulty = data.recommended_difficulty;
-    })
-    .catch((error) => {
-      uiState.isPaging = false;
-      uiState.loading = false;
-      if (error.readyState !== 0) { throw error; }
-    });
+    return uiState.performSearch(uiState.filters, from);
   }
 
   @action

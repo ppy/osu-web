@@ -105,7 +105,6 @@ export default class BeatmapSearchStore {
   private append(url: string, data: SearchResponse) {
     const beatmapsets = this.getObservableBeatmapsetsByKey(url);
     for (const beatmapset of data.beatmapsets) {
-      console.log('push');
       beatmapsets.push(beatmapset);
     }
 
