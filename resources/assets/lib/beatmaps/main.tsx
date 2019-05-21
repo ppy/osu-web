@@ -65,13 +65,16 @@ export class Main extends React.Component<Props> {
   componentDidMount() {
     $(document).on('beatmap:load_more.beatmaps', this.loadMore);
     $(document).on('beatmap:search:filtered.beatmaps', this.updateFilters);
+    uiState.startListeningOnWindow();
 
     this.fetchNewState();
+
   }
 
   componentWillUnmount() {
     $(document).off('.beatmaps');
     $(window).off('.beatmaps');
+    uiState.stopListeningOnWindow();
 
     if (this.filterObserverDispose) { this.filterObserverDispose(); }
     this.debouncedSearch.cancel();
@@ -155,10 +158,6 @@ export class Main extends React.Component<Props> {
       filters.sort = null;
     }
 
-    // actual filter values are not observable yet.
     uiState.filters = BeatmapsetFilter.fillDefaults(filters);
-    // for (const key of Object.keys(filters)) {
-    //   uiState.filters[key] = filters[key];
-    // }
   }
 }

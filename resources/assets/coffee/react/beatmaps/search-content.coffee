@@ -23,6 +23,7 @@ import { BeatmapSearchContext } from 'beatmap-search-context'
 import { BeatmapsetPanel } from 'beatmapset-panel'
 import { instance as uiState } from 'beatmaps/ui-state-store'
 import { Img2x } from 'img2x'
+import { observe } from 'mobx'
 import { observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
@@ -52,10 +53,16 @@ ListRender = ({ virtual, itemHeight }) ->
 
 BeatmapList = VirtualList()(ListRender)
 
+observe uiState, 'numberOfColumns', (change) ->
+  # FIXME: need to trigger component to render
+  if change.oldValue != change.newValue
+    uiState.rerender = {}
+    BeatmapList = VirtualList()(ListRender)
+
 
 export SearchContent = observer (props) ->
   beatmapsets = uiState.currentBeatmapsets
-  filters = uiState.filters # React.useContext(BeatmapSearchContext)
+  filters = uiState.filters
   columnCount = if osu.isDesktop() then 2 else 1
 
   searchBackground = if beatmapsets.length > 0 then beatmapsets[0].covers?.cover else null
@@ -98,7 +105,7 @@ export SearchContent = observer (props) ->
           else
             if beatmapsets.length > 0
               el BeatmapList,
-                items: _.chunk(beatmapsets, columnCount)
+                items: _.chunk(beatmapsets, uiState.numberOfColumns)
                 itemBuffer: 5
                 itemHeight: ITEM_HEIGHT
 
@@ -116,28 +123,6 @@ export SearchContent = observer (props) ->
               # error: props.error
               loading: uiState.isPaging
               more: uiState.hasMore
-
-  # getInitialState: =>
-  #   columnCount: @calculateColumnCount()
-
-
-  # calculateColumnCount: ->
-  #   if osu.isDesktop() then 2 else 1
-
-
-  # componentDidMount: =>
-  #   $(window).on 'resize.beatmaps-search-content', () =>
-  #     # The list component has to be recreated for correct sizing.
-  #     count = @calculateColumnCount()
-  #     if @state.columnCount != count
-  #       BeatmapList = VirtualList()(ListRender)
-  #       @setState columnCount: count
-
-
-
-  # componentWillUnmount: ->
-  #   $(window).off '.beatmaps-search-content'
-
 
 
 sorting = (filters) ->

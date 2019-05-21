@@ -24,12 +24,14 @@ import core from 'osu-core-singleton';
 const store = core.dataStore.beatmapSearchStore;
 
 export class UIStateStore {
+  @observable numberOfColumns = osu.isDesktop() ? 2 : 1;
   @observable hasMore = false;
   @observable isPaging = false;
   @observable loading = false;
   @observable recommendedDifficulty = 0;
   @observable filters: Filters = BeatmapsetFilter.fillDefaults(BeatmapsetFilter.filtersFromUrl(location.href));
   @observable isExpanded = intersection(Object.keys(BeatmapsetFilter.filtersFromUrl(location.href)), BeatmapsetFilter.expand).length > 0;
+  @observable rerender = {}; // ugly hack so virtual list can trigger a rerender after it resizes.
 
   @observable currentBeatmapsets = store.getBeatmapsets(this.filters);
 
@@ -54,6 +56,19 @@ export class UIStateStore {
       this.loading = false;
       if (error.readyState !== 0) { throw error; }
     });
+  }
+
+  startListeningOnWindow() {
+    $(window).on('resize.beatmaps-ui-state-store', () => {
+      const count = osu.isDesktop() ? 2 : 1;
+      if (this.numberOfColumns !== count) {
+        this.numberOfColumns = count;
+      }
+    });
+  }
+
+  stopListeningOnWindow() {
+    $(window).off('.beatmaps-ui-state-store');
   }
 }
 
