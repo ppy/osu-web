@@ -709,7 +709,7 @@ class Beatmapset extends Model implements AfterCommit
         }
 
         DB::transaction(function () {
-            $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
+            $this->events()->create(['type' => BeatmapsetEvent::RANK]);
 
             $this->setApproved('ranked', null);
 
