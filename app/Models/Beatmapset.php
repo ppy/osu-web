@@ -567,8 +567,11 @@ class Beatmapset extends Model implements AfterCommit
             ->update(['approved' => $this->approved]);
 
         if ($this->isScoreable() !== $oldScoreable || $this->isRanked()) {
-            $this->userRatings()->delete();
             dispatch(new RemoveBeatmapsetBestScores($this));
+        }
+
+        if ($this->isScoreable() !== $oldScoreable) {
+            $this->userRatings()->delete();
         }
     }
 
