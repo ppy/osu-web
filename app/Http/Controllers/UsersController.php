@@ -302,11 +302,11 @@ class UsersController extends Controller
             );
 
             $perPage = [
-                'scoresBest' => 5,
-                'scoresFirsts' => 5,
-                'scoresRecent' => 5,
+                'scoresBest' => 10,
+                'scoresFirsts' => 10,
+                'scoresRecent' => 10,
 
-                'beatmapPlaycounts' => 5,
+                'beatmapPlaycounts' => 10,
                 'favouriteBeatmapsets' => 6,
                 'rankedAndApprovedBeatmapsets' => 6,
                 'lovedBeatmapsets' => 6,
@@ -365,7 +365,7 @@ class UsersController extends Controller
 
     private function sanitizedLimitParam()
     {
-        return clamp(get_int(request('limit')) ?? 5, 1, 21);
+        return clamp(get_int(request('limit')) ?? 5, 1, 51);
     }
 
     private function getExtra($user, $page, $options, $perPage = 10, $offset = 0)
