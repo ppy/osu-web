@@ -57,7 +57,7 @@ export class Main extends React.Component<Props> {
         Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
         uiState.loading = true;
 
-        this.debouncedSearch(this.beatmapsetsCount);
+        this.debouncedSearch();
       }
     });
   }
@@ -67,8 +67,7 @@ export class Main extends React.Component<Props> {
     $(document).on('beatmap:search:filtered.beatmaps', this.updateFilters);
     uiState.startListeningOnWindow();
 
-    this.fetchNewState();
-
+    uiState.performSearch();
   }
 
   componentWillUnmount() {
@@ -83,10 +82,6 @@ export class Main extends React.Component<Props> {
   expand = (e: React.SyntheticEvent) => {
     e.preventDefault();
     uiState.isExpanded = true;
-  }
-
-  async fetchNewState(from = 0) {
-    return uiState.performSearch(uiState.filters, from);
   }
 
   @action
@@ -117,7 +112,7 @@ export class Main extends React.Component<Props> {
   }
 
   @action
-  search(from = 0) {
+  async search(from = 0) {
     if (this.isSupporterMissing || from < 0) {
       return Promise.resolve();
     }
@@ -129,16 +124,17 @@ export class Main extends React.Component<Props> {
       if (this.backToTop.current) this.backToTop.current.reset();
     }
 
-    this.fetchNewState(from)
-    .then(() => {
+    try {
+      await uiState.performSearch(from);
       if (from === 0 && this.backToTopAnchor.current) {
         const cutoff = this.backToTopAnchor.current.getBoundingClientRect().top;
         if (cutoff < 0) {
           window.scrollTo(window.pageXOffset, window.pageYOffset + cutoff);
         }
       }
-    })
-    .catch(osu.ajaxError);
+    } catch (error) {
+      osu.ajaxError(error);
+    }
   }
 
   @computed

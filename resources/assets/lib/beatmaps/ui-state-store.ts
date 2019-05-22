@@ -17,7 +17,7 @@
  */
 
 import Filters from 'beatmap-search-filters';
-import { intersection } from 'lodash';
+import { intersection, isEqual } from 'lodash';
 import { action, observable } from 'mobx';
 import core from 'osu-core-singleton';
 
@@ -33,23 +33,29 @@ export class UIStateStore {
   @observable isExpanded = intersection(Object.keys(BeatmapsetFilter.filtersFromUrl(location.href)), BeatmapsetFilter.expand).length > 0;
   @observable rerender = {}; // ugly hack so virtual list can trigger a rerender after it resizes.
 
+  // the list that gets displaying while new searches are loading.
   @observable currentBeatmapsets = store.getBeatmapsets(this.filters);
 
   @action
-  async performSearch(filters: Filters, from = 0) {
+  async performSearch(from = 0) {
     if (from === 0) {
       this.loading = true;
     } else {
       this.isPaging = true;
     }
 
+    // snapshot filter values since they may change during the request.
+    const filters = Object.assign({}, this.filters);
     return store.get(filters, from)
     .then((data) => {
       this.isPaging = false;
       this.loading = false;
       this.hasMore = data.hasMore && data.beatmapsets.length < data.total;
       this.recommendedDifficulty = data.recommended_difficulty;
-      this.currentBeatmapsets = store.getBeatmapsets(filters);
+
+      if (isEqual(filters, this.filters)) {
+        this.currentBeatmapsets = store.getBeatmapsets(filters);
+      }
     })
     .catch((error) => {
       this.isPaging = false;
