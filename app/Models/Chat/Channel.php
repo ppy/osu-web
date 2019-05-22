@@ -62,7 +62,7 @@ class Channel extends Model
     {
         $messages = $this->messages();
 
-        if ($this->type === self::TYPES['public']) {
+        if ($this->isPublic()) {
             $messages = $messages->where('timestamp', '>', Carbon::now()->subHours(config('osu.chat.public_backlog_limit')));
         }
 
@@ -130,7 +130,7 @@ class Channel extends Model
         $sentMessages = Message::where('user_id', $sender->user_id)
             ->join('channels', 'channels.channel_id', '=', 'messages.channel_id');
 
-        if ($this->type === self::TYPES['pm']) {
+        if ($this->isPM()) {
             $limit = config('osu.chat.rate_limits.private.limit');
             $window = config('osu.chat.rate_limits.private.window');
             $sentMessages->where('type', self::TYPES['pm']);
@@ -188,7 +188,7 @@ class Channel extends Model
         }
 
         if ($this->isPM()) {
-            event(new UserSubscriptionChangeEvent('add', $user, $userChannel->channel));
+            event(new UserSubscriptionChangeEvent('add', $user, $this));
         }
     }
 
@@ -205,7 +205,7 @@ class Channel extends Model
         }
 
         if ($this->isPM()) {
-            event(new UserSubscriptionChangeEvent('remove', $user, $userChannel->channel));
+            event(new UserSubscriptionChangeEvent('remove', $user, $this));
             $userChannel->update(['hidden' => true]);
         } else {
             $userChannel->delete();
@@ -227,10 +227,16 @@ class Channel extends Model
             return;
         }
 
-        UserChannel::where([
+        $hiddenUserChannels = UserChannel::where([
             'channel_id' => $this->channel_id,
             'hidden' => true,
-        ])->update([
+        ]);
+
+        foreach ($hiddenUserChannels->get() as $userChannel) {
+            event(new UserSubscriptionChangeEvent('add', $userChannel->user, $this));
+        }
+
+        $hiddenUserChannels->update([
             'hidden' => false,
         ]);
     }
