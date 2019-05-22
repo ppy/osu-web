@@ -19,7 +19,6 @@
 import { Paginator } from './paginator'
 import { SearchPanel } from './search-panel'
 import { SearchSort } from './search-sort'
-import { BeatmapSearchContext } from 'beatmap-search-context'
 import { BeatmapsetPanel } from 'beatmapset-panel'
 import { instance as uiState } from 'beatmaps/ui-state-store'
 import { Img2x } from 'img2x'
@@ -77,6 +76,7 @@ export SearchContent = observer (props) ->
       background: searchBackground
       availableFilters: props.availableFilters
       expand: props.expand
+      filters: uiState.filters
       isExpanded: uiState.isExpanded
       recommendedDifficulty: uiState.recommendedDifficulty
 
@@ -89,6 +89,7 @@ export SearchContent = observer (props) ->
           div
             className: 'beatmapsets__sort'
             el SearchSort,
+              filters: uiState.filters
               sorting: sorting(filters)
 
         div

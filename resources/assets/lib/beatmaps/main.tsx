@@ -17,7 +17,6 @@
  */
 
 import { BackToTop } from 'back-to-top';
-import { BeatmapSearchContext } from 'beatmap-search-context';
 import Filters from 'beatmap-search-filters';
 import AvailableFilters from 'beatmaps/available-filters';
 import { debounce, extend, isEqual } from 'lodash';
@@ -97,16 +96,13 @@ export class Main extends React.Component<Props> {
     this.beatmapsetsCount = store.getBeatmapsets(uiState.filters).length; // workaround to make SearchContent update
 
     return (
-      // <div>{store.getBeatmapsets(uiState.filters).length}</div>
       <div className='osu-layout__section'>
-        <BeatmapSearchContext.Provider value={uiState.filters}>
-          <SearchContent
-            availableFilters={this.props.availableFilters}
-            backToTopAnchor={this.backToTopAnchor}
-            expand={this.expand}
-          />
-          <BackToTop anchor={this.backToTopAnchor} ref={this.backToTop} />
-        </BeatmapSearchContext.Provider>
+        <SearchContent
+          availableFilters={this.props.availableFilters}
+          backToTopAnchor={this.backToTopAnchor}
+          expand={this.expand}
+        />
+        <BackToTop anchor={this.backToTopAnchor} ref={this.backToTop} />
       </div>
     );
   }

@@ -17,14 +17,11 @@
 ###
 
 import { SearchFilter } from './search-filter'
-import { BeatmapSearchContext } from 'beatmap-search-context'
 import * as React from 'react'
 import { div, a, i, input, h1, h2, li, ol, span } from 'react-dom-factories'
 el = React.createElement
 
 export class SearchPanel extends React.PureComponent
-  @contextType = BeatmapSearchContext
-
   constructor: (props) ->
     super props
 
@@ -99,7 +96,7 @@ export class SearchPanel extends React.PureComponent
           name: 'search'
           onChange: @onChange
           placeholder: osu.trans('beatmaps.listing.search.prompt')
-          value: @context.query
+          value: @props.filters.query
         div className: 'beatmapsets-search__icon',
           i className: 'fas fa-search'
 
@@ -123,13 +120,13 @@ export class SearchPanel extends React.PureComponent
 
   renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>
     el SearchFilter,
-      filters: @context
+      filters: @props.filters
       name: name
       title: osu.trans("beatmaps.listing.search.filters.#{name}") if showTitle
       options: options
       multiselect: multiselect
       recommendedDifficulty: @props.recommendedDifficulty
-      selected: @context[name]
+      selected: @props.filters[name]
 
 
   renderGuest: =>
@@ -170,7 +167,7 @@ export class SearchPanel extends React.PureComponent
           name: 'search'
           onChange: @onChange
           placeholder: osu.trans('beatmaps.listing.search.prompt')
-          value: @context.query
+          value: @props.filters.query
         div className: 'beatmapsets-search__icon',
           i className: 'fas fa-search'
 
