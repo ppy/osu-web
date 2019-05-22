@@ -25,21 +25,9 @@
   margin-left: 10px;
   padding-left: 10px;
 
-  .link-plain();
-  .link-white();
-
   @media @desktop {
     &:hover {
       background: linear-gradient(to right, @community-blue-darker 5%, lighten(@community-blue-dark, 2%) 33%, lighten(@community-blue-dark, 2%) 100%);
-    }
-  }
-
-  &--selected {
-    color: white;
-    background: linear-gradient(to right, @community-blue-darker 5%, @community-blue-dark 33%, @community-blue-dark 100%);
-    @media @mobile {
-      background: @community-blue-dark;
-      margin-right: 5px;
     }
   }
 
@@ -49,14 +37,49 @@
     flex-shrink: 0;
   }
 
+  &--selected {
+    color: white;
+    background: linear-gradient(to right, @community-blue-darker 5%, @community-blue-dark 33%, @community-blue-dark 100%);
+    @media @mobile {
+      background: @community-blue-dark;
+    }
+  }
+
+  &__close-button {
+    .link-plain();
+    .link-white();
+    color: fade(white, 50%);
+
+    @media @desktop {
+      opacity: 0;
+      margin-left: -10px;
+      .@{top}:hover & {
+        opacity: 1;
+      }
+    }
+
+    @media @mobile {
+      display: none;
+      .@{top}--selected & {
+        display: block;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  &__tile {
+    .link-plain();
+    .link-white();
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+
   &__unread-indicator {
     background: @green;
     width: 2px;
     height: 10px;
     border-radius: 1px;
-    margin-left: -10px;
-    margin-right: 8px;
-    transition: ease-in 50ms;
 
     opacity: 0;
     .@{top}--unread & {
@@ -68,6 +91,14 @@
         content: '';
         box-shadow: 0 0 5px lighten(@green, 10%);
         animation: glow-pulse 2s infinite;
+      }
+    }
+
+    @media @desktop {
+      margin-left: -5px;
+      margin-right: 10px;
+      .@{top}:hover & {
+        opacity: 0;
       }
     }
 
@@ -94,8 +125,8 @@
   &__chevron {
     margin-right: 10px;
     color: white;
-
     opacity: 0;
+
     .@{top}--selected & {
       opacity: 1;
     }

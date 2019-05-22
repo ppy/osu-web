@@ -24,6 +24,11 @@ export class ChatChannelSwitchAction implements DispatcherAction {
   }
 }
 
+export class ChatChannelPartAction implements DispatcherAction {
+  constructor(public channelId: number) {
+  }
+}
+
 export class ChatMessageSendAction implements DispatcherAction {
   constructor(public message: Message) {
   }

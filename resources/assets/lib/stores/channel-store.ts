@@ -107,6 +107,20 @@ export default class ChannelStore implements DispatchListener {
     });
   }
 
+  @computed
+  get channelList(): Channel[] {
+    let channels: Channel[] = [];
+    channels = channels.concat(this.nonPmChannels);
+    channels = channels.concat(this.pmChannels);
+
+    return channels;
+  }
+
+  @action
+  partChannel(channelId: number) {
+    this.channels.delete(channelId);
+  }
+
   get(channelId: number): Channel | undefined {
     return this.channels.get(channelId);
   }

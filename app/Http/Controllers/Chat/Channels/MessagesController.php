@@ -35,7 +35,11 @@ class MessagesController extends BaseController
         $since = Request::input('since');
         $limit = clamp(Request::input('limit', 50), 1, 50);
 
-        $userChannel = UserChannel::where(['user_id' => $userId, 'channel_id' => $channelId])->firstOrFail();
+        $userChannel = UserChannel::where([
+            'user_id' => $userId,
+            'channel_id' => $channelId,
+            'hidden' => false
+        ])->firstOrFail();
 
         if ($userChannel->channel->isPM()) {
             // restricted users should be treated as if they do not exist
