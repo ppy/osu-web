@@ -20,7 +20,7 @@ import { BackToTop } from 'back-to-top';
 import Filters from 'beatmap-search-filters';
 import AvailableFilters from 'beatmaps/available-filters';
 import { debounce, extend, isEqual } from 'lodash';
-import { action, computed, Lambda, observe } from 'mobx';
+import { action, Lambda, observe } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -109,7 +109,7 @@ export class Main extends React.Component<Props> {
 
   @action
   async search(from = 0) {
-    if (this.isSupporterMissing || from < 0) {
+    if (uiState.isSupporterMissing || from < 0) {
       return Promise.resolve();
     }
 
@@ -131,11 +131,6 @@ export class Main extends React.Component<Props> {
     } catch (error) {
       osu.ajaxError(error);
     }
-  }
-
-  @computed
-  get isSupporterMissing() {
-    return !currentUser.is_supporter && BeatmapsetFilter.supporterRequired(uiState.filters).length > 0;
   }
 
   @action

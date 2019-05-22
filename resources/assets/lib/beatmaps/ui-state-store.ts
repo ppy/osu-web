@@ -17,8 +17,8 @@
  */
 
 import Filters from 'beatmap-search-filters';
-import { intersection, isEqual } from 'lodash';
-import { action, observable } from 'mobx';
+import { intersection, isEqual, map } from 'lodash';
+import { action, computed, observable } from 'mobx';
 import core from 'osu-core-singleton';
 
 const store = core.dataStore.beatmapSearchStore;
@@ -34,6 +34,19 @@ export class UIStateStore {
 
   // the list that gets displaying while new searches are loading.
   @observable currentBeatmapsets = store.getBeatmapsets(this.filters);
+
+  @computed
+  get isSupporterMissing() {
+    return !currentUser.is_supporter && BeatmapsetFilter.supporterRequired(this.filters).length > 0;
+  }
+
+  @computed
+  get supporterRequiredFilterText() {
+    const filters = BeatmapsetFilter.supporterRequired(this.filters);
+    const trans = map(filters, (name) => osu.trans(`beatmaps.listing.search.filters.${name}`));
+
+    return osu.transArray(trans);
+  }
 
   @action
   async performSearch(from = 0) {

@@ -62,11 +62,9 @@ observe uiState, 'numberOfColumns', (change) ->
 export SearchContent = observer (props) ->
   beatmapsets = uiState.currentBeatmapsets
   filters = uiState.filters
-  columnCount = if osu.isDesktop() then 2 else 1
 
   searchBackground = if beatmapsets.length > 0 then beatmapsets[0].covers?.cover else null
-  supporterFilters = supporterFiltersTrans(filters)
-  supporterMissing = isSupporterMissing(filters)
+  supporterRequiredFilterText = uiState.supporterRequiredFilterText
   listCssClasses = 'beatmapsets'
   listCssClasses += ' beatmapsets--dimmed' if uiState.loading
 
@@ -90,18 +88,18 @@ export SearchContent = observer (props) ->
             className: 'beatmapsets__sort'
             el SearchSort,
               filters: uiState.filters
-              sorting: sorting(filters)
+              sorting: sorting()
 
         div
           className: 'beatmapsets__content'
-          if supporterMissing
+          if uiState.isSupporterMissing
             div className: 'beatmapsets__empty',
               el Img2x,
                 src: '/images/layout/beatmaps/supporter-required.png'
-                alt: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterFilters)
-                title: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterFilters)
+                alt: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterRequiredFilterText)
+                title: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterRequiredFilterText)
 
-              renderLinkToSupporterTag(supporterFilters)
+              renderLinkToSupporterTag(supporterRequiredFilterText)
 
           else
             if beatmapsets.length > 0
@@ -118,7 +116,7 @@ export SearchContent = observer (props) ->
                   title: osu.trans("beatmaps.listing.search.not-found")
                 osu.trans("beatmaps.listing.search.not-found-quote")
 
-        if !supporterMissing
+        if !uiState.isSupporterMissing
           div className: 'beatmapsets__paginator',
             el Paginator,
               # error: props.error
@@ -126,27 +124,18 @@ export SearchContent = observer (props) ->
               more: uiState.hasMore
 
 
-sorting = (filters) ->
-  [field, order] = filters.sort.split('_')
+sorting = ->
+  [field, order] = uiState.filters.sort.split('_')
 
   { field, order }
 
 
-isSupporterMissing = (filters) ->
-  !currentUser.is_supporter && BeatmapsetFilter.supporterRequired(filters).length > 0
-
-
-renderLinkToSupporterTag = (filters) ->
+renderLinkToSupporterTag = (filterText) ->
   url = laroute.route('store.products.show', product: 'supporter-tag')
   link = "<a href=\"#{url}\">#{osu.trans 'beatmaps.listing.search.supporter_filter_quote.link_text'}</a>"
 
   p
     dangerouslySetInnerHTML:
       __html: osu.trans 'beatmaps.listing.search.supporter_filter_quote._',
-        filters: filters
+        filters: filterText
         link: link
-
-
-supporterFiltersTrans = (filters) ->
-  osu.transArray _.map BeatmapsetFilter.supporterRequired(filters), (name) ->
-    osu.trans "beatmaps.listing.search.filters.#{name}"

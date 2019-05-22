@@ -55,6 +55,7 @@ interface OsuCommon {
   promisify: (xhr: JQueryXHR) => Promise<any>;
   timeago: (time?: string) => string;
   trans: (...args: any[]) => string;
+  transArray: (array: any[], key?: string) => string;
   transChoice: (key: string, count: number, replacements?: any, locale?: string) => string;
   urlPresence: (url?: string | null) => string;
   uuid: () => string;
