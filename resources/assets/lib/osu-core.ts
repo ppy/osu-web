@@ -62,7 +62,7 @@ export default class OsuCore {
     $.subscribe('user:update', this.setUser);
   }
 
-  private setUser(event: JQuery.Event, user: UserJSON) {
+  private setUser = (event: JQuery.Event, user: UserJSON) => {
     this.dataStore.userStore.getOrCreate(user.id, user);
   }
 }
