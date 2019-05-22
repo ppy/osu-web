@@ -31,7 +31,6 @@ export class UIStateStore {
   @observable recommendedDifficulty = 0;
   @observable filters: Filters = BeatmapsetFilter.fillDefaults(BeatmapsetFilter.filtersFromUrl(location.href));
   @observable isExpanded = intersection(Object.keys(BeatmapsetFilter.filtersFromUrl(location.href)), BeatmapsetFilter.expand).length > 0;
-  @observable rerender = {}; // ugly hack so virtual list can trigger a rerender after it resizes.
 
   // the list that gets displaying while new searches are loading.
   @observable currentBeatmapsets = store.getBeatmapsets(this.filters);

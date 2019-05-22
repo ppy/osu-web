@@ -22,7 +22,7 @@ import { SearchSort } from './search-sort'
 import { BeatmapsetPanel } from 'beatmapset-panel'
 import { instance as uiState } from 'beatmaps/ui-state-store'
 import { Img2x } from 'img2x'
-import { observe } from 'mobx'
+import { observe, observable } from 'mobx'
 import { observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
@@ -50,13 +50,13 @@ ListRender = ({ virtual, itemHeight }) ->
               key: beatmap.id
               el BeatmapsetPanel, beatmap: beatmap
 
-BeatmapList = VirtualList()(ListRender)
+# stored in an observable so a rerender will occur when the HOC gets updated.
+Observables = observable
+  BeatmapList: VirtualList()(ListRender)
 
 observe uiState, 'numberOfColumns', (change) ->
-  # FIXME: need to trigger component to render
   if change.oldValue != change.newValue
-    uiState.rerender = {}
-    BeatmapList = VirtualList()(ListRender)
+    Observables.BeatmapList = VirtualList()(ListRender)
 
 
 export SearchContent = observer (props) ->
@@ -105,7 +105,7 @@ export SearchContent = observer (props) ->
 
           else
             if beatmapsets.length > 0
-              el BeatmapList,
+              el Observables.BeatmapList,
                 items: _.chunk(beatmapsets, uiState.numberOfColumns)
                 itemBuffer: 5
                 itemHeight: ITEM_HEIGHT
