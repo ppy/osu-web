@@ -154,12 +154,17 @@ class Channel extends Model
         $message->channel()->associate($this);
         $message->save();
 
-        $userChannel = UserChannel::where(['channel_id' => $this->channel_id, 'user_id' => $sender->user_id])->first();
+        $userChannel = UserChannel::where([
+            'channel_id' => $this->channel_id,
+            'user_id' => $sender->user_id
+        ])->first();
+
         if ($userChannel) {
             $userChannel->update(['last_read_id' => $message->message_id]);
         }
 
         if ($this->isPM()) {
+            $this->unhide();
             broadcast_notification(Notification::CHANNEL_MESSAGE, $message, $sender);
         }
 
@@ -168,10 +173,19 @@ class Channel extends Model
 
     public function addUser(User $user)
     {
-        $userChannel = new UserChannel();
-        $userChannel->user()->associate($user);
-        $userChannel->channel()->associate($this);
-        $userChannel->save();
+        $userChannel = UserChannel::where([
+            'channel_id' => $this->channel_id,
+            'user_id' => $user->user_id,
+        ])->first();
+
+        if ($userChannel) {
+            $userChannel->update(['hidden' => false]);
+        } else {
+            $userChannel = new UserChannel();
+            $userChannel->user()->associate($user);
+            $userChannel->channel()->associate($this);
+            $userChannel->save();
+        }
 
         if ($this->isPM()) {
             event(new UserSubscriptionChangeEvent('add', $user, $userChannel->channel));
@@ -183,19 +197,41 @@ class Channel extends Model
         $userChannel = UserChannel::where([
             'channel_id' => $this->channel_id,
             'user_id' => $user->user_id,
+            'hidden' => false,
         ])->first();
 
-        if ($userChannel) {
-            if ($this->isPM()) {
-                event(new UserSubscriptionChangeEvent('remove', $user, $userChannel->channel));
-            }
+        if (!$userChannel) {
+            return;
+        }
 
+        if ($this->isPM()) {
+            event(new UserSubscriptionChangeEvent('remove', $user, $userChannel->channel));
+            $userChannel->update(['hidden' => true]);
+        } else {
             $userChannel->delete();
         }
     }
 
     public function hasUser(User $user)
     {
-        return UserChannel::where(['channel_id' => $this->channel_id, 'user_id' => $user->user_id])->exists();
+        return UserChannel::where([
+            'channel_id' => $this->channel_id,
+            'user_id' => $user->user_id,
+            'hidden' => false,
+        ])->exists();
+    }
+
+    private function unhide()
+    {
+        if (!$this->isPM()) {
+            return;
+        }
+
+        UserChannel::where([
+            'channel_id' => $this->channel_id,
+            'hidden' => true,
+        ])->update([
+            'hidden' => false,
+        ]);
     }
 }
