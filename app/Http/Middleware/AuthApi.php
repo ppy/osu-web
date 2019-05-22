@@ -18,14 +18,27 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Middleware;
 
-use Auth;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
+use Closure;
+use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Http\Request;
 
-class Controller extends BaseController
+class AuthApi
 {
-    use DispatchesJobs, ValidatesRequests;
+    public static function skipAuth($request)
+    {
+        $path = "{$request->decodedPath()}/";
+
+        return starts_with($path, 'api/v2/changelog/');
+    }
+
+    public function handle(Request $request, Closure $next)
+    {
+        if (static::skipAuth($request)) {
+            return $next($request);
+        }
+
+        return app(Authenticate::class)->handle($request, $next, 'api');
+    }
 }
