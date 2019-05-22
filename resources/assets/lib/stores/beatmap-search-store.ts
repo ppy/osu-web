@@ -58,10 +58,10 @@ export default class BeatmapSearchStore {
     }
 
     // skip making multiple requests for the same key.
-    let request = this.requests.get(key);
-    if (request) { return request; }
+    const maybeRequest = this.requests.get(key);
+    if (maybeRequest != null) { return maybeRequest; }
 
-    request = this.fetch(filters).then((data: SearchResponse) => {
+    const request = this.fetch(filters).then((data: SearchResponse) => {
       if (data.beatmapsets != null) {
         this.append(key, data);
       }
@@ -69,7 +69,7 @@ export default class BeatmapSearchStore {
       this.requests.delete(key);
 
       return {
-        beatmapsets: this.getObservableBeatmapsetsByKey,
+        beatmapsets: this.getObservableBeatmapsetsByKey(key),
         hasMore: this.hasMore(key),
         recommended_difficulty: data.recommended_difficulty,
         total: this.totals.get(key) || 0,
@@ -100,7 +100,6 @@ export default class BeatmapSearchStore {
     }
   }
 
-
   @action
   private append(url: string, data: SearchResponse) {
     const beatmapsets = this.getObservableBeatmapsetsByKey(url);
@@ -108,15 +107,8 @@ export default class BeatmapSearchStore {
       beatmapsets.push(beatmapset);
     }
 
-    // this.beatmapsets.set(url, data.beatmapsets);
     this.cursors.set(url, data.cursor);
     this.totals.set(url, data.total);
-
-    // const beatmapsets = concat(this.beatmapsets.get(url) || [], data.beatmapsets);
-    // this.store(url, {
-    //   ...data,
-    //   beatmapsets,
-    // });
   }
 
   private fetch(filters: Filters) {
@@ -143,12 +135,6 @@ export default class BeatmapSearchStore {
   private hasMore(url: string) {
     // should return false only if it's known to have received a null cursor in .
     return !(this.cursors.has(url) && this.cursors.get(url) == null);
-  }
-
-  private store(url: string, data: SearchResponse) {
-    this.beatmapsets.set(url, data.beatmapsets);
-    this.cursors.set(url, data.cursor);
-    this.totals.set(url, data.total);
   }
 
   private stringFromFilters(filters: Filters) {
