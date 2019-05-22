@@ -108,10 +108,7 @@ export class Main extends React.Component<Props> {
           <SearchContent
             availableFilters={this.props.availableFilters}
             backToTopAnchor={this.backToTopAnchor}
-            beatmaps={store.getBeatmapsets(uiState.filters)}
             expand={this.expand}
-            hasMore={uiState.hasMore}
-            isPaging={uiState.isPaging}
           />
           <BackToTop anchor={this.backToTopAnchor} ref={this.backToTop} />
         </BeatmapSearchContext.Provider>

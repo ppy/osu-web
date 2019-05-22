@@ -77,11 +77,7 @@ declare module 'react/beatmaps/search-content' {
   interface Props {
     availableFilters: AvailableFilters;
     backToTopAnchor: React.RefObject<{}>;
-    beatmaps: any[];
     expand: (e: React.SyntheticEvent) => void;
-    hasMore: boolean;
-    isPaging: boolean;
-
   }
 
   class SearchContent extends React.PureComponent<Props> {}
