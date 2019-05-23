@@ -21,17 +21,12 @@ import AvailableFilters from 'beatmaps/available-filters';
 import { debounce, isEqual } from 'lodash';
 import { Lambda, observe } from 'mobx';
 import { observer } from 'mobx-react';
-import core from 'osu-core-singleton';
 import * as React from 'react';
 import { SearchContent } from 'react/beatmaps/search-content';
 import { instance as uiState } from './ui-state-store';
 
-const store = core.dataStore.beatmapSearchStore;
-
 interface Props {
   availableFilters: AvailableFilters;
-  beatmaps: any;
-  container: HTMLElement;
 }
 
 @observer
@@ -43,9 +38,6 @@ export class Main extends React.Component<Props> {
 
   constructor(props: Props) {
     super(props);
-
-    // populate initial values
-    store.initialize(uiState.filters, props.beatmaps);
 
     this.observerDisposers.push(
       observe(uiState, 'filters', (change) => {
