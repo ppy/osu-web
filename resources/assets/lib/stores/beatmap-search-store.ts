@@ -28,10 +28,13 @@ interface SearchResponse {
 }
 
 export default class BeatmapSearchStore {
-  beatmapsets = new Map<string, any[]>();
-  cursors = new Map<string, any>();
-  requests = new Map<string, Promise<SearchResults>>();
-  totals = new Map<string, number>();
+  static CACHE_DURATION_MS = 60000;
+
+  readonly beatmapsets = new Map<string, any[]>();
+  readonly cursors = new Map<string, any>();
+  readonly requests = new Map<string, Promise<SearchResults>>();
+  readonly totals = new Map<string, number>();
+  readonly fetchedAt = new Map<string, Date>();
 
   getBeatmapsets(filters: Filters) {
     const key = this.stringFromFilters(filters);
@@ -41,9 +44,13 @@ export default class BeatmapSearchStore {
 
   @action
   get(filters: Filters, from = 0): Promise<SearchResults> {
+    if (from < 0) {
+      throw Error('from must be > 0');
+    }
+
     const key = this.stringFromFilters(filters);
     const beatmapsets = this.getObservableBeatmapsetsByKey(key);
-    const sufficient = from < beatmapsets.length;
+    const sufficient = (from > 0 && from < beatmapsets.length) || (from === 0 && !this.isExpired(key));
 
     if (sufficient) {
       return Promise.resolve({
@@ -58,7 +65,11 @@ export default class BeatmapSearchStore {
     const maybeRequest = this.requests.get(key);
     if (maybeRequest != null) { return maybeRequest; }
 
-    const request = this.fetch(filters).then((data: SearchResponse) => {
+    const request = this.fetch(filters, from).then((data: SearchResponse) => {
+      if (from === 0) {
+        this.reset(key);
+      }
+
       if (data.beatmapsets != null) {
         this.append(key, data);
       }
@@ -72,6 +83,8 @@ export default class BeatmapSearchStore {
         total: this.totals.get(key) || 0,
       };
     });
+
+    this.fetchedAt.set(key, new Date());
     this.requests.set(key, request);
 
     return request;
@@ -81,15 +94,13 @@ export default class BeatmapSearchStore {
   initialize(filters: Filters, data: SearchResponse) {
     const key = this.stringFromFilters(filters);
 
-    // FIXME: do something else; this is currently here because I like speed
     if (this.cursors.has(key)) {
-      console.log(`already initialized ${key}`);
       return;
     }
 
-    console.log(`initialize ${key}`);
     this.cursors.set(key, data.cursor);
     this.totals.set(key, data.total);
+    this.fetchedAt.set(key, new Date());
 
     const beatmapsets = this.getObservableBeatmapsetsByKey(key);
     for (const beatmapset of data.beatmapsets) {
@@ -97,14 +108,14 @@ export default class BeatmapSearchStore {
     }
   }
 
-  private append(url: string, data: SearchResponse) {
-    const beatmapsets = this.getObservableBeatmapsetsByKey(url);
+  private append(key: string, data: SearchResponse) {
+    const beatmapsets = this.getObservableBeatmapsetsByKey(key);
     for (const beatmapset of data.beatmapsets) {
       beatmapsets.push(beatmapset);
     }
 
-    this.cursors.set(url, data.cursor);
-    this.totals.set(url, data.total);
+    this.cursors.set(key, data.cursor);
+    this.totals.set(key, data.total);
   }
 
   private getObservableBeatmapsetsByKey(key: string) {
@@ -117,12 +128,12 @@ export default class BeatmapSearchStore {
     return beatmapsets;
   }
 
-  private fetch(filters: Filters) {
+  private fetch(filters: Filters, from: number) {
     const params = BeatmapsetFilter.queryParamsFromFilters(filters) as any;
     const key = this.stringFromFilters(filters);
 
     const cursor = this.cursors.get(key);
-    if (this.cursors.has(key)) {
+    if (from > 0 && this.cursors.has(key)) {
       if (cursor == null) {
         return Promise.resolve({});
       }
@@ -138,9 +149,22 @@ export default class BeatmapSearchStore {
     });
   }
 
-  private hasMore(url: string) {
+  private hasMore(key: string) {
     // should return false only if it's known to have received a null cursor in.
-    return !(this.cursors.has(url) && this.cursors.get(url) == null);
+    return !(this.cursors.has(key) && this.cursors.get(key) == null);
+  }
+
+  private isExpired(key: string) {
+    const previous = this.fetchedAt.get(key);
+    if (previous == null) { return true; }
+
+    return new Date().getTime() - previous.getTime() > BeatmapSearchStore.CACHE_DURATION_MS;
+  }
+
+  private reset(key: string) {
+    this.beatmapsets.set(key, observable([]));
+    this.cursors.delete(key);
+    this.totals.delete(key);
   }
 
   private stringFromFilters(filters: Filters) {
