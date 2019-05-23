@@ -39,8 +39,7 @@ export class Main extends React.Component<Props> {
   readonly backToTop = React.createRef<BackToTop>();
   readonly backToTopAnchor = React.createRef<HTMLElement>();
   readonly debouncedSearch = debounce(uiState.search.bind(uiState), 500);
-
-  filterObserverDispose: Lambda;
+  readonly observerDisposers: Lambda[] = [];
 
   constructor(props: Props) {
     super(props);
@@ -48,15 +47,38 @@ export class Main extends React.Component<Props> {
     // populate initial values
     store.initialize(uiState.filters, props.beatmaps);
 
-    this.filterObserverDispose = observe(uiState, 'filters', (change) => {
-      if (!isEqual(change.oldValue, change.newValue)) {
-        const url = encodeURI(laroute.route('beatmapsets.index', BeatmapsetFilter.queryParamsFromFilters(uiState.filters)));
-        Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
-        uiState.loading = true;
+    this.observerDisposers.push(
+      observe(uiState, 'filters', (change) => {
+        if (!isEqual(change.oldValue, change.newValue)) {
+          const url = encodeURI(laroute.route('beatmapsets.index', BeatmapsetFilter.queryParamsFromFilters(uiState.filters)));
+          Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
+          uiState.prepareToSearch();
 
-        this.debouncedSearch();
-      }
-    });
+          this.debouncedSearch();
+        }
+      }),
+    );
+
+    this.observerDisposers.push(
+      observe(uiState, 'searchStatus', (change) => {
+        if (change.newValue.error != null) {
+          osu.ajaxError(change.newValue.error);
+        }
+
+        if (change.newValue.state === 'completed' && change.newValue.from === 0) {
+          if (this.backToTopAnchor.current) {
+            const cutoff = this.backToTopAnchor.current.getBoundingClientRect().top;
+            if (cutoff < 0) {
+              window.scrollTo(window.pageXOffset, window.pageYOffset + cutoff);
+            }
+          }
+        }
+
+        if (change.newValue.state === 'searching' && this.backToTop.current) {
+          this.backToTop.current.reset();
+        }
+      }, true),
+    );
   }
 
   componentDidMount() {
@@ -68,7 +90,12 @@ export class Main extends React.Component<Props> {
   componentWillUnmount() {
     uiState.stopListeningOnWindow();
 
-    if (this.filterObserverDispose) { this.filterObserverDispose(); }
+    let disposer = this.observerDisposers.shift();
+    while (disposer) {
+      disposer();
+      disposer = this.observerDisposers.shift();
+    }
+
     this.debouncedSearch.cancel();
   }
 

@@ -66,7 +66,7 @@ export SearchContent = observer (props) ->
   searchBackground = if beatmapsets.length > 0 then beatmapsets[0].covers?.cover else null
   supporterRequiredFilterText = uiState.supporterRequiredFilterText
   listCssClasses = 'beatmapsets'
-  listCssClasses += ' beatmapsets--dimmed' if uiState.loading
+  listCssClasses += ' beatmapsets--dimmed' if uiState.isBusy
 
   el React.Fragment, null,
     el SearchPanel,

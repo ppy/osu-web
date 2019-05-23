@@ -23,17 +23,39 @@ import core from 'osu-core-singleton';
 
 const store = core.dataStore.beatmapSearchStore;
 
+interface SearchStatus {
+  error?: any;
+  from: number;
+  state: 'completed' // search not doing anything
+    | 'input'        // receiving input but not searching
+    | 'paging'       // getting more pages
+    | 'searching'    // actually doing a search
+    ;
+}
+
 export class UIStateStore {
   @observable numberOfColumns = osu.isDesktop() ? 2 : 1;
   @observable hasMore = false;
-  @observable isPaging = false;
-  @observable loading = false;
   @observable recommendedDifficulty = 0;
   @observable filters: Filters = BeatmapsetFilter.fillDefaults(BeatmapsetFilter.filtersFromUrl(location.href));
   @observable isExpanded = intersection(Object.keys(BeatmapsetFilter.filtersFromUrl(location.href)), BeatmapsetFilter.expand).length > 0;
+  @observable searchStatus: SearchStatus = {
+    error: null,
+    from: 0,
+    state: 'completed',
+  };
 
   // the list that gets displaying while new searches are loading.
   @observable currentBeatmapsets = store.getBeatmapsets(this.filters);
+
+  get isBusy() {
+    return this.searchStatus.state === 'searching' || this.searchStatus.state === 'input';
+  }
+
+  @computed
+  get isPaging() {
+    return this.searchStatus.state === 'paging';
+  }
 
   @computed
   get isSupporterMissing() {
@@ -50,18 +72,16 @@ export class UIStateStore {
 
   @action
   async performSearch(from = 0) {
-    if (from === 0) {
-      this.loading = true;
-    } else {
-      this.isPaging = true;
-    }
+    this.searchStatus = {
+      from,
+      state: from === 0 ? 'searching' : 'paging',
+    };
 
     // snapshot filter values since they may change during the request.
     const filters = Object.assign({}, this.filters);
     return store.get(filters, from)
     .then((data) => {
-      this.isPaging = false;
-      this.loading = false;
+      this.searchStatus = { state: 'completed', error: null, from };
       this.hasMore = data.hasMore && data.beatmapsets.length < data.total;
       this.recommendedDifficulty = data.recommended_difficulty;
 
@@ -70,16 +90,21 @@ export class UIStateStore {
       }
     })
     .catch((error) => {
-      this.isPaging = false;
-      this.loading = false;
-      if (error.readyState !== 0) { throw error; }
+      this.searchStatus = { state: 'completed', error, from };
+      if (error.readyState !== 0) {
+        throw error;
+      }
     });
   }
 
   @action
+  prepareToSearch() {
+    this.searchStatus.state = 'input';
+  }
+
+  @action
   async loadMore() {
-    const uiState = this;
-    if (uiState.isPaging || uiState.loading || !uiState.hasMore) {
+    if (this.searchStatus.state !== 'completed' || !this.hasMore) {
       return;
     }
 
@@ -92,26 +117,7 @@ export class UIStateStore {
       return Promise.resolve();
     }
 
-    if (from > 0) {
-      this.isPaging = true;
-    } else {
-      this.loading = true;
-      // if (this.backToTop.current) this.backToTop.current.reset();
-    }
-
-    try {
-      await this.performSearch(from);
-      // if (from === 0 && this.backToTopAnchor.current) {
-      //   const cutoff = this.backToTopAnchor.current.getBoundingClientRect().top;
-      //   if (cutoff < 0) {
-      //     window.scrollTo(window.pageXOffset, window.pageYOffset + cutoff);
-      //   }
-      // }
-    } catch (error) {
-      console.log(error);
-      // TODO: catch shouldn't be here?
-      osu.ajaxError(error);
-    }
+    return this.performSearch(from);
   }
 
   @action
