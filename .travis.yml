@@ -61,13 +61,32 @@ install:
 
 jobs:
   include:
-    - script: ./bin/phpunit
-      name: "phpunit"
-    - script: ./bin/run_dusk.sh
-      name: "browser tests"
-    - script: yarn lint
-      name: "tslint"
+    - name: phpunit
+      script: ./bin/phpunit
+
+    - name: browser tests
+      script: ./bin/run_dusk.sh
+
+    - name: tslint and apidoc
+      env:
+        - OSU_SKIP_ASSET_BUILD=1
+      script:
+        - yarn
+        - yarn lint
+      before_deploy:
+        - php artisan apidoc:generate
+        - mkdir docs-public
+        - cp -R docs/{css,images,js,index.html,collection.json} docs-public/
+      deploy:
+        provider: pages
+        repo: ${TRAVIS_APIDOC_REPO:-$TRAVIS_REPO_SLUG}
+        skip_cleanup: true
+        github_token: $TRAVIS_GITHUB_TOKEN
+        keep_history: true
+        local_dir: docs-public
+        on:
+          branch: master
 
 after_script:
-  - cat elasticsearch.log
+  - test -f elasticsearch.log && cat elasticsearch.log
   - test -f osu-notification-server/server.log && cat osu-notification-server/server.log
