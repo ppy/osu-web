@@ -27,8 +27,68 @@ use App\Models\Chat\UserChannel;
 use Auth;
 use Request;
 
+/**
+ * @group Chat
+ */
 class MessagesController extends BaseController
 {
+    /**
+     * Get Channel Messages
+     *
+     * This endpoint returns the chat messages for a specific channel.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns an array of [ChatMessage](#chatmessage)
+     *
+     * @authenticated
+     *
+     * @queryParam channel_id required The ID of the channel to retrieve messages for
+     * @queryParam limit number of messages to return (max of 50)
+     *
+     * @response [
+     *   {
+     *     "message_id": 9150005004,
+     *     "sender_id": 2,
+     *     "channel_id": 5,
+     *     "timestamp": "2018-07-06T06:33:34+00:00",
+     *     "content": "i am a lazerface",
+     *     "is_action": 0,
+     *     "sender": {
+     *       "id": 2,
+     *       "username": "peppy",
+     *       "profile_colour": "#3366FF",
+     *       "avatar_url": "https://a.ppy.sh/2?1519081077.png",
+     *       "country_code": "AU",
+     *       "is_active": true,
+     *       "is_bot": false,
+     *       "is_online": true,
+     *       "is_supporter": true
+     *     }
+     *   },
+     *   {
+     *     "message_id": 9150005005,
+     *     "sender_id": 102,
+     *     "channel_id": 5,
+     *     "timestamp": "2018-07-06T06:33:42+00:00",
+     *     "content": "uh ok then",
+     *     "is_action": 0,
+     *     "sender": {
+     *       "id": 102,
+     *       "username": "nekodex",
+     *       "profile_colour": "#333333",
+     *       "avatar_url": "https://a.ppy.sh/102?1500537068",
+     *       "country_code": "AU",
+     *       "is_active": true,
+     *       "is_bot": false,
+     *       "is_online": true,
+     *       "is_supporter": true
+     *     }
+     *   }
+     * ]
+     */
     public function index($channelId)
     {
         $userId = Auth::user()->user_id;
@@ -67,6 +127,45 @@ class MessagesController extends BaseController
         );
     }
 
+    /**
+     * Send Message to Channel
+     *
+     * This endpoint returns the chat messages for a specific channel.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * The sent [ChatMessage](#chatmessage)
+     *
+     * <aside class="notice">
+     *   When sending a message, the <code>last_read_id</code> for the <a href='#chatchannel'>ChatChannel</a> is also updated to mark the new message as read.
+     * </aside>
+     *
+     * @authenticated
+     *
+     * @queryParam channel_id required The `channel_id` of the channel to send message to
+     *
+     * @response {
+     *   "message_id": 9150005004,
+     *   "sender_id": 2,
+     *   "channel_id": 5,
+     *   "timestamp": "2018-07-06T06:33:34+00:00",
+     *   "content": "i am a lazerface",
+     *   "is_action": 0,
+     *   "sender": {
+     *     "id": 2,
+     *     "username": "peppy",
+     *     "profile_colour": "#3366FF",
+     *     "avatar_url": "https://a.ppy.sh/2?1519081077.png",
+     *     "country_code": "AU",
+     *     "is_active": true,
+     *     "is_bot": false,
+     *     "is_online": true,
+     *     "is_supporter": true
+     *   }
+     * }
+     */
     public function store($channelId)
     {
         $channel = Channel::findOrFail($channelId);
