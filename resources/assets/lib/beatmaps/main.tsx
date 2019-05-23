@@ -23,7 +23,7 @@ import { Lambda, observe } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { SearchContent } from 'react/beatmaps/search-content';
-import { instance as uiState } from './ui-state-store';
+import { uiState } from './ui-state-store';
 
 interface Props {
   availableFilters: AvailableFilters;

@@ -33,7 +33,7 @@ interface SearchStatus {
     ;
 }
 
-export class UIStateStore {
+class UIStateStore {
   @observable numberOfColumns = osu.isDesktop() ? 2 : 1;
   @observable hasMore = false;
   @observable recommendedDifficulty = 0;
@@ -146,4 +146,4 @@ export class UIStateStore {
   }
 }
 
-export const instance = new UIStateStore();
+export const uiState = new UIStateStore();

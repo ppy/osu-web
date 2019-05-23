@@ -17,7 +17,7 @@
 ###
 
 import { Main } from 'beatmaps/main'
-import { instance as uiState } from 'beatmaps/ui-state-store'
+import { uiState } from 'beatmaps/ui-state-store'
 import core from 'osu-core-singleton'
 
 store = core.dataStore.beatmapSearchStore

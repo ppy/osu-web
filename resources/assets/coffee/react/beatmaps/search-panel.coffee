@@ -17,7 +17,7 @@
 ###
 
 import { SearchFilter } from './search-filter'
-import { instance as uiState } from 'beatmaps/ui-state-store'
+import { uiState } from 'beatmaps/ui-state-store'
 import * as React from 'react'
 import { div, a, i, input, h1, h2, li, ol, span } from 'react-dom-factories'
 el = React.createElement
