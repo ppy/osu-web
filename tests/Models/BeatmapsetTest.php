@@ -122,8 +122,36 @@ class BeatmapsetTest extends TestCase
 
     public function testRank()
     {
+        $otherUser = factory(User::class)->create();
+
         $beatmapset = $this->createBeatmapset([
             'approved' => Beatmapset::STATES['qualified'],
+        ]);
+
+        $beatmap = $beatmapset->beatmaps()->first();
+        $beatmap->scoresBest()->create([
+            'user_id' => $otherUser->getKey(),
+        ]);
+        $scores = $beatmapset->beatmaps()->first()->scoresBest()->count();
+
+        $notifications = Notification::count();
+        $userNotifications = UserNotification::count();
+
+        $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
+
+        $beatmapset->rank();
+
+        $this->assertTrue($beatmapset->fresh()->isRanked());
+        $this->assertSame($notifications + 1, UserNotification::count());
+        $this->assertSame($notifications + 1, Notification::count());
+        $this->assertNotSame(0, $scores);
+        $this->assertSame(0, $beatmap->scoresBest()->count());
+    }
+
+    public function testRankFromWrongState()
+    {
+        $beatmapset = $this->createBeatmapset([
+            'approved' => Beatmapset::STATES['pending'],
         ]);
 
         $notifications = Notification::count();
@@ -132,11 +160,12 @@ class BeatmapsetTest extends TestCase
         $otherUser = factory(User::class)->create();
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
-        $beatmapset->rank();
+        $res = $beatmapset->rank();
 
-        $this->assertTrue($beatmapset->fresh()->isRanked());
-        $this->assertSame($notifications + 1, UserNotification::count());
-        $this->assertSame($notifications + 1, Notification::count());
+        $this->assertFalse($res);
+        $this->assertFalse($beatmapset->fresh()->isRanked());
+        $this->assertSame($notifications, UserNotification::count());
+        $this->assertSame($notifications, Notification::count());
     }
 
     private function createBeatmapset($params = []) : Beatmapset
