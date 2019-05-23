@@ -20,7 +20,9 @@
 
 namespace App\Models\Chat;
 
+use App\Events\UserSubscriptionChangeEvent;
 use App\Exceptions\API;
+use App\Models\Notification;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -157,6 +159,10 @@ class Channel extends Model
             $userChannel->update(['last_read_id' => $message->message_id]);
         }
 
+        if ($this->isPM()) {
+            broadcast_notification(Notification::CHANNEL_MESSAGE, $message, $sender);
+        }
+
         return $message;
     }
 
@@ -166,14 +172,26 @@ class Channel extends Model
         $userChannel->user()->associate($user);
         $userChannel->channel()->associate($this);
         $userChannel->save();
+
+        if ($this->isPM()) {
+            event(new UserSubscriptionChangeEvent('add', $user, $userChannel->channel));
+        }
     }
 
     public function removeUser(User $user)
     {
-        UserChannel::where([
+        $userChannel = UserChannel::where([
             'channel_id' => $this->channel_id,
             'user_id' => $user->user_id,
-        ])->delete();
+        ])->first();
+
+        if ($userChannel) {
+            if ($this->isPM()) {
+                event(new UserSubscriptionChangeEvent('remove', $user, $userChannel->channel));
+            }
+
+            $userChannel->delete();
+        }
     }
 
     public function hasUser(User $user)

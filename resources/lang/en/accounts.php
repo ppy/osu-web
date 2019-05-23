@@ -88,7 +88,7 @@ return [
 
     'notifications' => [
         'title' => 'Notifications',
-        'topic_auto_subscribe' => 'automatically subscribe to forum topics that you post',
+        'topic_auto_subscribe' => 'automatically enable notifications on new forum topics that you create',
     ],
 
     'security' => [

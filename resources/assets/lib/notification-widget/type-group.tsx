@@ -22,13 +22,10 @@ import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import * as React from 'react';
 import { Spinner } from 'spinner';
-import CategoryGroup from './category-group';
-import Worker from './worker';
-
-interface Props {
-  items: Notification[];
-  worker: Worker;
-}
+import ItemGroup from './item-group';
+import ItemProps from './item-props';
+import ItemSingular from './item-singular';
+import { withMarkRead, WithMarkReadProps } from './with-mark-read';
 
 interface State {
   markingAsRead: boolean;
@@ -36,22 +33,7 @@ interface State {
 
 const bn = 'notification-type-group';
 
-@observer
-export default class TypeGroup extends React.Component<Props, State> {
-
-  state = {
-    markingAsRead: false,
-  };
-  private isComponentMounted = false;
-
-  componentDidMount() {
-    this.isComponentMounted = true;
-  }
-
-  componentWillUnmount() {
-    this.isComponentMounted = false;
-  }
-
+export default withMarkRead(observer(class TypeGroup extends React.Component<ItemProps & WithMarkReadProps, State> {
   render() {
     if (this.props.items.length === 0) {
       return null;
@@ -81,7 +63,7 @@ export default class TypeGroup extends React.Component<Props, State> {
     const categoryGroup: Map<string, Notification[]> = new Map();
 
     this.props.items.forEach((item) => {
-      if (item.objectId == null || item.name == null) {
+      if (item.objectId == null || item.name == null || item.category == null) {
         return;
       }
 
@@ -99,7 +81,17 @@ export default class TypeGroup extends React.Component<Props, State> {
     const items: React.ReactNode[] = [];
 
     categoryGroup.forEach((value, key) => {
-      items.push(<CategoryGroup key={key} items={value} worker={this.props.worker} />);
+      if (value.length === 0) {
+        return;
+      }
+
+      const Component = value.length === 1 ? ItemSingular : ItemGroup;
+
+      items.push((
+        <div className={`${bn}__item`} key={key}>
+          <Component item={value[0]} items={value} worker={this.props.worker} />
+        </div>
+      ));
     });
 
     return items;
@@ -113,7 +105,7 @@ export default class TypeGroup extends React.Component<Props, State> {
     let markAllReadClass = `${bn}__clear-all`;
     let markingAsReadSpinner: React.ReactNode = null;
 
-    if (this.state.markingAsRead) {
+    if (this.props.markingAsRead) {
       markingAsReadSpinner = (
         <span className={`${bn}__clear-all-spinner`}>
           <Spinner />
@@ -126,7 +118,7 @@ export default class TypeGroup extends React.Component<Props, State> {
       <button
         className={markAllReadClass}
         type='button'
-        onClick={this.markRead}
+        onClick={this.props.markRead}
       >
         {markingAsReadSpinner}
         {osu.trans('notifications.mark_all_read')}
@@ -145,18 +137,4 @@ export default class TypeGroup extends React.Component<Props, State> {
       </span>
     );
   }
-
-  private markRead = () => {
-    this.setState({ markingAsRead: true });
-    const ids = this.props.items.map((i) => i.id);
-
-    this.props.worker.sendMarkRead(ids)
-    .fail(() => {
-      if (!this.isComponentMounted) {
-        return;
-      }
-
-      this.setState({ markingAsRead: false });
-    });
-  }
-}
+}));

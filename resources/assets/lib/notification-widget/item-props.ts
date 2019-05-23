@@ -16,38 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.score-rank-v2 {
-  width: 2em;
-  height: 1em;
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
+import Notification from 'models/notification';
+import Worker from './worker';
 
-  .all(@rank, @prefix) {
-    &--@{rank} {
-      .bg(@prefix);
-    }
-  }
-
-  .bg(@filename) {
-    .at2x-simple("/images/badges/score-ranks-v2/@{filename}.png");
-  }
-
-  .all(XH, "SS+");
-  .all(X, "SS");
-  .all(SH, "S+");
-  .all(S, "S");
-  .all(A, "A");
-  .all(B, "B");
-  .all(C, "C");
-  .all(D, "F");
-
-  &--full {
-    .full-size();
-  }
-
-  &--profile-page {
-    font-size: 28px; // icon size
-  }
+export default interface ItemProps {
+  item: Notification;
+  items: Notification[];
+  worker: Worker;
 }
