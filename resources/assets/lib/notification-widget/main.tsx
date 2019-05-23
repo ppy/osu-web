@@ -102,6 +102,7 @@ export default class Main extends React.Component<Props, {}> {
         (
           <div key={key} className='notification-popup__item'>
             <TypeGroup
+              item={value[0]}
               items={value}
               worker={this.props.worker}
             />

@@ -18,25 +18,8 @@
 
 import * as _ from 'lodash';
 import { computed, observable } from 'mobx';
-import * as moment from 'moment';
+import { nameToCategory } from 'notification-maps/category';
 import NotificationJson from '../interfaces/notification-json';
-
-interface CategoryMap {
-  [key: string]: string;
-}
-
-const CATEGORY_MAP: CategoryMap = {
-  beatmapset_discussion_lock: 'beatmapset_discussion',
-  beatmapset_discussion_post_new: 'beatmapset_discussion',
-  beatmapset_discussion_unlock: 'beatmapset_discussion',
-  beatmapset_disqualify: 'beatmapset_state',
-  beatmapset_love: 'beatmapset_state',
-  beatmapset_nominate: 'beatmapset_state',
-  beatmapset_qualify: 'beatmapset_state',
-  beatmapset_reset_nominations: 'beatmapset_state',
-  forum_topic_reply: 'forum_topic_reply',
-  legacy_pm: 'legacy_pm',
-};
 
 export default class Notification {
   createdAtJson?: string;
@@ -71,10 +54,6 @@ export default class Notification {
   }
 
   @computed get category() {
-    if (this.name == null) {
-      return;
-    }
-
-    return CATEGORY_MAP[this.name];
+    return nameToCategory[this.name || ''];
   }
 }
