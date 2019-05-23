@@ -67,14 +67,19 @@ jobs:
     - name: browser tests
       script: ./bin/run_dusk.sh
 
-    - name: tslint and apidoc
+    - name: tslint
       env:
         - OSU_SKIP_ASSET_BUILD=1
       script:
         - yarn
         - yarn lint
-      before_deploy:
+
+    - name: apidoc
+      env:
+        - OSU_SKIP_ASSET_BUILD=1
+      script:
         - php artisan apidoc:generate
+      before_deploy:
         - mkdir docs-public
         - cp -R docs/{css,images,js,index.html,collection.json} docs-public/
       deploy:
