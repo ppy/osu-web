@@ -76,7 +76,7 @@ export class Main extends React.Component<Props> {
   componentDidMount() {
     uiState.startListeningOnWindow();
 
-    uiState.performSearch();
+    uiState.search();
   }
 
   componentWillUnmount() {

@@ -71,53 +71,48 @@ class UIStateStore {
   }
 
   @action
-  async performSearch(from = 0) {
-    this.searchStatus = {
-      from,
-      state: from === 0 ? 'searching' : 'paging',
-    };
-
-    // snapshot filter values since they may change during the request.
-    const filters = Object.assign({}, this.filters);
-    return store.get(filters, from)
-    .then((data) => {
-      this.searchStatus = { state: 'completed', error: null, from };
-      this.hasMore = data.hasMore && data.beatmapsets.length < data.total;
-      this.recommendedDifficulty = data.recommended_difficulty;
-
-      if (isEqual(filters, this.filters)) {
-        this.currentBeatmapsets = store.getBeatmapsets(filters);
-      }
-    })
-    .catch((error) => {
-      this.searchStatus = { state: 'completed', error, from };
-      if (error.readyState !== 0) {
-        throw error;
-      }
-    });
-  }
-
-  @action
   prepareToSearch() {
     this.searchStatus.state = 'input';
   }
 
   @action
   async loadMore() {
-    if (this.searchStatus.state !== 'completed' || !this.hasMore) {
+    if (this.isBusy || !this.hasMore) {
       return;
     }
 
-    return this.search(this.currentBeatmapsets.length);
+    this.search(this.currentBeatmapsets.length);
   }
 
   @action
   async search(from = 0) {
     if (this.isSupporterMissing || from < 0) {
-      return Promise.resolve();
+      return;
     }
 
-    return this.performSearch(from);
+    this.searchStatus = {
+      from,
+      state: from === 0 ? 'searching' : 'paging',
+    };
+
+    try {
+      // snapshot filter values since they may change during the request.
+      const filters = Object.assign({}, this.filters);
+      const data = await store.get(filters, from);
+
+      this.searchStatus = { state: 'completed', error: null, from };
+      this.hasMore = data.hasMore && data.beatmapsets.length < data.total;
+      this.recommendedDifficulty = data.recommendedDifficulty;
+
+      if (isEqual(filters, this.filters)) {
+        this.currentBeatmapsets = store.getBeatmapsets(filters);
+      }
+    } catch (error) {
+      this.searchStatus = { state: 'completed', error, from };
+      if (error.readyState !== 0) {
+        throw error;
+      }
+    }
   }
 
   @action

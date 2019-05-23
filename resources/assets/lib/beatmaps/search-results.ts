@@ -19,6 +19,6 @@
 export default interface SearchResults {
   beatmapsets: any[];
   hasMore: boolean;
-  recommended_difficulty: number;
+  recommendedDifficulty: number;
   total: number;
 }

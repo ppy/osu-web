@@ -17,9 +17,15 @@
  */
 
 import Filters from 'beatmap-search-filters';
-import SearchResponse from 'beatmaps/search-response';
 import SearchResults from 'beatmaps/search-results';
 import { action, observable } from 'mobx';
+
+interface SearchResponse {
+  beatmapsets: JSON[];
+  cursor: JSON;
+  recommended_difficulty: number;
+  total: number;
+}
 
 export default class BeatmapSearchStore {
   beatmapsets = new Map<string, any[]>();
@@ -27,22 +33,13 @@ export default class BeatmapSearchStore {
   requests = new Map<string, Promise<SearchResults>>();
   totals = new Map<string, number>();
 
-  getBeatmapsets(filters: Filters): any[] {
+  getBeatmapsets(filters: Filters) {
     const key = this.stringFromFilters(filters);
 
     return this.getObservableBeatmapsetsByKey(key);
   }
 
-  getObservableBeatmapsetsByKey(key: string) {
-    let beatmapsets = this.beatmapsets.get(key);
-    if (beatmapsets == null) {
-      beatmapsets = observable([]);
-      this.beatmapsets.set(key, beatmapsets);
-    }
-
-    return beatmapsets;
-  }
-
+  @action
   get(filters: Filters, from = 0): Promise<SearchResults> {
     const key = this.stringFromFilters(filters);
     const beatmapsets = this.getObservableBeatmapsetsByKey(key);
@@ -52,7 +49,7 @@ export default class BeatmapSearchStore {
       return Promise.resolve({
         beatmapsets,
         hasMore: this.hasMore(key),
-        recommended_difficulty: 0,
+        recommendedDifficulty: 0,
         total: this.totals.get(key) || 0,
       });
     }
@@ -71,7 +68,7 @@ export default class BeatmapSearchStore {
       return {
         beatmapsets: this.getObservableBeatmapsetsByKey(key),
         hasMore: this.hasMore(key),
-        recommended_difficulty: data.recommended_difficulty,
+        recommendedDifficulty: data.recommended_difficulty,
         total: this.totals.get(key) || 0,
       };
     });
@@ -100,7 +97,6 @@ export default class BeatmapSearchStore {
     }
   }
 
-  @action
   private append(url: string, data: SearchResponse) {
     const beatmapsets = this.getObservableBeatmapsetsByKey(url);
     for (const beatmapset of data.beatmapsets) {
@@ -109,6 +105,16 @@ export default class BeatmapSearchStore {
 
     this.cursors.set(url, data.cursor);
     this.totals.set(url, data.total);
+  }
+
+  private getObservableBeatmapsetsByKey(key: string) {
+    let beatmapsets = this.beatmapsets.get(key);
+    if (beatmapsets == null) {
+      beatmapsets = observable([]);
+      this.beatmapsets.set(key, beatmapsets);
+    }
+
+    return beatmapsets;
   }
 
   private fetch(filters: Filters) {
@@ -133,7 +139,7 @@ export default class BeatmapSearchStore {
   }
 
   private hasMore(url: string) {
-    // should return false only if it's known to have received a null cursor in .
+    // should return false only if it's known to have received a null cursor in.
     return !(this.cursors.has(url) && this.cursors.get(url) == null);
   }
 
