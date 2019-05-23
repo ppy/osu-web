@@ -302,11 +302,11 @@ class UsersController extends Controller
             );
 
             $perPage = [
-                'scoresBest' => 10,
-                'scoresFirsts' => 10,
-                'scoresRecent' => 10,
+                'scoresBest' => 5,
+                'scoresFirsts' => 5,
+                'scoresRecent' => 5,
 
-                'beatmapPlaycounts' => 10,
+                'beatmapPlaycounts' => 5,
                 'favouriteBeatmapsets' => 6,
                 'rankedAndApprovedBeatmapsets' => 6,
                 'lovedBeatmapsets' => 6,
