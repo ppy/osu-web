@@ -39,6 +39,8 @@ export class Main extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
+    uiState.restoreTurbolinks();
+
     this.observerDisposers.push(
       observe(uiState, 'filters', (change) => {
         if (!isEqual(change.oldValue, change.newValue)) {
@@ -75,8 +77,6 @@ export class Main extends React.Component<Props> {
 
   componentDidMount() {
     uiState.startListeningOnWindow();
-
-    uiState.search();
   }
 
   componentWillUnmount() {

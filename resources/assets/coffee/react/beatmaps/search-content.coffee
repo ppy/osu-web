@@ -61,7 +61,6 @@ observe uiState, 'numberOfColumns', (change) ->
 
 export SearchContent = observer (props) ->
   beatmapsets = uiState.currentBeatmapsets
-  filters = uiState.filters
 
   searchBackground = if beatmapsets.length > 0 then beatmapsets[0].covers?.cover else null
   supporterRequiredFilterText = uiState.supporterRequiredFilterText

@@ -34,19 +34,22 @@ interface SearchStatus {
 }
 
 class UIStateStore {
-  @observable numberOfColumns = osu.isDesktop() ? 2 : 1;
+  // the list that gets displaying while new searches are loading.
+  @observable currentBeatmapsets!: any[];
   @observable hasMore = false;
+  @observable numberOfColumns = osu.isDesktop() ? 2 : 1;
   @observable recommendedDifficulty = 0;
-  @observable filters: Filters = BeatmapsetFilter.fillDefaults(BeatmapsetFilter.filtersFromUrl(location.href));
-  @observable isExpanded = intersection(Object.keys(BeatmapsetFilter.filtersFromUrl(location.href)), BeatmapsetFilter.expand).length > 0;
+  @observable filters!: Filters;
+  @observable isExpanded!: boolean;
   @observable searchStatus: SearchStatus = {
     error: null,
     from: 0,
     state: 'completed',
   };
 
-  // the list that gets displaying while new searches are loading.
-  @observable currentBeatmapsets = store.getBeatmapsets(this.filters);
+  constructor() {
+    this.restoreTurbolinks();
+  }
 
   get isBusy() {
     return this.searchStatus.state === 'searching' || this.searchStatus.state === 'input';
@@ -71,17 +74,25 @@ class UIStateStore {
   }
 
   @action
-  prepareToSearch() {
-    this.searchStatus.state = 'input';
-  }
-
-  @action
   async loadMore() {
     if (this.isBusy || !this.hasMore) {
       return;
     }
 
     this.search(this.currentBeatmapsets.length);
+  }
+
+  @action
+  prepareToSearch() {
+    this.searchStatus.state = 'input';
+  }
+
+  @action
+  restoreTurbolinks() {
+    const { filters, isExpanded } = this.stateFromUrl();
+    this.filters = filters;
+    this.isExpanded = isExpanded;
+    this.currentBeatmapsets = store.getBeatmapsets(filters);
   }
 
   @action
@@ -113,6 +124,14 @@ class UIStateStore {
         throw error;
       }
     }
+  }
+
+  stateFromUrl() {
+    const filtersFromUrl = BeatmapsetFilter.filtersFromUrl(location.href);
+    return {
+      filters: BeatmapsetFilter.fillDefaults(filtersFromUrl),
+      isExpanded: intersection(Object.keys(filtersFromUrl), BeatmapsetFilter.expand).length > 0,
+    };
   }
 
   @action
