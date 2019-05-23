@@ -76,6 +76,56 @@ export class UIStateStore {
     });
   }
 
+  @action
+  async loadMore() {
+    const uiState = this;
+    if (uiState.isPaging || uiState.loading || !uiState.hasMore) {
+      return;
+    }
+
+    return this.search(this.currentBeatmapsets.length);
+  }
+
+  @action
+  async search(from = 0) {
+    if (this.isSupporterMissing || from < 0) {
+      return Promise.resolve();
+    }
+
+    if (from > 0) {
+      this.isPaging = true;
+    } else {
+      this.loading = true;
+      // if (this.backToTop.current) this.backToTop.current.reset();
+    }
+
+    try {
+      await this.performSearch(from);
+      // if (from === 0 && this.backToTopAnchor.current) {
+      //   const cutoff = this.backToTopAnchor.current.getBoundingClientRect().top;
+      //   if (cutoff < 0) {
+      //     window.scrollTo(window.pageXOffset, window.pageYOffset + cutoff);
+      //   }
+      // }
+    } catch (error) {
+      console.log(error);
+      // TODO: catch shouldn't be here?
+      osu.ajaxError(error);
+    }
+  }
+
+  @action
+  updateFilters(newFilters: Partial<Filters>) {
+    const filters = Object.assign({}, this.filters, newFilters);
+
+    if (this.filters.query !== filters.query
+      || this.filters.status !== filters.status) {
+      filters.sort = null;
+    }
+
+    this.filters = BeatmapsetFilter.fillDefaults(filters);
+  }
+
   startListeningOnWindow() {
     $(window).on('resize.beatmaps-ui-state-store', () => {
       const count = osu.isDesktop() ? 2 : 1;

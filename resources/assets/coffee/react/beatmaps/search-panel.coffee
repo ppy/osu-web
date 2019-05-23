@@ -17,6 +17,7 @@
 ###
 
 import { SearchFilter } from './search-filter'
+import { instance as uiState } from 'beatmaps/ui-state-store'
 import * as React from 'react'
 import { div, a, i, input, h1, h2, li, ol, span } from 'react-dom-factories'
 el = React.createElement
@@ -115,7 +116,7 @@ export class SearchPanel extends React.PureComponent
 
   onChange: (event) ->
     query = event.target.value
-    $(document).trigger 'beatmap:search:filtered', query: query.trim()
+    uiState.updateFilters query: query.trim()
 
 
   renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>

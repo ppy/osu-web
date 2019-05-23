@@ -17,10 +17,9 @@
  */
 
 import { BackToTop } from 'back-to-top';
-import Filters from 'beatmap-search-filters';
 import AvailableFilters from 'beatmaps/available-filters';
-import { debounce, extend, isEqual } from 'lodash';
-import { action, Lambda, observe } from 'mobx';
+import { debounce, isEqual } from 'lodash';
+import { Lambda, observe } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -39,8 +38,7 @@ interface Props {
 export class Main extends React.Component<Props> {
   readonly backToTop = React.createRef<BackToTop>();
   readonly backToTopAnchor = React.createRef<HTMLElement>();
-  beatmapsetsCount = 0;
-  readonly debouncedSearch = debounce(this.search, 500);
+  readonly debouncedSearch = debounce(uiState.search.bind(uiState), 500);
 
   filterObserverDispose: Lambda;
 
@@ -62,16 +60,12 @@ export class Main extends React.Component<Props> {
   }
 
   componentDidMount() {
-    $(document).on('beatmap:load_more.beatmaps', this.loadMore);
-    $(document).on('beatmap:search:filtered.beatmaps', this.updateFilters);
     uiState.startListeningOnWindow();
 
     uiState.performSearch();
   }
 
   componentWillUnmount() {
-    $(document).off('.beatmaps');
-    $(window).off('.beatmaps');
     uiState.stopListeningOnWindow();
 
     if (this.filterObserverDispose) { this.filterObserverDispose(); }
@@ -83,18 +77,7 @@ export class Main extends React.Component<Props> {
     uiState.isExpanded = true;
   }
 
-  @action
-  loadMore = () => {
-    if (uiState.isPaging || uiState.loading || !uiState.hasMore) {
-      return;
-    }
-
-    this.search(this.beatmapsetsCount);
-  }
-
   render() {
-    this.beatmapsetsCount = store.getBeatmapsets(uiState.filters).length; // workaround to make SearchContent update
-
     return (
       <div className='osu-layout__section'>
         <SearchContent
@@ -105,43 +88,5 @@ export class Main extends React.Component<Props> {
         <BackToTop anchor={this.backToTopAnchor} ref={this.backToTop} />
       </div>
     );
-  }
-
-  @action
-  async search(from = 0) {
-    if (uiState.isSupporterMissing || from < 0) {
-      return Promise.resolve();
-    }
-
-    if (from > 0) {
-      uiState.isPaging = true;
-    } else {
-      uiState.loading = true;
-      if (this.backToTop.current) this.backToTop.current.reset();
-    }
-
-    try {
-      await uiState.performSearch(from);
-      if (from === 0 && this.backToTopAnchor.current) {
-        const cutoff = this.backToTopAnchor.current.getBoundingClientRect().top;
-        if (cutoff < 0) {
-          window.scrollTo(window.pageXOffset, window.pageYOffset + cutoff);
-        }
-      }
-    } catch (error) {
-      osu.ajaxError(error);
-    }
-  }
-
-  @action
-  updateFilters = (event: any, newFilters: Partial<Filters>) => {
-    const filters = extend({}, uiState.filters, newFilters);
-
-    if (uiState.filters.query !== filters.query
-      || uiState.filters.status !== filters.status) {
-      filters.sort = null;
-    }
-
-    uiState.filters = BeatmapsetFilter.fillDefaults(filters);
   }
 }
