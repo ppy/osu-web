@@ -391,6 +391,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth:api', 'r
 
 // Callbacks for legacy systems to interact with
 Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
+    Route::post('generate-notification', 'LegacyInterOpController@generateNotification');
     Route::post('/refresh-beatmapset-cache/{beatmapset}', 'LegacyInterOpController@refreshBeatmapsetCache');
     Route::post('/regenerate-beatmapset-covers/{beatmapset}', 'LegacyInterOpController@regenerateBeatmapsetCovers');
     Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
