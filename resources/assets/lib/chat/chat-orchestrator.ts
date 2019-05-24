@@ -16,7 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {ChatChannelPartAction, ChatChannelSwitchAction} from 'actions/chat-actions';
+import {
+  ChatChannelPartAction,
+  ChatChannelSwitchAction,
+  ChatPresenceUpdateAction
+} from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
 import DispatchListener from 'dispatch-listener';
@@ -47,6 +51,10 @@ export default class ChatOrchestrator implements DispatchListener {
       this.changeChannel(action.channelId);
     } else if (action instanceof ChatChannelPartAction) {
       this.partChannel(action.channelId);
+    } else if (action instanceof ChatPresenceUpdateAction) {
+      if (this.rootDataStore.uiState.chat.selected == -1) {
+        this.focusNextChannel();
+      }
     } else if (action instanceof WindowFocusAction) {
       this.windowIsActive = true;
       if (this.rootDataStore.channelStore.loaded) {
@@ -89,9 +97,8 @@ export default class ChatOrchestrator implements DispatchListener {
     });
   }
 
-  partChannel(channelId: number) {
+  focusNextChannel() {
     const channelStore = this.rootDataStore.channelStore;
-    channelStore.partChannel(channelId);
 
     const channelList = channelStore.channelList;
     if (channelList.length > 0) {
@@ -100,6 +107,13 @@ export default class ChatOrchestrator implements DispatchListener {
     } else {
       channelStore.loaded  = false;
     }
+  }
+
+  partChannel(channelId: number) {
+    const channelStore = this.rootDataStore.channelStore;
+    channelStore.partChannel(channelId);
+
+    this.focusNextChannel();
 
     if (channelId !== -1) {
       return this.api.partChannel(channelId, window.currentUser.id)

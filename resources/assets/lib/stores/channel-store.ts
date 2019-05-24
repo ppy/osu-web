@@ -16,7 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { ChatMessageAddAction, ChatMessageSendAction, ChatMessageUpdateAction } from 'actions/chat-actions';
+import {
+  ChatMessageAddAction,
+  ChatMessageSendAction,
+  ChatMessageUpdateAction,
+  ChatPresenceUpdateAction
+} from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { ChannelJSON } from 'chat/chat-api-responses';
@@ -48,6 +53,8 @@ export default class ChannelStore implements DispatchListener {
       const channel: Channel = this.getOrCreate(dispatchedAction.message.channelId);
       channel.updateMessage(dispatchedAction.message);
       channel.resortMessages();
+    } else if (dispatchedAction instanceof ChatPresenceUpdateAction) {
+      this.updatePresence(dispatchedAction.presence);
     } else if (dispatchedAction instanceof UserLogoutAction) {
       this.flushStore();
     }
