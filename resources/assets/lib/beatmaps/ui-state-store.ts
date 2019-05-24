@@ -36,7 +36,7 @@ interface SearchStatus {
 class UIStateStore {
   // the list that gets displaying while new searches are loading.
   @observable currentBeatmapsets!: any[];
-  @observable hasMore = false;
+  @observable hasMore = false; // TODO: figure out how to make this computed
   @observable numberOfColumns = osu.isDesktop() ? 2 : 1;
   @observable recommendedDifficulty = 0;
   @observable filters!: Filters;
@@ -49,6 +49,7 @@ class UIStateStore {
 
   constructor() {
     this.restoreTurbolinks();
+    this.currentBeatmapsets = store.getBeatmapsets(this.filters);
   }
 
   @computed
@@ -98,7 +99,6 @@ class UIStateStore {
     const { filters, isExpanded } = this.stateFromUrl();
     this.filters = filters;
     this.isExpanded = isExpanded;
-    this.currentBeatmapsets = store.getBeatmapsets(filters);
   }
 
   @action

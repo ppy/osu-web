@@ -40,6 +40,7 @@ export class Main extends React.Component<Props> {
     super(props);
 
     uiState.restoreTurbolinks();
+    uiState.search();
 
     this.observerDisposers.push(
       observe(uiState, 'filters', (change) => {
