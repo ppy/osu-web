@@ -40,6 +40,15 @@ export class Main extends React.Component<Props> {
     super(props);
 
     uiState.restoreTurbolinks();
+
+    this.observerDisposers.push(
+      observe(uiState, 'searchStatus', (change) => {
+        if (change.newValue.error != null) {
+          osu.ajaxError(change.newValue.error);
+        }
+      }),
+    );
+
     uiState.search();
 
     this.observerDisposers.push(
@@ -56,10 +65,6 @@ export class Main extends React.Component<Props> {
 
     this.observerDisposers.push(
       observe(uiState, 'searchStatus', (change) => {
-        if (change.newValue.error != null) {
-          osu.ajaxError(change.newValue.error);
-        }
-
         if (change.newValue.state === 'completed' && change.newValue.from === 0) {
           if (this.backToTopAnchor.current) {
             const cutoff = this.backToTopAnchor.current.getBoundingClientRect().top;
