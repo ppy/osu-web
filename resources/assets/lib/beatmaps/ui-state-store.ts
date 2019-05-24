@@ -51,6 +51,7 @@ class UIStateStore {
     this.restoreTurbolinks();
   }
 
+  @computed
   get isBusy() {
     return this.searchStatus.state === 'searching' || this.searchStatus.state === 'input';
   }
