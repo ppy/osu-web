@@ -26,16 +26,12 @@ import RootDataStore from 'stores/root-data-store';
 @observer
 export default class ConversationListItem extends React.Component<any, {}> {
   switch = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-
     if (this.props.dataStore.uiState.chat.selected !== this.props.channelId) {
       this.props.dispatcher.dispatch(new ChatChannelSwitchAction(this.props.channelId));
     }
   }
 
   part = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-
     this.props.dispatcher.dispatch(new ChatChannelPartAction(this.props.channelId));
   }
 
@@ -60,17 +56,17 @@ export default class ConversationListItem extends React.Component<any, {}> {
 
     return (
       <div className={className}>
-        <a href='#' className={`${baseClassName}__close-button`} onClick={this.part}>
+        <button className={`${baseClassName}__close-button`} onClick={this.part}>
           <i className='fas fa-times' />
-        </a>
+        </button>
         <div className={`${baseClassName}__unread-indicator`} />
-        <a href='#' className={`${baseClassName}__tile`} onClick={this.switch}>
+        <button className={`${baseClassName}__tile`} onClick={this.switch}>
           <img className={`${baseClassName}__avatar`} src={conversation.icon} />
           <div className={`${baseClassName}__name`}>{conversation.name}</div>
           <div className={`${baseClassName}__chevron`}>
             <i className='fas fa-chevron-right' />
           </div>
-        </a>
+        </button>
       </div>
     );
   }

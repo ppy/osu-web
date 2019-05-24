@@ -46,9 +46,13 @@
   }
 
   &__close-button {
-    .link-plain();
-    .link-white();
+    .reset-input();
+    padding: 5px;
     color: fade(white, 50%);
+
+    &:hover {
+      color: white;
+    }
 
     @media @desktop {
       opacity: 0;
@@ -68,8 +72,7 @@
   }
 
   &__tile {
-    .link-plain();
-    .link-white();
+    .reset-input();
     display: flex;
     align-items: center;
     flex: 1;
@@ -95,7 +98,7 @@
     }
 
     @media @desktop {
-      margin-left: -5px;
+      margin-left: -10px;
       margin-right: 10px;
       .@{top}:hover & {
         opacity: 0;
@@ -112,6 +115,7 @@
 
   &__name {
     flex: 1;
+    text-align: left;
 
     @media @mobile {
       display: none;
