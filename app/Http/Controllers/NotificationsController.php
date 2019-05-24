@@ -86,15 +86,19 @@ class NotificationsController extends Controller
      */
     public function index()
     {
+        $withRead = get_bool(request('with_read')) ?? false;
         $hasMore = false;
         $userNotificationsQuery = auth()
             ->user()
             ->userNotifications()
             ->with('notification.notifiable')
             ->with('notification.source')
-            ->where('is_read', false)
             ->orderBy('notification_id', 'DESC')
             ->limit(static::LIMIT);
+
+        if (!$withRead) {
+            $userNotificationsQuery->where('is_read', false);
+        }
 
         $maxId = get_int(request('max_id'));
         if (isset($maxId)) {
