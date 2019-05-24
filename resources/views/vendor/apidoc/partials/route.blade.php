@@ -44,8 +44,8 @@
 @endif
 
 @if($route['authenticated'])
-
-<small class="authenticated">Requires authentication</small><br><br>@endif
+<small class="authenticated">Requires authentication</small>
+@endif
 
 {!! $topDescription !!}
 
