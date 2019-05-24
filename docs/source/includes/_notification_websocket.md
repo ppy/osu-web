@@ -2,7 +2,7 @@
 
 ## Connection
 
-```shell
+```bash
 wscat -c "{notification_endpoint}"
   -H "Authorization: Bearer {{token}}"
 ```
