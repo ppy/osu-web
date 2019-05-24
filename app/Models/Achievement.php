@@ -43,6 +43,7 @@ class Achievement extends Model
         'enabled' => 'boolean',
     ];
     public $timestamps = false;
+    public $incrementing = false;
 
     public function getModeAttribute($value)
     {

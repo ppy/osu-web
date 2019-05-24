@@ -740,6 +740,7 @@ class BaseTables extends Migration
 
             $table->mediumInteger('user_id');
             $table->mediumInteger('achievement_id');
+            $table->mediumInteger('beatmap_id');
             $table->timestamp('date')->useCurrent();
             $table->primary(['user_id', 'achievement_id']);
             $table->index(['user_id', 'date'], 'user_id');
