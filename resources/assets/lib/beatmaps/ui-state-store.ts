@@ -52,6 +52,11 @@ class UIStateStore {
   }
 
   @computed
+  get error() {
+    return this.searchStatus.error;
+  }
+
+  @computed
   get isBusy() {
     return this.searchStatus.state === 'searching' || this.searchStatus.state === 'input';
   }
@@ -120,9 +125,10 @@ class UIStateStore {
         this.currentBeatmapsets = store.getBeatmapsets(filters);
       }
     } catch (error) {
-      this.searchStatus = { state: 'completed', error, from };
       if (error.readyState !== 0) {
-        throw error;
+        this.searchStatus = { state: 'completed', error, from };
+      } else {
+        this.searchStatus = { state: 'completed', error: null, from };
       }
     }
   }

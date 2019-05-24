@@ -118,7 +118,7 @@ export SearchContent = observer (props) ->
         if !uiState.isSupporterMissing
           div className: 'beatmapsets__paginator',
             el Paginator,
-              # error: props.error
+              error: uiState.error
               loading: uiState.isPaging
               more: uiState.hasMore
 
