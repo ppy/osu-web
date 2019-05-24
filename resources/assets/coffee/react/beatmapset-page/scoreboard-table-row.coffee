@@ -41,7 +41,7 @@ export class ScoreboardTableRow extends React.PureComponent
       td className: osu.classWithModifiers(cell, ['rank']), "##{index+1}"
 
       td className: osu.classWithModifiers(cell, ["grade"]),
-        div className: "score-rank score-rank--tiny score-rank--#{score.rank}"
+        div className: "badge-rank badge-rank--tiny badge-rank--#{score.rank}"
 
       td className: osu.classWithModifiers(cell, ["score"]),
         osu.formatNumber(score.score)

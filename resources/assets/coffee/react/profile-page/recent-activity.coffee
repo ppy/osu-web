@@ -128,7 +128,7 @@ export class RecentActivity extends React.PureComponent
         badge = div
           className: "profile-extra-entries__icon"
           div
-            className: "score-rank score-rank--#{event.scoreRank}"
+            className: "score-rank-v2 score-rank-v2--#{event.scoreRank}"
 
         text = div
           className: 'profile-extra-entries__text'

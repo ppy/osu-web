@@ -32,5 +32,5 @@ export class RankCount extends React.PureComponent
       key: name
       className: 'profile-rank-count__item'
       div
-        className: "score-rank score-rank--#{name} score-rank--profile-page"
+        className: "score-rank-v2 score-rank-v2--#{name} score-rank-v2--profile-page"
       osu.formatNumber(@props.stats.scoreRanks[name])

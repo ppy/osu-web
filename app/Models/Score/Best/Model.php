@@ -57,6 +57,8 @@ abstract class Model extends BaseModel
         if ($this->replay) {
             return new ReplayFile($this);
         }
+
+        return null;
     }
 
     public function weightedPp()
