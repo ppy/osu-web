@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Builder;
 /**
  * @property Channel $channel
  * @property int $channel_id
+ * @property bool $hidden
  * @property int|null $last_read_id
  * @property User $user
  * @property User $userScoped
@@ -59,6 +60,7 @@ class UserChannel extends Model
 
         // retrieve all the channels the user is in and the metadata for each
         $userChannels = self::where('user_channels.user_id', $userId)
+            ->where('hidden', false)
             ->join('channels', 'channels.channel_id', '=', 'user_channels.channel_id')
             ->selectRaw('channels.*')
             ->selectRaw('user_channels.last_read_id')

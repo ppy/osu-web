@@ -44,11 +44,19 @@ class ChatController extends Controller
             abort(422);
         }
 
+        $presence = self::presence();
+
         $since = Request::input('since');
         $limit = clamp(get_int(Request::input('limit')) ?? 50, 1, 50);
 
+        // this is used to filter out messages from restricted users/etc
+        $channelIds = array_map(function ($e) {
+            return $e['channel_id'];
+        }, $presence);
+
         $messages = Message::forUser(Auth::user())
             ->with('sender')
+            ->whereIn('channel_id', $channelIds)
             ->since($since)
             ->limit($limit);
 
@@ -63,7 +71,7 @@ class ChatController extends Controller
         }
 
         $response = [
-            'presence' => self::presence(),
+            'presence' => $presence,
             'messages' => json_collection(
                 $messages,
                 'Chat\Message',
@@ -111,11 +119,6 @@ class ChatController extends Controller
 
                 return $channel;
             });
-        } else {
-            UserChannel::firstOrCreate([
-                'user_id' => Auth::user()->user_id,
-                'channel_id' => $channel->channel_id,
-            ]);
         }
 
         try {
