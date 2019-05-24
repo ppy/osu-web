@@ -5,7 +5,7 @@ var shell = require('gulp-shell');
 var Task = elixir.Task;
 var path = require('path');
 
-/*s
+/*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
  |--------------------------------------------------------------------------
