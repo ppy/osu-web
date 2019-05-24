@@ -47,7 +47,7 @@ export class Content extends React.PureComponent
     if snapshot.reference?
       snapshot.referenceTop = snapshot.reference.getBoundingClientRect().top
 
-    if osu.bottomPageDistance() < 300 && prevProps.isAutoloading && @props.isAutoloading
+    if osu.bottomPageDistance() < 10 && prevProps.isAutoloading && @props.isAutoloading
       snapshot.scrollToLastEvent = true
 
     snapshot
