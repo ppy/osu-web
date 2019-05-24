@@ -33,6 +33,8 @@ return [
         'es_cache_duration' => get_float(env('BEATMAPSET_ES_CACHE_DURATION')) ?? 1.0,
         'favourite_limit' => intval(env('BEATMAPSET_USER_FAVOURITE_LIMIT', 100)),
         'favourite_limit_supporter' => intval(env('BEATMAPSET_USER_FAVOURITE_LIMIT_SUPPORTER', 1000)),
+        'rank_per_day' => get_int(env('BEATMAPSET_RANK_PER_DAY')) ?? 8,
+        'rank_per_run' => get_int(env('BEATMAPSET_RANK_PER_RUN')) ?? 2,
         'required_hype' => get_int(env('BEATMAPSET_REQUIRED_HYPE')) ?? 5,
         'storage' => env('BEATMAPSET_STORAGE'),
         'user_daily_nominations' => get_int(env('BEATMAPSET_USER_DAILY_NOMINATIONS', 10)) ?? 10,

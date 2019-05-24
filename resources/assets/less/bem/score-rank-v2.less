@@ -16,21 +16,38 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-interface CategoryMap {
-  [key: string]: string;
-}
+.score-rank-v2 {
+  width: 2em;
+  height: 1em;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 
-export const nameToCategory: CategoryMap = {
-  beatmapset_discussion_lock: 'beatmapset_discussion',
-  beatmapset_discussion_post_new: 'beatmapset_discussion',
-  beatmapset_discussion_unlock: 'beatmapset_discussion',
-  beatmapset_disqualify: 'beatmapset_state',
-  beatmapset_love: 'beatmapset_state',
-  beatmapset_nominate: 'beatmapset_state',
-  beatmapset_qualify: 'beatmapset_state',
-  beatmapset_rank: 'beatmapset_state',
-  beatmapset_reset_nominations: 'beatmapset_state',
-  channel_message: 'channel',
-  forum_topic_reply: 'forum_topic_reply',
-  legacy_pm: 'legacy_pm',
-};
+  .all(@rank, @prefix) {
+    &--@{rank} {
+      .bg(@prefix);
+    }
+  }
+
+  .bg(@filename) {
+    .at2x-simple("/images/badges/score-ranks-v2/@{filename}.png");
+  }
+
+  .all(XH, "SS+");
+  .all(X, "SS");
+  .all(SH, "S+");
+  .all(S, "S");
+  .all(A, "A");
+  .all(B, "B");
+  .all(C, "C");
+  .all(D, "F");
+
+  &--full {
+    .full-size();
+  }
+
+  &--profile-page {
+    font-size: 28px; // icon size
+  }
+}
