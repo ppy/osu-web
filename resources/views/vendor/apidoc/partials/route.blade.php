@@ -10,8 +10,6 @@
 @if($route['title'] != '')## {{ $route['title']}}
 @else## {{$route['uri']}}@endif
 
-> Example request:
-
 @foreach($settings['languages'] as $language)
 @include("apidoc::partials.example-requests.$language")
 
