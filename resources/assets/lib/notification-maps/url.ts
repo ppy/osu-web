@@ -50,6 +50,8 @@ export function urlSingular(item: Notification) {
         beatmapsetId: item.objectId,
         discussionId: item.details.discussionId,
       });
+    case 'beatmapset_rank':
+      return laroute.route('beatmapsets.show', { beatmapset: item.objectId });
     case 'channel_message':
       return laroute.route('chat.index', { sendto: item.sourceUserId });
     case 'forum_topic_reply':

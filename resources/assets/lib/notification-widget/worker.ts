@@ -73,6 +73,8 @@ export default class Worker {
   userId: number | null = null;
   @observable private active: boolean = false;
   @observable private items = observable.map<number, Notification>();
+  private refreshing = false;
+  private needsRefresh = false;
   private timeout: TimeoutCollection = {};
   private endpoint?: string;
   private ws: WebSocket | null | undefined;
@@ -82,16 +84,11 @@ export default class Worker {
     this.active = this.userId != null;
     this.updatePmNotification();
     this.loadMore();
-    this.connectWebSocket();
     $(document).on('turbolinks:load', this.updatePmNotification);
   }
 
   connectWebSocket = () => {
     if (!this.active || this.endpoint == null || this.ws != null) {
-      return;
-    }
-
-    if (this.endpoint == null) {
       return;
     }
 
@@ -112,6 +109,7 @@ export default class Worker {
       endpoint = `${protocol}//${window.location.host}${endpoint}`;
     }
     this.ws = new WebSocket(`${endpoint}?csrf=${token}`);
+    this.ws.onopen = () => this.refresh();
     this.ws.onclose = this.delayedConnectWebSocket;
     this.ws.onmessage = this.handleNewEvent;
   }
@@ -122,7 +120,10 @@ export default class Worker {
     }
 
     this.ws = null;
-    this.timeout.connectWebSocket = setTimeout(this.connectWebSocket, 10000);
+    this.timeout.connectWebSocket = setTimeout(() => {
+      this.needsRefresh = true;
+      this.connectWebSocket();
+    }, 10000);
   }
 
   delayedRetryInitialLoadMore = () => {
@@ -212,6 +213,38 @@ export default class Worker {
     }
   }
 
+  refresh = (maxId?: number) => {
+    if (!this.active || this.refreshing || !this.needsRefresh) {
+      return;
+    }
+
+    this.refreshing = true;
+
+    const params = { with_read: true, max_id: maxId };
+
+    this.xhr.refresh = $.get(laroute.route('notifications.index'), params)
+      .always(() => {
+        this.refreshing = false;
+        this.needsRefresh = false;
+      }).done((bundleJson: NotificationBundleJson) => {
+        const oldestNotification = _.minBy(bundleJson.notifications, 'id');
+        const minLoadedId = this.minLoadedId;
+
+        bundleJson.notifications.forEach(this.updateFromServer);
+        this.actualUnreadCount = bundleJson.unread_count;
+        this.hasMore = bundleJson.has_more;
+
+        if (bundleJson.has_more &&
+          oldestNotification != null &&
+          minLoadedId != null &&
+          oldestNotification.id > minLoadedId
+        ) {
+          this.needsRefresh = true;
+          this.refresh(oldestNotification.id - 1);
+        }
+      });
+  }
+
   sendMarkRead = (ids: number[]) => {
     const key = `sendMarkRead:${ids.join(':')}`;
 
@@ -299,6 +332,6 @@ export default class Worker {
       ret++;
     }
 
-    return ret;
+    return Math.max(ret, 0);
   }
 }

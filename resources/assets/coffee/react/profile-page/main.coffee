@@ -296,7 +296,7 @@ export class Main extends React.PureComponent
         component: AccountStanding
 
 
-  showMore: (e, {name, url, perPage = 20}) =>
+  showMore: (e, {name, url, perPage = 50}) =>
     offset = @state[name].length
 
     paginationState = _.cloneDeep @state.showMorePagination

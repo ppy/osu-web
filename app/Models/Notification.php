@@ -31,6 +31,7 @@ class Notification extends Model
     const BEATMAPSET_LOVE = 'beatmapset_love';
     const BEATMAPSET_NOMINATE = 'beatmapset_nominate';
     const BEATMAPSET_QUALIFY = 'beatmapset_qualify';
+    const BEATMAPSET_RANK = 'beatmapset_rank';
     const BEATMAPSET_RESET_NOMINATIONS = 'beatmapset_reset_nominations';
     const CHANNEL_MESSAGE = 'channel_message';
     const FORUM_TOPIC_REPLY = 'forum_topic_reply';

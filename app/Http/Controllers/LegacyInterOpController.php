@@ -27,6 +27,7 @@ use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Event;
+use App\Models\Forum;
 use App\Models\NewsPost;
 use App\Models\Notification;
 use App\Models\User;
@@ -45,6 +46,28 @@ class LegacyInterOpController extends Controller
         $this->dispatch($job);
 
         return ['success' => true];
+    }
+
+    public function generateNotification()
+    {
+        $params = request()->all();
+
+        if (!isset($params['name'])) {
+            abort(422, 'missing notification name');
+        }
+
+        if ($params['name'] === Notification::FORUM_TOPIC_REPLY) {
+            $post = Forum\Post::find($params['post_id'] ?? null);
+            $user = optional($post)->user;
+
+            if ($post === null || $user === null) {
+                abort(422, 'post is missing or it contains invalid user');
+            }
+
+            broadcast_notification($params['name'], $post, $user);
+
+            return response(null, 204);
+        }
     }
 
     public function news()

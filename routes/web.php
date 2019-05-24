@@ -362,6 +362,13 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth:api', 'r
         Route::get('me', 'UsersController@me');
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck');
+
+        // Notifications
+        //  GET /api/v2/notifications
+        Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
+        //  POST /api/v2/notifications/mark-read
+        Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
+
         //  GET /api/v2/rankings/:mode/:type
         Route::get('rankings/{mode}/{type}', 'RankingController@index');
 
@@ -391,6 +398,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth:api', 'r
 
 // Callbacks for legacy systems to interact with
 Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
+    Route::post('generate-notification', 'LegacyInterOpController@generateNotification');
     Route::post('/refresh-beatmapset-cache/{beatmapset}', 'LegacyInterOpController@refreshBeatmapsetCache');
     Route::post('/regenerate-beatmapset-covers/{beatmapset}', 'LegacyInterOpController@regenerateBeatmapsetCovers');
     Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'LegacyInterOpController@userAchievement')->name('lio.user-achievement');
