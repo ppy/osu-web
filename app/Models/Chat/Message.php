@@ -57,7 +57,7 @@ class Message extends Model
     {
         $channelIds = UserChannel::where([
             'user_id' => $user->user_id,
-            'hidden' => false
+            'hidden' => false,
         ])->pluck('channel_id');
 
         return $query->whereIn('channel_id', $channelIds)

@@ -341,7 +341,7 @@ class ChatControllerTest extends TestCase
             )->assertStatus(200);
 
         $presenceData = $response->decodeResponseJson();
-        $channelId = $presenceData["new_channel_id"];
+        $channelId = $presenceData['new_channel_id'];
 
         // leave PM with $this->anotherUser
         $this->actAsScopedUser($this->user, ['*']);
@@ -440,12 +440,12 @@ class ChatControllerTest extends TestCase
             )->assertStatus(200);
 
         $presenceData = $response->decodeResponseJson();
-        $channelId = $presenceData["new_channel_id"];
+        $channelId = $presenceData['new_channel_id'];
 
         // create reply
         $publicMessage = factory(Chat\Message::class)->create([
             'user_id' => $this->anotherUser->user_id,
-            'channel_id' => $channelId
+            'channel_id' => $channelId,
         ]);
 
         // ensure reply is visible

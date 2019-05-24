@@ -21,7 +21,7 @@ import {
   ChatMessageAddAction,
   ChatMessageSendAction,
   ChatMessageUpdateAction,
-  ChatPresenceUpdateAction
+  ChatPresenceUpdateAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';

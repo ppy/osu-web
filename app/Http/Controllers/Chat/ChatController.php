@@ -50,7 +50,9 @@ class ChatController extends Controller
         $limit = clamp(get_int(Request::input('limit')) ?? 50, 1, 50);
 
         // this is used to filter out messages from restricted users/etc
-        $channelIds = array_map(function($e) { return $e['channel_id']; }, $presence);
+        $channelIds = array_map(function ($e) {
+            return $e['channel_id'];
+        }, $presence);
 
         $messages = Message::forUser(Auth::user())
             ->with('sender')

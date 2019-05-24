@@ -38,7 +38,7 @@ class MessagesController extends BaseController
         $userChannel = UserChannel::where([
             'user_id' => $userId,
             'channel_id' => $channelId,
-            'hidden' => false
+            'hidden' => false,
         ])->firstOrFail();
 
         if ($userChannel->channel->isPM()) {

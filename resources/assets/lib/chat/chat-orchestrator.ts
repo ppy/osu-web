@@ -19,7 +19,7 @@
 import {
   ChatChannelPartAction,
   ChatChannelSwitchAction,
-  ChatPresenceUpdateAction
+  ChatPresenceUpdateAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
@@ -52,7 +52,7 @@ export default class ChatOrchestrator implements DispatchListener {
     } else if (action instanceof ChatChannelPartAction) {
       this.partChannel(action.channelId);
     } else if (action instanceof ChatPresenceUpdateAction) {
-      if (this.rootDataStore.uiState.chat.selected == -1) {
+      if (this.rootDataStore.uiState.chat.selected === -1) {
         this.focusNextChannel();
       }
     } else if (action instanceof WindowFocusAction) {

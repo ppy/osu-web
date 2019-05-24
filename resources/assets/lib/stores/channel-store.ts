@@ -20,7 +20,7 @@ import {
   ChatMessageAddAction,
   ChatMessageSendAction,
   ChatMessageUpdateAction,
-  ChatPresenceUpdateAction
+  ChatPresenceUpdateAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';

@@ -17,8 +17,8 @@
  */
 // tslint:disable:max-classes-per-file
 import Message from 'models/chat/message';
+import {PresenceJSON} from '../chat/chat-api-responses';
 import DispatcherAction from './dispatcher-action';
-import {PresenceJSON} from "../chat/chat-api-responses";
 
 export class ChatChannelSwitchAction implements DispatcherAction {
   constructor(public channelId: number) {

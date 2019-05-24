@@ -156,7 +156,7 @@ class Channel extends Model
 
         $userChannel = UserChannel::where([
             'channel_id' => $this->channel_id,
-            'user_id' => $sender->user_id
+            'user_id' => $sender->user_id,
         ])->first();
 
         if ($userChannel) {
