@@ -62,7 +62,7 @@ class ModdingRankCommand extends Command
     {
         $this->info('Ranking beatmapsets with at least mode: '.Beatmap::modeStr($modeInt));
 
-        $rankedTodayCount = Beatmapset::rankedOrApproved()
+        $rankedTodayCount = Beatmapset::ranked()
             ->withoutTrashed()
             ->withModesForRanking($modeInt)
             ->where('approved_date', '>=', now()->subDay())
