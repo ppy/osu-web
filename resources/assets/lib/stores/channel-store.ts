@@ -116,11 +116,7 @@ export default class ChannelStore implements DispatchListener {
 
   @computed
   get channelList(): Channel[] {
-    let channels: Channel[] = [];
-    channels = channels.concat(this.nonPmChannels);
-    channels = channels.concat(this.pmChannels);
-
-    return channels;
+    return [...this.nonPmChannels, ...this.pmChannels];
   }
 
   @action
