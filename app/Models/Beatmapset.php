@@ -185,13 +185,6 @@ class Beatmapset extends Model implements AfterCommit
         }
     }
 
-    public function scopeRankable($query)
-    {
-        return $query->qualified()
-            ->where('approved_date', '>', DB::raw('date_sub(now(), interval 30 day)'))
-            ->get();
-    }
-
     /**
      * Includes if player has completed the set in a given playmode
      * Returns the count of beatmaps in the set that were completed
@@ -285,6 +278,19 @@ class Beatmapset extends Model implements AfterCommit
     public function scopeActive($query)
     {
         return $query->where('active', '=', true);
+    }
+
+    public function scopeWithModesForRanking($query, $modeInts)
+    {
+        if (!is_array($modeInts)) {
+            $modeInts = [$modeInts];
+        }
+
+        $query->whereHas('beatmaps', function ($query) use ($modeInts) {
+            $query->whereIn('playmode', $modeInts);
+        })->whereDoesntHave('beatmaps', function ($query) use ($modeInts) {
+            $query->where('playmode', '<', min($modeInts));
+        });
     }
 
     // one-time checks
@@ -884,12 +890,7 @@ class Beatmapset extends Model implements AfterCommit
         $modes = $this->playmodes()->toArray();
 
         $queueSize = static::qualified()
-            ->whereHas('beatmaps', function ($query) use ($modes) {
-                $query->whereIn('playmode', $modes);
-            })
-            ->whereDoesntHave('beatmaps', function ($query) use ($modes) {
-                $query->where('playmode', '<', min($modes));
-            })
+            ->withModesForRanking($modes)
             ->where('queued_at', '<', $this->queued_at)
             ->count();
         $days = ceil($queueSize / static::RANKED_PER_DAY);
