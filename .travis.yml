@@ -77,6 +77,7 @@ jobs:
     - name: apidoc
       env:
         - OSU_SKIP_ASSET_BUILD=1
+        - APP_URL=${TRAVIS_APIDOC_APP_URL}
       script:
         - php artisan apidoc:generate
       before_deploy:
