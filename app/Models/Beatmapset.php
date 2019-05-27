@@ -963,6 +963,7 @@ class Beatmapset extends Model implements AfterCommit
     {
         return json_item(
             static::with([
+                'allBeatmaps.beatmapset',
                 'beatmapDiscussions.beatmapDiscussionPosts',
                 'beatmapDiscussions.beatmapDiscussionVotes',
                 'beatmapDiscussions.beatmapset',
