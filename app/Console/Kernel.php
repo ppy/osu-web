@@ -63,6 +63,9 @@ class Kernel extends ConsoleKernel
         // fix username change fail :D
         Commands\FixUsernameChangeTopicCache::class,
 
+        // fix userchannel deletion fail
+        Commands\FixMissingUserChannels::class,
+
         Commands\UserBestScoresCheckCommand::class,
         Commands\UserRecalculateRankCounts::class,
     ];
