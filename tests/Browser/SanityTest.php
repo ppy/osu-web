@@ -333,10 +333,7 @@ class SanityTest extends DuskTestCase
 
     public function checkAdminPermission(Browser $browser, \Illuminate\Routing\Route $route)
     {
-        $adminRestricted = [
-            'comments.index',
-            'comments.show',
-        ];
+        $adminRestricted = [];
 
         if (starts_with($route->uri, 'admin') || in_array($route->getName(), $adminRestricted, true)) {
             // TODO: retry and check page as admin? (will affect subsequent tests though, so figure out how to deal with that..)

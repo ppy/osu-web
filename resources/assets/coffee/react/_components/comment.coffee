@@ -154,12 +154,11 @@ export class Comment extends React.PureComponent
               className: 'comment__row-item comment__row-item--info'
               dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
 
-            if @canModerate()
-              div className: 'comment__row-item',
-                a
-                  href: laroute.route('comments.show', comment: @props.comment.id)
-                  className: 'comment__action comment__action--permalink'
-                  osu.trans('common.buttons.permalink')
+            div className: 'comment__row-item',
+              a
+                href: laroute.route('comments.show', comment: @props.comment.id)
+                className: 'comment__action comment__action--permalink'
+                osu.trans('common.buttons.permalink')
 
             if @props.showReplies && !@isDeleted()
               div className: 'comment__row-item',

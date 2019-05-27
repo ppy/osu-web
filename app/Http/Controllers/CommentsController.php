@@ -59,10 +59,6 @@ class CommentsController extends Controller
 
     public function index()
     {
-        if (!request()->expectsJson()) {
-            priv_check('CommentModerate')->ensureCan();
-        }
-
         $type = request('commentable_type');
         $id = request('commentable_id');
 
@@ -132,8 +128,6 @@ class CommentsController extends Controller
 
     public function show($id)
     {
-        priv_check('CommentModerate')->ensureCan();
-
         $comment = Comment::findOrFail($id);
 
         $commentBundle = new CommentBundle($comment->commentable, [
