@@ -67,6 +67,25 @@ class Event extends Model
     public static function generate($type, $options)
     {
         switch ($type) {
+            case 'achievement':
+                $achievement = $options['achievement'];
+                $user = $options['user'];
+
+                // not escaped because it's not in the old system either
+                $achievementName = $achievement->name;
+                $userUrl = e(route('users.show', $user, false));
+                $userName = e($user->username);
+
+                $params = [
+                    // taken from medal
+                    'text' => "<b><a href='{$userUrl}'>{$userName}</a></b> unlocked the \"<b>{$achievementName}</b>\" medal!",
+                    'user_id' => $user->getKey(),
+                    'private' => false,
+                    'epicfactor' => 4,
+                ];
+
+                break;
+
             case 'beatmapsetApprove':
                 $beatmapset = $options['beatmapset'];
 
