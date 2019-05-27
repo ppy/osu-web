@@ -34,7 +34,13 @@ export class Main extends React.Component<Props> {
   readonly backToTop = React.createRef<BackToTop>();
   readonly backToTopAnchor = React.createRef<HTMLElement>();
   readonly debouncedSearch = debounce(uiState.search.bind(uiState), 500);
+  readonly debouncedUpdateUrl = debounce(this.updateUrl, 500);
   readonly observerDisposers: Lambda[] = [];
+
+  updateUrl() {
+    const url = encodeURI(laroute.route('beatmapsets.index', BeatmapsetFilter.queryParamsFromFilters(uiState.filters)));
+    Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
+  }
 
   constructor(props: Props) {
     super(props);
@@ -53,13 +59,21 @@ export class Main extends React.Component<Props> {
 
     this.observerDisposers.push(
       observe(uiState, 'filters', (change) => {
-        if (!isEqual(change.oldValue, change.newValue)) {
-          const url = encodeURI(laroute.route('beatmapsets.index', BeatmapsetFilter.queryParamsFromFilters(uiState.filters)));
-          Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
-          uiState.prepareToSearch();
-
-          this.debouncedSearch();
+        if (isEqual(change.oldValue, change.newValue)) {
+          return;
         }
+
+        // if only query has changed, debounce url update;
+        // else update immediately
+        // TODO: this works but the timing seems illogical?
+        if (change.oldValue!.query !== change.newValue.query) {
+          this.debouncedUpdateUrl();
+        } else {
+          this.updateUrl();
+        }
+
+        uiState.prepareToSearch();
+        this.debouncedSearch();
       }),
     );
 
