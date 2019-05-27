@@ -55,6 +55,7 @@ export class Main extends React.PureComponent
             showCommentableMeta: true
             linkParent: true
             depth: 0
+            modifiers: ['dark']
 
         div ref: @pagination
 

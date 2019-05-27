@@ -48,6 +48,11 @@
     border-bottom-color: @changelog-border-bg;
   }
 
+  &--dark {
+    color: @comment-dark-fg;
+    border-bottom-color: @comment-dark-border-bg;
+  }
+
   &__action {
     .reset-input();
     .link-default();
@@ -68,6 +73,10 @@
     .@{_top}--changelog & {
       .link-blue-light();
     }
+
+    .@{_top}--dark & {
+      .link-blue-light();
+    }
   }
 
   &__avatar {
@@ -75,6 +84,10 @@
     height: @_avatar;
     margin-right: @_avatar-margin;
     flex: none;
+  }
+
+  &__commentable-meta-icon {
+    font-size: 0.9em;
   }
 
   &__container {
@@ -125,6 +138,10 @@
 
   &__link {
     .@{_top}--changelog & {
+      .link-blue-light();
+    }
+
+    .@{_top}--dark & {
       .link-blue-light();
     }
   }
@@ -184,6 +201,18 @@
         .link-blue-light();
       }
     }
+
+    .@{_top}--dark & {
+      color: inherit;
+
+      a {
+        .link-blue-light();
+      }
+
+      blockquote {
+        border-left-color: @comment-dark-border-bg;
+      }
+    }
   }
 
   &__replies {
@@ -228,6 +257,7 @@
 
     &--commentable-meta {
       font-style: normal;
+      font-size: 0.8em;
     }
 
     &--info {
@@ -240,6 +270,10 @@
 
     &--username-link {
       .@{_top}--changelog & {
+        .link-blue-light();
+      }
+
+      .@{_top}--dark & {
         .link-blue-light();
       }
     }
