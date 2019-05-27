@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,30 +16,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+import Notification from 'models/notification';
 
-/**
- * @property Achievement $achievement
- * @property int $achievement_id
- * @property \Carbon\Carbon $date
- * @property User $user
- * @property int $user_id
- */
-class UserAchievement extends Model
-{
-    protected $table = 'osu_user_achievements';
+export function displayType(item: Notification) {
+  if (item.objectType == null || item.objectId == null) {
+    return;
+  }
 
-    protected $primaryKeys = ['user_id', 'achievement_id'];
-    protected $dates = ['date'];
-    public $timestamps = false;
+  if (item.name === 'user_achievement_unlock') {
+    return 'user_achievement';
+  }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function achievement()
-    {
-        return $this->belongsTo(Achievement::class, 'achievement_id');
-    }
+  return item.objectType;
 }

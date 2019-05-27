@@ -56,5 +56,7 @@ export function urlSingular(item: Notification) {
       return laroute.route('chat.index', { sendto: item.sourceUserId });
     case 'forum_topic_reply':
       return laroute.route('forum.posts.show', { post: item.details.postId });
+    case 'user_achievement_unlock':
+      return `${laroute.route('users.show', { user: item.details.userId })}#medals`;
   }
 }
