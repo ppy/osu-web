@@ -127,8 +127,8 @@ return [
             'modding-history-posts' => 'käyttäjän modausviestit',
             'modding-history-votesGiven' => 'käyttäjän antamat modausäänet',
             'modding-history-votesReceived' => 'käyttäjän saamat modausäänet',
-            'oauth_login' => '',
-            'oauth_request' => '',
+            'oauth_login' => 'oauth kirjautuminen',
+            'oauth_request' => 'oauth yhdistäminen',
             'settings' => 'Asetukset',
         ],
         'store' => [
@@ -256,7 +256,7 @@ return [
             'account-edit' => 'Asetukset',
             'friends' => 'Kaverit',
             'logout' => 'Kirjaudu ulos',
-            'profile' => 'Profiili',
+            'profile' => 'Profiilini',
         ],
     ],
 

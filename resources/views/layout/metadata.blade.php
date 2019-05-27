@@ -64,13 +64,15 @@
 
 <script src="{{ mix("js/vendor.js") }}" data-turbolinks-track="reload"></script>
 @if(config('services.sentry.public_dsn') !== '')
-    <script src="//cdn.ravenjs.com/3.17.0/raven.min.js" crossorigin="anonymous"></script>
+    <script src="https://browser.sentry-cdn.com/5.1.0/bundle.min.js" crossorigin="anonymous"></script>
     <script>
-        var ravenOptions = {
-            release: '{{ config('osu.git-sha') }}',
+        Sentry.init({
+            debug: {!! json_encode(config('app.debug')) !!},
+            dsn: {!! json_encode(config('services.sentry.public_dsn')) !!},
             ignoreErrors: [
                 // Random plugins/extensions
-                'top.GLOBALS'
+                'top.GLOBALS',
+                /class is a reserved identifier$/
             ],
             ignoreUrls: [
                 // Chrome/Firefox extensions
@@ -79,10 +81,10 @@
                 /^resource:\/\//i,
                 // Errors caused by spyware/adware junk
                 /^\/loaders\//i
-            ]
-        }
-        Raven.config('{{ config('services.sentry.public_dsn') }}', ravenOptions).install();
-        Raven.setUserContext({lang: currentLocale});
+            ],
+            release: {!! json_encode(config('osu.git-sha')) !!},
+            whitelistUrls: [/^{!! preg_quote(config('app.url'), '/') !!}\/.*\.js(?:\?.*)?$/],
+        });
     </script>
 @endif
 <script src="{{ mix("js/app-deps.js") }}" data-turbolinks-track="reload"></script>

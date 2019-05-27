@@ -101,9 +101,9 @@ return [
 
         'sort' => [
             '_' => 'Sắp xếp bởi:',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'created_at' => 'Thời gian tạo',
+            'timeline' => 'Timeline',
+            'updated_at' => 'Cập nhật lần cuối',
         ],
 
         'stats' => [
@@ -194,16 +194,16 @@ return [
                 'played' => 'Đã chơi',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'favourites' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'Tiêu đề',
+                'artist' => 'Nghệ sĩ',
+                'difficulty' => 'Độ khó',
+                'favourites' => 'Số yêu thích',
+                'updated' => 'Ngày cập nhật',
+                'ranked' => 'Ngày xếp hạng',
+                'rating' => 'Đánh giá',
+                'plays' => 'Lượt chơi',
+                'relevance' => 'Độ liên quan',
+                'nominations' => 'Số đề cử',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Lọc theo :filters cần một :link đang hoạt động',
@@ -304,7 +304,7 @@ return [
         'D' => 'D',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => 'Số lượt chơi: :count',
+        'favourites' => 'Yêu thích: :count',
     ],
 ];

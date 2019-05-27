@@ -128,8 +128,8 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '最新のRanked譜面',
-            'popular' => '人気の譜面',
+            'new' => '最新のRankedビートマップ',
+            'popular' => '人気のビートマップ',
             'by' => 'by',
             'plays' => ':count plays',
         ],

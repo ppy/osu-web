@@ -26,12 +26,12 @@ return [
     'cart' => [
         'checkout' => 'Gå til kassen',
         'more_goodies' => 'Jeg vil se på flere produkter før jeg fullfører bestillingen',
-        'shipping_fees' => 'estimert frakt',
+        'shipping_fees' => 'fraktkostnader',
         'title' => 'Handlevogn',
         'total' => 'total sum',
 
         'errors_no_checkout' => [
-            'line_1' => 'Det er et problem med handlevognen som forhindrer deg i å gå til kassen!',
+            'line_1' => 'Åh nei, det er problemer med handlevognen som forhindrer deg i å gå til kassen!',
             'line_2' => 'Fjern eller oppdater produktene ovenfor for å fortsette.',
         ],
 
@@ -45,10 +45,10 @@ return [
     ],
 
     'checkout' => [
-        'cart_problems' => 'Det er et problem med handlevognen din!',
+        'cart_problems' => 'Åh nei, det er et problem med handlevognen din!',
         'cart_problems_edit' => 'Trykk her for å endre den.',
         'declined' => 'Betalingen ble avbrutt.',
-        'delayed_shipping' => 'Vi er for tiden overveldet av ordre! Du er velkommen til å bestille, men vennligst ta til hensyn at bestillingen kan ta **ytterlige 1-2 uke lenger** mens vi fanger opp til de eksisterende ordrene.',
+        'delayed_shipping' => 'Vi er for tiden overveldet av bestillinger! Du er velkommen til å bestille, men vennligst ta hensyn til at bestillingen kan ta **ytterlige 1-2 uke lenger** mens vi fullfører de eksisterende bestillingene.',
         'old_cart' => 'Det ser ut til at handlevognen din er utdatert og har blitt oppdatert, prøv igjen.',
         'pay' => 'Betal med Paypal',
 
@@ -63,14 +63,14 @@ return [
         ],
     ],
 
-    'discount' => 'lagre :percent%',
+    'discount' => 'spar :percent%',
 
     'invoice' => [
-        'echeck_delay' => 'Ettersom betalingen din var en eCheck, vennligst tillat opp til 10 ekstra dager for at betalingen skal kunne komme gjennom PayPal!',
+        'echeck_delay' => 'Ettersom betalingen din var en eCheck, vennligst tillatt opp til 10 ekstra dager for at betalingen skal kunne komme gjennom PayPal!',
         'status' => [
             'processing' => [
                 'title' => 'Din betaling har enda ikke blitt bekreftet!',
-                'line_1' => 'Hvis du allerede har betalt, kan det fortsatt hende at vi venter på en bekreftelse av betalingen din. Vennligst oppdater denne siden om et minutt eller to!',
+                'line_1' => 'Hvis du allerede har betalt, kan det fortsatt hende at vi venter på en bekreftelse på betalingen din. Vennligst oppdater denne siden om et minutt eller to!',
                 'line_2' => [
                     '_' => 'Hvis du støtte på et problem under utsjekking, :link',
                     'link_text' => 'klikk her for å fortsette utsjekkingen',
@@ -89,7 +89,7 @@ return [
         'paid_on' => 'Bestilling plassert den :date',
 
         'invoice' => 'Vis faktura',
-        'no_orders' => 'Ingen ordre å vise.',
+        'no_orders' => 'Ingen bestillinger å vise.',
         'resume' => 'Tilbake til kassen',
 
         'item' => [
@@ -124,10 +124,10 @@ return [
 
         'stock' => [
             'out' => 'Denne varen er for øyeblikket utsolgt. Sjekk tilbake senere!',
-            'out_with_alternative' => 'Dessverre er denne varen utsolgt. Bruk rullegardinlisten til å velge en annen type vare eller sjekk tilbake senere!',
+            'out_with_alternative' => 'Dessverre er denne varen utsolgt. Bruk rullegardinlisten for å velge en annen type vare eller sjekk tilbake senere!',
         ],
 
-        'add_to_cart' => 'Legg i Handlekurv',
+        'add_to_cart' => 'Legg til i Handlekurv',
         'notify' => 'Varsle meg når det blir tilgjengelig!',
 
         'notification_success' => 'du vil bli varslet når vi får mer på lager. klikk :link for å avbryte',

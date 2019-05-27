@@ -222,11 +222,16 @@ function html_excerpt($body, $limit = 300)
 {
     $body = html_entity_decode_better(replace_tags_with_spaces($body));
 
-    if (strlen($body) >= $limit) {
-        $body = mb_substr($body, 0, $limit).'...';
+    return e(truncate($body, $limit));
+}
+
+function truncate(String $text, $limit = 100, $ellipsis = '...')
+{
+    if (mb_strlen($text) > $limit) {
+        return mb_substr($text, 0, $limit - mb_strlen($ellipsis)).$ellipsis;
     }
 
-    return e($body);
+    return $text;
 }
 
 function json_date(?DateTime $date) : ?string

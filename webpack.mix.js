@@ -104,7 +104,7 @@ let webpackConfig = {
     splitChunks: {
       cacheGroups: {
         commons: {
-          name: "js/commons",
+          name: "/js/commons",
           chunks: "initial",
           minChunks: 2,
         }
@@ -203,6 +203,8 @@ mix
 .js(...reactComponentSet('contest-entry'))
 .js(...reactComponentSet('contest-voting'))
 .ts('resources/assets/lib/chat.ts', 'js/react/chat.js')
+.ts('resources/assets/lib/friends-index.ts', 'js/react/friends-index.js')
+.ts('resources/assets/lib/groups-show.ts', 'js/react/groups-show.js')
 .ts('resources/assets/lib/news-index.ts', 'js/react/news-index.js')
 .ts('resources/assets/lib/news-show.ts', 'js/react/news-show.js')
 .ts('resources/assets/lib/store-bootstrap.ts', 'js/store-bootstrap.js')

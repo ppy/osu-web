@@ -58,17 +58,17 @@ return [
 
         'signature' => [
             'title' => '署名',
-            'update' => '適用',
+            'update' => '更新',
         ],
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! メールアドレス変更の確認',
+        'email_subject' => 'メールアドレス変更の確認',
         'update' => '更新',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu!パスワード変更の確認',
+        'email_subject' => 'パスワード変更の確認',
         'update' => '更新',
     ],
 
@@ -89,7 +89,7 @@ return [
     'security' => [
         'current_session' => '現在',
         'end_session' => 'セッション終了',
-        'end_session_confirmation' => 'これによりこのデバイスでのセッションが終了します。本当によろしいですか?',
+        'end_session_confirmation' => 'このデバイスでのセッションが終了します。本当によろしいですか？',
         'last_active' => '最終ログイン：',
         'title' => 'セキュリティ',
         'web_sessions' => 'webセッション',

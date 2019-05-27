@@ -61,7 +61,7 @@ return [
 
     'card' => [
         'loading' => 'Loading...',
-        'send_message' => 'send message',
+        'send_message' => 'Send message',
     ],
 
     'login' => [
@@ -361,7 +361,9 @@ return [
             'total_score' => 'Total Score',
         ],
     ],
+
     'status' => [
+        'all' => 'All',
         'online' => 'Online',
         'offline' => 'Offline',
     ],

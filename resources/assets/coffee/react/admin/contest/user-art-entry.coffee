@@ -45,7 +45,7 @@ export class UserArtEntry extends React.Component
           dt className: 'admin-contest__meta-row', 'Filesize'
           dd className: 'admin-contest__meta-row', osu.formatBytes(@props.entry.filesize)
 
-        el Admin.Contest.UserEntryDeleteButton,
+        el UserEntryDeleteButton,
           entry: @props.entry
 
       td {},

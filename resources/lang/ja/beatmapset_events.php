@@ -20,7 +20,7 @@
 
 return [
     'event' => [
-        'approve' => '承認済み',
+        'approve' => 'Approved',
         'discussion_delete' => 'モデレーターが:discussionを削除しました。',
         'discussion_post_delete' => 'モデレーターが:discussionから投稿を削除しました。',
         'discussion_post_restore' => 'モデレーターが:discussionから投稿を復元しました。',
@@ -37,8 +37,8 @@ return [
         'love' => ':userがLovedに追加しました。',
         'nominate' => ':userがノミネートしました。',
         'nomination_reset' => '新しい問題:discussionによりノミネートがリセットされました。',
-        'qualify' => 'このビートマップは既に必要なノミネーション数に達しており、申請されています。',
-        'rank' => 'ランクされました。',
+        'qualify' => 'このビートマップは既に必要なノミネーション数に達しており、Qualifiedされています。',
+        'rank' => 'Rankedされました。',
     ],
 
     'index' => [
@@ -65,9 +65,9 @@ return [
         'disqualify' => 'Disqualification（申請取り消し）',
         'issue_reopen' => 'ディスカッションを再開する',
         'issue_resolve' => 'ディスカッションを解決する',
-        'kudosu_allow' => '許可したKudosu',
-        'kudosu_deny' => '拒否したKudosu',
-        'kudosu_gain' => 'Kudosuを獲得する',
+        'kudosu_allow' => 'Kudosuを許可',
+        'kudosu_deny' => 'Kudosuを拒否',
+        'kudosu_gain' => 'Kudosuを獲得',
         'kudosu_lost' => 'Kudosuを失う',
         'kudosu_recalculate' => 'Kudosuの再計算',
         'love' => 'Love',

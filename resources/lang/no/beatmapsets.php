@@ -21,7 +21,7 @@
 return [
     'availability' => [
         'disabled' => 'Dette beatmappet er for øyeblikket ikke tilgjengelig for nedlastning.',
-        'parts-removed' => 'Deler av dette beatmappet har blitt fjernet etter forespørsel fra skaperen eller en tredjepart rettighetshaver.',
+        'parts-removed' => 'Deler av dette beatmappet har blitt fjernet etter forespørsel av skaperen eller en tredjepart rettighetshaver.',
         'more-info' => 'Klikk her for mer informasjon.',
     ],
 
@@ -34,16 +34,16 @@ return [
         'discussion' => 'Diskusjon',
 
         'details' => [
-            'approved' => 'godjent på ',
+            'approved' => 'godjent den ',
             'favourite' => 'Marker dette beatmapsettet som en favoritt',
-            'favourited_count' => '+ 1 annen!|+ :count andre!',
+            'favourited_count' => '+ :count_delimited annen!|+ :count_delimited andre!',
             'logged-out' => 'Du må logge inn før du kan laste ned beatmaps!',
-            'loved' => 'elsket på ',
+            'loved' => 'elsket den ',
             'mapped_by' => 'mappet av :mapper',
-            'qualified' => 'kvalifisert på ',
-            'ranked' => 'rangert på ',
+            'qualified' => 'kvalifisert den ',
+            'ranked' => 'rangert den ',
             'submitted' => 'innsendt på ',
-            'unfavourite' => 'Fjern favorittmarkeringen på dette beatmapsettet',
+            'unfavourite' => 'Fjern dette beatmapsettet som en favoritt',
             'updated' => 'sist oppdatert på ',
             'updated_timeago' => 'sist oppdatert :timeago',
 
@@ -56,7 +56,7 @@ return [
 
             'login_required' => [
                 'bottom' => 'for å få tilgang til flere funksjoner',
-                'top' => 'Logg på',
+                'top' => 'Logg inn',
             ],
         ],
 
@@ -73,7 +73,7 @@ return [
                 'status' => [
                     'pending' => 'ventende',
                     'qualified' => 'kvalifisert',
-                    'wip' => 'arbeid pågår',
+                    'wip' => 'under konstruksjon',
                 ],
             ],
         ],
@@ -101,7 +101,7 @@ return [
 
             'headers' => [
                 'accuracy' => 'Presisjon',
-                'combo' => 'Maks Combo',
+                'combo' => 'Maks Kombo',
                 'miss' => 'Bom',
                 'mods' => 'Modifikasjoner',
                 'player' => 'Spiller',
@@ -130,7 +130,7 @@ return [
             'drain' => 'HP avløp',
             'accuracy' => 'Presisjon',
             'ar' => 'Tilnærmingsrate',
-            'stars' => 'Stjerne Vanskelighetsgrad',
+            'stars' => 'Vanskelighetsgrad (*)',
             'total_length' => 'Lengde',
             'bpm' => 'BPM',
             'count_circles' => 'Antall Sirkler',

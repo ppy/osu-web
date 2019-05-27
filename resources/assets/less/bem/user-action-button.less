@@ -56,6 +56,13 @@
     }
   }
 
+  &--user-card {
+    height: 26px;
+    width: 26px;
+    font-size: 13px;
+    border-radius: 50%;
+  }
+
   &--profile-page {
     .default-text-shadow();
     min-width: 80px;
@@ -82,6 +89,10 @@
     .full-size();
     .center-content();
     will-change: opacity;
+
+    .user-card & {
+      will-change: unset;
+    }
 
     &--hover-hidden {
       opacity: 1;

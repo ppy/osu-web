@@ -131,6 +131,10 @@
     </div>
 
     <div class="osu-page osu-page--small u-has-anchor">
+        @include('accounts._edit_notifications')
+    </div>
+
+    <div class="osu-page osu-page--small u-has-anchor">
         @include('accounts._edit_password')
     </div>
 

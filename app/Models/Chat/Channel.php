@@ -20,7 +20,9 @@
 
 namespace App\Models\Chat;
 
+use App\Events\UserSubscriptionChangeEvent;
 use App\Exceptions\API;
+use App\Models\Notification;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -60,7 +62,7 @@ class Channel extends Model
     {
         $messages = $this->messages();
 
-        if ($this->type === self::TYPES['public']) {
+        if ($this->isPublic()) {
             $messages = $messages->where('timestamp', '>', Carbon::now()->subHours(config('osu.chat.public_backlog_limit')));
         }
 
@@ -128,7 +130,7 @@ class Channel extends Model
         $sentMessages = Message::where('user_id', $sender->user_id)
             ->join('channels', 'channels.channel_id', '=', 'messages.channel_id');
 
-        if ($this->type === self::TYPES['pm']) {
+        if ($this->isPM()) {
             $limit = config('osu.chat.rate_limits.private.limit');
             $window = config('osu.chat.rate_limits.private.window');
             $sentMessages->where('type', self::TYPES['pm']);
@@ -152,9 +154,18 @@ class Channel extends Model
         $message->channel()->associate($this);
         $message->save();
 
-        $userChannel = UserChannel::where(['channel_id' => $this->channel_id, 'user_id' => $sender->user_id])->first();
+        $userChannel = UserChannel::where([
+            'channel_id' => $this->channel_id,
+            'user_id' => $sender->user_id,
+        ])->first();
+
         if ($userChannel) {
             $userChannel->update(['last_read_id' => $message->message_id]);
+        }
+
+        if ($this->isPM()) {
+            $this->unhide();
+            broadcast_notification(Notification::CHANNEL_MESSAGE, $message, $sender);
         }
 
         return $message;
@@ -162,22 +173,71 @@ class Channel extends Model
 
     public function addUser(User $user)
     {
-        $userChannel = new UserChannel();
-        $userChannel->user()->associate($user);
-        $userChannel->channel()->associate($this);
-        $userChannel->save();
+        $userChannel = UserChannel::where([
+            'channel_id' => $this->channel_id,
+            'user_id' => $user->user_id,
+        ])->first();
+
+        if ($userChannel) {
+            $userChannel->update(['hidden' => false]);
+        } else {
+            $userChannel = new UserChannel();
+            $userChannel->user()->associate($user);
+            $userChannel->channel()->associate($this);
+            $userChannel->save();
+        }
+
+        if ($this->isPM()) {
+            event(new UserSubscriptionChangeEvent('add', $user, $this));
+        }
     }
 
     public function removeUser(User $user)
     {
-        UserChannel::where([
+        $userChannel = UserChannel::where([
             'channel_id' => $this->channel_id,
             'user_id' => $user->user_id,
-        ])->delete();
+            'hidden' => false,
+        ])->first();
+
+        if (!$userChannel) {
+            return;
+        }
+
+        if ($this->isPM()) {
+            event(new UserSubscriptionChangeEvent('remove', $user, $this));
+            $userChannel->update(['hidden' => true]);
+        } else {
+            $userChannel->delete();
+        }
     }
 
     public function hasUser(User $user)
     {
-        return UserChannel::where(['channel_id' => $this->channel_id, 'user_id' => $user->user_id])->exists();
+        return UserChannel::where([
+            'channel_id' => $this->channel_id,
+            'user_id' => $user->user_id,
+            'hidden' => false,
+        ])->exists();
+    }
+
+    private function unhide()
+    {
+        if (!$this->isPM()) {
+            return;
+        }
+
+        $hiddenUserChannels = UserChannel::where([
+            'channel_id' => $this->channel_id,
+            'hidden' => true,
+        ]);
+
+        foreach ($hiddenUserChannels->get() as $userChannel) {
+            event(new UserSubscriptionChangeEvent('add', $userChannel->user, $this));
+        }
+
+        $hiddenUserChannels->update([
+            'hidden' => false,
+        ]);
     }
 }

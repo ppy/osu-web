@@ -19,14 +19,14 @@
  */
 
 return [
-    '_' => '',
+    '_' => 'Sắp xếp theo',
 
-    'new' => '',
-    'old' => '',
-    'top' => '',
+    'new' => 'Gần đây',
+    'old' => 'Cũ',
+    'top' => 'Hàng đầu',
 
     'forum_topics' => [
-        'new' => '',
-        'feature_votes' => '',
+        'new' => 'Trả lời cuối',
+        'feature_votes' => 'Ưu tiên sao',
     ],
 ];

@@ -25,7 +25,7 @@ return [
         'missing' => 'Forespurt side med ":keyword" kunne ikke bli funnet.',
         'missing_title' => 'Ikke funnet',
         'missing_translation' => 'Forespurt side kunne ikke bli funnet med gjeldende valgt språk.',
-        'search' => 'Søk eksisterende sider for :link.',
+        'search' => 'Søk på eksisterende sider for :link.',
         'toc' => 'Innhold',
 
         'edit' => [

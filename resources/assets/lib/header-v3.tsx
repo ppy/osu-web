@@ -21,6 +21,7 @@ import HeaderTitleTrans from 'interfaces/header-title-trans';
 import * as React from 'react';
 
 interface PropsInterface {
+  backgroundImage?: string;
   compact?: boolean;
   links?: HeaderLink[];
   theme?: string;
@@ -49,12 +50,12 @@ export default class HeaderV3 extends React.Component<PropsInterface, {}> {
         />
       );
     } else {
-      title = <h1 className='osu-page-header-v3__title-text'>{title}</h1>;
+      title = <h1 className='osu-page-header-v3__title-text'>{this.props.title}</h1>;
     }
 
     return (
       <div className={classNames}>
-        <div className='osu-page-header-v3__title js-nav2--hidden-on-menu-access'>
+        <div className='osu-page-header-v3__title'>
           <div className='osu-page-header-v3__title-icon'>
             <div className='osu-page-header-v3__icon' />
           </div>
@@ -108,7 +109,10 @@ export default class HeaderV3 extends React.Component<PropsInterface, {}> {
 
     return (
       <div className={classNames}>
-        <div className='header-v3__bg'/>
+        <div
+          className='header-v3__bg'
+          style={{ backgroundImage: osu.urlPresence(this.props.backgroundImage) }}
+        />
         <div className='header-v3__overlay'/>
         <div className={osuPageClasses}>
           { !this.props.compact &&

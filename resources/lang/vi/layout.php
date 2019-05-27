@@ -127,8 +127,8 @@ return [
             'modding-history-posts' => 'bài đăng modding của người dùng',
             'modding-history-votesGiven' => 'modding votes đã cho của người dùng',
             'modding-history-votesReceived' => 'modding votes đã nhận của người dùng',
-            'oauth_login' => '',
-            'oauth_request' => '',
+            'oauth_login' => 'đăng nhập cho oauth',
+            'oauth_request' => 'ủy quyền oauth',
             'settings' => 'Cài Đặt',
         ],
         'store' => [

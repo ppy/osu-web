@@ -137,8 +137,6 @@ export class Discussion extends React.PureComponent
 
 
   doVote: (e) =>
-    downvoting = e.currentTarget.dataset.score == '-1'
-
     LoadingOverlay.show()
 
     @voteXhr?.abort()
@@ -170,11 +168,12 @@ export class Discussion extends React.PureComponent
 
 
   canDownvote: =>
-    @props.currentUser.is_admin || @props.currentUser.is_gmt || @props.currentUser.is_qat || @props.currentUser.is_bng
+    @props.currentUser.is_admin || @props.currentUser.is_gmt || @props.currentUser.is_nat || @props.currentUser.is_bng
 
 
   canBeRepliedTo: =>
-    !@props.discussion.beatmap_id? || !@props.currentBeatmap.deleted_at?
+    (!@props.beatmapset.discussion_locked || BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)) &&
+    (!@props.discussion.beatmap_id? || !@props.currentBeatmap.deleted_at?)
 
 
   post: (post, type) =>

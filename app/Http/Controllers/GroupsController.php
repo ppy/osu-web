@@ -40,8 +40,9 @@ class GroupsController extends Controller
             ->orderBy('username', 'asc')
             ->get();
 
-        $userlist = group_users_by_online_state($users);
+        $groupJson = $group->only('group_name', 'group_desc');
+        $usersJson = json_collection($users, 'UserCompact', ['cover', 'country']);
 
-        return view('groups.show', compact('group', 'userlist'));
+        return view('groups.show', compact('groupJson', 'usersJson'));
     }
 }

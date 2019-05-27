@@ -8,12 +8,12 @@
     "module": "es6",
     "moduleResolution": "node",
     "noImplicitAny": true,
+    "noUnusedLocals": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "target": "es6",
   },
-  "exclude": [
-    "node_modules",
-    "vendor"
+  "include": [
+    "resources/assets/lib"
   ]
 }

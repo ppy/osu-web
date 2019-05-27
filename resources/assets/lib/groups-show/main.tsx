@@ -16,12 +16,34 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.usercard-list {
-  max-width: @screen-sm-min;
-  margin: 0 auto;
+import HeaderV3 from 'header-v3';
+import * as React from 'react';
+import { UserList } from 'user-list';
 
-  &__cards {
-    display: flex;
-    flex-wrap: wrap;
+interface Group {
+  group_name: string;
+  group_desc?: string;
+}
+
+interface Props {
+  group: Group;
+  users: User[];
+}
+
+export class Main extends React.PureComponent<Props> {
+  render() {
+    return (
+      <div className='osu-layout osu-layout--full'>
+        <HeaderV3
+          backgroundImage='/images/headers/generic.jpg'
+          theme='users'
+          title={this.props.group.group_name}
+        />
+
+        <div className='osu-page osu-page--users'>
+          <UserList users={this.props.users} />
+        </div>
+      </div>
+    );
   }
 }

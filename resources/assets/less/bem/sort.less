@@ -18,14 +18,16 @@
 
 .sort {
   @_top: sort;
+  @_color--user-list: @seafoam;
   @_item-margin: 5px;
   @_hover-bg: #ddd;
   @_hover-bg--beatmapsets: #eee;
   @_hover-bg--beatmapset-discussions: #eee;
   @_hover-bg--changelog: @greyviolet-darker;
   @_hover-bg--forum-topics: #ddd;
+  @_hover-bg--user-list: @greyseafoam-light;
 
-  .default-gutter();
+  padding: 0;
   display: flex;
   font-size: @font-size--normal;
 
@@ -43,6 +45,10 @@
     border-bottom: 1px solid #ddd;
   }
 
+  &--user-list {
+    padding: 0;
+  }
+
   &__item {
     .reset-input();
     margin: @_item-margin;
@@ -54,40 +60,51 @@
       color: inherit;
     }
 
+    .@{_top}--user-list & {
+      color: @_color--user-list;
+    }
+
     &--button {
       .link-plain();
       color: #555;
 
-      .link-hover({
+      &:hover {
         background-color: @_hover-bg;
         color: #555;
-      });
+      };
 
       .@{_top}--beatmapset-discussions & {
-        .link-hover({
+        &:hover {
           background-color: @_hover-bg--beatmapset-discussions;
-        });
+        }
       }
 
       .@{_top}--beatmapsets & {
-        .link-hover({
+        &:hover {
           background-color: @_hover-bg--beatmapsets;
-        });
+        }
       }
 
       .@{_top}--changelog & {
         color: #ddd;
 
-        .link-hover({
+        &:hover {
           background-color: @_hover-bg--changelog;
           color: #ddd;
-        });
+        }
       }
 
       .@{_top}--forum-topics & {
-        .link-hover({
+        &:hover {
           background-color: @_hover-bg--forum-topics;
-        });
+        }
+      }
+
+      .@{_top}--user-list & {
+        &:hover {
+          background-color: @greyseafoam-light;
+          color: @_color--user-list;
+        }
       }
     }
 
@@ -101,9 +118,9 @@
       color: @pink-darker;
       font-weight: bold;
 
-      .link-hover({
+      &:hover {
         color: @pink-darker;
-      });
+      };
 
       .@{_top}--beatmapset-discussions & {
         background-color: @_hover-bg--beatmapset-discussions;
@@ -117,13 +134,22 @@
         background-color: @_hover-bg--changelog;
         color: @pink;
 
-        .link-hover({
+        &:hover {
           color: @pink;
-        });
+        }
       }
 
       .@{_top}--forum-topics & {
         background-color: @_hover-bg--forum-topics;
+      }
+
+      .@{_top}--user-list & {
+        background-color: @greyseafoam-light;
+        color: #fff;
+
+        &:hover {
+          color: #fff;
+        }
       }
     }
   }

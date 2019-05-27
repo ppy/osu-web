@@ -97,6 +97,7 @@
 
     &__image {
       transition: 50ms ease-in-out;
+      height: 510px;
       width: 100%;
       object-fit: cover;
       will-change: transform, filter, opacity;
@@ -104,6 +105,7 @@
       .@{_top}--old & {
         filter: grayscale();
         opacity: 0.75;
+        height: 210px;
       }
 
       .@{_top}--old:hover & {

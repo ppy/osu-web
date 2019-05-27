@@ -155,8 +155,7 @@ export class FriendButton extends React.PureComponent
               span
                 key: 'normal-mutual'
                 className: "#{bn}__icon #{bn}__icon--hover-hidden"
-                i className: 'fas fa-user'
-                i className: 'fas fa-user'
+                i className: 'fas fa-user-friends'
             else
               span
                 key: 'normal'

@@ -293,7 +293,7 @@ return [
                     'title' => 'Vi Phạm Gần Đây',
                     'date' => 'ngày',
                     'action' => 'hành động',
-                    'length' => 'chiều dài',
+                    'length' => 'thời lượng',
                     'length_permanent' => 'vĩnh viễn',
                     'description' => 'mô tả',
                     'actor' => 'bởi :username',
@@ -330,7 +330,7 @@ return [
             'title' => 'Không tìm thấy người dùng! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'Chỉnh sửa trang cá nhân',
             'description' => '<strong>tôi!</strong> là một khu vực cá nhân có thể tùy chỉnh trong trang cá nhân của bạn.',
             'edit_big' => 'Chỉnh sửa tôi!',
             'placeholder' => 'Nhập nội dung trang vào đây',

@@ -28,21 +28,16 @@ interface Props {
  * Wrapper around PopupMenu that handles the persistent active state thing for it.
  * Also a functional component to be able to use useContext.
  */
-export function PopupMenuPersistent(props: Props) {
+export function PopupMenuPersistent({ children, ...params }: Props) {
   const container = React.useContext(ContainerContext);
   const key = React.useContext(KeyContext);
 
-  const onHide = () => {
-    container.activeKeyDidChange(null);
-  };
-
-  const onShow = () => {
-    container.activeKeyDidChange(key);
-  };
+  const onHide = () => container.activeKeyDidChange(null);
+  const onShow = () => container.activeKeyDidChange(key);
 
   return (
-    <PopupMenu onHide={onHide} onShow={onShow}>
-      {props.children}
+    <PopupMenu onHide={onHide} onShow={onShow} {...params}>
+      {children}
     </PopupMenu>
   );
 }

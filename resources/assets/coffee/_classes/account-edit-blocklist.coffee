@@ -17,7 +17,7 @@
 ###
 
 class @AccountEditBlocklist
-  element: 'user-list__content'
+  element: 'block-list__content'
   jsClass: '.js-account-edit-blocklist'
 
   constructor: ->

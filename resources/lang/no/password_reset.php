@@ -24,19 +24,19 @@ return [
     'button' => [
         'cancel' => 'Avbryt',
         'resend' => 'Send verifiserings e-posten på nytt',
-        'set' => 'Set passord',
+        'set' => 'Sett passord',
         'start' => 'Start',
     ],
 
     'email' => [
-        'subject' => 'osu! konto gjenopprettelse',
+        'subject' => 'gjenopprettelse av osu! konto',
     ],
 
     'error' => [
         'contact_support' => 'Vennligst kontakt kundestøtte for å gjenopprette kontoen.',
         'is_privileged' => 'Kontakt peppy lulz.',
         'missing_key' => 'Kreves.',
-        'too_many_tries' => 'For mange mislykkede pålogginsforsøk.',
+        'too_many_tries' => 'For mange mislykkede påloggingsforsøk.',
         'user_not_found' => 'Forespurt bruker eksisterer ikke.',
         'wrong_key' => 'Feil kode.',
     ],
@@ -48,7 +48,7 @@ return [
 
     'started' => [
         'password' => 'Nytt passord',
-        'password_confirmation' => 'Passordbekreftelse',
+        'password_confirmation' => 'Bekreft passord',
         'title' => 'Nullstiller passord for kontoen <strong>:username</strong>.',
         'verification_key' => 'Bekreftelseskode',
     ],

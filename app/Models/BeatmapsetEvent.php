@@ -51,6 +51,9 @@ class BeatmapsetEvent extends Model
     const ISSUE_RESOLVE = 'issue_resolve';
     const ISSUE_REOPEN = 'issue_reopen';
 
+    const DISCUSSION_LOCK = 'discussion_lock';
+    const DISCUSSION_UNLOCK = 'discussion_unlock';
+
     const DISCUSSION_DELETE = 'discussion_delete';
     const DISCUSSION_RESTORE = 'discussion_restore';
 

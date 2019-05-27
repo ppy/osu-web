@@ -55,6 +55,7 @@ return [
         'search' => 'Search',
         'see_more' => 'see more',
         'show' => 'show',
+        'show_deleted' => 'Show deleted',
         'show_more' => 'show more',
         'show_more_options' => 'show more options',
         'upload_image' => 'upload image',
@@ -70,6 +71,7 @@ return [
         'minutes' => ':count_delimited minute|:count_delimited minutes',
         'months' => ':count_delimited month|:count_delimited months',
         'second_short_unit' => 'sec|secs',
+        'update' => ':count_delimited update|:count_delimited updates',
         'years' => ':count_delimited year|:count_delimited years',
     ],
 
