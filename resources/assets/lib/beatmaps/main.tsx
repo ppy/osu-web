@@ -39,7 +39,7 @@ export class Main extends React.Component<Props> {
 
   updateUrl() {
     const url = encodeURI(laroute.route('beatmapsets.index', BeatmapsetFilter.queryParamsFromFilters(uiState.filters)));
-    Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier(url, Turbolinks.uuid());
+    Turbolinks.controller.advanceHistory(url);
   }
 
   constructor(props: Props) {

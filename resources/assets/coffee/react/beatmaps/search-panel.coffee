@@ -32,7 +32,9 @@ export class SearchPanel extends React.PureComponent
     # containers for React to render portal into; turbolinks and React portals
     # don't play well together, otherwise. These aren't needed without turbolinks.
     @breadcrumbsPortal = document.createElement('div')
+    @breadcrumbsPortal.id = 'search-panel-breadcrumbs-portal'
     @contentPortal = document.createElement('div')
+    @contentPortal.id = 'search-panel-content-portal'
 
     @prevText = null
     @breadcrumbsElement = window.stickyHeader.breadcrumbsElement()
@@ -224,6 +226,10 @@ export class SearchPanel extends React.PureComponent
 
 
   mountPortal: (portal, root) ->
+    # clean up any existing element when navigating backwards.
+    existingElement = document.getElementById(portal.id)
+    existingElement?.parentNode?.removeChild existingElement
+
     root?.appendChild portal
 
 
