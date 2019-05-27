@@ -123,20 +123,6 @@
     }
   }
 
-  &__line {
-    position: absolute;
-    top: (@_avatar + @_line-margin);
-    left: (floor((@_avatar - @_line-width) / 2));
-    width: @_line-width;
-    height: calc(100% - (@_avatar + @_line-margin * 2));
-    background-color: #999;
-    border-radius: 10000px;
-
-    .@{_top}--changelog & {
-      background-color: @dark-purple-light;
-    }
-  }
-
   &__link {
     .@{_top}--changelog & {
       .link-blue-light();
