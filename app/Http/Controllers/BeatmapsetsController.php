@@ -334,14 +334,15 @@ class BeatmapsetsController extends Controller
         }
 
         $statuses = [
-            ['id' => 7, 'name' => trans('beatmaps.status.any')],
-            ['id' => 0, 'name' => trans('beatmaps.status.ranked-approved')],
-            ['id' => 3, 'name' => trans('beatmaps.status.qualified')],
-            ['id' => 8, 'name' => trans('beatmaps.status.loved')],
-            ['id' => 2, 'name' => trans('beatmaps.status.faves')],
-            ['id' => 4, 'name' => trans('beatmaps.status.pending')],
-            ['id' => 5, 'name' => trans('beatmaps.status.graveyard')],
-            ['id' => 6, 'name' => trans('beatmaps.status.my-maps')],
+            ['id' => 'any', 'name' => trans('beatmaps.status.any')],
+            ['id' => null, 'name' => trans('beatmaps.status.default')],
+            ['id' => 'ranked', 'name' => trans('beatmaps.status.ranked-approved')],
+            ['id' => 'qualified', 'name' => trans('beatmaps.status.qualified')],
+            ['id' => 'loved', 'name' => trans('beatmaps.status.loved')],
+            ['id' => 'favourites', 'name' => trans('beatmaps.status.faves')],
+            ['id' => 'pending', 'name' => trans('beatmaps.status.pending')],
+            ['id' => 'graveyard', 'name' => trans('beatmaps.status.graveyard')],
+            ['id' => 'mine', 'name' => trans('beatmaps.status.my-maps')],
         ];
 
         $extras = [

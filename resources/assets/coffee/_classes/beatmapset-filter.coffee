@@ -25,7 +25,6 @@ parseInt10 = (string) ->
 class @BeatmapsetFilter
   @castFromString:
     mode: parseInt10
-    status: parseInt10
     genre: parseInt10
     language: parseInt10
 
@@ -71,7 +70,7 @@ class @BeatmapsetFilter
     played: null
     query: ''
     rank: ''
-    status: 0
+    status: null
 
 
   @expand: ['genre', 'language', 'extra', 'rank', 'played']
@@ -92,7 +91,7 @@ class @BeatmapsetFilter
       if filters.query?.trim().length > 0
         'relevance_desc'
       else
-        if filters.status in [4, 5, 6]
+        if filters.status in ['pending', 'graveyard', 'mine']
           'updated_desc'
         else
           'ranked_desc'
