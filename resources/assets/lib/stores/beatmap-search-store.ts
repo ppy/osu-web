@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import Filters from 'beatmap-search-filters';
+import { BeatmapSearchFilters as Filters, SearchFilters } from 'beatmap-search-filters';
 import SearchResults from 'beatmaps/search-results';
 import { action, observable } from 'mobx';
 
@@ -36,14 +36,14 @@ export default class BeatmapSearchStore {
   readonly totals = new Map<string, number>();
   readonly fetchedAt = new Map<string, Date>();
 
-  getBeatmapsets(filters: Filters) {
+  getBeatmapsets(filters: SearchFilters) {
     const key = this.stringFromFilters(filters);
 
     return this.getObservableBeatmapsetsByKey(key);
   }
 
   @action
-  get(filters: Filters, from = 0): Promise<SearchResults> {
+  get(filters: SearchFilters, from = 0): Promise<SearchResults> {
     if (from < 0) {
       throw Error('from must be > 0');
     }
@@ -91,7 +91,7 @@ export default class BeatmapSearchStore {
   }
 
   @action
-  initialize(filters: Filters, data: SearchResponse) {
+  initialize(filters: SearchFilters, data: SearchResponse) {
     const key = this.stringFromFilters(filters);
 
     if (this.cursors.has(key)) {
@@ -128,8 +128,8 @@ export default class BeatmapSearchStore {
     return beatmapsets;
   }
 
-  private fetch(filters: Filters, from: number) {
-    const params = BeatmapsetFilter.queryParamsFromFilters(filters) as any;
+  private fetch(filters: SearchFilters, from: number) {
+    const params = filters.queryParams as any;
     const key = this.stringFromFilters(filters);
 
     const cursor = this.cursors.get(key);
@@ -167,7 +167,7 @@ export default class BeatmapSearchStore {
     this.totals.delete(key);
   }
 
-  private stringFromFilters(filters: Filters) {
+  private stringFromFilters(filters: SearchFilters) {
     const normalized = BeatmapsetFilter.fillDefaults(filters) as any;
     const parts = [];
     for (const key of Object.keys(normalized)) {

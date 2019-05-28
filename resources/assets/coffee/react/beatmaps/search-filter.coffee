@@ -62,7 +62,7 @@ export class SearchFilter extends React.PureComponent
   href: ({ id }) =>
     updatedFilter = {}
     updatedFilter[@props.name] = @newSelection(id)
-    filters = _.assign {}, @props.filters, updatedFilter
+    filters = _.assign {}, @props.filters.values, updatedFilter
 
     osu.updateQueryString null, BeatmapsetFilter.queryParamsFromFilters(filters)
 

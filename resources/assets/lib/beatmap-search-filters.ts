@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-export default interface BeatmapSearchFilters {
+export interface BeatmapSearchFilters {
   extra: string;
   general: string;
   genre: string | null;
@@ -27,4 +27,31 @@ export default interface BeatmapSearchFilters {
   rank: string;
   sort?: string | null;
   status: number;
+}
+
+export class SearchFilters {
+  extra?: string;
+  general?: string;
+  genre?: string;
+  language?: string;
+  mode?: string;
+  played?: string;
+  query?: string;
+  rank?: string;
+  sort?: string = 'ranked_desc';
+  status?: number;
+
+  [index: string]: unknown;
+
+  constructor(url: string) {
+    const filters = BeatmapsetFilter.filtersFromUrl(url);
+    // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
+    for (let key of Object.keys(filters)) {
+      this[key] = filters[key];
+    }
+  }
+
+  get queryParams() {
+    return BeatmapsetFilter.queryParamsFromFilters(this);
+  }
 }

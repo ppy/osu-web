@@ -38,7 +38,7 @@ export class Main extends React.Component<Props> {
   readonly observerDisposers: Lambda[] = [];
 
   updateUrl() {
-    const url = encodeURI(laroute.route('beatmapsets.index', BeatmapsetFilter.queryParamsFromFilters(uiState.filters)));
+    const url = encodeURI(laroute.route('beatmapsets.index', uiState.filters.queryParams));
     Turbolinks.controller.advanceHistory(url);
   }
 
