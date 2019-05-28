@@ -16,8 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { BeatmapSearchFilters as Filters, SearchFilters } from 'beatmap-search-filters';
-import { intersection, isEqual, map } from 'lodash';
+import { BeatmapSearchFilters, SearchFilters } from 'beatmap-search-filters';
+import { intersection, map } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import core from 'osu-core-singleton';
 
@@ -113,17 +113,13 @@ class UIStateStore {
     };
 
     try {
-      // snapshot filter values since they may change during the request.
-      const filters = Object.assign({}, this.filters);
-      const data = await store.get(filters, from);
+      const data = await store.get(this.filters, from);
 
       this.searchStatus = { state: 'completed', error: null, from };
       this.hasMore = data.hasMore && data.beatmapsets.length < data.total;
       this.recommendedDifficulty = data.recommendedDifficulty;
 
-      if (isEqual(filters, this.filters)) {
-        this.currentBeatmapsets = store.getBeatmapsets(filters);
-      }
+      this.currentBeatmapsets = store.getBeatmapsets(this.filters);
     } catch (error) {
       if (error.readyState !== 0) {
         this.searchStatus = { state: 'completed', error, from };
@@ -136,21 +132,14 @@ class UIStateStore {
   stateFromUrl() {
     const filtersFromUrl = BeatmapsetFilter.filtersFromUrl(location.href);
     return {
-      filters: new SearchFilters(location.href), // BeatmapsetFilter.fillDefaults(filtersFromUrl),
+      filters: new SearchFilters(location.href),
       isExpanded: intersection(Object.keys(filtersFromUrl), BeatmapsetFilter.expand).length > 0,
     };
   }
 
   @action
-  updateFilters(newFilters: Partial<Filters>) {
-    const filters = Object.assign({}, this.filters, newFilters);
-
-    if (this.filters.query !== filters.query
-      || this.filters.status !== filters.status) {
-      filters.sort = null;
-    }
-
-    this.filters = BeatmapsetFilter.fillDefaults(filters);
+  updateFilters(newFilters: Partial<BeatmapSearchFilters>) {
+    this.filters.update(newFilters);
   }
 
   startListeningOnWindow() {

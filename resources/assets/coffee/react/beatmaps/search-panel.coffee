@@ -22,7 +22,8 @@ import * as React from 'react'
 import { div, a, i, input, h1, h2, li, ol, span } from 'react-dom-factories'
 el = React.createElement
 
-export class SearchPanel extends React.PureComponent
+# props don't change anymore when selecting a new filter
+export class SearchPanel extends React.Component
   constructor: (props) ->
     super props
 
@@ -117,8 +118,7 @@ export class SearchPanel extends React.PureComponent
 
 
   onChange: (event) ->
-    query = event.target.value
-    uiState.updateFilters query: query.trim()
+    uiState.updateFilters query: event.target.value
 
 
   renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>
@@ -129,7 +129,7 @@ export class SearchPanel extends React.PureComponent
       options: options
       multiselect: multiselect
       recommendedDifficulty: uiState.recommendedDifficulty
-      selected: @props.filters[name]
+      selected: @props.filters.selectedValue(name)
 
 
   renderGuest: =>

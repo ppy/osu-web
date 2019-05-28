@@ -1,3 +1,5 @@
+import { observable } from 'mobx';
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -26,32 +28,86 @@ export interface BeatmapSearchFilters {
   query: string;
   rank: string;
   sort?: string | null;
-  status: number;
+  status: string;
+
+  [index: string]: unknown;
 }
 
 export class SearchFilters {
-  extra?: string;
-  general?: string;
-  genre?: string;
-  language?: string;
-  mode?: string;
-  played?: string;
-  query?: string;
-  rank?: string;
-  sort?: string = 'ranked_desc';
-  status?: number;
+  @observable extra?: string;
+  @observable general?: string;
+  @observable genre?: string;
+  @observable language?: string;
+  @observable mode?: string;
+  @observable played?: string;
+  @observable query?: string;
+  @observable rank?: string;
+  @observable sort?: string;
+  @observable status?: string;
 
-  [index: string]: unknown;
-
+  // TODO: visible values should be different from internal values
   constructor(url: string) {
     const filters = BeatmapsetFilter.filtersFromUrl(url);
     // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
     for (let key of Object.keys(filters)) {
-      this[key] = filters[key];
+      (this as any)[key] = filters[key];
     }
   }
 
+  get displaySort() {
+    return this.selectedValue('sort');
+  }
+
   get queryParams() {
-    return BeatmapsetFilter.queryParamsFromFilters(this);
+    const values = this.values;
+    values.query = this.queryForSearch;
+
+    return BeatmapsetFilter.queryParamsFromFilters(values);
+  }
+
+  get queryForSearch() {
+    if (this.query != null) {
+      return this.query.trim();
+    }
+  }
+
+  get values() {
+    // Object.assign doesn't copy the methods
+    return Object.assign({}, this);
+  }
+
+  selectedValue(key: string) {
+    const value = (this as any)[key];
+    if (value == null) {
+      return BeatmapsetFilter.getDefault(this.values, key);
+    }
+
+    return value;
+  }
+
+  toKeyString() {
+    const values = this.values;
+    values.query = this.queryForSearch;
+
+    const normalized = BeatmapsetFilter.fillDefaults(values) as any;
+    const parts = [];
+    for (const key of Object.keys(normalized)) {
+      parts.push(`${key}=${normalized[key]}`);
+    }
+
+    return parts.join('&');
+  }
+
+  update(newFilters: Partial<BeatmapSearchFilters>) {
+    // TODO: explicitly compare with undefined?
+    if (newFilters.query != null && newFilters.query !== this.query
+      || newFilters.status != null && newFilters.query !== this.status) {
+      this.sort = undefined;
+    }
+
+    // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
+    for (let key of Object.keys(newFilters)) {
+      (this as any)[key] = newFilters[key];
+    }
   }
 }

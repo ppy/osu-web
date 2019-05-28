@@ -124,7 +124,7 @@ export SearchContent = observer (props) ->
 
 
 sorting = ->
-  [field, order] = uiState.filters.sort.split('_')
+  [field, order] = uiState.filters.displaySort.split('_')
 
   { field, order }
 

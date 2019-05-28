@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { BeatmapSearchFilters as Filters, SearchFilters } from 'beatmap-search-filters';
+import { SearchFilters } from 'beatmap-search-filters';
 import SearchResults from 'beatmaps/search-results';
 import { action, observable } from 'mobx';
 
@@ -37,7 +37,7 @@ export default class BeatmapSearchStore {
   readonly fetchedAt = new Map<string, Date>();
 
   getBeatmapsets(filters: SearchFilters) {
-    const key = this.stringFromFilters(filters);
+    const key = filters.toKeyString();
 
     return this.getObservableBeatmapsetsByKey(key);
   }
@@ -48,7 +48,7 @@ export default class BeatmapSearchStore {
       throw Error('from must be > 0');
     }
 
-    const key = this.stringFromFilters(filters);
+    const key = filters.toKeyString();
     const beatmapsets = this.getObservableBeatmapsetsByKey(key);
     const sufficient = (from > 0 && from < beatmapsets.length) || (from === 0 && !this.isExpired(key));
 
@@ -92,7 +92,7 @@ export default class BeatmapSearchStore {
 
   @action
   initialize(filters: SearchFilters, data: SearchResponse) {
-    const key = this.stringFromFilters(filters);
+    const key = filters.toKeyString();
 
     if (this.cursors.has(key)) {
       return;
@@ -129,8 +129,8 @@ export default class BeatmapSearchStore {
   }
 
   private fetch(filters: SearchFilters, from: number) {
-    const params = filters.queryParams as any;
-    const key = this.stringFromFilters(filters);
+    const params = filters.queryParams;
+    const key = filters.toKeyString();
 
     const cursor = this.cursors.get(key);
     if (from > 0 && this.cursors.has(key)) {
@@ -165,15 +165,5 @@ export default class BeatmapSearchStore {
     this.beatmapsets.set(key, observable([]));
     this.cursors.delete(key);
     this.totals.delete(key);
-  }
-
-  private stringFromFilters(filters: SearchFilters) {
-    const normalized = BeatmapsetFilter.fillDefaults(filters) as any;
-    const parts = [];
-    for (const key of Object.keys(normalized)) {
-      parts.push(`${key}=${normalized[key]}`);
-    }
-
-    return parts.join('&');
   }
 }

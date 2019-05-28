@@ -18,7 +18,7 @@
 
 import { BackToTop } from 'back-to-top';
 import AvailableFilters from 'beatmaps/available-filters';
-import { debounce, isEqual } from 'lodash';
+import { debounce } from 'lodash';
 import { Lambda, observe } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
@@ -58,13 +58,8 @@ export class Main extends React.Component<Props> {
     uiState.search();
 
     this.observerDisposers.push(
-      observe(uiState, 'filters', (change) => {
-        if (isEqual(change.oldValue, change.newValue)) {
-          return;
-        }
-
-        // if only query has changed, debounce url update; otherwise, update immediately
-        if (change.oldValue!.query !== change.newValue.query) {
+      observe(uiState.filters, (change) => {
+        if (change.name === 'query') {
           this.debouncedUpdateUrl();
         } else {
           this.debouncedUpdateUrl.cancel();
