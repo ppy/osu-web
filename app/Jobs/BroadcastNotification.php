@@ -24,6 +24,7 @@ use App\Events\NewNotificationEvent;
 use App\Models\Chat\Channel;
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\Watch;
 use App\Traits\NotificationQueue;
 use DB;
 use Exception;
@@ -198,6 +199,20 @@ class BroadcastNotification implements ShouldQueue
         $this->params['details'] = [
             'title' => $this->object->title,
             'cover_url' => $this->object->coverURL('card'),
+        ];
+    }
+
+    private function onCommentNew()
+    {
+        $this->notifiable = $this->object->commentable;
+        $this->receiverIds = Watch::whereNotifiable($this->object->commentable)
+            ->where(['subtype' => 'comment'])
+            ->pluck('user_id')
+            ->all();
+
+        $this->params['details'] = [
+            'title' => truncate($this->object->message, 36),
+            'cover_url' => $this->source->user_avatar,
         ];
     }
 

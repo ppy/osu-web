@@ -21,6 +21,7 @@
 namespace App\Events;
 
 use App\Models\Notification;
+use App\Models\Watch;
 use Illuminate\Broadcasting\Channel;
 
 class UserSubscriptionChangeEvent extends NotificationEventBase
@@ -40,7 +41,12 @@ class UserSubscriptionChangeEvent extends NotificationEventBase
 
         $this->action = $action;
         $this->userId = $user->getKey();
-        $this->channelName = Notification::generateChannelName($notifiable);
+
+        if ($notifiable instanceof Watch) {
+            $subtype = $notifiable->subtype;
+            $notifiable = $notifiable->notifiable;
+        }
+        $this->channelName = Notification::generateChannelName($notifiable, $subtype ?? null);
     }
 
     public function broadcastAs()

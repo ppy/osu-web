@@ -34,16 +34,25 @@ class Notification extends Model
     const BEATMAPSET_RANK = 'beatmapset_rank';
     const BEATMAPSET_RESET_NOMINATIONS = 'beatmapset_reset_nominations';
     const CHANNEL_MESSAGE = 'channel_message';
+    const COMMENT_NEW = 'comment_new';
     const FORUM_TOPIC_REPLY = 'forum_topic_reply';
     const USER_ACHIEVEMENT_UNLOCK = 'user_achievement_unlock';
+
+    const SUBTYPES = [
+        'comment_new' => 'comment',
+    ];
 
     protected $casts = [
         'details' => 'array',
     ];
 
-    public static function generateChannelName($notifiable)
+    public static function generateChannelName($notifiable, $subtype)
     {
-        return 'new:'.MorphMap::getType($notifiable).':'.$notifiable->getKey();
+        return 'new:'.
+            MorphMap::getType($notifiable).
+            ':'.
+            $notifiable->getKey().
+            (in_array($subtype, static::SUBTYPES, true) ? ":{$subtype}" : '');
     }
 
     public function notifiable()
@@ -63,6 +72,6 @@ class Notification extends Model
 
     public function channelName()
     {
-        return static::generateChannelName($this->notifiable);
+        return static::generateChannelName($this->notifiable, static::SUBTYPES[$this->name] ?? null);
     }
 }

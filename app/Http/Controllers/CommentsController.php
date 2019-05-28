@@ -26,6 +26,7 @@ use App\Libraries\CommentBundle;
 use App\Libraries\MorphMap;
 use App\Models\Comment;
 use App\Models\Log;
+use App\Models\Notification;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -145,13 +146,15 @@ class CommentsController extends Controller
 
     public function store()
     {
+        $user = auth()->user();
+
         $params = get_params(request(), 'comment', [
             'commentable_id:int',
             'commentable_type',
             'message',
             'parent_id:int',
         ]);
-        $params['user_id'] = optional(auth()->user())->getKey();
+        $params['user_id'] = optional($user)->getKey();
 
         $comment = new Comment($params);
 
@@ -162,6 +165,8 @@ class CommentsController extends Controller
         } catch (ModelNotSavedException $e) {
             return error_popup($e->getMessage());
         }
+
+        broadcast_notification(Notification::COMMENT_NEW, $comment, $user);
 
         $comments = collect([$comment]);
 

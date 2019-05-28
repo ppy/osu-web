@@ -1153,6 +1153,11 @@ class User extends Model implements AuthenticatableContract
         );
     }
 
+    public function watches()
+    {
+        return $this->hasMany(Watch::class, 'user_id');
+    }
+
     public function maxBlocks()
     {
         return ceil($this->maxFriends() / 10);
