@@ -63,12 +63,11 @@ export class Main extends React.Component<Props> {
           return;
         }
 
-        // if only query has changed, debounce url update;
-        // else update immediately
-        // TODO: this works but the timing seems illogical?
+        // if only query has changed, debounce url update; otherwise, update immediately
         if (change.oldValue!.query !== change.newValue.query) {
           this.debouncedUpdateUrl();
         } else {
+          this.debouncedUpdateUrl.cancel();
           this.updateUrl();
         }
 
