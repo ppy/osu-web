@@ -68,7 +68,9 @@ jobs:
     - name: tslint
       env:
         - OSU_SKIP_ASSET_BUILD=1
-      script: yarn lint
+      script:
+        - yarn
+        - yarn lint
 
 after_script:
   - cat elasticsearch.log
