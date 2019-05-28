@@ -34,7 +34,6 @@ export class Paginator extends React.PureComponent
   componentDidMount: =>
     Timeout.set 0, @throttledAutoPagerOnScroll
     $(window).on 'scroll.paginator', @throttledAutoPagerOnScroll
-    $(document).on 'turbolinks:before-cache.paginator', @componentWillUnmount
 
 
   componentWillUnmount: =>
