@@ -29,6 +29,9 @@
   @_bg-message-changelog: @changelog-bg-extra;
   @_bg-footer-changelog: @dark-purple-dark;
 
+  @_bg-message-dark: @comment-dark-bg-extra;
+  @_bg-footer-dark: @comment-dark-bg;
+
   border-radius: @_border-radius;
   display: flex;
   flex-direction: column;
@@ -38,6 +41,11 @@
   &--changelog {
     background-color: @_bg-message-changelog;
     border-color: @_bg-message-changelog;
+  }
+
+  &--dark {
+    background-color: @_bg-message-dark;
+    border-color: @_bg-message-dark;
   }
 
   &--fancy {
@@ -52,6 +60,11 @@
   &--fancy&--changelog {
     background-color: @_bg-footer-changelog;
     border-color: @_bg-footer-changelog;
+  }
+
+  &--fancy&--dark {
+    background-color: @_bg-footer-dark;
+    border-color: @_bg-footer-dark;
   }
 
   &__avatar {
@@ -77,6 +90,10 @@
 
     .@{_top}--changelog & {
       background-color: @_bg-footer-changelog;
+    }
+
+    .@{_top}--dark & {
+      background-color: @_bg-footer-dark;
     }
   }
 
@@ -117,6 +134,16 @@
       &::placeholder {
         color: inherit;
         opacity: 0.8;
+      }
+    }
+
+    .@{_top}--dark & {
+      color: @comment-dark-fg;
+      background-color: @_bg-message-dark;
+
+      &::placeholder {
+        color: inherit;
+        opacity: 0.6;
       }
     }
   }
