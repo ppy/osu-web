@@ -100,7 +100,7 @@ export class SearchPanel extends React.Component
           name: 'search'
           onChange: @onChange
           placeholder: osu.trans('beatmaps.listing.search.prompt')
-          value: @props.filters.query
+          defaultValue: @props.filters.query
         div className: 'beatmapsets-search__icon',
           i className: 'fas fa-search'
 
@@ -170,7 +170,7 @@ export class SearchPanel extends React.Component
           name: 'search'
           onChange: @onChange
           placeholder: osu.trans('beatmaps.listing.search.prompt')
-          value: @props.filters.query
+          defaultValue: @props.filters.query
         div className: 'beatmapsets-search__icon',
           i className: 'fas fa-search'
 
