@@ -41,6 +41,7 @@ export const nameToIcons: IconsMap = {
   channel_message: ['fas fa-comments'],
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
+  user_achievement_unlock: ['fas fa-trophy'],
 };
 
 export const nameToIconsCompact: IconsMap = {

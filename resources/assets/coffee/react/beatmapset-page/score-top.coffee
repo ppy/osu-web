@@ -33,7 +33,7 @@ export ScoreTop = (props) ->
       div className: "#{bn}__wrapping-container #{bn}__wrapping-container--left",
         div className: "#{bn}__position",
           div className: "#{bn}__position-number", "##{props.position}"
-          div className: "badge-rank badge-rank--tiny badge-rank--#{props.score.rank}"
+          div className: "score-rank score-rank--tiny score-rank--#{props.score.rank}"
 
         div className: "#{bn}__avatar",
           a

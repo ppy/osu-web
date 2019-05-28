@@ -16,13 +16,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.badge-rank {
-  @size: 100%;
-  width: @size;
-  height: @size;
+.score-rank {
+  width: 2em;
+  height: 1em;
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
+  background-size: contain;
 
   .all(@rank, @prefix) {
     &--@{rank} {
@@ -31,39 +31,27 @@
   }
 
   .bg(@filename) {
-    .at2x-simple("/images/badges/score-ranks/Score-@{filename}-Small-60.png");
+    background-image: url("/images/badges/score-ranks-v2019/GradeSmall-@{filename}.svg?2");
   }
 
-  .all(XH, "SSPlus");
+  .all(XH, "SS-Silver");
   .all(X, "SS");
-  .all(SH, "SPlus");
+  .all(SH, "S-Silver");
   .all(S, "S");
   .all(A, "A");
   .all(B, "B");
   .all(C, "C");
-  .all(D, "F");
+  .all(D, "D");
 
   &--full {
-    width: 100%;
-    height: 100%;
-
-    // to avoid problem in chrome when located inside flexbox
-    // reference: https://code.google.com/p/chromium/issues/detail?id=341310
-    position: absolute;
+    .full-size();
   }
 
-  &--medium {
-    width: @rank-width;
-    height: @rank-height;
-  }
-
-  &--small {
-    width: 50px;
-    height: 26px;
+  &--profile-page {
+    font-size: 22px;
   }
 
   &--tiny {
-    width: 30px;
-    height: 14px;
+    font-size: 14px;
   }
 }
