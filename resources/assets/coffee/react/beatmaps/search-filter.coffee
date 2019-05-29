@@ -69,7 +69,7 @@ export class SearchFilter extends React.PureComponent
 
   select: (e) =>
     e.preventDefault()
-    uiState.updateFilters "#{@props.name}": @newSelection(e.target.dataset.filterValue)
+    uiState.updateFilters "#{@props.name}": @newSelection(e.target.dataset.filterValue) ? null
 
 
   # TODO: rename
@@ -78,7 +78,7 @@ export class SearchFilter extends React.PureComponent
     if @props.multiselect
       _(@currentSelection())[if @selected(i) then 'without' else 'concat'](i).sort().join('.')
     else
-      if @selected(i) then BeatmapsetFilter.defaults[name] else i
+      if @selected(i) then BeatmapsetFilter.defaults[id] else i
 
 
   selected: (i) =>

@@ -1,5 +1,3 @@
-import { computed, observable } from 'mobx';
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,22 +16,24 @@ import { computed, observable } from 'mobx';
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-export interface BeatmapSearchFilters {
-  extra: string;
-  general: string;
+import { computed, observable } from 'mobx';
+
+export interface BeatmapSearchParams {
+  extra: string | null;
+  general: string | null;
   genre: string | null;
   language: string | null;
   mode: string | null;
   played: string | null;
-  query: string;
-  rank: string;
-  sort?: string | null;
+  query: string | null;
+  rank: string | null;
+  sort: string | null;
   status: string;
 
   [index: string]: unknown;
 }
 
-export class SearchFilters {
+export class BeatmapSearchFilters {
   @observable extra?: string;
   @observable general?: string;
   @observable genre?: string;
@@ -114,10 +114,9 @@ export class SearchFilters {
     return parts.join('&');
   }
 
-  update(newFilters: Partial<BeatmapSearchFilters>) {
-    // TODO: explicitly compare with undefined?
-    if (newFilters.query != null && newFilters.query !== this.query
-      || newFilters.status != null && newFilters.status !== this.status) {
+  update(newFilters: Partial<BeatmapSearchParams>) {
+    if (newFilters.query !== undefined && newFilters.query !== this.query
+      || newFilters.status !== undefined && newFilters.status !== this.status) {
       this.sort = undefined;
     }
 

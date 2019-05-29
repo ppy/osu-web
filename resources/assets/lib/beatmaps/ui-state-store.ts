@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { BeatmapSearchFilters, SearchFilters } from 'beatmap-search-filters';
+import { BeatmapSearchFilters, BeatmapSearchParams } from 'beatmap-search-filters';
 import { intersection, map } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import core from 'osu-core-singleton';
@@ -39,7 +39,7 @@ class UIStateStore {
   @observable hasMore = false; // TODO: figure out how to make this computed
   @observable numberOfColumns = osu.isDesktop() ? 2 : 1;
   @observable recommendedDifficulty = 0;
-  @observable filters!: SearchFilters;
+  @observable filters!: BeatmapSearchFilters;
   @observable isExpanded!: boolean;
   @observable searchStatus: SearchStatus = {
     error: null,
@@ -132,13 +132,13 @@ class UIStateStore {
   stateFromUrl() {
     const filtersFromUrl = BeatmapsetFilter.filtersFromUrl(location.href);
     return {
-      filters: new SearchFilters(location.href),
+      filters: new BeatmapSearchFilters(location.href),
       isExpanded: intersection(Object.keys(filtersFromUrl), BeatmapsetFilter.expand).length > 0,
     };
   }
 
   @action
-  updateFilters(newFilters: Partial<BeatmapSearchFilters>) {
+  updateFilters(newFilters: Partial<BeatmapSearchParams>) {
     this.filters.update(newFilters);
   }
 
