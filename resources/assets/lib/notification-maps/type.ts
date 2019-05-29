@@ -16,38 +16,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.score-rank-v2 {
-  width: 2em;
-  height: 1em;
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
+import Notification from 'models/notification';
 
-  .all(@rank, @prefix) {
-    &--@{rank} {
-      .bg(@prefix);
-    }
+export function displayType(item: Notification) {
+  if (item.objectType == null || item.objectId == null) {
+    return;
   }
 
-  .bg(@filename) {
-    .at2x-simple("/images/badges/score-ranks-v2/@{filename}.png");
+  if (item.name === 'user_achievement_unlock') {
+    return 'user_achievement';
   }
 
-  .all(XH, "SS+");
-  .all(X, "SS");
-  .all(SH, "S+");
-  .all(S, "S");
-  .all(A, "A");
-  .all(B, "B");
-  .all(C, "C");
-  .all(D, "F");
-
-  &--full {
-    .full-size();
-  }
-
-  &--profile-page {
-    font-size: 28px; // icon size
-  }
+  return item.objectType;
 }

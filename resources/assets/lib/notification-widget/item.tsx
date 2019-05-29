@@ -54,7 +54,7 @@ export default observer(class Item extends React.Component<Props, {}> {
   }
 
   private blockClass() {
-    return `clickable-row ${osu.classWithModifiers('notification-popup-item', this.props.modifiers)}`;
+    return `clickable-row ${osu.classWithModifiers('notification-popup-item', [...this.props.modifiers, this.props.item.category])}`;
   }
 
   private renderCategory() {
@@ -62,7 +62,7 @@ export default observer(class Item extends React.Component<Props, {}> {
       return null;
     }
 
-    const label = osu.trans(`notifications.item.${this.props.item.objectType}.${this.props.item.category}._`);
+    const label = osu.trans(`notifications.item.${this.props.item.displayType}.${this.props.item.category}._`);
 
     if (label === '') {
       return null;

@@ -18,9 +18,11 @@
 
 .profile-extra-entries {
   list-style: none;
+  display: flex;
+  flex-direction: column;
   padding: 0;
-  margin: 0;
-  @item-height: 25px;
+  margin: -2px 0;
+  @item-height: 22px;
 
   &--kudosu {
     margin-top: 20px;
@@ -30,8 +32,8 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 5px;
-    min-height: @item-height;
+    margin: 2px 0;
+    line-height: @item-height;
 
     &--top-ranks {
       height: auto;
@@ -127,10 +129,10 @@
     .center-content();
     align-self: flex-start;
     flex: none;
-    width: 40px;
+    width: 28px;
     height: @item-height;
-    margin-right: 10px;
-    font-size: 20px; // icon size
+    margin-right: 5px;
+    font-size: 14px; // icon size
   }
 
   &__time {
