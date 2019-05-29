@@ -27,6 +27,16 @@ use Illuminate\Http\Request;
 
 class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 {
+    const LEGACY_STATIC_MAP = [
+        '0' => 'ranked',
+        '2' => 'favourites',
+        '3' => 'qualified',
+        '4' => 'pending',
+        '5' => 'graveyard',
+        '6' => 'mine',
+        '7' => 'any',
+    ];
+
     public function __construct(Request $request, ?User $user = null)
     {
         parent::__construct();
@@ -43,7 +53,15 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         if ($this->user !== null) {
             $this->queryString = es_query_escape_with_caveats($request['q'] ?? $request['query']);
-            $this->status = presence($request['s']);
+
+            $status = presence($request['s']);
+            $statusMapping = static::LEGACY_STATIC_MAP[$status] ?? null;
+            if ($statusMapping) {
+                $this->status = $statusMapping;
+            } else {
+                $this->status = $status;
+            }
+
             $this->genre = get_int($request['g']);
             $this->language = get_int($request['l']);
             $this->extra = array_intersect(
