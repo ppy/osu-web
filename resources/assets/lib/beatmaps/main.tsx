@@ -59,7 +59,9 @@ export class Main extends React.Component<Props> {
 
     this.observerDisposers.push(
       observe(uiState.filters, (change) => {
-        if (change.name === 'query') {
+        // not sure if observing change of private variable is a good idea
+        // but computed value doesn't show up here
+        if (change.name === '_query') {
           this.debouncedUpdateUrl();
         } else {
           this.debouncedUpdateUrl.cancel();

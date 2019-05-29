@@ -117,8 +117,12 @@ export class SearchPanel extends React.Component
           showTitle: false
 
 
-  onChange: (event) ->
-    uiState.updateFilters query: event.target.value
+  onChange: (event) =>
+    query = event.target.value
+    @pinnedInputRef.current.value = query
+    @inputRef.current.value = query
+
+    uiState.updateFilters { query }
 
 
   renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>

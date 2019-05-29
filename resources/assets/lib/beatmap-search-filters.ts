@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { computed, observable } from 'mobx';
 
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
@@ -40,10 +40,12 @@ export class SearchFilters {
   @observable language?: string;
   @observable mode?: string;
   @observable played?: string;
-  @observable query?: string;
   @observable rank?: string;
   @observable sort?: string;
   @observable status?: string;
+
+  // tslint:disable-next-line:variable-name
+  @observable private _query: string | null = null; // initialized to null because undefined -> null is considered a change
 
   // TODO: visible values should be different from internal values
   constructor(url: string) {
@@ -58,22 +60,37 @@ export class SearchFilters {
     return this.selectedValue('sort');
   }
 
+  @computed
+  get query() {
+    return this._query;
+  }
+
+  set query(value: string | null) {
+    if (osu.presence(value) === osu.presence(this._query)) {
+      return;
+    }
+
+    if (value != null) {
+      this._query = osu.presence(value.trim());
+    }
+  }
+
   get queryParams() {
     const values = this.values;
-    values.query = this.queryForSearch;
 
     return BeatmapsetFilter.queryParamsFromFilters(values);
   }
 
-  get queryForSearch() {
-    if (this.query != null) {
-      return this.query.trim();
-    }
-  }
-
+  /**
+   * Returns a copy of the values in the filter.
+   */
   get values() {
     // Object.assign doesn't copy the methods
-    return Object.assign({}, this);
+    const values = Object.assign({}, this);
+    values.query = this._query;
+    delete values._query;
+
+    return values;
   }
 
   selectedValue(key: string) {
@@ -87,7 +104,6 @@ export class SearchFilters {
 
   toKeyString() {
     const values = this.values;
-    values.query = this.queryForSearch;
 
     const normalized = BeatmapsetFilter.fillDefaults(values) as any;
     const parts = [];
