@@ -117,7 +117,7 @@ export class SearchFilters {
   update(newFilters: Partial<BeatmapSearchFilters>) {
     // TODO: explicitly compare with undefined?
     if (newFilters.query != null && newFilters.query !== this.query
-      || newFilters.status != null && newFilters.query !== this.status) {
+      || newFilters.status != null && newFilters.status !== this.status) {
       this.sort = undefined;
     }
 
