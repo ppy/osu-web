@@ -22,9 +22,9 @@ Represents an individual chat "channel" in the game.
 
 Field            | Type                 | Description
 ---------------- | -------------------- | ------------------
-channel_id       | number               |
-name             | string               |
-description      | string?              |
+channel_id       | number               | |
+name             | string               | |
+description      | string?              | |
 icon*            | string               | display icon for the channel
 type             | string               | see channel types below
 last_read_id*    | number?              | `message_id` of last message read (only returned in presence responses)
@@ -35,10 +35,10 @@ users*           | number[]?            | array of `user_id` that are in the cha
 
 Type        | Permission Check for Joining/Messaging
 ----------- | -----------------------------------------------------
-PUBLIC      |
+PUBLIC      | |
 PRIVATE     | is player in the allowed groups? (channel.allowed_groups)
 MULTIPLAYER | is player currently in the mp game?
-SPECTATOR   |
+SPECTATOR   | |
 TEMPORARY   | _deprecated_
 PM          | see below (user_channels)
 GROUP       | is player in channel? (user_channels)
@@ -110,13 +110,13 @@ Represents a notification object.
 
 Field            | Type    | Description
 ---------------- | ------- | ------------------------------------------------------------------------
-id               | number  |
+id               | number  | |
 name             | string  | Name of the event
 created_at       | string  | ISO 8601 date
-object_type      | string  |
-object_id        | number  |
-source_user_id   | number? |
-is_read          | boolean |
+object_type      | string  | |
+object_id        | number  | |
+source_user_id   | number? | |
+is_read          | boolean | |
 details          | object  | `message_id` of last known message (only returned in presence responses)
 
 ### Event Names
@@ -164,8 +164,8 @@ Field         | Type    | Description
 ------------- | ------- | ------------------------------
 title         | string  | Beatmap title
 cover_url     | string  | Beatmap cover
-discussion_id | number  |
-post_id       | number  |
+discussion_id | number  | |
+post_id       | number  | |
 beatmap_id    | number? | `null` if posted to general all
 username      | string  | Username of `source_user_id`
 
