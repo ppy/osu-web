@@ -244,14 +244,14 @@ return [
     'status' => [
         'any' => 'Any',
         'approved' => 'Approved',
-        'faves' => 'Favourites',
+        'favourites' => 'Favourites',
         'graveyard' => 'Graveyard',
         'leaderboard' => 'Has Leaderboard',
         'loved' => 'Loved',
-        'my-maps' => 'My Maps',
+        'mine' => 'My Maps',
         'pending' => 'Pending & WIP',
         'qualified' => 'Qualified',
-        'ranked-approved' => 'Ranked & Approved',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => 'Any',

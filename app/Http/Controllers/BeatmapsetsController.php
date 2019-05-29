@@ -333,17 +333,10 @@ class BeatmapsetsController extends Controller
             $modes[] = ['id' => $id, 'name' => trans("beatmaps.mode.{$name}")];
         }
 
-        $statuses = [
-            ['id' => 'any', 'name' => trans('beatmaps.status.any')],
-            ['id' => 'leaderboard', 'name' => trans('beatmaps.status.leaderboard')],
-            ['id' => 'ranked', 'name' => trans('beatmaps.status.ranked-approved')],
-            ['id' => 'qualified', 'name' => trans('beatmaps.status.qualified')],
-            ['id' => 'loved', 'name' => trans('beatmaps.status.loved')],
-            ['id' => 'favourites', 'name' => trans('beatmaps.status.faves')],
-            ['id' => 'pending', 'name' => trans('beatmaps.status.pending')],
-            ['id' => 'graveyard', 'name' => trans('beatmaps.status.graveyard')],
-            ['id' => 'mine', 'name' => trans('beatmaps.status.my-maps')],
-        ];
+        $statuses = [];
+        foreach (BeatmapsetSearchRequestParams::CATEGORIES as $id) {
+            $statuses[] = ['id' => $id, 'name' => trans("beatmaps.status.{$id}")];
+        }
 
         $extras = [
             ['id' => 'video', 'name' => trans('beatmaps.extra.video')],

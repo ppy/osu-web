@@ -25,6 +25,7 @@ use App\Models\Beatmap;
 
 class BeatmapsetSearchParams extends SearchParams
 {
+    const CATEGORIES = ['any', 'leaderboard', 'ranked', 'qualified', 'loved', 'favourites', 'pending', 'graveyard', 'mine'];
     const PLAYED_STATES = ['played', 'unplayed'];
     const STATUSES_NO_CACHE = ['favourites', 'mine'];
 
