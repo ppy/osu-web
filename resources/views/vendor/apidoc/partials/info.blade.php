@@ -14,6 +14,21 @@ Code examples are provided in the dark area to the right, you can use the tabs a
 If you use [Postman](https://getpostman.com), you can [download a collection here]({{url($outputPath.'/collection.json')}}).
 @endif
 
+# Endpoint
+
+## Base URL
+
+The base URL is: `https://osu.ppy.sh/api/[version]/`
+
+## API Versions
+
+This is combined with the base endpoint to determine where requests should be sent.
+
+Version | Status
+------- | ---------------------------------------------------------------
+v2      | current _(not yet public, consider unstable and expect breaking changes)_
+v1      | _legacy api provided by the old site, will be deprecated soon_
+
 # Authentication
 
 ```shell
