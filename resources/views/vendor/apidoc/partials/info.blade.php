@@ -18,7 +18,7 @@ If you use [Postman](https://getpostman.com), you can [download a collection her
 
 ## Base URL
 
-The base URL is: `https://osu.ppy.sh/api/[version]/`
+The base URL is: `{{ url('/') }}/api/[version]/`
 
 ## API Versions
 
@@ -33,7 +33,7 @@ v1      | _legacy api provided by the old site, will be deprecated soon_
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "https://osu.ppy.sh/api/[version]/[endpoint]"
+curl "{{ url('/') }}/api/[version]/[endpoint]"
   -H "Authorization: Bearer @{{token}}"
 ```
 
