@@ -4,7 +4,7 @@
     $topDescription = $descriptions[0];
     $bottomDescription = $descriptions[1] ?? '';
 
-    $displayUri = substr($route['uri'], strlen('api/v2/'));
+    $displayUri = substr($route['uri'], strlen('api/v2'));
 ?>
 <!-- START_{{$route['id']}} -->
 @if($route['title'] != '')## {{ $route['title']}}
