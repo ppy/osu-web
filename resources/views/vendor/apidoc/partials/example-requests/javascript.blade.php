@@ -2,12 +2,12 @@
 const url = new URL("{{ rtrim(config('app.docs_url') ?: config('app.url'), '/') }}/{{ ltrim($route['boundUri'], '/') }}");
 @if(count($route['queryParameters']))
 
-    let params = {
-    @foreach($route['queryParameters'] as $attribute => $parameter)
-        "{{ $attribute }}": "{{ $parameter['value'] }}",
-    @endforeach
-    };
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+let params = {
+@foreach($route['queryParameters'] as $attribute => $parameter)
+    "{{ $attribute }}": "{{ $parameter['value'] }}",
+@endforeach
+};
+Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 @endif
 
 let headers = {
