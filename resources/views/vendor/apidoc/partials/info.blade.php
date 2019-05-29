@@ -1,11 +1,15 @@
-# Info
+# Introduction
 
-Welcome to the osu!api. You can use this API to get information on various circles and those who click them.
+Welcome to the documentation for osu!api v2. You can use this API to get information on various circles and those who click them.
 
-You can view code examples in the dark area to the right.
+<aside class="warning">
+WARNING: The API in under heavy development and has not stabilised yet. If you choose to use it at this stage, you do so at your own risk. Endpoints may appear, disappear, be renamed and completely change behaviour without warning.
+</aside>
 
-The API and this documentation are a work-in-progress and likely contains errors.
+Note that while we endeavour to keep this documentation up to date, consider it a work-in-progress and note that it will likely contains errors.
+
+Code examples are provided in the dark area to the right, you can use the tabs at the top of the page to switch between bash and javascript samples.
 
 @if($showPostmanCollectionButton)
-[Get Postman Collection]({{url($outputPath.'/collection.json')}})
+If you use [Postman](https://getpostman.com), you can [download a collection here]({{url($outputPath.'/collection.json')}}).
 @endif
