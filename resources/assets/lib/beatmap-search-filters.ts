@@ -28,9 +28,9 @@ export interface BeatmapSearchParams {
   query: string | null;
   rank: string | null;
   sort: string | null;
-  status: string;
+  status: string | null;
 
-  [index: string]: unknown;
+  [index: string]: string | null;
 }
 
 export class BeatmapSearchFilters {
@@ -47,12 +47,11 @@ export class BeatmapSearchFilters {
   // tslint:disable-next-line:variable-name
   @observable private _query: string | null = null; // initialized to null because undefined -> null is considered a change
 
-  // TODO: visible values should be different from internal values
   constructor(url: string) {
     const filters = BeatmapsetFilter.filtersFromUrl(url);
     // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
     for (let key of Object.keys(filters)) {
-      (this as any)[key] = filters[key];
+      (this as any)[key] = filters[key]; // FIXME: indexer
     }
   }
 
@@ -94,7 +93,7 @@ export class BeatmapSearchFilters {
   }
 
   selectedValue(key: string) {
-    const value = (this as any)[key];
+    const value = (this as any)[key]; // FIXME: indexer
     if (value == null) {
       return BeatmapsetFilter.getDefault(this.values, key);
     }
@@ -122,7 +121,7 @@ export class BeatmapSearchFilters {
 
     // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
     for (let key of Object.keys(newFilters)) {
-      (this as any)[key] = newFilters[key];
+      (this as any)[key] = newFilters[key]; // FIXME: indexer
     }
   }
 }
