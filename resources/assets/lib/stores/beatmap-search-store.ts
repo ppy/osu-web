@@ -32,6 +32,7 @@ export default class BeatmapSearchStore {
 
   readonly beatmapsets = new Map<string, any[]>();
   readonly cursors = new Map<string, any>();
+  recommendedDifficulty = 0; // last known recommended difficulty.
   readonly requests = new Map<string, Promise<SearchResults>>();
   readonly totals = new Map<string, number>();
   readonly fetchedAt = new Map<string, Date>();
@@ -56,7 +57,7 @@ export default class BeatmapSearchStore {
       return Promise.resolve({
         beatmapsets,
         hasMore: this.hasMore(key),
-        recommendedDifficulty: 0,
+        recommendedDifficulty: this.recommendedDifficulty,
         total: this.totals.get(key) || 0,
       });
     }
@@ -74,12 +75,14 @@ export default class BeatmapSearchStore {
         this.append(key, data);
       }
 
+      this.recommendedDifficulty = data.recommended_difficulty;
+
       this.requests.delete(key);
 
       return {
         beatmapsets: this.getObservableBeatmapsetsByKey(key),
         hasMore: this.hasMore(key),
-        recommendedDifficulty: data.recommended_difficulty,
+        recommendedDifficulty: this.recommendedDifficulty,
         total: this.totals.get(key) || 0,
       };
     });
@@ -101,6 +104,7 @@ export default class BeatmapSearchStore {
     this.cursors.set(key, data.cursor);
     this.totals.set(key, data.total);
     this.fetchedAt.set(key, new Date());
+    this.recommendedDifficulty = data.recommended_difficulty;
 
     const beatmapsets = this.getObservableBeatmapsetsByKey(key);
     for (const beatmapset of data.beatmapsets) {

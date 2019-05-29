@@ -38,7 +38,7 @@ class UIStateStore {
   @observable currentBeatmapsets!: any[];
   @observable hasMore = false; // TODO: figure out how to make this computed
   @observable numberOfColumns = osu.isDesktop() ? 2 : 1;
-  @observable recommendedDifficulty = 0;
+  @observable recommendedDifficulty = store.recommendedDifficulty;
   @observable filters!: BeatmapSearchFilters;
   @observable isExpanded!: boolean;
   @observable searchStatus: SearchStatus = {
