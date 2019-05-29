@@ -121,20 +121,22 @@ details          | object  | `message_id` of last known message (only returned i
 
 ### Event Names
 
-Name                           | Description
------------------------------- | -----------------------------------------------------
-beatmapset_discussion_lock     | Discussion on beatmap has been locked
-beatmapset_discussion_post_new | New discussion post on beatmap
-beatmapset_discussion_unlock   | Discussion on beatmap has been unlocked
-beatmapset_disqualify          | Beatmap was disqualified
-beatmapset_love                | Beatmap was promoted to loved
-beatmapset_nominate            | Beatmap was nominated
-beatmapset_qualify             | Beatmap has gained enough nominations and entered the ranking queue
-beatmapset_reset_nominations   | Nomination of beatmap was reset
-channel_message                | Someone sent chat message
-forum_topic_reply              | Someone replied on forum topic
+Name                                                                           | Description
+------------------------------------------------------------------------------ | -------------------------------------------------------------------
+[beatmapset_discussion_lock](#notification-beatmapset_discussion_lock)         | Discussion on beatmap has been locked
+[beatmapset_discussion_post_new](#notification-beatmapset_discussion_post_new) | New discussion post on beatmap
+[beatmapset_discussion_unlock](#notification-beatmapset_discussion_unlock)     | Discussion on beatmap has been unlocked
+[beatmapset_disqualify](#notification-beatmapset_disqualify)                   | Beatmap was disqualified
+[beatmapset_love](#notification-beatmapset_love)                               | Beatmap was promoted to loved
+[beatmapset_nominate](#notification-beatmapset_nominate)                       | Beatmap was nominated
+[beatmapset_qualify](#notification-beatmapset_qualify)                         | Beatmap has gained enough nominations and entered the ranking queue
+[beatmapset_reset_nominations](#notification-beatmapset_reset_nominations)     | Nomination of beatmap was reset
+[channel_message](#notification-channel_message)                               | Someone sent chat message
+[forum_topic_reply](#notification-forum_topic_reply)                           | Someone replied on forum topic
 
-### `beatmapset_discussion_lock`
+<div id="notification-beatmapset_discussion_lock" data-unique="notification-beatmapset_discussion_lock"></div>
+
+#### `beatmapset_discussion_lock`
 
 Field          | Type   | Description
 -------------- | ------ | --------------------------
@@ -150,7 +152,9 @@ cover_url | string | Beatmap cover
 title     | string | Beatmap title
 username  | string | Username of `source_user_id`
 
-### `beatmapset_discussion_post_new`
+<div id="notification-beatmapset_discussion_post_new" data-unique="notification-beatmapset_discussion_post_new"></div>
+
+#### `beatmapset_discussion_post_new`
 
 Field          | Type   | Description
 -------------- | ------ | -----------------------------
@@ -169,7 +173,9 @@ post_id       | number  | |
 beatmap_id    | number? | `null` if posted to general all
 username      | string  | Username of `source_user_id`
 
-### `beatmapset_discussion_unlock`
+<div id="notification-beatmapset_discussion_unlock" data-unique="notification-beatmapset_discussion_unlock"></div>
+
+#### `beatmapset_discussion_unlock`
 
 Field          | Type   | Description
 -------------- | ------ | ----------------------------
@@ -185,7 +191,9 @@ title     | string | Beatmap title
 cover_url | string | Beatmap cover
 username  | string | Username of `source_user_id`
 
-### `beatmapset_disqualify`
+<div id="notification-beatmapset_disqualify" data-unique="notification-beatmapset_disqualify"></div>
+
+#### `beatmapset_disqualify`
 
 Field          | Type   | Description
 -------------- | ------ | --------------------------------
@@ -202,7 +210,9 @@ cover_url | string | Beatmap cover
 username  | string | Username of `source_user_id`
 
 
-### `beatmapset_love`
+<div id="notification-beatmapset_love" data-unique="notification-beatmapset_love"></div>
+
+#### `beatmapset_love`
 
 Field          | Type   | Description
 -------------- | ------ | -------------------------------------
@@ -217,6 +227,8 @@ Field     | Type   | Description
 title     | string | Beatmap title
 cover_url | string | Beatmap cover
 username  | string | Username of `source_user_id`
+
+<div id="notification-beatmapset_nominate" data-unique="notification-beatmapset_nominate"></div>
 
 #### `beatmapset_nominate`
 
@@ -234,6 +246,8 @@ title     | string | Beatmap title
 cover_url | string | Beatmap cover
 username  | string | Username of `source_user_id`
 
+<div id="notification-beatmapset_qualify" data-unique="notification-beatmapset_qualify"></div>
+
 #### `beatmapset_qualify`
 
 Field          | Type   | Description
@@ -249,6 +263,8 @@ Field     | Type   | Description
 title     | string | Beatmap title
 cover_url | string | Beatmap cover
 username  | string | Username of `source_user_id`
+
+<div id="notification-beatmapset_reset_nominations" data-unique="notification-beatmapset_reset_nominations"></div>
 
 #### `beatmapset_reset_nominations`
 
@@ -266,6 +282,8 @@ title     | string | Beatmap title
 cover_url | string | Beatmap cover
 username  | string | Username of `source_user_id`
 
+<div id="notification-channel_message" data-unique="notification-channel_message"></div>
+
 #### `channel_message`
 
 Field          | Type   | Description
@@ -281,6 +299,8 @@ Field     | Type   | Description
 title     | string | Up to 36 characters of the message (ends with `...` when exceeding 36 characters)
 cover_url | string | Avatar of `source_user_id`
 username  | string | Username of `source_user_id`
+
+<div id="notification-forum_topic_reply" data-unique="notification-forum_topic_reply"></div>
 
 #### `forum_topic_reply`
 
