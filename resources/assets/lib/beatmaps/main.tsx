@@ -83,9 +83,13 @@ export class Main extends React.Component<Props> {
 
   componentDidMount() {
     uiState.startListeningOnWindow();
+    $(document).on('turbolinks:before-visit.beatmaps-main', () => {
+      this.debouncedSearch.cancel();
+    });
   }
 
   componentWillUnmount() {
+    $(document).off('.beatmaps-main');
     this.debouncedSearch.cancel();
     uiState.cancel();
 
