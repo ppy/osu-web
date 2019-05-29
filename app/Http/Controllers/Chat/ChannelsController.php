@@ -154,8 +154,8 @@ class ChannelsController extends Controller
      *
      * @authenticated
      *
-     * @bodyParam channel_id required The `channel_id` of the channel to mark as read
-     * @bodyParam message_id required The `message_id` of the message to mark as read up to
+     * @queryParam channel_id required The `channel_id` of the channel to mark as read
+     * @queryParam message_id required The `message_id` of the message to mark as read up to
      *
      * @response 204
      */
