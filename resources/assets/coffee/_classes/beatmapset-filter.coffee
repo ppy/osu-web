@@ -70,7 +70,7 @@ class @BeatmapsetFilter
     played: null
     query: ''
     rank: ''
-    status: null
+    status: 'leaderboard'
 
 
   @expand: ['genre', 'language', 'extra', 'rank', 'played']

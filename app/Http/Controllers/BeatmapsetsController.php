@@ -335,7 +335,7 @@ class BeatmapsetsController extends Controller
 
         $statuses = [
             ['id' => 'any', 'name' => trans('beatmaps.status.any')],
-            ['id' => null, 'name' => trans('beatmaps.status.leaderboard')],
+            ['id' => 'leaderboard', 'name' => trans('beatmaps.status.leaderboard')],
             ['id' => 'ranked', 'name' => trans('beatmaps.status.ranked-approved')],
             ['id' => 'qualified', 'name' => trans('beatmaps.status.qualified')],
             ['id' => 'loved', 'name' => trans('beatmaps.status.loved')],
