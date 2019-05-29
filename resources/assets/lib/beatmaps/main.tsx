@@ -59,17 +59,15 @@ export class Main extends React.Component<Props> {
 
     this.observerDisposers.push(
       observe(uiState.filters, (change) => {
+        uiState.prepareToSearch();
+        this.debouncedUpdateUrl();
+        this.debouncedSearch();
         // not sure if observing change of private variable is a good idea
         // but computed value doesn't show up here
-        if (change.name === '_query') {
-          this.debouncedUpdateUrl();
-        } else {
-          this.debouncedUpdateUrl.cancel();
-          this.updateUrl();
+        if (change.name !== '_query') {
+          this.debouncedUpdateUrl.flush();
+          this.debouncedSearch.flush();
         }
-
-        uiState.prepareToSearch();
-        this.debouncedSearch();
       }),
     );
 
@@ -96,7 +94,8 @@ export class Main extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    uiState.stopListeningOnWindow();
+    this.debouncedSearch.cancel();
+    uiState.cancel();
 
     let disposer = this.observerDisposers.shift();
     while (disposer) {
@@ -104,7 +103,7 @@ export class Main extends React.Component<Props> {
       disposer = this.observerDisposers.shift();
     }
 
-    this.debouncedSearch.cancel();
+    uiState.stopListeningOnWindow();
   }
 
   expand = (e: React.SyntheticEvent) => {

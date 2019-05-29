@@ -33,9 +33,16 @@ export default class BeatmapSearchStore {
   readonly beatmapsets = new Map<string, any[]>();
   readonly cursors = new Map<string, any>();
   recommendedDifficulty = 0; // last known recommended difficulty.
-  readonly requests = new Map<string, Promise<SearchResults>>();
   readonly totals = new Map<string, number>();
   readonly fetchedAt = new Map<string, Date>();
+
+  private xhr?: JQueryXHR;
+
+  cancel() {
+    if (this.xhr) {
+      this.xhr.abort();
+    }
+  }
 
   getBeatmapsets(filters: BeatmapSearchFilters) {
     const key = filters.toKeyString();
@@ -59,14 +66,10 @@ export default class BeatmapSearchStore {
         hasMore: this.hasMore(key),
         recommendedDifficulty: this.recommendedDifficulty,
         total: this.totals.get(key) || 0,
-      });
+      } as SearchResults);
     }
 
-    // skip making multiple requests for the same key.
-    const maybeRequest = this.requests.get(key);
-    if (maybeRequest != null) { return maybeRequest; }
-
-    const request = this.fetch(filters, from).then((data: SearchResponse) => {
+    return this.fetch(filters, from).then((data: SearchResponse) => {
       if (from === 0) {
         this.reset(key);
       }
@@ -76,8 +79,7 @@ export default class BeatmapSearchStore {
       }
 
       this.recommendedDifficulty = data.recommended_difficulty;
-
-      this.requests.delete(key);
+      this.fetchedAt.set(key, new Date());
 
       return {
         beatmapsets: this.getObservableBeatmapsetsByKey(key),
@@ -86,11 +88,6 @@ export default class BeatmapSearchStore {
         total: this.totals.get(key) || 0,
       };
     });
-
-    this.fetchedAt.set(key, new Date());
-    this.requests.set(key, request);
-
-    return request;
   }
 
   @action
@@ -133,9 +130,10 @@ export default class BeatmapSearchStore {
   }
 
   private fetch(filters: BeatmapSearchFilters, from: number) {
+    this.cancel();
+
     const params = filters.queryParams;
     const key = filters.toKeyString();
-
     const cursor = this.cursors.get(key);
     if (from > 0 && this.cursors.has(key)) {
       if (cursor == null) {
@@ -146,11 +144,13 @@ export default class BeatmapSearchStore {
     }
 
     const url = laroute.route('beatmapsets.search');
-    return $.ajax(url, {
+    this.xhr = $.ajax(url, {
       data: params,
       dataType: 'json',
       method: 'get',
     });
+
+    return this.xhr;
   }
 
   private hasMore(key: string) {

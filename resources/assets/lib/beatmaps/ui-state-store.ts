@@ -80,6 +80,10 @@ class UIStateStore {
     return osu.transArray(trans);
   }
 
+  cancel() {
+    store.cancel();
+  }
+
   @action
   async loadMore() {
     if (this.isBusy || !this.hasMore) {
