@@ -13,3 +13,27 @@ Code examples are provided in the dark area to the right, you can use the tabs a
 @if($showPostmanCollectionButton)
 If you use [Postman](https://getpostman.com), you can [download a collection here]({{url($outputPath.'/collection.json')}}).
 @endif
+
+# Authentication
+
+```shell
+# With shell, you can just pass the correct header with each request
+curl "https://osu.ppy.sh/api/[version]/[endpoint]"
+  -H "Authorization: Bearer @{{token}}"
+```
+
+> Make sure to replace `@{{token}}` with your OAuth2 token.
+
+<aside class="warning">
+Public access is not yet available, thus this section is incomplete.
+</aside>
+
+osu!api uses OAuth2 to grant access to the API. You can register for access `[somewhere eventually]`.
+
+osu!api requires a valid token to be included with all API requests in a header that looks like the following:
+
+`Authorization: Bearer @{{token}}`
+
+<aside class="notice">
+You must replace <code>@{{token}}</code> with your OAuth2 token.
+</aside>
