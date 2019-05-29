@@ -67,7 +67,7 @@ class @BeatmapsetFilter
     genre: null
     language: null
     mode: null
-    played: null
+    played: 'any'
     query: ''
     rank: ''
     status: 'leaderboard'
