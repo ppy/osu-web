@@ -137,7 +137,7 @@ class NotificationsController extends Controller
      *
      * @authenticated
      *
-     * @bodyParam ids[] integer[] required `id` of notifications to be marked as read.
+     * @bodyParam ids integer[] required `id` of notifications to be marked as read  Example: [1, 2, 3]
      *
      * @response 204
      */
