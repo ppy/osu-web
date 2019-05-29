@@ -35,7 +35,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
     const AVAILABLE_PLAYED = ['any', 'played', 'unplayed'];
     const AVAILABLE_RANKS = ['XH', 'X', 'SH', 'S', 'A', 'B', 'C', 'D'];
 
-    const LEGACY_STATIC_MAP = [
+    const LEGACY_STATUS_MAP = [
         '0' => 'ranked',
         '2' => 'favourites',
         '3' => 'qualified',
@@ -63,7 +63,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $this->queryString = es_query_escape_with_caveats($request['q'] ?? $request['query']);
 
             $status = presence($request['s']);
-            $statusMapping = static::LEGACY_STATIC_MAP[$status] ?? null;
+            $statusMapping = static::LEGACY_STATUS_MAP[$status] ?? null;
             if ($statusMapping) {
                 $this->status = $statusMapping;
             } else {
