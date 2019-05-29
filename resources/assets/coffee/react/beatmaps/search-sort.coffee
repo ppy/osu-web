@@ -57,11 +57,11 @@ export class SearchSort extends React.PureComponent
     if !_.isEmpty(@props.filters.query)
       fields.relevance = true
 
-    if @props.filters.status in [4, 5]
+    if @props.filters.status in ['graveyard', 'pending']
       fields.updated = true
       fields.nominations = true
       fields.plays = false
-    else if @props.filters.status == 6
+    else if @props.filters.status == 'mine'
       fields.updated = true
       fields.ranked = true
     else
