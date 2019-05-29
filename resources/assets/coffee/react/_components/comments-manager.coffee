@@ -38,6 +38,7 @@ export class CommentsManager extends React.PureComponent
       @state =
         comments: commentBundle.comments ? []
         userVotes: commentBundle.user_votes
+        userWatch: commentBundle.user_watch
         users: commentBundle.users ? []
         topLevelCount: commentBundle.top_level_count
         total: commentBundle.total
@@ -52,6 +53,7 @@ export class CommentsManager extends React.PureComponent
     $.subscribe "comments:added.#{@id}", @appendBundle
     $.subscribe "comments:sort.#{@id}", @updateSort
     $.subscribe "comments:toggle-show-deleted.#{@id}", @toggleShowDeleted
+    $.subscribe "comments:toggle-watch.#{@id}", @toggleWatch
     $.subscribe "comment:updated.#{@id}", @update
     $.subscribe "commentVote:added.#{@id}", @addVote
     $.subscribe "commentVote:removed.#{@id}", @removeVote
@@ -134,6 +136,19 @@ export class CommentsManager extends React.PureComponent
     @setState showDeleted: !@state.showDeleted
 
 
+  toggleWatch: =>
+    params = watch:
+      notifiable_type: @props.commentableType
+      notifiable_id: @props.commentableId
+      subtype: 'comment'
+
+    $.ajax laroute.route('watches.store'),
+      data: params
+      dataType: 'json'
+      method: if @state.userWatch then 'DELETE' else 'POST'
+    .done => @setState userWatch: !@state.userWatch
+
+
   updateSort: (_event, {sort}) =>
     return unless @props.commentableType && @props.commentableId
 
@@ -156,6 +171,7 @@ export class CommentsManager extends React.PureComponent
         users: data.users ? []
         commentableMeta: data.commentable_meta ? []
         userVotes: data.user_votes ? []
+        userWatch: data.user_watch
         topLevelCount: data.top_level_count
         total: data.total ? @state.total
         currentSort: sort

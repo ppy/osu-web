@@ -202,6 +202,9 @@ Route::group(['prefix' => 'home'], function () {
     Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
 
     Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
+
+    Route::resource('watches', 'WatchesController', ['only' => ['store']]);
+    Route::delete('watches', 'WatchesController@destroy')->name('watches.destroy');
 });
 
 Route::get('legal/{page}', 'LegalController@show')->name('legal');

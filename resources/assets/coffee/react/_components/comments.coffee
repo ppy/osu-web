@@ -47,7 +47,10 @@ export class Comments extends React.PureComponent
             loadingSort: @props.loadingSort
             currentSort: @props.currentSort
             modifiers: @props.modifiers
-          @renderShowDeletedToggle()
+          div className: osu.classWithModifiers('sort', @props.modifiers),
+            div className: 'sort__items',
+              @renderWatchToggle()
+              @renderShowDeletedToggle()
         if comments?
           div className: "comments__items #{if @props.loadingSort? then 'comments__items--loading' else ''}",
             comments.map @renderComment
@@ -85,16 +88,34 @@ export class Comments extends React.PureComponent
 
 
   renderShowDeletedToggle: =>
-    div className: osu.classWithModifiers('sort', @props.modifiers),
-      div className: 'sort__items',
-        button
-          type: 'button'
-          className: 'sort__item sort__item--button'
-          onClick: @toggleShowDeleted
-          span className: 'sort__item-icon',
-            span className: if @props.showDeleted then 'fas fa-check-square' else 'far fa-square'
-          osu.trans('common.buttons.show_deleted')
+    button
+      type: 'button'
+      className: 'sort__item sort__item--button'
+      onClick: @toggleShowDeleted
+      span className: 'sort__item-icon',
+        span className: if @props.showDeleted then 'fas fa-check-square' else 'far fa-square'
+      osu.trans('common.buttons.show_deleted')
+
+
+  renderWatchToggle: =>
+    if @props.userWatch
+      icon = 'fas fa-eye-slash'
+      label = osu.trans('common.buttons.watch.to_0')
+    else
+      icon = 'fas fa-eye'
+      label = osu.trans('common.buttons.watch.to_1')
+
+    button
+      type: 'button'
+      className: 'sort__item sort__item--button'
+      onClick: @toggleWatch
+      span className: 'sort__item-icon', span className: icon
+      label
 
 
   toggleShowDeleted: ->
     $.publish 'comments:toggle-show-deleted'
+
+
+  toggleWatch: ->
+    $.publish 'comments:toggle-watch'

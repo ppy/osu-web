@@ -87,6 +87,7 @@ class CommentBundle
             'has_more' => $hasMore,
             'has_more_id' => $this->params->parentId,
             'user_votes' => $this->getUserVotes($comments),
+            'user_watch' => $this->getUserWatch(),
             'users' => json_collection($this->getUsers($comments), 'UserCompact'),
         ];
 
@@ -185,6 +186,16 @@ class CommentBundle
         return CommentVote::where(['user_id' => $this->user->getKey()])
             ->whereIn('comment_id', $ids)
             ->pluck('comment_id');
+    }
+
+    private function getUserWatch()
+    {
+        return $this
+            ->user
+            ->watches()
+            ->whereNotifiable($this->commentable)
+            ->where(['subtype' => 'comment'])
+            ->exists();
     }
 
     private function getUsers($comments)

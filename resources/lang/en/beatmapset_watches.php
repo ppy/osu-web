@@ -19,13 +19,6 @@
  */
 
 return [
-    'button' => [
-        'action' => [
-            'to_0' => 'Unwatch',
-            'to_1' => 'Watch',
-        ],
-    ],
-
     'index' => [
         'description' => 'These are the beatmap discussions you are following. You will be notified when there are new posts or updates.',
         'title_compact' => 'modding watchlist',
