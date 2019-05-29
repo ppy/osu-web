@@ -33,14 +33,8 @@ interface Props {
 export class Main extends React.Component<Props> {
   readonly backToTop = React.createRef<BackToTop>();
   readonly backToTopAnchor = React.createRef<HTMLElement>();
-  readonly debouncedSearch = debounce(uiState.search.bind(uiState), 500);
-  readonly debouncedUpdateUrl = debounce(this.updateUrl, 500);
+  readonly debouncedSearch = debounce(this.search, 500);
   readonly observerDisposers: Lambda[] = [];
-
-  updateUrl() {
-    const url = encodeURI(laroute.route('beatmapsets.index', uiState.filters.queryParams));
-    Turbolinks.controller.advanceHistory(url);
-  }
 
   constructor(props: Props) {
     super(props);
@@ -60,12 +54,10 @@ export class Main extends React.Component<Props> {
     this.observerDisposers.push(
       observe(uiState.filters, (change) => {
         uiState.prepareToSearch();
-        this.debouncedUpdateUrl();
         this.debouncedSearch();
         // not sure if observing change of private variable is a good idea
         // but computed value doesn't show up here
         if (change.name !== '_query') {
-          this.debouncedUpdateUrl.flush();
           this.debouncedSearch.flush();
         }
       }),
@@ -122,5 +114,11 @@ export class Main extends React.Component<Props> {
         <BackToTop anchor={this.backToTopAnchor} ref={this.backToTop} />
       </div>
     );
+  }
+
+  search() {
+    const url = encodeURI(laroute.route('beatmapsets.index', uiState.filters.queryParams));
+    Turbolinks.controller.advanceHistory(url);
+    uiState.search();
   }
 }
