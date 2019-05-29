@@ -166,6 +166,9 @@ class ChatController extends Controller
         return $response;
     }
 
+    /**
+     * @group Undocumented
+     */
     public function presence()
     {
         return UserChannel::presenceForUser(Auth::user());
