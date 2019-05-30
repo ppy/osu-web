@@ -50,7 +50,7 @@ class BroadcastNotification implements ShouldQueue
             ->all();
     }
 
-    public function __construct($name, $object, $source)
+    public function __construct($name, $object, $source = null)
     {
         $this->name = $name;
         $this->object = $object;
@@ -69,14 +69,16 @@ class BroadcastNotification implements ShouldQueue
 
         $this->notifiable = $this->notifiable ?? $this->object;
         $this->params['name'] = $this->name;
-        $this->params['details']['username'] = $this->source->username;
+        if ($this->source !== null) {
+            $this->params['details']['username'] = $this->source->username;
+        }
 
         if (is_array($this->receiverIds)) {
             switch (count($this->receiverIds)) {
                 case 0:
                     return;
                 case 1:
-                    if ($this->receiverIds[0] === $this->source->getKey()) {
+                    if ($this->receiverIds[0] === optional($this->source)->getKey()) {
                         return;
                     }
             }
@@ -84,7 +86,9 @@ class BroadcastNotification implements ShouldQueue
 
         $notification = new Notification($this->params);
         $notification->notifiable()->associate($this->notifiable);
-        $notification->source()->associate($this->source);
+        if ($this->source !== null) {
+            $notification->source()->associate($this->source);
+        }
 
         $notification->save();
 
@@ -95,7 +99,7 @@ class BroadcastNotification implements ShouldQueue
                 $receivers = User::whereIn('user_id', $this->receiverIds)->get();
 
                 foreach ($receivers as $receiver) {
-                    if ($receiver->getKey() !== $this->source->getKey()) {
+                    if ($receiver->getKey() !== optional($this->source)->getKey()) {
                         $notification->userNotifications()->create(['user_id' => $receiver->getKey()]);
                     }
                 }
@@ -177,6 +181,16 @@ class BroadcastNotification implements ShouldQueue
         ];
     }
 
+    private function onBeatmapsetRank()
+    {
+        $this->receiverIds = static::beatmapsetReceiverIds($this->object);
+
+        $this->params['details'] = [
+            'title' => $this->object->title,
+            'cover_url' => $this->object->coverURL('card'),
+        ];
+    }
+
     private function onBeatmapsetResetNominations()
     {
         $this->receiverIds = static::beatmapsetReceiverIds($this->object);
@@ -219,5 +233,22 @@ class BroadcastNotification implements ShouldQueue
         ];
 
         $this->params['created_at'] = $this->object->post_time;
+    }
+
+    private function onUserAchievementUnlock()
+    {
+        $user = $this->source;
+        $achievement = $this->object;
+
+        $this->receiverIds = [$user->getKey()];
+        $this->notifiable = $user;
+        $this->source = new User;
+        $this->params['details'] = [
+            'achievement_id' => $achievement->getKey(),
+            'cover_url' => $achievement->iconUrl(),
+            'slug' => $achievement->slug,
+            'title' => $achievement->name,
+            'user_id' => $user->getKey(),
+        ];
     }
 }

@@ -43,6 +43,7 @@ class Achievement extends Model
         'enabled' => 'boolean',
     ];
     public $timestamps = false;
+    public $incrementing = false;
 
     public function getModeAttribute($value)
     {
@@ -58,5 +59,10 @@ class Achievement extends Model
         return $query
             ->where('enabled', true)
             ->where('slug', '<>', '');
+    }
+
+    public function iconUrl()
+    {
+        return '/images/badges/user-achievements/'.e($this->slug).'.png';
     }
 }

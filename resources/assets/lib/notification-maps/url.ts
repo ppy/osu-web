@@ -50,9 +50,13 @@ export function urlSingular(item: Notification) {
         beatmapsetId: item.objectId,
         discussionId: item.details.discussionId,
       });
+    case 'beatmapset_rank':
+      return laroute.route('beatmapsets.show', { beatmapset: item.objectId });
     case 'channel_message':
       return laroute.route('chat.index', { sendto: item.sourceUserId });
     case 'forum_topic_reply':
       return laroute.route('forum.posts.show', { post: item.details.postId });
+    case 'user_achievement_unlock':
+      return `${laroute.route('users.show', { user: item.details.userId })}#medals`;
   }
 }

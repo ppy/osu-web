@@ -20,6 +20,8 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Beatmap;
+use App\Models\Beatmapset;
 use Illuminate\Console\Command;
 
 class ModdingRankCommand extends Command
@@ -36,17 +38,7 @@ class ModdingRankCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Process Queued Qualified maps that meet the criteria for ranking.';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    protected $description = 'Rank maps in queue.';
 
     /**
      * Execute the console command.
@@ -55,31 +47,55 @@ class ModdingRankCommand extends Command
      */
     public function handle()
     {
-        $rankable = Beatmapset::rankable();
+        $this->info('Ranking beatmapsets...');
 
-        if ($rankable) {
-            foreach ($rankable as $rank) {
-            }
+        $modeInts = array_values(Beatmap::MODES);
+
+        foreach ($modeInts as $modeInt) {
+            $this->rankAll($modeInt);
         }
+
+        $this->info('Done');
     }
 
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
+    private function rankAll($modeInt)
     {
-        return [];
-    }
+        $this->info('Ranking beatmapsets with at least mode: '.Beatmap::modeStr($modeInt));
 
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [];
+        $rankedTodayCount = Beatmapset::ranked()
+            ->withoutTrashed()
+            ->withModesForRanking($modeInt)
+            ->where('approved_date', '>=', now()->subDay())
+            ->count();
+
+        $rankableQuota = config('osu.beatmapset.rank_per_day') - $rankedTodayCount;
+
+        $this->info("{$rankedTodayCount} beatmapsets ranked last 24 hours. Can rank {$rankableQuota} more");
+
+        if ($rankableQuota <= 0) {
+            return;
+        }
+
+        $toRankLimit = min(config('osu.beatmapset.rank_per_run'), $rankableQuota);
+
+        $toBeRankedQuery = Beatmapset::qualified()
+            ->withoutTrashed()
+            ->withModesForRanking($modeInt)
+            ->where('queued_at', '<', now()->subDays(7));
+
+        $rankingQueue = $toBeRankedQuery->count();
+
+        $toBeRanked = $toBeRankedQuery
+            ->orderBy('queued_at', 'ASC')
+            ->limit($toRankLimit)
+            ->get();
+
+        $this->info("{$rankingQueue} beatmapset(s) in ranking queue");
+        $this->info("Ranking {$toBeRanked->count()} beatmapset(s)");
+
+        foreach ($toBeRanked as $beatmapset) {
+            $this->info("Ranking beatmapset: {$beatmapset->getKey()}");
+            $beatmapset->rank();
+        }
     }
 }

@@ -36,10 +36,12 @@ export const nameToIcons: IconsMap = {
   beatmapset_love: ['fas fa-drafting-compass', 'fas fa-heart'],
   beatmapset_nominate: ['fas fa-drafting-compass', 'fas fa-vote-yea'],
   beatmapset_qualify: ['fas fa-drafting-compass', 'fas fa-check'],
+  beatmapset_rank: ['fas fa-drafting-compass', 'fas fa-check-double'],
   beatmapset_reset_nominations: ['fas fa-drafting-compass', 'fas fa-undo'],
   channel_message: ['fas fa-comments'],
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
+  user_achievement_unlock: ['fas fa-trophy'],
 };
 
 export const nameToIconsCompact: IconsMap = {
@@ -50,6 +52,7 @@ export const nameToIconsCompact: IconsMap = {
   beatmapset_love: ['fas fa-heart'],
   beatmapset_nominate: ['fas fa-vote-yea'],
   beatmapset_qualify: ['fas fa-check'],
+  beatmapset_rank: ['fas fa-check-double'],
   beatmapset_reset_nominations: ['fas fa-undo'],
   channel_message: ['fas fa-comments'],
   forum_topic_reply: ['fas fa-comment-medical'],

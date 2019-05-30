@@ -16,8 +16,22 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import Notification from 'models/notification';
+
 interface CategoryMap {
   [key: string]: string;
+}
+
+export function categoryGroupKey(item: Notification) {
+  if (item.objectId == null || item.name == null || item.category == null) {
+    return null;
+  }
+
+  if (item.name === 'user_achievement_unlock') {
+    return `achievement:${item.id}`;
+  }
+
+  return `${item.category}:${item.objectId}`;
 }
 
 export const nameToCategory: CategoryMap = {
@@ -28,8 +42,10 @@ export const nameToCategory: CategoryMap = {
   beatmapset_love: 'beatmapset_state',
   beatmapset_nominate: 'beatmapset_state',
   beatmapset_qualify: 'beatmapset_state',
+  beatmapset_rank: 'beatmapset_state',
   beatmapset_reset_nominations: 'beatmapset_state',
   channel_message: 'channel',
   forum_topic_reply: 'forum_topic_reply',
   legacy_pm: 'legacy_pm',
+  user_achievement_unlock: 'user_achievement_unlock',
 };

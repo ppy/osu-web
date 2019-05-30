@@ -55,7 +55,12 @@ class Message extends Model
 
     public function scopeForUser($query, User $user)
     {
-        return $query->whereIn('channel_id', $user->channels->pluck('channel_id'))
+        $channelIds = UserChannel::where([
+            'user_id' => $user->user_id,
+            'hidden' => false,
+        ])->pluck('channel_id');
+
+        return $query->whereIn('channel_id', $channelIds)
             ->orderBy('message_id', 'desc');
     }
 

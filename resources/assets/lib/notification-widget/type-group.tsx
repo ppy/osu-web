@@ -45,7 +45,7 @@ export default withMarkRead(observer(class TypeGroup extends React.Component<Ite
       <div className={bn}>
         <div className={`${bn}__header`}>
           <div className={`${bn}__type`}>
-            {osu.trans(`notifications.item.${item.objectType}._`)}
+            {osu.trans(`notifications.item.${item.displayType}._`)}
 
             {this.renderNotificationCount()}
           </div>
@@ -63,11 +63,12 @@ export default withMarkRead(observer(class TypeGroup extends React.Component<Ite
     const categoryGroup: Map<string, Notification[]> = new Map();
 
     this.props.items.forEach((item) => {
-      if (item.objectId == null || item.name == null || item.category == null) {
+      const key = item.categoryGroupKey;
+
+      if (key == null) {
         return;
       }
 
-      const key = `${item.objectId}:${item.category}`;
       let groupedItems = categoryGroup.get(key);
 
       if (groupedItems == null) {
