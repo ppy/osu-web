@@ -12,5 +12,5 @@ includes:
 search: true
 
 toc_footers:
-- <a href="https://github.com/ppy/osu-web">osu-web</a>
+- <a href="https://github.com/ppy/osu-web">osu-web on GitHub</a>
 - <a href="https://osu.ppy.sh">osu!</a>
