@@ -35,6 +35,7 @@ class Notification extends Model
     const BEATMAPSET_RESET_NOMINATIONS = 'beatmapset_reset_nominations';
     const CHANNEL_MESSAGE = 'channel_message';
     const FORUM_TOPIC_REPLY = 'forum_topic_reply';
+    const USER_ACHIEVEMENT_UNLOCK = 'user_achievement_unlock';
 
     protected $casts = [
         'details' => 'array',

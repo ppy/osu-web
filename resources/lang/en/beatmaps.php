@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Sorted by:',
             'created_at' => 'Creation time',
             'timeline' => 'Timeline',
             'updated_at' => 'Last update',

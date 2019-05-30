@@ -195,7 +195,7 @@ export class NewDiscussion extends React.PureComponent
                   existing_timestamps: timestampsString
 
             label className: "#{bn}__notice-checkbox",
-              div className: 'osu-checkbox osu-checkbox--beatmap-discussion',
+              div className: 'osu-checkbox osu-checkbox--beatmap-discussion-new',
                 input
                   className: 'osu-checkbox__input'
                   type: 'checkbox'
@@ -386,7 +386,7 @@ export class NewDiscussion extends React.PureComponent
     typeText = if type == 'problem' then @problemType() else type
 
     el BigButton,
-      modifiers: ['beatmap-discussion']
+      modifiers: ['beatmap-discussion-new']
       icon: icon
       text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
       key: type

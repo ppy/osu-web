@@ -234,4 +234,21 @@ class BroadcastNotification implements ShouldQueue
 
         $this->params['created_at'] = $this->object->post_time;
     }
+
+    private function onUserAchievementUnlock()
+    {
+        $user = $this->source;
+        $achievement = $this->object;
+
+        $this->receiverIds = [$user->getKey()];
+        $this->notifiable = $user;
+        $this->source = new User;
+        $this->params['details'] = [
+            'achievement_id' => $achievement->getKey(),
+            'cover_url' => $achievement->iconUrl(),
+            'slug' => $achievement->slug,
+            'title' => $achievement->name,
+            'user_id' => $user->getKey(),
+        ];
+    }
 }

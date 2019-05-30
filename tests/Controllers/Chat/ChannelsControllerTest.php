@@ -94,6 +94,16 @@ class ChannelsControllerTest extends TestCase
             ->assertStatus(403);
     }
 
+    public function testChannelJoinPM() // fail
+    {
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
+                'channel' => $this->pmChannel->channel_id,
+                'user' => $this->user->user_id,
+            ]))
+            ->assertStatus(403);
+    }
+
     public function testChannelJoinPublic() // succeed
     {
         // ensure not in channel
@@ -270,7 +280,7 @@ class ChannelsControllerTest extends TestCase
             ->assertStatus(401);
     }
 
-    public function testChannelLeaveWhenNotPublic() // fail
+    public function testChannelLeaveWhenPrivate() // fail
     {
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('DELETE', route('api.chat.channels.part', [
