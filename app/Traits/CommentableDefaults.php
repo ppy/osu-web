@@ -34,7 +34,7 @@ trait CommentableDefaults
     {
         $prefix = trans("comments.commentable_name.{$this->getMorphClass()}");
 
-        return "{$prefix}: {$this->commentableTitleContent()}";
+        return "[{$prefix}] {$this->commentableTitleContent()}";
     }
 
     abstract public function commentableTitleContent();
