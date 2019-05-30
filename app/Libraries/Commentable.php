@@ -18,26 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Transformers;
+namespace App\Libraries;
 
-use App\Libraries\Commentable;
-use League\Fractal;
-
-class CommentableMetaTransformer extends Fractal\TransformerAbstract
+interface Commentable
 {
-    public function transform(?Commentable $commentable)
-    {
-        if (isset($commentable)) {
-            return [
-                'id' => $commentable->getKey(),
-                'type' => $commentable->getMorphClass(),
-                'title' => $commentable->commentableTitle(),
-                'url' => $commentable->url(),
-            ];
-        } else {
-            return [
-                'title' => trans('comments.commentable_name._deleted'),
-            ];
-        }
-    }
+    public function comments();
+
+    public function commentableTitle();
+
+    public function url();
 }
