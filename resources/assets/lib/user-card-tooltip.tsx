@@ -45,11 +45,6 @@ const userCardTooltipClass = 'qtip--user-card';
 let inCard = false;
 let tooltipWithActiveMenu: any;
 
-$(document).on('mouseover', '.js-usercard', onMouseOver);
-$(document).on('mouseenter', '.js-react--user-card-tooltip', onMouseEnter);
-$(document).on('mouseleave', '.js-react--user-card-tooltip', onMouseLeave);
-$(document).on('turbolinks:before-cache', onBeforeCache);
-
 function createTooltipOptions(card: HTMLElement) {
   return {
     content: {
@@ -143,6 +138,13 @@ function shouldShow(event: JQueryEventObject) {
   if (tooltipWithActiveMenu != null || osu.isMobile()) {
     event.preventDefault();
   }
+}
+
+export function startListening() {
+  $(document).on('mouseover', '.js-usercard', onMouseOver);
+  $(document).on('mouseenter', '.js-react--user-card-tooltip', onMouseEnter);
+  $(document).on('mouseleave', '.js-react--user-card-tooltip', onMouseLeave);
+  $(document).on('turbolinks:before-cache', onBeforeCache);
 }
 
 /**
