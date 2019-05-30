@@ -37,6 +37,7 @@ export class BlockButton extends React.PureComponent
 
 
   updateBlocks: (data) =>
+    @props.onClick()
     @setState block: _.find(data, target_id: @props.userId), ->
       currentUser.blocks = _.filter data, relation_type: 'block'
       currentUser.friends = _.filter data, relation_type: 'friend'
@@ -50,8 +51,9 @@ export class BlockButton extends React.PureComponent
 
 
   clicked: (e) =>
-    @props.onClick()
-    return if !confirm osu.trans('common.confirmation')
+    if !confirm osu.trans('common.confirmation')
+      @props.onClick()
+      return
 
     @setState loading: true, =>
       if @state.block

@@ -93,7 +93,7 @@ export class PopupMenu extends PureComponent
 
 
   hide: (e) =>
-    return if !@state.active || Modal.isOpen()
+    return if !@state.active || Modal.isOpen() || osu.popupShowing()
 
     event = e.originalEvent
     return if !event? # originalEvent gets eaten by error popup?
