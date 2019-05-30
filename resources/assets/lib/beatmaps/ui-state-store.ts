@@ -23,7 +23,7 @@ import core from 'osu-core-singleton';
 
 const store = core.dataStore.beatmapSearchStore;
 
-interface SearchStatus {
+export interface SearchStatus {
   error?: any;
   from: number;
   state: 'completed' // search not doing anything
