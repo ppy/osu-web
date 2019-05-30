@@ -40,7 +40,7 @@ export default class Message {
 
   @computed
   get parsedContent(): string {
-    return osu.linkify(this.content);
+    return osu.linkify(this.content, true);
   }
 
   @action

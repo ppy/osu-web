@@ -18,7 +18,7 @@
 
 @osu =
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
-  urlRegex: /(https?:\/\/(?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?)/ig
+  urlRegex: /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?))/ig
 
   bottomPage: ->
     osu.bottomPageDistance() == 0
@@ -170,8 +170,8 @@
     el.outerHTML
 
 
-  linkify: (text) ->
-    return text.replace(osu.urlRegex, '<a href="$1" rel="nofollow">$1</a>')
+  linkify: (text, newWindow = false) ->
+    return text.replace(osu.urlRegex, "<a href=\"$1\" rel=\"nofollow\"#{if newWindow then ' target=\"_blank\"' else ''}>$2</a>")
 
 
   timeago: (time) ->
