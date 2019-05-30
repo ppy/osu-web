@@ -197,7 +197,7 @@ class Build extends Model implements Commentable
         }
     }
 
-    public function commentableTitleContent()
+    public function commentableTitle()
     {
         if ($this->stream_id === null || $this->updateStream === null) {
             return $this->displayVersion();

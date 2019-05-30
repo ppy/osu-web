@@ -815,9 +815,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         return config('osu.beatmapset.required_hype');
     }
 
-    public function commentableTitleContent()
+    public function commentableTitle()
     {
-        return $this->artist.' - '.$this->title;
+        return $this->title;
     }
 
     public function canBeHyped()

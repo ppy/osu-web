@@ -23,7 +23,7 @@
   @_line-margin: 10px;
   @_top: comment;
   @_spacing: 10px;
-  @_gutter-desktop-left: (@gutter-desktop + 10px);
+  @_gutter-desktop-left: @gutter-desktop;
   @_gutter-desktop-right: @gutter-desktop;
 
   margin-top: @_spacing;
@@ -33,9 +33,12 @@
 
   &--top {
     border-bottom-width: 1px;
-    padding-bottom: @_spacing;
-    padding-left: @gutter;
-    padding-right: @gutter;
+    margin-top: 0;
+    padding: (@_spacing + 5px) @gutter;
+
+    .@{_top}--single& {
+      border-bottom-width: 0;
+    }
 
     @media @desktop {
       padding-left: @_gutter-desktop-left;
@@ -65,6 +68,13 @@
       color: @green;
     }
 
+    &--commentable-meta {
+      .@{_top}--single & {
+        font-size: @font-size--title;
+        display: block;
+      }
+    }
+
     &--permalink {
       // the translation is lowercased
       text-transform: capitalize;
@@ -86,8 +96,38 @@
     flex: none;
   }
 
+  &__commentable-meta {
+    margin-left: (@_avatar + @_avatar-margin);
+    margin-bottom: 5px;
+    font-size: @font-size--small-2;
+    display: flex;
+    align-items: baseline;
+
+    .@{_top}--single & {
+      margin-left: 0;
+      margin-bottom: 40px;
+      flex-direction: column;
+    }
+  }
+
   &__commentable-meta-icon {
     font-size: 0.9em;
+    margin-right: 5px;
+  }
+
+  &__commentable-meta-type {
+    background-color: #ddd;
+    padding: 5px 15px;
+    margin-right: 5px;
+    border-radius: 10000px;
+
+    .@{_top}--dark & {
+      background-color: @comment-dark-border-bg;
+    }
+
+    .@{_top}--single & {
+      margin-bottom: 10px;
+    }
   }
 
   &__container {
@@ -255,11 +295,6 @@
   &__row-item {
     margin: 2px 5px;
 
-    &--commentable-meta {
-      font-style: normal;
-      font-size: 0.8em;
-    }
-
     &--info {
       font-weight: normal;
 
@@ -287,6 +322,10 @@
 
     @media @desktop {
       display: block;
+
+      .@{_top}--single & {
+        display: none;
+      }
     }
   }
 }

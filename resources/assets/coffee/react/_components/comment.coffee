@@ -78,10 +78,6 @@ export class Comment extends React.PureComponent
     div
       className: osu.classWithModifiers 'comment', modifiers
 
-      if @canHaveVote()
-        div className: 'comment__float-container comment__float-container--left hidden-xs',
-          @renderVoteButton()
-
       if @props.depth == 0 && children.length > 0
         div className: 'comment__float-container comment__float-container--right',
           button
@@ -90,7 +86,14 @@ export class Comment extends React.PureComponent
             onClick: @toggleReplies
             span className: "fas #{if @state.expandReplies then 'fa-angle-up' else 'fa-angle-down'}"
 
+      if @props.showCommentableMeta
+        @commentableMeta()
+
       div className: "comment__main #{if @isDeleted() then 'comment__main--deleted' else ''}",
+        if @canHaveVote()
+          div className: 'comment__float-container comment__float-container--left hidden-xs',
+            @renderVoteButton()
+
         if user.id?
           a
             className: 'comment__avatar js-usercard'
@@ -102,13 +105,6 @@ export class Comment extends React.PureComponent
             className: 'comment__avatar'
             el UserAvatar, user: user, modifiers: ['full-circle']
         div className: 'comment__container',
-          if @props.showCommentableMeta
-            div className: 'comment__row comment__row--header',
-              span
-                className: 'comment__row-item comment__row-item--commentable-meta'
-                @commentableMeta()
-
-
           div className: 'comment__row comment__row--header',
             if user.id?
               a
@@ -341,15 +337,18 @@ export class Comment extends React.PureComponent
       component = a
       params =
         href: meta.url
-        className: 'comment__action'
+        className: 'comment__action comment__action--commentable-meta'
     else
       component = span
       params = null
 
-    component params,
-      span className: 'comment__commentable-meta-icon fas fa-comment'
-      ' '
-      meta.title
+    div className: 'comment__commentable-meta',
+      span className: 'comment__commentable-meta-type',
+        span className: 'comment__commentable-meta-icon fas fa-comment'
+        ' '
+        osu.trans("comments.commentable_name.#{@props.comment.commentable_type}")
+      component params,
+        meta.title
 
 
   isOwner: =>

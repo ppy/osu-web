@@ -170,7 +170,7 @@ class NewsPost extends Model implements Commentable
             ->where('published_at', '<=', Carbon::now());
     }
 
-    public function commentableTitleContent()
+    public function commentableTitle()
     {
         return $this->title();
     }

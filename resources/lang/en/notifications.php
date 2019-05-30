@@ -51,6 +51,13 @@ return [
                 'beatmapset_reset_nominations' => 'Nomination of ":title" has been reset',
                 'beatmapset_reset_nominations_compact' => 'Nomination was reset',
             ],
+
+            'comment' => [
+                '_' => 'New comment',
+
+                'comment_new' => ':username commented ":content" on ":title"',
+                'comment_new_compact' => ':username commented ":content"',
+            ],
         ],
 
         'channel' => [
@@ -63,6 +70,28 @@ return [
                     'channel_message_compact' => ':title',
                     'channel_message_group' => 'from :username',
                 ],
+            ],
+        ],
+
+        'build' => [
+            '_' => 'Changelog',
+
+            'comment' => [
+                '_' => 'New comment',
+
+                'comment_new' => ':username commented ":content" on ":title"',
+                'comment_new_compact' => ':username commented ":content"',
+            ],
+        ],
+
+        'news_post' => [
+            '_' => 'News',
+
+            'comment' => [
+                '_' => 'New comment',
+
+                'comment_new' => ':username commented ":content" on ":title"',
+                'comment_new_compact' => ':username commented ":content"',
             ],
         ],
 

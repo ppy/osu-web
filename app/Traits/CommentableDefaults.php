@@ -30,12 +30,5 @@ trait CommentableDefaults
     }
 
     // title for display in comments listing
-    public function commentableTitle()
-    {
-        $prefix = trans("comments.commentable_name.{$this->getMorphClass()}");
-
-        return "[{$prefix}] {$this->commentableTitleContent()}";
-    }
-
-    abstract public function commentableTitleContent();
+    abstract public function commentableTitle();
 }

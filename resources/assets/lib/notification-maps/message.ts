@@ -25,6 +25,7 @@ export function messageCompact(item: Notification) {
   const replacements = {
     title: item.details.title,
     username: item.details.username,
+    content: item.details.content,
   };
 
   let key = `notifications.item.${item.displayType}.${item.category}`;
@@ -63,6 +64,7 @@ export function messageSingular(item: Notification) {
   const replacements = {
     title: item.details.title,
     username: item.details.username,
+    content: item.details.content,
   };
 
   let key = `notifications.item.${item.displayType}.${item.category}`;
