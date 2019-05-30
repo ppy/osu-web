@@ -25,7 +25,7 @@ bn = 'textual-button'
 
 export class ReportUser extends PureComponent
   @defaultProps =
-    onClick: -> # do nothing
+    onFormClose: -> # do nothing
 
   constructor: (props) ->
     super props
