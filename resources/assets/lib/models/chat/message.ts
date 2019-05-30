@@ -17,7 +17,7 @@
  */
 
 import { MessageJSON } from 'chat/chat-api-responses';
-import { action, observable} from 'mobx';
+import {action, computed, observable} from 'mobx';
 import User from 'models/user';
 import * as moment from 'moment';
 
@@ -36,6 +36,11 @@ export default class Message {
   constructor() {
     this.uuid = osu.uuid();
     this.sender = new User(-1); // placeholder user
+  }
+
+  @computed
+  get parsedContent(): string {
+    return osu.linkify(this.content);
   }
 
   @action
