@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'ştiri osu!',
 
         'nav' => [
             'newer' => 'Postări mai noi',
@@ -28,13 +28,13 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Ştiri :info',
+            'info' => 'Pagina de pornire',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => 'de :user',
 
         'nav' => [
             'newer' => 'Postare mai nouă',
@@ -42,8 +42,8 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Ştiri :info',
+            'info' => 'Postare',
         ],
     ],
 

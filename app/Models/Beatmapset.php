@@ -185,13 +185,6 @@ class Beatmapset extends Model implements AfterCommit
         }
     }
 
-    public function scopeRankable($query)
-    {
-        return $query->qualified()
-            ->where('approved_date', '>', DB::raw('date_sub(now(), interval 30 day)'))
-            ->get();
-    }
-
     /**
      * Includes if player has completed the set in a given playmode
      * Returns the count of beatmaps in the set that were completed
@@ -285,6 +278,19 @@ class Beatmapset extends Model implements AfterCommit
     public function scopeActive($query)
     {
         return $query->where('active', '=', true);
+    }
+
+    public function scopeWithModesForRanking($query, $modeInts)
+    {
+        if (!is_array($modeInts)) {
+            $modeInts = [$modeInts];
+        }
+
+        $query->whereHas('beatmaps', function ($query) use ($modeInts) {
+            $query->whereIn('playmode', $modeInts);
+        })->whereDoesntHave('beatmaps', function ($query) use ($modeInts) {
+            $query->where('playmode', '<', min($modeInts));
+        });
     }
 
     // one-time checks
@@ -552,7 +558,9 @@ class Beatmapset extends Model implements AfterCommit
 
         if ($this->approved > 0) {
             $this->approved_date = $currentTime;
-            $this->approvedby_id = $user->user_id;
+            if ($user !== null) {
+                $this->approvedby_id = $user->user_id;
+            }
         } else {
             $this->approved_date = null;
             $this->approvedby_id = null;
@@ -564,9 +572,12 @@ class Beatmapset extends Model implements AfterCommit
             ->beatmaps()
             ->update(['approved' => $this->approved]);
 
+        if ($this->isScoreable() !== $oldScoreable || $this->isRanked()) {
+            dispatch(new RemoveBeatmapsetBestScores($this));
+        }
+
         if ($this->isScoreable() !== $oldScoreable) {
             $this->userRatings()->delete();
-            dispatch(new RemoveBeatmapsetBestScores($this));
         }
     }
 
@@ -698,6 +709,32 @@ class Beatmapset extends Model implements AfterCommit
         return [
             'result' => true,
         ];
+    }
+
+    public function rank()
+    {
+        if (!$this->isQualified()) {
+            return false;
+        }
+
+        DB::transaction(function () {
+            $this->events()->create(['type' => BeatmapsetEvent::RANK]);
+
+            $this->update(['play_count' => 0]);
+            $this->beatmaps()->update(['playcount' => 0, 'passcount' => 0]);
+            $this->setApproved('ranked', null);
+
+            // global event
+            Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
+
+            // enqueue a cover check job to ensure cover images are all present
+            $job = (new CheckBeatmapsetCovers($this))->onQueue('beatmap_high');
+            dispatch($job);
+
+            broadcast_notification(Notification::BEATMAPSET_RANK, $this);
+        });
+
+        return true;
     }
 
     public function favourite($user)
@@ -853,12 +890,7 @@ class Beatmapset extends Model implements AfterCommit
         $modes = $this->playmodes()->toArray();
 
         $queueSize = static::qualified()
-            ->whereHas('beatmaps', function ($query) use ($modes) {
-                $query->whereIn('playmode', $modes);
-            })
-            ->whereDoesntHave('beatmaps', function ($query) use ($modes) {
-                $query->where('playmode', '<', min($modes));
-            })
+            ->withModesForRanking($modes)
             ->where('queued_at', '<', $this->queued_at)
             ->count();
         $days = ceil($queueSize / static::RANKED_PER_DAY);
@@ -931,6 +963,7 @@ class Beatmapset extends Model implements AfterCommit
     {
         return json_item(
             static::with([
+                'allBeatmaps.beatmapset',
                 'beatmapDiscussions.beatmapDiscussionPosts',
                 'beatmapDiscussions.beatmapDiscussionVotes',
                 'beatmapDiscussions.beatmapset',

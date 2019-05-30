@@ -21,7 +21,7 @@
 return [
     'buttons' => [
       'add' => 'thêm bạn',
-      'disabled' => '',
+      'disabled' => 'bạn bè',
       'remove' => 'xóa bạn',
     ],
 

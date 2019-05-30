@@ -140,7 +140,7 @@ use Request;
  * @property string $user_msnm
  * @property int $user_new_privmsg
  * @property string $user_newpasswd
- * @property int $user_notify
+ * @property bool $user_notify
  * @property int $user_notify_pm
  * @property int $user_notify_type
  * @property string|null $user_occ
@@ -192,6 +192,7 @@ class User extends Model implements AuthenticatableContract
         'osu_subscriber' => 'boolean',
         'user_allow_pm' => 'boolean',
         'user_allow_viewonline' => 'boolean',
+        'user_notify' => 'boolean',
         'user_timezone' => 'float',
     ];
 

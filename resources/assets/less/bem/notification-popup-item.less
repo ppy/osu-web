@@ -21,12 +21,35 @@
 
   display: flex;
   width: 100%;
+  background-color: @greysky;
+  border-radius: @border-radius-large;
+
+  &:hover::before {
+    .full-size();
+    content: '';
+    background-color: fade(#fff, 10%);
+    border-radius: @border-radius-large;
+  }
+
+  &--compact {
+    background-color: transparent;
+    margin-left: 10px;
+    width: calc(100% - 10px);
+  }
+
+  &--group {
+    background-color: lighten(@greysky, 10%);
+  }
 
   &__content {
     flex: 1;
     display: flex;
     flex-direction: column;
     min-width: 0;
+    // prevent thin single row item
+    min-height: 30px;
+    justify-content: center;
+    margin: -2px 0;
   }
 
   &__cover {
@@ -34,14 +57,22 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-color: @greysky-darker;
     width: 60px;
     flex: none;
+
+    .@{_top}--compact & {
+      border-radius: @border-radius-large;
+      width: 50px;
+    }
+
+    .@{_top}--user_achievement_unlock & {
+      background-size: 70%;
+    }
   }
 
   &__cover-icon {
-    & + & {
-      margin-left: 2px;
-    }
+    margin: 0 1px;
   }
 
   &__cover-overlay {
@@ -49,36 +80,18 @@
     .center-content();
     border-radius: @border-radius-large 0 0 @border-radius-large;
     background-color: fade(#000, 60%);
+
+    .@{_top}--compact & {
+      background-color: transparent;
+    }
   }
 
   &__main {
     border-radius: 0 @border-radius-large @border-radius-large 0;
-    background-color: @greysky;
     flex: 1;
     padding: 5px 0 5px 10px;
     display: flex;
     min-width: 0;
-
-    .@{_top}:hover &::before {
-      .full-size();
-      content: '';
-      background-color: fade(#fff, 10%);
-      border-radius: 0 @border-radius-large @border-radius-large 0;
-    }
-  }
-
-  &__message {
-    .link-plain();
-    .link-white();
-    margin: 5px 0;
-    font-size: @font-size--title-small;
-    word-wrap: break-word;
-  }
-
-  &__name {
-    font-weight: bold;
-    font-size: @font-size--small;
-    text-transform: uppercase;
   }
 
   &__read-button {
@@ -91,15 +104,32 @@
     }
   }
 
+  &__row {
+    margin: 2px 0;
+
+    &--category {
+      font-weight: bold;
+      font-size: @font-size--small;
+      text-transform: uppercase;
+    }
+
+    &--message {
+      .link-plain();
+      .link-white();
+      font-size: @font-size--title-small;
+      word-wrap: break-word;
+    }
+
+    &--time {
+      font-size: @font-size--small;
+      color: @greysky-light;
+    }
+  }
+
   &__side-buttons {
     .center-content();
     width: 16px;
     flex: none;
     margin: 0 10px;
-  }
-
-  &__time {
-    font-size: @font-size--small;
-    color: @greysky-light;
   }
 }

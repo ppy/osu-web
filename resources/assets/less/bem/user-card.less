@@ -131,6 +131,11 @@
   &__card {
     .link-white();
     .link-plain();
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     pointer-events: none;
 
     height: 100%;
@@ -188,9 +193,24 @@
       font-size: 10px;
       background-color: #333;
       opacity: 0;
+      transition:
+        background-color 120ms ease-in-out,
+        opacity 120ms ease-in-out;
 
-      .@{top}:hover &, .@{top}--active & {
+      // NB: there is a issue where clicking on the button to close the menu
+      // causes the state to momentarily unhover and rehover
+      .@{top}:hover & {
         opacity: 1;
+
+        &:hover {
+          background-color: @blue-darker;
+        }
+      }
+
+      // needs the higher specificity over .@{top}:hover
+      .@{top}--active && {
+        opacity: 1;
+        background-color: @blue-darker;
       }
     }
   }

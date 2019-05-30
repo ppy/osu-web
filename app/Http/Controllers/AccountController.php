@@ -135,6 +135,7 @@ class AccountController extends Controller
                 'user_from:string',
                 'user_interests:string',
                 'user_msnm:string',
+                'user_notify:bool',
                 'user_occ:string',
                 'user_sig:string',
                 'user_twitter:string',

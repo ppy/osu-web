@@ -19,8 +19,8 @@
  */
 
 return [
-    'page_description' => 'Utvalgte artister på osu!',
-    'title' => 'Fremhevede Artister',
+    'page_description' => 'Featured artists på osu!',
+    'title' => 'Featured Artists',
 
     'admin' => [
         'hidden' => 'ARTISTEN ER FOR ØYEBLIKKET SKJULT',

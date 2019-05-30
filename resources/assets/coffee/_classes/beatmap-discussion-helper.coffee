@@ -127,7 +127,7 @@ class @BeatmapDiscussionHelper
 
 
   @moderationGroup: (user) =>
-    _.intersection(_.concat(user.default_group, user.groups), ['nat', 'bng'])[0]
+    _.intersection(_.concat(user.default_group, user.groups), ['nat', 'bng', 'bng_limited'])[0]
 
 
   @previewMessage = (message) =>

@@ -427,7 +427,14 @@ export class Comment extends React.PureComponent
     @setState showNewReply: !@state.showNewReply
 
 
-  voteToggle: =>
+  voteToggle: (e) =>
+    target = e.target
+
+    if !currentUser.id?
+      userLogin.show target
+
+      return
+
     @setState postingVote: true
 
     if @hasVoted()
@@ -447,6 +454,7 @@ export class Comment extends React.PureComponent
       $.publish "commentVote:#{voteAction}", id: @props.comment.id
     .fail (xhr, status) =>
       return if status == 'abort'
+      return $(target).trigger('ajax:error', [xhr, status]) if xhr.status == 401
 
       osu.ajaxError xhr
 

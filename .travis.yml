@@ -61,12 +61,16 @@ install:
 
 jobs:
   include:
-    - script: ./bin/phpunit
-      name: "phpunit"
-    - script: ./bin/run_dusk.sh
-      name: "browser tests"
-    - script: yarn lint
-      name: "tslint"
+    - name: phpunit
+      script: ./bin/phpunit
+    - name: browser tests
+      script: ./bin/run_dusk.sh
+    - name: tslint
+      env:
+        - OSU_SKIP_ASSET_BUILD=1
+      script:
+        - yarn
+        - yarn lint
 
 after_script:
   - cat elasticsearch.log

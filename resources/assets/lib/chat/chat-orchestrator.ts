@@ -16,7 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {ChatChannelSwitchAction} from 'actions/chat-actions';
+import {
+  ChatChannelPartAction,
+  ChatChannelSwitchAction,
+  ChatPresenceUpdateAction,
+} from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
 import DispatchListener from 'dispatch-listener';
@@ -45,6 +49,12 @@ export default class ChatOrchestrator implements DispatchListener {
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof ChatChannelSwitchAction) {
       this.changeChannel(action.channelId);
+    } else if (action instanceof ChatChannelPartAction) {
+      this.partChannel(action.channelId);
+    } else if (action instanceof ChatPresenceUpdateAction) {
+      if (this.rootDataStore.uiState.chat.selected === -1) {
+        this.focusNextChannel();
+      }
     } else if (action instanceof WindowFocusAction) {
       this.windowIsActive = true;
       if (this.rootDataStore.channelStore.loaded) {
@@ -63,6 +73,11 @@ export default class ChatOrchestrator implements DispatchListener {
 
     const channelStore = this.rootDataStore.channelStore;
     transaction(() => {
+      if (channelStore.getOrCreate(uiState.selected).type !== 'NEW') {
+        // don't disable autoScroll if we're 'switching' away from the 'new chat' screen
+        //   e.g. keep autoScroll enabled to jump to the newly sent message when restarting an old conversation
+        uiState.autoScroll = false;
+      }
       const channel = channelStore.getOrCreate(channelId);
 
       if (!channel.newChannel) {
@@ -78,8 +93,34 @@ export default class ChatOrchestrator implements DispatchListener {
         }
       }
 
-      this.rootDataStore.uiState.chat.selected = channelId;
+      uiState.selected = channelId;
     });
+  }
+
+  focusNextChannel() {
+    const channelStore = this.rootDataStore.channelStore;
+
+    const channelList = channelStore.channelList;
+    if (channelList.length > 0) {
+      // TODO: switch to next 'closest' conversation instead of first in list
+      this.dispatcher.dispatch(new ChatChannelSwitchAction(channelList[0].channelId));
+    } else {
+      channelStore.loaded  = false;
+    }
+  }
+
+  partChannel(channelId: number) {
+    const channelStore = this.rootDataStore.channelStore;
+    channelStore.partChannel(channelId);
+
+    this.focusNextChannel();
+
+    if (channelId !== -1) {
+      return this.api.partChannel(channelId, window.currentUser.id)
+        .catch((err) => {
+          console.debug('leaveChannel error', err);
+        });
+    }
   }
 
   markAsRead(channelId: number) {

@@ -365,7 +365,7 @@ class UsersController extends Controller
 
     private function sanitizedLimitParam()
     {
-        return clamp(get_int(request('limit')) ?? 5, 1, 21);
+        return clamp(get_int(request('limit')) ?? 5, 1, 51);
     }
 
     private function getExtra($user, $page, $options, $perPage = 10, $offset = 0)

@@ -36,7 +36,7 @@ return [
 
     'index' => [
         'page_title' => [
-            '_' => 'endringslogg listing',
+            '_' => 'endringslogg liste',
             '_from' => 'endringer siden :from',
             '_from_to' => 'endringer mellom :from og :to',
             '_stream' => 'endringer i :stream',
@@ -48,14 +48,14 @@ return [
 
         'title' => [
             '_' => 'Endringslogg :info',
-            'info' => 'Listing',
+            'info' => 'Oversikt',
         ],
     ],
 
     'support' => [
         'heading' => 'Liker du denne oppdateringen?',
         'text_1' => 'Støtt videreutviklingen av osu! og :link i dag!',
-        'text_1_link' => 'bli en "supporter"',
+        'text_1_link' => 'bli en osu!supporter',
         'text_2' => 'Du vil ikke bare hjelpe til med å framskynde utviklingen, men du vil også da tilgang til ekstra funksjoner og tilpasninger!',
     ],
 ];
