@@ -190,12 +190,13 @@ class CommentBundle
 
     private function getUserWatch()
     {
-        return $this
-            ->user
-            ->watches()
-            ->whereNotifiable($this->commentable)
-            ->where(['subtype' => 'comment'])
-            ->exists();
+        return $this->commentable !== null &&
+            $this
+                ->user
+                ->watches()
+                ->whereNotifiable($this->commentable)
+                ->where(['subtype' => 'comment'])
+                ->exists();
     }
 
     private function getUsers($comments)
