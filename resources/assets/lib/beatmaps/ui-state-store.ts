@@ -48,7 +48,7 @@ class UIStateStore {
   };
 
   constructor() {
-    this.restoreTurbolinks();
+    this.restoreStateFromUrl();
     this.currentBeatmapsets = store.getBeatmapsets(this.filters);
   }
 
@@ -100,9 +100,8 @@ class UIStateStore {
 
   @action
   restoreTurbolinks() {
-    const { filters, isExpanded } = this.stateFromUrl();
-    this.filters = filters;
-    this.isExpanded = isExpanded;
+    this.restoreStateFromUrl();
+    this.search();
   }
 
   @action
@@ -133,14 +132,6 @@ class UIStateStore {
     }
   }
 
-  stateFromUrl() {
-    const filtersFromUrl = BeatmapsetFilter.filtersFromUrl(location.href);
-    return {
-      filters: new BeatmapSearchFilters(location.href),
-      isExpanded: intersection(Object.keys(filtersFromUrl), BeatmapsetFilter.expand).length > 0,
-    };
-  }
-
   @action
   updateFilters(newFilters: Partial<BeatmapSearchParams>) {
     this.filters.update(newFilters);
@@ -157,6 +148,12 @@ class UIStateStore {
 
   stopListeningOnWindow() {
     $(window).off('.beatmaps-ui-state-store');
+  }
+
+  private restoreStateFromUrl() {
+    const filtersFromUrl = BeatmapsetFilter.filtersFromUrl(location.href);
+    this.filters = new BeatmapSearchFilters(location.href),
+    this.isExpanded = intersection(Object.keys(filtersFromUrl), BeatmapsetFilter.expand).length > 0;
   }
 }
 

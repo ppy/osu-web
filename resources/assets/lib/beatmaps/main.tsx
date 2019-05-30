@@ -40,11 +40,10 @@ export class Main extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
-    uiState.restoreTurbolinks();
-
     this.observerDisposers.push(observe(uiState, 'searchStatus', this.searchStatusErrorHandler));
 
-    uiState.search();
+    // includes an initial search to load the pre-initialized data properly.
+    uiState.restoreTurbolinks();
 
     this.observerDisposers.push(observe(uiState.filters, this.filterChangedHandler));
     this.observerDisposers.push(observe(uiState, 'searchStatus', this.scrollPositionHandler));
