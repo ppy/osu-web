@@ -64,6 +64,12 @@ export class PopupMenu extends PureComponent
     @portal.style.top = "#{Math.floor(top + $element.height() / 2)}px"
     @portal.style.left = "#{Math.floor(left + $element.width())}px"
 
+    # keeps the menu showing above the tooltip;
+    # portal should be after the tooltip in the document body.
+    tooltipElement = @tooltipElement()[0]
+    if tooltipElement?
+      @portal.style.zIndex = getComputedStyle(tooltipElement).zIndex
+
 
   componentDidUpdate: (_prevProps, prevState) =>
     return if prevState.active == @state.active
