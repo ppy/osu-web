@@ -8,6 +8,8 @@ WARNING: The API in under heavy development and has not stabilised yet. If you c
 
 Note that while we endeavour to keep this documentation up to date, consider it a work-in-progress and note that it will likely contains errors.
 
+If you notice any errors in the documentation or encounter problems using the API, please check for (or create if necessary) [issues on GitHub](https://github.com/ppy/osu-web/issues). Alternatively, you can ask in `#osu-web` [on the development discord](https://discord.gg/ppy).
+
 Code examples are provided in the dark area to the right, you can use the tabs at the top of the page to switch between bash and javascript samples.
 
 @if($showPostmanCollectionButton)
