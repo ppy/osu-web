@@ -208,7 +208,7 @@ class Build extends Model implements Commentable
 
     public function notificationCover()
     {
-        return; // no image
+        return null; // no image
     }
 
     public function url()

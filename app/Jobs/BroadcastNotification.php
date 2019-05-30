@@ -23,7 +23,6 @@ namespace App\Jobs;
 use App\Events\NewNotificationEvent;
 use App\Exceptions\InvalidNotificationException;
 use App\Models\Chat\Channel;
-use App\Models\DeletedUser;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\Watch;
