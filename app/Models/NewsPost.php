@@ -187,6 +187,11 @@ class NewsPost extends Model implements Commentable
             $this->updated_at < Carbon::now()->subMinutes(static::CACHE_DURATION);
     }
 
+    public function notificationCover()
+    {
+        return $this->firstImage();
+    }
+
     public function bodyHtml()
     {
         return $this->page['output'];

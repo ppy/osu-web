@@ -1140,6 +1140,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         dispatch(new EsIndexDocument($this));
     }
 
+    public function notificationCover()
+    {
+        return $this->coverURL('card');
+    }
+
     public function url()
     {
         return route('beatmapsets.show', $this);

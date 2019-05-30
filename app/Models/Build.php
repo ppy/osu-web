@@ -206,6 +206,11 @@ class Build extends Model implements Commentable
         return "{$this->updateStream->pretty_name} {$this->displayVersion()}";
     }
 
+    public function notificationCover()
+    {
+        return; // no image
+    }
+
     public function url()
     {
         return build_url($this);
