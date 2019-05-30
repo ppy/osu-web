@@ -191,6 +191,7 @@ class CommentBundle
     private function getUserWatch()
     {
         return $this->commentable !== null &&
+            $this->user !== null &&
             $this
                 ->user
                 ->watches()
