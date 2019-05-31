@@ -30,7 +30,10 @@ class NewsController extends Controller
 
     public function index()
     {
-        $search = NewsPost::search(array_merge(['limit' => 12], request()->all()));
+        $isAtom = request('format') === 'atom';
+        $limit = $isAtom ? 20 : 12;
+
+        $search = NewsPost::search(array_merge(['limit' => $limit], request()->all()));
 
         $posts = $search['query']->get();
 
