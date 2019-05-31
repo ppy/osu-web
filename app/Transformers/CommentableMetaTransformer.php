@@ -20,45 +20,24 @@
 
 namespace App\Transformers;
 
-use App\Libraries\MorphMap;
-use App\Models\Beatmapset;
-use App\Models\Build;
-use App\Models\Model;
-use App\Models\NewsPost;
+use App\Libraries\Commentable;
 use League\Fractal;
 
 class CommentableMetaTransformer extends Fractal\TransformerAbstract
 {
-    public function transform(?Model $commentable)
+    public function transform(?Commentable $commentable)
     {
-        // probably belongs somewhere else
-        if ($commentable instanceof Beatmapset) {
-            $titlePrefix = trans('comments.commentable_name.beatmapset');
-            $title = $commentable->artist.' - '.$commentable->title;
-            $url = route('beatmapsets.show', $commentable);
-        } elseif ($commentable instanceof Build) {
-            $titlePrefix = trans('comments.commentable_name.build');
-            $title = $commentable->updateStream->display_name.' '.$commentable->displayVersion();
-            $url = build_url($commentable);
-        } elseif ($commentable instanceof NewsPost) {
-            $titlePrefix = trans('comments.commentable_name.news_post');
-            $title = $commentable->title();
-            $url = route('news.show', $commentable->slug);
-        } else {
-            $title = trans('comments.commentable_name._deleted');
-            $url = null;
-        }
-
         if (isset($commentable)) {
-            $id = $commentable->getKey();
-            $type = MorphMap::getType($commentable);
+            return [
+                'id' => $commentable->getKey(),
+                'type' => $commentable->getMorphClass(),
+                'title' => $commentable->commentableTitle(),
+                'url' => $commentable->url(),
+            ];
+        } else {
+            return [
+                'title' => trans('comments.commentable_name._deleted'),
+            ];
         }
-
-        return [
-            'id' => $id ?? null,
-            'type' => $type ?? null,
-            'title' => isset($titlePrefix) ? "{$titlePrefix}: {$title}" : $title,
-            'url' => $url,
-        ];
     }
 }

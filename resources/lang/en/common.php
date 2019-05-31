@@ -59,6 +59,11 @@ return [
         'show_more' => 'show more',
         'show_more_options' => 'show more options',
         'upload_image' => 'upload image',
+
+        'watch' => [
+            'to_0' => 'Unwatch',
+            'to_1' => 'Watch',
+        ],
     ],
 
     'count' => [

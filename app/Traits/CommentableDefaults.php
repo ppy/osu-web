@@ -18,26 +18,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'index' => [
-        'description' => 'These are the beatmap discussions you are following. You will be notified when there are new posts or updates.',
-        'title_compact' => 'modding watchlist',
-        'title_main' => 'Modding Watchlist',
+namespace App\Traits;
 
-        'table' => [
-            'empty' => 'No beatmap discussions watched.',
-            'open_issues' => 'Open issues',
-            'state' => 'State',
-            'title' => 'Title',
-        ],
-    ],
+use App\Models\Comment;
 
-    'mail' => [
-        'update' => 'New update for beatmap ":title"',
-    ],
+trait CommentableDefaults
+{
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 
-    'status' => [
-        'read' => 'Read',
-        'unread' => 'Unread',
-    ],
-];
+    // title for display in comments listing
+    abstract public function commentableTitle();
+}

@@ -18,26 +18,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'index' => [
-        'description' => 'These are the beatmap discussions you are following. You will be notified when there are new posts or updates.',
-        'title_compact' => 'modding watchlist',
-        'title_main' => 'Modding Watchlist',
+namespace App\Exceptions;
 
-        'table' => [
-            'empty' => 'No beatmap discussions watched.',
-            'open_issues' => 'Open issues',
-            'state' => 'State',
-            'title' => 'Title',
-        ],
-    ],
+use Exception;
 
-    'mail' => [
-        'update' => 'New update for beatmap ":title"',
-    ],
-
-    'status' => [
-        'read' => 'Read',
-        'unread' => 'Unread',
-    ],
-];
+class InvalidNotificationException extends Exception
+{
+    // doesn't really contain anything
+}

@@ -24,6 +24,7 @@ export const categoryToIcons: IconsMap = {
   beatmapset_discussion: ['fas fa-drafting-compass', 'fas fa-comment'],
   beatmapset_state: ['fas fa-drafting-compass'],
   channel: ['fas fa-comments'],
+  comment: ['fas fa-comment'],
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
 };
@@ -39,6 +40,7 @@ export const nameToIcons: IconsMap = {
   beatmapset_rank: ['fas fa-drafting-compass', 'fas fa-check-double'],
   beatmapset_reset_nominations: ['fas fa-drafting-compass', 'fas fa-undo'],
   channel_message: ['fas fa-comments'],
+  comment_new: ['fas fa-comment'],
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
   user_achievement_unlock: ['fas fa-trophy'],
@@ -55,6 +57,7 @@ export const nameToIconsCompact: IconsMap = {
   beatmapset_rank: ['fas fa-check-double'],
   beatmapset_reset_nominations: ['fas fa-undo'],
   channel_message: ['fas fa-comments'],
+  comment_new: ['fas fa-comment'],
   forum_topic_reply: ['fas fa-comment-medical'],
   legacy_pm: ['fas fa-envelope'],
 };

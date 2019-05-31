@@ -18,26 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'index' => [
-        'description' => 'These are the beatmap discussions you are following. You will be notified when there are new posts or updates.',
-        'title_compact' => 'modding watchlist',
-        'title_main' => 'Modding Watchlist',
+namespace App\Libraries;
 
-        'table' => [
-            'empty' => 'No beatmap discussions watched.',
-            'open_issues' => 'Open issues',
-            'state' => 'State',
-            'title' => 'Title',
-        ],
-    ],
+interface Commentable
+{
+    public function comments();
 
-    'mail' => [
-        'update' => 'New update for beatmap ":title"',
-    ],
+    public function commentableTitle();
 
-    'status' => [
-        'read' => 'Read',
-        'unread' => 'Unread',
-    ],
-];
+    public function url();
+}

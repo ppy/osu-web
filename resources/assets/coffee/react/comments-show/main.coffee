@@ -48,7 +48,7 @@ export class Main extends React.PureComponent
           showCommentableMeta: true
           depth: 0
           linkParent: true
-          modifiers: ['dark']
+          modifiers: ['dark', 'single']
 
 
   renderHeaderTabs: =>
