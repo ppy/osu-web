@@ -10,7 +10,7 @@ import NotificationWidgetWorker from 'notification-widget/worker'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { UserCard } from 'user-card'
 import { UserCardStore } from 'user-card-store'
-import { UserCardTooltip } from 'user-card-tooltip'
+import { startListening, UserCardTooltip } from 'user-card-tooltip'
 import { UserCards } from 'user-cards'
 
 window.reactTurbolinks ?= new ReactTurbolinks()
@@ -63,6 +63,7 @@ reactTurbolinks.register 'user-card-store', UserCardStore, (el) ->
 reactTurbolinks.register 'user-card-tooltip', UserCardTooltip, (el) ->
   container: el
   lookup: el.dataset.lookup
+$(document).ready startListening
 
 reactTurbolinks.register 'user-cards', UserCards, (el) ->
   modifiers: try JSON.parse(el.dataset.modifiers)

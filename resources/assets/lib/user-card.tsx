@@ -16,11 +16,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { BlockButton } from 'block-button';
 import { FlagCountry } from 'flag-country';
 import { FriendButton } from 'friend-button';
 import * as _ from 'lodash';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
+import { ReportUser } from 'report-user';
 import { Spinner } from 'spinner';
 import { SupporterIcon } from 'supporter-icon';
 
@@ -157,17 +159,25 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   }
 
   renderMenuButton() {
-    if (!this.canMessage) { return null; }
+    if (this.isSelf) { return null; }
 
     const items = (dismiss: () => void) => (
       <>
-        <a
-          className='simple-menu__item js-login-required--click'
-          href={laroute.route('messages.users.show', { user: this.user.id })}
-          onClick={dismiss}
-        >
-          {osu.trans('users.card.send_message')}
-        </a>
+        {
+          this.canMessage ? (
+            <a
+              className='simple-menu__item js-login-required--click'
+              href={laroute.route('messages.users.show', { user: this.user.id })}
+              onClick={dismiss}
+            >
+              <span className='fas fa-envelope' />
+              {` ${osu.trans('users.card.send_message')}`}
+            </a>
+          ) : null
+        }
+
+        <BlockButton onClick={dismiss} modifiers={['inline']} userId={this.user.id} wrapperClass='simple-menu__item' />
+        <ReportUser onFormClose={dismiss} modifiers={['inline']} user={this.user} wrapperClass='simple-menu__item' />
       </>
     );
 
@@ -246,13 +256,16 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   }
 
   private get canMessage() {
-    return !_.isEmpty(currentUser)
-      && currentUser.id !== this.user.id
+    return !this.isSelf
       && _.find(currentUser.blocks, { target_id: this.user.id }) == null;
   }
 
   private get isOnline() {
     return this.user.is_online;
+  }
+
+  private get isSelf() {
+    return currentUser.id === this.user.id;
   }
 
   private get isUserLoaded() {
