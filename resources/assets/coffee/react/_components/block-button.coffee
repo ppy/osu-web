@@ -37,13 +37,14 @@ export class BlockButton extends React.PureComponent
 
 
   updateBlocks: (data) =>
-    @props.onClick()
     @setState block: _.find(data, target_id: @props.userId), ->
       currentUser.blocks = _.filter data, relation_type: 'block'
       currentUser.friends = _.filter data, relation_type: 'friend'
       $.publish 'user:update', currentUser
       $.publish 'blockButton:refresh'
       $.publish 'friendButton:refresh'
+
+    @props.onClick()
 
 
   refresh: (e) =>
