@@ -54,7 +54,7 @@ class @BeatmapDiscussionHelper
             # different beatmapset, format: 1234#567
             linkText = "#{targetBeatmapsetDiscussions.beatmapsetId}##{targetBeatmapsetDiscussions.discussionId}"
 
-      linkText = linkText ? displayUrl
+      linkText ?= displayUrl
 
       "<a href='#{url}' rel='nofollow' #{attrs ? ''}>#{linkText ? url}</a>"
 
