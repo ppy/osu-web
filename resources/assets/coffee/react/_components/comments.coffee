@@ -23,6 +23,7 @@ import { CommentsSort } from 'comments-sort'
 import DeletedCommentsCount from 'deleted-comments-count'
 import * as React from 'react'
 import { button, div, h2, span } from 'react-dom-factories'
+import { Spinner } from 'spinner'
 
 el = React.createElement
 
@@ -105,11 +106,18 @@ export class Comments extends React.PureComponent
       icon = 'fas fa-eye'
       label = osu.trans('common.buttons.watch.to_1')
 
+    iconEl =
+      if @props.loadingWatch
+        el Spinner, modifiers: ['center-inline']
+      else
+        span className: icon
+
     button
       type: 'button'
       className: 'sort__item sort__item--button'
       onClick: @toggleWatch
-      span className: 'sort__item-icon', span className: icon
+      disabled: @props.loadingWatch
+      span className: 'sort__item-icon', iconEl
       label
 
 

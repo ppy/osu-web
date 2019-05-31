@@ -38,6 +38,7 @@ export class CommentsManager extends React.PureComponent
       @state =
         comments: commentBundle.comments ? []
         userVotes: commentBundle.user_votes
+        loadingWatch: false
         userWatch: commentBundle.user_watch
         users: commentBundle.users ? []
         topLevelCount: commentBundle.top_level_count
@@ -142,11 +143,22 @@ export class CommentsManager extends React.PureComponent
       notifiable_id: @props.commentableId
       subtype: 'comment'
 
+    return if @state.loadingWatch
+
+    @setState loadingWatch: true
+
     $.ajax laroute.route('watches.store'),
       data: params
       dataType: 'json'
       method: if @state.userWatch then 'DELETE' else 'POST'
-    .done => @setState userWatch: !@state.userWatch
+    .always =>
+      @setState loadingWatch: false
+    .done =>
+      @setState userWatch: !@state.userWatch
+    .fail (xhr, status) =>
+      return if status == 'abort'
+
+      osu.ajaxError xhr
 
 
   updateSort: (_event, {sort}) =>
