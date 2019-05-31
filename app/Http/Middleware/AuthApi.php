@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,33 +18,27 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import HeaderV3 from 'header-v3';
-import * as React from 'react';
-import { UserList } from 'user-list';
+namespace App\Http\Middleware;
 
-interface Group {
-  group_name: string;
-  group_desc?: string;
-}
+use Closure;
+use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Http\Request;
 
-interface Props {
-  group: Group;
-  users: User[];
-}
+class AuthApi
+{
+    public static function skipAuth($request)
+    {
+        $path = "{$request->decodedPath()}/";
 
-export class Main extends React.PureComponent<Props> {
-  render() {
-    return (
-      <div className='osu-layout osu-layout--full'>
-        <HeaderV3
-          theme='users'
-          title={this.props.group.group_name}
-        />
+        return starts_with($path, 'api/v2/changelog/');
+    }
 
-        <div className='osu-page osu-page--users'>
-          <UserList users={this.props.users} />
-        </div>
-      </div>
-    );
-  }
+    public function handle(Request $request, Closure $next)
+    {
+        if (static::skipAuth($request)) {
+            return $next($request);
+        }
+
+        return app(Authenticate::class)->handle($request, $next, 'api');
+    }
 }
