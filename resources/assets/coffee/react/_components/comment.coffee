@@ -343,10 +343,11 @@ export class Comment extends React.PureComponent
       params = null
 
     div className: 'comment__commentable-meta',
-      span className: 'comment__commentable-meta-type',
-        span className: 'comment__commentable-meta-icon fas fa-comment'
-        ' '
-        osu.trans("comments.commentable_name.#{@props.comment.commentable_type}")
+      if @props.comment.commentable_type?
+        span className: 'comment__commentable-meta-type',
+          span className: 'comment__commentable-meta-icon fas fa-comment'
+          ' '
+          osu.trans("comments.commentable_name.#{@props.comment.commentable_type}")
       component params,
         meta.title
 
