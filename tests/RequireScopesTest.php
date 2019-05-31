@@ -186,6 +186,19 @@ class RequireScopesTest extends TestCase
         });
     }
 
+    public function testRequireScopesSkipped()
+    {
+        $userScopes = ['somethingelse'];
+        $requireScopes = ['identify'];
+
+        $this->request = Request::create('/api/v2/changelog', 'GET');
+        $this->setUser($userScopes);
+        $this->setRequest($requireScopes);
+
+        app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
+        $this->assertTrue(true);
+    }
+
     protected function setRequest(?array $scopes = null)
     {
         // set a fake route resolver

@@ -81,6 +81,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'title' => $user->title(),
             'location' => $user->user_from,
             'last_visit' => json_time($user->displayed_last_visit),
+            'is_online' => $user->isOnline(),
             'twitter' => $user->user_twitter,
             'lastfm' => $user->user_lastfm,
             'skype' => $user->user_msnm,

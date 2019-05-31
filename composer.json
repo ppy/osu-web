@@ -36,6 +36,7 @@
     "lord/laroute": "*",
     "maknz/slack": "dev-laravel-5.4",
     "mariuzzo/laravel-js-localization": "*",
+    "mpociot/laravel-apidoc-generator": "^3.7",
     "paypal/rest-api-sdk-php": "*",
     "sentry/sentry-laravel": "*",
     "symfony/yaml": "*",

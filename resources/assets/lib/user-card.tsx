@@ -221,7 +221,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   renderStatusBar() {
     if (!this.isUserLoaded) { return null; }
 
-    const lastSeen = this.user.last_visit ? osu.trans('users.show.lastvisit', { date: osu.timeago(this.user.last_visit) }) : '';
+    const lastSeen = (!this.isOnline && this.user.last_visit != null) ? osu.trans('users.show.lastvisit', { date: osu.timeago(this.user.last_visit) }) : '';
     const status = this.isOnline ? osu.trans('users.status.online') : osu.trans('users.status.offline');
 
     return (
