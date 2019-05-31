@@ -124,4 +124,8 @@ return [
     'user_report' => [
         'self' => "You can't report yourself!",
     ],
+
+    'watch' => [
+        'invalid' => 'Invalid :attribute specified.',
+    ],
 ];
