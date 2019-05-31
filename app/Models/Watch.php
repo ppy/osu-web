@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use App\Libraries\MorphMap;
 use App\Traits\Validatable;
 
 /**
@@ -54,6 +55,15 @@ class Watch extends Model
     public function setNotifiableAttribute($value)
     {
         $this->notifiable()->associate($value);
+    }
+
+    public function setNotifiableTypeAttribute($value)
+    {
+        if (MorphMap::getClass($value) === null) {
+            return;
+        }
+
+        $this->attributes['notifiable_type'] = $value;
     }
 
     public function setUserAttribute($value)
