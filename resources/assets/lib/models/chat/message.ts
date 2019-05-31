@@ -17,6 +17,7 @@
  */
 
 import { MessageJSON } from 'chat/chat-api-responses';
+import * as _ from 'lodash';
 import {action, computed, observable} from 'mobx';
 import User from 'models/user';
 import * as moment from 'moment';
@@ -40,7 +41,7 @@ export default class Message {
 
   @computed
   get parsedContent(): string {
-    return osu.linkify(this.content, true);
+    return osu.linkify(_.escape(this.content), true);
   }
 
   @action
