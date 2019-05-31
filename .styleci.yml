@@ -9,6 +9,7 @@ enabled:
 disabled:
   - length_ordered_imports
   - logical_not_operators_with_successor_space
+  - phpdoc_summary
 
 finder:
   not-path:
