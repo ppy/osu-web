@@ -42,6 +42,7 @@ class UserSubscriptionChangeEvent extends NotificationEventBase
         $this->action = $action;
         $this->userId = $user->getKey();
 
+        // TODO: consolidate BeatmapsetWatch and TopicWatch to Watch and rename $notifiable to $watch.
         if ($notifiable instanceof Watch) {
             $subtype = $notifiable->subtype;
             $notifiable = $notifiable->notifiable;
