@@ -38,6 +38,8 @@ export class CommentsManager extends React.PureComponent
       @state =
         comments: commentBundle.comments ? []
         userVotes: commentBundle.user_votes
+        loadingFollow: false
+        userFollow: commentBundle.user_follow
         users: commentBundle.users ? []
         topLevelCount: commentBundle.top_level_count
         total: commentBundle.total
@@ -52,6 +54,7 @@ export class CommentsManager extends React.PureComponent
     $.subscribe "comments:added.#{@id}", @appendBundle
     $.subscribe "comments:sort.#{@id}", @updateSort
     $.subscribe "comments:toggle-show-deleted.#{@id}", @toggleShowDeleted
+    $.subscribe "comments:toggle-follow.#{@id}", @toggleFollow
     $.subscribe "comment:updated.#{@id}", @update
     $.subscribe "commentVote:added.#{@id}", @addVote
     $.subscribe "commentVote:removed.#{@id}", @removeVote
@@ -134,6 +137,30 @@ export class CommentsManager extends React.PureComponent
     @setState showDeleted: !@state.showDeleted
 
 
+  toggleFollow: =>
+    params = follow:
+      notifiable_type: @props.commentableType
+      notifiable_id: @props.commentableId
+      subtype: 'comment'
+
+    return if @state.loadingFollow
+
+    @setState loadingFollow: true
+
+    $.ajax laroute.route('follows.store'),
+      data: params
+      dataType: 'json'
+      method: if @state.userFollow then 'DELETE' else 'POST'
+    .always =>
+      @setState loadingFollow: false
+    .done =>
+      @setState userFollow: !@state.userFollow
+    .fail (xhr, status) =>
+      return if status == 'abort'
+
+      osu.ajaxError xhr
+
+
   updateSort: (_event, {sort}) =>
     return unless @props.commentableType && @props.commentableId
 
@@ -156,6 +183,7 @@ export class CommentsManager extends React.PureComponent
         users: data.users ? []
         commentableMeta: data.commentable_meta ? []
         userVotes: data.user_votes ? []
+        userFollow: data.user_follow
         topLevelCount: data.top_level_count
         total: data.total ? @state.total
         currentSort: sort

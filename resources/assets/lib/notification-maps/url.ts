@@ -20,6 +20,17 @@ import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 
 export function urlGroup(item: Notification) {
+  if (item.name === 'comment_new') {
+    switch (item.objectType) {
+      case 'beatmapset':
+        return laroute.route('beatmapsets.show', { beatmapset: item.objectId });
+      case 'build':
+        return laroute.route('changelog.show', { changelog: item.objectId, key: 'id' });
+      case 'news_post':
+        return laroute.route('news.show', { news: item.objectId, key: 'id' });
+    }
+  }
+
   switch (item.objectType) {
     case 'beatmapset':
       return laroute.route('beatmapsets.discussion', { beatmapset: item.objectId });
@@ -54,6 +65,8 @@ export function urlSingular(item: Notification) {
       return laroute.route('beatmapsets.show', { beatmapset: item.objectId });
     case 'channel_message':
       return laroute.route('chat.index', { sendto: item.sourceUserId });
+    case 'comment_new':
+      return laroute.route('comments.show', { comment: item.details.commentId });
     case 'forum_topic_reply':
       return laroute.route('forum.posts.show', { post: item.details.postId });
     case 'user_achievement_unlock':

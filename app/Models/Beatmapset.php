@@ -25,9 +25,11 @@ use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\EsIndexDocument;
 use App\Jobs\RemoveBeatmapsetBestScores;
 use App\Libraries\BBCodeFromDB;
+use App\Libraries\Commentable;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
+use App\Traits\CommentableDefaults;
 use Cache;
 use Carbon\Carbon;
 use DB;
@@ -96,9 +98,9 @@ use Illuminate\Database\QueryException;
  * @property bool $video
  * @property \Illuminate\Database\Eloquent\Collection $watches BeatmapsetWatch
  */
-class Beatmapset extends Model implements AfterCommit
+class Beatmapset extends Model implements AfterCommit, Commentable
 {
-    use Elasticsearch\BeatmapsetTrait, SoftDeletes;
+    use CommentableDefaults, Elasticsearch\BeatmapsetTrait, SoftDeletes;
 
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
@@ -808,14 +810,14 @@ class Beatmapset extends Model implements AfterCommit
         return $this->belongsTo(Language::class, 'language_id');
     }
 
-    public function comments()
-    {
-        return $this->morphMany(Comment::class, 'commentable');
-    }
-
     public function requiredHype()
     {
         return config('osu.beatmapset.required_hype');
+    }
+
+    public function commentableTitle()
+    {
+        return $this->title;
     }
 
     public function canBeHyped()
@@ -1136,6 +1138,16 @@ class Beatmapset extends Model implements AfterCommit
     public function afterCommit()
     {
         dispatch(new EsIndexDocument($this));
+    }
+
+    public function notificationCover()
+    {
+        return $this->coverURL('card');
+    }
+
+    public function url()
+    {
+        return route('beatmapsets.show', $this);
     }
 
     public static function removeMetadataText($text)

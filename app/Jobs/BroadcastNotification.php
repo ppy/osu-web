@@ -21,7 +21,9 @@
 namespace App\Jobs;
 
 use App\Events\NewNotificationEvent;
+use App\Exceptions\InvalidNotificationException;
 use App\Models\Chat\Channel;
+use App\Models\Follow;
 use App\Models\Notification;
 use App\Models\User;
 use App\Traits\NotificationQueue;
@@ -34,6 +36,8 @@ use Illuminate\Queue\SerializesModels;
 class BroadcastNotification implements ShouldQueue
 {
     use NotificationQueue, Queueable, SerializesModels;
+
+    const CONTENT_TRUNCATE = 36;
 
     private $name;
     private $notifiable;
@@ -65,7 +69,12 @@ class BroadcastNotification implements ShouldQueue
 
             return;
         }
-        $this->$function();
+
+        try {
+            $this->$function();
+        } catch (InvalidNotificationException $_e) {
+            return;
+        }
 
         $this->notifiable = $this->notifiable ?? $this->object;
         $this->params['name'] = $this->name;
@@ -201,6 +210,31 @@ class BroadcastNotification implements ShouldQueue
         ];
     }
 
+    private function onCommentNew()
+    {
+        $this->notifiable = $this->object->commentable;
+
+        if ($this->notifiable === null) {
+            throw new InvalidNotificationException("comment_new: comment #{$this->object->getKey()} missing commentable");
+        }
+
+        if ($this->source === null) {
+            throw new InvalidNotificationException("comment_new: comment #{$this->object->getKey()} missing source");
+        }
+
+        $this->receiverIds = Follow::whereNotifiable($this->object->commentable)
+            ->where(['subtype' => 'comment'])
+            ->pluck('user_id')
+            ->all();
+
+        $this->params['details'] = [
+            'comment_id' => $this->object->getKey(),
+            'title' => $this->object->commentable->commentableTitle(),
+            'content' => truncate($this->object->message, static::CONTENT_TRUNCATE),
+            'cover_url' => $this->object->commentable->notificationCover(),
+        ];
+    }
+
     private function onChannelMessage()
     {
         $channel = Channel::findOrFail($this->object->channel_id);
@@ -208,7 +242,7 @@ class BroadcastNotification implements ShouldQueue
         $this->notifiable = $this->object->channel;
 
         $this->params['details'] = [
-            'title' => truncate($this->object->content, 36),
+            'title' => truncate($this->object->content, static::CONTENT_TRUNCATE),
             'type' => strtolower($channel->type),
             'cover_url' => $this->source->user_avatar,
         ];
