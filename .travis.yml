@@ -77,21 +77,8 @@ jobs:
     - name: apidoc
       env:
         - OSU_SKIP_ASSET_BUILD=1
-        - APP_URL=${TRAVIS_APIDOC_APP_URL}
       script:
         - php artisan apidoc:generate
-      before_deploy:
-        - mkdir docs-public
-        - cp -R docs/{css,images,js,index.html,collection.json} docs-public/
-      deploy:
-        provider: pages
-        repo: ${TRAVIS_APIDOC_REPO:-$TRAVIS_REPO_SLUG}
-        skip_cleanup: true
-        github_token: $TRAVIS_GITHUB_TOKEN
-        keep_history: true
-        local_dir: docs-public
-        on:
-          branch: release
 
 after_script:
   - test -f elasticsearch.log && cat elasticsearch.log
