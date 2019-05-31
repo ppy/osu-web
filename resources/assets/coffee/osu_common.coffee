@@ -171,7 +171,7 @@
 
 
   linkify: (text, newWindow = false) ->
-    return text.replace(osu.urlRegex, "<a href=\"$1\" rel=\"nofollow\"#{if newWindow then ' target=\"_blank\"' else ''}>$2</a>")
+    text.replace(osu.urlRegex, "<a href=\"$1\" rel=\"nofollow noreferrer\"#{if newWindow then ' target=\"_blank\"' else ''}>$2</a>")
 
 
   timeago: (time) ->
