@@ -25,6 +25,7 @@ use App\Exceptions\API;
 use App\Models\Notification;
 use App\Models\User;
 use Carbon\Carbon;
+use ChaseConey\LaravelDatadogHelper\Datadog;
 
 /**
  * @property string|null $allowed_groups
@@ -168,6 +169,8 @@ class Channel extends Model
             broadcast_notification(Notification::CHANNEL_MESSAGE, $message, $sender);
         }
 
+        Datadog::increment('chat.channel.send', 1, ['target' => $this->type]);
+
         return $message;
     }
 
@@ -190,6 +193,8 @@ class Channel extends Model
         if ($this->isPM()) {
             event(new UserSubscriptionChangeEvent('add', $user, $this));
         }
+
+        Datadog::increment('chat.channel.join', 1, ['type' => $this->type]);
     }
 
     public function removeUser(User $user)
@@ -210,6 +215,8 @@ class Channel extends Model
         } else {
             $userChannel->delete();
         }
+
+        Datadog::increment('chat.channel.part', 1, ['type' => $this->type]);
     }
 
     public function hasUser(User $user)
