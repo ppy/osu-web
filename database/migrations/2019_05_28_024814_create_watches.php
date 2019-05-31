@@ -16,7 +16,7 @@ class CreateWatches extends Migration
         Schema::create('watches', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
-            $table->string('notifiable_type');
+            $table->enum('notifiable_type', ['beatmapset', 'build', 'news_post']);
             $table->bigInteger('notifiable_id')->unsigned();
             $table->string('subtype');
             $table->timestampsTz();
