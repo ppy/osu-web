@@ -50,7 +50,7 @@ export class Comments extends React.PureComponent
             modifiers: @props.modifiers
           div className: osu.classWithModifiers('sort', @props.modifiers),
             div className: 'sort__items',
-              @renderWatchToggle()
+              @renderFollowToggle()
               @renderShowDeletedToggle()
         if comments?
           div className: "comments__items #{if @props.loadingSort? then 'comments__items--loading' else ''}",
@@ -98,8 +98,8 @@ export class Comments extends React.PureComponent
       osu.trans('common.buttons.show_deleted')
 
 
-  renderWatchToggle: =>
-    if @props.userWatch
+  renderFollowToggle: =>
+    if @props.userFollow
       icon = 'fas fa-eye-slash'
       label = osu.trans('common.buttons.watch.to_0')
     else
@@ -107,7 +107,7 @@ export class Comments extends React.PureComponent
       label = osu.trans('common.buttons.watch.to_1')
 
     iconEl =
-      if @props.loadingWatch
+      if @props.loadingFollow
         el Spinner, modifiers: ['center-inline']
       else
         span className: icon
@@ -115,8 +115,8 @@ export class Comments extends React.PureComponent
     button
       type: 'button'
       className: 'sort__item sort__item--button'
-      onClick: @toggleWatch
-      disabled: @props.loadingWatch
+      onClick: @toggleFollow
+      disabled: @props.loadingFollow
       span className: 'sort__item-icon', iconEl
       label
 
@@ -125,5 +125,5 @@ export class Comments extends React.PureComponent
     $.publish 'comments:toggle-show-deleted'
 
 
-  toggleWatch: ->
-    $.publish 'comments:toggle-watch'
+  toggleFollow: ->
+    $.publish 'comments:toggle-follow'

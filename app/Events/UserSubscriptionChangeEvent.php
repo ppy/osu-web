@@ -21,7 +21,7 @@
 namespace App\Events;
 
 use App\Models\Notification;
-use App\Models\Watch;
+use App\Models\Follow;
 use Illuminate\Broadcasting\Channel;
 
 class UserSubscriptionChangeEvent extends NotificationEventBase
@@ -42,8 +42,8 @@ class UserSubscriptionChangeEvent extends NotificationEventBase
         $this->action = $action;
         $this->userId = $user->getKey();
 
-        // TODO: consolidate BeatmapsetWatch and TopicWatch to Watch and rename $notifiable to $watch.
-        if ($notifiable instanceof Watch) {
+        // TODO: consolidate BeatmapsetWatch and TopicWatch to Follow and rename $notifiable to $follow.
+        if ($notifiable instanceof Follow) {
             $subtype = $notifiable->subtype;
             $notifiable = $notifiable->notifiable;
         }

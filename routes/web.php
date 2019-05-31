@@ -203,8 +203,8 @@ Route::group(['prefix' => 'home'], function () {
 
     Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
 
-    Route::resource('watches', 'WatchesController', ['only' => ['store']]);
-    Route::delete('watches', 'WatchesController@destroy')->name('watches.destroy');
+    Route::resource('follows', 'FollowsController', ['only' => ['store']]);
+    Route::delete('follows', 'FollowsController@destroy')->name('follows.destroy');
 });
 
 Route::get('legal/{page}', 'LegalController@show')->name('legal');

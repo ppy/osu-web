@@ -22,13 +22,13 @@ namespace App\Http\Controllers;
 
 use App\Events\UserSubscriptionChangeEvent;
 use App\Exceptions\ModelNotSavedException;
-use App\Models\Watch;
+use App\Models\Follow;
 use Exception;
 
-class WatchesController extends Controller
+class FollowsController extends Controller
 {
     protected $section = 'home';
-    protected $actionPrefix = 'watches-';
+    protected $actionPrefix = 'follows-';
 
     public function __construct()
     {
@@ -40,10 +40,10 @@ class WatchesController extends Controller
     public function store()
     {
         $params = $this->getParams();
-        $watch = new Watch($params);
+        $follow = new Follow($params);
 
         try {
-            $watch->saveOrExplode();
+            $follow->saveOrExplode();
         } catch (Exception $e) {
             if ($e instanceof ModelNotSavedException) {
                 return error_popup($e->getMessage());
@@ -54,7 +54,7 @@ class WatchesController extends Controller
             }
         }
 
-        event(new UserSubscriptionChangeEvent('add', auth()->user(), $watch));
+        event(new UserSubscriptionChangeEvent('add', auth()->user(), $follow));
 
         return response([], 204);
     }
@@ -62,11 +62,11 @@ class WatchesController extends Controller
     public function destroy()
     {
         $params = $this->getParams();
-        $watch = Watch::where($params)->first();
+        $follow = Follow::where($params)->first();
 
-        if ($watch !== null) {
-            $watch->delete();
-            event(new UserSubscriptionChangeEvent('remove', auth()->user(), $watch));
+        if ($follow !== null) {
+            $follow->delete();
+            event(new UserSubscriptionChangeEvent('remove', auth()->user(), $follow));
         }
 
         return response([], 204);
@@ -74,7 +74,7 @@ class WatchesController extends Controller
 
     private function getParams()
     {
-        $params = get_params(request(), 'watch', ['notifiable_type:string', 'notifiable_id:int', 'subtype:string']);
+        $params = get_params(request(), 'follow', ['notifiable_type:string', 'notifiable_id:int', 'subtype:string']);
         $params['user_id'] = auth()->user()->getKey();
 
         return $params;

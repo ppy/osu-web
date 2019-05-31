@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWatches extends Migration
+class CreateFollows extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateWatches extends Migration
      */
     public function up()
     {
-        Schema::create('watches', function (Blueprint $table) {
+        Schema::create('follows', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->enum('notifiable_type', ['beatmapset', 'build', 'news_post']);
@@ -33,6 +33,6 @@ class CreateWatches extends Migration
      */
     public function down()
     {
-        Schema::drop('watches');
+        Schema::drop('follows');
     }
 }

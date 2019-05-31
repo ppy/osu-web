@@ -25,7 +25,7 @@ use App\Exceptions\InvalidNotificationException;
 use App\Models\Chat\Channel;
 use App\Models\Notification;
 use App\Models\User;
-use App\Models\Watch;
+use App\Models\Follow;
 use App\Traits\NotificationQueue;
 use DB;
 use Exception;
@@ -222,7 +222,7 @@ class BroadcastNotification implements ShouldQueue
             throw new InvalidNotificationException("comment_new: comment #{$this->object->getKey()} missing source");
         }
 
-        $this->receiverIds = Watch::whereNotifiable($this->object->commentable)
+        $this->receiverIds = Follow::whereNotifiable($this->object->commentable)
             ->where(['subtype' => 'comment'])
             ->pluck('user_id')
             ->all();

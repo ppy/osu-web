@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Replying to deleted comment is not allowed.',
     ],
 
+    'follow' => [
+        'invalid' => 'Invalid :attribute specified.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Can only vote a feature request.',
@@ -123,9 +127,5 @@ return [
 
     'user_report' => [
         'self' => "You can't report yourself!",
-    ],
-
-    'watch' => [
-        'invalid' => 'Invalid :attribute specified.',
     ],
 ];

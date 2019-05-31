@@ -30,7 +30,7 @@ use App\Traits\Validatable;
  * @property int $notifiable_id
  * @property string $subtype
  */
-class Watch extends Model
+class Follow extends Model
 {
     use Validatable;
 
@@ -73,7 +73,7 @@ class Watch extends Model
 
     public function validationErrorsTranslationPrefix()
     {
-        return 'watch';
+        return 'follow';
     }
 
     public function isValid()

@@ -4,7 +4,7 @@ use App\Models\Beatmapset;
 use App\Models\Comment;
 use App\Models\Notification;
 use App\Models\User;
-use App\Models\Watch;
+use App\Models\Follow;
 
 class CommentsControllerTest extends TestCase
 {
@@ -14,7 +14,7 @@ class CommentsControllerTest extends TestCase
         $otherUser = factory(User::class)->create();
 
         $beatmapset = factory(Beatmapset::class)->create();
-        $watch = Watch::create([
+        $follow = Follow::create([
             'notifiable' => $beatmapset,
             'user' => $otherUser,
             'subtype' => 'comment',

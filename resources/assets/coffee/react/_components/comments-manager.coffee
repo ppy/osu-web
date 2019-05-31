@@ -38,8 +38,8 @@ export class CommentsManager extends React.PureComponent
       @state =
         comments: commentBundle.comments ? []
         userVotes: commentBundle.user_votes
-        loadingWatch: false
-        userWatch: commentBundle.user_watch
+        loadingFollow: false
+        userFollow: commentBundle.user_follow
         users: commentBundle.users ? []
         topLevelCount: commentBundle.top_level_count
         total: commentBundle.total
@@ -54,7 +54,7 @@ export class CommentsManager extends React.PureComponent
     $.subscribe "comments:added.#{@id}", @appendBundle
     $.subscribe "comments:sort.#{@id}", @updateSort
     $.subscribe "comments:toggle-show-deleted.#{@id}", @toggleShowDeleted
-    $.subscribe "comments:toggle-watch.#{@id}", @toggleWatch
+    $.subscribe "comments:toggle-follow.#{@id}", @toggleFollow
     $.subscribe "comment:updated.#{@id}", @update
     $.subscribe "commentVote:added.#{@id}", @addVote
     $.subscribe "commentVote:removed.#{@id}", @removeVote
@@ -137,24 +137,24 @@ export class CommentsManager extends React.PureComponent
     @setState showDeleted: !@state.showDeleted
 
 
-  toggleWatch: =>
-    params = watch:
+  toggleFollow: =>
+    params = follow:
       notifiable_type: @props.commentableType
       notifiable_id: @props.commentableId
       subtype: 'comment'
 
-    return if @state.loadingWatch
+    return if @state.loadingFollow
 
-    @setState loadingWatch: true
+    @setState loadingFollow: true
 
-    $.ajax laroute.route('watches.store'),
+    $.ajax laroute.route('follows.store'),
       data: params
       dataType: 'json'
-      method: if @state.userWatch then 'DELETE' else 'POST'
+      method: if @state.userFollow then 'DELETE' else 'POST'
     .always =>
-      @setState loadingWatch: false
+      @setState loadingFollow: false
     .done =>
-      @setState userWatch: !@state.userWatch
+      @setState userFollow: !@state.userFollow
     .fail (xhr, status) =>
       return if status == 'abort'
 
@@ -183,7 +183,7 @@ export class CommentsManager extends React.PureComponent
         users: data.users ? []
         commentableMeta: data.commentable_meta ? []
         userVotes: data.user_votes ? []
-        userWatch: data.user_watch
+        userFollow: data.user_follow
         topLevelCount: data.top_level_count
         total: data.total ? @state.total
         currentSort: sort
