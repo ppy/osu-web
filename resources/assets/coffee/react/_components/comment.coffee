@@ -340,13 +340,15 @@ export class Comment extends React.PureComponent
 
     if meta.url
       component = a
-      params = href: meta.url
+      params =
+        href: meta.url
+        className: 'comment__action'
     else
       component = span
       params = null
 
     component params,
-      span className: 'fas fa-comment-alt'
+      span className: 'comment__commentable-meta-icon fas fa-comment'
       ' '
       meta.title
 
@@ -391,6 +393,7 @@ export class Comment extends React.PureComponent
     if @props.linkParent
       component = a
       props.href = laroute.route('comments.show', comment: parent.id)
+      props.className = 'comment__action'
     else
       component = span
 
