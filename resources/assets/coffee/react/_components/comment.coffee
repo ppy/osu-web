@@ -337,16 +337,17 @@ export class Comment extends React.PureComponent
       component = a
       params =
         href: meta.url
-        className: 'comment__action comment__action--commentable-meta'
+        className: 'comment__action'
     else
       component = span
       params = null
 
     div className: 'comment__commentable-meta',
-      span className: 'comment__commentable-meta-type',
-        span className: 'comment__commentable-meta-icon fas fa-comment'
-        ' '
-        osu.trans("comments.commentable_name.#{@props.comment.commentable_type}")
+      if @props.comment.commentable_type?
+        span className: 'comment__commentable-meta-type',
+          span className: 'comment__commentable-meta-icon fas fa-comment'
+          ' '
+          osu.trans("comments.commentable_name.#{@props.comment.commentable_type}")
       component params,
         meta.title
 
@@ -402,7 +403,7 @@ export class Comment extends React.PureComponent
 
 
   userFor: (comment) =>
-    user = @props.usersById[comment.user_id]
+    user = @props.usersById[comment.user_id] ? comment.user
 
     if user?
       user
