@@ -13,7 +13,7 @@ return [
      */
     'router' => 'laravel',
 
-    'faker_seed' => 0,
+    'faker_seed' => 1,
 
     /*
      * Generate a Postman collection in addition to HTML docs.
