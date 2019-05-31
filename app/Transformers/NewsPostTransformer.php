@@ -39,6 +39,7 @@ class NewsPostTransformer extends Fractal\TransformerAbstract
             'edit_url' => $post->editUrl(),
             'first_image' => $post->firstImage(),
             'published_at' => json_time($post->published_at),
+            'updated_at' => json_time($post->updated_at),
             'slug' => $post->slug,
             'title' => $post->title(),
         ];

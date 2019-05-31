@@ -32,8 +32,16 @@ class NewsController extends Controller
     {
         $search = NewsPost::search(array_merge(['limit' => 12], request()->all()));
 
+        $posts = $search['query']->get();
+
+        if (request('format') === 'atom') {
+            return response()
+                ->view('news.index-atom', compact('posts'))
+                ->header('Content-Type', 'application/atom+xml');
+        }
+
         $postsJson = [
-            'news_posts' => json_collection($search['query']->get(), 'NewsPost', ['preview']),
+            'news_posts' => json_collection($posts, 'NewsPost', ['preview']),
             'search' => $search['params'],
         ];
 
