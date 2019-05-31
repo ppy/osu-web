@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,31 +18,27 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.rankinginfo-small {
-  text-align: right;
-  display: flex;
-  flex-flow: column nowrap;
+namespace App\Http\Middleware;
 
-  // Elements
-  &__gamemode {
-    .default-font();
-    color: #fff;
-    font-weight: 300;
-    font-size: 24px;
-  }
+use Closure;
+use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Http\Request;
 
-  &__mode-icon {
-    font-size: 19px;
-    top: -2px;
-  }
+class AuthApi
+{
+    public static function skipAuth($request)
+    {
+        $path = "{$request->decodedPath()}/";
 
-  &__country {
-    color: #fff;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 300;
-    white-space: nowrap;
-  }
+        return starts_with($path, 'api/v2/changelog/');
+    }
 
-  // Modifiers
+    public function handle(Request $request, Closure $next)
+    {
+        if (static::skipAuth($request)) {
+            return $next($request);
+        }
+
+        return app(Authenticate::class)->handle($request, $next, 'api');
+    }
 }
