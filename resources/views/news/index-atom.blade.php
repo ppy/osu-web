@@ -18,7 +18,7 @@
 {{-- just in case php has shorttag enabled --}}
 {!! '<?xml version="1.0" encoding="UTF-8"?>' !!}
 <feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
-    <id>tag:osu-news,2019</id>
+    <id>tag:osu,2019:news</id>
 
     <link rel="alternate" type="text/html" href="{{ route('news.index') }}" />
     <link rel="self" type="application/atom+xml" href="{{ request()->fullUrl() }}" />
@@ -30,7 +30,7 @@
 
     @foreach ($posts as $post)
         <entry>
-            <id>tag:osu-news/{{ $post->getKey() }},2019</id>
+            <id>tag:osu,2019:news/{{ $post->getKey() }}</id>
             <published>{{ json_time($post->published_at) }}</published>
             <updated>{{ json_time($post->updated_at) }}</updated>
             <link rel="alternate" type="text/html" href="{{ route('news.show', $post->slug) }}" />
@@ -38,6 +38,10 @@
             <content type="html">
                 {{ $post->bodyHtml() }}
             </content>
+
+            <author>
+                <name>osu!news team</name>
+            </author>
         </entry>
     @endforeach
 </feed>
