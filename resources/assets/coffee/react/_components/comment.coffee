@@ -403,7 +403,7 @@ export class Comment extends React.PureComponent
 
 
   userFor: (comment) =>
-    user = @props.usersById[comment.user_id]
+    user = @props.usersById[comment.user_id] ? comment.user
 
     if user?
       user

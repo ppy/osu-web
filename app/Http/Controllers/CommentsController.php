@@ -138,7 +138,7 @@ class CommentsController extends Controller
         ]);
 
         $commentJson = json_item($comment, 'Comment', [
-            'editor', 'user', 'commentable_meta', 'parent',
+            'editor', 'user', 'commentable_meta', 'parent.user',
         ]);
 
         return view('comments.show', compact('commentJson', 'commentBundle'));
