@@ -48,7 +48,9 @@ class NewsController extends Controller
         if (request()->expectsJson()) {
             return $postsJson;
         } else {
-            return view('news.index', compact('postsJson'));
+            $atomUrl = route('news.index', ['format' => 'atom']);
+
+            return view('news.index', compact('postsJson', 'atomUrl'));
         }
     }
 
