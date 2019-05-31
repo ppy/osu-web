@@ -1153,6 +1153,11 @@ class User extends Model implements AuthenticatableContract
         );
     }
 
+    public function follows()
+    {
+        return $this->hasMany(Follow::class, 'user_id');
+    }
+
     public function maxBlocks()
     {
         return ceil($this->maxFriends() / 10);

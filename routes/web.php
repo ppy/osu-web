@@ -202,6 +202,9 @@ Route::group(['prefix' => 'home'], function () {
     Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
 
     Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
+
+    Route::resource('follows', 'FollowsController', ['only' => ['store']]);
+    Route::delete('follows', 'FollowsController@destroy')->name('follows.destroy');
 });
 
 Route::get('legal/{page}', 'LegalController@show')->name('legal');
@@ -298,7 +301,7 @@ Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payme
 });
 
 // API
-Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth:api', 'require-scopes']], function () {
+Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-api', 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
             Route::post('new', 'ChatController@newConversation')->name('new');

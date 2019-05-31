@@ -87,6 +87,7 @@ class CommentBundle
             'has_more' => $hasMore,
             'has_more_id' => $this->params->parentId,
             'user_votes' => $this->getUserVotes($comments),
+            'user_follow' => $this->getUserFollow(),
             'users' => json_collection($this->getUsers($comments), 'UserCompact'),
         ];
 
@@ -172,6 +173,18 @@ class CommentBundle
         }
 
         return $query->limit($queryLimit)->get();
+    }
+
+    private function getUserFollow()
+    {
+        return $this->commentable !== null &&
+            $this->user !== null &&
+            $this
+                ->user
+                ->follows()
+                ->whereNotifiable($this->commentable)
+                ->where(['subtype' => 'comment'])
+                ->exists();
     }
 
     private function getUserVotes($comments)

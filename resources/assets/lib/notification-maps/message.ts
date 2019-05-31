@@ -23,6 +23,7 @@ export function messageCompact(item: Notification) {
   let message: string;
 
   const replacements = {
+    content: item.details.content,
     title: item.details.title,
     username: item.details.username,
   };
@@ -61,6 +62,7 @@ export function messageSingular(item: Notification) {
   let message: string;
 
   const replacements = {
+    content: item.details.content,
     title: item.details.title,
     username: item.details.username,
   };

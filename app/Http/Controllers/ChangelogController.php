@@ -108,7 +108,11 @@ class ChangelogController extends Controller
 
     public function show($version)
     {
-        $build = Build::default()->where('version', '=', $version)->first();
+        if (request('key') === 'id') {
+            $build = Build::default()->findOrFail($version);
+        } else {
+            $build = Build::default()->where('version', '=', $version)->first();
+        }
 
         if ($build === null) {
             $normalizedVersion = preg_replace('#[^0-9.]#', '', $version);

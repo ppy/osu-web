@@ -24,12 +24,20 @@
         }
     @endphp
 
-    <nav class="pagination-v0">
+    @php
+        $blockClass = 'pagination-v0';
+
+        foreach ($modifiers ?? [] as $modifier) {
+            $blockClass .= " pagination-v0--{$modifier}";
+        }
+    @endphp
+
+    <nav class="{!! $blockClass !!}">
         <ul class="pagination-v0__row">
             {{-- decide if we're showing first page link separately --}}
             @if ($currentPage > 5)
                 <li class="pagination-v0__item">
-                    <a class="pagination-v0__link u-forum--link" href="{{ $object->url(1) }}">1</a>
+                    <a class="pagination-v0__link pagination-v0__link--link u-forum--link" href="{{ $object->url(1) }}">1</a>
                 </li>
             @endif
 
@@ -46,7 +54,7 @@
                     </li>
                 @else
                     <li class="pagination-v0__item">
-                        <a class="pagination-v0__link u-forum--link" href="{{ $object->url($page) }}">{{ $page }}</a>
+                        <a class="pagination-v0__link pagination-v0__link--link u-forum--link" href="{{ $object->url($page) }}">{{ $page }}</a>
                     </li>
                 @endif
             @endforeach
@@ -62,7 +70,7 @@
             {{-- see if the link is needed --}}
             @if (($currentPage + 4) < $object->lastPage())
                 <li class="pagination-v0__item">
-                    <a class="pagination-v0__link u-forum--link" href="{{ $object->url($object->lastPage()) }}">{{ $object->lastPage() }}</a>
+                    <a class="pagination-v0__link pagination-v0__link--link u-forum--link" href="{{ $object->url($object->lastPage()) }}">{{ $object->lastPage() }}</a>
                 </li>
             @endif
         </ul>
@@ -75,7 +83,7 @@
                         {{ trans("common.pagination.previous") }}
                     </span>
                 @else
-                    <a class="pagination-v0__link pagination-v0__link--big u-forum--link" href="{{ $object->url($currentPage - 1) }}">
+                    <a class="pagination-v0__link pagination-v0__link--link pagination-v0__link--big u-forum--link" href="{{ $object->url($currentPage - 1) }}">
                         <i class="fas fa-angle-left"></i>
                         {{ trans("common.pagination.previous") }}
                     </a>
@@ -88,7 +96,7 @@
                         <i class="fas fa-angle-right"></i>
                     </span>
                 @else
-                    <a class="pagination-v0__link pagination-v0__link--big u-forum--link" href="{{ $object->url($currentPage + 1) }}">
+                    <a class="pagination-v0__link pagination-v0__link--link pagination-v0__link--big u-forum--link" href="{{ $object->url($currentPage + 1) }}">
                         {{ trans("common.pagination.next") }}
                         <i class="fas fa-angle-right"></i>
                     </a>

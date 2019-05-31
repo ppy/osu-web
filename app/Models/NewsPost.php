@@ -21,8 +21,10 @@
 namespace App\Models;
 
 use App\Exceptions\GitHubNotFoundException;
+use App\Libraries\Commentable;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
+use App\Traits\CommentableDefaults;
 use Carbon\Carbon;
 use Exception;
 
@@ -38,8 +40,10 @@ use Exception;
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $version
  */
-class NewsPost extends Model
+class NewsPost extends Model implements Commentable
 {
+    use CommentableDefaults;
+
     // in minutes
     const CACHE_DURATION = 86400;
     const VERSION = 3;
@@ -155,11 +159,6 @@ class NewsPost extends Model
         }
     }
 
-    public function comments()
-    {
-        return $this->morphMany(Comment::class, 'commentable');
-    }
-
     public function scopeDefault($query)
     {
         return $query->published()->orderBy('published_at', 'DESC');
@@ -169,6 +168,11 @@ class NewsPost extends Model
     {
         return $query->whereNotNull('published_at')
             ->where('published_at', '<=', Carbon::now());
+    }
+
+    public function commentableTitle()
+    {
+        return $this->title();
     }
 
     public function filename()
@@ -181,6 +185,11 @@ class NewsPost extends Model
         return $this->page === null ||
             $this->version !== static::pageVersion() ||
             $this->updated_at < Carbon::now()->subMinutes(static::CACHE_DURATION);
+    }
+
+    public function notificationCover()
+    {
+        return $this->firstImage();
     }
 
     public function bodyHtml()
@@ -298,5 +307,10 @@ class NewsPost extends Model
     public function title()
     {
         return $this->page['header']['title'];
+    }
+
+    public function url()
+    {
+        return route('news.show', $this->slug);
     }
 }

@@ -82,7 +82,9 @@ export class Links extends React.PureComponent
             className: 'js-tooltip-time'
             title: joinDateTitle
 
-    last_visit: (val) ->
+    last_visit: (val, user) ->
+      return html: osu.trans('users.show.lastvisit_online') if user.is_online
+
       html: osu.trans 'users.show.lastvisit',
         date: rowValue osu.timeago(val)
 

@@ -39,7 +39,7 @@ class @BeatmapDiscussionHelper
     currentUrl = new URL(window.location)
     currentBeatmapsetDiscussions = @urlParse(currentUrl.href)
 
-    text.replace osu.urlRegex, (url) =>
+    text.replace osu.urlRegex, (url, _, displayUrl) =>
       targetUrl = new URL(url)
 
       if targetUrl.host == currentUrl.host
@@ -53,6 +53,8 @@ class @BeatmapDiscussionHelper
           else
             # different beatmapset, format: 1234#567
             linkText = "#{targetBeatmapsetDiscussions.beatmapsetId}##{targetBeatmapsetDiscussions.discussionId}"
+
+      linkText ?= displayUrl
 
       "<a href='#{url}' rel='nofollow' #{attrs ? ''}>#{linkText ? url}</a>"
 

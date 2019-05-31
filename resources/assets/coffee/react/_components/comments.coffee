@@ -23,6 +23,7 @@ import { CommentsSort } from 'comments-sort'
 import DeletedCommentsCount from 'deleted-comments-count'
 import * as React from 'react'
 import { button, div, h2, span } from 'react-dom-factories'
+import { Spinner } from 'spinner'
 
 el = React.createElement
 
@@ -47,7 +48,10 @@ export class Comments extends React.PureComponent
             loadingSort: @props.loadingSort
             currentSort: @props.currentSort
             modifiers: @props.modifiers
-          @renderShowDeletedToggle()
+          div className: osu.classWithModifiers('sort', @props.modifiers),
+            div className: 'sort__items',
+              @renderFollowToggle()
+              @renderShowDeletedToggle()
         if comments?
           div className: "comments__items #{if @props.loadingSort? then 'comments__items--loading' else ''}",
             comments.map @renderComment
@@ -85,16 +89,41 @@ export class Comments extends React.PureComponent
 
 
   renderShowDeletedToggle: =>
-    div className: osu.classWithModifiers('sort', @props.modifiers),
-      div className: 'sort__items',
-        button
-          type: 'button'
-          className: 'sort__item sort__item--button'
-          onClick: @toggleShowDeleted
-          span className: 'sort__item-icon',
-            span className: if @props.showDeleted then 'fas fa-check-square' else 'far fa-square'
-          osu.trans('common.buttons.show_deleted')
+    button
+      type: 'button'
+      className: 'sort__item sort__item--button'
+      onClick: @toggleShowDeleted
+      span className: 'sort__item-icon',
+        span className: if @props.showDeleted then 'fas fa-check-square' else 'far fa-square'
+      osu.trans('common.buttons.show_deleted')
+
+
+  renderFollowToggle: =>
+    if @props.userFollow
+      icon = 'fas fa-eye-slash'
+      label = osu.trans('common.buttons.watch.to_0')
+    else
+      icon = 'fas fa-eye'
+      label = osu.trans('common.buttons.watch.to_1')
+
+    iconEl =
+      if @props.loadingFollow
+        el Spinner, modifiers: ['center-inline']
+      else
+        span className: icon
+
+    button
+      type: 'button'
+      className: 'sort__item sort__item--button'
+      onClick: @toggleFollow
+      disabled: @props.loadingFollow
+      span className: 'sort__item-icon', iconEl
+      label
 
 
   toggleShowDeleted: ->
     $.publish 'comments:toggle-show-deleted'
+
+
+  toggleFollow: ->
+    $.publish 'comments:toggle-follow'

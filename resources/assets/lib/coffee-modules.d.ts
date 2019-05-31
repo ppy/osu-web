@@ -12,6 +12,17 @@ declare module 'back-to-top' {
   }
 }
 
+declare module 'block-button' {
+  interface Props {
+    onClick?: () => void;
+    modifiers?: string[];
+    userId: number;
+    wrapperClass?: string;
+  }
+
+  class BlockButton extends React.PureComponent<Props> {}
+}
+
 declare module 'big-button' {
   class BigButton extends React.PureComponent<any> {}
 }
@@ -103,4 +114,15 @@ declare module 'report-score' {
   }
 
   class ReportScore extends React.PureComponent<Props> {}
+}
+
+declare module 'report-user' {
+  interface Props {
+    onFormClose?: () => void;
+    modifiers?: string[];
+    user: User;
+    wrapperClass?: string;
+  }
+
+  class ReportUser extends React.PureComponent<Props> {}
 }
