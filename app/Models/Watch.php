@@ -70,7 +70,7 @@ class Watch extends Model
     {
         $this->validationErrors()->reset();
 
-        if (($this->isDirty('notifiable_type') || $this->isDirty('notifiable_id')) && $this->notifiable === null) {
+        if ($this->notifiable === null) {
             $this->validationErrors()->add('notifiable', 'required');
         }
 
