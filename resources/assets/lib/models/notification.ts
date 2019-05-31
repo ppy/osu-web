@@ -16,10 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import NotificationJson from 'interfaces/notification-json';
 import * as _ from 'lodash';
 import { computed, observable } from 'mobx';
-import { nameToCategory } from 'notification-maps/category';
-import NotificationJson from '../interfaces/notification-json';
+import { categoryGroupKey, nameToCategory } from 'notification-maps/category';
+import { displayType } from 'notification-maps/type';
 
 export default class Notification {
   createdAtJson?: string;
@@ -55,5 +56,13 @@ export default class Notification {
 
   @computed get category() {
     return nameToCategory[this.name || ''];
+  }
+
+  @computed get categoryGroupKey() {
+    return categoryGroupKey(this);
+  }
+
+  @computed get displayType() {
+    return displayType(this);
   }
 }

@@ -27,7 +27,7 @@ export function messageCompact(item: Notification) {
     username: item.details.username,
   };
 
-  let key = `notifications.item.${item.objectType}.${item.category}`;
+  let key = `notifications.item.${item.displayType}.${item.category}`;
   if (item.objectType === 'channel') {
     key += `.${item.details.type}`;
   }
@@ -65,7 +65,7 @@ export function messageSingular(item: Notification) {
     username: item.details.username,
   };
 
-  let key = `notifications.item.${item.objectType}.${item.category}`;
+  let key = `notifications.item.${item.displayType}.${item.category}`;
   if (item.objectType === 'channel') {
     key += `.${item.details.type}`;
   }

@@ -16,31 +16,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.rankinginfo-small {
-  text-align: right;
-  display: flex;
-  flex-flow: column nowrap;
+import Notification from 'models/notification';
 
-  // Elements
-  &__gamemode {
-    .default-font();
-    color: #fff;
-    font-weight: 300;
-    font-size: 24px;
+export function displayType(item: Notification) {
+  if (item.objectType == null || item.objectId == null) {
+    return;
   }
 
-  &__mode-icon {
-    font-size: 19px;
-    top: -2px;
+  if (item.name === 'user_achievement_unlock') {
+    return 'user_achievement';
   }
 
-  &__country {
-    color: #fff;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 300;
-    white-space: nowrap;
-  }
-
-  // Modifiers
+  return item.objectType;
 }
