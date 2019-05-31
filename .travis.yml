@@ -63,8 +63,10 @@ jobs:
   include:
     - name: phpunit
       script: ./bin/phpunit
+
     - name: browser tests
       script: ./bin/run_dusk.sh
+
     - name: tslint
       env:
         - OSU_SKIP_ASSET_BUILD=1
@@ -72,6 +74,12 @@ jobs:
         - yarn
         - yarn lint
 
+    - name: apidoc
+      env:
+        - OSU_SKIP_ASSET_BUILD=1
+      script:
+        - php artisan apidoc:generate
+
 after_script:
-  - cat elasticsearch.log
+  - test -f elasticsearch.log && cat elasticsearch.log
   - test -f osu-notification-server/server.log && cat osu-notification-server/server.log
