@@ -337,7 +337,7 @@ export class Comment extends React.PureComponent
       component = a
       params =
         href: meta.url
-        className: 'comment__action comment__action--commentable-meta'
+        className: 'comment__action'
     else
       component = span
       params = null
