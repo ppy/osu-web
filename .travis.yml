@@ -91,7 +91,7 @@ jobs:
         keep_history: true
         local_dir: docs-public
         on:
-          branch: master
+          branch: release
 
 after_script:
   - test -f elasticsearch.log && cat elasticsearch.log
