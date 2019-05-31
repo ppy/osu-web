@@ -2,9 +2,9 @@
 
 use App\Models\Beatmapset;
 use App\Models\Comment;
+use App\Models\Follow;
 use App\Models\Notification;
 use App\Models\User;
-use App\Models\Follow;
 
 class CommentsControllerTest extends TestCase
 {

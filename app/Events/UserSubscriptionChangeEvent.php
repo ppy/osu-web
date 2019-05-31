@@ -20,8 +20,8 @@
 
 namespace App\Events;
 
-use App\Models\Notification;
 use App\Models\Follow;
+use App\Models\Notification;
 use Illuminate\Broadcasting\Channel;
 
 class UserSubscriptionChangeEvent extends NotificationEventBase
