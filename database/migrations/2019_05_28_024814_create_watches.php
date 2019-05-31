@@ -18,7 +18,7 @@ class CreateWatches extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->enum('notifiable_type', ['beatmapset', 'build', 'news_post']);
             $table->bigInteger('notifiable_id')->unsigned();
-            $table->string('subtype');
+            $table->enum('subtype', ['comment']);
             $table->timestampsTz();
 
             $table->unique(['user_id', 'notifiable_type', 'notifiable_id', 'subtype']);
