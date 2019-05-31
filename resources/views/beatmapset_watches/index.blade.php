@@ -93,7 +93,7 @@
                                     data-url="{{ route('beatmapsets.watches.destroy', $watch->beatmapset) }}"
                                     data-reload-on-success="1"
                                     data-confirm="{{ trans('common.confirmation') }}"
-                                    title="{{ trans('beatmapset_watches.button.action.to_0') }}"
+                                    title="{{ trans('common.buttons.watch.to_0') }}"
                                 >
                                     <i class="fas fa-eye-slash"></i>
                                 </button>
