@@ -36,11 +36,12 @@ export interface SearchStatus {
 class UIStateStore {
   // the list that gets displaying while new searches are loading.
   @observable currentBeatmapsets!: any[];
+  @observable filters!: BeatmapSearchFilters;
   @observable hasMore = false; // TODO: figure out how to make this computed
+  @observable isExpanded!: boolean;
   @observable numberOfColumns = osu.isDesktop() ? 2 : 1;
   @observable recommendedDifficulty = store.recommendedDifficulty;
-  @observable filters!: BeatmapSearchFilters;
-  @observable isExpanded!: boolean;
+
   @observable searchStatus: SearchStatus = {
     error: null,
     from: 0,
@@ -132,11 +133,6 @@ class UIStateStore {
     }
   }
 
-  @action
-  updateFilters(newFilters: Partial<BeatmapSearchParams>) {
-    this.filters.update(newFilters);
-  }
-
   startListeningOnWindow() {
     $(window).on('resize.beatmaps-ui-state-store', () => {
       const count = osu.isDesktop() ? 2 : 1;
@@ -148,6 +144,11 @@ class UIStateStore {
 
   stopListeningOnWindow() {
     $(window).off('.beatmaps-ui-state-store');
+  }
+
+  @action
+  updateFilters(newFilters: Partial<BeatmapSearchParams>) {
+    this.filters.update(newFilters);
   }
 
   private restoreStateFromUrl() {

@@ -107,12 +107,6 @@ export class Main extends React.Component<Props> {
     }
   }
 
-  private searchStatusErrorHandler = (change: IValueDidChange<SearchStatus>) => {
-    if (change.newValue.error != null) {
-      osu.ajaxError(change.newValue.error);
-    }
-  }
-
   private scrollPositionHandler = (change: IValueDidChange<SearchStatus>) => {
     if (change.oldValue === change.newValue) { return; }
 
@@ -127,6 +121,12 @@ export class Main extends React.Component<Props> {
 
     if (change.newValue.state === 'searching' && this.backToTop.current) {
       this.backToTop.current.reset();
+    }
+  }
+
+  private searchStatusErrorHandler = (change: IValueDidChange<SearchStatus>) => {
+    if (change.newValue.error != null) {
+      osu.ajaxError(change.newValue.error);
     }
   }
 }
