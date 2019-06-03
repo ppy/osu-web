@@ -16,7 +16,7 @@
     "jsx-no-multiline-js": false,
     "quotemark": [true, "single"],
     "max-line-length": false,
-    "member-access": false,
+    "member-access": [true, "no-public"],
     "member-ordering": [
       true,
       {
