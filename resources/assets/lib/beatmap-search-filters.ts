@@ -110,7 +110,8 @@ export class BeatmapSearchFilters implements BeatmapSearchParams {
 
     const normalized = BeatmapsetFilter.fillDefaults(values) as any;
     const parts = [];
-    for (const key of Object.keys(normalized)) {
+    // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
+    for (let key of Object.keys(normalized)) {
       parts.push(`${key}=${normalized[key]}`);
     }
 

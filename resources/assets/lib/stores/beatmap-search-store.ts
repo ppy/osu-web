@@ -103,20 +103,21 @@ export default class BeatmapSearchStore {
     this.fetchedAt.set(key, new Date());
     this.recommendedDifficulty = data.recommended_difficulty;
 
-    const beatmapsets = this.getObservableBeatmapsetsByKey(key);
-    for (const beatmapset of data.beatmapsets) {
-      beatmapsets.push(beatmapset);
-    }
+    this.appendBeatmapsets(key, data.beatmapsets);
   }
 
   private append(key: string, data: SearchResponse) {
-    const beatmapsets = this.getObservableBeatmapsetsByKey(key);
-    for (const beatmapset of data.beatmapsets) {
-      beatmapsets.push(beatmapset);
-    }
-
+    this.appendBeatmapsets(key, data.beatmapsets);
     this.cursors.set(key, data.cursor);
     this.totals.set(key, data.total);
+  }
+
+  private appendBeatmapsets(key: string, data: JSON[]) {
+    const beatmapsets = this.getObservableBeatmapsetsByKey(key);
+    // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
+    for (let beatmapset of data) {
+      beatmapsets.push(beatmapset);
+    }
   }
 
   private getObservableBeatmapsetsByKey(key: string) {
