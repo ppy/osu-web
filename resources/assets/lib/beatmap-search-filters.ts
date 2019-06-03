@@ -45,9 +45,7 @@ export class BeatmapSearchFilters implements BeatmapSearchParams {
   @observable rank: filterValueType = null;
   @observable sort: filterValueType = null;
   @observable status: filterValueType = null;
-
-  // tslint:disable-next-line:variable-name
-  @observable private _query: filterValueType = null;
+  @observable private sanitizedQuery: filterValueType = null;
 
   [key: string]: any;
 
@@ -65,16 +63,16 @@ export class BeatmapSearchFilters implements BeatmapSearchParams {
 
   @computed
   get query() {
-    return this._query;
+    return this.sanitizedQuery;
   }
 
   set query(value: string | null) {
-    if (osu.presence(value) === osu.presence(this._query)) {
+    if (osu.presence(value) === osu.presence(this.sanitizedQuery)) {
       return;
     }
 
     if (value != null) {
-      this._query = osu.presence(value.trim());
+      this.sanitizedQuery = osu.presence(value.trim());
     }
   }
 
@@ -90,8 +88,8 @@ export class BeatmapSearchFilters implements BeatmapSearchParams {
   get values() {
     // Object.assign doesn't copy the methods
     const values = Object.assign({}, this);
-    values.query = this._query;
-    delete values._query;
+    values.query = this.sanitizedQuery;
+    delete values.sanitizedQuery;
 
     return values as BeatmapSearchParams;
   }

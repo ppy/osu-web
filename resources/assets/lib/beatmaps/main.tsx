@@ -102,7 +102,7 @@ export class Main extends React.Component<Props> {
     this.debouncedSearch();
     // not sure if observing change of private variable is a good idea
     // but computed value doesn't show up here
-    if (change.name !== '_query') {
+    if (change.name !== 'sanitizedQuery') {
       this.debouncedSearch.flush();
     }
   }
