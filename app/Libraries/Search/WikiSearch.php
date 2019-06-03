@@ -104,10 +104,13 @@ class WikiSearch extends RecordSearch
                         'query' => $this->params->queryString,
                         'boost' => 9,
                     ],
-                ]])
-                ->should(['match' => [
+                ]]);
+
+            if (!$this->isQueryStringTooShort()) {
+                $matchQuery->should(['match' => [
                     'page_text' => $this->params->queryString,
                 ]]);
+            }
         }
 
         return (new BoolQuery)

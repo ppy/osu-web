@@ -56,7 +56,7 @@ class ForumSearch extends Search
      */
     public function getQuery()
     {
-        if (mb_strlen($this->params->queryString) < config('osu.search.minimum_length')) {
+        if ($this->isQueryStringTooShort()) {
             return ['match_none' => new \stdClass];
         }
 
