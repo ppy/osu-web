@@ -67,7 +67,9 @@ class MultiSearch
 
     public function hasQuery()
     {
-        return mb_strlen($this->query) >= config('osu.search.minimum_length');
+        return is_numeric($this->query)
+            ? true
+            : mb_strlen($this->query) >= config('osu.search.minimum_length');
     }
 
     public function searches()
