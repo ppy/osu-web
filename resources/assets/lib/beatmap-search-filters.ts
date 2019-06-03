@@ -18,40 +18,44 @@
 
 import { computed, observable } from 'mobx';
 
-export interface BeatmapSearchParams {
-  extra: string | null;
-  general: string | null;
-  genre: string | null;
-  language: string | null;
-  mode: string | null;
-  played: string | null;
-  query: string | null;
-  rank: string | null;
-  sort: string | null;
-  status: string | null;
+type filterValueType = string | null;
 
-  [index: string]: string | null;
+export interface BeatmapSearchParams {
+  extra: filterValueType;
+  general: filterValueType;
+  genre: filterValueType;
+  language: filterValueType;
+  mode: filterValueType;
+  played: filterValueType;
+  query: filterValueType;
+  rank: filterValueType;
+  sort: filterValueType;
+  status: filterValueType;
+
+  [key: string]: any;
 }
 
-export class BeatmapSearchFilters {
-  @observable extra?: string;
-  @observable general?: string;
-  @observable genre?: string;
-  @observable language?: string;
-  @observable mode?: string;
-  @observable played?: string;
-  @observable rank?: string;
-  @observable sort?: string;
-  @observable status?: string;
+export class BeatmapSearchFilters implements BeatmapSearchParams {
+  @observable extra: filterValueType = null;
+  @observable general: filterValueType = null;
+  @observable genre: filterValueType = null;
+  @observable language: filterValueType = null;
+  @observable mode: filterValueType = null;
+  @observable played: filterValueType = null;
+  @observable rank: filterValueType = null;
+  @observable sort: filterValueType = null;
+  @observable status: filterValueType = null;
 
   // tslint:disable-next-line:variable-name
-  @observable private _query: string | null = null; // initialized to null because undefined -> null is considered a change
+  @observable private _query: filterValueType = null;
+
+  [key: string]: any;
 
   constructor(url: string) {
     const filters = BeatmapsetFilter.filtersFromUrl(url);
     // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
     for (let key of Object.keys(filters)) {
-      (this as any)[key] = filters[key]; // FIXME: indexer
+      this[key] = filters[key];
     }
   }
 
@@ -89,11 +93,11 @@ export class BeatmapSearchFilters {
     values.query = this._query;
     delete values._query;
 
-    return values;
+    return values as BeatmapSearchParams;
   }
 
   selectedValue(key: string) {
-    const value = (this as any)[key]; // FIXME: indexer
+    const value = this[key];
     if (value == null) {
       return BeatmapsetFilter.getDefault(this.values, key);
     }
@@ -116,12 +120,12 @@ export class BeatmapSearchFilters {
   update(newFilters: Partial<BeatmapSearchParams>) {
     if (newFilters.query !== undefined && newFilters.query !== this.query
       || newFilters.status !== undefined && newFilters.status !== this.status) {
-      this.sort = undefined;
+      this.sort = null;
     }
 
     // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
     for (let key of Object.keys(newFilters)) {
-      (this as any)[key] = newFilters[key]; // FIXME: indexer
+      this[key] = newFilters[key];
     }
   }
 }
