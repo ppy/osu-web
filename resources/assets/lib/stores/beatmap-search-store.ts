@@ -32,9 +32,9 @@ export default class BeatmapSearchStore {
 
   readonly beatmapsets = new Map<string, any[]>();
   readonly cursors = new Map<string, any>();
+  readonly fetchedAt = new Map<string, Date>();
   recommendedDifficulty = 0; // last known recommended difficulty.
   readonly totals = new Map<string, number>();
-  readonly fetchedAt = new Map<string, Date>();
 
   private xhr?: JQueryXHR;
 
@@ -42,12 +42,6 @@ export default class BeatmapSearchStore {
     if (this.xhr) {
       this.xhr.abort();
     }
-  }
-
-  getBeatmapsets(filters: BeatmapSearchFilters) {
-    const key = filters.toKeyString();
-
-    return this.getObservableBeatmapsetsByKey(key);
   }
 
   @action
@@ -90,6 +84,12 @@ export default class BeatmapSearchStore {
     });
   }
 
+  getBeatmapsets(filters: BeatmapSearchFilters) {
+    const key = filters.toKeyString();
+
+    return this.getObservableBeatmapsetsByKey(key);
+  }
+
   @action
   initialize(filters: BeatmapSearchFilters, data: SearchResponse) {
     const key = filters.toKeyString();
@@ -120,16 +120,6 @@ export default class BeatmapSearchStore {
     }
   }
 
-  private getObservableBeatmapsetsByKey(key: string) {
-    let beatmapsets = this.beatmapsets.get(key);
-    if (beatmapsets == null) {
-      beatmapsets = observable([]);
-      this.beatmapsets.set(key, beatmapsets);
-    }
-
-    return beatmapsets;
-  }
-
   private fetch(filters: BeatmapSearchFilters, from: number) {
     this.cancel();
 
@@ -152,6 +142,16 @@ export default class BeatmapSearchStore {
     });
 
     return this.xhr;
+  }
+
+  private getObservableBeatmapsetsByKey(key: string) {
+    let beatmapsets = this.beatmapsets.get(key);
+    if (beatmapsets == null) {
+      beatmapsets = observable([]);
+      this.beatmapsets.set(key, beatmapsets);
+    }
+
+    return beatmapsets;
   }
 
   private hasMore(key: string) {
