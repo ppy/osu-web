@@ -26,19 +26,25 @@ import RootDataStore from 'stores/root-data-store';
 import UIStateStore from 'stores/ui-state-store';
 
 export default class ChatStateStore implements DispatchListener {
-  root: RootDataStore;
-  parent: UIStateStore; // TODO: do we need to bother with tracking parent?
+  @observable autoScroll: boolean = false;
   dispatcher: Dispatcher;
+  @observable lastReadId: number = -1;
+  parent: UIStateStore; // TODO: do we need to bother with tracking parent?
+  root: RootDataStore;
 
   @observable selected: number = -1;
-  @observable lastReadId: number = -1;
-  @observable autoScroll: boolean = false;
 
   constructor(root: RootDataStore, parent: UIStateStore, dispatcher: Dispatcher) {
     this.root = root;
     this.parent = parent;
     this.dispatcher = dispatcher;
     dispatcher.register(this);
+  }
+
+  @action
+  flushStore() {
+    this.selected = -1;
+    this.lastReadId = -1;
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
@@ -53,11 +59,5 @@ export default class ChatStateStore implements DispatchListener {
     } else if (dispatchedAction instanceof UserLogoutAction) {
       this.flushStore();
     }
-  }
-
-  @action
-  flushStore() {
-    this.selected = -1;
-    this.lastReadId = -1;
   }
 }

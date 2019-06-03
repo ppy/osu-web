@@ -23,15 +23,27 @@ import { categoryGroupKey, nameToCategory } from 'notification-maps/category';
 import { displayType } from 'notification-maps/type';
 
 export default class Notification {
+
+  @computed get category() {
+    return nameToCategory[this.name || ''];
+  }
+
+  @computed get categoryGroupKey() {
+    return categoryGroupKey(this);
+  }
+
+  @computed get displayType() {
+    return displayType(this);
+  }
   createdAtJson?: string;
   details?: any;
   id: number;
+
+  @observable isRead: boolean = false;
   name?: string;
   objectId?: number;
   objectType?: string;
   sourceUserId?: number;
-
-  @observable isRead: boolean = false;
 
   constructor(id: number) {
     this.id = id;
@@ -52,17 +64,5 @@ export default class Notification {
         this.details[_.camelCase(key)] = value;
       });
     }
-  }
-
-  @computed get category() {
-    return nameToCategory[this.name || ''];
-  }
-
-  @computed get categoryGroupKey() {
-    return categoryGroupKey(this);
-  }
-
-  @computed get displayType() {
-    return displayType(this);
   }
 }

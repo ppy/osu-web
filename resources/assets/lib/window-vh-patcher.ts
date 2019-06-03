@@ -22,14 +22,6 @@
  * height: calc(var(--vh, 1vh) ~'*' 100);
  */
 export default class WindowVHPatcher {
-  private static instance: WindowVHPatcher;
-  private window: Window;
-
-  private constructor(window: Window) {
-    this.window = window;
-    $(this.window).on('throttled-resize.windowVHPatch', this.handleResize);
-    this.handleResize();
-  }
 
   static init(window: Window) {
     if (this.instance != null) {
@@ -39,6 +31,14 @@ export default class WindowVHPatcher {
     this.instance = new WindowVHPatcher(window);
 
     return this.instance;
+  }
+  private static instance: WindowVHPatcher;
+  private window: Window;
+
+  private constructor(window: Window) {
+    this.window = window;
+    $(this.window).on('throttled-resize.windowVHPatch', this.handleResize);
+    this.handleResize();
   }
 
   private handleResize() {

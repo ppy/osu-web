@@ -43,27 +43,6 @@ export class ReportComment extends React.PureComponent<ReportCommentProps, Repor
     };
   }
 
-  render(): React.ReactNode {
-    const { user, comment, ...attribs } = this.props;
-    return (
-      <React.Fragment>
-        <button key='button' onClick={this.showForm} {...attribs}>
-          {osu.trans('report.comment.button')}
-        </button>
-        <ReportForm
-          allowOptions={false}
-          completed={this.state.completed}
-          disabled={this.state.disabled}
-          key='form'
-          onClose={this.onFormClose}
-          onSubmit={this.onSubmit}
-          title={osu.trans('report.comment.title', { username: `<strong>${user.username}</strong>` })}
-          visible={this.state.showingForm}
-        />
-      </React.Fragment>
-    );
-  }
-
   onFormClose = () => {
     this.setState({ disabled: false, showingForm: false });
   }
@@ -84,6 +63,27 @@ export class ReportComment extends React.PureComponent<ReportCommentProps, Repor
       osu.ajaxError(xhr);
       this.setState({ disabled : false });
     });
+  }
+
+  render(): React.ReactNode {
+    const { user, comment, ...attribs } = this.props;
+    return (
+      <React.Fragment>
+        <button key='button' onClick={this.showForm} {...attribs}>
+          {osu.trans('report.comment.button')}
+        </button>
+        <ReportForm
+          allowOptions={false}
+          completed={this.state.completed}
+          disabled={this.state.disabled}
+          key='form'
+          onClose={this.onFormClose}
+          onSubmit={this.onSubmit}
+          title={osu.trans('report.comment.title', { username: `<strong>${user.username}</strong>` })}
+          visible={this.state.showingForm}
+        />
+      </React.Fragment>
+    );
   }
 
   showForm = (e: React.MouseEvent<HTMLElement>) => {

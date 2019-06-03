@@ -35,12 +35,6 @@ export default class UserStore implements DispatchListener {
     dispatcher.register(this);
   }
 
-  handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof UserLogoutAction) {
-      this.flushStore();
-    }
-  }
-
   @action
   flushStore() {
     this.users = observable.map<number, User>();
@@ -68,5 +62,11 @@ export default class UserStore implements DispatchListener {
     }
 
     return user;
+  }
+
+  handleDispatchAction(dispatchedAction: DispatcherAction) {
+    if (dispatchedAction instanceof UserLogoutAction) {
+      this.flushStore();
+    }
   }
 }

@@ -20,8 +20,8 @@ import * as moment from 'moment';
 import * as React from 'react';
 
 interface PropsInterface {
-  type: string;
   timestamp: string;
+  type: string;
 }
 
 export default class MessageDivider extends React.Component<PropsInterface, any> {

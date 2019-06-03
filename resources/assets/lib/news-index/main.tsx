@@ -45,9 +45,9 @@ interface SearchCursor {
 }
 
 interface StateInterface {
-  posts: PostJson[];
   hasMore: boolean;
   loading: boolean;
+  posts: PostJson[];
 }
 
 export default class Main extends React.Component<PropsInterface, StateInterface> {
@@ -125,36 +125,6 @@ export default class Main extends React.Component<PropsInterface, StateInterface
     );
   }
 
-  private showMore = () => {
-    if (!this.state.hasMore) {
-      return;
-    }
-
-    if (this.state.posts.length === 0) {
-      return;
-    }
-
-    const search: Search = {
-      cursor: {},
-      limit: 21,
-    };
-
-    const lastPost = _.last(this.state.posts);
-    if (lastPost != null) {
-      search.cursor.id = lastPost.id;
-      search.cursor.published_at = lastPost.published_at;
-    }
-
-    this.setState({loading: true});
-
-    $.get(laroute.route('news.index'), search)
-    .done((data) => {
-      this.setState(this.newStateFromData(data as PostsJson));
-    }).always(() => {
-      this.setState({loading: false});
-    });
-  }
-
   private newStateFromData = (data: PostsJson) => {
     const hasMore = data.news_posts.length === data.search.limit;
     let posts: PostJson[];
@@ -187,5 +157,35 @@ export default class Main extends React.Component<PropsInterface, StateInterface
 
   private saveState = () => {
     this.props.container.dataset.lastState = JSON.stringify(this.state);
+  }
+
+  private showMore = () => {
+    if (!this.state.hasMore) {
+      return;
+    }
+
+    if (this.state.posts.length === 0) {
+      return;
+    }
+
+    const search: Search = {
+      cursor: {},
+      limit: 21,
+    };
+
+    const lastPost = _.last(this.state.posts);
+    if (lastPost != null) {
+      search.cursor.id = lastPost.id;
+      search.cursor.published_at = lastPost.published_at;
+    }
+
+    this.setState({loading: true});
+
+    $.get(laroute.route('news.index'), search)
+    .done((data) => {
+      this.setState(this.newStateFromData(data as PostsJson));
+    }).always(() => {
+      this.setState({loading: false});
+    });
   }
 }

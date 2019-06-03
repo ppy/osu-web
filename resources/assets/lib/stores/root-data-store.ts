@@ -22,8 +22,8 @@ import UIStateStore from './ui-state-store';
 import UserStore from './user-store';
 
 export default class RootDataStore {
-  uiState: UIStateStore;
   channelStore: ChannelStore;
+  uiState: UIStateStore;
   userStore: UserStore;
 
   constructor(dispatcher: Dispatcher) {

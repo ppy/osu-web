@@ -21,8 +21,8 @@ import Dispatcher from 'dispatcher';
 import RootDataStore from './root-data-store';
 
 export default class UIStateStore {
-  parent: RootDataStore;
   chat: ChatStateStore;
+  parent: RootDataStore;
 
   constructor(root: RootDataStore, dispatcher: Dispatcher) {
     this.parent = root;

@@ -21,8 +21,8 @@ import * as React from 'react';
 import { UserList } from 'user-list';
 
 interface Props {
-  user: User;
   friends: User[];
+  user: User;
 }
 
 export class Main extends React.PureComponent<Props> {

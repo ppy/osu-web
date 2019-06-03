@@ -22,9 +22,9 @@ import NewsPostJson from 'interfaces/news-post-json';
 import * as React from 'react';
 
 interface PropsInterface {
+  post?: NewsPostJson;
   section: string;
   titleTrans: HeaderTitleTrans;
-  post?: NewsPostJson;
 }
 
 export default function NewsHeader(props: PropsInterface) {

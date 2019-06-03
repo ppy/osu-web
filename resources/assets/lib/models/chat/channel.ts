@@ -23,30 +23,23 @@ import User from 'models/user';
 import Message from './message';
 
 export default class Channel {
-  private backlogSize: number = 100;
 
-  @observable channelId: number;
-  @observable type: ChannelType = 'NEW';
-  @observable name: string = '';
-  @observable description?: string;
-  @observable icon?: string;
+  @computed
+  get isUnread(): boolean {
+    if (this.lastReadId != null) {
+      return this.lastMessageId > this.lastReadId;
+    } else {
+      return this.lastMessageId > -1;
+    }
+  }
 
-  @observable messages: Message[] = observable([]);
+  @computed
+  get pmTarget(): number | undefined {
+    if (this.type !== 'PM') {
+      return;
+    }
 
-  @observable lastMessageId: number = -1;
-  @observable lastReadId?: number;
-
-  @observable users: number[] = [];
-
-  @observable metaLoaded: boolean = false;
-  @observable loading: boolean = false;
-  @observable loaded: boolean = false;
-  @observable moderated: boolean = false;
-
-  @observable newChannel: boolean = false;
-
-  constructor(channelId: number) {
-    this.channelId = channelId;
+    return this.users.find((userId: number) => userId !== currentUser.id);
   }
 
   static fromJSON(json: ChannelJSON): Channel {
@@ -74,22 +67,29 @@ export default class Channel {
     return channel;
   }
 
-  @computed
-  get pmTarget(): number | undefined {
-    if (this.type !== 'PM') {
-      return;
-    }
+  @observable channelId: number;
+  @observable description?: string;
+  @observable icon?: string;
 
-    return this.users.find((userId: number) => userId !== currentUser.id);
-  }
+  @observable lastMessageId: number = -1;
+  @observable lastReadId?: number;
+  @observable loaded: boolean = false;
+  @observable loading: boolean = false;
 
-  @computed
-  get isUnread(): boolean {
-    if (this.lastReadId != null) {
-      return this.lastMessageId > this.lastReadId;
-    } else {
-      return this.lastMessageId > -1;
-    }
+  @observable messages: Message[] = observable([]);
+
+  @observable metaLoaded: boolean = false;
+  @observable moderated: boolean = false;
+  @observable name: string = '';
+
+  @observable newChannel: boolean = false;
+  @observable type: ChannelType = 'NEW';
+
+  @observable users: number[] = [];
+  private backlogSize: number = 100;
+
+  constructor(channelId: number) {
+    this.channelId = channelId;
   }
 
   @action
@@ -123,6 +123,20 @@ export default class Channel {
   }
 
   @action
+  resortMessages() {
+    let newMessages = this.messages.slice();
+    newMessages = _.sortBy(newMessages, 'timestamp');
+    newMessages = _.uniqBy(newMessages, 'messageId');
+
+    this.messages = newMessages;
+  }
+
+  @action
+  unload() {
+    this.messages = observable([]);
+  }
+
+  @action
   updateMessage(message: Message) {
     const messageObject = _.find(this.messages, {uuid: message.uuid});
     if (messageObject) {
@@ -138,15 +152,6 @@ export default class Channel {
   }
 
   @action
-  resortMessages() {
-    let newMessages = this.messages.slice();
-    newMessages = _.sortBy(newMessages, 'timestamp');
-    newMessages = _.uniqBy(newMessages, 'messageId');
-
-    this.messages = newMessages;
-  }
-
-  @action
   updatePresence = (presence: ChannelJSON) => {
     this.name = presence.name;
     this.description = presence.description;
@@ -159,10 +164,5 @@ export default class Channel {
 
     this.users = presence.users;
     this.metaLoaded = true;
-  }
-
-  @action
-  unload() {
-    this.messages = observable([]);
   }
 }

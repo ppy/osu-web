@@ -23,45 +23,10 @@ import User from 'models/user';
 import * as moment from 'moment';
 
 export default class Message {
-  @observable messageId: number | string = -1;
-  @observable uuid: string = osu.uuid();
-  @observable channelId: number = -1;
-  @observable sender: User;
-  @observable content: string = '';
-  @observable timestamp: string = moment().toISOString();
-  @observable isAction: boolean = false;
-
-  @observable persisted: boolean = false;
-  @observable errored: boolean = false;
-
-  constructor() {
-    this.uuid = osu.uuid();
-    this.sender = new User(-1); // placeholder user
-  }
 
   @computed
   get parsedContent(): string {
     return osu.linkify(_.escape(this.content), true);
-  }
-
-  @action
-  update(message: Message): Message {
-    this.messageId = message.messageId;
-    this.channelId = message.channelId;
-    this.content = message.content;
-    this.timestamp = message.timestamp;
-    this.isAction = message.isAction;
-    this.errored = message.errored;
-    this.sender = message.sender;
-
-    return this;
-  }
-
-  @action
-  persist(): Message {
-    this.persisted = true;
-
-    return this;
   }
 
   static fromJSON(json: MessageJSON): Message {
@@ -75,5 +40,40 @@ export default class Message {
       timestamp: json.timestamp,
       uuid: osu.uuid(),
     });
+  }
+  @observable channelId: number = -1;
+  @observable content: string = '';
+  @observable errored: boolean = false;
+  @observable isAction: boolean = false;
+  @observable messageId: number | string = -1;
+
+  @observable persisted: boolean = false;
+  @observable sender: User;
+  @observable timestamp: string = moment().toISOString();
+  @observable uuid: string = osu.uuid();
+
+  constructor() {
+    this.uuid = osu.uuid();
+    this.sender = new User(-1); // placeholder user
+  }
+
+  @action
+  persist(): Message {
+    this.persisted = true;
+
+    return this;
+  }
+
+  @action
+  update(message: Message): Message {
+    this.messageId = message.messageId;
+    this.channelId = message.channelId;
+    this.content = message.content;
+    this.timestamp = message.timestamp;
+    this.isAction = message.isAction;
+    this.errored = message.errored;
+    this.sender = message.sender;
+
+    return this;
   }
 }

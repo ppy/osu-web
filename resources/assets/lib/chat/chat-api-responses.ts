@@ -20,35 +20,35 @@ export type ChannelType = 'PUBLIC'|'PRIVATE'|'MULTIPLAYER'|'SPECTATOR'|'TEMPORAR
 
 export interface ChannelJSON {
   channel_id: number;
-  type: ChannelType;
-  name: string;
   description?: string;
   icon?: string;
-  users: number[];
-  last_read_id: number;
   last_message_id: number;
+  last_read_id: number;
+  name: string;
+  type: ChannelType;
+  users: number[];
 }
 
 export interface UserJSON {
-  id: number;
-  username: string;
   avatar_url: string;
-  profile_colour: string;
   country_code: string; // TODO: country object?
+  id: number;
   is_active: boolean;
   is_bot: boolean;
   is_online: boolean;
   is_supporter: boolean;
   pm_friends_only: boolean;
+  profile_colour: string;
+  username: string;
 }
 
 export interface MessageJSON {
+  channel_id: number;
   content: string;
   is_action: boolean;
   message_id: number;
   sender: UserJSON;
   sender_id: number;
-  channel_id: number;
   timestamp: string;
 }
 
@@ -56,17 +56,17 @@ export type GetMessagesJSON =
   MessageJSON[];
 
 export interface GetUpdatesJSON {
-  presence: ChannelJSON[];
   messages: MessageJSON[];
+  presence: ChannelJSON[];
 }
 
 export type MarkAsReadJSON =
   null;
 
 export interface NewConversationJSON {
+  message: MessageJSON;
   new_channel_id: number;
   presence: ChannelJSON[];
-  message: MessageJSON;
 }
 
 export type PresenceJSON =
@@ -76,6 +76,6 @@ export type SendMessageJSON =
   MessageJSON;
 
 export interface SendToJSON {
-  target: UserJSON;
   can_message: boolean;
+  target: UserJSON;
 }

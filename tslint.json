@@ -17,7 +17,13 @@
     "quotemark": [true, "single"],
     "max-line-length": false,
     "member-access": false,
-    "member-ordering": false,
+    "member-ordering": [
+      true,
+      {
+        "order": "statics-first",
+        "alphabetize": true
+      }
+    ],
     "no-arg": true,
     "no-bitwise": true,
     "no-console": {

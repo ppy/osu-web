@@ -19,6 +19,6 @@
 export default interface AdminMenuItem {
   component: string;
   icon: string;
-  text: string;
   props: any;
+  text: string;
 }
