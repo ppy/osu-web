@@ -64,6 +64,7 @@ class UserSearch extends RecordSearch
 
         if ($this->params->queryString !== null) {
             $query->shouldMatch(1)
+                ->should(['term' => ['_id' => ['value' => $this->params->queryString, 'boost' => 100]]])
                 ->should(['match' => ['username.raw' => ['query' => $this->params->queryString, 'boost' => 5]]])
                 ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $lowercase_stick)])
                 ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $whitespace_stick)])
