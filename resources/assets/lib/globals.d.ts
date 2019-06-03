@@ -48,6 +48,7 @@ interface OsuCommon {
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
+  linkify: (text: string, newWindow?: boolean) => string;
   parseJson: (id: string) => any;
   popup: (message: string, type: string) => void;
   presence: (str?: string | null) => string | null;
@@ -59,6 +60,7 @@ interface OsuCommon {
   uuid: () => string;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
+  isMobile(): boolean;
   updateQueryString(url: string | null, params: { [key: string]: string | undefined }): string;
 }
 

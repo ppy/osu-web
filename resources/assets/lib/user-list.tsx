@@ -37,6 +37,10 @@ interface State {
   sortMode: SortMode;
 }
 
+function usernameSortAscending(x: User, y: User) {
+  return x.username.localeCompare(y.username);
+}
+
 export class UserList extends React.PureComponent<Props> {
   readonly state: State = {
     filter: this.filterFromUrl,
@@ -138,10 +142,20 @@ export class UserList extends React.PureComponent<Props> {
 
     switch (this.state.sortMode) {
       case 'username':
-        return users.sort((x, y) => x.username.localeCompare(y.username));
+        return users.sort(usernameSortAscending);
 
       default:
-        return users.sort((x, y) => moment(y.last_visit || 0).diff(moment(x.last_visit || 0)));
+        return users.sort((x, y) => {
+          if (x.is_online && y.is_online) {
+            return usernameSortAscending(x, y);
+          }
+
+          if (x.is_online || y.is_online) {
+            return x.is_online ? -1 : 1;
+          }
+
+          return moment(y.last_visit || 0).diff(moment(x.last_visit || 0));
+        });
     }
   }
 

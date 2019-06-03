@@ -42,8 +42,8 @@ class @OsuAudio
     @publish 'initializing'
     promise = @player().play()
     # old api returns undefined
-    promise?.catch (error) =>
-      return if error.name == 'AbortError' || error.name == 'NotSupportedError' && !osu.present(@urlGet())
+    promise?.catch (error) ->
+      return if error.name == 'AbortError' || error.name == 'NotSupportedError'
       throw error
 
 

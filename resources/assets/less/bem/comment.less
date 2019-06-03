@@ -23,7 +23,7 @@
   @_line-margin: 10px;
   @_top: comment;
   @_spacing: 10px;
-  @_gutter-desktop-left: (@gutter-desktop + 10px);
+  @_gutter-desktop-left: @gutter-desktop;
   @_gutter-desktop-right: @gutter-desktop;
 
   margin-top: @_spacing;
@@ -33,9 +33,12 @@
 
   &--top {
     border-bottom-width: 1px;
-    padding-bottom: @_spacing;
-    padding-left: @gutter;
-    padding-right: @gutter;
+    margin-top: 0;
+    padding: (@_spacing + 5px) @gutter;
+
+    .@{_top}--single& {
+      border-bottom-width: 0;
+    }
 
     @media @desktop {
       padding-left: @_gutter-desktop-left;
@@ -46,6 +49,11 @@
   &--changelog {
     color: @changelog-fg;
     border-bottom-color: @changelog-border-bg;
+  }
+
+  &--dark {
+    color: @comment-dark-fg;
+    border-bottom-color: @comment-dark-border-bg;
   }
 
   &__action {
@@ -68,6 +76,10 @@
     .@{_top}--changelog & {
       .link-blue-light();
     }
+
+    .@{_top}--dark & {
+      .link-blue-light();
+    }
   }
 
   &__avatar {
@@ -75,6 +87,42 @@
     height: @_avatar;
     margin-right: @_avatar-margin;
     flex: none;
+  }
+
+  &__commentable-meta {
+    margin-left: (@_avatar + @_avatar-margin);
+    margin-bottom: 5px;
+    font-size: @font-size--small-2;
+    display: flex;
+    align-items: baseline;
+
+    .@{_top}--single & {
+      margin-left: 0;
+      margin-bottom: 40px;
+      flex-direction: column;
+      font-size: @font-size--title;
+    }
+  }
+
+  &__commentable-meta-icon {
+    font-size: 0.9em;
+    margin-right: 5px;
+  }
+
+  &__commentable-meta-type {
+    background-color: #ddd;
+    padding: 5px 15px;
+    margin-right: 5px;
+    border-radius: 10000px;
+    font-size: @font-size--normal;
+
+    .@{_top}--dark & {
+      background-color: @comment-dark-border-bg;
+    }
+
+    .@{_top}--single & {
+      margin-bottom: 10px;
+    }
   }
 
   &__container {
@@ -123,22 +171,12 @@
     }
   }
 
-  &__line {
-    position: absolute;
-    top: (@_avatar + @_line-margin);
-    left: (floor((@_avatar - @_line-width) / 2));
-    width: @_line-width;
-    height: calc(100% - (@_avatar + @_line-margin * 2));
-    background-color: #999;
-    border-radius: 10000px;
-
-    .@{_top}--changelog & {
-      background-color: @dark-purple-light;
-    }
-  }
-
   &__link {
     .@{_top}--changelog & {
+      .link-blue-light();
+    }
+
+    .@{_top}--dark & {
       .link-blue-light();
     }
   }
@@ -198,6 +236,18 @@
         .link-blue-light();
       }
     }
+
+    .@{_top}--dark & {
+      color: inherit;
+
+      a {
+        .link-blue-light();
+      }
+
+      blockquote {
+        border-left-color: @comment-dark-border-bg;
+      }
+    }
   }
 
   &__replies {
@@ -240,10 +290,6 @@
   &__row-item {
     margin: 2px 5px;
 
-    &--commentable-meta {
-      font-style: normal;
-    }
-
     &--info {
       font-weight: normal;
 
@@ -254,6 +300,10 @@
 
     &--username-link {
       .@{_top}--changelog & {
+        .link-blue-light();
+      }
+
+      .@{_top}--dark & {
         .link-blue-light();
       }
     }
@@ -267,6 +317,10 @@
 
     @media @desktop {
       display: block;
+
+      .@{_top}--single & {
+        display: none;
+      }
     }
   }
 }

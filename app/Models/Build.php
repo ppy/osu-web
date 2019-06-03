@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use App\Libraries\Commentable;
+use App\Traits\CommentableDefaults;
 use Carbon\Carbon;
 
 /**
@@ -39,8 +41,10 @@ use Carbon\Carbon;
  * @property int $users
  * @property string|null $version
  */
-class Build extends Model
+class Build extends Model implements Commentable
 {
+    use CommentableDefaults;
+
     public $timestamps = false;
 
     protected $table = 'osu_builds';
@@ -129,11 +133,6 @@ class Build extends Model
         return $this->changelogEntries()->default();
     }
 
-    public function comments()
-    {
-        return $this->morphMany(Comment::class, 'commentable');
-    }
-
     public function scopeDefault($query)
     {
         $query->whereNotNull('stream_id');
@@ -196,6 +195,25 @@ class Build extends Model
         if (isset($params['limit'])) {
             $query->limit($params['limit']);
         }
+    }
+
+    public function commentableTitle()
+    {
+        if ($this->stream_id === null || $this->updateStream === null) {
+            return $this->displayVersion();
+        }
+
+        return "{$this->updateStream->pretty_name} {$this->displayVersion()}";
+    }
+
+    public function notificationCover()
+    {
+        // no image
+    }
+
+    public function url()
+    {
+        return build_url($this);
     }
 
     public function versionNext()

@@ -64,9 +64,11 @@ export class PopupMenu extends PureComponent
     @portal.style.top = "#{Math.floor(top + $element.height() / 2)}px"
     @portal.style.left = "#{Math.floor(left + $element.width())}px"
 
+    # keeps the menu showing above the tooltip;
+    # portal should be after the tooltip in the document body.
     tooltipElement = @tooltipElement()[0]
     if tooltipElement?
-      @portal.style.zIndex = +tooltipElement.style.zIndex + 1
+      @portal.style.zIndex = getComputedStyle(tooltipElement).zIndex
 
 
   componentDidUpdate: (_prevProps, prevState) =>
@@ -97,7 +99,7 @@ export class PopupMenu extends PureComponent
 
 
   hide: (e) =>
-    return if !@state.active || Modal.isOpen()
+    return if !@state.active || Modal.isOpen() || osu.popupShowing()
 
     event = e.originalEvent
     return if !event? # originalEvent gets eaten by error popup?

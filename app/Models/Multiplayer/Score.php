@@ -63,7 +63,7 @@ class Score extends Model
         return $this->belongsTo(Game::class, 'game_id');
     }
 
-    public function gamemodeString()
+    public function gameModeString()
     {
         return Beatmap::modeStr($this->game->play_mode);
     }

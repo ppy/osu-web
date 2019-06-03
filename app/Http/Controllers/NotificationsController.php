@@ -22,6 +22,9 @@ namespace App\Http\Controllers;
 
 use App\Events\NotificationReadEvent;
 
+/**
+ * @group Notification
+ */
 class NotificationsController extends Controller
 {
     const LIMIT = 51;
@@ -36,17 +39,66 @@ class NotificationsController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Get Notifications
+     *
+     * This endpoint returns a list of the user's unread notifications. Sorted descending by `id` with limit of 50.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns an object containing [Notification](#notification) and other related attributes.
+     *
+     * Field                 | Type
+     * --------------------- | ---------------------------------------------------
+     * has_more              | boolean whether or not there are more notifications
+     * notifications         | array of [Notification](#notification)
+     * unread_count          | total unread notifications
+     * notification_endpoint | url to connect to websocket server
+     *
+     * @authenticated
+     *
+     * @queryParam max_id Maximum `id` fetched. Can be used to load earlier notifications. Defaults to no limit (fetch latest notifications)
+     *
+     * @response {
+     *   "has_more": true,
+     *   "notifications": [
+     *     {
+     *       "id": 1,
+     *       "name": "forum_topic_reply",
+     *       "created_at": "2019-04-24T07:12:43+00:00",
+     *       "object_type": "forum_topic",
+     *       "object_id": 1,
+     *       "source_user_id": 1,
+     *       "is_read": false,
+     *       "details": {
+     *           "title": "A topic",
+     *           "post_id": 2,
+     *           "username": "User",
+     *           "cover_url": "https://..."
+     *       }
+     *     }
+     *   ],
+     *   "unread_count": 100,
+     *   "notification_endpoint": "wss://notify.ppy.sh"
+     * }
+     */
     public function index()
     {
+        $withRead = get_bool(request('with_read')) ?? false;
         $hasMore = false;
         $userNotificationsQuery = auth()
             ->user()
             ->userNotifications()
             ->with('notification.notifiable')
             ->with('notification.source')
-            ->where('is_read', false)
             ->orderBy('notification_id', 'DESC')
             ->limit(static::LIMIT);
+
+        if (!$withRead) {
+            $userNotificationsQuery->where('is_read', false);
+        }
 
         $maxId = get_int(request('max_id'));
         if (isset($maxId)) {
@@ -72,6 +124,23 @@ class NotificationsController extends Controller
         ];
     }
 
+    /**
+     * Mark Notifications as Read
+     *
+     * This endpoint allows you to mark notifications read.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * _empty response_
+     *
+     * @authenticated
+     *
+     * @bodyParam ids integer[] required `id` of notifications to be marked as read  Example: [1, 2, 3]
+     *
+     * @response 204
+     */
     public function markRead()
     {
         $user = auth()->user();

@@ -21,7 +21,9 @@
 namespace App\Jobs;
 
 use App\Events\NewNotificationEvent;
+use App\Exceptions\InvalidNotificationException;
 use App\Models\Chat\Channel;
+use App\Models\Follow;
 use App\Models\Notification;
 use App\Models\User;
 use App\Traits\NotificationQueue;
@@ -34,6 +36,8 @@ use Illuminate\Queue\SerializesModels;
 class BroadcastNotification implements ShouldQueue
 {
     use NotificationQueue, Queueable, SerializesModels;
+
+    const CONTENT_TRUNCATE = 36;
 
     private $name;
     private $notifiable;
@@ -50,7 +54,7 @@ class BroadcastNotification implements ShouldQueue
             ->all();
     }
 
-    public function __construct($name, $object, $source)
+    public function __construct($name, $object, $source = null)
     {
         $this->name = $name;
         $this->object = $object;
@@ -65,18 +69,25 @@ class BroadcastNotification implements ShouldQueue
 
             return;
         }
-        $this->$function();
+
+        try {
+            $this->$function();
+        } catch (InvalidNotificationException $_e) {
+            return;
+        }
 
         $this->notifiable = $this->notifiable ?? $this->object;
         $this->params['name'] = $this->name;
-        $this->params['details']['username'] = $this->source->username;
+        if ($this->source !== null) {
+            $this->params['details']['username'] = $this->source->username;
+        }
 
         if (is_array($this->receiverIds)) {
             switch (count($this->receiverIds)) {
                 case 0:
                     return;
                 case 1:
-                    if ($this->receiverIds[0] === $this->source->getKey()) {
+                    if ($this->receiverIds[0] === optional($this->source)->getKey()) {
                         return;
                     }
             }
@@ -84,7 +95,9 @@ class BroadcastNotification implements ShouldQueue
 
         $notification = new Notification($this->params);
         $notification->notifiable()->associate($this->notifiable);
-        $notification->source()->associate($this->source);
+        if ($this->source !== null) {
+            $notification->source()->associate($this->source);
+        }
 
         $notification->save();
 
@@ -95,7 +108,7 @@ class BroadcastNotification implements ShouldQueue
                 $receivers = User::whereIn('user_id', $this->receiverIds)->get();
 
                 foreach ($receivers as $receiver) {
-                    if ($receiver->getKey() !== $this->source->getKey()) {
+                    if ($receiver->getKey() !== optional($this->source)->getKey()) {
                         $notification->userNotifications()->create(['user_id' => $receiver->getKey()]);
                     }
                 }
@@ -177,6 +190,16 @@ class BroadcastNotification implements ShouldQueue
         ];
     }
 
+    private function onBeatmapsetRank()
+    {
+        $this->receiverIds = static::beatmapsetReceiverIds($this->object);
+
+        $this->params['details'] = [
+            'title' => $this->object->title,
+            'cover_url' => $this->object->coverURL('card'),
+        ];
+    }
+
     private function onBeatmapsetResetNominations()
     {
         $this->receiverIds = static::beatmapsetReceiverIds($this->object);
@@ -187,6 +210,31 @@ class BroadcastNotification implements ShouldQueue
         ];
     }
 
+    private function onCommentNew()
+    {
+        $this->notifiable = $this->object->commentable;
+
+        if ($this->notifiable === null) {
+            throw new InvalidNotificationException("comment_new: comment #{$this->object->getKey()} missing commentable");
+        }
+
+        if ($this->source === null) {
+            throw new InvalidNotificationException("comment_new: comment #{$this->object->getKey()} missing source");
+        }
+
+        $this->receiverIds = Follow::whereNotifiable($this->object->commentable)
+            ->where(['subtype' => 'comment'])
+            ->pluck('user_id')
+            ->all();
+
+        $this->params['details'] = [
+            'comment_id' => $this->object->getKey(),
+            'title' => $this->object->commentable->commentableTitle(),
+            'content' => truncate($this->object->message, static::CONTENT_TRUNCATE),
+            'cover_url' => $this->object->commentable->notificationCover(),
+        ];
+    }
+
     private function onChannelMessage()
     {
         $channel = Channel::findOrFail($this->object->channel_id);
@@ -194,7 +242,7 @@ class BroadcastNotification implements ShouldQueue
         $this->notifiable = $this->object->channel;
 
         $this->params['details'] = [
-            'title' => truncate($this->object->content, 36),
+            'title' => truncate($this->object->content, static::CONTENT_TRUNCATE),
             'type' => strtolower($channel->type),
             'cover_url' => $this->source->user_avatar,
         ];
@@ -219,5 +267,22 @@ class BroadcastNotification implements ShouldQueue
         ];
 
         $this->params['created_at'] = $this->object->post_time;
+    }
+
+    private function onUserAchievementUnlock()
+    {
+        $user = $this->source;
+        $achievement = $this->object;
+
+        $this->receiverIds = [$user->getKey()];
+        $this->notifiable = $user;
+        $this->source = new User;
+        $this->params['details'] = [
+            'achievement_id' => $achievement->getKey(),
+            'cover_url' => $achievement->iconUrl(),
+            'slug' => $achievement->slug,
+            'title' => $achievement->name,
+            'user_id' => $user->getKey(),
+        ];
     }
 }

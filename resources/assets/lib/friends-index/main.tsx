@@ -31,11 +31,11 @@ export class Main extends React.PureComponent<Props> {
   };
 
   static readonly links = [
-    { title: 'Dashboard', url: laroute.route('home') },
-    { title: 'Friends', url: laroute.route('friends.index'), active: true },
-    { title: 'Forum Subs', url: laroute.route('forum.topic-watches.index') },
-    { title: 'Modding Watchlist', url: laroute.route('beatmapsets.watches.index') },
-    { title: 'Settings', url: laroute.route('account.edit') },
+    { title: osu.trans('home.user.title'), url: laroute.route('home') },
+    { title: osu.trans('friends.title_compact'), url: laroute.route('friends.index'), active: true },
+    { title: osu.trans('forum.topic_watches.index.title_compact'), url: laroute.route('forum.topic-watches.index') },
+    { title: osu.trans('beatmapset_watches.index.title_compact'), url: laroute.route('beatmapsets.watches.index') },
+    { title: osu.trans('accounts.edit.title_compact'), url: laroute.route('account.edit') },
   ];
 
   render() {

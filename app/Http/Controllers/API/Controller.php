@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers\API;
 
-use Auth;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -28,9 +27,4 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use DispatchesJobs, ValidatesRequests;
-
-    public function __construct()
-    {
-        $this->middleware('auth:api');
-    }
 }

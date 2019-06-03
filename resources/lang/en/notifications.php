@@ -46,8 +46,17 @@ return [
                 'beatmapset_nominate_compact' => 'Beatmap was nominated',
                 'beatmapset_qualify' => '":title" has gained enough nominations and entered the ranking queue',
                 'beatmapset_qualify_compact' => 'Beatmap entered ranking queue',
+                'beatmapset_rank' => '":title" has been ranked',
+                'beatmapset_rank_compact' => 'Beatmap was ranked',
                 'beatmapset_reset_nominations' => 'Nomination of ":title" has been reset',
                 'beatmapset_reset_nominations_compact' => 'Nomination was reset',
+            ],
+
+            'comment' => [
+                '_' => 'New comment',
+
+                'comment_new' => ':username commented ":content" on ":title"',
+                'comment_new_compact' => ':username commented ":content"',
             ],
         ],
 
@@ -61,6 +70,28 @@ return [
                     'channel_message_compact' => ':title',
                     'channel_message_group' => 'from :username',
                 ],
+            ],
+        ],
+
+        'build' => [
+            '_' => 'Changelog',
+
+            'comment' => [
+                '_' => 'New comment',
+
+                'comment_new' => ':username commented ":content" on ":title"',
+                'comment_new_compact' => ':username commented ":content"',
+            ],
+        ],
+
+        'news_post' => [
+            '_' => 'News',
+
+            'comment' => [
+                '_' => 'New comment',
+
+                'comment_new' => ':username commented ":content" on ":title"',
+                'comment_new_compact' => ':username commented ":content"',
             ],
         ],
 
@@ -80,6 +111,15 @@ return [
             'legacy_pm' => [
                 '_' => '',
                 'legacy_pm' => ':count_delimited unread message|:count_delimited unread messages',
+            ],
+        ],
+
+        'user_achievement' => [
+            '_' => 'Medals',
+
+            'user_achievement_unlock' => [
+                '_' => 'New medal',
+                'user_achievement_unlock' => 'Unlocked ":title"!',
             ],
         ],
     ],

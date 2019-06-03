@@ -16,7 +16,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { ChatChannelSwitchAction, ChatMessageAddAction, ChatMessageSendAction, ChatMessageUpdateAction } from 'actions/chat-actions';
+import {
+  ChatChannelSwitchAction,
+  ChatMessageAddAction,
+  ChatMessageSendAction,
+  ChatMessageUpdateAction,
+  ChatPresenceUpdateAction,
+} from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
 import DispatchListener from 'dispatch-listener';
@@ -130,7 +136,7 @@ export default class ChatWorker implements DispatchListener {
             this.dispatcher.dispatch(new ChatMessageAddAction(newMessage));
           });
 
-          this.rootDataStore.channelStore.updatePresence(updateJson.presence);
+          this.dispatcher.dispatch(new ChatPresenceUpdateAction(updateJson.presence));
         });
       })
       .catch((err) => {
