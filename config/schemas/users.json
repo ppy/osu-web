@@ -6,6 +6,10 @@
         "is_old": {
           "type": "boolean"
         },
+        "previous_usernames": {
+          "type": "text",
+          "analyzer": "username_lower"
+        },
         "user_lastvisit": {
           "type": "date",
           "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss"
