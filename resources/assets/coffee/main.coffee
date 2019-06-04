@@ -20,7 +20,7 @@
 
 Turbolinks.setProgressBarDelay(0)
 
-Lang.setLocale(currentLocale)
+Lang.setLocale(@currentLocale)
 jQuery.timeago.settings.allowFuture = true
 
 # loading animation overlay
