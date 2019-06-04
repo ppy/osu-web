@@ -140,11 +140,6 @@ abstract class Search extends HasSearch implements Queryable
         }
     }
 
-    public function isQueryStringTooShort()
-    {
-        return mb_strlen($this->params->queryString) < config('osu.search.minimum_length');
-    }
-
     /**
      * Returns if the total number of results found is greater than the allowed limit.
      *

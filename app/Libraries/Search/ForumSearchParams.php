@@ -64,4 +64,9 @@ class ForumSearchParams extends SearchParams
     {
         return false;
     }
+
+    public function shouldReturnEmptyResponse() : bool
+    {
+        return $this->isQueryStringTooShort();
+    }
 }

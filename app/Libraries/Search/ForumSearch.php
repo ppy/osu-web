@@ -56,10 +56,6 @@ class ForumSearch extends Search
      */
     public function getQuery()
     {
-        if ($this->isQueryStringTooShort()) {
-            return ['match_none' => new \stdClass];
-        }
-
         $query = (new BoolQuery())
             ->should($this->childQuery())
             ->shouldMatch(1)

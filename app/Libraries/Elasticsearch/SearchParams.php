@@ -69,6 +69,11 @@ abstract class SearchParams
      */
     abstract public function isCacheable() : bool;
 
+    public function isQueryStringTooShort()
+    {
+        return mb_strlen($this->queryString) < config('osu.search.minimum_length');
+    }
+
     public function shouldReturnEmptyResponse() : bool
     {
         return false;

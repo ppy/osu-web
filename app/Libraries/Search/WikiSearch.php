@@ -106,7 +106,7 @@ class WikiSearch extends RecordSearch
                     ],
                 ]]);
 
-            if (!$this->isQueryStringTooShort()) {
+            if (!$this->params->isQueryStringTooShort()) {
                 $matchQuery->should(['match' => [
                     'page_text' => $this->params->queryString,
                 ]]);
