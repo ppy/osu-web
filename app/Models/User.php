@@ -1597,6 +1597,23 @@ class User extends Model implements AuthenticatableContract
         return $this->memoized[__FUNCTION__];
     }
 
+    /**
+     * User's previous usernames
+     *
+     * @property \Illuminate\Database\Eloquent\Collection
+     */
+    public function previousUsernames()
+    {
+        return $this
+                ->usernameChangeHistory()
+                ->visible()
+                ->select(['username_last', 'timestamp'])
+                ->withPresent('username_last')
+                ->where('username_last', '<>', $this->username)
+                ->orderBy('timestamp', 'ASC')
+                ->pluck('username_last');
+    }
+
     public function profileCustomization()
     {
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
