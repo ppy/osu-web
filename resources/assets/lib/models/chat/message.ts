@@ -23,10 +23,24 @@ import User from 'models/user';
 import * as moment from 'moment';
 
 export default class Message {
+  @observable channelId: number = -1;
+  @observable content: string = '';
+  @observable errored: boolean = false;
+  @observable isAction: boolean = false;
+  @observable messageId: number | string = -1;
+  @observable persisted: boolean = false;
+  @observable sender: User;
+  @observable timestamp: string = moment().toISOString();
+  @observable uuid: string = osu.uuid();
 
   @computed
   get parsedContent(): string {
     return osu.linkify(_.escape(this.content), true);
+  }
+
+  constructor() {
+    this.uuid = osu.uuid();
+    this.sender = new User(-1); // placeholder user
   }
 
   static fromJSON(json: MessageJSON): Message {
@@ -40,21 +54,6 @@ export default class Message {
       timestamp: json.timestamp,
       uuid: osu.uuid(),
     });
-  }
-  @observable channelId: number = -1;
-  @observable content: string = '';
-  @observable errored: boolean = false;
-  @observable isAction: boolean = false;
-  @observable messageId: number | string = -1;
-
-  @observable persisted: boolean = false;
-  @observable sender: User;
-  @observable timestamp: string = moment().toISOString();
-  @observable uuid: string = osu.uuid();
-
-  constructor() {
-    this.uuid = osu.uuid();
-    this.sender = new User(-1); // placeholder user
   }
 
   @action

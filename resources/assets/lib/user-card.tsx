@@ -38,6 +38,27 @@ interface StateInterface {
 }
 
 export class UserCard extends React.PureComponent<PropsInterface, StateInterface> {
+  static defaultProps = {
+    activated: false,
+    modifiers: [],
+  };
+
+  static userLoading: User = {
+    cover: {},
+    default_group: '',
+    id: 0,
+    is_active: false,
+    is_bot: false,
+    is_online: false,
+    is_supporter: false,
+    pm_friends_only: true,
+    username: osu.trans('users.card.loading'),
+  };
+
+  readonly state: StateInterface = {
+    avatarLoaded: false,
+    backgroundLoaded: false,
+  };
 
   private get canMessage() {
     return !this.isSelf
@@ -63,27 +84,6 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
   private get user() {
     return this.props.user || UserCard.userLoading;
   }
-  static defaultProps = {
-    activated: false,
-    modifiers: [],
-  };
-
-  static userLoading: User = {
-    cover: {},
-    default_group: '',
-    id: 0,
-    is_active: false,
-    is_bot: false,
-    is_online: false,
-    is_supporter: false,
-    pm_friends_only: true,
-    username: osu.trans('users.card.loading'),
-  };
-
-  readonly state: StateInterface = {
-    avatarLoaded: false,
-    backgroundLoaded: false,
-  };
 
   onAvatarLoad = () => {
     this.setState({ avatarLoaded: true });

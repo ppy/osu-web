@@ -20,23 +20,6 @@ import { UserJSON } from 'chat/chat-api-responses';
 import { action, observable } from 'mobx';
 
 export default class User {
-
-  static fromJSON(json: UserJSON): User {
-    const user = Object.create(User.prototype);
-    return Object.assign(user, {
-      avatarUrl: json.avatar_url,
-      countryCode: json.country_code,
-      id: json.id,
-      isActive: json.is_active,
-      isBot: json.is_bot,
-      isOnline: json.is_online,
-      isSupporter: json.is_supporter,
-      loaded: true,
-      pmFriendsOnly: json.pm_friends_only,
-      profileColour: json.profile_colour,
-      username: json.username,
-    });
-  }
   @observable avatarUrl: string = '/images/layout/avatar-guest.png'; // TODO: move to a global config store?
   @observable countryCode: string = 'XX';
   @observable id: number;
@@ -54,6 +37,23 @@ export default class User {
 
   constructor(id: number) {
     this.id = id;
+  }
+
+  static fromJSON(json: UserJSON): User {
+    const user = Object.create(User.prototype);
+    return Object.assign(user, {
+      avatarUrl: json.avatar_url,
+      countryCode: json.country_code,
+      id: json.id,
+      isActive: json.is_active,
+      isBot: json.is_bot,
+      isOnline: json.is_online,
+      isSupporter: json.is_supporter,
+      loaded: true,
+      pmFriendsOnly: json.pm_friends_only,
+      profileColour: json.profile_colour,
+      username: json.username,
+    });
   }
 
   load() {

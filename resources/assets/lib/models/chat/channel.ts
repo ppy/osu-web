@@ -23,6 +23,21 @@ import User from 'models/user';
 import Message from './message';
 
 export default class Channel {
+  @observable channelId: number;
+  @observable description?: string;
+  @observable icon?: string;
+  @observable lastMessageId: number = -1;
+  @observable lastReadId?: number;
+  @observable loaded: boolean = false;
+  @observable loading: boolean = false;
+  @observable messages: Message[] = observable([]);
+  @observable metaLoaded: boolean = false;
+  @observable moderated: boolean = false;
+  @observable name: string = '';
+  @observable newChannel: boolean = false;
+  @observable type: ChannelType = 'NEW';
+  @observable users: number[] = [];
+  private backlogSize: number = 100;
 
   @computed
   get isUnread(): boolean {
@@ -40,6 +55,10 @@ export default class Channel {
     }
 
     return this.users.find((userId: number) => userId !== currentUser.id);
+  }
+
+  constructor(channelId: number) {
+    this.channelId = channelId;
   }
 
   static fromJSON(json: ChannelJSON): Channel {
@@ -65,31 +84,6 @@ export default class Channel {
     channel.users = [currentUser.id, target.id];
 
     return channel;
-  }
-
-  @observable channelId: number;
-  @observable description?: string;
-  @observable icon?: string;
-
-  @observable lastMessageId: number = -1;
-  @observable lastReadId?: number;
-  @observable loaded: boolean = false;
-  @observable loading: boolean = false;
-
-  @observable messages: Message[] = observable([]);
-
-  @observable metaLoaded: boolean = false;
-  @observable moderated: boolean = false;
-  @observable name: string = '';
-
-  @observable newChannel: boolean = false;
-  @observable type: ChannelType = 'NEW';
-
-  @observable users: number[] = [];
-  private backlogSize: number = 100;
-
-  constructor(channelId: number) {
-    this.channelId = channelId;
   }
 
   @action

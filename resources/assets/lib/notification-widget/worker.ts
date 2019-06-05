@@ -65,6 +65,20 @@ const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson
 };
 
 export default class Worker {
+  @observable actualUnreadCount: number = -1;
+  @observable hasData: boolean = false;
+  @observable hasMore: boolean = true;
+  @observable loadingMore: boolean = false;
+  @observable pmNotification = new LegacyPmNotification();
+  userId: number | null = null;
+  @observable private active: boolean = false;
+  private endpoint?: string;
+  @observable private items = observable.map<number, Notification>();
+  private needsRefresh = false;
+  private refreshing = false;
+  private timeout: TimeoutCollection = {};
+  private ws: WebSocket | null | undefined;
+  private xhr: XHRCollection = {};
 
   @computed get itemsGroupedByType() {
     const ret: Map<string, Notification[]> = new Map();
@@ -120,20 +134,6 @@ export default class Worker {
 
     return Math.max(ret, 0);
   }
-  @observable actualUnreadCount: number = -1;
-  @observable hasData: boolean = false;
-  @observable hasMore: boolean = true;
-  @observable loadingMore: boolean = false;
-  @observable pmNotification = new LegacyPmNotification();
-  userId: number | null = null;
-  @observable private active: boolean = false;
-  private endpoint?: string;
-  @observable private items = observable.map<number, Notification>();
-  private needsRefresh = false;
-  private refreshing = false;
-  private timeout: TimeoutCollection = {};
-  private ws: WebSocket | null | undefined;
-  private xhr: XHRCollection = {};
 
   boot = () => {
     this.active = this.userId != null;

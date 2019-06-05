@@ -42,6 +42,10 @@ function usernameSortAscending(x: User, y: User) {
 }
 
 export class UserList extends React.PureComponent<Props> {
+  readonly state: State = {
+    filter: this.filterFromUrl,
+    sortMode: this.sortFromUrl,
+  };
 
   private get filterFromUrl() {
     const url = new URL(location.href);
@@ -76,10 +80,6 @@ export class UserList extends React.PureComponent<Props> {
 
     return this.getAllowedQueryStringValue(sortModes, url.searchParams.get('user_sort'));
   }
-  readonly state: State = {
-    filter: this.filterFromUrl,
-    sortMode: this.sortFromUrl,
-  };
 
   onSortSelected = (event: React.SyntheticEvent) => {
     const value = (event.currentTarget as HTMLElement).dataset.value;

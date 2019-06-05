@@ -34,6 +34,9 @@ import Message from 'models/chat/message';
 import RootDataStore from './root-data-store';
 
 export default class ChannelStore implements DispatchListener {
+  @observable channels = observable.map<number, Channel>();
+  @observable loaded: boolean = false;
+  root: RootDataStore;
 
   @computed
   get channelList(): Channel[] {
@@ -87,10 +90,6 @@ export default class ChannelStore implements DispatchListener {
       return a.lastMessageId > b.lastMessageId ? -1 : 1;
     });
   }
-
-  @observable channels = observable.map<number, Channel>();
-  @observable loaded: boolean = false;
-  root: RootDataStore;
 
   constructor(root: RootDataStore, dispatcher: Dispatcher) {
     this.root = root;
