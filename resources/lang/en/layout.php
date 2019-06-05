@@ -97,7 +97,7 @@ return [
             'forum-forums-show' => 'forums',
         ],
         'multiplayer' => [
-            '_' => 'multiplayer',
+            '_' => 'multi',
             'show' => 'match',
         ],
         'error' => [

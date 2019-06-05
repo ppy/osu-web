@@ -20,16 +20,17 @@ import { Comment } from 'comment'
 import { CommentEditor } from 'comment-editor'
 import { CommentShowMore } from 'comment-show-more'
 import { CommentsSort } from 'comments-sort'
+import DeletedCommentsCount from 'deleted-comments-count'
 import * as React from 'react'
 import { button, div, h2, span } from 'react-dom-factories'
+import { Spinner } from 'spinner'
 
 el = React.createElement
 
 export class Comments extends React.PureComponent
   render: =>
-    commentsByParentId = _.groupBy(@props.comments, 'parent_id')
-    comments = commentsByParentId[null]
-
+    @commentsByParentId = _.groupBy(@props.comments, 'parent_id')
+    comments = @commentsByParentId[null]
 
     div className: osu.classWithModifiers('comments', @props.modifiers),
       h2 className: 'comments__title',
@@ -42,24 +43,21 @@ export class Comments extends React.PureComponent
           focus: false
           modifiers: @props.modifiers
       div className: 'comments__content',
-        div className: 'comments__items',
+        div className: 'comments__items comments__items--toolbar',
           el CommentsSort,
             loadingSort: @props.loadingSort
             currentSort: @props.currentSort
             modifiers: @props.modifiers
+          div className: osu.classWithModifiers('sort', @props.modifiers),
+            div className: 'sort__items',
+              @renderFollowToggle()
+              @renderShowDeletedToggle()
         if comments?
           div className: "comments__items #{if @props.loadingSort? then 'comments__items--loading' else ''}",
-            for comment in comments
-              el Comment,
-                key: comment.id
-                comment: comment
-                commentsByParentId: commentsByParentId
-                userVotesByCommentId: @props.userVotesByCommentId
-                usersById: @props.usersById
-                depth: 0
-                currentSort: @props.currentSort
-                modifiers: @props.modifiers
-                moreComments: @props.moreComments
+            comments.map @renderComment
+
+            el DeletedCommentsCount, { comments, showDeleted: @props.showDeleted, modifiers: ['top'] }
+
             el CommentShowMore,
               commentableType: @props.commentableType
               commentableId: @props.commentableId
@@ -72,3 +70,60 @@ export class Comments extends React.PureComponent
           div
             className: 'comments__items comments__items--empty'
             osu.trans('comments.empty')
+
+
+  renderComment: (comment) =>
+    return null if comment.deleted_at? && !@props.showDeleted
+
+    el Comment,
+      key: comment.id
+      comment: comment
+      commentsByParentId: @commentsByParentId
+      userVotesByCommentId: @props.userVotesByCommentId
+      usersById: @props.usersById
+      depth: 0
+      currentSort: @props.currentSort
+      modifiers: @props.modifiers
+      moreComments: @props.moreComments
+      showDeleted: @props.showDeleted
+
+
+  renderShowDeletedToggle: =>
+    button
+      type: 'button'
+      className: 'sort__item sort__item--button'
+      onClick: @toggleShowDeleted
+      span className: 'sort__item-icon',
+        span className: if @props.showDeleted then 'fas fa-check-square' else 'far fa-square'
+      osu.trans('common.buttons.show_deleted')
+
+
+  renderFollowToggle: =>
+    if @props.userFollow
+      icon = 'fas fa-eye-slash'
+      label = osu.trans('common.buttons.watch.to_0')
+    else
+      icon = 'fas fa-eye'
+      label = osu.trans('common.buttons.watch.to_1')
+
+    iconEl =
+      if @props.loadingFollow
+        el Spinner, modifiers: ['center-inline']
+      else
+        span className: icon
+
+    button
+      type: 'button'
+      className: 'sort__item sort__item--button'
+      onClick: @toggleFollow
+      disabled: @props.loadingFollow
+      span className: 'sort__item-icon', iconEl
+      label
+
+
+  toggleShowDeleted: ->
+    $.publish 'comments:toggle-show-deleted'
+
+
+  toggleFollow: ->
+    $.publish 'comments:toggle-follow'

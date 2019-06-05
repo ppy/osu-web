@@ -25,10 +25,11 @@ use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\Chat\Channel;
 use App\Models\Forum\Authorize as ForumAuthorize;
+use App\Models\Forum\Topic;
+use App\Models\Forum\TopicCover;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
 use App\Models\User;
 use App\Models\UserContestEntry;
-use App\Models\UserGroup;
 use Carbon\Carbon;
 
 class OsuAuthorize
@@ -45,7 +46,7 @@ class OsuAuthorize
         $cacheKey = serialize([
             $ability,
             $user === null ? null : $user->getKey(),
-            $object === null ? null : $object->getKey(),
+            $object === null ? null : [$object->getTable(), $object->getKey()],
         ]);
 
         if (!isset($this->cache[$cacheKey])) {
@@ -80,7 +81,7 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionAllowOrDenyKudosu($user, $discussion)
     {
-        if ($user !== null && ($user->isBNG() || $user->isGMT() || $user->isQAT())) {
+        if ($user !== null && ($user->isBNG() || $user->isGMT() || $user->isNAT())) {
             return 'ok';
         }
     }
@@ -92,7 +93,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
 
@@ -127,7 +128,7 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionModerate($user)
     {
-        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
+        if ($user !== null && ($user->isGMT() || $user->isNAT())) {
             return 'ok';
         }
     }
@@ -155,7 +156,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
 
@@ -164,7 +165,7 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionRestore($user, $discussion)
     {
-        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
+        if ($user !== null && ($user->isGMT() || $user->isNAT())) {
             return 'ok';
         }
     }
@@ -181,7 +182,7 @@ class OsuAuthorize
             }
         }
 
-        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
+        if ($user !== null && ($user->isGMT() || $user->isNAT())) {
             return 'ok';
         }
     }
@@ -192,7 +193,7 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
 
         if ($discussion->message_type === 'mapper_note') {
-            if ($user->getKey() !== $discussion->beatmapset->user_id && !$user->isQAT() && !$user->isBNG()) {
+            if ($user->getKey() !== $discussion->beatmapset->user_id && !$user->isNAT() && !$user->isBNG()) {
                 return 'beatmap_discussion.store.mapper_note_wrong_user';
             }
         }
@@ -214,7 +215,7 @@ class OsuAuthorize
         ];
 
         if (!in_array($discussion->beatmapset->approved, $votableStates, true)) {
-            if (!$user->isBNG() && !$user->isGMT() && !$user->isQAT()) {
+            if (!$user->isBNG() && !$user->isGMT() && !$user->isNAT()) {
                 return $prefix.'wrong_beatmapset_state';
             }
         }
@@ -223,7 +224,7 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
-        if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+        if ($user->isBNG() || $user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
 
@@ -255,7 +256,7 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
-        if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+        if ($user->isBNG() || $user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
 
@@ -273,7 +274,7 @@ class OsuAuthorize
             return $prefix.'system_generated';
         }
 
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
 
@@ -304,7 +305,7 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionPostRestore($user, $post)
     {
-        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
+        if ($user !== null && ($user->isGMT() || $user->isNAT())) {
             return 'ok';
         }
     }
@@ -315,7 +316,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
+        if ($user !== null && ($user->isGMT() || $user->isNAT())) {
             return 'ok';
         }
     }
@@ -324,6 +325,14 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+
+        if ($user->isGMT() || $user->isNAT()) {
+            return 'ok';
+        }
+
+        if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
+            return 'beatmap_discussion_post.store.beatmapset_locked';
+        }
 
         return 'ok';
     }
@@ -336,7 +345,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$beatmapset->isScoreable() && ($user->isGMT() || $user->isQAT())) {
+        if (!$beatmapset->isScoreable() && ($user->isGMT() || $user->isNAT())) {
             return 'ok';
         }
     }
@@ -345,7 +354,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!($user->isGMT() || $user->isQAT() || $user->isGroup(UserGroup::GROUPS['loved']))) {
+        if (!$user->isProjectLoved()) {
             return 'unauthorized';
         }
 
@@ -355,10 +364,11 @@ class OsuAuthorize
     public function checkBeatmapsetNominate($user, $beatmapset)
     {
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         static $prefix = 'beatmap_discussion.nominate.';
 
-        if (!$user->isBNG() && !$user->isQAT()) {
+        if (!$user->isBNG() && !$user->isNAT()) {
             return 'unauthorized';
         }
 
@@ -374,6 +384,16 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
+        if ($user->isLimitedBN()) {
+            if ($beatmapset->playmodeCount() > 1) {
+                return $prefix.'full_bn_required_hybrid';
+            }
+
+            if ($beatmapset->requiresFullBNNomination()) {
+                return $prefix.'full_bn_required';
+            }
+        }
+
         return 'ok';
     }
 
@@ -381,7 +401,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!$user->isBNG() && !$user->isQAT()) {
+        if (!$user->isBNG() && !$user->isNAT()) {
             return 'unauthorized';
         }
 
@@ -399,7 +419,7 @@ class OsuAuthorize
         }
 
         if ($user !== null) {
-            if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+            if ($user->isBNG() || $user->isGMT() || $user->isNAT()) {
                 return 'ok';
             }
 
@@ -413,7 +433,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->user_id === $beatmapset->user_id || $user->isGMT() || $user->isQAT()) {
+        if ($user->user_id === $beatmapset->user_id || $user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
 
@@ -424,7 +444,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!$user->isQAT()) {
+        if (!$user->isNAT() && !$user->isFullBN() && !$user->isGMT()) {
             return 'unauthorized';
         }
 
@@ -435,9 +455,18 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkBeatmapsetDiscussionLock($user)
+    {
+        $this->ensureLoggedIn($user);
+
+        if ($user->isGMT() || $user->isNAT()) {
+            return 'ok';
+        }
+    }
+
     public function checkBeatmapsetEventViewUserId($user, $event)
     {
-        if ($user !== null && $user->isQAT()) {
+        if ($user !== null && $user->isNAT()) {
             return 'ok';
         }
 
@@ -522,11 +551,12 @@ class OsuAuthorize
         $prefix = 'chat.';
 
         $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user, $prefix);
 
         if ($channel->type === Channel::TYPES['public']) {
             return 'ok';
         }
+
+        $this->ensureCleanRecord($user, $prefix);
 
         // FIXME: needs further check before allowing other types.
         if (false) {
@@ -599,7 +629,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
     }
@@ -710,7 +740,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->isGMT() || $user->isQAT()) {
+        if ($user->isGMT() || $user->isNAT()) {
             return 'ok';
         }
 
@@ -916,23 +946,49 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkForumTopicCoverEdit($user, $cover)
+    /**
+     * @param  User $user
+     * @param  Topic|TopicCover $object
+     * @return string
+     */
+    public function checkForumTopicCoverEdit($user, $object)
     {
         $prefix = 'forum.topic_cover.edit.';
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($cover->topic !== null) {
-            return $this->checkForumTopicEdit($user, $cover->topic);
+        $topic = $object instanceof Topic ? $object : $object->topic;
+
+        if ($topic !== null) {
+            $forumTopicCoverStorePermission = $this->doCheckUser($user, 'ForumTopicCoverStore', $topic->forum);
+            if (!$forumTopicCoverStorePermission->can()) {
+                return $forumTopicCoverStorePermission->rawMessage();
+            }
+
+            return $this->checkForumTopicEdit($user, $topic);
         }
 
-        if ($cover->owner() === null) {
+        if ($object->owner() === null) {
             return $prefix.'uneditable';
         }
 
-        if ($cover->owner()->user_id !== $user->user_id) {
+        if ($object->owner()->user_id !== $user->user_id) {
             return $prefix.'not_owner';
+        }
+
+        return 'ok';
+    }
+
+    public function checkForumTopicCoverStore($user, $forum)
+    {
+        $prefix = 'forum.topic_cover.store.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if (!$forum->allow_topic_covers && !$this->doCheckUser($user, 'ForumModerate', $forum)->can()) {
+            return $prefix.'forum_not_allowed';
         }
 
         return 'ok';

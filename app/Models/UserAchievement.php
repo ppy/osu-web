@@ -31,6 +31,7 @@ class UserAchievement extends Model
 {
     protected $table = 'osu_user_achievements';
 
+    protected $primaryKeys = ['user_id', 'achievement_id'];
     protected $dates = ['date'];
     public $timestamps = false;
 

@@ -1,6 +1,17 @@
 /* tslint:disable:max-classes-per-file */
 
 // importable coffeescript modules
+declare module 'block-button' {
+  interface Props {
+    onClick?: () => void;
+    modifiers?: string[];
+    userId: number;
+    wrapperClass?: string;
+  }
+
+  class BlockButton extends React.PureComponent<Props> {}
+}
+
 declare module 'big-button' {
   class BigButton extends React.PureComponent<any> {}
 }
@@ -22,13 +33,12 @@ declare module 'show-more-link' {
 }
 
 declare module 'spinner' {
-  class Spinner extends React.PureComponent<any> {}
-}
+  interface Props {
+    modifiers?: string[];
+  }
 
-declare module 'supporter-icon' {
-  class SupporterIcon extends React.PureComponent<any> {}
+  class Spinner extends React.PureComponent<Props> {}
 }
-
 declare module 'user-avatar' {
   class UserAvatar extends React.PureComponent<any> {}
 }
@@ -81,4 +91,15 @@ declare module 'report-score' {
   }
 
   class ReportScore extends React.PureComponent<Props> {}
+}
+
+declare module 'report-user' {
+  interface Props {
+    onFormClose?: () => void;
+    modifiers?: string[];
+    user: User;
+    wrapperClass?: string;
+  }
+
+  class ReportUser extends React.PureComponent<Props> {}
 }

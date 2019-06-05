@@ -21,7 +21,6 @@
 return [
     'all_read' => 'All notifications read!',
     'mark_all_read' => 'Clear all',
-    'message_multi' => ':count_delimited new update on ":title".|:count_delimited new updates on ":title".',
 
     'item' => [
         'beatmapset' => [
@@ -29,16 +28,70 @@ return [
 
             'beatmapset_discussion' => [
                 '_' => 'Beatmap discussion',
-                'beatmapset_discussion_post_new' => ':username posted new message in ":title" beatmap discussion.',
+                'beatmapset_discussion_lock' => 'Discussion on ":title" has been locked',
+                'beatmapset_discussion_lock_compact' => 'Discussion was locked',
+                'beatmapset_discussion_post_new' => 'New post on ":title" by :username',
+                'beatmapset_discussion_post_new_compact' => 'New post by :username',
+                'beatmapset_discussion_unlock' => 'Discussion on ":title" has been unlocked',
+                'beatmapset_discussion_unlock_compact' => 'Discussion was unlocked',
             ],
 
             'beatmapset_state' => [
                 '_' => 'Beatmap status changed',
-                'beatmapset_disqualify' => 'Beatmap ":title" has been disqualified by :username.',
-                'beatmapset_love' => 'Beatmap ":title" has been promoted as loved by :username.',
-                'beatmapset_nominate' => 'Beatmap ":title" has been nominated by :username.',
-                'beatmapset_qualify' => 'Beatmap ":title" has been gotten enough nominations and thus queued for ranking.',
-                'beatmapset_reset_nominations' => 'Issue posted by :username reset nomination of beatmap ":title" ',
+                'beatmapset_disqualify' => '":title" has been disqualified',
+                'beatmapset_disqualify_compact' => 'Beatmap was disqualified',
+                'beatmapset_love' => '":title" was promoted to loved',
+                'beatmapset_love_compact' => 'Beatmap was promoted to loved',
+                'beatmapset_nominate' => '":title" has been nominated',
+                'beatmapset_nominate_compact' => 'Beatmap was nominated',
+                'beatmapset_qualify' => '":title" has gained enough nominations and entered the ranking queue',
+                'beatmapset_qualify_compact' => 'Beatmap entered ranking queue',
+                'beatmapset_rank' => '":title" has been ranked',
+                'beatmapset_rank_compact' => 'Beatmap was ranked',
+                'beatmapset_reset_nominations' => 'Nomination of ":title" has been reset',
+                'beatmapset_reset_nominations_compact' => 'Nomination was reset',
+            ],
+
+            'comment' => [
+                '_' => 'New comment',
+
+                'comment_new' => ':username commented ":content" on ":title"',
+                'comment_new_compact' => ':username commented ":content"',
+            ],
+        ],
+
+        'channel' => [
+            '_' => 'Chat',
+
+            'channel' => [
+                '_' => 'New message',
+                'pm' => [
+                    'channel_message' => ':username says ":title"',
+                    'channel_message_compact' => ':title',
+                    'channel_message_group' => 'from :username',
+                ],
+            ],
+        ],
+
+        'build' => [
+            '_' => 'Changelog',
+
+            'comment' => [
+                '_' => 'New comment',
+
+                'comment_new' => ':username commented ":content" on ":title"',
+                'comment_new_compact' => ':username commented ":content"',
+            ],
+        ],
+
+        'news_post' => [
+            '_' => 'News',
+
+            'comment' => [
+                '_' => 'New comment',
+
+                'comment_new' => ':username commented ":content" on ":title"',
+                'comment_new_compact' => ':username commented ":content"',
             ],
         ],
 
@@ -47,7 +100,8 @@ return [
 
             'forum_topic_reply' => [
                 '_' => 'New forum reply',
-                'forum_topic_reply' => ':username replied to forum topic ":title".',
+                'forum_topic_reply' => ':username replied to ":title"',
+                'forum_topic_reply_compact' => ':username replied',
             ],
         ],
 
@@ -56,7 +110,16 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited unread message.|:count_delimited unread messages.',
+                'legacy_pm' => ':count_delimited unread message|:count_delimited unread messages',
+            ],
+        ],
+
+        'user_achievement' => [
+            '_' => 'Medals',
+
+            'user_achievement_unlock' => [
+                '_' => 'New medal',
+                'user_achievement_unlock' => 'Unlocked ":title"!',
             ],
         ],
     ],

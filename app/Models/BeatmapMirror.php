@@ -99,7 +99,7 @@ class BeatmapMirror extends Model
         $userId = Auth::check() ? Auth::user()->user_id : 0;
         $checksum = md5("{$beatmapset->beatmapset_id}{$diskFilename}{$serveFilename}{$time}{$noVideo}{$this->secret_key}");
 
-        $url = "{$this->base_url}d/{$beatmapset->beatmapset_id}?fs=".rawurlencode($serveFilename).'&fd='.rawurlencode($diskFilename)."&ts=$time&cs=$checksum&u=$userId&nv=$noVideo";
+        $url = "{$this->base_url}d/{$beatmapset->beatmapset_id}?fs=".rawurlencode($serveFilename).'&fd='.rawurlencode($diskFilename)."&ts=$time&cs=$checksum&nv=$noVideo";
 
         return $url;
     }

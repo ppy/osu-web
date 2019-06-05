@@ -19,23 +19,23 @@
  */
 
 return [
-    'cancel' => '',
+    'cancel' => 'Hủy',
 
     'authorise' => [
-        'authorise' => '',
-        'request' => '',
-        'scopes_title' => '',
-        'title' => '',
+        'authorise' => 'Cho phép',
+        'request' => 'yêu cầu quyền truy cập vào tài khoản của bạn.',
+        'scopes_title' => 'Ứng dụng này sẽ được:',
+        'title' => 'Yêu Cầu Ủy Quyền',
 
         'wrong_user' => [
-            '_' => '',
-            'logout_link' => '',
+            '_' => 'Bạn đã đăng nhập với :user. :logout_link.',
+            'logout_link' => 'Nhấp vào đây để đăng nhập người dùng khác',
         ],
     ],
 
     'login' => [
-        'download' => '',
-        'label' => '',
-        'title' => '',
+        'download' => 'Nhấp vào đây để tải trò chơi và tạo tài khoản',
+        'label' => 'Đầu tiên, hãy đăng nhập vào tài khoản của bạn!',
+        'title' => 'Đăng Nhập Tài Khoản',
     ],
 ];

@@ -27,7 +27,7 @@ return [
     ],
 
     'scopes' => [
-        'identify' => 'Identifiser deg og les din offentlige profil.',
+        'identify' => 'Identifiser deg selv og les din offentlige profil.',
 
         'friends' => [
             'read' => 'Se hvem du følger.',

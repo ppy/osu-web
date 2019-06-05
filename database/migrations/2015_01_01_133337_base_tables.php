@@ -494,6 +494,7 @@ class BaseTables extends Migration
 
             $table->unsignedInteger('score_id')->default(0)->primary();
             $table->unsignedInteger('play_count')->default(0);
+            $table->integer('version')->nullable();
         });
         $this->setRowFormat('osu_replays', 'DYNAMIC');
 
@@ -503,6 +504,7 @@ class BaseTables extends Migration
 
             $table->unsignedInteger('score_id')->default(0)->primary();
             $table->unsignedInteger('play_count')->default(0);
+            $table->integer('version')->nullable();
         });
         $this->setRowFormat('osu_replays_fruits', 'DYNAMIC');
 
@@ -512,6 +514,7 @@ class BaseTables extends Migration
 
             $table->unsignedInteger('score_id')->default(0)->primary();
             $table->unsignedInteger('play_count')->default(0);
+            $table->integer('version')->nullable();
         });
         $this->setRowFormat('osu_replays_mania', 'DYNAMIC');
 
@@ -521,6 +524,7 @@ class BaseTables extends Migration
 
             $table->unsignedInteger('score_id')->default(0)->primary();
             $table->unsignedInteger('play_count')->default(0);
+            $table->integer('version')->nullable();
         });
         $this->setRowFormat('osu_replays_taiko', 'DYNAMIC');
 
@@ -737,6 +741,7 @@ class BaseTables extends Migration
             $table->mediumInteger('user_id');
             $table->mediumInteger('achievement_id');
             $table->timestamp('date')->useCurrent();
+            $table->mediumInteger('beatmap_id')->nullable();
             $table->primary(['user_id', 'achievement_id']);
             $table->index(['user_id', 'date'], 'user_id');
         });

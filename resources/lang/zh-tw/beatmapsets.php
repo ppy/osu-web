@@ -55,13 +55,13 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => '以使用更多的功能',
+                'top' => '登入',
             ],
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => '您收藏的圖譜已達上限，請取消一張再試。',
         ],
 
         'hype' => [
@@ -73,7 +73,7 @@ return [
                 'status' => [
                     'pending' => '',
                     'qualified' => '',
-                    'wip' => '',
+                    'wip' => '此功能仍在開發中',
                 ],
             ],
         ],

@@ -140,7 +140,7 @@ use Request;
  * @property string $user_msnm
  * @property int $user_new_privmsg
  * @property string $user_newpasswd
- * @property int $user_notify
+ * @property bool $user_notify
  * @property int $user_notify_pm
  * @property int $user_notify_type
  * @property string|null $user_occ
@@ -192,6 +192,7 @@ class User extends Model implements AuthenticatableContract
         'osu_subscriber' => 'boolean',
         'user_allow_pm' => 'boolean',
         'user_allow_viewonline' => 'boolean',
+        'user_notify' => 'boolean',
         'user_timezone' => 'float',
     ];
 
@@ -668,9 +669,9 @@ class User extends Model implements AuthenticatableContract
     |
     */
 
-    public function isQAT()
+    public function isNAT()
     {
-        return $this->isGroup(UserGroup::GROUPS['qat']);
+        return $this->isGroup(UserGroup::GROUPS['nat']);
     }
 
     public function isAdmin()
@@ -685,7 +686,17 @@ class User extends Model implements AuthenticatableContract
 
     public function isBNG()
     {
+        return $this->isFullBN() || $this->isLimitedBN();
+    }
+
+    public function isFullBN()
+    {
         return $this->isGroup(UserGroup::GROUPS['bng']);
+    }
+
+    public function isLimitedBN()
+    {
+        return $this->isGroup(UserGroup::GROUPS['bng_limited']);
     }
 
     public function isHax()
@@ -711,6 +722,11 @@ class User extends Model implements AuthenticatableContract
     public function isRegistered()
     {
         return $this->isGroup(UserGroup::GROUPS['default']);
+    }
+
+    public function isProjectLoved()
+    {
+        return $this->isGroup(UserGroup::GROUPS['loved']);
     }
 
     public function isBot()
@@ -746,7 +762,7 @@ class User extends Model implements AuthenticatableContract
             || $this->isMod()
             || $this->isGMT()
             || $this->isBNG()
-            || $this->isQAT();
+            || $this->isNAT();
     }
 
     public function isBanned()
@@ -1145,6 +1161,11 @@ class User extends Model implements AuthenticatableContract
             'user_id',
             'channel_id'
         );
+    }
+
+    public function follows()
+    {
+        return $this->hasMany(Follow::class, 'user_id');
     }
 
     public function maxBlocks()

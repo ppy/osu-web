@@ -61,7 +61,7 @@ return [
 
     'card' => [
         'loading' => 'Loading...',
-        'send_message' => 'send message',
+        'send_message' => 'Send message',
     ],
 
     'login' => [
@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Joined :date',
         'lastvisit' => 'Last seen :date',
+        'lastvisit_online' => 'Currently online',
         'missingtext' => 'You might have made a typo! (or the user may have been banned)',
         'origin_country' => 'From :country',
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Total Score',
         ],
     ],
+
     'status' => [
+        'all' => 'All',
         'online' => 'Online',
         'offline' => 'Offline',
     ],

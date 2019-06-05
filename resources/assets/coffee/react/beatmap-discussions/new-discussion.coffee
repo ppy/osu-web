@@ -82,7 +82,7 @@ export class NewDiscussion extends React.PureComponent
     canPostNote =
       @props.currentUser.id == @props.beatmapset.user_id ||
       @props.currentUser.is_bng ||
-      @props.currentUser.is_qat
+      @props.currentUser.is_nat
 
     buttonCssClasses = 'btn-circle'
     buttonCssClasses += ' btn-circle--activated' if @props.pinned
@@ -120,12 +120,7 @@ export class NewDiscussion extends React.PureComponent
                   onKeyDown: @handleKeyDown
                   onFocus: @onFocus
                   innerRef: @setInputBox
-                  placeholder:
-                    if @canPost()
-                      osu.trans "beatmaps.discussions.message_placeholder.#{@props.mode}", version: @props.currentBeatmap.version
-                    else
-                      # FIXME: reason should be passed from beatmap state
-                      osu.trans 'beatmaps.discussions.message_placeholder_deleted_beatmap'
+                  placeholder: @messagePlaceholder()
 
                 el MessageLengthCounter,
                   key: 'counter'
@@ -200,7 +195,7 @@ export class NewDiscussion extends React.PureComponent
                   existing_timestamps: timestampsString
 
             label className: "#{bn}__notice-checkbox",
-              div className: 'osu-checkbox osu-checkbox--beatmap-discussion',
+              div className: 'osu-checkbox osu-checkbox--beatmap-discussion-new',
                 input
                   className: 'osu-checkbox__input'
                   type: 'checkbox'
@@ -215,7 +210,8 @@ export class NewDiscussion extends React.PureComponent
 
 
   canPost: =>
-    !@props.currentBeatmap.deleted_at? || @props.mode == 'generalAll'
+    (!@props.beatmapset.discussion_locked || BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)) &&
+    (!@props.currentBeatmap.deleted_at? || @props.mode == 'generalAll')
 
 
   cssTop: (sticky) =>
@@ -232,6 +228,16 @@ export class NewDiscussion extends React.PureComponent
 
   isTimeline: =>
     @props.mode == 'timeline'
+
+
+  messagePlaceholder: =>
+    if @canPost()
+      osu.trans "beatmaps.discussions.message_placeholder.#{@props.mode}", version: @props.currentBeatmap.version
+    else
+      if @props.beatmapset.discussion_locked
+        osu.trans 'beatmaps.discussions.message_placeholder_locked'
+      else
+        osu.trans 'beatmaps.discussions.message_placeholder_deleted_beatmap'
 
 
   nearbyDiscussions: =>
@@ -287,8 +293,6 @@ export class NewDiscussion extends React.PureComponent
 
     type = e.currentTarget.dataset.type
 
-    userCanResetNominations = currentUser.is_admin || currentUser.is_qat || currentUser.is_bng
-
     if type == 'problem'
       problemType = @problemType()
 
@@ -331,12 +335,12 @@ export class NewDiscussion extends React.PureComponent
 
 
   problemType: =>
-    canDisqualify = currentUser.is_admin || currentUser.is_qat
+    canDisqualify = currentUser.is_admin || currentUser.is_nat || currentUser.is_full_bn || currentUser.is_gmt
     willDisqualify = @props.beatmapset.status == 'qualified'
 
     return 'disqualify' if canDisqualify && willDisqualify
 
-    canReset = currentUser.is_admin || currentUser.is_qat || currentUser.is_bng
+    canReset = currentUser.is_admin || currentUser.is_nat || currentUser.is_bng
     willReset = @props.beatmapset.status == 'pending' && @props.beatmapset.nominations.current > 0
 
     return 'nomination_reset' if canReset && willReset
@@ -382,7 +386,7 @@ export class NewDiscussion extends React.PureComponent
     typeText = if type == 'problem' then @problemType() else type
 
     el BigButton,
-      modifiers: ['beatmap-discussion']
+      modifiers: ['beatmap-discussion-new']
       icon: icon
       text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
       key: type

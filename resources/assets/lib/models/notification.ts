@@ -16,25 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import NotificationJson from 'interfaces/notification-json';
 import * as _ from 'lodash';
 import { computed, observable } from 'mobx';
-import * as moment from 'moment';
-import NotificationJson from '../interfaces/notification-json';
-
-interface CategoryMap {
-  [key: string]: string;
-}
-
-const CATEGORY_MAP: CategoryMap = {
-  beatmapset_discussion_post_new: 'beatmapset_discussion',
-  beatmapset_disqualify: 'beatmapset_state',
-  beatmapset_love: 'beatmapset_state',
-  beatmapset_nominate: 'beatmapset_state',
-  beatmapset_qualify: 'beatmapset_state',
-  beatmapset_reset_nominations: 'beatmapset_state',
-  forum_topic_reply: 'forum_topic_reply',
-  legacy_pm: 'legacy_pm',
-};
+import { categoryGroupKey, nameToCategory } from 'notification-maps/category';
+import { displayType } from 'notification-maps/type';
 
 export default class Notification {
   createdAtJson?: string;
@@ -69,10 +55,14 @@ export default class Notification {
   }
 
   @computed get category() {
-    if (this.name == null) {
-      return;
-    }
+    return nameToCategory[this.name || ''];
+  }
 
-    return CATEGORY_MAP[this.name];
+  @computed get categoryGroupKey() {
+    return categoryGroupKey(this);
+  }
+
+  @computed get displayType() {
+    return displayType(this);
   }
 }

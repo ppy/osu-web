@@ -26,6 +26,7 @@ use App\Libraries\CommentBundle;
 use App\Libraries\MorphMap;
 use App\Models\Comment;
 use App\Models\Log;
+use App\Models\Notification;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -39,7 +40,7 @@ class CommentsController extends Controller
     {
         parent::__construct();
 
-        $this->middleware('auth', ['except' => 'index']);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     public function destroy($id)
@@ -59,10 +60,6 @@ class CommentsController extends Controller
 
     public function index()
     {
-        if (!request()->expectsJson()) {
-            priv_check('CommentModerate')->ensureCan();
-        }
-
         $type = request('commentable_type');
         $id = request('commentable_id');
 
@@ -132,8 +129,6 @@ class CommentsController extends Controller
 
     public function show($id)
     {
-        priv_check('CommentModerate')->ensureCan();
-
         $comment = Comment::findOrFail($id);
 
         $commentBundle = new CommentBundle($comment->commentable, [
@@ -143,7 +138,7 @@ class CommentsController extends Controller
         ]);
 
         $commentJson = json_item($comment, 'Comment', [
-            'editor', 'user', 'commentable_meta', 'parent',
+            'editor', 'user', 'commentable_meta', 'parent.user',
         ]);
 
         return view('comments.show', compact('commentJson', 'commentBundle'));
@@ -151,13 +146,15 @@ class CommentsController extends Controller
 
     public function store()
     {
+        $user = auth()->user();
+
         $params = get_params(request(), 'comment', [
             'commentable_id:int',
             'commentable_type',
             'message',
             'parent_id:int',
         ]);
-        $params['user_id'] = optional(auth()->user())->getKey();
+        $params['user_id'] = optional($user)->getKey();
 
         $comment = new Comment($params);
 
@@ -168,6 +165,8 @@ class CommentsController extends Controller
         } catch (ModelNotSavedException $e) {
             return error_popup($e->getMessage());
         }
+
+        broadcast_notification(Notification::COMMENT_NEW, $comment, $user);
 
         $comments = collect([$comment]);
 

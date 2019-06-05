@@ -224,6 +224,7 @@ class @LineChart
     i = @lookupIndexFromX x
 
     return unless i
+    return unless @data[i - 1] && @data[i]
 
     @hoverStart()
     Timeout.clear @_autoEndHover

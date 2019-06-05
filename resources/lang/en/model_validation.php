@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Replying to deleted comment is not allowed.',
     ],
 
+    'follow' => [
+        'invalid' => 'Invalid :attribute specified.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Can only vote a feature request.',

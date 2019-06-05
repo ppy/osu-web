@@ -49,7 +49,7 @@ export class Score extends React.Component
           a
             href: laroute.route 'rankings',
               mode: @props.mode
-              country: user.country.code
+              country: user.country?.code
               type: 'performance'
             el FlagCountry, country: user.country
 

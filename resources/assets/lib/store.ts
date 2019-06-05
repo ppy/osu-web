@@ -33,11 +33,6 @@ const options = {
 
 const client = Shopify.buildClient(options);
 
-interface LineItem {
-  quantity: number;
-  variantId: string;
-}
-
 export class Store {
   static init(sharedContext: Window) {
     sharedContext.Store = sharedContext.Store || new Store();

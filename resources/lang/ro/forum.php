@@ -74,7 +74,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited postare|:count_delimited postări',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Crearea unui sondaj',
 
-            'preview' => '',
+            'preview' => 'Previzualizare',
 
             'create_poll_button' => [
                 'add' => 'Creează un sondaj',
@@ -197,7 +197,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'prioritatea stelelor',
             'replies' => 'răspunsuri',
             'views' => 'vizualizări',
         ],
@@ -274,9 +274,9 @@ return [
                 'do' => 'Promovează această cerere',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Aceasta este o :feature_request. Cererile pot fi votate de către :supporters.',
+                    'feature_request' => 'cerere de avantaje',
+                    'supporters' => 'suporteri',
                 ],
 
                 'user' => [

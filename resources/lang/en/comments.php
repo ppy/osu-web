@@ -20,6 +20,7 @@
 
 return [
     'deleted' => 'deleted',
+    'deleted_count' => ':count_delimited deleted comment|:count_delimited deleted comments',
     'edited' => 'edited :timeago by :user',
     'empty' => 'No comments yet.',
     'replies' => 'Replies',
@@ -62,8 +63,8 @@ return [
 
     'show' => [
         'title' => [
-            '_' => 'Comments :info',
-            'info' => 'Detail',
+            '_' => 'Comments',
+            'info' => 'Comments',
         ],
     ],
 ];

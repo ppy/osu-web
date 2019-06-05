@@ -174,6 +174,26 @@ class BeatmapsetsController extends Controller
         }
     }
 
+    public function discussionUnlock($id)
+    {
+        priv_check('BeatmapsetDiscussionLock')->ensureCan();
+
+        $beatmapset = Beatmapset::where('discussion_enabled', true)->findOrFail($id);
+        $beatmapset->discussionUnlock(Auth::user(), request('reason'));
+
+        return $beatmapset->defaultDiscussionJson();
+    }
+
+    public function discussionLock($id)
+    {
+        priv_check('BeatmapsetDiscussionLock')->ensureCan();
+
+        $beatmapset = Beatmapset::where('discussion_enabled', true)->findOrFail($id);
+        $beatmapset->discussionLock(Auth::user(), request('reason'));
+
+        return $beatmapset->defaultDiscussionJson();
+    }
+
     public function download($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);

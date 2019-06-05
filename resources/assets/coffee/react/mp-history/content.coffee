@@ -17,6 +17,7 @@
 ###
 
 import { Event } from './event'
+import { Game } from './game'
 import * as React from 'react'
 import { button, div } from 'react-dom-factories'
 import { Spinner } from 'spinner'
@@ -46,7 +47,7 @@ export class Content extends React.PureComponent
     if snapshot.reference?
       snapshot.referenceTop = snapshot.reference.getBoundingClientRect().top
 
-    if osu.bottomPageDistance() < 300 && prevProps.isAutoloading && @props.isAutoloading
+    if osu.bottomPageDistance() < 10 && prevProps.isAutoloading && @props.isAutoloading
       snapshot.scrollToLastEvent = true
 
     snapshot

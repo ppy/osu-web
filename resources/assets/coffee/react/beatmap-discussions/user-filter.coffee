@@ -46,8 +46,6 @@ export class UserFilter extends React.PureComponent
 
   mapUserProperties: (user) ->
     id: user.id
-    colour: user.profile_colour
-    groups: user.groups
     text: user.username
 
 
@@ -58,19 +56,6 @@ export class UserFilter extends React.PureComponent
       key: item?.id
       onClick: onClick
       children
-
-
-  isOwner: (user) =>
-    user? && user.id == @props.ownerId
-
-
-  userGroup: (user) =>
-    return unless user?
-
-    if @isOwner(user)
-      'owner'
-    else
-      BeatmapDiscussionHelper.moderationGroup(user)
 
 
   onItemSelected: (item) ->

@@ -96,6 +96,7 @@
 @z-index--back-to-top: 500;
 @z-index--fixed-bar: 501;
 @z-index--nav-bar: 502;
+@z-index--user-card-tooltip: 509;
 @z-index--blackout: 510;
 @z-index--blackout-visible: 511;
 @z-index--nav-float: 999;
@@ -269,11 +270,21 @@
 @changelog-stream--web: @purple;
 @changelog-stream--wiki: #999;
 
+// FIXME: see FIXME for .fn-changelog-stream
+@changelog-stream--all: #fff;
+@changelog-stream--online: @green-light;
+@changelog-stream--offline: #000;
+
 @changelog-bg: @dark-purple-dark;
 @changelog-bg-extra: @greyviolet-darker;
 @changelog-border-bg: fade(@changelog-bg-extra, 50%);
 @changelog-fg: #fff;
 @changelog-fg-content: @pink-lighter;
+
+@comment-dark-bg: #333;
+@comment-dark-bg-extra: #222;
+@comment-dark-border-bg: #222;
+@comment-dark-fg: #fff;
 
 @mod-width: 45px;
 @mod-height: 32px;
@@ -313,5 +324,6 @@
 @slider-handle-width: 10px;
 @slider-height: 10px;
 
-@usercard-width: 260px;
-@usercard-height: 100px;
+@user-card-width: 290px;
+@user-card-width-min: 280px;
+@user-card-height: 120px;

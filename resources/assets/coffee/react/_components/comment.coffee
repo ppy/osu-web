@@ -18,6 +18,7 @@
 
 import { CommentEditor } from 'comment-editor'
 import { CommentShowMore } from 'comment-show-more'
+import DeletedCommentsCount from 'deleted-comments-count'
 import * as React from 'react'
 import { a, button, div, span, textarea } from 'react-dom-factories'
 import { ReportComment } from 'report-comment'
@@ -42,6 +43,7 @@ export class Comment extends React.PureComponent
 
 
   @defaultProps =
+    showDeleted: true
     showReplies: true
 
 
@@ -76,10 +78,6 @@ export class Comment extends React.PureComponent
     div
       className: osu.classWithModifiers 'comment', modifiers
 
-      if @canHaveVote()
-        div className: 'comment__float-container comment__float-container--left hidden-xs',
-          @renderVoteButton()
-
       if @props.depth == 0 && children.length > 0
         div className: 'comment__float-container comment__float-container--right',
           button
@@ -88,7 +86,14 @@ export class Comment extends React.PureComponent
             onClick: @toggleReplies
             span className: "fas #{if @state.expandReplies then 'fa-angle-up' else 'fa-angle-down'}"
 
+      if @props.showCommentableMeta
+        @commentableMeta()
+
       div className: "comment__main #{if @isDeleted() then 'comment__main--deleted' else ''}",
+        if @canHaveVote()
+          div className: 'comment__float-container comment__float-container--left hidden-xs',
+            @renderVoteButton()
+
         if user.id?
           a
             className: 'comment__avatar js-usercard'
@@ -100,13 +105,6 @@ export class Comment extends React.PureComponent
             className: 'comment__avatar'
             el UserAvatar, user: user, modifiers: ['full-circle']
         div className: 'comment__container',
-          if @props.showCommentableMeta
-            div className: 'comment__row comment__row--header',
-              span
-                className: 'comment__row-item comment__row-item--commentable-meta'
-                @commentableMeta()
-
-
           div className: 'comment__row comment__row--header',
             if user.id?
               a
@@ -152,12 +150,11 @@ export class Comment extends React.PureComponent
               className: 'comment__row-item comment__row-item--info'
               dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
 
-            if @canModerate()
-              div className: 'comment__row-item',
-                a
-                  href: laroute.route('comments.show', comment: @props.comment.id)
-                  className: 'comment__action comment__action--permalink'
-                  osu.trans('common.buttons.permalink')
+            div className: 'comment__row-item',
+              a
+                href: laroute.route('comments.show', comment: @props.comment.id)
+                className: 'comment__action comment__action--permalink'
+                osu.trans('common.buttons.permalink')
 
             if @props.showReplies && !@isDeleted()
               div className: 'comment__row-item',
@@ -237,19 +234,9 @@ export class Comment extends React.PureComponent
       if @props.showReplies && @props.comment.replies_count > 0
         div
           className: repliesClass
-          for comment in children
-            el Comment,
-              key: comment.id
-              comment: comment
-              commentsByParentId: @props.commentsByParentId
-              usersById: @props.usersById
-              userVotesByCommentId: @props.userVotesByCommentId
-              commentableMetaById: @props.commentableMetaById
-              depth: @props.depth + 1
-              parent: @props.comment
-              modifiers: @props.modifiers
-              currentSort: @props.currentSort
-              moreComments: @props.moreComments
+          children.map @renderComment
+
+          el DeletedCommentsCount, { comments: children, showDeleted: @props.showDeleted }
 
           el CommentShowMore,
             parent: @props.comment
@@ -259,6 +246,24 @@ export class Comment extends React.PureComponent
             total: @props.comment.replies_count
             modifiers: @props.modifiers
             label: osu.trans('comments.show_replies') if children.length == 0
+
+
+  renderComment: (comment) =>
+    return null if comment.deleted_at? && !@props.showDeleted
+
+    el Comment,
+      key: comment.id
+      comment: comment
+      commentsByParentId: @props.commentsByParentId
+      usersById: @props.usersById
+      userVotesByCommentId: @props.userVotesByCommentId
+      commentableMetaById: @props.commentableMetaById
+      depth: @props.depth + 1
+      parent: @props.comment
+      modifiers: @props.modifiers
+      currentSort: @props.currentSort
+      moreComments: @props.moreComments
+      showDeleted: @props.showDeleted
 
 
   renderVoteButton: =>
@@ -309,7 +314,7 @@ export class Comment extends React.PureComponent
 
 
   canModerate: =>
-    currentUser.is_admin || currentUser.is_gmt || currentUser.is_qat
+    currentUser.is_admin || currentUser.is_gmt || currentUser.is_nat
 
 
   canReport: =>
@@ -330,15 +335,21 @@ export class Comment extends React.PureComponent
 
     if meta.url
       component = a
-      params = href: meta.url
+      params =
+        href: meta.url
+        className: 'comment__action'
     else
       component = span
       params = null
 
-    component params,
-      span className: 'fas fa-comment-alt'
-      ' '
-      meta.title
+    div className: 'comment__commentable-meta',
+      if @props.comment.commentable_type?
+        span className: 'comment__commentable-meta-type',
+          span className: 'comment__commentable-meta-icon fas fa-comment'
+          ' '
+          osu.trans("comments.commentable_name.#{@props.comment.commentable_type}")
+      component params,
+        meta.title
 
 
   isOwner: =>
@@ -381,6 +392,7 @@ export class Comment extends React.PureComponent
     if @props.linkParent
       component = a
       props.href = laroute.route('comments.show', comment: parent.id)
+      props.className = 'comment__action'
     else
       component = span
 
@@ -391,7 +403,7 @@ export class Comment extends React.PureComponent
 
 
   userFor: (comment) =>
-    user = @props.usersById[comment.user_id]
+    user = @props.usersById[comment.user_id] ? comment.user
 
     if user?
       user
@@ -417,7 +429,14 @@ export class Comment extends React.PureComponent
     @setState showNewReply: !@state.showNewReply
 
 
-  voteToggle: =>
+  voteToggle: (e) =>
+    target = e.target
+
+    if !currentUser.id?
+      userLogin.show target
+
+      return
+
     @setState postingVote: true
 
     if @hasVoted()
@@ -437,6 +456,7 @@ export class Comment extends React.PureComponent
       $.publish "commentVote:#{voteAction}", id: @props.comment.id
     .fail (xhr, status) =>
       return if status == 'abort'
+      return $(target).trigger('ajax:error', [xhr, status]) if xhr.status == 401
 
       osu.ajaxError xhr
 

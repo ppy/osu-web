@@ -40,6 +40,7 @@ return [
         'edited' => 'Last edited by :editor :update_time.',
         'kudosu_denied' => 'Denied from obtaining kudosu.',
         'message_placeholder_deleted_beatmap' => 'This difficulty has been deleted so it may no longer be discussed.',
+        'message_placeholder_locked' => 'Discussion for this beatmap has been disabled.',
         'message_type_select' => 'Select Comment Type',
         'reply_notice' => 'Press enter to reply.',
         'reply_placeholder' => 'Type your response here',
@@ -57,6 +58,18 @@ return [
         'empty' => [
             'empty' => 'No discussions yet!',
             'hidden' => 'No discussion matches selected filter.',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => 'Lock discussion',
+                'unlock' => 'Unlock discussion',
+            ],
+
+            'prompt' => [
+                'lock' => 'Reason for locking',
+                'unlock' => 'Are you sure to unlock?',
+            ],
         ],
 
         'message_hint' => [
@@ -103,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Sorted by:',
             'created_at' => 'Creation time',
             'timeline' => 'Timeline',
             'updated_at' => 'Last update',

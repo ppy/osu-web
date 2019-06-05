@@ -34,7 +34,7 @@ export class Subscribe extends React.PureComponent
 
   render: =>
     el BigButton,
-      text: osu.trans "beatmapset_watches.button.action.to_#{+!@isWatching()}"
+      text: osu.trans "common.buttons.watch.to_#{+!@isWatching()}"
       icon: if @isWatching() then 'fas fa-eye-slash' else 'fas fa-eye'
       modifiers: ['full']
       props:

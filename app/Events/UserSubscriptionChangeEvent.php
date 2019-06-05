@@ -20,6 +20,7 @@
 
 namespace App\Events;
 
+use App\Models\Follow;
 use App\Models\Notification;
 use Illuminate\Broadcasting\Channel;
 
@@ -40,7 +41,13 @@ class UserSubscriptionChangeEvent extends NotificationEventBase
 
         $this->action = $action;
         $this->userId = $user->getKey();
-        $this->channelName = Notification::generateChannelName($notifiable);
+
+        // TODO: consolidate BeatmapsetWatch and TopicWatch to Follow and rename $notifiable to $follow.
+        if ($notifiable instanceof Follow) {
+            $subtype = $notifiable->subtype;
+            $notifiable = $notifiable->notifiable;
+        }
+        $this->channelName = Notification::generateChannelName($notifiable, $subtype ?? null);
     }
 
     public function broadcastAs()

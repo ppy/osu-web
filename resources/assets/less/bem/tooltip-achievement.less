@@ -59,21 +59,22 @@
 
   &__detail {
     transition: opacity 500ms;
+    min-height: 90px;
 
     &--hover {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
+      .full-size();
+      height: auto;
       opacity: 0;
 
       .@{_top}__detail-container--hoverable:hover & {
+        position: relative;
         opacity: 1;
       }
     }
 
     &--normal {
       .@{_top}__detail-container--hoverable:hover & {
+        .full-size();
         opacity: 0;
       }
     }

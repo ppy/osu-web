@@ -13,7 +13,8 @@ declare var window: Window;
 
 // libraries
 declare var laroute: any;
-declare var Turbolinks: Turbolinks;
+// TODO: Turbolinks 5.3 is Typescript, so this should be updated then.
+declare var Turbolinks: TurbolinksStatic;
 
 // our helpers
 declare var tooltipDefault: TooltipDefault;
@@ -45,7 +46,9 @@ interface JQueryStatic {
 interface OsuCommon {
   ajaxError: (xhr: JQueryXHR) => void;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
+  isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
+  linkify: (text: string, newWindow?: boolean) => string;
   parseJson: (id: string) => any;
   popup: (message: string, type: string) => void;
   presence: (str?: string | null) => string | null;
@@ -53,10 +56,12 @@ interface OsuCommon {
   timeago: (time?: string) => string;
   trans: (...args: any[]) => string;
   transChoice: (key: string, count: number, replacements?: any, locale?: string) => string;
-  urlPresence: (url?: string) => string;
+  urlPresence: (url?: string | null) => string;
   uuid: () => string;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
+  isMobile(): boolean;
+  updateQueryString(url: string | null, params: { [key: string]: string | undefined }): string;
 }
 
 interface Country {
@@ -100,6 +105,16 @@ interface TooltipDefault {
   remove: (el: HTMLElement) => void;
 }
 
-interface Turbolinks {
-  visit: (url: string) => void;
+interface TurbolinksAction {
+  action: 'advance' | 'replace' | 'restore';
+}
+
+interface TurbolinksStatic {
+  controller: any;
+  supported: boolean;
+
+  clearCache(): void;
+  setProgressBarDelay(delayInMilliseconds: number): void;
+  visit(location: string, options?: TurbolinksAction): void;
+  uuid(): string;
 }

@@ -20,9 +20,12 @@ import { createElement as el, createRef, PureComponent } from 'react'
 import { createPortal } from 'react-dom'
 import * as React from 'react'
 import { a, button, div, i } from 'react-dom-factories'
+import { TooltipContext } from 'tooltip-context'
 import { Modal } from 'modal'
 
 export class PopupMenu extends PureComponent
+  @contextType = TooltipContext
+
   @defaultProps =
     children: (_dismiss) ->
       # empty function
@@ -39,6 +42,7 @@ export class PopupMenu extends PureComponent
 
 
   componentDidMount: =>
+    @tooltipHideEvent = @tooltipElement().qtip('option', 'hide.event')
     $(window).on 'throttled-resize.#{@uuid}', @resize
     $(document).on "turbolinks:before-cache.#{@uuid}", () =>
       @removePortal()
@@ -60,6 +64,12 @@ export class PopupMenu extends PureComponent
     @portal.style.top = "#{Math.floor(top + $element.height() / 2)}px"
     @portal.style.left = "#{Math.floor(left + $element.width())}px"
 
+    # keeps the menu showing above the tooltip;
+    # portal should be after the tooltip in the document body.
+    tooltipElement = @tooltipElement()[0]
+    if tooltipElement?
+      @portal.style.zIndex = getComputedStyle(tooltipElement).zIndex
+
 
   componentDidUpdate: (_prevProps, prevState) =>
     return if prevState.active == @state.active
@@ -67,11 +77,15 @@ export class PopupMenu extends PureComponent
     if @state.active
       @resize()
       @addPortal()
+      @tooltipElement().qtip 'option', 'hide.event', false
 
       $(document).on "click.#{@uuid} keydown.#{@uuid}", @hide
       @props.onShow?()
+
     else
       @removePortal()
+      @tooltipElement().qtip 'option', 'hide.event', @tooltipHideEvent
+
       $(document).off "click.#{@uuid} keydown.#{@uuid}", @hide
       @props.onHide?()
 
@@ -85,7 +99,7 @@ export class PopupMenu extends PureComponent
 
 
   hide: (e) =>
-    return if !@state.active || Modal.isOpen()
+    return if !@state.active || Modal.isOpen() || osu.popupShowing()
 
     event = e.originalEvent
     return if !event? # originalEvent gets eaten by error popup?
@@ -100,6 +114,10 @@ export class PopupMenu extends PureComponent
 
   toggle: =>
     @setState active: !@state.active
+
+
+  tooltipElement: =>
+    $(@context).closest('.qtip')
 
 
   addPortal: =>
