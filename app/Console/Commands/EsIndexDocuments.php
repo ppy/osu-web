@@ -25,6 +25,7 @@ use App\Models\Beatmapset;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
+use App\Models\UsernameChangeHistory;
 use Illuminate\Console\Command;
 
 class EsIndexDocuments extends Command
@@ -144,11 +145,61 @@ class EsIndexDocuments extends Command
             $this->line("\n");
         }
 
+        if ($name === 'users') {
+            $this->afterIndexUsers($indexName);
+        }
+
         if ($alias !== $indexName) {
             $this->info("Aliasing {$alias} to {$indexName}");
             Indexing::updateAlias($alias, [$indexName]);
             $this->line('');
         }
+    }
+
+    protected function afterIndexUsers($indexName)
+    {
+        $this->line("Do additional indexing for {$indexName}");
+
+        $batchSize = 1000;
+        $baseQuery = UsernameChangeHistory::visible();
+        $total = $baseQuery->count();
+        $bar = $this->output->createProgressBar($total);
+        $count = 0;
+        $client = \App\Libraries\Elasticsearch\Es::getClient();
+
+        $baseQuery->select(['user_id', 'username_last'])->chunkById($batchSize, function ($models) use ($bar, &$count, $client, $indexName) {
+            foreach ($models as $model) {
+                $count++;
+                if (!present($model->username_last)) {
+                    continue;
+                }
+
+                $params = [
+                    'index' => $indexName,
+                    'type' => 'users',
+                    'id' => $model->user_id,
+                    'body' => [
+                        'script' => [
+                            'lang' => 'painless',
+                            'source' => 'if (ctx._source.previous_usernames == null) {
+                                ctx._source.previous_usernames = [params.previous_usernames]
+                            } else if (!ctx._source.previous_usernames.contains(params.previous_usernames)) {
+                                ctx._source.previous_usernames.add(params.previous_usernames)
+                            }',
+                            'params' => [
+                                'previous_usernames' => $model->username_last,
+                            ],
+                        ],
+                    ],
+                ];
+
+                $client->update($params);
+            }
+
+            $bar->setProgress($count);
+        });
+
+        $bar->finish();
     }
 
     protected function readOptions()
