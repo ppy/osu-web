@@ -30,7 +30,6 @@ interface PropsInterface {
 }
 
 export default class HeaderV3 extends React.Component<PropsInterface, {}> {
-
   render(): React.ReactNode {
     let classNames = 'header-v3';
     if (this.props.theme) {

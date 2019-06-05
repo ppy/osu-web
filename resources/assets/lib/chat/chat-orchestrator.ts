@@ -32,7 +32,6 @@ import ChatAPI from './chat-api';
 import { MessageJSON } from './chat-api-responses';
 
 export default class ChatOrchestrator implements DispatchListener {
-
   private api: ChatAPI;
   private dispatcher: Dispatcher;
   private rootDataStore: RootDataStore;

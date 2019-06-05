@@ -45,6 +45,7 @@ export class Store {
 
     $('.js-store-checkout').prop('disabled', false);
   }
+
   static init(sharedContext: Window) {
     sharedContext.Store = sharedContext.Store || new Store();
   }

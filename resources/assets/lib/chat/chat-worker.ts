@@ -34,7 +34,6 @@ import ChatAPI from './chat-api';
 import { MessageJSON } from './chat-api-responses';
 
 export default class ChatWorker implements DispatchListener {
-
   private api: ChatAPI;
   private dispatcher: Dispatcher;
 

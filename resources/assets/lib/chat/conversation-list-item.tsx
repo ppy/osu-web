@@ -25,7 +25,6 @@ import RootDataStore from 'stores/root-data-store';
 @inject('dispatcher')
 @observer
 export default class ConversationListItem extends React.Component<any, {}> {
-
   part = (e: React.MouseEvent<HTMLElement>) => {
     this.props.dispatcher.dispatch(new ChatChannelPartAction(this.props.channelId));
   }
@@ -65,6 +64,7 @@ export default class ConversationListItem extends React.Component<any, {}> {
       </div>
     );
   }
+
   switch = (e: React.MouseEvent<HTMLElement>) => {
     if (this.props.dataStore.uiState.chat.selected !== this.props.channelId) {
       this.props.dispatcher.dispatch(new ChatChannelSwitchAction(this.props.channelId));
