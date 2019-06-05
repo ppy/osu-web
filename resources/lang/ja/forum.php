@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => '投票結果を非表示にする。',
+                'hide_results_info' => '投票が終わった後にだけ表示されます。',
                 'length' => 'ポールの期限を設定する',
                 'length_days_suffix' => '日間',
                 'length_info' => '空白で無期限に設定されます',
@@ -292,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => 'ポールの期限終了は :time です',
                     'ended' => 'ポールの期限は :time に終了しました',
+                    'results_hidden' => '投票後に結果が表示されます。',
                     'total' => '総票数: :count',
                 ],
             ],

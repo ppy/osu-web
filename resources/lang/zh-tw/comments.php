@@ -20,6 +20,7 @@
 
 return [
     'deleted' => '已刪除',
+    'deleted_count' => '',
     'edited' => '由 :user 在 :timeago 前編輯',
     'empty' => '還沒有評論',
     'replies' => '回覆',

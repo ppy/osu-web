@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Ai atins limita de nominalizări pentru această zi, te rugăm să încerci din nou mâine.',
+            'full_bn_required' => '',
+            'full_bn_required_hybrid' => '',
             'incorrect_state' => 'S-a produs o eroare la efectuarea acestei acțiuni, încearcă să reîmprospătezi pagina.',
             'owner' => "Nu îți poți nominaliza propriul beatmap.",
         ],
@@ -48,6 +50,9 @@ return [
         'edit' => [
             'system_generated' => 'Postările generate automat nu pot fi editate.',
             'not_owner' => 'Doar proprietarul poate edita această postare.',
+        ],
+        'store' => [
+            'beatmapset_locked' => '',
         ],
     ],
 
@@ -119,6 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'Accesul la forumul solicitat este necesar.',
                 'over' => 'Sondajul s-a încheiat și nu se mai poate vota.',
+                'play_more' => '',
                 'voted' => 'Schimbarea votului nu este permisă.',
 
                 'user' => [

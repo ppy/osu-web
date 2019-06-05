@@ -23,7 +23,7 @@ return [
         'headline' => 'Live Streams',
         'description' => 'Op basis van de index wordt de data elke vijf minuten van twitch.tv afgehaald. Start gerust zelf een stream en kom in de lijst te staan! Check voor meer informatie de wiki pagina over livestreamen.',
 
-        'link' => '',
+        'link' => 'de wiki pagina bij het live streamen',
     ],
     'headers' => [
         'regular' => 'Momenteel aan het streamen',

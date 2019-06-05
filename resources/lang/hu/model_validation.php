@@ -74,6 +74,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Duplikálás nem engedélyezett.',
             'grace_period_expired' => 'Nem lehet szerkeszteni a szavazást több mint :limit óra után',
+            'hiding_results_forever' => 'Egy végtelen szavazás eredményeit nem lehet elrejteni.',
             'invalid_max_options' => 'Felhasználónkénti opciók száma nem haladhatja meg az elérhető opciók mennyiségét.',
             'minimum_one_selection' => 'Minimum egy opció kell felhasználónként.',
             'minimum_two_options' => 'Legalább 2 választási lehetőség kell.',
@@ -111,6 +112,7 @@ return [
         'too_long' => 'Elérted a maximum hosszúságot - maximum :limit karaktert használhatsz.',
 
         'change_username' => [
+            'restricted' => 'Felfüggesztett állapotban nem változtathatsz felhasználónevet.',
             'supporter_required' => [
                 '_' => ':link szükséges a névváltoztatáshoz!',
                 'link_text' => 'támogatta osu!-t',

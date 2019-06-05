@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Dosáhl jsi dnešního limitu nominací, zkus to prosím zítra.',
+            'full_bn_required' => '',
+            'full_bn_required_hybrid' => '',
             'incorrect_state' => 'Nastala chyba při provádění akce, zkuste stránku obnovit.',
             'owner' => "Nelze nominovat vlastní beatmapu.",
         ],
@@ -48,6 +50,9 @@ return [
         'edit' => [
             'system_generated' => 'Nelze upravovat automaticky generovaný příspěvek.',
             'not_owner' => 'Pouze autor může příspěvek upravovat.',
+        ],
+        'store' => [
+            'beatmapset_locked' => '',
         ],
     ],
 
@@ -119,6 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'K vybranému fóru je vyžadován přístup.',
                 'over' => 'Hlasování je ukončeno a už nelze hlasovat.',
+                'play_more' => '',
                 'voted' => 'Změna hlasu není povolena.',
 
                 'user' => [

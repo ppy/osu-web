@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => 'Piilota äänestyksen tulokset.',
+                'hide_results_info' => '',
                 'length' => 'Pidä äänestystä auki',
                 'length_days_suffix' => 'päivää',
                 'length_info' => 'Jätä tyhjäksi jos haluat kyselyn kestävän ikuisesti',
@@ -292,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => 'Kysely loppuu :time',
                     'ended' => 'Kysely on loppunut :time',
+                    'results_hidden' => 'Tulokset näytetään äänestyksen jälkeen.',
                     'total' => 'Ääniä yhteensä: :count',
                 ],
             ],

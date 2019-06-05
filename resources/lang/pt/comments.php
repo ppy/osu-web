@@ -20,6 +20,7 @@
 
 return [
     'deleted' => 'apagado',
+    'deleted_count' => ':count_delimited eliminou o comentário|:count_delimited eliminou os comentários',
     'edited' => 'editado há :timeago por :user',
     'empty' => 'Ainda sem comentários.',
     'replies' => 'Respostas',

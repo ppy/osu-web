@@ -19,7 +19,7 @@
  */
 
 return [
-    'confirmation' => 'Weet je dat zeker?',
+    'confirmation' => 'Weet je het zeker?',
     'confirmation_unsaved' => 'Niet-opgeslagen wijzigingen zullen verloren gaan. Weet je het zeker?',
     'saved' => 'Opgeslagen',
 
@@ -30,17 +30,17 @@ return [
     ],
 
     'buttons' => [
-        'admin' => '',
+        'admin' => 'Administrator',
         'back_to_previous' => 'Terug naar vorige positie',
         'back_to_top' => 'Terug naar boven',
         'cancel' => 'Annuleer',
-        'change' => 'verander',
-        'click_to_copy' => 'klik op naar klembord kopiëren',
+        'change' => 'wijzigen',
+        'click_to_copy' => 'klik om naar klembord te kopiëren',
         'click_to_copy_copied' => 'gekopiëerd naar klembord!',
-        'collapse' => '',
+        'collapse' => 'samenvouwen',
         'delete' => 'Verwijder',
         'edit' => 'Bewerk',
-        'expand' => '',
+        'expand' => 'uitbreiden',
         'hide' => 'verbergen',
         'permalink' => 'permalink',
         'permalink_copied' => 'link gekopieerd',
@@ -55,8 +55,9 @@ return [
         'search' => 'Zoeken',
         'see_more' => 'toon meer',
         'show' => 'weergeven',
+        'show_deleted' => 'Toon verwijderd',
         'show_more' => 'toon meer',
-        'show_more_options' => '',
+        'show_more_options' => 'toon meer opties',
         'upload_image' => 'upload afbeelding',
     ],
 
@@ -67,7 +68,7 @@ return [
         'hours' => ':count uur|:count uren',
         'item' => ':count stuk|:count stuks',
         'minute_short_unit' => 'minuut|minuten',
-        'minutes' => '',
+        'minutes' => ':count_delimited minuut|:count_delimited minuten',
         'months' => ':count maand|:count maanden',
         'second_short_unit' => 'second|seconden',
         'years' => ':count jaar|:count jaar',

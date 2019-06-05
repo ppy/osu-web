@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Du har nådd din nominasjons-grense for dagen, vennligst prøv igjen i morgen.',
+            'full_bn_required' => 'Du må være en full nominator for å kunne utføre denne kvalifiserende nominasjonen.',
+            'full_bn_required_hybrid' => 'Du må være en full nominator for å nominere beatmapsets med mer enn en spillmodus.',
             'incorrect_state' => 'Feil under utføringen av denne handlingen, prøv å oppdatere siden.',
             'owner' => "Du kan ikke nominere din egen beatmap.",
         ],
@@ -48,6 +50,9 @@ return [
         'edit' => [
             'system_generated' => 'Innlegg som er automatisk generert kan ikke bli endret.',
             'not_owner' => 'Bare senderen kan redigere innlegget.',
+        ],
+        'store' => [
+            'beatmapset_locked' => 'Dette beatmappet har blitt låst for diskusjon.',
         ],
     ],
 
@@ -119,6 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'Adgang til forespurt forum kreves.',
                 'over' => 'Avstemningen er over, og derfor kan det ikke stemmes på lenger.',
+                'play_more' => 'Du må spille mer før du stemmer på forum.',
                 'voted' => 'Å endre stemme er ikke tillatt.',
 
                 'user' => [

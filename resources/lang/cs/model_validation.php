@@ -74,6 +74,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Duplikované možnosti nejsou povoleny.',
             'grace_period_expired' => 'Nemůžete upravovat hlasování po více jak :limit hodinách',
+            'hiding_results_forever' => '',
             'invalid_max_options' => 'Možnost jednoho uživatele by neměla přesáhnout hodnotu povolených možností.',
             'minimum_one_selection' => 'Minimálně jedna možnost na uživatele je vyžadována.',
             'minimum_two_options' => 'Jsou vyžadovány alespoň dvě možnosti.',
@@ -111,6 +112,7 @@ return [
         'too_long' => 'Překročena maximální délka - maximální délka je :limit znaků.',
 
         'change_username' => [
+            'restricted' => '',
             'supporter_required' => [
                 '_' => 'Musíš mít :link na změnu jména!',
                 'link_text' => 'podpořit osu! nákupem supporter tagu!',

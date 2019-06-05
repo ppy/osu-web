@@ -74,6 +74,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => '不允许重复的选项。',
             'grace_period_expired' => '不能编辑发起已经超过 :limit 小时的投票',
+            'hiding_results_forever' => '不能隐藏尚未结束投票的结果。',
             'invalid_max_options' => '每人可选的选项不能超出总选项数。',
             'minimum_one_selection' => '每人至少可选一项。',
             'minimum_two_options' => '需要至少两个选项。',
@@ -111,6 +112,7 @@ return [
         'too_long' => '超出长度限制——最多为 :limit 个字符。',
 
         'change_username' => [
+            'restricted' => '账户受限时不能变更用户名。',
             'supporter_required' => [
                 '_' => '你必须 :link 才能更改用户名！',
                 'link_text' => '支持 osu!',

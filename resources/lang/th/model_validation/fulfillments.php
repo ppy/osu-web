@@ -25,6 +25,6 @@ return [
         'reverting_username_mismatch' => 'Current username (:current) is not the same as change to revoke (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => 'การบริจาคน้อยเกินไปที่จะได้รับแท็ก osu!supporter (:actual > :expected)',
     ],
 ];

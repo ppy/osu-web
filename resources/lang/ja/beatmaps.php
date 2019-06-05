@@ -40,12 +40,14 @@ return [
         'edited' => ':editorが:update_timeに編集',
         'kudosu_denied' => 'kudosuの入手を拒否されました。',
         'message_placeholder_deleted_beatmap' => 'この難易度は削除された為これ以上ディスカッションに投稿できません。',
+        'message_placeholder_locked' => 'このビートマップに関するディスカッションは無効になっています。',
         'message_type_select' => 'コメントタイプを選択',
         'reply_notice' => 'Enterキーを押して送信',
         'reply_placeholder' => 'ここにメッセージを入力してください',
         'require-login' => '返信するにはログインが必要です。',
         'resolved' => '解決済',
         'restore' => '復元',
+        'show_deleted' => '削除済みを表示',
         'title' => 'ディスカッション',
 
         'collapse' => [
@@ -56,6 +58,18 @@ return [
         'empty' => [
             'empty' => 'まだディスカッションはありません！',
             'hidden' => '該当するディスカッションは見つかりませんでした。',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => 'ディスカッションのロック',
+                'unlock' => 'ディスカッションのロック解除',
+            ],
+
+            'prompt' => [
+                'lock' => 'ロックの理由',
+                'unlock' => '本当にロックを解除しますか？',
+            ],
         ],
 
         'message_hint' => [
@@ -90,9 +104,11 @@ return [
         ],
 
         'new' => [
+            'pin' => 'ピン',
             'timestamp' => 'タイムスタンプ',
             'timestamp_missing' => 'ゲーム内のEdit画面でCtrl+Cを押してメッセージに張り付けるとタイムスタンプになります！',
             'title' => '新しいディスカッション',
+            'unpin' => 'ピン解除',
         ],
 
         'show' => [
@@ -124,6 +140,10 @@ return [
             'wip' => '注意：このビートマップは作者によって作成途中とされています。',
         ],
 
+        'votes' => [
+            'up' => 'このディスカッションを支持',
+            'down' => 'このディスカッションを不支持',
+        ],
     ],
 
     'hype' => [

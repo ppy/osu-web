@@ -40,12 +40,14 @@ return [
         'edited' => 'Laatst bewerkt door :editor :update_time',
         'kudosu_denied' => 'Verkrijgen van kudosu ontkend.',
         'message_placeholder_deleted_beatmap' => 'Deze moeilijkheidsgraad is verwijderd en mag niet meer besproken worden.',
+        'message_placeholder_locked' => 'Discussie voor deze beatmap is uitgeschakeld.',
         'message_type_select' => 'Selecteer Commentaartype',
         'reply_notice' => 'Druk op enter om te antwoorden.',
         'reply_placeholder' => 'Type hier je reactie',
         'require-login' => 'Log in om te posten of te antwoorden',
         'resolved' => 'Opgelost',
         'restore' => 'herstel',
+        'show_deleted' => 'Toon verwijderde discussies',
         'title' => 'Discussies',
 
         'collapse' => [
@@ -56,6 +58,18 @@ return [
         'empty' => [
             'empty' => 'Nog geen bestaande discussie!',
             'hidden' => 'Geen discussies komen overeen met de geselecteerde filter.',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => 'Vergrendel discussie',
+                'unlock' => 'Ontgrendel discussie',
+            ],
+
+            'prompt' => [
+                'lock' => 'Reden voor vergrendelen',
+                'unlock' => 'Weet je zeker dat je het wilt ontgrendelen?',
+            ],
         ],
 
         'message_hint' => [
@@ -90,9 +104,11 @@ return [
         ],
 
         'new' => [
+            'pin' => 'Vastzetten',
             'timestamp' => 'Tijdstip',
             'timestamp_missing' => 'ctrl+c in de bewerkmodus en plak in je bericht om een tijdstip toe te voegen!',
             'title' => 'Nieuwe Discussie',
+            'unpin' => 'Losmaken',
         ],
 
         'show' => [
@@ -101,9 +117,9 @@ return [
 
         'sort' => [
             '_' => 'Gesorteerd op:',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'created_at' => 'Gemaakt op',
+            'timeline' => 'Tijdlijn',
+            'updated_at' => 'Laatst bijgewerkt',
         ],
 
         'stats' => [
@@ -124,6 +140,10 @@ return [
             'wip' => 'Deze beatmap is gemarkeerd als work-in-progress door de maker.',
         ],
 
+        'votes' => [
+            'up' => 'Stem deze discussie bij',
+            'down' => 'Stem deze discussie af',
+        ],
     ],
 
     'hype' => [
@@ -194,16 +214,16 @@ return [
                 'played' => 'Gespeeld',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
+                'title' => 'Titel',
+                'artist' => 'Artiest',
+                'difficulty' => 'Moeilijkheidsgraad',
                 'favourites' => 'Favorieten',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'updated' => 'Bijgewerkt',
+                'ranked' => 'Ranked',
+                'rating' => 'Beoordeling',
+                'plays' => 'Keren gespeeld',
+                'relevance' => 'Relevantie',
+                'nominations' => 'Nominaties',
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filteren met :filters vereist een :link',
@@ -304,7 +324,7 @@ return [
         'D' => 'D',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => 'Speelaantal :count',
+        'favourites' => 'Favorieten: :count',
     ],
 ];

@@ -40,12 +40,14 @@ return [
         'edited' => 'แก้ไขล่าสุดโดย :editor เมื่อเวลา :update_time',
         'kudosu_denied' => 'ถูกปฏิเสธการให้ค่าชื่อเสียง',
         'message_placeholder_deleted_beatmap' => 'ระดับความยากนี้ถูกลบแล้วจึงไม่ควรถูกสนทนาถึง',
+        'message_placeholder_locked' => 'การสนทนาสำหรับ beatmap นี้ถูกปิดใช้งาน',
         'message_type_select' => 'เลือกประเภทคอมเม้นต์',
         'reply_notice' => 'กด Enter เพื่อตอบกลับ',
         'reply_placeholder' => 'พิมพ์คำตอบกลับที่นี่',
         'require-login' => 'กรุณาเข้าสู่ระบบเพื่อโพสต์หรือตอบกลับ',
         'resolved' => 'แก้ไขแล้ว',
         'restore' => 'กู้คืน',
+        'show_deleted' => 'แสดงรายการที่ลบ',
         'title' => 'การสนทนา',
 
         'collapse' => [
@@ -56,6 +58,18 @@ return [
         'empty' => [
             'empty' => 'ยังไม่มีการสนทนา!',
             'hidden' => 'ไม่มีการสนทนาตามที่คุณเลือก',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => 'ล็อคการสนทนา',
+                'unlock' => 'ปลดล็อคการสนทนา',
+            ],
+
+            'prompt' => [
+                'lock' => 'เหตุผลสำหรับการล็อค',
+                'unlock' => 'คุณแน่ใจที่จะปลดล็อคหรือไม่?',
+            ],
         ],
 
         'message_hint' => [
@@ -90,9 +104,11 @@ return [
         ],
 
         'new' => [
+            'pin' => 'ปักหมุด',
             'timestamp' => 'ช่วงเวลา',
             'timestamp_missing' => 'กด ctrl-c ในหน้าแก้ไขแมพและกดวางในข้อความของคุณเพื่อเพิ่มช่วงเวลา!',
             'title' => 'การสนทนาใหม่',
+            'unpin' => 'ยกเลิกการปักหมุด',
         ],
 
         'show' => [
@@ -101,9 +117,9 @@ return [
 
         'sort' => [
             '_' => 'เรียงตาม:',
-            'created_at' => '',
-            'timeline' => '',
-            'updated_at' => '',
+            'created_at' => 'เวลาที่สร้าง',
+            'timeline' => 'ไทม์ไลน์',
+            'updated_at' => 'อัพเดทล่าสุด',
         ],
 
         'stats' => [
@@ -124,6 +140,10 @@ return [
             'wip' => 'Beatmap นี้ถูกทำเครื่องหมายไว้ว่าอยู่ในระหว่างการทำ',
         ],
 
+        'votes' => [
+            'up' => 'เห็นด้วยกับการสนทนานี้',
+            'down' => 'ไม่เห็นด้วยกับการสนทนานี้',
+        ],
     ],
 
     'hype' => [
@@ -144,9 +164,9 @@ return [
     ],
 
     'nominations' => [
-        'delete' => '',
-        'delete_own_confirm' => '',
-        'delete_other_confirm' => '',
+        'delete' => 'ลบ',
+        'delete_own_confirm' => 'คุณแน่ใจใช่ไหม? Beatmap จะถูกลบและคุณจะถูกนำกลับไปยังหน้าโปรไฟล์ของคุณ',
+        'delete_other_confirm' => 'คุณแน่ใจใช่ไหม? beatmap จะถูกลบและคุณจะถูกนำกลับไปยังหน้าโปรไฟล์ user',
         'disqualification_prompt' => 'เหตุผลในการตัดสิทธิ์?',
         'disqualified_at' => 'ถูกตัดสิทธิ์เมื่อ :time_ago เพราะ (:reason)',
         'disqualified_no_reason' => 'ไม่มีเหตุผลที่ระบุไว้',
@@ -171,7 +191,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => 'คุณแน่ใจหรือ? ในการโพสต์ปัญหาใหม่จะรีเซ็ตการเสนอชื่อ',
-            'disqualify' => '',
+            'disqualify' => 'คุณแน่ใจใช่หรือไม่? ที่จะลบ beatmap ออกและรีเซทความคืบหน้า',
         ],
     ],
 
@@ -194,16 +214,16 @@ return [
                 'played' => 'เคยเล่นแล้ว',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'favourites' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
-                'nominations' => '',
+                'title' => 'ชื่อ',
+                'artist' => 'ศิลปิน',
+                'difficulty' => 'ระดับความยาก',
+                'favourites' => 'รายการโปรด',
+                'updated' => 'อัพ​เด​ต',
+                'ranked' => 'จัดอันดับแล้ว',
+                'rating' => 'คะแนน',
+                'plays' => 'จำนวนการเล่น',
+                'relevance' => 'ความเกี่ยวข้อง',
+                'nominations' => 'การเสนอชื่อ',
             ],
             'supporter_filter_quote' => [
                 '_' => 'กรองโดย :filters ต้องมี :link ทำงานอยู่',
@@ -229,7 +249,7 @@ return [
         'qualified' => 'ผ่านเกณฑ์',
         'loved' => 'Loved',
         'faves' => 'รายการโปรด',
-        'pending' => '',
+        'pending' => 'รอดำเนินการ & WIP',
         'graveyard' => 'สุสาน',
         'my-maps' => 'แมพของฉัน',
     ],
@@ -304,7 +324,7 @@ return [
         'D' => 'D',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => 'จำนวนการเล่น: :count',
+        'favourites' => 'การชื่นชอบ: :count',
     ],
 ];

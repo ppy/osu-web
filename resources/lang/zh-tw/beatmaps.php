@@ -40,12 +40,14 @@ return [
         'edited' => '最後由 :editor 編輯於 :update_time 。',
         'kudosu_denied' => 'kudosu 被收回',
         'message_placeholder_deleted_beatmap' => '該難度已被刪除，無法繼續討論',
+        'message_placeholder_locked' => '',
         'message_type_select' => '選擇回覆類型',
         'reply_notice' => '按下 Enter 以回覆',
         'reply_placeholder' => '在此處輸入您的回覆',
         'require-login' => '回覆前請先登入。',
         'resolved' => '已解決',
         'restore' => '已修復',
+        'show_deleted' => '顯示刪除的項目',
         'title' => '討論區',
 
         'collapse' => [
@@ -56,6 +58,18 @@ return [
         'empty' => [
             'empty' => '還沒有討論！',
             'hidden' => '沒有符合過濾條件的討論。',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => '',
+                'unlock' => '',
+            ],
+
+            'prompt' => [
+                'lock' => '',
+                'unlock' => '',
+            ],
         ],
 
         'message_hint' => [
@@ -90,9 +104,11 @@ return [
         ],
 
         'new' => [
+            'pin' => '釘選',
             'timestamp' => '時間戳',
             'timestamp_missing' => '在編輯模式下按 Ctrl+C 並至您輸入的對話框中按 Ctrl+V 以加入時間戳！',
             'title' => '新的討論',
+            'unpin' => '取消釘選',
         ],
 
         'show' => [
@@ -124,6 +140,10 @@ return [
             'wip' => '注意：這張圖譜被作者標記為 WIP（半成品）',
         ],
 
+        'votes' => [
+            'up' => '',
+            'down' => '',
+        ],
     ],
 
     'hype' => [

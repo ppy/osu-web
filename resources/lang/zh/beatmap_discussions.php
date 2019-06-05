@@ -78,7 +78,7 @@ return [
         'admin' => '管理员',
         'bng' => '谱面管理团队',
         'owner' => '谱面作者',
-        'qat' => '质量保证团队',
+        'nat' => '',
     ],
 
     'user_filter' => [

@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => '',
+                'hide_results_info' => '',
                 'length' => 'Rulează sondajul pentru',
                 'length_days_suffix' => 'zile',
                 'length_info' => 'Lasă liber pentru un sondaj ce nu se termină niciodată',
@@ -292,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => 'Votarea se va termina în :time',
                     'ended' => 'Votarea s-a terminat :time',
+                    'results_hidden' => '',
                     'total' => 'Total voturi: :count',
                 ],
             ],

@@ -78,7 +78,7 @@ return [
         'admin' => '管理員',
         'bng' => '譜面管理團隊',
         'owner' => '作圖者',
-        'qat' => '質量保證團隊',
+        'nat' => '',
     ],
 
     'user_filter' => [

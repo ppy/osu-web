@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => '투표의 결과를 숨깁니다.',
+                'hide_results_info' => '투표가 끝났을 때만 보입니다.',
                 'length' => '투표 진행 기간',
                 'length_days_suffix' => '일',
                 'length_info' => '투표를 영구적으로 진행하려면 공백으로 두세요.',
@@ -292,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => '투표가 :time에 종료됩니다.',
                     'ended' => '투표가 :time에 종료되었습니다.',
+                    'results_hidden' => '투표가 끝난 후에 결과가 표시됩니다.',
                     'total' => '총 투표 수: :count회',
                 ],
             ],

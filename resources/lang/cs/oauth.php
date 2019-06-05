@@ -19,23 +19,23 @@
  */
 
 return [
-    'cancel' => '',
+    'cancel' => 'Zrušit',
 
     'authorise' => [
-        'authorise' => '',
-        'request' => '',
-        'scopes_title' => '',
-        'title' => '',
+        'authorise' => 'Autorizovat',
+        'request' => 'žádá o přístup k vašemu účtu.',
+        'scopes_title' => 'Tato aplikace bude moci:',
+        'title' => 'Žádost o autorizaci',
 
         'wrong_user' => [
-            '_' => '',
-            'logout_link' => '',
+            '_' => 'Jsi přihlášen jako :user. :logout_link.',
+            'logout_link' => 'Klikni zde pro přihlášení, jako jiný uživatel',
         ],
     ],
 
     'login' => [
-        'download' => '',
-        'label' => '',
-        'title' => '',
+        'download' => 'Klikni zde pro stažení hry a vytvoření účtu',
+        'label' => 'Nejprve se přihlašme k vašemu účtu!',
+        'title' => 'Přihlášení k účtu',
     ],
 ];

@@ -19,23 +19,23 @@
  */
 
 return [
-    'cancel' => '',
+    'cancel' => 'İptal et',
 
     'authorise' => [
         'authorise' => '',
-        'request' => '',
+        'request' => 'hesabınıza erişmek için izin istiyor.',
         'scopes_title' => '',
         'title' => '',
 
         'wrong_user' => [
-            '_' => '',
-            'logout_link' => '',
+            '_' => ':user olarak giriş yaptınız. :logout_link.',
+            'logout_link' => 'Farklı bir kullanıcı olarak giriş yapmak için buraya tıklayın',
         ],
     ],
 
     'login' => [
-        'download' => '',
-        'label' => '',
+        'download' => 'Oyunu indirmek ve bir hesap yaratmak için buraya tıklayın',
+        'label' => 'İlk olarak, hadi hesabına giriş yapalım!',
         'title' => '',
     ],
 ];

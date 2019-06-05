@@ -55,6 +55,7 @@ return [
         'search' => 'Szukaj',
         'see_more' => 'zobacz więcej',
         'show' => 'pokaż',
+        'show_deleted' => 'Pokaż usunięte',
         'show_more' => 'pokaż więcej',
         'show_more_options' => 'pokaż więcej opcji',
         'upload_image' => 'prześlij zdjęcie',

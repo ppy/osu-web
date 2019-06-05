@@ -40,12 +40,14 @@ return [
         'edited' => 'Последно редактирано от :editor :update_time.',
         'kudosu_denied' => 'Забранено получаване на kudosu.',
         'message_placeholder_deleted_beatmap' => 'Тази трудност е била изтрита, така че тя вече не може да се обсъжда.',
+        'message_placeholder_locked' => '',
         'message_type_select' => 'Изберете тип на коментар',
         'reply_notice' => 'Натиснете enter за да отговорите.',
         'reply_placeholder' => 'Въведете вашия отговор тук',
         'require-login' => 'Моля влезте в профила си за да публикувате или отговорите',
         'resolved' => 'Разрешени',
         'restore' => 'възстанови',
+        'show_deleted' => '',
         'title' => 'Дискусии',
 
         'collapse' => [
@@ -56,6 +58,18 @@ return [
         'empty' => [
             'empty' => 'Няма дискусии все още!',
             'hidden' => 'Няма дискусия която съвпада с избрания филтър.',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => '',
+                'unlock' => '',
+            ],
+
+            'prompt' => [
+                'lock' => '',
+                'unlock' => '',
+            ],
         ],
 
         'message_hint' => [
@@ -90,9 +104,11 @@ return [
         ],
 
         'new' => [
+            'pin' => '',
             'timestamp' => 'Времев етикет',
             'timestamp_missing' => 'ctrl-c в редактора и вмъкнете вашето съобщение, за да добавите времев етикет!',
             'title' => 'Нова Дискусия',
+            'unpin' => '',
         ],
 
         'show' => [
@@ -124,6 +140,10 @@ return [
             'wip' => 'Забележка: Този бийтмап е маркиран като работа в прогрес от създателя.',
         ],
 
+        'votes' => [
+            'up' => '',
+            'down' => '',
+        ],
     ],
 
     'hype' => [

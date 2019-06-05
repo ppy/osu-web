@@ -40,12 +40,14 @@ return [
         'edited' => 'Dernière modification par :editor :update_time',
         'kudosu_denied' => 'Le kudosu a été refusé pour ce post.',
         'message_placeholder_deleted_beatmap' => 'Cette difficulté a été supprimée, il n\'est plus possible d\'en discuter.',
+        'message_placeholder_locked' => 'La discussion pour cette beatmap a été désactivée.',
         'message_type_select' => 'Sélectionnez un type de commentaire',
         'reply_notice' => 'Appuyez sur Entrée pour répondre.',
         'reply_placeholder' => 'Écrivez votre réponse ici',
         'require-login' => 'Connectez-vous pour poster ou répondre',
         'resolved' => 'Résolu',
         'restore' => 'restaurer',
+        'show_deleted' => 'Afficher le contenu supprimé',
         'title' => 'Discussions',
 
         'collapse' => [
@@ -56,6 +58,18 @@ return [
         'empty' => [
             'empty' => 'Pas encore de discussion !',
             'hidden' => 'Aucune discussion ne correspond à vos critères.',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => 'Verrouiller la discussion',
+                'unlock' => 'Déverrouiller la discussion',
+            ],
+
+            'prompt' => [
+                'lock' => 'Raison du verrouillage',
+                'unlock' => 'Êtes-vous sûr de vouloir déverrouiller ?',
+            ],
         ],
 
         'message_hint' => [
@@ -90,9 +104,11 @@ return [
         ],
 
         'new' => [
+            'pin' => 'Épingler',
             'timestamp' => 'Horodatage',
             'timestamp_missing' => 'ctrl-c en mode édition et collez votre message pour ajouter un horodatage !',
             'title' => 'Nouvelle Discussion',
+            'unpin' => 'Ne plus épingler',
         ],
 
         'show' => [
@@ -124,6 +140,10 @@ return [
             'wip' => 'Note: Cette beatmap a été marquée comme en cours de travail par son créateur.',
         ],
 
+        'votes' => [
+            'up' => 'Upvote cette discussion',
+            'down' => 'Downvote cette discussion',
+        ],
     ],
 
     'hype' => [

@@ -74,6 +74,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Yinelenen seçenekler yasaktır.',
             'grace_period_expired' => ':limit saatten sonra bir anket düzenlenemez',
+            'hiding_results_forever' => '',
             'invalid_max_options' => 'Kullanıcı başına seçenek sayısı mevcut seçenek sayısını geçemez.',
             'minimum_one_selection' => 'Kullanıcı başına en az bir seçenek gereklidir.',
             'minimum_two_options' => 'En az iki seçenek gereklidir.',
@@ -111,6 +112,7 @@ return [
         'too_long' => 'Maksimum uzunluk aşıldı - yalnızca :limit karakter olabilir.',
 
         'change_username' => [
+            'restricted' => 'Kısıtlanmış iken kullanıcı adını değiştiremezsin.',
             'supporter_required' => [
                 '_' => 'İsminizi değiştirmek için :link olmanız gerekli!',
                 'link_text' => 'osu!\'u desteklemiş',

@@ -55,6 +55,7 @@ return [
         'search' => '搜尋',
         'see_more' => '查看更多',
         'show' => '顯示',
+        'show_deleted' => '顯示刪除的項目',
         'show_more' => '顯示更多',
         'show_more_options' => '',
         'upload_image' => '上傳圖片',
