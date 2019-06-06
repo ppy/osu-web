@@ -29,7 +29,7 @@ interface Props {
   titleTrans?: HeaderTitleTrans;
 }
 
-export default class HeaderV3 extends React.Component<Props, {}> {
+export default class HeaderV3 extends React.Component<Props> {
   render(): React.ReactNode {
     let classNames = 'header-v3';
     if (this.props.theme) {

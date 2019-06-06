@@ -23,7 +23,7 @@ interface Props {
   items: AdminMenuItem[];
 }
 
-export default class AdminMenu extends React.PureComponent<Props, {}> {
+export default class AdminMenu extends React.PureComponent<Props> {
   private eventId = `admin-menu-${osu.uuid()}`;
 
   render() {

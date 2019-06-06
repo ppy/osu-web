@@ -29,7 +29,7 @@ interface Props {
 }
 
 @observer
-export default class Main extends React.Component<Props, {}> {
+export default class Main extends React.Component<Props> {
   private menuId: string;
 
   constructor(props: Props) {

@@ -31,7 +31,7 @@ interface Props {
   post: NewsPostJson;
 }
 
-export default class Main extends React.Component<Props, {}> {
+export default class Main extends React.Component<Props> {
   render() {
     const {content, author} = this.processContent();
     const titleTrans = {
