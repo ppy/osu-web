@@ -68,12 +68,13 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Beatmap metadata post verwijderen is niet toegestaan.',
             'beatmapset_post_no_edit' => 'Beatmap metadata post bewerken is niet toegestaan.',
-            'only_quote' => '',
+            'only_quote' => 'Uw antwoord bevat slechts een citaat.',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Een optie dupliceren is niet toegestaan.',
-            'grace_period_expired' => '',
+            'grace_period_expired' => 'Kan een poll niet bewerken na meer dan :limit uren.',
+            'hiding_results_forever' => 'Kan resultaten van een poll die nooit eindigt niet verbergen.',
             'invalid_max_options' => 'Opties per gebruiker mag niet groter zijn dan het aantal opties.',
             'minimum_one_selection' => 'Minstens een optie per gebruiker is vereist.',
             'minimum_two_options' => 'Moet ten minste twee opties hebben.',
@@ -98,7 +99,7 @@ return [
         'username_available_soon' => 'Deze gebruikersnaam kan elk moment beschikbaar worden!',
         'username_invalid_characters' => 'De opgevraagde gebruikersnaam bevat ongeldige tekens.',
         'username_in_use' => 'Gebruikersnaam is al in gebruik!',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_locked' => 'Gebruikersnaam is al in gebruik!', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'Gebruik oftewel underscores of spaties, niet beide!',
         'username_no_spaces' => "Gebruikersnaam kan niet beginnen of eindigen met spaties!",
         'username_not_allowed' => 'Deze gebruikersnaam is niet toegestaan.',
@@ -111,6 +112,7 @@ return [
         'too_long' => 'Maximum lengte overschreden - kan enkel tot :limit karakters zijn.',
 
         'change_username' => [
+            'restricted' => 'Je kan je gebruikersnaam niet wijzigen terwijl je restricted bent.',
             'supporter_required' => [
                 '_' => 'Je moet :link hebben om je naam te veranderen!',
                 'link_text' => 'support osu!',
@@ -120,6 +122,6 @@ return [
     ],
 
     'user_report' => [
-        'self' => "",
+        'self' => "Je kunt jezelf niet rapporteren!",
     ],
 ];

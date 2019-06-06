@@ -73,7 +73,8 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Nie możesz dodawać takich samych możliwości wyboru.',
-            'grace_period_expired' => 'Nie możesz edytować ankiety po upływie :limit godzin',
+            'grace_period_expired' => 'Nie możesz edytować ankiety po upływie :limit godzin.',
+            'hiding_results_forever' => 'Nie możesz ukryć wyników ankiety bez daty zakończenia.',
             'invalid_max_options' => 'Liczba odpowiedzi do zaznaczenia przez użytkownika nie może przekroczyć liczby wyborów.',
             'minimum_one_selection' => 'Wymagany jest conajmniej jeden wybór na użytkownika.',
             'minimum_two_options' => 'Wymagane są conajmniej dwie możliwości wyboru.',
@@ -111,6 +112,7 @@ return [
         'too_long' => 'Przekroczono maksymalną liczbę znaków - możliwe jest użycie tylko :limit znaków.',
 
         'change_username' => [
+            'restricted' => 'Nie możesz zmienić swojej nazwy użytkownika podczas blokady konta.',
             'supporter_required' => [
                 '_' => 'Musisz posiadać :link, aby zmienić nazwę użytkownika!',
                 'link_text' => 'status donatora osu!',

@@ -55,6 +55,7 @@ return [
         'search' => '검색',
         'see_more' => '더 보기',
         'show' => '표시',
+        'show_deleted' => '삭제된 내용 표시',
         'show_more' => '더 보기',
         'show_more_options' => '더 많은 옵션 보기',
         'upload_image' => '이미지 올리기',

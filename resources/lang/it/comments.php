@@ -20,6 +20,7 @@
 
 return [
     'deleted' => 'eliminato',
+    'deleted_count' => '',
     'edited' => 'modificato :timeago da :user',
     'empty' => 'Ancora nessun commento.',
     'replies' => 'Risposte',

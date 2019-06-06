@@ -20,6 +20,7 @@
 
 return [
     'deleted' => 'odstraněno',
+    'deleted_count' => '',
     'edited' => 'upraveno před :timeago uživatelem :user',
     'empty' => 'Zatím zde nejsou žádné komentáře.',
     'replies' => 'Odpovědi',

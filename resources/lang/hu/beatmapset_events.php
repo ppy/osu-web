@@ -22,9 +22,11 @@ return [
     'event' => [
         'approve' => 'Jóváhagyva.',
         'discussion_delete' => 'A moderátor kitörölte a :discussion megbeszélést.',
+        'discussion_lock' => 'A beatmap megbeszélése meg lett tiltva. (:text)',
         'discussion_post_delete' => 'A moderátor posztot törölt a :discussion megbeszélésből.',
         'discussion_post_restore' => 'A moderátor posztot állított vissza a :discussion megbeszélésben.',
         'discussion_restore' => 'A moderátor visszaállította a következő megbeszélést :discussion.',
+        'discussion_unlock' => 'A beatmap megbeszélése engedélyezve lett.',
         'disqualify' => 'Diszkvalifikálva :user által. Indok: :discussion (:text).',
         'disqualify_legacy' => 'Diszkvalifikálva :user által. Indok: :text.',
         'issue_reopen' => 'Megoldott probléma :discussion újranyitva.',

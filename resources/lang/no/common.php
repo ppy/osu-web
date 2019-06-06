@@ -55,6 +55,7 @@ return [
         'search' => 'Søk',
         'see_more' => 'se mer',
         'show' => 'vis',
+        'show_deleted' => 'Vis slettede',
         'show_more' => 'vis mer',
         'show_more_options' => 'vis flere valg',
         'upload_image' => 'last opp bilde',

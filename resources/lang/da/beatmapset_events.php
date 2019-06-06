@@ -22,9 +22,11 @@ return [
     'event' => [
         'approve' => 'Godkendt.',
         'discussion_delete' => 'Moderator slette diskussionen :discussion.',
+        'discussion_lock' => 'Diskussion for dette beatmap er blevet deaktiveret. (:text)',
         'discussion_post_delete' => 'Moderator slettede et opslag fra diskussionen :discussion.',
         'discussion_post_restore' => 'Moderator gendannede et opslag fra diskussionen :discussion.',
         'discussion_restore' => 'Moderator gendannede diskussionen :discussion.',
+        'discussion_unlock' => 'Diskussion for dette beatmap er blevet aktiveret.',
         'disqualify' => 'Diskvalificeret af :user. Årsag: :discussion (:text).',
         'disqualify_legacy' => 'Diskvalificeret af :user. Årsag: :text.',
         'issue_reopen' => 'Løste problem :discussion genåbnet.',

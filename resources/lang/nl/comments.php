@@ -20,6 +20,7 @@
 
 return [
     'deleted' => 'verwijderd',
+    'deleted_count' => ':count_delimited verwijderde opmerking|:count_delimited verwijderde opmerkingen',
     'edited' => 'gewijzigd :timeago door :user',
     'empty' => 'Nog geen commentaar.',
     'replies' => 'Reacties',
@@ -43,8 +44,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => '',
-        'reply' => '',
+        'new' => 'Log in om een opmerking achter te laten',
+        'reply' => 'Log in om te reageren',
     ],
 
     'index' => [

@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu!nieuws',
 
         'nav' => [
             'newer' => 'Nieuwere berichten',
@@ -28,13 +28,13 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Nieuws :info',
+            'info' => 'Voorpagina',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => 'door :user',
 
         'nav' => [
             'newer' => 'Nieuwer bericht',
@@ -42,8 +42,8 @@ return [
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Nieuws :info',
+            'info' => 'Bericht',
         ],
     ],
 

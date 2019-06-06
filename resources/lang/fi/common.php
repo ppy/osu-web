@@ -55,6 +55,7 @@ return [
         'search' => 'Hae',
         'see_more' => 'katso lisää',
         'show' => 'näytä',
+        'show_deleted' => 'Näytä poistetut',
         'show_more' => 'näytä lisää',
         'show_more_options' => 'näytä lisävaihtoehtoja',
         'upload_image' => 'lataa kuva',

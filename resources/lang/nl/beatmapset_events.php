@@ -22,9 +22,11 @@ return [
     'event' => [
         'approve' => 'Goedgekeurd.',
         'discussion_delete' => 'Moderator verwijderde discussie :discussion.',
+        'discussion_lock' => 'Discussie voor deze beatmap is uitgeschakeld. (:text)',
         'discussion_post_delete' => 'Moderator verwijderde post van discussie :discussion.',
         'discussion_post_restore' => 'Moderator herstelde post van discussie :discussion.',
         'discussion_restore' => 'Moderator herstelde discussie :discussion.',
+        'discussion_unlock' => 'Discussie voor deze beatmap is ingeschakeld.',
         'disqualify' => 'Gediskwalificeerd door :user. Reden: :discussion (:text).',
         'disqualify_legacy' => 'Gediskwalificeerd door :user. Reden: :text.',
         'issue_reopen' => 'Probleem opgelost :discussie heropend.',

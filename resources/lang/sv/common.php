@@ -55,6 +55,7 @@ return [
         'search' => 'Sök',
         'see_more' => 'se mer',
         'show' => 'visa',
+        'show_deleted' => '',
         'show_more' => 'visa mer',
         'show_more_options' => '',
         'upload_image' => 'ladda upp bild',

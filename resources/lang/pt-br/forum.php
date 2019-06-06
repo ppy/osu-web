@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => '',
+                'hide_results_info' => '',
                 'length' => 'Manter enquete aberta por',
                 'length_days_suffix' => 'dias',
                 'length_info' => 'Deixe em branco para uma votação sem fim',
@@ -292,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => 'A votação encerrará às :time',
                     'ended' => 'Votação encerrada :time',
+                    'results_hidden' => '',
                     'total' => 'Total de votos: :count',
                 ],
             ],

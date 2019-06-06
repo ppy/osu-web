@@ -55,6 +55,7 @@ return [
         'search' => 'Arama',
         'see_more' => 'daha fazla',
         'show' => 'göster',
+        'show_deleted' => '',
         'show_more' => 'daha fazla göster',
         'show_more_options' => 'daha fazla seçenek göster',
         'upload_image' => 'görsel yükle',

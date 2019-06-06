@@ -74,6 +74,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Non è permesso avere un\'opzione duplicata.',
             'grace_period_expired' => 'Non è possibile modificare un sondaggio dopo :limit ore',
+            'hiding_results_forever' => '',
             'invalid_max_options' => 'Le opzioni per utente non possono superare il numero di opzioni disponibili.',
             'minimum_one_selection' => 'È richiesto un minimo di un\'opzione per utente.',
             'minimum_two_options' => 'È necessario almeno due opzioni.',
@@ -111,6 +112,7 @@ return [
         'too_long' => 'Lunghezza massima superata - può essere solo fino a :limit caratteri.',
 
         'change_username' => [
+            'restricted' => '',
             'supporter_required' => [
                 '_' => 'Devi essere :link per cambiare il tuo nome!',
                 'link_text' => 'osu! sostenuto',

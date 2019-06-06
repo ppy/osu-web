@@ -55,6 +55,7 @@ return [
         'search' => '搜索',
         'see_more' => '查看更多',
         'show' => '显示',
+        'show_deleted' => '显示已删除的评论',
         'show_more' => '显示更多',
         'show_more_options' => '显示更多选项',
         'upload_image' => '上传图片',

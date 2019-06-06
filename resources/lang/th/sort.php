@@ -27,6 +27,6 @@ return [
 
     'forum_topics' => [
         'new' => 'ตอบกลับครั้งล่าสุด',
-        'feature_votes' => '',
+        'feature_votes' => 'ลำดับความสำคัญ',
     ],
 ];

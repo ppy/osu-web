@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => '오늘은 더 이상 지명할 수 없습니다. 내일 다시 시도해주세요.',
+            'full_bn_required' => '완전한 nominator가 되어야만 qualify 지명을 할 수 있습니다.',
+            'full_bn_required_hybrid' => '완전한 nominator가 되어야만 한 게임모드 이상의 비트맵 셋을 지명할 수 있습니다.',
             'incorrect_state' => '해당 작업을 수행하는 중 오류가 발생했습니다. 페이지를 새로 고쳐주세요.',
             'owner' => "자신의 비트맵을 추천할 수 없습니다.",
         ],
@@ -48,6 +50,9 @@ return [
         'edit' => [
             'system_generated' => '자동으로 생성된 글은 수정할 수 없습니다.',
             'not_owner' => '본인이 쓴 글만 수정할 수 있습니다.',
+        ],
+        'store' => [
+            'beatmapset_locked' => '이 비트맵은 토론을 할 수 없도록 잠겨 있습니다.',
         ],
     ],
 
@@ -119,6 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => '요청하신 포럼에 대한 접근 권한이 필요합니다.',
                 'over' => '투표가 종료되어 더이상 투표할 수 없습니다.',
+                'play_more' => '포럼에 투표를 하기 전에 게임을 조금 더 플레이하셔야 해요.',
                 'voted' => '투표한 뒤에는 변경할 수 없습니다.',
 
                 'user' => [

@@ -40,12 +40,14 @@ return [
         'edited' => 'Zuletzt bearbeitet von :editor (:update_time).',
         'kudosu_denied' => 'Dir wurde kudosu verweigert.',
         'message_placeholder_deleted_beatmap' => 'Diese Schwierigkeitsstufe wurde gelöscht und kann nicht mehr diskutiert werden.',
+        'message_placeholder_locked' => 'Die Diskussion für diese Beatmap wurde deaktiviert.',
         'message_type_select' => 'Kommentartyp auswählen',
         'reply_notice' => 'Zum Antworten Enter drücken.',
         'reply_placeholder' => 'Antwort hier eingeben',
         'require-login' => 'Zum Beitragen oder Antworten bitte einloggen',
         'resolved' => 'Gelöst',
         'restore' => 'wiederherstellen',
+        'show_deleted' => 'Gelöschte anzeigen',
         'title' => 'Diskussionen',
 
         'collapse' => [
@@ -56,6 +58,18 @@ return [
         'empty' => [
             'empty' => 'Es gibt noch keine Diskussionen!',
             'hidden' => 'Keine Diskussion entspricht dem ausgewählten Filter.',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => 'Diskussion sperren',
+                'unlock' => 'Diskussion freigeben',
+            ],
+
+            'prompt' => [
+                'lock' => 'Grund für die Sperrung',
+                'unlock' => 'Willst du wirklich freigeben?',
+            ],
         ],
 
         'message_hint' => [
@@ -90,9 +104,11 @@ return [
         ],
 
         'new' => [
+            'pin' => 'Anheften',
             'timestamp' => 'Timestamp',
             'timestamp_missing' => 'Strg-C im Editor und in deine Nachricht einfügen, um eine Timestamp hinzuzufügen!',
             'title' => 'Neue Diskussion',
+            'unpin' => 'Lösen',
         ],
 
         'show' => [
@@ -124,6 +140,10 @@ return [
             'wip' => 'Anmerkung: Diese Beatmap ist vom Ersteller als \'Work-In-Progress\' gekennzeichnet',
         ],
 
+        'votes' => [
+            'up' => 'Diskussion aufwerten',
+            'down' => 'Diskussion abwerten',
+        ],
     ],
 
     'hype' => [

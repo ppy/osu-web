@@ -131,7 +131,7 @@ return [
         ],
 
         'convinced' => [
-            'title' => 'Прекрасно! :D',
+            'title' => 'Убедил! :D',
             'support' => 'поддержать osu!',
             'gift' => 'или подарить osu!supporter другому игроку',
             'instructions' => 'нажмите на сердечко для перехода в osu!store',

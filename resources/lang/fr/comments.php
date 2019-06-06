@@ -20,6 +20,7 @@
 
 return [
     'deleted' => 'supprimé',
+    'deleted_count' => ':count_delimited a supprimé le commentaire|:count_delimited a supprimé les commentaires',
     'edited' => 'édité par :user :timeago',
     'empty' => 'Il n’y a pas encore de commentaires.',
     'replies' => 'Réponses',

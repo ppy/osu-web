@@ -74,6 +74,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Die gleiche Antwort kann nicht doppelt enthalten sein.',
             'grace_period_expired' => 'Eine Umfrage kann nach mehr als :limit Stunden nicht bearbeitet werden',
+            'hiding_results_forever' => 'Die Ergebnisse einer Umfrage, die nie endet, können nicht versteckt werden.',
             'invalid_max_options' => 'Die Zahl an Antworten pro Benutzer kann die Anzahl an Antworten nicht überschreiten.',
             'minimum_one_selection' => 'Mindestens eine Antwort wird pro Benutzer benötigt.',
             'minimum_two_options' => 'Mindestens zwei Antworten werden benötigt.',
@@ -111,6 +112,7 @@ return [
         'too_long' => 'Maximale Länge überschritten - höchstens :limit Zeichen.',
 
         'change_username' => [
+            'restricted' => 'Du kannst deinen Benutzernamen nicht ändern solange dein Zugang beschränkt ist.',
             'supporter_required' => [
                 '_' => 'Du musst :link haben, um deinen Nutzernamen zu ändern!',
                 'link_text' => 'osu! unterstützt',

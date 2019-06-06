@@ -40,12 +40,14 @@ return [
         'edited' => 'Sidst redigeret af :editor :update_time.',
         'kudosu_denied' => 'Nægtet fra at kunne modtage kudosu.',
         'message_placeholder_deleted_beatmap' => 'Denne sværhedsgrad er blevet slettet så den kan ikke længere blive diskuteret.',
+        'message_placeholder_locked' => '',
         'message_type_select' => 'Vælg kommentar-type',
         'reply_notice' => 'Tryk enter for at svare.',
         'reply_placeholder' => 'Skriv dit svar her',
         'require-login' => 'Log ind for at slå op eller svare',
         'resolved' => 'Løst',
         'restore' => 'gendan',
+        'show_deleted' => '',
         'title' => 'Diskussioner',
 
         'collapse' => [
@@ -56,6 +58,18 @@ return [
         'empty' => [
             'empty' => 'Ingen diskussioner endnu!',
             'hidden' => 'Ingen diskussioner matchede det valgte filter.',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => '',
+                'unlock' => '',
+            ],
+
+            'prompt' => [
+                'lock' => '',
+                'unlock' => '',
+            ],
         ],
 
         'message_hint' => [
@@ -90,9 +104,11 @@ return [
         ],
 
         'new' => [
+            'pin' => '',
             'timestamp' => 'Tidsstempel',
             'timestamp_missing' => 'Tryk ctrl-c i edit mode og indsæt i din besked for at tilføje tidsstempel!',
             'title' => 'Ny diskussion',
+            'unpin' => '',
         ],
 
         'show' => [
@@ -124,6 +140,10 @@ return [
             'wip' => 'Notat: Dette beatmap er blevet markeret som "Under konstruktion" af skaberen.',
         ],
 
+        'votes' => [
+            'up' => '',
+            'down' => '',
+        ],
     ],
 
     'hype' => [

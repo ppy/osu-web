@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => 'A szavazás eredményeinek elrejtése.',
+                'hide_results_info' => 'Csak a szavazás vége után fognak megjelenni.',
                 'length' => 'Szavazás futtatása',
                 'length_days_suffix' => 'nap',
                 'length_info' => 'Hagyja üresen a soha véget nem érő szavazást',
@@ -292,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => 'Szavazás vége :time -kor lesz',
                     'ended' => 'Szavazás végetért :time -kor',
+                    'results_hidden' => 'Az eredmények a szavazás vége után jelennek meg.',
                     'total' => 'Leadott szavazatok száma :count',
                 ],
             ],

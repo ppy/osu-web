@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Olet saavuttanut suosittelurajan tälle päivälle, yritä huomenna uudelleen.',
+            'full_bn_required' => '',
+            'full_bn_required_hybrid' => '',
             'incorrect_state' => 'Virhe toimintoa suorittaessa, kokeile sivun päivittämistä.',
             'owner' => "Omaa beatmappia ei voi suositella.",
         ],
@@ -48,6 +50,9 @@ return [
         'edit' => [
             'system_generated' => 'Automaattisesti luotua viestiä ei voi muokata.',
             'not_owner' => 'Vain lähettäjä voi muokata viestiä.',
+        ],
+        'store' => [
+            'beatmapset_locked' => '',
         ],
     ],
 
@@ -119,6 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'Tarvitset pääsyn tälle foorumille.',
                 'over' => 'Äänestys on loppunut eikä uusia ääniä voida antaa.',
+                'play_more' => 'Sinun pitää pelata enemmän jotta voit äänestää foorumilla.',
                 'voted' => 'Äänen vaihtaminen ei ole sallittua.',
 
                 'user' => [

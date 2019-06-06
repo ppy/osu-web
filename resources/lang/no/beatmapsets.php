@@ -42,7 +42,7 @@ return [
             'mapped_by' => 'mappet av :mapper',
             'qualified' => 'kvalifisert den ',
             'ranked' => 'rangert den ',
-            'submitted' => 'innsendt på ',
+            'submitted' => 'innsendt den ',
             'unfavourite' => 'Fjern dette beatmapsettet som en favoritt',
             'updated' => 'sist oppdatert på ',
             'updated_timeago' => 'sist oppdatert :timeago',

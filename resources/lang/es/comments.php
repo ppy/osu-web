@@ -20,6 +20,7 @@
 
 return [
     'deleted' => 'borrado',
+    'deleted_count' => '',
     'edited' => 'editado hace :timeago por :user',
     'empty' => 'Todavía no hay comentarios.',
     'replies' => 'Respuestas',

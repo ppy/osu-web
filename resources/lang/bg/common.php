@@ -55,6 +55,7 @@ return [
         'search' => 'Търсене',
         'see_more' => 'виж още',
         'show' => 'покажи',
+        'show_deleted' => '',
         'show_more' => 'покажи още',
         'show_more_options' => 'покажи още опции',
         'upload_image' => 'качи снимка',

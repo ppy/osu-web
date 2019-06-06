@@ -40,12 +40,14 @@ return [
         'edited' => 'Ultima modifica di :editor :update_time',
         'kudosu_denied' => 'Negato dall\'ottenimento di kudosu.',
         'message_placeholder_deleted_beatmap' => 'La difficoltà è stata eliminata quindi non può più essere discussa.',
+        'message_placeholder_locked' => '',
         'message_type_select' => 'Seleziona il tipo di commento',
         'reply_notice' => 'Premi invio per rispondere.',
         'reply_placeholder' => 'Scrivi la tua risposta qui',
         'require-login' => 'Per favore effettua il login per postare o rispondere',
         'resolved' => 'Risolto',
         'restore' => 'ripristina',
+        'show_deleted' => '',
         'title' => 'Discussioni',
 
         'collapse' => [
@@ -56,6 +58,18 @@ return [
         'empty' => [
             'empty' => 'Ancora nessuna discussione!',
             'hidden' => 'Nessuna discussione coincide con il filtro selezionato.',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => '',
+                'unlock' => '',
+            ],
+
+            'prompt' => [
+                'lock' => '',
+                'unlock' => '',
+            ],
         ],
 
         'message_hint' => [
@@ -90,9 +104,11 @@ return [
         ],
 
         'new' => [
+            'pin' => '',
             'timestamp' => 'Timestamp',
             'timestamp_missing' => 'fai ctrl-c nell\'editor e incolla il tuo messaggio per aggiungere un timestamp!',
             'title' => 'Nuova Discussione',
+            'unpin' => '',
         ],
 
         'show' => [
@@ -124,6 +140,10 @@ return [
             'wip' => 'Nota: Questa beatmap è contrassegnata come un work-in-progress dal creatore.',
         ],
 
+        'votes' => [
+            'up' => '',
+            'down' => '',
+        ],
     ],
 
     'hype' => [
