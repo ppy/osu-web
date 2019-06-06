@@ -59,6 +59,7 @@
   &__action {
     .reset-input();
     .link-default();
+    text-transform: lowercase;
 
     &:hover {
       text-decoration: underline;
@@ -66,10 +67,6 @@
 
     &--active {
       color: @green;
-    }
-
-    &--permalink {
-      text-transform: lowercase;
     }
 
     .@{_top}--changelog & {
