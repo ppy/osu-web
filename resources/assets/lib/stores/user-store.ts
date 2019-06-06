@@ -27,7 +27,6 @@ import RootDataStore from './root-data-store';
 
 export default class UserStore implements DispatchListener {
   root: RootDataStore;
-
   @observable users = observable.map<number, User>();
 
   constructor(root: RootDataStore, dispatcher: Dispatcher) {

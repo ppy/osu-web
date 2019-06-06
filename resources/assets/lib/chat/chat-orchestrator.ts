@@ -35,7 +35,6 @@ export default class ChatOrchestrator implements DispatchListener {
   private api: ChatAPI;
   private dispatcher: Dispatcher;
   private rootDataStore: RootDataStore;
-
   private windowIsActive: boolean = true;
 
   constructor(dispatcher: Dispatcher, rootDataStore: RootDataStore) {

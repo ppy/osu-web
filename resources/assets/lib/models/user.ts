@@ -26,11 +26,8 @@ export default class User {
   @observable isActive: boolean = false;
   @observable isBot: boolean = false;
   @observable isOnline: boolean = false;
-
   @observable isSupporter: boolean = false;
-
   @observable loaded: boolean = false;
-
   @observable pmFriendsOnly: boolean = false;
   @observable profileColour: string = '';
   @observable username: string = '';

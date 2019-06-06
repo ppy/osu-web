@@ -36,14 +36,11 @@ import { MessageJSON } from './chat-api-responses';
 export default class ChatWorker implements DispatchListener {
   private api: ChatAPI;
   private dispatcher: Dispatcher;
-
   private pollingEnabled: boolean = true;
   private pollTime: number = 1000;
   private pollTimeIdle: number = 5000;
   private rootDataStore: RootDataStore;
-
   private updateTimerId?: number;
-
   private updateXHR: boolean = false;
   private windowIsActive: boolean = true;
 

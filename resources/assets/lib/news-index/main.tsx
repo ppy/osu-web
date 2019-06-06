@@ -24,14 +24,14 @@ import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
 import PostItem from './post-item';
 
-interface PostsJson {
-  news_posts: PostJson[];
-  search: Search;
-}
-
 interface PropsInterface {
   container: HTMLElement;
   data: PostsJson;
+}
+
+interface PostsJson {
+  news_posts: PostJson[];
+  search: Search;
 }
 
 interface Search {

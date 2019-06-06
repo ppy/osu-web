@@ -20,22 +20,22 @@ import Message from 'models/chat/message';
 import { PresenceJSON } from '../chat/chat-api-responses';
 import DispatcherAction from './dispatcher-action';
 
-export class ChatChannelSwitchAction implements DispatcherAction {
-  constructor(public channelId: number) {
-  }
-}
-
 export class ChatChannelPartAction implements DispatcherAction {
   constructor(public channelId: number) {
   }
 }
 
-export class ChatMessageSendAction implements DispatcherAction {
-  constructor(public message: Message) {
+export class ChatChannelSwitchAction implements DispatcherAction {
+  constructor(public channelId: number) {
   }
 }
 
 export class ChatMessageAddAction implements DispatcherAction {
+  constructor(public message: Message) {
+  }
+}
+
+export class ChatMessageSendAction implements DispatcherAction {
   constructor(public message: Message) {
   }
 }

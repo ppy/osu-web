@@ -29,29 +29,6 @@ export interface ChannelJSON {
   users: number[];
 }
 
-export interface UserJSON {
-  avatar_url: string;
-  country_code: string; // TODO: country object?
-  id: number;
-  is_active: boolean;
-  is_bot: boolean;
-  is_online: boolean;
-  is_supporter: boolean;
-  pm_friends_only: boolean;
-  profile_colour: string;
-  username: string;
-}
-
-export interface MessageJSON {
-  channel_id: number;
-  content: string;
-  is_action: boolean;
-  message_id: number;
-  sender: UserJSON;
-  sender_id: number;
-  timestamp: string;
-}
-
 export type GetMessagesJSON =
   MessageJSON[];
 
@@ -62,6 +39,16 @@ export interface GetUpdatesJSON {
 
 export type MarkAsReadJSON =
   null;
+
+export interface MessageJSON {
+  channel_id: number;
+  content: string;
+  is_action: boolean;
+  message_id: number;
+  sender: UserJSON;
+  sender_id: number;
+  timestamp: string;
+}
 
 export interface NewConversationJSON {
   message: MessageJSON;
@@ -78,4 +65,17 @@ export type SendMessageJSON =
 export interface SendToJSON {
   can_message: boolean;
   target: UserJSON;
+}
+
+export interface UserJSON {
+  avatar_url: string;
+  country_code: string; // TODO: country object?
+  id: number;
+  is_active: boolean;
+  is_bot: boolean;
+  is_online: boolean;
+  is_supporter: boolean;
+  pm_friends_only: boolean;
+  profile_colour: string;
+  username: string;
 }

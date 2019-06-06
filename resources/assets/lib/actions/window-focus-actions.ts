@@ -18,8 +18,8 @@
 // tslint:disable:max-classes-per-file
 import DispatcherAction from './dispatcher-action';
 
-export class WindowFocusAction implements DispatcherAction {
+export class WindowBlurAction implements DispatcherAction {
 }
 
-export class WindowBlurAction implements DispatcherAction {
+export class WindowFocusAction implements DispatcherAction {
 }

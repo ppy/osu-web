@@ -31,7 +31,6 @@ export default class ChatStateStore implements DispatchListener {
   @observable lastReadId: number = -1;
   parent: UIStateStore; // TODO: do we need to bother with tracking parent?
   root: RootDataStore;
-
   @observable selected: number = -1;
 
   constructor(root: RootDataStore, parent: UIStateStore, dispatcher: Dispatcher) {
