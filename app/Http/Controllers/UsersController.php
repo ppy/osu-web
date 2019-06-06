@@ -29,6 +29,7 @@ use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\User;
+use App\Models\UsernameChangeHistory;
 use App\Models\UserNotFound;
 use Auth;
 use Request;
@@ -228,7 +229,22 @@ class UsersController extends Controller
 
     public function show($id, $mode = null)
     {
+        // Find matching id or username
+        // If no user is found, search for a previous username
+        // only if parameter is not a number (assume number is an id lookup).
+
         $user = User::lookup($id, null, true);
+
+        if ($user === null) {
+            $change = UsernameChangeHistory::visible()
+                ->where('username_last', $id)
+                ->orderBy('change_id', 'desc')
+                ->first();
+
+            if ($change !== null) {
+                $user = User::lookup($change->user_id, 'id');
+            }
+        }
 
         if ($user === null || !priv_check('UserShow', $user)->can()) {
             if (is_api_request() || request()->expectsJson()) {
