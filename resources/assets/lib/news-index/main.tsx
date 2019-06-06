@@ -24,7 +24,7 @@ import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
 import PostItem from './post-item';
 
-interface PropsInterface {
+interface Props {
   container: HTMLElement;
   data: PostsJson;
 }
@@ -44,16 +44,16 @@ interface SearchCursor {
   published_at?: string;
 }
 
-interface StateInterface {
+interface State {
   hasMore: boolean;
   loading: boolean;
   posts: PostJson[];
 }
 
-export default class Main extends React.Component<PropsInterface, StateInterface> {
+export default class Main extends React.Component<Props, State> {
   private eventId = `news-index-${osu.uuid()}`;
 
-  constructor(props: PropsInterface) {
+  constructor(props: Props) {
     super(props);
 
     this.restoreState();
@@ -150,7 +150,7 @@ export default class Main extends React.Component<PropsInterface, StateInterface
   private restoreState = () => {
     const savedState = this.props.container.dataset.lastState;
     if (savedState != null) {
-      this.state = JSON.parse(savedState) as StateInterface;
+      this.state = JSON.parse(savedState) as State;
       delete this.props.container.dataset.lastState;
     }
   }

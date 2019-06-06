@@ -20,7 +20,7 @@ import HeaderLink from 'interfaces/header-link';
 import HeaderTitleTrans from 'interfaces/header-title-trans';
 import * as React from 'react';
 
-interface PropsInterface {
+interface Props {
   backgroundImage?: string;
   compact?: boolean;
   links?: HeaderLink[];
@@ -29,7 +29,7 @@ interface PropsInterface {
   titleTrans?: HeaderTitleTrans;
 }
 
-export default class HeaderV3 extends React.Component<PropsInterface, {}> {
+export default class HeaderV3 extends React.Component<Props, {}> {
   render(): React.ReactNode {
     let classNames = 'header-v3';
     if (this.props.theme) {

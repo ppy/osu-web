@@ -25,13 +25,13 @@ import * as moment from 'moment';
 import NewsHeader from 'news-header';
 import * as React from 'react';
 
-interface PropsInterface {
+interface Props {
   commentBundle: any;
   container: HTMLElement;
   post: NewsPostJson;
 }
 
-export default class Main extends React.Component<PropsInterface, {}> {
+export default class Main extends React.Component<Props, {}> {
   render() {
     const {content, author} = this.processContent();
     const titleTrans = {

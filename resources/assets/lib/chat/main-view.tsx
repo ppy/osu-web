@@ -29,7 +29,7 @@ import ConversationList from './conversation-list';
 import ConversationView from './conversation-view';
 import InputBox from './input-box';
 
-interface PropsInterface {
+interface Props {
   dataStore: RootDataStore;
   dispatcher: Dispatcher;
   initialChannel?: number;
@@ -37,8 +37,8 @@ interface PropsInterface {
 }
 
 @observer
-export default class MainView extends React.Component<PropsInterface, any> {
-  constructor(props: PropsInterface) {
+export default class MainView extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
 
     if (this.props.initialChannel) {

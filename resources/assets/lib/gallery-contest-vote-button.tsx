@@ -18,15 +18,15 @@
 
 import * as React from 'react';
 
-interface PropsInterface {
+interface Props {
   pswp: any;
 }
 
-export default class GalleryContestVoteButton extends React.PureComponent<PropsInterface, any> {
+export default class GalleryContestVoteButton extends React.PureComponent<Props, any> {
   private eventId = `gallery-contest-${osu.uuid()}`;
   private mainRef = React.createRef<HTMLButtonElement>();
 
-  constructor(props: PropsInterface) {
+  constructor(props: Props) {
     super(props);
 
     this.state = {

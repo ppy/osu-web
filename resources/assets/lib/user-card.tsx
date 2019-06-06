@@ -26,18 +26,18 @@ import { ReportUser } from 'report-user';
 import { Spinner } from 'spinner';
 import { SupporterIcon } from 'supporter-icon';
 
-interface PropsInterface {
+interface Props {
   activated: boolean;
   modifiers: string[];
   user?: User;
 }
 
-interface StateInterface {
+interface State {
   avatarLoaded: boolean;
   backgroundLoaded: boolean;
 }
 
-export class UserCard extends React.PureComponent<PropsInterface, StateInterface> {
+export class UserCard extends React.PureComponent<Props, State> {
   static defaultProps = {
     activated: false,
     modifiers: [],
@@ -55,7 +55,7 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     username: osu.trans('users.card.loading'),
   };
 
-  readonly state: StateInterface = {
+  readonly state: State = {
     avatarLoaded: false,
     backgroundLoaded: false,
   };
