@@ -61,7 +61,7 @@ class UsersControllerTest extends TestCase
         $user = factory(User::class)->create([
             'osu_subscriptionexpiry' => now()->addDay(),
             'username' => $oldUsername,
-            'username_clean' => $oldUsername
+            'username_clean' => $oldUsername,
         ]);
         $user->changeUsername($newUsername, 'paid');
 
@@ -79,13 +79,13 @@ class UsersControllerTest extends TestCase
         $user1 = factory(User::class)->create([
             'osu_subscriptionexpiry' => now()->addDay(),
             'username' => $oldUsername,
-            'username_clean' => $oldUsername
+            'username_clean' => $oldUsername,
         ]);
         $user1->changeUsername($newUsername, 'paid');
 
         $user2 = factory(User::class)->create([
             'username' => $oldUsername,
-            'username_clean' => $oldUsername
+            'username_clean' => $oldUsername,
         ]);
 
         $this
