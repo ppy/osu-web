@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {ChatChannelPartAction, ChatChannelSwitchAction} from 'actions/chat-actions';
+import { ChatChannelPartAction, ChatChannelSwitchAction } from 'actions/chat-actions';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';

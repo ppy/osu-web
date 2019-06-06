@@ -18,7 +18,7 @@
 
 import { ChannelJSON, ChannelType } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
-import { action, computed, observable, transaction} from 'mobx';
+import { action, computed, observable, transaction } from 'mobx';
 import User from 'models/user';
 import Message from './message';
 

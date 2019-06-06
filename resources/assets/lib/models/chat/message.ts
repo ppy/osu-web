@@ -18,7 +18,7 @@
 
 import { MessageJSON } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
-import {action, computed, observable} from 'mobx';
+import { action, computed, observable } from 'mobx';
 import User from 'models/user';
 import * as moment from 'moment';
 

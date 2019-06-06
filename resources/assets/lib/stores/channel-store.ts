@@ -28,7 +28,7 @@ import { ChannelJSON } from 'chat/chat-api-responses';
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
 import * as _ from 'lodash';
-import {action, computed, observable} from 'mobx';
+import { action, computed, observable } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import RootDataStore from './root-data-store';

@@ -21,7 +21,7 @@ import { UserLogoutAction } from 'actions/user-login-actions';
 import { UserJSON } from 'chat/chat-api-responses';
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
-import {action, observable} from 'mobx';
+import { action, observable } from 'mobx';
 import User from 'models/user';
 import RootDataStore from './root-data-store';
 
