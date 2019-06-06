@@ -13,7 +13,7 @@ If you notice any errors in the documentation or encounter problems using the AP
 Code examples are provided in the dark area to the right, you can use the tabs at the top of the page to switch between bash and javascript samples.
 
 @if($showPostmanCollectionButton)
-If you use [Postman](https://getpostman.com), you can [download a collection here]({{url($outputPath.'/collection.json')}}).
+If you use [Postman](https://getpostman.com), you can [download a collection here](collection.json).
 @endif
 
 # Endpoint
