@@ -20,7 +20,7 @@ If you use [Postman](https://getpostman.com), you can [download a collection her
 
 ## Base URL
 
-The base URL is: `{{ url('/') }}/api/[version]/`
+The base URL is: `{{ trim(config('app.url'), '/') }}/api/[version]/`
 
 ## API Versions
 
@@ -35,7 +35,7 @@ v1      | _legacy api provided by the old site, will be deprecated soon_
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "{{ url('/') }}/api/[version]/[endpoint]"
+curl "{{ trim(config('app.url'), '/') }}/api/[version]/[endpoint]"
   -H "Authorization: Bearer @{{token}}"
 ```
 
