@@ -4,13 +4,13 @@ webpackConfig['devtool'] = 'inline-source-map';
 delete webpackConfig.optimization.splitChunks; // karma doesn't work with splitChunks
 delete webpackConfig.entry; // test runner doesn't use the entry points
 
-const testIndex = 'resources/assets/tests/index.ts';
+const testIndex = './tests/karma/index.ts';
 
 const files = [
-  'public/js/vendor.js',
-  'public/js/app-deps.js',
-  'public/js/locales/en.js',
-  'resources/assets/tests/globals.js', // shims for tests
+  './public/js/vendor.js',
+  './public/js/app-deps.js',
+  './public/js/locales/en.js',
+  './tests/karma/globals.js', // shims for tests
   testIndex,
 ];
 

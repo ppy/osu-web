@@ -1,5 +1,7 @@
+// This builds the tests into a single bundle.
+
 // Doesn't work when specified in karma config for some reason.
-import '../app';
+import '../../resources/assets/app';
 
 // webpack's require typings are different from node's
 // and installing either of those typings breaks the typings for the web stuff
