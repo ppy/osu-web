@@ -150,6 +150,9 @@ class MessagesController extends BaseController
      *
      * @queryParam channel_id required The `channel_id` of the channel to send message to
      *
+     * @bodyParam message string required message to send
+     * @bodyParam is_action boolean required whether the message is an action
+     *
      * @response {
      *   "message_id": 9150005004,
      *   "sender_id": 2,
