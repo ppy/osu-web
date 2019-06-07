@@ -39,8 +39,12 @@ export default class InputBox extends React.Component<any, any> implements Dispa
   }
 
   handleDispatchAction(action: DispatcherAction) {
-    if (action instanceof WindowFocusAction || action instanceof ChatChannelSwitchAction) {
+    if (action instanceof WindowFocusAction) {
       this.focusInput();
+    } else if (action instanceof ChatChannelSwitchAction) {
+      if (osu.isDesktop()) {
+        this.focusInput();
+      }
     }
   }
 
