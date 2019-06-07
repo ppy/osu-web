@@ -186,7 +186,6 @@ class MessagesController extends BaseController
 
         priv_check('ChatChannelSend', $channel)->ensureCan();
 
-
         try {
             $message = $channel->receiveMessage(
                 Auth::user(),

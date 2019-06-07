@@ -130,7 +130,7 @@ class Channel extends Model
             throw new API\ChatMessageTooLongException(trans('api.error.chat.too_long'));
         }
 
-        if (!present($content))  {
+        if (!present($content)) {
             throw new API\ChatMessageEmptyException(trans('api.error.chat.empty'));
         }
 
