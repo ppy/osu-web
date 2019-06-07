@@ -186,18 +186,15 @@ class MessagesController extends BaseController
 
         priv_check('ChatChannelSend', $channel)->ensureCan();
 
-        $message = trim(Request::input('message'));
-
-        if (!present($message)) {
-            abort(422);
-        }
 
         try {
             $message = $channel->receiveMessage(
                 Auth::user(),
-                $message,
+                Request::input('message'),
                 get_bool(Request::input('is_action', false))
             );
+        } catch (API\ChatMessageEmptyException $e) {
+            abort(422, $e->getMessage());
         } catch (API\ChatMessageTooLongException $e) {
             abort(422, $e->getMessage());
         } catch (API\ExcessiveChatMessagesException $e) {
