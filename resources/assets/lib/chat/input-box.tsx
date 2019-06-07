@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { ChatMessageSendAction } from 'actions/chat-actions';
+import {ChatChannelSwitchAction, ChatMessageSendAction} from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { BigButton } from 'big-button';
@@ -39,7 +39,7 @@ export default class InputBox extends React.Component<any, any> implements Dispa
   }
 
   handleDispatchAction(action: DispatcherAction) {
-    if (action instanceof WindowFocusAction) {
+    if (action instanceof WindowFocusAction || action instanceof ChatChannelSwitchAction) {
       this.focusInput();
     }
   }
