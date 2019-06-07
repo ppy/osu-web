@@ -19,31 +19,24 @@ preprocessors[testIndex] = ['webpack', 'sourcemap'];
 
 module.exports = function (config) {
   config.set({
+    autoWatch: true,
     basePath: '.',
+    browsers: ['ChromeHeadless'],
+    colors: true,
+    concurrency: Infinity,
+    exclude: [],
     frameworks: ['jasmine'],
     files: files,
-    exclude: [],
-    // client: {
-    //   clearContext: false
-    // },
+    logLevel: config.LOG_INFO,
     mime: { 'text/x-typescript': ['ts', 'tsx'] },
-    webpack: webpackConfig,
-    webpackMiddleware: {
-      noInfo: false,
-      // stats: 'errors-only'
-    },
+    port: 9876,
     preprocessors: preprocessors,
     reporters: ['progress'],
-    port: 9876,
-    colors: true,
-    logLevel: config.LOG_INFO,
-    autoWatch: true,
-    concurrency: Infinity,
-
-    // browsers: ['Chrome'],
-    // singleRun: false,
-
-    browsers: ['ChromeHeadless'],
-    singleRun: false,
+    singleRun: false, // set to true for the process to exit after completing.
+    webpack: webpackConfig,
+    webpackMiddleware: {
+      noInfo: true,
+      stats: 'errors-only'
+    },
   });
 };
