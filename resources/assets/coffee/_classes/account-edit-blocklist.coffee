@@ -28,7 +28,7 @@ class @AccountEditBlocklist
   updateBlockCount: =>
     return unless currentUser.id?
 
-    $("#{@jsClass}-count").text osu.trans('users.blocks.blocked_count', count: currentUser.blocks.length)
+    $("#{@jsClass}-count").text osu.trans('users.blocks.blocked_count', count: currentUser.blocks?.length ? 0)
 
 
   toggle: (e) =>

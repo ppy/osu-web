@@ -33,6 +33,7 @@ export interface UserJSON {
   id: number;
   username: string;
   avatar_url: string;
+  blocks?: any[];
   profile_colour: string;
   country_code: string; // TODO: country object?
   is_active: boolean;
