@@ -49,7 +49,7 @@ export default class InputBox extends React.Component<any, any> implements Dispa
   }
 
   sendMessage(messageText?: string) {
-    if (!messageText || !osu.present(messageText)) {
+    if (!messageText || !osu.present(_.trim(messageText))) {
       return;
     }
 
