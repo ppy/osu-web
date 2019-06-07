@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./resources/assets/lib",
+    "baseUrl": "../lib",
     "experimentalDecorators": true,
     "sourceMap": true,
     "jsx": "react",
@@ -14,6 +14,10 @@
     "target": "es6",
   },
   "include": [
-    "resources/assets/lib",
+    "../lib",
+    ".",
+  ],
+  "types": [
+    "webpack-env"
   ]
 }
