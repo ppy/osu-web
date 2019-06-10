@@ -271,7 +271,7 @@ class User extends Model implements AuthenticatableContract
 
     public function changeUsername(string $newUsername, string $type) : UsernameChangeHistory
     {
-        $errors = $this->validateChangeUsername($newUsername);
+        $errors = $this->validateChangeUsername($newUsername, $type);
         if ($errors->isAny()) {
             throw new ChangeUsernameException($errors);
         }
@@ -397,9 +397,9 @@ class User extends Model implements AuthenticatableContract
             ->addDays($this->playCount() * 0.75);    //bonus based on playcount
     }
 
-    public function validateChangeUsername(string $username)
+    public function validateChangeUsername(string $username, string $type = 'paid')
     {
-        return (new ChangeUsername($this, $username))->validate();
+        return (new ChangeUsername($this, $username, $type))->validate();
     }
 
     // verify that an api key is correct
