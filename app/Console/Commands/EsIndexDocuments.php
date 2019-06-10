@@ -66,6 +66,8 @@ class EsIndexDocuments extends Command
      */
     public function handle()
     {
+        config()->set('indexing.batch', true);
+
         $this->readOptions();
         $this->suffix = !$this->inplace ? '_'.time() : '';
 
