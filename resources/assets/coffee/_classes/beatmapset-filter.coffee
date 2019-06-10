@@ -41,17 +41,18 @@ class @BeatmapsetFilter
     q: 'query'
     sort: 'sort'
 
+
   @filtersFromUrl: (url) ->
     params = new URL(url).searchParams
 
     filters = {}
 
-    for own char, key of BeatmapsetFilter.charToKey
+    for own char, key of @charToKey
       value = params.get(char)
 
       continue if !value? || value.length == 0
 
-      value = BeatmapsetFilter.castFromString[key](value) if BeatmapsetFilter.castFromString[key]
+      value = @castFromString[key](value) if @castFromString[key]
       filters[key] = value
 
     filters
