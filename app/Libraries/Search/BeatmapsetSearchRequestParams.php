@@ -63,12 +63,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $this->queryString = es_query_escape_with_caveats($request['q'] ?? $request['query']);
 
             $status = presence($request['s']);
-            $statusMapping = static::LEGACY_STATUS_MAP[$status] ?? null;
-            if ($statusMapping) {
-                $this->status = $statusMapping;
-            } else {
-                $this->status = $status;
-            }
+            $this->status = static::LEGACY_STATUS_MAP[$status] ?? $status;
 
             $this->genre = get_int($request['g']);
             $this->language = get_int($request['l']);
