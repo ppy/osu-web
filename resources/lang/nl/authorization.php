@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Je hebt je dagelijkse nominatie-limiet bereikt, probeer het morgen opnieuw.',
+            'full_bn_required' => 'Je moet een volledige nominator zijn om deze nominatie te kunnen uitvoeren.',
+            'full_bn_required_hybrid' => 'Je moet een volledige nominator zijn om beatmap sets met meer dan één spelmodus te nomineren.',
             'incorrect_state' => 'Fout tijdens het uitvoeren van deze actie, probeer de pagina te herladen.',
             'owner' => "Je kan je eigen beatmap niet nomineren.",
         ],
@@ -48,6 +50,9 @@ return [
         'edit' => [
             'system_generated' => 'Automatisch gegenereerde posts kunnen niet worden bewerkt.',
             'not_owner' => 'Alleen de eigenaar kan deze post bewerken.',
+        ],
+        'store' => [
+            'beatmapset_locked' => 'Deze beatmap is vergrendeld voor discussie.',
         ],
     ],
 
@@ -119,6 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'Toegang tot deze forum is nodig.',
                 'over' => 'De stemperiode is voorbij en er kan niet meer gestemd worden.',
+                'play_more' => 'Je moet meer spelen voordat je kan stemmen op het forum.',
                 'voted' => 'Je stem veranderen is niet toegestaan.',
 
                 'user' => [

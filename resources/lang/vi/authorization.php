@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Bạn đã đạt giới hạn đề cử của hôm nay, hãy thử lại vào ngày mai.',
+            'full_bn_required' => '',
+            'full_bn_required_hybrid' => '',
             'incorrect_state' => 'Có lỗi khi thực hiện, hãy thử tải lại trang.',
             'owner' => "Bạn không thể đề cử beatmap của bạn.",
         ],
@@ -48,6 +50,9 @@ return [
         'edit' => [
             'system_generated' => 'Không thể chỉnh sửa bài đăng được tạo tự động.',
             'not_owner' => 'Chỉ người đăng mới có thể chỉnh sửa bài đăng.',
+        ],
+        'store' => [
+            'beatmapset_locked' => 'Beatmap này bị khóa để thảo luận.',
         ],
     ],
 
@@ -119,6 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'Bắt buộc truy cập vào diễn đàn được yêu cầu.',
                 'over' => 'Đã kết thúc bỏ phiếu và không thể bình chọn nữa.',
+                'play_more' => 'Bạn cần chơi nhiều hơn trước khi bỏ phiếu trên diễn đàn.',
                 'voted' => 'Không cho phép đổi phiếu bầu.',
 
                 'user' => [

@@ -55,6 +55,7 @@ return [
         'search' => 'Hledat',
         'see_more' => 'zobrazit více',
         'show' => 'zobrazit',
+        'show_deleted' => '',
         'show_more' => 'zobrazit více',
         'show_more_options' => 'zobrazit více možností',
         'upload_image' => 'nahrát obrázek',

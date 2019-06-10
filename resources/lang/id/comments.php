@@ -20,6 +20,7 @@
 
 return [
     'deleted' => 'terhapus',
+    'deleted_count' => ':count_delimited komentar yang dihapus|:count_delimited komentar yang dihapus',
     'edited' => 'disunting :timeago oleh :user',
     'empty' => 'Belum ada komentar.',
     'replies' => 'Balasan',

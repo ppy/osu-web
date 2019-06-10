@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Bugünkü aday gösterme sınırınıza ulaştınız, lütfen yarın tekrar deneyin.',
+            'full_bn_required' => '',
+            'full_bn_required_hybrid' => '',
             'incorrect_state' => 'Bu işlemi gerçekleştirirken hata oluştu, sayfayı yenilemeyi deneyin.',
             'owner' => "Kendi beatmapinizi aday gösteremezsiniz.",
         ],
@@ -48,6 +50,9 @@ return [
         'edit' => [
             'system_generated' => 'Otomatik olarak oluşturulmuş gönderiler düzenlenemez.',
             'not_owner' => 'Gönderileri yalnızca gönderen düzenleyebilir.',
+        ],
+        'store' => [
+            'beatmapset_locked' => '',
         ],
     ],
 
@@ -119,6 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'İstenilen foruma erişim gereklidir.',
                 'over' => 'Oylama bitti ve artık oy verilemez.',
+                'play_more' => '',
                 'voted' => 'Oy değiştirmek yasaktır.',
 
                 'user' => [

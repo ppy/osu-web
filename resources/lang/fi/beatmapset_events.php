@@ -22,9 +22,11 @@ return [
     'event' => [
         'approve' => 'Vahvistettu.',
         'discussion_delete' => 'Moderaattori poisti keskustelun :discussion.',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Moderaattori poisti viestin keskustelusta :discussion.',
         'discussion_post_restore' => 'Moderaattori toi viestin takaisin keskusteluun :discussion.',
         'discussion_restore' => 'Moderaattori toi keskustelun :discussion takaisin.',
+        'discussion_unlock' => '',
         'disqualify' => 'Hyväksymisen keskeytti :user. Syy: :discussion (:text).',
         'disqualify_legacy' => ':user keskeytti hyväksymisen. Syy: :text.',
         'issue_reopen' => 'Ratkaistu ongelma :discussion uudelleenavattu.',

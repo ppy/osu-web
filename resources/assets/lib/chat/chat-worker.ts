@@ -118,7 +118,7 @@ export default class ChatWorker implements DispatchListener {
         return;
       }
 
-      this.api.newConversation(userId, message.content)
+      this.api.newConversation(userId, message.content, message.isAction)
         .then((response) => {
           const newId = response.new_channel_id;
           transaction(() => {
@@ -132,7 +132,7 @@ export default class ChatWorker implements DispatchListener {
           this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
         });
     } else {
-      this.api.sendMessage(channelId, message.content)
+      this.api.sendMessage(channelId, message.content, message.isAction)
         .then((updateJson) => {
           if (updateJson) {
             message.messageId = updateJson.message_id;

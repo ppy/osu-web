@@ -22,9 +22,11 @@ return [
     'event' => [
         'approve' => 'Được Chấp Nhận.',
         'discussion_delete' => 'Moderator đã xóa cuộc thảo luận :discussion.',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Moderator đã xóa bài viết từ cuộc thảo luận :discussion.',
         'discussion_post_restore' => 'Moderator đã phục hồi bài viết từ cuộc thảo luận :discussion.',
         'discussion_restore' => 'Moderator đã phục hồi cuộc thảo luận :discussion.',
+        'discussion_unlock' => '',
         'disqualify' => 'Disqualified bởi :user. Reason: :text.',
         'disqualify_legacy' => 'Disqualified bởi :user. Lí do: :text.',
         'issue_reopen' => 'Vấn đề đã giải quyết :discussion được mở lại.',

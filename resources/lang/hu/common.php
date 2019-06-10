@@ -55,6 +55,7 @@ return [
         'search' => 'Keresés',
         'see_more' => 'továbbiak mutatása',
         'show' => 'mutat',
+        'show_deleted' => 'Töröltek megjelenítése',
         'show_more' => 'több megjelenítése',
         'show_more_options' => 'további opciók mutatása',
         'upload_image' => 'kép feltöltése',

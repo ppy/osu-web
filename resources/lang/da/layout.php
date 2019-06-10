@@ -127,7 +127,7 @@ return [
             'modding-history-posts' => 'user modding posts',
             'modding-history-votesGiven' => 'user modding votes given',
             'modding-history-votesReceived' => 'user modding votes received',
-            'oauth_login' => '',
+            'oauth_login' => 'log ind for oauth',
             'oauth_request' => '',
             'settings' => 'Indstillinger',
         ],

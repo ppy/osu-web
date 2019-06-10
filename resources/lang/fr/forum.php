@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => 'Masquer les résultats du sondage.',
+                'hide_results_info' => 'Ils ne seront affichés qu\'après la clôture du sondage.',
                 'length' => 'Durée du sondage',
                 'length_days_suffix' => 'jours',
                 'length_info' => 'Laissez vide pour un sondage sans fin',
@@ -292,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => 'Le sondage termine à :time',
                     'ended' => 'Sondage terminé :time',
+                    'results_hidden' => 'Les résultats seront affichés après la fin du sondage.',
                     'total' => 'Total de votes: :count',
                 ],
             ],

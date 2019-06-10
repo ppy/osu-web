@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => '',
+                'hide_results_info' => '',
                 'length' => 'Kør afstemning i',
                 'length_days_suffix' => 'dage',
                 'length_info' => 'Efterlad blank for at køre afstemning på ubestemt tid',
@@ -292,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => 'Afstemning slutter :time',
                     'ended' => 'Afstemning sluttede :time',
+                    'results_hidden' => '',
                     'total' => 'Stemmer i alt: :count',
                 ],
             ],

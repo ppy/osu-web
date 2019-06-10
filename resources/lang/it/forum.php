@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => '',
+                'hide_results_info' => '',
                 'length' => 'Durata del sondaggio:',
                 'length_days_suffix' => 'giorni',
                 'length_info' => 'Lascia vuoto per un sondaggio senza fine',
@@ -292,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => 'Il sondaggio scade tra :time',
                     'ended' => 'Il sondaggio è finito :time',
+                    'results_hidden' => '',
                     'total' => 'Voti totali: :count',
                 ],
             ],

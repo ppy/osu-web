@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => '你今天的提名次數已達上限，請明天再試。',
+            'full_bn_required' => '',
+            'full_bn_required_hybrid' => '',
             'incorrect_state' => '執行操作時發生錯誤，請重新載入頁面。',
             'owner' => "不能提名自己的圖譜。",
         ],
@@ -48,6 +50,9 @@ return [
         'edit' => [
             'system_generated' => '無法編輯自動回覆。',
             'not_owner' => '只有作者可以編輯。',
+        ],
+        'store' => [
+            'beatmapset_locked' => '',
         ],
     ],
 
@@ -119,6 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => '沒有權限，無法進入該板塊。',
                 'over' => '投票已結束！',
+                'play_more' => '',
                 'voted' => '不允許修改投票。',
 
                 'user' => [

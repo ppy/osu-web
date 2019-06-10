@@ -55,6 +55,7 @@ return [
         'search' => '検索',
         'see_more' => 'もっと見る',
         'show' => '表示',
+        'show_deleted' => '削除済みを表示',
         'show_more' => '展開する',
         'show_more_options' => '詳細オプションを表示する',
         'upload_image' => '画像をアップロード',

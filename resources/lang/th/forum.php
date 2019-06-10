@@ -22,7 +22,7 @@ return [
     'pinned_topics' => 'หัวข้อที่ปักหมุดไว้',
     'slogan' => "เล่นคนเดียวมันอันตราย",
     'subforums' => 'ฟอรั่มย่อย',
-    'title' => '',
+    'title' => 'ฟอรั่ม osu!',
 
     'covers' => [
         'create' => [
@@ -48,54 +48,54 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'ทำเครื่องหมายว่าอ่านทั้งหมดแล้ว',
+        'forums' => 'ทำเครื่องหมายว่าอ่านทั้งหมดแล้ว',
+        'busy' => 'กําลังทำเครื่องหมายว่าอ่านแล้ว...',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => 'การแก้ไขโพลล์จะลบผลลัพท์ทั้งหมด!',
 
         'actions' => [
-            'edit' => '',
+            'edit' => 'แก้ไขโพลล์',
         ],
     ],
 
     'post' => [
-        'confirm_destroy' => 'ลบโพสต์จริงๆ หรือ',
-        'confirm_restore' => 'Really restore post?',
-        'edited' => 'Last edited by :user on :when, edited :count times in total.',
-        'posted_at' => 'posted :when',
+        'confirm_destroy' => 'ต้องการลบโพสต์จริงหรอ?',
+        'confirm_restore' => 'ต้องการกู้คืนโพสต์จริงหรอ?',
+        'edited' => 'แก้ไขล่าสุดโดย :user :when ถูกแก้ไขทั้งหมด :count ครั้ง',
+        'posted_at' => 'โพสต์เมื่อ :when',
 
         'actions' => [
-            'destroy' => 'Delete post',
-            'restore' => 'Restore post',
-            'edit' => 'Edit post',
+            'destroy' => 'ลบโพสต์',
+            'restore' => 'กู้คืนโพสต์',
+            'edit' => 'แก้ไขโพสต์',
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited โพสต์|:count_delimited โพสต์',
         ],
     ],
 
     'search' => [
-        'go_to_post' => 'Go to post',
-        'post_number_input' => 'enter post number',
-        'total_posts' => ':posts_count posts total',
+        'go_to_post' => 'ไปยังโพสต์',
+        'post_number_input' => 'ป้อนหมายเลขของโพสต์',
+        'total_posts' => ':posts_count จำนวนโพสต์ทั้งหมด',
     ],
 
     'topic' => [
-        'deleted' => 'หัวข้อที่ถูกลบ',
-        'go_to_latest' => 'view latest post',
-        'latest_post' => ':when by :user',
-        'latest_reply_by' => 'latest reply by :user',
-        'new_topic' => 'Post new topic',
-        'new_topic_login' => 'เข้าสู่ระบบเพื่อโพสต์หัวเรื่องใหม่',
-        'post_reply' => 'Post',
+        'deleted' => 'ลบกระทู้',
+        'go_to_latest' => 'ดูโพสต์ล่าสุด',
+        'latest_post' => ':when โดย :user',
+        'latest_reply_by' => 'ตอบกลับล่าสุดโดย :user',
+        'new_topic' => 'สร้างกระทู้ใหม่',
+        'new_topic_login' => 'เข้าสู่ระบบเพื่อตั้งกระทู้ใหม่',
+        'post_reply' => 'โพสต์',
         'reply_box_placeholder' => 'พิมพ์ที่นี่เพื่อตอบกลับ',
-        'reply_title_prefix' => '',
+        'reply_title_prefix' => 'รี',
         'started_by' => 'โดย :user',
-        'started_by_verbose' => '',
+        'started_by_verbose' => 'เริ่มโดย :user',
 
         'create' => [
             'preview' => 'Preview',
@@ -105,11 +105,11 @@ return [
             'submit' => 'โพสต์',
 
             'necropost' => [
-                'default' => '',
+                'default' => 'กระทู้นี้ไม่ได้ถูกใช้งานมาระยะหนึ่ง ให้โพสต์ลงที่นี่หากคุณมีเหตุจำเป็นจริงๆ',
 
                 'new_topic' => [
-                    '_' => "",
-                    'create' => '',
+                    '_' => "กระทู้นี้ไม่ได้ถูกใช้งานมาระยะหนึ่ง ให้โพสต์ลงที่นี่หากคุณมีเหตุจำเป็นจริงๆ กรุณา :create แทน",
+                    'create' => 'สร้างกระทู้ใหม่',
                 ],
             ],
 
@@ -135,43 +135,43 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Topic Subscriptions',
-            'title_compact' => 'subscriptions',
-            'title_main' => 'Topic <strong>Subscriptions</strong>',
+            'title' => 'กระทู้ที่ติดตาม',
+            'title_compact' => 'กระทู้ที่ติดตาม',
+            'title_main' => 'ฟอรั่ม <strong>ติดตาม</strong>',
 
             'box' => [
-                'total' => 'Topics subscribed',
-                'unread' => 'Topics with new replies',
+                'total' => 'ติดตามกระทู้แล้ว',
+                'unread' => 'กระทู้ที่มีการตอบกลับใหม่',
             ],
 
             'info' => [
-                'total' => 'You subscribed to :total topics.',
-                'unread' => 'You have :unread unread replies to subscribed topics.',
+                'total' => 'การติดตามของคุณ :total topics.',
+                'unread' => 'คุณมี :unread การตอบกลับที่ยังไม่ได้อ่านในกระทู้ที่ติดตาม',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Unsubscribe from topic?',
-                'title' => 'Unsubscribe',
+                'confirmation' => 'ยกเลิกการติดตามกระทู้นี้',
+                'title' => 'ยกเลิกการติดตาม',
             ],
         ],
     ],
 
     'topics' => [
-        '_' => 'Topics',
+        '_' => 'หัวข้อ',
 
         'actions' => [
-            'login_reply' => '',
-            'reply' => 'Show reply box',
+            'login_reply' => 'เข้าสู่ระบบเพื่อตอบกลับ',
+            'reply' => 'แสดงหน้าต่างตอบกลับ',
             'reply_with_quote' => 'Quote post for reply',
-            'search' => 'Search',
+            'search' => 'ค้นหา',
         ],
 
         'create' => [
             'create_poll' => 'Poll Creation',
 
-            'preview' => '',
+            'preview' => 'ตัวอย่างโพสต์',
 
             'create_poll_button' => [
                 'add' => 'Create a poll',
@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => 'ซ่อนผลลัพท์ของโพลล์',
+                'hide_results_info' => 'จะแสดงหลังจากโพลล์สิ้นสุดเท่านั้น',
                 'length' => 'Run poll for',
                 'length_days_suffix' => 'days',
                 'length_info' => 'Leave blank for a never ending poll',
@@ -197,7 +199,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'ลำดับความสำคัญ',
             'replies' => 'replies',
             'views' => 'views',
         ],
@@ -274,9 +276,9 @@ return [
                 'do' => 'Promote this request',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'นี่คือ :feature_request คำขอคุณสมบัติสามารถลงคะแนนได้โดย :supporters',
+                    'feature_request' => 'ร้องข้อคุณสมบัติ',
+                    'supporters' => 'ผู้สนับสนุน',
                 ],
 
                 'user' => [
@@ -292,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => 'Polling will end at :time',
                     'ended' => 'Polling ended :time',
+                    'results_hidden' => 'ผลลัพท์จะถูกแสดงหลังจากโพลล์สิ้นสุดลง',
                     'total' => 'Total votes: :count',
                 ],
             ],
@@ -301,8 +304,8 @@ return [
             'to_not_watching' => 'ไม่ได้บุ๊กมาร์คไว้',
             'to_watching' => 'บุ๊กมาร์ค',
             'to_watching_mail' => 'บุ๊กมาร์คและรับการแจ้งเตือน',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => 'การแจ้งเตือนถูกเปิดใช้งาน คลิกเพื่อปิดการใช้งาน',
+            'tooltip_mail_enable' => 'การแจ้งเตือนถูกปิดใช้งาน คลิกเพื่อเปิดการใช้งาน',
         ],
     ],
 ];

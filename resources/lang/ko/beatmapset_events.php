@@ -22,9 +22,11 @@ return [
     'event' => [
         'approve' => 'Approved.',
         'discussion_delete' => 'Moderator가 :discussion 토론을 삭제했습니다.',
+        'discussion_lock' => '이 비트맵에 대한 토론이 비활성화되었습니다. (:text)',
         'discussion_post_delete' => 'Moderator가 :discussion 토론에 달린 글을 삭제했습니다.',
         'discussion_post_restore' => 'Moderator가 :discussion 토론에서 삭제된 글을 복원했습니다.',
         'discussion_restore' => 'Moderator가 삭제된 :discussion 토론을 복원했습니다.',
+        'discussion_unlock' => '이 비트맵에 대한 토론이 활성화되었습니다.',
         'disqualify' => ':user 님에게 Disqualified 처리 받음. 이유: :discussion (:text).',
         'disqualify_legacy' => ':user 님에게 Disqualified 처리 받음. 이유: :text.',
         'issue_reopen' => '마무리된 토론 :discussion이 재개되었습니다.',

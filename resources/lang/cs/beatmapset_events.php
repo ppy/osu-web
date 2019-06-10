@@ -22,9 +22,11 @@ return [
     'event' => [
         'approve' => 'Schváleno.',
         'discussion_delete' => 'Moderátor smazal tuto diskusi :discussion.',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Moderátor smazal příspěvek z této diskuse :discussion.',
         'discussion_post_restore' => 'Moderátor obnovil příspěvek z této diskuse :discussion.',
         'discussion_restore' => 'Moderátor obnovil tuto diskusi :discussion.',
+        'discussion_unlock' => '',
         'disqualify' => 'Diskvalifikováno uživatelem :user. Důvod: :discussion (:text).',
         'disqualify_legacy' => 'Diskvalifikováno uživatelem :user. Důvod: text.',
         'issue_reopen' => 'Vyřešený problém :discussion byl obnoven.',

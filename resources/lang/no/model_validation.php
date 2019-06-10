@@ -74,6 +74,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Duplisering av et valg er ikke tillatt.',
             'grace_period_expired' => 'Kan ikke redigere avstemming etter :limit antall timer',
+            'hiding_results_forever' => 'Kan ikke gjemme resultater til en avstemning som aldri ender.',
             'invalid_max_options' => 'Alternativer valgt av hver bruker kan ikke overskride antall tilgjengelige valg.',
             'minimum_one_selection' => 'Minimum et valg pr. bruker kreves.',
             'minimum_two_options' => 'Trenger minst to valgalternativer.',
@@ -111,6 +112,7 @@ return [
         'too_long' => 'Overskrider maksimumslengden - kan bare være opp til :limit tegn.',
 
         'change_username' => [
+            'restricted' => 'Du kan ikke endre brukernavnet ditt mens du er begrenset.',
             'supporter_required' => [
                 '_' => 'Du må ha :link for å endre på navnet ditt!',
                 'link_text' => 'støtter osu!',

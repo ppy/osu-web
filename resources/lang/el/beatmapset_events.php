@@ -22,9 +22,11 @@ return [
     'event' => [
         'approve' => 'Approved.',
         'discussion_delete' => 'Ένας συντονιστής διέγραψε τη συζήτηση :discussion.',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Ένας συντονιστής διέγραψε μια δημοσίευση από τη συζήτηση :discussion.',
         'discussion_post_restore' => 'Ένας συντονιστής επανέφερε μία δημοσίευση στη συζήτηση :discussion.',
         'discussion_restore' => 'Ένας συντονιστής επανέφερε τη συζήτηση :discussion.',
+        'discussion_unlock' => '',
         'disqualify' => 'Disqualified από :user. Αιτία: :discussion (:text).',
         'disqualify_legacy' => 'Disqualified από :user. Αιτία: :text.',
         'issue_reopen' => 'Το ζήτημα επιλύθηκε, η συζήτηση :discussion ξανάνοιξε.',
