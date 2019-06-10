@@ -40,7 +40,7 @@ class BeatmapsetSearchParams extends SearchParams
     /**
      * null means any state.
      *
-     * @var string
+     * @var string|null
      */
     public $playedFilter = null;
 
@@ -59,7 +59,7 @@ class BeatmapsetSearchParams extends SearchParams
     /** @var bool */
     public $showRecommended = false;
 
-    /** @var string */
+    /** @var string|null */
     public $status = null;
 
     /** @var User|null */
