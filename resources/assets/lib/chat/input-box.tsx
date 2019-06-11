@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { ChatMessageSendAction } from 'actions/chat-actions';
+import {ChatChannelSwitchAction, ChatMessageSendAction} from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { BigButton } from 'big-button';
@@ -41,6 +41,10 @@ export default class InputBox extends React.Component<any, any> implements Dispa
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof WindowFocusAction) {
       this.focusInput();
+    } else if (action instanceof ChatChannelSwitchAction) {
+      if (osu.isDesktop()) {
+        this.focusInput();
+      }
     }
   }
 
@@ -49,14 +53,37 @@ export default class InputBox extends React.Component<any, any> implements Dispa
   }
 
   sendMessage(messageText?: string) {
-    if (!messageText || _.trim(messageText) === '') {
+    if (!messageText || !osu.present(_.trim(messageText))) {
       return;
+    }
+
+    const isCommand = messageText[0] === '/';
+    let command: string | null = null;
+
+    if (isCommand) {
+      let split = messageText.indexOf(' ');
+      if (split === -1) {
+        split = messageText.length;
+      }
+
+      command = messageText.substring(1, split);
+      messageText = _.trim(messageText.substring(split + 1));
+
+      // we only support /me commands for now
+      if (command !== 'me' || !osu.present(messageText)) {
+        return;
+      }
     }
 
     const message = new Message();
     message.sender = this.props.dataStore.userStore.getOrCreate(currentUser.id);
     message.channelId = this.props.dataStore.uiState.chat.selected;
-    message.content = _.trim(messageText);
+    message.content = messageText;
+
+    // Technically we don't need to check command here, but doing so in case we add more commands
+    if (isCommand && command === 'me') {
+      message.isAction = true;
+    }
 
     this.props.dispatcher.dispatch(new ChatMessageSendAction(message));
   }
