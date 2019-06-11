@@ -76,10 +76,11 @@ export class Header extends React.Component
           className: 'header-v3__bg'
           style:
             backgroundImage: osu.urlPresence(@state.coverUrl)
-        div
-          className: 'header-v3__spinner'
-          'data-visibility': if @state.isCoverUpdating then 'visible' else 'hidden'
-          el Spinner
+        if @props.withEdit
+          div
+            className: 'header-v3__spinner'
+            'data-visibility': if @state.isCoverUpdating then 'visible' else 'hidden'
+            el Spinner
         div className: 'header-v3__overlay'
         div className: 'osu-page osu-page--header-v3',
           @renderTournamentBanner()
