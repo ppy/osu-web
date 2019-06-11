@@ -101,7 +101,7 @@ Note that if you use the bundled docker-compose setup, yarn/webpack will be alre
 
 ## Reset the database + seeding sample data
 
-    $ php artisan migrate:refresh --seed
+    $ php artisan migrate:fresh --seed
 
 Run the above command to rebuild the database and seed with sample data. In order for the seeder to seed beatmaps, you must enter a valid osu! API key into your `.env` configuration file as it obtains beatmap data from the osu! API.
 
