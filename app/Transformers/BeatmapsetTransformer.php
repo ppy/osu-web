@@ -80,6 +80,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'ranked' => $beatmapset->approved,
             'status' => $beatmapset->status(),
             'has_scores' => $beatmapset->hasScores(),
+            'is_download_available' => $beatmapset->isDownloadAvailable(),
             'discussion_enabled' => $beatmapset->discussion_enabled,
             'discussion_locked' => $beatmapset->discussion_locked,
             'can_be_hyped' => $beatmapset->canBeHyped(),
@@ -97,7 +98,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
 
     public function includeAvailability(Beatmapset $beatmapset)
     {
-        if (!$beatmapset->download_disabled && !present($beatmapset->download_disabled_url)) {
+        if ($beatmapset->isDownloadAvailable()) {
             return;
         }
 
