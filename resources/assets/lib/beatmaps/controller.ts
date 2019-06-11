@@ -33,7 +33,7 @@ export interface SearchStatus {
     ;
 }
 
-class UIStateStore {
+class Controller {
   // the list that gets displaying while new searches are loading.
   @observable currentBeatmapsets!: any[];
   @observable filters!: BeatmapSearchFilters;
@@ -134,7 +134,7 @@ class UIStateStore {
   }
 
   startListeningOnWindow() {
-    $(window).on('resize.beatmaps-ui-state-store', () => {
+    $(window).on('resize.beatmaps-controller', () => {
       const count = osu.isDesktop() ? 2 : 1;
       if (this.numberOfColumns !== count) {
         this.numberOfColumns = count;
@@ -143,7 +143,7 @@ class UIStateStore {
   }
 
   stopListeningOnWindow() {
-    $(window).off('.beatmaps-ui-state-store');
+    $(window).off('.beatmaps-controller');
   }
 
   @action
@@ -158,4 +158,4 @@ class UIStateStore {
   }
 }
 
-export const uiState = new UIStateStore();
+export const controller = new Controller();

@@ -24,7 +24,7 @@ import { IObjectDidChange, IValueDidChange, Lambda, observe } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { SearchContent } from 'react/beatmaps/search-content';
-import { SearchStatus, uiState } from './ui-state-store';
+import { controller, SearchStatus } from './controller';
 
 interface Props {
   availableFilters: AvailableFilters;
@@ -40,17 +40,17 @@ export class Main extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
-    this.observerDisposers.push(observe(uiState, 'searchStatus', this.searchStatusErrorHandler));
+    this.observerDisposers.push(observe(controller, 'searchStatus', this.searchStatusErrorHandler));
 
     // includes an initial search to load the pre-initialized data properly.
-    uiState.restoreTurbolinks();
+    controller.restoreTurbolinks();
 
-    this.observerDisposers.push(observe(uiState.filters, this.filterChangedHandler));
-    this.observerDisposers.push(observe(uiState, 'searchStatus', this.scrollPositionHandler));
+    this.observerDisposers.push(observe(controller.filters, this.filterChangedHandler));
+    this.observerDisposers.push(observe(controller, 'searchStatus', this.scrollPositionHandler));
   }
 
   componentDidMount() {
-    uiState.startListeningOnWindow();
+    controller.startListeningOnWindow();
     $(document).on('turbolinks:before-visit.beatmaps-main', () => {
       this.debouncedSearch.cancel();
     });
@@ -59,7 +59,7 @@ export class Main extends React.Component<Props> {
   componentWillUnmount() {
     $(document).off('.beatmaps-main');
     this.debouncedSearch.cancel();
-    uiState.cancel();
+    controller.cancel();
 
     let disposer = this.observerDisposers.shift();
     while (disposer) {
@@ -67,7 +67,7 @@ export class Main extends React.Component<Props> {
       disposer = this.observerDisposers.shift();
     }
 
-    uiState.stopListeningOnWindow();
+    controller.stopListeningOnWindow();
   }
 
   render() {
@@ -84,21 +84,21 @@ export class Main extends React.Component<Props> {
   }
 
   search() {
-    const url = encodeURI(laroute.route('beatmapsets.index', uiState.filters.queryParams));
+    const url = encodeURI(laroute.route('beatmapsets.index', controller.filters.queryParams));
     Turbolinks.controller.advanceHistory(url);
-    uiState.search();
+    controller.search();
   }
 
   private expand = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    uiState.isExpanded = true;
+    controller.isExpanded = true;
   }
 
   private filterChangedHandler = (change: IObjectDidChange) => {
     const valueChange = change as IValueDidChange<BeatmapSearchFilters>; // actual object is a union of types.
     if (valueChange.oldValue === valueChange.newValue) { return; } // in case something goes horribly wrong in dev.
 
-    uiState.prepareToSearch();
+    controller.prepareToSearch();
     this.debouncedSearch();
     // not sure if observing change of private variable is a good idea
     // but computed value doesn't show up here

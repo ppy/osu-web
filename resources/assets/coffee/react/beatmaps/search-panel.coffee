@@ -17,7 +17,7 @@
 ###
 
 import { SearchFilter } from './search-filter'
-import { uiState } from 'beatmaps/ui-state-store'
+import { controller } from 'beatmaps/controller'
 import * as React from 'react'
 import { div, a, i, input, h1, h2, li, ol, span } from 'react-dom-factories'
 el = React.createElement
@@ -122,7 +122,7 @@ export class SearchPanel extends React.Component
     @pinnedInputRef.current.value = query
     @inputRef.current.value = query
 
-    uiState.updateFilters { query }
+    controller.updateFilters { query }
 
 
   renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>
@@ -132,7 +132,7 @@ export class SearchPanel extends React.Component
       title: osu.trans("beatmaps.listing.search.filters.#{name}") if showTitle
       options: options
       multiselect: multiselect
-      recommendedDifficulty: uiState.recommendedDifficulty
+      recommendedDifficulty: controller.recommendedDifficulty
       selected: @props.filters.selectedValue(name)
 
 

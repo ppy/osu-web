@@ -17,13 +17,13 @@
 ###
 
 import { Main } from 'beatmaps/main'
-import { uiState } from 'beatmaps/ui-state-store'
+import { controller } from 'beatmaps/controller'
 import core from 'osu-core-singleton'
 
 store = core.dataStore.beatmapSearchStore
 
 reactTurbolinks.registerPersistent 'beatmaps', Main, true, ->
   beatmapsets = osu.parseJson('json-beatmaps')
-  store.initialize uiState.filters, beatmapsets
+  store.initialize controller.filters, beatmapsets
 
   availableFilters: osu.parseJson('json-filters')

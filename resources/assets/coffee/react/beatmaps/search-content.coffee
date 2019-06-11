@@ -20,7 +20,7 @@ import { Paginator } from './paginator'
 import { SearchPanel } from './search-panel'
 import { SearchSort } from './search-sort'
 import { BeatmapsetPanel } from 'beatmapset-panel'
-import { uiState } from 'beatmaps/ui-state-store'
+import { controller } from 'beatmaps/controller'
 import { Img2x } from 'img2x'
 import { observe, observable } from 'mobx'
 import { observer } from 'mobx-react'
@@ -54,18 +54,18 @@ ListRender = ({ virtual, itemHeight }) ->
 Observables = observable
   BeatmapList: VirtualList()(ListRender)
 
-observe uiState, 'numberOfColumns', (change) ->
+observe controller, 'numberOfColumns', (change) ->
   if change.oldValue != change.newValue
     Observables.BeatmapList = VirtualList()(ListRender)
 
 
 export SearchContent = observer (props) ->
-  beatmapsets = uiState.currentBeatmapsets
+  beatmapsets = controller.currentBeatmapsets
 
   searchBackground = if beatmapsets.length > 0 then beatmapsets[0].covers?.cover else null
-  supporterRequiredFilterText = uiState.supporterRequiredFilterText
+  supporterRequiredFilterText = controller.supporterRequiredFilterText
   listCssClasses = 'beatmapsets'
-  listCssClasses += ' beatmapsets--dimmed' if uiState.isBusy
+  listCssClasses += ' beatmapsets--dimmed' if controller.isBusy
 
   el React.Fragment, null,
     el SearchPanel,
@@ -73,9 +73,9 @@ export SearchContent = observer (props) ->
       background: searchBackground
       availableFilters: props.availableFilters
       expand: props.expand
-      filters: uiState.filters
-      isExpanded: uiState.isExpanded
-      recommendedDifficulty: uiState.recommendedDifficulty
+      filters: controller.filters
+      isExpanded: controller.isExpanded
+      recommendedDifficulty: controller.recommendedDifficulty
 
     div className: 'js-sticky-header'
 
@@ -86,12 +86,12 @@ export SearchContent = observer (props) ->
           div
             className: 'beatmapsets__sort'
             el SearchSort,
-              filters: uiState.filters
+              filters: controller.filters
               sorting: sorting()
 
         div
           className: 'beatmapsets__content'
-          if uiState.isSupporterMissing
+          if controller.isSupporterMissing
             div className: 'beatmapsets__empty',
               el Img2x,
                 src: '/images/layout/beatmaps/supporter-required.png'
@@ -103,7 +103,7 @@ export SearchContent = observer (props) ->
           else
             if beatmapsets.length > 0
               el Observables.BeatmapList,
-                items: _.chunk(beatmapsets, uiState.numberOfColumns)
+                items: _.chunk(beatmapsets, controller.numberOfColumns)
                 itemBuffer: 5
                 itemHeight: ITEM_HEIGHT
 
@@ -115,16 +115,16 @@ export SearchContent = observer (props) ->
                   title: osu.trans("beatmaps.listing.search.not-found")
                 osu.trans("beatmaps.listing.search.not-found-quote")
 
-        if !uiState.isSupporterMissing
+        if !controller.isSupporterMissing
           div className: 'beatmapsets__paginator',
             el Paginator,
-              error: uiState.error
-              loading: uiState.isPaging
-              more: uiState.hasMore
+              error: controller.error
+              loading: controller.isPaging
+              more: controller.hasMore
 
 
 sorting = ->
-  [field, order] = uiState.filters.displaySort.split('_')
+  [field, order] = controller.filters.displaySort.split('_')
 
   { field, order }
 

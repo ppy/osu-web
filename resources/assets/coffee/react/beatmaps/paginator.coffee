@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-import { uiState } from 'beatmaps/ui-state-store'
+import { controller } from 'beatmaps/controller'
 import * as React from 'react'
 import { div, a, span, i } from 'react-dom-factories'
 import { ShowMoreLink } from 'show-more-link'
@@ -64,4 +64,4 @@ export class Paginator extends React.PureComponent
 
   showMore: (e) =>
     e?.preventDefault()
-    uiState.loadMore()
+    controller.loadMore()
