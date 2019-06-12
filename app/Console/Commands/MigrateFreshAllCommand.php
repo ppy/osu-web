@@ -59,6 +59,15 @@ class MigrateFreshAllCommand extends FreshCommand
             '--path' => $this->input->getOption('path'),
         ]);
 
+        $this->info('Setup elasticsearch indices.');
+
+        $this->call('es:index-documents', [
+            '--cleanup' => true,
+            '--yes' => $this->option('yes'),
+        ]);
+
+        $this->call('es:create-search-blacklist');
+
         if ($this->needsSeeding()) {
             $this->runSeeder(null);
         }
