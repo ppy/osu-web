@@ -27,16 +27,10 @@ import UIStateStore from 'stores/ui-state-store';
 
 export default class ChatStateStore implements DispatchListener {
   @observable autoScroll: boolean = false;
-  dispatcher: Dispatcher;
   @observable lastReadId: number = -1;
-  parent: UIStateStore; // TODO: do we need to bother with tracking parent?
-  root: RootDataStore;
   @observable selected: number = -1;
 
-  constructor(root: RootDataStore, parent: UIStateStore, dispatcher: Dispatcher) {
-    this.root = root;
-    this.parent = parent;
-    this.dispatcher = dispatcher;
+  constructor(private root: RootDataStore, private parent: UIStateStore,  private dispatcher: Dispatcher) {
     dispatcher.register(this);
   }
 

@@ -36,7 +36,6 @@ import RootDataStore from './root-data-store';
 export default class ChannelStore implements DispatchListener {
   @observable channels = observable.map<number, Channel>();
   @observable loaded: boolean = false;
-  root: RootDataStore;
 
   @computed
   get channelList(): Channel[] {
@@ -91,8 +90,7 @@ export default class ChannelStore implements DispatchListener {
     });
   }
 
-  constructor(root: RootDataStore, dispatcher: Dispatcher) {
-    this.root = root;
+  constructor(private root: RootDataStore, dispatcher: Dispatcher) {
     dispatcher.register(this);
   }
 
