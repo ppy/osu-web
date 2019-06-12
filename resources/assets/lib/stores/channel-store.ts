@@ -25,14 +25,13 @@ import {
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { ChannelJSON } from 'chat/chat-api-responses';
-import DispatchListener from 'dispatch-listener';
-import Dispatcher from 'dispatcher';
 import * as _ from 'lodash';
 import { action, computed, observable } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
+import ActionSinkStore from 'stores/action-sink-store';
 
-export default class ChannelStore implements DispatchListener {
+export default class ChannelStore extends ActionSinkStore {
   @observable channels = observable.map<number, Channel>();
   @observable loaded: boolean = false;
 
@@ -87,10 +86,6 @@ export default class ChannelStore implements DispatchListener {
 
       return a.lastMessageId > b.lastMessageId ? -1 : 1;
     });
-  }
-
-  constructor(dispatcher: Dispatcher) {
-    dispatcher.register(this);
   }
 
   @action

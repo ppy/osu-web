@@ -16,9 +16,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import ChatStateStore from 'chat/chat-state-store';
+import DispatcherAction from 'actions/dispatcher-action';
+import DispatchListener from 'dispatch-listener';
+import Dispatcher from 'dispatcher';
 import BaseStore from 'stores/base-store';
+import RootDataStore from 'stores/root-data-store';
 
-export default class UIStateStore extends BaseStore {
-  chat = new ChatStateStore(this.root, this.dispatcher);
+export default abstract class ActionSinkStore extends BaseStore implements DispatchListener {
+  constructor(protected root: RootDataStore, protected dispatcher: Dispatcher) {
+    super(root, dispatcher);
+    dispatcher.register(this);
+  }
+
+  abstract handleDispatchAction(action: DispatcherAction): void;
 }

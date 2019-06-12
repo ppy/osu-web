@@ -19,19 +19,13 @@
 import { ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
-import DispatchListener from 'dispatch-listener';
-import Dispatcher from 'dispatcher';
 import { action, observable } from 'mobx';
-import RootDataStore from 'stores/root-data-store';
+import ActionSinkStore from 'stores/action-sink-store';
 
-export default class ChatStateStore implements DispatchListener {
+export default class ChatStateStore extends ActionSinkStore {
   @observable autoScroll: boolean = false;
   @observable lastReadId: number = -1;
   @observable selected: number = -1;
-
-  constructor(private root: RootDataStore, dispatcher: Dispatcher) {
-    dispatcher.register(this);
-  }
 
   @action
   flushStore() {

@@ -16,9 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import ChatStateStore from 'chat/chat-state-store';
-import BaseStore from 'stores/base-store';
+import Dispatcher from 'dispatcher';
+import RootDataStore from 'stores/root-data-store';
 
-export default class UIStateStore extends BaseStore {
-  chat = new ChatStateStore(this.root, this.dispatcher);
+export default abstract class BaseStore {
+  constructor(protected root: RootDataStore, protected dispatcher: Dispatcher) {}
 }

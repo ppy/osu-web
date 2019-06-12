@@ -19,17 +19,12 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { UserJSON } from 'chat/chat-api-responses';
-import DispatchListener from 'dispatch-listener';
-import Dispatcher from 'dispatcher';
 import { action, observable } from 'mobx';
 import User from 'models/user';
+import ActionSinkStore from 'stores/action-sink-store';
 
-export default class UserStore implements DispatchListener {
+export default class UserStore extends ActionSinkStore {
   @observable users = observable.map<number, User>();
-
-  constructor(dispatcher: Dispatcher) {
-    dispatcher.register(this);
-  }
 
   @action
   flushStore() {
