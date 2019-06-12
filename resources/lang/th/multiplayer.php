@@ -25,7 +25,7 @@ return [
         'failed' => 'ล้มเหลว',
         'header' => 'แข่งขันแบบหลายคน',
         'in-progress' => '(การแข่งขันกำลังดำเนินการ)',
-        'in_progress_spinner_label' => '',
+        'in_progress_spinner_label' => 'การแข่งขันกำลังดำเนินการ',
         'loading-events' => 'กำลังโหลดสิ่งที่เกิดขึ้น...',
         'winner' => ':team ชนะ',
 

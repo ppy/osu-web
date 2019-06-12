@@ -74,6 +74,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => '지정하려는 항목이 이미 존재합니다.',
             'grace_period_expired' => ':limit시간 뒤에 투표 수정을 할 수 없습니다',
+            'hiding_results_forever' => '영원히 끝나지 않는 투표의 결과를 숨길 수 없습니다.',
             'invalid_max_options' => '지정된 항목보다 많이 투표하도록 설정할 수 없습니다.',
             'minimum_one_selection' => '투표자들이 최소 한 개 이상은 선택할 수 있도록 해야합니다.',
             'minimum_two_options' => '투표 항목이 적어도 두 개는 필요합니다.',
@@ -111,6 +112,7 @@ return [
         'too_long' => '최대 길이를 초과하셨습니다 - :limit자리 까지만 가능합니다.',
 
         'change_username' => [
+            'restricted' => '제한된 상태의 계정은 사용자 이름을 변경할 수 없습니다.',
             'supporter_required' => [
                 '_' => '무조건 :link해야만 이름을 변경할 수 있습니다!',
                 'link_text' => 'osu!를 후원',

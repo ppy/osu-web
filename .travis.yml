@@ -41,14 +41,16 @@ env:
     - SHOPIFY_STOREFRONT_TOKEN=notreal
     - SLACK_ENDPOINT=https://myconan.net/null/
 
+before_install:
+  - travis_retry nvm install 10
+  - nvm use 10
+
 install:
   # elasticsearch setup (part 1)
   - travis_retry bash -c 'wget "${ES_DOWNLOAD_URL}"'
   - unzip "elasticsearch-${ES_VERSION}.zip"
   - ./"elasticsearch-${ES_VERSION}/bin/elasticsearch" > elasticsearch.log &
 
-  - travis_retry nvm install 10
-  - nvm use 10
   - phpenv config-add travis-php.ini
   - ./bin/db_setup.sh
   - ./build.sh
@@ -62,6 +64,7 @@ install:
 jobs:
   include:
     - name: phpunit
+      addons: skip
       script: ./bin/phpunit
 
     - name: browser tests
@@ -70,11 +73,27 @@ jobs:
     - name: tslint
       env:
         - OSU_SKIP_ASSET_BUILD=1
+      addons: skip
+      install: skip
+      services: skip
       script:
         - yarn
         - yarn lint
 
+    - name: karma
+      env:
+        - OSU_SKIP_ASSET_BUILD=1
+      before_install:
+        - travis_retry nvm install 10
+        - nvm use 10
+        - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+      script:
+        - yarn
+        - bin/update_locales_and_routes_js
+        - yarn karma start --single-run --browsers ChromeHeadless
+
     - name: apidoc
+      addons: skip
       env:
         - OSU_SKIP_ASSET_BUILD=1
       script:

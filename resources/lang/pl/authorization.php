@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Osiągnięto dzienny limit nominacji, spróbuj ponownie jutro.',
+            'full_bn_required' => 'Musisz posiadać pełne uprawnienia nominatora, aby zakwalifikować tę beatmapę.',
+            'full_bn_required_hybrid' => 'Musisz posiadać pełne uprawnienia nominatora, aby nominować zestawy z beatmapami dla kilku trybów gry.',
             'incorrect_state' => 'Wystąpił błąd podczas wykonywania tej czynności, spróbuj odświeżyć stronę.',
             'owner' => "Nie możesz nominować własnej beatmapy.",
         ],
@@ -34,7 +36,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Adnotacje mogą być dodawane tylko przez twórcę mapy, nominatora lub członka QAT.',
+            'mapper_note_wrong_user' => 'Adnotacje mogą być dodawane tylko przez twórcę mapy, nominatora lub członka NAT.',
         ],
 
         'vote' => [
@@ -48,6 +50,9 @@ return [
         'edit' => [
             'system_generated' => 'Nie możesz edytować automatycznie wygenerowanego posta.',
             'not_owner' => 'Tylko autor posta może go edytować.',
+        ],
+        'store' => [
+            'beatmapset_locked' => 'Tworzenie dyskusji dla tej beatmapy zostało zablokowane.',
         ],
     ],
 
@@ -119,6 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
                 'over' => 'Ankieta została zakończona i nie możesz już w niej głosować.',
+                'play_more' => 'Nie grasz wystarczająco długo, aby głosować na forum.',
                 'voted' => 'Nie możesz zmienić swojego głosu.',
 
                 'user' => [

@@ -55,6 +55,7 @@ return [
         'search' => 'Найти',
         'see_more' => 'показать ещё',
         'show' => 'показать',
+        'show_deleted' => 'Показать удалённые',
         'show_more' => 'показать больше',
         'show_more_options' => 'показать больше опций',
         'upload_image' => 'выбрать файл',

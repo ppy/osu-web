@@ -22,9 +22,11 @@ return [
     'event' => [
         'approve' => 'Aprovado.',
         'discussion_delete' => 'O moderador eliminou a discussão :discussion.',
+        'discussion_lock' => 'A discussão para este beatmap foi desativada. (:text)',
         'discussion_post_delete' => 'O moderador eliminou uma publicação da discussão :discussion.',
         'discussion_post_restore' => 'O moderador restaurou uma publicação da discussão :discussion.',
         'discussion_restore' => 'O moderador restaurou a discussão :discussion.',
+        'discussion_unlock' => 'A discussão para este beatmap foi ativada.',
         'disqualify' => 'Desqualificado por :user. Motivo: :discussion (:text).',
         'disqualify_legacy' => 'Desqualificado por :user. Motivo: :text.',
         'issue_reopen' => 'O problema resolvido :discussion foi reaberto.',

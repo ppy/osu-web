@@ -74,6 +74,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => '不允許重複的選項。',
             'grace_period_expired' => '',
+            'hiding_results_forever' => '',
             'invalid_max_options' => '每人可選的選項不能超出總選項數。',
             'minimum_one_selection' => '每人至少可選一項。',
             'minimum_two_options' => '需要至少兩個選項。',
@@ -111,6 +112,7 @@ return [
         'too_long' => '超出長度限制——最多為 :limit 個字符。',
 
         'change_username' => [
+            'restricted' => '',
             'supporter_required' => [
                 '_' => '你必须 :link 才能更改用户名！',
                 'link_text' => '支持 osu!',

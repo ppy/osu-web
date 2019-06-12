@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Dein Nominierungslimit für heute wurde erreicht, bitte versuche es morgen erneut.',
+            'full_bn_required' => '',
+            'full_bn_required_hybrid' => 'Du musst ein Nominator sein um Beatmap-Sets mit mehr als einem Spielmodus zu nominieren.',
             'incorrect_state' => 'Beim Ausführen dieser Aktion ist ein Fehler aufgetreten. Bitte Seite neu laden.',
             'owner' => "Eigene Beatmaps können nicht nominiert werden.",
         ],
@@ -48,6 +50,9 @@ return [
         'edit' => [
             'system_generated' => 'Automatisch erzeugte Beiträge können nicht bearbeitet werden.',
             'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag bearbeiten.',
+        ],
+        'store' => [
+            'beatmapset_locked' => 'Diese Beatmap Diskussion ist gesperrt.',
         ],
     ],
 
@@ -119,6 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
                 'over' => 'Die Abstimmung ist vorbei. Es kann nicht mehr abgestimmt werden.',
+                'play_more' => 'Du musst mehr spielen bevor du im Forum abstimmen kannst.',
                 'voted' => 'Es ist nicht erlaubt, die Stimme zu ändern.',
 
                 'user' => [

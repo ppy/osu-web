@@ -23,16 +23,16 @@ return [
 
     'type' => [
         'performance' => 'ประสิทธิภาพ',
-        'charts' => 'สปอร์ตไลท์',
+        'charts' => 'สปอตไลต์',
         'score' => 'คะแนน',
         'country' => 'ประเทศ',
     ],
 
     'spotlight' => [
-        'end_date' => '',
-        'map_count' => '',
-        'participants' => '',
-        'start_date' => '',
+        'end_date' => 'วันสิ้นสุด',
+        'map_count' => 'บีทแมพ',
+        'participants' => 'ผู้เข้าร่วม',
+        'start_date' => 'วันเริ่มต้น',
     ],
 
     'stat' => [

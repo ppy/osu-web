@@ -22,9 +22,11 @@ return [
     'event' => [
         'approve' => 'Approved.',
         'discussion_delete' => 'Moderator menghapus diskusi :discussion.',
+        'discussion_lock' => 'Laman diskusi pada beatmap ini telah ditutup. (:text)',
         'discussion_post_delete' => 'Moderator telah menghapus kiriman dari diskusi :discussion.',
         'discussion_post_restore' => 'Moderator mengembalikan kiriman dari diskusi :discussion.',
         'discussion_restore' => 'Moderator mengembalikan diskusi :discussion.',
+        'discussion_unlock' => 'Laman diskusi pada beatmap ini telah dibuka kembali.',
         'disqualify' => 'Didiskualifikasi oleh :user. Alasan: :discussion (:text).',
         'disqualify_legacy' => 'Didiskualifikasi oleh :user. Alasan: :text.',
         'issue_reopen' => 'Masalah yang terselesaikan di :discussion telah dibuka kembali.',

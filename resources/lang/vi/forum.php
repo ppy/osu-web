@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => 'Ẩn kết quả cuộc thăm dò.',
+                'hide_results_info' => 'Nó sẽ chỉ được hiển thị sau khi cuộc thăm dò kết thúc.',
                 'length' => 'Thời gian thăm dò',
                 'length_days_suffix' => 'ngày',
                 'length_info' => 'Để trống nếu nó không bao giờ kết thúc',
@@ -292,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => 'Cuộc thăm dò sẽ kết thúc vào :time',
                     'ended' => 'Cuộc thăm dò đã kết thúc vào :time',
+                    'results_hidden' => 'Kết quả sẽ được hiển thị sau khi cuộc thăm dò kết thúc.',
                     'total' => 'Tổng số phiếu: :count',
                 ],
             ],

@@ -20,12 +20,12 @@
 
 return [
     'scores' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Rapporteer Score',
+        'title' => 'Rapporteer :username\'s score?',
     ],
 
     'comment' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Rapporteer',
+        'title' => 'Rapporteer :username\'s reactie?',
     ],
 ];

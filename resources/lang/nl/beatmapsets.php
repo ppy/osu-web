@@ -55,25 +55,25 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => 'toegang tot meer functies',
+                'top' => 'Inloggen',
             ],
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => 'Je hebt te veel favoriete beatmaps! Verwijder er een paar voor je het opnieuw probeert.',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Hype deze map als je het leuk vond om deze te spelen en om het te helpen de status <strong>ranked</strong> te bereiken.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Deze map is momenteel :status.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'in behandeling',
+                    'qualified' => 'gekwalificeerd',
+                    'wip' => 'werk in uitvoering',
                 ],
             ],
         ],

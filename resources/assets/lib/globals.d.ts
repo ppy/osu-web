@@ -52,6 +52,7 @@ interface OsuCommon {
   parseJson: (id: string) => any;
   popup: (message: string, type: string) => void;
   presence: (str?: string | null) => string | null;
+  present: (str?: string | null) => boolean;
   promisify: (xhr: JQueryXHR) => Promise<any>;
   timeago: (time?: string) => string;
   trans: (...args: any[]) => string;
@@ -60,6 +61,7 @@ interface OsuCommon {
   uuid: () => string;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
+  isDesktop(): boolean;
   isMobile(): boolean;
   updateQueryString(url: string | null, params: { [key: string]: string | undefined }): string;
 }

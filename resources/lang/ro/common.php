@@ -55,6 +55,7 @@ return [
         'search' => 'Caută',
         'see_more' => 'vezi mai mult',
         'show' => 'arată',
+        'show_deleted' => '',
         'show_more' => 'arată mai mult',
         'show_more_options' => 'arată mai multe opţiuni',
         'upload_image' => 'încarcă imaginea',

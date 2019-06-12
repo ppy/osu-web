@@ -40,12 +40,14 @@ return [
         'edited' => 'En son :editor tarafından :update_time tarihinde düzenlendi.',
         'kudosu_denied' => 'Kudosu almaktan mahrum bırakıldı.',
         'message_placeholder_deleted_beatmap' => 'Bu zorluk seviyesi silindi o yüzden hakkında daha fazla tartışılamaz.',
+        'message_placeholder_locked' => '',
         'message_type_select' => 'Yorum Türünü Seçin',
         'reply_notice' => 'Cevaplamak için Enter tuşuna basın.',
         'reply_placeholder' => 'Yanıtınızı buraya yazın',
         'require-login' => 'Lütfen yorum yapmak ya da cevaplamak için giriş yapınız',
         'resolved' => 'Çözüldü',
         'restore' => 'restore et',
+        'show_deleted' => '',
         'title' => 'Tartışmalar',
 
         'collapse' => [
@@ -56,6 +58,18 @@ return [
         'empty' => [
             'empty' => 'Henüz tartışma yok!',
             'hidden' => 'Filtre ile eşleşen tartışma yok.',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => '',
+                'unlock' => '',
+            ],
+
+            'prompt' => [
+                'lock' => '',
+                'unlock' => '',
+            ],
         ],
 
         'message_hint' => [
@@ -90,9 +104,11 @@ return [
         ],
 
         'new' => [
+            'pin' => '',
             'timestamp' => 'Zaman damgası',
             'timestamp_missing' => 'bir zaman damgası eklemek için editörde ctrl-c\'ye basıp mesajınıza yapıştırın!',
             'title' => 'Yeni Tartışma',
+            'unpin' => '',
         ],
 
         'show' => [
@@ -124,6 +140,10 @@ return [
             'wip' => 'Dikkat: Bu beatmap yaratıcısı tarafından yapım aşamasında olarak işaretlendi.',
         ],
 
+        'votes' => [
+            'up' => '',
+            'down' => '',
+        ],
     ],
 
     'hype' => [

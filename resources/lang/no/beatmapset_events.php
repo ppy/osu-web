@@ -22,9 +22,11 @@ return [
     'event' => [
         'approve' => 'Godkjent.',
         'discussion_delete' => 'Moderator slettet diskusjonen :discussion.',
+        'discussion_lock' => 'Diskusjon for dette beatmappet har blitt deaktivert. (:text)',
         'discussion_post_delete' => 'Moderator slettet innlegg fra diskusjonen :discussion.',
         'discussion_post_restore' => 'Moderator gjenopprettet innlegg fra diskusjonen :discussion.',
         'discussion_restore' => 'Moderator gjenopprettet diskusjon :discussion.',
+        'discussion_unlock' => 'Diskusjon for dette beatmappet har blitt aktivert.',
         'disqualify' => 'Diskvalifisert av :user. Årsak: :discussion (:text).',
         'disqualify_legacy' => 'Diskvalifisert av :user. Årsak: :text.',
         'issue_reopen' => 'Løst problem ved :discussion har blitt gjenåpnet.',
