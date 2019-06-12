@@ -23,14 +23,13 @@ import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
 import { action, observable } from 'mobx';
 import RootDataStore from 'stores/root-data-store';
-import UIStateStore from 'stores/ui-state-store';
 
 export default class ChatStateStore implements DispatchListener {
   @observable autoScroll: boolean = false;
   @observable lastReadId: number = -1;
   @observable selected: number = -1;
 
-  constructor(private root: RootDataStore, private parent: UIStateStore,  private dispatcher: Dispatcher) {
+  constructor(private root: RootDataStore, dispatcher: Dispatcher) {
     dispatcher.register(this);
   }
 

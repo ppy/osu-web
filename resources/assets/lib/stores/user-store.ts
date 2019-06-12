@@ -23,12 +23,11 @@ import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
 import { action, observable } from 'mobx';
 import User from 'models/user';
-import RootDataStore from './root-data-store';
 
 export default class UserStore implements DispatchListener {
   @observable users = observable.map<number, User>();
 
-  constructor(private root: RootDataStore, dispatcher: Dispatcher) {
+  constructor(dispatcher: Dispatcher) {
     dispatcher.register(this);
   }
 

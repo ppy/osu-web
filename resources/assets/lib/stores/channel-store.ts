@@ -31,7 +31,6 @@ import * as _ from 'lodash';
 import { action, computed, observable } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
-import RootDataStore from './root-data-store';
 
 export default class ChannelStore implements DispatchListener {
   @observable channels = observable.map<number, Channel>();
@@ -90,7 +89,7 @@ export default class ChannelStore implements DispatchListener {
     });
   }
 
-  constructor(private root: RootDataStore, dispatcher: Dispatcher) {
+  constructor(dispatcher: Dispatcher) {
     dispatcher.register(this);
   }
 

@@ -28,7 +28,7 @@ export default class RootDataStore {
 
   constructor(dispatcher: Dispatcher) {
     this.uiState = new UIStateStore(this, dispatcher);
-    this.channelStore = new ChannelStore(this, dispatcher);
-    this.userStore = new UserStore(this, dispatcher);
+    this.channelStore = new ChannelStore(dispatcher);
+    this.userStore = new UserStore(dispatcher);
   }
 }

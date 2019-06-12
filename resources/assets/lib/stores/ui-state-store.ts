@@ -22,10 +22,8 @@ import RootDataStore from './root-data-store';
 
 export default class UIStateStore {
   chat: ChatStateStore;
-  parent: RootDataStore;
 
   constructor(root: RootDataStore, dispatcher: Dispatcher) {
-    this.parent = root;
-    this.chat = new ChatStateStore(root, this, dispatcher);
+    this.chat = new ChatStateStore(root, dispatcher);
   }
 }
