@@ -36,6 +36,7 @@ export interface SearchStatus {
 class Controller {
   // the list that gets displaying while new searches are loading.
   @observable currentBeatmapsets!: any[];
+  dispatcher = core.dispatcher;
   @observable filters!: BeatmapSearchFilters;
   @observable hasMore = false; // TODO: figure out how to make this computed
   @observable isExpanded!: boolean;

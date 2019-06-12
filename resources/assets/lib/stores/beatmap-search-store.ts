@@ -18,10 +18,13 @@
 
 import { BeatmapSearchFilters } from 'beatmap-search-filters';
 import SearchResults from 'beatmaps/search-results';
+import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
 import { action, observable } from 'mobx';
+import { BeatmapsetStore } from 'stores/beatmapset-store';
+import core from 'osu-core-singleton';
 
 interface SearchResponse {
-  beatmapsets: JSON[];
+  beatmapsets: BeatmapsetJSON[];
   cursor: JSON;
   recommended_difficulty: number;
   total: number;
@@ -36,6 +39,7 @@ export default class BeatmapSearchStore {
   recommendedDifficulty = 0; // last known recommended difficulty.
   readonly totals = new Map<string, number>();
 
+  private readonly beatmapsetStore = new BeatmapsetStore();
   private xhr?: JQueryXHR;
 
   cancel() {
@@ -64,6 +68,8 @@ export default class BeatmapSearchStore {
     }
 
     return this.fetch(filters, from).then((data: SearchResponse) => {
+      this.updateBeatmapsetStore(data);
+
       if (from === 0) {
         this.reset(key);
       }
@@ -92,6 +98,9 @@ export default class BeatmapSearchStore {
 
   @action
   initialize(filters: BeatmapSearchFilters, data: SearchResponse) {
+    // FIXME: shouldn't init if already inited.
+    this.updateBeatmapsetStore(data);
+
     const key = filters.toKeyString();
 
     if (this.cursors.has(key)) {
@@ -170,5 +179,14 @@ export default class BeatmapSearchStore {
     this.beatmapsets.set(key, observable([]));
     this.cursors.delete(key);
     this.totals.delete(key);
+  }
+
+  private updateBeatmapsetStore(response: SearchResponse) {
+    console.log(response);
+    for (const json of response.beatmapsets) {
+      this.beatmapsetStore.update(json);
+    }
+
+    console.log(this.beatmapsetStore.beatmapsets.toJSON());
   }
 }
