@@ -68,7 +68,7 @@
                 @else
                     <div class="search-result">
                         <div class="search-result__row search-result__row--notice">
-                            {{ trans('home.search.missing_query', ['n' => 1]) }}
+                            {{ trans('home.search.keyword_required') }}
                         </div>
                     </div>
                 @endif

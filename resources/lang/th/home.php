@@ -36,7 +36,6 @@ return [
         'advanced_link' => 'Advanced search',
         'button' => 'ค้นหา',
         'empty_result' => 'ไม่พบสิ่งใด!',
-        'missing_query' => 'Search keyword of minimum :n characters is required',
         'placeholder' => 'type to search',
         'title' => 'ค้นหา',
 
