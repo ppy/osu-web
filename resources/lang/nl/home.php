@@ -24,7 +24,7 @@ return [
         'online' => '<strong>:players</strong> momenteel online in <strong>:games</strong> games',
         'peak' => 'Piek, :count online gebruikers',
         'players' => '<strong>:count</strong> geregistreerde spelers',
-        'title' => '',
+        'title' => 'welkom',
 
         'slogan' => [
             'main' => 'de beste free-to-win rhythm game',
@@ -53,7 +53,7 @@ return [
             'title' => 'Forum',
 
             'label' => [
-                'forum' => 'zoek in forums',
+                'forum' => 'doorzoek het forum',
                 'forum_children' => 'tel subforums mee',
                 'topic_id' => 'onderwerp #',
                 'username' => 'auteur',

@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Tu alcançaste o teu limite de nomeações por dia, por favor tenta outra vez amanhã.',
+            'full_bn_required' => 'Tu tens que ser um nomeador por completo para desempenhar esta nomeação de qualificação.',
+            'full_bn_required_hybrid' => 'Tu tens que ser um nomeador por completo para nomear grupos de beatmaps com mais de um modo de jogo.',
             'incorrect_state' => 'Erro ao executar essa ação, por favor recarrega a página.',
             'owner' => "Não é possível nomear o próprio beatmap.",
         ],
@@ -48,6 +50,9 @@ return [
         'edit' => [
             'system_generated' => 'Uma publicação gerada automaticamente não pode ser editada.',
             'not_owner' => 'Só o publicador é que pode editar uma publicação.',
+        ],
+        'store' => [
+            'beatmapset_locked' => 'Este beatmap está bloqueado para discussão.',
         ],
     ],
 
@@ -119,6 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'Acesso ao fórum solicitado é obrigatório.',
                 'over' => 'A sondagem acabou e não se pode votar mais nela.',
+                'play_more' => 'Precisas de jogar mais antes de votar no fórum.',
                 'voted' => 'A troca de voto não é permitida.',
 
                 'user' => [

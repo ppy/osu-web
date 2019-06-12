@@ -20,6 +20,7 @@
 
 return [
     'deleted' => 'изтрито',
+    'deleted_count' => '',
     'edited' => 'редактирано :timeago от :user',
     'empty' => 'Все още няма коментари.',
     'replies' => 'Отговори',

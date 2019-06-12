@@ -40,12 +40,14 @@ return [
         'edited' => '最后由 :editor 编辑于 :update_time 。',
         'kudosu_denied' => 'kudosu 被收回',
         'message_placeholder_deleted_beatmap' => '该难度已被删除，无法继续讨论',
+        'message_placeholder_locked' => '该谱面下的讨论已关闭。',
         'message_type_select' => '选择回复类型',
         'reply_notice' => '按下回车以提交',
         'reply_placeholder' => '在此处输入您的回复',
         'require-login' => '登录以继续',
         'resolved' => '已解决',
         'restore' => '已修复',
+        'show_deleted' => '显示已删除的消息',
         'title' => '讨论',
 
         'collapse' => [
@@ -56,6 +58,18 @@ return [
         'empty' => [
             'empty' => '还没有讨论！',
             'hidden' => '没有符合过滤条件的讨论。',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => '锁定该讨论',
+                'unlock' => '解锁该讨论',
+            ],
+
+            'prompt' => [
+                'lock' => '锁定讨论的原因',
+                'unlock' => '确认解锁该讨论吗？',
+            ],
         ],
 
         'message_hint' => [
@@ -90,9 +104,11 @@ return [
         ],
 
         'new' => [
+            'pin' => '置顶',
             'timestamp' => '时间戳',
             'timestamp_missing' => '在编辑模式下按 Ctrl+C 然后在您的输入框中粘贴以添加时间戳！',
             'title' => '新的讨论',
+            'unpin' => '取消置顶',
         ],
 
         'show' => [
@@ -124,6 +140,10 @@ return [
             'wip' => '注意：这张谱面被作者标记为 WIP（work-in-progress）',
         ],
 
+        'votes' => [
+            'up' => '支持该讨论',
+            'down' => '反对该讨论',
+        ],
     ],
 
     'hype' => [

@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => 'Anket sonuçlarını gizle.',
+                'hide_results_info' => 'Sadece anket sonuçlandıktan sonra gösterilecekler.',
                 'length' => 'Şu süreyle anketi sürdür',
                 'length_days_suffix' => 'gün',
                 'length_info' => 'Hiç bitmeyen bir anket için boş bırakın',
@@ -292,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => 'Anket :time tarihinde bitecek',
                     'ended' => 'Anket :time tarihinde bitti',
+                    'results_hidden' => 'Sonuçlar anket bittikten sonra gösterilecek.',
                     'total' => 'Toplam oy: :count',
                 ],
             ],

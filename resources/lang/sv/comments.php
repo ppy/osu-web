@@ -20,6 +20,7 @@
 
 return [
     'deleted' => 'raderad',
+    'deleted_count' => '',
     'edited' => 'redigerad :timeago av :user',
     'empty' => 'Inga kommentarer ännu.',
     'replies' => 'Svar',

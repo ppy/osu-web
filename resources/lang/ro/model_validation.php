@@ -74,6 +74,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Opțiunile duplicate nu sunt permise.',
             'grace_period_expired' => 'Nu poți edita un sondaj după mai mult de :limit ore',
+            'hiding_results_forever' => '',
             'invalid_max_options' => 'Opțiunea per utilizator nu poate depăși numărul de opțiuni disponibile.',
             'minimum_one_selection' => 'Este necesar cel puțin o opțiune per utilizator.',
             'minimum_two_options' => 'Este nevoie de cel puțin două opțiuni.',
@@ -111,6 +112,7 @@ return [
         'too_long' => 'Ai depășit lungimea maximă - nu poate fi decât până la :limit caractere.',
 
         'change_username' => [
+            'restricted' => '',
             'supporter_required' => [
                 '_' => 'Trebuie să :link pentru a-ți schimba numele!',
                 'link_text' => 'fii un suporter osu!',

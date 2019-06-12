@@ -20,6 +20,7 @@
 
 return [
     'deleted' => '已删除',
+    'deleted_count' => ':count_delimited 已删除评论|:count_delimited 已删除评论',
     'edited' => ':user 编辑于 :timeago',
     'empty' => '暂无评论。',
     'replies' => '回复',

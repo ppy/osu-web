@@ -35,7 +35,7 @@ return [
         'standard_converts_only' => 'Er zijn geen scores beschikbaar voor de gevraagde mode voor deze beatmap difficulty.',
     ],
     'checkout' => [
-        'generic' => '',
+        'generic' => 'Er is een fout opgetreden tijdens het voorbereiden voor het afrekenen.',
     ],
     'logged_out' => 'Je bent uitgelogd. Log in en probeer opnieuw.',
     'supporter_only' => 'Je moet een supporter zijn om dit te gebruiken.',

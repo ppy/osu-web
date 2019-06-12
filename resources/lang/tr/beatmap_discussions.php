@@ -78,7 +78,7 @@ return [
         'admin' => 'yönetici',
         'bng' => 'nominatör',
         'owner' => 'mapper',
-        'qat' => 'qat',
+        'nat' => '',
     ],
 
     'user_filter' => [

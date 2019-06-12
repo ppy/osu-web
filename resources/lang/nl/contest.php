@@ -20,7 +20,7 @@
 
 return [
     'header' => [
-        'small' => 'Concurreren op meer manieren dan enkel het klikken van cirkels.',
+        'small' => 'Concurreer op meer manieren dan enkel het klikken van cirkels.',
         'large' => 'Community Wedstrijden',
     ],
     'voting' => [
@@ -32,17 +32,17 @@ return [
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => 'Stem',
+            'remove' => 'Verwijder stem',
+            'used_up' => 'Je hebt al je stemmen opgebruikt',
         ],
     ],
     'entry' => [
         '_' => 'inzending',
-        'login_required' => 'Gelieve aan te melden om in de wedstrijd mee te doen.',
-        'silenced_or_restricted' => 'Je kan niet meedoen in wedstrijden als je gerestricteerd of gesilenced bent.',
-        'preparation' => 'We bereiden momenteel deze wedstrijd. Wacht nog even!',
-        'over' => 'Bedankt voor de inzendingen! Inzendingen zijn gesloten voor deze wedstrijd en stemmen gaan binnenkort openen.',
+        'login_required' => 'Log in om aan de wedstrijd mee te doen.',
+        'silenced_or_restricted' => 'Je kan niet meedoen aan wedstrijden als je restricted of silenced bent.',
+        'preparation' => 'We zijn nog bezig met de voorbereidingen van deze wedstrijd. Heb nog even geduld alsjeblieft!',
+        'over' => 'Bedankt voor de inzendingen! Inzendingen zijn gesloten voor deze wedstrijd en de stembus gaan binnenkort open.',
         'limit_reached' => 'Je hebt de limiet voor inschrijvingen bereikt',
         'drop_here' => 'Sleep je inzending hier',
         'download' => 'Download .osz',
@@ -72,6 +72,6 @@ return [
     'states' => [
         'entry' => 'Inzendingen Open',
         'voting' => 'Stemmen Gestard',
-        'results' => 'Resultaten Publiek',
+        'results' => 'Resultaten uit',
     ],
 ];

@@ -24,7 +24,7 @@ return [
         'online' => '<strong>:players</strong> currently online in <strong>:games</strong> games',
         'peak' => 'Peak, :count online users',
         'players' => '<strong>:count</strong> registered players',
-        'title' => '',
+        'title' => 'ยินดีต้อนรับ',
 
         'slogan' => [
             'main' => 'the bestest free-to-win rhythm game',
@@ -33,7 +33,7 @@ return [
     ],
 
     'search' => [
-        'advanced_link' => 'Advanced search',
+        'advanced_link' => 'การค้นหาขั้นสูง',
         'button' => 'ค้นหา',
         'empty_result' => 'ไม่พบสิ่งใด!',
         'missing_query' => 'Search keyword of minimum :n characters is required',
@@ -86,9 +86,9 @@ return [
         'tagline' => "let's get<br>you started!",
         'action' => 'Download osu!',
         'os' => [
-            'windows' => 'for Windows',
-            'macos' => 'for macOS',
-            'linux' => 'for Linux',
+            'windows' => 'สำหรับ Windows',
+            'macos' => 'สำหรับ macOS',
+            'linux' => 'สำหรับ Linux',
         ],
         'mirror' => 'mirror',
         'macos-fallback' => 'macOS users',
@@ -128,7 +128,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '',
+            'new' => 'Ranked Beatmaps อันใหม่',
             'popular' => 'บีทแมพที่นิยม',
             'by' => 'โดย',
             'plays' => ':count plays',
