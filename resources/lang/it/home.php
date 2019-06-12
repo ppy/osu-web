@@ -36,7 +36,6 @@ return [
         'advanced_link' => 'Ricerca avanzata',
         'button' => 'Cerca',
         'empty_result' => 'Nessun risultato!',
-        'missing_query' => 'E\' richiesta una parola chiave di almeno :n caratteri',
         'placeholder' => 'digita per cercare',
         'title' => 'Cerca',
 
