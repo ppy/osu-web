@@ -237,6 +237,9 @@ return [
 
         /* Datadog Metrics */
         ChaseConey\LaravelDatadogHelper\LaravelDatadogHelperServiceProvider::class,
+
+        /* Override default migrate:fresh */
+        App\Providers\MigrationServiceProvider::class,
     ],
 
     /*

@@ -26,20 +26,6 @@ use Symfony\Component\Console\Input\InputOption;
 class MigrateFreshAllCommand extends FreshCommand
 {
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'migrate:fresh-all';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Actually drop all tables and re-run all migrations';
-
-    /**
      * Execute the console command.
      *
      * @return void
