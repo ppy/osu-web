@@ -95,8 +95,13 @@ class Event extends Model
                 $userUrl = e(route('users.show', $beatmapset->user, false));
                 $approval = e($beatmapset->status());
 
+                $textCleanBeatmapsetUrl = config('app.url').$beatmapsetUrl;
+                $textCleanUserUrl = config('app.url').$userUrl;
+                $textClean = "[{$textCleanBeatmapsetUrl} {$beatmapsetTitle}] by [{$textCleanUserUrl} {$userName}] has just been {$approval}!";
+
                 $params = [
                     'text' => "<a href='{$beatmapsetUrl}'>{$beatmapsetTitle}</a> by <b><a href='{$userUrl}'>{$userName}</a></b> has just been {$approval}!",
+                    'text_clean' => $textClean,
                     'beatmap_id' => 0,
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $beatmapset->user->getKey(),
