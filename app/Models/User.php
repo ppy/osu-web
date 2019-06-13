@@ -397,7 +397,7 @@ class User extends Model implements AuthenticatableContract
         if ($this->user_type === 1) {
             //restricted user
             return $this->user_lastvisit
-            ->addDays(intval(1580 * (1 - pow(M_E, -0.35 * $playCount / 5900)) + (3 * 8 * $playCount / 4 * 5900)));
+            ->addDays(intval(1580 * (1 - pow(M_E, -0.35 * $playCount / 5900)) + (3 * 8 * $playCount / (4 * 5900))));
         }
 
         return $this->user_lastvisit
