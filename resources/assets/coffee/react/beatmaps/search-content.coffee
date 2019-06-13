@@ -23,7 +23,7 @@ import { BeatmapsetPanel } from 'beatmapset-panel'
 import { controller } from 'beatmaps/controller'
 import { Img2x } from 'img2x'
 import { observe, observable } from 'mobx'
-import { observer } from 'mobx-react'
+import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, div, p } from 'react-dom-factories'
@@ -59,68 +59,69 @@ observe controller, 'numberOfColumns', (change) ->
     Observables.BeatmapList = VirtualList()(ListRender)
 
 
-export SearchContent = observer (props) ->
-  beatmapsets = controller.currentBeatmapsets
+export SearchContent = (props) ->
+  el Observer, null, () ->
+    beatmapsets = controller.currentBeatmapsets
 
-  searchBackground = if beatmapsets.length > 0 then beatmapsets[0].covers?.cover else null
-  supporterRequiredFilterText = controller.supporterRequiredFilterText
-  listCssClasses = 'beatmapsets'
-  listCssClasses += ' beatmapsets--dimmed' if controller.isBusy
+    searchBackground = if beatmapsets.length > 0 then beatmapsets[0].covers?.cover else null
+    supporterRequiredFilterText = controller.supporterRequiredFilterText
+    listCssClasses = 'beatmapsets'
+    listCssClasses += ' beatmapsets--dimmed' if controller.isBusy
 
-  el React.Fragment, null,
-    el SearchPanel,
-      innerRef: props.backToTopAnchor
-      background: searchBackground
-      availableFilters: props.availableFilters
-      expand: props.expand
-      filters: controller.filters
-      isExpanded: controller.isExpanded
-      recommendedDifficulty: controller.recommendedDifficulty
+    el React.Fragment, null,
+      el SearchPanel,
+        innerRef: props.backToTopAnchor
+        background: searchBackground
+        availableFilters: props.availableFilters
+        expand: props.expand
+        filters: controller.filters
+        isExpanded: controller.isExpanded
+        recommendedDifficulty: controller.recommendedDifficulty
 
-    div className: 'js-sticky-header'
+      div className: 'js-sticky-header'
 
-    div
-      className: 'osu-layout__row osu-layout__row--page-compact'
-      div className: listCssClasses,
-        if currentUser.id?
+      div
+        className: 'osu-layout__row osu-layout__row--page-compact'
+        div className: listCssClasses,
+          if currentUser.id?
+            div
+              className: 'beatmapsets__sort'
+              el SearchSort,
+                filters: controller.filters
+                sorting: sorting()
+
           div
-            className: 'beatmapsets__sort'
-            el SearchSort,
-              filters: controller.filters
-              sorting: sorting()
-
-        div
-          className: 'beatmapsets__content'
-          if controller.isSupporterMissing
-            div className: 'beatmapsets__empty',
-              el Img2x,
-                src: '/images/layout/beatmaps/supporter-required.png'
-                alt: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterRequiredFilterText)
-                title: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterRequiredFilterText)
-
-              renderLinkToSupporterTag(supporterRequiredFilterText)
-
-          else
-            if beatmapsets.length > 0
-              el Observables.BeatmapList,
-                items: _.chunk(beatmapsets, controller.numberOfColumns)
-                itemBuffer: 5
-                itemHeight: ITEM_HEIGHT
-
-            else
+            className: 'beatmapsets__content'
+            if controller.isSupporterMissing
               div className: 'beatmapsets__empty',
                 el Img2x,
-                  src: '/images/layout/beatmaps/not-found.png'
-                  alt: osu.trans("beatmaps.listing.search.not-found")
-                  title: osu.trans("beatmaps.listing.search.not-found")
-                osu.trans("beatmaps.listing.search.not-found-quote")
+                  src: '/images/layout/beatmaps/supporter-required.png'
+                  alt: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterRequiredFilterText)
+                  title: osu.trans('beatmaps.listing.search.supporter_filter', filters: supporterRequiredFilterText)
 
-        if !controller.isSupporterMissing
-          div className: 'beatmapsets__paginator',
-            el Paginator,
-              error: controller.error
-              loading: controller.isPaging
-              more: controller.hasMore
+                renderLinkToSupporterTag(supporterRequiredFilterText)
+
+            else
+              if beatmapsets.length > 0
+                el Observables.BeatmapList,
+                  items: _.chunk(beatmapsets, controller.numberOfColumns)
+                  itemBuffer: 5
+                  itemHeight: ITEM_HEIGHT
+
+              else
+                div className: 'beatmapsets__empty',
+                  el Img2x,
+                    src: '/images/layout/beatmaps/not-found.png'
+                    alt: osu.trans("beatmaps.listing.search.not-found")
+                    title: osu.trans("beatmaps.listing.search.not-found")
+                  osu.trans("beatmaps.listing.search.not-found-quote")
+
+          if !controller.isSupporterMissing
+            div className: 'beatmapsets__paginator',
+              el Paginator,
+                error: controller.error
+                loading: controller.isPaging
+                more: controller.hasMore
 
 
 sorting = ->
