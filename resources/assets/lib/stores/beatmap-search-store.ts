@@ -20,8 +20,7 @@ import { BeatmapSearchFilters } from 'beatmap-search-filters';
 import SearchResults from 'beatmaps/search-results';
 import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
 import { action, observable } from 'mobx';
-import { BeatmapsetStore } from 'stores/beatmapset-store';
-import core from 'osu-core-singleton';
+import { store as beatmapsetStore } from 'stores/beatmapset-store';
 
 interface SearchResponse {
   beatmapsets: BeatmapsetJSON[];
@@ -33,13 +32,12 @@ interface SearchResponse {
 export default class BeatmapSearchStore {
   static CACHE_DURATION_MS = 60000;
 
-  readonly beatmapsets = new Map<string, any[]>();
+  readonly beatmapsets = new Map<string, BeatmapsetJSON[]>();
   readonly cursors = new Map<string, any>();
   readonly fetchedAt = new Map<string, Date>();
   recommendedDifficulty = 0; // last known recommended difficulty.
   readonly totals = new Map<string, number>();
 
-  private readonly beatmapsetStore = new BeatmapsetStore();
   private xhr?: JQueryXHR;
 
   cancel() {
@@ -121,11 +119,13 @@ export default class BeatmapSearchStore {
     this.totals.set(key, data.total);
   }
 
-  private appendBeatmapsets(key: string, data: JSON[]) {
+  private appendBeatmapsets(key: string, data: BeatmapsetJSON[]) {
     const beatmapsets = this.getObservableBeatmapsetsByKey(key);
-    // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
-    for (let beatmapset of data) {
-      beatmapsets.push(beatmapset);
+    for (const beatmapset of data) {
+      const item = beatmapsetStore.get(beatmapset.id);
+      if (item) {
+        beatmapsets.push(item);
+      }
     }
   }
 
@@ -182,11 +182,10 @@ export default class BeatmapSearchStore {
   }
 
   private updateBeatmapsetStore(response: SearchResponse) {
-    console.log(response);
+    // console.log(response);
     for (const json of response.beatmapsets) {
-      this.beatmapsetStore.update(json);
+      beatmapsetStore.update(json);
     }
-
-    console.log(this.beatmapsetStore.beatmapsets.toJSON());
+    // console.log(beatmapsetStore.beatmapsets.toJSON());
   }
 }

@@ -32,3 +32,5 @@ export class BeatmapsetStore {
     this.beatmapsets.set(beatmapset.id, beatmapset);
   }
 }
+
+export const store = new BeatmapsetStore();
