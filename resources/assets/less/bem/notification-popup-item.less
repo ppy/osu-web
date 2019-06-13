@@ -21,14 +21,11 @@
 
   display: flex;
   width: 100%;
-  background-color: @greysky;
+  background-color: @greysky-dark;
   border-radius: @border-radius-large;
 
-  &:hover::before {
-    .full-size();
-    content: '';
-    background-color: fade(#fff, 10%);
-    border-radius: @border-radius-large;
+  &:hover {
+    background-color: lighten(@greysky-dark, 10%);
   }
 
   &--compact {
@@ -39,6 +36,10 @@
 
   &--group {
     background-color: lighten(@greysky, 10%);
+
+    &:hover {
+      background-color: lighten(@greysky, 20%);
+    }
   }
 
   &__content {
@@ -47,9 +48,9 @@
     flex-direction: column;
     min-width: 0;
     // prevent thin single row item
-    min-height: 30px;
+    min-height: 36px;
     justify-content: center;
-    margin: -2px 0;
+    padding: 3px 0 3px 10px;
   }
 
   &__cover {
@@ -89,18 +90,38 @@
   &__main {
     border-radius: 0 @border-radius-large @border-radius-large 0;
     flex: 1;
-    padding: 5px 0 5px 10px;
     display: flex;
     min-width: 0;
   }
 
   &__read-button {
     .reset-input();
+    .full-size();
+    .center-content();
+    width: calc(100% - 6px);
+    margin-left: 6px;
+    padding-left: 2px;
     color: @greysky-light;
-    padding: 2px;
 
     &:hover {
       color: #fff;
+    }
+
+    &::before {
+      .full-size();
+      content: ' ';
+      width: 6px;
+      border-radius: 0 6px 6px 0;
+      background-color: transparent;
+      left: -6px;
+
+      .@{_top}:hover & {
+        background-color: lighten(@greysky-dark, 10%);
+      }
+
+      .@{_top}--group:hover & {
+        background-color: lighten(@greysky, 20%);
+      }
     }
   }
 
@@ -127,9 +148,18 @@
   }
 
   &__side-buttons {
-    .center-content();
-    width: 16px;
+    width: 40px;
     flex: none;
-    margin: 0 10px;
+    border-radius: 0 6px 6px 0;
+    background-color: transparent;
+
+    .@{_top}--legacy_pm & {
+      display: none;
+    }
+
+    &:hover {
+      background-color: fade(black, 15%);
+    }
   }
+
 }
