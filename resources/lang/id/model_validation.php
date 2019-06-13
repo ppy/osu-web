@@ -74,6 +74,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Opsi ganda tidak diizinkan.',
             'grace_period_expired' => 'Tidak dapat menyunting sebuah jajak pendapat setelah melebihi :limit jam',
+            'hiding_results_forever' => 'Suara pada polling yang tidak memiliki batasan akhir waktu tidak dapat dirahasiakan.',
             'invalid_max_options' => 'Pilihan per pengguna tidak boleh melebihi jumlah opsi yang tersedia.',
             'minimum_one_selection' => 'Diperlukan setidaknya satu opsi per pengguna.',
             'minimum_two_options' => 'Diperlukan setidaknya dua opsi',
@@ -111,6 +112,7 @@ return [
         'too_long' => 'Melebihi batas maksimum - hanya bisa hingga :limit karakter.',
 
         'change_username' => [
+            'restricted' => 'Anda tidak dapat mengganti nama pengguna Anda selama dibatasi.',
             'supporter_required' => [
                 '_' => 'Anda harus menjadi :link untuk mengubah nama Anda!',
                 'link_text' => 'osu!supporter',

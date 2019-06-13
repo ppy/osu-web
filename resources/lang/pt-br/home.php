@@ -36,7 +36,6 @@ return [
         'advanced_link' => 'Pesquisa avançada',
         'button' => 'Procurar',
         'empty_result' => 'Nada encontrado!',
-        'missing_query' => 'Procure por palavras que tenham no mínimo :n caracteres',
         'placeholder' => 'digite para pesquisar',
         'title' => 'Pesquisar',
 

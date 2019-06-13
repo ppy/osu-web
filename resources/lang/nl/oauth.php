@@ -22,20 +22,20 @@ return [
     'cancel' => 'Annuleren',
 
     'authorise' => [
-        'authorise' => '',
-        'request' => '',
-        'scopes_title' => '',
-        'title' => '',
+        'authorise' => 'Autorisatie',
+        'request' => 'vraagt om toestemming om toegang tot uw account.',
+        'scopes_title' => 'Deze applicatie krijgt toegang tot:',
+        'title' => 'Inloggen verplicht',
 
         'wrong_user' => [
-            '_' => '',
-            'logout_link' => '',
+            '_' => 'U bent ingelogd als :user. :logout_link.',
+            'logout_link' => 'Klik hier om in te loggen als een andere gebruiker',
         ],
     ],
 
     'login' => [
-        'download' => '',
-        'label' => '',
-        'title' => '',
+        'download' => 'Klik hier om het spel te downloaden en een account aan te maken',
+        'label' => 'Eerst, laten we inloggen op je account!',
+        'title' => 'Account aanmelden',
     ],
 ];

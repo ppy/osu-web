@@ -20,6 +20,7 @@
 
 return [
     'deleted' => 'șters',
+    'deleted_count' => '',
     'edited' => 'editat :timeago de :user',
     'empty' => 'Niciun comentariu încă.',
     'replies' => 'Răspunsuri',

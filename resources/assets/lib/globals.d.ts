@@ -53,6 +53,7 @@ interface OsuCommon {
   parseJson: (id: string) => any;
   popup: (message: string, type: string) => void;
   presence: (str?: string | null) => string | null;
+  present: (str?: string | null) => boolean;
   promisify: (xhr: JQueryXHR) => Promise<any>;
   timeago: (time?: string) => string;
   trans: (...args: any[]) => string;

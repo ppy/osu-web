@@ -40,12 +40,14 @@ return [
         'edited' => 'Viimeksi muokannut :editor :update_time.',
         'kudosu_denied' => 'Evätty saamasta kudosua.',
         'message_placeholder_deleted_beatmap' => 'Tämä vaikeustaso on poistettu, joten siitä ei voi enää keskustella.',
+        'message_placeholder_locked' => 'Keskustelu tällä beatmapille on poistettu käytöstä.',
         'message_type_select' => 'Valitse kommentin tyyppi',
         'reply_notice' => 'Vastaa painamalla enter-näppäintä.',
         'reply_placeholder' => 'Kirjoita vastauksesi tähän',
         'require-login' => 'Kirjaudu sisään lähettääksesi viestejä tai vastauksia',
         'resolved' => 'Ratkaistu',
         'restore' => 'palauta',
+        'show_deleted' => 'Näytä poistetut',
         'title' => 'Keskustelut',
 
         'collapse' => [
@@ -56,6 +58,18 @@ return [
         'empty' => [
             'empty' => 'Keskustelut puuttuu!',
             'hidden' => 'Yksikään keskusteluista ei täsmää hakuehtoihisi.',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => 'Lukitse keskustelu',
+                'unlock' => 'Avaa keskustelu',
+            ],
+
+            'prompt' => [
+                'lock' => 'Syy lukitsemiseen',
+                'unlock' => '',
+            ],
         ],
 
         'message_hint' => [
@@ -90,9 +104,11 @@ return [
         ],
 
         'new' => [
+            'pin' => 'Kiinnitä',
             'timestamp' => 'Aikaleima',
             'timestamp_missing' => 'Paina ctrl-c editointitilassa ja liitä viestiisi lisätäksesi aikaleiman!',
             'title' => 'Uusi keskustelu',
+            'unpin' => '',
         ],
 
         'show' => [
@@ -124,6 +140,10 @@ return [
             'wip' => 'Huomaa: Tämän beatmapin tekijä on merkannut sen keskeneräiseksi.',
         ],
 
+        'votes' => [
+            'up' => '',
+            'down' => '',
+        ],
     ],
 
     'hype' => [

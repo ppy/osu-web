@@ -20,6 +20,7 @@
 
 return [
     'deleted' => 'διαγράφηκε',
+    'deleted_count' => '',
     'edited' => 'επεξεργάστηκε :timeago απο :user',
     'empty' => 'Κανένα σχόλιο ακόμη.',
     'replies' => 'Απαντήσεις',

@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Anda telah mencapai batas nominasi Anda untuk hari ini, silakan coba lagi besok.',
+            'full_bn_required' => 'Anda harus menjadi nominator penuh untuh melakukan kualifikasi nominasi ini.',
+            'full_bn_required_hybrid' => 'Anda harus berstatus sebagai nominator penuh (full nominator) untuk dapat menominasikan set beatmap yang mencakup lebih dari satu mode permainan.',
             'incorrect_state' => 'Terjadi kesalahan saat memproses perintah, silakan muat ulang laman.',
             'owner' => "Tidak dapat menominasikan beatmap buatan sendiri.",
         ],
@@ -48,6 +50,9 @@ return [
         'edit' => [
             'system_generated' => 'Kiriman yang dihasilkan secara otomatis tidak dapat disunting.',
             'not_owner' => 'Hanya pemilik topik yang diperbolehkan untuk menyunting kiriman.',
+        ],
+        'store' => [
+            'beatmapset_locked' => 'Beatmap ini dikunci untuk diskusi.',
         ],
     ],
 
@@ -119,6 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'Akses ke forum yang diminta diperlukan.',
                 'over' => 'Polling selesai dan tidak dapat dipilih lagi.',
+                'play_more' => 'Anda harus bermain lebih banyak untuk dapat memberikan suara pada forum.',
                 'voted' => 'Pengubahan suara tidak diizinkan.',
 
                 'user' => [

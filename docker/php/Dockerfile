@@ -1,7 +1,7 @@
-FROM alpine:latest
+FROM alpine:3.9
 
 RUN apk update && \
-    apk add \
+    apk add --no-cache \
     curl \
     php7 \
     php7-ctype \
@@ -24,6 +24,7 @@ RUN apk update && \
     php7-tokenizer \
     php7-xml \
     php7-xmlwriter \
-    php7-zip
-
-RUN touch /usr/bin/yarn && chmod 555 /usr/bin/yarn
+    php7-zip \
+    && rm -rf /var/cache/apk \
+    && touch /usr/bin/yarn \
+    && chmod 555 /usr/bin/yarn

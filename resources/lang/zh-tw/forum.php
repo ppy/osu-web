@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => '',
+                'hide_results_info' => '',
                 'length' => '投票持續',
                 'length_days_suffix' => '天',
                 'length_info' => '如果無期限則留空',
@@ -292,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => '將於 :time 結束',
                     'ended' => '結束於 :time',
+                    'results_hidden' => '',
                     'total' => '總票數: :count',
                 ],
             ],

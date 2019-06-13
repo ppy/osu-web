@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user's modding geschiedenis",
-        'title_compact' => '',
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Recent gestarte discussies',
@@ -101,23 +101,23 @@ return [
     'report' => [
         'button_text' => 'rapporteer',
         'comments' => 'Aanvullende opmerkingen',
-        'placeholder' => '',
+        'placeholder' => 'Geef alstublieft informatie die je denkt te kunnen gebruiken.',
         'reason' => 'Reden',
-        'thanks' => '',
-        'title' => '',
+        'thanks' => 'Bedankt voor je melding!',
+        'title' => 'Rapporteer :username?',
 
         'actions' => [
-            'send' => '',
+            'send' => 'Stuur rapport',
             'cancel' => 'Annuleren',
         ],
 
         'options' => [
-            'cheating' => '',
-            'insults' => '',
-            'spam' => '',
-            'unwanted_content' => '',
-            'nonsense' => '',
-            'other' => '',
+            'cheating' => 'Valsspelen',
+            'insults' => 'Beledigen van mij / anderen',
+            'spam' => 'Spammen',
+            'unwanted_content' => 'Linken van ongepaste inhoud',
+            'nonsense' => 'Nonsense',
+            'other' => 'Anders (type hieronder)',
         ],
     ],
     'restricted_banner' => [
@@ -167,11 +167,11 @@ return [
 
             'achievements' => [
                 'achieved-on' => 'Behaald op :date',
-                'locked' => '',
+                'locked' => 'Vergrendeld',
                 'title' => 'Prestaties',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => 'door :artist',
                 'none' => 'Nog geen...',
                 'title' => 'Beatmaps',
 
@@ -182,7 +182,7 @@ return [
                     'title' => 'Beatmaps in het kerkhof',
                 ],
                 'loved' => [
-                    'title' => 'Geliefde Beatmaps',
+                    'title' => 'Loved Beatmaps',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Gerankte & Goedgekeurde Beatmaps',
@@ -197,7 +197,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Speelgeschiedenis',
-                    'count_label' => '',
+                    'count_label' => 'Aantal keer gespeeld',
                 ],
                 'most_played' => [
                     'count' => 'keer gespeeld',
@@ -209,7 +209,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Replays Gekeken Geschiedenis',
-                    'count_label' => '',
+                    'count_label' => 'Replays Bekeken',
                 ],
             ],
             'kudosu' => [
@@ -264,17 +264,17 @@ return [
             ],
             'medals' => [
                 'empty' => "Deze gebruiker heeft er nog geen ;_;",
-                'recent' => '',
+                'recent' => 'Recent',
                 'title' => 'Medailles',
             ],
             'recent_activity' => [
                 'title' => 'Recent',
             ],
             'top_ranks' => [
-                'download_replay' => '',
+                'download_replay' => 'Download Replay',
                 'empty' => 'Nog geen geweldige prestatiegegevens. :(',
                 'not_ranked' => 'Enkel gerankte beatmaps geven pp.',
-                'pp_weight' => '',
+                'pp_weight' => 'gewogen :percentage',
                 'title' => 'Ranks',
 
                 'best' => [
@@ -308,8 +308,8 @@ return [
         ],
 
         'header_title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Speler :info',
+            'info' => 'Info',
         ],
 
         'info' => [
@@ -330,7 +330,7 @@ return [
             'title' => 'Gebruiker niet gevonden! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'Profielpagina bewerken',
             'description' => '<strong>ik!</strong> is een persoonlijk bewerkbaar gedeelte van je profiel.',
             'edit_big' => 'Bewerk me!',
             'placeholder' => 'Typ pagina inhoud hier',
@@ -342,16 +342,16 @@ return [
         ],
         'rank' => [
             'country' => 'Landelijke rank voor :mode',
-            'country_simple' => '',
+            'country_simple' => 'Land Ranking',
             'global' => 'Globale rank voor :mode',
-            'global_simple' => '',
+            'global_simple' => 'Globale Ranking',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Precisie',
             'level' => 'Level :level',
-            'level_progress' => '',
+            'level_progress' => 'Voortgang naar volgend level',
             'maximum_combo' => 'Maximum Combo',
-            'medals' => '',
+            'medals' => 'Medailles',
             'play_count' => 'Play Count',
             'play_time' => 'Totale Speeltijd',
             'ranked_score' => 'Gerankte Score',

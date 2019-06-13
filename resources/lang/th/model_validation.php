@@ -52,7 +52,7 @@ return [
     ],
 
     'comment' => [
-        'deleted_parent' => '',
+        'deleted_parent' => 'ไม่อนุญาตให้ตอบกลับในคอมเม้นต์ที่ถูกลบไปแล้ว',
     ],
 
     'forum' => [
@@ -68,12 +68,13 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'ไม่อนุญาตให้ลบโพสต์ beatmap metadata',
             'beatmapset_post_no_edit' => 'ไม่อนุญาตให้ดัดแปลงโพสต์ beatmap metadata',
-            'only_quote' => '',
+            'only_quote' => 'การตอบกลับของคุณมีได้เพียงคำพูด',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'ตัวเลือกซ้ำกันไม่อนุญาต',
-            'grace_period_expired' => '',
+            'grace_period_expired' => 'ไม่สามารถแก้ไขโพลล์ได้หลังจากผ่านไปมากกว่า :limit ชั่วโมง',
+            'hiding_results_forever' => 'ไม่สามารถซ่อนผลลัพท์ของโพลล์ที่ยังไม่หมดเวลาได้',
             'invalid_max_options' => 'คัวเลือกต่อคนต้องไม่เกินจำนวนตัวเลือกที่ใช้ได้',
             'minimum_one_selection' => 'ต้องการขั้นต่ำหนึ่งตัวเลือกต่อผู้เล่น',
             'minimum_two_options' => 'ต้องการอย่างน้อยสองตัวเลือก',
@@ -98,7 +99,7 @@ return [
         'username_available_soon' => 'ชื่อผู้ใช้นี้สามารถใช้งานได้ในอีกไม่นาที',
         'username_invalid_characters' => 'ชื่อผู้ใช้นี้ประกอบไปด้วยตัวอักขระที่ไม่ถูกต้อง',
         'username_in_use' => 'ชื่อผู้ใช้กำลังนี้ถูกใช้อยู่',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_locked' => 'ชื่อนี้ถูกใช้ไปแล้ว', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'กรุณาใช้ขีดใต้หรือช่องว่างอย่างใดอย่างนึง ไม่ใช่ทั้งสองอัน!',
         'username_no_spaces' => "ชื่อผู้ใช้ไม่สามารถเริ่มต้นหรือจบด้วยช่องว่าง",
         'username_not_allowed' => 'ไม่อนุญาตให้ใช้ชื่อนี้',
@@ -111,6 +112,7 @@ return [
         'too_long' => 'เกินความยาวสูงสุด - สามารถกำหนดได้ถึง :limit characters',
 
         'change_username' => [
+            'restricted' => 'คุณไม่สามารถเปลี่ยนผู้ใช้ได้ขณะถูกจำกัดการใช้งาน',
             'supporter_required' => [
                 '_' => 'คุณต้องมี:linkจึงจะเปลี่ยนชื่อได้!',
                 'link_text' => 'สนับสนุน osu!',
@@ -120,6 +122,6 @@ return [
     ],
 
     'user_report' => [
-        'self' => "",
+        'self' => "คุณไม่สามารถรายงานตัวเองได้",
     ],
 ];

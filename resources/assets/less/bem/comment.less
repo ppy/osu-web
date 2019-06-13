@@ -59,6 +59,7 @@
   &__action {
     .reset-input();
     .link-default();
+    text-transform: lowercase;
 
     &:hover {
       text-decoration: underline;
@@ -66,18 +67,6 @@
 
     &--active {
       color: @green;
-    }
-
-    &--commentable-meta {
-      .@{_top}--single & {
-        font-size: @font-size--title;
-        display: block;
-      }
-    }
-
-    &--permalink {
-      // the translation is lowercased
-      text-transform: capitalize;
     }
 
     .@{_top}--changelog & {
@@ -107,6 +96,7 @@
       margin-left: 0;
       margin-bottom: 40px;
       flex-direction: column;
+      font-size: @font-size--title;
     }
   }
 
@@ -120,6 +110,7 @@
     padding: 5px 15px;
     margin-right: 5px;
     border-radius: 10000px;
+    font-size: @font-size--normal;
 
     .@{_top}--dark & {
       background-color: @comment-dark-border-bg;

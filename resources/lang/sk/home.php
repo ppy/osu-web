@@ -36,7 +36,6 @@ return [
         'advanced_link' => 'Pokročilé vyhľadávanie',
         'button' => 'Hľadať',
         'empty_result' => 'Nič sa nenašlo!',
-        'missing_query' => 'Hľadané kľúčové slovo musí byť minimálne :n znakov dlhé',
         'placeholder' => 'zadajte pre vyhľadávanie',
         'title' => 'Hľadať',
 

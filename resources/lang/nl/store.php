@@ -53,27 +53,27 @@ return [
         'pay' => 'Afrekenen met Paypal',
 
         'has_pending' => [
-            '_' => '',
-            'link_text' => '',
+            '_' => 'U heeft onvolledig afgerekend, klik op :link om ze te bekijken.',
+            'link_text' => 'hier',
         ],
 
         'pending_checkout' => [
             'line_1' => 'Een vorige checkout is gestart, maar niet geëindigd.',
-            'line_2' => '',
+            'line_2' => 'Hervat uw afrekenen door een betaalmethode te selecteren.',
         ],
     ],
 
     'discount' => 'bespaar :percent%',
 
     'invoice' => [
-        'echeck_delay' => '',
+        'echeck_delay' => 'Aangezien uw betaling een eCheck was, Wacht maximaal 10 dagen extra om de betaling veilig via PayPal te laten gaan!',
         'status' => [
             'processing' => [
-                'title' => '',
-                'line_1' => '',
+                'title' => 'Uw betaling is nog niet bevestigd!',
+                'line_1' => 'Als u al betaald hebt, wachten we misschien nog steeds op bevestiging van uw betaling. Vernieuw deze pagina over een minuut of twee!',
                 'line_2' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Als u een probleem heeft ondervonden tijdens het afrekenen, :link',
+                    'link_text' => 'klik hier om uw afrekenen te hervatten',
                 ],
             ],
         ],
@@ -86,11 +86,11 @@ return [
     ],
 
     'order' => [
-        'paid_on' => '',
+        'paid_on' => 'Bestelling geplaatst :date',
 
-        'invoice' => '',
+        'invoice' => 'Factuur weergeven',
         'no_orders' => 'Geen bestellingen om te bekijken.',
-        'resume' => '',
+        'resume' => 'Hervat afrekenen',
 
         'item' => [
             'display_name' => [
@@ -110,12 +110,12 @@ return [
         ],
 
         'status' => [
-            'cancelled' => '',
-            'checkout' => '',
-            'delivered' => '',
-            'paid' => '',
-            'processing' => '',
-            'shipped' => '',
+            'cancelled' => 'Geannuleerd',
+            'checkout' => 'Aan het voorbereiden',
+            'delivered' => 'Geleverd',
+            'paid' => 'Betaald',
+            'processing' => 'Wachten op bevestiging',
+            'shipped' => 'Verzonden',
         ],
     ],
 

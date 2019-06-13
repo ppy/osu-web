@@ -61,7 +61,7 @@ return [
 
     'card' => [
         'loading' => 'Ładowanie...',
-        'send_message' => 'wyślij wiadomość',
+        'send_message' => 'Wyślij wiadomość',
     ],
 
     'login' => [

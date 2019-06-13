@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => '隐藏投票结果。',
+                'hide_results_info' => '这些内容只在投票结束之后显示。',
                 'length' => '投票持续',
                 'length_days_suffix' => '天',
                 'length_info' => '如果无期限则留空',
@@ -292,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => '将于 :time 结束',
                     'ended' => '结束于 :time',
+                    'results_hidden' => '投票结束后才显示结果。',
                     'total' => '总票数: :count',
                 ],
             ],

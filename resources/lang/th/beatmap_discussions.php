@@ -78,7 +78,7 @@ return [
         'admin' => 'ผู้ดูแล',
         'bng' => 'ผู้เสนอชื่อ',
         'owner' => 'ผู้ทำแมพ',
-        'qat' => 'qat',
+        'nat' => 'nat',
     ],
 
     'user_filter' => [

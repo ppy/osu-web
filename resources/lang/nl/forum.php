@@ -20,20 +20,20 @@
 
 return [
     'pinned_topics' => 'Gepinde Onderwerpen',
-    'slogan' => "it's dangerous to play alone.",
-    'subforums' => 'Subfora',
+    'slogan' => "het is gevaarlijk om alleen te spelen.",
+    'subforums' => 'Subforums',
     'title' => 'osu! forums',
 
     'covers' => [
         'create' => [
-            '_' => 'Stel cover afbeelding in',
+            '_' => 'Stel omslagafbeelding in',
             'button' => 'Afbeelding uploaden',
-            'info' => 'Cover groote moet :dimensions zijn. Je kunt ook een afbeelding hier loslaten om hem te uploaden.',
+            'info' => 'Omslag grootte moet :dimensions zijn. Je kunt ook een afbeelding hier loslaten om hem te uploaden.',
         ],
 
         'destroy' => [
-            '_' => 'Verwijder cover afbeelding',
-            'confirm' => 'Weet je zeker dat je de cover afbeelding wilt verwijderen?',
+            '_' => 'Verwijder omslag afbeelding',
+            'confirm' => 'Weet je zeker dat je de omslag afbeelding wilt verwijderen?',
         ],
     ],
 
@@ -48,40 +48,40 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'Markeer forum als gelezen',
+        'forums' => 'Markeer forums als gelezen',
+        'busy' => 'Markeren als gelezen...',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => 'Een poll bewerken zal de huidige resultaten verwijderen!',
 
         'actions' => [
-            'edit' => '',
+            'edit' => 'Bewerk poll',
         ],
     ],
 
     'post' => [
         'confirm_destroy' => 'Will je deze post echt verwijderen?',
         'confirm_restore' => 'Will je deze post echt terugzetten?',
-        'edited' => 'Laatst bewerkt door :user op :when. :count keer bewerkt.',
+        'edited' => 'Laatst bewerkt door :user op :when. :count keer bewerkt in totaal.',
         'posted_at' => 'gepost op :when',
 
         'actions' => [
-            'destroy' => 'Verwijder post',
-            'restore' => 'Herstel post',
-            'edit' => 'Bewerk post',
+            'destroy' => 'Verwijder bericht',
+            'restore' => 'Herstel bericht',
+            'edit' => 'Bewerk bericht',
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited bericht|:count_delimited berichten',
         ],
     ],
 
     'search' => [
-        'go_to_post' => 'Ga naar post',
-        'post_number_input' => 'geef post nummer',
-        'total_posts' => ':posts_count posts',
+        'go_to_post' => 'Ga naar bericht',
+        'post_number_input' => 'geef bericht nummer',
+        'total_posts' => ':posts_count berichten totaal',
     ],
 
     'topic' => [
@@ -89,7 +89,7 @@ return [
         'go_to_latest' => 'bekijk nieuwste post',
         'latest_post' => ':when door :user',
         'latest_reply_by' => 'laatste bericht door :user',
-        'new_topic' => 'Maak nieuw onderwerp',
+        'new_topic' => 'Nieuw onderwerp',
         'new_topic_login' => 'Log in om een nieuw onderwerp maken',
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Typ hier om te antwoorden',
@@ -171,7 +171,7 @@ return [
         'create' => [
             'create_poll' => 'Peiling Aanmaken',
 
-            'preview' => '',
+            'preview' => 'Plaats voorbeeld',
 
             'create_poll_button' => [
                 'add' => 'Maak een Peiling aan',
@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => 'Verberg de resultaten van de poll.',
+                'hide_results_info' => 'Deze zullen pas worden getoond na de sluiting van de poll.',
                 'length' => 'Maak peiling voor',
                 'length_days_suffix' => 'dagen',
                 'length_info' => 'Laat leeg voor een peiling die nooit eindigt',
@@ -197,7 +199,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'ster prioriteit',
             'replies' => 'keer beantwoordt',
             'views' => 'keer bekeken',
         ],
@@ -274,9 +276,9 @@ return [
                 'do' => 'Promoot dit verzoek',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Dit is een :feature_request. Feature requests kunnen omhoog worden gestemd door :supporters.',
+                    'feature_request' => 'feature request',
+                    'supporters' => 'supporters',
                 ],
 
                 'user' => [
@@ -292,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => 'Stemmen eindigt op :time',
                     'ended' => 'Stemming eindigde op :time',
+                    'results_hidden' => 'Als de pollen zijn gesloten dan zullen resultaten worden getoond.',
                     'total' => 'Totale stemmen: count',
                 ],
             ],
@@ -301,8 +304,8 @@ return [
             'to_not_watching' => 'Heeft geen bladwijzer',
             'to_watching' => 'Voeg bladwijzer toe',
             'to_watching_mail' => 'Voeg bladwijzer met notificaties toe',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => 'Melding is ingeschakeld. Klik om uit te schakelen',
+            'tooltip_mail_enable' => 'Melding is uitgeschakeld. Klik om in te schakelen',
         ],
     ],
 ];

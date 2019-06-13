@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Elérted a napi ajánlási limited, próbáld újra holnap.',
+            'full_bn_required' => 'Teljes jogú nominátornak kell lenned a kvalifikálásra nomináláshoz.',
+            'full_bn_required_hybrid' => 'Teljes jogú nominátornak kell lenned a több játékmódot tartalmazó beatmapszettek nominálásához.',
             'incorrect_state' => 'Hiba történt a művelet végrehajtása közben, próbáld frissíteni az oldalt.',
             'owner' => "Saját beatmap-et nem lehet ajánlani.",
         ],
@@ -48,6 +50,9 @@ return [
         'edit' => [
             'system_generated' => 'Automatikusan generált posztot nem lehet szerkeszteni.',
             'not_owner' => 'Csak a posztoló tudja szerkeszteni a posztot.',
+        ],
+        'store' => [
+            'beatmapset_locked' => 'Ez a beatmap megbeszélés miatt zárolva.',
         ],
     ],
 
@@ -119,6 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'A kért fórumhoz hozzáférési jog szükséges.',
                 'over' => 'A szavazás lejárt, és többé nem szavazhatsz rá.',
+                'play_more' => 'Többet kell játszanod mielőtt szavazhatnál a fórumon.',
                 'voted' => 'A szavazat megváltoztatása nem engedélyezett.',
 
                 'user' => [

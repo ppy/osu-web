@@ -40,12 +40,14 @@ return [
         'edited' => 'Sist endret av :editor :update_time.',
         'kudosu_denied' => 'Avvist fra å få kudosu.',
         'message_placeholder_deleted_beatmap' => 'Denne vanskelighetsgraden har blitt slettet så den kan ikke bli diskutert lenger.',
+        'message_placeholder_locked' => 'Diskusjon for dette beatmappet har blitt deaktivert.',
         'message_type_select' => 'Velg kommentartype',
         'reply_notice' => 'Trykk enter for å svare.',
         'reply_placeholder' => 'Skriv din respons her',
         'require-login' => 'Vennligst logg inn for å skrive et innlegg eller svare',
         'resolved' => 'Løst',
         'restore' => 'gjenopprett',
+        'show_deleted' => 'Vis slettede',
         'title' => 'Diskusjoner',
 
         'collapse' => [
@@ -56,6 +58,18 @@ return [
         'empty' => [
             'empty' => 'Ingen diskusjoner ennå!',
             'hidden' => 'Ingen diskusjon stemmer overens med valgte filter.',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => 'Lås diskusjon',
+                'unlock' => 'Lås opp diskusjon',
+            ],
+
+            'prompt' => [
+                'lock' => 'Grunn for låsing',
+                'unlock' => 'Er du sikker på å låse opp?',
+            ],
         ],
 
         'message_hint' => [
@@ -90,9 +104,11 @@ return [
         ],
 
         'new' => [
+            'pin' => 'Fest',
             'timestamp' => 'Tidsstempel',
             'timestamp_missing' => 'trykk Ctrl+C i redigeringsmodus og lim inn for å legge til et tidsstempel!',
             'title' => 'Ny Diskusjon',
+            'unpin' => 'Løsne',
         ],
 
         'show' => [
@@ -124,6 +140,10 @@ return [
             'wip' => 'Merk: Dette beatmappet er markert som "under konstruksjon" av skaperen.',
         ],
 
+        'votes' => [
+            'up' => 'Oppstem denne diskusjonen',
+            'down' => 'Nedstem denne diskusjonen',
+        ],
     ],
 
     'hype' => [
