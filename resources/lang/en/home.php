@@ -36,7 +36,7 @@ return [
         'advanced_link' => 'Advanced search',
         'button' => 'Search',
         'empty_result' => 'Nothing found!',
-        'missing_query' => 'Search keyword of minimum :n characters is required',
+        'keyword_required' => 'A search keyword is required',
         'placeholder' => 'type to search',
         'title' => 'Search',
 

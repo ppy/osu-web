@@ -69,6 +69,7 @@ export interface SendToJSON {
 
 export interface UserJSON {
   avatar_url: string;
+  blocks?: any[];
   country_code: string; // TODO: country object?
   id: number;
   is_active: boolean;

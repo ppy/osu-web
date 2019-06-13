@@ -36,7 +36,6 @@ return [
         'advanced_link' => 'Búsqueda avanzada',
         'button' => 'Buscar',
         'empty_result' => '¡No se ha encontrado nada!',
-        'missing_query' => 'Cada palabra clave requiere de al menos :n carácteres',
         'placeholder' => 'escribe para buscar',
         'title' => 'Buscar',
 
