@@ -36,7 +36,6 @@ return [
         'advanced_link' => 'Recherche avancée',
         'button' => 'Rechercher',
         'empty_result' => 'Aucun résultat !',
-        'missing_query' => 'Les mots clés doivent être de :n caractères minimum',
         'placeholder' => 'tapez pour rechercher',
         'title' => 'Rechercher',
 

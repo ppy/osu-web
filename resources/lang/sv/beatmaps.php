@@ -40,12 +40,14 @@ return [
         'edited' => 'Senast redigerad av :editor :update_time.',
         'kudosu_denied' => 'Kudosu nekad.',
         'message_placeholder_deleted_beatmap' => 'Denna svårighetsgrad har blivit borttagen så den kan inte längre diskuteras.',
+        'message_placeholder_locked' => '',
         'message_type_select' => 'Välj Kommentar Typ',
         'reply_notice' => 'Tryck enter för att svara.',
         'reply_placeholder' => 'Skriv ditt svar här',
         'require-login' => 'Var vänlig logga in för att lägga upp inlägg eller svara',
         'resolved' => 'Löst',
         'restore' => 'återställ',
+        'show_deleted' => '',
         'title' => 'Diskussioner',
 
         'collapse' => [
@@ -56,6 +58,18 @@ return [
         'empty' => [
             'empty' => 'Inga diskussioner än!',
             'hidden' => 'Inga diskussioner matchar valt filter.',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => '',
+                'unlock' => '',
+            ],
+
+            'prompt' => [
+                'lock' => '',
+                'unlock' => '',
+            ],
         ],
 
         'message_hint' => [
@@ -90,9 +104,11 @@ return [
         ],
 
         'new' => [
+            'pin' => '',
             'timestamp' => 'Tidsstämpel',
             'timestamp_missing' => 'Tryck ctrl-c i redigeringsläget och klistra in ditt meddelande för att lägga till en tidsstämpel!',
             'title' => 'Ny Diskussion',
+            'unpin' => '',
         ],
 
         'show' => [
@@ -124,6 +140,10 @@ return [
             'wip' => 'Notera: Denna beatmap är markerad som pågående arbete av skaparen.',
         ],
 
+        'votes' => [
+            'up' => '',
+            'down' => '',
+        ],
     ],
 
     'hype' => [

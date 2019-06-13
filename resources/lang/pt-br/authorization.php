@@ -26,6 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Você atingiu o limite de nomeações diárias, tente novamente amanhã.',
+            'full_bn_required' => '',
+            'full_bn_required_hybrid' => '',
             'incorrect_state' => 'Erro ao realizar esta ação, tente atualizar a página.',
             'owner' => "Não é possível nominar o próprio beatmap.",
         ],
@@ -48,6 +50,9 @@ return [
         'edit' => [
             'system_generated' => 'Publicações geradas automaticamente não podem ser editadas.',
             'not_owner' => 'Somente o autor pode editar a publicação.',
+        ],
+        'store' => [
+            'beatmapset_locked' => '',
         ],
     ],
 
@@ -119,6 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
                 'over' => 'A votação está encerrada e não é mais possível votar.',
+                'play_more' => '',
                 'voted' => 'Não é permitido alterar o voto.',
 
                 'user' => [

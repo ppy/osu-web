@@ -29,7 +29,7 @@ return [
         ],
 
         'item' => [
-            'registered' => '',
+            'registered' => 'ผู้เล่นที่ลงทะเบียน',
         ],
 
         'state' => [

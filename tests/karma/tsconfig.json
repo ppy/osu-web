@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": "../../resources/assets/lib",
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "jsx": "react",
+    "lib": ["es6", "dom"],
+    "module": "es6",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "target": "es6",
+  },
+  "include": [
+    "../../resources/assets/lib",
+    ".",
+  ]
+}

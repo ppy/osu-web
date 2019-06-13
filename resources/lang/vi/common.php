@@ -55,6 +55,7 @@ return [
         'search' => 'Tìm Kiếm',
         'see_more' => 'xem thêm',
         'show' => 'hiện',
+        'show_deleted' => 'Hiển thị bình luận đã xóa',
         'show_more' => 'hiển thị thêm',
         'show_more_options' => 'hiển thị thêm tùy chọn',
         'upload_image' => 'tải ảnh lên',

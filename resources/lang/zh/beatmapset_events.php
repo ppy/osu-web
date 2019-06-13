@@ -22,9 +22,11 @@ return [
     'event' => [
         'approve' => 'Approved.',
         'discussion_delete' => '管理员删除了 :discussion 。',
+        'discussion_lock' => '针对该谱面的讨论已被禁用。（ :text ）',
         'discussion_post_delete' => '管理员在 :discussion 中删除了这条回复。',
         'discussion_post_restore' => '管理员在 :discussion 中恢复了这条回复。',
         'discussion_restore' => '管理员恢复了 :discussion 。',
+        'discussion_unlock' => '针对该谱面的讨论已被启用。',
         'disqualify' => '由于 :discussion (:text) 被 :user DQ。',
         'disqualify_legacy' => '该谱面因为 :text 被 DQ。',
         'issue_reopen' => '已解决问题 :discussion 被重新打开。',

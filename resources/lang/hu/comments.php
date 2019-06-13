@@ -20,6 +20,7 @@
 
 return [
     'deleted' => 'törölve',
+    'deleted_count' => ':count_delimited törölt komment|:count_delimited törölt kommentek',
     'edited' => ':user által szerkesztve :timeago',
     'empty' => 'Még nincsenek hozzászólások.',
     'replies' => 'Válaszok',

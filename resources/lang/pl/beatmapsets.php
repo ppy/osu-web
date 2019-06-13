@@ -131,7 +131,7 @@ return [
             'accuracy' => 'Precyzja',
             'ar' => 'Prędkość otoczki',
             'stars' => 'Trudność',
-            'total_length' => 'Długość',
+            'total_length' => 'Długość (długość aktywnej gry: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Liczba kółek',
             'count_sliders' => 'Liczba sliderów',

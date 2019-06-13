@@ -22,9 +22,11 @@ return [
     'event' => [
         'approve' => 'Ухвалена.',
         'discussion_delete' => 'Мадэратар выдаліў абмеркаванне «:discussion».',
+        'discussion_lock' => 'Абмеркаванне для гэтай бітмапы было адключана. (:text)',
         'discussion_post_delete' => 'Мадэратар выдаліў допіс з абмеркавання «:discussion».',
         'discussion_post_restore' => 'Мадэратар аднавіў допіс у абмеркаванні «:discussion».',
         'discussion_restore' => 'Мадэратар аднавіў абмеркаванне «:discussion».',
+        'discussion_unlock' => 'Абмеркаванне для гэтай бітмапы было ўключана.',
         'disqualify' => 'Дыскваліфікавана :user. Прычына: :discussion (:text).',
         'disqualify_legacy' => 'Дыскваліфікавана :user. Прычына: :text.',
         'issue_reopen' => 'Праблема ў :discussion вырашана нанова.',
