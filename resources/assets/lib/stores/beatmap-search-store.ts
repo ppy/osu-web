@@ -32,6 +32,7 @@ interface SearchResponse {
 export default class BeatmapSearchStore {
   static CACHE_DURATION_MS = 60000;
 
+  @observable
   readonly beatmapsets = new Map<string, BeatmapsetJSON[]>();
   readonly cursors = new Map<string, any>();
   readonly fetchedAt = new Map<string, Date>();
@@ -156,11 +157,11 @@ export default class BeatmapSearchStore {
   private getObservableBeatmapsetsByKey(key: string) {
     let beatmapsets = this.beatmapsets.get(key);
     if (beatmapsets == null) {
-      beatmapsets = observable([]);
-      this.beatmapsets.set(key, beatmapsets);
+      this.beatmapsets.set(key, []);
+      beatmapsets = this.beatmapsets.get(key);
     }
 
-    return beatmapsets;
+    return beatmapsets!;
   }
 
   private hasMore(key: string) {
