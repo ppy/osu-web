@@ -28,6 +28,7 @@ use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
+use App\Models\Multiplayer\Match;
 use App\Models\User;
 use App\Models\UserContestEntry;
 use Carbon\Carbon;
@@ -1133,6 +1134,21 @@ class OsuAuthorize
         } else {
             return $prefix.'no_access';
         }
+    }
+
+    public function checkMatchView($user, $match)
+    {
+        if (!$match->private) {
+            return 'ok';
+        }
+
+        $this->ensureLoggedIn($user);
+
+        if (!$match->hadPlayer($user)) {
+            return 'unauthorized';
+        }
+
+        return 'ok';
     }
 
     public function checkUserSilenceShowExtendedInfo($user)
