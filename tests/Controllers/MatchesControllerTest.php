@@ -23,6 +23,12 @@ use App\Models\User;
 
 class MatchesControllerTest extends TestCase
 {
+    private $privateMatch;
+    private $privateMatchRoute;
+    private $publicMatch;
+    private $publicMatchRoute;
+    private $user;
+
     public function setUp()
     {
         parent::setUp();
@@ -45,7 +51,6 @@ class MatchesControllerTest extends TestCase
     public function testPublicMatchLoggedOut() // OK
     {
         $this
-            ->actingAs($this->user)
             ->get($this->publicMatchRoute)
             ->assertStatus(200);
     }
@@ -60,6 +65,11 @@ class MatchesControllerTest extends TestCase
 
     public function testPublicMatchLoggedInParticipated() // OK
     {
+        factory(Event::class)->states('join')->create([
+            'user_id' => $this->user->user_id,
+            'match_id' => $this->publicMatch->match_id,
+        ]);
+
         $this
             ->actingAs($this->user)
             ->get($this->publicMatchRoute)
@@ -69,7 +79,6 @@ class MatchesControllerTest extends TestCase
     public function testPrivateMatchLoggedOut() // Access Denied
     {
         $this
-            ->actingAs($this->user)
             ->get($this->privateMatchRoute)
             ->assertStatus(403);
     }
