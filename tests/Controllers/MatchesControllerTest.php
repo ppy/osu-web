@@ -76,11 +76,12 @@ class MatchesControllerTest extends TestCase
             ->assertStatus(200);
     }
 
-    public function testPrivateMatchLoggedOut() // Access Denied
+    public function testPrivateMatchLoggedOut() // Login Required
     {
         $this
             ->get($this->privateMatchRoute)
-            ->assertStatus(403);
+            ->assertSeeText('Please login to continue')
+            ->assertStatus(200);
     }
 
     public function testPrivateMatchLoggedInNotParticipated() // Access Denied
