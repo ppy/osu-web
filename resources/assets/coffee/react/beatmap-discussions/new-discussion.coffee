@@ -335,7 +335,7 @@ export class NewDiscussion extends React.PureComponent
 
 
   problemType: =>
-    canDisqualify = currentUser.is_admin || currentUser.is_nat || currentUser.is_full_bn || currentUser.is_gmt
+    canDisqualify = currentUser.is_admin || currentUser.can_moderate || currentUser.is_full_bn
     willDisqualify = @props.beatmapset.status == 'qualified'
 
     return 'disqualify' if canDisqualify && willDisqualify
