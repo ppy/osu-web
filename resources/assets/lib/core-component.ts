@@ -15,4 +15,10 @@ const dataStore = core.dataStore;
 
 export class CoreComponent<T> extends Component<JSX.LibraryManagedAttributes<T, T & CoreProps>> {
   static defaultProps: CoreProps = { dataStore, dispatcher };
+
+  // This just so every constructor doesn't have to be declared with
+  // JSX.LibraryManagedAttributes<T, T & CoreProps>
+  constructor(props: T) {
+    super(props as JSX.LibraryManagedAttributes<T, T & CoreProps>);
+  }
 }
