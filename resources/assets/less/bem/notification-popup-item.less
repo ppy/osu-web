@@ -32,6 +32,10 @@
     background-color: transparent;
     margin-left: 10px;
     width: calc(100% - 10px);
+
+    &:hover {
+      background-color: lighten(@greysky-dark, 20%);
+    }
   }
 
   &--group {
@@ -117,6 +121,10 @@
 
       .@{_top}:hover & {
         background-color: lighten(@greysky-dark, 10%);
+      }
+
+      .@{_top}--compact:hover & {
+        background-color: lighten(@greysky-dark, 20%);
       }
 
       .@{_top}--group:hover & {
