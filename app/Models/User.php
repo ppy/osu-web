@@ -397,7 +397,7 @@ class User extends Model implements AuthenticatableContract
         if ($this->user_type === 1) {
             // restricted user
             return $this->user_lastvisit
-            // This is a exponential decay function which places a playcount of 50000 at around 1827 days (~5 years). 
+            // This is a exponential decay function which places a playcount of 50000 at around 1827 days (~5 years).
             // The restricted version of the formula has a 0.35 multiplier on the playcount, causing it to flatten out more slowly.
             // A linear bonus of 6x/5900 is added to reward long-term play.
             ->addDays(intval(1580 * (1 - pow(M_E, -0.35 * $playCount / 5900)) + (3 * 8 * $playCount / (4 * 5900))));
