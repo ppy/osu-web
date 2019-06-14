@@ -12,6 +12,20 @@ $factory->define(App\Models\Multiplayer\Event::class, function (Faker\Generator 
     ];
 });
 
+$factory->state(App\Models\Multiplayer\Event::class, 'create', function (Faker\Generator $faker) {
+    return [
+        'user_id' => null,
+        'text' => 'CREATE',
+    ];
+});
+
+$factory->state(App\Models\Multiplayer\Event::class, 'disband', function (Faker\Generator $faker) {
+    return [
+        'user_id' => null,
+        'text' => 'DISBAND',
+    ];
+});
+
 $factory->state(App\Models\Multiplayer\Event::class, 'join', function (Faker\Generator $faker) {
     return [
         'text' => 'JOIN',
