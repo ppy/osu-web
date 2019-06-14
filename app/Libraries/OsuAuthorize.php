@@ -52,7 +52,7 @@ class OsuAuthorize
     /**
      * @param User|null $user
      * @param string $ability
-     * @param Object|null $object
+     * @param object|null $object
      * @return AuthorizationResult
      */
     public function doCheckUser(?User $user, string $ability, Object $object = null) : AuthorizationResult
@@ -1596,7 +1596,7 @@ class OsuAuthorize
      * @param string $prefix
      * @throws AuthorizationException
      */
-    public function ensureLoggedIn(?User $user, $prefix = '') : void
+    public function ensureLoggedIn(?User $user, string $prefix = '') : void
     {
         if ($user === null) {
             throw new AuthorizationException($prefix.'require_login');
@@ -1606,10 +1606,10 @@ class OsuAuthorize
     /**
      * @param User|null $user
      * @param string $prefix
-     * @return string|null
+     * @return string
      * @throws AuthorizationException
      */
-    public function ensureCleanRecord(?User $user, $prefix = '') : ?string
+    public function ensureCleanRecord(?User $user, string $prefix = '') : string
     {
         if ($user === null) {
             return 'unauthorized';
@@ -1623,6 +1623,6 @@ class OsuAuthorize
             throw new AuthorizationException($prefix.'silenced');
         }
 
-        return null;
+        return 'ok';
     }
 }
