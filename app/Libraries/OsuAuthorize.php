@@ -515,7 +515,7 @@ class OsuAuthorize
 
         static $prefix = 'beatmap_discussion.nominate.';
 
-        if (!$user->isBNG() && !$user->canModerate()) {
+        if (!$user->isBNG() && !$user->isNAT()) {
             return 'unauthorized';
         }
 
