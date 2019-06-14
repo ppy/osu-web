@@ -34,7 +34,6 @@ use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
-use App\Models\Multiplayer\Match as MultiplayerMatch;
 use App\Models\Multiplayer\Match;
 use App\Models\User;
 use App\Models\UserContestEntry;
@@ -42,9 +41,7 @@ use Carbon\Carbon;
 
 class OsuAuthorize
 {
-    /**
-     * @var $cache AuthorizationResult[]
-     */
+    /** @var AuthorizationResult[] */
     private $cache = [];
 
     public function cacheReset() : void
@@ -54,11 +51,11 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
-     * @param $ability
-     * @param null $object
+     * @param string $ability
+     * @param Object|null $object
      * @return AuthorizationResult
      */
-    public function doCheckUser(?User $user, $ability, $object = null) : AuthorizationResult
+    public function doCheckUser(?User $user, string $ability, Object $object = null) : AuthorizationResult
     {
         $cacheKey = serialize([
             $ability,
@@ -804,7 +801,7 @@ class OsuAuthorize
                     if (starts_with($channel->name, '#mp_')) {
                         $matchId = intval(str_replace('#mp_', '', $channel->name));
 
-                        if (in_array($user->user_id, MultiplayerMatch::findOrFail($matchId)->currentPlayers(), true)) {
+                        if (in_array($user->user_id, Match::findOrFail($matchId)->currentPlayers(), true)) {
                             return 'ok';
                         }
                     }
