@@ -19,12 +19,10 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
-import BaseStore from 'stores/base-store';
 import RootDataStore from 'stores/root-data-store';
 
-export default abstract class ActionSinkStore extends BaseStore implements DispatchListener {
+export default abstract class Store implements DispatchListener {
   constructor(protected root: RootDataStore, protected dispatcher: Dispatcher) {
-    super(root, dispatcher);
     dispatcher.register(this);
   }
 

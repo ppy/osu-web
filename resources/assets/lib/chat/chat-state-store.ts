@@ -20,9 +20,9 @@ import { ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-act
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { action, observable } from 'mobx';
-import ActionSinkStore from 'stores/action-sink-store';
+import Store from 'stores/store';
 
-export default class ChatStateStore extends ActionSinkStore {
+export default class ChatStateStore extends Store {
   @observable autoScroll: boolean = false;
   @observable lastReadId: number = -1;
   @observable selected: number = -1;

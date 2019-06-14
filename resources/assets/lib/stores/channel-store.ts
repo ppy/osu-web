@@ -29,9 +29,9 @@ import * as _ from 'lodash';
 import { action, computed, observable } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
-import ActionSinkStore from 'stores/action-sink-store';
+import Store from 'stores/store';
 
-export default class ChannelStore extends ActionSinkStore {
+export default class ChannelStore extends Store {
   @observable channels = observable.map<number, Channel>();
   @observable loaded: boolean = false;
 

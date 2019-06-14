@@ -21,9 +21,9 @@ import { UserLogoutAction } from 'actions/user-login-actions';
 import { UserJSON } from 'chat/chat-api-responses';
 import { action, observable } from 'mobx';
 import User from 'models/user';
-import ActionSinkStore from 'stores/action-sink-store';
+import Store from 'stores/store';
 
-export default class UserStore extends ActionSinkStore {
+export default class UserStore extends Store {
   @observable users = observable.map<number, User>();
 
   @action
