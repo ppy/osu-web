@@ -1143,11 +1143,11 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
 
-        if (!$match->hadPlayer($user)) {
-            return 'unauthorized';
+        if ($user->canModerate() || $match->hadPlayer($user)) {
+            return 'ok';
         }
 
-        return 'ok';
+        return 'unauthorized';
     }
 
     public function checkUserSilenceShowExtendedInfo($user)
