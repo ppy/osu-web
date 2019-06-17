@@ -22,9 +22,11 @@ return [
     'event' => [
         'approve' => 'Одобрен.',
         'discussion_delete' => 'Модератор изтри дискусията :discussion.',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Модератор изтри съобщение от дискусията :discussion.',
         'discussion_post_restore' => 'Модератор възстанови съобщение от дискусията :discussion.',
         'discussion_restore' => 'Модератор възстанови дискусията :discussion.',
+        'discussion_unlock' => '',
         'disqualify' => 'Дисквалифициран от :user . Причина: :discussion (:text).',
         'disqualify_legacy' => 'Дисквалифициран от :user . Причина: :text.',
         'issue_reopen' => 'Разрешеният проблем :discussion бе отворен наново.',

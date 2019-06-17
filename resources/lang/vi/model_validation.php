@@ -74,6 +74,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Không cho phép thêm lựa chọn trùng lặp.',
             'grace_period_expired' => 'Không thể chỉnh sửa cuộc thăm dò sau :limit giờ',
+            'hiding_results_forever' => 'Không thể ẩn kết quả của một cuộc thăm dò không bao giờ kết thúc.',
             'invalid_max_options' => 'Số lựa chọn cho một người không được vượt quá số lựa chọn sẵn có.',
             'minimum_one_selection' => 'Yêu cầu tối thiểu một lựa chọn cho mỗi người dùng.',
             'minimum_two_options' => 'Cần ít nhất hai lựa chọn.',
@@ -111,6 +112,7 @@ return [
         'too_long' => 'Đã vượt quá độ dài tối đa - tối đa :limit kí tự.',
 
         'change_username' => [
+            'restricted' => 'Bạn không thể đổi tên người dùng khi đang bị hạn chế.',
             'supporter_required' => [
                 '_' => 'Bạn phải :link để đổi tên người dùng!',
                 'link_text' => 'hỗ trợ osu!',

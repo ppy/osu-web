@@ -40,12 +40,14 @@ return [
         'edited' => 'Terakhir disunting oleh :editor :update_time.',
         'kudosu_denied' => 'Perolehan kudosu ditolak.',
         'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini telah dihapus sehingga diskusi lebih lanjut tidak lagi diperkenankan.',
+        'message_placeholder_locked' => 'Laman diskusi pada beatmap ini telah ditutup.',
         'message_type_select' => 'Pilih Jenis Komentar',
         'reply_notice' => 'Tekan enter untuk membalas.',
         'reply_placeholder' => 'Ketik balasan Anda di sini',
         'require-login' => 'Silakan masuk untuk posting atau membalas',
         'resolved' => 'Terselesaikan',
         'restore' => 'kembalikan',
+        'show_deleted' => 'Tampilan dihapus',
         'title' => 'Diskusi',
 
         'collapse' => [
@@ -56,6 +58,18 @@ return [
         'empty' => [
             'empty' => 'Belum ada diskusi!',
             'hidden' => 'Tidak ada diskusi yang cocok dengan filter yang dipilih.',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => 'Kunci diskusi',
+                'unlock' => 'Buka diskusi',
+            ],
+
+            'prompt' => [
+                'lock' => 'Alasan untuk membuka kunci',
+                'unlock' => 'Apakah Anda yakin untuk membuka kunci?',
+            ],
         ],
 
         'message_hint' => [
@@ -90,9 +104,11 @@ return [
         ],
 
         'new' => [
+            'pin' => 'Sematkan',
             'timestamp' => 'Keterangan Waktu',
             'timestamp_missing' => 'Salin (ctrl+c) keterangan waktu yang spesifik dari editor dan tempelkan (ctrl+v) pada boks yang tersedia untuk menambahkan keterangan waktu!',
             'title' => 'Diskusi Baru',
+            'unpin' => 'Lepas sematan',
         ],
 
         'show' => [
@@ -124,6 +140,10 @@ return [
             'wip' => 'Catatan: Beatmap ini ditandai sebagai \'dalam pengerjaan\' oleh pembuat beatmap.',
         ],
 
+        'votes' => [
+            'up' => 'Berikan vote positif pada untai diskusi ini',
+            'down' => 'Berikan vote negatif pada untai diskusi ini',
+        ],
     ],
 
     'hype' => [

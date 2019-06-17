@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => 'Ergebnisse der Umfrage verstecken.',
+                'hide_results_info' => 'Sie werden erst nach Abschluss der Umfrage angezeigt.',
                 'length' => 'Abstimmung offen für',
                 'length_days_suffix' => 'Tage',
                 'length_info' => 'Nichts eingeben für eine nie endende Abstimmung',
@@ -292,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => 'Abstimmung endet am :time',
                     'ended' => 'Abstimmung beendet am :time',
+                    'results_hidden' => 'Ergebnisse werden nach dem Abstimmungsende angezeigt.',
                     'total' => 'Stimmen insgesamt: :count',
                 ],
             ],

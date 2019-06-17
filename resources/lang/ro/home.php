@@ -36,7 +36,6 @@ return [
         'advanced_link' => 'Căutare avansată',
         'button' => 'Căutare',
         'empty_result' => 'Nimic găsit!',
-        'missing_query' => 'Cuvintele cheie trebuie să fie de minim :n caracatere',
         'placeholder' => 'tastează pentru a căuta',
         'title' => 'Caută',
 

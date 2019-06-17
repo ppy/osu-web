@@ -74,6 +74,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => '選択肢の重複があります。',
             'grace_period_expired' => ':limit時間以上後に投票を編集できません。',
+            'hiding_results_forever' => '終了しない投票の結果を隠すことはできません。',
             'invalid_max_options' => '選択数の上限に選択肢の数以上の数値は使用不可能です。',
             'minimum_one_selection' => '選択数は１が最低の数値です。',
             'minimum_two_options' => '選択肢は最低2つ必要です。',
@@ -111,6 +112,7 @@ return [
         'too_long' => '使用文字数の制限を超えています。上限は:limit文字です。',
 
         'change_username' => [
+            'restricted' => '制限されている間は、ユーザー名を変更することはできません。',
             'supporter_required' => [
                 '_' => ':linkになったことがないと名前を変更できません！',
                 'link_text' => 'サポーター',

@@ -59,6 +59,7 @@
   &__action {
     .reset-input();
     .link-default();
+    text-transform: lowercase;
 
     &:hover {
       text-decoration: underline;
@@ -66,11 +67,6 @@
 
     &--active {
       color: @green;
-    }
-
-    &--permalink {
-      // the translation is lowercased
-      text-transform: capitalize;
     }
 
     .@{_top}--changelog & {

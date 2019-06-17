@@ -179,6 +179,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => 'Skjul resultatene til avstemningen.',
+                'hide_results_info' => 'De kommer bare til å vises etter at avstemningen konkluderer.',
                 'length' => 'Kjør avstemmingen for',
                 'length_days_suffix' => 'dager',
                 'length_info' => 'La være tom for en uendelig avstemming',
@@ -292,6 +294,7 @@ return [
                 'detail' => [
                     'end_time' => 'Avstemming vil ende om :time',
                     'ended' => 'Avstemming endte :time',
+                    'results_hidden' => 'Resultater vil bli vist etter at avstemningen slutter.',
                     'total' => 'Total antall stemmer: :count',
                 ],
             ],

@@ -20,7 +20,7 @@
 
 return [
     'insufficient_stock' => 'Bu üründen yeteri kadar kalmadı!',
-    'must_separate' => '',
+    'must_separate' => 'Bu eşya diğer eşyalardan ayrı olarak kontrol edilmeli',
     'not_available' => 'Bu ürün mevcut değil.',
     'too_many' => 'Bu ürünü sipariş başına sadece :count adet sipariş edebilirsiniz.',
 ];

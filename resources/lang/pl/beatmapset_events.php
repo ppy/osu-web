@@ -22,9 +22,11 @@ return [
     'event' => [
         'approve' => 'Zatwierdzona.',
         'discussion_delete' => 'Moderator usunął dyskusję :discussion.',
+        'discussion_lock' => 'Tworzenie dyskusji dla tej beatmapy zostało wyłączone (:text).',
         'discussion_post_delete' => 'Moderator usunął post z dyskusji :discussion.',
         'discussion_post_restore' => 'Moderator przywrócił post z dyskusji :discussion.',
         'discussion_restore' => 'Moderator przywrócił dyskusję :discussion.',
+        'discussion_unlock' => 'Tworzenie dyskusji dla tej beatmapy zostało włączone.',
         'disqualify' => ':user zdyskwalifikował(a) tę beatmapę. Powód: :discussion (:text).',
         'disqualify_legacy' => ':user zdyskwalifikował(a) tę beatmapę. Powód: :text.',
         'issue_reopen' => 'Rozwiązany problem :discussion został otworzony ponownie.',

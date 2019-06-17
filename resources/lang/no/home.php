@@ -36,7 +36,6 @@ return [
         'advanced_link' => 'Avansert søk',
         'button' => 'Søk',
         'empty_result' => 'Ingenting funnet!',
-        'missing_query' => 'Søkeord må minst være :n tegn',
         'placeholder' => 'skriv for å søke',
         'title' => 'Søk',
 

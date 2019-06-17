@@ -26,6 +26,7 @@ use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
 use Auth;
+use ChaseConey\LaravelDatadogHelper\Datadog;
 use DB;
 use Request;
 
@@ -292,11 +293,15 @@ class ChatController extends Controller
                 Request::input('message'),
                 get_bool(Request::input('is_action', false))
             );
+        } catch (API\ChatMessageEmptyException $e) {
+            abort(422, $e->getMessage());
         } catch (API\ChatMessageTooLongException $e) {
             abort(422, $e->getMessage());
         } catch (API\ExcessiveChatMessagesException $e) {
             abort(429, $e->getMessage());
         }
+
+        Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]);
 
         return [
             'new_channel_id' => $channel->channel_id,

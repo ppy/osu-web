@@ -55,6 +55,7 @@ return [
         'search' => 'Αναζήτηση',
         'see_more' => 'δείτε περισσότερα',
         'show' => 'προβολή',
+        'show_deleted' => '',
         'show_more' => 'εμφάνιση περισσότερων',
         'show_more_options' => 'περισσότερες επιλογές',
         'upload_image' => 'ανεβάστε εικόνα',

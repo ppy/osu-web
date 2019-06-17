@@ -20,8 +20,9 @@
 
 return [
     'deleted' => '削除済み',
+    'deleted_count' => ':count_delimited個の削除されたコメント',
     'edited' => ':userが:timeagoに編集済み',
-    'empty' => 'コメントがありません。',
+    'empty' => 'まだコメントがありません。',
     'replies' => '返信',
     'show_replies' => '返信を表示',
     'title' => 'コメント',
