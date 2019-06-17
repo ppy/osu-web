@@ -75,7 +75,7 @@ class BeatmapDiscussionPost extends Model
 
         // only find replies (i.e. exclude discussion starting-posts)
         $query->whereExists(function ($postQuery) {
-            $table = (new BeatmapDiscussionPost)->getTable();
+            $table = (new self)->getTable();
 
             $postQuery->selectRaw(1)
                 ->from(DB::raw("{$table} d"))

@@ -498,7 +498,7 @@ class Order extends Model
         return function ($query) {
             $query = clone $query;
 
-            $order = new Order();
+            $order = new self();
             $orderItem = new OrderItem();
             $product = new Product();
 
