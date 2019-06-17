@@ -32,12 +32,12 @@ declare global {
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
-  window: Window;
-  dispatcher: Dispatcher;
-  dataStore: RootDataStore;
-  chatWorker: ChatWorker;
   chatOrchestrator: ChatOrchestrator;
+  chatWorker: ChatWorker;
+  dataStore: RootDataStore;
+  dispatcher: Dispatcher;
   userLoginObserver: UserLoginObserver;
+  window: Window;
   windowFocusObserver: WindowFocusObserver;
 
   constructor(window: Window) {

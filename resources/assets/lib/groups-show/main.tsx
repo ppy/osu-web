@@ -21,8 +21,8 @@ import * as React from 'react';
 import { UserList } from 'user-list';
 
 interface Group {
-  group_name: string;
   group_desc?: string;
+  group_name: string;
 }
 
 interface Props {

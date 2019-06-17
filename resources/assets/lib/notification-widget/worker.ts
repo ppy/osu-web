@@ -40,8 +40,8 @@ interface NotificationEventNewJson {
 }
 
 interface NotificationEventReadJson {
-  event: 'read';
   data: NotificationReadJson;
+  event: 'read';
 }
 
 interface NotificationReadJson {
@@ -72,13 +72,68 @@ export default class Worker {
   @observable pmNotification = new LegacyPmNotification();
   userId: number | null = null;
   @observable private active: boolean = false;
-  @observable private items = observable.map<number, Notification>();
-  private refreshing = false;
-  private needsRefresh = false;
-  private timeout: TimeoutCollection = {};
   private endpoint?: string;
+  @observable private items = observable.map<number, Notification>();
+  private needsRefresh = false;
+  private refreshing = false;
+  private timeout: TimeoutCollection = {};
   private ws: WebSocket | null | undefined;
   private xhr: XHRCollection = {};
+
+  @computed get itemsGroupedByType() {
+    const ret: Map<string, Notification[]> = new Map();
+
+    const sortedItems = _.orderBy([...this.items.values()], ['id'], ['desc']);
+    sortedItems.unshift(this.pmNotification);
+
+    sortedItems.forEach((item) => {
+      const key = item.displayType;
+
+      if (key == null) {
+        return;
+      }
+
+      let groupedItems = ret.get(key);
+
+      if (groupedItems == null) {
+        groupedItems = [];
+        ret.set(key, groupedItems);
+      }
+
+      if (item.isRead) {
+        return;
+      }
+
+      groupedItems.push(item);
+    });
+
+    return ret;
+  }
+
+  @computed get minLoadedId() {
+    let ret: null | number = null;
+
+    this.items.forEach((item) => {
+      if (item.id > 0 && (ret == null || item.id < ret)) {
+        ret = item.id;
+      }
+    });
+
+    return ret;
+  }
+
+  @computed get unreadCount() {
+    let ret = this.actualUnreadCount;
+
+    if (typeof this.pmNotification.details === 'object'
+      && typeof this.pmNotification.details.count === 'number'
+      && this.pmNotification.details.count > 0
+    ) {
+      ret++;
+    }
+
+    return Math.max(ret, 0);
+  }
 
   boot = () => {
     this.active = this.userId != null;
@@ -278,60 +333,5 @@ export default class Worker {
     }
 
     this.pmNotification.details.count = count;
-  }
-
-  @computed get itemsGroupedByType() {
-    const ret: Map<string, Notification[]> = new Map();
-
-    const sortedItems = _.orderBy([...this.items.values()], ['id'], ['desc']);
-    sortedItems.unshift(this.pmNotification);
-
-    sortedItems.forEach((item) => {
-      const key = item.displayType;
-
-      if (key == null) {
-        return;
-      }
-
-      let groupedItems = ret.get(key);
-
-      if (groupedItems == null) {
-        groupedItems = [];
-        ret.set(key, groupedItems);
-      }
-
-      if (item.isRead) {
-        return;
-      }
-
-      groupedItems.push(item);
-    });
-
-    return ret;
-  }
-
-  @computed get minLoadedId() {
-    let ret: null | number = null;
-
-    this.items.forEach((item) => {
-      if (item.id > 0 && (ret == null || item.id < ret)) {
-        ret = item.id;
-      }
-    });
-
-    return ret;
-  }
-
-  @computed get unreadCount() {
-    let ret = this.actualUnreadCount;
-
-    if (typeof this.pmNotification.details === 'object'
-      && typeof this.pmNotification.details.count === 'number'
-      && this.pmNotification.details.count > 0
-    ) {
-      ret++;
-    }
-
-    return Math.max(ret, 0);
   }
 }

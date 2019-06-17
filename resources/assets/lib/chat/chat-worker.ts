@@ -34,19 +34,15 @@ import ChatAPI from './chat-api';
 import { MessageJSON } from './chat-api-responses';
 
 export default class ChatWorker implements DispatchListener {
+  private api: ChatAPI;
   private dispatcher: Dispatcher;
-  private rootDataStore: RootDataStore;
-
   private pollingEnabled: boolean = true;
   private pollTime: number = 1000;
   private pollTimeIdle: number = 5000;
-  private windowIsActive: boolean = true;
-
+  private rootDataStore: RootDataStore;
   private updateTimerId?: number;
-
-  private api: ChatAPI;
-
   private updateXHR: boolean = false;
+  private windowIsActive: boolean = true;
 
   constructor(dispatcher: Dispatcher, rootDataStore: RootDataStore) {
     this.dispatcher = dispatcher;
@@ -65,6 +61,46 @@ export default class ChatWorker implements DispatchListener {
     } else if (action instanceof WindowBlurAction) {
       this.windowIsActive = false;
     }
+  }
+
+  pollForUpdates = () => {
+    if (this.updateXHR) {
+      return;
+    }
+    this.updateXHR = true;
+
+    this.api.getUpdates(this.rootDataStore.channelStore.maxMessageId)
+      .then((updateJson) => {
+        this.updateXHR = false;
+        if (this.pollingEnabled) {
+          this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
+        }
+
+        if (!updateJson) {
+          return;
+        }
+
+        transaction(() => {
+          updateJson.messages.forEach((message: MessageJSON) => {
+            const newMessage = Message.fromJSON(message);
+            newMessage.sender = this.rootDataStore.userStore.getOrCreate(message.sender_id, message.sender);
+            this.dispatcher.dispatch(new ChatMessageAddAction(newMessage));
+          });
+
+          this.dispatcher.dispatch(new ChatPresenceUpdateAction(updateJson.presence));
+        });
+      })
+      .catch((err) => {
+        // silently ignore errors and continue polling
+        this.updateXHR = false;
+        if (this.pollingEnabled) {
+          this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
+        }
+      });
+  }
+
+  pollingTime(): number {
+    return this.windowIsActive ? this.pollTime : this.pollTimeIdle;
   }
 
   sendMessage(message: Message) {
@@ -112,50 +148,10 @@ export default class ChatWorker implements DispatchListener {
     }
   }
 
-  pollForUpdates = () => {
-    if (this.updateXHR) {
-      return;
-    }
-    this.updateXHR = true;
-
-    this.api.getUpdates(this.rootDataStore.channelStore.maxMessageId)
-      .then((updateJson) => {
-        this.updateXHR = false;
-        if (this.pollingEnabled) {
-          this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
-        }
-
-        if (!updateJson) {
-          return;
-        }
-
-        transaction(() => {
-          updateJson.messages.forEach((message: MessageJSON) => {
-            const newMessage = Message.fromJSON(message);
-            newMessage.sender = this.rootDataStore.userStore.getOrCreate(message.sender_id, message.sender);
-            this.dispatcher.dispatch(new ChatMessageAddAction(newMessage));
-          });
-
-          this.dispatcher.dispatch(new ChatPresenceUpdateAction(updateJson.presence));
-        });
-      })
-      .catch((err) => {
-        // silently ignore errors and continue polling
-        this.updateXHR = false;
-        if (this.pollingEnabled) {
-          this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
-        }
-      });
-  }
-
   startPolling() {
     if (!this.updateTimerId) {
       this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
     }
-  }
-
-  pollingTime(): number {
-    return this.windowIsActive ? this.pollTime : this.pollTimeIdle;
   }
 
   stopPolling() {

@@ -24,14 +24,14 @@ import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
 import PostItem from './post-item';
 
+interface Props {
+  container: HTMLElement;
+  data: PostsJson;
+}
+
 interface PostsJson {
   news_posts: PostJson[];
   search: Search;
-}
-
-interface PropsInterface {
-  container: HTMLElement;
-  data: PostsJson;
 }
 
 interface Search {
@@ -44,16 +44,16 @@ interface SearchCursor {
   published_at?: string;
 }
 
-interface StateInterface {
-  posts: PostJson[];
+interface State {
   hasMore: boolean;
   loading: boolean;
+  posts: PostJson[];
 }
 
-export default class Main extends React.Component<PropsInterface, StateInterface> {
+export default class Main extends React.Component<Props, State> {
   private eventId = `news-index-${osu.uuid()}`;
 
-  constructor(props: PropsInterface) {
+  constructor(props: Props) {
     super(props);
 
     this.restoreState();
@@ -125,6 +125,40 @@ export default class Main extends React.Component<PropsInterface, StateInterface
     );
   }
 
+  private newStateFromData = (data: PostsJson) => {
+    const hasMore = data.news_posts.length === data.search.limit;
+    let posts: PostJson[];
+    let loading: boolean;
+
+    if (this.state == null) {
+      posts = [];
+      loading = false;
+    } else {
+      posts = this.state.posts;
+      loading = this.state.loading;
+    }
+
+    posts = posts.concat(data.news_posts);
+
+    if (hasMore) {
+      posts.pop();
+    }
+
+    return {posts, hasMore, loading};
+  }
+
+  private restoreState = () => {
+    const savedState = this.props.container.dataset.lastState;
+    if (savedState != null) {
+      this.state = JSON.parse(savedState) as State;
+      delete this.props.container.dataset.lastState;
+    }
+  }
+
+  private saveState = () => {
+    this.props.container.dataset.lastState = JSON.stringify(this.state);
+  }
+
   private showMore = () => {
     if (!this.state.hasMore) {
       return;
@@ -153,39 +187,5 @@ export default class Main extends React.Component<PropsInterface, StateInterface
     }).always(() => {
       this.setState({loading: false});
     });
-  }
-
-  private newStateFromData = (data: PostsJson) => {
-    const hasMore = data.news_posts.length === data.search.limit;
-    let posts: PostJson[];
-    let loading: boolean;
-
-    if (this.state == null) {
-      posts = [];
-      loading = false;
-    } else {
-      posts = this.state.posts;
-      loading = this.state.loading;
-    }
-
-    posts = posts.concat(data.news_posts);
-
-    if (hasMore) {
-      posts.pop();
-    }
-
-    return {posts, hasMore, loading};
-  }
-
-  private restoreState = () => {
-    const savedState = this.props.container.dataset.lastState;
-    if (savedState != null) {
-      this.state = JSON.parse(savedState) as StateInterface;
-      delete this.props.container.dataset.lastState;
-    }
-  }
-
-  private saveState = () => {
-    this.props.container.dataset.lastState = JSON.stringify(this.state);
   }
 }
