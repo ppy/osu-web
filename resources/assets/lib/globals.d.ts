@@ -90,6 +90,7 @@ interface User {
   country?: Country;
   country_code?: string;
   cover: Cover;
+  cover_url: string;
   default_group: string;
   id: number;
   is_active: boolean;
