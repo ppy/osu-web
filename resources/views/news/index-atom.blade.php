@@ -32,7 +32,8 @@
         <entry>
             <id>tag:osu,2019:news/{{ $post->getKey() }}</id>
             <published>{{ json_time($post->published_at) }}</published>
-            <updated>{{ json_time($post->updated_at) }}</updated>
+            {{-- TODO: atom:updated is required but we don't have one (yet?) so this will do for now --}}
+            <updated>{{ json_time($post->published_at) }}</updated>
             <link rel="alternate" type="text/html" href="{{ route('news.show', $post->slug) }}" />
             <title>{{ $post->title() }}</title>
             <content type="html">
