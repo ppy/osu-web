@@ -142,7 +142,7 @@ export class Header extends React.Component
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
 
-          if currentUser.id? && @props.beatmapset.availability
+          if currentUser.id?
             div
               className: 'beatmapset-header__availability-info',
               if @props.beatmapset.availability.download_disabled
@@ -150,7 +150,7 @@ export class Header extends React.Component
               else
                 osu.trans 'beatmapsets.availability.parts-removed'
 
-              if @props.beatmapset.availability.more_information
+              if @props.beatmapset.availability.more_information?
                 div className: 'beatmapset-header__availability-link',
                   a href: @props.beatmapset.availability.more_information, target: '_blank', osu.trans 'beatmapsets.availability.more-info'
 

@@ -295,11 +295,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         });
     }
 
-    public function isDownloadAvailable()
-    {
-        return !$this->download_disabled && !present($this->download_disabled_url);
-    }
-
     // one-time checks
 
     public function isGraveyard()

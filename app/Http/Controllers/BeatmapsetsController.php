@@ -80,7 +80,6 @@ class BeatmapsetsController extends Controller
             $beatmapset,
             new BeatmapsetTransformer(),
             [
-                'availability',
                 'beatmaps',
                 'beatmaps.failtimes',
                 'beatmaps.max_combo',
