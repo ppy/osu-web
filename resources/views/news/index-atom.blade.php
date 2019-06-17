@@ -18,7 +18,7 @@
 {{-- just in case php has shorttag enabled --}}
 {!! '<?xml version="1.0" encoding="UTF-8"?>' !!}
 <feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
-    <id>tag:osu,2019:news</id>
+    <id>{{ atom_id('news') }}</id>
 
     <link rel="alternate" type="text/html" href="{{ route('news.index') }}" />
     <link rel="self" type="application/atom+xml" href="{{ request()->fullUrl() }}" />
@@ -30,7 +30,7 @@
 
     @foreach ($posts as $post)
         <entry>
-            <id>tag:osu,2019:news/{{ $post->getKey() }}</id>
+            <id>{{ atom_id('news', $post->getKey()) }}</id>
             <published>{{ json_time($post->published_at) }}</published>
             {{-- TODO: atom:updated is required but we don't have one (yet?) so this will do for now --}}
             <updated>{{ json_time($post->published_at) }}</updated>
