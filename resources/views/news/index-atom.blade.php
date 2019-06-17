@@ -41,7 +41,7 @@
             </content>
 
             <author>
-                <name>osu!news team</name>
+                <name>osu!team</name>
             </author>
         </entry>
     @endforeach
