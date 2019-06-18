@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {ChatChannelSwitchAction, ChatMessageSendAction} from 'actions/chat-actions';
+import { ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
 import { BigButton } from 'big-button';
@@ -38,6 +38,32 @@ export default class InputBox extends React.Component<any, any> implements Dispa
     this.props.dispatcher.register(this);
   }
 
+  buttonClicked = (e: React.MouseEvent<HTMLElement>) => {
+    const target = $(e.currentTarget).parent().children('input')[0] as HTMLInputElement;
+    const message = target.value || '';
+    this.sendMessage(message);
+    target.value = '';
+  }
+
+  checkIfEnterPressed = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.keyCode === 13) {
+      const target = $(e.currentTarget)[0] as HTMLInputElement;
+      const message = target.value || '';
+      this.sendMessage(message);
+      target.value = '';
+    }
+  }
+
+  componentDidMount() {
+    this.focusInput();
+  }
+
+  focusInput() {
+    if (this.inputBoxRef.current) {
+      this.inputBoxRef.current.focus();
+    }
+  }
+
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof WindowFocusAction) {
       this.focusInput();
@@ -48,8 +74,33 @@ export default class InputBox extends React.Component<any, any> implements Dispa
     }
   }
 
-  componentDidMount() {
-    this.focusInput();
+  render(): React.ReactNode {
+    const dataStore: RootDataStore = this.props.dataStore;
+    const channel = dataStore.channelStore.get(dataStore.uiState.chat.selected);
+    const disableInput = !channel || channel.moderated;
+
+    return (
+      <div className='chat-input'>
+        <input
+          className={`chat-input__box${disableInput ? ' chat-input__box--disabled' : ''}`}
+          name='textbox'
+          placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
+          onKeyDown={this.checkIfEnterPressed}
+          disabled={disableInput}
+          ref={this.inputBoxRef}
+        />
+
+        <BigButton
+          text={osu.trans('chat.input.send')}
+          icon='fas fa-reply'
+          modifiers={['chat-send']}
+          props={{
+            disabled: disableInput,
+            onClick: this.buttonClicked,
+          }}
+        />
+      </div>
+    );
   }
 
   sendMessage(messageText?: string) {
@@ -86,56 +137,5 @@ export default class InputBox extends React.Component<any, any> implements Dispa
     }
 
     this.props.dispatcher.dispatch(new ChatMessageSendAction(message));
-  }
-
-  buttonClicked = (e: React.MouseEvent<HTMLElement>) => {
-    const target = $(e.currentTarget).parent().children('input')[0] as HTMLInputElement;
-    const message = target.value || '';
-    this.sendMessage(message);
-    target.value = '';
-  }
-
-  checkIfEnterPressed = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.keyCode === 13) {
-      const target = $(e.currentTarget)[0] as HTMLInputElement;
-      const message = target.value || '';
-      this.sendMessage(message);
-      target.value = '';
-    }
-  }
-
-  focusInput() {
-    if (this.inputBoxRef.current) {
-      this.inputBoxRef.current.focus();
-    }
-  }
-
-  render(): React.ReactNode {
-    const dataStore: RootDataStore = this.props.dataStore;
-    const channel = dataStore.channelStore.get(dataStore.uiState.chat.selected);
-    const disableInput = !channel || channel.moderated;
-
-    return (
-      <div className='chat-input'>
-        <input
-          className={`chat-input__box${disableInput ? ' chat-input__box--disabled' : ''}`}
-          name='textbox'
-          placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
-          onKeyDown={this.checkIfEnterPressed}
-          disabled={disableInput}
-          ref={this.inputBoxRef}
-        />
-
-        <BigButton
-          text={osu.trans('chat.input.send')}
-          icon='fas fa-reply'
-          modifiers={['chat-send']}
-          props={{
-            disabled: disableInput,
-            onClick: this.buttonClicked,
-          }}
-        />
-      </div>
-    );
   }
 }
