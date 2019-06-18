@@ -1135,6 +1135,21 @@ class OsuAuthorize
         }
     }
 
+    public function checkMatchView($user, $match)
+    {
+        if (!$match->private) {
+            return 'ok';
+        }
+
+        $this->ensureLoggedIn($user);
+
+        if ($user->canModerate() || $match->hadPlayer($user)) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
     public function checkUserSilenceShowExtendedInfo($user)
     {
         // admin only, i guess =D

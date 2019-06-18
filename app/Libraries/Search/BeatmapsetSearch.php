@@ -58,8 +58,10 @@ class BeatmapsetSearch extends RecordSearch
             // the subscoping is not necessary but prevents unintentional accidents when combining other matchers
             $query->must(
                 (new BoolQuery)
-                    // results must contain at least one of the terms and boosted by containing all of them.
+                    // results must contain at least one of the terms and boosted by containing all of them,
+                    // or match the id of the beatmapset.
                     ->shouldMatch(1)
+                    ->should(['term' => ['_id' => ['value' => $this->params->queryString, 'boost' => 100]]])
                     ->should(QueryHelper::queryString($this->params->queryString, $partialMatchFields, 'or', 1 / count($terms)))
                     ->should(QueryHelper::queryString($this->params->queryString, [], 'and'))
             );

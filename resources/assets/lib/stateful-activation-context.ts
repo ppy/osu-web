@@ -18,12 +18,12 @@
 
 import { createContext } from 'react';
 
-export function activeKeyDidChange(key: any) {
-  this.setState({ activeKey: key });
-}
-
 export interface State {
   activeKey?: any;
+}
+
+export function activeKeyDidChange(key: any) {
+  this.setState({ activeKey: key });
 }
 
 export const ContainerContext = createContext({

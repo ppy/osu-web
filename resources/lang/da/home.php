@@ -36,7 +36,6 @@ return [
         'advanced_link' => 'Avanceret søgning',
         'button' => 'Søg',
         'empty_result' => 'Intet fundet!',
-        'missing_query' => 'Du skal søge efter nøgleord med mindst :n karakterer!',
         'placeholder' => 'klik for at søge',
         'title' => 'Søg',
 

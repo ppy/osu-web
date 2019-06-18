@@ -34,19 +34,15 @@ import ChatAPI from './chat-api';
 import { MessageJSON } from './chat-api-responses';
 
 export default class ChatWorker implements DispatchListener {
+  private api: ChatAPI;
   private dispatcher: Dispatcher;
-  private rootDataStore: RootDataStore;
-
   private pollingEnabled: boolean = true;
   private pollTime: number = 1000;
   private pollTimeIdle: number = 5000;
-  private windowIsActive: boolean = true;
-
+  private rootDataStore: RootDataStore;
   private updateTimerId?: number;
-
-  private api: ChatAPI;
-
   private updateXHR: boolean = false;
+  private windowIsActive: boolean = true;
 
   constructor(dispatcher: Dispatcher, rootDataStore: RootDataStore) {
     this.dispatcher = dispatcher;
@@ -64,51 +60,6 @@ export default class ChatWorker implements DispatchListener {
       this.windowIsActive = true;
     } else if (action instanceof WindowBlurAction) {
       this.windowIsActive = false;
-    }
-  }
-
-  sendMessage(message: Message) {
-    const channelId = message.channelId;
-    const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
-
-    if (channel.newChannel) {
-      const users = channel.users.slice();
-      const userId = users.find((user) => {
-        return user !== currentUser.id;
-      });
-
-      if (!userId) {
-        console.debug('sendMessage:: userId not found?? this shouldn\'t happen');
-        return;
-      }
-
-      this.api.newConversation(userId, message.content)
-        .then((response) => {
-          const newId = response.new_channel_id;
-          transaction(() => {
-            this.rootDataStore.channelStore.channels.delete(channelId);
-            this.rootDataStore.channelStore.updatePresence(response.presence);
-            this.dispatcher.dispatch(new ChatChannelSwitchAction(newId));
-          });
-        })
-        .catch(() => {
-          message.errored = true;
-          this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
-        });
-    } else {
-      this.api.sendMessage(channelId, message.content)
-        .then((updateJson) => {
-          if (updateJson) {
-            message.messageId = updateJson.message_id;
-          } else {
-            message.errored = true;
-          }
-          this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
-        })
-        .catch(() => {
-          message.errored = true;
-          this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
-        });
     }
   }
 
@@ -148,14 +99,59 @@ export default class ChatWorker implements DispatchListener {
       });
   }
 
+  pollingTime(): number {
+    return this.windowIsActive ? this.pollTime : this.pollTimeIdle;
+  }
+
+  sendMessage(message: Message) {
+    const channelId = message.channelId;
+    const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
+
+    if (channel.newChannel) {
+      const users = channel.users.slice();
+      const userId = users.find((user) => {
+        return user !== currentUser.id;
+      });
+
+      if (!userId) {
+        console.debug('sendMessage:: userId not found?? this shouldn\'t happen');
+        return;
+      }
+
+      this.api.newConversation(userId, message.content, message.isAction)
+        .then((response) => {
+          const newId = response.new_channel_id;
+          transaction(() => {
+            this.rootDataStore.channelStore.channels.delete(channelId);
+            this.rootDataStore.channelStore.updatePresence(response.presence);
+            this.dispatcher.dispatch(new ChatChannelSwitchAction(newId));
+          });
+        })
+        .catch(() => {
+          message.errored = true;
+          this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
+        });
+    } else {
+      this.api.sendMessage(channelId, message.content, message.isAction)
+        .then((updateJson) => {
+          if (updateJson) {
+            message.messageId = updateJson.message_id;
+          } else {
+            message.errored = true;
+          }
+          this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
+        })
+        .catch(() => {
+          message.errored = true;
+          this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
+        });
+    }
+  }
+
   startPolling() {
     if (!this.updateTimerId) {
       this.updateTimerId = Timeout.set(this.pollingTime(), this.pollForUpdates);
     }
-  }
-
-  pollingTime(): number {
-    return this.windowIsActive ? this.pollTime : this.pollTimeIdle;
   }
 
   stopPolling() {

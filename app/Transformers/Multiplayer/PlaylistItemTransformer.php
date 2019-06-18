@@ -19,7 +19,6 @@
 
 namespace App\Transformers\Multiplayer;
 
-use App\Models\Beatmap;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Transformers\BeatmapCompactTransformer;
 use League\Fractal;

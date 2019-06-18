@@ -124,8 +124,14 @@ class Channel extends Model
 
     public function receiveMessage(User $sender, string $content, bool $isAction = false)
     {
+        $content = trim($content);
+
         if (mb_strlen($content, 'UTF-8') >= config('osu.chat.message_length_limit')) {
             throw new API\ChatMessageTooLongException(trans('api.error.chat.too_long'));
+        }
+
+        if (!present($content)) {
+            throw new API\ChatMessageEmptyException(trans('api.error.chat.empty'));
         }
 
         $sentMessages = Message::where('user_id', $sender->user_id)
