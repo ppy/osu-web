@@ -28,6 +28,11 @@ el = React.createElement
 
 export class Header extends React.Component
   favouritesToShow: 50
+
+  hasAvailabilityInfo: =>
+    @props.beatmapset.availability.download_disabled || @props.beatmapset.availability.more_information?
+
+
   showFavourites: (event) =>
     target = event.currentTarget
 
@@ -142,17 +147,19 @@ export class Header extends React.Component
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
 
-          if currentUser.id?
+          if currentUser.id? && @hasAvailabilityInfo()
             div
               className: 'beatmapset-header__availability-info',
               if @props.beatmapset.availability.download_disabled
                 osu.trans 'beatmapsets.availability.disabled'
-              else
-                osu.trans 'beatmapsets.availability.parts-removed'
-
-              if @props.beatmapset.availability.more_information?
-                div className: 'beatmapset-header__availability-link',
-                  a href: @props.beatmapset.availability.more_information, target: '_blank', osu.trans 'beatmapsets.availability.more-info'
+              else if @props.beatmapset.availability.more_information?
+                el React.Fragment, null,
+                  osu.trans 'beatmapsets.availability.parts-removed'
+                  div className: 'beatmapset-header__availability-link',
+                    a
+                      href: @props.beatmapset.availability.more_information
+                      target: '_blank'
+                      osu.trans 'beatmapsets.availability.more-info'
 
           div
             className: 'beatmapset-header__buttons'
