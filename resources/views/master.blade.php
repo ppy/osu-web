@@ -58,7 +58,12 @@
             @include('objects._notification_banner', [
                 'type' => 'alert',
                 'title' => trans('users.restricted_banner.title'),
-                'message' => trans('users.restricted_banner.message'),
+                'message' => {!! trans('users.restricted_banner.message', [
+                    'link' => link_to(
+                    wiki_url('Help_Centre/Account_Restrictions'),
+                    trans('users.restricted_banner.link')
+                    ),
+                    ]) !!},
             ])
         @endif
 

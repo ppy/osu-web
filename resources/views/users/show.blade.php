@@ -32,7 +32,12 @@
         @include('objects._notification_banner', [
             'type' => 'warning',
             'title' => trans('admin.users.restricted_banner.title'),
-            'message' => trans('admin.users.restricted_banner.message'),
+            'message' => {!! trans('users.restricted_banner.message', [
+                    'link' => link_to(
+                    wiki_url('Help_Centre/Account_Restrictions'),
+                    trans('users.restricted_banner.link')
+                    ),
+                    ]) !!},
             'legacyNav' => $legacyNav,
         ])
     @endif
