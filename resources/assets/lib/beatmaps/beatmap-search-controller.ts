@@ -32,7 +32,7 @@ export interface SearchStatus {
 }
 
 export class BeatmapSearchController {
-  // the list that gets displaying while new searches are loading.
+  // the list that gets displayed while new searches are loading.
   @observable currentBeatmapsets!: any[];
   @observable filters!: BeatmapSearchFilters;
   @observable hasMore = false; // TODO: figure out how to make this computed
