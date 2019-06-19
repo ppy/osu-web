@@ -16,17 +16,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { controller } from 'beatmaps/controller';
 import { Main } from 'beatmaps/main';
 import core from 'osu-core-singleton';
-
-const store = core.dataStore.beatmapSearchStore;
 
 reactTurbolinks.registerPersistent('beatmaps', Main, true, () => {
   const beatmapsets = osu.parseJson('json-beatmaps', true);
   if (beatmapsets != null) {
-    store.initialize(controller.filters, beatmapsets);
+    core.beatmapSearchController.initialize(beatmapsets);
   }
+
+  // includes an initial search to load the pre-initialized data properly.
+  core.beatmapSearchController.restoreTurbolinks();
 
   return {
     availableFilters: osu.parseJson('json-filters'),

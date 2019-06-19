@@ -16,10 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-import { controller } from 'beatmaps/controller'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, a, i, span } from 'react-dom-factories'
 el = React.createElement
+controller = core.beatmapSearchController
 
 export class SearchSort extends React.PureComponent
   render: =>

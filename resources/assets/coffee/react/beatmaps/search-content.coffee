@@ -20,7 +20,6 @@ import { Paginator } from './paginator'
 import { SearchPanel } from './search-panel'
 import { SearchSort } from './search-sort'
 import { BeatmapsetPanel } from 'beatmapset-panel'
-import { controller } from 'beatmaps/controller'
 import { Img2x } from 'img2x'
 import { observe, observable } from 'mobx'
 import { Observer } from 'mobx-react'
@@ -30,7 +29,7 @@ import { a, div, p } from 'react-dom-factories'
 import VirtualList from 'react-virtual-list'
 
 el = React.createElement
-store = core.dataStore.beatmapSearchStore
+controller = core.beatmapSearchController
 
 ITEM_HEIGHT = 205 # needs to be known in advance to calculate size of virtual scrolling area.
 

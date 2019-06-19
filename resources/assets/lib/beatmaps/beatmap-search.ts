@@ -22,14 +22,14 @@ import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
 import { action, observable } from 'mobx';
 import { store as beatmapsetStore } from 'stores/beatmapset-store';
 
-interface SearchResponse {
+export interface SearchResponse {
   beatmapsets: BeatmapsetJSON[];
   cursor: JSON;
   recommended_difficulty: number;
   total: number;
 }
 
-export default class BeatmapSearchStore {
+export class BeatmapSearch {
   static CACHE_DURATION_MS = 60000;
 
   @observable
@@ -173,7 +173,7 @@ export default class BeatmapSearchStore {
     const previous = this.fetchedAt.get(key);
     if (previous == null) { return true; }
 
-    return new Date().getTime() - previous.getTime() > BeatmapSearchStore.CACHE_DURATION_MS;
+    return new Date().getTime() - previous.getTime() > BeatmapSearch.CACHE_DURATION_MS;
   }
 
   private reset(key: string) {

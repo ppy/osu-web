@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-import { controller } from 'beatmaps/controller'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, a, span, i } from 'react-dom-factories'
 import { ShowMoreLink } from 'show-more-link'
@@ -62,6 +62,6 @@ export class Paginator extends React.PureComponent
     @showMore()
 
 
-  showMore: (e) =>
+  showMore: (e) ->
     e?.preventDefault()
-    controller.loadMore()
+    core.beatmapSearchController.loadMore()

@@ -22,9 +22,12 @@ import AvailableFilters from 'beatmaps/available-filters';
 import { debounce } from 'lodash';
 import { IObjectDidChange, IValueDidChange, Lambda, observe } from 'mobx';
 import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { SearchContent } from 'react/beatmaps/search-content';
-import { controller, SearchStatus } from './controller';
+import { SearchStatus } from './beatmap-search-controller';
+
+const controller = core.beatmapSearchController;
 
 interface Props {
   availableFilters: AvailableFilters;
@@ -41,10 +44,6 @@ export class Main extends React.Component<Props> {
     super(props);
 
     this.observerDisposers.push(observe(controller, 'searchStatus', this.searchStatusErrorHandler));
-
-    // includes an initial search to load the pre-initialized data properly.
-    controller.restoreTurbolinks();
-
     this.observerDisposers.push(observe(controller.filters, this.filterChangedHandler));
     this.observerDisposers.push(observe(controller, 'searchStatus', this.scrollPositionHandler));
   }

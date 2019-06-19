@@ -17,13 +17,11 @@
  */
 
 import Dispatcher from 'dispatcher';
-import BeatmapSearchStore from 'stores/beatmap-search-store';
 import ChannelStore from './channel-store';
 import UIStateStore from './ui-state-store';
 import UserStore from './user-store';
 
 export default class RootDataStore {
-  beatmapSearchStore = new BeatmapSearchStore();
   channelStore: ChannelStore;
   uiState: UIStateStore;
   userStore: UserStore;

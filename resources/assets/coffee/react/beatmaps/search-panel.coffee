@@ -17,10 +17,11 @@
 ###
 
 import { SearchFilter } from './search-filter'
-import { controller } from 'beatmaps/controller'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, a, i, input, h1, h2, li, ol, span } from 'react-dom-factories'
 el = React.createElement
+controller = core.beatmapSearchController
 
 # props don't change anymore when selecting a new filter
 export class SearchPanel extends React.Component

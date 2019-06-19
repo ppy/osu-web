@@ -17,11 +17,9 @@
  */
 
 import { BeatmapSearchFilters, BeatmapSearchParams } from 'beatmap-search-filters';
+import { BeatmapSearch, SearchResponse } from 'beatmaps/beatmap-search';
 import { intersection, map } from 'lodash';
 import { action, computed, observable } from 'mobx';
-import core from 'osu-core-singleton';
-
-const store = core.dataStore.beatmapSearchStore;
 
 export interface SearchStatus {
   error?: any;
@@ -33,10 +31,9 @@ export interface SearchStatus {
     ;
 }
 
-class Controller {
+export class BeatmapSearchController {
   // the list that gets displaying while new searches are loading.
   @observable currentBeatmapsets!: any[];
-  dispatcher = core.dispatcher;
   @observable filters!: BeatmapSearchFilters;
   @observable hasMore = false; // TODO: figure out how to make this computed
   @observable isExpanded!: boolean;
@@ -47,9 +44,11 @@ class Controller {
     state: 'completed',
   };
 
+  private beatmapSearch = new BeatmapSearch();
+
   constructor() {
     this.restoreStateFromUrl();
-    this.currentBeatmapsets = store.getBeatmapsets(this.filters);
+    this.currentBeatmapsets = this.beatmapSearch.getBeatmapsets(this.filters);
   }
 
   @computed
@@ -74,7 +73,7 @@ class Controller {
 
   @computed
   get recommendedDifficulty() {
-    return store.recommendedDifficulties.get(this.filters.mode);
+    return this.beatmapSearch.recommendedDifficulties.get(this.filters.mode);
   }
 
   @computed
@@ -86,7 +85,11 @@ class Controller {
   }
 
   cancel() {
-    store.cancel();
+    this.beatmapSearch.cancel();
+  }
+
+  initialize(data: SearchResponse) {
+    this.beatmapSearch.initialize(this.filters, data);
   }
 
   @action
@@ -121,12 +124,12 @@ class Controller {
     };
 
     try {
-      const data = await store.get(this.filters, from);
+      const data = await this.beatmapSearch.get(this.filters, from);
 
       this.searchStatus = { state: 'completed', error: null, from };
       this.hasMore = data.hasMore && data.beatmapsets.length < data.total;
 
-      this.currentBeatmapsets = store.getBeatmapsets(this.filters);
+      this.currentBeatmapsets = this.beatmapSearch.getBeatmapsets(this.filters);
     } catch (error) {
       if (error.readyState !== 0) {
         this.searchStatus = { state: 'completed', error, from };
@@ -147,5 +150,3 @@ class Controller {
     this.isExpanded = intersection(Object.keys(filtersFromUrl), BeatmapsetFilter.expand).length > 0;
   }
 }
-
-export const controller = new Controller();
