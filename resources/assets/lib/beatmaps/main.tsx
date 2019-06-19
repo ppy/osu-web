@@ -50,7 +50,6 @@ export class Main extends React.Component<Props> {
   }
 
   componentDidMount() {
-    controller.startListeningOnWindow();
     $(document).on('turbolinks:before-visit.beatmaps-main', () => {
       this.debouncedSearch.cancel();
     });
@@ -66,8 +65,6 @@ export class Main extends React.Component<Props> {
       disposer();
       disposer = this.observerDisposers.shift();
     }
-
-    controller.stopListeningOnWindow();
   }
 
   render() {

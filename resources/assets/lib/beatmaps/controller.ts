@@ -40,7 +40,6 @@ class Controller {
   @observable filters!: BeatmapSearchFilters;
   @observable hasMore = false; // TODO: figure out how to make this computed
   @observable isExpanded!: boolean;
-  @observable numberOfColumns = osu.isDesktop() ? 2 : 1;
   @observable recommendedDifficulty = store.recommendedDifficulty;
 
   @observable searchStatus: SearchStatus = {
@@ -132,19 +131,6 @@ class Controller {
         this.searchStatus = { state: 'completed', error: null, from };
       }
     }
-  }
-
-  startListeningOnWindow() {
-    $(window).on('resize.beatmaps-controller', () => {
-      const count = osu.isDesktop() ? 2 : 1;
-      if (this.numberOfColumns !== count) {
-        this.numberOfColumns = count;
-      }
-    });
-  }
-
-  stopListeningOnWindow() {
-    $(window).off('.beatmaps-controller');
   }
 
   @action
