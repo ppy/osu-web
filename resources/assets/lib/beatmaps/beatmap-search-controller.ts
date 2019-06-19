@@ -19,7 +19,7 @@
 import { BeatmapSearchFilters, BeatmapSearchParams } from 'beatmap-search-filters';
 import { BeatmapSearch, SearchResponse } from 'beatmaps/beatmap-search';
 import { debounce, intersection, map } from 'lodash';
-import { action, computed, IObjectDidChange, IValueDidChange, Lambda, observable, observe } from 'mobx';
+import { action, computed, IObjectDidChange, IValueDidChange, Lambda, observable, observe, runInAction } from 'mobx';
 
 export interface SearchStatus {
   error?: any;
@@ -128,16 +128,20 @@ export class BeatmapSearchController {
     try {
       const data = await this.beatmapSearch.get(this.filters, from);
 
-      this.searchStatus = { state: 'completed', error: null, from };
-      this.hasMore = data.hasMore && data.beatmapsets.length < data.total;
-
-      this.currentBeatmapsets = this.beatmapSearch.getBeatmapsets(this.filters);
-    } catch (error) {
-      if (error.readyState !== 0) {
-        this.searchStatus = { state: 'completed', error, from };
-      } else {
+      runInAction(() => {
         this.searchStatus = { state: 'completed', error: null, from };
-      }
+        this.hasMore = data.hasMore && data.beatmapsets.length < data.total;
+
+        this.currentBeatmapsets = this.beatmapSearch.getBeatmapsets(this.filters);
+      });
+    } catch (error) {
+      runInAction(() => {
+        if (error.readyState !== 0) {
+          this.searchStatus = { state: 'completed', error, from };
+        } else {
+          this.searchStatus = { state: 'completed', error: null, from };
+        }
+      });
     }
   }
 
