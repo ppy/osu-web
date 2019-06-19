@@ -1,6 +1,5 @@
 <?php
 
-
 return [
     'hosts' => (array) env('ES_SCORES_HOST', 'localhost:9200'),
     'connectionParams' => [

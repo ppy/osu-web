@@ -19,15 +19,15 @@
 import * as React from 'react';
 import ItemProps from './item-props';
 
-export interface WithMarkReadProps {
-  canMarkRead: boolean;
-  markRead: () => void;
-  markReadFallback: (event: React.MouseEvent<HTMLElement>) => void;
+interface State {
   markingAsRead: boolean;
 }
 
-interface State {
+export interface WithMarkReadProps {
+  canMarkRead: boolean;
   markingAsRead: boolean;
+  markRead: () => void;
+  markReadFallback: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 export function withMarkRead(Component: React.ComponentType<ItemProps & WithMarkReadProps>) {

@@ -21,7 +21,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
-use App\Models\Country;
 use App\Models\CountryStatistics;
 use App\Models\Spotlight;
 use App\Models\User;

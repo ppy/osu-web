@@ -225,7 +225,7 @@ function html_excerpt($body, $limit = 300)
     return e(truncate($body, $limit));
 }
 
-function truncate(String $text, $limit = 100, $ellipsis = '...')
+function truncate(string $text, $limit = 100, $ellipsis = '...')
 {
     if (mb_strlen($text) > $limit) {
         return mb_substr($text, 0, $limit - mb_strlen($ellipsis)).$ellipsis;

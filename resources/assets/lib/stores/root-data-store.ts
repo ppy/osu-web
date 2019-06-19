@@ -23,9 +23,9 @@ import UIStateStore from './ui-state-store';
 import UserStore from './user-store';
 
 export default class RootDataStore {
-  uiState: UIStateStore;
-  beatmapSearchStore: BeatmapSearchStore = new BeatmapSearchStore();
+  beatmapSearchStore = new BeatmapSearchStore();
   channelStore: ChannelStore;
+  uiState: UIStateStore;
   userStore: UserStore;
 
   constructor(dispatcher: Dispatcher) {

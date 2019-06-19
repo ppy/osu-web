@@ -39,9 +39,9 @@ interface BeatmapDiscussionHelperClass {
 }
 
 interface JQueryStatic {
+  publish: any;
   subscribe: any;
   unsubscribe: any;
-  publish: any;
 }
 
 interface OsuCommon {
@@ -74,8 +74,8 @@ interface Country {
 }
 
 interface Cover {
-  id?: string;
   custom_url?: string;
+  id?: string;
   url?: string;
 }
 
@@ -119,6 +119,6 @@ interface TurbolinksStatic {
 
   clearCache(): void;
   setProgressBarDelay(delayInMilliseconds: number): void;
-  visit(location: string, options?: TurbolinksAction): void;
   uuid(): string;
+  visit(location: string, options?: TurbolinksAction): void;
 }

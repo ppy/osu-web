@@ -18,32 +18,44 @@
 
 import { ChannelJSON, ChannelType } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
-import { action, computed, observable, transaction} from 'mobx';
+import { action, computed, observable, transaction } from 'mobx';
 import User from 'models/user';
 import Message from './message';
 
 export default class Channel {
-  private backlogSize: number = 100;
-
   @observable channelId: number;
-  @observable type: ChannelType = 'NEW';
-  @observable name: string = '';
   @observable description?: string;
   @observable icon?: string;
-
-  @observable messages: Message[] = observable([]);
-
   @observable lastMessageId: number = -1;
   @observable lastReadId?: number;
-
-  @observable users: number[] = [];
-
-  @observable metaLoaded: boolean = false;
-  @observable loading: boolean = false;
   @observable loaded: boolean = false;
+  @observable loading: boolean = false;
+  @observable messages: Message[] = observable([]);
+  @observable metaLoaded: boolean = false;
   @observable moderated: boolean = false;
-
+  @observable name: string = '';
   @observable newChannel: boolean = false;
+  @observable type: ChannelType = 'NEW';
+  @observable users: number[] = [];
+  private backlogSize: number = 100;
+
+  @computed
+  get isUnread(): boolean {
+    if (this.lastReadId != null) {
+      return this.lastMessageId > this.lastReadId;
+    } else {
+      return this.lastMessageId > -1;
+    }
+  }
+
+  @computed
+  get pmTarget(): number | undefined {
+    if (this.type !== 'PM') {
+      return;
+    }
+
+    return this.users.find((userId: number) => userId !== currentUser.id);
+  }
 
   constructor(channelId: number) {
     this.channelId = channelId;
@@ -72,24 +84,6 @@ export default class Channel {
     channel.users = [currentUser.id, target.id];
 
     return channel;
-  }
-
-  @computed
-  get pmTarget(): number | undefined {
-    if (this.type !== 'PM') {
-      return;
-    }
-
-    return this.users.find((userId: number) => userId !== currentUser.id);
-  }
-
-  @computed
-  get isUnread(): boolean {
-    if (this.lastReadId != null) {
-      return this.lastMessageId > this.lastReadId;
-    } else {
-      return this.lastMessageId > -1;
-    }
   }
 
   @action
@@ -123,6 +117,20 @@ export default class Channel {
   }
 
   @action
+  resortMessages() {
+    let newMessages = this.messages.slice();
+    newMessages = _.sortBy(newMessages, 'timestamp');
+    newMessages = _.uniqBy(newMessages, 'messageId');
+
+    this.messages = newMessages;
+  }
+
+  @action
+  unload() {
+    this.messages = observable([]);
+  }
+
+  @action
   updateMessage(message: Message) {
     const messageObject = _.find(this.messages, {uuid: message.uuid});
     if (messageObject) {
@@ -138,15 +146,6 @@ export default class Channel {
   }
 
   @action
-  resortMessages() {
-    let newMessages = this.messages.slice();
-    newMessages = _.sortBy(newMessages, 'timestamp');
-    newMessages = _.uniqBy(newMessages, 'messageId');
-
-    this.messages = newMessages;
-  }
-
-  @action
   updatePresence = (presence: ChannelJSON) => {
     this.name = presence.name;
     this.description = presence.description;
@@ -159,10 +158,5 @@ export default class Channel {
 
     this.users = presence.users;
     this.metaLoaded = true;
-  }
-
-  @action
-  unload() {
-    this.messages = observable([]);
   }
 }
