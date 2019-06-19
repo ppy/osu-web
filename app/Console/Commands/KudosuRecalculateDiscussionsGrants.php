@@ -21,7 +21,6 @@
 namespace App\Console\Commands;
 
 use App\Models\BeatmapDiscussion;
-use App\Models\User;
 use Illuminate\Console\Command;
 
 class KudosuRecalculateDiscussionsGrants extends Command

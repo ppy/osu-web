@@ -17,6 +17,6 @@
  */
 
 export default interface TitleTrans {
-  key: string;
   info: string;
+  key: string;
 }

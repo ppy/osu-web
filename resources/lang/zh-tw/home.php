@@ -36,7 +36,6 @@ return [
         'advanced_link' => '進階搜尋',
         'button' => '搜尋',
         'empty_result' => '沒有結果！',
-        'missing_query' => '搜尋內容至少包含 :n 個字',
         'placeholder' => '請輸入以搜尋',
         'title' => '搜尋',
 

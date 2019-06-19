@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Country;
+use App\Models\User;
 
 class UsersControllerTest extends TestCase
 {
@@ -49,5 +50,46 @@ class UsersControllerTest extends TestCase
                     'name' => $country->name,
                 ],
             ]);
+    }
+
+    public function testPreviousUsernameShouldRedirect()
+    {
+        $oldUsername = 'potato';
+        $newUsername = 'carrot';
+
+        /** @var User $user */
+        $user = factory(User::class)->create([
+            'osu_subscriptionexpiry' => now()->addDay(),
+            'username' => $oldUsername,
+            'username_clean' => $oldUsername,
+        ]);
+        $user->changeUsername($newUsername, 'paid');
+
+        $this
+            ->get(route('users.show', ['user' => $oldUsername]))
+            ->assertRedirect(route('users.show', ['user' => $user->getKey()]));
+    }
+
+    public function testPreviousUsernameTakenShouldNotRedirect()
+    {
+        $oldUsername = 'potato';
+        $newUsername = 'carrot';
+
+        /** @var User $user1 */
+        $user1 = factory(User::class)->create([
+            'osu_subscriptionexpiry' => now()->addDay(),
+            'username' => $oldUsername,
+            'username_clean' => $oldUsername,
+        ]);
+        $user1->changeUsername($newUsername, 'paid');
+
+        $user2 = factory(User::class)->create([
+            'username' => $oldUsername,
+            'username_clean' => $oldUsername,
+        ]);
+
+        $this
+            ->get(route('users.show', ['user' => $oldUsername]))
+            ->assertRedirect(route('users.show', ['user' => $user2->getKey()]));
     }
 }

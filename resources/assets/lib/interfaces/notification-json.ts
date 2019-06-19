@@ -17,12 +17,12 @@
  */
 
 export default interface NotificationJson {
-  id: number;
-  name: string;
   created_at?: string;
-  object_type: string;
-  object_id: number;
-  source_user_id?: number;
-  is_read: boolean;
   details: any;
+  id: number;
+  is_read: boolean;
+  name: string;
+  object_id: number;
+  object_type: string;
+  source_user_id?: number;
 }

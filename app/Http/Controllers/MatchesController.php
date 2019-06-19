@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Country;
 use App\Models\Multiplayer\Match;
 use App\Models\User;
 use App\Transformers\Multiplayer\EventTransformer;
@@ -35,6 +34,8 @@ class MatchesController extends Controller
     public function show($id)
     {
         $match = Match::findOrFail($id);
+
+        priv_check('MatchView', $match)->ensureCan();
 
         $eventsJson = $this->eventsJson([
             'match' => $match,
@@ -52,8 +53,12 @@ class MatchesController extends Controller
 
     public function history($matchId)
     {
+        $match = Match::findOrFail($matchId);
+
+        priv_check('MatchView', $match)->ensureCan();
+
         return $this->eventsJson([
-            'match' => Match::findOrFail($matchId),
+            'match' => $match,
             'after' => request('after'),
             'before' => request('before'),
             'limit' => request('limit'),

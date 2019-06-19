@@ -21,7 +21,6 @@
 namespace App\Transformers\Multiplayer;
 
 use App\Models\Multiplayer\RoomScore;
-use App\Models\User;
 use App\Transformers\UserCompactTransformer;
 use League\Fractal;
 

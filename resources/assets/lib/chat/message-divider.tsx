@@ -19,12 +19,12 @@
 import * as moment from 'moment';
 import * as React from 'react';
 
-interface PropsInterface {
-  type: string;
+interface Props {
   timestamp: string;
+  type: string;
 }
 
-export default class MessageDivider extends React.Component<PropsInterface, any> {
+export default class MessageDivider extends React.Component<Props, any> {
   render(): React.ReactNode {
     switch (this.props.type) {
       case 'DAY_MARKER':
