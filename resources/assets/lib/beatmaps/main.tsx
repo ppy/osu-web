@@ -67,16 +67,10 @@ export class Main extends React.Component<Props> {
         <SearchContent
           availableFilters={this.props.availableFilters}
           backToTopAnchor={this.backToTopAnchor}
-          expand={this.expand}
         />
         <BackToTop anchor={this.backToTopAnchor} ref={this.backToTop} />
       </div>
     );
-  }
-
-  private expand = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    controller.isExpanded = true;
   }
 
   private scrollPositionHandler = (change: IValueDidChange<SearchStatus>) => {

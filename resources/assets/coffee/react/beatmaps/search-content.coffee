@@ -84,10 +84,6 @@ export class SearchContent extends React.Component
           innerRef: @props.backToTopAnchor
           background: searchBackground
           availableFilters: @props.availableFilters
-          expand: @props.expand
-          filters: controller.filters
-          isExpanded: controller.isExpanded
-          recommendedDifficulty: controller.recommendedDifficulty
 
         div className: 'js-sticky-header'
 

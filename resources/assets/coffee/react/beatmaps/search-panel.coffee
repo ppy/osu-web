@@ -17,6 +17,7 @@
 ###
 
 import { SearchFilter } from './search-filter'
+import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, a, i, input, h1, h2, li, ol, span } from 'react-dom-factories'
@@ -55,20 +56,26 @@ export class SearchPanel extends React.Component
     @unmountPortal @contentPortal, @contentElement
 
 
+  expand: (e) ->
+    e.preventDefault()
+    controller.isExpanded = true
+
+
   render: =>
-    div null,
-      if @breadcrumbsElement?
-        ReactDOM.createPortal @renderBreadcrumbs(), @breadcrumbsPortal
+    el Observer, null, =>
+      div null,
+        if @breadcrumbsElement?
+          ReactDOM.createPortal @renderBreadcrumbs(), @breadcrumbsPortal
 
-      if @contentElement?
-        ReactDOM.createPortal @renderStickyContent(), @contentPortal
+        if @contentElement?
+          ReactDOM.createPortal @renderStickyContent(), @contentPortal
 
-      div
-        className: 'osu-page osu-page--beatmapsets-search-header'
-        if currentUser.id?
-          @renderUser()
-        else
-          @renderGuest()
+        div
+          className: 'osu-page osu-page--beatmapsets-search-header'
+          if currentUser.id?
+            @renderUser()
+          else
+            @renderGuest()
 
 
   renderBreadcrumbs: =>
@@ -101,7 +108,7 @@ export class SearchPanel extends React.Component
           name: 'search'
           onChange: @onChange
           placeholder: osu.trans('beatmaps.listing.search.prompt')
-          defaultValue: @props.filters.query
+          defaultValue: controller.filters.query
         div className: 'beatmapsets-search__icon',
           i className: 'fas fa-search'
 
@@ -128,13 +135,13 @@ export class SearchPanel extends React.Component
 
   renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>
     el SearchFilter,
-      filters: @props.filters
+      filters: controller.filters
       name: name
       title: osu.trans("beatmaps.listing.search.filters.#{name}") if showTitle
       options: options
       multiselect: multiselect
       recommendedDifficulty: controller.recommendedDifficulty
-      selected: @props.filters.selectedValue(name)
+      selected: controller.filters.selectedValue(name)
 
 
   renderGuest: =>
@@ -158,7 +165,7 @@ export class SearchPanel extends React.Component
   renderUser: =>
     filters = @props.availableFilters
     cssClasses = 'beatmapsets-search'
-    cssClasses += ' beatmapsets-search--expanded' if @props.isExpanded
+    cssClasses += ' beatmapsets-search--expanded' if controller.isExpanded
 
     div
       ref: @props.innerRef
@@ -175,7 +182,7 @@ export class SearchPanel extends React.Component
           name: 'search'
           onChange: @onChange
           placeholder: osu.trans('beatmaps.listing.search.prompt')
-          defaultValue: @props.filters.query
+          defaultValue: controller.filters.query
         div className: 'beatmapsets-search__icon',
           i className: 'fas fa-search'
 
@@ -195,7 +202,7 @@ export class SearchPanel extends React.Component
       a
         className: 'beatmapsets-search__expand-link'
         href: '#'
-        onClick: @props.expand
+        onClick: @expand
         div {}, osu.trans('beatmaps.listing.search.options')
         div {}, i className: 'fas fa-angle-down'
 
