@@ -51,6 +51,7 @@
             {{ $bodyAdditionalClasses ?? '' }}
         "
     >
+        <style>:root {--base-hue: {{ isset($baseHue) ? $baseHue : 333 }} !important;}</style>
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
         <div class="blackout js-blackout" data-visibility="hidden"></div>
 

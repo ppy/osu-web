@@ -156,9 +156,8 @@
 @greycarmine-darker: #241d1e;
 
 // osu!palette 2019v2-final-copy-last-FINAL
-:root {
-  --base-hue: 333; // default hue is osu! pink
-}
+// the default hue is an osu! pink (333) and is inject into the body via master.blade.php:
+//   <style>:root {--base-hue: {{ isset($baseHue) ? $baseHue : 333 }} !important;}</style>
 @osu-colour-u: hsl(var(--base-hue), 100%, 70%);
 @osu-colour-p: hsl(var(--base-hue), 100%, 50%);
 @osu-colour-d: hsl(var(--base-hue), 50%, 45%);
