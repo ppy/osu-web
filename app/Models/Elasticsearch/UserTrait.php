@@ -45,7 +45,7 @@ trait UserTrait
         $values['is_old'] = $this->isOld();
 
         if (!config('indexing.batch')) {
-            $values['previous_usernames'] = $this->previousUsernames();
+            $values['previous_usernames'] = $this->previousUsernames(true)->unique();
         }
 
         return $values;

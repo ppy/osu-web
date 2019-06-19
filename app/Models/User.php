@@ -1602,18 +1602,24 @@ class User extends Model implements AuthenticatableContract
     /**
      * User's previous usernames
      *
-     * @property \Illuminate\Database\Eloquent\Collection
+     * @param bool $includeCurrent true if previous usernames matching the the current one should be included.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection string
      */
-    public function previousUsernames()
+    public function previousUsernames(bool $includeCurrent = false)
     {
-        return $this
-                ->usernameChangeHistory()
-                ->visible()
-                ->select(['username_last', 'timestamp'])
-                ->withPresent('username_last')
-                ->where('username_last', '<>', $this->username)
-                ->orderBy('timestamp', 'ASC')
-                ->pluck('username_last');
+        $query = $this
+            ->usernameChangeHistory()
+            ->visible()
+            ->select(['username_last', 'timestamp'])
+            ->withPresent('username_last')
+            ->orderBy('timestamp', 'ASC');
+
+        if (!$includeCurrent) {
+            $query->where('username_last', '<>', $this->username);
+        }
+
+        return $query->pluck('username_last');
     }
 
     public function profileCustomization()
