@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { computed, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 
 type filterValueType = string | null;
 
@@ -57,6 +57,7 @@ export class BeatmapSearchFilters implements BeatmapSearchParams {
     }
   }
 
+  @computed
   get displaySort() {
     return this.selectedValue('sort');
   }
@@ -76,24 +77,14 @@ export class BeatmapSearchFilters implements BeatmapSearchParams {
     }
   }
 
+  @computed
   get queryParams() {
     const values = this.values;
 
     return BeatmapsetFilter.queryParamsFromFilters(values);
   }
 
-  /**
-   * Returns a copy of the values in the filter.
-   */
-  get values() {
-    // Object.assign doesn't copy the methods
-    const values = Object.assign({}, this);
-    values.query = this.sanitizedQuery;
-    delete values.sanitizedQuery;
-
-    return values as BeatmapSearchParams;
-  }
-
+  @action
   selectedValue(key: string) {
     const value = this[key];
     if (value == null) {
@@ -116,6 +107,7 @@ export class BeatmapSearchFilters implements BeatmapSearchParams {
     return parts.join('&');
   }
 
+  @action
   update(newFilters: Partial<BeatmapSearchParams>) {
     if (newFilters.query !== undefined && newFilters.query !== this.query
       || newFilters.status !== undefined && newFilters.status !== this.status) {
@@ -126,5 +118,18 @@ export class BeatmapSearchFilters implements BeatmapSearchParams {
     for (let key of Object.keys(newFilters)) {
       this[key] = newFilters[key];
     }
+  }
+
+  /**
+   * Returns a copy of the values in the filter.
+   */
+  @computed
+  private get values() {
+    // Object.assign doesn't copy the methods
+    const values = Object.assign({}, this);
+    values.query = this.sanitizedQuery;
+    delete values.sanitizedQuery;
+
+    return values as BeatmapSearchParams;
   }
 }
