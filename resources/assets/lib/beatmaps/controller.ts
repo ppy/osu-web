@@ -40,7 +40,6 @@ class Controller {
   @observable filters!: BeatmapSearchFilters;
   @observable hasMore = false; // TODO: figure out how to make this computed
   @observable isExpanded!: boolean;
-  @observable recommendedDifficulty = store.recommendedDifficulty;
 
   @observable searchStatus: SearchStatus = {
     error: null,
@@ -71,6 +70,11 @@ class Controller {
   @computed
   get isSupporterMissing() {
     return !currentUser.is_supporter && BeatmapsetFilter.supporterRequired(this.filters).length > 0;
+  }
+
+  @computed
+  get recommendedDifficulty() {
+    return store.recommendedDifficulties.get(this.filters.mode);
   }
 
   @computed
@@ -121,7 +125,6 @@ class Controller {
 
       this.searchStatus = { state: 'completed', error: null, from };
       this.hasMore = data.hasMore && data.beatmapsets.length < data.total;
-      this.recommendedDifficulty = data.recommendedDifficulty;
 
       this.currentBeatmapsets = store.getBeatmapsets(this.filters);
     } catch (error) {

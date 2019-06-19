@@ -36,7 +36,7 @@ export default class BeatmapSearchStore {
   readonly beatmapsets = new Map<string, BeatmapsetJSON[]>();
   readonly cursors = new Map<string, any>();
   readonly fetchedAt = new Map<string, Date>();
-  recommendedDifficulty = 0; // last known recommended difficulty.
+  @observable readonly recommendedDifficulties = new Map<string|null, number>();
   readonly totals = new Map<string, number>();
 
   private xhr?: JQueryXHR;
@@ -61,7 +61,7 @@ export default class BeatmapSearchStore {
       return Promise.resolve({
         beatmapsets,
         hasMore: this.hasMore(key),
-        recommendedDifficulty: this.recommendedDifficulty,
+        recommendedDifficulty: this.recommendedDifficulties.get(filters.mode) || 0,
         total: this.totals.get(key) || 0,
       } as SearchResults);
     }
@@ -77,13 +77,13 @@ export default class BeatmapSearchStore {
         this.append(key, data);
       }
 
-      this.recommendedDifficulty = data.recommended_difficulty;
+      this.recommendedDifficulties.set(filters.mode, data.recommended_difficulty);
       this.fetchedAt.set(key, new Date());
 
       return {
         beatmapsets: this.getObservableBeatmapsetsByKey(key),
         hasMore: this.hasMore(key),
-        recommendedDifficulty: this.recommendedDifficulty,
+        recommendedDifficulty: data.recommended_difficulty,
         total: this.totals.get(key) || 0,
       };
     });
@@ -109,7 +109,7 @@ export default class BeatmapSearchStore {
     this.cursors.set(key, data.cursor);
     this.totals.set(key, data.total);
     this.fetchedAt.set(key, new Date());
-    this.recommendedDifficulty = data.recommended_difficulty;
+    this.recommendedDifficulties.set(filters.mode, data.recommended_difficulty);
 
     this.appendBeatmapsets(key, data.beatmapsets);
   }
