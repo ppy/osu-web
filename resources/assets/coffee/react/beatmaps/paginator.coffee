@@ -63,5 +63,4 @@ export class Paginator extends React.PureComponent
 
 
   showMore: (e) ->
-    e?.preventDefault()
     core.beatmapSearchController.loadMore()
