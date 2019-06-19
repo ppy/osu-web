@@ -54,7 +54,7 @@ export class BeatmapSearch {
     }
 
     const key = filters.toKeyString();
-    const beatmapsets = this.getObservableBeatmapsetsByKey(key);
+    const beatmapsets = this.getOrCreate(key);
     const sufficient = (from > 0 && from < beatmapsets.length) || (from === 0 && !this.isExpired(key));
 
     if (sufficient) {
@@ -81,7 +81,7 @@ export class BeatmapSearch {
       this.fetchedAt.set(key, new Date());
 
       return {
-        beatmapsets: this.getObservableBeatmapsetsByKey(key),
+        beatmapsets: this.getOrCreate(key),
         hasMore: this.hasMore(key),
         recommendedDifficulty: data.recommended_difficulty,
         total: this.totals.get(key) || 0,
@@ -92,7 +92,7 @@ export class BeatmapSearch {
   getBeatmapsets(filters: BeatmapSearchFilters) {
     const key = filters.toKeyString();
 
-    return this.getObservableBeatmapsetsByKey(key);
+    return this.getOrCreate(key);
   }
 
   @action
@@ -121,7 +121,7 @@ export class BeatmapSearch {
   }
 
   private appendBeatmapsets(key: string, data: BeatmapsetJSON[]) {
-    const beatmapsets = this.getObservableBeatmapsetsByKey(key);
+    const beatmapsets = this.getOrCreate(key);
     for (const beatmapset of data) {
       const item = beatmapsetStore.get(beatmapset.id);
       if (item) {
@@ -154,7 +154,7 @@ export class BeatmapSearch {
     return this.xhr;
   }
 
-  private getObservableBeatmapsetsByKey(key: string) {
+  private getOrCreate(key: string) {
     let beatmapsets = this.beatmapsets.get(key);
     if (beatmapsets == null) {
       this.beatmapsets.set(key, []);
@@ -183,10 +183,8 @@ export class BeatmapSearch {
   }
 
   private updateBeatmapsetStore(response: SearchResponse) {
-    // console.log(response);
     for (const json of response.beatmapsets) {
       beatmapsetStore.update(json);
     }
-    // console.log(beatmapsetStore.beatmapsets.toJSON());
   }
 }
