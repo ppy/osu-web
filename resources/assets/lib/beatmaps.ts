@@ -23,8 +23,10 @@ import core from 'osu-core-singleton';
 const store = core.dataStore.beatmapSearchStore;
 
 reactTurbolinks.registerPersistent('beatmaps', Main, true, () => {
-  const beatmapsets = osu.parseJson('json-beatmaps');
-  store.initialize(controller.filters, beatmapsets);
+  const beatmapsets = osu.parseJson('json-beatmaps', true);
+  if (beatmapsets != null) {
+    store.initialize(controller.filters, beatmapsets);
+  }
 
   return {
     availableFilters: osu.parseJson('json-filters'),

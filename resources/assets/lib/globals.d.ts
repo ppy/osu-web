@@ -50,7 +50,7 @@ interface OsuCommon {
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
   linkify: (text: string, newWindow?: boolean) => string;
-  parseJson: (id: string) => any;
+  parseJson: (id: string, remove?: boolean) => any;
   popup: (message: string, type: string) => void;
   presence: (str?: string | null) => string | null;
   present: (str?: string | null) => boolean;

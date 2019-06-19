@@ -99,8 +99,13 @@
     $(document).trigger('osu:page:change')
 
 
-  parseJson: (id) ->
-    JSON.parse document.getElementById(id)?.text ? null
+  parseJson: (id, remove = false) ->
+    element = document.getElementById(id)
+    json = JSON.parse element?.text ? null
+    if remove && element?
+      element.parentNode.removeChild element
+
+    json
 
 
   storeJson: (id, object) ->
