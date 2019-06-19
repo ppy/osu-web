@@ -17,10 +17,8 @@
  */
 
 import { BackToTop } from 'back-to-top';
-import { BeatmapSearchFilters } from 'beatmap-search-filters';
 import AvailableFilters from 'beatmaps/available-filters';
-import { debounce } from 'lodash';
-import { IObjectDidChange, IValueDidChange, Lambda, observe } from 'mobx';
+import { IValueDidChange, Lambda, observe } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -37,26 +35,23 @@ interface Props {
 export class Main extends React.Component<Props> {
   readonly backToTop = React.createRef<BackToTop>();
   readonly backToTopAnchor = React.createRef<HTMLElement>();
-  readonly debouncedSearch = debounce(this.search, 500);
   readonly observerDisposers: Lambda[] = [];
 
   constructor(props: Props) {
     super(props);
 
     this.observerDisposers.push(observe(controller, 'searchStatus', this.searchStatusErrorHandler));
-    this.observerDisposers.push(observe(controller.filters, this.filterChangedHandler));
     this.observerDisposers.push(observe(controller, 'searchStatus', this.scrollPositionHandler));
   }
 
   componentDidMount() {
     $(document).on('turbolinks:before-visit.beatmaps-main', () => {
-      this.debouncedSearch.cancel();
+      controller.cancel();
     });
   }
 
   componentWillUnmount() {
     $(document).off('.beatmaps-main');
-    this.debouncedSearch.cancel();
     controller.cancel();
 
     let disposer = this.observerDisposers.shift();
@@ -79,28 +74,9 @@ export class Main extends React.Component<Props> {
     );
   }
 
-  search() {
-    const url = encodeURI(laroute.route('beatmapsets.index', controller.filters.queryParams));
-    Turbolinks.controller.advanceHistory(url);
-    controller.search();
-  }
-
   private expand = (e: React.SyntheticEvent) => {
     e.preventDefault();
     controller.isExpanded = true;
-  }
-
-  private filterChangedHandler = (change: IObjectDidChange) => {
-    const valueChange = change as IValueDidChange<BeatmapSearchFilters>; // actual object is a union of types.
-    if (valueChange.oldValue === valueChange.newValue) { return; } // in case something goes horribly wrong in dev.
-
-    controller.prepareToSearch();
-    this.debouncedSearch();
-    // not sure if observing change of private variable is a good idea
-    // but computed value doesn't show up here
-    if (change.name !== 'sanitizedQuery') {
-      this.debouncedSearch.flush();
-    }
   }
 
   private scrollPositionHandler = (change: IValueDidChange<SearchStatus>) => {

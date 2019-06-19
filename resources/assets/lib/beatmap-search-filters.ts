@@ -84,7 +84,6 @@ export class BeatmapSearchFilters implements BeatmapSearchParams {
     return BeatmapsetFilter.queryParamsFromFilters(values);
   }
 
-  @action
   selectedValue(key: string) {
     const value = this[key];
     if (value == null) {

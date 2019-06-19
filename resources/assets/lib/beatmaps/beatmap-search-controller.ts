@@ -18,8 +18,8 @@
 
 import { BeatmapSearchFilters, BeatmapSearchParams } from 'beatmap-search-filters';
 import { BeatmapSearch, SearchResponse } from 'beatmaps/beatmap-search';
-import { intersection, map } from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { debounce, intersection, map } from 'lodash';
+import { action, computed, IObjectDidChange, IValueDidChange, Lambda, observable, observe } from 'mobx';
 
 export interface SearchStatus {
   error?: any;
@@ -44,7 +44,9 @@ export class BeatmapSearchController {
     state: 'completed',
   };
 
-  private beatmapSearch = new BeatmapSearch();
+  private readonly beatmapSearch = new BeatmapSearch();
+  private readonly debouncedSearch = debounce(this.search, 500);
+  private filtersObserver!: Lambda;
 
   constructor() {
     this.restoreStateFromUrl();
@@ -84,7 +86,9 @@ export class BeatmapSearchController {
     return osu.transArray(trans);
   }
 
+  @action
   cancel() {
+    this.debouncedSearch.cancel();
     this.beatmapSearch.cancel();
   }
 
@@ -102,11 +106,6 @@ export class BeatmapSearchController {
   }
 
   @action
-  prepareToSearch() {
-    this.searchStatus.state = 'input';
-  }
-
-  @action
   restoreTurbolinks() {
     this.restoreStateFromUrl();
     this.search();
@@ -114,6 +113,9 @@ export class BeatmapSearchController {
 
   @action
   async search(from = 0) {
+    const url = encodeURI(laroute.route('beatmapsets.index', this.filters.queryParams));
+    Turbolinks.controller.advanceHistory(url);
+
     if (this.isSupporterMissing || from < 0) {
       return;
     }
@@ -144,9 +146,33 @@ export class BeatmapSearchController {
     this.filters.update(newFilters);
   }
 
+  private filterChangedHandler = (change: IObjectDidChange) => {
+    const valueChange = change as IValueDidChange<BeatmapSearchFilters>; // actual object is a union of types.
+    if (valueChange.oldValue === valueChange.newValue) { return; }
+
+    this.prepareToSearch();
+    this.debouncedSearch();
+    // not sure if observing change of private variable is a good idea
+    // but computed value doesn't show up here
+    if (change.name !== 'sanitizedQuery') {
+      this.debouncedSearch.flush();
+    }
+  }
+
+  private prepareToSearch() {
+    this.searchStatus.state = 'input';
+  }
+
+  @action
   private restoreStateFromUrl() {
     const filtersFromUrl = BeatmapsetFilter.filtersFromUrl(location.href);
-    this.filters = new BeatmapSearchFilters(location.href),
+
+    if (this.filtersObserver != null) {
+      this.filtersObserver();
+    }
+    this.filters = new BeatmapSearchFilters(location.href);
+    this.filtersObserver = observe(this.filters, this.filterChangedHandler);
+
     this.isExpanded = intersection(Object.keys(filtersFromUrl), BeatmapsetFilter.expand).length > 0;
   }
 }
