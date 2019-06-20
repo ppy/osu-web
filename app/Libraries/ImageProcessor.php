@@ -133,7 +133,7 @@ class ImageProcessor
         }
 
         if ($toJpeg) {
-            imagejpeg($image, $this->inputPath);
+            imagejpeg($image, $this->inputPath, 90);
         }
 
         $this->parseInput();
