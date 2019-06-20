@@ -32,6 +32,7 @@ class ImageProcessor
 
     public $inputDim = null;
     public $inputFileSize = null;
+    public $inputPath = null;
 
     public function __construct($inputPath, $targetDim, $targetFileSize)
     {
