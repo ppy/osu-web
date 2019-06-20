@@ -9,3 +9,9 @@ $factory->define(App\Models\Multiplayer\Match::class, function (Faker\Generator 
         'private' => 0,
     ];
 });
+
+$factory->state(App\Models\Multiplayer\Match::class, 'private', function (Faker\Generator $faker) {
+    return [
+        'private' => 1,
+    ];
+});

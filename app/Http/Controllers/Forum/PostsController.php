@@ -22,7 +22,6 @@ namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Models\Forum\Post;
-use App\Models\Forum\Topic;
 use Auth;
 use DB;
 use Request;

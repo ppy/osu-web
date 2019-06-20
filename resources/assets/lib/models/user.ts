@@ -20,23 +20,37 @@ import { UserJSON } from 'chat/chat-api-responses';
 import { action, observable } from 'mobx';
 
 export default class User {
-  @observable id: number;
-  @observable username: string = '';
   @observable avatarUrl: string = '/images/layout/avatar-guest.png'; // TODO: move to a global config store?
-  @observable profileColour: string = '';
   @observable countryCode: string = 'XX';
-
-  @observable isSupporter: boolean = false;
+  @observable id: number;
   @observable isActive: boolean = false;
   @observable isBot: boolean = false;
   @observable isOnline: boolean = false;
-
+  @observable isSupporter: boolean = false;
   @observable loaded: boolean = false;
-
   @observable pmFriendsOnly: boolean = false;
+  @observable profileColour: string = '';
+  @observable username: string = '';
 
   constructor(id: number) {
     this.id = id;
+  }
+
+  static fromJSON(json: UserJSON): User {
+    const user = Object.create(User.prototype);
+    return Object.assign(user, {
+      avatarUrl: json.avatar_url,
+      countryCode: json.country_code,
+      id: json.id,
+      isActive: json.is_active,
+      isBot: json.is_bot,
+      isOnline: json.is_online,
+      isSupporter: json.is_supporter,
+      loaded: true,
+      pmFriendsOnly: json.pm_friends_only,
+      profileColour: json.profile_colour,
+      username: json.username,
+    });
   }
 
   load() {
@@ -55,22 +69,5 @@ export default class User {
     this.isOnline = json.is_online;
     this.pmFriendsOnly = json.pm_friends_only;
     this.loaded = true;
-  }
-
-  static fromJSON(json: UserJSON): User {
-    const user = Object.create(User.prototype);
-    return Object.assign(user, {
-      avatarUrl: json.avatar_url,
-      countryCode: json.country_code,
-      id: json.id,
-      isActive: json.is_active,
-      isBot: json.is_bot,
-      isOnline: json.is_online,
-      isSupporter: json.is_supporter,
-      loaded: true,
-      pmFriendsOnly: json.pm_friends_only,
-      profileColour: json.profile_colour,
-      username: json.username,
-    });
   }
 }

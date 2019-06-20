@@ -105,7 +105,7 @@ class Handler extends ExceptionHandler
         } else {
             $message = $this->exceptionMessage($e);
 
-            if ($request->expectsJson() || is_api_request()) {
+            if (is_json_request()) {
                 $response = response(['error' => $message]);
             } else {
                 $response = response()->view('layout.error', ['exceptionMessage' => $message]);
@@ -117,7 +117,7 @@ class Handler extends ExceptionHandler
 
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        if ($request->expectsJson() || is_api_request()) {
+        if (is_json_request()) {
             return response(['authentication' => 'basic'], 401);
         }
 

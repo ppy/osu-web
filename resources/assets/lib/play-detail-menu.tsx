@@ -26,6 +26,12 @@ interface Props {
 }
 
 export class PlayDetailMenu extends React.PureComponent<Props> {
+  private get canReport() {
+    return !_.isEmpty(currentUser)
+      && currentUser.id != null
+      && currentUser.id !== this.props.score.user_id;
+  }
+
   render() {
     const { score } = this.props;
 
@@ -53,11 +59,5 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
         {children}
       </PopupMenuPersistent>
     );
-  }
-
-  private get canReport() {
-    return !_.isEmpty(currentUser)
-      && currentUser.id != null
-      && currentUser.id !== this.props.score.user_id;
   }
 }

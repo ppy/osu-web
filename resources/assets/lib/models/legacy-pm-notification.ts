@@ -21,10 +21,10 @@ import Notification from './notification';
 
 export default class LegacyPmNotification extends Notification {
   @observable details = { count: 0 };
+  isRead = false;
   name = 'legacy_pm';
   objectId = -1;
   objectType = 'legacy_pm';
-  isRead = false;
 
   constructor() {
     super(-1);
