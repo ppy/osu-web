@@ -118,10 +118,24 @@ class ImageProcessor
             }
 
             $image = imagecreatetruecolor($outDim[0], $outDim[1]);
+            imagesavealpha($image, true);
+            imagefill($image, 0, 0, imagecolorallocatealpha($image, 0, 0, 0, 127));
             imagecopyresampled($image, $inputImage, 0, 0, $start[0], $start[1], $outDim[0], $outDim[1], $inDim[0], $inDim[1]);
         }
 
-        imagejpeg($image, $this->inputPath);
+        $toJpeg = true;
+
+        if ($this->inputDim[2] === IMAGETYPE_PNG || $this->inputDim[2] === IMAGETYPE_GIF) {
+            imagepng($image, $this->inputPath);
+
+            $this->parseInput();
+            $toJpeg = $this->inputFileSize > $this->targetFileSize;
+        }
+
+        if ($toJpeg) {
+            imagejpeg($image, $this->inputPath);
+        }
+
         $this->parseInput();
     }
 }
