@@ -18,15 +18,89 @@
 
 import * as React from 'react';
 
+interface ClientJSON {
+  created_at: string;
+  id: number;
+  name: string;
+  password_client: boolean;
+  personal_access_client: boolean;
+  redirect: string;
+  revoked: boolean;
+  secret: string;
+  updated_at: string;
+  user_id: number;
+}
+
 interface Props {
 }
 
-export class Clients extends React.Component<Props> {
+interface State {
+  clients: ClientJSON[];
+}
+
+export class Clients extends React.Component<Props, State> {
+  readonly state: State = {
+    clients: [],
+  };
+
+  componentDidMount() {
+    this.getClients();
+  }
+
+  async delete(id: string) {
+    await $.ajax({
+      method: 'DELETE',
+      url: '/oauth/clients/' + id,
+    });
+
+    this.getClients();
+  }
+
+  deleteClicked(event: React.MouseEvent) {
+    const clientId = (event.target as HTMLElement).dataset.clientId;
+    if (clientId != null) {
+      this.delete(clientId);
+    }
+  }
+
+  async getClients() {
+    const response: ClientJSON[] = await $.get('/oauth/clients');
+    this.setState({ clients: response });
+  }
+
   render() {
+    const rows: JSX.Element[] = [];
+    for (const client of this.state.clients) {
+      rows.push((
+        <tr key={client.id}>
+          <td>{client.name}</td>
+          <td>{client.revoked ? 'Yes' : 'No'}</td>
+          <td>
+            <button
+              data-client-id={client.id}
+              onClick={this.deleteClicked}
+            >
+              Delete
+            </button>
+
+          </td>
+        </tr>
+      ));
+    }
+
     return (
-      <>
-        Clients
-      </>
-    )
+      <table>
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Revoked</td>
+            <td />
+          </tr>
+        </thead>
+        <tbody>
+          {rows}
+        </tbody>
+      </table>
+    );
   }
 }
