@@ -39,12 +39,12 @@ class ImageProcessor
         $this->inputPath = $inputPath;
         $this->targetDim = $targetDim;
         $this->targetFileSize = $targetFileSize;
+
+        $this->parseInput();
     }
 
     public function basicCheck()
     {
-        $this->parseInput();
-
         if ($this->inputFileSize > $this->hardMaxFileSize) {
             throw new ImageProcessorException(trans('users.show.edit.cover.upload.too_large'));
         }
@@ -60,37 +60,27 @@ class ImageProcessor
 
     public function ext()
     {
-        $this->parseInput();
-
         return image_type_to_extension($this->inputDim[2], false);
     }
 
-    public function parseInput($force = false)
+    public function parseInput()
     {
-        if ($force === false && $this->inputDim !== null && $this->inputFileSize !== null) {
-            return;
-        }
-
         $this->inputDim = read_image_properties($this->inputPath);
         $this->inputFileSize = filesize($this->inputPath);
     }
 
     public function purgeExif()
     {
-        $this->parseInput();
-
         if ($this->inputDim[2] !== IMAGETYPE_JPEG) {
             return;
         }
 
         exec('jhead -autorot -purejpg -q '.escapeshellarg($this->inputPath));
-        $this->parseInput(true);
+        $this->parseInput();
     }
 
     public function process()
     {
-        $this->parseInput();
-
         $this->basicCheck();
 
         $this->purgeExif();
@@ -132,6 +122,6 @@ class ImageProcessor
         }
 
         imagejpeg($image, $this->inputPath);
-        $this->parseInput(true);
+        $this->parseInput();
     }
 }
