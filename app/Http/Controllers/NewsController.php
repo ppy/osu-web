@@ -37,7 +37,7 @@ class NewsController extends Controller
 
         $posts = $search['query']->get();
 
-        if (request('format') === 'atom') {
+        if ($isAtom) {
             return response()
                 ->view('news.index-atom', compact('posts'))
                 ->header('Content-Type', 'application/atom+xml');
