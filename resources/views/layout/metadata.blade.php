@@ -21,10 +21,6 @@
 <link rel="manifest" href="{{ config('osu.static') }}/site.webmanifest">
 <link rel="mask-icon" href="{{ config('osu.static') }}/safari-pinned-tab.svg" color="#e2609a">
 
-@if (isset($atom))
-    <link rel="alternate" type="application/atom+xml" title="{{ $atom['title'] }}" href="{{ $atom['url'] }}" />
-@endif
-
 <meta name="msapplication-TileColor" content="#603cba">
 <meta name="theme-color" content="#cc5288">
 
@@ -107,8 +103,8 @@
     <script src="/vendor/js/moment-locales/{{ $momentLocale }}.js" data-turbolinks-track="reload"></script>
 @endif
 
-@if (isset($rss))
-    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ $rss }}">
+@if (isset($atom))
+    <link rel="alternate" type="application/atom+xml" title="{{ $atom['title'] }}" href="{{ $atom['url'] }}" />
 @endif
 
 @if (isset($canonicalUrl))
