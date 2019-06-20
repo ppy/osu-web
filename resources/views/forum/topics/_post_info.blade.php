@@ -65,7 +65,7 @@
         </div>
 
         <div class="forum-post__info-panel-extra-bottom">
-            @if ($topic->topic_poster === $user->getKey())
+            @if (isset($topic) && $topic->topic_poster === $user->getKey())
                 <div class="forum-post__info-row">
                     <div
                         class="forum-post__topic-starter"
