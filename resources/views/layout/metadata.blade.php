@@ -20,7 +20,6 @@
 <link rel="icon" sizes="16x16" href="{{ config('osu.static') }}/favicon-16x16.png">
 <link rel="manifest" href="{{ config('osu.static') }}/site.webmanifest">
 <link rel="mask-icon" href="{{ config('osu.static') }}/safari-pinned-tab.svg" color="#e2609a">
-
 <meta name="msapplication-TileColor" content="#603cba">
 <meta name="theme-color" content="#cc5288">
 
