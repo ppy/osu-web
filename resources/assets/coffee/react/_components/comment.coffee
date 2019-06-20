@@ -53,10 +53,14 @@ export class Comment extends React.PureComponent
     @xhr = {}
     @loadMoreButtonRef = React.createRef()
 
-    if @isDeleted()
+    if osu.isMobile()
+      # There's no indentation on mobile so don't expand by default otherwise it will be confusing.
+      expandReplies = false
+    else if @isDeleted()
       expandReplies = false
     else
       @children = @props.commentsByParentId?[@props.comment.id] ? []
+      # Collapse if either no children is loaded or current level doesn't add indentation.
       expandReplies = @children.length > 0 && @props.depth < MAX_DEPTH
 
     @state =
