@@ -20,7 +20,7 @@
   @top: user-card;
   @avatar-border-radius: 6px;
   @avatar-size: 60px;
-  @background-color: #444; // friends list page is #333
+  @background-color: @osu-colour-b4;
   @card-border-radius: 10px;
   @card-item-spacing: 10px;
   @flag-width: @icon-height * 1.5;
@@ -48,7 +48,7 @@
     .@{top}:hover&, .@{top}--active& {
       .full-size();
       content: '';
-      border: 2px solid @yellow;
+      border: 2px solid @osu-colour-u;
       border-radius: @card-border-radius;
       pointer-events: none;
     }
@@ -120,11 +120,12 @@
   &__background-overlay {
     .full-size();
     border-radius: @card-border-radius;
-    transition: background-color 0.2s ease-in-out;
-    background-color: fade(@greysky, 70%);
+    transition: opacity 0.2s ease-in-out;
+    background-color: @osu-colour-b5;
+    opacity: 0.7;
 
     &--online {
-      background-color: fade(@greysky, 60%);
+      opacity: 0.6;
     }
   }
 
@@ -203,14 +204,14 @@
         opacity: 1;
 
         &:hover {
-          background-color: @blue-darker;
+          background-color: @osu-colour-u;
         }
       }
 
       // needs the higher specificity over .@{top}:hover
       .@{top}--active && {
         opacity: 1;
-        background-color: @blue-darker;
+        background-color: @osu-colour-u;
       }
     }
   }

@@ -37,29 +37,25 @@
     background-size: (@gutter-desktop - @_icon-margin-right - 10px);
     background-position: center;
     background-repeat: no-repeat;
+    box-shadow: inset 0 0 0 2px @osu-colour-u;
 
     .@{_top}--changelog & {
-      box-shadow: inset 0 0 0 2px @violet;
       background-image: url('/images/icons/changelog.svg');
     }
 
     .@{_top}--chat & {
-      box-shadow: inset 0 0 0 2px @community-blue;
       background-image: url('/images/icons/chat.svg');
     }
 
     .@{_top}--comments & {
-      box-shadow: inset 0 0 0 2px @blue;
       background-image: url('/images/icons/chat.svg');
     }
 
     .@{_top}--news & {
-      box-shadow: inset 0 0 0 2px @violet;
       background-image: url('/images/icons/news.svg');
     }
 
     .@{_top}--users & {
-      box-shadow: inset 0 0 0 2px @seafoam;
       background-image: url('/images/icons/profile.svg');
     }
   }
@@ -76,25 +72,7 @@
   }
 
   &__title-highlight {
-    .@{_top}--changelog & {
-      color: @violet;
-    }
-
-    .@{_top}--chat & {
-      color: @community-blue;
-    }
-
-    .@{_top}--comments & {
-      color: @blue;
-    }
-
-    .@{_top}--news & {
-      color: @violet;
-    }
-
-    .@{_top}--users & {
-      color: @seafoam;
-    }
+    color: @osu-colour-u;
   }
 
   &__title-text {
