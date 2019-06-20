@@ -3,8 +3,8 @@
 // importable coffeescript modules
 declare module 'block-button' {
   interface Props {
-    onClick?: () => void;
     modifiers?: string[];
+    onClick?: () => void;
     userId: number;
     wrapperClass?: string;
   }
@@ -49,8 +49,8 @@ declare module 'comments' {
 
 declare module 'comments-manager' {
   interface Props {
-    commentableType: string;
     commentableId: number;
+    commentableType: string;
     commentBundle: any;
     component: any;
     componentProps: any;
@@ -95,8 +95,8 @@ declare module 'report-score' {
 
 declare module 'report-user' {
   interface Props {
-    onFormClose?: () => void;
     modifiers?: string[];
+    onFormClose?: () => void;
     user: User;
     wrapperClass?: string;
   }

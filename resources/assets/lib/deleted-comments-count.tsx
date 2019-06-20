@@ -28,7 +28,7 @@ interface Props {
   showDeleted: boolean;
 }
 
-export default class DeletedCommentsCount extends React.Component<Props, {}> {
+export default class DeletedCommentsCount extends React.Component<Props> {
   render() {
     const deletedCount = this.props.comments.filter((c) => c.deleted_at != null).length;
 

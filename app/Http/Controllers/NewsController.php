@@ -48,7 +48,7 @@ class NewsController extends Controller
             'search' => $search['params'],
         ];
 
-        if (request()->expectsJson()) {
+        if (is_json_request()) {
             return $postsJson;
         } else {
             $atom = [

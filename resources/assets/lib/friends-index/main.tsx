@@ -21,8 +21,8 @@ import * as React from 'react';
 import { UserList } from 'user-list';
 
 interface Props {
-  user: User;
   friends: User[];
+  user: User;
 }
 
 export class Main extends React.PureComponent<Props> {
@@ -42,7 +42,7 @@ export class Main extends React.PureComponent<Props> {
     return (
       <div className='osu-layout osu-layout--full'>
         <HeaderV3
-          backgroundImage={this.props.user.cover.custom_url}
+          backgroundImage={this.props.user.cover.url}
           links={Main.links}
           theme='users'
           titleTrans={{

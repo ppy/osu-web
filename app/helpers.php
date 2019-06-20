@@ -518,6 +518,11 @@ function is_api_request()
     return request()->is('api/*');
 }
 
+function is_json_request()
+{
+    return is_api_request() || request()->expectsJson();
+}
+
 function is_sql_unique_exception($ex)
 {
     return starts_with(

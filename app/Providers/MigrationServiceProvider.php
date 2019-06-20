@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,18 +18,22 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { createContext } from 'react';
+namespace App\Providers;
 
-export interface State {
-  activeKey?: any;
+use App\Console\Commands\MigrateFreshAllCommand;
+use Illuminate\Support\ServiceProvider;
+
+class MigrationServiceProvider extends ServiceProvider
+{
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app->extend('command.migrate.fresh', function () {
+            return new MigrateFreshAllCommand();
+        });
+    }
 }
-
-export function activeKeyDidChange(key: any) {
-  this.setState({ activeKey: key });
-}
-
-export const ContainerContext = createContext({
-  activeKeyDidChange: (key: any) => { /* do nothing */},
-});
-
-export const KeyContext = createContext<any>(null);

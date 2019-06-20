@@ -16,18 +16,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { createContext } from 'react';
+import DispatcherAction from 'actions/dispatcher-action';
+import DispatchListener from 'dispatch-listener';
+import Dispatcher from 'dispatcher';
+import RootDataStore from 'stores/root-data-store';
 
-export interface State {
-  activeKey?: any;
+export default abstract class Store implements DispatchListener {
+  constructor(protected root: RootDataStore, protected dispatcher: Dispatcher) {
+    dispatcher.register(this);
+  }
+
+  abstract handleDispatchAction(action: DispatcherAction): void;
 }
-
-export function activeKeyDidChange(key: any) {
-  this.setState({ activeKey: key });
-}
-
-export const ContainerContext = createContext({
-  activeKeyDidChange: (key: any) => { /* do nothing */},
-});
-
-export const KeyContext = createContext<any>(null);
