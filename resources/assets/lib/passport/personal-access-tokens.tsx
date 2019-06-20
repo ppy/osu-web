@@ -18,15 +18,109 @@
 
 import * as React from 'react';
 
+interface ClientJSON {
+  created_at: string;
+  id: number;
+  name: string | null;
+  password_client: boolean;
+  personal_access_client: boolean;
+  redirect: string;
+  revoked: boolean;
+  updated_at: string;
+  user_id: number;
+}
+
+interface TokenJSON {
+  client: ClientJSON;
+  client_id: number;
+  created_at: string;
+  expires_at: string;
+  id: string;
+  name: string | null;
+  revoked: boolean;
+  scopes: [];
+  updated_at: string;
+  user_id: number;
+}
+
 interface Props {
 }
 
-export class PersonalAccessTokens extends React.Component<Props> {
+interface State {
+  tokens: TokenJSON[];
+}
+
+export class PersonalAccessTokens extends React.Component<Props, State> {
+  readonly state: State = {
+    tokens: [],
+  };
+
+  componentDidMount() {
+    this.getTokens();
+  }
+
   render() {
+    const rows: JSX.Element[] = [];
+    for (const token of this.state.tokens) {
+      rows.push((
+        <tr key={token.id}>
+          <td>{token.client.name}</td>
+          <td>{token.scopes.join(', ')}</td>
+          <td>{token.created_at}</td>
+          <td>{token.expires_at}</td>
+          <td>
+            <button
+              data-token-id={token.id}
+              onClick={this.revokeClicked}
+            >
+              Revoke
+            </button>
+          </td>
+        </tr>
+      ));
+    }
+
     return (
-      <>
-        PersonalAccessTokens
-      </>
+      <table>
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Scopes</td>
+            <td>Created At</td>
+            <td>Expires At</td>
+            <td />
+          </tr>
+        </thead>
+        <tbody>
+          {rows}
+        </tbody>
+      </table>
     );
+  }
+
+  async getTokens() {
+    const response: TokenJSON[] = await $.get('/oauth/personal-access-tokens');
+    console.log(response);
+    this.setState({
+      tokens: response,
+    });
+  }
+
+  async revoke(id: string) {
+    await $.ajax({
+      method: 'DELETE',
+      url: '/oauth/personal-access-tokens/' + id,
+    });
+
+    this.getTokens();
+  }
+
+  revokeClicked = (event: React.MouseEvent<HTMLElement>) => {
+    if (!confirm('Revoke this token?')) { return; }
+
+    const tokenId = (event.target as HTMLElement).dataset.tokenId;
+    if (tokenId != null) {
+      this.revoke(tokenId);
+    }
   }
 }
