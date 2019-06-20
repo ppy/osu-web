@@ -19,6 +19,7 @@
     'bodyAdditionalClasses' => 'osu-layout--body-111-plain',
     'legacyNav' => false,
     'titlePrepend' => $post->title(),
+    'baseHue' => 255,
 ])
 
 @section('content')

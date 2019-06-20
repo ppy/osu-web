@@ -146,15 +146,8 @@
   }
 
   &__link {
-    .link-yellow();
-
-    .@{top}--news & {
-      .link-blue-light();
-    }
-
-    .@{top}--store & {
-      .link-default();
-    }
+    color: @osu-colour-l1;
+    .link-hover({ color: white });
   }
 
   &__list {

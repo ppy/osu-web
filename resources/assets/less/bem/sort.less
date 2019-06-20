@@ -19,7 +19,7 @@
 .sort {
   @_top: sort;
   @_item-margin: 5px;
-
+  
   padding: 0;
   display: flex;
   font-size: @font-size--normal;
@@ -34,7 +34,6 @@
 
   &--forum-topics {
     padding: 10px 40px;
-    background-color: #eee;
     border-bottom: 1px solid #ddd;
   }
 
@@ -45,17 +44,16 @@
   &__item {
     .reset-input();
     margin: @_item-margin;
+    color: white;
     padding: 5px 10px;
-    color: @osu-colour-u;
     .default-border-radius();
 
     &--button {
       .link-plain();
-      color: @osu-colour-l2;
+      .link-white();
 
       &:hover {
         background-color: @osu-colour-b3;
-        color: @osu-colour-l1;
       };
     }
 
@@ -66,12 +64,8 @@
     // overrides --button
     &--active {
       background-color: @osu-colour-b3;
-      color: white;
+      color: @osu-colour-l2;
       font-weight: bold;
-
-      &:hover {
-        color: white;
-      };
     }
   }
 

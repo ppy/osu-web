@@ -19,6 +19,7 @@
     'bodyAdditionalClasses' => 'osu-layout--body-111-plain',
     'legacyNav' => false,
     'title' => trans('news.index.title_page'),
+    'baseHue' => 255,
 ])
 
 @section('content')

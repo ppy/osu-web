@@ -156,8 +156,8 @@
 @greycarmine-darker: #241d1e;
 
 // osu!palette 2019v2-final-copy-last-FINAL
-// the default hue is an osu! pink (333) and is inject into the body via master.blade.php:
-//   <style>:root {--base-hue: {{ isset($baseHue) ? $baseHue : 333 }} !important;}</style>
+// the default hue is osu! pink (333) and is injected into the body via master.blade.php:
+//   <style>:root {--base-hue: {{ isset($baseHue) ? $baseHue : 333 }} ;}</style>
 @osu-colour-u: hsl(var(--base-hue), 100%, 70%);
 @osu-colour-p: hsl(var(--base-hue), 100%, 50%);
 @osu-colour-d: hsl(var(--base-hue), 50%, 45%);
@@ -176,6 +176,11 @@
 @osu-colour-b4: hsl(var(--base-hue), 10%, 20%);
 @osu-colour-b5: hsl(var(--base-hue), 10%, 15%);
 @osu-colour-b6: hsl(var(--base-hue), 10%, 10%);
+
+.osu-hsla(@colour, @alpha) {
+  @string: replace("@{colour}", "hsl\(([^,]+), ([^,]+), ([^,]+)\)", "hsla($1, $2, $3, @{alpha})");
+  @hsla: ~"@{string}";
+}
 
 .colors(@name) {
   @lighter: "@{name}-lighter";

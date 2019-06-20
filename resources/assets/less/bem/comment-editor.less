@@ -26,45 +26,16 @@
   @_bg-message: #fff;
   @_bg-footer: #eee;
 
-  @_bg-message-changelog: @changelog-bg-extra;
-  @_bg-footer-changelog: @dark-purple-dark;
-
-  @_bg-message-dark: @comment-dark-bg-extra;
-  @_bg-footer-dark: @comment-dark-bg;
-
   border-radius: @_border-radius;
   display: flex;
   flex-direction: column;
-  background-color: @_bg-message;
-  border: 2px solid @_bg-message;
-
-  &--changelog {
-    background-color: @_bg-message-changelog;
-    border-color: @_bg-message-changelog;
-  }
-
-  &--dark {
-    background-color: @_bg-message-dark;
-    border-color: @_bg-message-dark;
-  }
+  background-color: @osu-colour-b3;
+  border: 2px solid @osu-colour-b3;
 
   &--fancy {
-    background-color: @_bg-footer;
-    border-color: @_bg-footer;
-
     @media @desktop {
       margin-left: (@_avatar + @_avatar-margin);
     }
-  }
-
-  &--fancy&--changelog {
-    background-color: @_bg-footer-changelog;
-    border-color: @_bg-footer-changelog;
-  }
-
-  &--fancy&--dark {
-    background-color: @_bg-footer-dark;
-    border-color: @_bg-footer-dark;
   }
 
   &__avatar {
@@ -86,29 +57,17 @@
     justify-content: flex-end;
     padding: 0 (@_spacing - 2px);
     border-radius: 0 0 @_border-radius @_border-radius;
-    background-color: @_bg-footer;
-
-    .@{_top}--changelog & {
-      background-color: @_bg-footer-changelog;
-    }
-
-    .@{_top}--dark & {
-      background-color: @_bg-footer-dark;
-    }
   }
 
   &__footer-item {
     font-size: @font-size--normal;
     flex: none;
     margin: 5px 2px;
+    color: @osu-colour-l2;
 
     &--notice {
       align-self: center;
       flex: 1;
-    }
-
-    .@{_top}--changelog & {
-      color: @pink-lighter;
     }
   }
 
@@ -121,30 +80,15 @@
     font-size: @font-size--phone-input;
     border-radius: @_border-radius @_border-radius 0 0;
     resize: none;
-    background-color: @_bg-message;
+    background-color: @osu-colour-b5;
 
     @media @desktop {
       font-size: inherit;
     }
 
-    .@{_top}--changelog & {
-      color: @changelog-fg;
-      background-color: @_bg-message-changelog;
-
-      &::placeholder {
-        color: inherit;
-        opacity: 0.8;
-      }
-    }
-
-    .@{_top}--dark & {
-      color: @comment-dark-fg;
-      background-color: @_bg-message-dark;
-
-      &::placeholder {
-        color: inherit;
-        opacity: 0.6;
-      }
+    color: white;
+    &::placeholder {
+      color: @osu-colour-b1;
     }
   }
 }
