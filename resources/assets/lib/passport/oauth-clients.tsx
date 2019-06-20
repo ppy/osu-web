@@ -17,6 +17,7 @@
  */
 
 import * as React from 'react';
+import { NewClient } from './new-client';
 
 interface ClientJSON {
   created_at: string;
@@ -36,11 +37,13 @@ interface Props {
 
 interface State {
   clients: ClientJSON[];
+  showNewForm: boolean;
 }
 
 export class Clients extends React.Component<Props, State> {
   readonly state: State = {
     clients: [],
+    showNewForm: false,
   };
 
   componentDidMount() {
@@ -56,16 +59,20 @@ export class Clients extends React.Component<Props, State> {
     this.getClients();
   }
 
-  deleteClicked(event: React.MouseEvent) {
+  async getClients() {
+    const response: ClientJSON[] = await $.get('/oauth/clients');
+    this.setState({ clients: response });
+  }
+
+  handleDelete = (event: React.MouseEvent) => {
     const clientId = (event.target as HTMLElement).dataset.clientId;
     if (clientId != null) {
       this.delete(clientId);
     }
   }
 
-  async getClients() {
-    const response: ClientJSON[] = await $.get('/oauth/clients');
-    this.setState({ clients: response });
+  handleNew = (event: React.MouseEvent) => {
+    this.setState({ showNewForm: true });
   }
 
   render() {
@@ -78,7 +85,7 @@ export class Clients extends React.Component<Props, State> {
           <td>
             <button
               data-client-id={client.id}
-              onClick={this.deleteClicked}
+              onClick={this.handleDelete}
             >
               Delete
             </button>
@@ -89,18 +96,28 @@ export class Clients extends React.Component<Props, State> {
     }
 
     return (
-      <table>
-        <thead>
-          <tr>
-            <td>Name</td>
-            <td>Revoked</td>
-            <td />
-          </tr>
-        </thead>
-        <tbody>
-          {rows}
-        </tbody>
-      </table>
+      <>
+        <table>
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td>Revoked</td>
+              <td />
+            </tr>
+          </thead>
+          <tbody>
+            {rows}
+          </tbody>
+        </table>
+        <button onClick={this.handleNew}>
+          New
+        </button>
+        {
+          this.state.showNewForm ? (
+            <NewClient />
+          ) : null
+        }
+      </>
     );
   }
 }
