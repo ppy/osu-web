@@ -66,6 +66,8 @@ class Kernel extends ConsoleKernel
         // fix userchannel deletion fail
         Commands\FixMissingUserChannels::class,
 
+        Commands\MigrateFreshAllCommand::class,
+
         Commands\UserBestScoresCheckCommand::class,
         Commands\UserRecalculateRankCounts::class,
     ];

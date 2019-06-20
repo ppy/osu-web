@@ -92,6 +92,19 @@ class MatchesControllerTest extends TestCase
             ->assertStatus(403);
     }
 
+    public function testPrivateMatchLoggedInHost() // OK
+    {
+        factory(Event::class)->states('create')->create([
+            'user_id' => $this->user->user_id,
+            'match_id' => $this->privateMatch->match_id,
+        ]);
+
+        $this
+            ->actingAs($this->user)
+            ->get($this->privateMatchRoute)
+            ->assertStatus(200);
+    }
+
     public function testPrivateMatchLoggedInParticipated() // OK
     {
         factory(Event::class)->states('join')->create([
