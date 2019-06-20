@@ -51,9 +51,12 @@ class NewsController extends Controller
         if (request()->expectsJson()) {
             return $postsJson;
         } else {
-            $atomUrl = route('news.index', ['format' => 'atom']);
+            $atom = [
+                'url' => route('news.index', ['format' => 'atom']),
+                'title' => 'osu!news Feed',
+            ];
 
-            return view('news.index', compact('postsJson', 'atomUrl'));
+            return view('news.index', compact('postsJson', 'atom'));
         }
     }
 

@@ -21,8 +21,8 @@
 <link rel="manifest" href="{{ config('osu.static') }}/site.webmanifest">
 <link rel="mask-icon" href="{{ config('osu.static') }}/safari-pinned-tab.svg" color="#e2609a">
 
-@if (isset($atomUrl))
-    <link rel="alternate" type="application/atom+xml" title="osu!news Feed" href="{{ $atomUrl }}" />
+@if (isset($atom))
+    <link rel="alternate" type="application/atom+xml" title="{{ $atom['title'] }}" href="{{ $atom['url'] }}" />
 @endif
 
 <meta name="msapplication-TileColor" content="#603cba">
