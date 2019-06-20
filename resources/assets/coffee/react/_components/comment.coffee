@@ -30,7 +30,7 @@ el = React.createElement
 deletedUser = username: osu.trans('users.deleted')
 
 export class Comment extends React.PureComponent
-  MAX_DEPTH = 3
+  MAX_DEPTH = 6
 
   makePreviewElement = document.createElement('div')
 
