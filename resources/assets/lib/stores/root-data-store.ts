@@ -17,17 +17,20 @@
  */
 
 import Dispatcher from 'dispatcher';
+import { BeatmapsetStore } from './beatmapset-store';
 import ChannelStore from './channel-store';
 import UIStateStore from './ui-state-store';
 import UserStore from './user-store';
 
 export default class RootDataStore {
+  beatmapsetStore: BeatmapsetStore;
   channelStore: ChannelStore;
   uiState: UIStateStore;
   userStore: UserStore;
 
   constructor(dispatcher: Dispatcher) {
     this.uiState = new UIStateStore(this, dispatcher);
+    this.beatmapsetStore = new BeatmapsetStore(this, dispatcher);
     this.channelStore = new ChannelStore(this, dispatcher);
     this.userStore = new UserStore(this, dispatcher);
   }

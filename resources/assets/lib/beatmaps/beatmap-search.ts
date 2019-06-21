@@ -20,7 +20,7 @@ import { BeatmapSearchFilters } from 'beatmap-search-filters';
 import SearchResults from 'beatmaps/search-results';
 import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
 import { action, observable } from 'mobx';
-import { store as beatmapsetStore } from 'stores/beatmapset-store';
+import { BeatmapsetStore } from 'stores/beatmapset-store';
 
 export interface SearchResponse {
   beatmapsets: BeatmapsetJSON[];
@@ -40,6 +40,8 @@ export class BeatmapSearch {
   readonly totals = new Map<string, number>();
 
   private xhr?: JQueryXHR;
+
+  constructor(private beatmapsetStore: BeatmapsetStore) {}
 
   cancel() {
     if (this.xhr) {
@@ -123,7 +125,7 @@ export class BeatmapSearch {
   private appendBeatmapsets(key: string, data: BeatmapsetJSON[]) {
     const beatmapsets = this.getOrCreate(key);
     for (const beatmapset of data) {
-      const item = beatmapsetStore.get(beatmapset.id);
+      const item = this.beatmapsetStore.get(beatmapset.id);
       if (item) {
         beatmapsets.push(item);
       }
@@ -184,7 +186,7 @@ export class BeatmapSearch {
 
   private updateBeatmapsetStore(response: SearchResponse) {
     for (const json of response.beatmapsets) {
-      beatmapsetStore.update(json);
+      this.beatmapsetStore.update(json);
     }
   }
 }

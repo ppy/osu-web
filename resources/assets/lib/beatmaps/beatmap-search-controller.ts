@@ -20,6 +20,7 @@ import { BeatmapSearchFilters, BeatmapSearchParams } from 'beatmap-search-filter
 import { BeatmapSearch, SearchResponse } from 'beatmaps/beatmap-search';
 import { debounce, intersection, map } from 'lodash';
 import { action, computed, IObjectDidChange, IValueDidChange, Lambda, observable, observe, runInAction } from 'mobx';
+import { BeatmapsetStore } from 'stores/beatmapset-store';
 
 export interface SearchStatus {
   error?: any;
@@ -44,11 +45,11 @@ export class BeatmapSearchController {
     state: 'completed',
   };
 
-  private readonly beatmapSearch = new BeatmapSearch();
+  private readonly beatmapSearch = new BeatmapSearch(this.beatmapsetStore);
   private readonly debouncedSearch = debounce(this.filterChangedSearch, 500);
   private filtersObserver!: Lambda;
 
-  constructor() {
+  constructor(private beatmapsetStore: BeatmapsetStore) {
     this.restoreStateFromUrl();
     this.currentBeatmapsets = this.beatmapSearch.getBeatmapsets(this.filters);
   }

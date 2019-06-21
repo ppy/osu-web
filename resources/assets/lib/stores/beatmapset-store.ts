@@ -16,10 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import DispatcherAction from 'actions/dispatcher-action';
 import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
 import { observable } from 'mobx';
+import Store from 'stores/store';
 
-export class BeatmapsetStore {
+export class BeatmapsetStore extends Store {
   // store json for now to make it easier to work with existing coffeescript.
   @observable beatmapsets = observable.map<number, BeatmapsetJSON>();
 
@@ -27,10 +29,12 @@ export class BeatmapsetStore {
     return this.beatmapsets.get(id);
   }
 
+  handleDispatchAction(dispatcherAction: DispatcherAction) {
+    /* TODO */
+  }
+
   update(beatmapset: BeatmapsetJSON) {
     // just override the value for now, we can do something fancier in the future.
     this.beatmapsets.set(beatmapset.id, beatmapset);
   }
 }
-
-export const store = new BeatmapsetStore();
