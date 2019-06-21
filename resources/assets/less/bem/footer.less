@@ -20,8 +20,8 @@
   @top: footer;
 
   .default-text-shadow();
-  background-color: fade(#000, 60%);
-  background-image: linear-gradient(to bottom, fade(#000, 60%) 0, transparent 4px);
+  background-color: @osu-colour-b5;
+  background-image: linear-gradient(to bottom, .osu-hsla(@osu-colour-b5, 0.6)[@hsla] 0, transparent 4px);
 
   color: #ccc;
   font-size: 10px;
@@ -50,11 +50,11 @@
   &__link {
     .link-plain();
     font-weight: bold;
-    color: #fff;
+    color: white;
     margin: 0 10px;
 
     &:hover, &:focus, &:active {
-      color: @pink;
+      color: @osu-colour-l1;
     }
 
     .@{top}--landing & {
