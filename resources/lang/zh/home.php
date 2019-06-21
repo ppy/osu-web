@@ -36,6 +36,7 @@ return [
         'advanced_link' => '高级搜索',
         'button' => '搜索',
         'empty_result' => '没有结果！',
+        'missing_query' => '搜索内容不少于 :n 个字符',
         'placeholder' => '输入以搜索',
         'title' => '搜索',
 
