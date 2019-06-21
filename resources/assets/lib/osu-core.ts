@@ -53,7 +53,7 @@ export default class OsuCore {
     this.userLoginObserver = new UserLoginObserver(this.window, this.dispatcher);
     this.windowFocusObserver = new WindowFocusObserver(this.window, this.dispatcher);
 
-    this.beatmapSearchController = new BeatmapSearchController(this.dataStore.beatmapsetStore);
+    this.beatmapSearchController = new BeatmapSearchController(this.dataStore.beatmapSearch);
 
     // script could load before currentUser is set, so wait until page loaded.
     $(document).on('turbolinks:load.osu-core', () => {

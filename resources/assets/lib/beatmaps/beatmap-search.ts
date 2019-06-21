@@ -16,9 +16,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import DispatcherAction from 'actions/dispatcher-action';
+import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
 import { BeatmapSearchFilters } from 'beatmap-search-filters';
 import SearchResults from 'beatmaps/search-results';
 import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
+import DispatchListener from 'dispatch-listener';
+import Dispatcher from 'dispatcher';
 import { action, observable } from 'mobx';
 import { BeatmapsetStore } from 'stores/beatmapset-store';
 
@@ -29,7 +33,7 @@ export interface SearchResponse {
   total: number;
 }
 
-export class BeatmapSearch {
+export class BeatmapSearch implements DispatchListener {
   static CACHE_DURATION_MS = 60000;
 
   @observable
@@ -41,7 +45,9 @@ export class BeatmapSearch {
 
   private xhr?: JQueryXHR;
 
-  constructor(private beatmapsetStore: BeatmapsetStore) {}
+  constructor(private beatmapsetStore: BeatmapsetStore, private dispatcher: Dispatcher) {
+    this.dispatcher.register(this);
+  }
 
   cancel() {
     if (this.xhr) {
@@ -97,6 +103,13 @@ export class BeatmapSearch {
     return this.getOrCreate(key);
   }
 
+  handleDispatchAction(dispatcherAction: DispatcherAction) {
+    if (dispatcherAction instanceof UserLoginAction
+      || dispatcherAction instanceof UserLogoutAction) {
+      this.clear();
+    }
+  }
+
   @action
   initialize(filters: BeatmapSearchFilters, data: SearchResponse) {
     // FIXME: shouldn't init if already inited.
@@ -130,6 +143,15 @@ export class BeatmapSearch {
         beatmapsets.push(item);
       }
     }
+  }
+
+  @action
+  private clear() {
+    this.beatmapsets.clear();
+    this.cursors.clear();
+    this.fetchedAt.clear();
+    this.recommendedDifficulties.clear();
+    this.totals.clear();
   }
 
   private fetch(filters: BeatmapSearchFilters, from: number) {

@@ -17,8 +17,9 @@
  */
 
 import DispatcherAction from 'actions/dispatcher-action';
+import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
 import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
-import { observable } from 'mobx';
+import { action, observable } from 'mobx';
 import Store from 'stores/store';
 
 export class BeatmapsetStore extends Store {
@@ -30,11 +31,20 @@ export class BeatmapsetStore extends Store {
   }
 
   handleDispatchAction(dispatcherAction: DispatcherAction) {
-    /* TODO */
+    if (dispatcherAction instanceof UserLoginAction
+      || dispatcherAction instanceof UserLogoutAction) {
+      this.flushStore();
+    }
   }
 
+  @action
   update(beatmapset: BeatmapsetJSON) {
     // just override the value for now, we can do something fancier in the future.
     this.beatmapsets.set(beatmapset.id, beatmapset);
+  }
+
+  @action
+  private flushStore() {
+    this.beatmapsets.clear();
   }
 }
