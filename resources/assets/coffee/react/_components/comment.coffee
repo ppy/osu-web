@@ -51,7 +51,7 @@ export class Comment extends React.PureComponent
     super props
 
     @xhr = {}
-    @loadMoreButtonRef = React.createRef()
+    @loadMoreRef = React.createRef()
 
     if osu.isMobile()
       # There's no indentation on mobile so don't expand by default otherwise it will be confusing.
@@ -243,7 +243,7 @@ export class Comment extends React.PureComponent
             total: @props.comment.replies_count
             modifiers: @props.modifiers
             label: osu.trans('comments.load_replies') if @children.length == 0
-            buttonRef: @loadMoreButtonRef
+            ref: @loadMoreRef
 
 
   renderComment: (comment) =>
@@ -411,7 +411,7 @@ export class Comment extends React.PureComponent
 
 
   loadReplies: =>
-    @loadMoreButtonRef.current?.click()
+    @loadMoreRef.current?.load()
     @toggleReplies()
 
 
