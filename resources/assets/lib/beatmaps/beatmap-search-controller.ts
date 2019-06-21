@@ -45,7 +45,7 @@ export class BeatmapSearchController {
   };
 
   private readonly beatmapSearch = new BeatmapSearch();
-  private readonly debouncedSearch = debounce(this.search, 500);
+  private readonly debouncedSearch = debounce(this.filterChangedSearch, 500);
   private filtersObserver!: Lambda;
 
   constructor() {
@@ -113,9 +113,6 @@ export class BeatmapSearchController {
 
   @action
   async search(from = 0) {
-    const url = encodeURI(laroute.route('beatmapsets.index', this.filters.queryParams));
-    Turbolinks.controller.advanceHistory(url);
-
     if (this.isSupporterMissing || from < 0) {
       return;
     }
@@ -154,7 +151,7 @@ export class BeatmapSearchController {
     const valueChange = change as IValueDidChange<BeatmapSearchFilters>; // actual object is a union of types.
     if (valueChange.oldValue === valueChange.newValue) { return; }
 
-    this.prepareToSearch();
+    this.searchStatus.state = 'input';
     this.debouncedSearch();
     // not sure if observing change of private variable is a good idea
     // but computed value doesn't show up here
@@ -163,8 +160,11 @@ export class BeatmapSearchController {
     }
   }
 
-  private prepareToSearch() {
-    this.searchStatus.state = 'input';
+  private filterChangedSearch() {
+    const url = encodeURI(laroute.route('beatmapsets.index', this.filters.queryParams));
+    Turbolinks.controller.advanceHistory(url);
+
+    this.search();
   }
 
   @action
