@@ -59,7 +59,7 @@
   }
 
   &__bubble {
-    background: @community-blue-darkest;
+    background: @osu-colour-b6;
     .default-border-radius();
     padding: 5px 8px;
     max-width: 400px;
@@ -80,8 +80,12 @@
     justify-content: space-between;
     font-family: @font-content;
 
+    a {
+      .link-default();
+    }
+
     &--action {
-      color: @yellow;
+      color: @osu-colour-u;
       font-style: italic;
 
       &::before {
@@ -103,7 +107,7 @@
   }
 
   &__message-timestamp {
-    color: fade(@community-blue-lighter, 50%);
+    color: @osu-colour-b1;
     font-size: 10px;
     margin-top: 5px;
   }
