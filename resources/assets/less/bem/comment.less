@@ -68,14 +68,6 @@
     &--active {
       color: @green;
     }
-
-    .@{_top}--changelog & {
-      .link-blue-light();
-    }
-
-    .@{_top}--dark & {
-      .link-blue-light();
-    }
   }
 
   &__avatar {
@@ -168,13 +160,7 @@
   }
 
   &__link {
-    .@{_top}--changelog & {
-      .link-blue-light();
-    }
-
-    .@{_top}--dark & {
-      .link-blue-light();
-    }
+    .link-default();
   }
 
   &__main {
@@ -189,6 +175,7 @@
     .content-font();
     margin: 2px 0;
     word-wrap: break-word;
+    color: inherit;
 
     > *:last-child {
       margin-bottom: 0;
@@ -225,24 +212,8 @@
       font-size: 1em;
     }
 
-    .@{_top}--changelog & {
-      color: @changelog-fg-content;
-
-      a {
-        .link-blue-light();
-      }
-    }
-
-    .@{_top}--dark & {
-      color: inherit;
-
-      a {
-        .link-blue-light();
-      }
-
-      blockquote {
-        border-left-color: @comment-dark-border-bg;
-      }
+    a {
+      .link-default();
     }
   }
 
@@ -295,13 +266,7 @@
     }
 
     &--username-link {
-      .@{_top}--changelog & {
-        .link-blue-light();
-      }
-
-      .@{_top}--dark & {
-        .link-blue-light();
-      }
+      .link-default();
     }
   }
 

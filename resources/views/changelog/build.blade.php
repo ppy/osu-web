@@ -19,6 +19,7 @@
     'bodyAdditionalClasses' => 'osu-layout--body-111-plain',
     'legacyNav' => false,
     'title' => trans('changelog.build.title', ['version' => "{$build['update_stream']['display_name']} {$build['version']}"]),
+    'baseHue' => 255,
 ])
 
 @section('content')
