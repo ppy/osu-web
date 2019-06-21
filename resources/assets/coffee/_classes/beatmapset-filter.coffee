@@ -134,5 +134,5 @@ class @BeatmapsetFilter
 
   # For UI purposes; server-side has it's own check.
   @supporterRequired: (filters) ->
-    _.reject ['played', 'rank'], (name) ->
-      _.isEmpty filters[name]
+    _.reject ['played', 'rank'], (name) =>
+      _.isEmpty(filters[name]) || filters[name] == @getDefault(filters, name)

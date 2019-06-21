@@ -113,6 +113,7 @@ export class BeatmapSearchController {
   @action
   async search(from = 0) {
     if (this.isSupporterMissing || from < 0) {
+      this.searchStatus = { state: 'completed', error: null, from };
       return;
     }
 
