@@ -20,7 +20,7 @@
 
 return [
     'deleted' => 'excluído',
-    'deleted_count' => '',
+    'deleted_count' => ':count_delimited comentário excluído|:count_delimited comentários excluídos',
     'edited' => 'editado por :user :timeago',
     'empty' => 'Sem comentários no momento.',
     'replies' => 'Respostas',

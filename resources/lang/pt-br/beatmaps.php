@@ -40,14 +40,14 @@ return [
         'edited' => 'Última vez editado por :editor :update_time.',
         'kudosu_denied' => 'Impossibilitado de receber kudosu.',
         'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi deletada e uma dicussão não poderá ser aberta.',
-        'message_placeholder_locked' => '',
+        'message_placeholder_locked' => 'A discussão para este beatmap foi desabilitada.',
         'message_type_select' => 'Selecione o Tipo de Comentário',
         'reply_notice' => 'Pressione enter para responder.',
         'reply_placeholder' => 'Digite sua resposta aqui',
         'require-login' => 'Por favor, conecte-se para postar ou responder',
         'resolved' => 'Resolvido',
         'restore' => 'restaurar',
-        'show_deleted' => '',
+        'show_deleted' => 'Mostrar excluídos',
         'title' => 'Discussões',
 
         'collapse' => [
@@ -62,19 +62,19 @@ return [
 
         'lock' => [
             'button' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'Trancar discussão',
+                'unlock' => 'Destrancar discussão',
             ],
 
             'prompt' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'Motivo para trancar',
+                'unlock' => 'Quer mesmo destrancar?',
             ],
         ],
 
         'message_hint' => [
             'in_general' => 'Esta postagem vai para a discussão geral do beatmap. Para fazer uma sugestão neste beatmap, inicie a mensagem com uma marcação de tempo (ex.: 00:12:345).',
-            'in_timeline' => 'Para fazer várias sugestões ao mesmo tempo, poste várias marcações (uma postagem por marcação de tempo).',
+            'in_timeline' => 'Para fazer várias sugestões ao mesmo tempo, poste várias marcações (uma publicação por marcação de tempo).',
         ],
 
         'message_placeholder' => [
@@ -104,11 +104,11 @@ return [
         ],
 
         'new' => [
-            'pin' => '',
+            'pin' => 'Fixar',
             'timestamp' => 'Timestamp',
             'timestamp_missing' => 'ctrl-c no editor e ctrl-v na sua mensagem para adicionar uma timestamp!',
             'title' => 'Nova Discussão',
-            'unpin' => '',
+            'unpin' => 'Desafixar',
         ],
 
         'show' => [
@@ -141,8 +141,8 @@ return [
         ],
 
         'votes' => [
-            'up' => '',
-            'down' => '',
+            'up' => 'Upvote',
+            'down' => 'Downvote',
         ],
     ],
 
