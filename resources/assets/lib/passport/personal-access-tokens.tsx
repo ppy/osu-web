@@ -17,31 +17,7 @@
  */
 
 import * as React from 'react';
-
-interface ClientJSON {
-  created_at: string;
-  id: number;
-  name: string | null;
-  password_client: boolean;
-  personal_access_client: boolean;
-  redirect: string;
-  revoked: boolean;
-  updated_at: string;
-  user_id: number;
-}
-
-interface TokenJSON {
-  client: ClientJSON;
-  client_id: number;
-  created_at: string;
-  expires_at: string;
-  id: string;
-  name: string | null;
-  revoked: boolean;
-  scopes: [];
-  updated_at: string;
-  user_id: number;
-}
+import { TokenJSON } from 'passport/token-json';
 
 interface Props {
 }

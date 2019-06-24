@@ -16,52 +16,24 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 
-interface ClientJSON {
-  created_at: string;
-  id: number;
-  name: string | null;
-  password_client: boolean;
-  personal_access_client: boolean;
-  redirect: string;
-  revoked: boolean;
-  updated_at: string;
-  user_id: number;
-}
-
-interface TokenJSON {
-  client: ClientJSON;
-  client_id: number;
-  created_at: string;
-  expires_at: string;
-  id: string;
-  name: string | null;
-  revoked: boolean;
-  scopes: [];
-  updated_at: string;
-  user_id: number;
-}
+const store = core.dataStore.tokenStore;
 
 interface Props {
 }
 
-interface State {
-  tokens: TokenJSON[];
-}
-
-export class AuthorizedClients extends React.Component<Props, State> {
-  readonly state: State = {
-    tokens: [],
-  };
-
+@observer
+export class AuthorizedClients extends React.Component<Props> {
   componentDidMount() {
-    this.getTokens();
+    store.fetchAll();
   }
 
   render() {
     const rows: JSX.Element[] = [];
-    for (const token of this.state.tokens) {
+    for (const token of store.tokens.values()) {
       rows.push((
         <tr key={token.id}>
           <td>{token.client.name}</td>
@@ -98,28 +70,12 @@ export class AuthorizedClients extends React.Component<Props, State> {
     );
   }
 
-  async getTokens() {
-    const response: TokenJSON[] = await $.get('/oauth/tokens');
-    this.setState({
-      tokens: response,
-    });
-  }
-
-  async revoke(id: string) {
-    await $.ajax({
-      method: 'DELETE',
-      url: '/oauth/tokens/' + id,
-    });
-
-    this.getTokens();
-  }
-
   revokeClicked = (event: React.MouseEvent<HTMLElement>) => {
     if (!confirm('Revoke this token?')) { return; }
 
     const tokenId = (event.target as HTMLElement).dataset.tokenId;
     if (tokenId != null) {
-      this.revoke(tokenId);
+      store.revoke(tokenId);
     }
   }
 }
