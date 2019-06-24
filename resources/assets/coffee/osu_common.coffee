@@ -101,9 +101,10 @@
 
   parseJson: (id, remove = false) ->
     element = document.getElementById(id)
-    json = JSON.parse element?.text ? null
-    if remove && element?
-      element.remove()
+    return unless element?
+
+    json = JSON.parse element.text
+    element.remove() if remove
 
     json
 
