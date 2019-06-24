@@ -240,7 +240,7 @@ export class SearchPanel extends React.Component
   mountPortal: (portal, root) ->
     # clean up any existing element when navigating backwards.
     existingElement = document.getElementById(portal.id)
-    existingElement?.parentNode?.removeChild existingElement
+    existingElement?.remove()
 
     root?.appendChild portal
 

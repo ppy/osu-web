@@ -103,7 +103,7 @@
     element = document.getElementById(id)
     json = JSON.parse element?.text ? null
     if remove && element?
-      element.parentNode.removeChild element
+      element.remove()
 
     json
 
