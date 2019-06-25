@@ -51,6 +51,23 @@ class UserProfileCustomization extends Model
 
     private $cover;
 
+    public static function repairExtrasOrder($value)
+    {
+        // read from inside out
+        return
+            array_values(
+                // remove duplicate sections from previous merge
+                array_unique(
+                    // ensure all sections are included
+                    array_merge(
+                        // remove invalid sections
+                        array_intersect($value, static::SECTIONS),
+                        static::SECTIONS
+                    )
+                )
+            );
+    }
+
     public function cover()
     {
         if ($this->cover === null) {
@@ -79,22 +96,5 @@ class UserProfileCustomization extends Model
     public function setExtrasOrderAttribute($value)
     {
         $this->attributes['extras_order'] = json_encode(static::repairExtrasOrder($value));
-    }
-
-    public static function repairExtrasOrder($value)
-    {
-        // read from inside out
-        return
-            array_values(
-                // remove duplicate sections from previous merge
-                array_unique(
-                    // ensure all sections are included
-                    array_merge(
-                        // remove invalid sections
-                        array_intersect($value, static::SECTIONS),
-                        static::SECTIONS
-                    )
-                )
-            );
     }
 }
