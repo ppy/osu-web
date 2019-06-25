@@ -171,6 +171,7 @@ use Request;
  * @property string $user_website
  * @property string $username
  * @property \Illuminate\Database\Eloquent\Collection $usernameChangeHistory UsernameChangeHistory
+ * @property \Illuminate\Database\Eloquent\Collection $usernameChangeHistoryPublic publically visible UsernameChangeHistory containing only user_id and username_last
  * @property string $username_clean
  * @property string|null $username_previous
  * @property int|null $userpage_post_id
@@ -1128,6 +1129,15 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(UsernameChangeHistory::class, 'user_id');
     }
 
+    public function usernameChangeHistoryPublic()
+    {
+        return $this->usernameChangeHistory()
+            ->visible()
+            ->select(['user_id', 'username_last'])
+            ->withPresent('username_last')
+            ->orderBy('timestamp', 'ASC');
+    }
+
     public function relations()
     {
         return $this->hasMany(UserRelation::class, 'user_id');
@@ -1608,12 +1618,7 @@ class User extends Model implements AuthenticatableContract
      */
     public function previousUsernames(bool $includeCurrent = false)
     {
-        $query = $this
-            ->usernameChangeHistory()
-            ->visible()
-            ->select(['username_last', 'timestamp'])
-            ->withPresent('username_last')
-            ->orderBy('timestamp', 'ASC');
+        $query = $this->usernameChangeHistoryPublic;
 
         if (!$includeCurrent) {
             $query->where('username_last', '<>', $this->username);

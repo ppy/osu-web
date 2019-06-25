@@ -148,68 +148,11 @@ class EsIndexDocuments extends Command
             $this->line("\n");
         }
 
-        if ($name === 'users') {
-            $this->afterIndexUsers($indexName);
-        }
-
         if ($alias !== $indexName) {
             $this->info("Aliasing {$alias} to {$indexName}");
             Indexing::updateAlias($alias, [$indexName]);
             $this->line('');
         }
-    }
-
-    // TODO: should go somewhere else
-    protected function afterIndexUsers($indexName)
-    {
-        $this->line("Do additional indexing for {$indexName}");
-
-        $batchSize = 1000;
-        $baseQuery = UsernameChangeHistory::visible();
-        $total = $baseQuery->count();
-        $bar = $this->output->createProgressBar($total);
-        $count = 0;
-        $client = Es::getClient();
-
-        $baseQuery->select(['change_id', 'user_id', 'username_last'])->chunkById($batchSize, function ($models) use ($bar, &$count, $client, $indexName) {
-            $actions = [];
-
-            foreach ($models as $model) {
-                $count++;
-                if (!present($model->username_last)) {
-                    continue;
-                }
-
-                $metadata = ['_id' => $model->user_id];
-                $actions[] = ['update' => $metadata];
-                $actions[] = [
-                    'script' => [
-                        'lang' => 'painless',
-                        'source' => 'if (ctx._source.previous_usernames == null) {
-                            ctx._source.previous_usernames = [params.previous_usernames]
-                        } else if (!ctx._source.previous_usernames.contains(params.previous_usernames)) {
-                            ctx._source.previous_usernames.add(params.previous_usernames)
-                        }',
-                        'params' => [
-                            'previous_usernames' => $model->username_last,
-                        ],
-                    ],
-                ];
-            }
-
-            if ($actions !== []) {
-                $client->bulk([
-                    'index' => $indexName,
-                    'type' => 'users',
-                    'body' => $actions,
-                    'client' => ['timeout' => 0],
-                ]);
-            }
-
-            $bar->setProgress($count);
-        });
-
-        $bar->finish();
     }
 
     protected function readOptions()
