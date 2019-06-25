@@ -69,11 +69,6 @@ class AccountController extends Controller
         return parent::__construct();
     }
 
-    public function tokens()
-    {
-        return view('accounts.tokens');
-    }
-
     public function avatar()
     {
         try {

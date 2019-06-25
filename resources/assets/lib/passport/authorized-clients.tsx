@@ -16,33 +16,31 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
-const store = core.dataStore.tokenStore;
-
-interface Props {
-}
+const store = core.dataStore.clientStore;
 
 @observer
-export class AuthorizedClients extends React.Component<Props> {
+export class AuthorizedClients extends React.Component {
   componentDidMount() {
-    store.fetchAll();
+    runInAction(() => store.fetchAll());
   }
 
   render() {
     const rows: JSX.Element[] = [];
-    for (const token of store.tokens.values()) {
+    for (const client of store.clients.values()) {
       rows.push((
-        <tr key={token.id}>
-          <td>{token.client.name}</td>
-          <td>{token.scopes.join(', ')}</td>
-          <td>{token.created_at}</td>
-          <td>{token.expires_at}</td>
+        <tr key={client.id}>
+          <td>{client.name}</td>
+          <td>{Array.from(client.scopes).join(', ')}</td>
+          {/* <td>{client.created_at}</td>
+          <td>{client.expires_at}</td> */}
           <td>
             <button
-              data-token-id={token.id}
+              data-client-id={client.id}
               onClick={this.revokeClicked}
             >
               Revoke
@@ -73,9 +71,9 @@ export class AuthorizedClients extends React.Component<Props> {
   revokeClicked = (event: React.MouseEvent<HTMLElement>) => {
     if (!confirm('Revoke this token?')) { return; }
 
-    const tokenId = (event.target as HTMLElement).dataset.tokenId;
-    if (tokenId != null) {
-      store.revoke(tokenId);
+    const clientId = (event.target as HTMLElement).dataset.clientId;
+    if (clientId != null) {
+      store.revoke(+clientId);
     }
   }
 }

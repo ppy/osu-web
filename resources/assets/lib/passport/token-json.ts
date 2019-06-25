@@ -26,7 +26,7 @@ export interface TokenJSON {
   id: string;
   name: string | null;
   revoked: boolean;
-  scopes: [];
+  scopes: string[];
   updated_at: string;
   user_id: number;
 }

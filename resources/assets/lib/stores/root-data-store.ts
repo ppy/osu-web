@@ -23,11 +23,13 @@ import ChannelStore from './channel-store';
 import TokenStore from './token-store';
 import UIStateStore from './ui-state-store';
 import UserStore from './user-store';
+import ClientStore from './client-store';
 
 export default class RootDataStore {
   beatmapsetSearch: BeatmapsetSearch;
   beatmapsetStore: BeatmapsetStore;
   channelStore: ChannelStore;
+  clientStore: ClientStore;
   tokenStore: TokenStore;
   uiState: UIStateStore;
   userStore: UserStore;
@@ -38,6 +40,7 @@ export default class RootDataStore {
     this.beatmapsetStore = new BeatmapsetStore(this, dispatcher);
     this.beatmapsetSearch = new BeatmapsetSearch(this.beatmapsetStore, dispatcher);
     this.tokenStore = new TokenStore(this, dispatcher);
+    this.clientStore = new ClientStore(this, dispatcher);
     this.channelStore = new ChannelStore(this, dispatcher);
     this.userStore = new UserStore(this, dispatcher);
   }

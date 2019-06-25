@@ -163,7 +163,8 @@ Route::resource('groups', 'GroupsController', ['only' => ['show']]);
 
 Route::group(['prefix' => 'home'], function () {
     Route::group(['as' => 'account.', 'prefix' => 'account'], function () {
-        Route::get('tokens', 'AccountController@tokens');
+        Route::get('tokens', 'Passport\TokensController@tokens');
+        Route::delete('revoke-client/{clientId}', 'Passport\TokensController@revokeClient');
         Route::get('edit', 'AccountController@edit')->name('edit');
         // Uploading file doesn't quite work with PUT/PATCH.
         // Reference: https://bugs.php.net/bug.php?id=55815
