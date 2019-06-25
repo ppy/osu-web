@@ -19,6 +19,7 @@
 import { runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
+import { Client } from 'passport/client';
 import * as React from 'react';
 
 const store = core.dataStore.clientStore;
@@ -32,39 +33,38 @@ export class AuthorizedClients extends React.Component {
   render() {
     const rows: JSX.Element[] = [];
     for (const client of store.clients.values()) {
-      rows.push((
-        <tr key={client.id}>
-          <td>{client.name}</td>
-          <td>{Array.from(client.scopes).join(', ')}</td>
-          <td>
-            { client.revoked ? (
-              'Revoked'
-            ) : (
-              <button
-                data-client-id={client.id}
-                onClick={this.revokeClicked}
-              >
-                Revoke
-              </button>
-            )}
-          </td>
-        </tr>
-      ));
+      rows.push(this.renderClient(client));
     }
 
     return (
-      <table>
-        <thead>
-          <tr>
-            <td>Name</td>
-            <td>Scopes</td>
-            <td />
-          </tr>
-        </thead>
-        <tbody>
-          {rows}
-        </tbody>
-      </table>
+      <div className='authorized-clients'>
+        {rows}
+      </div>
+    );
+  }
+
+  renderClient(client: Client) {
+    return (
+      <div className='authorized-client'>
+        <div className='authorized-client__details'>
+          <div className='authorized-client__name'>{client.name}</div>
+          <span className='authorized-client__owner'>{`Owner: ${client.userId}`}</span>
+          <div className='authorized-client__permissions'>{Array.from(client.scopes).join(', ')}</div>
+          </div>
+        <div className='authorized-client__actions'>
+          { client.revoked ? (
+            <div className='authorized-client__button'>Revoked</div>
+          ) : (
+            <button
+              className='authorized-client__button authorized-client__button--cancel'
+              data-client-id={client.id}
+              onClick={this.revokeClicked}
+            >
+              Revoke
+            </button>
+          )}
+        </div>
+      </div>
     );
   }
 
