@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Gelişmiş arama',
         'button' => 'Ara',
         'empty_result' => 'Hiçbir şey bulunamadı!',
+        'missing_query' => 'En az :n karakterli arama anahtar kelimesi gereklidir',
         'placeholder' => 'aramak için yaz',
         'title' => 'Ara',
 

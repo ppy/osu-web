@@ -198,7 +198,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'stichwörter eingeben...',
-            'login_required' => 'Melde dich um, um zu suchen.',
+            'login_required' => 'Melde dich an, um zu suchen.',
             'options' => 'Mehr Suchoptionen',
             'supporter_filter' => 'Filtern nach :filters benötigt ein aktives osu!supporter Tag',
             'not-found' => 'keine ergebnisse',
