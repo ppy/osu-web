@@ -20,8 +20,9 @@
 
 namespace App\Http\Controllers\Passport;
 
+use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller;
-use Laravel\Passport\Token;
+use Laravel\Passport\Client;
 
 /**
  * Extension of Laravel\Passport\Http\Controllers\AuthorizationController
@@ -46,6 +47,11 @@ class TokensController extends Controller
 
     public function revokeClient($clientId)
     {
+        $client = Client::findOrFail($clientId);
+        if ($client->firstParty()) {
+            throw new InvariantException('First party tokens cannot be revoked through this method.');
+        }
+
         auth()
             ->user()
             ->tokens()
