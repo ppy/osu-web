@@ -72,8 +72,9 @@ export class AuthorizedClients extends React.Component {
     if (!confirm('Revoke this token?')) { return; }
 
     const clientId = (event.target as HTMLElement).dataset.clientId;
-    if (clientId != null) {
-      store.revoke(+clientId);
+    const client = store.clients.get(+(clientId || 0));
+    if (client != null) {
+      client.revoke();
     }
   }
 }

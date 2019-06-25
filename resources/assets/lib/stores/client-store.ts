@@ -19,38 +19,10 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
 import { action, observable } from 'mobx';
+import { Client } from 'passport/client';
 import { TokenJSON } from 'passport/token-json';
 import Store from 'stores/store';
 
-class Client {
-  id: number;
-  name: string | null;
-  passwordClient: boolean;
-  redirect: string;
-  @observable revoked = false;
-  @observable scopes: Set<string>;
-  userId: number;
-
-  constructor(token: TokenJSON) {
-    this.id = token.client.id;
-    this.name = token.client.name;
-    this.passwordClient = token.client.password_client;
-    this.redirect = token.client.redirect;
-    this.scopes = new Set();
-    this.userId = token.client.user_id;
-  }
-
-  revoke() {
-    $.ajax({
-      method: 'DELETE',
-      url: '/home/account/revoke-client/' + this.id,
-    }).then(() => {
-      this.revoked = true;
-    });
-  }
-}
-
-// tslint:disable-next-line: max-classes-per-file
 export default class ClientStore extends Store {
   @observable clients = new Map<number, Client>();
 
@@ -67,14 +39,6 @@ export default class ClientStore extends Store {
       || dispatchedAction instanceof UserLogoutAction) {
       this.flushStore();
     }
-  }
-
-  @action
-  async revoke(clientId: number) {
-    const client = this.clients.get(clientId);
-    if (client == null) { return; }
-
-    client.revoke();
   }
 
   @action
