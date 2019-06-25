@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use App\Libraries\CommentBundleParams;
 use App\Libraries\ProfileCover;
 
 /**
@@ -47,6 +48,7 @@ class UserProfileCustomization extends Model
 
     protected $casts = [
         'cover_json' => 'array',
+        'options' => 'array',
     ];
 
     private $cover;
@@ -84,17 +86,43 @@ class UserProfileCustomization extends Model
         $this->save();
     }
 
+    public function getCommentsSortAttribute()
+    {
+        return $this->options['comments_sort'] ?? CommentBundleParams::DEFAULT_SORT;
+    }
+
+    public function setCommentsSortAttribute($value)
+    {
+        if ($value !== null && !in_array($value, array_keys(CommentBundleParams::SORTS), true)) {
+            $value = null;
+        }
+
+        $this->setOption('comments_sort', $value);
+    }
+
     public function getExtrasOrderAttribute($value)
     {
+        if ($value !== null) {
+            $value = json_decode($value, true);
+        }
+
+        $value = $this->options['extras_order'] ?? $value;
+
         if ($value === null) {
             return static::SECTIONS;
         }
 
-        return static::repairExtrasOrder(json_decode($value, true));
+        return static::repairExtrasOrder($value, true);
     }
 
     public function setExtrasOrderAttribute($value)
     {
-        $this->attributes['extras_order'] = json_encode(static::repairExtrasOrder($value));
+        $this->attributes['extras_order'] = null;
+        $this->setOption('extras_order', static::repairExtrasOrder($value));
+    }
+
+    public function setOption($key, $value)
+    {
+        $this->options = array_merge($this->options ?? [], [$key => $value]);
     }
 }
