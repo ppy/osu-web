@@ -17,7 +17,6 @@
  */
 
 import * as React from 'react';
-import { NewClient } from './new-client';
 
 interface ClientJSON {
   created_at: string;
@@ -114,7 +113,8 @@ export class Clients extends React.Component<Props, State> {
         </button>
         {
           this.state.showNewForm ? (
-            <NewClient />
+            // <NewClient />
+            null
           ) : null
         }
       </>
