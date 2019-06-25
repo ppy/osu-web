@@ -27,6 +27,7 @@ class Client {
   name: string | null;
   passwordClient: boolean;
   redirect: string;
+  @observable revoked = false;
   @observable scopes: Set<string>;
   userId: number;
 
@@ -37,6 +38,15 @@ class Client {
     this.redirect = token.client.redirect;
     this.scopes = new Set();
     this.userId = token.client.user_id;
+  }
+
+  revoke() {
+    $.ajax({
+      method: 'DELETE',
+      url: '/home/account/revoke-client/' + this.id,
+    }).then(() => {
+      this.revoked = true;
+    });
   }
 }
 
@@ -59,13 +69,12 @@ export default class ClientStore extends Store {
     }
   }
 
+  @action
   async revoke(clientId: number) {
-    await $.ajax({
-      method: 'DELETE',
-      url: '/home/account/revoke-client/' + clientId,
-    });
+    const client = this.clients.get(clientId);
+    if (client == null) { return; }
 
-    this.fetchAll();
+    client.revoke();
   }
 
   @action

@@ -36,15 +36,17 @@ export class AuthorizedClients extends React.Component {
         <tr key={client.id}>
           <td>{client.name}</td>
           <td>{Array.from(client.scopes).join(', ')}</td>
-          {/* <td>{client.created_at}</td>
-          <td>{client.expires_at}</td> */}
           <td>
-            <button
-              data-client-id={client.id}
-              onClick={this.revokeClicked}
-            >
-              Revoke
-            </button>
+            { client.revoked ? (
+              'Revoked'
+            ) : (
+              <button
+                data-client-id={client.id}
+                onClick={this.revokeClicked}
+              >
+                Revoke
+              </button>
+            )}
           </td>
         </tr>
       ));
@@ -56,8 +58,6 @@ export class AuthorizedClients extends React.Component {
           <tr>
             <td>Name</td>
             <td>Scopes</td>
-            <td>Created At</td>
-            <td>Expires At</td>
             <td />
           </tr>
         </thead>
