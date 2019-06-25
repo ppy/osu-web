@@ -1618,13 +1618,13 @@ class User extends Model implements AuthenticatableContract
      */
     public function previousUsernames(bool $includeCurrent = false)
     {
-        $query = $this->usernameChangeHistoryPublic;
+        $history = $this->usernameChangeHistoryPublic;
 
         if (!$includeCurrent) {
-            $query->where('username_last', '<>', $this->username);
+            $history = $history->where('username_last', '<>', $this->username);
         }
 
-        return $query->pluck('username_last');
+        return $history->pluck('username_last');
     }
 
     public function profileCustomization()
