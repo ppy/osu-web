@@ -49,7 +49,7 @@ export class AuthorizedClients extends React.Component {
         <div className='authorized-client__details'>
           <div className='authorized-client__name'>{client.name}</div>
           <span className='authorized-client__owner'>{`Owner: ${client.userId}`}</span>
-          <div className='authorized-client__permissions'>{Array.from(client.scopes).join(', ')}</div>
+          {this.renderPermissions(client)}
           </div>
         <div className='authorized-client__actions'>
           { client.revoked ? (
@@ -65,6 +65,19 @@ export class AuthorizedClients extends React.Component {
           )}
         </div>
       </div>
+    );
+  }
+
+  renderPermissions(client: Client) {
+    const scopes = Array.from(client.scopes).sort();
+    return (
+      <ul className='authorized-client__permissions'>
+        {
+          scopes.map((scope) => {
+            return <li className='authorized-client__permission' key={scope}>{osu.trans(`api.scopes.${scope}`)}</li>;
+          })
+        }
+      </ul>
     );
   }
 
