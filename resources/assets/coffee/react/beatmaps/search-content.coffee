@@ -29,6 +29,7 @@ import { a, div, p } from 'react-dom-factories'
 import VirtualList from 'react-virtual-list'
 
 el = React.createElement
+beatmapsetStore = core.dataStore.beatmapsetStore
 controller = core.beatmapsetSearchController
 
 ITEM_HEIGHT = 205 # needs to be known in advance to calculate size of virtual scrolling area.
@@ -42,12 +43,12 @@ ListRender = ({ virtual, itemHeight }) ->
       virtual.items.map (row) ->
         div
           className: 'beatmapsets__items-row'
-          key: (beatmap.id for beatmap in row).join('-')
-          for beatmap in row
+          key: (beatmapsetId for beatmapsetId in row).join('-')
+          for beatmapsetId in row
             div
               className: 'beatmapsets__item'
-              key: beatmap.id
-              el BeatmapsetPanel, beatmap: beatmap
+              key: beatmapsetId
+              el BeatmapsetPanel, beatmap: beatmapsetStore.get(beatmapsetId)
 
 # stored in an observable so a rerender will occur when the HOC gets updated.
 Observables = observable
@@ -72,9 +73,10 @@ export class SearchContent extends React.Component
 
   render: ->
     el Observer, null, () =>
-      beatmapsets = controller.currentBeatmapsets
+      beatmapsetIds = controller.currentBeatmapsetIds
 
-      searchBackground = if beatmapsets.length > 0 then beatmapsets[0].covers?.cover else null
+      firstBeatmapset = beatmapsetStore.get(beatmapsetIds[0])
+      searchBackground = if beatmapsetIds.length > 0 then firstBeatmapset?.covers?.cover else null
       supporterRequiredFilterText = controller.supporterRequiredFilterText
       listCssClasses = 'beatmapsets'
       listCssClasses += ' beatmapsets--dimmed' if controller.isBusy
@@ -109,9 +111,9 @@ export class SearchContent extends React.Component
                   renderLinkToSupporterTag(supporterRequiredFilterText)
 
               else
-                if beatmapsets.length > 0
+                if beatmapsetIds.length > 0
                   el Observables.BeatmapList,
-                    items: _.chunk(beatmapsets, Observables.numberOfColumns)
+                    items: _.chunk(beatmapsetIds, Observables.numberOfColumns)
                     itemBuffer: 5
                     itemHeight: ITEM_HEIGHT
 

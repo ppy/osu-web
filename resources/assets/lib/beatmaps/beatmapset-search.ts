@@ -58,7 +58,7 @@ export class BeatmapsetSearch implements DispatchListener {
 
     const key = filters.toKeyString();
     const resultSet = this.getOrCreate(key);
-    const sufficient = (from > 0 && from < resultSet.beatmapsets.length) || (from === 0 && !resultSet.isExpired);
+    const sufficient = (from > 0 && from < resultSet.beatmapsetIds.length) || (from === 0 && !resultSet.isExpired);
     if (sufficient) {
       return Promise.resolve(resultSet);
     }
@@ -70,7 +70,7 @@ export class BeatmapsetSearch implements DispatchListener {
         }
 
         this.updateBeatmapsetStore(data);
-        resultSet.append(data, this.beatmapsetStore);
+        resultSet.append(data);
         this.recommendedDifficulties.set(filters.mode, data.recommended_difficulty);
       });
 
@@ -78,10 +78,10 @@ export class BeatmapsetSearch implements DispatchListener {
     });
   }
 
-  getBeatmapsets(filters: BeatmapsetSearchFilters) {
+  getBeatmapsetIds(filters: BeatmapsetSearchFilters) {
     const key = filters.toKeyString();
 
-    return this.getOrCreate(key).beatmapsets;
+    return this.getOrCreate(key).beatmapsetIds;
   }
 
   handleDispatchAction(dispatcherAction: DispatcherAction) {
@@ -102,7 +102,7 @@ export class BeatmapsetSearch implements DispatchListener {
       return;
     }
 
-    resultSet.append(data, this.beatmapsetStore);
+    resultSet.append(data);
     this.recommendedDifficulties.set(filters.mode, data.recommended_difficulty);
   }
 

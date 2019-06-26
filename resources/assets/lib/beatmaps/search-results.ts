@@ -16,10 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
-
 export default interface SearchResults {
-  beatmapsets: BeatmapsetJSON[];
+  beatmapsetIds: number[];
   hasMore: boolean;
   total: number;
 }

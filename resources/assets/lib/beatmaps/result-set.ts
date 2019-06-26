@@ -18,14 +18,12 @@
 
 import { SearchResponse } from 'beatmaps/beatmapset-search';
 import SearchResults from 'beatmaps/search-results';
-import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
 import { action, computed, observable } from 'mobx';
-import { BeatmapsetStore } from 'stores/beatmapset-store';
 
 export default class ResultSet implements SearchResults {
   static CACHE_DURATION_MS = 60000;
 
-  @observable beatmapsets: BeatmapsetJSON[] = [];
+  @observable beatmapsetIds: number[] = [];
   cursors?: JSON; // null -> end; undefined -> not set yet.
   fetchedAt?: Date;
   @observable hasMore = false;
@@ -39,12 +37,9 @@ export default class ResultSet implements SearchResults {
   }
 
   @action
-  append(data: SearchResponse, beatmapsetStore: BeatmapsetStore) {
+  append(data: SearchResponse) {
     for (const beatmapset of data.beatmapsets) {
-      const item = beatmapsetStore.get(beatmapset.id);
-      if (item) {
-        this.beatmapsets.push(item);
-      }
+      this.beatmapsetIds.push(beatmapset.id);
     }
 
     this.cursors = data.cursor;
@@ -55,7 +50,7 @@ export default class ResultSet implements SearchResults {
 
   @action
   reset() {
-    this.beatmapsets = [];
+    this.beatmapsetIds = [];
     this.fetchedAt = undefined;
     this.cursors = undefined;
     this.hasMore = false;

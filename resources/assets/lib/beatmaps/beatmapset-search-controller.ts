@@ -33,7 +33,7 @@ export interface SearchStatus {
 
 export class BeatmapsetSearchController {
   // the list that gets displayed while new searches are loading.
-  @observable currentBeatmapsets!: any[];
+  @observable currentBeatmapsetIds!: any[];
   @observable filters!: BeatmapsetSearchFilters;
   @observable hasMore = false; // TODO: figure out how to make this computed
   @observable isExpanded!: boolean;
@@ -49,7 +49,7 @@ export class BeatmapsetSearchController {
 
   constructor(private beatmapsetSearch: BeatmapsetSearch) {
     this.restoreStateFromUrl();
-    this.currentBeatmapsets = this.beatmapsetSearch.getBeatmapsets(this.filters);
+    this.currentBeatmapsetIds = this.beatmapsetSearch.getBeatmapsetIds(this.filters);
   }
 
   @computed
@@ -101,7 +101,7 @@ export class BeatmapsetSearchController {
       return;
     }
 
-    this.search(this.currentBeatmapsets.length);
+    this.search(this.currentBeatmapsetIds.length);
   }
 
   @action
@@ -127,9 +127,9 @@ export class BeatmapsetSearchController {
 
       runInAction(() => {
         this.searchStatus = { state: 'completed', error: null, from };
-        this.hasMore = data.hasMore && data.beatmapsets.length < data.total;
+        this.hasMore = data.hasMore && data.beatmapsetIds.length < data.total;
 
-        this.currentBeatmapsets = this.beatmapsetSearch.getBeatmapsets(this.filters);
+        this.currentBeatmapsetIds = this.beatmapsetSearch.getBeatmapsetIds(this.filters);
       });
     } catch (error) {
       runInAction(() => {
