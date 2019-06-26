@@ -25,7 +25,7 @@ import Item from './item';
 import ItemProps from './item-props';
 import { withMarkRead, WithMarkReadProps } from './with-mark-read';
 
-export default withMarkRead(observer(class ItemCompact extends React.Component<ItemProps & WithMarkReadProps, {}> {
+export default withMarkRead(observer(class ItemCompact extends React.Component<ItemProps & WithMarkReadProps> {
   render() {
     return (
       <Item

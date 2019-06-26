@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Пашыраны пошук',
         'button' => 'Пошук',
         'empty_result' => 'Нічога не знойдзена!',
+        'missing_query' => 'Для пошуку неабходна як мінімум :n сімвалаў',
         'placeholder' => 'пішыце тут',
         'title' => 'Пошук',
 

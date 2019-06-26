@@ -22,6 +22,7 @@ namespace App\Models;
 
 use App\Exceptions\ChangeUsernameException;
 use App\Exceptions\ModelNotSavedException;
+use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
 use App\Libraries\UsernameValidation;
@@ -170,6 +171,7 @@ use Request;
  * @property string $user_website
  * @property string $username
  * @property \Illuminate\Database\Eloquent\Collection $usernameChangeHistory UsernameChangeHistory
+ * @property \Illuminate\Database\Eloquent\Collection $usernameChangeHistoryPublic publically visible UsernameChangeHistory containing only user_id and username_last
  * @property string $username_clean
  * @property string|null $username_previous
  * @property int|null $userpage_post_id
@@ -270,7 +272,7 @@ class User extends Model implements AuthenticatableContract
 
     public function changeUsername(string $newUsername, string $type) : UsernameChangeHistory
     {
-        $errors = $this->validateChangeUsername($newUsername);
+        $errors = $this->validateChangeUsername($newUsername, $type);
         if ($errors->isAny()) {
             throw new ChangeUsernameException($errors);
         }
@@ -334,6 +336,7 @@ class User extends Model implements AuthenticatableContract
 
             $skipValidations = in_array($type, ['inactive', 'revert'], true);
             $this->saveOrExplode(['skipValidations' => $skipValidations]);
+            dispatch(new EsIndexDocument($this));
 
             return $history;
         });
@@ -395,9 +398,9 @@ class User extends Model implements AuthenticatableContract
             ->addDays($this->playCount() * 0.75);    //bonus based on playcount
     }
 
-    public function validateChangeUsername(string $username)
+    public function validateChangeUsername(string $username, string $type = 'paid')
     {
-        return (new ChangeUsername($this, $username))->validate();
+        return (new ChangeUsername($this, $username, $type))->validate();
     }
 
     // verify that an api key is correct
@@ -1131,6 +1134,15 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(UsernameChangeHistory::class, 'user_id');
     }
 
+    public function usernameChangeHistoryPublic()
+    {
+        return $this->usernameChangeHistory()
+            ->visible()
+            ->select(['user_id', 'username_last'])
+            ->withPresent('username_last')
+            ->orderBy('timestamp', 'ASC');
+    }
+
     public function relations()
     {
         return $this->hasMany(UserRelation::class, 'user_id');
@@ -1600,6 +1612,24 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $this->memoized[__FUNCTION__];
+    }
+
+    /**
+     * User's previous usernames
+     *
+     * @param bool $includeCurrent true if previous usernames matching the the current one should be included.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection string
+     */
+    public function previousUsernames(bool $includeCurrent = false)
+    {
+        $history = $this->usernameChangeHistoryPublic;
+
+        if (!$includeCurrent) {
+            $history = $history->where('username_last', '<>', $this->username);
+        }
+
+        return $history->pluck('username_last');
     }
 
     public function profileCustomization()

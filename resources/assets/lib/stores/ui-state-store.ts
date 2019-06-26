@@ -16,16 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import DispatcherAction from 'actions/dispatcher-action';
 import ChatStateStore from 'chat/chat-state-store';
-import Dispatcher from 'dispatcher';
-import RootDataStore from './root-data-store';
+import Store from 'stores/store';
 
-export default class UIStateStore {
-  parent: RootDataStore;
-  chat: ChatStateStore;
-
-  constructor(root: RootDataStore, dispatcher: Dispatcher) {
-    this.parent = root;
-    this.chat = new ChatStateStore(root, this, dispatcher);
-  }
+export default class UIStateStore extends Store {
+  chat = new ChatStateStore(this.root, this.dispatcher);
+  handleDispatchAction(action: DispatcherAction) { /* do nothing */}
 }

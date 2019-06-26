@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Tarkempi haku',
         'button' => 'Hae',
         'empty_result' => 'Mitään ei löytynyt!',
+        'missing_query' => 'Tarvitaan vähintään :n merkin pituinen hakusana',
         'placeholder' => 'kirjoita hakeaksesi',
         'title' => 'Hae',
 

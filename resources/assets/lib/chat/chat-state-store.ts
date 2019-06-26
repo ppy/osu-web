@@ -19,26 +19,18 @@
 import { ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
-import DispatchListener from 'dispatch-listener';
-import Dispatcher from 'dispatcher';
 import { action, observable } from 'mobx';
-import RootDataStore from 'stores/root-data-store';
-import UIStateStore from 'stores/ui-state-store';
+import Store from 'stores/store';
 
-export default class ChatStateStore implements DispatchListener {
-  root: RootDataStore;
-  parent: UIStateStore; // TODO: do we need to bother with tracking parent?
-  dispatcher: Dispatcher;
-
-  @observable selected: number = -1;
-  @observable lastReadId: number = -1;
+export default class ChatStateStore extends Store {
   @observable autoScroll: boolean = false;
+  @observable lastReadId: number = -1;
+  @observable selected: number = -1;
 
-  constructor(root: RootDataStore, parent: UIStateStore, dispatcher: Dispatcher) {
-    this.root = root;
-    this.parent = parent;
-    this.dispatcher = dispatcher;
-    dispatcher.register(this);
+  @action
+  flushStore() {
+    this.selected = -1;
+    this.lastReadId = -1;
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
@@ -53,11 +45,5 @@ export default class ChatStateStore implements DispatchListener {
     } else if (dispatchedAction instanceof UserLogoutAction) {
       this.flushStore();
     }
-  }
-
-  @action
-  flushStore() {
-    this.selected = -1;
-    this.lastReadId = -1;
   }
 }

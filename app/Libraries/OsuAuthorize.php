@@ -55,7 +55,7 @@ class OsuAuthorize
      * @param object|null $object
      * @return AuthorizationResult
      */
-    public function doCheckUser(?User $user, string $ability, Object $object = null) : AuthorizationResult
+    public function doCheckUser(?User $user, string $ability, object $object = null) : AuthorizationResult
     {
         $cacheKey = serialize([
             $ability,

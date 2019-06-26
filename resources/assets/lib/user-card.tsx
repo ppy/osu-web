@@ -26,18 +26,18 @@ import { ReportUser } from 'report-user';
 import { Spinner } from 'spinner';
 import { SupporterIcon } from 'supporter-icon';
 
-interface PropsInterface {
+interface Props {
   activated: boolean;
   modifiers: string[];
   user?: User;
 }
 
-interface StateInterface {
+interface State {
   avatarLoaded: boolean;
   backgroundLoaded: boolean;
 }
 
-export class UserCard extends React.PureComponent<PropsInterface, StateInterface> {
+export class UserCard extends React.PureComponent<Props, State> {
   static defaultProps = {
     activated: false,
     modifiers: [],
@@ -55,10 +55,35 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     username: osu.trans('users.card.loading'),
   };
 
-  readonly state: StateInterface = {
+  readonly state: State = {
     avatarLoaded: false,
     backgroundLoaded: false,
   };
+
+  private get canMessage() {
+    return !this.isSelf
+      && _.find(currentUser.blocks, { target_id: this.user.id }) == null;
+  }
+
+  private get isOnline() {
+    return this.user.is_online;
+  }
+
+  private get isSelf() {
+    return currentUser.id === this.user.id;
+  }
+
+  private get isUserLoaded() {
+    return Number.isFinite(this.user.id) && this.user.id > 0;
+  }
+
+  private get isUserNotFound() {
+    return this.user.id === -1;
+  }
+
+  private get user() {
+    return this.props.user || UserCard.userLoading;
+  }
 
   onAvatarLoad = () => {
     this.setState({ avatarLoaded: true });
@@ -158,36 +183,6 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
     return backgroundLink;
   }
 
-  renderMenuButton() {
-    if (this.isSelf) { return null; }
-
-    const items = (dismiss: () => void) => (
-      <>
-        {
-          this.canMessage ? (
-            <a
-              className='simple-menu__item js-login-required--click'
-              href={laroute.route('messages.users.show', { user: this.user.id })}
-              onClick={dismiss}
-            >
-              <span className='fas fa-envelope' />
-              {` ${osu.trans('users.card.send_message')}`}
-            </a>
-          ) : null
-        }
-
-        <BlockButton onClick={dismiss} modifiers={['inline']} userId={this.user.id} wrapperClass='simple-menu__item' />
-        <ReportUser onFormClose={dismiss} modifiers={['inline']} user={this.user} wrapperClass='simple-menu__item' />
-      </>
-    );
-
-    return (
-      <div className='user-card__icon user-card__icon--menu'>
-        <PopupMenuPersistent>{items}</PopupMenuPersistent>
-      </div>
-    );
-  }
-
   renderIcons() {
     if (!this.isUserLoaded) { return null; }
 
@@ -214,6 +209,36 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
         <div className='user-card__icon'>
           <FriendButton userId={this.user.id} modifiers={['user-card']} />
         </div>
+      </div>
+    );
+  }
+
+  renderMenuButton() {
+    if (this.isSelf) { return null; }
+
+    const items = (dismiss: () => void) => (
+      <>
+        {
+          this.canMessage ? (
+            <a
+              className='simple-menu__item js-login-required--click'
+              href={laroute.route('messages.users.show', { user: this.user.id })}
+              onClick={dismiss}
+            >
+              <span className='fas fa-envelope' />
+              {` ${osu.trans('users.card.send_message')}`}
+            </a>
+          ) : null
+        }
+
+        <BlockButton onClick={dismiss} modifiers={['inline']} userId={this.user.id} wrapperClass='simple-menu__item' />
+        <ReportUser onFormClose={dismiss} modifiers={['inline']} user={this.user} wrapperClass='simple-menu__item' />
+      </>
+    );
+
+    return (
+      <div className='user-card__icon user-card__icon--menu'>
+        <PopupMenuPersistent>{items}</PopupMenuPersistent>
       </div>
     );
   }
@@ -253,30 +278,5 @@ export class UserCard extends React.PureComponent<PropsInterface, StateInterface
         <div className={`user-card__status-icon user-card__status-icon--${this.isOnline ? 'online' : 'offline'}`} />
       </div>
     );
-  }
-
-  private get canMessage() {
-    return !this.isSelf
-      && _.find(currentUser.blocks, { target_id: this.user.id }) == null;
-  }
-
-  private get isOnline() {
-    return this.user.is_online;
-  }
-
-  private get isSelf() {
-    return currentUser.id === this.user.id;
-  }
-
-  private get isUserLoaded() {
-    return Number.isFinite(this.user.id) && this.user.id > 0;
-  }
-
-  private get isUserNotFound() {
-    return this.user.id === -1;
-  }
-
-  private get user() {
-    return this.props.user || UserCard.userLoading;
   }
 }

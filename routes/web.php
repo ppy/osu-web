@@ -407,6 +407,7 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
     Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'LegacyInterOpController@userAchievement')->name('lio.user-achievement');
     Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
     Route::delete('/user-sessions/{user}', 'LegacyInterOpController@userSessionsDestroy');
+    Route::post('user-index/{user}', 'LegacyInterOpController@userIndex');
     Route::get('/news', 'LegacyInterOpController@news');
 });
 

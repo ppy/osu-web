@@ -225,7 +225,7 @@ function html_excerpt($body, $limit = 300)
     return e(truncate($body, $limit));
 }
 
-function truncate(String $text, $limit = 100, $ellipsis = '...')
+function truncate(string $text, $limit = 100, $ellipsis = '...')
 {
     if (mb_strlen($text) > $limit) {
         return mb_substr($text, 0, $limit - mb_strlen($ellipsis)).$ellipsis;
@@ -511,6 +511,11 @@ function i18n_view($view)
 function is_api_request()
 {
     return request()->is('api/*');
+}
+
+function is_json_request()
+{
+    return is_api_request() || request()->expectsJson();
 }
 
 function is_sql_unique_exception($ex)

@@ -77,7 +77,7 @@ class CommentsController extends Controller
             ['params' => request()->all()]
         );
 
-        if (request()->expectsJson()) {
+        if (is_json_request()) {
             return $commentBundle->toArray();
         } else {
             $commentBundle->depth = 0;
