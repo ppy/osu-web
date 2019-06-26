@@ -91,7 +91,7 @@
   }
 
   &--live {
-    .at2x-simple("/images/headers/live-top.png");
+    .at2x-simple("/images/headers/live-top.jpg");
     height: 165px;
   }
 
@@ -251,6 +251,10 @@
     color: #fff;
 
     font-style: italic;
+
+    > a {
+      .link-default();
+    }
 
     @media @desktop {
       font-size: @font-size--header-title;
