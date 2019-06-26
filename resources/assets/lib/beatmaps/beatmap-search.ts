@@ -69,7 +69,6 @@ export class BeatmapSearch implements DispatchListener {
       return Promise.resolve({
         beatmapsets,
         hasMore: this.hasMore(key),
-        recommendedDifficulty: this.recommendedDifficulties.get(filters.mode) || 0,
         total: this.totals.get(key) || 0,
       } as SearchResults);
     }
@@ -91,7 +90,6 @@ export class BeatmapSearch implements DispatchListener {
       return {
         beatmapsets: this.getOrCreate(key),
         hasMore: this.hasMore(key),
-        recommendedDifficulty: data.recommended_difficulty,
         total: this.totals.get(key) || 0,
       };
     });
