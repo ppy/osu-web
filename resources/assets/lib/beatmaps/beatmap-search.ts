@@ -71,18 +71,12 @@ export class BeatmapSearch implements DispatchListener {
 
     return this.fetch(filters, from).then((data: SearchResponse) => {
       runInAction(() => {
-        this.updateBeatmapsetStore(data);
-
         if (from === 0) {
           this.reset(key);
         }
 
-        if (data.beatmapsets != null) {
-          this.append(key, data);
-        }
-
-        results.fetchedAt = new Date();
-
+        this.updateBeatmapsetStore(data);
+        this.append(key, data);
         this.recommendedDifficulties.set(filters.mode, data.recommended_difficulty);
       });
 
