@@ -29,7 +29,7 @@ use Illuminate\Http\Request;
 
 class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 {
-    const AVAILABLE_CATEGORIES = ['any', 'leaderboard', 'ranked', 'qualified', 'loved', 'favourites', 'pending', 'graveyard', 'mine'];
+    const AVAILABLE_STATUSES = ['any', 'leaderboard', 'ranked', 'qualified', 'loved', 'favourites', 'pending', 'graveyard', 'mine'];
     const AVAILABLE_EXTRAS = ['video', 'storyboard'];
     const AVAILABLE_GENERAL = ['recommended', 'converts'];
     const AVAILABLE_PLAYED = ['any', 'played', 'unplayed'];
@@ -128,7 +128,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $ranks[] = ['id' => $id, 'name' => trans("beatmaps.rank.{$id}")];
         }
 
-        foreach (static::AVAILABLE_CATEGORIES as $id) {
+        foreach (static::AVAILABLE_STATUSES as $id) {
             $statuses[] = ['id' => $id, 'name' => trans("beatmaps.status.{$id}")];
         }
 
