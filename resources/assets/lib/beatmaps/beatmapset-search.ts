@@ -76,7 +76,7 @@ export class BeatmapsetSearch implements DispatchListener {
         }
 
         this.updateBeatmapsetStore(data);
-        this.append(key, data);
+        this.append(resultSet, data);
         this.recommendedDifficulties.set(filters.mode, data.recommended_difficulty);
       });
 
@@ -108,14 +108,12 @@ export class BeatmapsetSearch implements DispatchListener {
       return;
     }
 
-    this.append(key, data);
+    this.append(resultSet, data);
     this.recommendedDifficulties.set(filters.mode, data.recommended_difficulty);
   }
 
-  private append(key: string, data: SearchResponse) {
-    const resultSet = this.getOrCreate(key);
-
-    const beatmapsets = this.getOrCreate(key).beatmapsets;
+  private append(resultSet: ResultSet, data: SearchResponse) {
+    const beatmapsets = resultSet.beatmapsets;
     for (const beatmapset of data.beatmapsets) {
       const item = this.beatmapsetStore.get(beatmapset.id);
       if (item) {
