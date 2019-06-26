@@ -78,10 +78,10 @@ export class BeatmapsetSearch implements DispatchListener {
     });
   }
 
-  getBeatmapsetIds(filters: BeatmapsetSearchFilters) {
+  getResultSet(filters: BeatmapsetSearchFilters) {
     const key = filters.toKeyString();
 
-    return this.getOrCreate(key).beatmapsetIds;
+    return this.getOrCreate(key);
   }
 
   handleDispatchAction(dispatcherAction: DispatcherAction) {
@@ -124,8 +124,8 @@ export class BeatmapsetSearch implements DispatchListener {
       if (cursor != null) {
         params.cursor = cursor;
       } else if (cursor === null) {
-      return Promise.resolve({});
-    }
+        return Promise.resolve({});
+      }
     }
 
     const url = laroute.route('beatmapsets.search');

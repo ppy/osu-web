@@ -17,6 +17,7 @@
  */
 
 import { BeatmapsetSearch, SearchResponse } from 'beatmaps/beatmapset-search';
+import ResultSet from 'beatmaps/result-set';
 import { BeatmapsetSearchFilters, BeatmapsetSearchParams } from 'beatmapset-search-filters';
 import { debounce, intersection, map } from 'lodash';
 import { action, computed, IObjectDidChange, IValueDidChange, Lambda, observable, observe, runInAction } from 'mobx';
@@ -33,9 +34,8 @@ export interface SearchStatus {
 
 export class BeatmapsetSearchController {
   // the list that gets displayed while new searches are loading.
-  @observable currentBeatmapsetIds!: any[];
+  @observable currentResultSet!: ResultSet;
   @observable filters!: BeatmapsetSearchFilters;
-  @observable hasMore = false; // TODO: figure out how to make this computed
   @observable isExpanded!: boolean;
 
   @observable searchStatus: SearchStatus = {
@@ -49,12 +49,22 @@ export class BeatmapsetSearchController {
 
   constructor(private beatmapsetSearch: BeatmapsetSearch) {
     this.restoreStateFromUrl();
-    this.currentBeatmapsetIds = this.beatmapsetSearch.getBeatmapsetIds(this.filters);
+    this.currentResultSet = this.beatmapsetSearch.getResultSet(this.filters);
+  }
+
+  @computed
+  get currentBeatmapsetIds() {
+    return this.currentResultSet.beatmapsetIds;
   }
 
   @computed
   get error() {
     return this.searchStatus.error;
+  }
+
+  @computed
+  get hasMore() {
+    return this.currentResultSet.hasMoreForPager;
   }
 
   @computed
@@ -123,13 +133,11 @@ export class BeatmapsetSearchController {
     };
 
     try {
-      const data = await this.beatmapsetSearch.get(this.filters, from);
+      await this.beatmapsetSearch.get(this.filters, from);
 
       runInAction(() => {
         this.searchStatus = { state: 'completed', error: null, from };
-        this.hasMore = data.hasMore && data.beatmapsetIds.length < data.total;
-
-        this.currentBeatmapsetIds = this.beatmapsetSearch.getBeatmapsetIds(this.filters);
+        this.currentResultSet = this.beatmapsetSearch.getResultSet(this.filters);
       });
     } catch (error) {
       runInAction(() => {

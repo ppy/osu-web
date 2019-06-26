@@ -30,6 +30,11 @@ export default class ResultSet implements SearchResults {
   @observable total = 0;
 
   @computed
+  get hasMoreForPager() {
+    return this.hasMore && this.beatmapsetIds.length < this.total;
+  }
+
+  @computed
   get isExpired() {
     if (this.fetchedAt == null) { return true; }
 
