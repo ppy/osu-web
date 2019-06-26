@@ -76,6 +76,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'is_limited_bn' => $user->isLimitedBN(),
             'is_bot' => $user->isBot(),
             'is_active' => $user->isActive(),
+            'can_moderate' => $user->canModerate(),
             'interests' => $user->user_interests,
             'occupation' => $user->user_occ,
             'title' => $user->title(),
