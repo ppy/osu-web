@@ -18,6 +18,7 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
+import ResultSet from 'beatmaps/result-set';
 import SearchResults from 'beatmaps/search-results';
 import { BeatmapsetSearchFilters } from 'beatmapset-search-filters';
 import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
@@ -31,11 +32,6 @@ export interface SearchResponse {
   cursor: JSON;
   recommended_difficulty: number;
   total: number;
-}
-
-interface ResultSet extends SearchResults {
-  cursors?: JSON; // null -> end; undefined -> not set yet.
-  fetchedAt?: Date;
 }
 
 export class BeatmapsetSearch implements DispatchListener {
@@ -162,11 +158,7 @@ export class BeatmapsetSearch implements DispatchListener {
   private getOrCreate(key: string) {
     let resultSet = this.resultSets.get(key);
     if (resultSet == null) {
-      resultSet = {
-        beatmapsets: [],
-        hasMore: false,
-        total: 0,
-      };
+      resultSet = new ResultSet();
 
       this.resultSets.set(key, resultSet);
     }
