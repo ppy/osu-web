@@ -33,15 +33,16 @@ export interface SearchResponse {
   total: number;
 }
 
+interface ResultSet extends SearchResults {
+  cursors?: JSON; // null -> end; undefined -> not set yet.
+  fetchedAt?: Date;
+}
+
 export class BeatmapSearch implements DispatchListener {
   static CACHE_DURATION_MS = 60000;
 
-  @observable
-  readonly beatmapsets = new Map<string, BeatmapsetJSON[]>();
-  readonly cursors = new Map<string, any>();
-  readonly fetchedAt = new Map<string, Date>();
   @observable readonly recommendedDifficulties = new Map<string|null, number>();
-  readonly totals = new Map<string, number>();
+  @observable readonly resultSets = new Map<string, ResultSet>();
 
   private xhr?: JQueryXHR;
 
@@ -62,15 +63,10 @@ export class BeatmapSearch implements DispatchListener {
     }
 
     const key = filters.toKeyString();
-    const beatmapsets = this.getOrCreate(key);
-    const sufficient = (from > 0 && from < beatmapsets.length) || (from === 0 && !this.isExpired(key));
-
+    const results = this.getOrCreate(key);
+    const sufficient = (from > 0 && from < results.beatmapsets.length) || (from === 0 && !this.isExpired(results));
     if (sufficient) {
-      return Promise.resolve({
-        beatmapsets,
-        hasMore: this.hasMore(key),
-        total: this.totals.get(key) || 0,
-      } as SearchResults);
+      return Promise.resolve(results);
     }
 
     return this.fetch(filters, from).then((data: SearchResponse) => {
@@ -84,21 +80,18 @@ export class BeatmapSearch implements DispatchListener {
         this.append(key, data);
       }
 
-      this.recommendedDifficulties.set(filters.mode, data.recommended_difficulty);
-      this.fetchedAt.set(key, new Date());
+      results.fetchedAt = new Date();
 
-      return {
-        beatmapsets: this.getOrCreate(key),
-        hasMore: this.hasMore(key),
-        total: this.totals.get(key) || 0,
-      };
+      this.recommendedDifficulties.set(filters.mode, data.recommended_difficulty);
+
+      return results;
     });
   }
 
   getBeatmapsets(filters: BeatmapSearchFilters) {
     const key = filters.toKeyString();
 
-    return this.getOrCreate(key);
+    return this.getOrCreate(key).beatmapsets;
   }
 
   handleDispatchAction(dispatcherAction: DispatcherAction) {
@@ -110,46 +103,40 @@ export class BeatmapSearch implements DispatchListener {
 
   @action
   initialize(filters: BeatmapSearchFilters, data: SearchResponse) {
-    // FIXME: shouldn't init if already inited.
     this.updateBeatmapsetStore(data);
 
     const key = filters.toKeyString();
-
-    if (this.cursors.has(key)) {
+    const resultSet = this.getOrCreate(key);
+    // skip if already tracking.
+    if (resultSet.fetchedAt != null) {
       return;
     }
 
-    this.cursors.set(key, data.cursor);
-    this.totals.set(key, data.total);
-    this.fetchedAt.set(key, new Date());
+    this.append(key, data);
     this.recommendedDifficulties.set(filters.mode, data.recommended_difficulty);
-
-    this.appendBeatmapsets(key, data.beatmapsets);
   }
 
   private append(key: string, data: SearchResponse) {
-    this.appendBeatmapsets(key, data.beatmapsets);
-    this.cursors.set(key, data.cursor);
-    this.totals.set(key, data.total);
-  }
+    const resultSet = this.getOrCreate(key);
 
-  private appendBeatmapsets(key: string, data: BeatmapsetJSON[]) {
-    const beatmapsets = this.getOrCreate(key);
-    for (const beatmapset of data) {
+    const beatmapsets = this.getOrCreate(key).beatmapsets;
+    for (const beatmapset of data.beatmapsets) {
       const item = this.beatmapsetStore.get(beatmapset.id);
       if (item) {
         beatmapsets.push(item);
       }
     }
+
+    resultSet.cursors = data.cursor;
+    resultSet.fetchedAt = new Date();
+    resultSet.hasMore = data.cursor !== null;
+    resultSet.total = data.total; // TODO: total shouldn't be updated for snapshot?
   }
 
   @action
   private clear() {
-    this.beatmapsets.clear();
-    this.cursors.clear();
-    this.fetchedAt.clear();
+    this.resultSets.clear();
     this.recommendedDifficulties.clear();
-    this.totals.clear();
   }
 
   private fetch(filters: BeatmapSearchFilters, from: number) {
@@ -157,12 +144,14 @@ export class BeatmapSearch implements DispatchListener {
 
     const params = filters.queryParams;
     const key = filters.toKeyString();
-    const cursor = this.cursors.get(key);
-    if (from > 0 && this.cursors.has(key)) {
-      if (cursor == null) {
-        return Promise.resolve({});
-      }
+    const cursor = this.getOrCreate(key).cursors;
 
+    // undefined cursor should just do a cursorless query.
+    if (from > 0 && cursor === null) {
+      return Promise.resolve({});
+    }
+
+    if (cursor != null) {
       params.cursor = cursor;
     }
 
@@ -177,31 +166,41 @@ export class BeatmapSearch implements DispatchListener {
   }
 
   private getOrCreate(key: string) {
-    let beatmapsets = this.beatmapsets.get(key);
-    if (beatmapsets == null) {
-      this.beatmapsets.set(key, []);
-      beatmapsets = this.beatmapsets.get(key);
+    let resultSet = this.resultSets.get(key);
+    if (resultSet == null) {
+      resultSet = {
+        beatmapsets: [],
+        hasMore: false,
+        total: 0,
+      };
+
+      this.resultSets.set(key, resultSet);
     }
 
-    return beatmapsets!;
+    return resultSet;
   }
 
-  private hasMore(key: string) {
-    // should return false only if it's known to have received a null cursor in.
-    return !(this.cursors.has(key) && this.cursors.get(key) == null);
+  private isExpired(resultSet: ResultSet) {
+    if (resultSet.fetchedAt == null) { return true; }
+
+    return new Date().getTime() - resultSet.fetchedAt.getTime() > BeatmapSearch.CACHE_DURATION_MS;
   }
 
-  private isExpired(key: string) {
-    const previous = this.fetchedAt.get(key);
-    if (previous == null) { return true; }
-
-    return new Date().getTime() - previous.getTime() > BeatmapSearch.CACHE_DURATION_MS;
-  }
-
+  /**
+   * Resets the entry at the given key.
+   * It does not delete and recreate the entry as that is confusing for callers.
+   *
+   * @param key toKeyString() value of filters.
+   */
   private reset(key: string) {
-    this.beatmapsets.set(key, observable([]));
-    this.cursors.delete(key);
-    this.totals.delete(key);
+    const resultSet = this.resultSets.get(key);
+    if (resultSet == null) { return; }
+
+    resultSet.beatmapsets = [];
+    resultSet.fetchedAt = undefined;
+    resultSet.cursors = undefined;
+    resultSet.hasMore = false;
+    resultSet.total = 0;
   }
 
   private updateBeatmapsetStore(response: SearchResponse) {
