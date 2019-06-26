@@ -68,12 +68,9 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   }
 
   set query(value: string | null) {
-    if (osu.presence(value) === this.sanitizedQuery) {
-      return;
-    }
-
-    if (value != null) {
-      this.sanitizedQuery = osu.presence(value.trim());
+    const sanitizedQuery = osu.presence((value || '').trim());
+    if (this.sanitizedQuery !== sanitizedQuery) {
+      this.sanitizedQuery = sanitizedQuery;
     }
   }
 
