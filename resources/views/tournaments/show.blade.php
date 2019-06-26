@@ -93,7 +93,7 @@
                             @if($tournament->isSignedUp(Auth::user()))
                                 <a
                                     href="{{route("tournaments.unregister", $tournament) }}"
-                                    class="btn-osu btn-osu-danger btn-osu--giant"
+                                    class="btn-osu btn-osu-default btn-osu--giant"
                                     data-method="post"
                                     data-remote="1"
                                 >
