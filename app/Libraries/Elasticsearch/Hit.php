@@ -76,6 +76,8 @@ class Hit implements \ArrayAccess
         if ($results) {
             return new SearchResponse($results, $name);
         }
+
+        return SearchResponse::empty();
     }
 
     public function raw()

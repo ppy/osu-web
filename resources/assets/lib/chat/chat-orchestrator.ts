@@ -32,12 +32,10 @@ import ChatAPI from './chat-api';
 import { MessageJSON } from './chat-api-responses';
 
 export default class ChatOrchestrator implements DispatchListener {
+  private api: ChatAPI;
   private dispatcher: Dispatcher;
   private rootDataStore: RootDataStore;
-
   private windowIsActive: boolean = true;
-
-  private api: ChatAPI;
 
   constructor(dispatcher: Dispatcher, rootDataStore: RootDataStore) {
     this.dispatcher = dispatcher;
@@ -46,23 +44,18 @@ export default class ChatOrchestrator implements DispatchListener {
     this.api = new ChatAPI();
   }
 
-  handleDispatchAction(action: DispatcherAction) {
-    if (action instanceof ChatChannelSwitchAction) {
-      this.changeChannel(action.channelId);
-    } else if (action instanceof ChatChannelPartAction) {
-      this.partChannel(action.channelId);
-    } else if (action instanceof ChatPresenceUpdateAction) {
-      if (this.rootDataStore.uiState.chat.selected === -1) {
-        this.focusNextChannel();
-      }
-    } else if (action instanceof WindowFocusAction) {
-      this.windowIsActive = true;
-      if (this.rootDataStore.channelStore.loaded) {
-        this.markAsRead(this.rootDataStore.uiState.chat.selected);
-      }
-    } else if (action instanceof WindowBlurAction) {
-      this.windowIsActive = false;
-    }
+  addMessages(channelId: number, messages: MessageJSON[]) {
+    const newMessages: Message[] = [];
+
+    transaction(() => {
+      messages.forEach((json: MessageJSON) => {
+        const newMessage = Message.fromJSON(json);
+        newMessage.sender = this.rootDataStore.userStore.getOrCreate(json.sender_id, json.sender);
+        newMessages.push(newMessage);
+      });
+
+      this.rootDataStore.channelStore.addMessages(channelId, newMessages);
+    });
   }
 
   changeChannel(channelId: number) {
@@ -109,35 +102,23 @@ export default class ChatOrchestrator implements DispatchListener {
     }
   }
 
-  partChannel(channelId: number) {
-    const channelStore = this.rootDataStore.channelStore;
-    channelStore.partChannel(channelId);
-
-    this.focusNextChannel();
-
-    if (channelId !== -1) {
-      return this.api.partChannel(channelId, window.currentUser.id)
-        .catch((err) => {
-          console.debug('leaveChannel error', err);
-        });
+  handleDispatchAction(action: DispatcherAction) {
+    if (action instanceof ChatChannelSwitchAction) {
+      this.changeChannel(action.channelId);
+    } else if (action instanceof ChatChannelPartAction) {
+      this.partChannel(action.channelId);
+    } else if (action instanceof ChatPresenceUpdateAction) {
+      if (this.rootDataStore.uiState.chat.selected === -1) {
+        this.focusNextChannel();
+      }
+    } else if (action instanceof WindowFocusAction) {
+      this.windowIsActive = true;
+      if (this.rootDataStore.channelStore.loaded) {
+        this.markAsRead(this.rootDataStore.uiState.chat.selected);
+      }
+    } else if (action instanceof WindowBlurAction) {
+      this.windowIsActive = false;
     }
-  }
-
-  markAsRead(channelId: number) {
-    const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
-    const lastRead = channel.lastMessageId;
-
-    if (!channel.isUnread) {
-      return;
-    }
-
-    this.api.markAsRead(channel.channelId, lastRead)
-      .then(() => {
-        channel.lastReadId = lastRead;
-      })
-      .catch((err) => {
-        console.debug('markAsRead error', err);
-      });
   }
 
   loadChannel(channelId: number): Promise<void> {
@@ -162,17 +143,34 @@ export default class ChatOrchestrator implements DispatchListener {
       });
   }
 
-  addMessages(channelId: number, messages: MessageJSON[]) {
-    const newMessages: Message[] = [];
+  markAsRead(channelId: number) {
+    const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
+    const lastRead = channel.lastMessageId;
 
-    transaction(() => {
-      messages.forEach((json: MessageJSON) => {
-        const newMessage = Message.fromJSON(json);
-        newMessage.sender = this.rootDataStore.userStore.getOrCreate(json.sender_id, json.sender);
-        newMessages.push(newMessage);
+    if (!channel.isUnread) {
+      return;
+    }
+
+    this.api.markAsRead(channel.channelId, lastRead)
+      .then(() => {
+        channel.lastReadId = lastRead;
+      })
+      .catch((err) => {
+        console.debug('markAsRead error', err);
       });
+  }
 
-      this.rootDataStore.channelStore.addMessages(channelId, newMessages);
-    });
+  partChannel(channelId: number) {
+    const channelStore = this.rootDataStore.channelStore;
+    channelStore.partChannel(channelId);
+
+    this.focusNextChannel();
+
+    if (channelId !== -1) {
+      return this.api.partChannel(channelId, window.currentUser.id)
+        .catch((err) => {
+          console.debug('leaveChannel error', err);
+        });
+    }
   }
 }

@@ -22,11 +22,11 @@ import * as moment from 'moment';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 
-interface PropsInterface {
+interface Props {
   messages: Message[];
 }
 
-export default class MessageGroup extends React.Component<PropsInterface, any> {
+export default class MessageGroup extends React.Component<Props, any> {
   render(): React.ReactNode {
     const messages = this.props.messages;
     const sender = messages[0].sender;

@@ -23,10 +23,6 @@ export default class Dispatcher {
   private callbacks: DispatchListener[] = [];
   private trace: boolean = false;
 
-  register(callback: DispatchListener) {
-    this.callbacks.push(callback);
-  }
-
   dispatch(action: DispatcherAction) {
     if (this.trace) {
       console.debug('Dispatcher::dispatch', action);
@@ -34,5 +30,9 @@ export default class Dispatcher {
     this.callbacks.forEach((callback) => {
       callback.handleDispatchAction(action);
     });
+  }
+
+  register(callback: DispatchListener) {
+    this.callbacks.push(callback);
   }
 }

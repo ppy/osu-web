@@ -790,6 +790,11 @@ class User extends Model implements AuthenticatableContract
         return $this->memoized[__FUNCTION__];
     }
 
+    public function canModerate()
+    {
+        return $this->isGMT() || $this->isNAT();
+    }
+
     /**
      * User group to be displayed in preference over other groups.
      *

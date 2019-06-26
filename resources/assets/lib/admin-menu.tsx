@@ -19,11 +19,11 @@
 import AdminMenuItem from 'interfaces/admin-menu-item';
 import * as React from 'react';
 
-interface PropsInterface {
+interface Props {
   items: AdminMenuItem[];
 }
 
-export default class AdminMenu extends React.PureComponent<PropsInterface, {}> {
+export default class AdminMenu extends React.PureComponent<Props> {
   private eventId = `admin-menu-${osu.uuid()}`;
 
   render() {
