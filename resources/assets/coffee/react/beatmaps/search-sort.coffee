@@ -20,7 +20,7 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, a, i, span } from 'react-dom-factories'
 el = React.createElement
-controller = core.beatmapSearchController
+controller = core.beatmapsetSearchController
 
 export class SearchSort extends React.PureComponent
   render: =>

@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { BeatmapSearch } from 'beatmaps/beatmap-search';
+import { BeatmapsetSearch } from 'beatmaps/beatmapset-search';
 import Dispatcher from 'dispatcher';
 import { BeatmapsetStore } from './beatmapset-store';
 import ChannelStore from './channel-store';
@@ -24,7 +24,7 @@ import UIStateStore from './ui-state-store';
 import UserStore from './user-store';
 
 export default class RootDataStore {
-  beatmapSearch: BeatmapSearch;
+  beatmapsetSearch: BeatmapsetSearch;
   beatmapsetStore: BeatmapsetStore;
   channelStore: ChannelStore;
   uiState: UIStateStore;
@@ -34,7 +34,7 @@ export default class RootDataStore {
     // TODO: needs re-re-refactoring
     this.uiState = new UIStateStore(this, dispatcher);
     this.beatmapsetStore = new BeatmapsetStore(this, dispatcher);
-    this.beatmapSearch = new BeatmapSearch(this.beatmapsetStore, dispatcher);
+    this.beatmapsetSearch = new BeatmapsetSearch(this.beatmapsetStore, dispatcher);
     this.channelStore = new ChannelStore(this, dispatcher);
     this.userStore = new UserStore(this, dispatcher);
   }

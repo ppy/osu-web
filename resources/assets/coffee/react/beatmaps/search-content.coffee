@@ -29,7 +29,7 @@ import { a, div, p } from 'react-dom-factories'
 import VirtualList from 'react-virtual-list'
 
 el = React.createElement
-controller = core.beatmapSearchController
+controller = core.beatmapsetSearchController
 
 ITEM_HEIGHT = 205 # needs to be known in advance to calculate size of virtual scrolling area.
 

@@ -16,8 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { BeatmapSearchFilters, BeatmapSearchParams } from 'beatmap-search-filters';
-import { BeatmapSearch, SearchResponse } from 'beatmaps/beatmap-search';
+import { BeatmapsetSearch, SearchResponse } from 'beatmaps/beatmapset-search';
+import { BeatmapsetSearchFilters, BeatmapsetSearchParams } from 'beatmapset-search-filters';
 import { debounce, intersection, map } from 'lodash';
 import { action, computed, IObjectDidChange, IValueDidChange, Lambda, observable, observe, runInAction } from 'mobx';
 
@@ -31,10 +31,10 @@ export interface SearchStatus {
     ;
 }
 
-export class BeatmapSearchController {
+export class BeatmapsetSearchController {
   // the list that gets displayed while new searches are loading.
   @observable currentBeatmapsets!: any[];
-  @observable filters!: BeatmapSearchFilters;
+  @observable filters!: BeatmapsetSearchFilters;
   @observable hasMore = false; // TODO: figure out how to make this computed
   @observable isExpanded!: boolean;
 
@@ -47,9 +47,9 @@ export class BeatmapSearchController {
   private readonly debouncedSearch = debounce(this.filterChangedSearch, 500);
   private filtersObserver!: Lambda;
 
-  constructor(private beatmapSearch: BeatmapSearch) {
+  constructor(private beatmapsetSearch: BeatmapsetSearch) {
     this.restoreStateFromUrl();
-    this.currentBeatmapsets = this.beatmapSearch.getBeatmapsets(this.filters);
+    this.currentBeatmapsets = this.beatmapsetSearch.getBeatmapsets(this.filters);
   }
 
   @computed
@@ -74,7 +74,7 @@ export class BeatmapSearchController {
 
   @computed
   get recommendedDifficulty() {
-    return this.beatmapSearch.recommendedDifficulties.get(this.filters.mode);
+    return this.beatmapsetSearch.recommendedDifficulties.get(this.filters.mode);
   }
 
   @computed
@@ -88,11 +88,11 @@ export class BeatmapSearchController {
   @action
   cancel() {
     this.debouncedSearch.cancel();
-    this.beatmapSearch.cancel();
+    this.beatmapsetSearch.cancel();
   }
 
   initialize(data: SearchResponse) {
-    this.beatmapSearch.initialize(this.filters, data);
+    this.beatmapsetSearch.initialize(this.filters, data);
   }
 
   @action
@@ -123,13 +123,13 @@ export class BeatmapSearchController {
     };
 
     try {
-      const data = await this.beatmapSearch.get(this.filters, from);
+      const data = await this.beatmapsetSearch.get(this.filters, from);
 
       runInAction(() => {
         this.searchStatus = { state: 'completed', error: null, from };
         this.hasMore = data.hasMore && data.beatmapsets.length < data.total;
 
-        this.currentBeatmapsets = this.beatmapSearch.getBeatmapsets(this.filters);
+        this.currentBeatmapsets = this.beatmapsetSearch.getBeatmapsets(this.filters);
       });
     } catch (error) {
       runInAction(() => {
@@ -143,12 +143,12 @@ export class BeatmapSearchController {
   }
 
   @action
-  updateFilters(newFilters: Partial<BeatmapSearchParams>) {
+  updateFilters(newFilters: Partial<BeatmapsetSearchParams>) {
     this.filters.update(newFilters);
   }
 
   private filterChangedHandler = (change: IObjectDidChange) => {
-    const valueChange = change as IValueDidChange<BeatmapSearchFilters>; // actual object is a union of types.
+    const valueChange = change as IValueDidChange<BeatmapsetSearchFilters>; // actual object is a union of types.
     if (valueChange.oldValue === valueChange.newValue) { return; }
 
     this.searchStatus.state = 'input';
@@ -174,7 +174,7 @@ export class BeatmapSearchController {
     if (this.filtersObserver != null) {
       this.filtersObserver();
     }
-    this.filters = new BeatmapSearchFilters(location.href);
+    this.filters = new BeatmapsetSearchFilters(location.href);
     this.filtersObserver = observe(this.filters, this.filterChangedHandler);
 
     this.isExpanded = intersection(Object.keys(filtersFromUrl), BeatmapsetFilter.expand).length > 0;

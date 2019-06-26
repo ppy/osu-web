@@ -23,9 +23,9 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { SearchContent } from 'react/beatmaps/search-content';
-import { SearchStatus } from './beatmap-search-controller';
+import { SearchStatus } from './beatmapset-search-controller';
 
-const controller = core.beatmapSearchController;
+const controller = core.beatmapsetSearchController;
 
 interface Props {
   availableFilters: AvailableFilters;

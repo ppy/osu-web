@@ -63,4 +63,4 @@ export class Paginator extends React.PureComponent
 
 
   showMore: (e) ->
-    core.beatmapSearchController.loadMore()
+    core.beatmapsetSearchController.loadMore()

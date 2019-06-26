@@ -20,7 +20,7 @@ import { action, computed, observable } from 'mobx';
 
 type filterValueType = string | null;
 
-export interface BeatmapSearchParams {
+export interface BeatmapsetSearchParams {
   extra: filterValueType;
   general: filterValueType;
   genre: filterValueType;
@@ -35,7 +35,7 @@ export interface BeatmapSearchParams {
   [key: string]: any;
 }
 
-export class BeatmapSearchFilters implements BeatmapSearchParams {
+export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   @observable extra: filterValueType = null;
   @observable general: filterValueType = null;
   @observable genre: filterValueType = null;
@@ -107,7 +107,7 @@ export class BeatmapSearchFilters implements BeatmapSearchParams {
   }
 
   @action
-  update(newFilters: Partial<BeatmapSearchParams>) {
+  update(newFilters: Partial<BeatmapsetSearchParams>) {
     if (newFilters.query !== undefined && newFilters.query !== this.query
       || newFilters.status !== undefined && newFilters.status !== this.status) {
       this.sort = null;
@@ -129,6 +129,6 @@ export class BeatmapSearchFilters implements BeatmapSearchParams {
     values.query = this.sanitizedQuery;
     delete values.sanitizedQuery;
 
-    return values as BeatmapSearchParams;
+    return values as BeatmapsetSearchParams;
   }
 }

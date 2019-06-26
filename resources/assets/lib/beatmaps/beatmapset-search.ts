@@ -18,8 +18,8 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
-import { BeatmapSearchFilters } from 'beatmap-search-filters';
 import SearchResults from 'beatmaps/search-results';
+import { BeatmapsetSearchFilters } from 'beatmapset-search-filters';
 import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
@@ -38,7 +38,7 @@ interface ResultSet extends SearchResults {
   fetchedAt?: Date;
 }
 
-export class BeatmapSearch implements DispatchListener {
+export class BeatmapsetSearch implements DispatchListener {
   static CACHE_DURATION_MS = 60000;
 
   @observable readonly recommendedDifficulties = new Map<string|null, number>();
@@ -57,7 +57,7 @@ export class BeatmapSearch implements DispatchListener {
   }
 
   @action
-  get(filters: BeatmapSearchFilters, from = 0): Promise<SearchResults> {
+  get(filters: BeatmapsetSearchFilters, from = 0): Promise<SearchResults> {
     if (from < 0) {
       throw Error('from must be > 0');
     }
@@ -84,7 +84,7 @@ export class BeatmapSearch implements DispatchListener {
     });
   }
 
-  getBeatmapsets(filters: BeatmapSearchFilters) {
+  getBeatmapsets(filters: BeatmapsetSearchFilters) {
     const key = filters.toKeyString();
 
     return this.getOrCreate(key).beatmapsets;
@@ -98,7 +98,7 @@ export class BeatmapSearch implements DispatchListener {
   }
 
   @action
-  initialize(filters: BeatmapSearchFilters, data: SearchResponse) {
+  initialize(filters: BeatmapsetSearchFilters, data: SearchResponse) {
     this.updateBeatmapsetStore(data);
 
     const key = filters.toKeyString();
@@ -135,7 +135,7 @@ export class BeatmapSearch implements DispatchListener {
     this.recommendedDifficulties.clear();
   }
 
-  private fetch(filters: BeatmapSearchFilters, from: number) {
+  private fetch(filters: BeatmapsetSearchFilters, from: number) {
     this.cancel();
 
     const params = filters.queryParams;
@@ -179,7 +179,7 @@ export class BeatmapSearch implements DispatchListener {
   private isExpired(resultSet: ResultSet) {
     if (resultSet.fetchedAt == null) { return true; }
 
-    return new Date().getTime() - resultSet.fetchedAt.getTime() > BeatmapSearch.CACHE_DURATION_MS;
+    return new Date().getTime() - resultSet.fetchedAt.getTime() > BeatmapsetSearch.CACHE_DURATION_MS;
   }
 
   /**
