@@ -23,7 +23,7 @@ import SearchResults from 'beatmaps/search-results';
 import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
-import { action, observable } from 'mobx';
+import { action, observable, runInAction } from 'mobx';
 import { BeatmapsetStore } from 'stores/beatmapset-store';
 
 export interface SearchResponse {
@@ -70,19 +70,21 @@ export class BeatmapSearch implements DispatchListener {
     }
 
     return this.fetch(filters, from).then((data: SearchResponse) => {
-      this.updateBeatmapsetStore(data);
+      runInAction(() => {
+        this.updateBeatmapsetStore(data);
 
-      if (from === 0) {
-        this.reset(key);
-      }
+        if (from === 0) {
+          this.reset(key);
+        }
 
-      if (data.beatmapsets != null) {
-        this.append(key, data);
-      }
+        if (data.beatmapsets != null) {
+          this.append(key, data);
+        }
 
-      results.fetchedAt = new Date();
+        results.fetchedAt = new Date();
 
-      this.recommendedDifficulties.set(filters.mode, data.recommended_difficulty);
+        this.recommendedDifficulties.set(filters.mode, data.recommended_difficulty);
+      });
 
       return results;
     });
