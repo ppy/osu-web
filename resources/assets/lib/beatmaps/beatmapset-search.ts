@@ -63,16 +63,16 @@ export class BeatmapsetSearch implements DispatchListener {
     }
 
     const key = filters.toKeyString();
-    const results = this.getOrCreate(key);
-    const sufficient = (from > 0 && from < results.beatmapsets.length) || (from === 0 && !this.isExpired(results));
+    const resultSet = this.getOrCreate(key);
+    const sufficient = (from > 0 && from < resultSet.beatmapsets.length) || (from === 0 && !this.isExpired(resultSet));
     if (sufficient) {
-      return Promise.resolve(results);
+      return Promise.resolve(resultSet);
     }
 
     return this.fetch(filters, from).then((data: SearchResponse) => {
       runInAction(() => {
         if (from === 0) {
-          this.reset(key);
+          this.reset(resultSet);
         }
 
         this.updateBeatmapsetStore(data);
@@ -80,7 +80,7 @@ export class BeatmapsetSearch implements DispatchListener {
         this.recommendedDifficulties.set(filters.mode, data.recommended_difficulty);
       });
 
-      return results;
+      return resultSet;
     });
   }
 
@@ -188,10 +188,7 @@ export class BeatmapsetSearch implements DispatchListener {
    *
    * @param key toKeyString() value of filters.
    */
-  private reset(key: string) {
-    const resultSet = this.resultSets.get(key);
-    if (resultSet == null) { return; }
-
+  private reset(resultSet: ResultSet) {
     resultSet.beatmapsets = [];
     resultSet.fetchedAt = undefined;
     resultSet.cursors = undefined;
