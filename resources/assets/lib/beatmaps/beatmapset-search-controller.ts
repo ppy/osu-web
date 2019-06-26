@@ -44,7 +44,7 @@ export class BeatmapsetSearchController {
     state: 'completed',
   };
 
-  private readonly debouncedSearch = debounce(this.filterChangedSearch, 500);
+  private readonly debouncedFilterChangedSearch = debounce(this.filterChangedSearch, 500);
   private filtersObserver!: Lambda;
 
   constructor(private beatmapsetSearch: BeatmapsetSearch) {
@@ -87,7 +87,7 @@ export class BeatmapsetSearchController {
 
   @action
   cancel() {
-    this.debouncedSearch.cancel();
+    this.debouncedFilterChangedSearch.cancel();
     this.beatmapsetSearch.cancel();
   }
 
@@ -154,11 +154,11 @@ export class BeatmapsetSearchController {
     if (change.name === 'sort' && valueChange.newValue == null) { return; }
 
     this.searchStatus.state = 'input';
-    this.debouncedSearch();
+    this.debouncedFilterChangedSearch();
     // not sure if observing change of private variable is a good idea
     // but computed value doesn't show up here
     if (change.name !== 'sanitizedQuery') {
-      this.debouncedSearch.flush();
+      this.debouncedFilterChangedSearch.flush();
     }
   }
 
