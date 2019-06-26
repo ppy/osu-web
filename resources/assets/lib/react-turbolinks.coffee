@@ -24,8 +24,12 @@ export class ReactTurbolinks
     @documentReady = false
     @targets = []
     $(document).on 'turbolinks:load', =>
+      # Delayed to wait until cacheSnapshot finishes.
+      @persistedTargets = @targets
+      @targets = []
+      Timeout.set 1, @destroyPersisted
+
       @documentReady = true
-      @destroyPersisted()
       @boot()
     $(document).on 'turbolinks:before-cache', =>
       @documentReady = false
@@ -52,7 +56,7 @@ export class ReactTurbolinks
 
 
   destroyPersisted: =>
-    ReactDOM.unmountComponentAtNode(target) while target = @targets.pop()
+    ReactDOM.unmountComponentAtNode(target) while target = @persistedTargets.pop()
 
 
   register: (name, element, propsFunction = ->) =>
