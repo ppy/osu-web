@@ -35,8 +35,6 @@ export interface SearchResponse {
 }
 
 export class BeatmapsetSearch implements DispatchListener {
-  static CACHE_DURATION_MS = 60000;
-
   @observable readonly recommendedDifficulties = new Map<string|null, number>();
   @observable readonly resultSets = new Map<string, ResultSet>();
 
@@ -60,7 +58,7 @@ export class BeatmapsetSearch implements DispatchListener {
 
     const key = filters.toKeyString();
     const resultSet = this.getOrCreate(key);
-    const sufficient = (from > 0 && from < resultSet.beatmapsets.length) || (from === 0 && !this.isExpired(resultSet));
+    const sufficient = (from > 0 && from < resultSet.beatmapsets.length) || (from === 0 && !resultSet.isExpired);
     if (sufficient) {
       return Promise.resolve(resultSet);
     }
@@ -68,11 +66,11 @@ export class BeatmapsetSearch implements DispatchListener {
     return this.fetch(filters, from).then((data: SearchResponse) => {
       runInAction(() => {
         if (from === 0) {
-          this.reset(resultSet);
+          resultSet.reset();
         }
 
         this.updateBeatmapsetStore(data);
-        this.append(resultSet, data);
+        resultSet.append(data, this.beatmapsetStore);
         this.recommendedDifficulties.set(filters.mode, data.recommended_difficulty);
       });
 
@@ -104,23 +102,8 @@ export class BeatmapsetSearch implements DispatchListener {
       return;
     }
 
-    this.append(resultSet, data);
+    resultSet.append(data, this.beatmapsetStore);
     this.recommendedDifficulties.set(filters.mode, data.recommended_difficulty);
-  }
-
-  private append(resultSet: ResultSet, data: SearchResponse) {
-    const beatmapsets = resultSet.beatmapsets;
-    for (const beatmapset of data.beatmapsets) {
-      const item = this.beatmapsetStore.get(beatmapset.id);
-      if (item) {
-        beatmapsets.push(item);
-      }
-    }
-
-    resultSet.cursors = data.cursor;
-    resultSet.fetchedAt = new Date();
-    resultSet.hasMore = data.cursor !== null;
-    resultSet.total = data.total; // TODO: total shouldn't be updated for snapshot?
   }
 
   @action
@@ -164,26 +147,6 @@ export class BeatmapsetSearch implements DispatchListener {
     }
 
     return resultSet;
-  }
-
-  private isExpired(resultSet: ResultSet) {
-    if (resultSet.fetchedAt == null) { return true; }
-
-    return new Date().getTime() - resultSet.fetchedAt.getTime() > BeatmapsetSearch.CACHE_DURATION_MS;
-  }
-
-  /**
-   * Resets the entry at the given key.
-   * It does not delete and recreate the entry as that is confusing for callers.
-   *
-   * @param key toKeyString() value of filters.
-   */
-  private reset(resultSet: ResultSet) {
-    resultSet.beatmapsets = [];
-    resultSet.fetchedAt = undefined;
-    resultSet.cursors = undefined;
-    resultSet.hasMore = false;
-    resultSet.total = 0;
   }
 
   private updateBeatmapsetStore(response: SearchResponse) {

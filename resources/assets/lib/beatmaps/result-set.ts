@@ -16,14 +16,49 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { SearchResponse } from 'beatmaps/beatmapset-search';
 import SearchResults from 'beatmaps/search-results';
 import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
-import { observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
+import { BeatmapsetStore } from 'stores/beatmapset-store';
 
 export default class ResultSet implements SearchResults {
+  static CACHE_DURATION_MS = 60000;
+
   @observable beatmapsets: BeatmapsetJSON[] = [];
   cursors?: JSON; // null -> end; undefined -> not set yet.
   fetchedAt?: Date;
   @observable hasMore = false;
   @observable total = 0;
+
+  @computed
+  get isExpired() {
+    if (this.fetchedAt == null) { return true; }
+
+    return new Date().getTime() - this.fetchedAt.getTime() > ResultSet.CACHE_DURATION_MS;
+  }
+
+  @action
+  append(data: SearchResponse, beatmapsetStore: BeatmapsetStore) {
+    for (const beatmapset of data.beatmapsets) {
+      const item = beatmapsetStore.get(beatmapset.id);
+      if (item) {
+        this.beatmapsets.push(item);
+      }
+    }
+
+    this.cursors = data.cursor;
+    this.fetchedAt = new Date();
+    this.hasMore = data.cursor !== null;
+    this.total = data.total; // TODO: total shouldn't be updated for snapshot?
+  }
+
+  @action
+  reset() {
+    this.beatmapsets = [];
+    this.fetchedAt = undefined;
+    this.cursors = undefined;
+    this.hasMore = false;
+    this.total = 0;
+  }
 }
