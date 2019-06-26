@@ -208,6 +208,11 @@
     margin: 0;
   }
 
+
+  &__description-link {
+    .link-default();
+  }
+
   &__link {
     .link-white();
 
@@ -251,10 +256,6 @@
     color: #fff;
 
     font-style: italic;
-
-    > a {
-      .link-default();
-    }
 
     @media @desktop {
       font-size: @font-size--header-title;
