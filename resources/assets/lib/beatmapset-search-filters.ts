@@ -51,8 +51,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
 
   constructor(url: string) {
     const filters = BeatmapsetFilter.filtersFromUrl(url);
-    // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
-    for (let key of Object.keys(filters)) {
+    for (const key of Object.keys(filters)) {
       this[key] = filters[key];
     }
   }
@@ -95,8 +94,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
 
     const normalized = BeatmapsetFilter.fillDefaults(values) as any;
     const parts = [];
-    // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
-    for (let key of Object.keys(normalized)) {
+    for (const key of Object.keys(normalized)) {
       parts.push(`${key}=${normalized[key]}`);
     }
 
@@ -110,8 +108,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
       this.sort = null;
     }
 
-    // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
-    for (let key of Object.keys(newFilters)) {
+    for (const key of Object.keys(newFilters)) {
       this[key] = newFilters[key];
     }
   }
