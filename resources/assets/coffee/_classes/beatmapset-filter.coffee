@@ -132,7 +132,7 @@ class @BeatmapsetFilter
     charParams
 
 
-  # For UI purposes; server-side has it's own check.
+  # For UI purposes; server-side has its own check.
   @supporterRequired: (filters) ->
     _.reject ['played', 'rank'], (name) =>
       _.isEmpty(filters[name]) || filters[name] == @getDefault(filters, name)
