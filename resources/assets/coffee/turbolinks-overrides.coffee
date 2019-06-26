@@ -49,7 +49,9 @@ Turbolinks.HttpRequest::requestLoaded = ->
 Turbolinks.Controller::advanceHistory = (url) ->
   return if url == document.location.href
 
-  @cacheSnapshot()
+  snapshot = @view.getSnapshot()
+  location = @lastRenderedLocation
+  @cache.put location, snapshot.clone()
   @lastRenderedLocation = Turbolinks.Location.wrap(url)
   @pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
 
