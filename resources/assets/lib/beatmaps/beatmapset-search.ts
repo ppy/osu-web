@@ -143,12 +143,12 @@ export class BeatmapsetSearch implements DispatchListener {
     const cursor = this.getOrCreate(key).cursors;
 
     // undefined cursor should just do a cursorless query.
-    if (from > 0 && cursor === null) {
+    if (from > 0) {
+      if (cursor != null) {
+        params.cursor = cursor;
+      } else if (cursor === null) {
       return Promise.resolve({});
     }
-
-    if (cursor != null) {
-      params.cursor = cursor;
     }
 
     const url = laroute.route('beatmapsets.search');
