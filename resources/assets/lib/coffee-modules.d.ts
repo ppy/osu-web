@@ -1,6 +1,17 @@
 /* tslint:disable:max-classes-per-file */
 
 // importable coffeescript modules
+declare module 'back-to-top' {
+  interface Props {
+    anchor: React.RefObject<{}>;
+    ref: React.RefObject<{}>;
+  }
+
+  class BackToTop extends React.PureComponent<Props> {
+    reset(): void;
+  }
+}
+
 declare module 'block-button' {
   interface Props {
     modifiers?: string[];
@@ -69,6 +80,17 @@ declare module 'popup-menu' {
   }
 
   class PopupMenu extends React.PureComponent<Props, any> {}
+}
+
+declare module 'react/beatmaps/search-content' {
+  import AvailableFilters from 'beatmaps/available-filters';
+
+  interface Props {
+    availableFilters: AvailableFilters;
+    backToTopAnchor: React.RefObject<{}>;
+  }
+
+  class SearchContent extends React.PureComponent<Props> {}
 }
 
 declare module 'report-form' {

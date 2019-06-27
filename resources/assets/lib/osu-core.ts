@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controller';
 import { UserJSON } from 'chat/chat-api-responses';
 import ChatOrchestrator from 'chat/chat-orchestrator';
 import ChatWorker from 'chat/chat-worker';
@@ -32,6 +33,7 @@ declare global {
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
+  beatmapsetSearchController: BeatmapsetSearchController;
   chatOrchestrator: ChatOrchestrator;
   chatWorker: ChatWorker;
   dataStore: RootDataStore;
@@ -50,6 +52,8 @@ export default class OsuCore {
     this.chatOrchestrator = new ChatOrchestrator(this.dispatcher, this.dataStore);
     this.userLoginObserver = new UserLoginObserver(this.window, this.dispatcher);
     this.windowFocusObserver = new WindowFocusObserver(this.window, this.dispatcher);
+
+    this.beatmapsetSearchController = new BeatmapsetSearchController(this.dataStore.beatmapsetSearch);
 
     // script could load before currentUser is set, so wait until page loaded.
     $(document).on('turbolinks:load.osu-core', () => {
