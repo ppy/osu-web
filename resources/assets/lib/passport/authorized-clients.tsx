@@ -21,6 +21,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import { Client } from 'passport/client';
 import * as React from 'react';
+import { UserLink } from 'user-link';
 
 const store = core.dataStore.clientStore;
 
@@ -48,7 +49,10 @@ export class AuthorizedClients extends React.Component {
       <div className='authorized-client'>
         <div className='authorized-client__details'>
           <div className='authorized-client__name'>{client.name}</div>
-          <span className='authorized-client__owner'>{`Owner: ${client.userId}`}</span>
+          <span className='authorized-client__owner'>
+            Owner:
+            <UserLink id={client.userId} name={client.userId + ''} />
+          </span>
           {this.renderPermissions(client)}
           </div>
         <div className='authorized-client__actions'>
