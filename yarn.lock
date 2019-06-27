@@ -2311,9 +2311,9 @@ cli-width@^2.0.0:
   integrity sha1-/xnt6Kml5XkyQUewwR8PvLq+1jk=
 
 clipboard-polyfill@^2.3.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/clipboard-polyfill/-/clipboard-polyfill-2.7.0.tgz#4f4344bb3405f88609ccf8ee2d445018da0e318f"
-  integrity sha512-JUQ9Q32xetbWG3e3tdYbP4uB13YeMz79AWg4SiPLVbu4s6pv2q70R8uXDtA8UD3f2BKQeTDD5ApoqRCs29RDlw==
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/clipboard-polyfill/-/clipboard-polyfill-2.8.1.tgz#a53fb77e9d8bac0a3db6792f5815a8979e585f61"
+  integrity sha512-2qclMYSM/L5Wv8mNeF2rvvtaKFJiG3y5mI2wwsFIUt0yE2hWjNg6qvsRo6D8TTaLTNXDfEI47TyaxSxjwD8ADQ==
 
 cliui@^4.0.0:
   version "4.1.0"
