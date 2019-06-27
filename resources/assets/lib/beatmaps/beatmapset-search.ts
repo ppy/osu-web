@@ -117,7 +117,7 @@ export class BeatmapsetSearch implements DispatchListener {
 
     const params = filters.queryParams;
     const key = filters.toKeyString();
-    const cursor = this.getOrCreate(key).cursors;
+    const cursor = this.getOrCreate(key).cursor;
 
     // undefined cursor should just do a cursorless query.
     if (from > 0) {

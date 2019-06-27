@@ -24,7 +24,7 @@ export default class ResultSet implements SearchResults {
   static CACHE_DURATION_MS = 60000;
 
   @observable beatmapsetIds: number[] = [];
-  cursors?: JSON; // null -> end; undefined -> not set yet.
+  cursor?: JSON; // null -> end; undefined -> not set yet.
   fetchedAt?: Date;
   @observable hasMore = false;
   @observable total = 0;
@@ -47,7 +47,7 @@ export default class ResultSet implements SearchResults {
       this.beatmapsetIds.push(beatmapset.id);
     }
 
-    this.cursors = data.cursor;
+    this.cursor = data.cursor;
     this.fetchedAt = new Date();
     this.hasMore = data.cursor !== null;
     this.total = data.total; // TODO: total shouldn't be updated for snapshot?
@@ -57,7 +57,7 @@ export default class ResultSet implements SearchResults {
   reset() {
     this.beatmapsetIds = [];
     this.fetchedAt = undefined;
-    this.cursors = undefined;
+    this.cursor = undefined;
     this.hasMore = false;
     this.total = 0;
   }
