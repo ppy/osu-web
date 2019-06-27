@@ -16,23 +16,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
-import Dispatcher from './dispatcher';
+import { Main } from 'beatmaps/main';
+import core from 'osu-core-singleton';
 
-export default class UserLoginObserver {
-  private dispatcher: Dispatcher;
-
-  constructor(window: Window, dispatcher: Dispatcher) {
-    this.dispatcher = dispatcher;
-    $(window.document).on('ajax:success', '.js-logout-link', this.userLogout);
-    $(window.document).on('ajax:success', '.js-login-form', this.userLogin);
+reactTurbolinks.registerPersistent('beatmaps', Main, true, () => {
+  const beatmapsets = osu.parseJson('json-beatmaps', true);
+  if (beatmapsets != null) {
+    core.beatmapsetSearchController.initialize(beatmapsets);
   }
 
-  userLogin = () => {
-    this.dispatcher.dispatch(new UserLoginAction());
-  }
+  // includes an initial search to load the pre-initialized data properly.
+  core.beatmapsetSearchController.restoreTurbolinks();
 
-  userLogout = () => {
-    this.dispatcher.dispatch(new UserLogoutAction());
-  }
-}
+  return {
+    availableFilters: osu.parseJson('json-filters'),
+  };
+});

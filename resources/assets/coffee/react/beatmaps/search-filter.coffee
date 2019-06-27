@@ -16,9 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, a, span } from 'react-dom-factories'
 el = React.createElement
+controller = core.beatmapsetSearchController
 
 export class SearchFilter extends React.PureComponent
   constructor: (props) ->
@@ -61,14 +63,14 @@ export class SearchFilter extends React.PureComponent
   href: ({ id }) =>
     updatedFilter = {}
     updatedFilter[@props.name] = @newSelection(id)
-    filters = _.assign {}, @props.filters, updatedFilter
+    filters = _.assign {}, @props.filters.values, updatedFilter
 
     osu.updateQueryString null, BeatmapsetFilter.queryParamsFromFilters(filters)
 
 
   select: (e) =>
     e.preventDefault()
-    $(document).trigger 'beatmap:search:filtered', "#{@props.name}": @newSelection(e.target.dataset.filterValue)
+    controller.updateFilters "#{@props.name}": @newSelection(e.target.dataset.filterValue) ? null
 
 
   # TODO: rename
@@ -77,7 +79,7 @@ export class SearchFilter extends React.PureComponent
     if @props.multiselect
       _(@currentSelection())[if @selected(i) then 'without' else 'concat'](i).sort().join('.')
     else
-      if @selected(i) then @props.default else i
+      if @selected(i) then BeatmapsetFilter.defaults[id] else i
 
 
   selected: (i) =>

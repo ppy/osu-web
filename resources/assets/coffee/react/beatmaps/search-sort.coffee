@@ -16,9 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, a, i, span } from 'react-dom-factories'
 el = React.createElement
+controller = core.beatmapsetSearchController
 
 export class SearchSort extends React.PureComponent
   render: =>
@@ -56,11 +58,11 @@ export class SearchSort extends React.PureComponent
     if !_.isEmpty(@props.filters.query)
       fields.relevance = true
 
-    if @props.filters.status in [4, 5]
+    if @props.filters.status in ['graveyard', 'pending']
       fields.updated = true
       fields.nominations = true
       fields.plays = false
-    else if @props.filters.status == 6
+    else if @props.filters.status == 'mine'
       fields.updated = true
       fields.ranked = true
     else
@@ -80,7 +82,7 @@ export class SearchSort extends React.PureComponent
     else
       order = 'desc'
 
-    $(document).trigger 'beatmap:search:filtered', sort: "#{field}_#{order}"
+    controller.updateFilters sort: "#{field}_#{order}"
 
 
   selected: (field) =>

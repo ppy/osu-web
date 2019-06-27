@@ -76,6 +76,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'is_limited_bn' => $user->isLimitedBN(),
             'is_bot' => $user->isBot(),
             'is_active' => $user->isActive(),
+            'can_moderate' => $user->canModerate(),
             'interests' => $user->user_interests,
             'occupation' => $user->user_occ,
             'title' => $user->title(),
@@ -226,17 +227,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     public function includePreviousUsernames(User $user)
     {
         return $this->item($user, function ($user) {
-            return $user
-                ->usernameChangeHistory()
-                ->visible()
-                ->select(['username_last', 'timestamp'])
-                ->withPresent('username_last')
-                ->where('username_last', '<>', $user->username)
-                ->orderBy('timestamp', 'ASC')
-                ->get()
-                ->pluck('username_last')
-                ->unique()
-                ->toArray();
+            return $user->previousUsernames()->unique()->toArray();
         });
     }
 

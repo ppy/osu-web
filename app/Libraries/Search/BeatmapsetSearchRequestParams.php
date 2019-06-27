@@ -22,11 +22,29 @@ namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\Sort;
 use App\Models\Beatmap;
+use App\Models\Genre;
+use App\Models\Language;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 {
+    const AVAILABLE_STATUSES = ['any', 'leaderboard', 'ranked', 'qualified', 'loved', 'favourites', 'pending', 'graveyard', 'mine'];
+    const AVAILABLE_EXTRAS = ['video', 'storyboard'];
+    const AVAILABLE_GENERAL = ['recommended', 'converts'];
+    const AVAILABLE_PLAYED = ['any', 'played', 'unplayed'];
+    const AVAILABLE_RANKS = ['XH', 'X', 'SH', 'S', 'A', 'B', 'C', 'D'];
+
+    const LEGACY_STATUS_MAP = [
+        '0' => 'ranked',
+        '2' => 'favourites',
+        '3' => 'qualified',
+        '4' => 'pending',
+        '5' => 'graveyard',
+        '6' => 'mine',
+        '7' => 'any',
+    ];
+
     public function __construct(Request $request, ?User $user = null)
     {
         parent::__construct();
@@ -43,7 +61,10 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         if ($this->user !== null) {
             $this->queryString = es_query_escape_with_caveats($request['q'] ?? $request['query']);
-            $this->status = get_int($request['s']) ?? 0;
+
+            $status = presence($request['s']);
+            $this->status = static::LEGACY_STATUS_MAP[$status] ?? $status;
+
             $this->genre = get_int($request['g']);
             $this->language = get_int($request['l']);
             $this->extra = array_intersect(
@@ -73,6 +94,45 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         if (!in_array($this->playedFilter, static::PLAYED_STATES, true)) {
             $this->playedFilter = null;
         }
+    }
+
+    public static function getAvailableFilters()
+    {
+        $languages = Language::listing();
+        $genres = Genre::listing();
+
+        $modes = [['id' => null, 'name' => trans('beatmaps.mode.any')]];
+        foreach (Beatmap::MODES as $name => $id) {
+            $modes[] = ['id' => $id, 'name' => trans("beatmaps.mode.{$name}")];
+        }
+
+        $extras = [];
+        $general = [];
+        $played = [];
+        $ranks = [];
+        $statuses = [];
+
+        foreach (static::AVAILABLE_EXTRAS as $id) {
+            $extras[] = ['id' => $id, 'name' => trans("beatmaps.extra.{$id}")];
+        }
+
+        foreach (static::AVAILABLE_GENERAL as $id) {
+            $general[] = ['id' => $id, 'name' => trans("beatmaps.general.{$id}")];
+        }
+
+        foreach (static::AVAILABLE_PLAYED as $id) {
+            $played[] = ['id' => $id, 'name' => trans("beatmaps.played.{$id}")];
+        }
+
+        foreach (static::AVAILABLE_RANKS as $id) {
+            $ranks[] = ['id' => $id, 'name' => trans("beatmaps.rank.{$id}")];
+        }
+
+        foreach (static::AVAILABLE_STATUSES as $id) {
+            $statuses[] = ['id' => $id, 'name' => trans("beatmaps.status.{$id}")];
+        }
+
+        return compact('extras', 'general', 'genres', 'languages', 'modes', 'played', 'ranks', 'statuses');
     }
 
     private function getDefaultSort(string $order) : array
