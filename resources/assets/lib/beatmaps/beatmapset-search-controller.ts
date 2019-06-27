@@ -25,6 +25,7 @@ import { action, computed, IObjectDidChange, IValueDidChange, Lambda, observable
 export interface SearchStatus {
   error?: any;
   from: number;
+  restore?: boolean;
   state: 'completed' // search not doing anything
     | 'input'        // receiving input but not searching
     | 'paging'       // getting more pages
@@ -117,18 +118,19 @@ export class BeatmapsetSearchController {
   @action
   restoreTurbolinks() {
     this.restoreStateFromUrl();
-    this.search();
+    this.search(0, true);
   }
 
   @action
-  async search(from = 0) {
+  async search(from = 0, restore = false) {
     if (this.isSupporterMissing || from < 0) {
-      this.searchStatus = { state: 'completed', error: null, from };
+      this.searchStatus = { state: 'completed', error: null, from, restore };
       return;
     }
 
     this.searchStatus = {
-      from,
+      from: 0,
+      restore,
       state: from === 0 ? 'searching' : 'paging',
     };
 
@@ -136,15 +138,15 @@ export class BeatmapsetSearchController {
       await this.beatmapsetSearch.get(this.filters, from);
 
       runInAction(() => {
-        this.searchStatus = { state: 'completed', error: null, from };
+        this.searchStatus = { state: 'completed', error: null, from, restore };
         this.currentResultSet = this.beatmapsetSearch.getResultSet(this.filters);
       });
     } catch (error) {
       runInAction(() => {
         if (error.readyState !== 0) {
-          this.searchStatus = { state: 'completed', error, from };
+          this.searchStatus = { state: 'completed', error, from, restore };
         } else {
-          this.searchStatus = { state: 'completed', error: null, from };
+          this.searchStatus = { state: 'completed', error: null, from, restore };
         }
       });
     }

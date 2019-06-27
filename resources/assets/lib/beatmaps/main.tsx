@@ -18,6 +18,7 @@
 
 import { BackToTop } from 'back-to-top';
 import AvailableFilters from 'beatmaps/available-filters';
+import { isEqual } from 'lodash';
 import { IValueDidChange, Lambda, observe } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
@@ -41,10 +42,10 @@ export class Main extends React.Component<Props> {
     super(props);
 
     this.observerDisposers.push(observe(controller, 'searchStatus', this.searchStatusErrorHandler));
-    this.observerDisposers.push(observe(controller, 'searchStatus', this.scrollPositionHandler));
   }
 
   componentDidMount() {
+    this.observerDisposers.push(observe(controller, 'searchStatus', this.scrollPositionHandler));
     $(document).on('turbolinks:before-visit.beatmaps-main', () => {
       controller.cancel();
     });
@@ -74,7 +75,8 @@ export class Main extends React.Component<Props> {
   }
 
   private scrollPositionHandler = (change: IValueDidChange<SearchStatus>) => {
-    if (change.oldValue === change.newValue) { return; }
+    if (change.newValue.restore) { return; }
+    if (isEqual(change.oldValue, change.newValue)) { return; }
 
     if (change.newValue.state === 'completed' && change.newValue.from === 0) {
       if (this.backToTopAnchor.current) {
