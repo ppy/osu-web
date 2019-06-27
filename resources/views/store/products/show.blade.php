@@ -24,7 +24,7 @@
         "url" => route('store.cart.store', ['add' => true]),
         "data-remote" => true,
         "id" => "product-form",
-        "class" => "osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1"
+        "class" => "osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 osu-layout--store"
     ]) !!}
         <div class="osu-layout__sub-row osu-layout__sub-row--lg1" id="product-header" style="background-image: url({{ $product->header_image }})">
             <div>{!! markdown($product->header_description) !!}</div>

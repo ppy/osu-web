@@ -30,7 +30,7 @@
 </style>
 
 @if(!$order)
-<div class="grid grid--gutters osu-layout__row osu-layout__row--page">
+<div class="grid grid--gutters osu-layout__row osu-layout__row--page osu-layout--store">
     <div class="grid-cell grid-cell--fill">
         <h1>Not Found</h1>
         <p>The requested order could not be found.</p>
@@ -38,7 +38,7 @@
 </div>
 @else
 @if(Request::has('thanks'))
-<div class="grid grid--gutters osu-layout__row osu-layout__row--page no-print">
+<div class="grid grid--gutters osu-layout__row osu-layout__row--page no-print osu-layout--store">
     <div class="grid-cell grid-cell--fill">
         <h1>Thanks for your order!</h1>
         <p>
@@ -52,7 +52,7 @@
     @if($i > 0)
     <div class='print-page-break'></div>
     @endif
-    <div class="grid grid--gutters osu-layout__row osu-layout__row--page invoice-page"><div class="grid-cell grid-cell--fill">
+    <div class="grid grid--gutters osu-layout__row osu-layout__row--page invoice-page osu-layout--store"><div class="grid-cell grid-cell--fill">
         <div class="grid grid--xs">
             <div class="grid-cell grid-cell--5of12">
                 <div>
@@ -151,7 +151,7 @@ window.onload = function() {
 </script>
 @endif
 
-<div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 no-print">
+<div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 no-print osu-layout--store">
     <div class='osu-layout__sub-row osu-layout__sub-row--with-separator'>
         <h3>Order Status</h3>
 
