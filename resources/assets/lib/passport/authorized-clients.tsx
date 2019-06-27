@@ -46,7 +46,7 @@ export class AuthorizedClients extends React.Component {
 
   renderClient(client: Client) {
     return (
-      <div className='authorized-client'>
+      <div className='authorized-client' key={client.id}>
         <div className='authorized-client__details'>
           <div className='authorized-client__name'>{client.name}</div>
           <span className='authorized-client__owner'>
