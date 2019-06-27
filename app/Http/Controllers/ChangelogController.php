@@ -57,7 +57,7 @@ class ChangelogController extends Controller
             ])->orderBy('build_id', 'DESC')
             ->get();
 
-        if (!request()->expectsJson() && count($builds) === 1 && request('no_redirect') !== '1') {
+        if (!is_json_request() && count($builds) === 1 && request('no_redirect') !== '1') {
             return ujs_redirect(build_url($builds[0]));
         }
 
@@ -72,7 +72,7 @@ class ChangelogController extends Controller
             'search' => $search,
         ];
 
-        if (request()->expectsJson()) {
+        if (is_json_request()) {
             return $indexJson;
         } else {
             $chartConfig = Cache::remember(
@@ -141,7 +141,7 @@ class ChangelogController extends Controller
                 return $this->chartConfig($build->updateStream);
             });
 
-        if (request()->expectsJson()) {
+        if (is_json_request()) {
             return $buildJson;
         } else {
             return view('changelog.build', compact('build', 'buildJson', 'chartConfig', 'commentBundle'));

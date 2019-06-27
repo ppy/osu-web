@@ -168,12 +168,18 @@ export class BeatmapsetPanel extends React.PureComponent
 
             div className: 'beatmapset-panel__icons-box',
               if currentUser?.id
-                a
-                  href: laroute.route 'beatmapsets.download', beatmapset: beatmapset.id
-                  title: osu.trans('beatmapsets.show.details.download._')
-                  className: 'beatmapset-panel__icon js-beatmapset-download-link'
-                  'data-turbolinks': 'false'
-                  i className: 'fas fa-lg fa-download'
+                if beatmapset.availability.download_disabled
+                  div
+                    title: osu.trans('beatmapsets.availability.disabled')
+                    className: 'beatmapset-panel__icon beatmapset-panel__icon--disabled'
+                    i className: 'fas fa-lg fa-download'
+                else
+                  a
+                    href: laroute.route 'beatmapsets.download', beatmapset: beatmapset.id
+                    title: osu.trans('beatmapsets.show.details.download._')
+                    className: 'beatmapset-panel__icon js-beatmapset-download-link'
+                    'data-turbolinks': 'false'
+                    i className: 'fas fa-lg fa-download'
 
           div className: 'beatmapset-panel__difficulties', difficulties
       a
