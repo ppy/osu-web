@@ -24,7 +24,7 @@ export class ReactTurbolinks
     @documentReady = false
     @targets = []
     $(document).on 'turbolinks:load', =>
-      # Delayed to wait until cacheSnapshot finishes.
+      # Delayed to wait until cacheSnapshot finishes. The delay matches Turbolinks' defer.
       Timeout.set 1, =>
         @deleteLoadedMarker()
         @destroyPersisted()
