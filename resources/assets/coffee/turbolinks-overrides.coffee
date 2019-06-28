@@ -19,7 +19,11 @@
 # Anchor navigation with turbolinks. Works around [1].
 # [1] https://github.com/turbolinks/turbolinks/issues/75
 $(document).on 'click', 'a[href^="#"]', (e) ->
-  href = e.currentTarget.href
+  link = e.currentTarget
+
+  return if link.dataset.toggle == 'collapse'
+
+  href = link.href
   targetId = decodeURIComponent href[href.indexOf('#') + 1..]
 
   return if targetId == ''
@@ -49,7 +53,9 @@ Turbolinks.HttpRequest::requestLoaded = ->
 Turbolinks.Controller::advanceHistory = (url) ->
   return if url == document.location.href
 
-  @cacheSnapshot()
+  snapshot = @view.getSnapshot()
+  location = @lastRenderedLocation
+  @cache.put location, snapshot.clone()
   @lastRenderedLocation = Turbolinks.Location.wrap(url)
   @pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
 
