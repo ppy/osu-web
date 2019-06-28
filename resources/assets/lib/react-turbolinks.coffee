@@ -26,6 +26,7 @@ export class ReactTurbolinks
     $(document).on 'turbolinks:load', =>
       # Delayed to wait until cacheSnapshot finishes.
       Timeout.set 1, =>
+        @deleteLoadedMarker()
         @destroyPersisted()
         @documentReady = true
         @boot()
@@ -34,23 +35,32 @@ export class ReactTurbolinks
       @destroy()
 
 
+  allTargets: (callback) =>
+    for own name, component of @components
+      for target in component.targets
+        callback({ name, component, target })
+
+
   boot: =>
     return unless @documentReady
 
-    for own _name, component of @components
-      for target in component.targets
-        continue if target.dataset.reactTurbolinksLoaded == '1'
-        target.dataset.reactTurbolinksLoaded = '1'
-        @targets.push target
-        ReactDOM.render React.createElement(component.element, component.propsFunction(target)), target
+    @allTargets ({ target, component }) =>
+      return if target.dataset.reactTurbolinksLoaded == '1'
+
+      target.dataset.reactTurbolinksLoaded = '1'
+      @targets.push target
+      ReactDOM.render React.createElement(component.element, component.propsFunction(target)), target
+
+
+  deleteLoadedMarker: =>
+    @allTargets ({ target }) =>
+      delete target.dataset.reactTurbolinksLoaded
 
 
   destroy: =>
-    for own _name, component of @components
-      for target in component.targets
-        continue if target.dataset.reactTurbolinksLoaded != '1'
-        target.dataset.reactTurbolinksLoaded = null
-        ReactDOM.unmountComponentAtNode target if !component.persistent
+    @allTargets ({ target, component }) =>
+      if target.dataset.reactTurbolinksLoaded == '1' && !component.persistent
+        ReactDOM.unmountComponentAtNode target
 
 
   destroyPersisted: =>
