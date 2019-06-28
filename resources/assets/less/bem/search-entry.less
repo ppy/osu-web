@@ -18,36 +18,15 @@
 
 .search-entry {
   .link-plain();
-  .default-box-shadow();
   .default-border-radius();
-  background-color: #444;
+  background-color: @osu-colour-b5;
   display: flex;
   flex-direction: column;
   padding: 10px 10px 15px 10px;
+  border: 2px solid transparent;
 
-  &::after, &::before {
-    .full-size();
-    content: ' ';
-    will-change: opacity;
-    transition: opacity 120ms;
-    pointer-events: none;
-  }
-
-  &::after {
-    .thicker-box-shadow();
-    opacity: 0;
-  }
-
-  &:hover::after {
-    opacity: 1;
-  }
-
-  &::before {
-    .default-box-shadow();
-  }
-
-  &:hover::before {
-    opacity: 0;
+  &:hover {
+    border: 2px solid @osu-colour-u;
   }
 
   &__row {

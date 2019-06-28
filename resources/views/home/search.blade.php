@@ -15,7 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', [
+    'baseHue' => 255,
+])
 
 @section('content')
     <form action="{{ route('search') }}" data-loading-overlay="0" class="js-search" autocomplete="off">
