@@ -17,24 +17,20 @@
  */
 
 import { action, observable } from 'mobx';
-import { TokenJSON } from 'passport/token-json';
+import { ClientJSON } from './client-json';
 
 export class Client {
   id: number;
   name: string | null;
-  passwordClient: boolean;
-  redirect: string;
   @observable revoked = false;
   @observable scopes: Set<string>;
   userId: number;
 
-  constructor(token: TokenJSON) {
-    this.id = token.client.id;
-    this.name = token.client.name;
-    this.passwordClient = token.client.password_client;
-    this.redirect = token.client.redirect;
-    this.scopes = new Set();
-    this.userId = token.client.user_id;
+  constructor(client: ClientJSON) {
+    this.id = client.id;
+    this.name = client.name;
+    this.scopes = new Set(client.scopes);
+    this.userId = client.user_id;
   }
 
   @action

@@ -20,10 +20,7 @@ export interface ClientJSON {
   created_at: string;
   id: number;
   name: string | null;
-  password_client: boolean;
-  personal_access_client: boolean;
-  redirect: string;
   revoked: boolean;
-  updated_at: string;
+  scopes: string[];
   user_id: number;
 }

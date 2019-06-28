@@ -20,7 +20,6 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
 import { action, observable } from 'mobx';
 import { Client } from 'passport/client';
-import { TokenJSON } from 'passport/token-json';
 import Store from 'stores/store';
 
 export default class ClientStore extends Store {
@@ -28,9 +27,13 @@ export default class ClientStore extends Store {
 
   @action
   async fetchAll() {
-    const response: TokenJSON[] = await $.get('/oauth/tokens');
-    for (const token of response) {
-      this.updateWithToken(token);
+    const json = osu.parseJson('json-authorized-clients');
+    for (const item of json) {
+      let client = this.clients.get(item.id);
+      if (client == null) {
+        client = new Client(item);
+        this.clients.set(client.id, client);
+      }
     }
   }
 
@@ -44,21 +47,5 @@ export default class ClientStore extends Store {
   @action
   private flushStore() {
     this.clients.clear();
-  }
-
-  @action
-  private updateWithToken(token: TokenJSON) {
-    let client = this.clients.get(token.client_id);
-    if (client == null) {
-      client = new Client(token);
-    }
-
-    for (const scope of token.scopes) {
-      client.scopes.add(scope);
-    }
-
-    this.clients.set(token.client_id, client);
-
-    return client;
   }
 }
