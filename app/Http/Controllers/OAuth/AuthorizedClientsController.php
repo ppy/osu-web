@@ -18,17 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\Passport;
+namespace App\Http\Controllers\OAuth;
 
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller;
 use Laravel\Passport\Client;
 
-/**
- * Extension of Laravel\Passport\Http\Controllers\AuthorizationController
- * to add support for scope normalization when requesting token scopes.
- */
-class TokensController extends Controller
+class AuthorizedClientsController extends Controller
 {
     protected $section = 'user';
 
@@ -40,12 +36,12 @@ class TokensController extends Controller
         $this->middleware('verify-user');
     }
 
-    public function tokens()
+    public function index()
     {
-        return view('accounts.tokens');
+        return view('oauth.authorized-clients.index');
     }
 
-    public function revokeClient($clientId)
+    public function destroy($clientId)
     {
         $client = Client::findOrFail($clientId);
         if ($client->firstParty()) {
