@@ -44,7 +44,7 @@
     "timeago": "^1.5.0",
     "tsconfig-paths-webpack-plugin": "^3.2.0",
     "turbolinks": "^5.1.1",
-    "typescript": "^3.2.2",
+    "typescript": "~3.5.2",
     "url-polyfill": "^1.0.10",
     "webpack-sentry-plugin": "^1.16.0"
   },
@@ -73,7 +73,7 @@
     "less-loader": "^5.0.0",
     "mkdirp": "^0.5.1",
     "mobx-react-devtools": "^6.0.3",
-    "ts-loader": "6.0.2",
+    "ts-loader": "6.0.4",
     "tslint": "^5.12.0",
     "tslint-react": "^4.0.0",
     "vue-template-compiler": "^2.5.21"
