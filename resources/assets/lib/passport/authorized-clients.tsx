@@ -54,8 +54,10 @@ export class AuthorizedClients extends React.Component {
           <span className='authorized-client__owner'>
             Owned by <UserLink user={client.user} />
           </span>
-          {this.renderPermissions(client)}
+          <div className='authorized-client__scopes'>
+            {this.renderPermissions(client)}
           </div>
+        </div>
         <div className='authorized-client__actions'>
           { client.revoked ? (
             <div className='authorized-client__button'>Revoked</div>
