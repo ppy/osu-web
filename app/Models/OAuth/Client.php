@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,32 +18,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { action, observable } from 'mobx';
-import { ClientJSON } from './client-json';
+namespace App\Models\OAuth;
 
-export class Client {
-  id: number;
-  name: string | null;
-  @observable revoked = false;
-  @observable scopes: Set<string>;
-  user: User; // TODO: figure out whether this should go into store.
-  userId: number;
+use App\Models\User;
+use Laravel\Passport\Client as PassportClient;
 
-  constructor(client: ClientJSON) {
-    this.id = client.id;
-    this.name = client.name;
-    this.scopes = new Set(client.scopes);
-    this.userId = client.user_id;
-    this.user = client.user;
-  }
-
-  @action
-  revoke() {
-    $.ajax({
-      method: 'DELETE',
-      url: laroute.route('oauth.authorized-clients.destroy', { authorized_client: this.id }),
-    }).then(() => {
-      this.revoked = true;
-    });
-  }
+class Client extends PassportClient
+{
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

@@ -22,5 +22,6 @@ export interface ClientJSON {
   name: string | null;
   revoked: boolean;
   scopes: string[];
+  user: User;
   user_id: number;
 }

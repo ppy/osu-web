@@ -22,7 +22,7 @@ namespace App\Http\Controllers\OAuth;
 
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller;
-use Laravel\Passport\Client;
+use App\Models\OAuth\Client;
 use Laravel\Passport\Token;
 
 class AuthorizedClientsController extends Controller
@@ -42,10 +42,12 @@ class AuthorizedClientsController extends Controller
         // Get client list.
         $tokensQuery = Token::where('user_id', auth()->id())->where('revoked', false);
 
+
         $clients = Client::whereIn('id', (clone $tokensQuery)->select('client_id'))
             ->where('personal_access_client', false)
             ->where('password_client', false)
             ->where('revoked', false)
+            ->with('user')
             ->get();
 
         // Aggregate permissions granted to client via tokens.
@@ -58,7 +60,7 @@ class AuthorizedClientsController extends Controller
             $client->scopes = array_sort(array_unique(array_flatten($clientScopes)));
         }
 
-        $authorizedClients = json_collection($clients, 'OAuth\Client');
+        $authorizedClients = json_collection($clients, 'OAuth\Client', 'user');
 
         return view('oauth.authorized-clients.index', compact('authorizedClients'));
     }

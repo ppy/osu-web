@@ -51,7 +51,7 @@ export class AuthorizedClients extends React.Component {
           <div className='authorized-client__name'>{client.name}</div>
           <span className='authorized-client__owner'>
             Owner:
-            <UserLink id={client.userId} name={client.userId + ''} />
+            <UserLink user={client.user} />
           </span>
           {this.renderPermissions(client)}
           </div>

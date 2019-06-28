@@ -19,8 +19,7 @@
 import * as React from 'react';
 
 interface Props {
-  id: number;
-  name: string;
+  user: User;
 }
 
 export class UserLink extends React.PureComponent<Props> {
@@ -28,10 +27,10 @@ export class UserLink extends React.PureComponent<Props> {
     return (
       <a
         className='js-usercard'
-        data-user-id={this.props.id}
-        href={laroute.route('users.show', { user: this.props.id })}
+        data-user-id={this.props.user.id}
+        href={laroute.route('users.show', { user: this.props.user.id })}
       >
-        {this.props.name}
+        {this.props.user.username}
       </a>
     );
   }

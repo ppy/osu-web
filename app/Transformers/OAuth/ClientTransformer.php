@@ -20,11 +20,16 @@
 
 namespace App\Transformers\OAuth;
 
+use App\Models\OAuth\Client;
+use App\Transformers\UserCompactTransformer;
 use League\Fractal;
-use Laravel\Passport\Client;
 
 class ClientTransformer extends Fractal\TransformerAbstract
 {
+    protected $availableIncludes = [
+        'user',
+    ];
+
     public function transform(Client $client)
     {
         return [
@@ -35,5 +40,10 @@ class ClientTransformer extends Fractal\TransformerAbstract
             'scopes' => $client->scopes, // not an actual field
             'user_id' => $client->user_id,
         ];
+    }
+
+    public function includeUser(Client $client)
+    {
+        return $this->item($client->user, new UserCompactTransformer);
     }
 }
