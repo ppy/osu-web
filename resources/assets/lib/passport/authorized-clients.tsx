@@ -48,10 +48,11 @@ export class AuthorizedClients extends React.Component {
     return (
       <div className='authorized-client' key={client.id}>
         <div className='authorized-client__details'>
-          <div className='authorized-client__name'>{client.name}</div>
+          <div className='authorized-client__name'>
+            {client.name}
+          </div>
           <span className='authorized-client__owner'>
-            Owner:
-            <UserLink user={client.user} />
+            Owned by <UserLink user={client.user} />
           </span>
           {this.renderPermissions(client)}
           </div>
@@ -75,13 +76,21 @@ export class AuthorizedClients extends React.Component {
   renderPermissions(client: Client) {
     const scopes = Array.from(client.scopes).sort();
     return (
-      <ul className='authorized-client__permissions'>
-        {
-          scopes.map((scope) => {
-            return <li className='authorized-client__permission' key={scope}>{osu.trans(`api.scopes.${scope}`)}</li>;
-          })
-        }
-      </ul>
+      <div className='oauth-scopes'>
+        <p className='oauth-scopes__title'>This application can:</p>
+        <ul className='authorized-client__permissions oauth-form__scopes'>
+          {
+            scopes.map((scope) => {
+              return (
+                <li className='authorized-client__permission' key={scope}>
+                  <span className='oauth-form__scope-icon'><span className='fas fa-check' /></span>
+                  {osu.trans(`api.scopes.${scope}`)}
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
     );
   }
 
