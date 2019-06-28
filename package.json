@@ -35,7 +35,7 @@
     "prop-types": "^15.6.0",
     "qtip2": "https://github.com/notbakaneko/qTip2.git#cd5f038667d2b23a44f4274c46de01834d704ce6",
     "react": "^16.8.4",
-    "react-autosize-textarea": "6.0.0",
+    "react-autosize-textarea": "7.0.0",
     "react-dom": "^16.8.4",
     "react-dom-factories": "^1.0.0",
     "react-virtual-list": "^2.3.0",
