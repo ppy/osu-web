@@ -24,3 +24,11 @@
         <div class="js-react--personal-access-tokens"></div> --}}
     </div>
 @endsection
+
+@section("script")
+  @parent
+
+  <script id="json-authorized-clients" type="application/json">
+    {!! json_encode($authorizedClients) !!}
+  </script>
+@endsection
