@@ -70,6 +70,7 @@
     font-weight: 700;
     text-transform: uppercase;
     padding-bottom: 5px;
+    color: @osu-colour-b1;
 
     // in order of columns
     &--rank {
@@ -178,36 +179,36 @@
     }
 
     &--zero {
-      .cell-color(#aaa, #aaa);
+      color: @osu-colour-b2;
     }
 
     // when row is selected
     .@{activated-row} & {
       color: #fff;
-      background-color: #555;
+      background-color: @osu-colour-b3;
     }
 
     // when row is not selected
     .@{passive-row} & {
-      background-color: #fff;
+      background-color: @osu-colour-b5;
     }
 
     .@{passive-row}:nth-child(odd) & {
-      background-color: #eee;
+      background-color: @osu-colour-b4;
     }
 
     // hovering over an unselected row
     .@{passive-row}:hover & {
       color: #fff;
-      background-color: #555;
+      background-color: @osu-colour-b3;
     }
 
     .@{passive-row}:hover:nth-child(odd) & {
-      background-color: #555;
+      background-color: @osu-colour-b3;
     }
 
-    .row-color(@friend-row, @yellow-light);
-    .row-color(@self-row, @green-light);
+    //.row-color(@friend-row, @yellow-light);
+    //.row-color(@self-row, @green-light);
   }
 
   &__popup-menu {
@@ -225,12 +226,6 @@
   }
 
   &__user-link {
-    .cell-color(#555, #fff);
-    transition: none;
-
-    &:hover {
-      font-weight: bold;
-      text-decoration: none;
-    }
+    .link-inverted();
   }
 }
