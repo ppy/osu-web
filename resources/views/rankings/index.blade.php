@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'baseHue' => 74,
+    'baseHue' => 135,
 ])
 
 @section('content')
