@@ -5257,15 +5257,15 @@ jquery.scrollto@^2.1.2:
   dependencies:
     jquery ">=1.8"
 
-jquery@>=1.2.3, jquery@>=1.6.0, jquery@>=1.8, jquery@>=1.8.0:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
-  integrity sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg==
-
-jquery@^3.3.0:
+"jquery@>=1.5.0 <4.0", jquery@^3.3.0:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
+
+jquery@>=1.6.0, jquery@>=1.8, jquery@>=1.8.0:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
+  integrity sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg==
 
 js-cookie@^2.1.2:
   version "2.2.0"
@@ -8645,11 +8645,11 @@ thunky@^1.0.2:
   integrity sha512-YwT8pjmNcAXBZqrubu22P4FYsh2D4dxRmnWBOL8Jk8bUcRUtc5326kx32tuTmFDAZtLOGEVNl8POAR8j896Iow==
 
 timeago@^1.5.0:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/timeago/-/timeago-1.6.3.tgz#162a1adae99356297df59339837d09f1b0f36465"
-  integrity sha512-x97d1X1KsNapWJTgCOOAy/59XagYu2WsDTAH/yvPsWi5bqtGbLPaVZBv3HZ3jTpakHR+JGGyrI9qC0yuvIAvnQ==
+  version "1.6.7"
+  resolved "https://registry.yarnpkg.com/timeago/-/timeago-1.6.7.tgz#afd467c29a911e697fc22a81888c7c3022783cb5"
+  integrity sha512-FikcjN98+ij0siKH4VO4dZ358PR3oDDq4Vdl1+sN9gWz1/+JXGr3uZbUShYH/hL7bMhcTpPbplJU5Tej4b4jbQ==
   dependencies:
-    jquery ">=1.2.3"
+    jquery ">=1.5.0 <4.0"
 
 timers-browserify@^2.0.10, timers-browserify@^2.0.4:
   version "2.0.10"
