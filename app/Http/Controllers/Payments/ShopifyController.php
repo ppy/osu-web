@@ -49,7 +49,7 @@ class ShopifyController extends Controller
 
         $orderId = $this->getOrderId();
         if ($orderId === null) {
-            if ($this->shouldIgnore()) {
+            if ($this->isManualOrder()) {
                 return response([], 204);
             }
 
@@ -72,6 +72,10 @@ class ShopifyController extends Controller
                 $order->update(['status' => 'shipped', 'shipped_at' => now()]);
                 break;
             case 'orders/create':
+                if ($order->status === 'shipped' && $this->isDuplicateOrder()) {
+                    return response([], 204);
+                }
+
                 (new OrderCheckout($order))->completeCheckout();
                 break;
             case 'orders/paid':
@@ -114,7 +118,25 @@ class ShopifyController extends Controller
         return $this->params;
     }
 
-    private function shouldIgnore()
+    /**
+     * Replacement orders created at the Shopify end by duplicating? the previous order.
+     *
+     * @return boolean
+     */
+    private function isDuplicateOrder()
+    {
+        $params = $this->getParams();
+
+        return $params['source_name'] === 'shopify_draft_order' && $this->isManualOrder();
+    }
+
+    /**
+     * Manually created replacement orders created at the Shopify end that might not have
+     * the orderId included.
+     *
+     * @return boolean
+     */
+    private function isManualOrder()
     {
         $params = $this->getParams();
 
