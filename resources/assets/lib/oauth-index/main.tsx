@@ -17,7 +17,7 @@
  */
 
 import HeaderV3 from 'header-v3';
-import { AuthorizedClients } from 'passport/authorized-clients';
+import { AuthorizedClients } from 'oauth/authorized-clients';
 import * as React from 'react';
 
 interface Props {

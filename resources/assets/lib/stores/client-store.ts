@@ -19,8 +19,8 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
 import { action, observable } from 'mobx';
-import { Client } from 'passport/client';
-import { ClientJSON } from 'passport/client-json';
+import { Client } from 'oauth/client';
+import { ClientJSON } from 'oauth/client-json';
 import Store from 'stores/store';
 
 export default class ClientStore extends Store {

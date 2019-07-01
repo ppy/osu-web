@@ -17,7 +17,7 @@
  */
 
 import { action, observable } from 'mobx';
-import { ClientJSON } from './client-json';
+import { ClientJSON } from 'oauth/client-json';
 
 export class Client {
   id: number;

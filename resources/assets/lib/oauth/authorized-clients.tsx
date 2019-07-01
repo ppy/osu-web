@@ -17,8 +17,8 @@
  */
 
 import { observer } from 'mobx-react';
+import { Client } from 'oauth/client';
 import core from 'osu-core-singleton';
-import { Client } from 'passport/client';
 import * as React from 'react';
 import { UserLink } from 'user-link';
 
