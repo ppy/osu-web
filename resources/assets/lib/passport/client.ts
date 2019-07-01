@@ -36,8 +36,8 @@ export class Client {
   }
 
   @action
-  revoke() {
-    $.ajax({
+  async revoke() {
+    return $.ajax({
       method: 'DELETE',
       url: laroute.route('oauth.authorized-clients.destroy', { authorized_client: this.id }),
     }).then(() => {

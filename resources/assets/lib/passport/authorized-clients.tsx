@@ -102,7 +102,7 @@ export class AuthorizedClients extends React.Component {
     const clientId = (event.target as HTMLElement).dataset.clientId;
     const client = store.clients.get(+(clientId || 0));
     if (client != null) {
-      client.revoke();
+      client.revoke().catch(osu.ajaxError);
     }
   }
 }
