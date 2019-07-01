@@ -36,7 +36,6 @@ export class NewDiscussion extends React.PureComponent
     @state =
       cssTop: null
       message: ''
-      timestamp: null
       timestampConfirmed: false
       posting: null
 
@@ -141,8 +140,8 @@ export class NewDiscussion extends React.PureComponent
               key: 'timestamp'
               className: "#{bn}__timestamp-col"
               if @props.mode == 'timeline'
-                if @state.timestamp?
-                  BeatmapDiscussionHelper.formatTimestamp @state.timestamp
+                if @timestamp()?
+                  BeatmapDiscussionHelper.formatTimestamp @timestamp()
                 else
                   osu.trans 'beatmaps.discussions.new.timestamp_missing'
               else if @props.beatmapset.can_be_hyped # mode == 'generalAll'
@@ -173,7 +172,7 @@ export class NewDiscussion extends React.PureComponent
             @submitButton 'problem'
 
         if @nearbyDiscussions().length > 0
-          currentTimestamp = BeatmapDiscussionHelper.formatTimestamp @state.timestamp
+          currentTimestamp = BeatmapDiscussionHelper.formatTimestamp @timestamp()
           timestamps =
             for discussion in @nearbyDiscussions()
               osu.link BeatmapDiscussionHelper.url(discussion: discussion),
@@ -236,9 +235,9 @@ export class NewDiscussion extends React.PureComponent
 
 
   nearbyDiscussions: =>
-    return [] if !@state.timestamp? || @props.mode != 'timeline'
+    return [] if !@timestamp()?
 
-    if @nearbyDiscussionsCache? && (@nearbyDiscussionsCache.beatmap != @props.currentBeatmap || @nearbyDiscussionsCache.timestamp != @state.timestamp)
+    if @nearbyDiscussionsCache? && (@nearbyDiscussionsCache.beatmap != @props.currentBeatmap || @nearbyDiscussionsCache.timestamp != @timestamp())
       @nearbyDiscussionsCache = null
 
     if !@nearbyDiscussionsCache?
@@ -247,7 +246,7 @@ export class NewDiscussion extends React.PureComponent
       for discussion in @props.currentDiscussions.timelineAllUsers
         continue if discussion.message_type not in ['suggestion', 'problem']
 
-        distance = Math.abs(discussion.timestamp - @state.timestamp)
+        distance = Math.abs(discussion.timestamp - @timestamp())
 
         continue if distance > 5000
 
@@ -267,7 +266,7 @@ export class NewDiscussion extends React.PureComponent
 
       @nearbyDiscussionsCache =
         beatmap: @props.currentBeatmap
-        timestamp: @state.timestamp
+        timestamp: @timestamp()
         discussions: _.sortBy shownDiscussions, 'timestamp'
 
     @nearbyDiscussionsCache.discussions
@@ -309,7 +308,7 @@ export class NewDiscussion extends React.PureComponent
       beatmapset_id: @props.currentBeatmap.beatmapset_id
       beatmap_discussion:
         message_type: type
-        timestamp: @state.timestamp
+        timestamp: @timestamp()
         beatmap_id: @props.currentBeatmap.id unless @props.mode == 'generalAll'
       beatmap_discussion_post:
         message: @state.message
@@ -352,10 +351,8 @@ export class NewDiscussion extends React.PureComponent
 
 
   setMessage: (e) =>
-    message = e.currentTarget.value
-    timestamp = @parseTimestamp(message) if @props.mode == 'timeline'
-
-    @setState {message, timestamp}
+    @timestampCache = null
+    @setState message: e.currentTarget.value
 
 
   setSticky: (sticky = true) =>
@@ -368,10 +365,6 @@ export class NewDiscussion extends React.PureComponent
   setTop: =>
     @setState
       cssTop: @cssTop(@props.pinned)
-
-
-  setTimestamp: (e) =>
-    @setState timestamp: e.currentTarget.value
 
 
   submitButton: (type, extraProps) =>
@@ -396,6 +389,12 @@ export class NewDiscussion extends React.PureComponent
           extraProps
 
 
+  timestamp: =>
+    return unless @props.mode == 'timeline'
+
+    @timestampCache ?= @parseTimestamp(@state.message)
+
+
   toggleSticky: =>
     @setSticky(!@props.pinned)
 
@@ -408,6 +407,6 @@ export class NewDiscussion extends React.PureComponent
     return false if !BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())
 
     if @isTimeline()
-      @state.timestamp? && (@nearbyDiscussions().length == 0 || @state.timestampConfirmed)
+      @timestamp()? && (@nearbyDiscussions().length == 0 || @state.timestampConfirmed)
     else
       true
