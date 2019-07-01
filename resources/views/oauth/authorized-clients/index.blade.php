@@ -15,12 +15,13 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', [
+    'bodyAdditionalClasses' => 'osu-layout--body-222-plain',
+    'legacyNav' => false,
+])
 
 @section('content')
-    <div class="osu-page osu-page--users">
-        <div class="js-react--authorized-clients"></div>
-    </div>
+    <div class="js-react--oauth-index osu-layout osu-layout--full"></div>
 @endsection
 
 @section("script")
@@ -29,4 +30,6 @@
   <script id="json-authorized-clients" type="application/json">
     {!! json_encode($authorizedClients) !!}
   </script>
+
+  @include('layout._extra_js', ['src' => 'js/react/oauth-index.js'])
 @endsection

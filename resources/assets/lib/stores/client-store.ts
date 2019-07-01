@@ -20,27 +20,26 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
 import { action, observable } from 'mobx';
 import { Client } from 'passport/client';
+import { ClientJSON } from 'passport/client-json';
 import Store from 'stores/store';
 
 export default class ClientStore extends Store {
   @observable clients = new Map<number, Client>();
 
-  @action
-  async fetchAll() {
-    const json = osu.parseJson('json-authorized-clients');
-    for (const item of json) {
+  handleDispatchAction(dispatchedAction: DispatcherAction) {
+    if (dispatchedAction instanceof UserLoginAction
+      || dispatchedAction instanceof UserLogoutAction) {
+      this.flushStore();
+    }
+  }
+
+  initialize(data: ClientJSON[]) {
+    for (const item of data) {
       let client = this.clients.get(item.id);
       if (client == null) {
         client = new Client(item);
         this.clients.set(client.id, client);
       }
-    }
-  }
-
-  handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof UserLoginAction
-      || dispatchedAction instanceof UserLogoutAction) {
-      this.flushStore();
     }
   }
 

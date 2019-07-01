@@ -210,6 +210,7 @@ mix
 .ts('resources/assets/lib/chat.ts', 'js/react/chat.js')
 .ts('resources/assets/lib/friends-index.ts', 'js/react/friends-index.js')
 .ts('resources/assets/lib/groups-show.ts', 'js/react/groups-show.js')
+.ts('resources/assets/lib/oauth-index.ts', 'js/react/oauth-index.js')
 .ts('resources/assets/lib/news-index.ts', 'js/react/news-index.js')
 .ts('resources/assets/lib/news-show.ts', 'js/react/news-show.js')
 .ts('resources/assets/lib/store-bootstrap.ts', 'js/store-bootstrap.js')

@@ -16,7 +16,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import { Client } from 'passport/client';
@@ -27,10 +26,6 @@ const store = core.dataStore.clientStore;
 
 @observer
 export class AuthorizedClients extends React.Component {
-  componentDidMount() {
-    runInAction(() => store.fetchAll());
-  }
-
   render() {
     const rows: JSX.Element[] = [];
     for (const client of store.clients.values()) {
