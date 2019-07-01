@@ -20,8 +20,6 @@
 @section('content')
     <div class="osu-page osu-page--users">
         <div class="js-react--authorized-clients"></div>
-        {{-- <div class="js-react--clients"></div>
-        <div class="js-react--personal-access-tokens"></div> --}}
     </div>
 @endsection
 

@@ -22,5 +22,3 @@ import 'import-shims';  // shim imports to window
 import 'main.coffee';
 
 import 'register-components.coffee';
-
-import 'passport/index';
