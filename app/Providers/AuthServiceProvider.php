@@ -29,7 +29,10 @@ class AuthServiceProvider extends ServiceProvider
             Passport::keyPath($path);
         }
 
-        Passport::routes();
+        Passport::routes(function ($router) {
+            $router->forAuthorization();
+            $router->forAccessTokens(); // required to get an access token but also makes token list accessible without verification.
+        });
 
         // RouteServiceProvider current runs before our provider, so Passport's default routes will override
         // those set in routes/web.php.
