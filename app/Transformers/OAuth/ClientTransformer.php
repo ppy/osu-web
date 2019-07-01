@@ -37,7 +37,7 @@ class ClientTransformer extends Fractal\TransformerAbstract
             'name' => $client->name,
             'password_client' => $client->password_client,
             'personal_access_client' => $client->personal_access_client,
-            'scopes' => $client->scopes, // not an actual field
+            'scopes' => $client->scopes,
             'user_id' => $client->user_id,
         ];
     }

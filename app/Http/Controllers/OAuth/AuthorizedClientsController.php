@@ -20,10 +20,8 @@
 
 namespace App\Http\Controllers\OAuth;
 
-use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller;
 use App\Models\OAuth\Client;
-use Laravel\Passport\Token;
 
 class AuthorizedClientsController extends Controller
 {
@@ -39,28 +37,7 @@ class AuthorizedClientsController extends Controller
 
     public function index()
     {
-        // Get client list.
-        $tokensQuery = Token::where('user_id', auth()->id())->where('revoked', false);
-
-
-        $clients = Client::whereIn('id', (clone $tokensQuery)->select('client_id'))
-            ->where('personal_access_client', false)
-            ->where('password_client', false)
-            ->where('revoked', false)
-            ->with('user')
-            ->get();
-
-        // Aggregate permissions granted to client via tokens.
-        $tokenScopes = $tokensQuery->whereIn('client_id', $clients->pluck('id'))->select('client_id', 'scopes')->get();
-        $clientScopes = $tokenScopes->mapToGroups(function ($item) {
-            return [$item->client_id => $item->scopes];
-        });
-
-        foreach ($clients as $client) {
-            $client->scopes = array_sort(array_unique(array_flatten($clientScopes)));
-        }
-
-        $authorizedClients = json_collection($clients, 'OAuth\Client', 'user');
+        $authorizedClients = json_collection(Client::forUser(auth()->user()), 'OAuth\Client', 'user');
 
         return view('oauth.authorized-clients.index', compact('authorizedClients'));
     }
@@ -68,18 +45,7 @@ class AuthorizedClientsController extends Controller
     public function destroy($clientId)
     {
         $client = Client::findOrFail($clientId);
-        if ($client->firstParty()) {
-            throw new InvariantException('First party tokens cannot be revoked through this method.');
-        }
-
-        auth()
-            ->user()
-            ->tokens()
-            ->where('client_id', $clientId)
-            ->update([
-                'revoked' => true,
-                'updated_at' => now(),
-            ]);
+        $client->revokeForUser(auth()->user());
 
         return response(null, 204);
     }
