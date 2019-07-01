@@ -241,7 +241,7 @@ export class NewDiscussion extends React.PureComponent
 
 
   nearbyDiscussions: =>
-    return [] if !@state.timestamp?
+    return [] if !@state.timestamp? || @props.mode != 'timeline'
 
     if !@cache.nearbyDiscussions? || @cache.nearbyDiscussions.timestamp != @state.timestamp
       discussions = {}
