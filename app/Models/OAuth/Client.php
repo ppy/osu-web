@@ -46,7 +46,7 @@ class Client extends PassportClient
         });
 
         foreach ($clients as $client) {
-            $client->scopes = array_sort(array_unique(array_flatten($clientScopes)));
+            $client->scopes = array_values(array_sort(array_unique(array_flatten($clientScopes))));
         }
 
         return $clients;
