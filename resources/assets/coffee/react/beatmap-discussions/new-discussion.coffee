@@ -31,7 +31,6 @@ export class NewDiscussion extends React.PureComponent
 
     @throttledPost = _.throttle @post, 1000
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
-    @cache = {}
 
     # FIXME: should save state on navigation?
     @state =
@@ -45,10 +44,6 @@ export class NewDiscussion extends React.PureComponent
   componentDidMount: =>
     $(window).on 'throttled-resize.new-discussion', @setTop
     @inputBox?.focus() if @props.autoFocus
-
-
-  componentWillUpdate: =>
-    @cache = {}
 
 
   componentWillUnmount: =>
@@ -243,7 +238,10 @@ export class NewDiscussion extends React.PureComponent
   nearbyDiscussions: =>
     return [] if !@state.timestamp? || @props.mode != 'timeline'
 
-    if !@cache.nearbyDiscussions? || @cache.nearbyDiscussions.timestamp != @state.timestamp
+    if @nearbyDiscussionsCache? && (@nearbyDiscussionsCache.beatmap != @props.currentBeatmap || @nearbyDiscussionsCache.timestamp != @state.timestamp)
+      @nearbyDiscussionsCache = null
+
+    if !@nearbyDiscussionsCache?
       discussions = {}
 
       for discussion in @props.currentDiscussions.timelineAllUsers
@@ -267,11 +265,12 @@ export class NewDiscussion extends React.PureComponent
 
       shownDiscussions = discussions.d0 ? discussions.d100 ? discussions.d1000 ? discussions.other ? []
 
-      @cache.nearbyDiscussions =
+      @nearbyDiscussionsCache =
+        beatmap: @props.currentBeatmap
         timestamp: @state.timestamp
         discussions: _.sortBy shownDiscussions, 'timestamp'
 
-    @cache.nearbyDiscussions.discussions
+    @nearbyDiscussionsCache.discussions
 
 
   onFocus: =>
