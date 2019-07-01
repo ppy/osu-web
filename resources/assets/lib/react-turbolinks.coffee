@@ -54,7 +54,7 @@ export class ReactTurbolinks
 
   deleteLoadedMarker: =>
     @allTargets ({ target }) =>
-      delete target.dataset.reactTurbolinksLoaded
+      delete target.dataset.reactTurbolinksLoaded if target.dataset.reactTurbolinksLoaded?
 
 
   destroy: =>
