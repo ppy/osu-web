@@ -52,7 +52,7 @@ class SupporterTagEvent implements HasOrder, MessageableEvent
             if ($item->product->custom_class !== 'supporter-tag') {
                 // sanity; it shouldn't happen but also make sure it doesn't die.
                 app('sentry')->getClient()->captureMessage(
-                    'SupporterTagEvent order contains non supporter-tag items.'
+                    'SupporterTagEvent order contains non supporter-tag items.',
                     null,
                     (new Scope)->setExtra('order_id', $this->order->order_id)
                 );
