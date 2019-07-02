@@ -16,10 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Main } from 'oauth-index/main';
+import { AuthorizedClients } from 'oauth/authorized-clients';
 import core from 'osu-core-singleton';
 
-reactTurbolinks.registerPersistent('oauth-index', Main, true, (container: HTMLElement) => {
+reactTurbolinks.register('authorized-clients', AuthorizedClients, (container: HTMLElement) => {
   const json = osu.parseJson('json-authorized-clients', true);
   if (json != null) {
     core.dataStore.clientStore.initialize(json);
