@@ -1573,16 +1573,16 @@
         },
         {
             "name": "jaybizzle/crawler-detect",
-            "version": "v1.2.76",
+            "version": "v1.2.84",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "728dd7f210819ccafbf008a6ef7956f4f3c3571c"
+                "reference": "b7f35477a56609dd0d753c07ada912b66af3df01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/728dd7f210819ccafbf008a6ef7956f4f3c3571c",
-                "reference": "728dd7f210819ccafbf008a6ef7956f4f3c3571c",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/b7f35477a56609dd0d753c07ada912b66af3df01",
+                "reference": "b7f35477a56609dd0d753c07ada912b66af3df01",
                 "shasum": ""
             },
             "require": {
@@ -1618,30 +1618,33 @@
                 "crawlerdetect",
                 "php crawler detect"
             ],
-            "time": "2018-12-18T08:52:44+00:00"
+            "time": "2019-06-14T21:10:21+00:00"
         },
         {
             "name": "jenssegers/agent",
-            "version": "v2.6.0",
+            "version": "v2.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jenssegers/agent.git",
-                "reference": "df71082ed2a95fc8a82ba30832ccf72df939f02a"
+                "reference": "bcb895395e460478e101f41cdab139c48dc721ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jenssegers/agent/zipball/df71082ed2a95fc8a82ba30832ccf72df939f02a",
-                "reference": "df71082ed2a95fc8a82ba30832ccf72df939f02a",
+                "url": "https://api.github.com/repos/jenssegers/agent/zipball/bcb895395e460478e101f41cdab139c48dc721ce",
+                "reference": "bcb895395e460478e101f41cdab139c48dc721ce",
                 "shasum": ""
             },
             "require": {
                 "jaybizzle/crawler-detect": "^1.2",
                 "mobiledetect/mobiledetectlib": "^2.7.6",
-                "php": ">=5.4.0"
+                "php": ">=5.6"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.0|^5.0|^6.0",
-                "satooshi/php-coveralls": "^1.0"
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^5.0|^6.0|^7.0"
+            },
+            "suggest": {
+                "illuminate/support": "^4.0|^5.0"
             },
             "type": "library",
             "extra": {
@@ -1684,7 +1687,7 @@
                 "user agent",
                 "useragent"
             ],
-            "time": "2017-11-10T10:35:35+00:00"
+            "time": "2019-01-19T21:32:55+00:00"
         },
         {
             "name": "jonnybarnes/commonmark-linkify",
