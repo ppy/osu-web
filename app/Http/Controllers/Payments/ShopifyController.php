@@ -60,14 +60,14 @@ class ShopifyController extends Controller
 
         $type = $this->getWebookType();
         switch ($type) {
-            // TODO: fixup with PaymentProcessor?
             case 'orders/cancelled':
                 // FIXME: We're relying on Shopify not sending cancel multiple times otherwise this will explode.
-                $order->getConnection()->transaction(function ($order) {
-                    $payment = $order->payments->where('cancelled', false)->first();
+                $order->getConnection()->transaction(function () use ($order) {
+                    $payment = $order->payments()->where('cancelled', false)->first();
                     $payment->cancel();
                     $order->cancel();
                 });
+                break;
             case 'orders/fulfilled':
                 $order->update(['status' => 'shipped', 'shipped_at' => now()]);
                 break;
