@@ -24,6 +24,7 @@ const path = require('path');
 const webpack = require('webpack');
 const SentryPlugin = require('webpack-sentry-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 // .js doesn't support globbing by itself, so we need to glob
 // and spread the values in.
@@ -152,6 +153,10 @@ let webpackConfig = {
     ]
   }
 };
+
+if (mix.inProduction()) {
+  webpackConfig['optimization']['minimizer'] = [new TerserPlugin({ terserOptions: { safari10: true } })];
+}
 
 if (!mix.inProduction() || process.env.SENTRY_RELEASE == 1) {
   webpackConfig['devtool'] = '#source-map';
