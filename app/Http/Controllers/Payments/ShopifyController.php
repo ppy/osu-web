@@ -28,7 +28,7 @@ use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use Carbon\Carbon;
 use Exception;
-use Sentry;
+use Sentry\State\Scope;
 
 class ShopifyController extends Controller
 {
@@ -78,9 +78,12 @@ class ShopifyController extends Controller
                 $this->updateOrderPayment($order);
                 break;
             default:
-                Sentry::captureMessage(
-                    'Received %s webhook for order %s from Shopify',
-                    [$type, $orderId]
+                app('sentry')->getClient()->captureMessage(
+                    'Received unknown webhook for order from Shopify',
+                    null,
+                    (new Scope)
+                        ->setExtra('type', $type)
+                        ->setExtra('order_id', $orderId)
                 );
                 break;
         }
