@@ -6372,20 +6372,20 @@
     "packages-dev": [
         {
             "name": "beyondcode/laravel-query-detector",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/beyondcode/laravel-query-detector.git",
-                "reference": "f9c2595c105e9b03774981b574e43add03102f36"
+                "reference": "c39994e813aa50c3f4168dc872546d7318bfebc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/beyondcode/laravel-query-detector/zipball/f9c2595c105e9b03774981b574e43add03102f36",
-                "reference": "f9c2595c105e9b03774981b574e43add03102f36",
+                "url": "https://api.github.com/repos/beyondcode/laravel-query-detector/zipball/c39994e813aa50c3f4168dc872546d7318bfebc5",
+                "reference": "c39994e813aa50c3f4168dc872546d7318bfebc5",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "5.5.*|5.6.*|5.7.*",
+                "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.*",
                 "php": "^7.1"
             },
             "require-dev": {
@@ -6423,7 +6423,7 @@
                 "beyondcode",
                 "laravel-query-detector"
             ],
-            "time": "2018-12-13T20:47:27+00:00"
+            "time": "2019-02-27T10:03:01+00:00"
         },
         {
             "name": "doctrine/instantiator",
