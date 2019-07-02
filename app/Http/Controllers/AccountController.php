@@ -25,6 +25,7 @@ use App\Exceptions\ModelNotSavedException;
 use App\Libraries\UserVerification;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
+use App\Models\OAuth\Client;
 use App\Models\User;
 use Auth;
 use DB;
@@ -109,7 +110,9 @@ class AccountController extends Controller
         $currentSessionId = Request::session()
             ->getIdWithoutKeyPrefix();
 
-        return view('accounts.edit', compact('blocks', 'sessions', 'currentSessionId'));
+        $authorizedClients = json_collection(Client::forUser(auth()->user()), 'OAuth\Client', 'user');
+
+        return view('accounts.edit', compact('authorizedClients', 'blocks', 'sessions', 'currentSessionId'));
     }
 
     public function update()

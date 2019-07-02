@@ -146,3 +146,9 @@
         @include('accounts._edit_sessions')
     </div>
 @endsection
+
+@section("script")
+  <script id="json-authorized-clients" type="application/json">
+    {!! json_encode($authorizedClients) !!}
+  </script>
+@endsection
