@@ -26,7 +26,9 @@
         <div class="account-edit__input-group">
             <div class="account-edit-entry">
                 <div class="account-edit-entry__label account-edit-entry__label--top-pinned">{{ trans('accounts.oauth.authorized_clients') }}</div>
-                <div class="js-react--authorized-clients"></div>
+                <div class="account-edit__input-groups">
+                    <div class="js-react--authorized-clients"></div>
+                </div>
             </div>
         </div>
     </div>

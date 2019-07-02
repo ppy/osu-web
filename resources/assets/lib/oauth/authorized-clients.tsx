@@ -55,14 +55,14 @@ export class AuthorizedClients extends React.Component {
         </div>
         <div className='authorized-client__actions'>
           { client.revoked ? (
-            <div className='authorized-client__button'>Revoked</div>
+            <div className='authorized-client__button authorized-client__button--revoked'>Access Revoked</div>
           ) : (
             <button
-              className='authorized-client__button authorized-client__button--cancel'
+              className='authorized-client__button'
               data-client-id={client.id}
               onClick={this.revokeClicked}
             >
-              Revoke
+              Revoke Access
             </button>
           )}
         </div>
@@ -74,7 +74,7 @@ export class AuthorizedClients extends React.Component {
     const scopes = Array.from(client.scopes).sort();
     return (
       <div className='oauth-scopes'>
-        <p className='oauth-scopes__title'>This application can:</p>
+        <div className='oauth-scopes__title'>This application can:</div>
         <ul className='authorized-client__permissions oauth-form__scopes'>
           {
             scopes.map((scope) => {

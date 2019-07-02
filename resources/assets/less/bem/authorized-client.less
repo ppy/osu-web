@@ -21,9 +21,9 @@
   flex-direction: row;
   justify-content: space-between;
 
-  padding: 10px 30px 20px;
-  color: #999;
-  border-top: 2px solid #111;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #444;
 
   &__actions {
     align-items: flex-start;
@@ -36,28 +36,30 @@
     .link-plain();
     .center-content();
     flex: none;
+    margin: 0 10px;
     padding: 10px 20px;
-    margin: 5px 5px;
-    min-width: 160px;
+    min-width: 100px;
     border-radius: 10000px;
-    background-color: @blue-darker;
+
+    background-color: @red;
 
     .link-hover({
-      background-color: @blue-dark;
+      background-color: @red-light;
     });
 
-    &--cancel {
-      background-color: @red;
+    &--revoked {
+      background-color: #444;
 
       .link-hover({
-        background-color: @red-light;
+        background-color: #444;
       });
     }
   }
 
   &__name {
-    font-size: larger;
-    color: #eee;
+    font-size: @font-size--title-small;
+    margin-bottom: 5px;
+    color: white;
   }
 
   &__scopes {
