@@ -36,7 +36,7 @@
   }
 
   &--new-reply {
-    background-color: #eee;
+    background-color: @osu-colour-b5;
     border-radius: 0 0 @border-radius-base @border-radius-base;
   }
 
@@ -70,6 +70,7 @@
     &--cancel {
       .reset-input();
       position: absolute;
+      color: @osu-colour-b1;
       top: 0px;
       right: 0px;
       width: @beatmap-discussion--reply-padding;
@@ -156,6 +157,7 @@
       display: flex;
       align-items: flex-end;
       font-size: @font-size--normal;
+      color: @osu-colour-b1;
     }
 
     .@{_top}--reply & {
@@ -172,9 +174,9 @@
   &__info {
     font-size: @_info-text-size;
     margin-right: 10px;
+    color: @osu-colour-b1;
 
     &--edited {
-      color: @gray-light;
       font-style: italic;
     }
   }
@@ -186,7 +188,6 @@
     .@{_top}--reply & {
       &::after {
         content: '';
-        background-color: #eee;
         height: 1px;
         align-self: center;
         flex: 1;
@@ -195,6 +196,9 @@
   }
 
   &__info-user {
+    .link-plain();
+    .link-default();
+    opacity: 0.5;
     font-weight: 600;
   }
 
@@ -202,6 +206,7 @@
     .content-font();
     word-wrap: break-word;
     margin-bottom: 10px;
+    color: white;
 
     .@{_top}--discussion & {
       font-size: @_discussion-text-size;
@@ -214,6 +219,10 @@
     .@{_top}--deleted & {
       opacity: 0.5;
       font-style: italic;
+    }
+
+    &::placeholder {
+      color: @osu-colour-b1;
     }
 
     &--editor {
@@ -298,11 +307,7 @@
     }
 
     .link-plain();
-    color: @user-color-default;
-
-    .link-hover({
-      color: @user-color-default;
-    });
+    .link-default();
   }
 
   &__user-link {
@@ -310,6 +315,8 @@
   }
 
   &__user-modding-history-link {
+    .link-default();
+    .link-plain();
     font-size: 10px;
     margin-left: 5px;
     pointer-events: auto;

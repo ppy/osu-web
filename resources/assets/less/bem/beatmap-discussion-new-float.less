@@ -17,18 +17,7 @@
  */
 
 .beatmap-discussion-new-float {
-  .bg() {
-    .at2x('/images/backgrounds/page-222.png');
-
-    &::before {
-      .full-size();
-      content: '';
-      background-color: fade(#000, 40%);
-    }
-  }
-
   @top: beatmap-discussion-new-float;
-  .bg();
   // counter the padding from parent
   margin-top: -10px;
   margin-bottom: 10px;
@@ -41,7 +30,6 @@
   }
 
   &__content {
-    .bg();
     padding-top: 10px;
     pointer-events: initial;
   }

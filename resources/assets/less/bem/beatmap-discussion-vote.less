@@ -17,7 +17,8 @@
  */
 
 .beatmap-discussion-vote {
-  @_default-color: #999;
+  @top: beatmap-discussion-vote;
+  @_default-color: @osu-colour-b1;
   .reset-input();
   .default-box-shadow();
   .default-border-radius();
@@ -33,6 +34,8 @@
   margin-right: 10px;
 
   font-size: 12px;
+
+  background-color: @osu-colour-b2;
 
   &:hover {
     .thick-box-shadow();
@@ -67,6 +70,9 @@
   }
 
   &__count {
-    color: @_default-color;
+    color: white;
+    .@{top}--inactive & {
+      color: @_default-color;
+    }
   }
 }
