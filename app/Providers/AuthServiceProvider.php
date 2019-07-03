@@ -31,12 +31,15 @@ class AuthServiceProvider extends ServiceProvider
 
         Passport::routes(function ($router) {
             $router->forAuthorization();
-            $router->forAccessTokens(); // required to get an access token but also makes token list accessible without verification.
         });
 
+        // Override/selectively pick routes.
         // RouteServiceProvider current runs before our provider, so Passport's default routes will override
         // those set in routes/web.php.
-        Route::get('oauth/authorize', AuthorizationController::class.'@authorize')->middleware(['web']);
+        Route::group(['prefix' => 'oauth', 'as' => 'oauth.'], function () {
+            Route::post('token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken')->middleware('throttle')->name('passport.token');
+            Route::get('authorize', AuthorizationController::class.'@authorize')->middleware(['web'])->name('authorizations.authorize');
+        });
 
         Passport::tokensCan([
             'friends.read' => trans('api.scopes.friends.read'),

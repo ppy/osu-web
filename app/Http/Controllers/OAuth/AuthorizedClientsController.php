@@ -35,13 +35,6 @@ class AuthorizedClientsController extends Controller
         $this->middleware('verify-user');
     }
 
-    public function index()
-    {
-        $authorizedClients = json_collection(Client::forUser(auth()->user()), 'OAuth\Client', 'user');
-
-        return view('oauth.authorized-clients.index', compact('authorizedClients'));
-    }
-
     public function destroy($clientId)
     {
         $client = Client::findOrFail($clientId);

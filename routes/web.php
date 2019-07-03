@@ -210,7 +210,7 @@ Route::group(['prefix' => 'home'], function () {
 Route::get('legal/{page}', 'LegalController@show')->name('legal');
 
 Route::group(['as' => 'oauth.', 'prefix' => 'oauth', 'namespace' => 'OAuth'], function () {
-    Route::resource('authorized-clients', 'AuthorizedClientsController', ['only' => ['index', 'destroy']]);
+    Route::resource('authorized-clients', 'AuthorizedClientsController', ['only' => ['destroy']]);
 });
 
 Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');
