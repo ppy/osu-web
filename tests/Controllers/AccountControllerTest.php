@@ -26,8 +26,7 @@ class AccountControllerTest extends TestCase
         seeded_shuffle($newOrder);
 
         $this->actingAs($this->user())
-            ->withSession(['verified' => UserVerification::VERIFIED])
-            ->json('PUT', route('account.update'), [
+            ->json('PUT', route('account.options'), [
                 'order' => $newOrder,
             ])
             ->assertJsonFragment(['profile_order' => $newOrder]);
@@ -41,8 +40,7 @@ class AccountControllerTest extends TestCase
         $newOrderWithDuplicate[] = $newOrder[0];
 
         $this->actingAs($this->user())
-            ->withSession(['verified' => UserVerification::VERIFIED])
-            ->json('PUT', route('account.update'), [
+            ->json('PUT', route('account.options'), [
                 'order' => $newOrderWithDuplicate,
             ])
             ->assertJsonFragment(['profile_order' => $newOrder]);
@@ -56,8 +54,7 @@ class AccountControllerTest extends TestCase
         $newOrderWithInvalid[] = 'test';
 
         $this->actingAs($this->user())
-            ->withSession(['verified' => UserVerification::VERIFIED])
-            ->json('PUT', route('account.update'), [
+            ->json('PUT', route('account.options'), [
                 'order' => $newOrderWithInvalid,
             ])
             ->assertJsonFragment(['profile_order' => $newOrder]);
