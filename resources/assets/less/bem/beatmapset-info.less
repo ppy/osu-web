@@ -64,16 +64,22 @@
   }
 
   &__description {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+    padding-right: 10px;
+
+    // to prevent overflow from extending container box
     @media @desktop {
-      // to prevent overflow from extending container box
       .full-size();
+    }
+    @media @mobile {
+      max-height: @max-height;
     }
   }
 
   &__description-container {
     min-height: 0;
     max-height: @max-height;
-    overflow-y: auto;
     flex: 1;
   }
 

@@ -149,7 +149,7 @@ export class Info extends React.Component
           className: 'beatmapset-info__header'
           osu.trans 'beatmapsets.show.info.description'
 
-        div className: 'beatmapset-info__description-container',
+        div className: 'beatmapset-info__description-container u-fancy-scrollbar',
           div
             className: 'beatmapset-info__description'
             dangerouslySetInnerHTML:
