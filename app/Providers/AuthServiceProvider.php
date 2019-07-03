@@ -31,6 +31,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Passport::routes(function ($router) {
             $router->forAuthorization();
+            $router->forClients();
         });
 
         // Override/selectively pick routes.
