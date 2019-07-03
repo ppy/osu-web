@@ -155,7 +155,14 @@ let webpackConfig = {
 };
 
 if (mix.inProduction()) {
-  webpackConfig['optimization']['minimizer'] = [new TerserPlugin({ terserOptions: { safari10: true } })];
+  webpackConfig['optimization']['minimizer'] = [
+    new TerserPlugin({
+      sourceMap: true,
+      terserOptions: {
+        safari10: true
+      }
+    }),
+  ];
 }
 
 if (!mix.inProduction() || process.env.SENTRY_RELEASE == 1) {
