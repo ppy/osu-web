@@ -47,7 +47,7 @@ export class AuthorizedClients extends React.Component {
             {client.name}
           </div>
           <span className='authorized-client__owner'>
-            Owned by <UserLink user={client.user} />
+            {osu.trans('oauth.authorized-clients.owned_by')} <UserLink user={client.user} />
           </span>
           <div className='authorized-client__scopes'>
             {this.renderPermissions(client)}
@@ -55,14 +55,14 @@ export class AuthorizedClients extends React.Component {
         </div>
         <div className='authorized-client__actions'>
           { client.revoked ? (
-            <div className='authorized-client__button authorized-client__button--revoked'>Access Revoked</div>
+            <div className='authorized-client__button authorized-client__button--revoked'>{osu.trans('oauth.authorized-clients.revoked')}</div>
           ) : (
             <button
               className='authorized-client__button'
               data-client-id={client.id}
               onClick={this.revokeClicked}
             >
-              Revoke Access
+              {osu.trans('oauth.authorized-clients.revoke')}
             </button>
           )}
         </div>
@@ -73,8 +73,8 @@ export class AuthorizedClients extends React.Component {
   renderPermissions(client: Client) {
     const scopes = Array.from(client.scopes).sort();
     return (
-      <div>
-        <div>This application can:</div>
+      <>
+        <div>{osu.trans('oauth.authorized-clients.scopes_title')}</div>
         <ul className='oauth-scopes'>
           {
             scopes.map((scope) => {
@@ -87,12 +87,12 @@ export class AuthorizedClients extends React.Component {
             })
           }
         </ul>
-      </div>
+      </>
     );
   }
 
   revokeClicked = (event: React.MouseEvent<HTMLElement>) => {
-    if (!confirm('Revoke this token?')) { return; }
+    if (!confirm(osu.trans('oauth.authorized-clients.confirm_revoke'))) { return; }
 
     const clientId = (event.target as HTMLElement).dataset.clientId;
     const client = store.clients.get(+(clientId || 0));
