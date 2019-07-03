@@ -24,6 +24,7 @@ const path = require('path');
 const webpack = require('webpack');
 const SentryPlugin = require('webpack-sentry-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 // .js doesn't support globbing by itself, so we need to glob
 // and spread the values in.
@@ -153,6 +154,17 @@ let webpackConfig = {
   }
 };
 
+if (mix.inProduction()) {
+  webpackConfig.optimization.minimizer = [
+    new TerserPlugin({
+      sourceMap: true,
+      terserOptions: {
+        safari10: true
+      }
+    }),
+  ];
+}
+
 if (!mix.inProduction() || process.env.SENTRY_RELEASE == 1) {
   webpackConfig['devtool'] = '#source-map';
 }
@@ -190,7 +202,6 @@ mix
 ], 'js/app.js')
 .js(...reactComponentSet('artist-page'))
 .js(...reactComponentSet('beatmap-discussions'))
-.js(...reactComponentSet('beatmaps'))
 .js(...reactComponentSet('beatmapset-page'))
 .js(...reactComponentSet('changelog-build'))
 .js(...reactComponentSet('changelog-index'))
@@ -202,6 +213,7 @@ mix
 .js(...reactComponentSet('admin/contest'))
 .js(...reactComponentSet('contest-entry'))
 .js(...reactComponentSet('contest-voting'))
+.js('resources/assets/lib/beatmaps.ts', 'js/react/beatmaps.js')
 .ts('resources/assets/lib/chat.ts', 'js/react/chat.js')
 .ts('resources/assets/lib/friends-index.ts', 'js/react/friends-index.js')
 .ts('resources/assets/lib/groups-show.ts', 'js/react/groups-show.js')

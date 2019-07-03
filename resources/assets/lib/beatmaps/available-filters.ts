@@ -16,23 +16,18 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
-import Dispatcher from './dispatcher';
+interface FilterOption {
+  id: number|string;
+  name: string;
+}
 
-export default class UserLoginObserver {
-  private dispatcher: Dispatcher;
-
-  constructor(window: Window, dispatcher: Dispatcher) {
-    this.dispatcher = dispatcher;
-    $(window.document).on('ajax:success', '.js-logout-link', this.userLogout);
-    $(window.document).on('ajax:success', '.js-login-form', this.userLogin);
-  }
-
-  userLogin = () => {
-    this.dispatcher.dispatch(new UserLoginAction());
-  }
-
-  userLogout = () => {
-    this.dispatcher.dispatch(new UserLogoutAction());
-  }
+export default interface AvailableFilters {
+  extras: FilterOption[];
+  general: FilterOption[];
+  genres: FilterOption[];
+  languages: FilterOption[];
+  modes: FilterOption[];
+  played: FilterOption[];
+  ranks: FilterOption[];
+  statuses: FilterOption[];
 }
