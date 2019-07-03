@@ -102,6 +102,9 @@ let webpackConfig = {
     })
   ],
   optimization: {
+    runtimeChunk: {
+      name: "/js/commons",
+    },
     splitChunks: {
       cacheGroups: {
         commons: {
