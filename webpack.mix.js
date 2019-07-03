@@ -155,7 +155,7 @@ let webpackConfig = {
 };
 
 if (mix.inProduction()) {
-  webpackConfig['optimization']['minimizer'] = [
+  webpackConfig.optimization.minimizer = [
     new TerserPlugin({
       sourceMap: true,
       terserOptions: {
