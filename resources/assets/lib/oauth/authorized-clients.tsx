@@ -17,10 +17,9 @@
  */
 
 import { observer } from 'mobx-react';
-import { Client } from 'oauth/client';
+import { AuthorizedClient } from 'oauth/authorized-client';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { UserLink } from 'user-link';
 
 const store = core.dataStore.clientStore;
 
@@ -29,7 +28,7 @@ export class AuthorizedClients extends React.Component {
   render() {
     const rows: JSX.Element[] = [];
     for (const client of store.clients.values()) {
-      rows.push(this.renderClient(client));
+      rows.push(<AuthorizedClient client={client} key={client.id} />);
     }
 
     return (
@@ -37,67 +36,5 @@ export class AuthorizedClients extends React.Component {
         {rows}
       </div>
     );
-  }
-
-  renderClient(client: Client) {
-    return (
-      <div className='authorized-client' key={client.id}>
-        <div className='authorized-client__details'>
-          <div className='authorized-client__name'>
-            {client.name}
-          </div>
-          <span className='authorized-client__owner'>
-            {osu.trans('oauth.authorized-clients.owned_by')} <UserLink user={client.user} />
-          </span>
-          <div className='authorized-client__scopes'>
-            {this.renderPermissions(client)}
-          </div>
-        </div>
-        <div className='authorized-client__actions'>
-          { client.revoked ? (
-            <div className='authorized-client__button authorized-client__button--revoked'>{osu.trans('oauth.authorized-clients.revoked')}</div>
-          ) : (
-            <button
-              className='authorized-client__button'
-              data-client-id={client.id}
-              onClick={this.revokeClicked}
-            >
-              {osu.trans('oauth.authorized-clients.revoke')}
-            </button>
-          )}
-        </div>
-      </div>
-    );
-  }
-
-  renderPermissions(client: Client) {
-    const scopes = Array.from(client.scopes).sort();
-    return (
-      <>
-        <div>{osu.trans('oauth.authorized-clients.scopes_title')}</div>
-        <ul className='oauth-scopes'>
-          {
-            scopes.map((scope) => {
-              return (
-                <li key={scope}>
-                  <span className='oauth-scopes__icon'><span className='fas fa-check' /></span>
-                  {osu.trans(`api.scopes.${scope}`)}
-                </li>
-              );
-            })
-          }
-        </ul>
-      </>
-    );
-  }
-
-  revokeClicked = (event: React.MouseEvent<HTMLElement>) => {
-    if (!confirm(osu.trans('oauth.authorized-clients.confirm_revoke'))) { return; }
-
-    const clientId = (event.target as HTMLElement).dataset.clientId;
-    const client = store.clients.get(+(clientId || 0));
-    if (client != null) {
-      client.revoke().catch(osu.ajaxError);
-    }
   }
 }

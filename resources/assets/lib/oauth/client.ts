@@ -21,6 +21,7 @@ import { ClientJSON } from 'oauth/client-json';
 
 export class Client {
   id: number;
+  @observable isRevoking = false;
   name: string | null;
   @observable revoked = false;
   @observable scopes: Set<string>;
@@ -37,6 +38,8 @@ export class Client {
 
   @action
   async revoke() {
+    this.isRevoking = true;
+
     return $.ajax({
       method: 'DELETE',
       url: laroute.route('oauth.authorized-clients.destroy', { authorized_client: this.id }),
