@@ -23,10 +23,10 @@
   min-width: 60px;
 
   &::before {
-    height: 4px;
+    height: 2px;
     display: block;
     content: '';
-    background-color: @yellow;
+    background-color: @osu-colour-u;
     border-radius: 10000px;
     margin-bottom: 2px;
   }
@@ -37,7 +37,7 @@
   }
 
   &--kudosu::before {
-    background-color: @yellow-dark;
+    background-color: @osu-colour-u;
   }
 
   &--medals::before {
@@ -50,10 +50,10 @@
 
   &__description {
     font-size: @font-size--title-small;
-    color: @greyseafoam-lighter;
+    color: white;
 
     a {
-      color: @community-user-graygreen-light;
+      .link-default();
     }
   }
 
