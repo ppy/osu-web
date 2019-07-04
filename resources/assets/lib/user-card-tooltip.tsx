@@ -110,7 +110,7 @@ function onMouseOver(event: JQueryEventObject) {
   if (osu.isMobile()) { return; }
 
   const el = event.currentTarget as HTMLElement;
-  const userId = el.dataset.userId;
+  const userId = osu.presence(el.dataset.userId);
   if (userId == null) { return; }
   // don't show cards for blocked users
   if (_.find(currentUser.blocks, { target_id: parseInt(userId, 10)})) { return; }
