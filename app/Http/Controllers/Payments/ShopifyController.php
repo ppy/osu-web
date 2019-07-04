@@ -121,7 +121,7 @@ class ShopifyController extends Controller
     /**
      * Replacement orders created at the Shopify end by duplicating? the previous order.
      *
-     * @return boolean
+     * @return bool
      */
     private function isDuplicateOrder()
     {
@@ -134,7 +134,7 @@ class ShopifyController extends Controller
      * Manually created replacement orders created at the Shopify end that might not have
      * the orderId included.
      *
-     * @return boolean
+     * @return bool
      */
     private function isManualOrder()
     {
