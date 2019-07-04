@@ -599,7 +599,7 @@ function issue_icon($issue)
 
 function build_url($build)
 {
-    return route('changelog.build', [$build->updateStream->name, $build->version]);
+    return route('changelog.build', [optional($build->updateStream)->name ?? 'unknown', $build->version]);
 }
 
 function post_url($topicId, $postId, $jumpHash = true, $tail = false)
