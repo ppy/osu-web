@@ -151,7 +151,7 @@ class Handler extends ExceptionHandler
 
         app('sentry')->configureScope(function ($scope) use ($e, $userContext) {
             $scope->setUser($userContext);
-            $scope->setTag('http_code', $this->statusCode($e));
+            $scope->setTag('http_code', (string) $this->statusCode($e));
         });
 
         $ref = app('sentry')->captureException($e);
