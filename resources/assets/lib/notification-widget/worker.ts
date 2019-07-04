@@ -175,7 +175,7 @@ export default class Worker {
     }
 
     this.ws = null;
-    this.timeout.connectWebSocket = setTimeout(() => {
+    this.timeout.connectWebSocket = window.setTimeout(() => {
       this.needsRefresh = true;
       this.connectWebSocket();
     }, 10000);
@@ -186,7 +186,7 @@ export default class Worker {
       return;
     }
 
-    this.timeout.loadMore = setTimeout(this.loadMore, 10000);
+    this.timeout.loadMore = window.setTimeout(this.loadMore, 10000);
   }
 
   destroy = () => {
