@@ -37,6 +37,12 @@ $factory->state(App\Models\Store\Order::class, 'checkout', function (Faker\Gener
     ];
 });
 
+$factory->state(App\Models\Store\Order::class, 'shipped', function (Faker\Generator $faker) {
+    return [
+        'status' => 'shipped',
+    ];
+});
+
 $factory->state(App\Models\Store\Order::class, 'shopify', function (Faker\Generator $faker) {
     return [
         // Doesn't need to be a gid for tests.

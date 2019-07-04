@@ -115,6 +115,44 @@ class ShopifyControllerTest extends TestCase
         $this->assertTrue(Payment::where('order_id', $order->getKey())->where('cancelled', false)->exists());
     }
 
+    public function testReplacementOrdersManuallyCreatedShouldBeIgnored()
+    {
+        $this->payload = [
+            'note_attributes' => [],
+            'gateway' => 'manual',
+            'payment_gateway_names' => ['manual'],
+            'processing_method' => 'manual',
+        ];
+
+        $response = $this->sendCallbackRequest();
+
+        $response->assertStatus(204);
+        $this->assertSame(Order::withoutGlobalScopes()->count(), 0);
+    }
+
+    public function testReplacementOrdersCreatedByDuplicatingShopifyOrderShouldBeIgnored()
+    {
+        // Orders are already shipped when the replacement gets created.
+        $order = factory(Order::class)->states('shopify', 'shipped')->create();
+        $oldUpdatedAt = $order->updated_at->copy();
+
+        $this->payload = [
+            'note_attributes' => [['name' => 'orderId', 'value' => $order->getKey()]],
+            'gateway' => 'manual',
+            'payment_gateway_names' => ['manual'],
+            'processing_method' => 'manual',
+            'source_name' => 'shopify_draft_order',
+        ];
+
+        $response = $this->sendCallbackRequest();
+
+        $order->refresh();
+        $response->assertStatus(204);
+        $this->assertSame($order->status, 'shipped');
+        $this->assertEquals($order->updated_at, $oldUpdatedAt);
+        $this->assertSame(Order::withoutGlobalScopes()->count(), 1);
+    }
+
     private function sendCallbackRequest(array $extraHeaders = [])
     {
         $validSignature = ShopifySignature::calculateSignature(json_encode($this->payload));
