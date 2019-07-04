@@ -38,7 +38,7 @@ class CommentBundleParams
     public $page;
     public $sort;
 
-    public function __construct($params)
+    public function __construct($params, $user)
     {
         $this->parentId = null;
         $this->cursor = [
@@ -48,7 +48,7 @@ class CommentBundleParams
         ];
         $this->limit = static::DEFAULT_LIMIT;
         $this->page = static::DEFAULT_PAGE;
-        $this->sort = static::DEFAULT_SORT;
+        $this->sort = optional($user)->profileCustomization()->comments_sort ?? static::DEFAULT_SORT;
 
         $this->setAll($params);
     }

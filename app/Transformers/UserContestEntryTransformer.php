@@ -36,6 +36,7 @@ class UserContestEntryTransformer extends Fractal\TransformerAbstract
             'filename' => $entry->original_filename,
             'filesize' => $entry->filesize,
             'url' => $entry->fileUrl(),
+            'thumb' => mini_asset($entry->fileUrl()),
             'created_at' => json_time($entry->created_at),
             'deleted' => $entry->deleted_at !== null,
         ];

@@ -35,7 +35,7 @@
     "prop-types": "^15.6.0",
     "qtip2": "https://github.com/notbakaneko/qTip2.git#cd5f038667d2b23a44f4274c46de01834d704ce6",
     "react": "^16.8.4",
-    "react-autosize-textarea": "6.0.0",
+    "react-autosize-textarea": "7.0.0",
     "react-dom": "^16.8.4",
     "react-dom-factories": "^1.0.0",
     "react-virtual-list": "^2.3.0",
@@ -44,9 +44,9 @@
     "timeago": "^1.5.0",
     "tsconfig-paths-webpack-plugin": "^3.2.0",
     "turbolinks": "^5.1.1",
-    "typescript": "^3.2.2",
+    "typescript": "~3.5.2",
     "url-polyfill": "^1.0.10",
-    "webpack-sentry-plugin": "^1.16.0"
+    "webpack-sentry-plugin": "^2.0.2"
   },
   "devDependencies": {
     "@types/jasmine": "^3.3.13",
@@ -70,10 +70,10 @@
     "karma-webpack": "3.0.0",
     "laravel-mix": "^4.0.12",
     "less": "^3.9.0",
-    "less-loader": "^4.0.4",
+    "less-loader": "^5.0.0",
     "mkdirp": "^0.5.1",
     "mobx-react-devtools": "^6.0.3",
-    "ts-loader": "6.0.2",
+    "ts-loader": "6.0.4",
     "tslint": "^5.12.0",
     "tslint-react": "^4.0.0",
     "vue-template-compiler": "^2.5.21"

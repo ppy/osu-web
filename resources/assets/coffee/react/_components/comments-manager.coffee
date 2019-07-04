@@ -45,7 +45,7 @@ export class CommentsManager extends React.PureComponent
         total: commentBundle.total
         commentableMeta: commentBundle.commentable_meta ? []
         loadingSort: null
-        currentSort: 'new'
+        currentSort: commentBundle.sort
         moreComments: {}
         showDeleted: false
 
@@ -178,6 +178,10 @@ export class CommentsManager extends React.PureComponent
       data: params
       dataType: 'json'
     .done (data) =>
+      $.ajax laroute.route('account.options'),
+        method: 'PUT'
+        data: user_profile_customization: comments_sort: sort
+
       @setState
         comments: data.comments ? []
         users: data.users ? []
@@ -186,7 +190,7 @@ export class CommentsManager extends React.PureComponent
         userFollow: data.user_follow
         topLevelCount: data.top_level_count
         total: data.total ? @state.total
-        currentSort: sort
+        currentSort: data.sort
         moreComments: {}
     .always =>
       @setState

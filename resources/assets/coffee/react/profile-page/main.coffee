@@ -409,7 +409,7 @@ export class Main extends React.PureComponent
     $elems.sortable('cancel')
 
     @setState profileOrder: newOrder, =>
-      $.ajax laroute.route('account.update'),
+      $.ajax laroute.route('account.options'),
         method: 'PUT'
         dataType: 'JSON'
         data:
