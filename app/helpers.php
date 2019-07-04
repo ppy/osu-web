@@ -599,7 +599,7 @@ function issue_icon($issue)
 
 function build_url($build)
 {
-    return route('changelog.build', [$build->updateStream->name, $build->version]);
+    return route('changelog.build', [optional($build->updateStream)->name ?? 'unknown', $build->version]);
 }
 
 function post_url($topicId, $postId, $jumpHash = true, $tail = false)
@@ -1319,4 +1319,11 @@ function check_url(string $url): bool
     curl_close($ch);
 
     return !$errored;
+}
+
+function mini_asset(string $url): string
+{
+    return present(config('osu.assets.mini_url'))
+        ? str_replace(config('osu.assets.base_url'), config('osu.assets.mini_url'), $url)
+        : $url;
 }
