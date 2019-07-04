@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use App\Jobs\RefreshBeatmapsetUserKudosu;
 use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
@@ -247,7 +248,19 @@ class BeatmapDiscussion extends Model
             }
         }
 
-        $change = $targetKudosu - $kudosuGranted;
+        $beatmapsetKudosuGranted = (int) KudosuHistory
+            ::where('kudosuable_type', static::class)
+            ->whereIn('kudosuable_id',
+                static
+                    ::where('kudosu_denied', '=', false)
+                    ->where('beatmapset_id', '=', $this->beatmapset_id)
+                    ->where('user_id', '=', $this->user_id)
+                    ->select('id')
+            )->sum('amount');
+
+        $availableKudosu = config('osu.beatmapset.discussion_kudosu_per_user') - $beatmapsetKudosuGranted;
+        $maxChange = $targetKudosu - $kudosuGranted;
+        $change = min($availableKudosu, $maxChange);
 
         if ($change === 0) {
             return;
@@ -290,6 +303,11 @@ class BeatmapDiscussion extends Model
                 'osu_kudosavailable' => DB::raw("osu_kudosavailable + {$change}"),
             ]);
         });
+
+        // When user lost kudosu, check if there's extra kudosu available.
+        if ($event !== 'recalculate' && $change < 0) {
+            dispatch(new RefreshBeatmapsetUserKudosu(['beatmapsetId' => $this->beatmapset_id, 'userId' => $this->user_id]));
+        }
     }
 
     public function refreshResolved()
