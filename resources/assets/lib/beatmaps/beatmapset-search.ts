@@ -51,7 +51,7 @@ export class BeatmapsetSearch implements DispatchListener {
   }
 
   @action
-  get(filters: BeatmapsetSearchFilters, from = 0): Promise<SearchResults> {
+  get(filters: BeatmapsetSearchFilters, from = 0): PromiseLike<SearchResults> {
     if (from < 0) {
       throw Error('from must be > 0');
     }
@@ -112,7 +112,7 @@ export class BeatmapsetSearch implements DispatchListener {
     this.recommendedDifficulties.clear();
   }
 
-  private fetch(filters: BeatmapsetSearchFilters, from: number) {
+  private fetch(filters: BeatmapsetSearchFilters, from: number): PromiseLike<{}> {
     this.cancel();
 
     const params = filters.queryParams;
