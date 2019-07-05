@@ -16,6 +16,5 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'baseHue' => 0,
     'bodyAdditionalClasses' => 'osu-layout--admin',
 ])

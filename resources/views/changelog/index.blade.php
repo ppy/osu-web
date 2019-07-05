@@ -38,7 +38,6 @@
     'bodyAdditionalClasses' => 'osu-layout--body-111-plain',
     'legacyNav' => false,
     'title' => $title,
-    'baseHue' => 255,
 ])
 
 @section('content')

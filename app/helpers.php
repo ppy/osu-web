@@ -1320,3 +1320,33 @@ function check_url(string $url): bool
 
     return !$errored;
 }
+
+function section_to_hue_map($section): int
+{
+    $colourToHue = [
+        'red' => 0,
+        'pink' => 333,
+        'orange' => 46,
+        'green' => 115,
+        'purple' => 255,
+        'blue' => 230,
+    ];
+
+    $sectionMapping = [
+        'admin' => 'red',
+        'admin-forum' => 'red',
+        'admin-store' => 'red',
+        'beatmaps' => 'pink',
+        'beatmapsets' => 'pink',
+        'community' => 'pink',
+        'error' => 'pink',
+        'help' => 'orange',
+        'home' => 'purple',
+        'multiplayer' => 'pink',
+        'rankings' => 'green',
+        'store' => 'pink',
+        'user' => 'pink',
+    ];
+
+    return isset($sectionMapping[$section]) ? $colourToHue[$sectionMapping[$section]] : $colourToHue['pink'];
+}

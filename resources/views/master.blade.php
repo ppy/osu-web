@@ -46,12 +46,12 @@
         class="
             osu-layout
             osu-layout--body
-            t-section-{{ $currentSection ?? 'error' }}
+            t-section
             action-{{ $currentAction }}
             {{ $bodyAdditionalClasses ?? '' }}
         "
     >
-        <style>:root {--base-hue: {{ isset($baseHue) ? $baseHue : 333 }};}</style>
+        <style>:root {--base-hue: {{ $currentSectionHue }};}</style>
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
         <div class="blackout js-blackout" data-visibility="hidden"></div>
 

@@ -17,7 +17,6 @@
 --}}
 @extends('master', [
     'bodyAdditionalClasses' => 'osu-layout--body-222',
-    'baseHue' => 255,
 ])
 
 @section('content')

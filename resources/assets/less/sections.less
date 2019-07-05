@@ -19,60 +19,53 @@
 // main: compiled.less
 @import "app";
 
-.fn-section(admin, gray);
-.fn-section(admin-forum, gray);
-.fn-section(admin-store, gray);
-.fn-section(beatmaps, pink);
-.fn-section(beatmapsets, pink);
-.fn-section(community, pink);
-.fn-section(error, pink);
-.fn-section(help, yellow);
-.fn-section(home, purple);
-.fn-section(multiplayer, pink);
-.fn-section(rankings, green);
-.fn-section(store, pink);
-.fn-section(user, blue);
+.t-section {
+  .u-section--bg-normal {
+    // the bar that shows the section we're currently in
+    background-color: @osu-colour-u !important;
+  }
 
-.fn-section(@section, @color-name) {
-  @_lighter: "@{color-name}-lighter";
-  @_light: "@{color-name}-light";
-  @_dark: "@{color-name}-dark";
-  @_darker: "@{color-name}-darker";
-  @_text: "@{color-name}-text";
-
-  @_bg: @@_darker;
-
-  .t-section-@{section} {
-    .u-section--bg {
-      background-color: @_bg !important;
-    }
-
-    .u-section--bg-normal {
-      background-color: @@color-name !important;
-    }
-
-    .u-section--color-hover {
-      &:focus,
-      &:hover,
-      &:active {
-        color: @_text !important;
-      }
-    }
-
-    .u-section--gradient-down {
-      // the parts after 50% are for the header size transition.
-      background-image: linear-gradient(fade(@_bg, 90%) 0%, @_bg 37.5%, @_bg 50%, @osu-colour-b5 50%, @osu-colour-b5 100%);
-      background-size: 200% 200%;
+  .u-section--color-hover {
+    &:focus,
+    &:hover,
+    &:active {
+      color: @osu-colour-l1 !important;
     }
   }
 
-  .u-section-@{section}--bg {
-    background-color: @_bg !important;
-  }
+  .u-section--gradient-down {
+    // the parts after 50% are for the header size transition.
 
+    background-image: linear-gradient(
+      .osu-hsla(@osu-colour-d, 0.9)[@hsla] 0%,
+      @osu-colour-d 37.5%,
+      @osu-colour-d 50%,
+      @osu-colour-d 50%,
+      @osu-colour-d 100%
+    );
+    background-size: 200% 200%;
+  }
+}
+
+.u-section--bg {
+  background-color: @osu-colour-d;
+}
+
+.menu-colour(beatmaps, pink);
+.menu-colour(beatmapsets, pink);
+.menu-colour(community, pink);
+.menu-colour(error, pink);
+.menu-colour(help, yellow);
+.menu-colour(home, purple);
+.menu-colour(multiplayer, pink);
+.menu-colour(rankings, green);
+.menu-colour(store, pink);
+.menu-colour(user, blue);
+
+.menu-colour(@section, @colour) {
   .u-section-@{section}--before-bg-normal {
     &::before {
-      background-color: @@color-name !important;
+      background-color: @@colour !important;
     }
   }
 }
