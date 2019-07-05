@@ -284,7 +284,7 @@ export class UserCard extends React.PureComponent<Props, State> {
             </span>
           </div>
         </div>
-        <div className='user-card__icons'>
+        <div className='user-card__icons user-card__icons--menu'>
           {this.renderMenuButton()}
         </div>
       </div>

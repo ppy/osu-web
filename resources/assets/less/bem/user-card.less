@@ -268,8 +268,12 @@
       .@{top}--list & {
         position: absolute;
         top: 0;
+        // make it look connected
+        left: -3px;
+        z-index: -1;
+
         background-color: transparent;
-        border-radius: unset;
+        border-radius: 0 @avatar-border-radius @avatar-border-radius 0;
         height: @avatar-size--list;
         width: 15px;
       }
@@ -279,6 +283,14 @@
   &__icons {
     display: flex;
     flex: none;
+
+    &--menu {
+      .@{top}--list & {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
   }
 
   &__link-wrapper {
@@ -310,6 +322,7 @@
     .center-content();
     flex: none;
     width: @avatar-size;
+
     .@{top}--list & {
       order: 1
     }
