@@ -18,7 +18,7 @@
     "chaseconey/laravel-datadog-helper": "*",
     "doctrine/dbal": "*",
     "egulias/email-validator": "*",
-    "elasticsearch/elasticsearch": "~6.0",
+    "elasticsearch/elasticsearch": ">=6.0, <6.6",
     "ezyang/htmlpurifier": "*",
     "graham-campbell/github": "*",
     "guzzlehttp/guzzle": "*",

@@ -21,7 +21,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Sentry;
+use Sentry\State\Scope;
 
 /**
  * @property Beatmap $beatmap
@@ -256,11 +256,13 @@ class Event extends Model
 
     public function parseFailure($reason)
     {
-        Sentry::captureMessage("Failed parsing event: {$reason}", ['log'], [
-            'extra' => [
-                'event' => $this->toArray(),
-            ],
-        ]);
+        app('sentry')->getClient()->captureMessage(
+            'Failed parsing event',
+            null,
+            (new Scope)
+                ->setExtra('reason', $reason)
+                ->setExtra('event', $this->toArray())
+        );
 
         return ['parse_error' => true];
     }
