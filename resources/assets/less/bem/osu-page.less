@@ -32,6 +32,13 @@
   margin-right: auto;
   flex: none;
 
+  .default {
+    background-color: @osu-colour-b5;
+    color: #fff;
+    .default-box-shadow();
+    margin-bottom: 10px;
+  }
+
   .width();
   @media @desktop {
     .width-desktop();
@@ -51,23 +58,22 @@
   }
 
   &--changelog {
-    .default-box-shadow();
+    .default;
     background-color: @osu-colour-b4;
     display: flex;
     flex-direction: column;
+    margin-bottom: 0;
   }
 
   &--comment {
-    .default-box-shadow();
-    background-color: @osu-colour-b5;
+    .default;
     padding: 10px 0 0;
+    margin-bottom: 0;
   }
 
   &--comments {
-    .default-box-shadow();
-    background-color: @osu-colour-b5;
+    .default;
     padding: 10px 0;
-    margin-bottom: 10px;
   }
 
   &--contest {
@@ -78,20 +84,15 @@
   }
 
   &--contests {
-    @media @desktop {
-      margin-bottom: 10px;
-    }
+    .default;
   }
 
   &--download {
     .width(20px);
-    .default-box-shadow();
+    .default;
 
     display: flex;
     flex-direction: column;
-    margin-bottom: 5px;
-
-    background-color: @osu-colour-b5;
 
     @media @desktop {
       .width-desktop(20px);
@@ -120,10 +121,8 @@
   }
 
   &--generic {
-    .default-box-shadow();
-    background-color: @osu-colour-b5;
+    .default;
     padding: 20px;
-    margin-bottom: 10px;
 
     .osu-layout--admin & {
       background-color: white;
@@ -131,20 +130,17 @@
   }
 
   &--generic-compact {
-    .default-box-shadow();
-    background-color: @osu-colour-b5;
-    margin-bottom: 10px;
+    .default;
   }
 
   &--header {
-    .default-box-shadow();
-    background-color: @osu-colour-b5;
+    .default;
+    margin-bottom: 0;
   }
 
   &--header-news, &--groups {
     .default-box-shadow();
     background-color: #333;
-    margin-bottom: 10px;
   }
 
   &--header-v3 {
@@ -164,13 +160,10 @@
   }
 
   &--news {
-    .default-box-shadow();
+    .default;
     .default-gutter();
     padding-bottom: 20px;
     padding-top: 20px;
-    color: #fff;
-    background-color: @osu-colour-b4;
-    margin-bottom: 10px;
   }
 
   &--notification-banners {
@@ -181,9 +174,8 @@
   }
 
   &--password-reset {
-    .default-box-shadow();
+    .default;
     .inner-shadow-top();
-    margin-bottom: 10px;
 
     @media @desktop {
       .width-desktop(20px);
@@ -191,10 +183,8 @@
   }
 
   &--rankings {
-    .default-box-shadow();
-    margin-bottom: 10px;
+    .default;
     padding: 15px 20px 0;
-    background-color: @osu-colour-b5;
   }
 
   &--small {
@@ -216,10 +206,8 @@
   }
 
   &--users {
-    .default-box-shadow();
-    background-color: @osu-colour-b5;
-    color: #fff;
-    margin-bottom: 10px;
+    .default;
+    background-color: @osu-colour-b4;
   }
 
   &--users-show-header {
@@ -227,12 +215,9 @@
   }
 
   &--wiki {
-    .inner-shadow-top();
-    background-color: @osu-colour-b5;
-    color: #fff;
+    .default;
     font-size: @font-size--wiki;
     padding: 20px;
-    margin-bottom: 10px;
 
     @media @desktop {
       padding-left: @padding-wiki-desktop;
@@ -241,13 +226,13 @@
   }
 
   &--chat {
-    .default-box-shadow();
-    background-color: @osu-colour-b5;
+    .default;
 
     flex: 1 0 auto;
     display: flex;
     height: calc((var(--vh, 1vh) * 100) - 150px); // viewport height - compact header+footer
     width: 100vw;
+    margin-bottom: 0;
 
     @media @mobile {
       height: calc((var(--vh, 1vh) * 100) - 110px);
