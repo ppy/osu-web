@@ -192,7 +192,7 @@
     &--menu {
       .circle(25px);
       font-size: 10px;
-      background-color: #333;
+      background-color: @osu-colour-b6;
       opacity: 0;
       transition:
         background-color 120ms ease-in-out,
@@ -204,14 +204,14 @@
         opacity: 1;
 
         &:hover {
-          background-color: @osu-colour-u;
+          background-color: @osu-colour-b5;
         }
       }
 
       // needs the higher specificity over .@{top}:hover
       .@{top}--active && {
         opacity: 1;
-        background-color: @osu-colour-u;
+        background-color: @osu-colour-b5;
       }
     }
   }
