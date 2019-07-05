@@ -51,6 +51,8 @@
     .reset-input();
     .link-default();
     text-transform: lowercase;
+    color: @osu-colour-b2;
+    .link-hover({ color: white });
 
     &:hover {
       text-decoration: underline;
@@ -89,15 +91,11 @@
   }
 
   &__commentable-meta-type {
-    background-color: #ddd;
+    background-color: @osu-colour-b6;
     padding: 5px 15px;
     margin-right: 5px;
     border-radius: 10000px;
     font-size: @font-size--normal;
-
-    .@{_top}--dark & {
-      background-color: @comment-dark-border-bg;
-    }
 
     .@{_top}--single & {
       margin-bottom: 10px;
@@ -236,7 +234,12 @@
     font-weight: bold;
 
     &--footer {
+      color: @osu-colour-b1;
       font-size: @font-size--normal;
+      a {
+        color: @osu-colour-b2;
+        .link-hover({ color: white });
+      }
     }
 
     &--header {
@@ -250,10 +253,6 @@
 
     &--info {
       font-weight: normal;
-
-      .@{_top}--changelog & {
-        color: @changelog-fg-content;
-      }
     }
 
     &--username-link {
@@ -266,6 +265,7 @@
     width: @_avatar;
     font-size: 18px; // icon size
     display: none;
+    color: @osu-colour-b1;
 
     @media @desktop {
       display: block;
