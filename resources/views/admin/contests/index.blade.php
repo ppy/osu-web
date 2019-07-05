@@ -17,7 +17,6 @@
 --}}
 @extends('admin/master', [
     'title' => 'Contests Admin',
-    'bodyAdditionalClasses' => 'osu-layout--body-dark'
 ])
 
 

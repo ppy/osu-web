@@ -36,13 +36,18 @@
   }
 
   &--body {
-    background-color: transparent;
+    background-color: @osu-colour-b6;
+  }
 
+
+  &--body-landing {
+    background-color: @osu-colour-b6;
     // inspired by
     // https://fourword.fourkitchens.com/article/fix-scrolling-performance-css-will-change-property
     // using backface-visibility since IE doesn't have will-change property yet.
     &::before {
-      .at2x("/images/backgrounds/page-222.png", 500px, 500px);
+      .at2x("/images/backgrounds/page-dark.png", 500px, 500px);
+      opacity: 0.25;
       position: fixed;
       backface-visibility: hidden;
       width: 100%;
@@ -51,64 +56,6 @@
       left: 0;
       content: " ";
       z-index: @z-index--body-background;
-    }
-  }
-
-  &--body-111-plain {
-    background-color: @osu-colour-b6;
-
-    &::before {
-      display: none;
-    }
-  }
-
-  &--body-222-plain {
-    background-color: @osu-colour-b6;
-
-    &::before {
-      display: none;
-    }
-  }
-
-  &--body-community {
-    background-color: @osu-colour-b6;
-
-    &::before {
-      display: none;
-    }
-  }
-
-  &--body-dark {
-    background-color: #333;
-
-    &::before {
-      .at2x("/images/backgrounds/page-dark.png", 500px, 500px);
-
-      opacity: 0.25;
-    }
-  }
-
-  &--body-darker {
-    &::before {
-      .at2x("/images/backgrounds/page-darker.png", 500px, 500px);
-    }
-  }
-
-  &--body-333 {
-    &::before {
-      .at2x("/images/backgrounds/page-333.png", 500px, 500px);
-    }
-  }
-
-  &--body-555 {
-    &::before {
-      .at2x("/images/backgrounds/page-555.png", 500px, 500px);
-    }
-  }
-
-  &--body-ddd {
-    &::before {
-      .at2x("/images/backgrounds/page-ddd.png", 500px, 500px);
     }
   }
 

@@ -17,7 +17,6 @@
 --}}
 @extends('admin/master', [
     'title' => $contest->name,
-    'bodyAdditionalClasses' => 'osu-layout--body-dark'
 ])
 
 @section('content')

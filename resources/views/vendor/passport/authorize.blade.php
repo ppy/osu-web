@@ -21,7 +21,6 @@
 
 @extends('master', [
     'blank' => true,
-    'bodyAdditionalClasses' => 'osu-layout--body-222-plain',
 ])
 
 @section('content')

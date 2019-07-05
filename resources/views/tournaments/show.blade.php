@@ -19,7 +19,6 @@
     'currentSection' => 'community',
     'currentAction' => 'tournaments',
     'title' => $tournament->name,
-    'bodyAdditionalClasses' => 'osu-layout--body-darker'
 ])
 
 @section('content')

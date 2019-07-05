@@ -20,7 +20,6 @@
     'currentAction' => 'artists',
     'title' => trans('artist.title'),
     'pageDescription' => trans('artist.page_description'),
-    'bodyAdditionalClasses' => 'osu-layout--body-darker'
 ])
 
 @section('content')
