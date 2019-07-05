@@ -29,6 +29,7 @@
     display: flex;
     align-items: center;
     flex: 0 0 32px;
+    font-weight: 100;
     justify-content: center;
     background: @osu-colour-b6;
   }
@@ -46,9 +47,8 @@
   }
 
   &__row {
-    background-color: @osu-colour-b5;
-    color: @osu-colour-l1;
-    font-weight: 100;
+    background-color: @osu-colour-b4;
+    color: @osu-colour-b1;
     font-size: 12px;
     border-bottom: 2px solid @osu-colour-b6;
     transition: 0.1s;
@@ -59,7 +59,7 @@
     }
 
     &--selected {
-      background-color: @osu-colour-b4;
+      background-color: @osu-colour-b3;
     }
 
     &:first-child {
@@ -69,14 +69,14 @@
 
     &:last-child {
       border-bottom: none;
-      border-radius: @border-radius-base @border-radius-base 0 0;
+      border-radius: 0 0 @border-radius-base @border-radius-base;
       overflow: hidden;
     }
   }
 
   &__header {
     text-transform: uppercase;
-    color: @osu-colour-l1;
+    color: @osu-colour-b1;
     font-size: 10px;
     line-height: 32px;
     display: flex;
@@ -132,7 +132,7 @@
   &__votes-bar {
     position: absolute;
     height: 100%;
-    background-color: @osu-colour-b3;
+    background-color: @osu-colour-b2;
     top: 0;
     left: 0;
   }
