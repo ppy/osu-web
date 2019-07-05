@@ -23,6 +23,7 @@ import { UserCard } from 'user-card';
 interface Props {
   modifiers: string[];
   users: User[];
+  viewMode: 'card' | 'list';
 }
 
 export class UserCards extends React.PureComponent<Props> {
@@ -35,7 +36,7 @@ export class UserCards extends React.PureComponent<Props> {
 
   render() {
     const classMods = this.state.activeKey != null ? ['menu-active'] : [];
-    classMods.push('list');
+    classMods.push(this.props.viewMode);
 
     return (
       <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
@@ -46,7 +47,7 @@ export class UserCards extends React.PureComponent<Props> {
 
               return (
                 <KeyContext.Provider key={user.id} value={user.id}>
-                  <UserCard activated={activated} mode='list' modifiers={['has-outline', ...this.props.modifiers]} user={user} />
+                  <UserCard activated={activated} mode={this.props.viewMode} modifiers={['has-outline', ...this.props.modifiers]} user={user} />
                 </KeyContext.Provider>
               );
             })

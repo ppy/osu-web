@@ -23,9 +23,11 @@ import { UserCards } from 'user-cards';
 
 type Filter = 'all' | 'online' | 'offline';
 type SortMode = 'last_visit' | 'username';
+type ViewMode = 'card' | 'list';
 
 const filters: Filter[] = ['all', 'online', 'offline'];
 const sortModes: SortMode[] = ['last_visit', 'username'];
+const viewModes: ViewMode[] = ['card', 'list'];
 
 interface Props {
   title?: string;
@@ -35,6 +37,7 @@ interface Props {
 interface State {
   filter: Filter;
   sortMode: SortMode;
+  viewMode: ViewMode;
 }
 
 function usernameSortAscending(x: User, y: User) {
@@ -45,6 +48,7 @@ export class UserList extends React.PureComponent<Props> {
   readonly state: State = {
     filter: this.filterFromUrl,
     sortMode: this.sortFromUrl,
+    viewMode: this.viewFromUrl,
   };
 
   private get filterFromUrl() {
@@ -81,12 +85,26 @@ export class UserList extends React.PureComponent<Props> {
     return this.getAllowedQueryStringValue(sortModes, url.searchParams.get('user_sort'));
   }
 
+  private get viewFromUrl() {
+    const url = new URL(location.href);
+
+    return this.getAllowedQueryStringValue(viewModes, url.searchParams.get('user_view'));
+  }
+
   onSortSelected = (event: React.SyntheticEvent) => {
     const value = (event.currentTarget as HTMLElement).dataset.value;
     const url = osu.updateQueryString(null, { user_sort: value });
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ sortMode: value });
+  }
+
+  onViewSelected = (event: React.SyntheticEvent) => {
+    const value = (event.currentTarget as HTMLElement).dataset.value;
+    const url = osu.updateQueryString(null, { user_view: value });
+
+    Turbolinks.controller.advanceHistory(url);
+    this.setState({ viewMode: value });
   }
 
   optionSelected = (event: React.SyntheticEvent) => {
@@ -105,9 +123,10 @@ export class UserList extends React.PureComponent<Props> {
         <div className='user-list'>
           <div className='user-list__toolbar'>
             {this.renderSorter()}
+            {this.renderViewMode()}
           </div>
 
-          <UserCards users={this.sortedUsers} />
+          <UserCards users={this.sortedUsers} viewMode={this.state.viewMode} />
         </div>
       </>
     );
@@ -156,6 +175,15 @@ export class UserList extends React.PureComponent<Props> {
         sortMode={this.state.sortMode}
         values={sortModes}
       />
+    );
+  }
+
+  renderViewMode() {
+    return (
+      <div>
+        <button onClick={this.onViewSelected} data-value='card'>card</button>
+        <button onClick={this.onViewSelected} data-value='list'>list</button>
+      </div>
     );
   }
 
