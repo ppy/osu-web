@@ -28,6 +28,7 @@ import { SupporterIcon } from 'supporter-icon';
 
 interface Props {
   activated: boolean;
+  mode: 'card' | 'list';
   modifiers: string[];
   user?: User;
 }
@@ -40,6 +41,7 @@ interface State {
 export class UserCard extends React.PureComponent<Props, State> {
   static defaultProps = {
     activated: false,
+    mode: 'card',
     modifiers: [],
   };
 
@@ -97,6 +99,9 @@ export class UserCard extends React.PureComponent<Props, State> {
     const modifiers = this.props.modifiers.slice();
     // Setting the active modifiers from the parent causes unwanted renders unless deep comparison is used.
     modifiers.push(this.props.activated ? 'active' : 'highlightable');
+    if (this.props.mode === 'list') {
+      modifiers.push('list');
+    }
 
     return (
       <div className={osu.classWithModifiers('user-card', modifiers)}>
@@ -112,6 +117,7 @@ export class UserCard extends React.PureComponent<Props, State> {
               <div className='user-card__username'>
                 <div className='u-ellipsis-overflow'>{this.user.username}</div>
               </div>
+              {this.renderListModeIcons()}
             </div>
           </div>
           {this.renderStatusBar()}
@@ -198,7 +204,7 @@ export class UserCard extends React.PureComponent<Props, State> {
         </div>
 
         {
-          this.user.is_supporter ?
+          this.props.mode === 'card' && this.user.is_supporter ?
           <div className='user-card__icon'>
             <a className='user-card__link-wrapper' href={laroute.route('support-the-game')}>
               <SupporterIcon />
@@ -206,9 +212,24 @@ export class UserCard extends React.PureComponent<Props, State> {
           </div> : null
         }
 
-        <div className='user-card__icon'>
-          <FriendButton userId={this.user.id} modifiers={['user-card']} />
-        </div>
+        {
+          this.props.mode === 'card' ?
+          <div className='user-card__icon'>
+            <FriendButton userId={this.user.id} modifiers={['user-card']} />
+          </div> : null
+        }
+      </div>
+    );
+  }
+
+  renderListModeIcons() {
+    if (!this.isUserLoaded || !this.user.is_supporter) { return null; }
+
+    return (
+      <div className='user-card__icon'>
+        <a className='user-card__link-wrapper' href={laroute.route('support-the-game')}>
+          <SupporterIcon />
+        </a>
       </div>
     );
   }

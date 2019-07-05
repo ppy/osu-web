@@ -20,6 +20,7 @@
   @top: user-card;
   @avatar-border-radius: 6px;
   @avatar-size: 60px;
+  @avatar-size--list: 40px;
   @background-color: @osu-colour-b4;
   @card-border-radius: 10px;
   @card-item-spacing: 10px;
@@ -37,8 +38,13 @@
   background-color: @background-color;
   border-radius: @card-border-radius;
 
+  &--list {
+    height: @avatar-size--list;
+    border-radius: @avatar-border-radius;
+  }
+
   // to make broken cover images less ugly
-  overflow: hidden;
+  // overflow: hidden;
 
   .qtip--user-card & {
     width: @user-card-width;
@@ -54,6 +60,10 @@
 
       .search-result--user & {
         border-color: @blue-dark;
+      }
+
+      .@{top}--list& {
+        border-radius: @avatar-border-radius;
       }
     }
   }
@@ -75,12 +85,21 @@
     &--loaded {
       opacity: 1;
     }
+
+    .@{top}--list & {
+      border-radius: @avatar-border-radius 0 0 @avatar-border-radius
+    }
   }
 
   &__avatar-space {
     width: @avatar-size;
     height: @avatar-size;
     flex: none;
+
+    .@{top}--list & {
+      width: @avatar-size--list;
+      height: @avatar-size--list;
+    }
   }
 
   &__avatar-spinner {
@@ -111,6 +130,14 @@
     &--loading {
       opacity: 0;
     }
+
+    .@{top}--list & {
+      position: absolute;
+      left: unset;
+      right: 0;
+      width: 50%;
+      border-radius: @avatar-border-radius;
+    }
   }
 
   &__background-container {
@@ -131,6 +158,14 @@
     &--online {
       opacity: 0.6;
     }
+
+    .@{top}--list & {
+      border-radius: @avatar-border-radius;
+      background: linear-gradient(to right, fade(@greysky, 100%) 50%, fade(@greysky, 50%));
+      &--online {
+        background: linear-gradient(to right, fade(@greysky, 100%) 50%, fade(@greysky, 50%));
+      }
+    }
   }
 
   &__card {
@@ -144,6 +179,10 @@
     pointer-events: none;
 
     height: 100%;
+
+    .@{top}--list & {
+      flex-direction: row;
+    }
   }
 
   &__content {
@@ -161,12 +200,20 @@
       justify-content: space-between;
       padding-top: 0;
     }
+
+    .@{top}--list & {
+      padding: 0;
+    }
   }
 
   &__details {
     display: grid;
     grid-template-rows: @icon-height 1fr;
     margin-left: @card-item-spacing;
+
+    .@{top}--list & {
+      display: flex;
+    }
   }
 
   &__icon {
@@ -217,6 +264,15 @@
         opacity: 1;
         background-color: @osu-colour-b5;
       }
+
+      .@{top}--list & {
+        position: absolute;
+        top: 0;
+        background-color: transparent;
+        border-radius: unset;
+        height: @avatar-size--list;
+        width: 15px;
+      }
     }
   }
 
@@ -254,6 +310,10 @@
     .center-content();
     flex: none;
     width: @avatar-size;
+    .@{top}--list & {
+      order: 1
+    }
+
   }
 
   &__status-message {
@@ -269,6 +329,10 @@
 
     font-size: 14px;
     min-width: 0;
+
+    .@{top}--list & {
+      text-align: right;
+    }
   }
 
   &__user {
@@ -277,6 +341,10 @@
 
     height: @avatar-size;
     min-width: 0;
+
+    .@{top}--list & {
+      height: @avatar-size--list;
+    }
   }
 
   &__username {
