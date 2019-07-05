@@ -49,7 +49,7 @@ class ShopifyController extends Controller
 
         $orderId = $this->getOrderId();
         if ($orderId === null) {
-            if ($this->shouldIgnore()) {
+            if ($this->isManualOrder()) {
                 return response([], 204);
             }
 
@@ -60,18 +60,22 @@ class ShopifyController extends Controller
 
         $type = $this->getWebookType();
         switch ($type) {
-            // TODO: fixup with PaymentProcessor?
             case 'orders/cancelled':
                 // FIXME: We're relying on Shopify not sending cancel multiple times otherwise this will explode.
-                $order->getConnection()->transaction(function ($order) {
-                    $payment = $order->payments->where('cancelled', false)->first();
+                $order->getConnection()->transaction(function () use ($order) {
+                    $payment = $order->payments()->where('cancelled', false)->first();
                     $payment->cancel();
                     $order->cancel();
                 });
+                break;
             case 'orders/fulfilled':
                 $order->update(['status' => 'shipped', 'shipped_at' => now()]);
                 break;
             case 'orders/create':
+                if ($order->status === 'shipped' && $this->isDuplicateOrder()) {
+                    return response([], 204);
+                }
+
                 (new OrderCheckout($order))->completeCheckout();
                 break;
             case 'orders/paid':
@@ -117,7 +121,25 @@ class ShopifyController extends Controller
         return $this->params;
     }
 
-    private function shouldIgnore()
+    /**
+     * Replacement orders created at the Shopify end by duplicating? the previous order.
+     *
+     * @return bool
+     */
+    private function isDuplicateOrder()
+    {
+        $params = $this->getParams();
+
+        return $params['source_name'] === 'shopify_draft_order' && $this->isManualOrder();
+    }
+
+    /**
+     * Manually created replacement orders created at the Shopify end that might not have
+     * the orderId included.
+     *
+     * @return bool
+     */
+    private function isManualOrder()
     {
         $params = $this->getParams();
 
