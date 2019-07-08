@@ -36,7 +36,7 @@ return [
     'authorized-clients' => [
         'confirm_revoke' => 'Are you sure you want to revoke this client\'s permissions?',
         'scopes_title' => 'This application can:',
-        'owned_by' => 'Owned by',
+        'owned_by' => 'Owned by :user',
         'revoke' => 'Revoke Access',
         'revoked' => 'Access Revoked',
     ],

@@ -29,6 +29,11 @@ interface Props {
 @observer
 export class AuthorizedClient extends React.Component<Props> {
   render() {
+    const parts = osu.trans('oauth.authorized-clients.owned_by').split(/(:user)/g);
+    const ownerParts = parts.map((part, index) => {
+      return part === ':user' ? <UserLink key={index} user={this.props.client.user} /> : part;
+    });
+
     return (
       <div className='authorized-client'>
         <div className='authorized-client__details'>
@@ -36,7 +41,7 @@ export class AuthorizedClient extends React.Component<Props> {
             {this.props.client.name}
           </div>
           <span className='authorized-client__owner'>
-            {osu.trans('oauth.authorized-clients.owned_by')} <UserLink user={this.props.client.user} />
+            {ownerParts}
           </span>
           <div className='authorized-client__scopes'>
             {this.renderPermissions()}
