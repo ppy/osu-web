@@ -26,14 +26,13 @@ const store = core.dataStore.clientStore;
 @observer
 export class AuthorizedClients extends React.Component {
   render() {
-    const rows: JSX.Element[] = [];
-    for (const client of store.clients.values()) {
-      rows.push(<AuthorizedClient client={client} key={client.id} />);
-    }
-
     return (
       <div className='authorized-clients'>
-        {rows}
+        {
+          [...store.clients.values()].map((client) => {
+            return <AuthorizedClient client={client} key={client.id} />;
+          })
+        }
       </div>
     );
   }
