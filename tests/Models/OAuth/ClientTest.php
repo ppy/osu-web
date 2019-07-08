@@ -31,8 +31,7 @@ class ClientTest extends TestCase
 
         $this->owner = factory(User::class)->create();
         $this->repository = new ClientRepository();
-        $passportClient = $this->repository->create($this->owner->getKey(), 'test', url('/auth/callback'));
-        $this->client = Client::findOrFail($passportClient->getKey());
+        $this->client = $this->createClient($this->owner);
     }
 
     public function testScopesFromTokensAreAggregated()
@@ -55,6 +54,29 @@ class ClientTest extends TestCase
         $clients = Client::forUser($user);
         $this->assertCount(1, $clients);
         $this->assertSame(['friends.read', 'identify'], $clients[0]->scopes);
+    }
+
+    public function testScopesFromDifferentClientsAreNotAggregated()
+    {
+        $user = factory(User::class)->create();
+        $this->client->tokens()->create([
+            'id' => '1',
+            'revoked' => false,
+            'scopes' => ['identify'],
+            'user_id' => $user->getKey(),
+        ]);
+
+        $otherClient = $this->createClient($this->owner);
+        $otherClient->tokens()->create([
+            'id' => '2',
+            'revoked' => false,
+            'scopes' => ['friends.read'],
+            'user_id' => $user->getKey(),
+        ]);
+
+        $clients = Client::forUser($user);
+        $this->assertSame(['identify'], $clients->find($this->client->getKey())->scopes);
+        $this->assertSame(['friends.read'], $clients->find($otherClient->getKey())->scopes);
     }
 
     public function testScopesFromRevokedTokensAreNotAggregated()
@@ -154,5 +176,12 @@ class ClientTest extends TestCase
         $this->client->revokeForUser($user1);
         $this->assertCount(0, Client::forUser($user1));
         $this->assertCount(1, Client::forUser($user2));
+    }
+
+    private function createClient(User $owner) : Client
+    {
+        $passportClient = $this->repository->create($owner->getKey(), 'test', url('/auth/callback'));
+
+        return Client::findOrFail($passportClient->getKey());
     }
 }
