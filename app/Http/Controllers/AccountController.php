@@ -26,7 +26,6 @@ use App\Libraries\UserVerification;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
 use App\Models\OAuth\Client;
-use App\Models\User;
 use Auth;
 use Illuminate\Http\Request as HttpRequest;
 use Mail;
