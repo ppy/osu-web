@@ -60,7 +60,7 @@ class Client extends PassportClient
         }
 
         $user->getConnection()->transaction(function () use ($user) {
-            $clientTokens = $user->tokens()->where('client_id', $this->id);
+            $clientTokens = Token::where('user_id', $user->getKey())->where('client_id', $this->id);
 
             (clone $clientTokens)->update([
                 'revoked' => true,
@@ -69,8 +69,8 @@ class Client extends PassportClient
 
             $user->getConnection()
                 ->table('oauth_refresh_tokens')
-                ->whereIn('access_token_id', (clone $clientTokens)->pluck('id'))
-                ->update(['revoked' => 1]);
+                ->whereIn('access_token_id', (clone $clientTokens)->select('id'))
+                ->update(['revoked' => true]);
         });
     }
 
