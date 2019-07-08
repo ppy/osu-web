@@ -59,13 +59,19 @@ class Client extends PassportClient
             throw new InvariantException('First party tokens cannot be revoked through this method.');
         }
 
-        $user
-            ->tokens()
-            ->where('client_id', $this->id)
-            ->update([
+        $user->getConnection()->transaction(function () use ($user) {
+            $clientTokens = $user->tokens()->where('client_id', $this->id);
+
+            (clone $clientTokens)->update([
                 'revoked' => true,
                 'updated_at' => now('UTC'),
             ]);
+
+            $user->getConnection()
+                ->table('oauth_refresh_tokens')
+                ->whereIn('access_token_id', (clone $clientTokens)->pluck('id'))
+                ->update(['revoked' => 1]);
+        });
     }
 
     public function user()
