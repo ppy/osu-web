@@ -64,7 +64,7 @@ class Client extends PassportClient
             ->where('client_id', $this->id)
             ->update([
                 'revoked' => true,
-                'updated_at' => now(),
+                'updated_at' => now('UTC'),
             ]);
     }
 
