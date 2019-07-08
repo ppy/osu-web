@@ -28,7 +28,7 @@ use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
 
 /**
- * @property string|null $allowed_groups
+ * @property string[] $allowed_groups
  * @property int $channel_id
  * @property \Carbon\Carbon $creation_time
  * @property string $description
@@ -90,7 +90,7 @@ class Channel extends Model
 
     public function getAllowedGroupsAttribute($allowed_groups)
     {
-        return array_map('intval', explode(',', $allowed_groups));
+        return $allowed_groups === null ? [] : array_map('intval', explode(',', $allowed_groups));
     }
 
     public function isPublic()

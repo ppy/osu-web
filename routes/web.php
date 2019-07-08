@@ -170,6 +170,7 @@ Route::group(['prefix' => 'home'], function () {
         Route::post('avatar', 'AccountController@avatar')->name('avatar');
         Route::post('cover', 'AccountController@cover')->name('cover');
         Route::put('email', 'AccountController@updateEmail')->name('email');
+        Route::put('options', 'AccountController@updateOptions')->name('options');
         Route::put('page', 'AccountController@updatePage')->name('page');
         Route::put('password', 'AccountController@updatePassword')->name('password');
         Route::post('reissue-code', 'AccountController@reissueCode')->name('reissue-code');
@@ -407,6 +408,7 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
     Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'LegacyInterOpController@userAchievement')->name('lio.user-achievement');
     Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
     Route::delete('/user-sessions/{user}', 'LegacyInterOpController@userSessionsDestroy');
+    Route::post('user-index/{user}', 'LegacyInterOpController@userIndex');
     Route::get('/news', 'LegacyInterOpController@news');
 });
 

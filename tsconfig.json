@@ -4,16 +4,16 @@
     "experimentalDecorators": true,
     "sourceMap": true,
     "jsx": "react",
-    "lib": ["es6", "dom"],
-    "module": "es6",
+    "lib": ["dom", "es2015"],
+    "module": "es2015",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "target": "es6",
+    "target": "es2015"
   },
   "include": [
-    "resources/assets/lib",
+    "resources/assets/lib"
   ]
 }

@@ -29,6 +29,7 @@ export class NewDiscussion extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @inputBox = React.createRef()
     @throttledPost = _.throttle @post, 1000
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
     @cache = {}
@@ -44,7 +45,7 @@ export class NewDiscussion extends React.PureComponent
 
   componentDidMount: =>
     $(window).on 'throttled-resize.new-discussion', @setTop
-    @inputBox?.focus() if @props.autoFocus
+    @inputBox.current?.focus() if @props.autoFocus
 
 
   componentWillUpdate: =>
@@ -119,7 +120,7 @@ export class NewDiscussion extends React.PureComponent
                   onChange: @setMessage
                   onKeyDown: @handleKeyDown
                   onFocus: @onFocus
-                  innerRef: @setInputBox
+                  innerRef: @inputBox
                   placeholder: @messagePlaceholder()
 
                 el MessageLengthCounter,
@@ -335,7 +336,7 @@ export class NewDiscussion extends React.PureComponent
 
 
   problemType: =>
-    canDisqualify = currentUser.is_admin || currentUser.is_nat || currentUser.is_full_bn || currentUser.is_gmt
+    canDisqualify = currentUser.is_admin || currentUser.can_moderate || currentUser.is_full_bn
     willDisqualify = @props.beatmapset.status == 'qualified'
 
     return 'disqualify' if canDisqualify && willDisqualify
@@ -346,10 +347,6 @@ export class NewDiscussion extends React.PureComponent
     return 'nomination_reset' if canReset && willReset
 
     'problem'
-
-
-  setInputBox: (elem) =>
-    @inputBox = elem
 
 
   setMessage: (e) =>

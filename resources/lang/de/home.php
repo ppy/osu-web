@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Erweiterte Suche',
         'button' => 'Suchen',
         'empty_result' => 'Nichts gefunden!',
+        'missing_query' => 'Die Sucheingabe muss mindestens :n Buchstaben lang sein',
         'placeholder' => 'Zum Suchen Text eingeben',
         'title' => 'Suchergebnisse',
 
