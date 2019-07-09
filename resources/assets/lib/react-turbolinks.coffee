@@ -29,7 +29,6 @@ export class ReactTurbolinks
     $(document).on 'turbolinks:before-cache', @onBeforeCache
     $(document).on 'turbolinks:before-visit', @onBeforeVisit
     $(document).on 'turbolinks:load', @onLoad
-    $(window).on 'scroll', @onWindowScroll
 
 
   allTargets: (callback) =>
@@ -76,6 +75,9 @@ export class ReactTurbolinks
 
   onLoad: =>
     @scrolled = false
+    $(window).off 'scroll', @onWindowScroll
+    $(window).on 'scroll', @onWindowScroll
+
     # Delayed to wait until cacheSnapshot finishes. The delay matches Turbolinks' defer.
     Timeout.set 1, =>
       @deleteLoadedMarker()
@@ -107,9 +109,11 @@ export class ReactTurbolinks
 
 
   scrollOnNewVisit: =>
-    return if !@newVisit || @scrolled
-
+    $(window).off 'scroll', @onWindowScroll
+    newVisit = @newVisit
     @newVisit = false
+
+    return if !newVisit || @scrolled
 
     targetId = document.location.hash.substr(1)
 
