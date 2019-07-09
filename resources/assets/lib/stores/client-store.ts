@@ -35,11 +35,8 @@ export default class ClientStore extends Store {
 
   initialize(data: ClientJSON[]) {
     for (const item of data) {
-      let client = this.clients.get(item.id);
-      if (client == null) {
-        client = new Client(item);
-        this.clients.set(client.id, client);
-      }
+      const client = new Client(item);
+      this.clients.set(client.id, client);
     }
   }
 
