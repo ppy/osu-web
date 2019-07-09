@@ -26,26 +26,10 @@ export class ReactTurbolinks
     @newVisit = true
     @scrolled = false
 
-    $(window).on 'scroll', =>
-      @scrolled = @scrolled || window.scrollX != 0 || window.scrollY != 0
-
-    $(document).on 'turbolinks:load', =>
-      @scrolled = false
-      # Delayed to wait until cacheSnapshot finishes. The delay matches Turbolinks' defer.
-      Timeout.set 1, =>
-        @deleteLoadedMarker()
-        @destroyPersisted()
-        @documentReady = true
-        @boot()
-        @scrollTimeout = Timeout.set 100, @scrollOnNewVisit
-
-    $(document).on 'turbolinks:before-cache', =>
-      Timeout.clear @scrollTimeout
-      @documentReady = false
-      @destroy()
-
-    $(document).on 'turbolinks:before-visit', =>
-      @newVisit = true
+    $(document).on 'turbolinks:before-cache', @onBeforeCache
+    $(document).on 'turbolinks:before-visit', @onBeforeVisit
+    $(document).on 'turbolinks:load', @onLoad
+    $(window).on 'scroll', @onWindowScroll
 
 
   allTargets: (callback) =>
@@ -78,6 +62,31 @@ export class ReactTurbolinks
 
   destroyPersisted: =>
     ReactDOM.unmountComponentAtNode(target) while target = @targets.pop()
+
+
+  onBeforeCache: =>
+    Timeout.clear @scrollTimeout
+    @documentReady = false
+    @destroy()
+
+
+  onBeforeVisit: =>
+    @newVisit = true
+
+
+  onLoad: =>
+    @scrolled = false
+    # Delayed to wait until cacheSnapshot finishes. The delay matches Turbolinks' defer.
+    Timeout.set 1, =>
+      @deleteLoadedMarker()
+      @destroyPersisted()
+      @documentReady = true
+      @boot()
+      @scrollTimeout = Timeout.set 100, @scrollOnNewVisit
+
+
+  onWindowScroll: =>
+    @scrolled = @scrolled || window.scrollX != 0 || window.scrollY != 0
 
 
   register: (name, element, propsFunction = ->) =>
