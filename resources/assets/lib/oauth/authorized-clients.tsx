@@ -28,12 +28,18 @@ export class AuthorizedClients extends React.Component {
   render() {
     return (
       <div className='authorized-clients'>
-        {
-          [...store.clients.values()].map((client) => {
-            return <AuthorizedClient client={client} key={client.id} />;
-          })
-        }
+        {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
       </div>
     );
+  }
+
+  renderClients() {
+    return [...store.clients.values()].map((client) => {
+      return <AuthorizedClient client={client} key={client.id} />;
+    });
+  }
+
+  renderEmpty() {
+    return osu.trans('oauth.authorized-clients.none');
   }
 }
