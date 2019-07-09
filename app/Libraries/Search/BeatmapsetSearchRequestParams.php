@@ -141,14 +141,14 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             return [new Sort('_score', $order)];
         }
 
-        if ($this->status === 3) {
+        if ($this->status === 'qualified') {
             return [
                 new Sort('queued_at', $order),
                 new Sort('approved_date', $order), // fallback
             ];
         }
 
-        if (in_array($this->status, [4, 5, 6], true)) {
+        if (in_array($this->status, ['pending', 'graveyard', 'mine'], true)) {
             return [new Sort('last_update', $order)];
         }
 
@@ -180,7 +180,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         // append/prepend extra sort orders.
         if ($sort->field === 'nominations') {
             $newSort[] = new Sort('hype', $sort->order);
-        } elseif ($sort->field === 'approved_date' && $this->status === 3) {
+        } elseif ($sort->field === 'approved_date' && $this->status === 'qualified') {
             array_unshift($newSort, new Sort('queued_at', $sort->order));
         }
 
