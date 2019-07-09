@@ -45,6 +45,8 @@ export class Client {
       url: laroute.route('oauth.authorized-clients.destroy', { authorized_client: this.id }),
     }).then(() => {
       this.revoked = true;
+    }).always(() => {
+      this.isRevoking = false;
     });
   }
 }
