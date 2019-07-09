@@ -22,6 +22,7 @@ namespace App\Libraries\Elasticsearch;
 
 use Datadog;
 use Elasticsearch\Client;
+use Elasticsearch\Common\Exceptions\Curl\OperationTimeoutException;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
 
 abstract class Search extends HasSearch implements Queryable
@@ -247,7 +248,11 @@ abstract class Search extends HasSearch implements Queryable
             $this->error = $e;
         }
 
-        log_error($this->error);
+        // Report if connection failed (Elasticsearch\Common\Exceptions\Curl\CouldNotConnectToHost),
+        // but not if query timeout
+        if (!($this->error instanceof OperationTimeoutException)) {
+            log_error($this->error);
+        }
 
         if (config('datadog-helper.enabled')) {
             $tags = $this->getDatadogTags();
