@@ -88,11 +88,12 @@ abstract class Search extends HasSearch implements Queryable
 
             try {
                 $this->count = $this->client()->count($this->toCountQuery())['count'];
-            } catch (OperationTimeoutException $e) {
+            } catch (ElasticsearchException $e) {
                 $this->count = 0;
-                $tags = $this->getDatadogTags();
-                Log::error("{$tags['type']} {$tags['index']} count: {$e->getMessage()}");
+                $this->error = $e;
             }
+
+            $this->handleError('count');
         }
 
         return $this->count;
@@ -246,13 +247,7 @@ abstract class Search extends HasSearch implements Queryable
             $this->error = $e;
         }
 
-        // Write a message to log file on query timeout instead of reporting error.
-        if ($this->error instanceof OperationTimeoutException) {
-            $tags = $this->getDatadogTags();
-            Log::error("{$tags['type']} {$tags['index']} fetch: {$this->error->getMessage()}");
-        } else {
-            log_error($this->error);
-        }
+        $this->handleError('fetch');
 
         if (config('datadog-helper.enabled')) {
             $tags = $this->getDatadogTags();
@@ -274,6 +269,19 @@ abstract class Search extends HasSearch implements Queryable
             'type' => $this->loggingTag ?? get_class_basename(get_called_class()),
             'index' => $this->index,
         ];
+    }
+
+    private function handleError(string $operation)
+    {
+        if ($this->error === null) { return; }
+
+        // Write a message to log file on query timeout instead of reporting error.
+        if ($this->error instanceof OperationTimeoutException) {
+            $tags = $this->getDatadogTags();
+            Log::error("{$tags['type']} {$tags['index']} {$operation}: {$this->error->getMessage()}");
+        } else {
+            log_error($this->error);
+        }
     }
 
     private function isSearchWindowExceeded()
