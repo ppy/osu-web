@@ -180,41 +180,46 @@ class BeatmapsetSearch extends RecordSearch
         $query = new BoolQuery;
 
         switch ($this->params->status) {
-            case 0: // Ranked & Approved
+            case 'any':
+                break;
+            case 'ranked':
                 $query->should([
                     ['match' => ['approved' => Beatmapset::STATES['ranked']]],
                     ['match' => ['approved' => Beatmapset::STATES['approved']]],
                 ]);
                 break;
-            case 8: // Loved
+            case 'loved':
                 $query->must(['match' => ['approved' => Beatmapset::STATES['loved']]]);
                 break;
-            case 2: // Favourites
+            case 'favourites':
                 $favs = model_pluck($this->params->user->favouriteBeatmapsets(), 'beatmapset_id', Beatmapset::class);
                 $query->must(['ids' => ['type' => 'beatmaps', 'values' => $favs]]);
                 break;
-            case 3: // Qualified
+            case 'qualified':
                 $query->should([
                     ['match' => ['approved' => Beatmapset::STATES['qualified']]],
                 ]);
                 break;
-            case 4: // Pending
+            case 'pending':
                 $query->should([
                     ['match' => ['approved' => Beatmapset::STATES['wip']]],
                     ['match' => ['approved' => Beatmapset::STATES['pending']]],
                 ]);
                 break;
-            case 5: // Graveyard
+            case 'graveyard':
                 $query->must(['match' => ['approved' => Beatmapset::STATES['graveyard']]]);
                 break;
-            case 6: // My Maps
+            case 'mine':
                 $maps = model_pluck($this->params->user->beatmapsets(), 'beatmapset_id');
                 $query->must(['ids' => ['type' => 'beatmaps', 'values' => $maps]]);
                 break;
-            case 7: // Explicit Any
-                break;
             default: // null, etc
-                break;
+                $query->should([
+                    ['match' => ['approved' => Beatmapset::STATES['ranked']]],
+                    ['match' => ['approved' => Beatmapset::STATES['approved']]],
+                    ['match' => ['approved' => Beatmapset::STATES['loved']]],
+                ]);
+            break;
         }
 
         $mainQuery->filter($query);

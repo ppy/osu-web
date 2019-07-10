@@ -49,8 +49,6 @@ export default class ChatWorker implements DispatchListener {
     this.rootDataStore = rootDataStore;
     this.dispatcher.register(this);
     this.api = new ChatAPI();
-
-    this.startPolling();
   }
 
   handleDispatchAction(action: DispatcherAction) {

@@ -50,4 +50,4 @@ export class UserArtEntry extends React.Component
 
       td {},
         a download: @props.entry.original_filename, href: @props.entry.url,
-          img className: 'img-responsive admin-contest-entry__thumbnail', src: @props.entry.url
+          img className: 'img-responsive admin-contest-entry__thumbnail', src: @props.entry.thumb

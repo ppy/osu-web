@@ -28,7 +28,7 @@ use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use Carbon\Carbon;
 use Exception;
-use Sentry;
+use Sentry\State\Scope;
 
 class ShopifyController extends Controller
 {
@@ -49,7 +49,7 @@ class ShopifyController extends Controller
 
         $orderId = $this->getOrderId();
         if ($orderId === null) {
-            if ($this->shouldIgnore()) {
+            if ($this->isManualOrder()) {
                 return response([], 204);
             }
 
@@ -60,27 +60,34 @@ class ShopifyController extends Controller
 
         $type = $this->getWebookType();
         switch ($type) {
-            // TODO: fixup with PaymentProcessor?
             case 'orders/cancelled':
                 // FIXME: We're relying on Shopify not sending cancel multiple times otherwise this will explode.
-                $order->getConnection()->transaction(function ($order) {
-                    $payment = $order->payments->where('cancelled', false)->first();
+                $order->getConnection()->transaction(function () use ($order) {
+                    $payment = $order->payments()->where('cancelled', false)->first();
                     $payment->cancel();
                     $order->cancel();
                 });
+                break;
             case 'orders/fulfilled':
                 $order->update(['status' => 'shipped', 'shipped_at' => now()]);
                 break;
             case 'orders/create':
+                if ($order->status === 'shipped' && $this->isDuplicateOrder()) {
+                    return response([], 204);
+                }
+
                 (new OrderCheckout($order))->completeCheckout();
                 break;
             case 'orders/paid':
                 $this->updateOrderPayment($order);
                 break;
             default:
-                Sentry::captureMessage(
-                    'Received %s webhook for order %s from Shopify',
-                    [$type, $orderId]
+                app('sentry')->getClient()->captureMessage(
+                    'Received unknown webhook for order from Shopify',
+                    null,
+                    (new Scope)
+                        ->setExtra('type', $type)
+                        ->setExtra('order_id', $orderId)
                 );
                 break;
         }
@@ -114,7 +121,25 @@ class ShopifyController extends Controller
         return $this->params;
     }
 
-    private function shouldIgnore()
+    /**
+     * Replacement orders created at the Shopify end by duplicating? the previous order.
+     *
+     * @return bool
+     */
+    private function isDuplicateOrder()
+    {
+        $params = $this->getParams();
+
+        return $params['source_name'] === 'shopify_draft_order' && $this->isManualOrder();
+    }
+
+    /**
+     * Manually created replacement orders created at the Shopify end that might not have
+     * the orderId included.
+     *
+     * @return bool
+     */
+    private function isManualOrder()
     {
         $params = $this->getParams();
 
