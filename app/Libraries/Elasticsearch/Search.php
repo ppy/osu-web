@@ -96,20 +96,7 @@ abstract class Search extends HasSearch implements Queryable
                 );
             } catch (ElasticsearchException $e) {
                 $this->count = 0;
-                $this->error = $e;
-            }
-
-            $this->handleError('count');
-
-            if (config('datadog-helper.enabled')) {
-                $tags = $this->getDatadogTags();
-                $tags['class'] = get_class($this->error);
-
-                Datadog::increment(
-                    config('datadog-helper.prefix_web').'.search.errors',
-                    1,
-                    $tags
-                );
+                $this->handleError($e, 'count');
             }
         }
 
@@ -261,20 +248,7 @@ abstract class Search extends HasSearch implements Queryable
                 $this->getDatadogTags()
             );
         } catch (ElasticsearchException $e) {
-            $this->error = $e;
-        }
-
-        $this->handleError('fetch');
-
-        if (config('datadog-helper.enabled')) {
-            $tags = $this->getDatadogTags();
-            $tags['class'] = get_class($this->error);
-
-            Datadog::increment(
-                config('datadog-helper.prefix_web').'.search.errors',
-                1,
-                $tags
-            );
+            $this->handleError($e, 'count');
         }
 
         return SearchResponse::failed($this->error);
@@ -288,16 +262,26 @@ abstract class Search extends HasSearch implements Queryable
         ];
     }
 
-    private function handleError(string $operation)
+    private function handleError(ElasticsearchException $e, string $operation)
     {
-        if ($this->error === null) { return; }
+        $this->error = $e;
+        $tags = $this->getDatadogTags();
 
         // Write a message to log file on query timeout instead of reporting error.
         if ($this->error instanceof OperationTimeoutException) {
-            $tags = $this->getDatadogTags();
             Log::error("{$tags['type']} {$tags['index']} {$operation}: {$this->error->getMessage()}");
         } else {
             log_error($this->error);
+        }
+
+        if (config('datadog-helper.enabled')) {
+            $tags['class'] = get_class($this->error);
+
+            Datadog::increment(
+                config('datadog-helper.prefix_web').'.search.errors',
+                1,
+                $tags
+            );
         }
     }
 
