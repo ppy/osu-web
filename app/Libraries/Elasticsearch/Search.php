@@ -95,7 +95,13 @@ abstract class Search extends HasSearch implements Queryable
 
             $query['body'] = $body;
 
-            $this->count = $this->client()->count($query)['count'];
+            try {
+                $this->count = $this->client()->count($query)['count'];
+            } catch (OperationTimeoutException $e) {
+                $this->count = 0;
+                $tags = $this->getDatadogTags();
+                Log::error("{$tags['type']} {$tags['index']} count: {$e->getMessage()}");
+            }
         }
 
         return $this->count;
@@ -252,7 +258,7 @@ abstract class Search extends HasSearch implements Queryable
         // Write a message to log file on query timeout instead of reporting error.
         if ($this->error instanceof OperationTimeoutException) {
             $tags = $this->getDatadogTags();
-            Log::error("{$tags['type']} {$tags['index']}: {$this->error->getMessage()}");
+            Log::error("{$tags['type']} {$tags['index']} fetch: {$this->error->getMessage()}");
         } else {
             log_error($this->error);
         }
