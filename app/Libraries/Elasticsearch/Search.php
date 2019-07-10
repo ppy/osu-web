@@ -87,13 +87,30 @@ abstract class Search extends HasSearch implements Queryable
             }
 
             try {
-                $this->count = $this->client()->count($this->toCountQuery())['count'];
+                $this->count = datadog_timing(
+                    function () {
+                        return $this->client()->count($this->toCountQuery())['count'];
+                    },
+                    config('datadog-helper.prefix_web').'.search.count',
+                    $this->getDatadogTags()
+                );
             } catch (ElasticsearchException $e) {
                 $this->count = 0;
                 $this->error = $e;
             }
 
             $this->handleError('count');
+
+            if (config('datadog-helper.enabled')) {
+                $tags = $this->getDatadogTags();
+                $tags['class'] = get_class($this->error);
+
+                Datadog::increment(
+                    config('datadog-helper.prefix_web').'.search.errors',
+                    1,
+                    $tags
+                );
+            }
         }
 
         return $this->count;
