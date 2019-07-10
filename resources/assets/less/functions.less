@@ -118,20 +118,19 @@
   box-shadow: inset 0 1px 3px fade(#000, 30%);
 }
 
-.link-blue-light() {
-  color: @blue-light;
-
-  .link-hover({
-    color: @blue-lighter;
-  });
-}
-
 .link-blue-dark() {
   color: @blue-dark;
 
   .link-hover({
     color: @blue;
   });
+}
+
+// This style is for the remaining un-restyled sections,
+// nuke this when the entire site is correctly restyled
+.link-old() {
+  color: #2299bb;
+  .link-hover({ color: #6cf; });
 }
 
 .link-default() {
@@ -182,27 +181,12 @@
   }
 }
 
+// still used by store
 .link-pink() {
   color: @pink;
 
   .link-hover({
     color: @pink-text;
-  });
-}
-
-.link-pink-dark() {
-  color: @pink-dark;
-
-  .link-hover({
-    color: @pink-light;
-  });
-}
-
-.link-pink-light() {
-  color: @pink-light;
-
-  .link-hover({
-    color: @pink-lighter;
   });
 }
 
@@ -222,6 +206,7 @@
   });
 }
 
+// used in notification banner
 .link-yellow() {
   color: @yellow;
 

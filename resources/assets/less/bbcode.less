@@ -24,8 +24,10 @@
   line-height: 1.5;
 
   a {
-    .@{_top}--profile-page& {
-      .link-default();
+    .link-default();
+
+    .forum-post-content & {
+      .link-old();
     }
   }
 
@@ -40,6 +42,10 @@
   h2 {
     font-size: @font-size--forum-post-heading;
     color: @osu-colour-l1;
+
+    .forum-post-content & {
+      color: @osu-colour-d;
+    }
   }
 
   // quote tag
@@ -76,10 +82,12 @@
   // overrides bootstrap styling for [notice]
   .well {
     margin: 0;
+    background: @osu-colour-b6;
+    border: none;
 
-    .@{_top}--profile-page& {
-      background-color: @osu-colour-b6;
-      border-color: @osu-colour-b6;
+    .forum-post-content & {
+      background: #eee;
+      border: 1px solid #ddd;
     }
   }
 

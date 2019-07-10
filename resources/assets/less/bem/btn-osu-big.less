@@ -26,7 +26,7 @@
 
   display: inline-block;
 
-  background-color: @osu-colour-l3;
+  background-color: @osu-colour-l2;
   transition: background-color 120ms;
 
   padding: 5px;
@@ -42,7 +42,7 @@
   &:hover,
   &:active {
     color: #fff;
-    background-color: @osu-colour-l2;
+    background-color: @osu-colour-l1;
   }
 
   &[disabled] {
@@ -179,7 +179,6 @@
     border-radius: (@btn-circle-diameter / 2);
     padding: 0 5px;
     height: @btn-circle-diameter;
-    background-image: none;
   }
 
   &--full {
@@ -231,13 +230,13 @@
   }
 
   &--activated, &.js-activated {
-    background-color: @blue;
-    color: #000;
+    background-color: @osu-colour-d;
+    color: white;
 
     &:focus,
     &:hover,
     &:active {
-      color: #000;
+      color: white;
     }
   }
 
