@@ -153,6 +153,15 @@
       font-size: @font-size--small;
       color: @osu-colour-l1;
     }
+
+    .@{_top}:hover & {
+      .show-more-link {
+         background-color: @osu-colour-b1;
+         &:hover {
+           background-color: @osu-colour-b3;
+         }
+      }
+    }
   }
 
   &__side-buttons {
