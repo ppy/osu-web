@@ -86,12 +86,14 @@ abstract class Search extends HasSearch implements Queryable
                 return $this->count = 0;
             }
 
-            $this->count = $this->runQuery(
+            $result = $this->runQuery(
                 'count',
                 function () {
                     return $this->client()->count($this->toCountQuery())['count'];
                 }
-            ) ?? 0;
+            );
+
+            $this->count = $this->error === null ? $result : 0;
         }
 
         return $this->count;
@@ -256,12 +258,14 @@ abstract class Search extends HasSearch implements Queryable
             return SearchResponse::empty();
         }
 
-        return $this->runQuery(
+        $result = $this->runQuery(
             'fetch',
             function () {
                 return new SearchResponse($this->client()->search($this->toArray()));
             }
-        ) ?? SearchResponse::failed($this->error);
+        );
+
+        return $this->error === null ? $result : SearchResponse::failed($this->error);
     }
 
     private function getDatadogTags()
