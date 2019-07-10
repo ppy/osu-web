@@ -86,18 +86,12 @@ abstract class Search extends HasSearch implements Queryable
                 return $this->count = 0;
             }
 
-            try {
-                $this->count = datadog_timing(
-                    function () {
-                        return $this->client()->count($this->toCountQuery())['count'];
-                    },
-                    config('datadog-helper.prefix_web').'.search.count',
-                    $this->getDatadogTags()
-                );
-            } catch (ElasticsearchException $e) {
-                $this->count = 0;
-                $this->handleError($e, 'count');
-            }
+            $this->count = $this->runQuery(
+                'count',
+                function () {
+                    return $this->client()->count($this->toCountQuery())['count'];
+                }
+            ) ?? 0;
         }
 
         return $this->count;
@@ -233,25 +227,41 @@ abstract class Search extends HasSearch implements Queryable
         return min($this->response()->total(), $this->maxResults());
     }
 
+    /**
+     * Wrapper function to run a query with timing and error reporting.
+     *
+     * @param string $operation
+     * @param callable $callable
+     *
+     * @return mixed Returns whatever $callable returns, void with $this->error set on error.
+     */
+    private function runQuery(string $operation, callable $callable) {
+        $this->error = null;
+
+        try {
+            return datadog_timing(
+                $callable,
+                config('datadog-helper.prefix_web').'.search.'.$operation,
+                $this->getDatadogTags()
+            );
+        } catch (ElasticsearchException $e) {
+            $this->error = $e;
+            $this->handleError($e, $operation);
+        }
+    }
+
     private function fetch()
     {
         if ($this->params->shouldReturnEmptyResponse() || $this->isSearchWindowExceeded()) {
             return SearchResponse::empty();
         }
 
-        try {
-            return datadog_timing(
-                function () {
-                    return new SearchResponse($this->client()->search($this->toArray()));
-                },
-                config('datadog-helper.prefix_web').'.search.fetch',
-                $this->getDatadogTags()
-            );
-        } catch (ElasticsearchException $e) {
-            $this->handleError($e, 'count');
-        }
-
-        return SearchResponse::failed($this->error);
+        return $this->runQuery(
+            'fetch',
+            function () {
+                return new SearchResponse($this->client()->search($this->toArray()));
+            }
+        ) ?? SearchResponse::failed($this->error);
     }
 
     private function getDatadogTags()
@@ -264,18 +274,17 @@ abstract class Search extends HasSearch implements Queryable
 
     private function handleError(ElasticsearchException $e, string $operation)
     {
-        $this->error = $e;
         $tags = $this->getDatadogTags();
 
         // Write a message to log file on query timeout instead of reporting error.
-        if ($this->error instanceof OperationTimeoutException) {
-            Log::error("{$tags['type']} {$tags['index']} {$operation}: {$this->error->getMessage()}");
+        if ($e instanceof OperationTimeoutException) {
+            Log::error("{$tags['type']} {$tags['index']} {$operation}: {$e->getMessage()}");
         } else {
-            log_error($this->error);
+            log_error($e);
         }
 
         if (config('datadog-helper.enabled')) {
-            $tags['class'] = get_class($this->error);
+            $tags['class'] = get_class($e);
 
             Datadog::increment(
                 config('datadog-helper.prefix_web').'.search.errors',
