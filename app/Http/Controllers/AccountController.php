@@ -27,7 +27,6 @@ use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
 use App\Models\OAuth\Client;
 use Auth;
-use Illuminate\Http\Request as HttpRequest;
 use Mail;
 use Request;
 
@@ -213,18 +212,14 @@ class AccountController extends Controller
         }
     }
 
-    public function verify(HttpRequest $request)
+    public function verify()
     {
-        $verification = new UserVerification(Auth::user(), $request);
-
-        return $verification->verify();
+        return UserVerification::fromCurrentRequest()->verify();
     }
 
-    public function reissueCode(HttpRequest $request)
+    public function reissueCode()
     {
-        $verification = new UserVerification(Auth::user(), $request);
-
-        return $verification->reissue();
+        return UserVerification::fromCurrentRequest()->reissue();
     }
 
     private function errorResponse($user, $exception = null)

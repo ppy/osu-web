@@ -40,7 +40,7 @@ class VerifyUser
             && !$request->is('home/account/reissue-code')
             && !$request->is('session')
             && $this->requiresVerification($request)) {
-            $verification = new UserVerification($this->auth->user(), $request);
+            $verification = UserVerification::fromCurrentRequest();
 
             if (!$verification->isDone()) {
                 return $verification->initiate();

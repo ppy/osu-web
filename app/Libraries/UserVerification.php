@@ -20,10 +20,12 @@
 
 namespace App\Libraries;
 
+use App\Exceptions\UserVerificationException;
 use App\Mail\UserVerification as UserVerificationMail;
 use App\Models\Country;
 use App\Models\LegacySession;
 use Carbon\Carbon;
+use Exception;
 use Mail;
 
 class UserVerification
@@ -32,16 +34,44 @@ class UserVerification
 
     protected $user;
 
-    private $_legacySession = false;
+    private $legacySession = [];
+    private $legacySessionQueryWhere;
+    private $request;
+    private $session;
 
-    public function __construct($user, $request)
+    public static function fromCurrentRequest()
     {
-        $this->user = $user;
-        $this->request = $request;
+        $request = request();
+
+        return new static([
+            'user' => auth()->user(),
+            'request' => $request,
+            'session' => session(),
+            'legacySessionQueryWhere' => LegacySession::queryWhereFromRequest($request),
+        ]);
+    }
+
+    public function __construct(array $params)
+    {
+        $this->user = $params['user'];
+        $this->request = $params['request'];
+        $this->session = $params['session'];
+        $this->legacySessionQueryWhere = $params['legacySessionQueryWhere'];
+
+        if ($this->session->getId() === session()->getId()) {
+            // Override passed session if it's the same as current session
+            // otherwise the changes here will be overriden when current
+            // session is saved.
+            $this->session = session();
+        }
     }
 
     public function initiate()
     {
+        if ($this->request === null) {
+            throw new Exception('$request is required');
+        }
+
         // Workaround race condition causing $this->issue() to be called in parallel.
         // Mainly observed when logging in as privileged user.
         if ($this->request->ajax() && $this->request->is('home/notifications')) {
@@ -50,7 +80,7 @@ class UserVerification
 
         $email = $this->user->user_email;
 
-        if (!present($this->request->session()->get('verification_key'))) {
+        if (!present($this->session->get('verification_key'))) {
             $this->issue();
         }
 
@@ -67,17 +97,28 @@ class UserVerification
         }
     }
 
-    public function issue()
+    public function issueNew()
     {
         // 1 byte = 2^8 bits = 16^2 bits = 2 hex characters
         $key = bin2hex(random_bytes(config('osu.user.verification_key_length_hex') / 2));
+        $this->session->put('verification_key', $key);
+        $this->session->put('verification_expire_date', Carbon::now()->addHours(5));
+        $this->session->put('verification_tries', 0);
+        $this->session->save();
+
+        return $key;
+    }
+
+    public function issue()
+    {
+        if ($this->request === null) {
+            throw new Exception('$request is required');
+        }
+
         $user = $this->user;
         $email = $user->user_email;
         $to = $user->user_email;
-
-        $this->request->session()->put('verification_key', $key);
-        $this->request->session()->put('verification_expire_date', Carbon::now()->addHours(5));
-        $this->request->session()->put('verification_tries', 0);
+        $key = $this->issueNew();
 
         $requestCountry = Country
             ::where('acronym', request_country($this->request))
@@ -96,7 +137,7 @@ class UserVerification
             return true;
         }
 
-        if ($this->request->session()->get('verified') === static::VERIFIED) {
+        if ($this->session->get('verified') === static::VERIFIED) {
             return true;
         }
 
@@ -111,30 +152,36 @@ class UserVerification
 
     public function legacySession()
     {
-        if ($this->_legacySession === false) {
-            $session = LegacySession::loadFromRequest($this->request);
-
-            if ($session !== null
-                && $session->session_user_id !== $this->user->user_id) {
-                $session = null;
-            }
-
-            $this->_legacySession = $session;
+        if ($this->legacySessionQueryWhere === null) {
+            return;
         }
 
-        return $this->_legacySession;
+        if (!array_key_exists('value', $this->legacySession)) {
+            $this->legacySession['value'] = LegacySession
+                ::where($this->legacySessionQueryWhere)
+                ->where(['user_id' => $this->user->user_id])
+                ->first();
+        }
+
+        return $this->legacySession['value'];
     }
 
-    public function verified()
+    public function markVerified()
     {
-        $this->request->session()->forget('verification_expire_date');
-        $this->request->session()->forget('verification_tries');
-        $this->request->session()->forget('verification_key');
-        $this->request->session()->put('verified', static::VERIFIED);
+        $this->session->forget('verification_expire_date');
+        $this->session->forget('verification_tries');
+        $this->session->forget('verification_key');
+        $this->session->put('verified', static::VERIFIED);
+        $this->session->save();
 
         if ($this->legacySession() !== null) {
             $this->legacySession()->update(['verified' => true]);
         }
+    }
+
+    public function markVerifiedAndRespond()
+    {
+        $this->markVerified();
 
         return response([], 200);
     }
@@ -142,7 +189,7 @@ class UserVerification
     public function reissue()
     {
         if ($this->isDone()) {
-            return $this->verified();
+            return $this->markVerifiedAndRespond();
         }
 
         $this->issue();
@@ -150,41 +197,53 @@ class UserVerification
         return response(['message' => trans('user_verification.errors.reissued')], 200);
     }
 
-    public function verify()
+    public function tryVerify()
     {
-        if ($this->isDone()) {
-            return $this->verified();
+        if ($this->request === null) {
+            throw new Exception('$request is required');
         }
 
-        $expireDate = $this->request->session()->get('verification_expire_date');
-        $tries = $this->request->session()->get('verification_tries');
-        $key = $this->request->session()->get('verification_key');
+        if ($this->isDone()) {
+            return;
+        }
+
+        $expireDate = $this->session->get('verification_expire_date');
+        $tries = $this->session->get('verification_tries');
+        $key = $this->session->get('verification_key');
         $inputKey = str_replace(' ', '', $this->request->input('verification_key'));
 
         if (!present($expireDate) || !present($tries) || !present($key)) {
-            $this->issue();
-
-            return error_popup(trans('user_verification.errors.expired'));
+            throw new UserVerificationException('expired', true);
         }
 
         if ($expireDate->isPast()) {
-            $this->issue();
-
-            return error_popup(trans('user_verification.errors.expired'));
+            throw new UserVerificationException('expired', true);
         }
 
         if ($tries > config('osu.user.verification_key_tries_limit')) {
-            $this->issue();
-
-            return error_popup(trans('user_verification.errors.retries_exceeded'));
+            throw new UserVerificationException('retries_exceeded', true);
         }
 
         if (!hash_equals($key, $inputKey)) {
-            $this->request->session()->put('verification_tries', $tries + 1);
+            $this->session->put('verification_tries', $tries + 1);
+            $this->session->save();
 
-            return error_popup(trans('user_verification.errors.incorrect_key'));
+            throw new UserVerificationException('incorrect_key', false);
+        }
+    }
+
+    public function verify()
+    {
+        try {
+            $this->tryVerify();
+        } catch (UserVerificationException $e) {
+            if ($e->shouldReissue()) {
+                $this->issue();
+            }
+
+            return error_popup($e->getMessage());
         }
 
-        return $this->verified();
+        return $this->markVerifiedAndRespond();
     }
 }
