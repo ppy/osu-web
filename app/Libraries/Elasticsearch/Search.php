@@ -86,17 +86,8 @@ abstract class Search extends HasSearch implements Queryable
                 return $this->count = 0;
             }
 
-            $query = $this->toArray();
-            // some arguments need to be stripped from the body as they're not supported by count.
-            $body = $query['body'];
-            foreach (['from', 'highlight', 'search_after', 'size', 'sort', 'timeout', '_source'] as $key) {
-                unset($body[$key]);
-            }
-
-            $query['body'] = $body;
-
             try {
-                $this->count = $this->client()->count($query)['count'];
+                $this->count = $this->client()->count($this->toCountQuery())['count'];
             } catch (OperationTimeoutException $e) {
                 $this->count = 0;
                 $tags = $this->getDatadogTags();
@@ -288,5 +279,16 @@ abstract class Search extends HasSearch implements Queryable
     private function isSearchWindowExceeded()
     {
         return $this->getQuerySize() < 0;
+    }
+
+    private function toCountQuery() : array
+    {
+        $query = $this->toArray();
+        // some arguments need to be stripped from the body as they're not supported by count.
+        foreach (['from', 'highlight', 'search_after', 'size', 'sort', 'timeout', '_source'] as $key) {
+            unset($query['body'][$key]);
+        }
+
+        return $query;
     }
 }
