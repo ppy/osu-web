@@ -24,6 +24,7 @@ use Datadog;
 use Elasticsearch\Client;
 use Elasticsearch\Common\Exceptions\Curl\OperationTimeoutException;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
+use Log;
 
 abstract class Search extends HasSearch implements Queryable
 {
@@ -248,9 +249,11 @@ abstract class Search extends HasSearch implements Queryable
             $this->error = $e;
         }
 
-        // Report if connection failed (Elasticsearch\Common\Exceptions\Curl\CouldNotConnectToHost),
-        // but not if query timeout
-        if (!($this->error instanceof OperationTimeoutException)) {
+        // Write a message to log file on query timeout instead of reporting error.
+        if ($this->error instanceof OperationTimeoutException) {
+            $tags = $this->getDatadogTags();
+            Log::error("{$tags['type']} {$tags['index']}: {$this->error->getMessage()}");
+        } else {
             log_error($this->error);
         }
 
