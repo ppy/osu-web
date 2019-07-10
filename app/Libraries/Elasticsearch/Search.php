@@ -237,7 +237,8 @@ abstract class Search extends HasSearch implements Queryable
      *
      * @return mixed Returns whatever $callable returns, void with $this->error set on error.
      */
-    private function runQuery(string $operation, callable $callable) {
+    private function runQuery(string $operation, callable $callable)
+    {
         $this->error = null;
 
         try {
