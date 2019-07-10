@@ -43,6 +43,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         '5' => 'graveyard',
         '6' => 'mine',
         '7' => 'any',
+        '8' => 'loved',
     ];
 
     public function __construct(Request $request, ?User $user = null)
