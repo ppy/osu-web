@@ -279,17 +279,17 @@ abstract class Search extends HasSearch implements Queryable
     private function handleError(ElasticsearchException $e, string $operation)
     {
         $tags = $this->getDatadogTags();
+        $tags['class'] = get_class($e);
 
-        // Write a message to log file on query timeout instead of reporting error.
-        if ($e instanceof OperationTimeoutException) {
-            Log::error("{$tags['type']} {$tags['index']} {$operation}: {$e->getMessage()}");
-        } else {
-            log_error($e);
+        // Only report non query timeout errors to Sentry.
+        // Printing the entire exception to log makes the breadcrumb too large to be sent to Sentry (16kb limit)
+        // so we're only printing the message.
+        Log::error("{$tags['type']} {$tags['index']} {$operation}, {$tags['class']}: {$e->getMessage()}");
+        if (!($e instanceof OperationTimeoutException)) {
+            app('sentry')->captureException($e);
         }
 
         if (config('datadog-helper.enabled')) {
-            $tags['class'] = get_class($e);
-
             Datadog::increment(
                 config('datadog-helper.prefix_web').'.search.errors',
                 1,
