@@ -1,6 +1,6 @@
 <?php
 
-use App\Libraries\UserVerification;
+use App\Libraries\UserVerificationState;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -97,7 +97,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
-            ->withSession(['verified' => UserVerification::VERIFIED])
+            ->withSession(['verified' => UserVerificationState::VERIFIED])
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
                 'beatmap_discussion' => [
@@ -186,7 +186,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAs($user)
-            ->withSession(['verified' => UserVerification::VERIFIED])
+            ->withSession(['verified' => UserVerificationState::VERIFIED])
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmap_discussion_id' => $this->beatmapDiscussion->id,
                 'beatmap_discussion' => [

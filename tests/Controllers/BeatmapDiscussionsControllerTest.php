@@ -1,5 +1,6 @@
 <?php
 
+use App\Libraries\UserVerificationState;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionVote;
@@ -97,7 +98,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this
             ->actingAs($this->bngUser)
-            ->withSession(['verified' => \App\Libraries\UserVerification::VERIFIED])
+            ->withSession(['verified' => UserVerificationState::VERIFIED])
             ->put(route('beatmap-discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
@@ -181,7 +182,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this
             ->actingAs($this->bngUser)
-            ->withSession(['verified' => \App\Libraries\UserVerification::VERIFIED])
+            ->withSession(['verified' => UserVerificationState::VERIFIED])
             ->put(route('beatmap-discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
