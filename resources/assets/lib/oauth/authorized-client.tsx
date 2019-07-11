@@ -48,22 +48,15 @@ export class AuthorizedClient extends React.Component<Props> {
           </div>
         </div>
         <div className='authorized-client__actions'>
-          {
-            this.props.client.revoked ? (
-              <div className='authorized-client__button authorized-client__button--revoked'>{osu.trans('oauth.authorized-clients.revoked')}</div>
-            ) : (
-              <button
-                className='authorized-client__button'
-                onClick={this.revokeClicked}
-                disabled={this.props.client.isRevoking}
-              >
-                {
-                  this.props.client.isRevoking ? <Spinner /> : osu.trans('oauth.authorized-clients.revoke')
-                }
-
-              </button>
-            )
-          }
+          <button
+            className={osu.classWithModifiers('authorized-client__button', this.props.client.revoked ? ['revoked'] : [])}
+            onClick={this.revokeClicked}
+            disabled={this.props.client.isRevoking || this.props.client.revoked}
+          >
+            {
+              this.props.client.isRevoking ? <Spinner /> : osu.trans(`oauth.authorized-clients.revoked.${this.props.client.revoked}`)
+            }
+          </button>
         </div>
       </div>
     );

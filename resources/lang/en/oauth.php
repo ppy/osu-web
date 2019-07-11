@@ -38,8 +38,11 @@ return [
         'scopes_title' => 'This application can:',
         'owned_by' => 'Owned by :user',
         'none' => 'No Clients',
-        'revoke' => 'Revoke Access',
-        'revoked' => 'Access Revoked',
+
+        'revoked' => [
+            'false' => 'Revoke Access',
+            'true' => 'Access Revoked',
+        ],
     ],
 
     'login' => [
