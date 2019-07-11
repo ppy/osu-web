@@ -17,10 +17,8 @@
  */
 
 export interface ClientJSON {
-  created_at: string;
   id: number;
   name: string | null;
-  revoked: boolean;
   scopes: string[];
   user: User;
   user_id: number;
