@@ -29,7 +29,7 @@ export class CommentEditor extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @textarea = null
+    @textarea = React.createRef()
     @throttledPost = _.throttle @post, 1000
 
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
@@ -40,8 +40,8 @@ export class CommentEditor extends React.PureComponent
 
 
   componentDidMount: =>
-    @textarea.selectionStart = -1
-    @textarea.focus() if (@props.focus ? true)
+    @textarea.current?.selectionStart = -1
+    @textarea.current?.focus() if (@props.focus ? true)
 
 
   componentWillUnmount: =>
@@ -60,7 +60,7 @@ export class CommentEditor extends React.PureComponent
 
       el TextareaAutosize,
         className: "#{bn}__message"
-        innerRef: @setTextarea
+        innerRef: @textarea
         value: @state.message
         placeholder: osu.trans("comments.placeholder.#{@mode()}")
         onChange: @onChange
@@ -179,7 +179,3 @@ export class CommentEditor extends React.PureComponent
       @props.close?()
     .fail (xhr, status) =>
       osu.ajaxError(xhr, status)
-
-
-  setTextarea: (ref) =>
-    @textarea = ref
