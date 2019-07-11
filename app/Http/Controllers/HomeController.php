@@ -208,7 +208,7 @@ class HomeController extends Controller
                 // why support's blocks
                 'blocks' => [
                     // localization's name => icon
-                    'dev' => 'fas fa-user',
+//                    'dev' => 'fas fa-user',
                     'time' => 'far fa-clock',
                     'ads' => 'fas fa-thumbs-up',
                     'goodies' => 'fas fa-star',
@@ -217,20 +217,35 @@ class HomeController extends Controller
                 // supporter's perks
                 'perks' => [
                     // localization's name => icon
-                    'osu_direct' => 'fas fa-search',
                     'auto_downloads' => 'fas fa-download',
                     'upload_more' => 'fas fa-cloud-upload-alt',
                     'early_access' => 'fas fa-flask',
-                    'customisation' => 'far fa-image',
-                    'beatmap_filters' => 'fas fa-filter',
+                ],
+
+                // supporter's perks #2
+                'perks2' => [
+                    // localization's name => icon
+//                    'yellow_fellow' => 'fas fa-fire',
+//                    'speedy_downloads' => 'fas fa-tachometer-alt',
+//                    'change_username' => 'fas fa-magic',
+//                    'skinnables' => 'fas fa-paint-brush',
+                    'feature_votes' => 'fas fa-thumbs-up',
+                    'sort_options' => 'fas fa-trophy',
+                    'feel_special' => 'fas fa-heart',
+//                    'more_to_come' => 'fas fa-gift',
+                ],
+
+                // supporter's perks #3
+                'perks3' => [
+                    // localization's name => icon
                     'yellow_fellow' => 'fas fa-fire',
                     'speedy_downloads' => 'fas fa-tachometer-alt',
                     'change_username' => 'fas fa-magic',
                     'skinnables' => 'fas fa-paint-brush',
-                    'feature_votes' => 'fas fa-thumbs-up',
-                    'sort_options' => 'fas fa-trophy',
-                    'feel_special' => 'fas fa-heart',
-                    'more_to_come' => 'fas fa-gift',
+//                    'feature_votes' => 'fas fa-thumbs-up',
+//                    'sort_options' => 'fas fa-trophy',
+//                    'feel_special' => 'fas fa-heart',
+//                    'more_to_come' => 'fas fa-gift',
                 ],
             ]);
     }

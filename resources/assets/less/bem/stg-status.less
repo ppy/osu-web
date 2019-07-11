@@ -19,50 +19,35 @@
 .stg-status {
   @top: stg-status;
   @animation-rate: 937.5ms; // 64bpm (aka 128bpm at half-time)
-
-  @keyframes stg-circle-pulsate {
-    0%   { transform: scale(0.9); }
-    20%  { transform: scale(1.0); }
-    100% { transform: scale(0.9); }
-  }
-
-  @keyframes stg-circle-glow {
-    // this is basically .default-box-shadow() animated to have a less intense shadow with an added glow when pulsating
-    0%   { box-shadow: 0 1px @box-shadow-radius @box-shadow-color, inset 0 0 0px white;  }
-    20%  { box-shadow: 0 1px @box-shadow-radius lighten(@box-shadow-color, 70%), inset 0 0 5px white;  }
-    80%  { box-shadow: 0 1px @box-shadow-radius @box-shadow-color, inset 0 0 0px white;  }
-  }
-
-  @keyframes stg-heart-pulsate {
-    0%   { transform: scale(1.0); }
-    20%  { transform: scale(1.2); }
-    100% { transform: scale(1.0); }
-  }
-
-  @keyframes stg-heart-glow {
-    0%   { text-shadow: 0 0 0px white; }
-    20%  { text-shadow: 0 0 10px white; }
-    80%  { text-shadow: 0 0 0px white; }
-  }
-
-  @keyframes stg-fill-stripes {
-    0%   { background-position: 40px 0; }
-    100% { background-position: 0 0; }
-  }
+  color: white;
 
   @keyframes stg-fill-pour {
-    0%   { width: 0%; }
+    0%   { width: 0; }
   }
 
-  background-color: #eee;
-  padding: 30px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-direction: row;
+
+  @media @mobile {
+    flex-direction: column-reverse;
+    align-items: center;
+    background: @osu-colour-b5;
+  }
 
   &__flex-container {
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    flex-grow: 1;
+    margin-left: 30px;
 
     @media @mobile {
       flex-direction: column;
       align-items: center;
+      margin-right: 30px;
     }
   }
 
@@ -71,48 +56,17 @@
     flex-direction: column;
     width: 100%;
     margin-top: 30px;
-
-    @media @desktop {
-      padding-left: 30px;
-    }
   }
 
-  &__heart {
-    .own-layer();
-    will-change: text-shadow, transform;
-
-    .@{top}--active & {
-      animation: stg-heart-pulsate @animation-rate infinite ease-in-out, stg-heart-glow @animation-rate infinite ease-in-out;
-    }
-  }
-
-  &__heart-container {
-    .btn-bg();
-    .default-box-shadow();
-    .center-content();
-    .circle(130px);
-    .own-layer();
-
-    flex-shrink: 0;
-    margin-top: -20px;
-    overflow: hidden;
-    background-color: #ccc;
-    opacity: 0.5;
-    padding: 8px 5px 5px; // manual alignment
-    border: 10px solid #fff;
-    color: #fff;
-    font-size: 50px;
-    will-change: box-shadow, transform;
+  &__pippi {
+    .at2x-simple('/images/layout/supporter/header-pippi.png');
+    background-size: cover;
+    height: 348px;
+    width: 375px;
+    align-items: flex-end;
 
     @media @mobile {
-      margin-top: 30px;
-    }
-
-    .@{top}--active & {
-      opacity: 1;
-      background-color: @pink;
-      animation: stg-circle-pulsate @animation-rate infinite ease-in-out, stg-circle-glow @animation-rate infinite ease-in-out;
-      animation-fill-mode: none;
+      width: 100%;
     }
   }
 
@@ -121,40 +75,39 @@
     height: 25px;
     margin-bottom: 10px;
     border-radius: 25px;
-    background: @link-gray-light;
+    background: .osu-hsla(@osu-colour-b6, 0.8)[@hsla];
     opacity: 0.5;
     overflow: hidden;
     .own-layer();
 
-    .@{top}--active & {
+    &--active {
       opacity: 1;
     }
   }
 
   &__progress-bar-fill {
     height: 100%;
-    background-color: @pink;
-    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-color: @osu-colour-u;
     background-size: 40px 40px;
+    border-radius: 25px;
     opacity: 0;
 
-    .@{top}--active & {
+    &--active {
       opacity: 1;
-      animation: stg-fill-stripes @animation-rate ease-in-out infinite, stg-fill-pour @animation-rate ease-in-out;
+      animation: stg-fill-pour @animation-rate ease-in-out;
     }
   }
 
   &__text {
-    font-size: 14px;
+    font-size: 11px;
     &--first {
       margin-bottom: 10px;
     }
   }
 
   &__title {
-    font-size: @font-size--title;
-    color: @pink-darker;
+    color: white;
     font-style: italic;
-    text-align: center;
+    margin-bottom: 10px;
   }
 }

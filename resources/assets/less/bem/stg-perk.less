@@ -18,57 +18,184 @@
 
 .stg-perk {
   @top: stg-perk;
-
-  .default-border-radius();
-  .default-box-shadow();
-  .own-layer();
   flex: none;
   margin: 5px;
   overflow: hidden;
-  background-color: #fff;
-  color: #000;
+  color: #fff;
   font-size: @font-size--title-small;
-  text-align: center;
+  //text-align: center;
   transition: .25s all;
 
   width: calc(100% - 10px);
   @media @desktop {
-    width: calc(25% - 10px);
+    width: calc(33% - 10px);
   }
 
-  &:hover {
-    .thicker-box-shadow();
+  &--big {
+    display: flex;
+  }
+
+  &--flipped {
+    flex-direction: row-reverse;
+  }
+
+  &--img {
+    display: flex;
+    text-align: right;
+    align-items: center;
+    width: 90%;
+
+    @media @mobile {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  &--customisation {
+    .at2x-simple('/images/layout/supporter/customisation.jpg');
+    background-size: cover;
+    width: 100%;
+    height: 480px;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  &__customisation {
+    //.at2x-simple('/images/layout/supporter/customisation.jpg');
+    //background-size: cover;
+    //width: 1050px;
+    //background-position: top center;
+    //height: 320px;
+    //border-radius: 35px;
+    //display: inline-block;
+  }
+
+  &__content {
+    .@{top}--customisation & {
+      margin: 0;
+    }
+
+    .@{top}--img & {
+      margin: 0;
+    }
+  }
+
+  &__direct {
+    .at2x-simple('/images/layout/supporter/direct.png');
+    background-size: cover;
+    width: 1050px;
+    background-position: top center;
+    height: 320px;
+    border-radius: 35px;
+    display: inline-block;
+  }
+
+  &__filter {
+    .at2x-simple('/images/layout/supporter/filter.jpg');
+    background-size: cover;
+    width: 1050px;
+    background-position: top center;
+    height: 320px;
+    border-radius: 35px;
+    display: inline-block;
+
+    margin: 20px;
+  }
+
+  &__img {
+    background-size: cover;
+    width: 500px;
+    background-position: top center;
+    height: 100px;
+    border-radius: 10px;
+    flex-shrink: 0;
+
+    &--yellow_fellow {
+      .at2x-simple('/images/layout/supporter/yellow_fellow.jpg');
+    }
+    &--speedy_downloads {
+      .at2x-simple('/images/layout/supporter/speedy_downloads.jpg');
+    }
+    &--change_username {
+      .at2x-simple('/images/layout/supporter/change_username.jpg');
+    }
+    &--skinnables {
+      .at2x-simple('/images/layout/supporter/skinnables.jpg');
+    }
+
+    @media @mobile {
+      flex-shrink: 1;
+    }
   }
 
   &__icon {
-    .default-text-shadow();
-    .btn-bg();
-    background-color: @blue-darker;
-    background-size: 500px;
     color: #fff;
-    font-size: 36px; // icon size
-    padding: 20px;
+    font-size: 26px; // icon size
+    padding: 0px 20px;
     transition: .25s all;
 
-    .@{top}--feature & {
-      background-color: @green-light;
-      padding: 10px;
+    .@{top}--big & {
+      margin-left: -50px;
+      margin-top: 10px;
     }
 
-    .@{top}:hover & {
-      background-color: @pink;
+    .@{top}--customisation & {
+      padding: 20px;
+      margin-top: -50px;
+      margin-bottom: -50px;
+      margin-left: 200px;
+    }
+
+    .@{top}--img & {
+      margin-left: -10px;
+      margin-right: -45px;
+      z-index: 1;
+    }
+  }
+
+  &__icon-bg {
+    color: @blue-dark;
+    .@{top}--feature & {
+      color: @green;
+    }
+    .@{top}--big & {
+      color: @green;
+    }
+    .@{top}--customisation & {
+      color: @green;
+    }
+  }
+
+  &__meta {
+    .@{top}--customisation & {
+      width: 300px;
+      background-color: .osu-hsla(@osu-colour-b4, 0.8)[@hsla];
+      border-radius: 35px;
+      padding: 10px;
+      align-self: center;
+      margin-right: 30px;
+      margin-top: -50px
     }
   }
 
   &__text {
     padding: 20px 10px;
     font-style: italic;
+    color: @osu-colour-b1;
+
+    .@{top}--big & {
+      margin-top: -30px;
+      margin-left: 30px;
+    }
+
+    .@{top}--img & {
+      padding: 0;
+    }
   }
 
   &__title {
     margin: 0 0 10px;
-    font-weight: bold;
     font-size: 120%;
-    color: @pink-darker;
+    color: white;
   }
 }
