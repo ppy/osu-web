@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\ImageProcessorException;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\UserVerification;
+use App\Libraries\UserVerificationState;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
 use App\Models\OAuth\Client;
@@ -37,7 +38,9 @@ class AccountController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => [
+            'verifyLink',
+        ]]);
 
         $this->middleware(function ($request, $next) {
             if (Auth::check() && Auth::user()->isSilenced()) {
@@ -53,6 +56,7 @@ class AccountController extends Controller
                 'updatePage',
                 'updatePassword',
                 'verify',
+                'verifyLink',
             ],
         ]);
 
@@ -63,6 +67,7 @@ class AccountController extends Controller
         $this->middleware('throttle:60,10', ['only' => [
             'updateEmail',
             'updatePassword',
+            'verifyLink',
         ]]);
 
         return parent::__construct();
@@ -215,6 +220,19 @@ class AccountController extends Controller
     public function verify()
     {
         return UserVerification::fromCurrentRequest()->verify();
+    }
+
+    public function verifyLink()
+    {
+        $state = UserVerificationState::fromVerifyLink(request('key'));
+
+        if ($state === null) {
+            abort(404);
+        }
+
+        $state->markVerified();
+
+        return view('accounts.verification_completed');
     }
 
     public function reissueCode()

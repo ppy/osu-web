@@ -21,8 +21,9 @@
 namespace App\Libraries;
 
 use App\Exceptions\UserVerificationException;
+use App\Libraries\Session\SessionManager;
 use App\Models\LegacySession;
-use Carbon\Carbon;
+use App\Models\User;
 
 class UserVerificationState
 {
@@ -43,6 +44,33 @@ class UserVerificationState
         ]);
     }
 
+    public static function fromVerifyLink($linkKey)
+    {
+        $params = cache()->get("verifications:{$linkKey}");
+
+        if ($params !== null) {
+            $state = static::load($params);
+
+            // As it's from verify link, make sure the state is waiting for verification.
+            if ($state->issued()) {
+                return $state;
+            }
+        }
+    }
+
+    public static function load($params)
+    {
+        $session = new SessionManager(app());
+        $session->setId($params['sessionId']);
+        $session->start();
+
+        return new static([
+            'user' => User::find($params['userId']),
+            'session' => $session,
+            'legacySessionQueryWhere' => $params['legacySessionQueryWhere'],
+        ]);
+    }
+
     public function __construct(array $params)
     {
         $this->user = $params['user'];
@@ -57,16 +85,40 @@ class UserVerificationState
         }
     }
 
+    public function dump()
+    {
+        return [
+            'userId' => $this->user->getKey(),
+            'sessionId' => $this->session->getId(),
+            'legacySessionQueryWhere' => $this->legacySessionQueryWhere,
+        ];
+    }
+
     public function issue()
     {
+        $previousLinkKey = $this->session->get('verification_link_key');
+
+        if (present($previousLinkKey)) {
+            cache()->forget("verification:{$linkKey}");
+        }
+
         // 1 byte = 2^8 bits = 16^2 bits = 2 hex characters
         $key = bin2hex(random_bytes(config('osu.user.verification_key_length_hex') / 2));
+        $linkKey = bin2hex(random_bytes(32));
+        $expires = now()->addHours(5);
+
         $this->session->put('verification_key', $key);
-        $this->session->put('verification_expire_date', Carbon::now()->addHours(5));
+        $this->session->put('verification_link_key', $linkKey);
+        $this->session->put('verification_expire_date', $expires);
         $this->session->put('verification_tries', 0);
         $this->session->save();
 
-        return $key;
+        cache()->put("verifications:{$linkKey}", $this->dump(), $expires);
+
+        return [
+            'link' => $linkKey,
+            'main' => $key,
+        ];
     }
 
     public function issued()

@@ -104,4 +104,9 @@ return [
         'email_subject' => 'osu! password change confirmation',
         'update' => 'update',
     ],
+
+    'verification_completed' => [
+        'text' => 'You can close this tab/window now',
+        'title' => 'Verification has been completed',
+    ],
 ];

@@ -80,7 +80,7 @@ class UserVerification
         $user = $this->user;
         $email = $user->user_email;
         $to = $user->user_email;
-        $key = $this->state->issue();
+        $keys = $this->state->issue();
 
         $requestCountry = Country
             ::where('acronym', request_country($this->request))
@@ -89,7 +89,7 @@ class UserVerification
 
         Mail::to($to)
             ->queue(new UserVerificationMail(
-                compact('key', 'user', 'requestCountry')
+                compact('keys', 'user', 'requestCountry')
             ));
     }
 

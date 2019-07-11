@@ -175,6 +175,7 @@ Route::group(['prefix' => 'home'], function () {
         Route::put('password', 'AccountController@updatePassword')->name('password');
         Route::post('reissue-code', 'AccountController@reissueCode')->name('reissue-code');
         Route::resource('sessions', 'Account\SessionsController', ['only' => ['destroy']]);
+        Route::get('verify', 'AccountController@verifyLink');
         Route::post('verify', 'AccountController@verify')->name('verify');
         Route::put('/', 'AccountController@update')->name('update');
     });
