@@ -227,7 +227,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     public function includePreviousUsernames(User $user)
     {
         return $this->item($user, function ($user) {
-            return $user->previousUsernames()->unique()->toArray();
+            return $user->previousUsernames()->unique()->values()->toArray();
         });
     }
 
