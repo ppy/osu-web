@@ -29,16 +29,17 @@ interface Props {
 @observer
 export class AuthorizedClient extends React.Component<Props> {
   render() {
+    const client = this.props.client;
     const parts = osu.trans('oauth.authorized-clients.owned_by').split(/(:user)/g);
     const ownerParts = parts.map((part, index) => {
-      return part === ':user' ? <UserLink key={index} user={this.props.client.user} /> : part;
+      return part === ':user' ? <UserLink key={index} user={client.user} /> : part;
     });
 
     return (
       <div className='authorized-client'>
         <div className='authorized-client__details'>
           <div className='authorized-client__name'>
-            {this.props.client.name}
+            {client.name}
           </div>
           <span className='authorized-client__owner'>
             {ownerParts}
@@ -49,12 +50,12 @@ export class AuthorizedClient extends React.Component<Props> {
         </div>
         <div className='authorized-client__actions'>
           <button
-            className={osu.classWithModifiers('authorized-client__button', this.props.client.revoked ? ['revoked'] : [])}
+            className={osu.classWithModifiers('authorized-client__button', client.revoked ? ['revoked'] : [])}
             onClick={this.revokeClicked}
-            disabled={this.props.client.isRevoking || this.props.client.revoked}
+            disabled={client.isRevoking || client.revoked}
           >
             {
-              this.props.client.isRevoking ? <Spinner /> : osu.trans(`oauth.authorized-clients.revoked.${this.props.client.revoked}`)
+              client.isRevoking ? <Spinner /> : osu.trans(`oauth.authorized-clients.revoked.${client.revoked}`)
             }
           </button>
         </div>
