@@ -67,10 +67,10 @@
                         {{ trans('oauth.authorise.scopes_title') }}
                     </p>
 
-                    <ul class="oauth-form__scopes">
+                    <ul class="oauth-scopes oauth-scopes--oauth-form">
                         @foreach ($scopes as $scope)
                             <li>
-                                <span class="oauth-form__scope-icon">
+                                <span class="oauth-scopes__icon">
                                     <span class="fas fa-check"></span>
                                 </span>{{ $scope->description }}
                             </li>
