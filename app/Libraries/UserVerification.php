@@ -141,7 +141,13 @@ class UserVerification
             return true;
         }
 
-        return $this->isDoneLegacy();
+        if ($this->isDoneLegacy()) {
+            $this->markVerified();
+
+            return true;
+        }
+
+        return false;
     }
 
     public function isDoneLegacy()
