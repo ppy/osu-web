@@ -19,7 +19,6 @@
     // Verification doesn't inherit from App\Controller, thus these variables aren't set. Thus we set them here:
     'currentSection' => 'error',
     'currentAction' => '401',
-    'currentHue' => section_to_hue_map('error'),
 ])
 
 @section('content')

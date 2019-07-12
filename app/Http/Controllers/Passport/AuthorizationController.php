@@ -50,7 +50,6 @@ class AuthorizationController extends PassportAuthorizationController
                               TokenRepository $tokens)
     {
         view()->share('currentSection', 'user');
-        view()->share('currentHue', section_to_hue_map('user'));
 
         if (!auth()->check()) {
             $cancelUrl = request('redirect_uri');
