@@ -44,7 +44,6 @@ abstract class Controller extends BaseController
     {
         view()->share('currentSection', $this->section ?? '');
         view()->share('currentAction', ($this->actionPrefix ?? '').current_action());
-        view()->share('currentHue', section_to_hue_map($this->section ?? ''));
     }
 
     /**
