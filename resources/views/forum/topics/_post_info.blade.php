@@ -104,7 +104,7 @@
 
         <div class="forum-post__info-panel-xs-main">
             <div class="forum-post__info-panel-xs-name">
-                <a class="link--white" href="{{ route("users.show", $user) }}">
+                <a class="forum-post__user-link-xs" href="{{ route("users.show", $user) }}">
                     {{ $user->username }}
                 </a>
 
