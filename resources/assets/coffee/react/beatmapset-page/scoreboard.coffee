@@ -38,7 +38,7 @@ export class Scoreboard extends React.PureComponent
       when 'taiko'
         [['great', '300'], ['good', '100']]
       when 'fruits'
-        [['fruits', '300'], ['ticks', '100'], ['droplets', '50']]
+        [['fruits', '300'], ['ticks', '100'], ['drp miss', 'katu']]
       when 'mania'
         [['max', 'geki'], ['300', '300'], ['200', 'katu'], ['100', '100'], ['50', '50']]
 
