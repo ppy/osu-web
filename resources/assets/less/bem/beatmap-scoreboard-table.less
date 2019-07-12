@@ -47,12 +47,13 @@
     }
 
     .@{passive-row}.@{name} & {
-      background-color: lighten(@color, 20%);
+      color: #fff;
+      background-color: @color;
     }
 
     .@{passive-row}.@{name}:hover & {
       color: #fff;
-      background-color: @color;
+      background-color: lighten(@color, 20%);
     }
   }
 
@@ -207,8 +208,8 @@
       background-color: @osu-colour-b3;
     }
 
-    //.row-color(@friend-row, @yellow-light);
-    //.row-color(@self-row, @green-light);
+    .row-color(@friend-row, fade(@yellow-dark, 20%));
+    .row-color(@self-row, fade(@green-dark, 30%));
   }
 
   &__popup-menu {
