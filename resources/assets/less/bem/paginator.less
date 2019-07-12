@@ -33,33 +33,18 @@
     .center-content();
 
     .link-plain();
-    .link-white();
+    .link-inverted();
 
     &--current {
-      .link-yellow();
+      color: @osu-colour-l1;
       font-weight: bold;
     }
 
     &--disabled {
-      color: #666;
+      color: @osu-colour-b6;
       .link-hover({
-        color: #666;
+        color: @osu-colour-b6;
       });
-    }
-
-    .beatmap-packs__pager & {
-      color: @gray-dark;
-
-      &--current {
-        color: @gray-darker;
-      }
-
-      &--disabled {
-        color: darken(@gray-lighter, 10%);
-        .link-hover({
-          color: darkern(@gray-lighter, 10%);
-        });
-      }
     }
   }
 }

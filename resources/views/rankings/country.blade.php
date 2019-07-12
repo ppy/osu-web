@@ -50,18 +50,21 @@
                         #{{ $scores->firstItem() + $index }}
                     </td>
                     <td class="ranking-page-table__column">
-                        <a class="ranking-page-table__user-link" href="{{route('rankings', [
-                            'mode' => $mode,
-                            'type' => 'performance',
-                            'country' => $score->country->acronym,
-                        ])}}">
-                            @include('objects._country_flag', [
-                                'country_code' => $score->country->acronym,
-                            ])
-                            <span class="ranking-page-table__user-link-text">
-                                {{ $score->country->name }}
-                            </span>
-                        </a>
+                        <div class="ranking-page-table__user-link">
+                            <a class="ranking-page-table__country-link"
+                                href="{{route('rankings', [
+                                    'mode' => $mode,
+                                    'type' => 'performance',
+                                    'country' => $score->country->acronym,
+                            ])}}">
+                                @include('objects._country_flag', [
+                                    'country_code' => $score->country->acronym,
+                                ])
+                                <span class="ranking-page-table__country-link-text">
+                                    {{ $score->country->name }}
+                                </span>
+                            </a>
+                        </div>
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ i18n_number_format($score->user_count) }}

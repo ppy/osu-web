@@ -22,19 +22,11 @@
 
   display: flex;
   flex-direction: column;
-  background-color: #fff;
-
-  &--changelog {
-    background-color: @changelog-bg-extra;
-    color: @changelog-fg;
-  }
+  background-color: @osu-colour-b5;
+  color: white;
 
   &__content {
-    background-color: #eee;
-
-    .@{_top}--changelog & {
-      background-color: @changelog-bg;
-    }
+    background-color: @osu-colour-b4;
   }
 
   &__count {
@@ -44,11 +36,8 @@
     border-radius: 10000px;
     font-style: normal;
     font-weight: bold;
-    background-color: #eee;
-
-    .@{_top}--changelog & {
-      background-color: #000;
-    }
+    background-color: @osu-colour-b6;
+    color: @osu-colour-b1;
   }
 
   &__items {
@@ -83,10 +72,6 @@
     padding-bottom: 0;
     font-size: @font-size--title-small-4;
     margin: 0;
-    color: @pink-darker;
-
-    .@{_top}--changelog & {
-      color: @pink;
-    }
+    color: @osu-colour-l1;
   }
 }

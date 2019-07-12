@@ -46,6 +46,11 @@
     outline: 3px solid @blue-darker;
   }
 
+  //TODO: remove after forum restyle
+  a {
+    .link-old();
+  }
+
   &__actions {
     .desktop-position() {
       @media @desktop {
@@ -340,7 +345,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
-    color: #fff;
+    color: white !important; //TODO: remove after forum restyle
 
     &:hover {
       color: #fff;

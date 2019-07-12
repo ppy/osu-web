@@ -21,11 +21,11 @@
 
   display: flex;
   width: 100%;
-  background-color: @greysky-dark;
+  background-color: @osu-colour-b3;
   border-radius: @border-radius-large;
 
   &:hover {
-    background-color: lighten(@greysky-dark, 10%);
+    background-color: @osu-colour-b1;
   }
 
   &--compact {
@@ -34,15 +34,15 @@
     width: calc(100% - 10px);
 
     &:hover {
-      background-color: lighten(@greysky-dark, 20%);
+      background-color: @osu-colour-b4;
     }
   }
 
   &--group {
-    background-color: lighten(@greysky, 10%);
+    background-color: @osu-colour-b3;
 
     &:hover {
-      background-color: lighten(@greysky, 20%);
+      background-color: @osu-colour-b2;
     }
   }
 
@@ -62,7 +62,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: @greysky-darker;
+    background-color: @osu-colour-b2;
     width: 60px;
     flex: none;
 
@@ -105,7 +105,7 @@
     width: calc(100% - 6px);
     margin-left: 6px;
     padding-left: 2px;
-    color: @greysky-light;
+    color: @osu-colour-l1;
 
     &:hover {
       color: #fff;
@@ -120,15 +120,15 @@
       left: -6px;
 
       .@{_top}:hover & {
-        background-color: lighten(@greysky-dark, 10%);
+        background-color: @osu-colour-b1;
       }
 
       .@{_top}--compact:hover & {
-        background-color: lighten(@greysky-dark, 20%);
+        background-color: @osu-colour-b4;
       }
 
       .@{_top}--group:hover & {
-        background-color: lighten(@greysky, 20%);
+        background-color: @osu-colour-b2;
       }
     }
   }
@@ -151,7 +151,16 @@
 
     &--time {
       font-size: @font-size--small;
-      color: @greysky-light;
+      color: @osu-colour-l1;
+    }
+
+    .@{_top}:hover & {
+      .show-more-link {
+         background-color: @osu-colour-b1;
+         &:hover {
+           background-color: @osu-colour-b3;
+         }
+      }
     }
   }
 
