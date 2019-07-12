@@ -51,7 +51,7 @@
             {{ $bodyAdditionalClasses ?? '' }}
         "
     >
-        <style>:root {--base-hue: {{ $currentSectionHue }};}</style>
+        <style>:root {--base-hue: {{ $currentHue }};}</style>
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
         <div class="blackout js-blackout" data-visibility="hidden"></div>
 
