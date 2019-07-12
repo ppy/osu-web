@@ -20,8 +20,9 @@
   .link-plain();
   .own-layer();
   display: flex;
-  color: @osu-colour-b5;
   transition: 0.1s;
+  .link-default();
+  color: @osu-colour-b1;
 
   // undo padding from container
   margin: 10px -20px;
@@ -38,7 +39,6 @@
 
   &:hover {
     background-color: @osu-colour-b3;
-    color: #fff;
   }
 
   &__artist {
