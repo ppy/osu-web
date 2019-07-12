@@ -1330,7 +1330,7 @@ function mini_asset(string $url): string
 
 function section_to_hue_map($section): int
 {
-    $colourToHue = [
+    static $colourToHue = [
         'red' => 0,
         'pink' => 333,
         'orange' => 46,
@@ -1339,7 +1339,7 @@ function section_to_hue_map($section): int
         'blue' => 230,
     ];
 
-    $sectionMapping = [
+    static $sectionMapping = [
         'admin' => 'red',
         'admin-forum' => 'red',
         'admin-store' => 'red',
