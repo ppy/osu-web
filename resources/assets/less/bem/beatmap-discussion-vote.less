@@ -59,13 +59,13 @@
 
   // overrides the other stuff
   &[disabled] {
-    color: @_default-color;
-    background-color: #eee;
+    color: @osu-colour-b1;
+    background-color: @osu-colour-b3;
     cursor: default;
 
     &:hover {
       .default-box-shadow();
-      color: @_default-color;
+      color: @osu-colour-b1;
     }
   }
 
@@ -73,6 +73,10 @@
     color: white;
     .@{top}--inactive & {
       color: @_default-color;
+    }
+
+    .@{top}[disabled] & {
+      color: @osu-colour-b1;
     }
   }
 }
