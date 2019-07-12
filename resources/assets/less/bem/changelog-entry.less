@@ -22,6 +22,10 @@
   padding: 5px 0;
   flex-direction: column;
 
+  a {
+    .link-default();
+  }
+
   &__col {
     margin: 5px;
 
@@ -53,7 +57,7 @@
     // having anything but markdown-formatted page inside may result in sadness.
     &--message {
       font-size: @font-size--normal;
-      color: @osu-colour-l2;
+      color: white;
       margin-top: 2px;
 
       h1, h2, h3, h4, h5, h6 {
@@ -80,7 +84,7 @@
 
   &__title {
     &--major {
-      color: @osu-colour-l1;
+      color: @yellow;
     }
   }
 
