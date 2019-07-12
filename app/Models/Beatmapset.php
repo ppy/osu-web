@@ -875,7 +875,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function playmodes()
     {
-        return $this->beatmaps->pluck('playmode')->unique();
+        return $this->beatmaps->pluck('playmode')->unique()->values();
     }
 
     public function playmodeCount()
