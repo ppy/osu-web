@@ -120,7 +120,7 @@ export class NewDiscussion extends React.PureComponent
                   onChange: @setMessage
                   onKeyDown: @handleKeyDown
                   onFocus: @onFocus
-                  innerRef: @inputBox
+                  ref: @inputBox
                   placeholder: @messagePlaceholder()
 
                 el MessageLengthCounter,
