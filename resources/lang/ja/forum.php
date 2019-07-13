@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited 投稿|:count_delimited 投稿',
+            'topic_starter' => 'トピック開始者',
         ],
     ],
 

@@ -21,7 +21,6 @@
 return [
     'all_read' => 'Wszystkie powiadomienia przeczytane!',
     'mark_all_read' => 'Wyczyść wszystko',
-    'message_multi' => ':count_delimited nowa aktualizacja dla „title”.|:count_delimited nowe aktualizacje dla „title”.|:count_delimited nowych aktualizacji dla „title”.',
 
     'item' => [
         'beatmapset' => [
@@ -30,17 +29,69 @@ return [
             'beatmapset_discussion' => [
                 '_' => 'Dyskusja beatmapy',
                 'beatmapset_discussion_lock' => 'Tworzenie dyskusji dla beatmapy „:title” zostało zablokowane.',
-                'beatmapset_discussion_post_new' => ':username dodał(a) nową wiadomość w dyskusji dla beatmapy „:title”.',
+                'beatmapset_discussion_lock_compact' => 'Dyskusja została zablokowana',
+                'beatmapset_discussion_post_new' => 'Nowy post dla beatmapy „:title” od użytkownika :username',
+                'beatmapset_discussion_post_new_compact' => 'Nowy post od użytkownika :username',
                 'beatmapset_discussion_unlock' => 'Tworzenie dyskusji dla beatmapy „:title” zostało odblokowane.',
+                'beatmapset_discussion_unlock_compact' => 'Dyskusja została odblokowana',
             ],
 
             'beatmapset_state' => [
                 '_' => 'Status beatmapy został zmieniony',
                 'beatmapset_disqualify' => 'Beatmapa „:title” została zdyskwalifikowana przez użytkownika :username.',
+                'beatmapset_disqualify_compact' => 'Beatmapa została zdyskwalifikowana',
                 'beatmapset_love' => 'Beatmapa „:title” uzyskała status ulubionej społeczności od użytkownika :username.',
+                'beatmapset_love_compact' => 'Beatmapa uzyskała status ulubionej społeczności',
                 'beatmapset_nominate' => 'Beatmapa „:title” została nominowana przez użytkownika :username.',
+                'beatmapset_nominate_compact' => 'Beatmapa została nominowana',
                 'beatmapset_qualify' => 'Beatmapa „:title” uzyskała wystarczającą liczbę nominacji i została zakwalifikowana.',
-                'beatmapset_reset_nominations' => 'Problem wymieniony przez użytkownika :username zresetował nominację beatmapy „:title”. ',
+                'beatmapset_qualify_compact' => 'Beatmapa została zakwalifikowana',
+                'beatmapset_rank' => 'Beatmapa „:title” uzyskała status rankingowy',
+                'beatmapset_rank_compact' => 'Beatmapa uzyskała status rankingowy',
+                'beatmapset_reset_nominations' => 'Nominacja beatmapy „:title” została zresetowana',
+                'beatmapset_reset_nominations_compact' => 'Nominacja została zresetowana',
+            ],
+
+            'comment' => [
+                '_' => 'Nowy komentarz',
+
+                'comment_new' => ':username komentuje „:content” dla „:title”',
+                'comment_new_compact' => ':username komentuje „:content”',
+            ],
+        ],
+
+        'channel' => [
+            '_' => 'Czat',
+
+            'channel' => [
+                '_' => 'Nowa wiadomość',
+                'pm' => [
+                    'channel_message' => ':username pisze „:title”',
+                    'channel_message_compact' => ':title',
+                    'channel_message_group' => 'od użytkownika :username',
+                ],
+            ],
+        ],
+
+        'build' => [
+            '_' => 'Zmiany',
+
+            'comment' => [
+                '_' => 'Nowy komentarz',
+
+                'comment_new' => ':username komentuje „:content” dla „:title”',
+                'comment_new_compact' => ':username komentuje „:content”',
+            ],
+        ],
+
+        'news_post' => [
+            '_' => 'Aktualności',
+
+            'comment' => [
+                '_' => 'Nowy komentarz',
+
+                'comment_new' => ':username komentuje „:content” dla „:title”',
+                'comment_new_compact' => ':username komentuje „:content”',
             ],
         ],
 
@@ -49,7 +100,8 @@ return [
 
             'forum_topic_reply' => [
                 '_' => 'Nowa odpowiedź na forum',
-                'forum_topic_reply' => ':username odpowiedział(a) w wątku „:title”.',
+                'forum_topic_reply' => 'Użytkownik :username odpowiedział w wątku „:title”',
+                'forum_topic_reply_compact' => ':username odpowiada',
             ],
         ],
 
@@ -59,6 +111,15 @@ return [
             'legacy_pm' => [
                 '_' => '',
                 'legacy_pm' => ':count_delimited nieprzeczytana wiadomość.|:count_delimited nieprzeczytane wiadomości.|:count_delimited nieprzeczytanych wiadomości.',
+            ],
+        ],
+
+        'user_achievement' => [
+            '_' => 'Medale',
+
+            'user_achievement_unlock' => [
+                '_' => 'Nowy medal',
+                'user_achievement_unlock' => 'Odblokowano medal „:title”!',
             ],
         ],
     ],

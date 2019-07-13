@@ -66,7 +66,7 @@ return [
     'discount' => '折扣 :percent%',
 
     'invoice' => [
-        'echeck_delay' => '',
+        'echeck_delay' => '由於您是用 eCheck 付款，請等待至多 10 天以使該支付通過 PayPal 完成！',
         'status' => [
             'processing' => [
                 'title' => '您的付款尚未被確認!',
@@ -90,7 +90,7 @@ return [
 
         'invoice' => '查看收據',
         'no_orders' => '沒有訂單',
-        'resume' => '',
+        'resume' => '繼續結賬',
 
         'item' => [
             'display_name' => [
@@ -115,7 +115,7 @@ return [
             'delivered' => '已送達',
             'paid' => '已付款',
             'processing' => '待確認',
-            'shipped' => '',
+            'shipped' => '已出貨',
         ],
     ],
 

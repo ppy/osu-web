@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => '게시글 :count_delimited개',
+            'topic_starter' => '주제 시작인',
         ],
     ],
 

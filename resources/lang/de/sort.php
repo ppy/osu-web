@@ -21,9 +21,11 @@
 return [
     '_' => 'Sortieren nach',
 
+    'last_visit' => 'Kürzlich aktiv',
     'new' => 'Kürzlich',
     'old' => 'Alt',
     'top' => 'Top',
+    'username' => 'Benutzername',
 
     'forum_topics' => [
         'new' => 'Letzte Antwort',

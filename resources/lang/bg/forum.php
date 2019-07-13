@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited публикация|:count_delimited публикации',
+            'topic_starter' => '',
         ],
     ],
 
@@ -179,7 +180,7 @@ return [
             ],
 
             'poll' => [
-                'hide_results' => '',
+                'hide_results' => 'Скрий резултатите от анкетата.',
                 'hide_results_info' => '',
                 'length' => 'Остави анкетата отворена за',
                 'length_days_suffix' => 'дни',

@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Ordenadas por:',
             'created_at' => 'Data de criação',
             'timeline' => 'Cronologia',
             'updated_at' => 'Última atualização',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Qualquer',
-        'ranked-approved' => 'Classificados e Aprovados',
         'approved' => 'Aprovados',
-        'qualified' => 'Qualificados',
-        'loved' => 'Adorados',
-        'faves' => 'Favoritos',
-        'pending' => 'Pendente & WIP',
+        'favourites' => '',
         'graveyard' => 'Cemitério',
-        'my-maps' => 'Meus Mapas',
+        'leaderboard' => '',
+        'loved' => 'Adorados',
+        'mine' => '',
+        'pending' => 'Pendente & WIP',
+        'qualified' => 'Qualificados',
+        'ranked' => '',
     ],
     'genre' => [
         'any' => 'Qualquer',

@@ -25,6 +25,13 @@ return [
       'remove' => 'elimină prieten',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
+    ],
+
     'state' => [
       'friends' => 'prieteni',
       'mutual' => 'comuni',

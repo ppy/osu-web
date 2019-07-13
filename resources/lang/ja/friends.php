@@ -25,6 +25,13 @@ return [
       'remove' => 'フレンドから削除',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => 'ホーム :info',
+            'info' => 'フレンド',
+        ],
+    ],
+
     'state' => [
       'friends' => 'フレンド',
       'mutual' => '相互フレンド',

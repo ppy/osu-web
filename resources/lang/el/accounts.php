@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'επιβεβαίωση αλλαγής email του osu!',
         'update' => 'ενημέρωση',
@@ -85,6 +90,11 @@ return [
         'title' => 'Απόρρητο',
         'friends_only' => 'Αποκλεισμός των ιδιωτικών μηνυμάτων από άτομα που δεν βρίσκονται στη λίστα φίλων σας',
         'hide_online' => 'απόκρυψη παρουσίας',
+    ],
+
+    'notifications' => [
+        'title' => '',
+        'topic_auto_subscribe' => '',
     ],
 
     'security' => [

@@ -23,8 +23,8 @@ return [
     'deleted_count' => '',
     'edited' => 'redigerad :timeago av :user',
     'empty' => 'Inga kommentarer ännu.',
+    'load_replies' => '',
     'replies' => 'Svar',
-    'show_replies' => 'visa svar',
     'title' => 'Kommentarer',
 
     'commentable_name' => [

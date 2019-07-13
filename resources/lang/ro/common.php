@@ -59,6 +59,11 @@ return [
         'show_more' => 'arată mai mult',
         'show_more_options' => 'arată mai multe opţiuni',
         'upload_image' => 'încarcă imaginea',
+
+        'watch' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count minut|:count minute',
         'months' => ':count lună|:count luni',
         'second_short_unit' => 'secundă|secunde',
+        'update' => '',
         'years' => ':count an|:count ani',
     ],
 

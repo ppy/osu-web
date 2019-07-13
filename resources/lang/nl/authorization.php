@@ -144,6 +144,9 @@ return [
                 'uneditable' => 'Foutieve cover gespecificeerd.',
                 'not_owner' => 'Alleen de eigenaar kan de cover bewerken.',
             ],
+            'store' => [
+                'forum_not_allowed' => '',
+            ],
         ],
 
         'view' => [

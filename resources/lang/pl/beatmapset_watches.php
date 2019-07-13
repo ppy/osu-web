@@ -19,13 +19,6 @@
  */
 
 return [
-    'button' => [
-        'action' => [
-            'to_0' => 'Przestań obserwować',
-            'to_1' => 'Obserwuj',
-        ],
-    ],
-
     'index' => [
         'description' => 'Poniżej znajdują się dyskuje, które obserwujesz. Otrzymasz powiadomienie, gdy pojawią się nowe posty bądź aktualizacje.',
         'title_compact' => 'obserwowane dyskusje',

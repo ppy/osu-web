@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Å svare til slettede kommentarer er ikke tillatt.',
     ],
 
+    'follow' => [
+        'invalid' => 'Ugyldig :attribute angitt.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Kan bare stemme på funksjonsforespørsler.',

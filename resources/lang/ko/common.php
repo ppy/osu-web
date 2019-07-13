@@ -59,6 +59,11 @@ return [
         'show_more' => '더 보기',
         'show_more_options' => '더 많은 옵션 보기',
         'upload_image' => '이미지 올리기',
+
+        'watch' => [
+            'to_0' => '구독 해제하기',
+            'to_1' => '구독하기',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count분',
         'months' => ':count달',
         'second_short_unit' => '초',
+        'update' => ':count_delimited 업데이트',
         'years' => ':count년',
     ],
 

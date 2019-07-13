@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited postare|:count_delimited postări',
+            'topic_starter' => '',
         ],
     ],
 

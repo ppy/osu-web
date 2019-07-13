@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Op een verwijderde comment reageren is niet toegestaan.',
     ],
 
+    'follow' => [
+        'invalid' => '',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Kan alleen maar stemmen op een feature aanvraag.',

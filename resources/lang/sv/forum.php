@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => '',
+            'topic_starter' => '',
         ],
     ],
 

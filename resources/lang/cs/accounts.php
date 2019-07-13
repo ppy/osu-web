@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'potvrzení změny osu! e-mailu',
         'update' => 'aktualizovat',
@@ -84,6 +89,11 @@ return [
         'title' => 'Soukromí',
         'friends_only' => 'blokovat soukromé zprávy od lidí, kteří nejsou v tvém seznamu přátel',
         'hide_online' => 'skrýt váš online status',
+    ],
+
+    'notifications' => [
+        'title' => 'Oznámení',
+        'topic_auto_subscribe' => '',
     ],
 
     'security' => [

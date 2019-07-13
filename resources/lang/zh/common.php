@@ -44,7 +44,7 @@ return [
         'hide' => '隐藏',
         'permalink' => '静态链接',
         'permalink_copied' => '链接已复制',
-        'post' => '发送',
+        'post' => '发表',
         'reply' => '回复',
         'reply_reopen' => '回复并重新打开',
         'reply_resolve' => '回复并标记为已解决',
@@ -59,6 +59,11 @@ return [
         'show_more' => '显示更多',
         'show_more_options' => '显示更多选项',
         'upload_image' => '上传图片',
+
+        'watch' => [
+            'to_0' => '取消关注',
+            'to_1' => '关注',
+        ],
     ],
 
     'count' => [
@@ -71,7 +76,8 @@ return [
         'minutes' => ':count 分钟',
         'months' => ':count 个月',
         'second_short_unit' => '秒',
-        'years' => ':count 年',
+        'update' => ':count_delimited 更新',
+        'years' => ':count_delimited 年',
     ],
 
     'countdown' => [

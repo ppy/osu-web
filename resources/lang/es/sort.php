@@ -21,9 +21,11 @@
 return [
     '_' => 'Ordenar por',
 
+    'last_visit' => '',
     'new' => 'Reciente',
     'old' => 'Viejo',
     'top' => 'Top',
+    'username' => '',
 
     'forum_topics' => [
         'new' => 'Última respuesta',

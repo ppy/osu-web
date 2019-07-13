@@ -30,7 +30,7 @@ return [
 
     'spotlight' => [
         'end_date' => '結束日期',
-        'map_count' => '',
+        'map_count' => '圖譜數量',
         'participants' => '參加者',
         'start_date' => '開始日期',
     ],

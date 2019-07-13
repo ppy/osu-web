@@ -144,6 +144,9 @@ return [
                 'uneditable' => 'Virheellinen kansikuva valittu.',
                 'not_owner' => 'Vain omistaja voi muuttaa kansikuvaa.',
             ],
+            'store' => [
+                'forum_not_allowed' => '',
+            ],
         ],
 
         'view' => [

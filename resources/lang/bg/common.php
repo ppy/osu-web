@@ -55,10 +55,15 @@ return [
         'search' => 'Търсене',
         'see_more' => 'виж още',
         'show' => 'покажи',
-        'show_deleted' => '',
+        'show_deleted' => 'Покажи изтритите',
         'show_more' => 'покажи още',
         'show_more_options' => 'покажи още опции',
         'upload_image' => 'качи снимка',
+
+        'watch' => [
+            'to_0' => 'Спри наблюдението',
+            'to_1' => 'Наблюдавай',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count минута|:count минути',
         'months' => ':count месец|:count месеца',
         'second_short_unit' => 'сек|сек',
+        'update' => ':count_delimited актуализация|:count_delimited актуализации',
         'years' => ':count година|:count години',
     ],
 

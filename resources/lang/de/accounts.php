@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'Bestätigung der neuen E-Mail-Adresse für osu!',
         'update' => 'speichern',
@@ -84,6 +89,11 @@ return [
         'title' => 'Privatsphäre',
         'friends_only' => 'Blockiere Nachrichten von Benutzern, die nicht auf deiner Freundesliste sind',
         'hide_online' => 'Online-Status verstecken',
+    ],
+
+    'notifications' => [
+        'title' => 'Nachrichten',
+        'topic_auto_subscribe' => 'aktiviere Nachrichten automatisch bei neue Forum Themen die du erstellst',
     ],
 
     'security' => [

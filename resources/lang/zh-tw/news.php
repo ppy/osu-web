@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu!最新消息',
 
         'nav' => [
             'newer' => '下一條新消息',

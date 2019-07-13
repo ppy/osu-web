@@ -19,13 +19,6 @@
  */
 
 return [
-    'button' => [
-        'action' => [
-            'to_0' => 'Bevaka inte',
-            'to_1' => 'Bekava',
-        ],
-    ],
-
     'index' => [
         'description' => 'Detta är beatmap diskussioner du följer. Du kommer bli notifierad när det finns nya inlägg eller uppdateringar.',
         'title_compact' => 'modding bevakningslista',

@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'osu! e-mail wijziging bevestigen',
         'update' => 'bijwerken',
@@ -84,6 +89,11 @@ return [
         'title' => 'Privacy',
         'friends_only' => 'blokkeer privéberichten van mensen niet in jouw vriendenlijst',
         'hide_online' => 'verberg je online aanwezigheid',
+    ],
+
+    'notifications' => [
+        'title' => '',
+        'topic_auto_subscribe' => '',
     ],
 
     'security' => [

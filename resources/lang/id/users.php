@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Bergabung :date',
         'lastvisit' => 'Terakhir terlihat :date',
+        'lastvisit_online' => 'Saat ini online',
         'missingtext' => 'Mungkin Anda salah ketik! (atau pengguna mungkin telah diblokir)',
         'origin_country' => 'Dari :country',
         'page_description' => 'osu! - Segala sesuatu yang ingin Anda ketahui tentang :username!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Jumlah Skor',
         ],
     ],
+
     'status' => [
+        'all' => 'Semua',
         'online' => 'Online',
         'offline' => 'Offline',
     ],

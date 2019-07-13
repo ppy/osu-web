@@ -19,13 +19,6 @@
  */
 
 return [
-    'button' => [
-        'action' => [
-            'to_0' => 'Lopeta seuraaminen',
-            'to_1' => 'Seuraa',
-        ],
-    ],
-
     'index' => [
         'description' => 'Seuraat näiden beatmappien keskusteluja. Sinulle huomautetaan uusista viesteistä ja päivityksistä.',
         'title_compact' => 'modiseuranta',

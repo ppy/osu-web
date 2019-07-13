@@ -21,7 +21,6 @@
 return [
     'all_read' => 'Összes értesítés elolvasva!',
     'mark_all_read' => 'Összes törlése',
-    'message_multi' => '',
 
     'item' => [
         'beatmapset' => [
@@ -30,17 +29,69 @@ return [
             'beatmapset_discussion' => [
                 '_' => '',
                 'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_lock_compact' => '',
                 'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_post_new_compact' => '',
                 'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_unlock_compact' => '',
             ],
 
             'beatmapset_state' => [
                 '_' => 'Beatmap állapota megváltozott',
                 'beatmapset_disqualify' => '',
+                'beatmapset_disqualify_compact' => '',
                 'beatmapset_love' => '',
+                'beatmapset_love_compact' => '',
                 'beatmapset_nominate' => '',
+                'beatmapset_nominate_compact' => '',
                 'beatmapset_qualify' => '',
+                'beatmapset_qualify_compact' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_rank_compact' => '',
                 'beatmapset_reset_nominations' => '',
+                'beatmapset_reset_nominations_compact' => '',
+            ],
+
+            'comment' => [
+                '_' => '',
+
+                'comment_new' => '',
+                'comment_new_compact' => '',
+            ],
+        ],
+
+        'channel' => [
+            '_' => '',
+
+            'channel' => [
+                '_' => 'Új üzenet',
+                'pm' => [
+                    'channel_message' => '',
+                    'channel_message_compact' => '',
+                    'channel_message_group' => '',
+                ],
+            ],
+        ],
+
+        'build' => [
+            '_' => '',
+
+            'comment' => [
+                '_' => 'Új hozzászólás',
+
+                'comment_new' => '',
+                'comment_new_compact' => '',
+            ],
+        ],
+
+        'news_post' => [
+            '_' => 'Újdonságok',
+
+            'comment' => [
+                '_' => 'Új hozzászólás',
+
+                'comment_new' => '',
+                'comment_new_compact' => '',
             ],
         ],
 
@@ -50,6 +101,7 @@ return [
             'forum_topic_reply' => [
                 '_' => 'Új fórum válasz',
                 'forum_topic_reply' => ':username válaszolt a fórum témára ":title".',
+                'forum_topic_reply_compact' => ':username válaszolt',
             ],
         ],
 
@@ -59,6 +111,15 @@ return [
             'legacy_pm' => [
                 '_' => '',
                 'legacy_pm' => ':count_delimited olvasatlan üzenet.|:count_delimited olvasatlan üzenet.',
+            ],
+        ],
+
+        'user_achievement' => [
+            '_' => 'Medálok',
+
+            'user_achievement_unlock' => [
+                '_' => 'Új medál',
+                'user_achievement_unlock' => 'Feloldottad ":title"!',
             ],
         ],
     ],

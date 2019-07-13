@@ -29,7 +29,7 @@ return [
         'toc' => '目次',
 
         'edit' => [
-            'link' => 'GitHubで表示する',
+            'link' => 'GitHubで見る',
             'refresh' => '更新する',
         ],
 

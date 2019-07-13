@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'Bekræftelse for opdatering af osu! email-adresse',
         'update' => 'opdater',
@@ -84,6 +89,11 @@ return [
         'title' => 'Privacy',
         'friends_only' => 'Bloker private beskeder fra folk, der ikke er på din venneliste',
         'hide_online' => 'skjul din online status',
+    ],
+
+    'notifications' => [
+        'title' => 'Notifikationer',
+        'topic_auto_subscribe' => 'aktiver automatisk notifikationer på nye forum emner du opretter',
     ],
 
     'security' => [

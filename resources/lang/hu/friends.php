@@ -25,6 +25,13 @@ return [
       'remove' => 'barát törlése',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
+    ],
+
     'state' => [
       'friends' => 'barátok',
       'mutual' => 'kölcsönös',
