@@ -16,7 +16,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'bodyAdditionalClasses' => 'osu-layout--body-111-plain',
     'legacyNav' => false,
     'title' => trans('news.index.title_page'),
 ])

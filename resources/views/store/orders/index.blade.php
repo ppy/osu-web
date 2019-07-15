@@ -21,7 +21,7 @@
 @section('content')
     @include('store.header')
 
-    <div class="osu-layout__row osu-layout__row--page">
+    <div class="osu-layout__row osu-layout__row--page osu-layout--store">
         <div class="store-orders">
             @if (count($orders) === 0)
                 <span>{{ trans('store.order.no_orders') }}</span>

@@ -44,6 +44,8 @@ trait UserTrait
 
         $values['is_old'] = $this->isOld();
 
+        $values['previous_usernames'] = $this->previousUsernames(true)->unique()->values();
+
         return $values;
     }
 
@@ -79,7 +81,10 @@ trait UserTrait
         $columns = array_keys((new static())->esFilterFields());
         array_unshift($columns, 'user_id');
 
-        return static::on('mysql-readonly')->withoutGlobalScopes()->select($columns);
+        return static::on('mysql-readonly')
+            ->withoutGlobalScopes()
+            ->with('usernameChangeHistoryPublic')
+            ->select($columns);
     }
 
     public static function esSchemaFile()

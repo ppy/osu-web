@@ -19,27 +19,12 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { UserJSON } from 'chat/chat-api-responses';
-import DispatchListener from 'dispatch-listener';
-import Dispatcher from 'dispatcher';
-import {action, observable} from 'mobx';
+import { action, observable } from 'mobx';
 import User from 'models/user';
-import RootDataStore from './root-data-store';
+import Store from 'stores/store';
 
-export default class UserStore implements DispatchListener {
-  root: RootDataStore;
-
+export default class UserStore extends Store {
   @observable users = observable.map<number, User>();
-
-  constructor(root: RootDataStore, dispatcher: Dispatcher) {
-    this.root = root;
-    dispatcher.register(this);
-  }
-
-  handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof UserLogoutAction) {
-      this.flushStore();
-    }
-  }
 
   @action
   flushStore() {
@@ -68,5 +53,11 @@ export default class UserStore implements DispatchListener {
     }
 
     return user;
+  }
+
+  handleDispatchAction(dispatchedAction: DispatcherAction) {
+    if (dispatchedAction instanceof UserLogoutAction) {
+      this.flushStore();
+    }
   }
 }

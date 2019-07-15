@@ -27,8 +27,7 @@
   .own-layer();
   .default-box-shadow();
   border-radius: @_border-radius;
-  background-color: #333;
-  color: #999;
+  background-color: @osu-colour-b5;
   padding: @_padding-vertical @_gutter;
   display: flex;
   flex-direction: column;
@@ -71,7 +70,7 @@
     .own-layer();
     will-change: transform, opacity;
     transition: none;
-    background-color: #222;
+    background-color: @osu-colour-b6;
     border-radius: @border-radius-large;
   }
 
@@ -162,7 +161,7 @@
         left: 10px;
         width: 3px;
         height: calc(100% - (@_item-padding-vertical * 2 + 4px));
-        background-color: @yellow;
+        background-color: @osu-colour-h1;
       }
     }
 

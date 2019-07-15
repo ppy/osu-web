@@ -25,13 +25,13 @@ import * as moment from 'moment';
 import NewsHeader from 'news-header';
 import * as React from 'react';
 
-interface PropsInterface {
+interface Props {
+  commentBundle: any;
   container: HTMLElement;
   post: NewsPostJson;
-  commentBundle: any;
 }
 
-export default class Main extends React.Component<PropsInterface, {}> {
+export default class Main extends React.Component<Props> {
   render() {
     const {content, author} = this.processContent();
     const titleTrans = {
@@ -99,6 +99,32 @@ export default class Main extends React.Component<PropsInterface, {}> {
         />
       </>
     );
+  }
+
+  private processContent = () => {
+    let content = this.props.post.content;
+
+    if (content == null) {
+      content = '';
+    }
+
+    const contentHTML = document.createElement('div');
+    contentHTML.innerHTML = content;
+
+    const firstImage = contentHTML.querySelector('img');
+    if (firstImage != null && firstImage.parentElement != null) {
+      firstImage.parentElement.remove();
+    }
+
+    let author;
+    const authorEl = _.last(contentHTML.querySelectorAll('p'));
+    if (authorEl != null && authorEl.textContent != null && authorEl.textContent.match(/^[—–][^—–]/) != null) {
+      author = authorEl.textContent.slice(1);
+    }
+
+    content = contentHTML.innerHTML;
+
+    return {content, author};
   }
 
   private renderHeader = ({author}: {author?: string}) => {
@@ -187,31 +213,5 @@ export default class Main extends React.Component<PropsInterface, {}> {
         </div>
       </div>
     );
-  }
-
-  private processContent = () => {
-    let content = this.props.post.content;
-
-    if (content == null) {
-      content = '';
-    }
-
-    const contentHTML = document.createElement('div');
-    contentHTML.innerHTML = content;
-
-    const firstImage = contentHTML.querySelector('img');
-    if (firstImage != null && firstImage.parentElement != null) {
-      firstImage.parentElement.remove();
-    }
-
-    let author;
-    const authorEl = _.last(contentHTML.querySelectorAll('p'));
-    if (authorEl != null && authorEl.textContent != null && authorEl.textContent.match(/^[—–][^—–]/) != null) {
-      author = authorEl.textContent.slice(1);
-    }
-
-    content = contentHTML.innerHTML;
-
-    return {content, author};
   }
 }

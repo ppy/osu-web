@@ -78,7 +78,7 @@ return [
         'admin' => 'διαχειριστής',
         'bng' => 'nominator',
         'owner' => 'δημιουργός',
-        'nat' => '',
+        'nat' => 'nat',
     ],
 
     'user_filter' => [

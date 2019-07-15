@@ -168,7 +168,7 @@ export class Discussion extends React.PureComponent
 
 
   canDownvote: =>
-    @props.currentUser.is_admin || @props.currentUser.is_gmt || @props.currentUser.is_nat || @props.currentUser.is_bng
+    @props.currentUser.is_admin || @props.currentUser.can_moderate || @props.currentUser.is_bng
 
 
   canBeRepliedTo: =>

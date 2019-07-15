@@ -247,7 +247,7 @@ class UsersController extends Controller
         }
 
         if ($user === null || !priv_check('UserShow', $user)->can()) {
-            if (is_api_request() || request()->expectsJson()) {
+            if (is_json_request()) {
                 abort(404);
             }
 

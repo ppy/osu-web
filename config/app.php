@@ -212,7 +212,6 @@ return [
         Maknz\Slack\SlackServiceProvider::class,
         Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
         Lord\Laroute\LarouteServiceProvider::class,
-        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
 
         /*
@@ -237,6 +236,9 @@ return [
 
         /* Datadog Metrics */
         ChaseConey\LaravelDatadogHelper\LaravelDatadogHelperServiceProvider::class,
+
+        /* Override default migrate:fresh */
+        App\Providers\MigrationServiceProvider::class,
     ],
 
     /*
@@ -292,7 +294,6 @@ return [
         'GitHub' => GrahamCampbell\GitHub\Facades\GitHub::class,
 
         'Slack' => Maknz\Slack\Facades\Slack::class,
-        'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
         'Datadog' => ChaseConey\LaravelDatadogHelper\Datadog::class,
     ],
 

@@ -1,10 +1,21 @@
 /* tslint:disable:max-classes-per-file */
 
 // importable coffeescript modules
+declare module 'back-to-top' {
+  interface Props {
+    anchor: React.RefObject<{}>;
+    ref: React.RefObject<{}>;
+  }
+
+  class BackToTop extends React.PureComponent<Props> {
+    reset(): void;
+  }
+}
+
 declare module 'block-button' {
   interface Props {
-    onClick?: () => void;
     modifiers?: string[];
+    onClick?: () => void;
     userId: number;
     wrapperClass?: string;
   }
@@ -49,8 +60,8 @@ declare module 'comments' {
 
 declare module 'comments-manager' {
   interface Props {
-    commentableType: string;
     commentableId: number;
+    commentableType: string;
     commentBundle: any;
     component: any;
     componentProps: any;
@@ -69,6 +80,17 @@ declare module 'popup-menu' {
   }
 
   class PopupMenu extends React.PureComponent<Props, any> {}
+}
+
+declare module 'react/beatmaps/search-content' {
+  import AvailableFilters from 'beatmaps/available-filters';
+
+  interface Props {
+    availableFilters: AvailableFilters;
+    backToTopAnchor: React.RefObject<{}>;
+  }
+
+  class SearchContent extends React.PureComponent<Props> {}
 }
 
 declare module 'report-form' {
@@ -95,8 +117,8 @@ declare module 'report-score' {
 
 declare module 'report-user' {
   interface Props {
-    onFormClose?: () => void;
     modifiers?: string[];
+    onFormClose?: () => void;
     user: User;
     wrapperClass?: string;
   }

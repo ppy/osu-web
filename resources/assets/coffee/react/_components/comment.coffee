@@ -30,7 +30,7 @@ el = React.createElement
 deletedUser = username: osu.trans('users.deleted')
 
 export class Comment extends React.PureComponent
-  MAX_DEPTH = 3
+  MAX_DEPTH = 6
 
   makePreviewElement = document.createElement('div')
 
@@ -42,6 +42,10 @@ export class Comment extends React.PureComponent
       _.truncate makePreviewElement.textContent, length: 100
 
 
+  getChildren = (props) ->
+    props.commentsByParentId?[props.comment.id] ? []
+
+
   @defaultProps =
     showDeleted: true
     showReplies: true
@@ -51,12 +55,32 @@ export class Comment extends React.PureComponent
     super props
 
     @xhr = {}
+    @loadMoreRef = React.createRef()
+
+    if osu.isMobile()
+      # There's no indentation on mobile so don't expand by default otherwise it will be confusing.
+      expandReplies = false
+    else if @isDeleted()
+      expandReplies = false
+    else
+      @children = getChildren(@props)
+      # Collapse if either no children is loaded or current level doesn't add indentation.
+      expandReplies = @children.length > 0 && @props.depth < MAX_DEPTH
 
     @state =
       postingVote: false
       editing: false
       showNewReply: false
-      expandReplies: !@isDeleted()
+      expandReplies: expandReplies
+
+
+  componentDidUpdate: (prevProps) =>
+    prevChildren = getChildren(prevProps)
+    currentChildren = getChildren(@props)
+
+    # force expand when replying (adding child)
+    if !@state.expandReplies && prevChildren.length == 0 && currentChildren.length > 0
+      @setState expandReplies: true
 
 
   componentWillUnmount: =>
@@ -64,7 +88,7 @@ export class Comment extends React.PureComponent
 
 
   render: =>
-    children = @props.commentsByParentId?[@props.comment.id] ? []
+    @children = getChildren(@props)
     user = @userFor(@props.comment)
     parent = @props.comment.parent ? @props.parent
 
@@ -78,7 +102,7 @@ export class Comment extends React.PureComponent
     div
       className: osu.classWithModifiers 'comment', modifiers
 
-      if @props.depth == 0 && children.length > 0
+      if @props.depth == 0 && @children.length > 0
         div className: 'comment__float-container comment__float-container--right',
           button
             className: 'comment__top-show-replies'
@@ -195,21 +219,7 @@ export class Comment extends React.PureComponent
                   comment: @props.comment
                   user: @userFor(@props.comment)
 
-            if @props.comment.replies_count > 0
-              div className: 'comment__row-item',
-                if @props.showReplies
-                  button
-                    type: 'button'
-                    className: 'comment__action'
-                    onClick: @toggleReplies
-                    "[#{if @state.expandReplies then '-' else '+'}] "
-                    osu.trans('comments.replies')
-                    " (#{osu.formatNumber(@props.comment.replies_count)})"
-                else
-                  span null,
-                    osu.trans('comments.replies')
-                    ': '
-                    osu.formatNumber(@props.comment.replies_count)
+            @renderRepliesText()
 
             if !@isDeleted() && @props.comment.edited_at?
               editor = @props.usersById[@props.comment.edited_by_id] ? deletedUser
@@ -234,18 +244,19 @@ export class Comment extends React.PureComponent
       if @props.showReplies && @props.comment.replies_count > 0
         div
           className: repliesClass
-          children.map @renderComment
+          @children.map @renderComment
 
-          el DeletedCommentsCount, { comments: children, showDeleted: @props.showDeleted }
+          el DeletedCommentsCount, { comments: @children, showDeleted: @props.showDeleted }
 
           el CommentShowMore,
             parent: @props.comment
             sort: @props.currentSort
-            comments: children
+            comments: @children
             moreComments: @props.moreComments
             total: @props.comment.replies_count
             modifiers: @props.modifiers
-            label: osu.trans('comments.show_replies') if children.length == 0
+            label: osu.trans('comments.load_replies') if @children.length == 0
+            ref: @loadMoreRef
 
 
   renderComment: (comment) =>
@@ -264,6 +275,32 @@ export class Comment extends React.PureComponent
       currentSort: @props.currentSort
       moreComments: @props.moreComments
       showDeleted: @props.showDeleted
+
+
+  renderRepliesText: =>
+    return if @props.comment.replies_count == 0
+
+    if @props.showReplies
+      if !@state.expandReplies && @children.length == 0
+        onClick = @loadReplies
+        label = osu.trans('comments.load_replies')
+      else
+        onClick = @toggleReplies
+        label = "#{osu.trans('comments.replies')} (#{osu.formatNumber(@props.comment.replies_count)})"
+
+      label = "[#{if @state.expandReplies then '-' else '+'}] #{label}"
+
+      div className: 'comment__row-item',
+        button
+          type: 'button'
+          className: 'comment__action'
+          onClick: onClick
+          label
+    else
+      div className: 'comment__row-item',
+        osu.trans('comments.replies')
+        ': '
+        osu.formatNumber(@props.comment.replies_count)
 
 
   renderVoteButton: =>
@@ -314,7 +351,7 @@ export class Comment extends React.PureComponent
 
 
   canModerate: =>
-    currentUser.is_admin || currentUser.is_gmt || currentUser.is_nat
+    currentUser.is_admin || currentUser.can_moderate
 
 
   canReport: =>
@@ -384,6 +421,11 @@ export class Comment extends React.PureComponent
 
   isDeleted: =>
     @props.comment.deleted_at?
+
+
+  loadReplies: =>
+    @loadMoreRef.current?.load()
+    @toggleReplies()
 
 
   parentLink: (parent) =>

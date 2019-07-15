@@ -24,12 +24,12 @@ import TypeGroup from './type-group';
 import Worker from './worker';
 
 interface Props {
-  worker: Worker;
   type?: string;
+  worker: Worker;
 }
 
 @observer
-export default class Main extends React.Component<Props, {}> {
+export default class Main extends React.Component<Props> {
   private menuId: string;
 
   constructor(props: Props) {
@@ -71,6 +71,32 @@ export default class Main extends React.Component<Props, {}> {
         </div>
       </>
     );
+  }
+
+  private buttonClass() {
+    let ret = 'js-click-menu nav-button';
+
+    if (this.props.type === 'mobile') {
+      ret += ' nav-button--mobile';
+    } else {
+      ret += ' nav-button--stadium';
+    }
+
+    return ret;
+  }
+
+  private mainClass() {
+    let ret = 'notification-icon';
+
+    if (this.props.worker.unreadCount > 0) {
+      ret += ' notification-icon--glow';
+    }
+
+    if (this.props.type === 'mobile') {
+      ret += ' notification-icon--mobile';
+    }
+
+    return ret;
   }
 
   private renderShowMoreButton() {
@@ -122,32 +148,6 @@ export default class Main extends React.Component<Props, {}> {
     }
 
     return items;
-  }
-
-  private buttonClass() {
-    let ret = 'js-click-menu nav-button';
-
-    if (this.props.type === 'mobile') {
-      ret += ' nav-button--mobile';
-    } else {
-      ret += ' nav-button--stadium';
-    }
-
-    return ret;
-  }
-
-  private mainClass() {
-    let ret = 'notification-icon';
-
-    if (this.props.worker.unreadCount > 0) {
-      ret += ' notification-icon--glow';
-    }
-
-    if (this.props.type === 'mobile') {
-      ret += ' notification-icon--mobile';
-    }
-
-    return ret;
   }
 
   private unreadCount() {

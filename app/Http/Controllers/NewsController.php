@@ -37,7 +37,7 @@ class NewsController extends Controller
             'search' => $search['params'],
         ];
 
-        if (request()->expectsJson()) {
+        if (is_json_request()) {
             return $postsJson;
         } else {
             return view('news.index', compact('postsJson'));

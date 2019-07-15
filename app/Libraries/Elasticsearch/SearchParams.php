@@ -44,7 +44,7 @@ abstract class SearchParams
      * Magic execute and cache if isCacheable() function.
      * This does not seem like the best place for it but it will do for now.
      */
-    public function fetchCacheable(?string $prefix = null, float $duration, callable $callable)
+    public function fetchCacheable(?string $prefix, float $duration, callable $callable)
     {
         if ($this->isCacheable()) {
             return Cache::remember("{$prefix}{$this->getCacheKey()}", $duration, function () use ($callable) {

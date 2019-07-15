@@ -26,6 +26,7 @@ use App\Models\Beatmap;
 class BeatmapsetSearchParams extends SearchParams
 {
     const PLAYED_STATES = ['played', 'unplayed'];
+    const STATUSES_NO_CACHE = ['favourites', 'mine'];
 
     /** @var array */
     public $extra = [];
@@ -39,7 +40,7 @@ class BeatmapsetSearchParams extends SearchParams
     /**
      * null means any state.
      *
-     * @var string
+     * @var string|null
      */
     public $playedFilter = null;
 
@@ -58,8 +59,8 @@ class BeatmapsetSearchParams extends SearchParams
     /** @var bool */
     public $showRecommended = false;
 
-    /** @var int */
-    public $status = 0;
+    /** @var string|null */
+    public $status = null;
 
     /** @var User|null */
     public $user = null;
@@ -94,7 +95,7 @@ class BeatmapsetSearchParams extends SearchParams
         return !(
             present($this->queryString)
             || !empty($this->rank)
-            || in_array($this->status, [2, 6], true) // favourites, my maps.
+            || in_array($this->status, static::STATUSES_NO_CACHE, true)
             || $this->showRecommended
             || $this->playedFilter !== null
         );

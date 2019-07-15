@@ -47,6 +47,40 @@ export class UserList extends React.PureComponent<Props> {
     sortMode: this.sortFromUrl,
   };
 
+  private get filterFromUrl() {
+    const url = new URL(location.href);
+
+    return this.getAllowedQueryStringValue(filters, url.searchParams.get('filter'));
+  }
+
+  private get sortedUsers() {
+    const users = this.getFilteredUsers(this.state.filter).slice();
+
+    switch (this.state.sortMode) {
+      case 'username':
+        return users.sort(usernameSortAscending);
+
+      default:
+        return users.sort((x, y) => {
+          if (x.is_online && y.is_online) {
+            return usernameSortAscending(x, y);
+          }
+
+          if (x.is_online || y.is_online) {
+            return x.is_online ? -1 : 1;
+          }
+
+          return moment(y.last_visit || 0).diff(moment(x.last_visit || 0));
+        });
+    }
+  }
+
+  private get sortFromUrl() {
+    const url = new URL(location.href);
+
+    return this.getAllowedQueryStringValue(sortModes, url.searchParams.get('user_sort'));
+  }
+
   onSortSelected = (event: React.SyntheticEvent) => {
     const value = (event.currentTarget as HTMLElement).dataset.value;
     const url = osu.updateQueryString(null, { user_sort: value });
@@ -79,6 +113,27 @@ export class UserList extends React.PureComponent<Props> {
     );
   }
 
+  renderOption(key: string, text: string | number, active = false) {
+    // FIXME: change all the names
+    const modifiers = active ? ['active'] : [];
+    let className = osu.classWithModifiers('update-streams-v2__item', modifiers);
+    className += ` t-changelog-stream--${key}`;
+
+    return (
+      <a
+        className={className}
+        data-key={key}
+        href={osu.updateQueryString(null, { filter: key })}
+        key={key}
+        onClick={this.optionSelected}
+      >
+        <div className='update-streams-v2__bar u-changelog-stream--bg' />
+        <p className='update-streams-v2__row update-streams-v2__row--name'>{osu.trans(`users.status.${key}`)}</p>
+        <p className='update-streams-v2__row update-streams-v2__row--version'>{text}</p>
+      </a>
+    );
+  }
+
   renderSelections() {
     return (
       <div className='update-streams-v2 update-streams-v2--with-active update-streams-v2--user-list'>
@@ -102,61 +157,6 @@ export class UserList extends React.PureComponent<Props> {
         values={sortModes}
       />
     );
-  }
-
-  renderOption(key: string, text: string | number, active = false) {
-    // FIXME: change all the names
-    const modifiers = active ? ['active'] : [];
-    let className = osu.classWithModifiers('update-streams-v2__item', modifiers);
-    className += ` t-changelog-stream--${key}`;
-
-    return (
-      <a
-        className={className}
-        data-key={key}
-        href={osu.updateQueryString(null, { filter: key })}
-        key={key}
-        onClick={this.optionSelected}
-      >
-        <div className='update-streams-v2__bar u-changelog-stream--bg' />
-        <p className='update-streams-v2__row update-streams-v2__row--name'>{osu.trans(`users.status.${key}`)}</p>
-        <p className='update-streams-v2__row update-streams-v2__row--version'>{text}</p>
-      </a>
-    );
-  }
-
-  private get filterFromUrl() {
-    const url = new URL(location.href);
-
-    return this.getAllowedQueryStringValue(filters, url.searchParams.get('filter'));
-  }
-
-  private get sortFromUrl() {
-    const url = new URL(location.href);
-
-    return this.getAllowedQueryStringValue(sortModes, url.searchParams.get('user_sort'));
-  }
-
-  private get sortedUsers() {
-    const users = this.getFilteredUsers(this.state.filter).slice();
-
-    switch (this.state.sortMode) {
-      case 'username':
-        return users.sort(usernameSortAscending);
-
-      default:
-        return users.sort((x, y) => {
-          if (x.is_online && y.is_online) {
-            return usernameSortAscending(x, y);
-          }
-
-          if (x.is_online || y.is_online) {
-            return x.is_online ? -1 : 1;
-          }
-
-          return moment(y.last_visit || 0).diff(moment(x.last_visit || 0));
-        });
-    }
   }
 
   private getAllowedQueryStringValue<T>(allowed: T[], value: unknown) {
