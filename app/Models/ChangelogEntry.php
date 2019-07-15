@@ -108,6 +108,9 @@ class ChangelogEntry extends Model
     {
         return new static([
             'title' => trans('changelog.generic'),
+            'private' => false,
+            'major' => false,
+            'created_at' => Carbon::createFromTimestamp(0),
             'githubUser' => new GithubUser([
                 'username' => 'peppy',
                 'user_id' => null,

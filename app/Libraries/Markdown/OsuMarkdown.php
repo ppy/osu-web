@@ -22,7 +22,6 @@ namespace App\Libraries\Markdown;
 
 use App\Libraries\Markdown\Indexing\RendererExtension as IndexingRendererExtension;
 use Jonnybarnes\CommonmarkLinkify\LinkifyExtension;
-use League\CommonMark\Block\Element\Document;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
 use Symfony\Component\Yaml\Exception\ParseException as YamlParseException;

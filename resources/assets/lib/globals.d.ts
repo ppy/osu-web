@@ -24,6 +24,7 @@ declare var reactTurbolinks: any;
 declare var userVerification: any;
 
 // external (to typescript) classes
+declare var BeatmapsetFilter: any;
 declare var BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
 declare var LoadingOverlay: any;
 declare var Timeout: any;
@@ -38,9 +39,9 @@ interface BeatmapDiscussionHelperClass {
 }
 
 interface JQueryStatic {
+  publish: any;
   subscribe: any;
   unsubscribe: any;
-  publish: any;
 }
 
 interface OsuCommon {
@@ -49,13 +50,14 @@ interface OsuCommon {
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
   linkify: (text: string, newWindow?: boolean) => string;
-  parseJson: (id: string) => any;
+  parseJson: (id: string, remove?: boolean) => any;
   popup: (message: string, type: string) => void;
   presence: (str?: string | null) => string | null;
   present: (str?: string | null) => boolean;
   promisify: (xhr: JQueryXHR) => Promise<any>;
   timeago: (time?: string) => string;
   trans: (...args: any[]) => string;
+  transArray: (array: any[], key?: string) => string;
   transChoice: (key: string, count: number, replacements?: any, locale?: string) => string;
   urlPresence: (url?: string | null) => string;
   uuid: () => string;
@@ -72,8 +74,8 @@ interface Country {
 }
 
 interface Cover {
-  id?: string;
   custom_url?: string;
+  id?: string;
   url?: string;
 }
 
@@ -117,6 +119,6 @@ interface TurbolinksStatic {
 
   clearCache(): void;
   setProgressBarDelay(delayInMilliseconds: number): void;
-  visit(location: string, options?: TurbolinksAction): void;
   uuid(): string;
+  visit(location: string, options?: TurbolinksAction): void;
 }

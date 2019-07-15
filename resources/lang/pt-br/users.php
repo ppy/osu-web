@@ -238,7 +238,7 @@ return [
                         ],
 
                         'restore' => [
-                            'give' => 'Recebeu :amount por postagem restaurada em :post',
+                            'give' => 'Recebeu :amount pela publicação restaurada em :post',
                         ],
 
                         'vote' => [

@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { UserLogoutAction } from 'actions/user-login-actions';
+import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
 import Dispatcher from './dispatcher';
 
 export default class UserLoginObserver {
@@ -25,6 +25,11 @@ export default class UserLoginObserver {
   constructor(window: Window, dispatcher: Dispatcher) {
     this.dispatcher = dispatcher;
     $(window.document).on('ajax:success', '.js-logout-link', this.userLogout);
+    $(window.document).on('ajax:success', '.js-login-form', this.userLogin);
+  }
+
+  userLogin = () => {
+    this.dispatcher.dispatch(new UserLoginAction());
   }
 
   userLogout = () => {

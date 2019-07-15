@@ -44,6 +44,15 @@ class ChangeUsernameTest extends TestCase
         $this->assertArraySubset($expected, $errors['username'], true);
     }
 
+    public function testSupportCanChangeEvenIfUserIsRestricted()
+    {
+        $user = $this->createUser(['user_warnings' => 1]);
+
+        $errors = $user->validateChangeUsername('newusername', 'support')->all();
+
+        $this->assertEmpty($errors);
+    }
+
     public function testUserHasNeverSupported()
     {
         $user = $this->createUser(['osu_subscriptionexpiry' => null]);
@@ -53,6 +62,15 @@ class ChangeUsernameTest extends TestCase
 
         $this->assertArrayHasKey('username', $errors);
         $this->assertArraySubset($expected, $errors['username'], true);
+    }
+
+    public function testSupportCanChangeEvenIfUserHasNeverSupported()
+    {
+        $user = $this->createUser(['osu_subscriptionexpiry' => null]);
+
+        $errors = $user->validateChangeUsername('newusername', 'support')->all();
+
+        $this->assertEmpty($errors);
     }
 
     public function testUsernameIsSame()

@@ -25,7 +25,6 @@ parseInt10 = (string) ->
 class @BeatmapsetFilter
   @castFromString:
     mode: parseInt10
-    status: parseInt10
     genre: parseInt10
     language: parseInt10
 
@@ -43,6 +42,22 @@ class @BeatmapsetFilter
     sort: 'sort'
 
 
+  @filtersFromUrl: (url) ->
+    params = new URL(url).searchParams
+
+    filters = {}
+
+    for own char, key of @charToKey
+      value = params.get(char)
+
+      continue if !value? || value.length == 0
+
+      value = @castFromString[key](value) if @castFromString[key]
+      filters[key] = value
+
+    filters
+
+
   @keyToChar: ->
     @_keyToChar ?= _.invert @charToKey
 
@@ -53,10 +68,10 @@ class @BeatmapsetFilter
     genre: null
     language: null
     mode: null
-    played: null
+    played: 'any'
     query: ''
     rank: ''
-    status: 0
+    status: 'leaderboard'
 
 
   @expand: ['genre', 'language', 'extra', 'rank', 'played']
@@ -77,7 +92,7 @@ class @BeatmapsetFilter
       if filters.query?.trim().length > 0
         'relevance_desc'
       else
-        if filters.status in [4, 5, 6]
+        if filters.status in ['pending', 'graveyard', 'mine']
           'updated_desc'
         else
           'ranked_desc'
@@ -115,3 +130,9 @@ class @BeatmapsetFilter
         charParams[@keyToChar()[key]] = value
 
     charParams
+
+
+  # For UI purposes; server-side has its own check.
+  @supporterRequired: (filters) ->
+    _.reject ['played', 'rank'], (name) =>
+      _.isEmpty(filters[name]) || filters[name] == @getDefault(filters, name)

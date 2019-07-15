@@ -46,6 +46,11 @@
     outline: 3px solid @blue-darker;
   }
 
+  //TODO: remove after forum restyle
+  a {
+    .link-old();
+  }
+
   &__actions {
     .desktop-position() {
       @media @desktop {
@@ -319,6 +324,24 @@
     }
   }
 
+  &__topic-starter {
+    display: inline-flex;
+    background-color: @blue-darker;
+    color: #fff;
+    font-style: normal;
+    font-weight: normal;
+    border-radius: 10000px;
+    padding: 2px 10px;
+    margin: 5px 0;
+  }
+
+  &__user-link-xs {
+    // Overrides the ".forum-post a" above.
+    && {
+      color: #fff;
+    }
+  }
+
   &__username {
     .default-text-shadow();
     display: block;
@@ -329,7 +352,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
-    color: #fff;
+    color: white !important; //TODO: remove after forum restyle
 
     &:hover {
       color: #fff;

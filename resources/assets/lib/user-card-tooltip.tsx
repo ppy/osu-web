@@ -32,12 +32,12 @@ declare global {
   }
 }
 
-interface PropsInterface {
+interface Props {
   container: HTMLElement;
   lookup: string;
 }
 
-interface StateInterface extends ActiveKeyState {
+interface State extends ActiveKeyState {
   user?: User;
 }
 
@@ -110,7 +110,7 @@ function onMouseOver(event: JQueryEventObject) {
   if (osu.isMobile()) { return; }
 
   const el = event.currentTarget as HTMLElement;
-  const userId = el.dataset.userId;
+  const userId = osu.presence(el.dataset.userId);
   if (userId == null) { return; }
   // don't show cards for blocked users
   if (_.find(currentUser.blocks, { target_id: parseInt(userId, 10)})) { return; }
@@ -150,7 +150,9 @@ export function startListening() {
 /**
  * This component's job is to get the data and bootstrap the actual UserCard component for tooltips.
  */
-export class UserCardTooltip extends React.PureComponent<PropsInterface, StateInterface> {
+export class UserCardTooltip extends React.PureComponent<Props, State> {
+  readonly contextActiveKeyDidChange = contextActiveKeyDidChange.bind(this);
+  readonly state: State = {};
   readonly activeKeyDidChange = (key: any) => {
     tooltipWithActiveMenu = key;
     this.contextActiveKeyDidChange(key);
@@ -160,9 +162,6 @@ export class UserCardTooltip extends React.PureComponent<PropsInterface, StateIn
       $(`.${userCardTooltipClass}`).qtip('hide');
     }
   }
-
-  readonly contextActiveKeyDidChange = contextActiveKeyDidChange.bind(this);
-  readonly state: StateInterface = {};
 
   componentDidMount() {
     this.getUser().then((user) => {

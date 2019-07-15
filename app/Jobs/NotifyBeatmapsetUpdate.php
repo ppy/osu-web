@@ -21,8 +21,6 @@
 namespace App\Jobs;
 
 use App\Mail\BeatmapsetUpdateNotice;
-use App\Models\Beatmapset;
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

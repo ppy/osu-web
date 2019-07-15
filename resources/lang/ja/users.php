@@ -218,7 +218,7 @@ return [
                 'recent_entries' => '最近のKudosu履歴',
                 'title' => 'Kudosu!',
                 'total' => '累計Kudosu取得数',
-                'total_info' => '譜面制作のModdingなどの貢献度を表す数値です。詳細は<a href="'.osu_url('user.kudosu').'詳細は">this page</a>を参照。',
+                'total_info' => '譜面制作のModdingなどの貢献度を表す数値です。詳細は<a href="'.osu_url('user.kudosu').'詳細は">このページ</a>を参照。',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -287,7 +287,7 @@ return [
             'account_standing' => [
                 'title' => 'アカウントの状態',
                 'bad_standing' => "<strong>:username</strong>のアカウントはルール違反の記録があります。",
-                'remaining_silence' => '<strong>:username</strong>は後:duration日で再び発言ができるようになります。',
+                'remaining_silence' => '<strong>:username</strong>は:durationで再び発言ができるようになります。',
 
                 'recent_infringements' => [
                     'title' => '最近の違反',

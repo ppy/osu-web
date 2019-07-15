@@ -17,11 +17,15 @@
 ###
 
 import { SearchFilter } from './search-filter'
+import { Observer } from 'mobx-react'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div, a, i, input, h1, h2, li, ol, span } from 'react-dom-factories'
 el = React.createElement
+controller = core.beatmapsetSearchController
 
-export class SearchPanel extends React.PureComponent
+# props don't change anymore when selecting a new filter
+export class SearchPanel extends React.Component
   constructor: (props) ->
     super props
 
@@ -31,51 +35,47 @@ export class SearchPanel extends React.PureComponent
     # containers for React to render portal into; turbolinks and React portals
     # don't play well together, otherwise. These aren't needed without turbolinks.
     @breadcrumbsPortal = document.createElement('div')
+    @breadcrumbsPortal.id = 'search-panel-breadcrumbs-portal'
     @contentPortal = document.createElement('div')
+    @contentPortal.id = 'search-panel-content-portal'
 
     @prevText = null
-    @debouncedSubmit = _.debounce @submit, 500
     @breadcrumbsElement = window.stickyHeader.breadcrumbsElement()
     @contentElement = window.stickyHeader.contentElement()
-
-    @state =
-      query: @props.filters.query
 
 
   componentDidMount: =>
     $(document).on 'sticky-header:sticking.search-panel', @setHeaderPinned
-    $(document).on 'turbolinks:before-cache.search-panel', () =>
-      # componentWillUnmount is called too late for Beatmaps.
-      @breadcrumbsElement?.removeChild @breadcrumbsPortal
-      @contentElement?.removeChild @contentPortal
-
-    @breadcrumbsElement?.appendChild @breadcrumbsPortal
-    @contentElement?.appendChild @contentPortal
-
-
-  componentDidUpdate: (prevProps, prevState) =>
-    @debouncedSubmit @state.query if prevState.query != @state.query
+    @mountPortal @breadcrumbsPortal, @breadcrumbsElement
+    @mountPortal @contentPortal, @contentElement
 
 
   componentWillUnmount: =>
     $(document).off '.search-panel'
-    @debouncedSubmit.cancel()
+    @unmountPortal @breadcrumbsPortal, @breadcrumbsElement
+    @unmountPortal @contentPortal, @contentElement
+
+
+  expand: (e) ->
+    e.preventDefault()
+    controller.isExpanded = true
 
 
   render: =>
-    div null,
-      if @breadcrumbsElement?
-        ReactDOM.createPortal @renderBreadcrumbs(), @breadcrumbsPortal
+    el Observer, null, =>
+      div null,
+        if @breadcrumbsElement?
+          ReactDOM.createPortal @renderBreadcrumbs(), @breadcrumbsPortal
 
-      if @contentElement?
-        ReactDOM.createPortal @renderStickyContent(), @contentPortal
+        if @contentElement?
+          ReactDOM.createPortal @renderStickyContent(), @contentPortal
 
-      div
-        className: 'osu-page osu-page--beatmapsets-search-header'
-        if currentUser.id?
-          @renderUser()
-        else
-          @renderGuest()
+        div
+          className: 'osu-page osu-page--beatmapsets-search-header'
+          if currentUser.id?
+            @renderUser()
+          else
+            @renderGuest()
 
 
   renderBreadcrumbs: =>
@@ -108,7 +108,7 @@ export class SearchPanel extends React.PureComponent
           name: 'search'
           onChange: @onChange
           placeholder: osu.trans('beatmaps.listing.search.prompt')
-          value: @state.query
+          defaultValue: controller.filters.query
         div className: 'beatmapsets-search__icon',
           i className: 'fas fa-search'
 
@@ -126,20 +126,22 @@ export class SearchPanel extends React.PureComponent
 
 
   onChange: (event) =>
-    @setState
-      query: event.target.value
+    query = event.target.value
+    @pinnedInputRef.current.value = query
+    @inputRef.current.value = query
+
+    controller.updateFilters { query }
 
 
   renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>
     el SearchFilter,
-      filters: @props.filters
+      filters: controller.filters
       name: name
       title: osu.trans("beatmaps.listing.search.filters.#{name}") if showTitle
       options: options
-      default: @props.filterDefaults[name]
       multiselect: multiselect
-      recommendedDifficulty: @props.recommendedDifficulty
-      selected: @props.filters[name]
+      recommendedDifficulty: controller.recommendedDifficulty
+      selected: controller.filters.selectedValue(name)
 
 
   renderGuest: =>
@@ -163,7 +165,7 @@ export class SearchPanel extends React.PureComponent
   renderUser: =>
     filters = @props.availableFilters
     cssClasses = 'beatmapsets-search'
-    cssClasses += ' beatmapsets-search--expanded' if @props.isExpanded
+    cssClasses += ' beatmapsets-search--expanded' if controller.isExpanded
 
     div
       ref: @props.innerRef
@@ -180,7 +182,7 @@ export class SearchPanel extends React.PureComponent
           name: 'search'
           onChange: @onChange
           placeholder: osu.trans('beatmaps.listing.search.prompt')
-          value: @state.query
+          defaultValue: controller.filters.query
         div className: 'beatmapsets-search__icon',
           i className: 'fas fa-search'
 
@@ -200,7 +202,7 @@ export class SearchPanel extends React.PureComponent
       a
         className: 'beatmapsets-search__expand-link'
         href: '#'
-        onClick: @props.expand
+        onClick: @expand
         div {}, osu.trans('beatmaps.listing.search.options')
         div {}, i className: 'fas fa-angle-down'
 
@@ -235,5 +237,14 @@ export class SearchPanel extends React.PureComponent
       @inputRef.current.focus()
 
 
-  submit: (query) ->
-    $(document).trigger 'beatmap:search:filtered', query: query.trim()
+  mountPortal: (portal, root) ->
+    # clean up any existing element when navigating backwards.
+    existingElement = document.getElementById(portal.id)
+    existingElement?.remove()
+
+    root?.appendChild portal
+
+
+  unmountPortal: (portal, root) ->
+    if portal.offsetParent?
+      root?.removeChild portal

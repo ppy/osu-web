@@ -21,7 +21,7 @@
   @_badge-height: 120px;
 
   border-radius: 30px;
-  background-color: #555;
+  background-color: @osu-colour-b6;
   border: 0 solid transparent;
   width: 200px;
   line-height: normal;
@@ -90,17 +90,13 @@
   }
 
   &__instructions {
-    color: @yellow;
+    color: @osu-colour-l1;
     font-style: italic;
     font-size: @font-size--title-small;
     font-weight: 300;
 
     a {
-      color: @yellow-lighter;
-
-      .link-hover({
-        color: @yellow-lighter;
-      });
+      .link-white();
     }
   }
 

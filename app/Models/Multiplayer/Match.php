@@ -20,6 +20,9 @@
 
 namespace App\Models\Multiplayer;
 
+use App\Models\User;
+use Cache;
+
 /**
  * @property \Carbon\Carbon|null $end_time
  * @property \Illuminate\Database\Eloquent\Collection $events Event
@@ -57,6 +60,13 @@ class Match extends Model
         if ($game !== null && $game->end_time === null) {
             return $game;
         }
+    }
+
+    public function hadPlayer(User $user)
+    {
+        return Cache::remember("multiplayer_participation_{$this->match_id}_{$user->user_id}", 1, function () use ($user) {
+            return $this->events()->where('user_id', $user->user_id)->whereIn('text', ['CREATE', 'JOIN'])->exists();
+        });
     }
 
     public function currentPlayers()

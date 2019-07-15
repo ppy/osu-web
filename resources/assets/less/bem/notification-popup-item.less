@@ -21,24 +21,29 @@
 
   display: flex;
   width: 100%;
-  background-color: @greysky;
+  background-color: @osu-colour-b3;
   border-radius: @border-radius-large;
 
-  &:hover::before {
-    .full-size();
-    content: '';
-    background-color: fade(#fff, 10%);
-    border-radius: @border-radius-large;
+  &:hover {
+    background-color: @osu-colour-b1;
   }
 
   &--compact {
     background-color: transparent;
     margin-left: 10px;
     width: calc(100% - 10px);
+
+    &:hover {
+      background-color: @osu-colour-b4;
+    }
   }
 
   &--group {
-    background-color: lighten(@greysky, 10%);
+    background-color: @osu-colour-b3;
+
+    &:hover {
+      background-color: @osu-colour-b2;
+    }
   }
 
   &__content {
@@ -47,9 +52,9 @@
     flex-direction: column;
     min-width: 0;
     // prevent thin single row item
-    min-height: 30px;
+    min-height: 36px;
     justify-content: center;
-    margin: -2px 0;
+    padding: 3px 0 3px 10px;
   }
 
   &__cover {
@@ -57,7 +62,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: @greysky-darker;
+    background-color: @osu-colour-b2;
     width: 60px;
     flex: none;
 
@@ -89,18 +94,42 @@
   &__main {
     border-radius: 0 @border-radius-large @border-radius-large 0;
     flex: 1;
-    padding: 5px 0 5px 10px;
     display: flex;
     min-width: 0;
   }
 
   &__read-button {
     .reset-input();
-    color: @greysky-light;
-    padding: 2px;
+    .full-size();
+    .center-content();
+    width: calc(100% - 6px);
+    margin-left: 6px;
+    padding-left: 2px;
+    color: @osu-colour-l1;
 
     &:hover {
       color: #fff;
+    }
+
+    &::before {
+      .full-size();
+      content: ' ';
+      width: 6px;
+      border-radius: 0 6px 6px 0;
+      background-color: transparent;
+      left: -6px;
+
+      .@{_top}:hover & {
+        background-color: @osu-colour-b1;
+      }
+
+      .@{_top}--compact:hover & {
+        background-color: @osu-colour-b4;
+      }
+
+      .@{_top}--group:hover & {
+        background-color: @osu-colour-b2;
+      }
     }
   }
 
@@ -122,14 +151,32 @@
 
     &--time {
       font-size: @font-size--small;
-      color: @greysky-light;
+      color: @osu-colour-l1;
+    }
+
+    .@{_top}:hover & {
+      .show-more-link {
+         background-color: @osu-colour-b1;
+         &:hover {
+           background-color: @osu-colour-b3;
+         }
+      }
     }
   }
 
   &__side-buttons {
-    .center-content();
-    width: 16px;
+    width: 40px;
     flex: none;
-    margin: 0 10px;
+    border-radius: 0 6px 6px 0;
+    background-color: transparent;
+
+    .@{_top}--legacy_pm & {
+      display: none;
+    }
+
+    &:hover {
+      background-color: fade(black, 15%);
+    }
   }
+
 }

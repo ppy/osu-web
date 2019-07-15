@@ -29,6 +29,7 @@ export class Post extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @textarea = React.createRef()
     @throttledUpdatePost = _.throttle @updatePost, 1000
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
     @xhr = {}
@@ -140,10 +141,10 @@ export class Post extends React.PureComponent
 
 
   editStart: =>
-    @textarea.style.minHeight = "#{@messageBody.getBoundingClientRect().height + 50}px"
+    @textarea.current?.style.minHeight = "#{@messageBody.getBoundingClientRect().height + 50}px"
 
     @setState editing: true, =>
-      @textarea.focus()
+      @textarea.current?.focus()
 
   handleKeyDownCallback: (type, event) =>
     switch type
@@ -167,7 +168,7 @@ export class Post extends React.PureComponent
         onChange: @setMessage
         onKeyDown: @handleKeyDown
         value: @state.message
-        innerRef: (el) => @textarea = el
+        ref: @textarea
       el MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div className: "#{bn}__actions",

@@ -65,6 +65,17 @@
         </div>
 
         <div class="forum-post__info-panel-extra-bottom">
+            @if (isset($topic) && $topic->topic_poster === $user->getKey())
+                <div class="forum-post__info-row">
+                    <div
+                        class="forum-post__topic-starter"
+                        style="{{ user_color_style($user->user_colour, "background-color") }}"
+                    >
+                        {{ trans('forum.post.info.topic_starter') }}
+                    </div>
+                </div>
+            @endif
+
             <div class="forum-post__info-row">
                 <a class="forum-post__info-link" href="{{ route("users.posts", $user) }}">
                     {{ trans_choice('forum.post.info.post_count', $user->user_posts) }}
@@ -93,7 +104,7 @@
 
         <div class="forum-post__info-panel-xs-main">
             <div class="forum-post__info-panel-xs-name">
-                <a class="link--white" href="{{ route("users.show", $user) }}">
+                <a class="forum-post__user-link-xs" href="{{ route("users.show", $user) }}">
                     {{ $user->username }}
                 </a>
 

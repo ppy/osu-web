@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {ChatChannelPartAction, ChatChannelSwitchAction} from 'actions/chat-actions';
+import { ChatChannelPartAction, ChatChannelSwitchAction } from 'actions/chat-actions';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
@@ -25,12 +25,6 @@ import RootDataStore from 'stores/root-data-store';
 @inject('dispatcher')
 @observer
 export default class ConversationListItem extends React.Component<any, {}> {
-  switch = (e: React.MouseEvent<HTMLElement>) => {
-    if (this.props.dataStore.uiState.chat.selected !== this.props.channelId) {
-      this.props.dispatcher.dispatch(new ChatChannelSwitchAction(this.props.channelId));
-    }
-  }
-
   part = (e: React.MouseEvent<HTMLElement>) => {
     this.props.dispatcher.dispatch(new ChatChannelPartAction(this.props.channelId));
   }
@@ -69,5 +63,11 @@ export default class ConversationListItem extends React.Component<any, {}> {
         </button>
       </div>
     );
+  }
+
+  switch = (e: React.MouseEvent<HTMLElement>) => {
+    if (this.props.dataStore.uiState.chat.selected !== this.props.channelId) {
+      this.props.dispatcher.dispatch(new ChatChannelSwitchAction(this.props.channelId));
+    }
   }
 }

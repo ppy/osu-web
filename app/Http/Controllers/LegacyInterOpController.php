@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\EsIndexDocument;
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\UserBestScoresCheck;
@@ -125,6 +126,15 @@ class LegacyInterOpController extends Controller
         }
 
         return ['success' => true];
+    }
+
+    public function userIndex($id)
+    {
+        $user = User::findOrFail($id);
+
+        dispatch(new EsIndexDocument($user));
+
+        return response(null, 204);
     }
 
     public function userSessionsDestroy($id)

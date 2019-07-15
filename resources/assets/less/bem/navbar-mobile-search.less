@@ -18,8 +18,8 @@
 
 .navbar-mobile-search {
   @_search-icon-width: 40px;
-  background: #222;
-  color: #ccc;
+  background: @osu-colour-b6;
+  color: white;
 
   &__icon {
     .reset-input();
@@ -30,6 +30,7 @@
     height: 100%;
     width: @_search-icon-width;
     font-size: @font-size--title-small-2;
+    color: @osu-colour-b1;
 
     *:-webkit-autofill ~ & {
       color: #000;

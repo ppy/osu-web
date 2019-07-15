@@ -225,7 +225,7 @@ function html_excerpt($body, $limit = 300)
     return e(truncate($body, $limit));
 }
 
-function truncate(String $text, $limit = 100, $ellipsis = '...')
+function truncate(string $text, $limit = 100, $ellipsis = '...')
 {
     if (mb_strlen($text) > $limit) {
         return mb_substr($text, 0, $limit - mb_strlen($ellipsis)).$ellipsis;
@@ -513,6 +513,11 @@ function is_api_request()
     return request()->is('api/*');
 }
 
+function is_json_request()
+{
+    return is_api_request() || request()->expectsJson();
+}
+
 function is_sql_unique_exception($ex)
 {
     return starts_with(
@@ -594,7 +599,7 @@ function issue_icon($issue)
 
 function build_url($build)
 {
-    return route('changelog.build', [$build->updateStream->name, $build->version]);
+    return route('changelog.build', [optional($build->updateStream)->name ?? 'unknown', $build->version]);
 }
 
 function post_url($topicId, $postId, $jumpHash = true, $tail = false)
@@ -1314,4 +1319,41 @@ function check_url(string $url): bool
     curl_close($ch);
 
     return !$errored;
+}
+
+function mini_asset(string $url): string
+{
+    return present(config('osu.assets.mini_url'))
+        ? str_replace(config('osu.assets.base_url'), config('osu.assets.mini_url'), $url)
+        : $url;
+}
+
+function section_to_hue_map($section): int
+{
+    static $colourToHue = [
+        'red' => 0,
+        'pink' => 333,
+        'orange' => 46,
+        'green' => 115,
+        'purple' => 255,
+        'blue' => 230,
+    ];
+
+    static $sectionMapping = [
+        'admin' => 'red',
+        'admin-forum' => 'red',
+        'admin-store' => 'red',
+        'beatmaps' => 'pink',
+        'beatmapsets' => 'pink',
+        'community' => 'pink',
+        'error' => 'pink',
+        'help' => 'orange',
+        'home' => 'purple',
+        'multiplayer' => 'pink',
+        'rankings' => 'green',
+        'store' => 'pink',
+        'user' => 'pink',
+    ];
+
+    return isset($sectionMapping[$section]) ? $colourToHue[$sectionMapping[$section]] : $colourToHue['pink'];
 }
