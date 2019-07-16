@@ -22,7 +22,9 @@ namespace App\Libraries\Elasticsearch;
 
 use Datadog;
 use Elasticsearch\Client;
+use Elasticsearch\Common\Exceptions\Curl\OperationTimeoutException;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
+use Log;
 
 abstract class Search extends HasSearch implements Queryable
 {
@@ -84,16 +86,14 @@ abstract class Search extends HasSearch implements Queryable
                 return $this->count = 0;
             }
 
-            $query = $this->toArray();
-            // some arguments need to be stripped from the body as they're not supported by count.
-            $body = $query['body'];
-            foreach (['from', 'highlight', 'search_after', 'size', 'sort', 'timeout', '_source'] as $key) {
-                unset($body[$key]);
-            }
+            $result = $this->runQuery(
+                'count',
+                function () {
+                    return $this->client()->count($this->toCountRequestParams())['count'];
+                }
+            );
 
-            $query['body'] = $body;
-
-            $this->count = $this->client()->count($query)['count'];
+            $this->count = $this->error === null ? $result : 0;
         }
 
         return $this->count;
@@ -235,32 +235,14 @@ abstract class Search extends HasSearch implements Queryable
             return SearchResponse::empty();
         }
 
-        try {
-            return datadog_timing(
-                function () {
-                    return new SearchResponse($this->client()->search($this->toArray()));
-                },
-                config('datadog-helper.prefix_web').'.search.fetch',
-                $this->getDatadogTags()
-            );
-        } catch (ElasticsearchException $e) {
-            $this->error = $e;
-        }
+        $result = $this->runQuery(
+            'fetch',
+            function () {
+                return new SearchResponse($this->client()->search($this->toArray()));
+            }
+        );
 
-        log_error($this->error);
-
-        if (config('datadog-helper.enabled')) {
-            $tags = $this->getDatadogTags();
-            $tags['class'] = get_class($this->error);
-
-            Datadog::increment(
-                config('datadog-helper.prefix_web').'.search.errors',
-                1,
-                $tags
-            );
-        }
-
-        return SearchResponse::failed($this->error);
+        return $this->error === null ? $result : SearchResponse::failed($this->error);
     }
 
     private function getDatadogTags()
@@ -271,8 +253,65 @@ abstract class Search extends HasSearch implements Queryable
         ];
     }
 
+    private function handleError(ElasticsearchException $e, string $operation)
+    {
+        $tags = $this->getDatadogTags();
+        $tags['class'] = get_class($e);
+
+        // Only report non query timeout errors to Sentry.
+        // Printing the entire exception to log makes the breadcrumb too large to be sent to Sentry (16kb limit)
+        // so we're only printing the message.
+        Log::error("{$tags['type']} {$tags['index']} {$operation}, {$tags['class']}: {$e->getMessage()}");
+        if (!($e instanceof OperationTimeoutException)) {
+            app('sentry')->captureException($e);
+        }
+
+        if (config('datadog-helper.enabled')) {
+            Datadog::increment(
+                config('datadog-helper.prefix_web').'.search.errors',
+                1,
+                $tags
+            );
+        }
+    }
+
     private function isSearchWindowExceeded()
     {
         return $this->getQuerySize() < 0;
+    }
+
+    private function toCountRequestParams() : array
+    {
+        $params = $this->toArray();
+        // some arguments need to be stripped from the body as they're not supported by count.
+        foreach (['from', 'highlight', 'search_after', 'size', 'sort', 'timeout', '_source'] as $key) {
+            unset($params['body'][$key]);
+        }
+
+        return $params;
+    }
+
+    /**
+     * Wrapper function to run a query with timing and error reporting.
+     *
+     * @param string $operation
+     * @param callable $callable
+     *
+     * @return mixed Returns whatever $callable returns, void with $this->error set on error.
+     */
+    private function runQuery(string $operation, callable $callable)
+    {
+        $this->error = null;
+
+        try {
+            return datadog_timing(
+                $callable,
+                config('datadog-helper.prefix_web').'.search.'.$operation,
+                $this->getDatadogTags()
+            );
+        } catch (ElasticsearchException $e) {
+            $this->error = $e;
+            $this->handleError($e, $operation);
+        }
     }
 }
