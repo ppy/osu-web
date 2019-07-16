@@ -89,7 +89,7 @@ abstract class Search extends HasSearch implements Queryable
             $result = $this->runQuery(
                 'count',
                 function () {
-                    return $this->client()->count($this->toCountQuery())['count'];
+                    return $this->client()->count($this->toCountRequestParams())['count'];
                 }
             );
 
@@ -280,15 +280,15 @@ abstract class Search extends HasSearch implements Queryable
         return $this->getQuerySize() < 0;
     }
 
-    private function toCountQuery() : array
+    private function toCountRequestParams() : array
     {
-        $query = $this->toArray();
+        $params = $this->toArray();
         // some arguments need to be stripped from the body as they're not supported by count.
         foreach (['from', 'highlight', 'search_after', 'size', 'sort', 'timeout', '_source'] as $key) {
-            unset($query['body'][$key]);
+            unset($params['body'][$key]);
         }
 
-        return $query;
+        return $params;
     }
 
     /**
