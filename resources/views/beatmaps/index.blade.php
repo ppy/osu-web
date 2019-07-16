@@ -20,7 +20,6 @@
   'currentAction' => 'index',
   'title' => trans('beatmapsets.index.title'),
   'pageDescription' => trans('beatmapsets.index.title'),
-  'bodyAdditionalClasses' => 'osu-layout--body-222'
 ])
 
 @section('content')

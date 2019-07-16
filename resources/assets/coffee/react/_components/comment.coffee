@@ -42,6 +42,10 @@ export class Comment extends React.PureComponent
       _.truncate makePreviewElement.textContent, length: 100
 
 
+  getChildren = (props) ->
+    props.commentsByParentId?[props.comment.id] ? []
+
+
   @defaultProps =
     showDeleted: true
     showReplies: true
@@ -59,7 +63,7 @@ export class Comment extends React.PureComponent
     else if @isDeleted()
       expandReplies = false
     else
-      @children = @props.commentsByParentId?[@props.comment.id] ? []
+      @children = getChildren(@props)
       # Collapse if either no children is loaded or current level doesn't add indentation.
       expandReplies = @children.length > 0 && @props.depth < MAX_DEPTH
 
@@ -70,12 +74,21 @@ export class Comment extends React.PureComponent
       expandReplies: expandReplies
 
 
+  componentDidUpdate: (prevProps) =>
+    prevChildren = getChildren(prevProps)
+    currentChildren = getChildren(@props)
+
+    # force expand when replying (adding child)
+    if !@state.expandReplies && prevChildren.length == 0 && currentChildren.length > 0
+      @setState expandReplies: true
+
+
   componentWillUnmount: =>
     xhr?.abort() for own _name, xhr of @xhr
 
 
   render: =>
-    @children = @props.commentsByParentId?[@props.comment.id] ? []
+    @children = getChildren(@props)
     user = @userFor(@props.comment)
     parent = @props.comment.parent ? @props.parent
 

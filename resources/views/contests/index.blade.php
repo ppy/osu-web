@@ -20,7 +20,6 @@
     'currentSection' => 'community',
     'currentAction' => 'contests',
     'title' => "Contests",
-    'bodyAdditionalClasses' => 'osu-layout--body-darker'
 ])
 
 @section('content')

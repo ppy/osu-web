@@ -1,7 +1,7 @@
 const webpackConfig = require('./webpack.config.js');
 webpackConfig['mode'] = 'development';
 webpackConfig['devtool'] = 'inline-source-map';
-delete webpackConfig.optimization.splitChunks; // karma doesn't work with splitChunks
+delete webpackConfig.optimization; // karma doesn't work with splitChunks...or runtimeChunk
 delete webpackConfig.entry; // test runner doesn't use the entry points
 
 const testIndex = './tests/karma/index.ts';

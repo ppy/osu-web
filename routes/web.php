@@ -170,6 +170,7 @@ Route::group(['prefix' => 'home'], function () {
         Route::post('avatar', 'AccountController@avatar')->name('avatar');
         Route::post('cover', 'AccountController@cover')->name('cover');
         Route::put('email', 'AccountController@updateEmail')->name('email');
+        Route::put('options', 'AccountController@updateOptions')->name('options');
         Route::put('page', 'AccountController@updatePage')->name('page');
         Route::put('password', 'AccountController@updatePassword')->name('password');
         Route::post('reissue-code', 'AccountController@reissueCode')->name('reissue-code');
@@ -208,6 +209,10 @@ Route::group(['prefix' => 'home'], function () {
 });
 
 Route::get('legal/{page}', 'LegalController@show')->name('legal');
+
+Route::group(['as' => 'oauth.', 'prefix' => 'oauth', 'namespace' => 'OAuth'], function () {
+    Route::resource('authorized-clients', 'AuthorizedClientsController', ['only' => ['destroy']]);
+});
 
 Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');
 

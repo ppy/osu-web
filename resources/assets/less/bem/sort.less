@@ -18,14 +18,7 @@
 
 .sort {
   @_top: sort;
-  @_color--user-list: @seafoam;
   @_item-margin: 5px;
-  @_hover-bg: #ddd;
-  @_hover-bg--beatmapsets: #eee;
-  @_hover-bg--beatmapset-discussions: #eee;
-  @_hover-bg--changelog: @greyviolet-darker;
-  @_hover-bg--forum-topics: #ddd;
-  @_hover-bg--user-list: @greyseafoam-light;
 
   padding: 0;
   display: flex;
@@ -41,8 +34,7 @@
 
   &--forum-topics {
     padding: 10px 40px;
-    background-color: #eee;
-    border-bottom: 1px solid #ddd;
+    background: @osu-colour-b4;
   }
 
   &--user-list {
@@ -52,60 +44,17 @@
   &__item {
     .reset-input();
     margin: @_item-margin;
+    color: white;
     padding: 5px 10px;
-    color: #333;
     .default-border-radius();
-
-    .@{_top}--changelog & {
-      color: inherit;
-    }
-
-    .@{_top}--user-list & {
-      color: @_color--user-list;
-    }
 
     &--button {
       .link-plain();
-      color: #555;
+      .link-white();
 
       &:hover {
-        background-color: @_hover-bg;
-        color: #555;
+        background-color: @osu-colour-b3;
       };
-
-      .@{_top}--beatmapset-discussions & {
-        &:hover {
-          background-color: @_hover-bg--beatmapset-discussions;
-        }
-      }
-
-      .@{_top}--beatmapsets & {
-        &:hover {
-          background-color: @_hover-bg--beatmapsets;
-        }
-      }
-
-      .@{_top}--changelog & {
-        color: #ddd;
-
-        &:hover {
-          background-color: @_hover-bg--changelog;
-          color: #ddd;
-        }
-      }
-
-      .@{_top}--forum-topics & {
-        &:hover {
-          background-color: @_hover-bg--forum-topics;
-        }
-      }
-
-      .@{_top}--user-list & {
-        &:hover {
-          background-color: @greyseafoam-light;
-          color: @_color--user-list;
-        }
-      }
     }
 
     &--title {
@@ -114,43 +63,9 @@
 
     // overrides --button
     &--active {
-      background-color: @_hover-bg;
-      color: @pink-darker;
+      background-color: @osu-colour-b3;
+      color: @osu-colour-l1;
       font-weight: bold;
-
-      &:hover {
-        color: @pink-darker;
-      };
-
-      .@{_top}--beatmapset-discussions & {
-        background-color: @_hover-bg--beatmapset-discussions;
-      }
-
-      .@{_top}--beatmapsets & {
-        background-color: @_hover-bg--beatmapsets;
-      }
-
-      .@{_top}--changelog & {
-        background-color: @_hover-bg--changelog;
-        color: @pink;
-
-        &:hover {
-          color: @pink;
-        }
-      }
-
-      .@{_top}--forum-topics & {
-        background-color: @_hover-bg--forum-topics;
-      }
-
-      .@{_top}--user-list & {
-        background-color: @greyseafoam-light;
-        color: #fff;
-
-        &:hover {
-          color: #fff;
-        }
-      }
     }
   }
 

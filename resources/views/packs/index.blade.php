@@ -19,7 +19,6 @@
     'currentAction' => 'packs',
     'title' => trans('beatmappacks.index.title'),
     'pageDescription' => trans('beatmappacks.index.description'),
-    'bodyAdditionalClasses' => 'osu-layout--body-222',
 ])
 
 @section('content')

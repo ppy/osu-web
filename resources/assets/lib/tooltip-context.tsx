@@ -18,4 +18,6 @@
 
 import { createContext } from 'react';
 
-export const TooltipContext: React.Context<HTMLElement|undefined> = createContext(undefined);
+type ContextValue = HTMLElement | undefined;
+
+export const TooltipContext = createContext(undefined as ContextValue);

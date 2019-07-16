@@ -25,9 +25,8 @@ use App\Exceptions\ModelNotSavedException;
 use App\Libraries\UserVerification;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
-use App\Models\User;
+use App\Models\OAuth\Client;
 use Auth;
-use DB;
 use Illuminate\Http\Request as HttpRequest;
 use Mail;
 use Request;
@@ -58,13 +57,14 @@ class AccountController extends Controller
             ],
         ]);
 
-        $this->middleware('verify-user');
-        $this->middleware('throttle:60,10', [
-            'only' => [
-                'updateEmail',
-                'updatePassword',
-            ],
-        ]);
+        $this->middleware('verify-user', ['except' => [
+            'updateOptions',
+        ]]);
+
+        $this->middleware('throttle:60,10', ['only' => [
+            'updateEmail',
+            'updatePassword',
+        ]]);
 
         return parent::__construct();
     }
@@ -109,54 +109,33 @@ class AccountController extends Controller
         $currentSessionId = Request::session()
             ->getIdWithoutKeyPrefix();
 
-        return view('accounts.edit', compact('blocks', 'sessions', 'currentSessionId'));
+        $authorizedClients = json_collection(Client::forUser(auth()->user()), 'OAuth\Client', 'user');
+
+        return view('accounts.edit', compact('authorizedClients', 'blocks', 'sessions', 'currentSessionId'));
     }
 
     public function update()
     {
         $user = Auth::user();
 
-        $customizationParams = get_params(
-            request(),
-            'user_profile_customization',
-            [
-                'extras_order:string[]',
-            ]
-        );
-
-        $userParams = get_params(
-            request(),
-            'user',
-            [
-                'hide_presence:bool',
-                'osu_playstyle:string[]',
-                'playmode:string',
-                'pm_friends_only:bool',
-                'user_from:string',
-                'user_interests:string',
-                'user_msnm:string',
-                'user_notify:bool',
-                'user_occ:string',
-                'user_sig:string',
-                'user_twitter:string',
-                'user_website:string',
-                'user_discord:string',
-            ]
-        );
+        $params = get_params(request(), 'user', [
+            'hide_presence:bool',
+            'osu_playstyle:string[]',
+            'playmode:string',
+            'pm_friends_only:bool',
+            'user_from:string',
+            'user_interests:string',
+            'user_msnm:string',
+            'user_notify:bool',
+            'user_occ:string',
+            'user_sig:string',
+            'user_twitter:string',
+            'user_website:string',
+            'user_discord:string',
+        ]);
 
         try {
-            DB::transaction(function () use ($customizationParams, $user, $userParams) {
-                if (count($customizationParams) > 0) {
-                    $user
-                        ->profileCustomization()
-                        ->fill($customizationParams)
-                        ->saveOrExplode();
-                }
-
-                if (count($userParams) > 0) {
-                    $user->fill($userParams)->saveOrExplode();
-                }
-            });
+            $user->fill($params)->saveOrExplode();
         } catch (ModelNotSavedException $e) {
             return $this->errorResponse($user, $e);
         }
@@ -183,6 +162,24 @@ class AccountController extends Controller
         } else {
             return $this->errorResponse($user);
         }
+    }
+
+    public function updateOptions()
+    {
+        $user = Auth::user();
+
+        $params = get_params(request(), 'user_profile_customization', [
+            'comments_sort:string',
+            'extras_order:string[]',
+        ]);
+
+        try {
+            $user->profileCustomization()->fill($params)->saveOrExplode();
+        } catch (ModelNotSavedException $e) {
+            return $this->errorResponse($user, $e);
+        }
+
+        return $user->defaultJson();
     }
 
     public function updatePage()

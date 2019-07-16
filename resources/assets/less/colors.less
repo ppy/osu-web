@@ -75,85 +75,41 @@
 // @gray-light:             lighten(@gray-base, 46.7%); // #777
 // @gray-lighter:           lighten(@gray-base, 93.5%); // #eee
 
-// osu!palette 2016
-@gray-blue: #35444f;
-@gray-blue-dark: #293336;
-@gray-blue-darker: #181f21;
-
-@dark-purple-light: #cba4da;
-@dark-purple-dark: #312436;
-@dark-graypurple: #584261;
-
+// TODO: remove after remaining white-background sections have been updated (forum, store)
 // osu!palette 2017(?)
 @gray: #262626;
 @gray-dark: #1a1a1a;
 @gray-darker: #0e0e0e;
 @light-gray: #f5f5f5;
 
-// osu!palette 2018 :rolling_eyes:
-@community-blue:  #0481ff;
-@community-blue-lighter: mix(white, @community-blue, 75%);
-@community-blue-dark:    #343c44;
-@community-blue-darker:  #2b3035;
-@community-blue-darkest: #202326;
-@community-blue-bg:      #222;
+// osu!palette 2019v2-final-copy-last-FINAL
+// The default hue is osu! pink (333) and is injected into the body via master.blade.php as var(--base-hue) within :root
+// The section-to-colour mapping is done via section_to_hue_map() in helpers.php
+@osu-colour-p: hsl(var(--base-hue), 100%, 50%);
+@osu-colour-h1: hsl(var(--base-hue), 100%, 70%);
+@osu-colour-h2: hsl(var(--base-hue), 50%, 45%);
+@osu-colour-l1: hsl(var(--base-hue), 40%, 70%);
+@osu-colour-l2: hsl(var(--base-hue), 40%, 60%);
+@osu-colour-l3: hsl(var(--base-hue), 40%, 50%);
+@osu-colour-d1: hsl(var(--base-hue), 20%, 35%);
+@osu-colour-d2: hsl(var(--base-hue), 20%, 30%);
+@osu-colour-d3: hsl(var(--base-hue), 20%, 25%);
+@osu-colour-d4: hsl(var(--base-hue), 20%, 20%);
+@osu-colour-d5: hsl(var(--base-hue), 20%, 15%);
+@osu-colour-d6: hsl(var(--base-hue), 20%, 10%);
+@osu-colour-b1: hsl(var(--base-hue), 10%, 40%);
+@osu-colour-b2: hsl(var(--base-hue), 10%, 30%);
+@osu-colour-b3: hsl(var(--base-hue), 10%, 25%);
+@osu-colour-b4: hsl(var(--base-hue), 10%, 20%);
+@osu-colour-b5: hsl(var(--base-hue), 10%, 15%);
+@osu-colour-b6: hsl(var(--base-hue), 10%, 10%);
 
-// community events(?) palette idk (used for contest and tournaments)
-@community-grayblue-page-background: #1A2223;
-@community-grayblue-tile-background: #323E41;
-@community-grayblue-text: #93B8C4;
-
-@community-user-green-dark: #a6cc00;
-@community-user-graygreen-light: #77998e;
-
-// osu!palette 2019
-@red-lighter: #ffcaca;
-@red-light: #ff8989;
-@red: #eb5757;
-@red-dark: #af4646;
-@red-darker: #643232;
-
-@sky: #6bb5ff;
-@greysky-lighter: #c6e3f4;
-@greysky-light: #8ab3cc;
-@greysky: #405461;
-@greysky-dark: #303d47;
-@greysky-darker: #21272c;
-
-@seafoam: #05ffa2;
-@greyseafoam-lighter: #9ebab1;
-@greyseafoam-light: #4d7365;
-@greyseafoam: #33413c;
-@greyseafoam-dark: #2c3532;
-@greyseafoam-darker: #1e2422;
-
-@cyan: #05f4fd;
-@greycyan-lighter: #77b1b3;
-@greycyan-light: #436d6f;
-@greycyan: #293d3e;
-@greycyan-dark: #243536;
-@greycyan-darker: #1e2929;
-
-@lime: #82ff05;
-@greylime-lighter: #deff87;
-@greylime-light: #657259;
-@greylime: #3f443a;
-@greylime-dark: #32352e;
-@greylime-darker: #2e302b;
-
-@violet: #bf04ff;
-@greyviolet-lighter: #ebb8fe;
-@greyviolet-light: #685370;
-@greyviolet: #46334d;
-@greyviolet-dark: #2c2230;
-@greyviolet-darker: #201823;
-
-@carmine: #ff0542;
-@greycarmine-lighter: #deaab4;
-@greycarmine-light: #644f53;
-@greycarmine: #342b2d;
-@greycarmine-dark: #302a2b;
-@greycarmine-darker: #241d1e;
+// Use this instead of fade(colour, amount) - LESS tries to parse the css var as a colour and fails.
+// This is not ideal, but not sure of a better way to do this (without modifying LESS at least)
+.osu-hsla(@colour, @alpha) {
+  @string: replace("@{colour}", "hsl\(([^,]+), ([^,]+), ([^,]+)\)", "hsla($1, $2, $3, @{alpha})");
+  @hsla: ~"@{string}";
+}
 
 .colors(@name) {
   @lighter: "@{name}-lighter";

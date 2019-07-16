@@ -32,7 +32,7 @@
     height: @nav2-header-image-height;
     background-color: fade(#111, 90%);
     transition-duration: 0s;
-    border-bottom: 1px solid @pink-darker;
+    border-bottom: 1px solid @osu-colour-h1;
 
     &[data-visibility=hidden] {
       transition-duration: 250ms;
@@ -61,7 +61,7 @@
 
   &__transition-overlay {
     .full-size();
-    background-color: #222;
+    background-color: @osu-colour-h2;
     opacity: 0;
     transition: opacity @header-pinned-animation-duration;
 
@@ -72,9 +72,10 @@
 
   &__triangles {
     .full-size();
-    background-image: url('/images/layout/nav2-background.png');
+    background-image: url('/images/layout/nav2-background-hue0.png');
     background-position: bottom center;
     background-repeat: repeat-x;
+    filter: hue-rotate(calc(var(--base-hue) * 1deg)) saturate(0.6);
 
     .@{_top}--restricted & {
       .at2x-simple('/images/layout/nav2-bg/red.png');

@@ -20,7 +20,6 @@
         'title' => $beatmapset->title,
         'mapper' => $beatmapset->user->username ?? '?',
     ]),
-    'bodyAdditionalClasses' => 'osu-layout--body-222',
 ])
 
 @section('content')

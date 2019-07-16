@@ -29,6 +29,7 @@ export class NewDiscussion extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @inputBox = React.createRef()
     @throttledPost = _.throttle @post, 1000
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
 
@@ -42,7 +43,7 @@ export class NewDiscussion extends React.PureComponent
 
   componentDidMount: =>
     $(window).on 'throttled-resize.new-discussion', @setTop
-    @inputBox?.focus() if @props.autoFocus
+    @inputBox.current?.focus() if @props.autoFocus
 
 
   componentWillUnmount: =>
@@ -113,7 +114,7 @@ export class NewDiscussion extends React.PureComponent
                   onChange: @setMessage
                   onKeyDown: @handleKeyDown
                   onFocus: @onFocus
-                  innerRef: @setInputBox
+                  ref: @inputBox
                   placeholder: @messagePlaceholder()
 
                 el MessageLengthCounter,
@@ -344,10 +345,6 @@ export class NewDiscussion extends React.PureComponent
     return 'nomination_reset' if canReset && willReset
 
     'problem'
-
-
-  setInputBox: (elem) =>
-    @inputBox = elem
 
 
   setMessage: (e) =>

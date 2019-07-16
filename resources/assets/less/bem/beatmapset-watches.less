@@ -17,6 +17,7 @@
  */
 
 .beatmapset-watches {
+  color: white;
   margin: 20px;
 
   &__col {
@@ -27,6 +28,7 @@
 
     && { // bootstrap override
       vertical-align: middle;
+      border-top: 2px solid @osu-colour-b4;
     }
   }
 
@@ -41,5 +43,14 @@
 
   &__description {
     margin-bottom: 20px;
+  }
+
+  &__heading {
+    border-top: none !important;
+  }
+
+  &__link {
+    color: @osu-colour-l1;
+    .link-hover({ color: white });
   }
 }

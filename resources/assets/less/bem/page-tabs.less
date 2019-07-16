@@ -32,7 +32,7 @@
     width: 100%;
     height: 1px;
 
-    background-image:linear-gradient(to left, transparent 10%, #ddd 50%, transparent 90%);
+    background-image:linear-gradient(to left, transparent 10%, @osu-colour-b1 50%, transparent 90%);
   }
 
   &__tab {
@@ -40,21 +40,20 @@
     padding: 5px 0;
     border-bottom: 5px solid transparent;
 
-    font-weight: bold;
     font-size: 14px;
-    color: @text-color;
+    color: white;
 
     cursor: pointer;
 
     &:hover, &:active, &:focus {
-      color: @pink-text;
+      color: @osu-colour-l1;
       text-decoration: none;
     }
 
     &--active {
-      color: @pink-text;
+      //color: @osu-colour-l1;
       font-weight: 900;
-      border-bottom-color: @pink-text;
+      border-bottom-color: @osu-colour-h1;
     }
 
     &--disabled {

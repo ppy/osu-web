@@ -135,7 +135,7 @@ class BeatmapsetEvent extends Model
         }
 
         if (isset($rawParams['types'])) {
-            $params['types'] = array_merge($params['types'], get_arr($rawParams['types'], 'get_string'));
+            $params['types'] = array_merge($params['types'], get_arr($rawParams['types'], 'get_string') ?? []);
         }
 
         if ($searchByUser) {
