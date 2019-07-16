@@ -346,7 +346,6 @@ export class NewDiscussion extends React.PureComponent
 
 
   setMessage: (e) =>
-    @timestampCache = null
     @setState message: e.currentTarget.value
 
 
@@ -387,7 +386,15 @@ export class NewDiscussion extends React.PureComponent
   timestamp: =>
     return unless @props.mode == 'timeline'
 
-    @timestampCache ?= @parseTimestamp(@state.message)
+    if @timestampCache?.message != @state.message
+      @timestampCache = null
+
+    if !@timestampCache?
+      @timestampCache =
+        message: @state.message
+        timestamp: @parseTimestamp(@state.message)
+
+    @timestampCache.timestamp
 
 
   toggleSticky: =>
