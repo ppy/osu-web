@@ -388,9 +388,7 @@ class User extends Model implements AuthenticatableContract
 
     public function getUsernameAvailableAt() : Carbon
     {
-        $playCount = array_reduce(array_keys(Beatmap::MODES), function ($result, $mode) {
-            return $result + $this->statistics($mode, true)->value('playcount');
-        }, 0);
+        $playCount = $this->playCount();
 
         if ($this->group_id !== 2) {
             //reserved usernames
