@@ -47,7 +47,6 @@
     }
 
     .@{passive-row}.@{name} & {
-      color: #fff;
       background-color: @color;
     }
 
@@ -139,7 +138,6 @@
     }
   }
 
-  // styles applied to td instead of tr 'cuz firefox is a poop (can't do rounded corners on tr)
   &__cell {
     &:first-child {
       // rounded corners for left side
@@ -182,7 +180,7 @@
     }
 
     &--zero {
-      color: @osu-colour-b2;
+      color: fade(#fff, 40%);
     }
 
     // when row is selected
