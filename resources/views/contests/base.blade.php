@@ -20,7 +20,6 @@
     'currentAction' => 'contests',
     'title' => "Contest: {$contestMeta->name}",
     'pageDescription' => strip_tags(markdown($contestMeta->currentDescription())),
-    'bodyAdditionalClasses' => 'osu-layout--body-darker'
 ])
 
 @section('content')

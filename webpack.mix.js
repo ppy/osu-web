@@ -216,6 +216,7 @@ mix
 .js(...reactComponentSet('admin/contest'))
 .js(...reactComponentSet('contest-entry'))
 .js(...reactComponentSet('contest-voting'))
+.ts('resources/assets/lib/account-edit.ts', 'js/react/account-edit.js')
 .js('resources/assets/lib/beatmaps.ts', 'js/react/beatmaps.js')
 .ts('resources/assets/lib/chat.ts', 'js/react/chat.js')
 .ts('resources/assets/lib/friends-index.ts', 'js/react/friends-index.js')

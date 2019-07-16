@@ -27,9 +27,7 @@
   word-wrap: break-word;
 
   hr {
-    .@{top}--news& {
-      border-color: fade(@pink-lighter, 50%);
-    }
+    border-color: @osu-colour-b3;
   }
 
   iframe {
@@ -46,8 +44,9 @@
 
   &--news {
     padding: 20px 25px 0;
-    color: @pink-lighter;
+    color: white;
     font-size: @font-size--wiki;
+
     @media @mobile {
       padding: 20px 0 0;
     }
@@ -79,7 +78,7 @@
 
     font-weight: bold;
     font-style: normal;
-    color: @pink-light;
+    color: white;
 
     &:first-child {
       margin-top: 0;
@@ -96,7 +95,7 @@
     &--2 {
       font-size: @font-size--header-wiki-2;
       margin: 20px 0 10px -20px;
-      color: #fff;
+      color: white;
 
       .@{top}--news & {
         font-size: @font-size--title;
@@ -107,10 +106,10 @@
     &--3 {
       font-size: @font-size--header-wiki-3;
       margin: 30px 0 10px -20px;
+      color: @osu-colour-l2;
 
       .@{top}--news & {
         font-size: @font-size--title-small-4;
-        color: #fff;
         margin-left: 0;
       }
     }
@@ -119,6 +118,7 @@
       font-size: @font-size--header-wiki-4;
       margin: 30px 0 10px -10px;
       font-style: italic;
+      color: @osu-colour-l3;
 
       .@{top}--news & {
         font-size: inherit;
@@ -146,14 +146,10 @@
   }
 
   &__link {
-    .link-yellow();
-
-    .@{top}--news & {
-      .link-blue-light();
-    }
+    .link-default();
 
     .@{top}--store & {
-      .link-default();
+      .link-blue-dark()
     }
   }
 
@@ -163,10 +159,6 @@
 
   &__list-item {
     margin: 5px 0;
-
-    &--deep {
-      color: #ccc;
-    }
 
     .@{top}--store & {
       margin-left: 10px;
@@ -196,7 +188,7 @@
   }
 
   &__table-data {
-    border-top: 1px solid fade(@yellow, 50%);
+    border-top: 1px solid @osu-colour-b4;
     padding: 5px;
 
     &--center {
@@ -205,7 +197,7 @@
 
     &--header {
       border-top: none;
-      border-bottom: 2px solid @yellow;
+      border-bottom: 2px solid @osu-colour-b3;
       font-weight: bold;
     }
 
@@ -220,14 +212,14 @@
 
   code {
     .default-border-radius();
-    background-color: #222;
-    border: 1px solid #111;
-    color: @blue;
+    background-color: @osu-colour-b6;
+    color: @osu-colour-l1;
     padding: 1px 4px;
   }
 
   pre {
-    background-color: #222;
+    background-color: @osu-colour-b6;
+    color: @osu-colour-l1;
     border: none;
     border-radius: 0px;
 

@@ -27,7 +27,7 @@
     @include("store.header")
 
     @if(!$order || !count($order->items))
-        <div class="osu-layout__row osu-layout__row--page">
+        <div class="osu-layout__row osu-layout__row--page osu-layout--store">
             <h1>{{ trans('store.cart.title') }}</h1>
 
             <p>{{ trans('store.cart.empty.text') }}</p>
@@ -37,8 +37,8 @@
             </p>
         </div>
     @else
-        <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1">
-            <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
+        <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 osu-layout--store">
+            <div class="osu-layout__sub-row osu-layout__sub-row--lg1 osu-layout--store">
                 <h1>{{ trans('store.cart.title') }}</h1>
 
                 <ul class="table cart-items">

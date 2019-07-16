@@ -29,7 +29,7 @@
 
   &__body {
     display: flex;
-    background: #222;
+    background: @osu-colour-b4;
   }
 
   &__image {
@@ -38,7 +38,7 @@
     background-size: cover;
     background-position: 50%;
     display: block;
-    background-color: grey;
+    background-color: @osu-colour-b6;
     .@{top}--collapsed & {
       display: none;
     }
@@ -46,12 +46,12 @@
 
   &__post-date {
     flex: 0 0 60px;
-    border-right: 1px solid grey;
+    border-right: 1px solid @osu-colour-l1;
     margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    color: @pink-light;
+    color: @osu-colour-l1;
     padding-right: 10px;
     overflow: hidden;
     text-align: right;
@@ -92,6 +92,7 @@
   &__post-title {
     display: block;
     color: white;
+    .link-hover({ color: white });
     font-size: @font-size--title-small;
     margin: 5px 0px 10px 0px;
     font-style: normal;

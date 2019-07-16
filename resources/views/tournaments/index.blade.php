@@ -19,7 +19,6 @@
     'currentSection' => 'community',
     'currentAction' => 'tournaments',
     'title' => trans('tournament.index.header.title'),
-    'bodyAdditionalClasses' => 'osu-layout--body-darker'
 ])
 
 @section('content')

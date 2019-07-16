@@ -24,6 +24,7 @@
   @header-margin--bottom: 5px;
 
   font-size: @font-size--normal;
+  color: white;
 
   display: flex;
   flex-direction: column;
@@ -48,6 +49,11 @@
     }
 
     &--meta {
+      // TODO: remove once default link style becomes... default
+      a {
+        .link-default();
+      }
+
       @media @desktop {
         width: 175px;
         overflow: hidden;
@@ -63,16 +69,22 @@
   }
 
   &__description {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+    padding-right: 10px;
+
+    // to prevent overflow from extending container box
     @media @desktop {
-      // to prevent overflow from extending container box
       .full-size();
+    }
+    @media @mobile {
+      max-height: @max-height;
     }
   }
 
   &__description-container {
     min-height: 0;
     max-height: @max-height;
-    overflow-y: auto;
     flex: 1;
   }
 

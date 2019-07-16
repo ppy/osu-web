@@ -59,7 +59,7 @@
         </div>
     </div>
 
-    <div class="osu-page osu-page--generic-compact">
+    <div class="osu-page osu-page--forum-compact">
         @if ($forum->subforums()->exists())
             <div class="forum-topics forum-topics--subforums">
                 <h2 class="forum-topics__title">{{ trans("forum.subforums") }}</h2>
@@ -76,7 +76,7 @@
         @endif
     </div>
 
-    <div class="osu-page osu-page--generic-compact osu-page--has-anchor" id="topics">
+    <div class="osu-page osu-page--forum-compact osu-page--has-anchor" id="topics">
         @include('forum.forums._topics_sort', compact('forum'))
 
         @if (count($topics) > 0 || $forum->isOpen())

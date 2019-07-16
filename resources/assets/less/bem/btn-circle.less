@@ -26,7 +26,7 @@
   text-shadow: inherit;
 
   flex: none;
-  background-color: @blue-darker;
+  background-color: @osu-colour-l2;
   color: #fff;
   transition: all 120ms ease-in-out;
   font-size: 14px;
@@ -35,6 +35,7 @@
   &:hover,
   &:active {
     color: #fff;
+    background-color: @osu-colour-l1;
     text-decoration: none;
     box-shadow: 0 5px 15px fade(#000, 40%);
   }
@@ -82,13 +83,14 @@
   }
 
   &--activated, &.js-activated {
-    background-color: @blue;
-    color: #000;
+    background-color: @osu-colour-h2;
+    color: @osu-colour-b5;
 
     &:focus,
     &:hover,
     &:active {
-      color: #000;
+      background-color: @osu-colour-l3;
+      color: @osu-colour-b5;
     }
   }
 
