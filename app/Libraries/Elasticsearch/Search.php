@@ -229,30 +229,6 @@ abstract class Search extends HasSearch implements Queryable
         return min($this->response()->total(), $this->maxResults());
     }
 
-    /**
-     * Wrapper function to run a query with timing and error reporting.
-     *
-     * @param string $operation
-     * @param callable $callable
-     *
-     * @return mixed Returns whatever $callable returns, void with $this->error set on error.
-     */
-    private function runQuery(string $operation, callable $callable)
-    {
-        $this->error = null;
-
-        try {
-            return datadog_timing(
-                $callable,
-                config('datadog-helper.prefix_web').'.search.'.$operation,
-                $this->getDatadogTags()
-            );
-        } catch (ElasticsearchException $e) {
-            $this->error = $e;
-            $this->handleError($e, $operation);
-        }
-    }
-
     private function fetch()
     {
         if ($this->params->shouldReturnEmptyResponse() || $this->isSearchWindowExceeded()) {
@@ -313,5 +289,29 @@ abstract class Search extends HasSearch implements Queryable
         }
 
         return $query;
+    }
+
+    /**
+     * Wrapper function to run a query with timing and error reporting.
+     *
+     * @param string $operation
+     * @param callable $callable
+     *
+     * @return mixed Returns whatever $callable returns, void with $this->error set on error.
+     */
+    private function runQuery(string $operation, callable $callable)
+    {
+        $this->error = null;
+
+        try {
+            return datadog_timing(
+                $callable,
+                config('datadog-helper.prefix_web').'.search.'.$operation,
+                $this->getDatadogTags()
+            );
+        } catch (ElasticsearchException $e) {
+            $this->error = $e;
+            $this->handleError($e, $operation);
+        }
     }
 }
