@@ -408,8 +408,8 @@ class User extends Model implements AuthenticatableContract
         // This is a exponential decay function with the identity 1-e^{-$playCount}.
         // The constant multiplier of 1580 causes the formula to flatten out at around 1580 days (~4.3 years).
         // $playCount is then divided by the constant value 5900 causing it to flatten out at about 40,000 plays.
-        // Furthermore, when the user is restricted, the formula has a 0.35 multiplier on $playCount,
-        // causing it to flatten out more slowly and a linear bonus of 0.75 to reward long-term players.
+        // A linear bonus of $playCount * 8 / 5900 is added to reward long-term players.
+        // Furthermore, when the user is restricted, the exponential decay function and the linear bonus are lowered.
         // An interactive graph of the formula can be found at https://www.desmos.com/calculator/s7bxytxbbt
 
         return $this->user_lastvisit
