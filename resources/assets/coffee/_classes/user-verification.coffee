@@ -23,6 +23,7 @@ class @UserVerification
     $(document).on 'turbolinks:load', @showOnLoad
     $(document).on 'input', '.js-user-verification--input', @autoSubmit
     $(document).on 'click', '.js-user-verification--reissue', @reissue
+    $.subscribe 'user-verification:success', @success
 
     $(window).on 'throttled-resize throttled-scroll', @reposition
 
