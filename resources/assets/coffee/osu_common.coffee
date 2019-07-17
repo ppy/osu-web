@@ -343,12 +343,14 @@
       # It should return "6 months" instead of undefined.
       Lang.setLocale locale
 
-    replacements.count_delimited ?= osu.formatNumber(count, null, null, locale)
+    replacements.count_delimited = osu.formatNumber(count, null, null, locale)
     translated = Lang.choice(key, count, replacements, locale)
 
     Lang.setLocale initialLocale if initialLocale?
 
     if !translated? && locale != fallbackLocale
+      delete replacements.count_delimited
+
       return osu.transChoice(key, count, replacements, fallbackLocale)
 
     translated
