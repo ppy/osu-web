@@ -327,15 +327,29 @@
 
 
   transChoice: (key, count, replacements = {}, locale) ->
+    locale ?= currentLocale
+
     if !osu.transExists(key, locale)
-      locale = fallbackLocale
-      initialLocale = Lang.getLocale()
+      return osu.transChoice(key, count, replacements, fallbackLocale)
+
+    initialLocale = Lang.getLocale()
+    if locale != initialLocale
+      # FIXME: remove this setLocale hack once Lang.js is updated to the one with
+      #        locale pluralization rule bug fixed.
+      #
+      # How to check:
+      # > Lang.setLocale('be')
+      # > Lang.choice('common.count.months', 6, { count_delimited: 6 }, 'en')
+      # It should return "6 months" instead of undefined.
       Lang.setLocale locale
 
     replacements.count_delimited ?= osu.formatNumber(count, null, null, locale)
     translated = Lang.choice(key, count, replacements, locale)
 
     Lang.setLocale initialLocale if initialLocale?
+
+    if !translated? && locale != fallbackLocale
+      return osu.transChoice(key, count, replacements, fallbackLocale)
 
     translated
 
