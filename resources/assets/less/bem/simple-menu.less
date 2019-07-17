@@ -27,7 +27,7 @@
   .own-layer();
   .default-box-shadow();
   border-radius: @_border-radius;
-  background-color: @osu-colour-b5;
+  background-color: @osu-colour-b6;
   padding: @_padding-vertical @_gutter;
   display: flex;
   flex-direction: column;
@@ -70,7 +70,6 @@
     .own-layer();
     will-change: transform, opacity;
     transition: none;
-    background-color: @osu-colour-b6;
     border-radius: @border-radius-large;
   }
 
@@ -178,7 +177,7 @@
     flex: none;
 
     &:hover {
-      background-color: #111;
+      background-color: @osu-colour-b5;
       .highlight-stripe();
     }
 
