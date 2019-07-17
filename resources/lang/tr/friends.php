@@ -25,6 +25,13 @@ return [
       'remove' => 'arkadaşlıktan çıkar',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
+    ],
+
     'state' => [
       'friends' => 'arkadaşlar',
       'mutual' => 'karşılıklı',

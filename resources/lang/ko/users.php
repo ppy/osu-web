@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => ':date에 가입',
         'lastvisit' => ':date에 마지막으로 접속',
+        'lastvisit_online' => '현재 온라인',
         'missingtext' => '오타가 있는 것 같은데요! (또는 차단된 사용자일 수 있습니다)',
         'origin_country' => ':country에 거주',
         'page_description' => 'osu! - :username님에 대해 궁금했던 모든 것!',
@@ -361,7 +362,9 @@ return [
             'total_score' => '총 점수',
         ],
     ],
+
     'status' => [
+        'all' => '모두',
         'online' => '온라인',
         'offline' => '오프라인',
     ],

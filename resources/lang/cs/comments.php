@@ -23,8 +23,8 @@ return [
     'deleted_count' => '',
     'edited' => 'upraveno před :timeago uživatelem :user',
     'empty' => 'Zatím zde nejsou žádné komentáře.',
+    'load_replies' => '',
     'replies' => 'Odpovědi',
-    'show_replies' => 'zobrazit odpovědi',
     'title' => 'Komentáře',
 
     'commentable_name' => [

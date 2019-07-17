@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited post|:count_delimited posty|:count_delimited postów',
+            'topic_starter' => 'Autor wątku',
         ],
     ],
 

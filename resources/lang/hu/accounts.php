@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'e-mail cím csere megerősítése',
         'update' => 'mentés',
@@ -84,6 +89,11 @@ return [
         'title' => 'Adatvédelem',
         'friends_only' => 'privát üzenetek tiltása olyan személyektől, akik nincsenek a baráti listádon',
         'hide_online' => 'online állapot elrejtése',
+    ],
+
+    'notifications' => [
+        'title' => 'Értesítések',
+        'topic_auto_subscribe' => '',
     ],
 
     'security' => [

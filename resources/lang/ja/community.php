@@ -59,7 +59,7 @@ return [
         ],
 
         'perks' => [
-            'title' => '特典とは？',
+            'title' => '特典って？',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'ゲームから離れることなくビートマップを素早くダウンロード。',
@@ -135,7 +135,7 @@ return [
             'title' => 'いいですね！',
             'support' => 'osu!をサポートする！',
             'gift' => 'もしくはギフトを送る',
-            'instructions' => 'ハートボタンをクリックでosu!storeに飛びます',
+            'instructions' => 'ハートボタンをクリックでosu!storeに飛びます(英語)',
         ],
     ],
 ];

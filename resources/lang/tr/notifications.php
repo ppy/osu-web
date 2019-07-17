@@ -21,7 +21,6 @@
 return [
     'all_read' => 'Tüm bildirimler okundu!',
     'mark_all_read' => 'Hepsini temizle',
-    'message_multi' => '":title" üzerinde:count_delimited yeni güncelleme.|":title üzerinde:count_delimited yeni güncelleme.',
 
     'item' => [
         'beatmapset' => [
@@ -30,17 +29,69 @@ return [
             'beatmapset_discussion' => [
                 '_' => 'Beatmap tartışması',
                 'beatmapset_discussion_lock' => 'Beatmap ":title" tartışmak için kilitlendi.',
+                'beatmapset_discussion_lock_compact' => '',
                 'beatmapset_discussion_post_new' => ':username ":title" beatmapinin tartışmasında yeni mesaj attı.',
+                'beatmapset_discussion_post_new_compact' => '',
                 'beatmapset_discussion_unlock' => '":title" beatmapinin kilidi tartışmak için açıldı.',
+                'beatmapset_discussion_unlock_compact' => '',
             ],
 
             'beatmapset_state' => [
                 '_' => 'Beatmap durumu değişti',
                 'beatmapset_disqualify' => '',
+                'beatmapset_disqualify_compact' => '',
                 'beatmapset_love' => '',
+                'beatmapset_love_compact' => '',
                 'beatmapset_nominate' => '',
+                'beatmapset_nominate_compact' => '',
                 'beatmapset_qualify' => '',
+                'beatmapset_qualify_compact' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_rank_compact' => '',
                 'beatmapset_reset_nominations' => '',
+                'beatmapset_reset_nominations_compact' => '',
+            ],
+
+            'comment' => [
+                '_' => '',
+
+                'comment_new' => '',
+                'comment_new_compact' => '',
+            ],
+        ],
+
+        'channel' => [
+            '_' => '',
+
+            'channel' => [
+                '_' => '',
+                'pm' => [
+                    'channel_message' => '',
+                    'channel_message_compact' => '',
+                    'channel_message_group' => '',
+                ],
+            ],
+        ],
+
+        'build' => [
+            '_' => '',
+
+            'comment' => [
+                '_' => '',
+
+                'comment_new' => '',
+                'comment_new_compact' => '',
+            ],
+        ],
+
+        'news_post' => [
+            '_' => '',
+
+            'comment' => [
+                '_' => '',
+
+                'comment_new' => '',
+                'comment_new_compact' => '',
             ],
         ],
 
@@ -50,6 +101,7 @@ return [
             'forum_topic_reply' => [
                 '_' => 'Yeni forum yanıtı',
                 'forum_topic_reply' => ':username ":title" konusuna yanıt verdi.',
+                'forum_topic_reply_compact' => '',
             ],
         ],
 
@@ -59,6 +111,15 @@ return [
             'legacy_pm' => [
                 '_' => '',
                 'legacy_pm' => ':count_delimited okunmamış mesaj.|:count_delimited okunmamış mesajlar.',
+            ],
+        ],
+
+        'user_achievement' => [
+            '_' => '',
+
+            'user_achievement_unlock' => [
+                '_' => '',
+                'user_achievement_unlock' => '',
             ],
         ],
     ],

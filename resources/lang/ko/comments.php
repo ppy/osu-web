@@ -23,8 +23,8 @@ return [
     'deleted_count' => ':count_delimited개의 삭제된 댓글',
     'edited' => ':user에 의해 :timeago전에 수정됨.',
     'empty' => '아직 댓글이 없습니다.',
+    'load_replies' => '',
     'replies' => '답글',
-    'show_replies' => '답글 보이기',
     'title' => '댓글',
 
     'commentable_name' => [

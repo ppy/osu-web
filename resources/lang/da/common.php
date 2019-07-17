@@ -59,6 +59,11 @@ return [
         'show_more' => 'vis mere',
         'show_more_options' => 'vis flere muligheder',
         'upload_image' => 'upload billede',
+
+        'watch' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count minut|:count minutter',
         'months' => ':count måned|:count måneder',
         'second_short_unit' => 'sek',
+        'update' => '',
         'years' => ':count år|:count år',
     ],
 

@@ -144,6 +144,9 @@ return [
                 'uneditable' => 'Neplatné záhlaví.',
                 'not_owner' => 'Pouze vlastník může upravit záhlaví.',
             ],
+            'store' => [
+                'forum_not_allowed' => '',
+            ],
         ],
 
         'view' => [

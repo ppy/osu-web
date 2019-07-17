@@ -59,6 +59,11 @@ return [
         'show_more' => 'daha fazla göster',
         'show_more_options' => 'daha fazla seçenek göster',
         'upload_image' => 'görsel yükle',
+
+        'watch' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count dakika |:count dakika',
         'months' => ':count ay|:count ay',
         'second_short_unit' => 'sn|sn',
+        'update' => '',
         'years' => ':count yıl|:count yıl',
     ],
 

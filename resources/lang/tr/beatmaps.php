@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Şuna göre sıralandı:',
             'created_at' => 'Oluşturulma zamanı',
             'timeline' => 'Zaman Çizgisi',
             'updated_at' => 'Son güncelleme',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Hepsi',
-        'ranked-approved' => 'Dereceli & Onaylı',
         'approved' => 'Onaylı',
-        'qualified' => 'Nitelikli',
-        'loved' => 'Sevilen',
-        'faves' => 'Favoriler',
-        'pending' => 'Beklemede & Yapım Aşamasında',
+        'favourites' => '',
         'graveyard' => 'Mezarlık',
-        'my-maps' => 'Haritalarım',
+        'leaderboard' => '',
+        'loved' => 'Sevilen',
+        'mine' => '',
+        'pending' => 'Beklemede & Yapım Aşamasında',
+        'qualified' => 'Nitelikli',
+        'ranked' => '',
     ],
     'genre' => [
         'any' => 'Hepsi',

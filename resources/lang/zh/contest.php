@@ -38,7 +38,7 @@ return [
         ],
     ],
     'entry' => [
-        '_' => '参加',
+        '_' => '列表',
         'login_required' => '请登录后再参加评选。',
         'silenced_or_restricted' => '账户受限时无法参加评选。',
         'preparation' => '我们正在准备这场评选，请耐心等待！',
@@ -57,7 +57,7 @@ return [
         'download' => '下载模板',
     ],
     'vote' => [
-        'list' => '投票',
+        'list' => '票数',
         'count' => ':count 票',
         'points' => ':count 分',
     ],

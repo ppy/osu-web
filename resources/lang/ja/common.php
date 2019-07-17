@@ -59,6 +59,11 @@ return [
         'show_more' => '展開する',
         'show_more_options' => '詳細オプションを表示する',
         'upload_image' => '画像をアップロード',
+
+        'watch' => [
+            'to_0' => 'ウォッチを解除する',
+            'to_1' => 'ウォッチする',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count_delimited分',
         'months' => ':countヶ月',
         'second_short_unit' => '秒',
+        'update' => ':count_delimited アップデート',
         'years' => ':count年',
     ],
 

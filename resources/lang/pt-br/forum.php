@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited publicação|:count_delimited publicações',
+            'topic_starter' => 'Autor do tópico',
         ],
     ],
 

@@ -20,11 +20,11 @@
 
 return [
     'deleted' => '已刪除',
-    'deleted_count' => '',
+    'deleted_count' => ':count_delimited 已刪除評論|:count_delimited 已刪除評論',
     'edited' => '由 :user 在 :timeago 前編輯',
     'empty' => '還沒有評論',
+    'load_replies' => '',
     'replies' => '回覆',
-    'show_replies' => '顯示回覆',
     'title' => '評論',
 
     'commentable_name' => [

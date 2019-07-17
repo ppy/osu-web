@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Ταξινόμηση κατά:',
             'created_at' => 'Ημερομηνία δημιουργίας',
             'timeline' => 'Χρονολόγιο',
             'updated_at' => 'Τελευταία ενημέρωση',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Οποιοδήποτε',
-        'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
-        'qualified' => 'Qualified',
-        'loved' => 'Loved',
-        'faves' => 'Αγαπημένα',
-        'pending' => 'Pending & WIP',
+        'favourites' => '',
         'graveyard' => 'Νεκροταφείο',
-        'my-maps' => 'Τα maps μου',
+        'leaderboard' => '',
+        'loved' => 'Loved',
+        'mine' => '',
+        'pending' => 'Pending & WIP',
+        'qualified' => 'Qualified',
+        'ranked' => '',
     ],
     'genre' => [
         'any' => 'Οποιοδήποτε',

@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'osu!-sähköpostin muutoksen vahvistaminen',
         'update' => 'päivitä',
@@ -84,6 +89,11 @@ return [
         'title' => 'Yksityisyys',
         'friends_only' => 'estä yksityisviestit henkilöiltä jotka eivät ole kaverilistallasi',
         'hide_online' => 'piilota online-tilasi',
+    ],
+
+    'notifications' => [
+        'title' => 'Ilmoitukset',
+        'topic_auto_subscribe' => '',
     ],
 
     'security' => [

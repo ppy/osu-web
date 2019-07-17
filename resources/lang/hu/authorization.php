@@ -144,6 +144,9 @@ return [
                 'uneditable' => 'Érvénytelen borítót adtál meg.',
                 'not_owner' => 'Csak a szerző változtathatja a borítót.',
             ],
+            'store' => [
+                'forum_not_allowed' => '',
+            ],
         ],
 
         'view' => [

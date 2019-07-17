@@ -59,6 +59,11 @@ return [
         'show_more' => 'паказаць больш',
         'show_more_options' => 'паказаць больш параметраў',
         'upload_image' => 'запампаваць выяву',
+
+        'watch' => [
+            'to_0' => 'Адпісацца',
+            'to_1' => 'Падпісацца',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count хвіліна|:count хвіліны |:count хвілін',
         'months' => ':count месяц|:count месяцаў',
         'second_short_unit' => 'сек',
+        'update' => ':count_delimited абнаўленне|:count_delimited абнаўленняў',
         'years' => ':count год|:count гады|:count гадоў',
     ],
 

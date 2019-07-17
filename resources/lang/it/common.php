@@ -55,10 +55,15 @@ return [
         'search' => 'Cerca',
         'see_more' => 'mostra altro',
         'show' => 'mostra',
-        'show_deleted' => '',
+        'show_deleted' => 'Mostra eliminati',
         'show_more' => 'mostra altro',
         'show_more_options' => 'mostra più opzioni',
         'upload_image' => 'carica immagine',
+
+        'watch' => [
+            'to_0' => 'Non guardare',
+            'to_1' => 'Guarda',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count minuto |:count minuti',
         'months' => ':count mese|:count mesi',
         'second_short_unit' => 'secondo|secondi',
+        'update' => ':count_delimited aggiornamento|:count_delimited aggiornamenti',
         'years' => ':count anno|:count anni',
     ],
 

@@ -21,9 +21,11 @@
 return [
     '_' => '',
 
+    'last_visit' => '',
     'new' => '',
     'old' => '',
     'top' => '',
+    'username' => '',
 
     'forum_topics' => [
         'new' => '',
