@@ -46,13 +46,13 @@ return [
             'title' => 'Profile',
 
             'user' => [
+                'user_discord' => 'discord',
                 'user_from' => 'current location',
                 'user_interests' => 'interests',
                 'user_msnm' => 'skype',
                 'user_occ' => 'occupation',
                 'user_twitter' => 'twitter',
                 'user_website' => 'website',
-                'user_discord' => 'discord',
             ],
         ],
 
@@ -62,9 +62,37 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => 'Notifications',
+        'topic_auto_subscribe' => 'automatically enable notifications on new forum topics that you create',
+    ],
+
     'oauth' => [
-        'title' => 'OAuth',
         'authorized_clients' => 'authorized clients',
+        'title' => 'OAuth',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'keyboard',
+        'mouse' => 'mouse',
+        'tablet' => 'tablet',
+        'title' => 'Playstyles',
+        'touch' => 'touch',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'block private messages from people not on your friends list',
+        'hide_online' => 'hide your online presence',
+        'title' => 'Privacy',
+    ],
+
+    'security' => [
+        'current_session' => 'current',
+        'end_session' => 'End Session',
+        'end_session_confirmation' => 'This will immediately end your session on that device. Are you sure?',
+        'last_active' => 'Last active:',
+        'title' => 'Security',
+        'web_sessions' => 'web sessions',
     ],
 
     'update_email' => [
@@ -75,33 +103,5 @@ return [
     'update_password' => [
         'email_subject' => 'osu! password change confirmation',
         'update' => 'update',
-    ],
-
-    'playstyles' => [
-        'title' => 'Playstyles',
-        'mouse' => 'mouse',
-        'keyboard' => 'keyboard',
-        'tablet' => 'tablet',
-        'touch' => 'touch',
-    ],
-
-    'privacy' => [
-        'title' => 'Privacy',
-        'friends_only' => 'block private messages from people not on your friends list',
-        'hide_online' => 'hide your online presence',
-    ],
-
-    'notifications' => [
-        'title' => 'Notifications',
-        'topic_auto_subscribe' => 'automatically enable notifications on new forum topics that you create',
-    ],
-
-    'security' => [
-        'current_session' => 'current',
-        'end_session' => 'End Session',
-        'end_session_confirmation' => 'This will immediately end your session on that device. Are you sure?',
-        'last_active' => 'Last active:',
-        'title' => 'Security',
-        'web_sessions' => 'web sessions',
     ],
 ];
