@@ -319,7 +319,9 @@ export class NewDiscussion extends React.PureComponent
       data: data
 
     .done (data) =>
-      @setState message: ''
+      @setState
+        message: ''
+        timestampConfirmed: false
 
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_id
       $.publish 'beatmapsetDiscussions:update', beatmapset: data.beatmapset
