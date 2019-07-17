@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Sorterade efter:',
             'created_at' => '',
             'timeline' => '',
             'updated_at' => '',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Alla',
-        'ranked-approved' => 'Rankad & Godkänd',
         'approved' => 'Godkänd',
-        'qualified' => 'Kvalificerad',
-        'loved' => 'Älskad',
-        'faves' => 'Favoriter',
-        'pending' => 'Pågående & WIP',
+        'favourites' => '',
         'graveyard' => 'Kyrkogård',
-        'my-maps' => 'Mina Maps',
+        'leaderboard' => '',
+        'loved' => 'Älskad',
+        'mine' => '',
+        'pending' => 'Pågående & WIP',
+        'qualified' => 'Kvalificerad',
+        'ranked' => '',
     ],
     'genre' => [
         'any' => 'Alla',

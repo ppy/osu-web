@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Нельзя ответить на удалённый комментарий.',
     ],
 
+    'follow' => [
+        'invalid' => 'Указан неверный :attribute.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Можно только проголосовать за запрос функции.',

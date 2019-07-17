@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited δημοσίευση|:count_delimited δημοσιεύσεις',
+            'topic_starter' => '',
         ],
     ],
 

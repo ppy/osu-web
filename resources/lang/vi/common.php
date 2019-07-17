@@ -59,6 +59,11 @@ return [
         'show_more' => 'hiển thị thêm',
         'show_more_options' => 'hiển thị thêm tùy chọn',
         'upload_image' => 'tải ảnh lên',
+
+        'watch' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count phút',
         'months' => ':count tháng',
         'second_short_unit' => 'giây',
+        'update' => '',
         'years' => ':count năm',
     ],
 

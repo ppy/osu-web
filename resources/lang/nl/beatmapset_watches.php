@@ -19,13 +19,6 @@
  */
 
 return [
-    'button' => [
-        'action' => [
-            'to_0' => 'Stop met volgen',
-            'to_1' => 'Bekijk',
-        ],
-    ],
-
     'index' => [
         'description' => 'Dit zijn de beatmap discussies die je volgt. Je wordt verwittigd bij nieuwe berichten of updates.',
         'title_compact' => 'modding volglijst',

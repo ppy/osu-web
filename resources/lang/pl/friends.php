@@ -25,6 +25,13 @@ return [
       'remove' => 'usuń znajomego',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => 'Strona główna » :info',
+            'info' => 'Znajomi',
+        ],
+    ],
+
     'state' => [
       'friends' => 'znajomi',
       'mutual' => 'przyjaciele',

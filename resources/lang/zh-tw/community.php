@@ -22,7 +22,8 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => '',
+            'big_description' => '喜歡 osu! 嗎！？<br/>
+                                那就贊助 osu! 開發吧！:D',
             'small_description' => '',
             'support_button' => '我想贊助 osu!',
         ],

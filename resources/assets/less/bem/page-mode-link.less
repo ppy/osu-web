@@ -64,13 +64,9 @@
   }
 
   &--profile-page {
-    color: @seafoam;
+    color: white;
     font-size: @font-size--title-small-3;
     padding-top: 10px;
-
-    .link-hover({
-      color: #fff;
-    });
   }
 
   &__badge {
@@ -79,12 +75,8 @@
     font-size: 80%;
     font-weight: bold;
     margin-left: 5px;
-    background-color: @link-gray-light;
-    color: #555;
-
-    .@{top}:hover & {
-      background-color: @link-gray-light-hover;
-    }
+    background-color: @osu-colour-b4;
+    color: @osu-colour-l1;
   }
 
   &__stripe {
@@ -96,10 +88,10 @@
     height: 5px;
     transform: translateY(5px) scaleY(0);
     transition: transform 120ms ease-in-out;
-    background-color: @yellow;
+    background-color: @osu-colour-h1;
 
     &--black {
-      background-color: #000;
+      background-color: @osu-colour-b6;
     }
 
     .@{top}--post-reply & {
@@ -107,7 +99,7 @@
     }
 
     .@{top}--profile-page & {
-      background-color: @seafoam;
+      background-color: @osu-colour-h1;
       height: 10px;
       bottom: -6px;
       border-radius: 10000px;

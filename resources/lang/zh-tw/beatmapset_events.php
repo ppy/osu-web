@@ -22,11 +22,11 @@ return [
     'event' => [
         'approve' => '已批准。',
         'discussion_delete' => '管理員刪除了 :discussion 。',
-        'discussion_lock' => '',
+        'discussion_lock' => '此圖譜的討論已被禁用。（:text）',
         'discussion_post_delete' => '管理員在 :discussion 中刪除了這條回覆。',
         'discussion_post_restore' => '管理員在 :discussion 中恢復了這條回覆。',
         'discussion_restore' => '管理員已恢復 :discussion 。',
-        'discussion_unlock' => '',
+        'discussion_unlock' => '此圖譜的討論已被啟用。',
         'disqualify' => '由於 :discussion (:text) 被 :user DQ。',
         'disqualify_legacy' => '該圖譜因 :text 被 DQ',
         'issue_reopen' => '問題 :discussion 被重新打開。',

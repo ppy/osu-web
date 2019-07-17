@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited postingan',
+            'topic_starter' => 'Pembuka Topik',
         ],
     ],
 

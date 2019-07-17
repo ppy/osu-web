@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!-Supporter',
         'joined_at' => ':date beigetreten',
         'lastvisit' => 'Zuletzt gesehen :date',
+        'lastvisit_online' => 'Derzeit online',
         'missingtext' => 'Vielleicht hast du dich verschrieben (oder der Benutzer wurde gebannt)!',
         'origin_country' => 'Aus :country',
         'page_description' => 'osu! - Alles, was du jemals über :username wissen wolltest!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Gesamtpunktzahl',
         ],
     ],
+
     'status' => [
+        'all' => 'Alle',
         'online' => 'Online',
         'offline' => 'Offline',
     ],

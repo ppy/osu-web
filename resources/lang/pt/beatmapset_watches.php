@@ -19,13 +19,6 @@
  */
 
 return [
-    'button' => [
-        'action' => [
-            'to_0' => 'Deixar de ver',
-            'to_1' => 'Ver',
-        ],
-    ],
-
     'index' => [
         'description' => 'Estas são as discussões do beatmap que estás a seguir. Serás notificado quando houver novas publicações ou atualizações.',
         'title_compact' => 'lista de observação de modificações',

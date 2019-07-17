@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited โพสต์|:count_delimited โพสต์',
+            'topic_starter' => '',
         ],
     ],
 

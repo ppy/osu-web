@@ -25,6 +25,13 @@ return [
       'remove' => 'ลบเพื่อน',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
+    ],
+
     'state' => [
       'friends' => 'เพื่อน',
       'mutual' => 'ร่วมกัน',

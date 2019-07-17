@@ -19,7 +19,6 @@
 .header-v3 {
   @_top: header-v3;
   @_background-side-overflow: 200px;
-  @_background-color: #222;
 
   width: 100%;
   margin-bottom: -20px;
@@ -40,7 +39,7 @@
   &__bg {
     .full-size();
     .at2x-simple('/images/headers/generic.jpg');
-    background-color: @_background-color;
+    background-color: @osu-colour-b6;
     background-position: center;
     background-size: (@container-sm + @_background-side-overflow * 2) auto;
     background-repeat: no-repeat;
@@ -57,6 +56,7 @@
 
     .@{_top}--chat & {
       .at2x-simple('/images/headers/chat.jpg');
+      filter: hue-rotate(115deg);
     }
 
     .@{_top}--news & {
@@ -71,21 +71,21 @@
     background-position: center;
     background-size: (@container-sm + @_background-side-overflow * 2) 100%;
     background-image: linear-gradient(to right,
-      @_background-color,
-      fade(@_background-color, 50%) (@_background-side-overflow / 4),
-      fade(@_background-color, 25%) (@_background-side-overflow / 2),
+      @osu-colour-b6,
+      .osu-hsla(@osu-colour-b6, 0.5)[@hsla] (@_background-side-overflow / 4),
+      .osu-hsla(@osu-colour-b6, 0.25)[@hsla] (@_background-side-overflow / 2),
       transparent @_background-side-overflow,
       transparent (@container-sm + @_background-side-overflow),
-      fade(@_background-color, 25%) (@container-sm + @_background-side-overflow + @_background-side-overflow / 2),
-      fade(@_background-color, 50%) (@container-sm + @_background-side-overflow + @_background-side-overflow * 3 / 4),
-      @_background-color);
+      .osu-hsla(@osu-colour-b6, 0.25)[@hsla] (@container-sm + @_background-side-overflow + @_background-side-overflow / 2),
+      .osu-hsla(@osu-colour-b6, 0.5)[@hsla] (@container-sm + @_background-side-overflow + @_background-side-overflow * 3 / 4),
+      @osu-colour-b6);
     display: none;
 
     // top to bottom overlay
     &::before {
       content: '';
       .full-size();
-      background-image: linear-gradient(to bottom, @_background-color, transparent);
+      background-image: linear-gradient(to bottom, @osu-colour-b6, transparent, @osu-colour-b6);
     }
 
     @media @desktop {

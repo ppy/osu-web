@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Besvarelse af slettede kommentar er ikke tilladt.',
     ],
 
+    'follow' => [
+        'invalid' => '',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Kan kun stemme på en funktionsanmodning.',

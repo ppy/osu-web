@@ -36,7 +36,7 @@ return [
         'advanced_link' => '고급 검색',
         'button' => '검색',
         'empty_result' => '아무것도 찾지 못했습니다!',
-        'missing_query' => '검색하려면 적어도 :n글자는 적어주셔야 합니다.',
+        'keyword_required' => '검색 키워드가 필요합니다',
         'placeholder' => '검색어를 입력해주세요',
         'title' => '검색',
 

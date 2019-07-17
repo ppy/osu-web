@@ -25,6 +25,13 @@ return [
       'remove' => 'fjern ven',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
+    ],
+
     'state' => [
       'friends' => 'venner',
       'mutual' => 'fælles',

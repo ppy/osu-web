@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Ici depuis :date',
         'lastvisit' => 'Vu pour la dernière fois :date',
+        'lastvisit_online' => 'Actuellement en ligne',
         'missingtext' => 'Vous avez peut-être fait une faute de frappe ! (ou l\'utilisateur est banni)',
         'origin_country' => 'De :country',
         'page_description' => 'osu! - Tout ce que vous devez savoir à propos de :username!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Score total',
         ],
     ],
+
     'status' => [
+        'all' => 'Tous',
         'online' => 'En ligne',
         'offline' => 'Hors-ligne',
     ],

@@ -65,14 +65,14 @@
 
   &__overlay {
     .full-size-overflow();
-    background-image: linear-gradient(to bottom, transparent, fade(#000, 50%));
+    background-image: linear-gradient(to bottom, transparent, .osu-hsla(@osu-colour-b6, 0.5)[@hsla]);
 
     .@{_top}--index & {
       &::after {
         .full-size-overflow();
         content: '';
         opacity: 0;
-        background-image: linear-gradient(to bottom, transparent, fade(@dark-purple-dark, 100%));
+        background-image: linear-gradient(to bottom, transparent, @osu-colour-b6);
         transition: all 200ms;
 
         .@{_top}:hover& {
@@ -86,7 +86,7 @@
     .default-border-radius();
     font-size: @font-size--small;
     padding: 5px 10px;
-    background-color: fade(#222, 50%);
+    background-color: .osu-hsla(@osu-colour-b6, 0.5)[@hsla];
     align-self: flex-end;
     text-transform: uppercase;
     font-weight: 900;

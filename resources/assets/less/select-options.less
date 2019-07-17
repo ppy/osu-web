@@ -18,9 +18,6 @@
 
 .select-options(
   @this: select-options;
-  @background-color: @gray-blue;
-  @hover-color: #000;
-  @selected-color: #111
 ) {
   &--selecting {
     z-index: @z-index--blackout-visible;
@@ -40,12 +37,15 @@
     padding: 5px 10px;
     white-space: nowrap;
 
-    &:hover {
-      background-color: @hover-color;
+    &--selected {
+      background-color: @osu-colour-b3;
     }
 
-    &--selected {
-      background-color: @selected-color;
+    &:hover {
+      background-color: @osu-colour-b4;
+      .@{this}__select & {
+        background-color: .osu-hsla(@osu-colour-b6, 0.6)[@hsla];
+      }
     }
 
     .@{this}__select & {
@@ -56,14 +56,11 @@
   &__select {
     .default-box-shadow();
     .default-border-radius();
+    overflow: hidden;
 
     font-size: 15px;
-    background-color: @background-color;
+    background-color: .osu-hsla(@osu-colour-b6, 0.5)[@hsla];
     box-shadow: 0 0 0 2px fade(#000, 25%);
-
-    &:hover {
-      background-color: @hover-color;
-    }
   }
 
   &__selector {
@@ -76,7 +73,7 @@
     left: 0;
     margin-top: 5px;
     font-size: 12px;
-    background-color: @background-color;
+    background-color: @osu-colour-b5;
 
     .@{this}--selecting & {
       display: block;

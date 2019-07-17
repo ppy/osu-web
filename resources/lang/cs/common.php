@@ -59,6 +59,11 @@ return [
         'show_more' => 'zobrazit více',
         'show_more_options' => 'zobrazit více možností',
         'upload_image' => 'nahrát obrázek',
+
+        'watch' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count minuta|:count minuty|:count minut',
         'months' => ':count měsíc|:count měsíců',
         'second_short_unit' => 'sek',
+        'update' => '',
         'years' => ':count rok|:count let',
     ],
 

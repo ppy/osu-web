@@ -55,6 +55,10 @@ return [
         'deleted_parent' => '',
     ],
 
+    'follow' => [
+        'invalid' => '',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Kan endast rösta på funktion begäran.',

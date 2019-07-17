@@ -168,7 +168,7 @@ export class Post extends React.PureComponent
         onChange: @setMessage
         onKeyDown: @handleKeyDown
         value: @state.message
-        innerRef: @textarea
+        ref: @textarea
       el MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div className: "#{bn}__actions",

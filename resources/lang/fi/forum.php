@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited viesti|:count_delimited viestiä',
+            'topic_starter' => '',
         ],
     ],
 

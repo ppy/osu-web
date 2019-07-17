@@ -90,7 +90,7 @@ return [
 
         'invoice' => 'Mostra Ricevuta',
         'no_orders' => 'Nessun ordine da visualizzare.',
-        'resume' => '',
+        'resume' => 'Riprendi il checkout',
 
         'item' => [
             'display_name' => [

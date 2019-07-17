@@ -22,7 +22,7 @@
   .default-box-shadow();
   .inner-shadow-top();
   display: flex;
-  background: #444;
+  background: @osu-colour-b5;
   flex-direction: column;
 
   @media @desktop {
@@ -36,7 +36,7 @@
     margin: 0;
     padding: 20px 0 10px;
     font-size: @font-size--title-small-3;
-    color: @pink-light;
+    color: @osu-colour-l1;
     font-weight: 100;
   }
 
@@ -68,12 +68,13 @@
     .default-box-shadow();
     display: block;
     padding: 5px 0;
-    background-color: #222;
+    background-color: @osu-colour-b4;
     margin-bottom: 5px;
 
     &--more {
-      .link-pink-light();
       .link-plain();
+      .link-hover({ color: white });
+      color: @osu-colour-l1;
       padding: 20px;
       text-align: center;
     }
@@ -85,7 +86,7 @@
     padding: 0 0 10px 20px;
     font-size: @font-size--large;
     font-weight: 100;
-    color: @pink-light;
+    color: @osu-colour-l1;
 
     display: flex;
     align-items: flex-end;
@@ -97,7 +98,7 @@
 
   &__right-sidebar {
     .inner-shadow-top();
-    background-color: #333;
+    background-color: @osu-colour-b4;
     width: 100%;
     margin: 0;
     padding: 20px;

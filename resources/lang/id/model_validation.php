@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Membalas komentar yang sudah dihapus tidak diperbolehkan.',
     ],
 
+    'follow' => [
+        'invalid' => '',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Hanya dapat memilih permintaan fitur.',

@@ -59,6 +59,11 @@ return [
         'show_more' => 'εμφάνιση περισσότερων',
         'show_more_options' => 'περισσότερες επιλογές',
         'upload_image' => 'ανεβάστε εικόνα',
+
+        'watch' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count λεπτό|:count λεπτά',
         'months' => ':count μήνας|:count μήνες',
         'second_short_unit' => 'δευτ.|δευτ.',
+        'update' => '',
         'years' => ':count χρόνος|:count χρόνια',
     ],
 

@@ -59,6 +59,11 @@ return [
         'show_more' => 'Plus de résultats',
         'show_more_options' => 'afficher plus d’options',
         'upload_image' => 'mettre en ligne une image',
+
+        'watch' => [
+            'to_0' => 'Ne plus suivre',
+            'to_1' => 'Suivre',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count minute|:count minutes',
         'months' => ':count mois|:count mois',
         'second_short_unit' => 'sec|secs',
+        'update' => ':count_delimited mise à jour|:count_delimited mises à jour',
         'years' => ':count an|:count ans',
     ],
 

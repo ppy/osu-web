@@ -59,6 +59,11 @@ return [
         'show_more' => 'แสดงเพิ่มเติม',
         'show_more_options' => 'แสดงตัวเลือกเพิ่มเติม',
         'upload_image' => 'อัพโหลดรูปภาพ',
+
+        'watch' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count_delimited นาที|:count_delimited นาที',
         'months' => ':count เดือน|:count เดือน',
         'second_short_unit' => 'วินาที|วินาที',
+        'update' => '',
         'years' => ':count ปี|:count ปี',
     ],
 

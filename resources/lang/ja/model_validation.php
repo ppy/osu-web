@@ -55,6 +55,10 @@ return [
         'deleted_parent' => '削除されたコメントに返信することはできません。',
     ],
 
+    'follow' => [
+        'invalid' => '無効な :attribute が指定されています。',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => '機能リクエスト以外は投票できません。',

@@ -21,7 +21,6 @@
 return [
     'all_read' => '',
     'mark_all_read' => 'Xoá tất cả',
-    'message_multi' => ':count_delimited bản cập nhật mới trên ":title".|:count_delimited bản cập nhật mới trên ":title".',
 
     'item' => [
         'beatmapset' => [
@@ -30,17 +29,69 @@ return [
             'beatmapset_discussion' => [
                 '_' => 'Góc thảo luận beatmap',
                 'beatmapset_discussion_lock' => 'Beatmap ":title" đã bị khóa để thảo luận.',
+                'beatmapset_discussion_lock_compact' => '',
                 'beatmapset_discussion_post_new' => ':username đã đăng tin nhắn mới trong cuộc thảo luận beatmap ":title".',
+                'beatmapset_discussion_post_new_compact' => '',
                 'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_unlock_compact' => '',
             ],
 
             'beatmapset_state' => [
                 '_' => 'Trạng thái Beatmap đã thay đổi',
                 'beatmapset_disqualify' => '',
+                'beatmapset_disqualify_compact' => '',
                 'beatmapset_love' => '',
+                'beatmapset_love_compact' => '',
                 'beatmapset_nominate' => '',
+                'beatmapset_nominate_compact' => '',
                 'beatmapset_qualify' => '',
+                'beatmapset_qualify_compact' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_rank_compact' => '',
                 'beatmapset_reset_nominations' => '',
+                'beatmapset_reset_nominations_compact' => '',
+            ],
+
+            'comment' => [
+                '_' => '',
+
+                'comment_new' => '',
+                'comment_new_compact' => '',
+            ],
+        ],
+
+        'channel' => [
+            '_' => 'Chat',
+
+            'channel' => [
+                '_' => 'Tin nhắn mới',
+                'pm' => [
+                    'channel_message' => '',
+                    'channel_message_compact' => '',
+                    'channel_message_group' => '',
+                ],
+            ],
+        ],
+
+        'build' => [
+            '_' => '',
+
+            'comment' => [
+                '_' => '',
+
+                'comment_new' => '',
+                'comment_new_compact' => '',
+            ],
+        ],
+
+        'news_post' => [
+            '_' => '',
+
+            'comment' => [
+                '_' => '',
+
+                'comment_new' => '',
+                'comment_new_compact' => '',
             ],
         ],
 
@@ -50,6 +101,7 @@ return [
             'forum_topic_reply' => [
                 '_' => '',
                 'forum_topic_reply' => '',
+                'forum_topic_reply_compact' => '',
             ],
         ],
 
@@ -59,6 +111,15 @@ return [
             'legacy_pm' => [
                 '_' => '',
                 'legacy_pm' => '',
+            ],
+        ],
+
+        'user_achievement' => [
+            '_' => '',
+
+            'user_achievement_unlock' => [
+                '_' => '',
+                'user_achievement_unlock' => '',
             ],
         ],
     ],
