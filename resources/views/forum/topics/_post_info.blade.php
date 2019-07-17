@@ -76,14 +76,16 @@
                 </div>
             @endif
 
-            <div class="forum-post__info-row">
-                <a class="forum-post__info-link" href="{{ route("users.posts", $user) }}">
-                    {{ trans_choice('forum.post.info.post_count', $user->user_posts) }}
-                </a>
-            </div>
-            <div class="forum-post__info-row">
-                {!! display_regdate($user) !!}
-            </div>
+            @if ($user->getKey() !== null)
+                <div class="forum-post__info-row">
+                    <a class="forum-post__info-link" href="{{ route("users.posts", $user) }}">
+                        {{ trans_choice('forum.post.info.post_count', $user->user_posts) }}
+                    </a>
+                </div>
+                <div class="forum-post__info-row">
+                    {!! display_regdate($user) !!}
+                </div>
+            @endif
         </div>
     </div>
 </div>
