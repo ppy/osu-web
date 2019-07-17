@@ -89,8 +89,6 @@ export class Post extends React.PureComponent
         className: "#{bn}__content"
         div
           className: "#{bn}__user-container"
-          style:
-            color: userColor
 
           a
             className: "#{bn}__user-link"
@@ -104,8 +102,6 @@ export class Post extends React.PureComponent
               className: "#{bn}__user-row"
               span
                 className: "#{bn}__user-text u-ellipsis-overflow"
-                style:
-                  color: userColor
                 @props.user.username
 
               if !@props.user.is_bot
@@ -118,7 +114,6 @@ export class Post extends React.PureComponent
             div
               className: "#{bn}__user-badge"
               style:
-                backgroundColor: userColor
                 opacity: 0 if !userBadge?
               if userBadge?
                 osu.trans("beatmap_discussions.user.#{userBadge}")
