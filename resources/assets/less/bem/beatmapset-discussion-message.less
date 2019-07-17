@@ -22,23 +22,24 @@
   color: white;
 
   // TODO: remove once default link style becomes... default
-  > a {
+  a {
     .link-default();
   }
 
-  &__timestamp {
+  // extra specificity here to override the above rule
+  & > &__timestamp {
     .link-plain();
 
     border-radius: @border-radius-large;
     padding: 1px 5px;
-    background-color: @osu-colour-b5;
+    background-color: @osu-colour-b6;
     font-weight: 600;
     font-size: 85%;
-    color: @osu-colour-b2;
+    color: @osu-colour-f1;
 
     .link-hover({
-      background-color: @osu-colour-b4;
-      color: @osu-colour-b1;
+      background-color: @osu-colour-b5;
+      color: @osu-colour-l1;
     });
   }
 }
