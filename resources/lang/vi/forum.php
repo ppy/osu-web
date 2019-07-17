@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited bài đăng',
+            'topic_starter' => '',
         ],
     ],
 

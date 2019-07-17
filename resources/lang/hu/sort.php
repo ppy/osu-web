@@ -21,9 +21,11 @@
 return [
     '_' => 'Rendezés',
 
+    'last_visit' => 'Legutóbb aktív volt',
     'new' => 'Legutóbbi',
     'old' => 'Régi',
     'top' => 'Felső',
+    'username' => 'Felhasználónév',
 
     'forum_topics' => [
         'new' => 'Legutóbbi válasz',

@@ -144,6 +144,9 @@ return [
                 'uneditable' => 'Ugyldig cover spesifisert.',
                 'not_owner' => 'Bare eieren kan redigere coveret.',
             ],
+            'store' => [
+                'forum_not_allowed' => 'Dette forumet aksepterer ikke emneomslag.',
+            ],
         ],
 
         'view' => [

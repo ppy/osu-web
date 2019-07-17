@@ -21,6 +21,7 @@
 return [
     'error' => [
         'chat' => [
+            'empty' => 'Không thể gửi tin nhắn không chứa ký tự.',
             'limit_exceeded' => 'Bạn đang gửi tin nhắn quá nhanh, hãy đợi một lát trước khi thử lại.',
             'too_long' => 'Tin nhắn bạn đang cố gửi quá dài.',
         ],

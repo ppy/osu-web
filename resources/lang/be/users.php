@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Далучыўся :date',
         'lastvisit' => 'Быў у сетцы :date',
+        'lastvisit_online' => 'Зараз у сетцы',
         'missingtext' => 'Магчыма, вы памыліліся! (або карыстальнік заблакаваны)',
         'origin_country' => 'Адкуль: :country',
         'page_description' => 'osu! - Усё, што вы хацелі ведаць пра :username!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Усяго ачкоў',
         ],
     ],
+
     'status' => [
+        'all' => 'Усе',
         'online' => 'У сетцы',
         'offline' => 'Не ў сетцы',
     ],

@@ -21,7 +21,6 @@
 return [
     'all_read' => 'Alle varsler lest!',
     'mark_all_read' => 'Tøm alt',
-    'message_multi' => ':count_delimited ny oppdatering ved ":title".|:count_delimited nye oppdateringer ved ":title".',
 
     'item' => [
         'beatmapset' => [
@@ -30,17 +29,69 @@ return [
             'beatmapset_discussion' => [
                 '_' => 'Beatmapdiskusjon',
                 'beatmapset_discussion_lock' => 'Beatmappen ":title" har blitt låst for diskusjon.',
+                'beatmapset_discussion_lock_compact' => 'Diskusjonen var låst',
                 'beatmapset_discussion_post_new' => ':username la til en ny melding i beatmapdiskusjonen til ":title".',
+                'beatmapset_discussion_post_new_compact' => 'Nytt innlegg av :username',
                 'beatmapset_discussion_unlock' => 'Beatmappen ":title" har blitt låst opp for diskusjon.',
+                'beatmapset_discussion_unlock_compact' => 'Diskusjon var ulåst',
             ],
 
             'beatmapset_state' => [
-                '_' => 'Beatmap status er endret',
+                '_' => 'Beatmap status har blitt endret',
                 'beatmapset_disqualify' => 'Beatmappen ":title" har blitt diskvalifisert av :username.',
+                'beatmapset_disqualify_compact' => 'Beatmap var diskvalifisert',
                 'beatmapset_love' => 'Beatmappen ":title" har blitt forfremmet til elsket av :username.',
+                'beatmapset_love_compact' => 'Beatmap var promotert til elsket',
                 'beatmapset_nominate' => 'Beatmappen ":title" har blitt nominert av :username.',
+                'beatmapset_nominate_compact' => 'Beatmap var nominert',
                 'beatmapset_qualify' => 'Beatmappen ":title" har fått nok nominasjoner og er dermed i kø til å bli rangert.',
+                'beatmapset_qualify_compact' => 'Beatmappen er i kø for å bli rangert',
+                'beatmapset_rank' => '":title" har blitt rangert',
+                'beatmapset_rank_compact' => 'Beatmappet var rangert',
                 'beatmapset_reset_nominations' => 'Problemstilling skrevet av :username nullstilte nominasjonen av beatmappet ":title" ',
+                'beatmapset_reset_nominations_compact' => 'Nominasjonen ble tilbakestilt',
+            ],
+
+            'comment' => [
+                '_' => 'Ny kommentar',
+
+                'comment_new' => ':username kommenterte ":content" på ":title"',
+                'comment_new_compact' => ':username kommenterte ":content"',
+            ],
+        ],
+
+        'channel' => [
+            '_' => 'Chat',
+
+            'channel' => [
+                '_' => 'Ny melding',
+                'pm' => [
+                    'channel_message' => ':username sier ":title"',
+                    'channel_message_compact' => ':title',
+                    'channel_message_group' => 'fra :username',
+                ],
+            ],
+        ],
+
+        'build' => [
+            '_' => 'Endringslogg',
+
+            'comment' => [
+                '_' => 'Ny kommentar',
+
+                'comment_new' => ':username kommenterte ":content" på ":title"',
+                'comment_new_compact' => ':username kommenterte ":content"',
+            ],
+        ],
+
+        'news_post' => [
+            '_' => 'Nyheter',
+
+            'comment' => [
+                '_' => 'Ny kommentar',
+
+                'comment_new' => ':username kommenterte ":content" på ":title"',
+                'comment_new_compact' => ':username kommenterte ":content"',
             ],
         ],
 
@@ -50,6 +101,7 @@ return [
             'forum_topic_reply' => [
                 '_' => 'Nytt forum svar',
                 'forum_topic_reply' => ':username svarte på forumemne ":title".',
+                'forum_topic_reply_compact' => ':username svarte',
             ],
         ],
 
@@ -59,6 +111,15 @@ return [
             'legacy_pm' => [
                 '_' => '',
                 'legacy_pm' => ':count_delimited ulest melding.|:count_delimited uleste meldinger.',
+            ],
+        ],
+
+        'user_achievement' => [
+            '_' => 'Medaljer',
+
+            'user_achievement_unlock' => [
+                '_' => 'Ny medalje',
+                'user_achievement_unlock' => '":title" låst opp!',
             ],
         ],
     ],

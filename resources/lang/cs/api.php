@@ -21,6 +21,7 @@
 return [
     'error' => [
         'chat' => [
+            'empty' => '',
             'limit_exceeded' => 'Posíláte zprávy moc rychle, vyčkejte prosím chvíli a zkuste to znovu.',
             'too_long' => 'Zpráva, kterou se snažíte poslat, je moc dlouhá.',
         ],

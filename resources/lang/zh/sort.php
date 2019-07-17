@@ -21,9 +21,11 @@
 return [
     '_' => '排序方式',
 
+    'last_visit' => '最近活跃',
     'new' => '最新',
     'old' => '最旧',
     'top' => '热门',
+    'username' => '用户名',
 
     'forum_topics' => [
         'new' => '最后回复',

@@ -21,9 +21,11 @@
 return [
     '_' => 'Seřadit podle',
 
+    'last_visit' => '',
     'new' => 'Nedávné',
     'old' => 'Nejstarší',
     'top' => 'Nejlepší',
+    'username' => '',
 
     'forum_topics' => [
         'new' => 'Poslední odpověď',

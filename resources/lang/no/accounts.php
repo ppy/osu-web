@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'osu! e-post endringsbekreftelse',
         'update' => 'oppdater',
@@ -84,6 +89,11 @@ return [
         'title' => 'Personvern',
         'friends_only' => 'blokker private meldinger fra personer som ikke er på vennelisten din',
         'hide_online' => 'skjul påloggingsstatus',
+    ],
+
+    'notifications' => [
+        'title' => 'Varsler',
+        'topic_auto_subscribe' => 'aktiver automatiske varslinger på nye forum emner som du lager',
     ],
 
     'security' => [

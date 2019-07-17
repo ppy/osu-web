@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Odpovídat na smazaný komentář není povoleno.',
     ],
 
+    'follow' => [
+        'invalid' => '',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Lze hlasovat pouze o funkcích.',

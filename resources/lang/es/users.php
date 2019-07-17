@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Se unió en :date',
         'lastvisit' => 'Visto por última vez :date',
+        'lastvisit_online' => '',
         'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido baneado)',
         'origin_country' => 'De :country',
         'page_description' => 'osu! - ¡Todo lo que siempre quisiste saber acerca de :username!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Puntuación total',
         ],
     ],
+
     'status' => [
+        'all' => '',
         'online' => 'Conectados',
         'offline' => 'Desconectados',
     ],

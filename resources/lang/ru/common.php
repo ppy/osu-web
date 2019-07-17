@@ -59,6 +59,11 @@ return [
         'show_more' => 'показать больше',
         'show_more_options' => 'показать больше опций',
         'upload_image' => 'выбрать файл',
+
+        'watch' => [
+            'to_0' => 'Не следить',
+            'to_1' => 'Следить',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count минута|:count минуты|:count минут',
         'months' => ':count месяц|:count месяца|:count месяцев',
         'second_short_unit' => 'сек',
+        'update' => ':count_delimited обновление|:count_delimited обновления',
         'years' => ':count год|:count года|:count лет',
     ],
 

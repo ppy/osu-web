@@ -19,13 +19,6 @@
  */
 
 return [
-    'button' => [
-        'action' => [
-            'to_0' => 'Ne plus suivre',
-            'to_1' => 'Suivre',
-        ],
-    ],
-
     'index' => [
         'description' => 'Voici les discussions de beatmap que vous suivez. Vous serez notifié quand il y aura de nouveaux posts ou des changements.',
         'title_compact' => 'liste d\'abonnement des modifications',

@@ -25,6 +25,13 @@ return [
       'remove' => 'poista kaveri',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => 'Kaverit',
+        ],
+    ],
+
     'state' => [
       'friends' => 'kaverit',
       'mutual' => 'yhteinen',

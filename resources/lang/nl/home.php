@@ -36,7 +36,7 @@ return [
         'advanced_link' => 'Geavanceerd zoeken',
         'button' => 'Zoeken',
         'empty_result' => 'Niets gevonden!',
-        'missing_query' => 'Zoekwoord van minimum :n tekens is vereist',
+        'keyword_required' => '',
         'placeholder' => 'type om te zoeken',
         'title' => 'Zoek',
 

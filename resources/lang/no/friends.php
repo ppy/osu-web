@@ -25,6 +25,13 @@ return [
       'remove' => 'fjern som venn',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => 'Hjem :info',
+            'info' => 'Venner',
+        ],
+    ],
+
     'state' => [
       'friends' => 'venner',
       'mutual' => 'gjensidig',

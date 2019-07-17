@@ -25,6 +25,13 @@ return [
       'remove' => 'freund entfernen',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => 'Startseite :info',
+            'info' => 'Freunde',
+        ],
+    ],
+
     'state' => [
       'friends' => 'freunde',
       'mutual' => 'beidseitig',

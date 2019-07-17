@@ -127,8 +127,8 @@ return [
             'modding-history-posts' => '使用者摸圖貼文',
             'modding-history-votesGiven' => '使用者摸圖投票數',
             'modding-history-votesReceived' => '使用者摸圖得票数',
-            'oauth_login' => '',
-            'oauth_request' => '',
+            'oauth_login' => '以 OAuth 登入',
+            'oauth_request' => 'OAuth 授權',
             'settings' => '設定',
         ],
         'store' => [

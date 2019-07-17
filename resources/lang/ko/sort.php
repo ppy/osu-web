@@ -21,9 +21,11 @@
 return [
     '_' => '정렬 기준',
 
+    'last_visit' => '최근 활동',
     'new' => '최근',
     'old' => '과거',
     'top' => '상위',
+    'username' => '사용자 이름',
 
     'forum_topics' => [
         'new' => '최근 응답',

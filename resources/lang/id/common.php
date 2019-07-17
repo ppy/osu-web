@@ -59,6 +59,11 @@ return [
         'show_more' => 'tampilkan lebih banyak',
         'show_more_options' => 'tampilkan pilihan lainnya',
         'upload_image' => 'unggah gambar',
+
+        'watch' => [
+            'to_0' => 'Batal Ikuti',
+            'to_1' => 'Ikuti',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count menit |:count menit',
         'months' => ':count bulan',
         'second_short_unit' => 'detik|detik',
+        'update' => ':count_delimited pembaharuan',
         'years' => ':count tahun',
     ],
 

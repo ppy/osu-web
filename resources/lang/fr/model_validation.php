@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Répondre à un commentaire supprimé n\'est pas autorisé.',
     ],
 
+    'follow' => [
+        'invalid' => ':attribute spécifié non valide.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Vous pouvez seulement voter pour une fonction.',

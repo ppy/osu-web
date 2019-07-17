@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited bericht|:count_delimited berichten',
+            'topic_starter' => '',
         ],
     ],
 

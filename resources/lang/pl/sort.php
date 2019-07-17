@@ -21,9 +21,11 @@
 return [
     '_' => 'Sortuj wg',
 
+    'last_visit' => 'Ostatnio aktywni',
     'new' => 'Najnowsze',
     'old' => 'Najstarsze',
     'top' => 'Najwyżej oceniane',
+    'username' => 'Nazwa użytkownika',
 
     'forum_topics' => [
         'new' => 'Ostatnia odpowiedź',

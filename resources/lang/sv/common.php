@@ -59,6 +59,11 @@ return [
         'show_more' => 'visa mer',
         'show_more_options' => '',
         'upload_image' => 'ladda upp bild',
+
+        'watch' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => '',
         'months' => ':count månad|:count månader',
         'second_short_unit' => 's|s',
+        'update' => '',
         'years' => ':count år|:count år',
     ],
 

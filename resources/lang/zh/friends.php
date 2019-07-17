@@ -25,8 +25,15 @@ return [
       'remove' => '删除好友',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => '主页 :info',
+            'info' => '好友',
+        ],
+    ],
+
     'state' => [
-      'friends' => '已关注',
+      'friends' => '好友',
       'mutual' => '互相关注',
     ],
 
