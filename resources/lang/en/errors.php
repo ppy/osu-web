@@ -37,6 +37,12 @@ return [
     'checkout' => [
         'generic' => 'An error occurred while preparing your checkout.',
     ],
+    'search' => [
+        'could_not_connect_to_host' => 'The search server seems to be missing :(',
+        'default' => 'Couldn\'t get any results.',
+        'operation_timeout_exception' => 'It seems to be taking longer than usual to get these results...',
+    ],
+
     'logged_out' => 'You have been signed out. Please sign in and retry.',
     'supporter_only' => 'You must be an osu!supporter to use this feature.',
     'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
