@@ -65,7 +65,8 @@
   &__more-button {
     flex: none;
     .link-plain();
-    .link-gray-light();
+    .link-default();
+    color: @osu-colour-f1;
     .center-content();
     font-size: 20px; // icon size
     padding: 5px;
@@ -89,11 +90,12 @@
     &--notice {
       font-size: @font-size--title-small;
       text-align: center;
-      color: #ccc;
     }
 
     &--more {
-      .link-gray-light();
+      .link-default();
+      .link-plain();
+      color: @osu-colour-f1;
       font-size: @font-size--normal;
       display: block;
       text-align: center;
@@ -105,7 +107,7 @@
 
     &--title {
       font-size: @font-size--title-small-2;
-      color: #fff;
+      color: white;
       font-style: italic;
       margin: 0;
     }
