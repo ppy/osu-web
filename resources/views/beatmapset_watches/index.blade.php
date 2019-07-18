@@ -109,7 +109,7 @@
                 @endif
             </table>
 
-            @include('objects._pagination_v0', ['object' => $watches, 'modifiers' => ['light-bg']])
+            @include('objects._pagination_v0', ['object' => $watches])
         </div>
     </div>
 @endsection
