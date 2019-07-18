@@ -55,9 +55,9 @@ export class TopRanks extends React.PureComponent
           className: 'page-extra__title page-extra__title--small'
           osu.trans('users.show.extra.top_ranks.first.title')
           ' '
-          if @props.user.scores_first_count[0] > 0
+          if @props.user.scores_first_count > 0
             span className: 'page-extra__title-count',
-              osu.formatNumber(@props.user.scores_first_count[0])
+              osu.formatNumber(@props.user.scores_first_count)
         if @props.scoresFirsts?.length
           div className: 'profile-extra-entries',
             el PlayDetailList, scores: @props.scoresFirsts

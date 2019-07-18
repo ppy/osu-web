@@ -63,7 +63,7 @@ export class DetailBar extends React.PureComponent
           el FriendButton,
             userId: @props.user.id
             showFollowerCounter: true
-            followers: @props.user.follower_count[0]
+            followers: @props.user.follower_count
             modifiers: ['profile-page']
             alwaysVisible: true
         if @state.currentUser.id != @props.user.id && !isBlocked
