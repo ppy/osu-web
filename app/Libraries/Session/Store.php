@@ -204,6 +204,16 @@ class Store extends \Illuminate\Session\Store
     }
 
     /**
+     * Returns current session key (cache prefix + prefix + id)
+     *
+     * @return string
+     */
+    public function getKey()
+    {
+        return config('cache.prefix').':'.$this->getId();
+    }
+
+    /**
      * Determine if this is a valid session ID.
      *
      * @param  string  $id
@@ -253,7 +263,7 @@ class Store extends \Illuminate\Session\Store
         parent::save();
 
         if (!$this->isGuestSession()) {
-            Redis::sadd(config('cache.prefix').':'.$this->getCurrentKeyPrefix(), config('cache.prefix').':'.$this->getId());
+            Redis::sadd(config('cache.prefix').':'.$this->getCurrentKeyPrefix(), $this->getKey());
         }
     }
 
