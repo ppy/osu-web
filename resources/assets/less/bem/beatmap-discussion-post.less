@@ -73,7 +73,7 @@
     &--cancel {
       .reset-input();
       position: absolute;
-      color: @osu-colour-b1;
+      color: @osu-colour-f1;
       top: 0px;
       right: 0px;
       width: @beatmap-discussion--reply-padding;
@@ -160,7 +160,7 @@
       display: flex;
       align-items: flex-end;
       font-size: @font-size--normal;
-      color: @osu-colour-b1;
+      color: @osu-colour-f1;
     }
 
     .@{_top}--reply & {
@@ -177,7 +177,7 @@
   &__info {
     font-size: @_info-text-size;
     margin-right: 10px;
-    color: @osu-colour-b1;
+    color: @osu-colour-f1;
 
     &--edited {
       font-style: italic;
@@ -225,7 +225,7 @@
     }
 
     &::placeholder {
-      color: @osu-colour-b1;
+      color: @osu-colour-f1;
     }
 
     &--editor {
@@ -359,21 +359,5 @@
     font-weight: bold;
     font-style: italic;
     max-width: 120px;
-
-    .@{_top}--admin & {
-      color: @beatmap-discussion--user-color-moderator;
-    }
-
-    .@{_top}--bng & {
-      color: @beatmap-discussion--user-color-moderator;
-    }
-
-    .@{_top}--owner & {
-      color: @beatmap-discussion--user-color-owner;
-    }
-
-    .@{_top}--nat & {
-      color: @beatmap-discussion--user-color-moderator;
-    }
   }
 }

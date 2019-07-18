@@ -101,12 +101,14 @@
                 </div>
 
                 <div class="forum-topics-spacer__group forum-topics-spacer__group--pager">
-                    @include('objects._pagination_v0', ['object' => $topics
-                        ->fragment('topics')
-                        ->appends([
-                            'sort' => Request::input('sort'),
-                            'with_replies' => Request::input('with_replies'),
-                        ])
+                    @include('objects._pagination_v0', [
+                        'object' => $topics
+                            ->fragment('topics')
+                            ->appends([
+                                'sort' => Request::input('sort'),
+                                'with_replies' => Request::input('with_replies'),
+                            ]),
+                        'modifiers' => ['light-bg']
                     ])
                 </div>
 

@@ -80,7 +80,7 @@
                 </div>
             @endforeach
 
-            @include('objects._pagination_v0', ['object' => $orders])
+            @include('objects._pagination_v0', ['object' => $orders, 'modifiers' => ['light-bg']])
         </div>
     </div>
 @endsection
