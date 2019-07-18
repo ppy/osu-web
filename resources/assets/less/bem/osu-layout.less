@@ -39,7 +39,6 @@
     background-color: @osu-colour-b6;
   }
 
-
   &--body-landing {
     background-color: @osu-colour-b6;
     // inspired by
@@ -166,9 +165,75 @@
       ._page;
       padding: 20px;
       margin-bottom: 10px;
+    }
 
-      .osu-layout--admin & {
-        background-color: white;
+    &--page-admin {
+      ._page;
+      padding: 20px;
+      margin-bottom: 10px;
+      color: white;
+
+      h1, h2, h3, h4 {
+        font-style: normal;
+        color: white;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      h2 {
+        font-size: 16px;
+        display: inline-block;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 2px solid @osu-colour-h1;
+      }
+
+      h3 {
+        font-size: 14px;
+      }
+
+      h4 {
+        font-size: 12px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      a {
+        .link-default();
+      }
+
+      pre {
+        background-color: @osu-colour-b6;
+        border: none;
+        color: white;
+      }
+
+      small {
+        color: @osu-colour-f1;
+      }
+
+      // bootstrap override
+      .label-default {
+        color: @osu-colour-f1;
+        background-color: @osu-colour-b6;
+      }
+    }
+
+    &--page-admin-store {
+      color: black;
+
+      a {
+        .link-blue-dark();
+      }
+
+      .panel-title > small {
+        font-size: 12px;
+        color: black;
       }
     }
 
