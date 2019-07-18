@@ -20,6 +20,7 @@
 
 namespace App\Libraries;
 
+use App\Events\UserSessionEvent;
 use App\Exceptions\UserVerificationException;
 use App\Libraries\Session\SessionManager;
 use App\Models\LegacySession;
@@ -178,6 +179,8 @@ class UserVerificationState
         if ($this->legacySession() !== null) {
             $this->legacySession()->update(['verified' => true]);
         }
+
+        event(UserSessionEvent::onVerified($this->user->getKey(), $this->session->getKey()));
     }
 
     public function verify($inputKey)

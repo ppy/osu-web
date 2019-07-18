@@ -22,28 +22,39 @@ namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
 
-class UserLogoutEvent extends NotificationEventBase
+class UserSessionEvent extends NotificationEventBase
 {
     public $action;
+    public $data;
     public $userId;
-    public $channelName;
+
+    public static function onLogout($userId, $keys)
+    {
+        return new static('logout', $userId, compact('keys'));
+    }
+
+    public static function onVerified($userId, $key)
+    {
+        return new static('verified', $userId, compact('key'));
+    }
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($userId, $sessionKeys)
+    public function __construct($action, $userId, $data)
     {
         parent::__construct();
 
+        $this->action = $action;
         $this->userId = $userId;
-        $this->sessionKeys = $sessionKeys;
+        $this->data = $data;
     }
 
     public function broadcastAs()
     {
-        return 'logout';
+        return $this->action;
     }
 
     /**
@@ -58,6 +69,6 @@ class UserLogoutEvent extends NotificationEventBase
 
     public function broadcastWith()
     {
-        return ['keys' => $this->sessionKeys];
+        return $this->data;
     }
 }
