@@ -159,9 +159,10 @@
 
     .@{top}--list & {
       border-radius: @avatar-border-radius;
-      background: linear-gradient(to right, fade(@greysky, 100%) 50%, fade(@greysky, 50%));
+      background: linear-gradient(to right, .osu-hsla(@osu-colour-b5, 1)[@hsla] 50%, .osu-hsla(@osu-colour-b5, 0.7)[@hsla]);
+      opacity: 1;
       &--online {
-        background: linear-gradient(to right, fade(@greysky, 100%) 50%, fade(@greysky, 50%));
+        background: linear-gradient(to right, .osu-hsla(@osu-colour-b5, 1)[@hsla] 50%, .osu-hsla(@osu-colour-b5, 0.6)[@hsla]);
       }
     }
   }
