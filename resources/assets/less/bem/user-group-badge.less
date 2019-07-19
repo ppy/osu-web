@@ -24,6 +24,14 @@
   padding: 2px 10px;
   font-weight: bold;
 
+  &--bot {
+    background-color: @osu-colour-group-bot;
+    color: .osu-hsla(@osu-colour-b6, 0.75)[@hsla];
+    &::before {
+      content: 'BOT';
+    }
+  }
+
   &--dev {
     color: @osu-colour-group-dev;
     &::before {
