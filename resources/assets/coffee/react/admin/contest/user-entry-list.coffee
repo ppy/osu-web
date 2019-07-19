@@ -92,7 +92,7 @@ export class UserEntryList extends React.Component
                 entry: entry
 
       else
-        div className: 'osu-table osu-table--with-handle',
+        div className: 'osu-table osu-table--taller-rows osu-table--with-handle',
           table className: 'osu-table__table',
             thead {},
               tr {},

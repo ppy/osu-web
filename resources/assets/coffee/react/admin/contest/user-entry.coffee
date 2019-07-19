@@ -24,7 +24,7 @@ el = React.createElement
 
 export class UserEntry extends React.Component
   render: =>
-    className = 'osu-table__body-row osu-table__body-row--highlightable osu-table__body-row--taller-rows admin-contest-entry'
+    className = 'osu-table__body-row osu-table__body-row--highlightable admin-contest-entry'
     className += ' admin-contest-entry__deleted' if @props.entry.deleted
 
     tr
