@@ -38,17 +38,14 @@ class ScoreTransformer extends Fractal\TransformerAbstract
 
     public function transform($score)
     {
-        return [
+        $ret = [
             'id' => $score->score_id,
             'user_id' => $score->user_id,
             'accuracy' => $score->accuracy(),
-            'mode' => $score instanceof ScoreModel ? $score->getMode() : null,
-            'mode_int' => $score instanceof ScoreModel ? Beatmap::modeInt($score->getMode()) : null,
             'mods' => $score->enabled_mods,
             'score' => $score->score,
             'max_combo' => $score->maxcombo,
             'perfect' => $score->perfect,
-            'replay' => $score->replay,
             'statistics' => [
                 'count_50' => $score->count50,
                 'count_100' => $score->count100,
@@ -62,6 +59,17 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'rank' => $score->rank === '0' ? null : $score->rank,
             'created_at' => json_time($score->date),
         ];
+
+        if ($score instanceof ScoreModel) {
+            $ret['mode'] = $score->getMode();
+            $ret['mode_int'] = Beatmap::modeInt($score->getMode());
+        }
+
+        if ($score instanceof ScoreBest) {
+            $ret['replay'] = $score->replay;
+        }
+
+        return $ret;
     }
 
     public function includeMultiplayer($score)

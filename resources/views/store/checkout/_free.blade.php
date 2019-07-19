@@ -17,7 +17,7 @@
 --}}
 <div class="big-button">
     <button type="button"
-            class="js-store-checkout-button btn-osu btn-osu-danger"
+            class="js-store-checkout-button btn-osu btn-osu-default"
             data-provider="free"
             data-order-id="{{ $order->order_id }}"
     >

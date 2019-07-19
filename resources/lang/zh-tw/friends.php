@@ -21,8 +21,15 @@
 return [
     'buttons' => [
       'add' => '新增好友',
-      'disabled' => '',
+      'disabled' => '好友',
       'remove' => '刪除好友',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => '主頁 :info',
+            'info' => '好友',
+        ],
     ],
 
     'state' => [

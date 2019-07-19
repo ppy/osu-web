@@ -33,6 +33,18 @@ return [
         ],
     ],
 
+    'authorized-clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
+    ],
+
     'login' => [
         'download' => 'Nhấp vào đây để tải trò chơi và tạo tài khoản',
         'label' => 'Đầu tiên, hãy đăng nhập vào tài khoản của bạn!',

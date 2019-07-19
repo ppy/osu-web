@@ -19,13 +19,6 @@
  */
 
 return [
-    'button' => [
-        'action' => [
-            'to_0' => 'Remover notificação',
-            'to_1' => 'Notificar',
-        ],
-    ],
-
     'index' => [
         'description' => 'Estas são as discussões de beatmap que você está acompanhando. Você será notificado quando o beatmap receber atualizações ou postagens novas.',
         'title_compact' => 'notificações de modding',

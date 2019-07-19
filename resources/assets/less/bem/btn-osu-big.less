@@ -26,11 +26,8 @@
 
   display: inline-block;
 
-  background-color: @blue-darker;
-  background-image: url('/images/backgrounds/buttonblue@2x.png');
-  background-size: cover;
-  background-position: 50% 50%;
-  transition: background-position 120ms;
+  background-color: @osu-colour-l2;
+  transition: background-color 120ms;
 
   padding: 5px;
   color: #fff;
@@ -41,34 +38,16 @@
   text-transform: none;
   white-space: nowrap;
 
-  &:focus {
-    color: #fff;
-    background-position: calc(50% - 10px) 50%;
-  }
-
-  &:hover {
-    color: #fff;
-    background-position: calc(50% - 20px) 50%;
-  }
-
+  &:focus,
+  &:hover,
   &:active {
     color: #fff;
-    background-position: calc(50% - 10px) 50%;
+    background-color: @osu-colour-l1;
   }
 
   &[disabled] {
-    &:hover,
-    &:focus,
-    &:active {
-      background-position: 50% 50%;
-    }
-
-    &::before {
-      .full-size();
-      content: ' ';
-      border-radius: inherit;
-      background-color: fade(#fff, 50%);
-    }
+    background-color: @osu-colour-b3;
+    color: @osu-colour-f1;
   }
 
   &--account-edit {
@@ -95,10 +74,6 @@
     margin: 0 5px 5px 0;
   }
 
-  &--beatmapset-header-square-unfavourite {
-    background-image: url('/images/backgrounds/buttonpink@2x.png');
-  }
-
   &--comment-editor {
     min-width: 80px;
     border-radius: 10000px;
@@ -106,7 +81,8 @@
   }
 
   &--comment-editor[disabled] {
-    opacity: 0.4;
+    background-color: @osu-colour-b5;
+    color: @osu-colour-f1;
 
     &::before {
       display: none;
@@ -118,6 +94,11 @@
     border-radius: 10000px;
     padding: 10px;
 
+    background-color: @osu-colour-h2;
+
+    &:hover {
+      background-color: @osu-colour-l3;
+    }
     @media @desktop {
       min-width: 130px;
       padding: 10px 20px;
@@ -148,6 +129,8 @@
     background-image: url("/images/backgrounds/button.svg");
     background-color: @blue-darker;
     background-size: 150%;
+    background-position: 50% 50%;
+    transition: background-position 120ms;
 
     flex: none;
     height: 50px;
@@ -155,6 +138,13 @@
     margin-bottom: 20px;
 
     flex-direction: column;
+
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: @blue-darker;
+      background-position: calc(50% - 20px) 50%;
+    }
   }
 
   &--mega {
@@ -186,7 +176,6 @@
     border-radius: (@btn-circle-diameter / 2);
     padding: 0 5px;
     height: @btn-circle-diameter;
-    background-image: none;
   }
 
   &--full {
@@ -238,13 +227,13 @@
   }
 
   &--activated, &.js-activated {
-    background-color: @blue;
-    color: #000;
+    background-color: @osu-colour-h2;
+    color: white;
 
     &:focus,
     &:hover,
     &:active {
-      color: #000;
+      color: white;
     }
   }
 

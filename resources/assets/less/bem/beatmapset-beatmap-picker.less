@@ -38,7 +38,7 @@
       .full-size();
       .default-border-radius();
       content: ' ';
-      background-color: fade(#000, 50%);
+      background-color: .osu-hsla(@osu-colour-b6, 0.5)[@hsla];
       width: calc(100% - @gutter);
       height: calc(100% - @gutter);
       top: (@gutter / 2);
@@ -55,7 +55,7 @@
 
       &::before {
         opacity: 1;
-        background-color: fade(#000, 50%);
+        background-color: .osu-hsla(@osu-colour-b6, 0.5)[@hsla];
       }
     }
   }

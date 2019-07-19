@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'osu! 이메일 주소 변경 확인',
         'update' => '변경',
@@ -84,6 +89,11 @@ return [
         'title' => '개인 정보',
         'friends_only' => '친구 목록에 없는 사람들이 보낸 개인 메시지를 차단하기',
         'hide_online' => '온라인 상태 숨기기',
+    ],
+
+    'notifications' => [
+        'title' => '알림',
+        'topic_auto_subscribe' => '당신이 만드는 새로운 포럼 주제에 대한 알림을 자동적으로 활성화합니다.',
     ],
 
     'security' => [

@@ -24,8 +24,8 @@
 
 @section('content')
     @include("store.header")
-    <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1">
-        <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
+    <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 osu-layout--store">
+        <div class="osu-layout__sub-row osu-layout__sub-row--lg1 osu-layout--store">
             <h1>Checkout</h1>
 
             @if (session()->has('checkout.error.message') || $hasErrors)
@@ -79,8 +79,8 @@
     </div>
 
     @if(!$order->requiresShipping() || $order->shipping)
-        <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row osu-layout__row--sm1">
-            <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
+        <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row osu-layout__row--sm1 osu-layout--store">
+            <div class="osu-layout__sub-row osu-layout__sub-row--lg1 osu-layout--store">
                 <h1>Select Payment Method</h1>
 
                 @if($checkout->isShippingDelayed() && $order->requiresShipping())

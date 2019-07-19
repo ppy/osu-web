@@ -17,7 +17,7 @@
  */
 
 .profile-cover-uploader {
-  border-top: 1px solid #555;
+  border-top: 1px solid @osu-colour-b5;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -38,5 +38,10 @@
 
   &__info-entry {
     margin-bottom: 5px;
+
+    // TODO: remove once default link style becomes... default
+    a {
+      .link-default();
+    }
   }
 }

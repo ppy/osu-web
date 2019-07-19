@@ -19,13 +19,6 @@
  */
 
 return [
-    'button' => [
-        'action' => [
-            'to_0' => 'Nicht mehr beobachten',
-            'to_1' => 'Beobachten',
-        ],
-    ],
-
     'index' => [
         'description' => 'Dies sind deine beobachteten Diskussionen. Du wirst über neue Beiträge und Updates informiert.',
         'title_compact' => 'beobachtete moddingthreads',

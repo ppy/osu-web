@@ -27,7 +27,7 @@ return [
     'list' => 'Danh Sách',
     'list_numbered' => 'Danh Sách Đánh Số',
     'size' => [
-        '_' => 'Cỡ Font',
+        '_' => 'Cỡ chữ',
         'tiny' => 'Rất Nhỏ',
         'small' => 'Nhỏ',
         'normal' => 'Vừa',

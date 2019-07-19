@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'потвърдете смяната на osu! имейла',
         'update' => 'обнови',
@@ -84,6 +89,11 @@ return [
         'title' => 'Поверителност',
         'friends_only' => 'Блокирай лични съобщения от хора с който не си приятел',
         'hide_online' => 'скриване на вашето онлайн присъствие',
+    ],
+
+    'notifications' => [
+        'title' => 'Известия',
+        'topic_auto_subscribe' => '',
     ],
 
     'security' => [

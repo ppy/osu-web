@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Lajiteltu:',
             'created_at' => 'Luomisaika',
             'timeline' => 'Aikajana',
             'updated_at' => 'Viimeisin päivitys',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Kaikki',
-        'ranked-approved' => 'Hyväksytyt & Vahvistetut',
         'approved' => 'Vahvistettu',
-        'qualified' => 'Esihyväksytty',
-        'loved' => 'Rakastettu',
-        'faves' => 'Suosikit',
-        'pending' => 'Vireillä & WIP',
+        'favourites' => '',
         'graveyard' => 'Hautausmaa',
-        'my-maps' => 'Omat kartat',
+        'leaderboard' => '',
+        'loved' => 'Rakastettu',
+        'mine' => '',
+        'pending' => 'Vireillä & WIP',
+        'qualified' => 'Esihyväksytty',
+        'ranked' => '',
     ],
     'genre' => [
         'any' => 'Kaikki',

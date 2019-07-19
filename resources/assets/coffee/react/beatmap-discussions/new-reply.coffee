@@ -34,6 +34,7 @@ export class NewReply extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @box = React.createRef()
     @throttledPost = _.throttle @post, 1000
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
 
@@ -74,7 +75,7 @@ export class NewReply extends React.PureComponent
             onChange: @setMessage
             onKeyDown: @handleKeyDown
             placeholder: osu.trans 'beatmaps.discussions.reply_placeholder'
-            innerRef: (el) => @box = el
+            ref: @box
 
       div
         className: "#{bn}__footer #{bn}__footer--notice"
@@ -144,7 +145,7 @@ export class NewReply extends React.PureComponent
       return
 
     @setState editing: true, =>
-      @box?.focus()
+      @box.current?.focus()
 
 
   handleKeyDownCallback: (type, event) =>

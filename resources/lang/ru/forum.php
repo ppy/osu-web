@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited пост|:count_delimited поста|:count_delimited постов',
+            'topic_starter' => 'Автор темы',
         ],
     ],
 

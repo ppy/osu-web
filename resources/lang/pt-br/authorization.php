@@ -144,6 +144,9 @@ return [
                 'uneditable' => 'Capa especificada inválida.',
                 'not_owner' => 'Somente o dono pode editar a capa.',
             ],
+            'store' => [
+                'forum_not_allowed' => 'Este fórum não aceita capas de tópicos.',
+            ],
         ],
 
         'view' => [

@@ -26,8 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Hai raggiunto il limite di nominazioni per questa giornata, per favore riprova domani.',
-            'full_bn_required' => '',
-            'full_bn_required_hybrid' => '',
+            'full_bn_required' => 'Devi essere un\'nominatore completo per eseguire questa nomina qualificante.',
+            'full_bn_required_hybrid' => 'Devi essere un nominatore completo per nominare set beatmap con più di una modalità di gioco.',
             'incorrect_state' => 'Errore nel eseguire l\'azione, prova a ricaricare la pagina.',
             'owner' => "Non puoi nominare la tua beatmap.",
         ],
@@ -143,6 +143,9 @@ return [
             'edit' => [
                 'uneditable' => 'La cover specificata non è valida.',
                 'not_owner' => 'Solo l\'autore può modificare la cover.',
+            ],
+            'store' => [
+                'forum_not_allowed' => 'Questo forum non accetta copertine di argomento.',
             ],
         ],
 

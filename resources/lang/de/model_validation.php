@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Das Antworten auf den gelöschten Kommentar ist nicht erlaubt.',
     ],
 
+    'follow' => [
+        'invalid' => 'Ungültiges :attribute angegeben.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Du kannst nur auf Featurewünsche abstimmen.',

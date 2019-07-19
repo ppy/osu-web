@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Törölt hozzászólásokra nem lehet válaszolni.',
     ],
 
+    'follow' => [
+        'invalid' => '',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Csak jövőbeli feature-re lehet szavazni.',

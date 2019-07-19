@@ -36,7 +36,7 @@ return [
         'advanced_link' => 'Pencarian lanjutan',
         'button' => 'Cari',
         'empty_result' => 'Tidak ditemukan!',
-        'missing_query' => 'Kata kunci pencarian harus mengandung setidaknya :n karakter',
+        'keyword_required' => 'Kata kunci pencarian diperlukan',
         'placeholder' => 'ketik untuk mencari',
         'title' => 'Pencarian',
 

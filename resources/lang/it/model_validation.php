@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Non è permesso rispondere ad un commento eliminato.',
     ],
 
+    'follow' => [
+        'invalid' => ':attribute specificato invalido.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Puoi votare solamente una richiesta di feature.',
@@ -74,7 +78,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Non è permesso avere un\'opzione duplicata.',
             'grace_period_expired' => 'Non è possibile modificare un sondaggio dopo :limit ore',
-            'hiding_results_forever' => '',
+            'hiding_results_forever' => 'Non è possibile nascondere i risultati di un sondaggio che non finisce mai.',
             'invalid_max_options' => 'Le opzioni per utente non possono superare il numero di opzioni disponibili.',
             'minimum_one_selection' => 'È richiesto un minimo di un\'opzione per utente.',
             'minimum_two_options' => 'È necessario almeno due opzioni.',
@@ -112,7 +116,7 @@ return [
         'too_long' => 'Lunghezza massima superata - può essere solo fino a :limit caratteri.',
 
         'change_username' => [
-            'restricted' => '',
+            'restricted' => 'Non puoi cambiare il tuo nome utente mentre sei limitato.',
             'supporter_required' => [
                 '_' => 'Devi essere :link per cambiare il tuo nome!',
                 'link_text' => 'osu! sostenuto',

@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => 'OAuth',
+        'authorized_clients' => 'authorized clients',
+    ],
+
     'update_email' => [
         'email_subject' => 'osu! email change confirmation',
         'update' => 'update',

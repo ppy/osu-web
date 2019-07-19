@@ -24,11 +24,10 @@
   line-height: 1.5;
 
   a {
-    .@{_top}--profile-page& {
-      color: @blue;
-      .link-hover({
-        color: @blue-light;
-      });
+    .link-default();
+
+    .forum-post-content & {
+      .link-old();
     }
   }
 
@@ -42,6 +41,11 @@
   // heading tag
   h2 {
     font-size: @font-size--forum-post-heading;
+    color: @osu-colour-l1;
+
+    .forum-post-content & {
+      color: @osu-colour-h2;
+    }
   }
 
   // quote tag
@@ -78,10 +82,12 @@
   // overrides bootstrap styling for [notice]
   .well {
     margin: 0;
+    background: @osu-colour-b6;
+    border: none;
 
-    .@{_top}--profile-page& {
-      background-color: #333;
-      border-color: #444;
+    .forum-post-content & {
+      background: #eee;
+      border: 1px solid #ddd;
     }
   }
 

@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => '정렬 기준:',
             'created_at' => '만든 날짜',
             'timeline' => '타임라인',
             'updated_at' => '마지막 업데이트',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => '모두',
-        'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
-        'qualified' => 'Qualified',
-        'loved' => 'Loved',
-        'faves' => '즐겨찾기',
-        'pending' => '보류 중 & 작업 중',
+        'favourites' => '',
         'graveyard' => 'Graveyard',
-        'my-maps' => '내 비트맵',
+        'leaderboard' => '',
+        'loved' => 'Loved',
+        'mine' => '',
+        'pending' => '보류 중 & 작업 중',
+        'qualified' => 'Qualified',
+        'ranked' => '',
     ],
     'genre' => [
         'any' => '모두',

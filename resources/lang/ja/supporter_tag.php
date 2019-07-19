@@ -22,7 +22,7 @@ return [
     'months' => '数ヶ月分',
 
     'user_search' => [
-        'searching' => '検索中・・・',
+        'searching' => '検索中...',
         'not_found' => "このユーザーは存在しません",
     ],
 ];

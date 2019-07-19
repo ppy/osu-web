@@ -129,7 +129,7 @@
     display: none;
     margin-top: 5px;
     width: 100%;
-    color: @yellow;
+    color: @osu-colour-h1;
     padding-left: 10px;
 
     @media @desktop {
@@ -148,7 +148,7 @@
     flex: 1;
     max-width: @input-width;
     align-self: stretch;
-    background-color: #444;
+    background-color: @osu-colour-b3;
     border: 2px solid transparent;
     color: #fff;
     font-weight: normal;
@@ -163,7 +163,7 @@
     }
 
     &:focus {
-      border-color: @yellow;
+      border-color: @osu-colour-l1;
     }
 
     .@{top}[data-form-error-state=error] & {
@@ -181,6 +181,7 @@
     padding-bottom: 5px;
     order: -1;
     font-weight: bold;
+    color: @osu-colour-f1;
 
     @media @desktop {
       align-self: center;
@@ -195,7 +196,7 @@
     }
 
     *:focus ~ & {
-      color: #fff;
+      color: @osu-colour-l1;
     }
   }
 

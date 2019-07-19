@@ -44,7 +44,7 @@ trait UserTrait
 
         $values['is_old'] = $this->isOld();
 
-        $values['previous_usernames'] = $this->previousUsernames(true)->unique();
+        $values['previous_usernames'] = $this->previousUsernames(true)->unique()->values();
 
         return $values;
     }

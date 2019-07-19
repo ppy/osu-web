@@ -29,7 +29,6 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Laravel\Passport\Exceptions\MissingScopeException;
-use Sentry;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
@@ -139,10 +138,6 @@ class Handler extends ExceptionHandler
 
     private function reportWithSentry($e)
     {
-        $extra = [
-            'http_code' => $this->statusCode($e),
-        ];
-
         if (Auth::check()) {
             $userContext = [
                 'id' => Auth::user()->user_id,
@@ -154,9 +149,12 @@ class Handler extends ExceptionHandler
             ];
         }
 
-        Sentry::user_context($userContext);
+        app('sentry')->configureScope(function ($scope) use ($e, $userContext) {
+            $scope->setUser($userContext);
+            $scope->setTag('http_code', (string) $this->statusCode($e));
+        });
 
-        $ref = Sentry::captureException($e, compact('extra'));
+        $ref = app('sentry')->captureException($e);
 
         view()->share('ref', $ref);
     }

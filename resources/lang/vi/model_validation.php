@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Không cho phép trả lời bình luận đã xóa.',
     ],
 
+    'follow' => [
+        'invalid' => '',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Chỉ có thể bầu chọn một feature request.',

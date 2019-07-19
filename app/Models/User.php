@@ -388,14 +388,35 @@ class User extends Model implements AuthenticatableContract
 
     public function getUsernameAvailableAt() : Carbon
     {
-        if ($this->group_id !== 2 || $this->user_type === 1) {
+        $playCount = $this->playCount();
+
+        if ($this->group_id !== 2) {
             //reserved usernames
-            return Carbon::now()->addYears(10);
+            return Carbon::now()->addYears(10);  //This will always be in the future, which is wanted
         }
 
+        if ($this->user_type === 1) {
+            $minDays = 0;
+            $expMod = 0.35;
+            $linMod = 0.75;
+        } else {
+            $minDays = static::INACTIVE_DAYS;
+            $expMod = 1;
+            $linMod = 1;
+        }
+
+        // This is a exponential decay function with the identity 1-e^{-$playCount}.
+        // The constant multiplier of 1580 causes the formula to flatten out at around 1580 days (~4.3 years).
+        // $playCount is then divided by the constant value 5900 causing it to flatten out at about 40,000 plays.
+        // A linear bonus of $playCount * 8 / 5900 is added to reward long-term players.
+        // Furthermore, when the user is restricted, the exponential decay function and the linear bonus are lowered.
+        // An interactive graph of the formula can be found at https://www.desmos.com/calculator/s7bxytxbbt
+
         return $this->user_lastvisit
-            ->addDays(static::INACTIVE_DAYS) //base inactivity period for all accounts
-            ->addDays($this->playCount() * 0.75);    //bonus based on playcount
+                ->addDays(intval(
+                    $minDays +
+                    1580 * (1 - pow(M_E, $playCount * $expMod * -1 / 5900)) +
+                    ($playCount * $linMod * 8 / 5900)));
     }
 
     public function validateChangeUsername(string $username, string $type = 'paid')

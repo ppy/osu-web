@@ -23,8 +23,8 @@ return [
     'deleted_count' => '',
     'edited' => 'editat :timeago de :user',
     'empty' => 'Niciun comentariu încă.',
+    'load_replies' => '',
     'replies' => 'Răspunsuri',
-    'show_replies' => 'arată răspunsurile',
     'title' => 'Comentarii',
 
     'commentable_name' => [

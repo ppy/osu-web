@@ -59,6 +59,11 @@ return [
         'show_more' => 'mostrar más',
         'show_more_options' => 'mostrar más opciones',
         'upload_image' => 'subir imagen',
+
+        'watch' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count minuto|:count minutos',
         'months' => ':count mes|:count meses',
         'second_short_unit' => 'seg|segs',
+        'update' => '',
         'years' => ':count año|:count años',
     ],
 

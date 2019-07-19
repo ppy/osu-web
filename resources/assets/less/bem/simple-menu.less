@@ -27,8 +27,7 @@
   .own-layer();
   .default-box-shadow();
   border-radius: @_border-radius;
-  background-color: #333;
-  color: #999;
+  background-color: @osu-colour-b6;
   padding: @_padding-vertical @_gutter;
   display: flex;
   flex-direction: column;
@@ -71,7 +70,6 @@
     .own-layer();
     will-change: transform, opacity;
     transition: none;
-    background-color: #222;
     border-radius: @border-radius-large;
   }
 
@@ -162,7 +160,7 @@
         left: 10px;
         width: 3px;
         height: calc(100% - (@_item-padding-vertical * 2 + 4px));
-        background-color: @yellow;
+        background-color: @osu-colour-h1;
       }
     }
 
@@ -179,8 +177,12 @@
     flex: none;
 
     &:hover {
-      background-color: #111;
+      background-color: @osu-colour-b5;
       .highlight-stripe();
+
+      .@{_top}--nav2-transparent & {
+        background-color: @osu-colour-b6;
+      }
     }
 
     &--active {

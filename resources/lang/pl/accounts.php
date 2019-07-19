@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'potwierdź zmianę adresu e-mail',
         'update' => 'zaktualizuj',
@@ -84,6 +89,11 @@ return [
         'title' => 'Prywatność',
         'friends_only' => 'blokuj prywatne wiadomości od osób spoza listy znajomych',
         'hide_online' => 'ukryj swoją obecność online',
+    ],
+
+    'notifications' => [
+        'title' => 'Powiadomienia',
+        'topic_auto_subscribe' => 'automatycznie włączaj powiadomienia dla twoich wątków na forum',
     ],
 
     'security' => [

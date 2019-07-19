@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Gick med :date',
         'lastvisit' => 'Senast sedd :date',
+        'lastvisit_online' => '',
         'missingtext' => 'Du kanske har stavat fel! (eller så är användaren bannad)',
         'origin_country' => 'Från :country',
         'page_description' => 'osu! - Allting du någonsin hade velat veta om :username!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Total Poäng',
         ],
     ],
+
     'status' => [
+        'all' => '',
         'online' => 'Online',
         'offline' => 'Offline',
     ],
