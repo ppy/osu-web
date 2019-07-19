@@ -328,8 +328,9 @@
 
   transChoice: (key, count, replacements = {}, locale) ->
     locale ?= currentLocale
+    isFallbackLocale = locale == fallbackLocale
 
-    if !osu.transExists(key, locale)
+    if !isFallbackLocale && !osu.transExists(key, locale)
       return osu.transChoice(key, count, replacements, fallbackLocale)
 
     initialLocale = Lang.getLocale()
@@ -348,7 +349,7 @@
 
     Lang.setLocale initialLocale if initialLocale?
 
-    if !translated? && locale != fallbackLocale
+    if !isFallbackLocale && !translated?
       delete replacements.count_delimited
 
       return osu.transChoice(key, count, replacements, fallbackLocale)
