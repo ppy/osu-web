@@ -72,14 +72,12 @@
             <dd class="contest">
                 <div class="contest__description">{!! markdown($contest->description_enter) !!}</div>
             </dd>
-            <br />
-            <dt class="admin-contest__meta-row">Voting Description</dt>
+            <dt class="admin-contest__meta-row"><br />Voting Description</dt>
             <dd class="contest">
                 <div class="contest__description">{!! markdown($contest->description_voting) !!}</div>
             </dd>
             @if ($contest->extra_options !== null)
-                <br />
-                <dt class="admin-contest__meta-row">Extra Options</dt>
+                <dt class="admin-contest__meta-row"><br />Extra Options</dt>
                 <dd><pre>{{json_encode($contest->extra_options, JSON_PRETTY_PRINT)}}</pre></dd>
             @endif
         </dl>
