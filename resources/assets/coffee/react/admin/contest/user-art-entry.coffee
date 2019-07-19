@@ -49,6 +49,6 @@ export class UserArtEntry extends React.Component
         a download: @props.entry.original_filename, href: @props.entry.url,
           img className: 'img-responsive admin-contest-entry__thumbnail', src: @props.entry.thumb
 
-      td className: 'osu-table__cell admin-contest-entry__column admin-contest-entry__column--button',
+      td className: 'admin-contest-entry__column admin-contest-entry__column--button',
         el UserEntryDeleteButton,
           entry: @props.entry

@@ -45,6 +45,6 @@ export class UserEntry extends React.Component
       td className: 'osu-table__cell admin-contest-entry__column',
           osu.formatBytes(@props.entry.filesize)
 
-      td className: 'osu-table__cell admin-contest-entry__column admin-contest-entry__column--button',
+      td className: 'admin-contest-entry__column admin-contest-entry__column--button',
         el UserEntryDeleteButton,
           entry: @props.entry
