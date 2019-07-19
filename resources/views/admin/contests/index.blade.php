@@ -21,7 +21,7 @@
 
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page">
+    <div class="osu-layout__row osu-layout__row--page-admin">
         <h1>Contests</h1>
 
         <ul>
