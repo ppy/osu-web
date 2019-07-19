@@ -1336,15 +1336,15 @@ function section_to_hue_map($section): int
         'orange' => 46,
         'green' => 115,
         'purple' => 255,
-        'blue' => 230,
+        'blue' => 200,
     ];
 
     static $sectionMapping = [
         'admin' => 'red',
         'admin-forum' => 'red',
         'admin-store' => 'red',
-        'beatmaps' => 'pink',
-        'beatmapsets' => 'pink',
+        'beatmaps' => 'blue',
+        'beatmapsets' => 'blue',
         'community' => 'pink',
         'error' => 'pink',
         'help' => 'orange',
