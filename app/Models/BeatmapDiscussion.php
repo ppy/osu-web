@@ -262,6 +262,11 @@ class BeatmapDiscussion extends Model
         $maxChange = $targetKudosu - $kudosuGranted;
         $change = min($availableKudosu, $maxChange);
 
+        // This should only happen when the rule is changed so always assume recalculation.
+        if (abs($change) > 1) {
+            $event = 'recalculate';
+        }
+
         if ($change === 0) {
             return;
         }
