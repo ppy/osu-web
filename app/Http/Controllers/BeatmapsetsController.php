@@ -51,7 +51,7 @@ class BeatmapsetsController extends Controller
 
     public function index()
     {
-        $beatmaps = $this->search();
+        $beatmaps = $this->getSearchResponse();
 
         $filters = BeatmapsetSearchRequestParams::getAvailableFilters();
 
@@ -105,34 +105,9 @@ class BeatmapsetsController extends Controller
 
     public function search()
     {
-        $params = new BeatmapsetSearchRequestParams(request(), Auth::user());
-        $search = (new BeatmapsetSearch($params))->source(false);
+        $response = $this->getSearchResponse();
 
-        $records = datadog_timing(function () use ($params, $search) {
-            $ids = $params->fetchCacheable(
-                'search-cache:',
-                config('osu.beatmapset.es_cache_duration'),
-                function () use ($search) {
-                    return $search->response()->ids();
-                }
-            );
-
-            return Beatmapset::whereIn('beatmapset_id', $ids)
-                ->orderByField('beatmapset_id', $ids)
-                ->with('beatmaps')
-                ->get();
-        }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
-
-        return [
-            'beatmapsets' => json_collection(
-                $records,
-                new BeatmapsetTransformer,
-                'beatmaps'
-            ),
-            'cursor' => $search->getSortCursor(),
-            'recommended_difficulty' => $params->getRecommendedDifficulty(),
-            'total' => $search->count(),
-        ];
+        return response($response, is_null($response['error']) ? 200 : 504);
     }
 
     public function discussion($id)
@@ -311,6 +286,39 @@ class BeatmapsetsController extends Controller
         return [
           'favcount' => $beatmapset->fresh()->favourite_count,
           'favourited' => $user->fresh()->hasFavourited($beatmapset),
+        ];
+    }
+
+    private function getSearchResponse()
+    {
+        $params = new BeatmapsetSearchRequestParams(request(), Auth::user());
+        $search = (new BeatmapsetSearch($params))->source(false);
+
+        $records = datadog_timing(function () use ($params, $search) {
+            $ids = $params->fetchCacheable(
+                'search-cache:',
+                config('osu.beatmapset.es_cache_duration'),
+                function () use ($search) {
+                    return $search->response()->ids();
+                }
+            );
+
+            return Beatmapset::whereIn('beatmapset_id', $ids)
+                ->orderByField('beatmapset_id', $ids)
+                ->with('beatmaps')
+                ->get();
+        }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
+
+        return [
+            'beatmapsets' => json_collection(
+                $records,
+                new BeatmapsetTransformer,
+                'beatmaps'
+            ),
+            'cursor' => $search->getSortCursor(),
+            'recommended_difficulty' => $params->getRecommendedDifficulty(),
+            'error' => search_error_message($search->getError()),
+            'total' => $search->count(),
         ];
     }
 }
