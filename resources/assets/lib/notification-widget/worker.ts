@@ -167,9 +167,9 @@ export default class Worker {
       endpoint = `${protocol}//${window.location.host}${endpoint}`;
     }
     this.ws = new WebSocket(`${endpoint}?csrf=${token}`);
-    this.ws.onopen = () => this.refresh();
-    this.ws.onclose = this.delayedConnectWebSocket;
-    this.ws.onmessage = this.handleNewEvent;
+    this.ws.addEventListener('open', () => this.refresh());
+    this.ws.addEventListener('close', this.delayedConnectWebSocket);
+    this.ws.addEventListener('message', this.handleNewEvent);
   }
 
   delayedConnectWebSocket = () => {
