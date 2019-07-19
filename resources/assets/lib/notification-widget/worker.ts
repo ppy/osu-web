@@ -258,8 +258,7 @@ export default class Worker {
   }
 
   markRead = (ids: number[]) => {
-    // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
-    for (let id of ids) {
+    for (const id of ids) {
       const item = this.items.get(id);
 
       if (item == null || !item.isRead) {
