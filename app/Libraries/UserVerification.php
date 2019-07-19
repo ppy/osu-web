@@ -71,7 +71,7 @@ class UserVerification
                 ),
             ], 401);
         } else {
-            return response()->view('users.verify');
+            return response()->view('users.verify', compact('email'));
         }
     }
 

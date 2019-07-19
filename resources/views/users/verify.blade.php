@@ -36,5 +36,5 @@
 @endsection
 
 @section('user-verification-box')
-    @include('users._verify_box', ['email' => Auth::user()->user_email])
+    @include('users._verify_box', compact('email'))
 @endsection
