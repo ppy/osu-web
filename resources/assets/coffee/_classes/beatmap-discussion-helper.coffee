@@ -128,10 +128,6 @@ class @BeatmapDiscussionHelper
       suggestion: ['far', '&#xf111;']
 
 
-  @moderationGroup: (user) =>
-    _.intersection(_.concat(user.default_group, user.groups), ['nat', 'bng', 'bng_limited'])[0]
-
-
   @previewMessage = (message) =>
     if message.length > @MAX_MESSAGE_PREVIEW_LENGTH
       _.chain(message)
