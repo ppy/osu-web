@@ -262,13 +262,13 @@ class BeatmapDiscussion extends Model
         $maxChange = $targetKudosu - $kudosuGranted;
         $change = min($availableKudosu, $maxChange);
 
+        if ($change === 0) {
+            return;
+        }
+
         // This should only happen when the rule is changed so always assume recalculation.
         if (abs($change) > 1) {
             $event = 'recalculate';
-        }
-
-        if ($change === 0) {
-            return;
         }
 
         DB::transaction(function () use ($change, $event, $eventExtraData, $currentVotes) {
