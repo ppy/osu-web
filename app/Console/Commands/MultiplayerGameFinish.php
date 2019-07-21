@@ -2,8 +2,9 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Models\Multiplayer\Game;
+use Carbon\Carbon;
+use Illuminate\Console\Command;
 
 class MultiplayerGameFinish extends Command
 {
@@ -39,18 +40,19 @@ class MultiplayerGameFinish extends Command
     public function handle()
     {
         if (config('app.debug') === false) {
-            $this->error("This command can only be run in debug environments.");
+            $this->error('This command can only be run in debug environments.');
         }
 
-        $game = Game::find($this->argument("gameId"));
+        $game = Game::find($this->argument('gameId'));
 
         if ($game === null) {
-            $this->error("No game with this id found!");
+            $this->error('No game with this id found!');
+
             return;
         }
 
         if (!$game->end_time) {
-            $game->end_time = \Carbon\Carbon::now();
+            $game->end_time = Carbon::now();
             $game->save();
         }
     }

@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Models\Multiplayer;
 use App\Models\User;
+use Illuminate\Console\Command;
 
 class MultiplayerEventCreate extends Command
 {
@@ -40,35 +40,35 @@ class MultiplayerEventCreate extends Command
     public function handle()
     {
         if (config('app.debug') === false) {
-            $this->error("This command can only be run in debug environments.");
+            $this->error('This command can only be run in debug environments.');
         }
 
-        if (array_search_null($this->option("type"), ["create", "disband", "join", "part", "game"]) === null) {
-            $this->error("Invalid event type provided!");
-            $this->info("Available event types: create, disband, join, part, game.");
+        if (array_search_null($this->option('type'), ['create', 'disband', 'join', 'part', 'game']) === null) {
+            $this->error('Invalid event type provided!');
+            $this->info('Available event types: create, disband, join, part, game.');
 
             return;
         }
 
-        $match = Multiplayer\Match::find($this->argument("matchId"));
+        $match = Multiplayer\Match::find($this->argument('matchId'));
 
         if ($match === null) {
-            $this->error("No match with this id found!");
+            $this->error('No match with this id found!');
 
             return;
         }
 
-        $event = factory(Multiplayer\Event::class)->states($this->option("type"))->make([
-            "match_id" => $match->match_id,
-            "user_id" => User::inRandomOrder()->first()->user_id,
+        $event = factory(Multiplayer\Event::class)->states($this->option('type'))->make([
+            'match_id' => $match->match_id,
+            'user_id' => User::inRandomOrder()->first()->user_id,
         ]);
 
-        if ($this->option("type") === "game") {
-            $game = factory(Multiplayer\Game::class)->states("in_progress")->create([
-                "match_id" => $match->match_id,
+        if ($this->option('type') === 'game') {
+            $game = factory(Multiplayer\Game::class)->states('in_progress')->create([
+                'match_id' => $match->match_id,
             ]);
 
-            $event->text = "test game";
+            $event->text = 'test game';
             $event->game_id = $game->game_id;
             $this->info("Game id: {$game->game_id}");
         }

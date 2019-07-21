@@ -2,10 +2,9 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-
 use App\Models\Multiplayer;
 use App\Models\User;
+use Illuminate\Console\Command;
 
 class MultiplayerMatchCreate extends Command
 {
@@ -41,7 +40,7 @@ class MultiplayerMatchCreate extends Command
     public function handle()
     {
         if (config('app.debug') === false) {
-            $this->error("This command can only be run in debug environments.");
+            $this->error('This command can only be run in debug environments.');
         }
 
         $match = factory(Multiplayer\Match::class)->create();
