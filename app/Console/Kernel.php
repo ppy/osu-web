@@ -70,6 +70,11 @@ class Kernel extends ConsoleKernel
 
         Commands\UserBestScoresCheckCommand::class,
         Commands\UserRecalculateRankCounts::class,
+
+        // mp lobby debug stuff
+        Commands\MultiplayerMatchCreate::class,
+        Commands\MultiplayerEventCreate::class,
+        Commands\MultiplayerGameFinish::class,
     ];
 
     /**
