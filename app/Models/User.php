@@ -1490,7 +1490,7 @@ class User extends Model implements AuthenticatableContract
             return pow($stats->rank_score, 0.4) * 0.195;
         }
 
-        return 0.0;
+        return 1.0;
     }
 
     public function refreshForumCache($forum = null, $postsChangeCount = 0)
