@@ -81,7 +81,7 @@ export class Content extends React.PureComponent
         ref: @eventsRef
         for event, i in @props.events
           if event.detail.type == 'other'
-            continue if !event.game? || (!event.game.end_time? && event.id != @props.lastGameId)
+            continue if !event.game? || (!event.game.end_time? && event.game.game_id != @props.currentGameId)
 
             div
               className: 'mp-history-events__game'
