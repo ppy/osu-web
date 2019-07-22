@@ -149,6 +149,6 @@ return [
         'order_item' => [
             'quantity' => 'Quantity',
             'cost' => 'Cost',
-        ]
-    ]
+        ],
+    ],
 ];
