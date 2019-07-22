@@ -137,9 +137,12 @@ export default class Worker {
 
   boot = () => {
     this.active = this.userId != null;
-    this.updatePmNotification();
-    this.loadMore();
-    $(document).on('turbolinks:load', this.updatePmNotification);
+
+    if (this.active) {
+      this.updatePmNotification();
+      this.loadMore();
+      $(document).on('turbolinks:load', this.updatePmNotification);
+    }
   }
 
   connectWebSocket = () => {
