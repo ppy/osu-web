@@ -62,7 +62,12 @@ trait UserScoreable
                 ],
             ]);
 
-        return $search->response();
+        $response = $search->response();
+        if ($search->getError() !== null) {
+            throw $search->getError();
+        }
+
+        return $response;
     }
 
     public function beatmapBestScoreIds(string $mode, int $size)
