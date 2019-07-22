@@ -181,7 +181,7 @@ export default class Worker {
     this.timeout.connectWebSocket = window.setTimeout(() => {
       this.needsRefresh = true;
       this.connectWebSocket();
-    }, 10000);
+    }, random(5000, 20000));
   }
 
   delayedRetryInitialLoadMore = () => {
