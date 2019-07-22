@@ -200,6 +200,7 @@ export default class Worker {
 
     if (this.ws != null) {
       this.ws.close();
+      this.ws = null;
     }
 
     $(document).off('turbolinks:load', this.updatePmNotification);
