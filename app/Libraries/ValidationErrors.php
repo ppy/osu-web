@@ -41,7 +41,7 @@ class ValidationErrors
         }
         $rawMessage = $this->keyBase.$rawMessage;
 
-        $params['attribute'] = $column;
+        $params['attribute'] = trans($this->keyBase.$this->prefix.'.'.$column);
 
         $this->errors[$column][] = trans($rawMessage, $params);
 
