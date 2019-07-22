@@ -54,3 +54,8 @@ osu!api requires a valid token to be included with all API requests in a header 
 <aside class="notice">
 You must replace <code>@{{token}}</code> with your OAuth2 token.
 </aside>
+
+# Changelog
+
+## 2019-07-18
+- `UserTransformer` now returns counts directly as primitives instead of numbers wrapped in an array.
