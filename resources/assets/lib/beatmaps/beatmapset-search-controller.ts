@@ -134,22 +134,17 @@ export class BeatmapsetSearchController {
       state: from === 0 ? 'searching' : 'paging',
     };
 
+    let error: any;
     try {
       await this.beatmapsetSearch.get(this.filters, from);
-
-      runInAction(() => {
-        this.searchStatus = { state: 'completed', error: null, from, restore };
-        this.currentResultSet = this.beatmapsetSearch.getResultSet(this.filters);
-      });
-    } catch (error) {
-      runInAction(() => {
-        if (error.readyState !== 0) {
-          this.searchStatus = { state: 'completed', error, from, restore };
-        } else {
-          this.searchStatus = { state: 'completed', error: null, from, restore };
-        }
-      });
+    } catch (searchError) {
+      error = searchError.readyState !== 0 ? searchError : null;
     }
+
+    runInAction(() => {
+      this.searchStatus = { state: 'completed', error, from, restore };
+      this.currentResultSet = this.beatmapsetSearch.getResultSet(this.filters);
+    });
   }
 
   @action
