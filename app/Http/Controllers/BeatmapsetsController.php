@@ -289,17 +289,45 @@ class BeatmapsetsController extends Controller
         ];
     }
 
+    private function fetchCachable(
+        BeatmapsetSearch $search,
+        BeatmapsetSearchRequestParams $params,
+        ?string $prefix,
+        float $duration,
+        callable $transform
+        )
+    {
+        if (!$params->isCacheable()) {
+            $transform($search->response());
+        }
+
+        $key = "{$prefix}{$params->getCacheKey()}";
+        $value = \Cache::get($key);
+        if ($value !== null) {
+            return $value;
+        }
+
+        $value = $transform($search->response());
+        if ($search->isCacheable()) {
+            \Cache::put($key, $value, $duration);
+        }
+
+        return $value;
+    }
+
     private function getSearchResponse()
     {
         $params = new BeatmapsetSearchRequestParams(request(), Auth::user());
         $search = (new BeatmapsetSearch($params))->source(false);
 
         $records = datadog_timing(function () use ($params, $search) {
-            $ids = $params->fetchCacheable(
+            $ids = $this->fetchCachable(
+                $search,
+                $params,
                 'search-cache:',
                 config('osu.beatmapset.es_cache_duration'),
-                function () use ($search) {
-                    return $search->response()->ids();
+                function ($response) {
+                    return $response->ids();
                 }
             );
 

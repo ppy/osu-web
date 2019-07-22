@@ -140,6 +140,13 @@ abstract class Search extends HasSearch implements Queryable
         }
     }
 
+    public function isCacheable() : bool
+    {
+        return $this->params->isCacheable()
+            && $this->response !== null
+            && $this->error === null;
+    }
+
     /**
      * Returns if the total number of results found is greater than the allowed limit.
      *
