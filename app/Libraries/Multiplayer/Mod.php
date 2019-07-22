@@ -48,6 +48,7 @@ class Mod
     const OSU_TRANSFORM = 'TR';
     const OSU_WIGGLE = 'WG';
     const OSU_GROW = 'GR';
+    const OSU_DELFATE = 'DF';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -124,6 +125,10 @@ class Mod
             self::OSU_TRANSFORM,
             self::OSU_WIGGLE,
         ],
+        [
+            self::OSU_GROW,
+            self::OSU_DEFLATE,
+        ],
     ];
 
     // Mapping of valid mods per ruleset
@@ -143,6 +148,7 @@ class Mod
                         self::OSU_TRANSFORM,
                         self::OSU_WIGGLE,
                         self::OSU_GROW,
+                        self::OSU_DEFLATE,
                     ]
                 ),
 
