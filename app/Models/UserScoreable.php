@@ -84,7 +84,6 @@ trait UserScoreable
     {
         // aggregations do not support regular pagination.
         // always fetching 100 to cache; we're not supporting beyond 100, either.
-        // TODO: combine/extract with SearchParams::fetchCacheable
         $key = "search-cache:beatmapBestScores:{$this->getKey()}:{$mode}";
         $ids = Cache::remember($key, config('osu.scores.es_cache_duration'), function () use ($mode) {
             return $this->beatmapBestScoreIds($mode, 100);

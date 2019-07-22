@@ -23,7 +23,7 @@ namespace App\Http\Controllers;
 use App\Jobs\BeatmapsetDelete;
 use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Libraries\CommentBundle;
-use App\Libraries\Search\BeatmapsetSearch;
+use App\Libraries\Search\BeatmapsetSearchCached;
 use App\Libraries\Search\BeatmapsetSearchRequestParams;
 use App\Models\BeatmapDownload;
 use App\Models\BeatmapMirror;
@@ -289,52 +289,13 @@ class BeatmapsetsController extends Controller
         ];
     }
 
-    private function fetchCachable(
-        BeatmapsetSearch $search,
-        BeatmapsetSearchRequestParams $params,
-        ?string $prefix,
-        float $duration,
-        callable $transform
-        )
-    {
-        if (!$params->isCacheable()) {
-            $transform($search->response());
-        }
-
-        $key = "{$prefix}{$params->getCacheKey()}";
-        $value = \Cache::get($key);
-        if ($value !== null) {
-            return $value;
-        }
-
-        $value = $transform($search->response());
-        if ($search->isCacheable()) {
-            \Cache::put($key, $value, $duration);
-        }
-
-        return $value;
-    }
-
     private function getSearchResponse()
     {
         $params = new BeatmapsetSearchRequestParams(request(), Auth::user());
-        $search = (new BeatmapsetSearch($params))->source(false);
+        $search = (new BeatmapsetSearchCached($params));
 
-        $records = datadog_timing(function () use ($params, $search) {
-            $ids = $this->fetchCachable(
-                $search,
-                $params,
-                'search-cache:',
-                config('osu.beatmapset.es_cache_duration'),
-                function ($response) {
-                    return $response->ids();
-                }
-            );
-
-            return Beatmapset::whereIn('beatmapset_id', $ids)
-                ->orderByField('beatmapset_id', $ids)
-                ->with('beatmaps')
-                ->get();
+        $records = datadog_timing(function () use ($search) {
+            return $search->records();
         }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
 
         return [
