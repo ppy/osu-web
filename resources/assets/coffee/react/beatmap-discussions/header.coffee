@@ -113,6 +113,7 @@ export class Header extends React.PureComponent
           div
             className: "#{bn}__filter-group #{bn}__filter-group--stats"
             el UserFilter,
+              ownerId: @props.beatmapset.user_id
               selectedUser: if @props.selectedUserId? then @props.users[@props.selectedUserId] else null
               users: @props.discussionStarters
 

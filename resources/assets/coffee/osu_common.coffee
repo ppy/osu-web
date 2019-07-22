@@ -248,6 +248,11 @@
     "url(#{url})" if osu.presence(url)?
 
 
+  # TODO: add support for multiple badges and/or move server side?
+  # note: the display priority is as defined, from left to right
+  userGroupBadge: (user) ->
+    _.intersection(_.concat(user.default_group, user.groups), ['bot', 'dev', 'gmt', 'nat', 'bng', 'bng_limited', 'support', 'alumni'])[0]
+
   navigate: (url, keepScroll, {action = 'advance'} = {}) ->
     osu.keepScrollOnLoad() if keepScroll
     Turbolinks.visit url, action: action

@@ -16,41 +16,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussion-system-post {
-  @resolved-color: @osu-colour-lime-3;
+.search-wiki-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  margin: 15px 15px;
-
-  @media @desktop {
-    margin-left: @beatmap-discussion--reply-padding;
-    margin-right: @beatmap-discussion--reply-padding;
-  }
-
-  font-size: @font-size--small;
-  font-weight: 600;
-
-  &--resolved {
-    color: @resolved-color;
-    display: flex;
-
-    // the fancy green line
-    &::after {
-      flex: 1;
-      content: '';
-      background-color: @resolved-color;
-      align-self: center;
-      height: 1px;
-      margin-left: 10px;
-    }
-  }
-
-  // overrides all modifiers
-  &--deleted {
-    opacity: 0.5;
-    font-style: italic;
-  }
-
-  &__user {
-    .link-inverted();
+  &__more {
+    color: @osu-colour-f1;
+    .link-hover({ color: @osu-colour-f1 });
   }
 }

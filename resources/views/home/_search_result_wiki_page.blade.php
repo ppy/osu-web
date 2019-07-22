@@ -25,22 +25,29 @@
             class="search-entry"
             href="{{ $url }}"
         >
-            <h1 class="search-entry__row search-entry__row--title">
-                <span class="search-highlight">
-                    {!! $entry->highlightedTitle() !!}
-                </span>
+            <div class="search-wiki-page">
+                <div class="search-wiki-page__content">
+                    <h1 class="search-entry__row search-entry__row--title">
+                        <span class="search-highlight">
+                            {!! $entry->highlightedTitle() !!}
+                        </span>
 
-            </h1>
+                    </h1>
 
-            <p class="search-entry__row search-entry__row--excerpt">
-                <span class="search-highlight">
-                    {!! $entry->highlights() !!}
-                </span>
-            </p>
+                    <p class="search-entry__row search-entry__row--excerpt">
+                        <span class="search-highlight">
+                            {!! $entry->highlights() !!}
+                        </span>
+                    </p>
 
-            <p class="search-entry__row search-entry__row--footer">
-                {{ $url }}
-            </p>
+                    <p class="search-entry__row search-entry__row--footer">
+                        {{ $url }}
+                    </p>
+                </div>
+                <div class="search-wiki-page__more">
+                    <span class="fas fa-angle-right"></span>
+                </div>
+            </div>
         </a>
     </div>
 @endforeach
