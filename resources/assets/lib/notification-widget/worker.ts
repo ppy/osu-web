@@ -18,7 +18,7 @@
 
 import NotificationJson from 'interfaces/notification-json';
 import XHRCollection from 'interfaces/xhr-collection';
-import * as _ from 'lodash';
+import { forEach, minBy, orderBy, random } from 'lodash';
 import { computed, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
@@ -83,7 +83,7 @@ export default class Worker {
   @computed get itemsGroupedByType() {
     const ret: Map<string, Notification[]> = new Map();
 
-    const sortedItems = _.orderBy([...this.items.values()], ['id'], ['desc']);
+    const sortedItems = orderBy([...this.items.values()], ['id'], ['desc']);
     sortedItems.unshift(this.pmNotification);
 
     sortedItems.forEach((item) => {
@@ -195,8 +195,8 @@ export default class Worker {
   destroy = () => {
     this.active = false;
     this.items = observable.map();
-    _.forEach(this.xhr, (xhr) => xhr.abort());
-    _.forEach(this.timeout, (timeout) => clearTimeout(timeout));
+    forEach(this.xhr, (xhr) => xhr.abort());
+    forEach(this.timeout, (timeout) => clearTimeout(timeout));
 
     if (this.ws != null) {
       this.ws.close();
@@ -286,7 +286,7 @@ export default class Worker {
         this.refreshing = false;
         this.needsRefresh = false;
       }).done((bundleJson: NotificationBundleJson) => {
-        const oldestNotification = _.minBy(bundleJson.notifications, 'id');
+        const oldestNotification = minBy(bundleJson.notifications, 'id');
         const minLoadedId = this.minLoadedId;
 
         bundleJson.notifications.forEach(this.updateFromServer);
