@@ -317,6 +317,15 @@ export default class Worker {
     });
   }
 
+  setUserId = (id: number | null) => {
+    if (this.active) {
+      this.destroy();
+    }
+
+    this.userId = id;
+    this.boot();
+  }
+
   updateFromServer = (json: NotificationJson) => {
     const item = new Notification(json.id);
     item.updateFromJson(json);
