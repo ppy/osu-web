@@ -48,7 +48,7 @@ class Mod
     const OSU_TRANSFORM = 'TR';
     const OSU_WIGGLE = 'WG';
     const OSU_GROW = 'GR';
-    const OSU_DELFATE = 'DF';
+    const OSU_DEFLATE = 'DF';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
