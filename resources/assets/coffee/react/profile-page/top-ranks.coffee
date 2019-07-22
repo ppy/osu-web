@@ -49,7 +49,10 @@ export class TopRanks extends React.PureComponent
     pagination = @props.pagination[key]
     scores = @props[key]
 
-    if scores?.length
+    if scores?.error
+      p className: 'profile-extra-entries', scores.error
+
+    else if scores?.length
       div className: 'profile-extra-entries',
         el PlayDetailList, scores: scores
 
