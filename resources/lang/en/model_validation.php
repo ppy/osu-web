@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Discussion is locked.',
         'first_post' => 'Can not delete starting post.',
+
+        'attributes' => [
+            'message' => 'The message',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Invalid difficulty specified.',
         'invalid_beatmapset_id' => 'Invalid beatmap specified.',
         'locked' => 'Discussion is locked.',
+
+        'attributes' => [
+            'message_type' => 'Message type',
+            'timestamp' => 'Timestamp',
+        ],
 
         'hype' => [
             'guest' => 'Must be signed in to hype.',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Replying to deleted comment is not allowed.',
+
+        'attributes' => [
+            'message' => 'The message',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Deleting beatmap metadata post is not allowed.',
             'beatmapset_post_no_edit' => 'Editing beatmap metadata post is not allowed.',
             'only_quote' => 'Your reply contains only a quote.',
+
+            'attributes' => [
+                'post_text' => 'Post body',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => 'Topic title',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,6 +106,10 @@ return [
             'minimum_one_selection' => 'A minimum of one option per user is required.',
             'minimum_two_options' => 'Need at least two options.',
             'too_many_options' => 'Exceeded maximum number of allowed options.',
+
+            'attributes' => [
+                'title' => 'Poll title',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,6 +142,12 @@ return [
         'wrong_password_confirmation' => 'Password confirmation does not match.',
         'too_long' => 'Exceeded maximum length - can only be up to :limit characters.',
 
+        'attributes' => [
+            'username' => 'Username',
+            'user_email' => 'Email address',
+            'password' => 'Password',
+        ],
+
         'change_username' => [
             'restricted' => 'You cannot change your username while restricted.',
             'supporter_required' => [
@@ -127,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "You can't report yourself!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => 'Quantity',
+                'cost' => 'Cost',
+            ],
+        ],
     ],
 ];
