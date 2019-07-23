@@ -38,8 +38,17 @@ class BeatmapsetSearchCached extends BeatmapsetSearch
 
         $key = "es-response:{$this->params->getCacheKey()}";
 
-        return Cache::remember($key, config('osu.beatmapset.es_cache_duration'), function () {
-            return parent::response();
-        });
+        $value = Cache::get($key);
+        if ($value !== null) {
+            return $value;
+        }
+
+        $value = parent::response();
+
+        if ($this->getError() === null) {
+            Cache::put($key, $value, config('osu.beatmapset.es_cache_duration'));
+        }
+
+        return $value;
     }
 }
