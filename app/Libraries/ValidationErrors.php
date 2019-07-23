@@ -20,6 +20,8 @@
 
 namespace App\Libraries;
 
+use Lang;
+
 class ValidationErrors
 {
     private $errors = [];
@@ -41,7 +43,13 @@ class ValidationErrors
         }
         $rawMessage = $this->keyBase.$rawMessage;
 
-        $params['attribute'] = trans($this->keyBase.$this->prefix.'.'.$column);
+        $params['attribute'] = $column;
+
+        $attributeKey = $this->keyBase.$this->prefix.'.'.$column;
+
+        if (Lang::has($attributeKey)) {
+            $params['attribute'] = trans($attributeKey);
+        }
 
         $this->errors[$column][] = trans($rawMessage, $params);
 
