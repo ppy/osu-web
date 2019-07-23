@@ -5,8 +5,6 @@ set -e
 
 export NOTIFICATION_SERVER_LISTEN_HOST=0.0.0.0
 
-cd ../..
-
 test -d notification-server || git clone https://github.com/ppy/osu-notification-server notification-server
 cd notification-server
 
