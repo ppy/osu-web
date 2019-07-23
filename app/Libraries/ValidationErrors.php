@@ -45,7 +45,7 @@ class ValidationErrors
 
         $params['attribute'] = $column;
 
-        $attributeKey = $this->keyBase.$this->prefix.'.'.$column;
+        $attributeKey = $this->keyBase.$this->prefix.'.attributes.'.$column;
 
         if (Lang::has($attributeKey)) {
             $params['attribute'] = trans($attributeKey);
