@@ -38,9 +38,8 @@ return [
         'generic' => 'An error occurred while preparing your checkout.',
     ],
     'search' => [
-        'could_not_connect_to_host' => 'The search server seems to be missing :(',
-        'default' => 'Couldn\'t get any results.',
-        'operation_timeout_exception' => 'It seems to be taking longer than usual to get these results...',
+        'default' => 'Could not get any results, try again later.',
+        'operation_timeout_exception' => 'Search is currently busier than usual, try again later.',
     ],
 
     'logged_out' => 'You have been signed out. Please sign in and retry.',
