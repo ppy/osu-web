@@ -79,10 +79,11 @@ abstract class Controller extends BaseController
     {
         $this->cleanupCookies();
 
-        Request::session()->flush();
-        Request::session()->regenerateToken();
+        session()->flush();
+        session()->regenerateToken();
+        session()->put('requires_verification', $user->isPrivileged());
         Auth::login($user, $remember);
-        Request::session()->migrate(true, Auth::user()->user_id);
+        session()->migrate(true, Auth::user()->user_id);
     }
 
     protected function logout()
