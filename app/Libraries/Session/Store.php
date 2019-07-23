@@ -21,7 +21,6 @@
 namespace App\Libraries\Session;
 
 use App\Events\UserSessionEvent;
-use App\Libraries\UserVerificationState;
 use Auth;
 use Illuminate\Support\Str;
 use Jenssegers\Agent\Agent;
@@ -194,7 +193,7 @@ class Store extends \Illuminate\Session\Store
             $sessionMeta[$id]['device'] = $agent->device();
             $sessionMeta[$id]['platform'] = $agent->platform();
             $sessionMeta[$id]['browser'] = $agent->browser();
-            $sessionMeta[$id]['verified'] = isset($session['verified']) && $session['verified'] === UserVerificationState::VERIFIED;
+            $sessionMeta[$id]['verified'] = isset($session['verified']) && $session['verified'] === true;
         }
 
         // returns sessions sorted from most to least recently active

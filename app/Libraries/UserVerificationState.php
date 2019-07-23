@@ -28,8 +28,6 @@ use App\Models\User;
 
 class UserVerificationState
 {
-    const VERIFIED = 10;
-
     protected $user;
 
     private $legacySession = [];
@@ -133,7 +131,7 @@ class UserVerificationState
             return true;
         }
 
-        if ($this->session->get('verified') === static::VERIFIED) {
+        if ($this->session->get('verified')) {
             return true;
         }
 
@@ -173,7 +171,7 @@ class UserVerificationState
         $this->session->forget('verification_expire_date');
         $this->session->forget('verification_tries');
         $this->session->forget('verification_key');
-        $this->session->put('verified', static::VERIFIED);
+        $this->session->put('verified', true);
         $this->session->save();
 
         if ($this->legacySession() !== null) {
