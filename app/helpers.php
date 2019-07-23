@@ -1368,5 +1368,5 @@ function search_error_message(?Exception $e): ?string
     $key = "errors.search.${basename}";
     $text = trans($key);
 
-    return $text === $key ? trans("errors.search.default") : $text;
+    return $text === $key ? trans('errors.search.default') : $text;
 }
