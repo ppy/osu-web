@@ -148,6 +148,17 @@ class ChangelogController extends Controller
         }
     }
 
+    public function stream($streamName)
+    {
+        $stream = UpdateStream::where('name', '=', $streamName)->firstOrFail();
+        $build = $stream->builds()->default()->orderBy('build_id', 'desc')->first();
+
+        return redirect()->route('changelog.build', [
+            'stream' => $streamName,
+            'build' => $build->version,
+        ]);
+    }
+
     private function getUpdateStreams()
     {
         $this->updateStreams = json_collection(
