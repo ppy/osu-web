@@ -19,7 +19,7 @@ class AddScoreProcessQueue extends Migration
             $table->unsignedTinyInteger('mode');
             $table->timestampTz('start_time')->useCurrent();
             $table->timestampTz('update_time')->nullable()->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'));
-            $table->boolean('status');
+            $table->boolean('status')->default(0);
 
             $table->index(['mode', 'status', 'score_id'], 'lookup');
             $table->index(['status'], 'status');
