@@ -19,13 +19,6 @@
  */
 
 return [
-    'button' => [
-        'action' => [
-            'to_0' => 'Követés megszüntetése',
-            'to_1' => 'Követés',
-        ],
-    ],
-
     'index' => [
         'description' => 'Ezek a beatmap beszélgetések amiket követsz. Értesítve leszel amikor új hozzászólások illetve frissítések vannak.',
         'title_compact' => 'modding követőlista',

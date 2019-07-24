@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => ':date tarihinde katıldı',
         'lastvisit' => 'Son görülme :date',
+        'lastvisit_online' => '',
         'missingtext' => 'Yazım hatası yapmış olabilirsin! (veya bu kullanıcı banlanmış olabilir)',
         'origin_country' => 'Ülke: :country',
         'page_description' => 'osu! - :username hakkında bilmek istediğiniz her şey!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Toplam Skor',
         ],
     ],
+
     'status' => [
+        'all' => '',
         'online' => 'Çevrimiçi',
         'offline' => 'Çevrimdışı',
     ],

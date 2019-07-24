@@ -25,6 +25,13 @@ return [
       'remove' => 'verwijder vriend',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
+    ],
+
     'state' => [
       'friends' => 'vrienden',
       'mutual' => 'wederzijdse',

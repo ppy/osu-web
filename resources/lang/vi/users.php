@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Đã tham gia :date',
         'lastvisit' => 'Lần cuối hoạt động :date',
+        'lastvisit_online' => '',
         'missingtext' => 'Có thể bạn đã thực hiện một lỗi đánh máy! (hoặc người dùng này có thể đã bị ban)',
         'origin_country' => 'Từ :country',
         'page_description' => 'osu! - Tất cả những bì bạn muốn biết về :username!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Tổng Điểm',
         ],
     ],
+
     'status' => [
+        'all' => '',
         'online' => 'Online',
         'offline' => 'Offline',
     ],

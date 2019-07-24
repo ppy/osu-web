@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!ผู้สนับสนุน',
         'joined_at' => 'เข้าร่วมเมื่อ :date',
         'lastvisit' => 'ออนไลน์ล่าสุด :date',
+        'lastvisit_online' => '',
         'missingtext' => 'คุณอาจจะผิดพลาดนะ! (หรือไม่ก็ผู้ใช้อาจจะถูกแบน)',
         'origin_country' => 'มาจาก :country',
         'page_description' => 'osu! - ทุกสิ่งทุกอย่างที่คุณอยากรู้เกี่ยวกับ :username!',
@@ -362,7 +363,9 @@ return [
             'total_score' => 'คะแนนรวมทั้งหมด',
         ],
     ],
+
     'status' => [
+        'all' => '',
         'online' => 'ออนไลน์',
         'offline' => 'ออฟไลน์',
     ],

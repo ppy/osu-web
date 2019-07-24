@@ -144,6 +144,9 @@ return [
                 'uneditable' => 'Gambar sampul yang Anda ingin terapkan tidak valid.',
                 'not_owner' => 'Hanya pemilik topik yang dapat menyunting sampul.',
             ],
+            'store' => [
+                'forum_not_allowed' => 'Forum ini tidak dapat dipasang sampul topik.',
+            ],
         ],
 
         'view' => [

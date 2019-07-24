@@ -18,14 +18,13 @@
 
 .contest {
   @_top: contest;
-  background-color: @community-grayblue-page-background;
+  background-color: @osu-colour-b5;
   color: white;
-  padding-bottom: 10px;
 
   &__description {
     .content-font();
 
-    background-color: @gray-blue-dark;
+    background-color: @osu-colour-b4;
     color: white;
     font-size: 14px;
     font-weight: 300;
@@ -37,33 +36,31 @@
       color: white;
     }
     a {
-      color: @community-grayblue-text;
+      .link-default();
     }
   }
 
   &__countdown-timer {
-    background: @gray-blue-dark;
+    background-color: @osu-colour-b4;
     padding-bottom: 20px;
     margin-top: -10px;
   }
 
   &__voting-notice {
-    background-color: @community-grayblue-page-background;
     color: white;
     text-align: center;
     padding: 20px;
-    padding-bottom: 10px;
   }
 
   &__accordion {
-    background: @community-grayblue-page-background;
+    background: @osu-colour-b5;
     padding: 20px;
   }
 
   &__group {
     margin: 10px auto;
     max-width: 600px;
-    background: #161a1b;
+    background: @osu-colour-b4;
     border: none;
     .default-box-shadow();
   }
@@ -112,7 +109,7 @@
   &__vote-summary-text {
     float: right;
     text-transform: uppercase;
-    color: #8dacb6;
+    color: @osu-colour-f1;
     font-weight: bold;
     height: 16px;
     display: flex;
@@ -131,7 +128,7 @@
     border-width: 0 0 64px 64px;
     margin-top: -64px;
     float: right;
-    border-color: transparent transparent white transparent;
+    border-color: transparent transparent @osu-colour-b2 transparent;
     font-size: 20px;
     display: flex;
     align-items: center;
@@ -145,7 +142,7 @@
       font-size: 10px;
     }
     &--selected {
-      border-color: transparent transparent #ffa500 transparent;
+      border-color: transparent transparent @contest-selected-colour transparent;
     }
   }
 
@@ -154,8 +151,10 @@
     align-items: center;
     flex: 0 0 110px;
     text-align: right;
-    background-color: @community-grayblue-page-background;
+    background-color: @osu-colour-b6;
     justify-content: flex-end;
+    padding-right: 5px;
+    font-size: 11px;
 
     &--no-percentages {
       flex: 0 0 70px;
@@ -185,14 +184,14 @@
     }
 
     &--dark-bg {
-      background-color: @community-grayblue-page-background;
+      background-color: @osu-colour-b6;
     }
 
     &--selected {
       font-size: inherit;
-      color: #ffa500;
+      color: @contest-selected-colour;
       &:hover, &:focus {
-        color: rgba(255, 165, 0, 0.75);
+        color: fade(@contest-selected-colour, 75%);
       }
     }
 
@@ -200,7 +199,7 @@
       font-size: inherit;
       color: white;
       &:hover, &:focus {
-        color: rgba(255, 255, 255, 0.50);
+        color: fade(white, 50%);
       }
     }
 

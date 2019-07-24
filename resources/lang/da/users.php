@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Deltog på :date',
         'lastvisit' => 'Sidst set :date',
+        'lastvisit_online' => '',
         'missingtext' => 'Du har formentlig lavet en stavefejl! (eller også er brugeren blevet bannet)',
         'origin_country' => 'Fra :country',
         'page_description' => 'osu! - Alt hvad du har brug for at vide om :username!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Samlet Score',
         ],
     ],
+
     'status' => [
+        'all' => '',
         'online' => 'Online',
         'offline' => 'Offline',
     ],

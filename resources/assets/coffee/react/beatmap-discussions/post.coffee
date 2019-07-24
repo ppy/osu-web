@@ -70,14 +70,11 @@ export class Post extends React.PureComponent
 
     userBadge =
       if @isOwner()
-        'owner'
-      else if @userModerationGroup() == 'bng_limited'
-        'bng'
+        'mapper'
       else
-        @userModerationGroup()
+        @userGroupBadge()
 
     topClasses += " #{bn}--#{userBadge}" if userBadge?
-    userColor = @props.user.profile_colour if !@isOwner()
 
     div
       className: topClasses
@@ -89,24 +86,22 @@ export class Post extends React.PureComponent
         className: "#{bn}__content"
         div
           className: "#{bn}__user-container"
-          style:
-            color: userColor
-
-          a
-            className: "#{bn}__user-link"
-            href: laroute.route('users.show', user: @props.user.id)
 
           div className: "#{bn}__avatar",
-            el UserAvatar, user: @props.user, modifiers: ['full-rounded']
+            a
+              className: "#{bn}__user-link"
+              href: laroute.route('users.show', user: @props.user.id)
+              el UserAvatar, user: @props.user, modifiers: ['full-rounded']
           div
             className: "#{bn}__user"
             div
               className: "#{bn}__user-row"
-              span
-                className: "#{bn}__user-text u-ellipsis-overflow"
-                style:
-                  color: userColor
-                @props.user.username
+              a
+                className: "#{bn}__user-link"
+                href: laroute.route('users.show', user: @props.user.id)
+                span
+                  className: "#{bn}__user-text u-ellipsis-overflow"
+                  @props.user.username
 
               if !@props.user.is_bot
                 a
@@ -117,18 +112,11 @@ export class Post extends React.PureComponent
 
             div
               className: "#{bn}__user-badge"
-              style:
-                backgroundColor: userColor
-                opacity: 0 if !userBadge?
               if userBadge?
-                osu.trans("beatmap_discussions.user.#{userBadge}")
-              else
-                ':' # placeholder, not actually visible
+                div className: "user-group-badge user-group-badge--#{userBadge}"
 
           div
             className: "#{bn}__user-stripe"
-            style:
-              backgroundColor: userColor
 
         @messageViewer()
         @messageEditor()
@@ -168,7 +156,7 @@ export class Post extends React.PureComponent
         onChange: @setMessage
         onKeyDown: @handleKeyDown
         value: @state.message
-        innerRef: @textarea
+        ref: @textarea
       el MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div className: "#{bn}__actions",
@@ -341,11 +329,11 @@ export class Post extends React.PureComponent
     .always => @setState posting: false
 
 
-  userModerationGroup: =>
-    if !@cache.hasOwnProperty('userModerationGroup')
-      @cache.userModerationGroup = BeatmapDiscussionHelper.moderationGroup(@props.user)
+  userGroupBadge: =>
+    if !@cache.hasOwnProperty('userGroupBadge')
+      @cache.userGroupBadge = osu.userGroupBadge(@props.user)
 
-    @cache.userModerationGroup
+    @cache.userGroupBadge
 
 
   validPost: =>

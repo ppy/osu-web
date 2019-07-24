@@ -16,7 +16,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'bodyAdditionalClasses' => 'osu-layout--body-111-plain',
     'legacyNav' => false,
 ])
 
@@ -26,7 +25,7 @@
     {{-- temporary pagination to be used by react component above --}}
     <div class="hidden">
         <div class="js-comments-pagination">
-            @include('objects._pagination_v0', ['object' => $commentPagination, 'modifiers' => ['dark']])
+            @include('objects._pagination_v0', ['object' => $commentPagination])
         </div>
     </div>
 

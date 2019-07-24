@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu! 贊助者',
         'joined_at' => '註冊時間：:date',
         'lastvisit' => '最後登入於：:date',
+        'lastvisit_online' => '正在線上',
         'missingtext' => '未找到的使用者！（或者該使用者已經被封鎖）',
         'origin_country' => '來自 :country',
         'page_description' => 'osu! - 您想知道關於 :username 的資訊!',
@@ -330,7 +331,7 @@ return [
             'title' => '找不到使用者',
         ],
         'page' => [
-            'button' => '',
+            'button' => '編輯個人簡介頁',
             'description' => '<strong>個人介紹</strong> 在您的個人簡介網頁可以自行修改。',
             'edit_big' => '編輯',
             'placeholder' => '在這裡編輯',
@@ -361,7 +362,9 @@ return [
             'total_score' => '總分',
         ],
     ],
+
     'status' => [
+        'all' => '全部',
         'online' => '線上',
         'offline' => '離線',
     ],

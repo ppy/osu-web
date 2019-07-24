@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Responder a un comentario eliminado no esta permitido.',
     ],
 
+    'follow' => [
+        'invalid' => '',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Solo se puede votar en solicitudes de características.',

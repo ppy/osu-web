@@ -77,8 +77,15 @@
                 @endif
 
                 <div class="simple-form__row simple-form__row--no-label">
-                    <button class="btn-osu-lite btn-osu-lite--default" type="submit">
-                        {{ trans('common.buttons.search') }}
+                    <button class="btn-osu-big btn-osu-big--rounded" type="submit">
+                        <span class="btn-osu-big__content">
+                            <span class="btn-osu-big__left">
+                                {{ trans('common.buttons.search') }}
+                            </span>
+                            <span class="btn-osu-big__icon btn-osu-big__icon--normal">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </span>
                     </button>
                 </div>
             </form>

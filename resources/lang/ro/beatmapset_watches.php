@@ -19,13 +19,6 @@
  */
 
 return [
-    'button' => [
-        'action' => [
-            'to_0' => 'Nu mai urmări',
-            'to_1' => 'Urmărește',
-        ],
-    ],
-
     'index' => [
         'description' => 'Acestea sunt discuțiile beatmap pe care le urmărești. O să fii notificat atunci când apar noi postări sau actualizări.',
         'title_compact' => 'jurnalul modificărilor',

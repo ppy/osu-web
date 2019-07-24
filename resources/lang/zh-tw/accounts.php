@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'osu! 帳號電子郵件變更',
         'update' => '更新',
@@ -84,6 +89,11 @@ return [
         'title' => '隱私政策',
         'friends_only' => '過濾來自好友以外的訊息',
         'hide_online' => '隱藏在線狀態',
+    ],
+
+    'notifications' => [
+        'title' => '通知',
+        'topic_auto_subscribe' => '自動啟用自己創建的主題的通知',
     ],
 
     'security' => [

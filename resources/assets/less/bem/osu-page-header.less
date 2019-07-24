@@ -45,6 +45,13 @@
     padding: 0;
     text-align: center;
     justify-content: center;
+
+    &::before {
+      .full-size();
+      content: ' ';
+      background-color: @osu-colour-b6;
+      opacity: 0.6;
+    }
   }
 
   &--forum-index {
@@ -91,7 +98,7 @@
   }
 
   &--live {
-    .at2x-simple("/images/headers/live-top.png");
+    .at2x-simple("/images/headers/live-top.jpg");
     height: 165px;
   }
 
@@ -208,6 +215,11 @@
     margin: 0;
   }
 
+
+  &__description-link {
+    .link-default();
+  }
+
   &__link {
     .link-white();
 
@@ -235,7 +247,7 @@
   }
 
   &__status-text {
-    color: @yellow;
+    color: @osu-colour-l1;
     font-size: @font-size--title-small-2;
     .@{top}__status--selected & {
       font-size: @font-size--title-small-3;
@@ -285,7 +297,7 @@
       font-style: normal;
       font-size: @font-size--new-header-title;
       font-weight: 300;
-      color: @gray-blue;
+      color: @osu-colour-b6;
       text-shadow: none;
     }
 

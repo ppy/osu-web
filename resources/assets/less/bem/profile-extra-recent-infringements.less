@@ -45,6 +45,12 @@
     }
   }
 
+  &__description {
+    a {
+      .link-default();
+    }
+  }
+
   &__table {
     width: 100%;
     min-width: 800px;
@@ -65,7 +71,7 @@
     }
 
     &--date {
-      color: @greyseafoam-lighter;
+      color: @osu-colour-f1;
       width: 160px;
       padding-right: 20px;
     }
@@ -85,14 +91,14 @@
   }
 
   &__actor {
-    color: @greyseafoam-lighter;
+    color: @osu-colour-l1;
 
     &::before {
       content: ' ';
     }
 
     a {
-      color: @community-user-graygreen-light;
+      .link-default();
     }
   }
 }

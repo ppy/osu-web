@@ -21,6 +21,7 @@
 return [
     'error' => [
         'chat' => [
+            'empty' => 'Nie możesz wysłać pustej wiadomości.',
             'limit_exceeded' => 'Wysyłasz wiadomości zbyt szybko, poczekaj chwilę zanim zaczniesz wysyłać kolejne.',
             'too_long' => 'Wiadomość, którą chcesz wysłać, jest zbyt długa.',
         ],

@@ -1327,3 +1327,33 @@ function mini_asset(string $url): string
         ? str_replace(config('osu.assets.base_url'), config('osu.assets.mini_url'), $url)
         : $url;
 }
+
+function section_to_hue_map($section): int
+{
+    static $colourToHue = [
+        'red' => 0,
+        'pink' => 333,
+        'orange' => 46,
+        'green' => 115,
+        'purple' => 255,
+        'blue' => 200,
+    ];
+
+    static $sectionMapping = [
+        'admin' => 'red',
+        'admin-forum' => 'red',
+        'admin-store' => 'red',
+        'beatmaps' => 'blue',
+        'beatmapsets' => 'blue',
+        'community' => 'pink',
+        'error' => 'pink',
+        'help' => 'orange',
+        'home' => 'purple',
+        'multiplayer' => 'pink',
+        'rankings' => 'green',
+        'store' => 'pink',
+        'user' => 'pink',
+    ];
+
+    return isset($sectionMapping[$section]) ? $colourToHue[$sectionMapping[$section]] : $colourToHue['pink'];
+}

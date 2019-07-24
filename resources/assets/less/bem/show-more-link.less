@@ -25,13 +25,15 @@
   align-self: center;
   text-align: center;
   font-size: @font-size--normal;
-  color: @link-color;
+  color: white;
   padding: 5px 20px;
   border-radius: 10000px;
-  color: inherit;
+
+  background-color: @osu-colour-b2;
 
   &:hover {
-    color: inherit;
+    color: white;
+    background-color: @osu-colour-b1;
   };
 
   &--beatmapsets {
@@ -52,72 +54,14 @@
 
   &--notification-group {
     font-size: @font-size--small;
-    color: @greysky-light;
   }
 
   &--profile-page {
     margin: 10px auto 0;
   }
 
-  &--t-greyseafoam-dark {
-    background-color: @greyseafoam-dark;
-
-    &:hover {
-      background-color: @greyseafoam;
-    };
-  }
-
-  &--t-dark-purple-dark {
-    background-color: @dark-purple-dark;
-
-    &:hover {
-      background-color: @dark-graypurple;
-    };
-  }
-
-  &--t-greyviolet-darker {
-    background-color: @greyviolet-darker;
-
-    &:hover {
-      background-color: #000;
-    };
-  }
-
-  &--t-ddd {
-    background-color: #ddd;
-
-    &:hover {
-      background-color: #ccc;
-    };
-  }
-
-  &--t-greysky {
-    background-color: @greysky;
-
-    &:hover {
-      background-color: @greysky-light;
-    };
-  }
-
   &[disabled], &.js-disabled {
-    color: #ccc;
-
-    &.@{_top}--t-greyseafoam-dark {
-      background-color: @greyseafoam-dark;
-    }
-
-    &.@{_top}--t-ddd {
-      background-color: #ddd;
-      color: #666;
-    }
-
-    &.@{_top}--t-dark-purple-dark {
-      background-color: @dark-purple-dark;
-    }
-
-    &.@{_top}--t-greyviolet-darker {
-      background-color: @greyviolet-darker;
-    }
+    background-color: @osu-colour-b2;
   }
 
   &__spinner {
@@ -141,11 +85,11 @@
   }
 
   &__label-icon {
-    color: @yellow;
+    color: @osu-colour-f1;
     margin: 0 5px;
 
-    .@{_top}--t-ddd & {
-      color: @yellow-dark;
+    .@{_top}:hover & {
+      color: @osu-colour-l1;
     }
 
     .@{_top}--notification-group & {

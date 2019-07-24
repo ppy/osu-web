@@ -35,7 +35,7 @@ return [
         'standard_converts_only' => 'Solo la modalità osu! può avere punteggi in altre modalità.',
     ],
     'checkout' => [
-        'generic' => '',
+        'generic' => 'Si è verificato un errore durante la preparazione del tuo checkout.',
     ],
     'logged_out' => 'Sei stato disconnesso. Per favore effettua di nuovo il login e riprova.',
     'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalità.',

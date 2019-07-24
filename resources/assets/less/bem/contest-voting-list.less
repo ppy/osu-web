@@ -21,7 +21,7 @@
   &__table {
     width: 100%;
     max-width: (600px + 40px);
-    padding: 0px 20px;
+    padding: 20px;
     margin: 0 auto;
   }
 
@@ -29,8 +29,9 @@
     display: flex;
     align-items: center;
     flex: 0 0 32px;
+    font-weight: 100;
     justify-content: center;
-    background: @community-grayblue-page-background;
+    background: @osu-colour-b6;
   }
 
   &__trophy {
@@ -46,30 +47,36 @@
   }
 
   &__row {
-    background-color: @gray-blue-dark;
-    color: #8dacb6;
-    font-weight: 100;
+    background-color: @osu-colour-b4;
+    color: @osu-colour-f1;
     font-size: 12px;
-    border-bottom: 2px solid @community-grayblue-page-background;
+    border-bottom: 2px solid @osu-colour-b6;
     transition: 0.1s;
     display: flex;
 
     &:hover {
-      background-color: lighten(@gray-blue-dark, 2%);
+      background-color: @osu-colour-b3;
     }
 
     &--selected {
-      background-color: rgba(141, 172, 182, 0.25);
+      background-color: @osu-colour-b3;
+    }
+
+    &:first-child {
+      border-radius: @border-radius-base @border-radius-base 0 0;
+      overflow: hidden;
     }
 
     &:last-child {
       border-bottom: none;
+      border-radius: 0 0 @border-radius-base @border-radius-base;
+      overflow: hidden;
     }
   }
 
   &__header {
     text-transform: uppercase;
-    color: #8dacb6;
+    color: @osu-colour-f1;
     font-size: 10px;
     line-height: 32px;
     display: flex;
@@ -125,25 +132,18 @@
   &__votes-bar {
     position: absolute;
     height: 100%;
-    background-color: #3F4E51;
+    background-color: @osu-colour-b2;
     top: 0;
     left: 0;
   }
 
   &__entrant {
-    color: #8dacb6;
+    .link-default();
     font-size: 10px;
   }
 
   &__link {
     .link-white();
     .link-plain();
-
-    &--contest-dl {
-      color: rgba(255, 255, 255, 0.33);
-    }
-    &--disabled {
-      color: @community-grayblue-page-background;
-    }
   }
 }

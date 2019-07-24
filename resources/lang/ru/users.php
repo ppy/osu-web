@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Дата регистрации: :date',
         'lastvisit' => 'Был в сети :date',
+        'lastvisit_online' => 'Сейчас в сети',
         'missingtext' => 'Возможно, вы сделали опечатку! (или игрок заблокирован)',
         'origin_country' => 'Проживает в :country',
         'page_description' => 'osu! - Всё, что вы хотели знать о :username!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Всего очков',
         ],
     ],
+
     'status' => [
+        'all' => 'Все',
         'online' => 'В сети',
         'offline' => 'Не в сети',
     ],

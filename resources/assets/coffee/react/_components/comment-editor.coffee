@@ -60,7 +60,7 @@ export class CommentEditor extends React.PureComponent
 
       el TextareaAutosize,
         className: "#{bn}__message"
-        innerRef: @textarea
+        ref: @textarea
         value: @state.message
         placeholder: osu.trans("comments.placeholder.#{@mode()}")
         onChange: @onChange

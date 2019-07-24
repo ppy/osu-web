@@ -17,7 +17,7 @@
  */
 
 .beatmap-discussion-system-post {
-  @resolved-color: @green;
+  @resolved-color: @osu-colour-lime-3;
 
   margin: 15px 15px;
 
@@ -48,5 +48,9 @@
   &--deleted {
     opacity: 0.5;
     font-style: italic;
+  }
+
+  &__user {
+    .link-inverted();
   }
 }

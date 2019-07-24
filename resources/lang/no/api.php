@@ -21,6 +21,7 @@
 return [
     'error' => [
         'chat' => [
+            'empty' => 'Kan ikke sende tom melding.',
             'limit_exceeded' => 'Du sender meldinger for fort, vennligst vent litt før du prøver igjen.',
             'too_long' => 'Meldingen du prøver å sende er for lang.',
         ],

@@ -21,12 +21,14 @@
 return [
     '_' => '並び替え',
 
+    'last_visit' => '最近の活動',
     'new' => '最近',
     'old' => '古い',
     'top' => 'トップ',
+    'username' => 'ユーザー名',
 
     'forum_topics' => [
         'new' => '最後の返信',
-        'feature_votes' => 'スタープライオリティ',
+        'feature_votes' => 'スターの優先度',
     ],
 ];

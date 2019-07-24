@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'conferma il cambio della email di osu!',
         'update' => 'aggiorna',
@@ -84,6 +89,11 @@ return [
         'title' => 'Privacy',
         'friends_only' => 'blocca messaggi privati dei non-amici',
         'hide_online' => 'nascondi il tuo stato online',
+    ],
+
+    'notifications' => [
+        'title' => 'Notifiche',
+        'topic_auto_subscribe' => 'attiva automaticamente le notifiche sui nuovi argomenti del forum che crei',
     ],
 
     'security' => [

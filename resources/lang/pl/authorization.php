@@ -144,6 +144,9 @@ return [
                 'uneditable' => 'Wybrano nieprawidłowe tło.',
                 'not_owner' => 'Tylko autor może edytować tło.',
             ],
+            'store' => [
+                'forum_not_allowed' => 'Nie możesz ustawić tła wątku na tym forum.',
+            ],
         ],
 
         'view' => [

@@ -17,7 +17,8 @@
  */
 
 .beatmap-discussion-vote {
-  @_default-color: #999;
+  @top: beatmap-discussion-vote;
+  @_default-color: white;
   .reset-input();
   .default-box-shadow();
   .default-border-radius();
@@ -34,19 +35,21 @@
 
   font-size: 12px;
 
+  background-color: @osu-colour-b1;
+
   &:hover {
     .thick-box-shadow();
   }
 
   &--up {
     &, &:hover {
-      color: @green;
+      color: @osu-colour-lime-3;
     }
   }
 
   &--down {
     &, &:hover {
-      color: @yellow-dark;
+      color: @osu-colour-orange-2;
     }
   }
 
@@ -56,17 +59,24 @@
 
   // overrides the other stuff
   &[disabled] {
-    color: @_default-color;
-    background-color: #eee;
+    color: @osu-colour-b1;
+    background-color: @osu-colour-b3;
     cursor: default;
 
     &:hover {
       .default-box-shadow();
-      color: @_default-color;
+      color: @osu-colour-b1;
     }
   }
 
   &__count {
-    color: @_default-color;
+    color: white;
+    .@{top}--inactive & {
+      color: @_default-color;
+    }
+
+    .@{top}[disabled] & {
+      color: @osu-colour-b1;
+    }
   }
 }

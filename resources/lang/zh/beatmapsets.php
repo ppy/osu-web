@@ -36,7 +36,7 @@ return [
         'details' => [
             'approved' => 'approved 于 ',
             'favourite' => '收藏这张谱面',
-            'favourited_count' => '还有很多人...',
+            'favourited_count' => '还有 :count_delimited 人喜欢它',
             'logged-out' => '下载谱面前请先登录！',
             'loved' => 'loved 于 ',
             'mapped_by' => '作者: :mapper',
@@ -50,8 +50,8 @@ return [
             'download' => [
                 '_' => '下载',
                 'direct' => 'osu!direct',
-                'no-video' => '不带视频',
-                'video' => '带视频',
+                'no-video' => '不包含视频',
+                'video' => '包含视频',
             ],
 
             'login_required' => [
@@ -79,7 +79,7 @@ return [
         ],
 
         'info' => [
-            'description' => '介绍',
+            'description' => '谱面介绍',
             'genre' => '流派',
             'language' => '语言',
             'no_scores' => '数据还在计算中。。。',
@@ -95,8 +95,8 @@ return [
             'country' => '国内排名',
             'friend' => '好友排名',
             'global' => '全球排名',
-            'supporter-link' => '点击 <a href=":link">这里</a> 来查看你可以得到的精彩功能！',
-            'supporter-only' => '你需要成为支持者才能查看国内/好友排名！',
+            'supporter-link' => '点击 <a href=":link">这里</a> 来查看你得到的精彩功能！',
+            'supporter-only' => '你需要成为 osu! 支持者才能查看国内/好友排名！',
             'title' => '排行榜',
 
             'headers' => [

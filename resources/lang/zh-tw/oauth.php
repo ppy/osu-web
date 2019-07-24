@@ -22,9 +22,9 @@ return [
     'cancel' => '取消',
 
     'authorise' => [
-        'authorise' => '',
-        'request' => '',
-        'scopes_title' => '',
+        'authorise' => '授權',
+        'request' => '正在要求權限以存取你的帳號。',
+        'scopes_title' => '此應用程式將可以：',
         'title' => '',
 
         'wrong_user' => [
@@ -33,9 +33,21 @@ return [
         ],
     ],
 
+    'authorized-clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
+    ],
+
     'login' => [
         'download' => '點擊這裡下載遊戲並創建一個帳戶',
-        'label' => '',
+        'label' => '首先，登入您的帳號吧！',
         'title' => '登入',
     ],
 ];

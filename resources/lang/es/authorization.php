@@ -144,6 +144,9 @@ return [
                 'uneditable' => 'Portada especificada inválida.',
                 'not_owner' => 'Solo el dueño puede editar la portada.',
             ],
+            'store' => [
+                'forum_not_allowed' => '',
+            ],
         ],
 
         'view' => [

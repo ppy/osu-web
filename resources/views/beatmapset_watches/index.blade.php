@@ -40,19 +40,19 @@
                 {{ trans('beatmapset_watches.index.description') }}
             </div>
 
-            <table class="table">
-                <tr>
-                    <th></th>
-                    <th>
+            <table class="table beatmapset-watches__table">
+                <tr class="beatmapset-watches__row">
+                    <th class="beatmapset-watches__heading"></th>
+                    <th class="beatmapset-watches__heading">
                         {{ trans('beatmapset_watches.index.table.title') }}
                     </th>
-                    <th>
+                    <th class="beatmapset-watches__heading">
                         {{ trans('beatmapset_watches.index.table.state') }}
                     </th>
-                    <th>
+                    <th class="beatmapset-watches__heading">
                         {{ trans('beatmapset_watches.index.table.open_issues') }}
                     </th>
-                    <th></th>
+                    <th class="beatmapset-watches__heading"></th>
                 </tr>
 
                 @if (count($watches) > 0)
@@ -67,7 +67,7 @@
                                 </a>
                             </td>
                             <td class="beatmapset-watches__col">
-                                <a href="{{ route('beatmapsets.discussion', $watch->beatmapset) }}">
+                                <a href="{{ route('beatmapsets.discussion', $watch->beatmapset) }}" class="beatmapset-watches__link">
                                     @if ($watch->isRead())
                                         {{ $watch->beatmapset->title }}
                                     @else

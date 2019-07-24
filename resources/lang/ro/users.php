@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'suporter osu!',
         'joined_at' => 'Încris :date',
         'lastvisit' => 'Văzut ultima dată :date',
+        'lastvisit_online' => '',
         'missingtext' => 'S-ar putea să fi făcut o greșeală de scriere! (sau este posibil ca utilizatorul să fi fost restricționat)',
         'origin_country' => 'Din :country',
         'page_description' => 'osu! - Tot ce ai dorit vreodată să știi despre :username!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Scor total',
         ],
     ],
+
     'status' => [
+        'all' => '',
         'online' => 'Online',
         'offline' => 'Offline',
     ],

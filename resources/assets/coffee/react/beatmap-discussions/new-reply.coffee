@@ -75,7 +75,7 @@ export class NewReply extends React.PureComponent
             onChange: @setMessage
             onKeyDown: @handleKeyDown
             placeholder: osu.trans 'beatmaps.discussions.reply_placeholder'
-            innerRef: @box
+            ref: @box
 
       div
         className: "#{bn}__footer #{bn}__footer--notice"

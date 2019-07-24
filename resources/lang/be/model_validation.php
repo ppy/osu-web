@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Нельга адказваць на выдалены каментарый.',
     ],
 
+    'follow' => [
+        'invalid' => ':attribute вызначана няправільн.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Магчыма толькі прагаласаваць за запыт функцыі.',

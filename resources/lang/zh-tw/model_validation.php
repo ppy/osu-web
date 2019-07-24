@@ -55,6 +55,10 @@ return [
         'deleted_parent' => '',
     ],
 
+    'follow' => [
+        'invalid' => '所指定的 :attribute 無效。',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => '只能給新特性請求投票。',
@@ -74,7 +78,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => '不允許重複的選項。',
             'grace_period_expired' => '',
-            'hiding_results_forever' => '',
+            'hiding_results_forever' => '無法隱藏不會完結之投票的結果',
             'invalid_max_options' => '每人可選的選項不能超出總選項數。',
             'minimum_one_selection' => '每人至少可選一項。',
             'minimum_two_options' => '需要至少兩個選項。',
@@ -99,7 +103,7 @@ return [
         'username_available_soon' => '该用户名即将可用！',
         'username_invalid_characters' => '用户名中包含非法字符。',
         'username_in_use' => '用户名已经被使用！',
-        'username_locked' => '', // TODO: language for this should be slightly different.
+        'username_locked' => '使用者名稱已被使用！', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => '请在下划线和空格间选一个，不要混用！',
         'username_no_spaces' => "用户名不能以空格开头或结束。",
         'username_not_allowed' => '不允许使用该用户名。',
@@ -112,7 +116,7 @@ return [
         'too_long' => '超出長度限制——最多為 :limit 個字符。',
 
         'change_username' => [
-            'restricted' => '',
+            'restricted' => '帳戶處於限制模式時無法更變使用者名稱。',
             'supporter_required' => [
                 '_' => '你必须 :link 才能更改用户名！',
                 'link_text' => '支持 osu!',

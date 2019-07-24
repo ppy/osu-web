@@ -18,7 +18,7 @@
 @extends('master')
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 osu-layout__row--full t-forum-category-osu">
+    <div class="osu-layout__row osu-layout__row--page-watches osu-layout__row--sm1 osu-layout__row--full t-forum-category-osu">
         <div class="osu-layout__sub-row osu-layout__sub-row--lg1-compact ">
             @include('home._user_header_nav')
 
@@ -56,6 +56,6 @@
             'row' => 'forum.topic_watches._topic',
         ])
 
-        @include('objects._pagination_v0', ['object' => $topics])
+        @include('objects._pagination_v0', ['object' => $topics, 'modifiers' => ['light-bg']])
     </div>
 @endsection

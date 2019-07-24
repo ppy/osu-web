@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'confirmarea schimbării e-mailului în osu!',
         'update' => 'actualizează',
@@ -84,6 +89,11 @@ return [
         'title' => 'Confidențialitate',
         'friends_only' => 'Blochează mesajele private de la oameni care nu sunt pe lista ta de prieteni',
         'hide_online' => 'ascunde-ți prezența online',
+    ],
+
+    'notifications' => [
+        'title' => '',
+        'topic_auto_subscribe' => '',
     ],
 
     'security' => [

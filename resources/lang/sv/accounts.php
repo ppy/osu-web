@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'bekräfta ändrad osu! e-postadress',
         'update' => 'uppdatera',
@@ -84,6 +89,11 @@ return [
         'title' => 'Sekretess',
         'friends_only' => 'Blockera privata meddelanden från icke-vänner',
         'hide_online' => '',
+    ],
+
+    'notifications' => [
+        'title' => '',
+        'topic_auto_subscribe' => '',
     ],
 
     'security' => [

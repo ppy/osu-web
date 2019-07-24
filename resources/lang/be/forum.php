@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited допіс|:count_delimited допісы|:count_delimited допісаў',
+            'topic_starter' => 'Аўтар',
         ],
     ],
 

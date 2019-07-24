@@ -73,8 +73,12 @@
     font-weight: normal;
     min-width: 0;
     .default-border-radius();
-    background-color: fade(#000, 50%);
+    background-color: .osu-hsla(@osu-colour-b6, 0.5)[@hsla];
     display: flex;
+
+    &::placeholder {
+      color: @osu-colour-f1;
+    }
 
     @media @desktop {
       font-size: inherit;

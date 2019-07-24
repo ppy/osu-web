@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Ble med :date',
         'lastvisit' => 'Sist sett :date',
+        'lastvisit_online' => 'Pålogget for øyeblikket',
         'missingtext' => 'Du begikk muligens en skrivefeil! (eller så kan brukeren ha blitt utestengt)',
         'origin_country' => 'Fra :country',
         'page_description' => 'osu! - Alt du noensinne måtte ønske å vite om :username!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Samlet Poengsum',
         ],
     ],
+
     'status' => [
+        'all' => 'Alle',
         'online' => 'Tilkoblet',
         'offline' => 'Frakoblet',
     ],

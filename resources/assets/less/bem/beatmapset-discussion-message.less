@@ -19,30 +19,27 @@
 .beatmapset-discussion-message {
   @_top: beatmapset-discussion-message;
   display: inline;
+  color: white;
 
-  &__timestamp {
+  // TODO: remove once default link style becomes... default
+  a {
+    .link-default();
+  }
+
+  // extra specificity here to override the above rule
+  & > &__timestamp {
     .link-plain();
 
     border-radius: @border-radius-large;
     padding: 1px 5px;
-    background-color: #eee;
+    background-color: @osu-colour-b6;
     font-weight: 600;
     font-size: 85%;
-    color: #444;
+    color: @osu-colour-f1;
 
     .link-hover({
-      background-color: #ddd;
-      color: #444;
+      background-color: @osu-colour-b5;
+      color: @osu-colour-l1;
     });
-
-    .@{_top}--white & {
-      background-color: #555;
-      color: #eee;
-
-      .link-hover({
-        background-color: #666;
-        color: #eee;
-      });
-    }
   }
 }

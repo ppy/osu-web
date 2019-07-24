@@ -33,6 +33,18 @@ return [
         ],
     ],
 
+    'authorized-clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
+    ],
+
     'login' => [
         'download' => 'คลิกที่นี่เพื่อดาวน์โหลดเกมและสร้างบัญชีผู้ใช้',
         'label' => 'ขั้นแรก มาเข้าสู่ระบบไปยังบัญชีของคุณ!',

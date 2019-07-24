@@ -18,7 +18,7 @@
 
 .beatmap-discussion-nomination {
   @top: beatmap-discussion-nomination;
-  background-color: #333;
+  background-color: @osu-colour-b4;
   color: #fff;
   padding: 10px;
   height: 100%;
@@ -71,6 +71,10 @@
     &--nominators {
       font-style: italic;
       align-self: flex-end;
+    }
+
+    a {
+      .link-default();
     }
   }
 

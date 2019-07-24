@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited discussion|:count_delimited discussions',
+            'topic_starter' => 'Créateur du sujet',
         ],
     ],
 

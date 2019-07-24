@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited 帖子',
+            'topic_starter' => '主题开启者',
         ],
     ],
 

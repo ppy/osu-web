@@ -25,6 +25,13 @@ return [
       'remove' => 'remover amigo',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => 'Início :info',
+            'info' => 'Amigos',
+        ],
+    ],
+
     'state' => [
       'friends' => 'amigos',
       'mutual' => 'mutual',

@@ -144,6 +144,9 @@ return [
                 'uneditable' => 'Coperta specificată este invalidă.',
                 'not_owner' => 'Numai proprietarul poate edita coperta.',
             ],
+            'store' => [
+                'forum_not_allowed' => '',
+            ],
         ],
 
         'view' => [

@@ -19,13 +19,6 @@
  */
 
 return [
-    'button' => [
-        'action' => [
-            'to_0' => 'Non guardare',
-            'to_1' => 'Guarda',
-        ],
-    ],
-
     'index' => [
         'description' => 'Queste sono le discussion di beatmap che stai seguendo. Verrai avvisato quando ci saranno nuovi post o aggiornamenti.',
         'title_compact' => 'lista modding',

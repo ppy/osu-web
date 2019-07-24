@@ -21,7 +21,7 @@
 @section('content')
     @include('store.header')
 
-    <div class="osu-layout__row osu-layout__row--page">
+    <div class="osu-layout__row osu-layout__row--page osu-layout--store">
         <div class="store-orders">
             @if (count($orders) === 0)
                 <span>{{ trans('store.order.no_orders') }}</span>
@@ -80,7 +80,7 @@
                 </div>
             @endforeach
 
-            @include('objects._pagination_v0', ['object' => $orders])
+            @include('objects._pagination_v0', ['object' => $orders, 'modifiers' => ['light-bg']])
         </div>
     </div>
 @endsection

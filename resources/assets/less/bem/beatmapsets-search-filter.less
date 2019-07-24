@@ -41,7 +41,7 @@
   }
 
   &__item {
-    color: @pink;
+    .link-default();
     margin: 2px @gutter-mobile;
 
     @media @desktop {
@@ -49,20 +49,8 @@
       margin-right: 5px;
     }
 
-    &:hover,
-    &:active,
-    &:focus {
-      color: @pink;
-    }
-
     &--active {
       color: #fff;
-
-      &:hover,
-      &:active,
-      &:focus {
-        color: #fff;
-      }
     }
   }
 

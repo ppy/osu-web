@@ -15,10 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('admin/master')
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page">
+    <div class="osu-layout__row osu-layout__row--page-admin">
         <h1>{{ trans('admin.forum.forum-covers.index.title') }}</h1>
 
         @foreach ($forums as $forum)
@@ -53,7 +53,7 @@
                                     <input name="forum_cover[{{ $cover['key'] }}][_delete]" value="1" type="checkbox" />
                                     {{ trans('admin.forum.forum-covers.index.delete') }}
                                 </label>
-                                <button>{{ trans('admin.forum.forum-covers.index.submit.update') }}</button>
+                                <button class="btn-osu-big">{{ trans('admin.forum.forum-covers.index.submit.update') }}</button>
                             {!! Form::close() !!}
                         @else
                             {{ trans('admin.forum.forum-covers.index.no-cover') }}
@@ -62,7 +62,7 @@
                                 <input name="_method" value="POST" type="hidden" />
                                 <input name="forum_cover[forum_id]" value="{{ $forum->forum_id }}" type="hidden" />
                                 <input name="forum_cover[{{ $cover['key'] }}][cover_file]" type="file">
-                                <button>{{ trans('admin.forum.forum-covers.index.submit.save') }}</button>
+                                <button class="btn-osu-big">{{ trans('admin.forum.forum-covers.index.submit.save') }}</button>
                             {!! Form::close() !!}
                         @endif
                     </div>

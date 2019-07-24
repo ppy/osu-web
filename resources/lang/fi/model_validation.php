@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Poistettuun kommenttiin ei voida vastata.',
     ],
 
+    'follow' => [
+        'invalid' => '',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Vain ominaisuutta voi äänestää.',

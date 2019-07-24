@@ -18,36 +18,27 @@
 
 .search-entry {
   .link-plain();
-  .default-box-shadow();
   .default-border-radius();
-  background-color: #444;
+  background-color: @osu-colour-b5;
   display: flex;
   flex-direction: column;
   padding: 10px 10px 15px 10px;
+  border: 2px solid transparent;
 
-  &::after, &::before {
-    .full-size();
-    content: ' ';
-    will-change: opacity;
-    transition: opacity 120ms;
-    pointer-events: none;
-  }
+  &:hover {
+    border: 2px solid @osu-colour-l1;
 
-  &::after {
-    .thicker-box-shadow();
-    opacity: 0;
-  }
+    .search-result--beatmapset & {
+      border-color: @pink-dark;
+    }
 
-  &:hover::after {
-    opacity: 1;
-  }
+    .search-result--forum_post & {
+      border-color: @yellow-dark;
+    }
 
-  &::before {
-    .default-box-shadow();
-  }
-
-  &:hover::before {
-    opacity: 0;
+    .search-result--wiki_page & {
+      border-color: @purple-dark;
+    }
   }
 
   &__row {
@@ -55,21 +46,20 @@
     padding: 0;
     line-height: 1.5;
     word-wrap: break-word;
+    color: white;
 
     &--title {
       margin-top: 0;
-      color: #fff;
       font-size: @font-size--title-small-2;
     }
 
     &--excerpt {
-      color: #ddd;
       font-size: @font-size--small-2;
       word-break: break-word;
     }
 
     &--footer {
-      color: #999;
+      color: @osu-colour-f1;
       font-size: @font-size--small;
     }
   }
