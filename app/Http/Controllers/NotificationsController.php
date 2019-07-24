@@ -39,6 +39,19 @@ class NotificationsController extends Controller
         $this->middleware('auth');
     }
 
+    public function feedMeta()
+    {
+        $url = config('osu.notification.endpoint');
+
+        if ($url[0] ?? null === '/') {
+            $host = request()->getHttpHost();
+            $protocol = request()->secure() ? 'wss' : 'ws';
+            $url = "{$protocol}://{$host}{$url}";
+        }
+
+        return compact('url');
+    }
+
     /**
      * Get Notifications
      *

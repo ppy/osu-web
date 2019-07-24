@@ -36,10 +36,12 @@ class VerifyUser
 
     public function handle(Request $request, Closure $next)
     {
-        if (!$request->is('home/account/verify')
-            && !$request->is('home/account/reissue-code')
-            && !$request->is('session')
-            && $this->requiresVerification($request)) {
+        if (!$request->is([
+            'home/account/reissue-code',
+            'home/account/verify',
+            'home/notifications/feed-meta',
+            'session',
+        ]) && $this->requiresVerification($request)) {
             $verification = UserVerification::fromCurrentRequest();
 
             if (!$verification->state->isDone()) {
