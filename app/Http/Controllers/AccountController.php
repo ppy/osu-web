@@ -65,8 +65,10 @@ class AccountController extends Controller
         ]]);
 
         $this->middleware('throttle:60,10', ['only' => [
+            'reissueCode',
             'updateEmail',
             'updatePassword',
+            'verify',
             'verifyLink',
         ]]);
 
