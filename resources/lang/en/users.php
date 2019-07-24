@@ -219,10 +219,6 @@ return [
                 'recent_entries' => 'Recent Kudosu History',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Earned',
-                'total_info' => [
-                    '_' => 'Based on how much of a contribution the user has made to beatmap moderation. See :link for more information.',
-                    'link_text' => 'this page'
-                ],
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -261,6 +257,11 @@ return [
                         'reset' => 'Kudosu reset by :giver for the post :post',
                         'revoke' => 'Denied kudosu by :giver for the post :post',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => 'Based on how much of a contribution the user has made to beatmap moderation. See :link for more information.',
+                    'link' => 'this page',
                 ],
             ],
             'me' => [
