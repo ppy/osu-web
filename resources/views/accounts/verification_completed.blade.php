@@ -31,16 +31,16 @@
             </div>
 
             <div class="oauth-form__row oauth-form__row--verification-completed">
-                <div class="account-verification-completed">
-                    <div class="account-verification-completed__icon">
+                <div class="account-verification-message">
+                    <div class="account-verification-message__icon">
                         <span class="far fa-check-circle"></span>
                     </div>
 
-                    <div class="account-verification-completed__title">
+                    <div class="account-verification-message__title">
                         {{ trans('accounts.verification_completed.title') }}
                     </div>
 
-                    <div class="account-verification-completed__text">
+                    <div class="account-verification-message__text">
                         {{ trans('accounts.verification_completed.text') }}
                     </div>
                 </div>

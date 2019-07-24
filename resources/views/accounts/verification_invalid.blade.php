@@ -31,8 +31,8 @@
             </div>
 
             <div class="oauth-form__row oauth-form__row--verification-invalid">
-                <div class="account-verification-completed">
-                    <div class="account-verification-completed__title">
+                <div class="account-verification-message">
+                    <div class="account-verification-message__title">
                         {{ trans('accounts.verification_invalid.title') }}
                     </div>
                 </div>
