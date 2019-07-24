@@ -1443,7 +1443,7 @@ class User extends Model implements AuthenticatableContract
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
             $supportLength = 0;
 
-            foreach ($this->supporterTags as $support) {
+            foreach ($this->supporterTagPurchases as $support) {
                 if ($support->cancel === true) {
                     $supportLength -= $support->length;
                 } else {
