@@ -31,7 +31,12 @@
   }
 
   &--list {
-    display: block;
+    grid-template-columns: 1fr;
+    grid-gap: 5px;
     margin: 10px 40px;
+
+    @media @narrow {
+      margin: 10px;
+    }
   }
 }
