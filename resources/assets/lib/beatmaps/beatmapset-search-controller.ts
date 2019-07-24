@@ -47,6 +47,7 @@ export class BeatmapsetSearchController {
 
   private readonly debouncedFilterChangedSearch = debounce(this.filterChangedSearch, 500);
   private filtersObserver!: Lambda;
+  private initialErrorMessage?: string;
 
   constructor(private beatmapsetSearch: BeatmapsetSearch) {
     this.restoreStateFromUrl();
@@ -104,6 +105,7 @@ export class BeatmapsetSearchController {
 
   initialize(data: SearchResponse) {
     this.beatmapsetSearch.initialize(this.filters, data);
+    this.initialErrorMessage = data.error;
   }
 
   @action
@@ -119,6 +121,10 @@ export class BeatmapsetSearchController {
   restoreTurbolinks() {
     this.restoreStateFromUrl();
     this.search(0, true);
+    if (this.initialErrorMessage != null) {
+      osu.popup(this.initialErrorMessage, 'danger');
+      delete this.initialErrorMessage;
+    }
   }
 
   @action
