@@ -226,10 +226,12 @@ export class UserCard extends React.PureComponent<Props, State> {
     if (!this.isUserLoaded || !this.user.is_supporter) { return null; }
 
     return (
-      <div className='user-card__icon'>
-        <a className='user-card__link-wrapper' href={laroute.route('support-the-game')}>
-          <SupporterIcon />
-        </a>
+      <div className='user-card__icons'>
+        <div className='user-card__icon'>
+          <a className='user-card__link-wrapper' href={laroute.route('support-the-game')}>
+            <SupporterIcon />
+          </a>
+        </div>
       </div>
     );
   }

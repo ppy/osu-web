@@ -210,7 +210,9 @@
     margin-left: @card-item-spacing;
 
     .@{top}--list & {
-      display: flex;
+      grid-gap: @card-item-spacing;
+      grid-template-rows: unset;
+      grid-template-columns: repeat(3, min-content);
     }
   }
 
@@ -288,6 +290,10 @@
         top: 0;
         right: 0;
       }
+    }
+
+    .@{top}--list & {
+      align-items: center;
     }
   }
 
