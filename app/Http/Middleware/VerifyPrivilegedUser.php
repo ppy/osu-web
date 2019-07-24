@@ -24,6 +24,6 @@ class VerifyPrivilegedUser extends VerifyUser
 {
     public function requiresVerification($request)
     {
-        return session()->get('requires_verification');
+        return session()->get('requires_verification') ?? optional(auth()->user())->isPrivileged();
     }
 }
