@@ -41,15 +41,7 @@ class NotificationsController extends Controller
 
     public function feedMeta()
     {
-        $url = config('osu.notification.endpoint');
-
-        if ($url[0] ?? null === '/') {
-            $host = request()->getHttpHost();
-            $protocol = request()->secure() ? 'wss' : 'ws';
-            $url = "{$protocol}://{$host}{$url}";
-        }
-
-        return compact('url');
+        return ['url' => $this->getEndpoint()];
     }
 
     /**
@@ -133,7 +125,7 @@ class NotificationsController extends Controller
             'has_more' => $hasMore,
             'notifications' => $json,
             'unread_count' => $unreadCount,
-            'notification_endpoint' => config('osu.notification.endpoint'),
+            'notification_endpoint' => $this->getEndpoint(),
         ];
     }
 
@@ -167,5 +159,18 @@ class NotificationsController extends Controller
         } else {
             return response(null, 422);
         }
+    }
+
+    private function getEndpoint()
+    {
+        $url = config('osu.notification.endpoint');
+
+        if (($url[0] ?? null) === '/') {
+            $host = request()->getHttpHost();
+            $protocol = request()->secure() ? 'wss' : 'ws';
+            $url = "{$protocol}://{$host}{$url}";
+        }
+
+        return $url;
     }
 }
