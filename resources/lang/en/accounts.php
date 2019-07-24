@@ -109,4 +109,8 @@ return [
         'text' => 'You can close this tab/window now',
         'title' => 'Verification has been completed',
     ],
+
+    'verification_invalid' => [
+        'title' => 'Invalid or expired verification link',
+    ],
 ];
