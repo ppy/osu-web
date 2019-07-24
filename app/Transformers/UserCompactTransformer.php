@@ -47,6 +47,7 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
             'is_supporter' => $user->isSupporter(),
             'last_visit' => json_time($user->displayed_last_visit),
             'pm_friends_only' => $user->pm_friends_only,
+            'support_level' => $user->supportLevel(),
         ];
     }
 

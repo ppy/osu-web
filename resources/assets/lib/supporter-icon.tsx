@@ -16,12 +16,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { times } from 'lodash';
 import * as React from 'react';
 
-export const SupporterIcon = () => {
+interface Props {
+  level?: number;
+}
+
+export const SupporterIcon = (props: Props) => {
   return (
     <span className='supporter-icon' title={osu.trans('users.show.is_supporter')}>
-      <span className='fas fa-heart' />
+      {
+        times(5 || 1, (n) => <span key={n} className='fas fa-heart' />)
+      }
     </span>
   );
 };
