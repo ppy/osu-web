@@ -53,7 +53,7 @@ class UserVerification
         // Workaround race condition causing $this->issue() to be called in parallel.
         // Mainly observed when logging in as privileged user.
         if ($this->request->ajax() && $this->request->is('home/notifications')) {
-            return response(null, 401);
+            return response(['error' => 'verification'], 401);
         }
 
         $email = $this->user->user_email;

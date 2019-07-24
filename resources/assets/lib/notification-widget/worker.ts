@@ -44,6 +44,14 @@ interface NotificationEventReadJson {
   event: 'read';
 }
 
+interface NotificationEventVerifiedJson {
+  event: 'verified';
+}
+
+interface NotificationFeedMetaJson {
+  url: string;
+}
+
 interface NotificationReadJson {
   ids: number[];
 }
@@ -64,17 +72,19 @@ const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson
   return arg.event === 'read';
 };
 
+const isNotificationEventVerifiedJson = (arg: any): arg is NotificationEventVerifiedJson => {
+  return arg.event === 'verified';
+};
+
 export default class Worker {
   @observable actualUnreadCount: number = -1;
   @observable hasData: boolean = false;
   @observable hasMore: boolean = true;
-  @observable loadingMore: boolean = false;
   @observable pmNotification = new LegacyPmNotification();
   userId: number | null = null;
   @observable private active: boolean = false;
   private endpoint?: string;
   @observable private items = observable.map<number, Notification>();
-  private needsRefresh = false;
   private refreshing = false;
   private timeout: TimeoutCollection = {};
   private ws: WebSocket | null | undefined;
@@ -110,6 +120,10 @@ export default class Worker {
     return ret;
   }
 
+  get loadingMore() {
+    return this.isPendingXhr('loadMore');
+  }
+
   @computed get minLoadedId() {
     let ret: null | number = null;
 
@@ -140,7 +154,7 @@ export default class Worker {
 
     if (this.active) {
       this.updatePmNotification();
-      this.loadMore();
+      this.startWebSocket();
       $(document).on('turbolinks:load', this.updatePmNotification);
     }
   }
@@ -150,9 +164,7 @@ export default class Worker {
       return;
     }
 
-    if (this.timeout.connectWebSocket != null) {
-      clearTimeout(this.timeout.connectWebSocket);
-    }
+    Timeout.clear(this.timeout.connectWebSocket);
 
     const tokenEl = document.querySelector('meta[name=csrf-token]');
 
@@ -161,27 +173,16 @@ export default class Worker {
     }
 
     const token = tokenEl.getAttribute('content');
-    let endpoint = this.endpoint;
-    if (endpoint[0] === '/') {
-      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-      endpoint = `${protocol}//${window.location.host}${endpoint}`;
-    }
-    this.ws = new WebSocket(`${endpoint}?csrf=${token}`);
-    this.ws.addEventListener('open', () => this.refresh());
-    this.ws.addEventListener('close', this.delayedConnectWebSocket);
+    this.ws = new WebSocket(`${this.endpoint}?csrf=${token}`);
+    this.ws.addEventListener('open', () => {
+      if (this.hasData) {
+        this.refresh();
+      } else {
+        this.loadMore();
+      }
+    });
+    this.ws.addEventListener('close', this.reconnectWebSocket);
     this.ws.addEventListener('message', this.handleNewEvent);
-  }
-
-  delayedConnectWebSocket = () => {
-    if (!this.active) {
-      return;
-    }
-
-    this.ws = null;
-    this.timeout.connectWebSocket = window.setTimeout(() => {
-      this.needsRefresh = true;
-      this.connectWebSocket();
-    }, random(5000, 20000));
   }
 
   delayedRetryInitialLoadMore = () => {
@@ -189,14 +190,15 @@ export default class Worker {
       return;
     }
 
-    this.timeout.loadMore = window.setTimeout(this.loadMore, 10000);
+    this.timeout.loadMore = Timeout.set(10000, this.loadMore);
   }
 
   destroy = () => {
     this.active = false;
+    this.hasData = false;
     this.items = observable.map();
     forEach(this.xhr, (xhr) => xhr.abort());
-    forEach(this.timeout, (timeout) => clearTimeout(timeout));
+    forEach(this.timeout, (timeout) => Timeout.clear(timeout));
 
     if (this.ws != null) {
       this.ws.close();
@@ -224,6 +226,11 @@ export default class Worker {
       this.actualUnreadCount++;
     } else if (isNotificationEventReadJson(data)) {
       this.markRead(data.data.ids);
+    } else if (isNotificationEventVerifiedJson(data)) {
+      if (!this.hasData) {
+        this.loadMore();
+      }
+      $.publish('user-verification:success');
     }
   }
 
@@ -231,30 +238,31 @@ export default class Worker {
     return this.active;
   }
 
+  loadBundle = (data: NotificationBundleJson) => {
+    data.notifications.forEach(this.updateFromServer);
+    this.actualUnreadCount = data.unread_count;
+    this.hasMore = data.has_more;
+    this.hasData = true;
+  }
+
   loadMore = () => {
-    if (!this.active || !this.hasMore || this.loadingMore) {
+    if (!this.active || !this.hasMore || this.isPendingXhr('loadMore')) {
       return;
     }
 
-    if (this.timeout.loadMore != null) {
-      clearTimeout(this.timeout.loadMore);
-    }
-
-    this.loadingMore = true;
+    Timeout.clear(this.timeout.loadMore);
 
     const minLoadedId = this.minLoadedId;
     const params = minLoadedId == null ? null : { max_id: minLoadedId - 1 };
 
     this.xhr.loadMore = $.get(laroute.route('notifications.index', params))
-      .done((bundleJson: NotificationBundleJson) => {
-        bundleJson.notifications.forEach(this.updateFromServer);
-        this.actualUnreadCount = bundleJson.unread_count;
-        this.hasMore = bundleJson.has_more;
-        this.hasData = true;
-        this.endpoint = bundleJson.notification_endpoint;
-        this.connectWebSocket();
-      }).fail(this.delayedRetryInitialLoadMore)
-      .always(() => this.loadingMore = false);
+      .done(this.loadBundle)
+      .fail((xhr) => {
+        if (xhr.responseJSON != null && xhr.responseJSON.error === 'verification') {
+          return;
+        }
+        this.delayedRetryInitialLoadMore();
+      });
   }
 
   markRead = (ids: number[]) => {
@@ -271,8 +279,19 @@ export default class Worker {
     }
   }
 
+  reconnectWebSocket = () => {
+    if (!this.active) {
+      return;
+    }
+
+    this.timeout.connectWebSocket = Timeout.set(random(5000, 20000), () => {
+      this.ws = null;
+      this.connectWebSocket();
+    });
+  }
+
   refresh = (maxId?: number) => {
-    if (!this.active || this.refreshing || !this.needsRefresh) {
+    if (!this.active || this.refreshing) {
       return;
     }
 
@@ -283,21 +302,17 @@ export default class Worker {
     this.xhr.refresh = $.get(laroute.route('notifications.index'), params)
       .always(() => {
         this.refreshing = false;
-        this.needsRefresh = false;
       }).done((bundleJson: NotificationBundleJson) => {
         const oldestNotification = minBy(bundleJson.notifications, 'id');
         const minLoadedId = this.minLoadedId;
 
-        bundleJson.notifications.forEach(this.updateFromServer);
-        this.actualUnreadCount = bundleJson.unread_count;
-        this.hasMore = bundleJson.has_more;
+        this.loadBundle(bundleJson);
 
         if (bundleJson.has_more &&
           oldestNotification != null &&
           minLoadedId != null &&
           oldestNotification.id > minLoadedId
         ) {
-          this.needsRefresh = true;
           this.refresh(oldestNotification.id - 1);
         }
       });
@@ -306,8 +321,8 @@ export default class Worker {
   sendMarkRead = (ids: number[]) => {
     const key = `sendMarkRead:${ids.join(':')}`;
 
-    if (this.xhr[key] != null) {
-      this.xhr[key].abort();
+    if (this.isPendingXhr(key)) {
+      return this.xhr[key];
     }
 
     return this.xhr[key] = $.ajax({
@@ -329,6 +344,26 @@ export default class Worker {
     this.boot();
   }
 
+  startWebSocket = () => {
+    if (this.endpoint != null) {
+      return this.connectWebSocket();
+    }
+
+    if (this.isPendingXhr('startWebSocket')) {
+      return;
+    }
+
+    Timeout.clear(this.timeout.startWebSocket);
+
+    return this.xhr.startWebSocket = $.get(laroute.route('notifications.feed-meta'))
+      .done((data: NotificationFeedMetaJson) => {
+        this.endpoint = data.url;
+        this.connectWebSocket();
+      }).fail(() => {
+        this.timeout.startWebSocket = Timeout.set(10000, this.startWebSocket);
+      });
+  }
+
   updateFromServer = (json: NotificationJson) => {
     const item = new Notification(json.id);
     item.updateFromJson(json);
@@ -345,5 +380,15 @@ export default class Worker {
     }
 
     this.pmNotification.details.count = count;
+  }
+
+  private isPendingXhr = (id: string) => {
+    const xhr = this.xhr[id];
+
+    if (xhr == null) {
+      return false;
+    } else {
+      return xhr.readyState !== 0 && xhr.readyState !== 4;
+    }
   }
 }
