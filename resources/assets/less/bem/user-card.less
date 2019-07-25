@@ -24,8 +24,7 @@
   @background-color: @osu-colour-b4;
   @card-border-radius: 10px;
   @card-item-spacing: 10px;
-  @flag-width: @icon-height * 1.5;
-  @icon-height: 26px; // starts becoming a muddled mess lower than this.
+  @flag-width: @user-card-icon-size * 1.5;
   @flag-gutter: 6px;
   @fade-duration: 220ms;
 
@@ -206,7 +205,7 @@
 
   &__details {
     display: grid;
-    grid-template-rows: @icon-height 1fr;
+    grid-template-rows: @user-card-icon-size 1fr;
     margin-left: @card-item-spacing;
 
     .@{top}--list & {
@@ -237,7 +236,7 @@
     }
 
     &--flag {
-      height: @icon-height;
+      height: @user-card-icon-size;
       width: @flag-width;
     }
 
