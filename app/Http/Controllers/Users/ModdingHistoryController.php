@@ -45,8 +45,19 @@ class ModdingHistoryController extends Controller
             $this->isKudosuModerator = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
             $this->user = User::lookup(request('user'), null, $this->isModerator);
 
+            if ($this->user === null) {
+                $change = UsernameChangeHistory::visible()
+                    ->where('username_last', $id)
+                    ->orderBy('change_id', 'desc')
+                    ->first();
+
+                if ($change !== null) {
+                    $this->user = User::lookup($change->user_id, 'id');
+                }
+            }
+
             if ($this->user === null || $this->user->isBot() || !priv_check('UserShow', $this->user)->can()) {
-                abort(404);
+                return response()->view('users.show_not_found')->setStatusCode(404);
             }
 
             if ((string) $this->user->user_id !== (string) request('user')) {
