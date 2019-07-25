@@ -219,7 +219,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderListModeIcons() {
-    if (!this.isUserLoaded || !this.user.is_supporter) { return null; }
+    if (this.props.mode !== 'list' || !this.isUserLoaded || !this.user.is_supporter) { return null; }
 
     return (
       <div className='user-card__icons'>
