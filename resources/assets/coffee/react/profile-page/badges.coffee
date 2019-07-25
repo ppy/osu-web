@@ -17,15 +17,23 @@
 ###
 
 import * as React from 'react'
-import { div, img } from 'react-dom-factories'
+import { div, img, a } from 'react-dom-factories'
 el = React.createElement
 
 export class Badges extends React.PureComponent
   render: =>
     div className: 'profile-badges',
       for badge in @props.badges
-        div
+        badgeEl = div
           key: badge.image_url
           className: 'profile-badges__badge'
           style: backgroundImage: osu.urlPresence(badge.image_url)
           title: badge.description
+
+        if osu.present badge.url
+          a
+            href: badge.url
+            key: badge.image_url
+            badgeEl
+        else
+          badgeEl
