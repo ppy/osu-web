@@ -18,12 +18,12 @@
 
 import * as React from 'react';
 import { activeKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
-import { UserCard } from 'user-card';
+import { ViewMode, UserCard } from 'user-card';
 
 interface Props {
   modifiers: string[];
   users: User[];
-  viewMode: 'card' | 'list';
+  viewMode: ViewMode;
 }
 
 export class UserCards extends React.PureComponent<Props> {

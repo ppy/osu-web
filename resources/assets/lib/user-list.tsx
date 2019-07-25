@@ -19,11 +19,11 @@
 import * as moment from 'moment';
 import * as React from 'react';
 import { Sort } from 'sort';
+import { ViewMode } from 'user-card';
 import { UserCards } from 'user-cards';
 
 type Filter = 'all' | 'online' | 'offline';
 type SortMode = 'last_visit' | 'username';
-type ViewMode = 'card' | 'list';
 
 const filters: Filter[] = ['all', 'online', 'offline'];
 const sortModes: SortMode[] = ['last_visit', 'username'];

@@ -26,9 +26,11 @@ import { ReportUser } from 'report-user';
 import { Spinner } from 'spinner';
 import { SupporterIcon } from 'supporter-icon';
 
+export type ViewMode = 'card' | 'list';
+
 interface Props {
   activated: boolean;
-  mode: 'card' | 'list';
+  mode: ViewMode;
   modifiers: string[];
   user?: User;
 }
