@@ -194,22 +194,18 @@ export class UserCard extends React.PureComponent<Props, State> {
 
     return (
       <div className='user-card__icons'>
-        <div className='user-card__icon user-card__icon--flag'>
-          <a
-            className='user-card__link-wrapper'
-            href={laroute.route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}
-          >
-            <FlagCountry country={this.user.country} modifiers={['full']} />
-          </a>
-        </div>
+        <a
+          className='user-card__icon user-card__icon--flag'
+          href={laroute.route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}
+        >
+          <FlagCountry country={this.user.country} modifiers={['full']} />
+        </a>
 
         {
           this.props.mode === 'card' && this.user.is_supporter ?
-          <div className='user-card__icon'>
-            <a className='user-card__link-wrapper' href={laroute.route('support-the-game')}>
-              <SupporterIcon />
-            </a>
-          </div> : null
+          <a className='user-card__icon' href={laroute.route('support-the-game')}>
+            <SupporterIcon />
+          </a> : null
         }
 
         {
@@ -227,11 +223,9 @@ export class UserCard extends React.PureComponent<Props, State> {
 
     return (
       <div className='user-card__icons'>
-        <div className='user-card__icon'>
-          <a className='user-card__link-wrapper' href={laroute.route('support-the-game')}>
-            <SupporterIcon level={this.user.support_level} />
-          </a>
-        </div>
+        <a className='user-card__icon' href={laroute.route('support-the-game')}>
+          <SupporterIcon level={this.user.support_level} />
+        </a>
       </div>
     );
   }

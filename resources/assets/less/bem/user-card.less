@@ -224,6 +224,10 @@
     display: flex;
     pointer-events: auto;
 
+    a& {
+      .link-plain();
+    }
+
     & + & {
       margin-left: @flag-gutter;
     }
@@ -295,15 +299,6 @@
     .@{top}--list & {
       align-items: center;
     }
-  }
-
-  &__link-wrapper {
-    .link-white();
-    .link-plain();
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
   }
 
   &__status {
