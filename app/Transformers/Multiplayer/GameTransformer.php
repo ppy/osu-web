@@ -35,7 +35,7 @@ class GameTransformer extends Fractal\TransformerAbstract
     public function transform(Game $game)
     {
         return [
-            'game_id' => $game->game_id,
+            'id' => $game->game_id,
             'start_time' => json_time($game->start_time),
             'end_time' => json_time($game->end_time),
             'mode' => $game->mode,
