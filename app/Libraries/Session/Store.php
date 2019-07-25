@@ -193,7 +193,7 @@ class Store extends \Illuminate\Session\Store
             $sessionMeta[$id]['device'] = $agent->device();
             $sessionMeta[$id]['platform'] = $agent->platform();
             $sessionMeta[$id]['browser'] = $agent->browser();
-            $sessionMeta[$id]['verified'] = isset($session['verified']) && $session['verified'] === true;
+            $sessionMeta[$id]['verified'] = (bool) ($session['verified'] ?? false);
         }
 
         // returns sessions sorted from most to least recently active
