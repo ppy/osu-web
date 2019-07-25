@@ -184,6 +184,7 @@ export class UserList extends React.PureComponent<Props> {
         <button
           className={osu.classWithModifiers('user-list__view-mode', this.state.viewMode === 'card' ? ['active'] : [])}
           data-value='card'
+          title={osu.trans('users.view_mode.card')}
           onClick={this.onViewSelected}
         >
           <span className='fas fa-square' />
@@ -191,6 +192,7 @@ export class UserList extends React.PureComponent<Props> {
         <button
           className={osu.classWithModifiers('user-list__view-mode', this.state.viewMode === 'list' ? ['active'] : [])}
           data-value='list'
+          title={osu.trans('users.view_mode.list')}
           onClick={this.onViewSelected}
         >
           <span className='fas fa-bars' />
