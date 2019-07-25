@@ -355,7 +355,7 @@ export default class Worker {
 
     Timeout.clear(this.timeout.startWebSocket);
 
-    return this.xhr.startWebSocket = $.get(laroute.route('notifications.feed-meta'))
+    return this.xhr.startWebSocket = $.get(laroute.route('notifications.endpoint'))
       .done((data: NotificationFeedMetaJson) => {
         this.endpoint = data.url;
         this.connectWebSocket();

@@ -39,7 +39,7 @@ class VerifyUser
         if (!$request->is([
             'home/account/reissue-code',
             'home/account/verify',
-            'home/notifications/feed-meta',
+            'home/notifications/endpoint',
             'session',
         ]) && $this->requiresVerification($request)) {
             $verification = UserVerification::fromCurrentRequest();

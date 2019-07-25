@@ -39,9 +39,9 @@ class NotificationsController extends Controller
         $this->middleware('auth');
     }
 
-    public function feedMeta()
+    public function endpoint()
     {
-        return ['url' => $this->getEndpoint()];
+        return ['url' => $this->endpointUrl()];
     }
 
     /**
@@ -125,7 +125,7 @@ class NotificationsController extends Controller
             'has_more' => $hasMore,
             'notifications' => $json,
             'unread_count' => $unreadCount,
-            'notification_endpoint' => $this->getEndpoint(),
+            'notification_endpoint' => $this->endpointUrl(),
         ];
     }
 
@@ -161,7 +161,7 @@ class NotificationsController extends Controller
         }
     }
 
-    private function getEndpoint()
+    private function endpointUrl()
     {
         $url = config('osu.notification.endpoint');
 
