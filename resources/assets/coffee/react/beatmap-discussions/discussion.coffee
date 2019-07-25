@@ -34,6 +34,7 @@ export class Discussion extends React.PureComponent
     @state =
       collapsed: false
       highlighted: false
+      preview: @props.preview || false
 
 
   componentWillMount: =>
@@ -48,12 +49,13 @@ export class Discussion extends React.PureComponent
 
   render: =>
     return null if !@isVisible(@props.discussion)
-    return null if @props.discussion.posts.length == 0
+    return null if !@props.discussion.posts || @props.discussion.posts.length == 0
 
     topClasses = "#{bn} js-beatmap-discussion-jump"
     topClasses += " #{bn}--highlighted" if @state.highlighted
     topClasses += " #{bn}--deleted" if @props.discussion.deleted_at?
     topClasses += " #{bn}--timeline" if @props.discussion.timestamp?
+    topClasses += " #{bn}--preview" if @state.preview
 
     lineClasses = "#{bn}__line"
     lineClasses += " #{bn}__line--resolved" if @props.discussion.resolved
@@ -72,38 +74,41 @@ export class Discussion extends React.PureComponent
         div className: "#{bn}__top",
           @post @props.discussion.posts[0], 'discussion'
 
-          div className: "#{bn}__actions",
-            ['up', 'down'].map (direction) =>
-              div
-                key: direction
-                className: "#{bn}__action"
-                @displayVote direction
+          if !@state.preview
+            div className: "#{bn}__actions",
+              ['up', 'down'].map (direction) =>
+                div
+                  key: direction
+                  className: "#{bn}__action"
+                  @displayVote direction
 
-            button
-              className: "#{bn}__action #{bn}__action--with-line"
-              onClick: @toggleExpand
-              div
-                className: "beatmap-discussion-expand #{'beatmap-discussion-expand--expanded' if !@state.collapsed}"
-                i className: 'fas fa-chevron-down'
-        div
-          className: "#{bn}__expanded #{'hidden' if @state.collapsed}"
+              button
+                className: "#{bn}__action #{bn}__action--with-line"
+                onClick: @toggleExpand
+                div
+                  className: "beatmap-discussion-expand #{'beatmap-discussion-expand--expanded' if !@state.collapsed}"
+                  i className: 'fas fa-chevron-down'
+
+        if !@state.preview
           div
-            className: "#{bn}__replies"
-            for reply in @props.discussion.posts.slice(1)
-              continue unless @isVisible(reply)
-              if reply.system && reply.message.type == 'resolved'
-                currentResolvedState = reply.message.value
-                continue if lastResolvedState == currentResolvedState
-                lastResolvedState = currentResolvedState
+            className: "#{bn}__expanded #{'hidden' if @state.collapsed}"
+            div
+              className: "#{bn}__replies"
+              for reply in @props.discussion.posts.slice(1)
+                continue unless @isVisible(reply)
+                if reply.system && reply.message.type == 'resolved'
+                  currentResolvedState = reply.message.value
+                  continue if lastResolvedState == currentResolvedState
+                  lastResolvedState = currentResolvedState
 
-              @post reply, 'reply'
+                @post reply, 'reply'
 
-          if @canBeRepliedTo()
-            el NewReply,
-              currentUser: @props.currentUser
-              beatmapset: @props.beatmapset
-              currentBeatmap: @props.currentBeatmap
-              discussion: @props.discussion
+            if @canBeRepliedTo()
+              el NewReply,
+                currentUser: @props.currentUser
+                beatmapset: @props.beatmapset
+                currentBeatmap: @props.currentBeatmap
+                discussion: @props.discussion
 
         div className: lineClasses
 

@@ -27,6 +27,7 @@ use League\Fractal;
 class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
+        'beatmapset',
         'posts',
         'current_user_attributes',
     ];
@@ -66,6 +67,18 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
         return $this->collection(
             $discussion->beatmapDiscussionPosts,
             new BeatmapDiscussionPostTransformer()
+        );
+    }
+
+    public function includeBeatmapset(BeatmapDiscussion $discussion)
+    {
+        if (!$this->isVisible($discussion)) {
+            return;
+        }
+
+        return $this->item(
+            $discussion->beatmapset,
+            new BeatmapsetCompactTransformer()
         );
     }
 

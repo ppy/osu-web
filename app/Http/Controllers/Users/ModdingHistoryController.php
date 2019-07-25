@@ -107,14 +107,67 @@ class ModdingHistoryController extends Controller
         $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
         $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
 
+        $userIncludes = [
+            "statistics:mode(osu)", // TODO: fix
+            'active_tournament_banner',
+            'badges',
+            'follower_count',
+            'graveyard_beatmapset_count',
+            'loved_beatmapset_count',
+            'previous_usernames',
+            'ranked_and_approved_beatmapset_count',
+            'statistics.rank',
+            'statistics.scoreRanks',
+            'support_level',
+            'unranked_beatmapset_count',
+        ];
+
+        $perPage = [
+            'rankedAndApprovedBeatmapsets' => 6,
+            'lovedBeatmapsets' => 6,
+            'unrankedBeatmapsets' => 6,
+            'graveyardBeatmapsets' => 2,
+            'recentlyReceivedKudosu' => 5,
+        ];
+
+        $extras = [];
+
+        foreach ($perPage as $page => $n) {
+            // Fetch perPage + 1 so the frontend can tell if there are more items
+            // by comparing items count and perPage number.
+            $extras[$page] = $this->getExtra($user, $page, $n + 1);
+        }
+
+        $jsonChunks = [
+            'extras' => $extras,
+            'perPage' => $perPage,
+            'user' => json_item(
+                $user,
+                'User',
+                $userIncludes
+            ),
+            'discussions' => json_collection(
+                $discussions['items'],
+                'BeatmapDiscussion',
+                ['posts', 'beatmapset']
+            ),
+            'events' => json_collection(
+                $events['items'],
+                'BeatmapsetEvent',
+                ['user', 'beatmapset', 'beatmapset.user']
+            ),
+            'posts' => json_collection(
+                $posts['items'],
+                'BeatmapDiscussionPost',
+                []
+            ),
+            'receivedVotes' => $receivedVotes,
+            'votes' => $votes,
+        ];
+
         return view('users.beatmapset_activities', compact(
-            'currentAction',
-            'discussions',
-            'events',
-            'posts',
-            'user',
-            'receivedVotes',
-            'votes'
+            'jsonChunks',
+            'user'
         ));
     }
 
@@ -249,5 +302,52 @@ class ModdingHistoryController extends Controller
         );
 
         return view('beatmapset_discussion_votes.index', compact('votes', 'user'));
+    }
+
+
+    private function getExtra($user, $page, $options, $perPage = 10, $offset = 0)
+    {
+        // Grouped by $transformer and sorted alphabetically ($transformer and then $page).
+        switch ($page) {
+            // Beatmapset
+            case 'graveyardBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsGraveyard()
+                    ->orderBy('last_update', 'desc');
+                break;
+            case 'lovedBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsLoved()
+                    ->orderBy('approved_date', 'desc');
+                break;
+            case 'rankedAndApprovedBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsRankedAndApproved()
+                    ->orderBy('approved_date', 'desc');
+                break;
+            case 'unrankedBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsUnranked()
+                    ->orderBy('last_update', 'desc');
+                break;
+
+            // KudosuHistory
+            case 'recentlyReceivedKudosu':
+                $transformer = 'KudosuHistory';
+                $query = $user->receivedKudosu()
+                    ->with('post', 'post.topic', 'giver', 'kudosuable')
+                    ->orderBy('exchange_id', 'desc');
+                break;
+        }
+
+        if (!isset($collection)) {
+            $collection = $query->limit($perPage)->offset($offset)->get();
+        }
+
+        return json_collection($collection, $transformer, $includes ?? []);
     }
 }

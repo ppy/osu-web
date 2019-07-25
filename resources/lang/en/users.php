@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user's Modding History",
-        'title_compact' => 'Modding',
+        'title_compact' => 'Mappering',
 
         'discussions' => [
             'title_recent' => 'Recently started discussions',
@@ -192,6 +192,14 @@ return [
                     'title' => 'Pending Beatmaps',
                 ],
             ],
+            'posts' => [
+                'title' => 'Posts',
+                'title_longer' => 'Recent Posts',
+            ],
+            'events' => [
+                'title' => 'Events',
+                'title_longer' => 'Recent Events',
+            ],
             'historical' => [
                 'empty' => 'No performance records. :(',
                 'title' => 'Historical',
@@ -285,6 +293,10 @@ return [
                     'title' => 'First Place Ranks',
                 ],
             ],
+            'upvotes' => [
+                'title' => 'Upvotes',
+                'title_longer' => 'Top Upvotes',
+            ],
             'account_standing' => [
                 'title' => 'Account Standing',
                 'bad_standing' => "<strong>:username's</strong> account is not in a good standing :(",
@@ -310,7 +322,7 @@ return [
 
         'header_title' => [
             '_' => 'Player :info',
-            'info' => 'Info',
+            'info' => 'Playering',
         ],
 
         'info' => [
