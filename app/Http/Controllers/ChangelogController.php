@@ -151,7 +151,7 @@ class ChangelogController extends Controller
     public function stream($streamName)
     {
         $stream = UpdateStream::where('name', '=', $streamName)->firstOrFail();
-        $build = $stream->builds()->default()->orderBy('build_id', 'desc')->first();
+        $build = $stream->builds()->default()->orderBy('build_id', 'desc')->firstOrFail();
 
         return redirect()->route('changelog.build', [
             'stream' => $streamName,
