@@ -58,7 +58,7 @@ export default class Main extends React.Component<Props> {
         </button>
         <div className='nav-click-popup'>
           <div
-            className='notification-popup js-click-menu js-nav2--centered-popup u-fancy-scrollbar'
+            className='notification-popup js-click-menu js-nav2--centered-popup'
             data-click-menu-id={this.menuId}
             data-visibility='hidden'
           >

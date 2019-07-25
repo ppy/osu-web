@@ -40,7 +40,7 @@ export class UserPage extends React.Component
       if @props.userPage.editing
         el UserPageEditor, userPage: @props.userPage
       else
-        div className: 'page-extra__content-overflow-wrapper-outer u-fancy-scrollbar',
+        div className: 'page-extra__content-overflow-wrapper-outer',
           if @props.withEdit && isBlank
             @pageNew()
           else
