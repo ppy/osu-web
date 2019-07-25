@@ -204,7 +204,7 @@ export class UserCard extends React.PureComponent<Props, State> {
         {
           this.props.mode === 'card' && this.user.is_supporter ?
           <a className='user-card__icon' href={laroute.route('support-the-game')}>
-            <SupporterIcon />
+            <SupporterIcon modifiers={['user-card']}/>
           </a> : null
         }
 
