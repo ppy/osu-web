@@ -18,7 +18,7 @@
 
 import * as React from 'react';
 import { activeKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
-import { ViewMode, UserCard } from 'user-card';
+import { UserCard, ViewMode } from 'user-card';
 
 interface Props {
   modifiers: string[];
