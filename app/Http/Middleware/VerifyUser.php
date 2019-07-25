@@ -44,7 +44,7 @@ class VerifyUser
         ]) && $this->requiresVerification($request)) {
             $verification = UserVerification::fromCurrentRequest();
 
-            if (!$verification->state->isDone()) {
+            if (!$verification->isDone()) {
                 return $verification->initiate();
             }
         }

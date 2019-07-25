@@ -27,9 +27,8 @@ use Mail;
 
 class UserVerification
 {
-    public $state;
-
     private $request;
+    private $state;
     private $user;
 
     public static function fromCurrentRequest()
@@ -73,6 +72,11 @@ class UserVerification
         } else {
             return response()->view('users.verify', compact('email'));
         }
+    }
+
+    public function isDone()
+    {
+        return $this->state->isDone();
     }
 
     public function issue()
