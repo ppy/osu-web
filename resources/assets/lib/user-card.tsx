@@ -99,9 +99,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     const modifiers = this.props.modifiers.slice();
     // Setting the active modifiers from the parent causes unwanted renders unless deep comparison is used.
     modifiers.push(this.props.activated ? 'active' : 'highlightable');
-    if (this.props.mode === 'list') {
-      modifiers.push('list');
-    }
+    modifiers.push(this.props.mode);
 
     return (
       <div className={osu.classWithModifiers('user-card', modifiers)}>
