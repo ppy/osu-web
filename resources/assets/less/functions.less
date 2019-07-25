@@ -30,6 +30,14 @@
 }
 
 .fancy-scrollbar() {
+  scrollbar-color: @osu-colour-h2 @osu-colour-b6;
+  scrollbar-width: thin;
+
+  // scrollbar-width isn't inherited
+  * {
+    scrollbar-width: thin;
+  }
+
   /* Turn on custom 8px wide scrollbar */
   ::-webkit-scrollbar {
     width: 10px; /* 1px wider than Lion. */
