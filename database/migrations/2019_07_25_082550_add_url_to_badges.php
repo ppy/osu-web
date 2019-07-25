@@ -14,7 +14,7 @@ class AddUrlToBadges extends Migration
     public function up()
     {
         Schema::connection('mysql')->table('osu_badges', function (Blueprint $table) {
-            $table->string('url');
+            $table->string('url')->default('');
         });
     }
 
