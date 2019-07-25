@@ -24,10 +24,12 @@ interface Props {
 }
 
 export const SupporterIcon = (props: Props) => {
+  const className = osu.classWithModifiers('supporter-icon', props.level != null ? ['with-level'] : []);
+
   return (
-    <span className='supporter-icon' title={osu.trans('users.show.is_supporter')}>
+    <span className={className} title={osu.trans('users.show.is_supporter')}>
       {
-        times(5 || 1, (n) => <span key={n} className='fas fa-heart' />)
+        times(props.level || 1, (n) => <span key={n} className='fas fa-heart' />)
       }
     </span>
   );
