@@ -18,7 +18,7 @@
 
 import NotificationJson from 'interfaces/notification-json';
 import XHRCollection from 'interfaces/xhr-collection';
-import * as _ from 'lodash';
+import { forEach, minBy, orderBy, random } from 'lodash';
 import { computed, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
@@ -83,7 +83,7 @@ export default class Worker {
   @computed get itemsGroupedByType() {
     const ret: Map<string, Notification[]> = new Map();
 
-    const sortedItems = _.orderBy([...this.items.values()], ['id'], ['desc']);
+    const sortedItems = orderBy([...this.items.values()], ['id'], ['desc']);
     sortedItems.unshift(this.pmNotification);
 
     sortedItems.forEach((item) => {
@@ -137,9 +137,12 @@ export default class Worker {
 
   boot = () => {
     this.active = this.userId != null;
-    this.updatePmNotification();
-    this.loadMore();
-    $(document).on('turbolinks:load', this.updatePmNotification);
+
+    if (this.active) {
+      this.updatePmNotification();
+      this.loadMore();
+      $(document).on('turbolinks:load', this.updatePmNotification);
+    }
   }
 
   connectWebSocket = () => {
@@ -178,7 +181,7 @@ export default class Worker {
     this.timeout.connectWebSocket = window.setTimeout(() => {
       this.needsRefresh = true;
       this.connectWebSocket();
-    }, 10000);
+    }, random(5000, 20000));
   }
 
   delayedRetryInitialLoadMore = () => {
@@ -192,11 +195,12 @@ export default class Worker {
   destroy = () => {
     this.active = false;
     this.items = observable.map();
-    _.forEach(this.xhr, (xhr) => xhr.abort());
-    _.forEach(this.timeout, (timeout) => clearTimeout(timeout));
+    forEach(this.xhr, (xhr) => xhr.abort());
+    forEach(this.timeout, (timeout) => clearTimeout(timeout));
 
     if (this.ws != null) {
       this.ws.close();
+      this.ws = null;
     }
 
     $(document).off('turbolinks:load', this.updatePmNotification);
@@ -282,7 +286,7 @@ export default class Worker {
         this.refreshing = false;
         this.needsRefresh = false;
       }).done((bundleJson: NotificationBundleJson) => {
-        const oldestNotification = _.minBy(bundleJson.notifications, 'id');
+        const oldestNotification = minBy(bundleJson.notifications, 'id');
         const minLoadedId = this.minLoadedId;
 
         bundleJson.notifications.forEach(this.updateFromServer);
@@ -315,6 +319,15 @@ export default class Worker {
     }).done(() => {
       this.markRead(ids);
     });
+  }
+
+  setUserId = (id: number | null) => {
+    if (this.active) {
+      this.destroy();
+    }
+
+    this.userId = id;
+    this.boot();
   }
 
   updateFromServer = (json: NotificationJson) => {
