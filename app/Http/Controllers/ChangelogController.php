@@ -153,10 +153,7 @@ class ChangelogController extends Controller
         $stream = UpdateStream::where('name', '=', $streamName)->firstOrFail();
         $build = $stream->builds()->default()->orderBy('build_id', 'desc')->firstOrFail();
 
-        return redirect()->route('changelog.build', [
-            'stream' => $streamName,
-            'build' => $build->version,
-        ]);
+        return ujs_redirect(build_url($build));
     }
 
     private function getUpdateStreams()
