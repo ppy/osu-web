@@ -22,6 +22,8 @@
   @avatar-size: 60px;
   @avatar-size--list: 40px;
   @background-color: @osu-colour-b4;
+  @background-overlay-opacity--online: 0.6;
+  @background-overlay-opacity--offline: 0.7;
   @card-border-radius: 10px;
   @card-item-spacing: 10px;
   @flag-width: @user-card-icon-size * 1.5;
@@ -149,18 +151,27 @@
     .full-size();
     border-radius: @card-border-radius;
     background-color: @osu-colour-b5;
-    opacity: 0.7;
+    opacity: @background-overlay-opacity--offline;
 
     &--online {
-      opacity: 0.6;
+      opacity: @background-overlay-opacity--online;
     }
 
     .@{top}--list & {
       border-radius: @avatar-border-radius;
-      background: linear-gradient(to right, .osu-hsla(@osu-colour-b5, 1)[@hsla] 50%, .osu-hsla(@osu-colour-b5, 0.7)[@hsla]);
+      background: linear-gradient(
+        to right,
+        .osu-hsla(@osu-colour-b5, 1)[@hsla] 50%,
+        .osu-hsla(@osu-colour-b5, @background-overlay-opacity--offline)[@hsla]
+      );
       opacity: 1;
+
       &--online {
-        background: linear-gradient(to right, .osu-hsla(@osu-colour-b5, 1)[@hsla] 50%, .osu-hsla(@osu-colour-b5, 0.6)[@hsla]);
+        background: linear-gradient(
+          to right,
+          .osu-hsla(@osu-colour-b5, 1)[@hsla] 50%,
+          .osu-hsla(@osu-colour-b5, @background-overlay-opacity--online)[@hsla]
+        );
       }
     }
   }
