@@ -57,5 +57,10 @@ You must replace <code>@{{token}}</code> with your OAuth2 token.
 
 # Changelog
 
-## 2019-07-18
-- `UserTransformer` now returns counts directly as primitives instead of numbers wrapped in an array.
+For a full list of changes, see the
+[Changelog on the site]({{ route('changelog.stream', ['stream' => 'web']) }}).
+
+## Breaking Changes
+
+### 2019-07-18
+- [`User`](#user) now returns counts directly as primitives instead of numbers wrapped in an array.
