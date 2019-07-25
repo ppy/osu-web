@@ -122,8 +122,8 @@ export class UserList extends React.PureComponent<Props> {
         {this.renderSelections()}
         <div className='user-list'>
           <div className='user-list__toolbar'>
-            {this.renderSorter()}
-            {this.renderViewMode()}
+            <div className='user-list__toolbar-item'>{this.renderSorter()}</div>
+            <div className='user-list__toolbar-item'>{this.renderViewMode()}</div>
           </div>
 
           <UserCards users={this.sortedUsers} viewMode={this.state.viewMode} />
@@ -180,9 +180,21 @@ export class UserList extends React.PureComponent<Props> {
 
   renderViewMode() {
     return (
-      <div>
-        <button onClick={this.onViewSelected} data-value='card'>card</button>
-        <button onClick={this.onViewSelected} data-value='list'>list</button>
+      <div className='user-list__view-modes'>
+        <button
+          className={osu.classWithModifiers('user-list__view-mode', this.state.viewMode === 'card' ? ['active'] : [])}
+          data-value='card'
+          onClick={this.onViewSelected}
+        >
+          <span className='fas fa-square' />
+        </button>
+        <button
+          className={osu.classWithModifiers('user-list__view-mode', this.state.viewMode === 'list' ? ['active'] : [])}
+          data-value='list'
+          onClick={this.onViewSelected}
+        >
+          <span className='fas fa-bars' />
+        </button>
       </div>
     );
   }

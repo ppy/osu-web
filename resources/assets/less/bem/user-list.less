@@ -25,4 +25,26 @@
     font-size: @font-size--title-small;
     justify-content: flex-end;
   }
+
+  &__toolbar-item {
+    & + & {
+      margin-left: 10px;
+    }
+  }
+
+  &__view-mode {
+    .reset-input();
+    .default-border-radius();
+
+    color: white;
+    padding: 5px;
+
+    &:hover {
+      color: @osu-colour-l1;
+    }
+
+    &--active {
+      color: @osu-colour-l1;
+    }
+  }
 }
