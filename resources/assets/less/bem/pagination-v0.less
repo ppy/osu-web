@@ -20,10 +20,11 @@
   @_top: pagination-v0;
 
   padding: 10px;
-  color: @gray;
+  color: @osu-colour-b2;
 
-  &--dark {
-    color: #ccc;
+  // TODO: remove after forum/store restyle
+  &--light-bg {
+    color: black;
   }
 
   &__row {
@@ -45,6 +46,12 @@
 
     &--active {
       font-weight: bold;
+      color: white;
+
+      // TODO: remove after forum/store restyle
+      .@{_top}--light-bg & {
+        color: black;
+      }
     }
 
     &--big {

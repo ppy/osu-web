@@ -45,6 +45,13 @@
     padding: 0;
     text-align: center;
     justify-content: center;
+
+    &::before {
+      .full-size();
+      content: ' ';
+      background-color: @osu-colour-b6;
+      opacity: 0.6;
+    }
   }
 
   &--forum-index {

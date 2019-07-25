@@ -18,7 +18,7 @@
 @extends('admin/master')
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page">
+    <div class="osu-layout__row osu-layout__row--page-admin">
         <h1>{{ trans('admin.logs.index.title') }}</h1>
 
         @foreach ($logs->get() as $log)

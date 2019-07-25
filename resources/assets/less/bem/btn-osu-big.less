@@ -26,7 +26,7 @@
 
   display: inline-block;
 
-  background-color: @osu-colour-l2;
+  background-color: @osu-colour-h2;
   transition: background-color 120ms;
 
   padding: 5px;
@@ -42,12 +42,12 @@
   &:hover,
   &:active {
     color: #fff;
-    background-color: @osu-colour-l1;
+    background-color: @osu-colour-h1;
   }
 
   &[disabled] {
     background-color: @osu-colour-b3;
-    color: @osu-colour-b1;
+    color: @osu-colour-f1;
   }
 
   &--account-edit {
@@ -81,7 +81,8 @@
   }
 
   &--comment-editor[disabled] {
-    opacity: 0.4;
+    background-color: @osu-colour-b5;
+    color: @osu-colour-f1;
 
     &::before {
       display: none;

@@ -23,16 +23,12 @@ export class ReactTurbolinks
   constructor: (@components = {}) ->
     @documentReady = false
     @targets = []
-    $(document).on 'turbolinks:load', =>
-      # Delayed to wait until cacheSnapshot finishes. The delay matches Turbolinks' defer.
-      Timeout.set 1, =>
-        @deleteLoadedMarker()
-        @destroyPersisted()
-        @documentReady = true
-        @boot()
-    $(document).on 'turbolinks:before-cache', =>
-      @documentReady = false
-      @destroy()
+    @newVisit = true
+    @scrolled = false
+
+    $(document).on 'turbolinks:before-cache', @onBeforeCache
+    $(document).on 'turbolinks:before-visit', @onBeforeVisit
+    $(document).on 'turbolinks:load', @onLoad
 
 
   allTargets: (callback) =>
@@ -67,6 +63,34 @@ export class ReactTurbolinks
     ReactDOM.unmountComponentAtNode(target) while target = @targets.pop()
 
 
+  onBeforeCache: =>
+    Timeout.clear @scrollTimeout
+    @documentReady = false
+    @destroy()
+
+
+  onBeforeVisit: =>
+    @newVisit = true
+
+
+  onLoad: =>
+    @scrolled = false
+    $(window).off 'scroll', @onWindowScroll
+    $(window).on 'scroll', @onWindowScroll
+
+    # Delayed to wait until cacheSnapshot finishes. The delay matches Turbolinks' defer.
+    Timeout.set 1, =>
+      @deleteLoadedMarker()
+      @destroyPersisted()
+      @documentReady = true
+      @boot()
+      @scrollTimeout = Timeout.set 100, @scrollOnNewVisit
+
+
+  onWindowScroll: =>
+    @scrolled = @scrolled || window.scrollX != 0 || window.scrollY != 0
+
+
   register: (name, element, propsFunction = ->) =>
     @registerPersistent name, element, false, propsFunction
 
@@ -82,3 +106,17 @@ export class ReactTurbolinks
       propsFunction: propsFunction
 
     @boot()
+
+
+  scrollOnNewVisit: =>
+    $(window).off 'scroll', @onWindowScroll
+    newVisit = @newVisit
+    @newVisit = false
+
+    return if !newVisit || @scrolled
+
+    targetId = document.location.hash.substr(1)
+
+    return if targetId == ''
+
+    document.getElementById(targetId)?.scrollIntoView()

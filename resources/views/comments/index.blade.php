@@ -25,7 +25,7 @@
     {{-- temporary pagination to be used by react component above --}}
     <div class="hidden">
         <div class="js-comments-pagination">
-            @include('objects._pagination_v0', ['object' => $commentPagination, 'modifiers' => ['dark']])
+            @include('objects._pagination_v0', ['object' => $commentPagination])
         </div>
     </div>
 

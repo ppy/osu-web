@@ -65,8 +65,10 @@
   &__poster {
     display: inline-block;
     margin-right: 1em;
-    color: #999;
     pointer-events: auto;
+
+    .link-default();
+    color: @osu-colour-f1;
 
     @media @mobile {
       display: block;
@@ -74,18 +76,18 @@
   }
 
   &__text {
+    color: white;
+
     &--excerpt {
-      color: #ddd;
       font-size: @font-size--small-2;
     }
 
     &--footer {
-      color: #999;
+      color: @osu-colour-f1;
       font-size: @font-size--small;
     }
 
     &--title {
-      color: #fff;
       font-size: @font-size--title-small-2;
       margin-bottom: @margin;
     }

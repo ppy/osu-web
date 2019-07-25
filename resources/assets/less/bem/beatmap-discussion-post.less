@@ -73,7 +73,7 @@
     &--cancel {
       .reset-input();
       position: absolute;
-      color: @osu-colour-b1;
+      color: @osu-colour-f1;
       top: 0px;
       right: 0px;
       width: @beatmap-discussion--reply-padding;
@@ -107,7 +107,6 @@
     width: @beatmap-discussion--avatar-size;
     height: @beatmap-discussion--avatar-size;
     flex: none;
-    pointer-events: none;
 
     .@{_top}--new-reply & {
       margin-bottom: 5px;
@@ -160,7 +159,7 @@
       display: flex;
       align-items: flex-end;
       font-size: @font-size--normal;
-      color: @osu-colour-b1;
+      color: @osu-colour-f1;
     }
 
     .@{_top}--reply & {
@@ -177,7 +176,7 @@
   &__info {
     font-size: @_info-text-size;
     margin-right: 10px;
-    color: @osu-colour-b1;
+    color: @osu-colour-f1;
 
     &--edited {
       font-style: italic;
@@ -225,7 +224,7 @@
     }
 
     &::placeholder {
-      color: @osu-colour-b1;
+      color: @osu-colour-f1;
     }
 
     &--editor {
@@ -265,7 +264,6 @@
     margin: 0 5px;
     min-width: 150px;
     height: @beatmap-discussion--avatar-size;
-    pointer-events: none;
 
     @media @desktop {
       flex: none;
@@ -273,29 +271,8 @@
   }
 
   &__user-badge {
-    border-radius: @border-radius-large;
-    font-size: @font-size--small;
-    color: #fff;
-    padding: 1px 5px;
-    flex: none;
+    min-height:16px;
     margin-top: 5px;
-    text-transform: uppercase;
-
-    .@{_top}--admin & {
-      background-color: @beatmap-discussion--user-color-moderator;
-    }
-
-    .@{_top}--bng & {
-      background-color: @beatmap-discussion--user-color-moderator;
-    }
-
-    .@{_top}--owner & {
-      background-color: @beatmap-discussion--user-color-owner;
-    }
-
-    .@{_top}--nat & {
-      background-color: @beatmap-discussion--user-color-moderator;
-    }
   }
 
   &__user-container {
@@ -308,49 +285,66 @@
       margin-bottom: 0;
       margin-right: 10px;
     }
-
-    .link-plain();
-    .link-default();
   }
 
   &__user-link {
-    .full-size();
+    .link-default();
+    color: white;
   }
 
   &__user-modding-history-link {
-    .link-default();
-    .link-plain();
+    .link-inverted();
+    color: @osu-colour-l1;
     font-size: 10px;
     margin-left: 5px;
-    pointer-events: auto;
   }
 
   &__user-row {
     display: flex;
-    align-items: center;
+    align-items: baseline;
   }
 
   &__user-stripe {
     align-self: stretch;
-    background-color: @osu-colour-l1;
+    background-color: @osu-colour-b5;
     border-radius: 1px;
     flex: none;
     width: 2px;
 
-    .@{_top}--admin & {
-      background-color: @beatmap-discussion--user-color-moderator;
+    .@{_top}--bot & {
+      background-color: @osu-colour-group-bot;
     }
 
-    .@{_top}--bng & {
-      background-color: @beatmap-discussion--user-color-moderator;
+    .@{_top}--dev & {
+      background-color: @osu-colour-group-dev;
     }
 
-    .@{_top}--owner & {
-      background-color: @beatmap-discussion--user-color-owner;
+    .@{_top}--gmt & {
+      background-color: @osu-colour-group-gmt;
     }
 
     .@{_top}--nat & {
-      background-color: @beatmap-discussion--user-color-moderator;
+      background-color: @osu-colour-group-nat;
+    }
+
+    .@{_top}--bng & {
+      background-color: @osu-colour-group-bng;
+    }
+
+    .@{_top}--bng_limited & {
+      background-color: @osu-colour-group-bng;
+    }
+
+    .@{_top}--alumni & {
+      background-color: @osu-colour-group-alumni;
+    }
+
+    .@{_top}--support & {
+      background-color: @osu-colour-group-support;
+    }
+
+    .@{_top}--mapper & {
+      background-color: @osu-colour-blue-1;
     }
   }
 
@@ -359,21 +353,5 @@
     font-weight: bold;
     font-style: italic;
     max-width: 120px;
-
-    .@{_top}--admin & {
-      color: @beatmap-discussion--user-color-moderator;
-    }
-
-    .@{_top}--bng & {
-      color: @beatmap-discussion--user-color-moderator;
-    }
-
-    .@{_top}--owner & {
-      color: @beatmap-discussion--user-color-owner;
-    }
-
-    .@{_top}--nat & {
-      color: @beatmap-discussion--user-color-moderator;
-    }
   }
 }
