@@ -71,7 +71,7 @@ class @BeatmapPack
 
   # TODO: move out.
   getBeatmapPackItem: (packId) ->
-    $.get laroute.route('packs.show', pack: packId)
+    $.get laroute.route('packs.raw', pack: packId)
 
   slideDown: =>
     @packBody.style.height = ''

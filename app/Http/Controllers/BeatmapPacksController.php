@@ -38,11 +38,22 @@ class BeatmapPacksController extends Controller
         }
 
         return view('packs.index')
-            ->with('packs', $packs->paginate(20)->appends(['type' => $type]))
+            ->with('packs', $packs->paginate(BeatmapPack::PER_PAGE)->appends(['type' => $type]))
             ->with('type', $type);
     }
 
-    public function show($id)
+    public function show($idOrTag)
+    {
+        if (is_numeric($idOrTag)) {
+            $pack = BeatmapPack::findOrFail($idOrTag);
+        } else {
+            $pack = BeatmapPack::where('tag', $idOrTag)->firstOrFail();
+        }
+
+        return ujs_redirect($pack->indexLink());
+    }
+
+    public function raw($id)
     {
         $pack = BeatmapPack::findOrFail($id);
         $mode = Beatmap::modeStr($pack->playmode ?? 0);
