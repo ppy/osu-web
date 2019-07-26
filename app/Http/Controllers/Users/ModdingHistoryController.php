@@ -26,6 +26,7 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapDiscussionVote;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
+use App\Models\UsernameChangeHistory;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ModdingHistoryController extends Controller
@@ -47,7 +48,7 @@ class ModdingHistoryController extends Controller
 
             if ($this->user === null) {
                 $change = UsernameChangeHistory::visible()
-                    ->where('username_last', $id)
+                    ->where('username_last', request('user'))
                     ->orderBy('change_id', 'desc')
                     ->first();
 
