@@ -54,7 +54,6 @@ export class BeatmapsetPanel extends React.PureComponent
   render: =>
     # this is actually "beatmapset"
     beatmapset = @props.beatmap
-    user = @props.user ? @props.beatmapset.user
 
     showHypeCounts = _.includes ['wip', 'pending', 'graveyard'], beatmapset.status
     if showHypeCounts
@@ -154,10 +153,10 @@ export class BeatmapsetPanel extends React.PureComponent
                     osu.trans 'beatmapsets.show.details.mapped_by',
                       mapper:
                         laroute.link_to_route 'users.show',
-                          user.username,
-                          user: user.id,
+                          beatmapset.user.username,
+                          user: beatmapset.user_id,
                             'class': 'js-usercard'
-                            'data-user-id': user.id
+                            'data-user-id': beatmapset.user_id
               div
                 className: 'u-ellipsis-overflow'
                 if beatmapset.status in ['graveyard', 'wip', 'pending']
