@@ -36,11 +36,11 @@ class UserVerificationState
 
     public static function fromCurrentRequest()
     {
-        return new static([
-            'user' => auth()->user(),
-            'session' => session(),
-            'legacySessionQueryWhere' => LegacySession::queryWhereFromRequest(request()),
-        ]);
+        return new static(
+            auth()->user(),
+            session(),
+            LegacySession::queryWhereFromRequest(request())
+        );
     }
 
     public static function fromVerifyLink($linkKey)
