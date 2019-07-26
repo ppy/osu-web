@@ -25,11 +25,11 @@ el = React.createElement
 export class Discussions extends React.Component
   render: =>
     div className: 'page-extra',
-      h2 className: 'page-extra__title', "Recently started discussions" #osu.trans("users.show.extra.#{@props.name}.title_longer")
+      h2 className: 'page-extra__title', osu.trans("users.show.extra.#{@props.name}.title_longer")
       div className: 'osu-layout',
         [
           for discussion in @props.discussions
-            div className: 'dongers', style: { 'display': 'flex' },
+            div style: { 'display': 'flex' },
               a href: laroute.route('beatmapsets.show', {beatmapset: discussion.beatmapset_id}), style: {margin: '20px 10px'},
                 img className: 'beatmapset-activities__beatmapset-cover', src: discussion.beatmapset.covers.list,
 

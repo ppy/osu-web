@@ -200,7 +200,7 @@ export class Discussion extends React.PureComponent
       discussion: @props.discussion
       post: post
       type: type
-      read: _.includes(@props.readPostIds, post.id) || @isOwner(post)
+      read: _.includes(@props.readPostIds, post.id) || @isOwner(post) || @state.preview
       users: @props.users
       user: @props.users[post.user_id]
       lastEditor: @props.users[post.last_editor_id]

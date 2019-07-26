@@ -192,9 +192,9 @@ return [
                     'title' => 'Pending Beatmaps',
                 ],
             ],
-            'posts' => [
-                'title' => 'Posts',
-                'title_longer' => 'Recent Posts',
+            'discussions' => [
+                'title' => 'Discussions',
+                'title_longer' => 'Recent Discussions',
             ],
             'events' => [
                 'title' => 'Events',
@@ -275,6 +275,10 @@ return [
                 'empty' => "This user hasn't gotten any yet. ;_;",
                 'recent' => 'Latest',
                 'title' => 'Medals',
+            ],
+            'posts' => [
+                'title' => 'Posts',
+                'title_longer' => 'Recent Posts',
             ],
             'recent_activity' => [
                 'title' => 'Recent',

@@ -24,6 +24,7 @@ import { Kudosu } from '../profile-page/kudosu'
 import { Placeholder } from './placeholder'
 import { BlockButton } from 'block-button'
 import { NotificationBanner } from 'notification-banner'
+import { Posts } from "./posts"
 import * as React from 'react'
 import { a, button, div, i, span} from 'react-dom-factories'
 el = React.createElement
@@ -53,7 +54,8 @@ export class Main extends React.PureComponent
         events: props.events
         user: props.user
         users: props.users
-        profileOrder: ['events', 'posts', 'upvotes', 'kudosu']
+        posts: props.posts
+        profileOrder: ['events', 'discussions', 'posts', 'upvotes', 'kudosu']
         rankedAndApprovedBeatmapsets: @props.extras.rankedAndApprovedBeatmapsets
         lovedBeatmapsets: @props.extras.lovedBeatmapsets
         unrankedBeatmapsets: @props.extras.unrankedBeatmapsets
@@ -199,7 +201,7 @@ export class Main extends React.PureComponent
 
   extraPageParams: (name) =>
     switch name
-      when 'posts'
+      when 'discussions'
         props:
           discussions: @state.discussions
           pagination: @state.showMorePagination
@@ -219,7 +221,14 @@ export class Main extends React.PureComponent
           pagination: @state.showMorePagination
         component: Kudosu
 
-      when 'upvotes'
+      when 'posts'
+        props:
+          posts: @state.posts
+          pagination: @state.showMorePagination
+          users: @state.users
+        component: Posts
+
+      when 'upvotes'#, 'posts'
         props: []
         component: Placeholder
 
