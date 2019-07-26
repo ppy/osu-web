@@ -351,6 +351,8 @@
 
     if !isFallbackLocale && !translated?
       delete replacements.count_delimited
+      # added by Lang.choice
+      delete replacements.count
 
       return osu.transChoice(key, count, replacements, fallbackLocale)
 
