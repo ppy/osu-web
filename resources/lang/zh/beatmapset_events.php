@@ -59,13 +59,13 @@ return [
     ],
 
     'type' => [
-        'approve' => '被 Approved',
+        'approve' => '推荐',
         'discussion_delete' => '删除讨论',
         'discussion_post_delete' => '删除讨论的回复',
         'discussion_post_restore' => '恢复已删除的讨论的回复',
         'discussion_restore' => '恢复已删除的讨论',
         'disqualify' => '取消 Qualified',
-        'issue_reopen' => '讨论重新打开',
+        'issue_reopen' => '议题重启',
         'issue_resolve' => '讨论被解决',
         'kudosu_allow' => '给予 Kudosu',
         'kudosu_deny' => '收回 Kudosu',
@@ -75,7 +75,7 @@ return [
         'love' => '被 Loved',
         'nominate' => '提名',
         'nomination_reset' => '重置提名',
-        'qualify' => '被 Qualified',
+        'qualify' => '审核通过',
         'rank' => '被 Ranked',
     ],
 ];

@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Μέλος από :date',
         'lastvisit' => 'Τελευταία φορά εμφανίστηκε στις :date',
+        'lastvisit_online' => '',
         'missingtext' => 'Ίσως να κάνατε κάποιο ορθογραφικό λάθος! (ή ο χρήστης είναι banned)',
         'origin_country' => 'Από :country',
         'page_description' => 'osu! - Όλα όσα θέλεις να ξέρεις για τον :username!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Συνολική Βαθμολογία',
         ],
     ],
+
     'status' => [
+        'all' => '',
         'online' => 'Συνδεδεμένοι',
         'offline' => 'Αποσυνδεδεμένοι',
     ],

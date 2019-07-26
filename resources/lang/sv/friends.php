@@ -25,6 +25,13 @@ return [
       'remove' => 'ta bort vän',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
+    ],
+
     'state' => [
       'friends' => 'vänner',
       'mutual' => 'gemensamma',

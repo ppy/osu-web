@@ -33,6 +33,18 @@ return [
         ],
     ],
 
+    'authorized-clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
+    ],
+
     'login' => [
         'download' => 'Націсніце тут, каб спампаваць гульню і стварыць уліковы запіс',
         'label' => 'Спачатку вам трэба ўвайсці ва ўлік. запіс!',

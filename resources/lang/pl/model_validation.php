@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Nie możesz odpowiedzieć na usunięty komentarz.',
     ],
 
+    'follow' => [
+        'invalid' => 'Nieprawidłowa wartość: :attribute.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Możesz głosować tylko na prośby o funkcję.',

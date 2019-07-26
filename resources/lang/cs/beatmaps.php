@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Seřazeno podle:',
             'created_at' => 'Čas vytvoření',
             'timeline' => 'Časová osa',
             'updated_at' => 'Poslední aktualizace',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Jakékoliv',
-        'ranked-approved' => 'Hodnocené & Schválené',
         'approved' => 'Schválené',
-        'qualified' => 'Kvalifikované',
-        'loved' => 'Oblíbené',
-        'faves' => 'Mé oblíbené',
-        'pending' => 'Čekající & Rozpracované',
+        'favourites' => '',
         'graveyard' => 'Hřbitov',
-        'my-maps' => 'Mé mapy',
+        'leaderboard' => '',
+        'loved' => 'Oblíbené',
+        'mine' => '',
+        'pending' => 'Čekající & Rozpracované',
+        'qualified' => 'Kvalifikované',
+        'ranked' => '',
     ],
     'genre' => [
         'any' => 'Jakékoliv',

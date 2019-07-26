@@ -21,9 +21,11 @@
 return [
     '_' => '排序',
 
-    'new' => '',
+    'last_visit' => '最近活躍',
+    'new' => '最新',
     'old' => '',
     'top' => '熱門',
+    'username' => '使用者名稱',
 
     'forum_topics' => [
         'new' => '最新回覆',

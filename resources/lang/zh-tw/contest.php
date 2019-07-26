@@ -58,8 +58,8 @@ return [
     ],
     'vote' => [
         'list' => '投票',
-        'count' => '',
-        'points' => '',
+        'count' => ':count_delimited 票|:count_delimited 票',
+        'points' => ':count_delimited 分|:count_delimited 分',
     ],
     'dates' => [
         'ended' => '結束於 :date',

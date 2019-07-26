@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => '並び替え順:',
             'created_at' => '作成日時',
             'timeline' => 'タイムライン',
             'updated_at' => '最終更新',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => '全て',
-        'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
-        'qualified' => 'Qualified',
-        'loved' => 'Loved',
-        'faves' => 'お気に入り',
-        'pending' => 'Pending & WIP',
+        'favourites' => '',
         'graveyard' => 'Graveyard',
-        'my-maps' => 'マイマップ',
+        'leaderboard' => '',
+        'loved' => 'Loved',
+        'mine' => '',
+        'pending' => 'Pending & WIP',
+        'qualified' => 'Qualified',
+        'ranked' => '',
     ],
     'genre' => [
         'any' => '全て',

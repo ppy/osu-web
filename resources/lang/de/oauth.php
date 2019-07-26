@@ -33,6 +33,18 @@ return [
         ],
     ],
 
+    'authorized-clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
+    ],
+
     'login' => [
         'download' => 'Klicke hier, um das Spiel herunterzuladen und ein Konto zu erstellen',
         'label' => 'Zuerst, melde dich mit deinen Konto an!',

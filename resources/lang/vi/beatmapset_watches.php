@@ -19,13 +19,6 @@
  */
 
 return [
-    'button' => [
-        'action' => [
-            'to_0' => 'Bỏ theo dõi',
-            'to_1' => 'Theo dõi',
-        ],
-    ],
-
     'index' => [
         'description' => 'Đây là những cuộc thảo luận beatmap mà bạn đang theo dõi. Bạn sẽ được thông báo khi bài viết mới được đăng hoặc những cập nhật.',
         'title_compact' => 'danh sách theo dõi modding',

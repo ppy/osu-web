@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Ordenado por:',
             'created_at' => 'Data de criação',
             'timeline' => 'Linha do tempo',
             'updated_at' => 'Última atualização',
@@ -197,7 +196,7 @@ return [
 
     'listing' => [
         'search' => [
-            'prompt' => 'digite palavras-chave...',
+            'prompt' => 'digite em palavras-chave...',
             'login_required' => 'Conecte-se para pesquisar.',
             'options' => 'Mais opções de busca',
             'supporter_filter' => 'Filtrar por :filters requer uma osu!supporter tag ativa',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Todos',
-        'ranked-approved' => 'Ranqueado & Aprovado',
         'approved' => 'Aprovado',
-        'qualified' => 'Qualificado',
-        'loved' => 'Loved',
-        'faves' => 'Favoritos',
-        'pending' => 'Pendente & Em Progresso',
+        'favourites' => '',
         'graveyard' => 'Cemitério',
-        'my-maps' => 'Meus beatmaps',
+        'leaderboard' => '',
+        'loved' => 'Loved',
+        'mine' => '',
+        'pending' => 'Pendente & Em Progresso',
+        'qualified' => 'Qualificado',
+        'ranked' => '',
     ],
     'genre' => [
         'any' => 'Todos',

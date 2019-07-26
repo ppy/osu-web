@@ -21,7 +21,6 @@
 return [
     'all_read' => 'Alle meldingen gelezen!',
     'mark_all_read' => 'Alles wissen',
-    'message_multi' => ':count_delimited nieuwe update op ":title".|:count_delimited nieuwe updates op ":title".',
 
     'item' => [
         'beatmapset' => [
@@ -30,17 +29,69 @@ return [
             'beatmapset_discussion' => [
                 '_' => 'Beatmap discussies',
                 'beatmapset_discussion_lock' => 'Beatmap ":title" is vergrendeld voor discussie.',
+                'beatmapset_discussion_lock_compact' => '',
                 'beatmapset_discussion_post_new' => ':username plaatste een nieuw bericht in ":title" beatmap discussie.',
+                'beatmapset_discussion_post_new_compact' => '',
                 'beatmapset_discussion_unlock' => 'Beatmap ":title" is ontgrendeld voor discussie.',
+                'beatmapset_discussion_unlock_compact' => '',
             ],
 
             'beatmapset_state' => [
                 '_' => 'Beatmap status gewijzigd',
                 'beatmapset_disqualify' => 'Beatmap ":title" is gediskwalificeerd door :username.',
+                'beatmapset_disqualify_compact' => '',
                 'beatmapset_love' => 'Beatmap ":title" is gepromoveerd tot loved door :username.',
+                'beatmapset_love_compact' => '',
                 'beatmapset_nominate' => 'Beatmap ":title" is genomineerd door :username.',
+                'beatmapset_nominate_compact' => '',
                 'beatmapset_qualify' => 'Beatmap ":title" heeft genoeg nominaties en is dus in de rij gezet voor de ranked sectie.',
+                'beatmapset_qualify_compact' => '',
+                'beatmapset_rank' => '',
+                'beatmapset_rank_compact' => '',
                 'beatmapset_reset_nominations' => 'Probleem geplaatst door :username reset nominatie van beatmap ":title" ',
+                'beatmapset_reset_nominations_compact' => '',
+            ],
+
+            'comment' => [
+                '_' => '',
+
+                'comment_new' => '',
+                'comment_new_compact' => '',
+            ],
+        ],
+
+        'channel' => [
+            '_' => '',
+
+            'channel' => [
+                '_' => '',
+                'pm' => [
+                    'channel_message' => '',
+                    'channel_message_compact' => '',
+                    'channel_message_group' => '',
+                ],
+            ],
+        ],
+
+        'build' => [
+            '_' => '',
+
+            'comment' => [
+                '_' => '',
+
+                'comment_new' => '',
+                'comment_new_compact' => '',
+            ],
+        ],
+
+        'news_post' => [
+            '_' => '',
+
+            'comment' => [
+                '_' => '',
+
+                'comment_new' => '',
+                'comment_new_compact' => '',
             ],
         ],
 
@@ -50,6 +101,7 @@ return [
             'forum_topic_reply' => [
                 '_' => 'Nieuw forum antwoord',
                 'forum_topic_reply' => ':username antwoordde op forumonderwerp ":title".',
+                'forum_topic_reply_compact' => '',
             ],
         ],
 
@@ -59,6 +111,15 @@ return [
             'legacy_pm' => [
                 '_' => '',
                 'legacy_pm' => ':count_delimited ongelezen bericht.|:count_delimited berichten.',
+            ],
+        ],
+
+        'user_achievement' => [
+            '_' => '',
+
+            'user_achievement_unlock' => [
+                '_' => '',
+                'user_achievement_unlock' => '',
             ],
         ],
     ],

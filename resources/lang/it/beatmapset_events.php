@@ -22,11 +22,11 @@ return [
     'event' => [
         'approve' => 'Approvato.',
         'discussion_delete' => 'Un moderatore ha cancellato la discussione :discussion.',
-        'discussion_lock' => '',
+        'discussion_lock' => 'La discussione per questa mappa è stata disattivata. (:text)',
         'discussion_post_delete' => 'Un moderatore ha cancellato un post dalla discussione :discussion.',
         'discussion_post_restore' => 'Un moderatore ha ripristinato un post dalla discussione :discussion.',
         'discussion_restore' => 'Un moderatore ha ripristinato la discussione :discussion.',
-        'discussion_unlock' => '',
+        'discussion_unlock' => 'La discussione per questa beatmap è stata attivata.',
         'disqualify' => 'Squalificata da :user. Motivazione: :discussion (:text).',
         'disqualify_legacy' => 'Squalificata da :user. Motivazione: :text.',
         'issue_reopen' => 'Il problema risolto :discussion è stato riaperto.',

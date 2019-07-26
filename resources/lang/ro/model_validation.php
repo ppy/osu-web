@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Nu este permis să răspunzi la un comentariu șters.',
     ],
 
+    'follow' => [
+        'invalid' => '',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Poți vota doar o cerere de funcții.',

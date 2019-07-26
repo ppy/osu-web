@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Não é permitido responder comentários excluídos.',
     ],
 
+    'follow' => [
+        'invalid' => ':attribute especificado é invalido.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Só pode votar um pedido de recurso.',

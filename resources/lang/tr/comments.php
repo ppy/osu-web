@@ -23,8 +23,8 @@ return [
     'deleted_count' => ':count_delimited silinmiş yorum|:count_delimited silinmiş yorum',
     'edited' => ':timeago tarihinde :user tarafından düzenlendi',
     'empty' => 'Henüz yorum yok.',
+    'load_replies' => '',
     'replies' => 'Yanıtlar',
-    'show_replies' => 'yanıtları göster',
     'title' => 'Yorumlar',
 
     'commentable_name' => [

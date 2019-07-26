@@ -36,7 +36,7 @@ return [
         'advanced_link' => 'Avancerad sökning',
         'button' => 'Sök',
         'empty_result' => 'Ingenting hittades!',
-        'missing_query' => 'Sökning på nyckelord behöver vara minst :n tecken',
+        'keyword_required' => '',
         'placeholder' => 'skriv för att söka',
         'title' => 'Sök',
 

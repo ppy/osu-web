@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'メールアドレス変更の確認',
         'update' => '更新',
@@ -84,6 +89,11 @@ return [
         'title' => 'プライバシー',
         'friends_only' => 'フレンドリストにいない人からのプライベートメッセージをブロックする',
         'hide_online' => 'オンライン状態を隠す',
+    ],
+
+    'notifications' => [
+        'title' => '通知',
+        'topic_auto_subscribe' => '作成した新しいフォーラムトピックに関する通知を自動的に有効にします',
     ],
 
     'security' => [

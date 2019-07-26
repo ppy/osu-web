@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'konfirmasi perubahan email osu!',
         'update' => 'perbarui',
@@ -84,6 +89,11 @@ return [
         'title' => 'Kebijakan Privasi',
         'friends_only' => 'Blokir pesan pribadi dari orang yang tidak ada dalam daftar teman Anda',
         'hide_online' => 'sembunyikan keberadaan online Anda',
+    ],
+
+    'notifications' => [
+        'title' => 'Notifikasi',
+        'topic_auto_subscribe' => 'hidupkan notifikasi secara otomatis di topik forum baru yang anda buat',
     ],
 
     'security' => [

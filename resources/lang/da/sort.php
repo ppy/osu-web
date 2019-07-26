@@ -21,9 +21,11 @@
 return [
     '_' => 'Sorter efter',
 
+    'last_visit' => '',
     'new' => 'Seneste',
     'old' => 'Gammel',
     'top' => 'Top',
+    'username' => '',
 
     'forum_topics' => [
         'new' => 'Seneste svar',

@@ -21,9 +21,11 @@
 return [
     '_' => 'Sortează după',
 
+    'last_visit' => '',
     'new' => 'Recent',
     'old' => 'Vechi',
     'top' => 'Top',
+    'username' => '',
 
     'forum_topics' => [
         'new' => 'Ultimul răspuns',

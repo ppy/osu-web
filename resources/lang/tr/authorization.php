@@ -144,6 +144,9 @@ return [
                 'uneditable' => 'Geçersiz kapak belirtildi.',
                 'not_owner' => 'Yalnızca başlık sahibi kapağı değiştirebilir.',
             ],
+            'store' => [
+                'forum_not_allowed' => '',
+            ],
         ],
 
         'view' => [

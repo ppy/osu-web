@@ -33,6 +33,18 @@ return [
         ],
     ],
 
+    'authorized-clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
+    ],
+
     'login' => [
         'download' => 'Klik her for at downloade spillet og opret en konto',
         'label' => 'Først, lad os logge ind på din konto!',

@@ -26,7 +26,7 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Dein Nominierungslimit für heute wurde erreicht, bitte versuche es morgen erneut.',
-            'full_bn_required' => '',
+            'full_bn_required' => 'Du musst ein vollwertiger Nominator sein um diese Qualifizierung durchzuführen.',
             'full_bn_required_hybrid' => 'Du musst ein Nominator sein um Beatmap-Sets mit mehr als einem Spielmodus zu nominieren.',
             'incorrect_state' => 'Beim Ausführen dieser Aktion ist ein Fehler aufgetreten. Bitte Seite neu laden.',
             'owner' => "Eigene Beatmaps können nicht nominiert werden.",
@@ -143,6 +143,9 @@ return [
             'edit' => [
                 'uneditable' => 'Ungültiges Banner ausgewählt.',
                 'not_owner' => 'Nur der Besitzer kann das Banner bearbeiten.',
+            ],
+            'store' => [
+                'forum_not_allowed' => 'Dieses Forum akzeptiert keine Titelbilder.',
             ],
         ],
 

@@ -55,6 +55,10 @@ return [
         'deleted_parent' => 'Responder a comentários eliminados não é permitido.',
     ],
 
+    'follow' => [
+        'invalid' => ':attribute especificado inválido.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Só se pode votar numa característica solicitada.',

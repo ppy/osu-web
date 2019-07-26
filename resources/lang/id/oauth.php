@@ -33,6 +33,18 @@ return [
         ],
     ],
 
+    'authorized-clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
+    ],
+
     'login' => [
         'download' => 'Klik di sini untuk mengunduh osu! dan membuat akun',
         'label' => 'Pertama-tama, mari masuk ke dalam akun Anda!',

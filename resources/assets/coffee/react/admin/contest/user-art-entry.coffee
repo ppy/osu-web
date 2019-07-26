@@ -24,14 +24,14 @@ el = React.createElement
 
 export class UserArtEntry extends React.Component
   render: =>
-    className = 'admin-contest-entry'
+    className = 'osu-table__body-row osu-table__body-row--highlightable admin-contest-entry'
     className += ' admin-contest-entry__deleted' if @props.entry.deleted
 
     tr
       className: className
       key: @props.entry.id,
 
-      td className: 'admin-contest-entry__user-column',
+      td className: 'osu-table__cell admin-contest-entry__user-column',
         a
           href: laroute.route('users.show', user: @props.entry.user.id)
           el UserAvatar, user: @props.entry.user, modifiers: ['profile']
@@ -45,9 +45,10 @@ export class UserArtEntry extends React.Component
           dt className: 'admin-contest__meta-row', 'Filesize'
           dd className: 'admin-contest__meta-row', osu.formatBytes(@props.entry.filesize)
 
-        el UserEntryDeleteButton,
-          entry: @props.entry
-
-      td {},
+      td className: 'osu-table__cell admin-contest-entry__preview',
         a download: @props.entry.original_filename, href: @props.entry.url,
           img className: 'img-responsive admin-contest-entry__thumbnail', src: @props.entry.thumb
+
+      td className: 'admin-contest-entry__column admin-contest-entry__column--button',
+        el UserEntryDeleteButton,
+          entry: @props.entry

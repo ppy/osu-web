@@ -23,8 +23,8 @@ return [
     'deleted_count' => ':count_delimited komentar yang dihapus|:count_delimited komentar yang dihapus',
     'edited' => 'disunting :timeago oleh :user',
     'empty' => 'Belum ada komentar.',
+    'load_replies' => '',
     'replies' => 'Balasan',
-    'show_replies' => 'perlihatkan balasan',
     'title' => 'Komentar',
 
     'commentable_name' => [

@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!támogató',
         'joined_at' => 'Regisztrált: :date',
         'lastvisit' => 'Legutóbb online: :date',
+        'lastvisit_online' => 'Jelenleg elérhető',
         'missingtext' => 'Véletlenül elüthettél valamit! (vagy a felhasználó tiltva van)',
         'origin_country' => 'Innen: :country',
         'page_description' => 'osu! - Minden amit valaha tudni akartál :username-ról!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Összpontszám',
         ],
     ],
+
     'status' => [
+        'all' => 'Összes',
         'online' => 'Elérhető',
         'offline' => 'Nem elérhető',
     ],

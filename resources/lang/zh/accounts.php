@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'osu! 帐户邮箱更改确认',
         'update' => '更新',
@@ -81,9 +86,14 @@ return [
     ],
 
     'privacy' => [
-        'title' => '隐私',
+        'title' => '隐私政策',
         'friends_only' => '屏蔽来自陌生人的私信',
         'hide_online' => '隐藏在线状态',
+    ],
+
+    'notifications' => [
+        'title' => '通知',
+        'topic_auto_subscribe' => '自动启用自己创建的主题的通知',
     ],
 
     'security' => [

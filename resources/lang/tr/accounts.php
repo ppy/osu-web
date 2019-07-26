@@ -62,6 +62,11 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
         'email_subject' => 'osu! e-posta değişikliği onayı',
         'update' => 'güncelle',
@@ -84,6 +89,11 @@ return [
         'title' => 'Gizlilik',
         'friends_only' => 'Arkadaş listende olmayan kişilerden gelen mesajları engelle',
         'hide_online' => 'çevrimiçi durumunu gizle',
+    ],
+
+    'notifications' => [
+        'title' => '',
+        'topic_auto_subscribe' => '',
     ],
 
     'security' => [

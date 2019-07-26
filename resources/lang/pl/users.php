@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'donator osu!',
         'joined_at' => 'Na osu! od :date',
         'lastvisit' => 'Ostatnio online :date',
+        'lastvisit_online' => 'Obecnie online',
         'missingtext' => 'Wprowadzona nazwa użytkownika jest błędna lub użytkownik został zablokowany',
         'origin_country' => 'Pochodzi z :country',
         'page_description' => 'osu! - Wszystko co chcesz wiedzieć o :username!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Łączny wynik',
         ],
     ],
+
     'status' => [
+        'all' => 'Wszyscy',
         'online' => 'Online',
         'offline' => 'Offline',
     ],

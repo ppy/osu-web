@@ -50,7 +50,7 @@ return [
                 'dev' => 'osu! 最初是 ppy 个人开发和维护的',
                 'time' => '运营它的成本和投入的精力已经超出了“兴趣”的范围',
                 'ads' => '无广告 <br/><br/>
-                        不像 99.95% 的网站，我们不推送广告，也没有从中获利。',
+                        不像 99.95% 的网站，我们不会为了钱而糊你一脸的广告。',
                 'goodies' => '解锁更多高级功能！',
             ],
         ],
@@ -83,37 +83,37 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => '谱面筛选器',
+                'title' => '筛选铺面',
                 'description' => '可在搜索谱面时以更多角度筛选。',
             ],
 
             'yellow_fellow' => [
-                'title' => '高亮用户名',
+                'title' => '用户名高亮',
                 'description' => '聊天时，用户名会变成亮黄色。',
             ],
 
             'speedy_downloads' => [
                 'title' => '高速下载',
-                'description' => '更快的下载速度，尤其是使用 osu!direct 时。',
+                'description' => '更快的下载速度。使用 osu!direct 的话甚至会更快。',
             ],
 
             'change_username' => [
                 'title' => '修改用户名',
-                'description' => '修改用户名而不需要支付费用（最多 1 次）。',
+                'description' => '你能得到一次免费修改用户名的机会。',
             ],
 
             'skinnables' => [
-                'title' => '更多的定制',
+                'title' => '更多的皮肤',
                 'description' => '自定义更多的游戏界面元素，例如主菜单的背景。',
             ],
 
             'feature_votes' => [
                 'title' => '新特性投票',
-                'description' => '为新特性请求投票（每月 2 票）。',
+                'description' => '为新功能投票（每月 2 票）。',
             ],
 
             'sort_options' => [
-                'title' => '排名',
+                'title' => '详细的排名',
                 'description' => '查看排名时可按 国家/好友/所选MOD 进行排名。',
             ],
 

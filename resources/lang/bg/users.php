@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Потребител от :date',
         'lastvisit' => 'Последно видян :date',
+        'lastvisit_online' => 'В момента онлайн',
         'missingtext' => 'Вероятно сте допуснали правописна грешка! (или потребителят е бил баннат)',
         'origin_country' => 'От :country',
         'page_description' => 'osu! - Всичко, което би желал да знаеш за :username!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Общ брой точки',
         ],
     ],
+
     'status' => [
+        'all' => 'Всички',
         'online' => 'Онлайн',
         'offline' => 'Офлайн',
     ],

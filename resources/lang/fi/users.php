@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'Tukija',
         'joined_at' => 'Liittyi :date',
         'lastvisit' => 'Nähty viimeksi :date',
+        'lastvisit_online' => 'Tällä hetkellä paikalla',
         'missingtext' => 'Taisit tehdä kirjoitusvirheen! (tai käyttäjällä on porttikielto)',
         'origin_country' => 'Maasta :country',
         'page_description' => 'osu! - Kaikki mitä olet koskaan halunnut tietää :username:sta!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Kokonaispisteet',
         ],
     ],
+
     'status' => [
+        'all' => 'Kaikki',
         'online' => 'Paikalla',
         'offline' => 'Poissa',
     ],

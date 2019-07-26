@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => '注册时间：:date',
         'lastvisit' => '上次登录：:date',
+        'lastvisit_online' => '当前在线',
         'missingtext' => '未找到用户！（或者该用户已经被 ban）',
         'origin_country' => '来自 :country',
         'page_description' => 'osu! - 你想知道的关于 :username 的一切!',
@@ -361,7 +362,9 @@ return [
             'total_score' => '总分',
         ],
     ],
+
     'status' => [
+        'all' => '所有',
         'online' => '在线',
         'offline' => '离线',
     ],

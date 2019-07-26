@@ -21,10 +21,10 @@
 return [
     'index' => [
         'none_running' => '現在開催中のトーナメントはありません。また今度確認してみましょう！',
-        'registration_period' => '参加登録期間： :start から :end',
+        'registration_period' => '参加登録期間: :start から :end',
 
         'header' => [
-            'subtitle' => '公認トーナメントのリストです。',
+            'subtitle' => '公認トーナメントのリスト',
             'title' => 'コミュニティトーナメント',
         ],
 
@@ -44,7 +44,7 @@ return [
         'info_page' => '詳細ページ',
         'login_to_register' => '詳細を見るには:loginして下さい！',
         'not_yet_entered' => 'このトーナメントには参加登録していません。',
-        'rank_too_low' => 'このトーナメントの参加登録に必要なランク条件を満たしていません！',
+        'rank_too_low' => '申し訳ありませんが、このトーナメントのランク要件を満たしていません！',
         'registration_ends' => '参加登録期間は:dateに終了します',
 
         'button' => [

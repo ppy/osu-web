@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Sortowane według:',
             'created_at' => 'Data utworzenia',
             'timeline' => 'Oś czasu',
             'updated_at' => 'Ostatnie aktualizacje',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Jakikolwiek',
-        'ranked-approved' => 'Rankingowe i zatwierdzone',
         'approved' => 'Zatwierdzone',
-        'qualified' => 'Zakwalifikowane',
-        'loved' => 'Ulubione społeczności',
-        'faves' => 'Ulubione',
-        'pending' => 'Oczekujące i rozwijane',
+        'favourites' => '',
         'graveyard' => 'Porzucone',
-        'my-maps' => 'Moje beatmapy',
+        'leaderboard' => '',
+        'loved' => 'Ulubione społeczności',
+        'mine' => '',
+        'pending' => 'Oczekujące i rozwijane',
+        'qualified' => 'Zakwalifikowane',
+        'ranked' => '',
     ],
     'genre' => [
         'any' => 'Jakikolwiek',

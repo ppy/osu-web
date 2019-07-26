@@ -21,9 +21,11 @@
 return [
     '_' => 'Lajittele',
 
+    'last_visit' => 'Äskettäin aktiivinen',
     'new' => 'Viimeisin',
     'old' => 'Vanha',
     'top' => 'Paras',
+    'username' => 'Käyttäjänimi',
 
     'forum_topics' => [
         'new' => 'Viimeisin kommentti',

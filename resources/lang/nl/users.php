@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Werd lid op :date',
         'lastvisit' => 'Laatst gezien op :date',
+        'lastvisit_online' => '',
         'missingtext' => 'Je hebt misschien een typfout gemaakt! (of de gebruiker is verbannen)',
         'origin_country' => 'Uit :country',
         'page_description' => 'osu! - Alles wat je ooit over :username wilde weten!',
@@ -361,7 +362,9 @@ return [
             'total_score' => 'Totaal Aantal Score',
         ],
     ],
+
     'status' => [
+        'all' => '',
         'online' => 'Online',
         'offline' => 'Offline',
     ],

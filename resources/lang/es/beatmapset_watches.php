@@ -19,13 +19,6 @@
  */
 
 return [
-    'button' => [
-        'action' => [
-            'to_0' => 'Dejar de mirar',
-            'to_1' => 'Mirar',
-        ],
-    ],
-
     'index' => [
         'description' => 'Estas son las discusiones de Beatmap que estás siguiendo. Se te notificará cuando haya nuevas publicaciones o actualizaciones.',
         'title_compact' => 'lista de seguimiento de modificaciones',

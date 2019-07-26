@@ -144,6 +144,9 @@ return [
                 'uneditable' => 'Ogiltigt omslag specificerad.',
                 'not_owner' => 'Endast trådskaparen kan redigera omslaget.',
             ],
+            'store' => [
+                'forum_not_allowed' => '',
+            ],
         ],
 
         'view' => [

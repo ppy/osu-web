@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Sortert etter:',
             'created_at' => 'Opprettingstidspunkt',
             'timeline' => 'Tidslinje',
             'updated_at' => 'Siste oppdatering',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Alle',
-        'ranked-approved' => 'Rangert & Godkjent',
         'approved' => 'Godkjent',
-        'qualified' => 'Kvalifisert',
-        'loved' => 'Elsket',
-        'faves' => 'Favoritter',
-        'pending' => 'Ventende & WIP',
+        'favourites' => '',
         'graveyard' => 'Gravplassert',
-        'my-maps' => 'Mine Maps',
+        'leaderboard' => '',
+        'loved' => 'Elsket',
+        'mine' => '',
+        'pending' => 'Ventende & WIP',
+        'qualified' => 'Kvalifisert',
+        'ranked' => '',
     ],
     'genre' => [
         'any' => 'Alle',

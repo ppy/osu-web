@@ -144,6 +144,9 @@ return [
                 'uneditable' => '指定的封面不可用。',
                 'not_owner' => '只有樓主可以編輯封面。',
             ],
+            'store' => [
+                'forum_not_allowed' => '',
+            ],
         ],
 
         'view' => [

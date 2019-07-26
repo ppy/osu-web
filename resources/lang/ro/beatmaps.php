@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Sortat după:',
             'created_at' => 'Data creării',
             'timeline' => 'Cronologie',
             'updated_at' => 'Ultima actualizare',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Oricare',
-        'ranked-approved' => 'Clasate & Aprobate',
         'approved' => 'Aprobate',
-        'qualified' => 'Calificate',
-        'loved' => 'Loved',
-        'faves' => 'Favorite',
-        'pending' => 'În așteptare & în lucru',
+        'favourites' => '',
         'graveyard' => 'Graveyard',
-        'my-maps' => 'Mapele mele',
+        'leaderboard' => '',
+        'loved' => 'Loved',
+        'mine' => '',
+        'pending' => 'În așteptare & în lucru',
+        'qualified' => 'Calificate',
+        'ranked' => '',
     ],
     'genre' => [
         'any' => 'Oricare',

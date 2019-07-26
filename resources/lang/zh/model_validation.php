@@ -55,6 +55,10 @@ return [
         'deleted_parent' => '不能回复已删除的评论。',
     ],
 
+    'follow' => [
+        'invalid' => '指定的 :attribute 无效。',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => '只能给新特性请求投票。',

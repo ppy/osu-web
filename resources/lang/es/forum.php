@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited publicación|:count_delimited publicaciones',
+            'topic_starter' => '',
         ],
     ],
 
