@@ -48,7 +48,9 @@ class UserRegistrationTest extends TestCase
         $this->assertArraySubset(
             $reg->user()->validationErrors()->all(),
             [
-                'username' => [trans('model_validation.required', ['attribute' => 'username'])],
+                'username' => [trans('model_validation.required', [
+                    'attribute' => trans('model_validation.user.attributes.username'),
+                ])],
             ]
         );
         $this->assertSame($origCount, User::count());
@@ -67,7 +69,9 @@ class UserRegistrationTest extends TestCase
         $this->assertArraySubset(
             $reg->user()->validationErrors()->all(),
             [
-                'user_email' => [trans('model_validation.required', ['attribute' => 'user_email'])],
+                'user_email' => [trans('model_validation.required', [
+                    'attribute' => trans('model_validation.user.attributes.user_email'),
+                ])],
             ]
         );
         $this->assertSame($origCount, User::count());
@@ -86,7 +90,9 @@ class UserRegistrationTest extends TestCase
         $this->assertArraySubset(
             $reg->user()->validationErrors()->all(),
             [
-                'password' => [trans('model_validation.required', ['attribute' => 'password'])],
+                'password' => [trans('model_validation.required', [
+                    'attribute' => trans('model_validation.user.attributes.password'),
+                ])],
             ]
         );
         $this->assertSame($origCount, User::count());
