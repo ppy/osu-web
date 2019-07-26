@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,6 +19,7 @@
 .avatar {
   @default-avatar-size: 70px;
 
+  .reset-input();
   .default-box-shadow();
   .default-border-radius();
 
@@ -30,19 +31,13 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  display: block;
 
   &--beatmapset {
     .default-border-radius();
     margin-right: 5px;
     width: @beatmapset-avatar-size;
     height: @beatmapset-avatar-size;
-  }
-
-  &--beatmapset-scoreboard {
-    width: @beatmapset-scoreboard-avatar-size;
-    height: @beatmapset-scoreboard-avatar-size;
-    .default-border-radius();
-    .default-box-shadow();
   }
 
   &--centered {
@@ -52,10 +47,9 @@
 
   &--forum {
     @border: 5px;
-    display: block;
     width: 100%;
     height: 0;
-    padding-bottom: calc(100% ~'-' (@border * 2));
+    padding-bottom: calc(100% - (@border * 2));
 
     box-shadow: none;
     border: @border solid #fff;
@@ -84,9 +78,14 @@
     padding-bottom: 100%;
     box-shadow: none;
     border-radius: 0;
+  }
 
-    // otherwise white border when zoomed in.
-    background-position: 0 0;
+  &--full-circle {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    box-shadow: none;
+    border-radius: 50%;
   }
 
   &--full-rounded {
@@ -100,18 +99,55 @@
     .at2x-simple("/images/layout/avatar-guest.png");
   }
 
+  &--nav2 {
+    width: @nav2-avatar-height;
+    height: @nav2-avatar-height;
+    box-shadow: none;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: width @header-pinned-animation-duration, height @header-pinned-animation-duration;
+
+    .@{header-pinned} & {
+      width: @nav2-avatar-height--pinned;
+      height: @nav2-avatar-height--pinned;
+    }
+
+    &::after {
+      .full-size();
+      content: '';
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 3px #fff;
+      opacity: 0;
+      will-change: opacity;
+    }
+
+    &.js-click-menu--active, &:hover {
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
   &--navbar-mobile {
     width: @navbar-mobile--content-height;
     height: @navbar-mobile--content-height;
     margin-right: 10px;
-    display: block;
   }
 
   &--profile {
     width: @profile-avatar-size;
     height: @profile-avatar-size;
+  }
 
-    // brings avatar on top of following row
-    z-index: @z-index--user-profile-avatar;
+  &--restricted {
+    &::before {
+      .full-size();
+      content: '';
+      background-image: url('/images/layout/exclamation-icon.svg');
+      background-size: 60%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: fade(#000, 60%);
+    }
   }
 }

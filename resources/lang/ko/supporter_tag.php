@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,8 +19,10 @@
  */
 
 return [
+    'months' => '월(달)',
+
     'user_search' => [
         'searching' => '찾는 중...',
-        'not_found' => '검색하신 사용자를 찾을 수 없습니다.',
+        'not_found' => "사용자가 존재하지 않습니다.",
     ],
 ];

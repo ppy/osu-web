@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,15 +18,18 @@
 
 .forum-topic-entry {
   @_top: forum-topic-entry;
-  @main-margin: 40px;
 
   list-style: none;
   font-size: @font-size--normal;
   display: flex;
   border-bottom: 1px solid #ccc;
-  margin: 0 @main-margin;
+  margin: 0 @forum-topic-entry--main-margin;
 
   &--deleted {
+    opacity: 0.5;
+  }
+
+  &--disabled {
     opacity: 0.5;
   }
 
@@ -36,8 +39,8 @@
 
   &__bg {
     .full-size();
-    margin: 0 (-@main-margin);
-    width: calc(100% ~'+' (@main-margin * 2));
+    margin: 0 (-@forum-topic-entry--main-margin);
+    width: calc(100% + (@forum-topic-entry--main-margin * 2));
     background-color: @gray-lighter;
     opacity: 0;
     will-change: opacity;
@@ -56,16 +59,6 @@
 
     &--buttons {
       margin: -2.5px;
-
-      @media @desktop {
-        opacity: 0;
-      }
-
-      .@{_top}:hover & {
-        @media @desktop {
-          opacity: 1;
-        }
-      }
     }
 
     &--icon {
@@ -110,8 +103,8 @@
       padding: 0 5px;
       top: 0;
       bottom: 0;
-      left: (-@main-margin);
-      width: @main-margin;
+      left: (-@forum-topic-entry--main-margin);
+      width: @forum-topic-entry--main-margin;
       justify-content: flex-end;
 
       font-size: @font-size--forum-topic-entry-icon;

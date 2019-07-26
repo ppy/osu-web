@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,22 +22,23 @@ return [
     'codes' => [
         'http-401' => 'Veuillez vous connecter pour continuer.',
         'http-403' => 'Accès refusé.',
-        'http-429' => 'Trop de tentatives! Réessayez plus tard',
+        'http-404' => 'Introuvable.',
+        'http-429' => 'Trop de tentatives ! Réessayez plus tard.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Une erreur est survenue. Essayez à nouveau.',
+            'generic' => 'Une erreur est survenue. Essayez de rafraîchir la page.',
         ],
     ],
     'beatmaps' => [
         'invalid_mode' => 'Mode spécifié invalide.',
-        'standard_converts_only' => "Seulement le mode osu! peut avoir des scores dans d'autres modes.",
+        'standard_converts_only' => 'Aucun score n\'est disponible pour le mode sélectionné sur cette difficulté de beatmap.',
     ],
-    'beatmapsets' => [
-        'too-many-favourites' => 'Vous avez trop de beatmaps favorites ! Merci de supprimer une beatmap de vos favoris.',
+    'checkout' => [
+        'generic' => 'Une erreur s’est produite lors de la préparation de votre commande.',
     ],
     'logged_out' => 'Vous avez été déconnecté. Merci de vous connecter et de réessayer.',
-    'supporter_only' => 'Vous devez être un osu!supporter pour accéder à cela.',
-    'no_restricted_access' => 'Vous ne pouvez pas faire ça avec un compte avec un accès restreint.',
-    'unknown' => 'Erreur inconnue survenue.',
+    'supporter_only' => 'Vous devez être un osu!supporter pour utiliser cette fonctionnalité.',
+    'no_restricted_access' => 'Vous ne pouvez pas effectuer cette action avec un compte restreint.',
+    'unknown' => 'Une erreur inconnue est survenue.',
 ];

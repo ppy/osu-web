@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,17 +19,21 @@
  */
 
 return [
+    'pinned_topics' => '고정된 주제',
+    'slogan' => "혼자서 놀기엔 너무 위험하지요.",
+    'subforums' => '서브포럼',
+    'title' => 'osu! 포럼',
 
     'covers' => [
         'create' => [
             '_' => '표지 이미지 설정',
             'button' => '이미지 업로드',
-            'info' => '표지 이미지의 크기는 :dimensions여야 합니다. 이미지를 이 곳에 끌어넣어 업로드할 수도 있습니다.',
+            'info' => '표지 이미지의 해상도는 최대 :dimensions입니다. 이미지를 이 곳에 끌어넣어 업로드할 수도 있습니다.',
         ],
 
         'destroy' => [
-            '_' => '표지 이미지 제거',
-            'confirm' => '정말 표지 이미지를 제거하실 건가요?',
+            '_' => '표지 이미지 삭제',
+            'confirm' => '정말 표지 이미지를 삭제하실 건가요?',
         ],
     ],
 
@@ -43,75 +47,107 @@ return [
         ],
     ],
 
-    'pinned_topics' => '고정된 주제',
+    'mark_as_read' => [
+        'forum' => '포럼을 읽음으로 표시',
+        'forums' => '포럼을 읽음으로 표시',
+        'busy' => '읽음으로 표시하는 중...',
+    ],
+
+    'poll' => [
+        'edit_warning' => '투표를 수정하면 현재 결과가 제거됩니다!',
+
+        'actions' => [
+            'edit' => '투표 수정',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => '정말 이 글을 삭제할까요?',
         'confirm_restore' => '정말 이 글을 복원할까요?',
-        'edited' => '마지막으로 :user님이 :when에 수정하여, 총 :count회 수정되었습니다.',
+        'edited' => '마지막으로 :user님이 :when에 수정하여 총 :count회 수정되었습니다.',
         'posted_at' => ':when에 게시됨',
+
         'actions' => [
             'destroy' => '삭제',
             'restore' => '복원',
             'edit' => '수정',
         ],
+
+        'info' => [
+            'post_count' => '게시글 :count_delimited개',
+            'topic_starter' => '주제 시작인',
+        ],
     ],
+
     'search' => [
         'go_to_post' => '게시글로 이동',
         'post_number_input' => '글 번호를 입력하세요',
-        'total_posts' => '총 :posts_count개 글 발견',
+        'total_posts' => '총 :posts_count개의 글',
     ],
-    'subforums' => '서브포럼',
-    'title' => 'osu!커뮤니티',
-    'slogan' => '혼자서 놀기엔 너무 위험하지요.',
+
     'topic' => [
+        'deleted' => '삭제된 주제',
+        'go_to_latest' => '최근에 올라온 글 보기',
+        'latest_post' => ':when by :user',
+        'latest_reply_by' => ':user님이 마지막 답변 작성',
+        'new_topic' => '새 주제글 작성',
+        'new_topic_login' => '새로운 글을 게시하려면 로그인해주세요.',
+        'post_reply' => '게시하기',
+        'reply_box_placeholder' => '답글 내용을 입력하세요.',
+        'reply_title_prefix' => '답글',
+        'started_by' => 'by :user',
+        'started_by_verbose' => ':user 님이 시작함',
+
         'create' => [
+            'preview' => '미리보기',
+            // TL note: this is used in the topic reply preview, when
+            // the user goes back from previewing to editing the reply
+            'preview_hide' => '작성',
+            'submit' => '게시하기',
+
+            'necropost' => [
+                'default' => '이 주제는 조금 오래된 글입니다. 정말 그래야 할 사유가 있는 경우에만 작성해 주세요.',
+
+                'new_topic' => [
+                    '_' => "이 주제는 조금 오래된 글입니다. 정말 여기에 작성해야 할 사유가 없다면, :create해 주세요.",
+                    'create' => '새로운 주제글 작성',
+                ],
+            ],
+
             'placeholder' => [
                 'body' => '글 내용을 입력하세요.',
                 'title' => '이곳을 눌러 제목을 정하세요',
             ],
-            'preview' => '미리보기',
-            // TL note: this is used in the topic reply preview, when
-            // the user goes back from previewing to editing the reply
-            'preview_hide' => '계속 쓰기',
-            'submit' => '게시하기',
         ],
-        'go_to_latest' => '최근에 올라온 글 보기',
+
         'jump' => [
             'enter' => '특정 글로 이동하려면 클릭하세요',
             'first' => '처음 글로 이동하기',
             'last' => '마지막 글로 이동하기',
-            'next' => '다음 10개 글 표시',
-            'previous' => '이전 10개 글 표시',
+            'next' => '10개 글 건너뛰기',
+            'previous' => '10개 글 이전으로',
         ],
-        'latest_post' => ':when by :user',
-        'latest_reply_by' => 'latest reply by :user',
-        'new_topic' => '새 주제글 작성',
+
         'post_edit' => [
             'cancel' => '취소',
             'post' => '저장',
-            'zoom' => [
-                'start' => '전체 화면',
-                'end' => '전체 화면 나가기',
-            ],
         ],
-        'post_reply' => '게시하기',
-        'reply_box_placeholder' => '답글 내용을 입력하세요.',
-        'started_by' => ':user님이 작성함',
     ],
 
     'topic_watches' => [
         'index' => [
             'title' => '구독한 주제글',
             'title_compact' => '구독',
-            'title_main' => '<strong>구독</strong>한 주제글',
+            'title_main' => '포럼 <strong>구독</strong>',
 
             'box' => [
-                'total' => 'Topics subscribed',
-                'unread' => 'Topics with new replies',
+                'total' => '구독한 주제글',
+                'unread' => '새로운 답변이 있는 주제글',
             ],
+
             'info' => [
-                'total' => 'You subscribed to :total topics.',
-                'unread' => 'You have :unread unread replies to subscribed topics.',
+                'total' => '총 :total개의 주제글을 구독했습니다.',
+                'unread' => '구독한 주제글에 :unread개의 읽지 않은 답변이 있습니다.',
             ],
         ],
 
@@ -127,22 +163,27 @@ return [
         '_' => '주제',
 
         'actions' => [
+            'login_reply' => '답변하려면 로그인하세요',
+            'reply' => '답변',
             'reply_with_quote' => '이 글을 답글에 인용하기',
             'search' => '검색',
         ],
 
         'create' => [
-            'create_poll' => '여론 투표 생성',
+            'create_poll' => '투표 만들기',
+
+            'preview' => '글 미리보기',
 
             'create_poll_button' => [
                 'add' => '투표 만들기',
-                'remove' => '투표 생성 ',
+                'remove' => '투표 생성 취소',
             ],
 
             'poll' => [
-                'length' => '여론 투표를',
-                'length_days_prefix' => '',
-                'length_days_suffix' => '일 동안 진행',
+                'hide_results' => '투표의 결과를 숨깁니다.',
+                'hide_results_info' => '투표가 끝났을 때만 보입니다.',
+                'length' => '투표 진행 기간',
+                'length_days_suffix' => '일',
                 'length_info' => '투표를 영구적으로 진행하려면 공백으로 두세요.',
                 'max_options' => '투표가능 항목 수',
                 'max_options_info' => '중복으로 선택 가능한 항목 수를 나타냅니다.',
@@ -159,58 +200,59 @@ return [
         ],
 
         'index' => [
-            'views' => '조회수',
+            'feature_votes' => '별 평점 순위',
             'replies' => '답글',
+            'views' => '조회수',
         ],
 
         'issue_tag_added' => [
-            'action-0' => '"added" 태그 삭제',
-            'action-1' => '"added" 태그 추가',
-            'state-0' => '"added" 태그 삭제됨',
-            'state-1' => '"added" 태그 추가됨',
+            'to_0' => '"added" 태그 삭제',
+            'to_0_done' => '"added" 태그 삭제됨',
+            'to_1' => '"added" 태그 추가',
+            'to_1_done' => '"added" 태그 추가됨',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => '"assigned" 태그 삭제',
-            'action-1' => '"assigned" 태그 추가',
-            'state-0' => '"assigned" 태그 삭제됨',
-            'state-1' => '"assigned" 태그 추가됨',
+            'to_0' => '"assigned" 태그 삭제',
+            'to_0_done' => '"assigned" 태그 삭제됨',
+            'to_1' => '"assigned" 태그 추가',
+            'to_1_done' => '"assigned" 태그 추가됨',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => '"confirmed" 태그 삭제',
-            'action-1' => '"confirmed" 태그 추가',
-            'state-0' => '"confirmed" 태그 삭제됨',
-            'state-1' => '"confirmed" 태그 추가됨',
+            'to_0' => '"confirmed" 태그 삭제',
+            'to_0_done' => '"confirmed" 태그 삭제됨',
+            'to_1' => '"confirmed" 태그 추가',
+            'to_1_done' => '"confirmed" 태그 추가됨',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => '"duplicate" 태그 삭제',
-            'action-1' => '"duplicate" 태그 추가',
-            'state-0' => '"duplicate" 태그 삭제됨',
-            'state-1' => '"duplicate" 태그 추가됨',
+            'to_0' => '"duplicate" 태그 삭제',
+            'to_0_done' => '"duplicate" 태그 삭제됨',
+            'to_1' => '"duplicate" 태그 추가',
+            'to_1_done' => '"duplicate" 태그 추가됨',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => '"invalid" 태그 삭제',
-            'action-1' => '"invalid" 태그 추가',
-            'state-0' => '"invalid" 태그 삭제됨',
-            'state-1' => '"invalid" 태그 추가됨',
+            'to_0' => '"invalid" 태그 삭제',
+            'to_0_done' => '"invalid" 태그 삭제됨',
+            'to_1' => '"invalid" 태그 추가',
+            'to_1_done' => '"invalid" 태그 추가됨',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => '"resolved" 태그 삭제',
-            'action-1' => '"resolved" 태그 추가',
-            'state-0' => '"resolved" 태그 삭제됨',
-            'state-1' => '"resolved" 태그 추가됨',
+            'to_0' => '"resolved" 태그 삭제',
+            'to_0_done' => '"resolved" 태그 삭제됨',
+            'to_1' => '"resolved" 태그 추가',
+            'to_1_done' => '"resolved" 태그 추가됨',
         ],
 
         'lock' => [
-            'is_locked' => '주제글이 잠겨있어 답글을 게시할 수 없습니다.',
-            'lock-0' => '주제글 잠금 풀기',
-            'lock-1' => '주제글 잠그기',
-            'state-0' => '해당 주제의 잠금이 해제되었습니다,',
-            'state-1' => '해당 주제가 잠겼습니다.',
+            'is_locked' => '주제글이 잠겨있어 답글을 달 수 없습니다.',
+            'to_0' => '주제글 잠금 풀기',
+            'to_0_done' => '해당 주제의 잠금이 해제되었습니다,',
+            'to_1' => '주제글 잠그기',
+            'to_1_done' => '해당 주제가 잠겼습니다.',
         ],
 
         'moderate_move' => [
@@ -218,26 +260,32 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => '주제글 고정 해제',
-            'pin-1' => '주제글 고정',
-            'pin-2' => '주제글을 고정하고 알림글로 나타내기',
-            'state-0' => '해당 주제의 고정이 해제되었습니다.',
-            'state-1' => '해당 주제가 고정되었습니다.',
-            'state-2' => '해당 주제가 고정되고 알림글로 표시됩니다.',
+            'to_0' => '주제글 고정 해제',
+            'to_0_done' => '해당 주제의 고정이 해제되었습니다.',
+            'to_1' => '주제글 고정',
+            'to_1_done' => '해당 주제가 고정되었습니다.',
+            'to_2' => '주제글을 고정하고 알림글로 나타내기',
+            'to_2_done' => '해당 주제가 고정되고 알림글로 표시됩니다.',
         ],
 
         'show' => [
-            'total_posts' => '총 게시글',
             'deleted-posts' => '삭제된 게시글',
+            'total_posts' => '총 게시글',
 
             'feature_vote' => [
                 'current' => '현재 우선도: +:count',
                 'do' => '이 요청 옹호',
 
+                'info' => [
+                    '_' => '이곳은 :feature_request입니다. 기능 요청들의 투표는 :supporters가 할 수 있습니다.',
+                    'feature_request' => '기능 요청',
+                    'supporters' => '서포터',
+                ],
+
                 'user' => [
-                    'current' => '투표 횟수가 :votes회 남았습니다.',
                     'count' => '{0} 표 없음|{1,*} :count 표',
-                    'not_enough' => '투표를 모두 사용하여 더이상 투표할 수 없습니다.',
+                    'current' => '투표 횟수가 :votes회 남았습니다.',
+                    'not_enough' => "투표 횟수를 모두 사용하여 더이상 투표할 수 없습니다.",
                 ],
             ],
 
@@ -245,19 +293,20 @@ return [
                 'vote' => '투표',
 
                 'detail' => [
+                    'end_time' => '투표가 :time에 종료됩니다.',
+                    'ended' => '투표가 :time에 종료되었습니다.',
+                    'results_hidden' => '투표가 끝난 후에 결과가 표시됩니다.',
                     'total' => '총 투표 수: :count회',
-                    'ended' => '여론 투표가 :time에 종료되었습니다.',
-                    'end_time' => '여론 투표가 :time에 종료됩니다.',
                 ],
             ],
         ],
 
         'watch' => [
-            'state-0' => 'Unsubscribed from topic',
-            'state-1' => 'Subscribed to topic',
-            'watch-0' => '주제 구독 해제하기',
-            'watch-1' => '주제 ',
+            'to_not_watching' => '즐겨찾기 등록 안됨',
+            'to_watching' => '즐겨찾기',
+            'to_watching_mail' => '알림과 함께 즐겨찾기',
+            'tooltip_mail_disable' => '알림이 활성화되었습니다. 눌러서 비활성화하세요.',
+            'tooltip_mail_enable' => '알림이 비활성화되었습니다. 눌러서 활성화하세요.',
         ],
     ],
-
 ];

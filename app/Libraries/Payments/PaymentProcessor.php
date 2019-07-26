@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -46,6 +46,13 @@ abstract class PaymentProcessor implements \ArrayAccess
         $this->params = $params;
         $this->signature = $signature;
     }
+
+    /**
+     * Gets the country code of the payment as returned by the provider.
+     *
+     * @return string
+     */
+    abstract public function getCountryCode();
 
     /**
      * Gets a more friendly identifying order number string that represents an Order.
@@ -180,6 +187,7 @@ abstract class PaymentProcessor implements \ArrayAccess
                 $payment = new Payment([
                     'provider' => $this->getPaymentProvider(),
                     'transaction_id' => $this->getPaymentTransactionId(),
+                    'country_code' => $this->getCountryCode(),
                     'paid_at' => $this->getPaymentDate(),
                 ]);
 
@@ -217,13 +225,27 @@ abstract class PaymentProcessor implements \ArrayAccess
                 $order = $this->getOrder();
                 $payment = $order->payments->where('cancelled', false)->first();
 
-                if ($payment === null && $order->status === 'cancelled') {
-                    // payment not processed, manually cancelled - don't explode
-                    // notify and bail out.
-                    $this->dispatchErrorEvent(
-                        new Exception('Order already cancelled with no existing payment found.'),
-                        $order
-                    );
+                if ($order->status === 'cancelled') {
+                    if ($payment === null) {
+                        // payment not processed, manually cancelled - don't explode
+                        // notify and bail out.
+                        $this->dispatchErrorEvent(
+                            new Exception('Order already cancelled with no existing payment found.'),
+                            $order
+                        );
+
+                        return;
+                    }
+
+                    // check for pre-existing cancelled payment.
+                    // Paypal sends multiple notifications that we treat as a cancellation.
+                    // If the order is already cancelled and the payment cancelled, skip the rest.
+                    if ($order->payments->where('cancelled', true)->first() !== null) {
+                        $this->dispatchErrorEvent(
+                            new Exception('Order already cancelled.'),
+                            $order
+                        );
+                    }
 
                     return;
                 }

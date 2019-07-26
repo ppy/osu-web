@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,7 +27,7 @@ use League\Fractal;
 class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'beatmap_discussion_posts',
+        'posts',
         'current_user_attributes',
     ];
 
@@ -52,13 +52,12 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
             'updated_at' => json_time($discussion->updated_at),
             'deleted_at' => json_time($discussion->deleted_at),
             'votes' => $discussion->votesSummary(),
-            'duration' => $discussion->total_length,
 
             'kudosu_denied' => $discussion->kudosu_denied,
         ];
     }
 
-    public function includeBeatmapDiscussionPosts(BeatmapDiscussion $discussion)
+    public function includePosts(BeatmapDiscussion $discussion)
     {
         if (!$this->isVisible($discussion)) {
             return;
@@ -97,6 +96,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
             'vote_score' => $score,
             'can_moderate_kudosu' => priv_check_user($currentUser, 'BeatmapDiscussionAllowOrDenyKudosu', $discussion)->can(),
             'can_resolve' => priv_check_user($currentUser, 'BeatmapDiscussionResolve', $discussion)->can(),
+            'can_reopen' => priv_check_user($currentUser, 'BeatmapDiscussionReopen', $discussion)->can(),
             'can_destroy' => priv_check_user($currentUser, 'BeatmapDiscussionDestroy', $discussion)->can(),
         ];
 
@@ -107,8 +107,6 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
     public function isVisible($discussion)
     {
-        return
-            ($discussion->beatmap_id === null || $discussion->beatmap !== null) &&
-            priv_check('BeatmapDiscussionShow', $discussion)->can();
+        return priv_check('BeatmapDiscussionShow', $discussion)->can();
     }
 }

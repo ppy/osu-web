@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,18 +23,18 @@ return [
         'blurb' => [
             'important' => 'LÄS DETTA INNAN NEDLADDNING',
             'instruction' => [
-                '_' => 'Installation: När en samling har laddats ner, extrahera .rar filen in till din osu! Songs mapp.
-                    Alla sånger är fortfarande .zip/.osz inne i samlingen, så osu! kommer behöva extrahera beatmapsen nästa gång du går in i Spel läget.
+                '_' => "Installation: När en samling har laddats ner, extrahera .rar filen till din osu! Songs mapp.
+                    Alla låtar är fortfarande i .zip/.osz-samlingen, så osu! kommer behöva extrahera beatmapsen nästa gång du går in i spelläget.
                     Extrahera :scary .zip/.osz själv,
-                    för då kommer beatmapsen visas inkorrekt och kommer inte fungera korrekt.',
+                    annars kommer beatmapsen visas inkorrekt i osu! och kommer inte fungera korrekt.",
                 'scary' => 'INTE',
             ],
             'note' => [
-                '_' => 'Att tänka på något som är högt rekommenderat är att :scary, eftersom dem äldsta mapsen är av mycket lägre kvalité jämfört med dem nyaste mapsen.',
-                'scary' => 'ladda ner samlingarna från senaste till tidigaste',
+                '_' => 'Notera att det är högst rekommenderat att :scary, eftersom de äldsta mapsen är av mycket lägre kvalité jämfört med de nyaste mapsen.',
+                'scary' => 'ladda ner samlingarna från nyaste till äldsta',
             ],
         ],
-        'title' => 'Beatmap Samling',
+        'title' => 'Beatmap Samlingar',
         'description' => 'För-samlade kollektioner av beatmaps baserad på ett gemensamt tema.',
     ],
 
@@ -48,7 +48,7 @@ return [
 
     'mode' => [
         'artist' => 'Artist/Album',
-        'chart' => 'Diagram',
+        'chart' => 'I rampljuset',
         'standard' => 'Standard',
         'theme' => 'Tema',
     ],

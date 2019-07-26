@@ -1,0 +1,104 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.show-more-link {
+  @_top: show-more-link;
+
+  .link-plain();
+  .reset-input();
+  display: block;
+  align-self: center;
+  text-align: center;
+  font-size: @font-size--normal;
+  color: white;
+  padding: 5px 20px;
+  border-radius: 10000px;
+
+  background-color: @osu-colour-b2;
+
+  &:hover {
+    color: white;
+    background-color: @osu-colour-b1;
+  };
+
+  &--beatmapsets {
+    margin-bottom: 10px;
+  }
+
+  &--changelog-index {
+    margin: 40px 0;
+  }
+
+  &--comments {
+    margin: 10px auto;
+  }
+
+  &--forum-topic {
+    margin: 5px auto 10px;
+  }
+
+  &--notification-group {
+    font-size: @font-size--small;
+  }
+
+  &--profile-page {
+    margin: 10px auto 0;
+  }
+
+  &[disabled], &.js-disabled {
+    background-color: @osu-colour-b2;
+  }
+
+  &__spinner {
+    .center-content();
+    .full-size();
+    position: absolute;
+    display: none;
+
+    .@{_top}[disabled] &, .@{_top}.js-disabled & {
+      display: flex;
+    }
+  }
+
+  &__label {
+    opacity: 1;
+    margin: 0 -5px;
+
+    .@{_top}[disabled] &, .@{_top}.js-disabled & {
+      opacity: 0;
+    }
+  }
+
+  &__label-icon {
+    color: @osu-colour-f1;
+    margin: 0 5px;
+
+    .@{_top}:hover & {
+      color: @osu-colour-l1;
+    }
+
+    .@{_top}--notification-group & {
+      color: #fff;
+    }
+  }
+
+  &__label-text {
+    margin: 0 5px;
+    text-transform: uppercase;
+  }
+}

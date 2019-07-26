@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,16 +16,27 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, form, input, label, span} = ReactDOMFactories
+import { MessageLengthCounter } from './message-length-counter'
+import { BigButton } from 'big-button'
+import * as React from 'react'
+import { button, div, form, input, label, span, i } from 'react-dom-factories'
+import { UserAvatar } from 'user-avatar'
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
 
-class BeatmapDiscussions.NewReply extends React.PureComponent
+export class NewReply extends React.PureComponent
+  ACTION_ICONS =
+    reply_resolve: 'fas fa-check'
+    reply_reopen: 'fas fa-exclamation-circle'
+    reply: 'fas fa-reply'
+
   constructor: (props) ->
     super props
 
+    @box = React.createRef()
     @throttledPost = _.throttle @post, 1000
+    @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
 
     @state =
       editing: false
@@ -58,41 +69,30 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
         div className: "#{bn}__message-container",
           el TextareaAutosize,
-            minRows: 3
             disabled: @state.posting?
             className: "#{bn}__message #{bn}__message--editor"
             value: @state.message
             onChange: @setMessage
             onKeyDown: @handleKeyDown
             placeholder: osu.trans 'beatmaps.discussions.reply_placeholder'
-            inputRef: (el) => @box = el
+            ref: @box
 
       div
         className: "#{bn}__footer #{bn}__footer--notice"
         osu.trans 'beatmaps.discussions.reply_notice'
-        el BeatmapDiscussions.MessageLengthCounter, message: @state.message
+        el MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div
         className: "#{bn}__footer"
         div className: "#{bn}__actions",
           div className: "#{bn}__actions-group",
             if @canResolve() && !@props.discussion.resolved
-              @renderReplyButton
-                text: osu.trans('common.buttons.reply_resolve')
-                icon: 'check'
-                extraProps:
-                  'data-action': 'resolve'
+              @renderReplyButton 'reply_resolve'
 
-            if @canResolve() && @props.discussion.resolved
-              @renderReplyButton
-                text: osu.trans('common.buttons.reply_reopen')
-                icon: 'exclamation'
-                extraProps:
-                  'data-action': 'reopen'
+            if @canReopen() && @props.discussion.resolved
+              @renderReplyButton 'reply_reopen'
 
-            @renderReplyButton
-              text: osu.trans('common.buttons.reply')
-              icon: 'reply'
+            @renderReplyButton 'reply'
 
 
   renderCancelButton: =>
@@ -100,15 +100,15 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       className: "#{bn}__action #{bn}__action--cancel"
       disabled: @state.posting?
       onClick: => @setState editing: false
-      el Icon, name: 'times'
+      i className: 'fas fa-times'
 
 
   renderPlaceholder: =>
     [text, icon] =
       if @props.currentUser.id?
-        [osu.trans('beatmap_discussions.reply.open.user'), 'reply']
+        [osu.trans('beatmap_discussions.reply.open.user'), 'fas fa-reply']
       else
-        [osu.trans('beatmap_discussions.reply.open.guest'), 'sign-in']
+        [osu.trans('beatmap_discussions.reply.open.guest'), 'fas fa-sign-in-alt']
 
     div
       className: "#{bn} #{bn}--reply #{bn}--new-reply #{bn}--new-reply-placeholder"
@@ -120,18 +120,19 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
           onClick: @editStart
 
 
-  renderReplyButton: ({ text, icon, extraProps = {} }) =>
-    props = _.extend
-      disabled: !@validPost() || @state.posting?
-      onClick: @throttledPost,
-      extraProps
-
+  renderReplyButton: (action) =>
     div className: "#{bn}__action",
       el BigButton,
-        text: text
-        # wobbles if using spinner
-        icon: if @state.posting then 'ellipsis-h' else icon
-        props: props
+        text: osu.trans("common.buttons.#{action}")
+        icon: if @state.posting == action then '_spinner' else ACTION_ICONS[action]
+        props:
+          disabled: !@validPost() || @state.posting?
+          onClick: @throttledPost
+          'data-action': action
+
+
+  canReopen: =>
+    @props.discussion.can_be_resolved && @props.discussion.current_user_attributes.can_reopen
 
 
   canResolve: =>
@@ -144,15 +145,19 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       return
 
     @setState editing: true, =>
-      @box?.focus()
+      @box.current?.focus()
 
 
-  handleKeyDown: (e) =>
-    if e.keyCode == 27
-      @setState editing: false
-    else if e.keyCode == 13 && !e.shiftKey
-      e.preventDefault()
-      @throttledPost(e)
+  handleKeyDownCallback: (type, event) =>
+    switch type
+      when InputHandler.CANCEL
+        @setState editing: false
+      when InputHandler.SUBMIT
+        @throttledPost(event)
+
+
+  isTimeline: =>
+    @props.discussion.timestamp?
 
 
   post: (event) =>
@@ -160,11 +165,14 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
     LoadingOverlay.show()
 
     @postXhr?.abort()
-    @setState posting: true
 
-    resolved = switch event.currentTarget.dataset.action
-               when 'resolve' then true
-               when 'reopen' then false
+    # in case the event came from input box, do 'reply'.
+    action = event.currentTarget.dataset.action ? 'reply'
+    @setState posting: action
+
+    resolved = switch action
+               when 'reply_resolve' then true
+               when 'reply_reopen' then false
                else @props.discussion.resolved
 
     @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),
@@ -181,7 +189,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         message: ''
         editing: false
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_ids
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
+      $.publish 'beatmapsetDiscussions:update', beatmapset: data.beatmapset
 
     .fail osu.ajaxError
 
@@ -195,4 +203,4 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
 
   validPost: =>
-    BeatmapDiscussionHelper.validMessageLength(@state.message)
+    BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())

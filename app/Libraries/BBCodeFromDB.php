@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -39,6 +39,8 @@ class BBCodeFromDB
             'withGallery' => false,
             'ignoreLineHeight' => false,
             'withoutImageDimensions' => false,
+            'extraClasses' => '',
+            'modifiers' => [],
         ];
 
         $this->text = $text;
@@ -76,7 +78,7 @@ class BBCodeFromDB
         $text = preg_replace("#\[box=(.*?):{$this->uid}\]#", $this->parseBoxHelperPrefix('\\1'), $text);
         $text = str_replace("[/box:{$this->uid}]", $this->parseBoxHelperSuffix(), $text);
 
-        $text = str_replace("[spoilerbox:{$this->uid}]", $this->parseBoxHelperPrefix('collapsed text'), $text);
+        $text = str_replace("[spoilerbox:{$this->uid}]", $this->parseBoxHelperPrefix('SPOILER'), $text);
         $text = str_replace("[/spoilerbox:{$this->uid}]", $this->parseBoxHelperSuffix(), $text);
 
         return $text;
@@ -84,7 +86,7 @@ class BBCodeFromDB
 
     public function parseBoxHelperPrefix($linkText)
     {
-        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><i class='fa fa-chevron-down bbcode-spoilerbox__arrow'></i>{$linkText}</a><div class='bbcode-spoilerbox__body'>";
+        return "<div class='js-spoilerbox bbcode-spoilerbox'><button class='js-spoilerbox__link bbcode-spoilerbox__link' type='button'><i class='fas fa-fw fa-chevron-right bbcode-spoilerbox__arrow'></i>{$linkText}</button><div class='bbcode-spoilerbox__body'>";
     }
 
     public function parseBoxHelperSuffix()
@@ -152,7 +154,7 @@ class BBCodeFromDB
         $index = 0;
 
         foreach ($images as $i) {
-            $proxiedSrc = proxy_image(html_entity_decode($i['url']));
+            $proxiedSrc = proxy_image(html_entity_decode_better($i['url']));
 
             $imageTag = $galleryAttributes = '';
 
@@ -210,7 +212,7 @@ class BBCodeFromDB
     public function parseNotice($text)
     {
         return preg_replace(
-            "#\n*\[notice:{$this->uid}\]\n*(.*?)\n*\[/notice:{$this->uid}\]\n*#s",
+            "#\[notice:{$this->uid}\]\n*(.*?)\n*\[/notice:{$this->uid}\]\n?#s",
             "<div class='well'>\\1</div>",
             $text);
     }
@@ -220,7 +222,8 @@ class BBCodeFromDB
         preg_match_all("#\[profile:{$this->uid}\](?<id>.*?)\[/profile:{$this->uid}\]#", $text, $users, PREG_SET_ORDER);
 
         foreach ($users as $user) {
-            $userLink = link_to_user($user['id'], $user['id'], null);
+            $username = html_entity_decode_better($user['id']);
+            $userLink = link_to_user($username, $username, null);
             $text = str_replace($user[0], $userLink, $text);
         }
 
@@ -229,9 +232,9 @@ class BBCodeFromDB
 
     public function parseQuote($text)
     {
-        $text = preg_replace("#\[quote=&quot;([^:]+)&quot;:{$this->uid}\]#", '<h4>\\1 wrote:</h4><blockquote>', $text);
-        $text = str_replace("[quote:{$this->uid}]", '<blockquote>', $text);
-        $text = str_replace("[/quote:{$this->uid}]", '</blockquote>', $text);
+        $text = preg_replace("#\[quote=&quot;([^:]+)&quot;:{$this->uid}\]\s*#", '<h4>\\1 wrote:</h4><blockquote>', $text);
+        $text = preg_replace("#\[quote:{$this->uid}\]\s*#", '<blockquote>', $text);
+        $text = preg_replace("#\s*\[/quote:{$this->uid}\]\s*#", '</blockquote>', $text);
 
         return $text;
     }
@@ -327,7 +330,16 @@ class BBCodeFromDB
         $text = str_replace("\n", '<br />', $text);
         $text = CleanHTML::purify($text);
 
-        $className = 'bbcode';
+        $baseClassName = 'bbcode';
+        $className = $baseClassName;
+
+        if (present($this->options['extraClasses'])) {
+            $className .= " {$this->options['extraClasses']}";
+        }
+
+        foreach ($this->options['modifiers'] as $mod) {
+            $className .= " {$baseClassName}--{$mod}";
+        }
 
         if ($this->options['ignoreLineHeight']) {
             $className .= ' bbcode--normal-line-height';
@@ -350,7 +362,8 @@ class BBCodeFromDB
         $text = str_replace(":{$this->uid}]", ']', $text);
 
         // strip url
-        $text = preg_replace('#<!-- ([emw]) --><a.*?>(.*?)</a><!-- \\1 -->#', '\\2', $text);
+        $text = preg_replace('#<!-- ([mw]) --><a.*?href=[\'"]([^"\']+)[\'"].*?>.*?</a><!-- \\1 -->#', '\\2', $text);
+        $text = preg_replace('#<!-- e --><a.*?href=[\'"]mailto:([^"\']+)[\'"].*?>.*?</a><!-- e -->#', '\\1', $text);
 
         // strip relative url
         $text = preg_replace('#<!-- l --><a.*?href="(.*?)".*?>.*?</a><!-- l -->#', '\\1', $text);
@@ -358,6 +371,41 @@ class BBCodeFromDB
         // strip smilies
         $text = preg_replace('#<!-- (s(.*?)) -->.*?<!-- \\1 -->#', '\\2', $text);
 
-        return html_entity_decode($text, ENT_QUOTES);
+        return html_entity_decode_better($text);
+    }
+
+    public static function removeBBCodeTags($text)
+    {
+        // Don't care if too many characters are stripped;
+        // just don't want tags to go into index because they mess up the highlighting.
+
+        static $pattern = '#\[/?(\*|\*:m|audio|b|box|color|spoilerbox|centre|code|email|heading|i|img|list|list:o|list:u|notice|profile|quote|s|strike|u|spoiler|size|url|youtube)(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\]#';
+
+        return preg_replace($pattern, '', $text);
+    }
+
+    public static function removeBlockQuotes($text)
+    {
+        static $pattern = '#(?<start>\[quote(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\])|(?<end>\[/quote(:[a-zA-Z0-9]{1,5})?\])#';
+
+        $matchCount = preg_match_all($pattern, $text);
+        $quotePositions = [];
+
+        for ($_ = 0; $_ < $matchCount; $_++) {
+            $offset = $quotePositions[count($quotePositions) - 1][1] ?? 0;
+            preg_match($pattern, $text, $match, PREG_OFFSET_CAPTURE, $offset);
+
+            if (present($match['start'][0])) {
+                $quotePositions[] = [
+                    $match['start'][1],
+                    $match['start'][1] + strlen($match['start'][0]),
+                ];
+            } elseif (!empty($quotePositions)) {
+                $quoteEnd = $match['end'][1] + strlen($match['end'][0]);
+                $text = substr($text, 0, array_pop($quotePositions)[0]).substr($text, $quoteEnd);
+            }
+        }
+
+        return $text;
     }
 }

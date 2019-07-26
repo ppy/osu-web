@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,6 +21,7 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Models\Forum\Forum;
+use App\Models\Forum\Topic;
 use App\Models\Forum\TopicTrack;
 use App\Transformers\Forum\ForumCoverTransformer;
 use Auth;
@@ -34,18 +35,40 @@ class ForumsController extends Controller
     {
         parent::__construct();
 
-        view()->share('current_action', 'forum-forums-'.current_action());
+        view()->share('currentAction', 'forum-forums-'.current_action());
     }
 
     public function index()
     {
-        $forums = Forum::where('parent_id', 0)->with('subForums')->orderBy('left_id')->get();
+        $forums = Forum
+            ::where('parent_id', 0)
+            ->with('subforums.subforums')
+            ->orderBy('left_id')
+            ->get();
+
+        $lastTopics = Forum::lastTopics();
 
         $forums = $forums->filter(function ($forum) {
             return priv_check('ForumView', $forum)->can();
         });
 
-        return view('forum.forums.index', compact('forums'));
+        return view('forum.forums.index', compact('forums', 'lastTopics'));
+    }
+
+    public function markAsRead()
+    {
+        if (Auth::check()) {
+            $forumId = get_int(request('forum_id'));
+            if ($forumId === null) {
+                Forum::markAllAsRead(Auth::user());
+            } else {
+                $forum = Forum::findOrFail($forumId);
+                priv_check('ForumView', $forum)->ensureCan();
+                $forum->markAsRead(Auth::user());
+            }
+        }
+
+        return js_view('layout.ujs-reload');
     }
 
     public function search()
@@ -65,9 +88,10 @@ class ForumsController extends Controller
 
     public function show($id)
     {
-        $forum = Forum::with('subForums')->findOrFail($id);
+        $forum = Forum::with('subforums.subforums')->findOrFail($id);
+        $lastTopics = Forum::lastTopics($forum);
 
-        $sort = explode('_', Request::input('sort'));
+        $sort = Request::input('sort') ?? Topic::DEFAULT_SORT;
         $withReplies = Request::input('with_replies', '');
 
         priv_check('ForumView', $forum)->ensureCan();
@@ -77,13 +101,32 @@ class ForumsController extends Controller
             new ForumCoverTransformer()
         );
 
-        $showDeleted = priv_check('ForumTopicModerate')->can();
+        $showDeleted = priv_check('ForumModerate', $forum)->can();
 
-        $pinnedTopics = $forum->topics()->pinned()->showDeleted($showDeleted)->orderBy('topic_type', 'desc')->recent()->get();
-        $topics = $forum->topics()->normal()->showDeleted($showDeleted)->recent(compact('sort', 'withReplies'))->paginate(15);
+        $pinnedTopics = $forum->topics()
+            ->with('forum')
+            ->pinned()
+            ->showDeleted($showDeleted)
+            ->orderBy('topic_type', 'desc')
+            ->recent()
+            ->get();
+        $topics = $forum->topics()
+            ->with('forum')
+            ->normal()
+            ->showDeleted($showDeleted)
+            ->recent(compact('sort', 'withReplies'))
+            ->paginate(30);
 
         $topicReadStatus = TopicTrack::readStatus(Auth::user(), $pinnedTopics, $topics);
 
-        return view('forum.forums.show', compact('forum', 'topics', 'pinnedTopics', 'topicReadStatus', 'cover'));
+        return view('forum.forums.show', compact(
+            'cover',
+            'forum',
+            'lastTopics',
+            'pinnedTopics',
+            'sort',
+            'topicReadStatus',
+            'topics'
+        ));
     }
 }

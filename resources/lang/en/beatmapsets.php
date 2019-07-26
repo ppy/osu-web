@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,64 +34,83 @@ return [
         'discussion' => 'Discussion',
 
         'details' => [
-            'made-by' => 'made by ',
-            'submitted' => 'submitted on ',
-            'updated' => 'last updated on ',
-            'ranked' => 'ranked on ',
             'approved' => 'approved on ',
-            'qualified' => 'qualified on ',
+            'favourite' => 'Favourite this beatmapset',
+            'favourited_count' => '+ :count_delimited other!|+ :count_delimited others!',
+            'logged-out' => 'You need to sign in before downloading any beatmaps!',
             'loved' => 'loved on ',
-            'logged-out' => 'You need to log in before downloading any beatmaps!',
+            'mapped_by' => 'mapped by :mapper',
+            'qualified' => 'qualified on ',
+            'ranked' => 'ranked on ',
+            'submitted' => 'submitted on ',
+            'unfavourite' => 'Unfavourite this beatmapset',
+            'updated' => 'last updated on ',
+            'updated_timeago' => 'last updated :timeago',
+
             'download' => [
                 '_' => 'Download',
-                'video' => 'with Video',
-                'no-video' => 'without Video',
                 'direct' => 'osu!direct',
+                'no-video' => 'without Video',
+                'video' => 'with Video',
             ],
-            'favourite' => 'Favourite this beatmapset',
-            'unfavourite' => 'Unfavourite this beatmapset',
-            'favourited_count' => '+ 1 other!|+ :count others!',
+
+            'login_required' => [
+                'bottom' => 'to access more features',
+                'top' => 'Sign In',
+            ],
         ],
-        'stats' => [
-            'cs' => 'Circle Size',
-            'cs-mania' => 'Key Amount',
-            'drain' => 'HP Drain',
-            'accuracy' => 'Accuracy',
-            'ar' => 'Approach Rate',
-            'stars' => 'Star Difficulty',
-            'total_length' => 'Length',
-            'bpm' => 'BPM',
-            'count_circles' => 'Circle Count',
-            'count_sliders' => 'Slider Count',
-            'user-rating' => 'User Rating',
-            'rating-spread' => 'Rating Spread',
+
+        'favourites' => [
+            'limit_reached' => 'You have too many favourited beatmaps! Please unfavourite some before trying again.',
         ],
+
+        'hype' => [
+            'action' => 'Hype this map if you enjoyed playing it to help it progress to <strong>Ranked</strong> status.',
+
+            'current' => [
+                '_' => 'This map is currently :status.',
+
+                'status' => [
+                    'pending' => 'pending',
+                    'qualified' => 'qualified',
+                    'wip' => 'work in progress',
+                ],
+            ],
+        ],
+
         'info' => [
-            'no_scores' => 'Unranked beatmap',
-            'points-of-failure' => 'Points of Failure',
-            'success-rate' => 'Success Rate',
-
             'description' => 'Description',
-
+            'genre' => 'Genre',
+            'language' => 'Language',
+            'no_scores' => 'Data still being calculated...',
+            'points-of-failure' => 'Points of Failure',
             'source' => 'Source',
+            'success-rate' => 'Success Rate',
             'tags' => 'Tags',
+            'unranked' => 'Unranked beatmap',
         ],
+
         'scoreboard' => [
             'achieved' => 'achieved :when',
             'country' => 'Country Ranking',
             'friend' => 'Friend Ranking',
             'global' => 'Global Ranking',
-            'miss_count' => ':count miss',
             'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
-            'supporter-only' => 'You need to be a supporter to access the friend and country rankings!',
+            'supporter-only' => 'You need to be an osu!supporter to access the friend and country rankings!',
             'title' => 'Scoreboard',
 
-            'list' => [
+            'headers' => [
                 'accuracy' => 'Accuracy',
-                'player-header' => 'Player',
-                'rank-header' => 'Rank',
+                'combo' => 'Max Combo',
+                'miss' => 'Miss',
+                'mods' => 'Mods',
+                'player' => 'Player',
+                'pp' => 'pp',
+                'rank' => 'Rank',
+                'score_total' => 'Total Score',
                 'score' => 'Score',
             ],
+
             'no_scores' => [
                 'country' => 'No one from your country has set a score on this map yet!',
                 'friend' => 'None of your friends has set a score on this map yet!',
@@ -103,12 +122,23 @@ return [
                 'first' => 'In the Lead',
                 'own' => 'Your Best',
             ],
-            'stats' => [
-                'accuracy' => 'Accuracy',
-                'combo' => 'Combo',
-                'misses' => 'Miss',
-                'score' => 'Score',
-            ],
+        ],
+
+        'stats' => [
+            'cs' => 'Circle Size',
+            'cs-mania' => 'Key Amount',
+            'drain' => 'HP Drain',
+            'accuracy' => 'Accuracy',
+            'ar' => 'Approach Rate',
+            'stars' => 'Star Difficulty',
+            'total_length' => 'Length (Drain length: :hit_length)',
+            'bpm' => 'BPM',
+            'count_circles' => 'Circle Count',
+            'count_sliders' => 'Slider Count',
+            'user-rating' => 'User Rating',
+            'rating-spread' => 'Rating Spread',
+            'nominations' => 'Nominations',
+            'playcount' => 'Playcount',
         ],
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,9 +21,13 @@
 namespace App\Models\BeatmapLeader;
 
 use App\Models\Beatmap;
+use App\Models\Model as BaseModel;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model as BaseModel;
 
+/**
+ * @property Beatmap $beatmap
+ * @property User $user
+ */
 abstract class Model extends BaseModel
 {
     protected $primaryKey = 'beatmap_id';

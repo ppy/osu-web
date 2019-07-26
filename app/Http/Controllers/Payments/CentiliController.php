@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,8 +25,8 @@ use App\Exceptions\ValidationException;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\CentiliPaymentProcessor;
 use App\Libraries\Payments\CentiliSignature;
+use App\Models\Store\Order;
 use Illuminate\Http\Request as HttpRequest;
-use Request;
 
 class CentiliController extends Controller
 {
@@ -60,17 +60,17 @@ class CentiliController extends Controller
 
     public function completed()
     {
-        $orderNumber = Request::input('reference') ?? '';
-        $order = OrderCheckout::complete($orderNumber);
+        $orderNumber = request()->input('reference') ?? '';
+        $order = OrderCheckout::for($orderNumber)->completeCheckout();
 
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }
 
     public function failed()
     {
-        // FIXME: show a message to the user
-        Request::session()->flash('status', 'An error occured while processing the payment.');
+        $order = Order::whereOrderNumber(request()->input('reference'))->firstOrFail();
+        request()->session()->flash('status', 'An error occured while processing the payment.');
 
-        return redirect(route('store.checkout.index'));
+        return redirect(route('store.checkout.show', $order));
     }
 }

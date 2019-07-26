@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -18,7 +18,7 @@
 
 class @AccountEdit
   constructor: ->
-    $(document).on 'input', '.js-account-edit', @initializeUpdate
+    $(document).on 'input change', '.js-account-edit', @initializeUpdate
 
     $(document).on 'ajax:error', '.js-account-edit', @ajaxError
     $(document).on 'ajax:send', '.js-account-edit', @ajaxSaving
@@ -31,6 +31,7 @@ class @AccountEdit
     return if form.dataset.accountEditAutoSubmit != '1'
 
     @abortUpdate form
+    @saving form
     form.debouncedUpdate ?= _.debounce @update, 1000
     form.debouncedUpdate form
 
@@ -70,14 +71,17 @@ class @AccountEdit
 
   update: (form) =>
     input = form.querySelector('.js-account-edit__input')
-    value = input.value
+
+    if input.type == 'checkbox'
+      value = input.checked
+    else
+      value = input.value.trim()
+
     prevValue = form.dataset.lastValue
 
-    return if value == prevValue
+    return @clearState(form) if value == prevValue
 
     form.dataset.lastValue = value
-
-    @saving form
 
     form.updating = $.ajax laroute.route('account.update'),
       method: 'PUT'
@@ -86,11 +90,11 @@ class @AccountEdit
 
     .done =>
       @saved form
+      $(form).trigger 'ajax:success'
 
     .fail (xhr, status) =>
       return if status == 'abort'
 
       form.lastValue = prevValue
       @clearState form
-
-      osu.ajaxError xhr
+      $(form).trigger 'ajax:error', [xhr, status]

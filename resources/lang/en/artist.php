@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -37,12 +37,20 @@ return [
     ],
 
     'links' => [
+        'osu' => 'osu! profile',
         'site' => 'Official Website',
     ],
 
     'songs' => [
         '_' => 'Songs',
-        'count' => '1 song|:count songs',
+        'count' => ':count_delimited song|:count_delimited songs',
         'exclusive' => 'osu! exclusive',
+    ],
+
+    'tracklist' => [
+        'title' => 'title',
+        'length' => 'length',
+        'bpm' => 'bpm',
+        'genre' => 'genre',
     ],
 ];

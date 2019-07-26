@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,11 +21,11 @@
 return [
     'bold' => 'Pogrubienie',
     'heading' => 'Nagłówek',
-    'image' => 'Obrazek',
+    'image' => 'Obraz',
     'italic' => 'Kursywa',
     'link' => 'Łącze',
-    'list' => 'Lista',
-    'list_numbered' => 'Numerowana lista',
+    'list' => 'Lista punktowana',
+    'list_numbered' => 'Lista numerowana',
     'size' => [
         '_' => 'Rozmiar czcionki',
         'tiny' => 'Malutka',
@@ -33,6 +33,6 @@ return [
         'normal' => 'Normalna',
         'large' => 'Duża',
     ],
-    'spoilerbox' => 'Spoiler',
+    'spoilerbox' => 'Blok ze spoilerem',
     'strikethrough' => 'Przekreślenie',
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,13 +20,13 @@
 
 return [
     'availability' => [
-        'disabled' => 'Este beatmap não está disponível para download.',
+        'disabled' => 'Este beatmap não está mais disponível para baixar.',
         'parts-removed' => 'Partes deste beatmap foram removidas a pedido do criador ou de um detentor de direitos de terceiros.',
         'more-info' => 'Clique aqui para mais informações.',
     ],
 
     'index' => [
-        'title' => 'Lista de beatmaps',
+        'title' => 'Lista de Beatmaps',
         'guest_title' => 'Beatmaps',
     ],
 
@@ -34,77 +34,111 @@ return [
         'discussion' => 'Discussão',
 
         'details' => [
-            'made-by' => 'criado por ',
-            'submitted' => 'enviado em ',
-            'updated' => 'última atualização em ',
-            'ranked' => 'ranqueado em ',
             'approved' => 'aprovado em ',
-            'qualified' => 'qualificado em ',
+            'favourite' => 'Favoritar este beatmap',
+            'favourited_count' => '+ 1 favorito!|+ :count outros favoritos!',
+            'logged-out' => 'Você precisa conectar-se antes de baixar qualquer beatmap!',
             'loved' => 'loved em ',
-            'logged-out' => 'Você precisa iniciar a sessão antes de baixar beatmaps!',
+            'mapped_by' => 'mapeado por :mapper',
+            'qualified' => 'qualificado em ',
+            'ranked' => 'ranqueado em ',
+            'submitted' => 'enviado em ',
+            'unfavourite' => 'Remover dos favoritos',
+            'updated' => 'última atualização em ',
+            'updated_timeago' => 'última atualização :timeago',
+
             'download' => [
                 '_' => 'Baixar',
-                'video' => 'com vídeo',
-                'no-video' => 'sem vídeo',
                 'direct' => 'osu!direct',
+                'no-video' => 'sem Vídeo',
+                'video' => 'com Vídeo',
             ],
-            'favourite' => 'Adicionar aos favoritos',
-            'unfavourite' => 'Remover dos favoritos',
+
+            'login_required' => [
+                'bottom' => 'para acessar mais funcionalidades',
+                'top' => 'Conectar-se',
+            ],
         ],
+
+        'favourites' => [
+            'limit_reached' => 'Você tem muitos beatmaps favoritados! Remova alguns e tente novamente.',
+        ],
+
+        'hype' => [
+            'action' => 'De um hype se você se divertiu jogando este map para ajudá-lo no processo de <strong>Raqueamento</strong>.',
+
+            'current' => [
+                '_' => 'Este map está atualmente :status.',
+
+                'status' => [
+                    'pending' => 'pendente',
+                    'qualified' => 'qualificado',
+                    'wip' => 'em processo de criação',
+                ],
+            ],
+        ],
+
+        'info' => [
+            'description' => 'Descrição',
+            'genre' => 'Gênero',
+            'language' => 'Idioma',
+            'no_scores' => 'Dados ainda sendo calculados...',
+            'points-of-failure' => 'Pontos de Falha',
+            'source' => 'Fonte',
+            'success-rate' => 'Taxa de Sucesso',
+            'tags' => 'Tags',
+            'unranked' => 'Beatmap não ranqueado',
+        ],
+
+        'scoreboard' => [
+            'achieved' => 'conquistado :when',
+            'country' => 'Ranking Nacional',
+            'friend' => 'Ranking de Amigos',
+            'global' => 'Ranking Global',
+            'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as novas funções às quais você ganha acesso!',
+            'supporter-only' => 'Você precisa ser um osu!supporter para acessar rankings de amigos e de países!',
+            'title' => 'Placar',
+
+            'headers' => [
+                'accuracy' => 'Precisão',
+                'combo' => 'Combo Máximo',
+                'miss' => 'Erros',
+                'mods' => 'Mods',
+                'player' => 'Jogador',
+                'pp' => 'pp',
+                'rank' => 'Rank',
+                'score_total' => 'Pontuação Total',
+                'score' => 'Pontuação',
+            ],
+
+            'no_scores' => [
+                'country' => 'Ninguém do seu país fez uma pontuação nesse beatmap ainda!',
+                'friend' => 'Nenhum de seus amigos fez uma pontuação nesse beatmap ainda!',
+                'global' => 'Nenhuma pontuação ainda. Não quer tentar fazer uma?',
+                'loading' => 'Carregando pontuações...',
+                'unranked' => 'Beatmap não ranqueado.',
+            ],
+            'score' => [
+                'first' => 'Na Liderança',
+                'own' => 'Seu Melhor',
+            ],
+        ],
+
         'stats' => [
-            'cs' => 'Circle Size',
-            'cs-mania' => 'Número de teclas',
+            'cs' => 'Tamanho dos Círculos',
+            'cs-mania' => 'Número de Teclas',
             'drain' => 'Dreno de HP',
             'accuracy' => 'Precisão',
-            'ar' => 'Approach Rate',
+            'ar' => 'Velocidade de Aproximação',
             'stars' => 'Dificuldade',
             'total_length' => 'Duração',
             'bpm' => 'BPM',
-            'count_circles' => 'Quantidade de círculos',
-            'count_sliders' => 'Quantidade de sliders',
-            'user-rating' => 'Avaliação de usuários',
-            'rating-spread' => 'Gráfico de avaliações',
-        ],
-        'info' => [
-            'no_scores' => 'Beatmap não ranqueado',
-            'points-of-failure' => 'Pontos de falha',
-            'success-rate' => 'Taxa de sucesso',
-
-            'description' => 'Descrição',
-
-            'source' => 'Fonte',
-            'tags' => 'Marcadores',
-        ],
-        'scoreboard' => [
-            'achieved' => 'alcançado há :when',
-            'country' => 'Ranking de país',
-            'friend' => 'Ranking de amigos',
-            'global' => 'Ranking global',
-            'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as novas funções às quais você ganha acesso!',
-            'supporter-only' => 'Você precisa de uma supporter tag para acessar rankings de amigos e de países!',
-            'title' => 'Placar',
-
-            'list' => [
-                'accuracy' => 'Precisão',
-                'player-header' => 'Jogador',
-                'rank-header' => 'Colocação',
-                'score' => 'Pontuação',
-            ],
-            'no_scores' => [
-                'country' => 'Ninguém do seu país fez uma pontuação neste mapa ainda!',
-                'friend' => 'Nenhum dos seus amigos fez uma pontuação neste mapa ainda!',
-                'global' => 'Sem pontuações ainda. Não quer tentar marcar alguma?',
-                'loading' => 'Carregando pontuações...',
-                'unranked' => 'Beatmap não rankeado.',
-            ],
-            'score' => [
-                'first' => 'Na liderança',
-                'own' => 'Seu melhor',
-            ],
-            'stats' => [
-                'accuracy' => 'Precisão',
-                'score' => 'Pontuação',
-            ],
+            'count_circles' => 'Quantidade de Círculos',
+            'count_sliders' => 'Quantidade de Sliders',
+            'user-rating' => 'Avaliação',
+            'rating-spread' => 'Gráfico de Avaliações',
+            'nominations' => 'Nomeações',
+            'playcount' => 'Vezes Jogadas',
         ],
     ],
 ];

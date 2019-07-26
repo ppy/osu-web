@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,16 +19,18 @@
  */
 
 return [
-    'achievement' => '<strong><em>:user</em></strong> odblokował osiągnięcie "<strong>:achievement</strong>"!',
-    'beatmapset_delete' => ':beatmapset zostało usunięte.',
-    'beatmapset_revive' => ':beatmapset zostało ożywione z wiecznego snu przez <strong>:user</strong>.',
-    'beatmapset_update' => '<strong><em>:user</em></strong> zaktualizował "<em>:beatmapset</em>"',
-    'beatmapset_upload' => '<strong><em>:user</em></strong> dodał nową mapę ":beatmapset"',
-    'empty' => 'Ten gracz nie zrobił w ostatnim czasie nic godnego uwagi!',
-    'rank' => '<strong><em>:user</em></strong> zdobył #:rank miejsce na <em>:beatmap</em> (:mode)',
-    'rank_lost' => '<strong><em>:user</em></strong> stracił pierwsze miejsce na <em>:beatmap</em> (:mode)',
-    'user_support_again' => '<strong>:user</strong> zdecydował się wspomóc osu! ponownie - dziękujemy za szczodrość!',
-    'user_support_first' => '<strong>:user</strong> został supporterem - dziękujemy za szczodrość!',
-    'user_support_gift' => '<strong>:user</strong> otrzymał prezent w postaci supportera!',
-    'username_change' => '<strong>:previousUsername</strong> zmienił swój nick na <strong><em>:user</strong></em>!',
+    'achievement' => '<strong><em>:user</em></strong> zdobywa osiągnięcie <strong>:achievement</strong>!',
+    'beatmap_playcount' => 'Beatmapa :beatmap została zagrana :count razy!',
+    'beatmapset_approve' => 'Beatmapa :beatmapset użytkownika <strong>:user</strong> została :approval!',
+    'beatmapset_delete' => 'Beatmapa :beatmapset została usunięta.',
+    'beatmapset_revive' => 'Beatmapa :beatmapset została ożywiona z wiecznego snu przez użytkownika <strong>:user</strong>.',
+    'beatmapset_update' => '<strong><em>:user</em></strong> aktualizuje beatmapę <em>:beatmapset</em>',
+    'beatmapset_upload' => '<strong><em>:user</em></strong> przesyła nową beatmapę: :beatmapset',
+    'empty' => "Ten gracz nie zrobił w ostatnim czasie nic godnego uwagi!",
+    'rank' => '<strong><em>:user</em></strong> zdobywa :rank. miejsce na beatmapie <em>:beatmap</em> (:mode)',
+    'rank_lost' => '<strong><em>:user</em></strong> traci pierwsze miejsce na beatmapie <em>:beatmap</em> (:mode)',
+    'user_support_again' => '<strong>:user</strong> decyduje się ponownie wspomóc osu! - dziękujemy za szczodrość!',
+    'user_support_first' => '<strong>:user</strong> zdecydował(a) się wspomóc osu! - dziękujemy za szczodrość!',
+    'user_support_gift' => '<strong>:user</strong> otrzymuje prezent w postaci statusu donatora!',
+    'username_change' => '<strong>:previousUsername</strong> zmienia swój nick na <strong><em>:user</strong></em>!',
 ];

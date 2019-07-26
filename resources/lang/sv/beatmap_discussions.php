@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -31,9 +31,33 @@ return [
         'empty' => 'Inget har hänt... än.',
     ],
 
+    'index' => [
+        'deleted_beatmap' => 'raderad',
+        'title' => 'Beatmap diskussioner',
+
+        'form' => [
+            '_' => 'Sök',
+            'deleted' => 'Inkludera raderade diskussioner',
+            'types' => 'Typ av meddelande',
+            'username' => 'Användarnamn',
+
+            'user' => [
+                'label' => 'Användare',
+                'overview' => 'Aktivitetsöversikt',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => 'Skapad',
+        'deleted_at' => 'Borttagen',
+        'message_type' => 'Typ',
+        'permalink' => 'Permalänk',
+    ],
+
     'nearby_posts' => [
         'confirm' => 'Inga av dessa inlägg har med mig att göra',
-        'notice' => 'Dessa är inlägg runt :timestamp (:existing_timestamps). Var vänlig kontrollera innan du lägger upp ett inlägg.',
+        'notice' => 'Det finns inlägg runt :timestamp (:existing_timestamps). Var vänlig kontrollera detta innan du lägger upp ett inlägg.',
     ],
 
     'reply' => [
@@ -51,9 +75,14 @@ return [
     ],
 
     'user' => [
-        'admin' => 'admin',
+        'admin' => 'administratör',
         'bng' => 'nominerade',
-        'owner' => 'mapper',
-        'qat' => 'qat',
+        'owner' => 'mappare',
+        'nat' => '',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Alla',
+        'label' => 'Filtrera på användare',
     ],
 ];

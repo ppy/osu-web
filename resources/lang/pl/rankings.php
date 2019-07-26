@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,22 +20,31 @@
 
 return [
     'header' => 'Ranking :type',
+
     'type' => [
         'performance' => 'Globalny',
         'charts' => 'Wyróżnionych',
         'score' => 'Punktowy',
         'country' => 'Krajowy',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Data zakończenia',
+        'map_count' => 'Liczba beatmap',
+        'participants' => 'Uczestnicy',
+        'start_date' => 'Data rozpoczęcia',
+    ],
+
     'stat' => [
-        'accuracy' => 'Celność',
+        'accuracy' => 'Precyzja',
         'active_users' => 'Aktywni użytkownicy',
         'country' => 'Kraj',
-        'play_count' => 'Ilość zagrań',
-        'performance' => 'Ilość pp',
-        'total_score' => 'Łączna ilość punktów',
-        'ranked_score' => 'Ilość punktów rankingowych',
+        'play_count' => 'Liczba zagrań',
+        'performance' => 'Liczba pp',
+        'total_score' => 'Łączna liczba punktów',
+        'ranked_score' => 'Punkty rankingowe',
         'average_score' => 'Średni wynik',
-        'average_performance' => 'Średnia ilość pp',
+        'average_performance' => 'Średnia liczba pp',
         'ss' => 'SS',
         's' => 'S',
         'a' => 'A',

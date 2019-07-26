@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -21,6 +21,25 @@ class @Polyfills
     @customEvent()
     @localStorage()
     @mathTrunc()
+    @composedPath()
+
+
+  # Event.composedPath polyfill for Edge.
+  # Actual composedPath logic is a bit more complicated but this works for our usage
+  # until it gets implemented in Edge.
+  composedPath: ->
+    return if typeof Event.prototype.composedPath == 'function'
+
+    Event.prototype.composedPath = ->
+      target = @target
+      path = []
+      while target.parentNode?
+        path.push target
+        target = target.parentNode
+
+      path.push document, window
+
+      return path
 
 
   # For IE9+.

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,10 +22,18 @@ namespace App\Models;
 
 use Carbon\Carbon;
 
+/**
+ * @property BeatmapDiscussion $beatmapDiscussion
+ * @property int $beatmap_discussion_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property int $id
+ * @property int $score
+ * @property \Carbon\Carbon|null $updated_at
+ * @property User $user
+ * @property int|null $user_id
+ */
 class BeatmapDiscussionVote extends Model
 {
-    protected $guarded = [];
-
     public static function recentlyReceivedByUser($userId, $timeframeMonths = 3)
     {
         $query = static::with('user')->where('created_at', '>', Carbon::now()->subMonth($timeframeMonths));
@@ -115,10 +123,11 @@ class BeatmapDiscussionVote extends Model
             }
         }
 
-        // TODO: readd this when content becomes public
-        // $query->whereHas('user', function ($userQuery) {
-        //     $userQuery->default();
-        // });
+        if (!($rawParams['is_moderator'] ?? false)) {
+            $query->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            });
+        }
 
         return ['query' => $query, 'params' => $params];
     }

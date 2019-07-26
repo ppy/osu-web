@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,6 +25,11 @@ use Carbon\Carbon;
 
 class PaypalPaymentProcessor extends PaymentProcessor
 {
+    public function getCountryCode()
+    {
+        return $this['residence_country'];
+    }
+
     public function getOrderNumber()
     {
         // If refund, there might not be an invoice id in production.
@@ -37,7 +42,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     public function getPaymentProvider()
     {
-        return 'paypal';
+        return Order::PROVIDER_PAYPAL;
     }
 
     public function getPaymentTransactionId()
@@ -110,7 +115,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
         // order should be in the correct state
         if ($this->isPaymentOrPending()) {
-            if (!in_array($order->status, ['incart', 'checkout'], true)) {
+            if ($order->isAwaitingPayment() === false) {
                 $this->validationErrors()->add(
                     'order.status',
                     '.order.status.not_checkout',
@@ -155,7 +160,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
             if ($this->getNotificationType() === NotificationType::REFUND) {
                 if ($this->getOrderNumber() === null) {
                     $order = Order::withPayments()
-                        ->wherePaymentTransactionId($this['parent_txn_id'], 'paypal')
+                        ->wherePaymentTransactionId($this['parent_txn_id'], Order::PROVIDER_PAYPAL)
                         ->first();
                 } else {
                     $order = Order::withPayments()

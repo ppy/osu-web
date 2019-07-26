@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -28,7 +28,7 @@
 @endphp
 <button
     type="button"
-    class="btn-circle js-post-delete-toggle"
+    class="btn-circle"
     title="{{ trans('forum.post.actions.'.$deleteString) }}"
     data-tooltip-position="left center"
     data-url="{{ route("forum.posts.$deleteString", $post) }}"
@@ -37,6 +37,6 @@
     data-confirm="{{ trans("forum.post.confirm_".$deleteString) }}"
 >
     <span class="btn-circle__content">
-        <i class="fa {{ $iconClass }}"></i>
+        <i class="fas {{ $iconClass }}"></i>
     </span>
 </button>

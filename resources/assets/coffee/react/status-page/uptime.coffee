@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,10 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h1, h5} = ReactDOMFactories
+import * as React from 'react'
+import { div, h1, h5 } from 'react-dom-factories'
 el = React.createElement
 
-class Status.Uptime extends React.Component
+export class Uptime extends React.Component
   constructor: (props) ->
     super props
     @state =

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,12 @@ namespace App\Models\BeatmapLeader;
 
 use App\Models\Score;
 
+/**
+ * @property int $beatmap_id
+ * @property Score\Osu $score
+ * @property int|null $score_id
+ * @property int $user_id
+ */
 class Osu extends Model
 {
     protected $table = 'osu_leaders';

@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -25,33 +25,56 @@ parseInt10 = (string) ->
 class @BeatmapsetFilter
   @castFromString:
     mode: parseInt10
-    status: parseInt10
     genre: parseInt10
     language: parseInt10
 
 
   @charToKey:
+    c: 'general'
     m: 'mode'
     s: 'status'
     g: 'genre'
     l: 'language'
     e: 'extra'
     r: 'rank'
+    played: 'played'
     q: 'query'
     sort: 'sort'
 
 
+  @filtersFromUrl: (url) ->
+    params = new URL(url).searchParams
+
+    filters = {}
+
+    for own char, key of @charToKey
+      value = params.get(char)
+
+      continue if !value? || value.length == 0
+
+      value = @castFromString[key](value) if @castFromString[key]
+      filters[key] = value
+
+    filters
+
+
+  @keyToChar: ->
+    @_keyToChar ?= _.invert @charToKey
+
+
   @defaults:
+    general: ''
     extra: ''
     genre: null
     language: null
     mode: null
+    played: 'any'
     query: ''
     rank: ''
-    status: 0
+    status: 'leaderboard'
 
 
-  @expand: ['genre', 'language', 'extra', 'rank']
+  @expand: ['genre', 'language', 'extra', 'rank', 'played']
 
   @fillDefaults: (filters) =>
     ret = {}
@@ -69,7 +92,7 @@ class @BeatmapsetFilter
       if filters.query?.trim().length > 0
         'relevance_desc'
       else
-        if filters.status in [4, 5]
+        if filters.status in ['pending', 'graveyard', 'mine']
           'updated_desc'
         else
           'ranked_desc'
@@ -85,12 +108,31 @@ class @BeatmapsetFilter
 
 
   @keys: [
+    'general'
     'extra'
     'genre'
     'language'
     'mode'
+    'played'
     'query'
     'rank'
     'sort'
     'status'
   ]
+
+  @queryParamsFromFilters: (filters) ->
+    return {} if !currentUser.id?
+
+    charParams = {}
+
+    for own key, value of filters
+      if value? && @getDefault(filters, key) != value
+        charParams[@keyToChar()[key]] = value
+
+    charParams
+
+
+  # For UI purposes; server-side has its own check.
+  @supporterRequired: (filters) ->
+    _.reject ['played', 'rank'], (name) =>
+      _.isEmpty(filters[name]) || filters[name] == @getDefault(filters, name)

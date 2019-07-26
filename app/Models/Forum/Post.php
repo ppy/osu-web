@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,23 +20,62 @@
 
 namespace App\Models\Forum;
 
+use App\Jobs\EsIndexDocument;
+use App\Jobs\MarkNotificationsRead;
 use App\Libraries\BBCodeForDB;
+use App\Libraries\BBCodeFromDB;
+use App\Libraries\Transactions\AfterCommit;
+use App\Models\Beatmapset;
 use App\Models\DeletedUser;
 use App\Models\Elasticsearch;
 use App\Models\User;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
-use Es;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Post extends Model
+/**
+ * @property string $bbcode_bitfield
+ * @property string $bbcode_uid
+ * @property mixed $body_raw
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property int $enable_bbcode
+ * @property int $enable_magic_url
+ * @property int $enable_sig
+ * @property int $enable_smilies
+ * @property Forum $forum
+ * @property int $forum_id
+ * @property int $icon_id
+ * @property User $lastEditor
+ * @property int $osu_kudosobtained
+ * @property bool $post_approved
+ * @property int $post_attachment
+ * @property int $post_edit_count
+ * @property bool $post_edit_locked
+ * @property string $post_edit_reason
+ * @property int $post_edit_time
+ * @property int $post_edit_user
+ * @property int $post_id
+ * @property mixed $post_position
+ * @property int $post_postcount
+ * @property int $post_reported
+ * @property string $post_subject
+ * @property mixed $post_text
+ * @property int $post_time
+ * @property string $post_username
+ * @property int $poster_id
+ * @property string $poster_ip
+ * @property mixed $search_content
+ * @property Topic $topic
+ * @property int $topic_id
+ * @property User $user
+ */
+class Post extends Model implements AfterCommit
 {
     use Elasticsearch\PostTrait, SoftDeletes, Validatable;
 
     protected $table = 'phpbb_posts';
     protected $primaryKey = 'post_id';
-    protected $guarded = [];
 
     public $timestamps = false;
 
@@ -50,22 +89,9 @@ class Post extends Model
     private $skipBeatmapPostRestrictions = false;
     private $skipBodyPresenceCheck = false;
 
-    /*
-    |--------------------------------------------------------------------------
-    | Elasticsearch mappings; can't put in a Trait.
-    |--------------------------------------------------------------------------
-    */
-    const ES_MAPPINGS = [
-        'topic_id' => ['type' => 'long'],
-        'poster_id' => ['type' => 'long'],
-        'forum_id' => ['type' => 'long'],
-        'post_time' => ['type' => 'date'],
-        'post_text' => ['type' => 'string'],
-    ];
-
     public function forum()
     {
-        return $this->belongsTo("App\Models\Forum\Forum", 'forum_id', 'forum_id');
+        return $this->belongsTo(Forum::class, 'forum_id', 'forum_id');
     }
 
     public function topic()
@@ -75,12 +101,12 @@ class Post extends Model
 
     public function user()
     {
-        return $this->belongsTo("App\Models\User", 'poster_id', 'user_id');
+        return $this->belongsTo(User::class, 'poster_id', 'user_id');
     }
 
     public function lastEditor()
     {
-        return $this->belongsTo("App\Models\User", 'post_edit_user', 'user_id');
+        return $this->belongsTo(User::class, 'post_edit_user', 'user_id');
     }
 
     public function setPostTextAttribute($value)
@@ -97,7 +123,7 @@ class Post extends Model
 
     public function setPostTimeAttribute($value)
     {
-        $this->attributes['post_time'] = $value->timestamp;
+        $this->attributes['post_time'] = get_timestamp_or_zero($value);
     }
 
     public function getPostTimeAttribute($value)
@@ -107,12 +133,33 @@ class Post extends Model
 
     public function setPostEditTimeAttribute($value)
     {
-        $this->attributes['post_edit_time'] = $value->timestamp;
+        $this->attributes['post_edit_time'] = get_timestamp_or_zero($value);
     }
 
     public function getPostEditTimeAttribute($value)
     {
         return get_time_or_null($value);
+    }
+
+    /**
+     * Gets a preview of the post_text by stripping anything that
+     * looks like bbcode or html.
+     *
+     * @return string
+     */
+    public function getSearchContentAttribute()
+    {
+        // remove metadata
+        // remove blockquotes
+        // unescape html entities
+        // strip remaining bbcode
+        // strip any html tags left
+        $text = Beatmapset::removeMetadataText($this->post_text);
+        $text = BBCodeFromDB::removeBlockQuotes($text);
+        $text = html_entity_decode_better($text);
+        $text = BBCodeFromDB::removeBBCodeTags($text);
+
+        return strip_tags($text);
     }
 
     public static function lastUnreadByUser($topic, $user)
@@ -139,97 +186,6 @@ class Post extends Model
         }
 
         return $unreadPostId;
-    }
-
-    public static function search($rawParams)
-    {
-        $params = static::searchParams($rawParams);
-        $result = static::searchEs($params);
-
-        $query = static
-            ::with('topic')
-            ->whereIn('post_id', $result['ids'])
-            ->orderByField('post_id', $result['ids']);
-
-        return [
-            'data' => $query->get(),
-            'total' => $result['total'],
-            'params' => $params,
-        ];
-    }
-
-    public static function searchEs($params = [])
-    {
-        $required = [];
-        $any = [];
-
-        if (present($params['query'])) {
-            $required[] = ['query_string' => ['query' => es_query_and_words($params['query'])]];
-        }
-
-        if (present($params['username'])) {
-            $user = User::where('username', '=', $params['username'])->first();
-            $any[] = ['match' => ['poster_id' => $user === null ? -1 : $user->getKey()]];
-        }
-
-        if ($params['forum_id']) {
-            if ($params['forum_children']) {
-                $forum = Forum::where('forum_id', '=', $params['forum_id'])->first();
-
-                $forumIds = $forum === null ? [$params['forum_id']] : $forum->allSubForums();
-            } else {
-                $forumIds = [$params['forum_id']];
-            }
-
-            foreach ($forumIds as $forumId) {
-                $any[] = ['match' => ['forum_id' => $forumId]];
-            }
-        }
-
-        if ($params['topic_id'] !== null) {
-            $required[] = ['match' => ['topic_id' => $params['topic_id']]];
-        }
-
-        $searchParams = [
-            'index' => static::esIndexName(),
-            'size' => $params['limit'],
-            'from' => ($params['page'] - 1) * $params['limit'],
-        ];
-
-        if (count($required) > 0) {
-            $searchParams['body']['query']['bool']['must'] = $required;
-        }
-
-        if (count($any) > 0) {
-            $searchParams['body']['query']['bool']['should'] = $any;
-            $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
-        }
-
-        $resultEs = Es::search($searchParams);
-
-        $ids = [];
-
-        foreach ($resultEs['hits']['hits'] as $post) {
-            $ids[] = get_int($post['_id']);
-        }
-
-        return [
-            'ids' => $ids,
-            'total' => $resultEs['hits']['total'],
-        ];
-    }
-
-    public static function searchParams($params)
-    {
-        $params['query'] = $params['query'] ?? null;
-        $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
-        $params['page'] = max(1, $params['page'] ?? 1);
-        $params['username'] = get_string($params['username'] ?? null);
-        $params['forum_children'] = get_bool($params['forum_children'] ?? false);
-        $params['forum_id'] = get_int($params['forum_id'] ?? null);
-        $params['topic_id'] = get_int($params['topic_id'] ?? null);
-
-        return $params;
     }
 
     public function normalizeUser($user)
@@ -304,6 +260,10 @@ class Post extends Model
             $this->validationErrors()->add('post_text', 'required');
         }
 
+        if ($this->isDirty('post_text') && mb_strlen($this->body_raw) > config('osu.forum.max_post_length')) {
+            $this->validationErrors()->add('post_text', 'too_long', ['limit' => config('osu.forum.max_post_length')]);
+        }
+
         if (!$this->skipBeatmapPostRestrictions) {
             // don't forget to sync with views.forum.topics._posts
             if ($this->isBeatmapsetPost()) {
@@ -311,6 +271,10 @@ class Post extends Model
 
                 return false;
             }
+        }
+
+        if (empty(trim(BBCodeFromDB::removeBlockQuotes($this->post_text)))) {
+            $this->validationErrors()->add('base', '.only_quote');
         }
 
         return $this->validationErrors()->isEmpty();
@@ -348,24 +312,9 @@ class Post extends Model
         return 'forum.post';
     }
 
-    public function getBodyHTMLAttribute()
-    {
-        return bbcode($this->post_text, $this->bbcode_uid, ['withGallery' => true]);
-    }
-
-    public function getBodyHTMLWithoutImageDimensionsAttribute()
-    {
-        return bbcode($this->post_text, $this->bbcode_uid, ['withGallery' => true, 'withoutImageDimensions' => true]);
-    }
-
     public function getBodyRawAttribute()
     {
         return bbcode_for_editor($this->post_text, $this->bbcode_uid);
-    }
-
-    public function scopeLast($query)
-    {
-        return $query->orderBy('post_id', 'desc')->limit(1);
     }
 
     public function scopeShowDeleted($query, $showDeleted)
@@ -373,5 +322,37 @@ class Post extends Model
         if ($showDeleted) {
             $query->withTrashed();
         }
+    }
+
+    public function afterCommit()
+    {
+        dispatch(new EsIndexDocument($this));
+    }
+
+    public function bodyHTML($options = [])
+    {
+        return bbcode($this->post_text, $this->bbcode_uid, array_merge(['withGallery' => true], $options));
+    }
+
+    public function markRead($user)
+    {
+        if ($user === null) {
+            return;
+        }
+
+        $topic = $this->topic()->withTrashed()->first();
+
+        if ($topic === null) {
+            return;
+        }
+
+        $topic->markRead($user, $this->post_time);
+
+        // reset notification status when viewing latest post
+        if ($topic->topic_last_post_id === $this->getKey()) {
+            TopicWatch::lookupQuery($topic, $user)->update(['notify_status' => false]);
+        }
+
+        (new MarkNotificationsRead($this, $user))->dispatch();
     }
 }

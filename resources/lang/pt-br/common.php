@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,33 +19,89 @@
  */
 
 return [
-    'confirmation' => 'Tem certeza?',
+    'confirmation' => 'Você tem certeza?',
+    'confirmation_unsaved' => 'Alterações não salvas serão perdidas. Você tem certeza?',
     'saved' => 'Salvo',
 
+    'array_and' => [
+        'words_connector' => ', ',
+        'two_words_connector' => ' e ',
+        'last_word_connector' => ', e ',
+    ],
+
     'buttons' => [
+        'admin' => 'Admin',
+        'back_to_previous' => 'Voltar para posição anterior',
+        'back_to_top' => 'Voltar ao topo',
         'cancel' => 'Cancelar',
+        'change' => 'mudar',
+        'click_to_copy' => 'clique para copiar',
+        'click_to_copy_copied' => 'copiado para a área de transferência!',
+        'collapse' => 'recolher',
         'delete' => 'Excluir',
-        'permalink' => 'link permanente',
-        'post' => 'Publicar',
+        'edit' => 'Editar',
+        'expand' => 'expandir',
+        'hide' => 'ocultar',
+        'permalink' => 'permalink',
+        'permalink_copied' => 'link copiado',
+        'post' => 'Enviar',
         'reply' => 'Responder',
-        'reset' => 'Limpar',
+        'reply_reopen' => 'Responder e Reabrir',
+        'reply_resolve' => 'Responder e Resolver',
+        'reset' => 'Reiniciar',
+        'restore' => 'Restaurar',
         'save' => 'Salvar',
         'saving' => 'Salvando...',
-        'show_more' => 'exibir mais',
+        'search' => 'Pesquisar',
+        'see_more' => 'ver mais',
+        'show' => 'exibir',
+        'show_deleted' => 'Mostrar excluídos',
+        'show_more' => 'mostrar mais',
+        'show_more_options' => 'mostrar mais opções',
         'upload_image' => 'enviar imagem',
+
+        'watch' => [
+            'to_0' => 'Deixar de observar',
+            'to_1' => 'Observar',
+        ],
     ],
 
     'count' => [
+        'badges' => ':count emblema|:count emblemas',
+        'days' => ':count dia|:count dias',
+        'hour_short_unit' => 'hr|hrs',
+        'hours' => ':count hora|:count horas',
         'item' => ':count unidade|:count unidades',
+        'minute_short_unit' => 'min|mins',
+        'minutes' => ':count minuto|:count minutos',
         'months' => ':count mês|:count meses',
+        'second_short_unit' => 'seg|segs',
+        'update' => ':count_delimited atualização|:count_delimited atualizações',
         'years' => ':count ano|:count anos',
+    ],
+
+    'countdown' => [
+        'days' => 'dias',
+        'hours' => 'horas',
+        'minutes' => 'minutos',
+        'seconds' => 'segundos',
+    ],
+
+    'datetime' => [
+        'year_month' => [
+            'moment' => 'MMMM YYYY',
+            'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
+        ],
     ],
 
     'device' => [
         'keyboard' => 'Teclado',
         'mouse' => 'Mouse',
         'tablet' => 'Mesa digitalizadora',
-        'touch' => 'Touch screen',
+        'touch' => 'Touch Screen',
     ],
 
     'dropzone' => [
@@ -61,16 +117,16 @@ return [
         'count_100' => '100',
         'count_300' => '300',
         'count_50' => '50',
-        'count_geki' => 'MÁX',
+        'count_geki' => 'MAX',
         'count_katu' => '200',
-        'count_miss' => 'Erro',
+        'count_miss' => 'Erros',
     ],
 
     'time' => [
         'days_ago' => ':count dia atrás|:count dias atrás',
         'hours_ago' => ':count hora atrás|:count horas atrás',
         'now' => 'agora',
-        'remaining' => 'Tempo restante',
+        'remaining' => 'Tempo Restante',
     ],
 
     'title' => [

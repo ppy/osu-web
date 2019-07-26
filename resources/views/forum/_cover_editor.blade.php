@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -25,7 +25,7 @@
                 data-tooltip-position="left center"
             >
                 <span class="btn-circle__content">
-                    <i class="fa fa-pencil"></i>
+                    <i class="fas fa-pencil-alt"></i>
                 </span>
             </button>
         </div>
@@ -68,7 +68,7 @@
             data-tooltip-position="left center"
         >
             <span class="btn-circle__content">
-                <i class="fa fa-trash"></i>
+                <i class="fas fa-trash"></i>
             </span>
         </button>
     </div>

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,13 +15,13 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
-    'title' => 'osu!',
+@extends('master', [
+    'title' => trans('home.landing.title'),
     'blank' => 'true',
-    'body_additional_classes' => 'osu-layout--body-dark'
+    'bodyAdditionalClasses' => 'osu-layout--body-landing'
 ])
 
-@section("content")
+@section('content')
     <nav class="osu-layout__row">
         <!-- Mobile Navigation -->
         @include('layout._header_mobile')
@@ -54,24 +54,29 @@
                         data-visibility="hidden"
                     >
                         @foreach (config('app.available_locales') as $locale)
-                            <a
-                                class="landing-nav__link landing-nav__link--locale"
-                                href="{{ route('set-locale', ['locale' => $locale]) }}"
-                                data-remote="1"
-                                data-method="POST"
+                            <button
+                                type="button"
+                                class="landing-nav__locale-button"
+                                @if ($locale !== App::getLocale())
+                                    data-url="{{ route('set-locale', ['locale' => $locale]) }}"
+                                    data-remote="1"
+                                    data-method="POST"
+                                @endif
                             >
-                                <span class="landing-nav__locale-link-pointer">
-                                    <span class="fa fa-chevron-right"></span>
+                                <span class="landing-nav__link landing-nav__link--locale">
+                                    <span class="landing-nav__locale-link-pointer">
+                                        <span class="fas fa-chevron-right"></span>
+                                    </span>
+
+                                    <img
+                                        class="landing-nav__locale-flag"
+                                        src="{{ flag_path(locale_flag($locale)) }}"
+                                        alt="{{ $locale }}"
+                                    >
+
+                                    {{ locale_name($locale) }}
                                 </span>
-
-                                <img
-                                    class="landing-nav__locale-flag"
-                                    src="{{ flag_path(locale_flag($locale)) }}"
-                                    alt="{{ $locale }}"
-                                >
-
-                                {{ locale_name($locale) }}
-                            </a>
+                            </button>
                         @endforeach
                     </div>
                 </div>
@@ -80,10 +85,8 @@
             <div class="landing-nav__section">
                 <a
                     href="#"
-                    class="landing-nav__link js-nav-toggle"
-                    data-nav-mode="user"
-                    data-nav-sub-mode="login"
-                    title="{{ trans("users.anonymous.login_link") }}"
+                    class="landing-nav__link js-nav-toggle js-click-menu js-user-login--menu"
+                    data-click-menu-target="nav2-login-box"
                 >
                     {{ trans("users.login._") }}
                 </a>
@@ -91,8 +94,6 @@
                 <a
                     href="{{ osu_url('user.signup') }}"
                     class="landing-nav__link js-nav-toggle"
-                    data-nav-mode="user"
-                    data-nav-sub-mode="signup"
                 >
                     {{ trans("users.signup._") }}
                 </a>
@@ -102,7 +103,7 @@
     </nav>
 
     <div class="js-nav-data" id="nav-data-landing" data-turbolinks-permanent></div>
-    @include('layout._popup')
+    @include('layout._popup_login', ['modifiers' => ['landing']])
 
     <div class="osu-page">
         <div class="landing-hero">
@@ -128,10 +129,10 @@
             </div>
 
             <div class="landing-hero__info">
-                {!! trans("home.landing.players", ['count' => number_format($stats->totalUsers)]) !!},
+                {!! trans("home.landing.players", ['count' => i18n_number_format($stats->totalUsers)]) !!},
                 {!! trans("home.landing.online", [
-                    'players' => number_format($stats->currentOnline),
-                    'games' => number_format($stats->currentGames)]
+                    'players' => i18n_number_format($stats->currentOnline),
+                    'games' => i18n_number_format($stats->currentGames)]
                 ) !!}
             </div>
 
@@ -163,7 +164,7 @@
                                 </span>
 
                                 <span class="btn-osu-big__icon">
-                                    <span class="fa fa-cloud-download"></span>
+                                    <span class="fas fa-download"></span>
                                 </span>
                             </span>
                         </a>
@@ -182,16 +183,6 @@
     <div class="osu-page osu-page--landing-buttons">
         <div class="landing-middle-buttons">
             <a
-                href="{{ route('support-the-game') }}"
-                class="landing-middle-buttons__button landing-middle-buttons__button--support"
-            ></a>
-
-            <a
-                href="{{ action('StoreController@getListing') }}"
-                class="landing-middle-buttons__button landing-middle-buttons__button--store"
-            ></a>
-
-            <a
                 href="https://blog.ppy.sh/"
                 class="landing-middle-buttons__button landing-middle-buttons__button--blog"
             ></a>
@@ -202,7 +193,7 @@
         <div class="osu-layout__row osu-layout__row--landing-sitemap landing-sitemap">
             <div class="osu-layout__col-container osu-layout__col-container--landing-sitemap">
                 @foreach (footer_landing_links() as $section => $links)
-                    <div class="osu-layout__col osu-layout__col--sm-3">
+                    <div class="osu-layout__col osu-layout__col--sm-4">
                         <ul class="landing-sitemap__list">
                             <li class="landing-sitemap__item">
                                 <div class="landing-sitemap__header">{{ trans("layout.footer.$section._") }}</div>
@@ -218,17 +209,17 @@
 
         <div class="landing-footer-social">
             <a href="{{ route('support-the-game') }}" class="landing-footer-social__icon landing-footer-social__icon--support">
-                <span class="fa fa-heart"></span>
+                <span class="fas fa-heart"></span>
             </a>
             <a href="{{ osu_url("social.twitter") }}" class="landing-footer-social__icon landing-footer-social__icon--twitter">
-                <span class="fa fa-twitter"></span>
+                <span class="fab fa-twitter"></span>
             </a>
             <a href="{{ osu_url("social.facebook") }}" class="landing-footer-social__icon landing-footer-social__icon--facebook">
-                <span class="fa fa-facebook-official"></span>
+                <span class="fab fa-facebook"></span>
             </a>
         </div>
 
-        @include('layout.footer', ['modifiers' => ['landing']])
+        @include('layout.footer', ['modifiers' => ['landing'], 'withLinks' => false])
     </footer>
 
     @include('layout.popup-container')

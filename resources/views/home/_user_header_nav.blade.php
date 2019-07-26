@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
             href="{{ route('home') }}"
             class="
                 page-mode-link
-                {{ $current_action === 'index' ? 'page-mode-link--is-active' : '' }}
+                {{ $currentAction === 'index' ? 'page-mode-link--is-active' : '' }}
             "
         >
             {{ trans('home.user.title') }}
@@ -35,7 +35,7 @@
             href="{{ route('friends.index') }}"
             class="
                 page-mode-link
-                {{ $current_action === 'friends-index' ? 'page-mode-link--is-active' : '' }}
+                {{ $currentAction === 'friends-index' ? 'page-mode-link--is-active' : '' }}
             "
         >
             {{ trans('friends.title_compact') }}
@@ -46,24 +46,10 @@
 
     <li class="page-mode__item">
         <a
-            href="{{ route('account.edit') }}"
-            class="
-                page-mode-link
-                {{ $current_action === 'account-edit' ? 'page-mode-link--is-active' : '' }}
-            "
-        >
-            {{ trans('accounts.edit.title_compact') }}
-
-            <span class="page-mode-link__stripe"></span>
-        </a>
-    </li>
-
-    <li class="page-mode__item">
-        <a
             href="{{ route('forum.topic-watches.index') }}"
             class="
                 page-mode-link
-                {{ $current_action === 'forum-topic-watches-index' ? 'page-mode-link--is-active' : '' }}
+                {{ $currentAction === 'forum-topic-watches-index' ? 'page-mode-link--is-active' : '' }}
             "
         >
             {{ trans('forum.topic_watches.index.title_compact') }}
@@ -77,10 +63,24 @@
             href="{{ route('beatmapsets.watches.index') }}"
             class="
                 page-mode-link
-                {{ $current_action === 'beatmapset-watches-index' ? 'page-mode-link--is-active' : '' }}
+                {{ $currentAction === 'beatmapset-watches-index' ? 'page-mode-link--is-active' : '' }}
             "
         >
             {{ trans('beatmapset_watches.index.title_compact') }}
+
+            <span class="page-mode-link__stripe"></span>
+        </a>
+    </li>
+
+    <li class="page-mode__item">
+        <a
+            href="{{ route('account.edit') }}"
+            class="
+                page-mode-link
+                {{ $currentAction === 'account-edit' ? 'page-mode-link--is-active' : '' }}
+            "
+        >
+            {{ trans('accounts.edit.title_compact') }}
 
             <span class="page-mode-link__stripe"></span>
         </a>

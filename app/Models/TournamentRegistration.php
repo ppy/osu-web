@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,9 +20,17 @@
 
 namespace App\Models;
 
+/**
+ * @property \Carbon\Carbon|null $created_at
+ * @property int $registration_id
+ * @property Tournament $tournament
+ * @property int $tournament_id
+ * @property \Carbon\Carbon|null $updated_at
+ * @property User $user
+ * @property int $user_id
+ */
 class TournamentRegistration extends Model
 {
-    protected $table = 'osu.tournament_registrations';
     protected $primaryKey = 'registration_id';
 
     public function getDates()

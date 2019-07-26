@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,8 +22,8 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => 'Älskar osu!?<br/>
-                                Stöd osu! dev :D',
+            'big_description' => 'Älskar du osu!?<br/>
+                                Stöd utvecklingen av osu! :D',
             'small_description' => '',
             'support_button' => 'Jag vill stötta osu!',
         ],
@@ -34,6 +34,15 @@ return [
             och ibland så har jag svårt att upprätthålla standarderna jag strävar efter.
             Jag skulle vilja ge ett personligt tack till dem som har stöttat osu! än så länge,
             och lika mycket till dem som fortsätter att stötta detta fantastiska spel och gemenskapen in i framtiden :).',
+
+        'supporter_status' => [
+            'contribution' => 'Tack för ditt stöd! Än så länge har du bidragit med :dollars spritt över :tags tag-köp!',
+            'gifted' => ':giftedTags av dina tag-köp har getts bort som gåvor (till värdet av :giftedDollars), så generöst!',
+            'not_yet' => "Du har inte en supporter-tag än :(",
+            'title' => 'Nuvarande supporter-status',
+            'valid_until' => 'Din nuvarande supporter-tag är giltig tills :date!',
+            'was_valid_until' => 'Din supporter-tag var giltig till :date.',
+        ],
 
         'why_support' => [
             'title' => 'Varför ska jag stötta osu!?',
@@ -105,7 +114,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Sortering Inställningar',
-                'description' => 'NYTT: Möjligheten att visa beatmap land / vän / mod-specifika rankningar i spelet.',
+                'description' => 'Möjligheten att visa beatmap land / vän / mod-specifika rankningar i spelet.',
             ],
 
             'feel_special' => [

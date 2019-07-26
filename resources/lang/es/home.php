@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,13 +20,14 @@
 
 return [
     'landing' => [
-        'download' => 'Descarga ya',
-        'online' => '<strong>:players</strong> actualmente en línea en <strong>:games</strong> juegos',
-        'peak' => 'Pico, :count usuarios en línea',
+        'download' => 'Descargar ahora',
+        'online' => '<strong>:players</strong> actualmente en línea en <strong>:games</strong> partidas',
+        'peak' => ':count usuarios en línea',
         'players' => '<strong>:count</strong> usuarios registrados',
+        'title' => 'bienvenido',
 
         'slogan' => [
-            'main' => 'juego de ritmo gratis',
+            'main' => 'el mejor juego de ritmo gratis',
             'sub' => 'el ritmo está solo a un clic de distancia',
         ],
     ],
@@ -35,8 +36,9 @@ return [
         'advanced_link' => 'Búsqueda avanzada',
         'button' => 'Buscar',
         'empty_result' => '¡No se ha encontrado nada!',
-        'missing_query' => 'Cada palabra clave requiere de al menos :n carácteres',
-        'title' => 'Resultados de la búsqueda',
+        'keyword_required' => '',
+        'placeholder' => 'escribe para buscar',
+        'title' => 'Buscar',
 
         'beatmapset' => [
             'more' => 'Hay :count beatmaps más en los resultados',
@@ -53,6 +55,7 @@ return [
             'label' => [
                 'forum' => 'buscar en los foros',
                 'forum_children' => 'incluir subforos',
+                'topic_id' => 'tema #',
                 'username' => 'autor',
             ],
         ],
@@ -67,7 +70,8 @@ return [
 
         'user' => [
             'more' => ':count jugadores más coinciden con la búsqueda',
-            'more_simple' => 'Ver más resultados de los jugadores',
+            'more_simple' => 'Ver más resultados de jugadores',
+            'more_hidden' => 'La búsqueda de jugadores está limitada a :max jugadores. Intenta refinando tus términos de búsqueda.',
             'title' => 'Jugadores',
         ],
 
@@ -78,15 +82,45 @@ return [
         ],
     ],
 
+    'download' => [
+        'tagline' => "¡vamos a<br>empezar!",
+        'action' => 'Descargar osu!',
+        'os' => [
+            'windows' => 'para Windows',
+            'macos' => 'para macOS',
+            'linux' => 'para Linux',
+        ],
+        'mirror' => 'link alternativo',
+        'macos-fallback' => 'usuarios de macOS',
+        'steps' => [
+            'register' => [
+                'title' => 'obtener una cuenta',
+                'description' => 'sigue las instrucciones cuando inicies el juego para iniciar sesión o crear una nueva cuenta',
+            ],
+            'download' => [
+                'title' => 'descargar el juego',
+                'description' => 'haz clic en el botón de arriba para descargar el instalador, luego ¡ejecútalo!',
+            ],
+            'beatmaps' => [
+                'title' => 'obtener beatmaps',
+                'description' => [
+                    '_' => ':browse a la gran biblioteca de beatmaps creados por otros usuarios y ¡empieza a jugar!',
+                    'browse' => 'echa un vistazo',
+                ],
+            ],
+        ],
+        'video-guide' => 'video guía',
+    ],
+
     'user' => [
-        'title' => 'novedades',
+        'title' => 'panel',
         'news' => [
-            'title' => 'Novedades',
-            'error' => 'Error al cargar las novedades, ¿intenta recargar la página?...',
+            'title' => 'Noticias',
+            'error' => 'Error al cargar las novedades, ¿intenta recargando la página?...',
         ],
         'header' => [
-            'welcome' => 'Hola, <strong>:username</strong>!',
-            'messages' => 'Tienes 1 nuevo mensaje|Tienes :count nuevos mensajes',
+            'welcome' => '¡Hola, <strong>:username</strong>!',
+            'messages' => 'Tienes :count nuevo mensaje|Tienes :count nuevos mensajes',
             'stats' => [
                 'friends' => 'Amigos en línea',
                 'games' => 'Partidas',
@@ -94,15 +128,26 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nuevos Beatmaps Aprobados',
+            'new' => 'Nuevos Beatmaps Rankeados',
             'popular' => 'Beatmaps Populares',
             'by' => 'por',
             'plays' => ':count veces jugado',
         ],
         'buttons' => [
-            'download' => 'Descarga osu!',
-            'support' => 'Apoya osu!',
+            'download' => 'Descargar osu!',
+            'support' => 'Apoyar a osu!',
             'store' => 'osu!store',
         ],
+    ],
+
+    'support-osu' => [
+        'title' => '¡Wow!',
+        'subtitle' => '¡Pareces estar pasando un buen rato! :D',
+        'body' => [
+            'part-1' => '¿Sabías que osu! se mantiene sin publicidad y confía en sus jugadores para apoyar su desarrollo y costos de mantenimiento?',
+            'part-2' => '¿También sabías que con apoyar osu! obtienes varias funciones útiles, como <strong>descargar Beatmaps dentro del juego</strong> que automáticamente se activará en partidas multijugador y de espectador?',
+        ],
+        'find-out-more' => '¡Haz clic aquí para obtener más información!',
+        'download-starting' => "Ah, y no te preocupes - tu descarga ya se ha iniciado para ti ;)",
     ],
 ];

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -16,13 +16,12 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'current_section' => 'community',
-    'current_action' => 'tournaments',
+    'currentSection' => 'community',
+    'currentAction' => 'tournaments',
     'title' => $tournament->name,
-    'body_additional_classes' => 'osu-layout--body-darker'
 ])
 
-@section("content")
+@section('content')
     @include('objects.css-override', ['mapping' => ['.tournament__banner' => $tournament->header_banner]])
 
     <div class="osu-layout__row">
@@ -42,17 +41,40 @@
         <div class="tournament">
             <div class='tournament__banner'></div>
 
-            <div class='tournament__description'>
-                {!! Markdown::convertToHtml($tournament->description) !!}
-                {{trans('tournament.show.registration_ends', ['date' => i18n_date($tournament->signup_close)])}}.
+            <div class="tournament__page">
+                @if (count($links = $tournament->pageLinks()) > 0)
+                    <div class="tournament__links">
+                        @foreach ($links as $link)
+                            <a
+                                href="{{ $link['url'] }}"
+                                class="btn-osu btn-osu-default btn-osu--tournament"
+                            >{{ $link['title'] }}</a>
+                        @endforeach
+                    </div>
+                @endif
+
+                <div class="tournament__description">
+                    @if ($tournament->signup_open->isFuture())
+                        {{ trans('tournament.show.state.before_registration') }}
+                    @elseif ($tournament->isRegistrationOpen())
+                        {!! markdown($tournament->description) !!}
+
+                        {{ trans('tournament.show.registration_ends', ['date' => i18n_date($tournament->signup_close)]) }}.
+                    @elseif ($tournament->start_date->isFuture())
+                        {{ trans('tournament.show.state.registration_closed') }}
+                    @elseif ($tournament->isTournamentRunning())
+                        {{ trans('tournament.show.state.running') }}
+                    @else
+                        {{ trans('tournament.show.state.ended') }}
+                    @endif
+                </div>
             </div>
+
             @if($tournament->isRegistrationOpen())
                 <div class='tournament__countdown-timer'>
                     <div class='js-react--countdownTimer' data-deadline='{{json_time($tournament->signup_close)}}'></div>
                 </div>
-            @endif
 
-            @if($tournament->isRegistrationOpen())
                 <div class="tournament__body">
                     @if (!Auth::user())
                         <div>{!!
@@ -70,7 +92,7 @@
                             @if($tournament->isSignedUp(Auth::user()))
                                 <a
                                     href="{{route("tournaments.unregister", $tournament) }}"
-                                    class="btn-osu btn-osu-danger btn-osu--giant"
+                                    class="btn-osu btn-osu-default btn-osu--giant"
                                     data-method="post"
                                     data-remote="1"
                                 >

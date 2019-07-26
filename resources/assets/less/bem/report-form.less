@@ -1,0 +1,121 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.report-form {
+  @_padding: 15px;
+  @_form-color: @osu-colour-b4;
+  @_background-color: @osu-colour-b5;
+
+  font-size: @font-size--title-small;
+  color: #fff;
+
+  .default-border-radius();
+
+  padding: 30px @_padding @_padding;
+
+  display: flex;
+  flex: 0 1 400px;
+  flex-direction: column;
+
+  background-color: @_form-color;
+
+  @media @mobile {
+    // force content to fit into window, especially the dropdown.
+    max-width: 100vw;
+  }
+
+
+  &__button {
+    .reset-input();
+    .default-text-shadow();
+
+    padding: @_padding;
+    width: 200px;
+    background-color: @osu-colour-b5;
+    border-radius: 200px;
+
+    &[disabled] {
+      &::before {
+        .full-size();
+        content: '';
+        border-radius: inherit;
+        background-color: fade(#000, 50%);
+      }
+    }
+
+    &:focus, &:hover, &:active {
+      background-color: @osu-colour-b6;
+    }
+
+    & + & {
+      margin-top: 8px;
+    }
+
+    &--report {
+      background-color: @red-dark;
+
+      &:focus, &:hover, &:active {
+        background-color: @red;
+      }
+    }
+  }
+
+  &__header {
+    margin-bottom: 10px;
+    font-size: @font-size--title;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: center;
+
+    & + & {
+      margin-top: 10px;
+      &--buttons {
+        margin-top: 15px;
+      }
+    }
+
+    &--buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &--exclamation {
+      font-size: @font-size--large-2;
+    }
+  }
+
+  &__textarea {
+    .reset-input();
+    .default-border-radius();
+    padding: @_padding;
+    font-size: @font-size--normal;
+    width: 100%;
+    height: 200px;
+    max-height: 400px; // don't resize too much...
+    min-height: 100px;
+    resize: vertical;
+
+    background-color: @_background-color;
+
+    &::placeholder {
+      color: @osu-colour-f1;
+    }
+  }
+}

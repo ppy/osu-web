@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,20 +19,31 @@
 .page-extra {
   @top: page-extra;
 
+  .own-layer();
   .default-box-shadow();
-  background-color: #fff;
-  padding: 20px @page-extra-side-padding--small;
+  .at2x-simple('/images/backgrounds/page-extra-footer.png');
+  background-color: @osu-colour-b5;
+  background-position: bottom center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  color: #fff;
+  padding: 20px @gutter-profile-page;
   margin-bottom: 10px;
 
-  font-size: 14px;
+  font-size: @font-size--title-small;
 
   @media @desktop {
-    padding-left: @page-extra-side-padding--large;
-    padding-right: @page-extra-side-padding--large;
+    padding-left: @gutter-profile-page-desktop;
+    padding-right: @gutter-profile-page-desktop;
   }
 
   &--compact {
     padding: 0;
+  }
+
+  &--userpage {
+    padding-right: 0px;
+    padding-bottom: 0px;
   }
 
   &__actions {
@@ -42,37 +53,122 @@
 
     position: absolute;
 
-    right: 30px;
+    width: auto;
+    right: @gutter-profile-page;
     top: 20px;
 
     @media @desktop {
+      width: @gutter-profile-page-desktop;
       right: 0;
-      top: 20px;
-      width: 0;
-      opacity: 0;
+    }
+  }
+
+  &__alert {
+    width: 100%;
+    min-height: 30px;
+    border-radius: 40px;
+
+    margin-bottom: 5px;
+    padding: 5px 20px;
+
+    &--info {
+      background-color: @yellow;
+      color: #000;
     }
 
-    .@{top}:hover & {
-      opacity: 1;
+    &--warning {
+      background-color: @red-dark;
+      color: #fff;
+    }
+  }
+
+  &__chart {
+    height: 250px;
+    width: 100%;
+  }
+
+  &__content-overflow-wrapper-inner {
+    padding-right: @gutter-profile-page;
+    padding-bottom: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    @media @desktop {
+      padding-right: @gutter-profile-page-desktop;
+    }
+  }
+
+  &__content-overflow-wrapper-outer {
+    max-height: 400px;
+  }
+
+  &__recent-medal {
+    margin: 0 5px;
+  }
+
+  &__recent-medals {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    height: 1em;
+    font-size: 90px; // icon size
+    margin: 0 -5px;
+  }
+
+  &__recent-medals-box {
+    background-color: @osu-colour-b4;
+    margin: 0 (-@gutter-profile-page);
+    padding: 0 @gutter-profile-page 20px;
+
+    @media @desktop {
+      margin-left: (-@gutter-profile-page-desktop);
+      margin-right: (-@gutter-profile-page-desktop);
+      padding-left: @gutter-profile-page-desktop;
+      padding-right: @gutter-profile-page-desktop;
     }
   }
 
   &__title {
-    font-size: 18px;
-    font-weight: 500;
+    display: inline-block;
+    color: #fff;
+    border-bottom: 2px solid @osu-colour-h1;
+    padding-bottom: 5px;
     margin: 0 0 20px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: @font-size--title-small-3;
 
     &--small {
-      font-size: 15px;
-      margin-top: 30px;
+      margin-top: 20px;
+      padding-bottom: 0;
+      border-bottom: none;
+      font-size: @font-size--title-small-3;
     }
   }
 
+  &__title-count {
+    color: @osu-colour-f1;
+    background-color: @osu-colour-b6;
+    margin-left: 5px;
+    padding: 5px 10px;
+    border-radius: 10000px;
+  }
+
   &__dragdrop-toggle {
-    font-size: 18px;
+    width: @profile-page-action;
+    font-size: 18px; // icon size
     position: absolute;
     right: 0;
     top: 0;
     cursor: move;
+
+    .@{top}--userpage & {
+      margin-right: @gutter-profile-page;
+
+      @media @desktop {
+        margin-right: @gutter-profile-page-desktop;
+      }
+    }
   }
 }

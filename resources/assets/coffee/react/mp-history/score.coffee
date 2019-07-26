@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,15 +16,18 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, a} = ReactDOMFactories
+import { FlagCountry } from 'flag-country'
+import { Mods } from 'mods'
+import * as React from 'react'
+import { div, span, a } from 'react-dom-factories'
 el = React.createElement
 
-class MPHistory.Score extends React.Component
+export class Score extends React.Component
   firstRow: ['combo', 'accuracy', 'score']
   secondRow: ['count_geki', 'count_300', 'count_katu', 'count_100', 'count_50', 'count_miss']
 
   render: ->
-    user = @props.lookupUser @props.score.user_id
+    user = @props.users[@props.score.user_id]
 
     div className: 'mp-history-game__player-score mp-history-player-score',
       div
@@ -43,7 +46,12 @@ class MPHistory.Score extends React.Component
             if !@props.score.multiplayer.pass
               span className: 'mp-history-player-score__failed', osu.trans 'multiplayer.match.failed'
 
-          el FlagCountry, country: user.country
+          a
+            href: laroute.route 'rankings',
+              mode: @props.mode
+              country: user.country?.code
+              type: 'performance'
+            el FlagCountry, country: user.country
 
         div className: 'mp-history-player-score__info-box mp-history-player-score__info-box--stats',
           div className: 'mp-history-player-score__stat-row mp-history-player-score__stat-row--first',
@@ -57,12 +65,12 @@ class MPHistory.Score extends React.Component
 
               value = switch m
                 when 'combo'
-                  @props.score.max_combo.toLocaleString()
+                  osu.formatNumber(@props.score.max_combo)
                 when 'accuracy'
                   "#{_.round @props.score.accuracy * 100, 2}%"
                 when 'score'
                   modifier = 'large'
-                  @props.score.score.toLocaleString()
+                  osu.formatNumber(@props.score.score)
 
               div className: "mp-history-player-score__stat mp-history-player-score__stat--#{m}", key: m,
                 span className: 'mp-history-player-score__stat-label mp-history-player-score__stat-label--small', osu.trans "multiplayer.match.score.stats.#{m}"
@@ -81,4 +89,4 @@ class MPHistory.Score extends React.Component
                   osu.trans "common.score_count.#{m}"
                 span
                   className: 'mp-history-player-score__stat-number mp-history-player-score__stat-number--small'
-                  @props.score.statistics[m].toLocaleString()
+                  osu.formatNumber(@props.score.statistics[m])

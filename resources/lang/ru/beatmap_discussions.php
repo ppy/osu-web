@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,15 +21,50 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Ты должен быть авторизирован для редактирования.',
+            'null_user' => 'Вы должны войти для редактирования.',
             'system_generated' => 'Системное сообщение не может быть отредактировано.',
-            'wrong_user' => 'Ты должен быть автором данной публикации для его редактирования.',
+            'wrong_user' => 'Вы должны быть автором данной публикации для редактирования.',
         ],
+    ],
+
+    'events' => [
+        'empty' => 'Ничего не происходит... пока что.',
+    ],
+
+    'index' => [
+        'deleted_beatmap' => 'удалено',
+        'title' => 'Обсуждение карты',
+
+        'form' => [
+            '_' => 'Поиск',
+            'deleted' => 'Включая удаленные обсуждения',
+            'types' => 'Типы сообщений',
+            'username' => 'Имя пользователя',
+
+            'user' => [
+                'label' => 'Пользователь',
+                'overview' => 'Просмотр активности',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => 'Дата создания',
+        'deleted_at' => 'Дата удаления',
+        'message_type' => 'Тип',
+        'permalink' => 'Прямая ссылка',
     ],
 
     'nearby_posts' => [
         'confirm' => 'Ни один из постов не решает мою проблему',
         'notice' => 'Есть ответы между :timestamp (:existing_timestamps). Проверьте их перед тем как отвечать.',
+    ],
+
+    'reply' => [
+        'open' => [
+            'guest' => 'Войдите, чтобы ответить',
+            'user' => 'Отправить',
+        ],
     ],
 
     'system' => [
@@ -40,6 +75,14 @@ return [
     ],
 
     'user' => [
+        'admin' => 'администратор',
+        'bng' => 'номинатор',
         'owner' => 'маппер',
+        'nat' => 'NAT',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Все',
+        'label' => 'Сортировать по пользователям',
     ],
 ];

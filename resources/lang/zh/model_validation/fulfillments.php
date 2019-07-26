@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,9 +22,9 @@ return [
     'username_change' => [
         'only_one' => '一个订单中只能更改一个用户名',
         'insufficient_paid' => '支付金额不足以更改用户名（ :expected > :actual ）',
-        'reverting_username_mismatch' => '当前用户名（:current）与要撤销更改的用户名不一致（:username）', //需要帮助
+        'reverting_username_mismatch' => '当前用户名（:current）与要撤销更改的用户名不一致（:username）',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '捐赠少于支持者标签所需要求（:actual > :expected）', //需要帮助
+        'insufficient_paid' => '捐赠少于支持者标签所需要求（:actual > :expected）',
     ],
 ];

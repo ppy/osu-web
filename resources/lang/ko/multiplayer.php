@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => '삭제된 비트맵',
+        'difference' => '(점수 차: :difference)',
+        'failed' => '실패',
         'header' => '멀티플레이 게임',
-        'team-types' => [
-            'head-to-head' => '개인전', // Head-to-Head
-            'tag-coop' => '태그 협동전', // Tag Co-op
-            'team-vs' => '팀 대전', // Team Vs
-            'tag-team-vs' => '팀 태그 대전', // Tag Team Vs
-        ],
+        'in-progress' => '(게임이 진행중입니다.)',
+        'in_progress_spinner_label' => '게임이 진행중입니다',
+        'loading-events' => '기록 불러오는 중...',
+        'winner' => ':team 승리',
+
         'events' => [
             'player-left' => ':user님이 게임을 떠났습니다.',
             'player-joined' => ':user님이 게임에 참가했습니다.',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => '게임이 해체되었습니다.',
             'host-changed-no-user' => '방장이 변경되었습니다.',
         ],
-        'in-progress' => '(게임이 진행중입니다.)',
+
         'score' => [
             'stats' => [
                 'accuracy' => '정확도',
@@ -50,16 +52,18 @@ return [
                 'score' => '점수',
             ],
         ],
-        'failed' => 'FAILED',
+
+        'team-types' => [
+            'head-to-head' => '개인전',
+            'tag-coop' => '태그 협동전',
+            'team-vs' => '팀 대전',
+            'tag-team-vs' => '팀 태그 대전',
+        ],
+
         'teams' => [
             'blue' => 'Blue 팀',
             'red' => 'Red 팀',
         ],
-        'winner' => ':team 승리',
-        'difference' => '(점수 차: :difference)',
-        'loading-events' => '기록 불러오는 중...', // Loading events
-        'more-events' => '모두 보기...', // view all
-        'beatmap-deleted' => '삭제된 비트맵',
     ],
     'game' => [
         'scoring-type' => [

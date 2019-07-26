@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,11 +20,23 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+
+/**
+ * @property Beatmapset $beatmapset
+ * @property int $beatmapset_id
+ * @property string|null $comment
+ * @property \Carbon\Carbon|null $created_at
+ * @property int $id
+ * @property mixed|null $type
+ * @property \Carbon\Carbon|null $updated_at
+ * @property User $user
+ * @property int|null $user_id
+ */
 class BeatmapsetEvent extends Model
 {
-    protected $guarded = [];
-
     const NOMINATE = 'nominate';
+    const LOVE = 'love';
     const QUALIFY = 'qualify';
     const DISQUALIFY = 'disqualify';
     const APPROVE = 'approve';
@@ -39,6 +51,9 @@ class BeatmapsetEvent extends Model
     const ISSUE_RESOLVE = 'issue_resolve';
     const ISSUE_REOPEN = 'issue_reopen';
 
+    const DISCUSSION_LOCK = 'discussion_lock';
+    const DISCUSSION_UNLOCK = 'discussion_unlock';
+
     const DISCUSSION_DELETE = 'discussion_delete';
     const DISCUSSION_RESTORE = 'discussion_restore';
 
@@ -46,32 +61,6 @@ class BeatmapsetEvent extends Model
     const DISCUSSION_POST_RESTORE = 'discussion_post_restore';
 
     const NOMINATION_RESET = 'nomination_reset';
-
-    // =D
-    const TYPES = [
-        'nominate',
-        'qualify',
-        'disqualify',
-        'approve',
-        'rank',
-
-        'kudosu_allow',
-        'kudosu_deny',
-        'kudosu_gain',
-        'kudosu_lost',
-        'kudosu_recalculate',
-
-        'issue_resolve',
-        'issue_reopen',
-
-        'discussion_delete',
-        'discussion_restore',
-
-        'discussion_post_delete',
-        'discussion_post_restore',
-
-        'nomination_reset',
-    ];
 
     public static function log($type, $user, $object, $extraData = [])
     {
@@ -105,8 +94,9 @@ class BeatmapsetEvent extends Model
         ];
 
         $query = static::limit($params['limit'])->offset(($params['page'] - 1) * $params['limit']);
+        $searchByUser = present($rawParams['user'] ?? null);
 
-        if (isset($rawParams['user'])) {
+        if ($searchByUser) {
             $params['user'] = $rawParams['user'];
             $user = User::lookup($params['user']);
 
@@ -118,7 +108,7 @@ class BeatmapsetEvent extends Model
         }
 
         if (isset($rawParams['sort'])) {
-            $sort = explode('-', strtolower($rawParams['sort']));
+            $sort = explode('_', strtolower($rawParams['sort']));
 
             if (in_array($sort[0] ?? null, ['id'], true)) {
                 $sortField = $sort[0];
@@ -132,15 +122,123 @@ class BeatmapsetEvent extends Model
         $sortField ?? ($sortField = 'id');
         $sortOrder ?? ($sortOrder = 'desc');
 
-        $params['sort'] = "{$sortField}-{$sortOrder}";
+        if ($sortField !== 'id' && $sortOrder !== 'desc') {
+            $params['sort'] = "{$sortField}_{$sortOrder}";
+        }
+
         $query->orderBy($sortField, $sortOrder);
 
+        $params['types'] = [];
+
         if (isset($rawParams['type'])) {
-            $params['type'] = $rawParams['type'];
-            $query->where('type', '=', $params['type']);
+            $params['types'][] = $rawParams['type'];
+        }
+
+        if (isset($rawParams['types'])) {
+            $params['types'] = array_merge($params['types'], get_arr($rawParams['types'], 'get_string') ?? []);
+        }
+
+        if ($searchByUser) {
+            $allowedTypes = static::types('public');
+            if ($rawParams['is_moderator'] ?? false) {
+                $allowedTypes = array_merge($allowedTypes, static::types('moderation'));
+            }
+            if ($rawParams['is_kudosu_moderator'] ?? false) {
+                $allowedTypes = array_merge($allowedTypes, static::types('kudosuModeration'));
+            }
+        } else {
+            $allowedTypes = static::types('all');
+        }
+
+        $params['types'] = array_intersect($params['types'], $allowedTypes);
+
+        if (empty($params['types'])) {
+            if ($searchByUser) {
+                $query->whereIn('type', $allowedTypes);
+            }
+        } else {
+            $query->whereIn('type', $params['types']);
+        }
+
+        if (isset($rawParams['min_date'])) {
+            $timestamp = strtotime($rawParams['min_date']);
+
+            if ($timestamp !== false) {
+                $minDate = Carbon::createFromTimestamp($timestamp)->startOfDay();
+                $params['min_date'] = json_date($minDate);
+                $query->where('created_at', '>=', $minDate);
+            }
+        }
+
+        if (isset($rawParams['max_date'])) {
+            $timestamp = strtotime($rawParams['max_date']);
+
+            if ($timestamp !== false) {
+                $maxDate = Carbon::createFromTimestamp($timestamp)->endOfDay();
+                $params['max_date'] = json_date($maxDate);
+                $query->where('created_at', '<=', $maxDate);
+            }
         }
 
         return ['query' => $query, 'params' => $params];
+    }
+
+    /**
+     * Currently used for:
+     * - generating type filter checkboxes in events index page
+     *   - searching by user should limit the allowed types
+     * - checking whether or not user id should be visible
+     * Order affects how they're displayed.
+     */
+    public static function types($privilege)
+    {
+        static $ret;
+
+        if ($ret === null) {
+            $ret = [
+                'public' => [
+                    static::NOMINATE,
+                    static::QUALIFY,
+                    static::RANK,
+                    static::LOVE,
+                    static::NOMINATION_RESET,
+                    static::DISQUALIFY,
+
+                    static::KUDOSU_GAIN,
+                    static::KUDOSU_LOST,
+                ],
+                'kudosuModeration' => [
+                    static::KUDOSU_ALLOW,
+                    static::KUDOSU_DENY,
+                ],
+                'moderation' => [
+                    static::APPROVE, // not actually used
+
+                    static::KUDOSU_RECALCULATE,
+
+                    static::ISSUE_RESOLVE,
+                    static::ISSUE_REOPEN,
+
+                    static::DISCUSSION_DELETE,
+                    static::DISCUSSION_RESTORE,
+
+                    static::DISCUSSION_POST_DELETE,
+                    static::DISCUSSION_POST_RESTORE,
+                ],
+            ];
+        }
+
+        if ($privilege === 'all' && !isset($ret['all'])) {
+            $all = [];
+
+            foreach ($ret as $_priv => $types) {
+                $all = array_merge($all, $types);
+            }
+
+            $ret['all'] = $all;
+        }
+
+        return $ret[$privilege];
     }
 
     public function beatmapset()
@@ -175,26 +273,20 @@ class BeatmapsetEvent extends Model
 
     public function getCommentAttribute($value)
     {
-        return $this->hasArrayComment() ? json_decode($value, true) : $value;
+        return json_decode($value, true) ?? $value;
     }
 
     public function setCommentAttribute($value)
     {
-        if ($this->hasArrayComment()) {
-            $value = json_encode($value);
-        }
-
-        $this->attributes['comment'] = $value;
+        $this->attributes['comment'] = is_array($value) ? json_encode($value) : $value;
     }
 
-    public function hasArrayComment()
+    public function typeForTranslation()
     {
-        return !in_array($this->type, [
-            static::NOMINATE,
-            static::QUALIFY,
-            static::DISQUALIFY,
-            static::APPROVE,
-            static::RANK,
-        ], true);
+        if ($this->type === 'disqualify' && !is_array($this->comment)) {
+            return 'disqualify_legacy';
+        }
+
+        return $this->type;
     }
 }

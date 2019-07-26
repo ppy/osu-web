@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -16,70 +16,42 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div
-    class="nav-popup nav-popup--sections js-current-user-cover"
+    class="simple-menu simple-menu--nav2 js-click-menu js-nav2--centered-popup"
+    data-click-menu-id="nav2-user-popup"
+    data-visibility="hidden"
 >
-    <div class="nav-popup__overlay"></div>
-    <div class="nav-popup__section nav-popup__section--blank"></div>
-    <div class="nav-popup__section nav-popup__section--user nav-popup__section--user-overview">
-        <div class="nav-popup__row nav-popup__row--username">
-            {{ Auth::user()->username }}
-        </div>
+    <a
+        href="{{ route('users.show', Auth::user()) }}"
+        class="simple-menu__header simple-menu__header--link js-current-user-cover"
+        {!! background_image(Auth::user()->cover(), false) !!}
+    >
+        <img class="simple-menu__header-icon" src="/images/icons/profile.svg" alt="">
+        <div>{{ Auth::user()->username }}</div>
+    </a>
 
-        <div class="nav-popup__row nav-popup__row--with-gutter">
-            @if (Auth::user()->country !== null)
-                <img
-                    class="nav-popup__flag"
-                    src="{{ flag_path(Auth::user()->country_acronym) }}"
-                    title="{{ Auth::user()->country->name }}"
-                />
-            @endif
-        </div>
-    </div>
+    <a
+        class="simple-menu__item"
+        href="{{ route('users.show', Auth::user()) }}"
+    >
+        {{ trans('layout.popup_user.links.profile') }}
+    </a>
 
-    <div class="nav-popup__section nav-popup__section--user nav-popup__section--user-links">
-        <a
-            class="nav-popup__link"
-            href="{{ route('users.show', Auth::user()) }}"
-        >
-            <div class="nav-popup__link-marker">
-                <i class="fa fa-angle-right"></i>
-            </div>
+    <a class="simple-menu__item" href="{{ route('friends.index') }}">
+        {{ trans('layout.popup_user.links.friends') }}
+    </a>
 
-            {{ trans('layout.popup_user.links.profile') }}
-        </a>
+    <a class="simple-menu__item" href="{{ route('account.edit') }}">
+        {{ trans('layout.popup_user.links.account-edit') }}
+    </a>
 
-        <a class="nav-popup__link" href="{{ route('friends.index') }}">
-            <div class="nav-popup__link-marker">
-                <i class="fa fa-angle-right"></i>
-            </div>
-
-            {{ trans('layout.popup_user.links.friends') }}
-        </a>
-
-        <a class="nav-popup__link" href="{{ route('account.edit') }}">
-            <div class="nav-popup__link-marker">
-                <i class="fa fa-angle-right"></i>
-            </div>
-
-            {{ trans('layout.popup_user.links.account-edit') }}
-        </a>
-
-        <a
-            class="js-logout-link nav-popup__link"
-            href="{{ route('logout') }}"
-            data-confirm="{{ trans('users.logout_confirm') }}"
-            data-method="delete"
-            data-remote="1"
-        >
-            <div class="nav-popup__link-marker">
-                <i class="fa fa-angle-right"></i>
-            </div>
-
-            {{ trans('layout.popup_user.links.logout') }}
-        </a>
-    </div>
-
-    <div class="nav-popup__bar">
-        <span class="bar u-section-bg"></span>
-    </div>
+    <button
+        class="js-logout-link simple-menu__item"
+        type="button"
+        data-url="{{ route('logout') }}"
+        data-confirm="{{ trans('users.logout_confirm') }}"
+        data-method="delete"
+        data-remote="1"
+    >
+        {{ trans('layout.popup_user.links.logout') }}
+    </button>
 </div>

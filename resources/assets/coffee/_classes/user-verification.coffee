@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -17,7 +17,8 @@
 ###
 
 class @UserVerification
-  constructor: (@nav) ->
+  constructor: ->
+    addEventListener 'turbolinks:load', @setModal
     $(document).on 'ajax:error', @showOnError
     $(document).on 'turbolinks:load', @showOnLoad
     $(document).on 'input', '.js-user-verification--input', @autoSubmit
@@ -32,7 +33,6 @@ class @UserVerification
     @message = document.getElementsByClassName('js-user-verification--message')
     @messageSpinner = document.getElementsByClassName('js-user-verification--message-spinner')
     @messageText = document.getElementsByClassName('js-user-verification--message-text')
-    @modal = document.getElementsByClassName('js-user-verification')
     @reference = document.getElementsByClassName('js-user-verification--reference')
 
 
@@ -59,14 +59,14 @@ class @UserVerification
       $.post laroute.route('account.verify'),
         verification_key: inputKey
       .done @success
-      .error @error
+      .fail @error
 
 
   error: (xhr) =>
     @setMessage osu.xhrErrorMessage(xhr)
 
 
-  float: (float, modal = @modal[0], referenceBottom) =>
+  float: (float, modal = @modal, referenceBottom) =>
     if float
       modal.classList.add 'js-user-verification--center'
       modal.style.paddingTop = null
@@ -89,20 +89,18 @@ class @UserVerification
       $.post laroute.route('account.reissue-code')
       .done (data) =>
         @setMessage data.message
-      .error @error
+      .fail @error
 
 
   reposition: =>
-    modal = @modal[0]
-
-    return unless modal?.classList.contains('js-user-verification--active')
+    return unless @modal?.classList.contains('js-user-verification--active')
 
     if osu.isMobile()
-      @float(true, modal)
+      @float(true, @modal)
     else
       referenceBottom = @reference[0]?.getBoundingClientRect().bottom
 
-      @float(referenceBottom < 0, modal, referenceBottom)
+      @float(referenceBottom < 0, @modal, referenceBottom)
 
 
   setMessage: (text, withSpinner = false) =>
@@ -115,9 +113,13 @@ class @UserVerification
     Fade.in @message[0]
 
 
+  setModal: =>
+    @modal = document.querySelector('.js-user-verification')
+
+
   success: =>
     @$modal().modal 'hide'
-    @modal[0].classList.remove('js-user-verification--active')
+    @modal.classList.remove('js-user-verification--active')
 
     toClick = @clickAfterVerification
     @clickAfterVerification = null
@@ -129,16 +131,16 @@ class @UserVerification
 
 
   show: (target, html) =>
-    Timeout.set 0, => @nav.hidePopup()
-
     @clickAfterVerification = target
 
     if html?
       $('.js-user-verification--box').html html
 
     @$modal()
-    .modal backdrop: 'static'
-    .modal 'show'
+    .modal
+      backdrop: 'static'
+      keyboard: false
+      show: true
     .addClass 'js-user-verification--active'
 
     @reposition()

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -18,64 +18,57 @@
 @extends('master')
 
 @section('content')
-    <form action="{{ route('search') }}">
-        <input type="hidden" name="mode" value="{{ $search->mode }}">
+    <form action="{{ route('search') }}" data-loading-overlay="0" class="js-search" autocomplete="off">
+        <input type="hidden" name="mode" value="{{ request('mode') }}">
 
         <div class="osu-page">
-            <div class="search-header">
+            <div class="search-header js-search--header">
                 <div class="search-header__title">
                     {{ trans('home.search.title') }}
                 </div>
 
                 <div class="search-header__box">
-                    <input class="search-header__input" name="query" value="{{ $search->urlParams()['query'] ?? '' }}" />
+                    <input
+                        class="search-header__input js-search--input"
+                        name="query"
+                        value="{{ request('query') }}"
+                        placeholder="{{ trans('home.search.placeholder') }}"
+                        data-search-current="{{ request('query') }}"
+                        data-turbolinks-permanent
+                        id="search-input"
+                        autofocus
+                    />
 
-                    <button class="search-header__icon">
-                        <i class="fa fa-search"></i>
+                    <button class="search-header__icon search-header__icon--normal">
+                        <i class="fas fa-search"></i>
+                    </button>
+
+                    <button class="search-header__icon search-header__icon--searching">
+                        {!! spinner() !!}
                     </button>
                 </div>
             </div>
         </div>
 
-        <div class="osu-page osu-page--small-desktop">
+        <div class="osu-page osu-page--small">
             <div class="search">
-                <div class="page-mode page-mode--search">
-                    @foreach ($search::MODES as $mode => $_class)
-                        <div class="page-mode__item">
-                            <a
-                                href="{{ route('search', ['mode' => $mode, 'query' => $search->urlParams()['query'] ?? '']) }}"
-                                class="page-mode-link {{ $mode === $search->mode ? 'page-mode-link--is-active' : '' }}"
-                            >
-                                <span class="fake-bold" data-content="{{ trans("home.search.mode.{$mode}") }}">
-                                    {{ trans("home.search.mode.{$mode}") }}
-                                </span>
+                @include('home._search_page_tabs', compact('allSearch'))
 
-                                @if ($search->hasQuery() && isset($search->search($mode)['total']))
-                                    <span class="page-mode-link__badge">
-                                        @if ($search->search($mode)['total'] < 100)
-                                            {{ $search->search($mode)['total'] }}
-                                        @else
-                                            99+
-                                        @endif
-                                    </span>
-                                @endif
-
-                                <span class="page-mode-link__stripe u-forum--bg">
-                                </span>
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-                @if ($search->mode === 'forum_post')
-                    @include('home._search_advanced_forum_post')
+                @if ($allSearch->getMode() === 'forum_post')
+                    @include('objects.search._forum_options')
                 @endif
 
-                @if ($search->hasQuery())
-                    @include('home._search_results')
+                @if ($allSearch->hasQuery())
+                    @php
+                        $showMore = $allSearch->showMore();
+                    @endphp
+                    @foreach ($allSearch->visibleSearches() as $mode => $search)
+                        @include('home._search_results', compact('mode', 'search', 'showMore'))
+                    @endforeach
                 @else
                     <div class="search-result">
                         <div class="search-result__row search-result__row--notice">
-                            @lang('home.search.missing_query', ['n' => config('osu.search.minimum_length')])
+                            {{ trans('home.search.keyword_required') }}
                         </div>
                     </div>
                 @endif

@@ -39,12 +39,6 @@ return [
         'tracking_id' => env('GA_TRACKING_ID', ''),
     ],
 
-    'disqus' => [
-        'short_name' => env('DISQUS_SHORT_NAME'),
-        'secret_key' => env('DISQUS_SECRET_KEY'),
-        'public_key' => env('DISQUS_PUBLIC_KEY'),
-    ],
-
     'passport' => [
         'path' => env('PASSPORT_KEY_PATH'),
     ],

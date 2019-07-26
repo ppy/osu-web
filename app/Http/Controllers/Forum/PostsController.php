@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,6 @@ namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Models\Forum\Post;
-use App\Models\Forum\Topic;
 use Auth;
 use DB;
 use Request;
@@ -43,8 +42,7 @@ class PostsController extends Controller
 
     public function destroy($id)
     {
-        $post = Post::showDeleted(priv_check('ForumTopicModerate')->can())
-            ->findOrFail($id);
+        $post = Post::withTrashed()->findOrFail($id);
 
         priv_check('ForumPostDelete', $post)->ensureCan();
 
@@ -62,8 +60,8 @@ class PostsController extends Controller
 
                 $topic->removePostOrExplode($post);
             });
-        } catch (ModelNotSavedException $_e) {
-            return error_popup($topic->validationErrors()->toSentence());
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
 
         if ($topic->trashed()) {
@@ -77,9 +75,10 @@ class PostsController extends Controller
 
     public function restore($id)
     {
-        priv_check('ForumTopicModerate')->ensureCan();
-
         $post = Post::withTrashed()->findOrFail($id);
+
+        priv_check('ForumModerate', $post->forum)->ensureCan();
+
         $topic = $post->topic()->withTrashed()->first();
 
         $this->logModerate(
@@ -130,8 +129,8 @@ class PostsController extends Controller
                     ])
                     ->saveOrExplode();
             });
-        } catch (ModelNotSavedException $_e) {
-            return error_popup($post->validationErrors()->toSentence());
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
 
         $posts = collect([$post->fresh()]);
@@ -143,9 +142,11 @@ class PostsController extends Controller
 
     public function raw($id)
     {
-        $showDeleted = priv_check('ForumTopicModerate')->can();
+        $post = Post::withTrashed()->findOrFail($id);
 
-        $post = Post::showDeleted($showDeleted)->findOrFail($id);
+        if ($post->trashed()) {
+            priv_check('ForumModerate', $post->forum)->ensureCan();
+        }
 
         if ($post->forum === null) {
             abort(404);
@@ -164,9 +165,11 @@ class PostsController extends Controller
 
     public function show($id)
     {
-        $showDeleted = priv_check('ForumTopicModerate')->can();
+        $post = Post::withTrashed()->findOrFail($id);
 
-        $post = Post::showDeleted($showDeleted)->findOrFail($id);
+        if ($post->trashed()) {
+            priv_check('ForumModerate', $post->forum)->ensureCan();
+        }
 
         if ($post->forum === null) {
             abort(404);

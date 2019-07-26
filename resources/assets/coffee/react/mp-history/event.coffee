@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,20 +16,21 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, a} = ReactDOMFactories
+import * as React from 'react'
+import { div, span, a, i } from 'react-dom-factories'
 el = React.createElement
 
-class MPHistory.Event extends React.Component
+export class Event extends React.Component
   icons:
-    'player-left': ['arrow-left', 'circle-o']
-    'player-joined': ['arrow-right', 'circle-o']
-    'player-kicked': ['arrow-left', 'ban']
-    'match-created': ['plus']
-    'match-disbanded': ['times']
-    'host-changed': ['exchange']
+    'player-left': ['fas fa-arrow-left', 'far fa-circle']
+    'player-joined': ['fas fa-arrow-right', 'far fa-circle']
+    'player-kicked': ['fas fa-arrow-left', 'fas fa-ban']
+    'match-created': ['fas fa-plus']
+    'match-disbanded': ['fas fa-times']
+    'host-changed': ['fas fa-exchange-alt']
 
   render: ->
-    user = @props.lookupUser @props.event.user_id
+    user = @props.users[@props.event.user_id]
 
     event_type = @props.event.detail.type
 
@@ -40,10 +41,10 @@ class MPHistory.Event extends React.Component
 
     div className: 'mp-history-event',
       div className: 'mp-history-event__time',
-        moment(@props.event.timestamp).format 'LT'
+        moment(@props.event.timestamp).format 'LTS'
       div className: "mp-history-event__type mp-history-event__type--#{event_type}",
         @icons[event_type].map (m) ->
-          el Icon, name: m, key: m
+          i key: m, className: m
       div
         className: 'mp-history-event__text',
         dangerouslySetInnerHTML:

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,27 +17,34 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'edit' => [
         'title' => 'Ustawienia <strong>konta</strong>',
         'title_compact' => 'ustawienia',
+        'username' => 'nazwa użytkownika',
+
         'avatar' => [
-            'title' => 'Zmień avatar',
+            'title' => 'Awatar',
         ],
+
         'email' => [
-            'current' => 'aktualny email',
-            'new' => 'nowy email',
-            'new_confirmation' => 'potwierdź email',
-            'title' => 'Email',
+            'current' => 'obecny e-mail',
+            'new' => 'nowy e-mail',
+            'new_confirmation' => 'potwierdź e-mail',
+            'title' => 'E-mail',
         ],
+
         'password' => [
-            'current' => 'aktualne hasło',
+            'current' => 'obecne hasło',
             'new' => 'nowe hasło',
             'new_confirmation' => 'potwierdź hasło',
             'title' => 'Hasło',
         ],
+
         'profile' => [
-            'title' => 'Edytuj profil',
+            'title' => 'Profil',
+
             'user' => [
                 'user_from' => 'obecna lokalizacja',
                 'user_interests' => 'zainteresowania',
@@ -45,28 +52,56 @@ return [
                 'user_occ' => 'zajęcia',
                 'user_twitter' => 'twitter',
                 'user_website' => 'strona internetowa',
+                'user_discord' => 'discord',
             ],
         ],
+
         'signature' => [
             'title' => 'Sygnatura',
             'update' => 'zaktualizuj',
         ],
     ],
-    'update_email' => [
-        'email_subject' => 'potwierdź zmianę maila',
-        'update' => 'zaktualizuj',
-        'updated' => 'Mail został zaktualizowany',
+
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
     ],
+
+    'update_email' => [
+        'email_subject' => 'potwierdź zmianę adresu e-mail',
+        'update' => 'zaktualizuj',
+    ],
+
     'update_password' => [
         'email_subject' => 'potwierdź zmianę hasła',
         'update' => 'zaktualizuj',
-        'updated' => 'Hasło zostało zaktualizowane',
     ],
+
     'playstyles' => [
         'title' => 'Style gry',
         'mouse' => 'myszka',
         'keyboard' => 'klawiatura',
         'tablet' => 'tablet',
         'touch' => 'ekran dotykowy',
+    ],
+
+    'privacy' => [
+        'title' => 'Prywatność',
+        'friends_only' => 'blokuj prywatne wiadomości od osób spoza listy znajomych',
+        'hide_online' => 'ukryj swoją obecność online',
+    ],
+
+    'notifications' => [
+        'title' => 'Powiadomienia',
+        'topic_auto_subscribe' => 'automatycznie włączaj powiadomienia dla twoich wątków na forum',
+    ],
+
+    'security' => [
+        'current_session' => 'obecna',
+        'end_session' => 'Zakończ sesję',
+        'end_session_confirmation' => 'Ta czynność natychmiastowo zakończy sesję na tym urządzeniu. Czy na pewno chcesz to zrobić?',
+        'last_active' => 'Ostatnio aktywna:',
+        'title' => 'Bezpieczeństwo',
+        'web_sessions' => 'sesje internetowe',
     ],
 ];

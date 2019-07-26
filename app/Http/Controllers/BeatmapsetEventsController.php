@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,20 +30,24 @@ class BeatmapsetEventsController extends Controller
 
     public function index()
     {
-        priv_check('BeatmapDiscussionModerate')->ensureCan();
+        $params = request()->all();
+        $params['is_moderator'] = priv_check('BeatmapDiscussionModerate')->can();
+        $params['is_kudosu_moderator'] = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
 
-        $search = BeatmapsetEvent::search(request());
-        $events = new LengthAwarePaginator(
-            $search['query']->with(['user', 'beatmapset'])->get(),
-            $search['query']->realCount(),
-            $search['params']['limit'],
-            $search['params']['page'],
-            [
-                'path' => route('beatmapsets.events.index'),
-                'query' => $search['params'],
-            ]
-        );
+        $search = BeatmapsetEvent::search($params);
 
-        return view('beatmapset_events.index', compact('events'));
+        return view('beatmapset_events.index', [
+            'search' => $search,
+            'events' => new LengthAwarePaginator(
+                $search['query']->with(['user', 'beatmapset', 'beatmapset.user'])->get(),
+                $search['query']->realCount(),
+                $search['params']['limit'],
+                $search['params']['page'],
+                [
+                    'path' => LengthAwarePaginator::resolveCurrentPath(),
+                    'query' => $search['params'],
+                ]
+            ),
+        ]);
     }
 }

@@ -1,0 +1,82 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.select-options(
+  @this: select-options;
+) {
+  &--selecting {
+    z-index: @z-index--blackout-visible;
+  }
+
+  &__decoration {
+    margin-left: 10px;
+  }
+
+  &__item {
+    .reset-input();
+    .link-plain();
+    .link-white();
+
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    white-space: nowrap;
+
+    &--selected {
+      background-color: @osu-colour-b3;
+    }
+
+    &:hover {
+      background-color: @osu-colour-b4;
+      .@{this}__select & {
+        background-color: .osu-hsla(@osu-colour-b6, 0.6)[@hsla];
+      }
+    }
+
+    .@{this}__select & {
+      padding: 15px 10px;
+    }
+  }
+
+  &__select {
+    .default-box-shadow();
+    .default-border-radius();
+    overflow: hidden;
+
+    font-size: 15px;
+    background-color: .osu-hsla(@osu-colour-b6, 0.5)[@hsla];
+    box-shadow: 0 0 0 2px fade(#000, 25%);
+  }
+
+  &__selector {
+    .default-box-shadow();
+
+    position: absolute;
+    width: 100%;
+    display: none;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+    font-size: 12px;
+    background-color: @osu-colour-b5;
+
+    .@{this}--selecting & {
+      display: block;
+    }
+  }
+}

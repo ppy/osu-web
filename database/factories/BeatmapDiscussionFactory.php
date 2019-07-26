@@ -14,9 +14,9 @@
 use App\Models\BeatmapDiscussion;
 
 $factory->define(BeatmapDiscussion::class, function (Faker\Generator $faker) use ($factory) {
-    $type = rand(0, 1) === 0 ? 'timeline' : 'general';
-
-    return $factory->raw(BeatmapDiscussion::class, $type);
+    return [
+        'type' => rand(0, 1) === 0 ? 'timeline' : 'general',
+    ];
 });
 
 $factory->defineAs(BeatmapDiscussion::class, 'timeline', function () {

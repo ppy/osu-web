@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -16,18 +16,18 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="livestream-item">
-    <a class="livestream-item__content" href="{{ $stream['channel']['url'] }}">
+    <a class="livestream-item__content" href="{{ $stream->url() }}">
         <div
             class="livestream-item__image"
-            style="background-image: url('{{ $stream['preview']['medium'] }}');"
+            style="background-image: url('{{ $stream->preview(640, 360) }}');"
         ></div>
 
         <p class="livestream-item__text livestream-item__text--name">
-            {{ $stream['channel']['name'] }}
+            {{ $stream->user['display_name'] }}
         </p>
 
         <p class="livestream-item__text livestream-item__text--detail">
-            {{ $stream['viewers'] }} <i class="fa fa-eye"></i>
+            {{ $stream->data['viewer_count'] }} <i class="fas fa-eye"></i>
         </p>
     </a>
 
@@ -38,10 +38,10 @@
                 class="btn-circle"
                 data-remote="1"
                 data-method="POST"
-                data-url="{{ route('livestreams.promote', ['id' => $stream['_id']]) }}"
+                data-url="{{ route('livestreams.promote', ['id' => $stream->data['id']]) }}"
             >
                 <span class="btn-circle__content">
-                    <i class="fa fa-thumbs-up"></i>
+                    <i class="fas fa-thumbs-up"></i>
                 </span>
             </button>
         </div>

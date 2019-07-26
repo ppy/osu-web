@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,8 +20,23 @@
 
 namespace App\Models;
 
-use Sentry;
+use Carbon\Carbon;
+use Sentry\State\Scope;
 
+/**
+ * @property Beatmap $beatmap
+ * @property int|null $beatmap_id
+ * @property Beatmapset $beatmapset
+ * @property int|null $beatmapset_id
+ * @property \Carbon\Carbon $date
+ * @property int $epicfactor
+ * @property int $event_id
+ * @property int $private
+ * @property string $text
+ * @property string|null $text_clean
+ * @property User $user
+ * @property int|null $user_id
+ */
 class Event extends Model
 {
     public $parsed = false;
@@ -29,7 +44,7 @@ class Event extends Model
     public $patterns = [
         'achievement' => "!^(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" achievement\!$!",
         'beatmapPlaycount' => "!^<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> has been played (?<count>[\d,]+) times\!$!",
-        'beatmapsetApprove' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified)\!$!",
+        'beatmapsetApprove' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified|loved)\!$!",
         'beatmapsetDelete' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a> has been deleted.$!",
         'beatmapsetRevive' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a> has been revived from eternal slumber(?: by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b>)?\.$!",
         'beatmapsetUpdate' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a>\"$!",
@@ -47,32 +62,126 @@ class Event extends Model
     protected $primaryKey = 'event_id';
 
     protected $dates = ['date'];
-    protected $guarded = [];
     public $timestamps = false;
 
     public static function generate($type, $options)
     {
         switch ($type) {
+            case 'achievement':
+                $achievement = $options['achievement'];
+                $user = $options['user'];
+
+                // not escaped because it's not in the old system either
+                $achievementName = $achievement->name;
+                $userUrl = e(route('users.show', $user, false));
+                $userName = e($user->username);
+
+                $params = [
+                    // taken from medal
+                    'text' => "<b><a href='{$userUrl}'>{$userName}</a></b> unlocked the \"<b>{$achievementName}</b>\" medal!",
+                    'user_id' => $user->getKey(),
+                    'private' => false,
+                    'epicfactor' => 4,
+                ];
+
+                break;
+
             case 'beatmapsetApprove':
                 $beatmapset = $options['beatmapset'];
 
                 $beatmapsetUrl = e(route('beatmapsets.show', $beatmapset, false));
-                $beatmapsetTitle = e($beatmapset->title);
+                $beatmapsetTitle = e($beatmapset->artist.' - '.$beatmapset->title);
                 $userName = e($beatmapset->user->username);
                 $userUrl = e(route('users.show', $beatmapset->user, false));
                 $approval = e($beatmapset->status());
 
+                $textCleanBeatmapsetUrl = config('app.url').$beatmapsetUrl;
+                $textCleanUserUrl = config('app.url').$userUrl;
+                $textClean = "[{$textCleanBeatmapsetUrl} {$beatmapsetTitle}] by [{$textCleanUserUrl} {$userName}] has just been {$approval}!";
+
                 $params = [
                     'text' => "<a href='{$beatmapsetUrl}'>{$beatmapsetTitle}</a> by <b><a href='{$userUrl}'>{$userName}</a></b> has just been {$approval}!",
+                    'text_clean' => $textClean,
                     'beatmap_id' => 0,
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $beatmapset->user->getKey(),
                     'private' => false,
                     'epicfactor' => 8,
                 ];
+
+                break;
+
+            case 'beatmapsetDelete':
+                $beatmapset = $options['beatmapset'];
+                $beatmapsetUrl = e(route('beatmapsets.show', $beatmapset, false));
+                $beatmapsetTitle = e($beatmapset->artist.' - '.$beatmapset->title);
+
+                $params = [
+                    'text' => "<a href='{$beatmapsetUrl}'>{$beatmapsetTitle}</a> has been deleted.",
+                    'beatmapset_id' => $beatmapset->getKey(),
+                    'user_id' => $options['user']->getKey(),
+                    'private' => false,
+                    'epicfactor' => 1,
+                ];
+
+                break;
+
+            case 'usernameChange':
+                $user = static::userParams($options['user']);
+                $oldUsername = e($options['history']->username_last);
+                $newUsername = e($options['history']->username);
+                $params = [
+                    'text' => "<b><a href='{$user['url']}'>{$oldUsername}</a></b> has changed their username to {$newUsername}!",
+                    'user_id' => $user['id'],
+                    'date' => $options['history']->timestamp,
+                    'private' => false,
+                    'epicfactor' => 4,
+                ];
+
+                break;
+
+            case 'userSupportGift':
+                $user = static::userParams($options['user']);
+                $params = [
+                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has received the gift of osu! supporter!",
+                    'user_id' => $user['id'],
+                    'date' => $options['date'],
+                    'private' => false,
+                    'epicfactor' => 2,
+                ];
+
+                break;
+
+            case 'userSupportFirst':
+                $user = static::userParams($options['user']);
+                $params = [
+                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has become an osu! supporter - thanks for your generosity!",
+                    'user_id' => $user['id'],
+                    'date' => $options['date'],
+                    'private' => false,
+                    'epicfactor' => 2,
+                ];
+
+                break;
+
+            case 'userSupportAgain':
+                $user = static::userParams($options['user']);
+                $params = [
+                    'text' => "<b><a href='{$user['url']}'>{$user['username']}</a></b> has once again chosen to support osu! - thanks for your generosity!",
+                    'user_id' => $user['id'],
+                    'date' => $options['date'],
+                    'private' => false,
+                    'epicfactor' => 2,
+                ];
+
+                break;
         }
 
         if (isset($params)) {
+            if (!isset($params['date'])) {
+                $params['date'] = Carbon::now();
+            }
+
             return static::create($params);
         }
     }
@@ -97,8 +206,8 @@ class Event extends Model
         $beatmapTitle = presence($matches['beatmapTitle'], '(no title)');
 
         return [
-            'title' => html_entity_decode($beatmapTitle),
-            'url' => html_entity_decode($matches['beatmapUrl']),
+            'title' => html_entity_decode_better($beatmapTitle),
+            'url' => html_entity_decode_better($matches['beatmapUrl']),
         ];
     }
 
@@ -107,16 +216,16 @@ class Event extends Model
         $beatmapsetTitle = presence($matches['beatmapsetTitle'], '(no title)');
 
         return [
-            'title' => html_entity_decode($beatmapsetTitle),
-            'url' => html_entity_decode($matches['beatmapsetUrl']),
+            'title' => html_entity_decode_better($beatmapsetTitle),
+            'url' => html_entity_decode_better($matches['beatmapsetUrl']),
         ];
     }
 
     public function arrayUser($matches)
     {
         if (isset($matches['userName'])) {
-            $username = html_entity_decode($matches['userName']);
-            $userUrl = html_entity_decode($matches['userUrl']);
+            $username = html_entity_decode_better($matches['userName']);
+            $userUrl = html_entity_decode_better($matches['userUrl']);
         } else {
             $user = $this->user;
             $username = $user->username;
@@ -132,20 +241,28 @@ class Event extends Model
     public function stringMode($mode)
     {
         switch ($mode) {
-            case 'osu!mania': return 'mania';
-            case 'Taiko': return 'taiko';
-            case 'osu!': return 'osu';
-            case 'Catch the Beat': return 'fruits';
+            case 'osu!mania':
+                return 'mania';
+            case 'Taiko':
+            case 'osu!taiko':
+                return 'taiko';
+            case 'osu!':
+                return 'osu';
+            case 'Catch the Beat':
+            case 'osu!catch':
+                return 'fruits';
         }
     }
 
-    public function parseFailure()
+    public function parseFailure($reason)
     {
-        Sentry::captureMessage('Failed parsing event', ['log'], [
-            'extra' => [
-                'event' => $this->toArray(),
-            ],
-        ]);
+        app('sentry')->getClient()->captureMessage(
+            'Failed parsing event',
+            null,
+            (new Scope)
+                ->setExtra('reason', $reason)
+                ->setExtra('event', $this->toArray())
+        );
 
         return ['parse_error' => true];
     }
@@ -154,7 +271,7 @@ class Event extends Model
     {
         $achievement = Achievement::where(['name' => $matches['achievementName']])->first();
         if ($achievement === null) {
-            return $this->parseFailure();
+            return $this->parseFailure("unknown achievement ({$matches['achievementName']})");
         }
 
         return [
@@ -227,7 +344,7 @@ class Event extends Model
     {
         $mode = $this->stringMode($matches['mode']);
         if ($mode === null) {
-            return $this->parseFailure();
+            return $this->parseFailure("unknown mode ({$matches['mode']})");
         }
 
         return [
@@ -243,7 +360,7 @@ class Event extends Model
     {
         $mode = $this->stringMode($matches['mode']);
         if ($mode === null) {
-            return $this->parseFailure();
+            return $this->parseFailure("unknown mode ({$matches['mode']})");
         }
 
         return [
@@ -258,7 +375,7 @@ class Event extends Model
         return [
             'user' => array_merge(
                 $this->arrayUser($matches),
-                ['previousUsername' => html_entity_decode($matches['previousUsername'])]
+                ['previousUsername' => html_entity_decode_better($matches['previousUsername'])]
             ),
         ];
     }
@@ -300,7 +417,7 @@ class Event extends Model
             }
 
             if ($this->details === null) {
-                $this->details = $this->parseFailure($matches);
+                $this->details = $this->parseFailure('no matching pattern');
             }
 
             $this->parsed = true;
@@ -312,5 +429,14 @@ class Event extends Model
     public function scopeRecent($query)
     {
         return $query->orderBy('date', 'desc')->limit(5);
+    }
+
+    private static function userParams($user)
+    {
+        return [
+            'id' => $user->getKey(),
+            'username' => e($user->username),
+            'url' => e(route('users.show', $user, false)),
+        ];
     }
 }

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,13 +20,17 @@
   display: flex;
   align-items: center;
 
-  flex: 1;
   min-width: 0;
   text-align: left;
 
   font-size: 12px;
 
+  &--deleted {
+    opacity: 0.5;
+  }
+
   &--large {
+    flex: 1;
     font-size: 15px;
   }
 
@@ -47,8 +51,8 @@
     font-size: 80%;
     font-weight: bold;
     margin-left: 10px;
-    background-color: @link-gray-light;
-    color: #555;
+    background-color: @osu-colour-b2;
+    color: @osu-colour-b5;
   }
 
   &__small {

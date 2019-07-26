@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,13 +24,21 @@ use App\Models\User;
 use App\Traits\Validatable;
 use DB;
 
+/**
+ * @property \Carbon\Carbon $date
+ * @property int $star_id
+ * @property Topic $topic
+ * @property int $topic_id
+ * @property mixed $type
+ * @property User $user
+ * @property int $user_id
+ */
 class FeatureVote extends Model
 {
     use Validatable;
 
     protected $table = 'phpbb_topics_stars';
     protected $primaryKey = 'star_id';
-    protected $guarded = [];
 
     public $timestamps = false;
     protected $dates = ['date'];
@@ -49,11 +57,12 @@ class FeatureVote extends Model
 
     public function voteIncrement()
     {
-        if ($this->user && $this->user->osu_subscriber) {
-            return 2;
+        switch ($this->type) {
+            case 'supporter':
+                return 2;
+            case 'user':
+                return 1;
         }
-
-        return 1;
     }
 
     public function setType()

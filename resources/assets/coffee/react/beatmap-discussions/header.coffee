@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,10 +16,18 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, h1, h2, p} = ReactDOMFactories
+import { BeatmapList } from './beatmap-list'
+import { Nominations } from './nominations'
+import { Subscribe } from './subscribe'
+import { UserFilter } from './user-filter'
+import { BeatmapBasicStats } from 'beatmap-basic-stats'
+import { BeatmapsetMapping } from 'beatmapset-mapping'
+import { PlaymodeTabs } from 'playmode-tabs'
+import * as React from 'react'
+import { a, div, h1, h2, p } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapDiscussions.Header extends React.PureComponent
+export class Header extends React.PureComponent
   componentDidMount: =>
     @updateChart()
 
@@ -53,15 +61,16 @@ class BeatmapDiscussions.Header extends React.PureComponent
           user: @props.users[@props.beatmapset.user_id]
 
         div className: "#{bn}__subscribe",
-          el BeatmapDiscussions.Subscribe, beatmapset: @props.beatmapset
+          el Subscribe, beatmapset: @props.beatmapset
 
       div className: "#{bn}__content #{bn}__content--nomination",
-        el BeatmapDiscussions.Nominations,
+        el Nominations,
           beatmapset: @props.beatmapset
-          events: @props.beatmapsetDiscussion.beatmapset_events
-          users: @props.users
-          currentUser: @props.currentUser
           currentDiscussions: @props.currentDiscussions
+          currentUser: @props.currentUser
+          discussions: @props.discussions
+          events: @props.events
+          users: @props.users
 
 
   headerTop: =>
@@ -78,7 +87,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
       div
         className: "#{bn}__content"
         style:
-          backgroundImage: "url('#{@props.beatmapset.covers.cover}')"
+          backgroundImage: osu.urlPresence(@props.beatmapset.covers.cover)
 
         a
           className: "#{bn}__title-container"
@@ -93,14 +102,24 @@ class BeatmapDiscussions.Header extends React.PureComponent
         div
           className: "#{bn}__filters"
 
-          el BeatmapDiscussions.BeatmapList,
-            currentBeatmap: @props.currentBeatmap
-            currentDiscussions: @props.currentDiscussions
-            beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
+          div
+            className: "#{bn}__filter-group"
+            el BeatmapList,
+              beatmapset: @props.beatmapset
+              currentBeatmap: @props.currentBeatmap
+              currentDiscussions: @props.currentDiscussions
+              beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
 
           div
-            className: "#{bn}__stats"
-            @stats()
+            className: "#{bn}__filter-group #{bn}__filter-group--stats"
+            el UserFilter,
+              ownerId: @props.beatmapset.user_id
+              selectedUser: if @props.selectedUserId? then @props.users[@props.selectedUserId] else null
+              users: @props.discussionStarters
+
+            div
+              className: "#{bn}__stats"
+              @stats()
 
         div null,
           div ref: 'chartArea', className: "#{bn}__chart"
@@ -113,14 +132,14 @@ class BeatmapDiscussions.Header extends React.PureComponent
 
   setFilter: (e) =>
     e.preventDefault()
-    $.publish 'beatmapDiscussion:filter', filter: e.currentTarget.dataset.type
+    $.publish 'beatmapsetDiscussions:update', filter: e.currentTarget.dataset.type
 
 
   stats: =>
     bn = 'counter-box'
 
     for type in ['mine', 'mapperNotes', 'resolved', 'pending', 'praises', 'deleted', 'total']
-      continue if type == 'deleted' && !@props.currentUser.isAdmin
+      continue if type == 'deleted' && !@props.currentUser.is_admin
 
       topClasses = "#{bn} #{bn}--beatmap-discussions #{bn}--#{_.kebabCase(type)}"
       topClasses += ' js-active' if @props.mode != 'events' && @props.currentFilter == type
@@ -131,7 +150,11 @@ class BeatmapDiscussions.Header extends React.PureComponent
 
       a
         key: type
-        href: '#'
+        href: BeatmapDiscussionHelper.url
+          filter: type
+          beatmapsetId: @props.beatmapset.id
+          beatmapId: @props.currentBeatmap.id
+          mode: @props.mode
         className: topClasses
         'data-type': type
         onClick: @setFilter

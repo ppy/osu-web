@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,9 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ScoreRetrievalException;
 use App\Models\Beatmap;
+use App\Models\Score\Best\Model as BestModel;
 use Auth;
+use DB;
 use Request;
 
 class BeatmapsController extends Controller
@@ -56,9 +58,12 @@ class BeatmapsController extends Controller
                 }
             }
 
+            $class = BestModel::getClassByString($mode);
+            $table = (new $class)->getTable();
             $query = $beatmap
                 ->scoresBest($mode)
-                ->with('user.country')
+                ->with(['beatmap', 'user.country'])
+                ->from(DB::raw("{$table} FORCE INDEX (beatmap_score_lookup)"))
                 ->defaultListing();
         } catch (ScoreRetrievalException $ex) {
             return error_popup($ex->getMessage());
@@ -68,7 +73,7 @@ class BeatmapsController extends Controller
         $query->withType($type, compact('user'));
 
         $results = [
-            'scores' => json_collection($query->forListing(), 'Score', ['user', 'user.country']),
+            'scores' => json_collection($query->forListing(), 'Score', ['beatmap', 'user', 'user.country']),
         ];
 
         if ($user !== null) {

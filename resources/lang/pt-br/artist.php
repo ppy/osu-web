@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,22 +23,34 @@ return [
     'title' => 'Artistas em destaque',
 
     'admin' => [
-        'hidden' => 'ARTISTA ATUALMENTE OCULTO',
+        'hidden' => 'ARTISTA OCULTO',
     ],
+
     'beatmaps' => [
         '_' => 'Beatmaps',
         'download' => 'Baixar modelo de beatmap',
-        'download-na' => 'Modelo indisponível no momento',
+        'download-na' => 'Modelo de beatmap indisponível',
     ],
+
     'index' => [
-        'description' => 'Artistas em destaque são artistas com quem estamos trabalhando em colaboração para que possamos trazer músicas novas e originais para o osu!. Esses artistas e suas músicas são escolhidas a dedo pela equipe do osu! e por sua ótima viabilidade no editor . Alguns desses artistas também criaram novas músicas exclusivas para uso no osu!.<br><br>Todas as músicas presentes nessa seção são fornecidas como arquivos .osz com BPM e Offset pré-disponibilizados e foram oficialmente licenciadas para uso no osu! e qualquer conteúdo relacionado.',
+        'description' => 'Os artistas em destaque são pessoas com quem estamos trabalhando em conjunto para trazer novas ideias musicais para o osu!. Estes artistas possuem uma seleção variada de músicas inéditas escolhidas pela própria equipe do osu! por serem incrivelmente incríveis e adequadas para mapeamento. Alguns destes artistas criaram músicas exclusivas para o osu!.<br><br>Todas as músicas desta seção têm o BPM e Offset pré-disponibilizados e foram oficialmente licenciadas para utilização no osu! e em qualquer conteúdo relacionado.',
     ],
+
     'links' => [
+        'osu' => 'perfil do osu!',
         'site' => 'Site oficial',
     ],
+
     'songs' => [
         '_' => 'Músicas',
-        'count' => '1 música|:count músicas',
-        'exclusive' => 'Exclusivo do osu!',
+        'count' => ':count música|:count músicas',
+        'exclusive' => 'exclusivo do osu!',
+    ],
+
+    'tracklist' => [
+        'title' => 'título',
+        'length' => 'duração',
+        'bpm' => 'bpm',
+        'genre' => 'gênero',
     ],
 ];

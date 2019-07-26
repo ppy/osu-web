@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,8 +15,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@php
-@endphp
 <div class="forum-topic-title">
     <div class="js-forum-topic-title--main forum-topic-title__group">
         <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="forum-topic-title__title js-forum-topic-title--title">
@@ -24,14 +22,14 @@
         </a>
 
         @if (priv_check('ForumTopicEdit', $topic)->can())
-            <div class="forum-topic-title__button">
+            <div class="forum-topic-title__button forum-topic-title__button--edit">
                 <button
                     type="button"
                     class="js-forum-topic-title--edit-start btn-circle"
                     title="{{ trans('forum.topics.edit_title.start') }}"
                 >
                     <span class="btn-circle__content">
-                        <i class="fa fa-pencil"></i>
+                        <i class="fas fa-pencil-alt"></i>
                     </span>
                 </button>
             </div>
@@ -43,6 +41,7 @@
             class="forum-topic-title__input js-forum-topic-title--input"
             value="{{ $topic->topic_title }}"
             data-url="{{ route('forum.topics.update', $topic->getKey()) }}"
+            maxlength="{{ App\Models\Forum\Topic::MAX_FIELD_LENGTHS['topic_title'] }}"
             name="forum_topic[topic_title]"
         >
 
@@ -57,7 +56,7 @@
                         title="{{ trans('common.buttons.save') }}"
                     >
                         <span class="btn-circle__content">
-                            <i class="fa fa-check"></i>
+                            <i class="fas fa-check"></i>
                         </span>
                     </button>
                 </div>
@@ -69,7 +68,7 @@
                         title="{{ trans('common.buttons.cancel') }}"
                     >
                         <span class="btn-circle__content">
-                            <i class="fa fa-close"></i>
+                            <i class="fas fa-times"></i>
                         </span>
                     </button>
                 </div>

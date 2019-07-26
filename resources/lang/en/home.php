@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,9 +24,10 @@ return [
         'online' => '<strong>:players</strong> currently online in <strong>:games</strong> games',
         'peak' => 'Peak, :count online users',
         'players' => '<strong>:count</strong> registered players',
+        'title' => 'welcome',
 
         'slogan' => [
-            'main' => 'free-to-play rhythm game',
+            'main' => 'the bestest free-to-win rhythm game',
             'sub' => 'rhythm is just a click away',
         ],
     ],
@@ -35,8 +36,9 @@ return [
         'advanced_link' => 'Advanced search',
         'button' => 'Search',
         'empty_result' => 'Nothing found!',
-        'missing_query' => 'Search keyword of minimum :n characters is required',
-        'title' => 'Search Results',
+        'keyword_required' => 'A search keyword is required',
+        'placeholder' => 'type to search',
+        'title' => 'Search',
 
         'beatmapset' => [
             'more' => ':count more beatmap search results',
@@ -93,7 +95,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'get an account',
-                'description' => 'follow the prompts when starting the game to login or make a new account',
+                'description' => 'follow the prompts when starting the game to sign in or make a new account',
             ],
             'download' => [
                 'title' => 'download the game',
@@ -111,14 +113,14 @@ return [
     ],
 
     'user' => [
-        'title' => 'news',
+        'title' => 'dashboard',
         'news' => [
             'title' => 'News',
             'error' => 'Error loading news, try refreshing the page?...',
         ],
         'header' => [
             'welcome' => 'Hello, <strong>:username</strong>!',
-            'messages' => 'You have 1 new message|You have :count new messages',
+            'messages' => 'You have :count_delimited new message|You have :count_delimited new messages',
             'stats' => [
                 'friends' => 'Online Friends',
                 'games' => 'Games',
@@ -126,7 +128,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'New Approved Beatmaps',
+            'new' => 'New Ranked Beatmaps',
             'popular' => 'Popular Beatmaps',
             'by' => 'by',
             'plays' => ':count plays',

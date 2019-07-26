@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,26 @@ namespace App\Models\Multiplayer;
 use App\Models\Beatmap;
 use App\Traits\Scoreable;
 
+/**
+ * @property int $count100
+ * @property int $count300
+ * @property int $count50
+ * @property int $countgeki
+ * @property int $countkatu
+ * @property int $countmiss
+ * @property int|null $enabled_mods
+ * @property int $frame
+ * @property Game $game
+ * @property int $game_id
+ * @property int $maxcombo
+ * @property int $pass
+ * @property int $perfect
+ * @property mixed $rank
+ * @property int $score
+ * @property int $slot
+ * @property int $team
+ * @property int $user_id
+ */
 class Score extends Model
 {
     use Scoreable;
@@ -43,7 +63,7 @@ class Score extends Model
         return $this->belongsTo(Game::class, 'game_id');
     }
 
-    public function gamemodeString()
+    public function gameModeString()
     {
         return Beatmap::modeStr($this->game->play_mode);
     }

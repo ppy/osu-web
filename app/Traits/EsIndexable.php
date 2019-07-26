@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,8 +20,7 @@
 
 namespace App\Traits;
 
-use App\Libraries\Elasticsearch\Indexing;
-use Es;
+use App\Libraries\Elasticsearch\Es;
 use Log;
 
 trait EsIndexable
@@ -30,63 +29,67 @@ trait EsIndexable
 
     abstract public static function esIndexingQuery();
 
-    abstract public static function esMappings();
+    abstract public static function esSchemaFile();
 
     abstract public static function esType();
 
     abstract public function toEsJson();
 
+    /**
+     * The value for routing.
+     * Override to provide a routing value; null by default.
+     *
+     * @return string|null
+     */
+    public function esRouting()
+    {
+        // null will be omitted when used as routing.
+    }
+
+    public function getEsId()
+    {
+        return $this->getKey();
+    }
+
     public function esDeleteDocument(array $options = [])
     {
-        return Es::delete(
-            array_merge([
-                'index' => static::esIndexName(),
-                'type' => static::esType(),
-                'id' => $this->getKey(),
-                'client' => ['ignore' => 404],
-            ], $options)
-        );
+        $document = array_merge([
+            'index' => static::esIndexName(),
+            'type' => static::esType(),
+            'routing' => $this->esRouting(),
+            'id' => $this->getEsId(),
+            'client' => ['ignore' => 404],
+        ], $options);
+
+        return Es::getClient()->delete($document);
     }
 
     public function esIndexDocument(array $options = [])
     {
-        $json = [
+        if (method_exists($this, 'esShouldIndex') && !$this->esShouldIndex()) {
+            return $this->esDeleteDocument($options);
+        }
+
+        $document = array_merge([
             'index' => static::esIndexName(),
             'type' => static::esType(),
-            'id' => $this->getKey(),
+            'routing' => $this->esRouting(),
+            'id' => $this->getEsId(),
             'body' => $this->toEsJson(),
-        ];
+        ], $options);
 
-        return Es::index(array_merge($json, $options));
+        return Es::getClient()->index($document);
     }
 
     public static function esCreateIndex(string $name = null)
     {
-        $type = static::esType();
-        $body = [
-            'mappings' => [
-                $type => [
-                    'properties' => static::esMappings(),
-                ],
-            ],
-        ];
-
-        if (method_exists(get_called_class(), 'esAnalysisSettings')) {
-            $settings = [
-                'settings' => [
-                    'analysis' => static::esAnalysisSettings(),
-                ],
-            ];
-
-            $body = array_merge($body, $settings);
-        }
-
+        // TODO: allow overriding of certain settings (shards, replicas, etc)?
         $params = [
             'index' => $name ?? static::esIndexName(),
-            'body' => $body,
+            'body' => static::esSchemaConfig(),
         ];
 
-        return Es::indices()->create($params);
+        return Es::getClient()->indices()->create($params);
     }
 
     public static function esIndexIntoNew($batchSize = 1000, $name = null, callable $progress = null)
@@ -100,9 +103,13 @@ trait EsIndexable
         ];
 
         static::esReindexAll($batchSize, 0, $options, $progress);
-        Indexing::updateAlias(static::esIndexName(), [$newIndex]);
 
         return $newIndex;
+    }
+
+    public static function esMappings()
+    {
+        return static::esSchemaConfig()['mappings'][static::esType()]['properties'];
     }
 
     public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [], callable $progress = null)
@@ -120,7 +127,10 @@ trait EsIndexable
             foreach ($models as $model) {
                 $next = $model;
                 // bulk API am speshul.
-                $metadata = ['_id' => $model->getKey()];
+                $metadata = [
+                    '_id' => $model->getEsId(),
+                    'routing' => $model->esRouting(),
+                ];
 
                 if ($isSoftDeleting && $model->trashed()) {
                     $actions[] = ['delete' => $metadata];
@@ -132,10 +142,11 @@ trait EsIndexable
             }
 
             if ($actions !== []) {
-                $result = Es::bulk([
+                $result = Es::getClient()->bulk([
                     'index' => $options['index'] ?? static::esIndexName(),
                     'type' => static::esType(),
                     'body' => $actions,
+                    'client' => ['timeout' => 0],
                 ]);
 
                 $count += count($result['items']);
@@ -149,5 +160,15 @@ trait EsIndexable
 
         $duration = time() - $startTime;
         Log::info(static::class." Indexed {$count} records in {$duration} s.");
+    }
+
+    public static function esSchemaConfig()
+    {
+        static $schema;
+        if (!isset($schema)) {
+            $schema = json_decode(file_get_contents(static::esSchemaFile()), true);
+        }
+
+        return $schema;
     }
 }

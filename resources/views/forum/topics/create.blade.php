@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,29 +15,18 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
-    "body_additional_classes" => 't-forum-'.$forum->categorySlug(),
+@extends('master', [
+    'bodyAdditionalClasses' => 't-forum-'.$forum->categorySlug(),
 ])
 
-@section("content")
+@section('content')
     {!! Form::open([
         "url" => route("forum.topics.store", ['forum_id' => $forum]),
         'data-remote' => true,
     ]) !!}
-        <input type="hidden" name="cover_id" value="{{ Request::old("cover_id") }}" class="js-forum-cover--input">
+        <input type="hidden" name="cover_id" class="js-forum-cover--input">
 
         @include('forum.topics._header')
-
-        <div class="js-post-preview--box hidden">
-            @include('forum.topics._post', [
-                'post' => $post,
-                'options' => [
-                    'overlay' => true,
-                    'signature' => $forum->enable_sigs,
-                    'contentExtraClasses' => 'js-post-preview--body',
-                ],
-            ])
-        </div>
 
         <div id="topic-post-form" class="osu-layout__row">
             <div class="forum-post">
@@ -51,6 +40,15 @@
                 @include("forum.topics._post_info", ["user" => Auth::user(), "options" => ["large" => true]])
 
                 <div class="forum-post__body">
+                    <div class="forum-post__preview js-post-preview--box hidden">
+                        <div class="forum-post__content forum-post__content--header">
+                            {{ trans('forum.topics.create.preview') }}
+                        </div>
+                        <div class="forum-post__content forum-post__content--main">
+                            <div class="forum-post-content js-post-preview--body">
+                            </div>
+                        </div>
+                    </div>
                     <div class="forum-post__content">
                         @include('forum.posts._form_body', ['postBody' => [
                             'content' => $post->post_text,
@@ -61,17 +59,13 @@
                     </div>
 
                     <div class="forum-post__content forum-post__content--poll-create">
-                        @include('forum.topics._create_poll')
+                        @include('forum.topics._create_poll', ['edit' => false])
                     </div>
 
                     <div class="forum-post__content forum-post__content--edit-bar forum-post__content--edit-bar-create">
-                        @include("forum._post_toolbar")
-
-                        <div class="post-box__actions">
-                            <button tabindex="1" class="btn-osu btn-osu--small btn-osu-default post-editor__action" type="submit">
-                                {{ trans("forum.topic.create.submit") }}
-                            </button>
-                        </div>
+                        @include('forum.topics._post_box_footer', [
+                            'submitText' => trans('forum.topic.create.submit'),
+                        ])
                     </div>
                 </div>
             </div>

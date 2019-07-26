@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -29,34 +29,5 @@
     position: absolute;
     width: 100%;
     height: 100%;
-
-    animation-iteration-count: 0;
-
-    .@{_top}:hover & {
-      // FIXME: disabled until someone fixes the blurriness.
-      // animation-iteration-count: infinite;
-    }
-
-    &--bounce {
-      animation-name: logo-bounce;
-      animation-duration: 0.6s;
-    }
-
-    &--delayed {
-      animation-delay: 0.9s;
-    }
-
-    &--glow {
-      .at2x-simple("/images/layout/osu-logo-glow.png");
-      animation-name: logo-glow;
-      animation-duration: 1.2s;
-      animation-timing-function: ease-out;
-      animation-delay: 0.3s;
-      opacity: 0;
-    }
-
-    &--overlay {
-      opacity: 0.15;
-    }
   }
 }

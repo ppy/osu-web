@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,17 +17,29 @@
  */
 
 .mp-history-content {
+  &__show-more {
+    .reset-input();
+
+    cursor: pointer;
+
+    text-align: center;
+  }
+
   &__show-more-box {
     display: flex;
     justify-content: center;
+    font-size: 12px;
+    line-height: 1;
+    padding: 10px;
 
     margin-bottom: 10px;
   }
 
-  &__show-more {
-    font-size: 12px;
-    cursor: pointer;
-
+  &__spinner {
     text-align: center;
+  }
+
+  &__spinner-label {
+    padding-bottom: 15px;
   }
 }

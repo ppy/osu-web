@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -17,7 +17,7 @@
 --}}
 <div class="account-edit-status">
     <div class="account-edit-status__content account-edit-status__content--saving">
-        <i class="fa fa-spinner fa-pulse fa-fw"></i>
+        {!! spinner() !!}
     </div>
 
     <div class="account-edit-status__content account-edit-status__content--saved">

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -51,7 +51,7 @@ class TopicVote
             $this->validationErrors()->reset();
 
             if (!isset($this->params['option_ids']) || count($this->params['option_ids']) < 1) {
-                $this->validationErrors()->add('option_ids', 'required');
+                $this->validationErrors()->add('option_ids', '.required');
             }
 
             if (count($this->params['option_ids'] ?? []) > $this->topic->poll_max_options) {

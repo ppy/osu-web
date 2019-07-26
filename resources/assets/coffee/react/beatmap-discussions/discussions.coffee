@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,7 +16,10 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, p, span} = ReactDOMFactories
+import { Discussion } from './discussion'
+import { IconExpand } from 'icon-expand'
+import * as React from 'react'
+import { a, button, div, i, p, span } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'beatmap-discussions'
@@ -24,7 +27,6 @@ lp = 'beatmaps.discussions'
 
 sortPresets =
   updated_at:
-    icon: 'calendar'
     text: osu.trans('beatmaps.discussions.sort.updated_at')
     sort: (a, b) ->
       if a.updated_at == b.updated_at
@@ -33,7 +35,6 @@ sortPresets =
         Date.parse(b.updated_at) - Date.parse(a.updated_at)
 
   created_at:
-    icon: 'folder-o'
     text: osu.trans('beatmaps.discussions.sort.created_at')
     sort: (a, b) ->
       if a.created_at == b.created_at
@@ -43,7 +44,6 @@ sortPresets =
 
   # there's obviously no timeline field
   timeline:
-    icon: 'barcode'
     text: osu.trans('beatmaps.discussions.sort.timeline')
     sort: (a, b) ->
       if a.timestamp == b.timestamp
@@ -52,20 +52,15 @@ sortPresets =
         a.timestamp - b.timestamp
 
 
-class BeatmapDiscussions.Discussions extends React.PureComponent
+export class Discussions extends React.PureComponent
   constructor: (props) ->
     super props
 
     @state =
-      sortField: if @props.mode == 'timeline' then 'timeline' else 'created_at'
-
-
-  componentWillReceiveProps: (nextProps) =>
-    if _.includes(['created_at', 'timeline'], @state.sortField)
-      if nextProps.mode == 'timeline'
-        @setState sortField: 'timeline'
-      else
-        @setState sortField: 'created_at'
+      sort:
+        generalAll: 'updated_at'
+        general: 'updated_at'
+        timeline: 'timeline'
 
 
   render: =>
@@ -79,21 +74,16 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
           osu.trans('beatmaps.discussions.title')
 
         div className: "#{bn}__toolbar",
+          div className: "#{bn}__toolbar-content #{bn}__toolbar-content--left",
+            div
+              className: "#{bn}__toolbar-item"
+              @renderSortOptions()
           div className: "#{bn}__toolbar-content #{bn}__toolbar-content--right",
-            a
-              href: '#'
-              className: "#{bn}__toolbar-link"
-              'data-type': 'sort'
-              onClick: @changeSort
-              span className: "#{bn}__toolbar-link-content", osu.trans('beatmaps.discussions.sort._')
-              el Icon,
-                name: sortPresets[@state.sortField].icon
-                parentClass: "#{bn}__toolbar-link-content"
-              span className: "#{bn}__toolbar-link-content", sortPresets[@state.sortField].text
+            @renderShowDeletedToggle()
 
-            a
-              href: '#'
-              className: "#{bn}__toolbar-link"
+            button
+              type: 'button'
+              className: "#{bn}__toolbar-item #{bn}__toolbar-item--link"
               'data-type': 'collapse'
               onClick: @expand
               el IconExpand,
@@ -102,9 +92,9 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
               span className: "#{bn}__toolbar-link-content",
                 osu.trans('beatmaps.discussions.collapse.all-collapse')
 
-            a
-              href: '#'
-              className: "#{bn}__toolbar-link"
+            button
+              type: 'button'
+              className: "#{bn}__toolbar-item #{bn}__toolbar-item--link"
               'data-type': 'expand'
               onClick: @expand
               el IconExpand,
@@ -130,9 +120,46 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
               div className: "#{bn}__timeline-line hidden-xs"
 
             div null,
-              @sortedDisussions().map @discussionPage
+              @sortedDiscussions().map @discussionPage
 
             @timelineCircle()
+
+
+  renderShowDeletedToggle: =>
+    return null unless BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
+
+    button
+      type: 'button'
+      className: "#{bn}__toolbar-item #{bn}__toolbar-item--link"
+      onClick: @toggleShowDeleted
+      span className: "#{bn}__toolbar-link-content",
+        span
+          className: if @props.showDeleted then 'fas fa-check-square' else 'far fa-square'
+      span className: "#{bn}__toolbar-link-content",
+        osu.trans('beatmaps.discussions.show_deleted')
+
+
+  renderSortOptions: =>
+    presets =
+      switch @props.mode
+        when 'timeline'
+          ['timeline', 'updated_at']
+        else
+          ['created_at', 'updated_at']
+
+    div
+      className: 'sort sort--beatmapset-discussions'
+      div
+        className: 'sort__items'
+        span className: 'sort__item sort__item--title', osu.trans('sort._')
+        for preset in presets
+          button
+            key: preset
+            type: 'button'
+            className: "sort__item sort__item--button #{if @currentSort() == preset then 'sort__item--active' else ''}"
+            'data-sort-preset': preset
+            onClick: @changeSort
+            sortPresets[preset].text
 
 
   discussionPage: (discussion) =>
@@ -145,28 +172,31 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
     div
       key: discussion.id
       className: className
-      el BeatmapDiscussions.Discussion,
+      el Discussion,
         discussion: discussion
         users: @props.users
         currentUser: @props.currentUser
         beatmapset: @props.beatmapset
         currentBeatmap: @props.currentBeatmap
-        userPermissions: @props.userPermissions
         readPostIds: @props.readPostIds
         isTimelineVisible: @isTimelineVisible()
         visible: visible
+        showDeleted: @props.showDeleted
 
 
   changeSort: (e) =>
-    e.preventDefault()
-    if @state.sortField == 'updated_at'
-      if @props.mode == 'timeline'
-        @setState sortField: 'timeline'
-      else
-        @setState sortField: 'created_at'
+    targetPreset = e.currentTarget.dataset.sortPreset
 
-    else
-      @setState sortField: 'updated_at'
+    return if targetPreset == @currentSort()
+
+    sort = osu.jsonClone @state.sort
+    sort[@props.mode] = targetPreset
+
+    @setState {sort}
+
+
+  currentSort: =>
+    @state.sort[@props.mode]
 
 
   expand: (e) =>
@@ -184,15 +214,30 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
 
 
   isTimelineVisible: =>
-    @props.mode == 'timeline' && @state.sortField == 'timeline'
+    @props.mode == 'timeline' && @currentSort() == 'timeline'
 
 
-  sortedDisussions: ->
-    discussions = @props.currentDiscussions[@props.mode].slice(0)
-    discussions.sort sortPresets[@state.sortField].sort
+  sortedDiscussions: ->
+    @props.currentDiscussions[@props.mode].slice().sort (a, b) =>
+      mapperNoteCompare =
+        # no sticky for timeline sort
+        @currentSort() != 'timeline' &&
+        # stick the mapper note
+        'mapper_note' in [a.message_type, b.message_type] &&
+        # but if both are mapper note, do base comparison
+        a.message_type != b.message_type
+
+      if mapperNoteCompare
+        if a.message_type == 'mapper_note' then -1 else 1
+      else
+        sortPresets[@currentSort()].sort(a, b)
 
 
   timelineCircle: =>
     div
       'data-visibility': if !@isTimelineVisible() then 'hidden'
       className: "#{bn}__mode-circle #{bn}__mode-circle--active hidden-xs"
+
+
+  toggleShowDeleted: =>
+    $.publish 'beatmapDiscussionPost:toggleShowDeleted'

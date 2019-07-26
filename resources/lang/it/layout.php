@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,40 +26,65 @@ return [
     'menu' => [
         'home' => [
             '_' => 'home',
-            'getChangelog' => 'changelog',
+            'account-edit' => 'impostazioni',
+            'friends-index' => 'amici',
+            'changelog-index' => 'note di rilascio',
+            'changelog-build' => 'versione',
             'getDownload' => 'download',
             'getIcons' => 'icone',
-            'index' => 'notizie',
+            'groups-show' => 'gruppi',
+            'index' => 'dashboard',
+            'legal-show' => 'informazioni',
+            'messages-index' => 'messaggi',
+            'news-index' => 'notizie',
+            'news-show' => 'notizie',
+            'password-reset-index' => 'reimposta password',
+            'search' => 'cerca',
             'supportTheGame' => 'sostieni il gioco',
+            'team' => 'team',
         ],
         'help' => [
             '_' => 'aiuto',
-            'getWiki' => 'wiki',
             'getFaq' => 'domande comuni',
+            'getRules' => 'regole',
             'getSupport' => 'supporto',
+            'getWiki' => 'wiki',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmap',
-            'show' => 'informazioni',
-            'index' => 'lista',
             'artists' => 'artisti in primo piano',
-            // 'getPacks' => 'pacchi',
-            // 'getCharts' => 'chart', //could be "classifiche" but the user would mistake as a leaderboard and not the monthly chart
+            'beatmap_discussion_posts-index' => 'post di discussione di beatmap',
+            'beatmap_discussions-index' => 'discussioni di beatmap',
+            'beatmapset-watches-index' => 'lista modding',
+            'beatmapset_discussion_votes-index' => 'voti di discussione di beatmap',
+            'beatmapset_events-index' => 'eventi beatmap',
+            'index' => 'lista',
+            'packs' => 'pacchetti',
+            'show' => 'informazioni',
         ],
         'beatmapsets' => [
             '_' => 'beatmapsets',
             'discussion' => 'modding',
         ],
         'rankings' => [
-            '_' => 'rank',
-            'charts' => 'charts',
+            '_' => 'classifiche',
+            'index' => 'performance',
+            'performance' => 'performance',
+            'charts' => 'spotlights',
+            'score' => 'punteggio',
+            'country' => 'paese',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'comunità',
+            'chat' => 'chat',
+            'chat-index' => 'chat',
+            'dev' => 'sviluppo',
             'getForum' => 'forum',
-            'getChat' => 'chat',
-            'getSupport' => 'supporto',
-            'getLive' => 'dirette',
+            'getLive' => 'live',
+            'comments-index' => 'commenti',
+            'comments-show' => 'commenta',
             'contests' => 'concorsi',
             'profile' => 'profilo',
             'tournaments' => 'tornei',
@@ -93,18 +118,28 @@ return [
             'reset' => 'recupera',
             'new' => 'nuovo',
 
-            'messages' => 'Messaggi',
-            'settings' => 'Impostazioni',
-            'logout' => 'Disconnettiti',
             'help' => 'Aiuto',
+            'logout' => 'Disconnettiti',
+            'messages' => 'Messaggi',
+            'modding-history-discussions' => 'discussioni di modding tra utenti',
+            'modding-history-events' => 'eventi di modding tra utenti',
+            'modding-history-index' => 'cronologia di modding tra utenti',
+            'modding-history-posts' => 'post di modding tra utenti',
+            'modding-history-votesGiven' => 'i voti dei giocatori per le modifiche sono stati inviati',
+            'modding-history-votesReceived' => 'i voti dei giocatori per le modifiche sono stati ricevuti',
+            'oauth_login' => '',
+            'oauth_request' => '',
+            'settings' => 'Impostazioni',
         ],
         'store' => [
             '_' => 'negozio',
+            'checkout-show' => 'pagamento',
             'getListing' => 'lista',
-            'getCart' => 'carrello',
+            'cart-show' => 'carrello',
 
             'getCheckout' => 'cassa',
             'getInvoice' => 'fattura',
+            'orders-index' => 'ordini',
             'products-show' => 'prodotto',
 
             'new' => 'nuovo',
@@ -123,10 +158,12 @@ return [
         ],
         'admin' => [
             '_' => 'admministratori',
+            'beatmapsets-covers' => '',
             'logs-index' => 'log',
+            'root' => '',
+
             'beatmapsets' => [
                 '_' => 'beatmapsets',
-                'covers' => 'copertine',
                 'show' => 'dettagli',
             ],
         ],
@@ -136,7 +173,7 @@ return [
         'general' => [
             '_' => 'Generale',
             'home' => 'Home',
-            'changelog' => 'Changelog',
+            'changelog-index' => 'Note di rilascio',
             'beatmaps' => 'Lista Beatmap',
             'download' => 'Scarica osu!',
             'wiki' => 'Wiki',
@@ -148,16 +185,12 @@ return [
             'livestreams' => 'Dirette',
             'report' => 'Segnala un problema',
         ],
-        'support' => [
-            '_' => 'Sostieni osu!',
-            'tags' => 'Tag Supporter',
-            'merchandise' => 'Merchandise', // ?
-        ],
         'legal' => [
             '_' => 'Legale e Status',
             'copyright' => 'Copyright (DMCA)',
-            'osu_status' => '@osustatus',
+            'privacy' => 'Privacy',
             'server_status' => 'Stato del Server',
+            'source_code' => 'Codice Sorgente',
             'terms' => 'Termini di Servizio',
         ],
     ],
@@ -165,50 +198,44 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Pagina Mancante',
-            'description' => 'Mi spiace, ma la pagina che hai richiesto non è qui!',
-            'link' => false,
+            'description' => "Mi spiace, ma la pagina che hai richiesto non è qui!",
         ],
         '403' => [
-            'error' => 'Non dovresti essere qui.',
+            'error' => "Non dovresti essere qui.",
             'description' => 'Potresti comunque provare tornando indietro.',
-            'link' => false,
         ],
         '401' => [
-            'error' => 'Non dovresti essere qui.',
+            'error' => "Non dovresti essere qui.",
             'description' => 'Potresti comunque provare tornando indietro. O forse effettuando il login.',
-            'link' => false,
         ],
         '405' => [
             'error' => 'Pagina Mancante',
-            'description' => 'Mi spiace, ma la pagina che hai richiesto non è qui!',
-            'link' => false,
+            'description' => "Mi spiace, ma la pagina che hai richiesto non è qui!",
         ],
         '500' => [
             'error' => 'Oh no! Qualcosa si è rotto! ;_;',
-            'description' => 'Siamo notificati automaticamente di qualsiasi errore.',
-            'link' => false,
+            'description' => "Siamo notificati automaticamente di qualsiasi errore.",
         ],
         'fatal' => [
             'error' => 'Oh no! Qualcosa si è rotto (gravemente)! ;_;',
-            'description' => 'Siamo notificati automaticamente di qualsiasi errore.',
-            'link' => false,
+            'description' => "Siamo notificati automaticamente di qualsiasi errore.",
         ],
         '503' => [
             'error' => 'Chiuso per manutenzione!',
-            'description' => 'La manutenzione normalmente richiede dai 5 secondi fino a 10 minuti. Se siamo chiusi per più tempo, controlla :link per ulteriori informazioni.',
+            'description' => "La manutenzione normalmente richiede dai 5 secondi fino a 10 minuti. Se siamo chiusi per più tempo, controlla :link per ulteriori informazioni.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Nel caso, ecco un codice che puoi dare al supporto!',
+        'reference' => "Nel caso, ecco un codice che puoi dare al supporto!",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'indirizzo email',
-            'forgot' => 'Ho dimenticato i miei dati',
+            'forgot' => "Ho dimenticato i miei dati",
             'password' => 'password',
             'title' => 'Accedi per procedere',
 
@@ -219,15 +246,22 @@ return [
         ],
 
         'register' => [
-            'info' => 'Ha bisogno di un account, signore. Perchè non ne ha ancora uno?',
-            'title' => 'Non hai un account?',
+            'info' => "Ha bisogno di un account, signore. Perchè non ne ha ancora uno?",
+            'title' => "Non hai un account?",
         ],
     ],
 
     'popup_user' => [
         'links' => [
-            'profile' => 'Mio Profilo',
+            'account-edit' => 'Impostazioni',
+            'friends' => 'Amici',
             'logout' => 'Disconnettiti',
+            'profile' => 'Mio Profilo',
         ],
+    ],
+
+    'popup_search' => [
+        'initial' => 'Digita per cercare!',
+        'retry' => 'Ricerca fallita. Clicca per riprovare.',
     ],
 ];

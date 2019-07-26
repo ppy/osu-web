@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -27,10 +27,62 @@ return [
         ],
     ],
 
+    'events' => [
+        'empty' => 'Non è successo nulla... per ora.',
+    ],
+
+    'index' => [
+        'deleted_beatmap' => 'eliminato',
+        'title' => 'Discussioni di beatmap',
+
+        'form' => [
+            '_' => 'Cerca',
+            'deleted' => 'Includi discussioni eliminate',
+            'types' => 'Tipo di messaggio',
+            'username' => 'Nome Utente',
+
+            'user' => [
+                'label' => 'Utente',
+                'overview' => 'Panoramica delle attività',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => 'Data del Post',
+        'deleted_at' => 'Data di eliminazione',
+        'message_type' => 'Tipo',
+        'permalink' => 'Permalink',
+    ],
+
+    'nearby_posts' => [
+        'confirm' => 'Nessuno dei post riguarda il mio problema',
+        'notice' => 'Ci sono già post a :timestamp (:existing_timestamps). Si prega di controllare prima di postare.',
+    ],
+
+    'reply' => [
+        'open' => [
+            'guest' => 'Registrati per Rispondere',
+            'user' => 'Rispondi',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Segnato come risolto da :user',
             'false' => 'Riaperto da :user',
         ],
+    ],
+
+    'user' => [
+        'admin' => 'amministratore',
+        'bng' => 'nominatore',
+        'owner' => 'mapper',
+        'nat' => 'nat',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Tutti',
+        'label' => 'Filtra per utente',
     ],
 ];

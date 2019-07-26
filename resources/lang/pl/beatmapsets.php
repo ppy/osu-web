@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'availability' => [
-        'disabled' => 'Nie można pobrać tej beatmapy.',
+        'disabled' => 'Nie możesz pobrać tej beatmapy.',
         'parts-removed' => 'Ta beatmapa została usunięta za prośbą twórcy materiałów w niej użytych.',
         'more-info' => 'Kliknij tutaj, aby dowiedzieć się więcej.',
     ],
@@ -34,62 +34,83 @@ return [
         'discussion' => 'Dyskusja',
 
         'details' => [
-            'made-by' => 'stworzona przez ',
-            'submitted' => 'dodana ',
-            'updated' => 'ostatnio aktualizowana ',
-            'ranked' => 'rankingowa od ',
             'approved' => 'zatwierdzona od ',
-            'qualified' => 'zakwalifikowana od ',
+            'favourite' => 'Dodaj do ulubionych',
+            'favourited_count' => '+ :count_delimited inna!|+ :count_delimited inne!|+ :count_delimited innych!',
+            'logged-out' => 'Zaloguj się, aby zacząć pobierać beatmapy!',
             'loved' => 'ulubiona społeczności od ',
-            'logged-out' => 'Zaloguj się, aby móc pobierać beatmapy!',
+            'mapped_by' => 'autorstwa :mapper',
+            'qualified' => 'zakwalifikowana od ',
+            'ranked' => 'rankingowa od ',
+            'submitted' => 'dodana ',
+            'unfavourite' => 'Usuń z ulubionych',
+            'updated' => 'ostatnio aktualizowana ',
+            'updated_timeago' => 'ostatnio zaktualizowana :timeago',
+
             'download' => [
                 '_' => 'Pobierz',
-                'video' => 'z wideo',
-                'no-video' => 'bez wideo',
                 'direct' => 'osu!direct',
+                'no-video' => 'bez wideo',
+                'video' => 'z wideo',
             ],
-            'favourite' => 'Dodaj tę beatmapę do ulubionych',
-            'unfavourite' => 'Usuń tę beatmapę z ulubionych',
+
+            'login_required' => [
+                'bottom' => 'aby uzyskać dostęp do pozostałych funkcji',
+                'top' => 'Zaloguj się',
+            ],
         ],
-        'stats' => [
-            'cs' => 'Wielkość kółek',
-            'cs-mania' => 'Ilość klawiszy',
-            'drain' => 'Spadek HP',
-            'accuracy' => 'Celność',
-            'ar' => 'Approach Rate',
-            'stars' => 'Trudność',
-            'total_length' => 'Długość',
-            'bpm' => 'BPM',
-            'count_circles' => 'Ilość kółek',
-            'count_sliders' => 'Ilość sliderów',
-            'user-rating' => 'Oceny użytkowników',
-            'rating-spread' => 'Wykres ocen',
+
+        'favourites' => [
+            'limit_reached' => 'Masz za dużo ulubionych beatmap! Usuń kilka, jeżeli chcesz kontynuować.',
         ],
+
+        'hype' => [
+            'action' => 'Nagłośnij tę beatmapę, aby pomóc jej w uzyskaniu statusu <strong>rankingowego</strong>.',
+
+            'current' => [
+                '_' => 'Ta beatmapa jest obecnie :status.',
+
+                'status' => [
+                    'pending' => 'oczekująca',
+                    'qualified' => 'zakwalifikowana',
+                    'wip' => 'rozwijana',
+                ],
+            ],
+        ],
+
         'info' => [
-            'no_scores' => 'Nierankingowa beatmapa',
-            'points-of-failure' => 'Wykres porażek',
-            'success-rate' => 'Wskaźnik sukcesu',
-
             'description' => 'Opis',
-
+            'genre' => 'Gatunek',
+            'language' => 'Język',
+            'no_scores' => 'Dane są nadal ładowane...',
+            'points-of-failure' => 'Wykres porażek',
             'source' => 'Źródło',
+            'success-rate' => 'Wskaźnik ukończonych zagrań',
             'tags' => 'Tagi',
+            'unranked' => 'Nierankingowa beatmapa',
         ],
+
         'scoreboard' => [
             'achieved' => 'osiągnięte :when',
             'country' => 'Ranking krajowy',
             'friend' => 'Ranking znajomych',
             'global' => 'Ranking globalny',
-            'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, co jeszcze otrzymujesz w zamian za posiadanie statusu donatora!',
+            'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, jakie jeszcze funkcje otrzymasz w zamian za zakup statusu donatora!',
             'supporter-only' => 'Musisz posiadać status donatora, aby uzyskać dostęp do rankingu krajowego i znajomych!',
             'title' => 'Tabela wyników',
 
-            'list' => [
-                'accuracy' => 'Celność',
-                'player-header' => 'Gracz',
-                'rank-header' => 'Miejsce',
+            'headers' => [
+                'accuracy' => 'Precyzja',
+                'combo' => 'Combo',
+                'miss' => 'Pudła',
+                'mods' => 'Modyfikatory',
+                'player' => 'Gracz',
+                'pp' => 'pp',
+                'rank' => 'Pozycja',
+                'score_total' => 'Wynik',
                 'score' => 'Wynik',
             ],
+
             'no_scores' => [
                 'country' => 'Nikt z twojego kraju nie ustanowił jeszcze wyniku na tej beatmapie!',
                 'friend' => 'Żaden z twoich znajomych nie ustanowił jeszcze wyniku na tej beatmapie!',
@@ -101,10 +122,23 @@ return [
                 'first' => 'Najlepszy wynik',
                 'own' => 'Twój wynik',
             ],
-            'stats' => [
-                'accuracy' => 'Celność',
-                'score' => 'Wynik',
-            ],
+        ],
+
+        'stats' => [
+            'cs' => 'Wielkość kółek',
+            'cs-mania' => 'Liczba klawiszy',
+            'drain' => 'Spadek HP',
+            'accuracy' => 'Precyzja',
+            'ar' => 'Prędkość otoczki',
+            'stars' => 'Trudność',
+            'total_length' => 'Długość (długość aktywnej gry: :hit_length)',
+            'bpm' => 'BPM',
+            'count_circles' => 'Liczba kółek',
+            'count_sliders' => 'Liczba sliderów',
+            'user-rating' => 'Oceny użytkowników',
+            'rating-spread' => 'Wykres ocen',
+            'nominations' => 'Nominacje',
+            'playcount' => 'Liczba zagrań',
         ],
     ],
 ];

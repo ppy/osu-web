@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,7 +19,8 @@
  */
 
 return [
-    'confirmation' => 'Ты уверен?',
+    'confirmation' => 'Вы уверены?',
+    'confirmation_unsaved' => 'Несохраненные изменения будет утеряны. Вы уверены?',
     'saved' => 'Сохранено',
 
     'array_and' => [
@@ -29,22 +30,71 @@ return [
     ],
 
     'buttons' => [
+        'admin' => 'Администратор',
+        'back_to_previous' => 'Возвратить предыдущее состояние',
+        'back_to_top' => 'В начало',
         'cancel' => 'Отмена',
+        'change' => 'изменить',
+        'click_to_copy' => 'нажмите чтобы скопировать',
+        'click_to_copy_copied' => 'скопировано!',
+        'collapse' => 'свернуть',
         'delete' => 'Удалить',
+        'edit' => 'Изменить',
+        'expand' => 'развернуть',
+        'hide' => 'скрыть',
         'permalink' => 'прямая ссылка',
-        'post' => 'Публикация',
+        'permalink_copied' => 'ссылка скопирована',
+        'post' => 'Опубликовать',
         'reply' => 'Ответить',
+        'reply_reopen' => 'Ответить и возобновить',
+        'reply_resolve' => 'Ответить и разрешить',
         'reset' => 'Сбросить',
+        'restore' => 'Восстановить',
         'save' => 'Сохранить',
         'saving' => 'Сохранение...',
+        'search' => 'Найти',
+        'see_more' => 'показать ещё',
+        'show' => 'показать',
+        'show_deleted' => 'Показать удалённые',
         'show_more' => 'показать больше',
+        'show_more_options' => 'показать больше опций',
         'upload_image' => 'выбрать файл',
+
+        'watch' => [
+            'to_0' => 'Не следить',
+            'to_1' => 'Следить',
+        ],
     ],
 
     'count' => [
-        'item' => ':count единица|:count единиц',
-        'months' => ':count месяц|:count месяцев|:count месяцев',
-        'years' => ':count год|:count лет|:count лет',
+        'badges' => ':count значок|:count значка|:count значков',
+        'days' => ':count день|:count дня|:count дней',
+        'hour_short_unit' => 'ч',
+        'hours' => ':count час|:count часа|:count часов',
+        'item' => ':count единица|:count единицы|:count единиц',
+        'minute_short_unit' => 'мин',
+        'minutes' => ':count минута|:count минуты|:count минут',
+        'months' => ':count месяц|:count месяца|:count месяцев',
+        'second_short_unit' => 'сек',
+        'update' => ':count_delimited обновление|:count_delimited обновления',
+        'years' => ':count год|:count года|:count лет',
+    ],
+
+    'countdown' => [
+        'days' => 'дней',
+        'hours' => 'часов',
+        'minutes' => 'минут',
+        'seconds' => 'секунд',
+    ],
+
+    'datetime' => [
+        'year_month' => [
+            'moment' => 'MMMM YYYY',
+            'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
+        ],
     ],
 
     'device' => [
@@ -73,8 +123,8 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count день назад|:count дней назад',
-        'hours_ago' => ':count час назад|:count часов назад',
+        'days_ago' => ':count день назад|:count дня назад|:count дней назад',
+        'hours_ago' => ':count час назад|:count часа назад|:count часов назад',
         'now' => 'сейчас',
         'remaining' => 'Времени осталось',
     ],

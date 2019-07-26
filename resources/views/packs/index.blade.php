@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,14 +15,13 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
-    'current_action' => 'packs',
+@extends('master', [
+    'currentAction' => 'packs',
     'title' => trans('beatmappacks.index.title'),
     'pageDescription' => trans('beatmappacks.index.description'),
-    'body_additional_classes' => 'osu-layout--body-555',
 ])
 
-@section("content")
+@section('content')
     <div class="beatmap-packs">
         <div class="osu-page">
             <div class="osu-page-header osu-page-header--beatmappacks">
@@ -37,9 +36,9 @@
                             '<span class="beatmap-packs__scary">' . trans('beatmappacks.index.blurb.note.scary') . '</span>',
                         ];
                     @endphp
-                    <p class="beatmap-packs__important">@lang('beatmappacks.index.blurb.important')</p>
-                    <p>@lang('beatmappacks.index.blurb.instruction._', ['scary' => $scaryTexts[0]])</p>
-                    <p>@lang('beatmappacks.index.blurb.note._', ['scary' => $scaryTexts[1]])</p>
+                    <p class="beatmap-packs__important">{{ trans('beatmappacks.index.blurb.important') }}</p>
+                    <p>{!! trans('beatmappacks.index.blurb.instruction._', ['scary' => $scaryTexts[0]]) !!}</p>
+                    <p>{!! trans('beatmappacks.index.blurb.note._', ['scary' => $scaryTexts[1]]) !!}</p>
                 </div>
             </div>
             <ul class="page-mode">
@@ -64,6 +63,10 @@
                         <div class="beatmap-pack__body js-accordion__item-body"></div>
                     </div>
                 @endforeach
+
+                <div class="beatmap-packs__pager">
+                    @include('objects._pagination', ['object' => $packs])
+                </div>
             </div>
         </div>
     </div>

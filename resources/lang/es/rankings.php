@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,12 +20,21 @@
 
 return [
     'header' => 'Clasificación por :type',
+
     'type' => [
         'performance' => 'Rendimiento',
-        'charts' => 'Gráficos',
+        'charts' => 'Destacados',
         'score' => 'Puntuación',
         'country' => 'País',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Fecha de fin',
+        'map_count' => 'Recuento de mapas',
+        'participants' => 'Participantes',
+        'start_date' => 'Fecha de Inicio',
+    ],
+
     'stat' => [
         'accuracy' => 'Precisión',
         'active_users' => 'Usuarios activos',
@@ -33,9 +42,9 @@ return [
         'play_count' => 'Conteo de jugadas',
         'performance' => 'Rendimiento',
         'total_score' => 'Puntuación total',
-        'ranked_score' => 'Puntuación ranked',
-        'average_score' => 'Puntuación media',
-        'average_performance' => 'Rend. medio',
+        'ranked_score' => 'Puntuación rankeada',
+        'average_score' => 'Puntuación promedio',
+        'average_performance' => 'Rendimiento promedio',
         'ss' => 'SS',
         's' => 'S',
         'a' => 'A',

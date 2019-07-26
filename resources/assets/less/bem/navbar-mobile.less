@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,14 +17,18 @@
  */
 
 .navbar-mobile {
-  border-width: 0;
-  margin-bottom: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: @z-index--nav-bar;
+  color: #fff;
 
   &__brand {
     float: none;
     padding: 0 10px;
     height: auto;
     min-width: 0;
+    font-size: 20px;
     line-height: 1.5; // avoid clipping
   }
 
@@ -33,6 +37,7 @@
     align-items: center;
     justify-content: space-between;
     height: @navbar-height;
+    padding: 0 10px;
 
     &::after,
     &::before {
@@ -62,12 +67,15 @@
   }
 
   &__menu {
-    box-shadow: none;
-    border-top-width: 0;
-    background-color: #444;
-    position: absolute;
+    position: fixed;
+    top: @navbar-height;
+    padding: 0 10px;
+    background-color: @osu-colour-b5;
     width: 100%;
-    z-index: @z-index--nav-popup;
+    max-height: calc((var(--vh, 1vh) * 100) - @navbar-height);
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    z-index: @z-index--nav2;
 
     &:focus,
     &:hover,

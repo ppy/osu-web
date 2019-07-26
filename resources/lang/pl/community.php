@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,8 +22,7 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => 'Kochasz osu!?<br/>
-                                Wspomóż deweloperów osu! :D',
+            'big_description' => 'Kochasz osu!?<br/>                                 Wspomóż rozwój gry! :D',
             'small_description' => '',
             'support_button' => 'Chcę wspomóc osu!',
         ],
@@ -34,13 +33,22 @@ return [
             Chciałbym zaoferować osobiste podziękowania dla każdego, który wspomógł osu! do tej pory,
             tak samo jak tych, którzy ciągle wspierają tę wspaniałą grę i społeczność :).',
 
+        'supporter_status' => [
+            'contribution' => 'Dziękujemy za twoje dotychczasowe wsparcie! Otrzymaliśmy od ciebie łącznie :dollars pochodzących z :tags zakupionych statusów donatora!',
+            'gifted' => 'Ze wszystkich zakupionych statusów donatora, :giftedTags podarowano innym użytkownikom (za łączną wartość :giftedDollars). Wspaniała szczodrość!',
+            'not_yet' => "Nie posiadasz jeszcze statusu donatora :(",
+            'title' => 'Status donatora',
+            'valid_until' => 'Twój status donatora przestanie być aktywny :date!',
+            'was_valid_until' => 'Twój status donatora przestał być aktywny :date.',
+        ],
+
         'why_support' => [
             'title' => 'Dlaczego mam wspomóc osu!?',
             'blocks' => [
-                'dev' => 'Stworzone i utrzymywane głównie przez jedną osobę z Australii.',
+                'dev' => 'Stworzona i utrzymywana głównie przez jedną osobę z Australii.',
                 'time' => 'Zajmuje tyle czasu, że nie można tego już nazwać "hobby".',
                 'ads' => 'Brak jakichkolwiek reklam. <br/><br/>
-                        W odróżnieniu od 99.95% Internetu, nie zarabiamy na pokazywaniu reklam.',
+                        W odróżnieniu od 99,95% Internetu, nie zarabiamy na pokazywaniu reklam.',
                 'goodies' => 'Dostajesz dodatkowe korzyści!',
             ],
         ],
@@ -104,7 +112,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Sortowanie',
-                'description' => 'Możliwość przeglądania rankingu krajowego / znajomych / poszczególnego moda w grze.',
+                'description' => 'Możliwość przeglądania rankingu krajowego, znajomych oraz dla wybranych przez ciebie modów w grze.',
             ],
 
             'feel_special' => [

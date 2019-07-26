@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@
 
   .default-box-shadow();
   display: flex;
-  background-color: #fff;
+  background-color: @osu-colour-b4;
   flex-direction: column;
 
   &__avatar {
@@ -39,7 +39,7 @@
   &__footer {
     display: flex;
     flex-wrap: wrap;
-    background-color: #555;
+    background-color: @osu-colour-b5;
     padding: 5px @_side-padding;
     justify-content: space-between;
 
@@ -56,12 +56,15 @@
     .default-border-radius();
 
     &--right {
+      margin: 0 0 5px;
       justify-content: flex-end;
       flex: 1 0 auto;
+      flex-wrap: wrap;
     }
   }
 
   &__message {
+    .content-font();
     flex: 1;
     padding-left: 10px;
     font-size: @font-size--title-small-2;
@@ -71,13 +74,19 @@
   }
 
   &__message-area {
+    color: white;
     .reset-input();
     resize: vertical;
     width: 100%;
     max-height: 70vh;
+    min-height: 3em;
 
     flex: 1 0 auto;
     font-size: @font-size--phone-input;
+
+    &::placeholder {
+      color: @osu-colour-b1;
+    }
 
     @media @desktop {
       font-size: inherit;
@@ -100,7 +109,7 @@
   }
 
   &__notice {
-    background-color: #666;
+    background-color: @osu-colour-b5;
     padding: 5px @_side-padding;
     color: #fff;
     font-size: @font-size--normal;
@@ -112,7 +121,7 @@
   }
 
   &__notice-link {
-    .link-gray-light();
+    .link-default();
   }
 
   &__timestamp-col {
@@ -120,7 +129,7 @@
     padding: 10px;
     font-size: @font-size--small-2;
     color: #fff;
-    background-color: #777;
+    background-color: @osu-colour-b3;
     border-radius: 0 @border-radius-base @border-radius-base 0;
 
     @media @mobile {
@@ -128,7 +137,7 @@
     }
 
     &--label {
-      background-color: #333;
+      background-color: @osu-colour-b6;
       border-radius: @border-radius-base 0 0 @border-radius-base;
       flex-grow: 0;
     }

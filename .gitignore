@@ -1,6 +1,6 @@
 # Local configuration.
-/.env
-/.env.testing
+/.env*
+!/.env*.example
 
 # ignore the compiled class file from artisan optimize
 /bootstrap/compiled.php
@@ -18,9 +18,9 @@ Thumbs.db
 Icon*
 desktop.ini
 
-# Bower and node directories
+# node directory and yarn log
 /node_modules
-/npm-debug.log
+/yarn-error.log
 
 # Mix manifest
 /public/mix-manifest.json
@@ -29,10 +29,10 @@ desktop.ini
 /public/fonts/vendor
 /public/js
 /public/css
-/public/build
 /public/vendor
 /public/uploads
 /public/uploads-avatar
+/public/uploads-replay
 
 # server logs
 /logs/osu/*
@@ -80,9 +80,8 @@ sftp-settings.json
 /storage/htmlpurifier/
 /bootstrap/cache/
 
-/resources/assets/js/messages.js
 /resources/assets/js/laroute.js
-/resources/assets/js/build/
+/resources/assets/build/
 
 composer-installer
 
@@ -90,3 +89,5 @@ composer-installer
 /storage/oauth-private.key
 
 /storage/paypal_auth.cache
+
+/notification-server/

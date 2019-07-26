@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -18,7 +18,7 @@
 
 class @TooltipDefault
   constructor: ->
-    $(document).on 'mouseover', '[title]:not(iframe)', @onMouseOver
+    $(document).on 'mouseover touchstart', '[title]:not(iframe)', @onMouseOver
     $(document).on 'mouseenter touchstart', '.u-ellipsis-overflow, .u-ellipsis-overflow-desktop', @autoAddTooltip
     $(document).on 'turbolinks:before-cache', @rollback
 
@@ -31,7 +31,7 @@ class @TooltipDefault
 
     return if _.size(title) == 0
 
-    isTime = el.classList.contains 'timeago'
+    isTime = el.classList.contains('timeago') || el.classList.contains('js-tooltip-time')
 
     $content =
       if isTime
@@ -51,12 +51,13 @@ class @TooltipDefault
       when 'top center' then 'bottom center'
       when 'left center' then 'right center'
       when 'right center' then 'left center'
+      when 'bottom center' then 'top center'
 
     classes = 'qtip tooltip-default'
     if el.dataset.tooltipFloat == 'fixed'
       classes += ' tooltip-default--fixed'
-    if isTime
-      classes += ' tooltip-default--time'
+    if el.dataset.tooltipModifiers?
+      classes += " tooltip-default--#{el.dataset.tooltipModifiers}"
 
     options =
       overwrite: false
@@ -69,16 +70,24 @@ class @TooltipDefault
         event: event.type
         ready: true
       hide:
-        inactive: 3000
+        event: 'click mouseleave'
       style:
         classes: classes
         tip:
           width: 10
           height: 8
 
+    if event.type == 'touchstart'
+      options.hide = inactive: 3000
+
+    # if enabled, prevents tooltip from changing position
+    if el.dataset.tooltipPinPosition
+      options.position.effect = false
+
     el.dataset.origTitle = title
 
     $(el).qtip options, event
+
 
   autoAddTooltip: (e) =>
     # Automagically add qtips when text becomes truncated (and auto-removes
@@ -96,6 +105,18 @@ class @TooltipDefault
     else
       api?.disable()
 
+
+  remove: (el) ->
+    return unless el._tooltip
+
+    $(el).qtip('destroy', true)
+    el._tooltip = false
+    if (!el.getAttribute('title')?)
+      el.setAttribute 'title', el.dataset.origTitle
+
+    delete el.dataset.origTitle
+
+
   rollback: =>
     $('.qtip').remove()
 
@@ -108,14 +129,25 @@ class @TooltipDefault
 
     time = moment(timeString)
 
-    $dateEl = $('<span>')
-      .addClass 'tooltip-default__date'
+    $dateEl = $('<strong>')
       .text time.format('LL')
     $timeEl = $('<span>')
       .addClass 'tooltip-default__time'
-      .text time.format('LT')
+      .text "#{time.format('LTS')} #{@tzString(time)}"
 
     $('<span>')
       .append $dateEl
       .append ' '
       .append $timeEl
+
+
+  tzString: (time) ->
+    offset = time.utcOffset()
+
+    offsetString =
+      if offset % 60 == 0
+        "#{if offset >= 0 then '+' else ''}#{offset / 60}"
+      else
+        time.format('Z')
+
+    "UTC#{offsetString}"

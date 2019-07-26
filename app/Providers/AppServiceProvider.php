@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,11 +20,12 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\RequireScopes;
 use App\Http\Middleware\StartSession;
+use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
-use App\Models\BeatmapDiscussionPost;
-use App\Models\Forum\PollVote as ForumPollVote;
 use Datadog;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
 use Queue;
@@ -39,22 +40,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Relation::morphMap(array_flip(MorphMap::MAP));
+
         Validator::extend('mixture', function ($attribute, $value, $parameters, $validator) {
             return preg_match('/[\d]/', $value) === 1 && preg_match('/[^\d\s]/', $value) === 1;
         });
 
-        BeatmapDiscussionPost::saving(function ($post) {
-            return $post->isValid();
-        });
-
-        ForumPollVote::saving(function ($vote) {
-            return $vote->isValid();
-        });
-
         Queue::after(function (JobProcessed $event) {
             if (config('datadog-helper.enabled')) {
-                Datadog::increment(config('datadog-helper.prefix').'.queue.run', 1, ['queue' => $event->job->getQueue()]);
+                Datadog::increment(config('datadog-helper.prefix_web').'.queue.run', 1, ['queue' => $event->job->getQueue()]);
             }
         });
     }
@@ -79,6 +73,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton('OsuAuthorize', function () {
             return new OsuAuthorize();
+        });
+
+        $this->app->singleton(RequireScopes::class, function () {
+            return new RequireScopes;
         });
 
         // The middleware breaks without this. Not sure why.

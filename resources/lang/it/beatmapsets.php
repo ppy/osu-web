@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,51 +19,77 @@
  */
 
 return [
+    'availability' => [
+        'disabled' => 'Questa beatmap non è al momento disponibile per il download.',
+        'parts-removed' => 'Porzioni di questa beatmap sono stati rimossi su richiesta del creatore o per motivi di copyright di terze parti.',
+        'more-info' => 'Clicca qui per maggiori informazioni.',
+    ],
+
+    'index' => [
+        'title' => 'Lista Beatmap',
+        'guest_title' => 'Beatmap',
+    ],
+
     'show' => [
+        'discussion' => 'Discussione',
+
         'details' => [
-            'made-by' => 'creata da ',
-            'submitted' => 'inviata il ',
-            'ranked' => 'rankata il ',
+            'approved' => 'approvata il ',
+            'favourite' => 'Mi piace questa lista di mappe',
+            'favourited_count' => '+ 1 altro!|+ :count altri!',
             'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
+            'loved' => 'amata il ',
+            'mapped_by' => 'mappata da :mapper',
+            'qualified' => 'qualificata il ',
+            'ranked' => 'classificata il ',
+            'submitted' => 'inviata il ',
+            'unfavourite' => 'Non mi piace questa lista di mappe',
+            'updated' => 'ultimo aggiornamento il ',
+            'updated_timeago' => 'ultimo aggiornamento :timeago',
+
             'download' => [
                 '_' => 'Scarica',
-                'video' => 'con Video',
-                'no-video' => 'senza Video',
                 'direct' => 'osu!direct',
-            ],
-        ],
-        'stats' => [
-            'cs' => 'Dimensione dei Cerchi',
-            'cs-mania' => 'Numero di Tasti',
-            'drain' => 'Drenaggio HP',
-            'accuracy' => 'Precisione',
-            'ar' => 'Tempo di approccio',
-            'stars' => 'Stelle di Difficoltà',
-            'total_length' => 'Durata',
-            'bpm' => 'BPM',
-            'count_circles' => 'Numero di Cerchi',
-            'count_sliders' => 'Numero di Slider',
-
-            'chart' => [
-                'cs' => 'CS',
-                'hp' => 'HP',
-                'od' => 'OD',
-                'ar' => 'AR',
-                'sd' => 'SD',
+                'no-video' => 'senza Video',
+                'video' => 'con Video',
             ],
 
-            'user-rating' => 'Voto degli Utenti',
-            'rating-spread' => 'Diffusione della Valutazione',
+            'login_required' => [
+                'bottom' => 'per accedere a maggiori funzionalità',
+                'top' => 'Accedi',
+            ],
         ],
+
+        'favourites' => [
+            'limit_reached' => 'Hai troppe beatmaps preferite! Si prega di de-preferirne una prima di continuare.',
+        ],
+
+        'hype' => [
+            'action' => 'Hype questa mappa se ti sei divertito a giocarla per aiutarla ad avanzare verso lo status di <strong>Ranked</strong>.',
+
+            'current' => [
+                '_' => 'Questa mappa è attualmente :status.',
+
+                'status' => [
+                    'pending' => 'in attesa',
+                    'qualified' => 'qualificata',
+                    'wip' => 'lavori in corso',
+                ],
+            ],
+        ],
+
         'info' => [
-            'success-rate' => 'Rateo di Successo',
-            'points-of-failure' => 'Punti di Fallimento',
-
             'description' => 'Descrizione',
-
+            'genre' => 'Genere',
+            'language' => 'Lingua',
+            'no_scores' => 'Dati ancora da calcolare...',
+            'points-of-failure' => 'Punti di Fallimento',
             'source' => 'Sorgente',
+            'success-rate' => 'Rateo di Successo',
             'tags' => 'Tag',
+            'unranked' => 'Beatmap non classificata',
         ],
+
         'scoreboard' => [
             'achieved' => 'raggiunto :when',
             'country' => 'Rank del Paese',
@@ -73,22 +99,46 @@ return [
             'supporter-only' => 'Devi essere un supporter per accedere alle classifiche amici e paese!',
             'title' => 'Classifica',
 
-            'list' => [
+            'headers' => [
                 'accuracy' => 'Precisione',
-                'player-header' => 'Giocatore',
-                'rank-header' => 'Rank',
+                'combo' => 'Max Combo',
+                'miss' => 'Errori',
+                'mods' => 'Mod',
+                'player' => 'Giocatore',
+                'pp' => '',
+                'rank' => 'Rank',
+                'score_total' => 'Punteggio Totale',
                 'score' => 'Punteggio',
             ],
+
             'no_scores' => [
                 'country' => 'Nessuno dal tuo paese ha fatto un punteggio in questa mappa!',
                 'friend' => 'Nessuno dei tuoi amici ha fatto un punteggio in questa mappa!',
                 'global' => 'Nessun punteggio al momento. Perchè non provi a farne uno?',
                 'loading' => 'Caricamento punteggi...',
+                'unranked' => 'Beatmap non classificata.',
             ],
-            'stats' => [
-                'accuracy' => 'Precisione',
-                'score' => 'Punteggio',
+            'score' => [
+                'first' => 'In testa',
+                'own' => 'Il tuo miglior punteggio',
             ],
+        ],
+
+        'stats' => [
+            'cs' => 'Dimensione dei Cerchi',
+            'cs-mania' => 'Numero di Tasti',
+            'drain' => 'Drenaggio HP',
+            'accuracy' => 'Precisione',
+            'ar' => 'Approach Rate',
+            'stars' => 'Stelle di Difficoltà',
+            'total_length' => 'Durata',
+            'bpm' => 'BPM',
+            'count_circles' => 'Numero di Cerchi',
+            'count_sliders' => 'Numero di Slider',
+            'user-rating' => 'Voto degli Utenti',
+            'rating-spread' => 'Diffusione della Valutazione',
+            'nominations' => 'Nomine',
+            'playcount' => 'Volte giocato',
         ],
     ],
 ];

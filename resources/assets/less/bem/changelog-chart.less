@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,43 +17,36 @@
  */
 
 .changelog-chart {
-  .area(@label) {
-    &--@{label} {
-      @color: "changelog-stream--@{label}";
-      fill: @@color;
-      stroke: @@color;
-    }
+  .stream-colors(@stream) {
+    @color-name: "changelog-stream--@{stream}";
+    @color: @@color-name;
+
+    .color(@stream, @color);
+    .color(~"@{stream}-build-0", @color);
+    .color(~"@{stream}-build-1", lighten(@color, 10%));
+    .color(~"@{stream}-build-2", lighten(@color, 20%));
+    .color(~"@{stream}-build-3", lighten(@color, 30%));
+    .color(~"@{stream}-build-4", lighten(@color, 40%));
+    .color(~"@{stream}-build-5", lighten(@color, 50%));
+    .color(~"@{stream}-build-6", lighten(@color, 60%));
   }
 
-  .text(@label) {
-    &--@{label} {
-      @color: "changelog-stream--@{label}";
-      color: @@color;
-    }
-  }
-
-  height: 125px;
+  height: 100px;
 
   &__area {
-    .area(stable);
-    .area(stable-fallback);
-    .area(cutting-edge);
-    .area(beta);
-    .area(lazer);
-    .area(lazer-experimental);
+    .color(@modifier, @color) {
+      &--@{modifier} {
+        fill: @color;
+        stroke: @color;
+      }
+    }
 
-    .area(build-0);
-    .area(build-1);
-    .area(build-2);
-    .area(build-3);
-    .area(build-4);
-    .area(build-5);
-    .area(build-6);
-    .area(build-7);
-    .area(build-8);
-    .area(build-9);
-    .area(build-10);
-    .area(build-11);
+    .stream-colors(stable);
+    .stream-colors(stable-fallback);
+    .stream-colors(cutting-edge);
+    .stream-colors(beta);
+    .stream-colors(lazer);
+    .stream-colors(lazer-experimental);
   }
 
   &__hover-area {
@@ -94,6 +87,12 @@
   }
 
   &__text {
+    .color(@modifier, @color) {
+      &--@{modifier} {
+        color: @color;
+      }
+    }
+
     &--name {
       font-weight: 500;
       font-size: 14px;
@@ -111,25 +110,12 @@
       color: #ffffff;
     }
 
-    .text(stable);
-    .text(stable-fallback);
-    .text(beta);
-    .text(cutting-edge);
-    .text(lazer);
-    .text(lazer-experimental);
-
-    .text(build-0);
-    .text(build-1);
-    .text(build-2);
-    .text(build-3);
-    .text(build-4);
-    .text(build-5);
-    .text(build-6);
-    .text(build-7);
-    .text(build-8);
-    .text(build-9);
-    .text(build-10);
-    .text(build-11);
+    .stream-colors(stable);
+    .stream-colors(stable-fallback);
+    .stream-colors(cutting-edge);
+    .stream-colors(beta);
+    .stream-colors(lazer);
+    .stream-colors(lazer-experimental);
   }
 
   &__tooltip-line {

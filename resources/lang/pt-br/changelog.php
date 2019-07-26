@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,11 +21,41 @@
 return [
     'feed_title' => 'painel de registros',
     'generic' => 'Correção de erros e aperfeiçoamentos.',
-    'users-online' => '1 usuário online|:users usuários online',
 
-    'prefixes' => [
-        'add' => 'adição',
-        'fix' => 'correção',
-        'misc' => 'outro',
+    'build' => [
+        'title' => 'alterações em :version',
+    ],
+
+    'builds' => [
+        'users_online' => ':count_delimited usuários online|:count_delimited usuários online',
+    ],
+
+    'entry' => [
+        'by' => 'por :user',
+    ],
+
+    'index' => [
+        'page_title' => [
+            '_' => 'lista de alterações',
+            '_from' => 'alterações desde :from',
+            '_from_to' => 'alterações entre :from e :to',
+            '_stream' => 'alterações em :stream',
+            '_stream_from' => 'alterações em :stream desde :from',
+            '_stream_from_to' => 'alterações em :stream entre :from e :to',
+            '_stream_to' => 'alterações em :stream até :to',
+            '_to' => 'alterações até :to',
+        ],
+
+        'title' => [
+            '_' => 'Lista de Alterações: :info',
+            'info' => 'Listagem',
+        ],
+    ],
+
+    'support' => [
+        'heading' => 'Amou essa atualização?',
+        'text_1' => 'Ajude o desenvolvimento do osu! e :link hoje!',
+        'text_1_link' => 'torne-se um osu!supporter',
+        'text_2' => 'Além de você ajudar a agilizar o desenvolvimento, você também ganha umas coisinhas especiais!',
     ],
 ];

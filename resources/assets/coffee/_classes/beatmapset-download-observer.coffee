@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -26,7 +26,7 @@ class @BeatmapsetDownloadObserver
 
 
   quotaCheck: (e) =>
-    return if currentUser?.isSupporter
+    return if currentUser?.is_supporter
     return if (e.type == 'mouseup' && e.which != 2) # we only use mouseup to catch middle-click
 
     $.ajax laroute.route('download-quota-check')

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,11 +20,20 @@
   font-size: @font-size--normal;
   display: flex;
   margin: 2px 0;
-  align-items: center;
+  align-items: baseline;
+
+  &__content {
+    word-wrap: break-word;
+    min-width: 0;
+    a {
+      .link-default();
+    }
+  }
 
   &__icon {
     border-radius: 3px;
     width: 8px;
+    flex: none;
     align-self: stretch;
 
     .type(@name, @bg-color) {
@@ -35,9 +44,11 @@
 
     .type(approve, @blue);
     .type(discussion-delete, @yellow);
+    .type(discussion-lock, @red);
     .type(discussion-post-delete, @yellow);
     .type(discussion-post-restore, @blue);
     .type(discussion-restore, @blue);
+    .type(discussion-unlock, @green);
     .type(disqualify, @red);
     .type(issue-reopen, @yellow);
     .type(issue-resolve, @green);
@@ -54,6 +65,7 @@
 
   &__time {
     width: 80px;
+    flex: none;
     padding: 0 10px;
   }
 }

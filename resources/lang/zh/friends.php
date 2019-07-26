@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,11 +21,19 @@
 return [
     'buttons' => [
       'add' => '添加好友',
+      'disabled' => '好友',
       'remove' => '删除好友',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => '主页 :info',
+            'info' => '好友',
+        ],
+    ],
+
     'state' => [
-      'friends' => '已关注',
+      'friends' => '好友',
       'mutual' => '互相关注',
     ],
 

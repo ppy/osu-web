@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -27,7 +27,7 @@
                 </a>
                 <div class="beatmap-discussion-timestamp__icon beatmapset-activities__timeline-icon-margin">
                     <span class="beatmap-discussion-message-type">
-                        <span class="fa fa-reply"></span>
+                        <span class="fas fa-reply"></span>
                     </span>
                 </div>
             </div>
@@ -36,16 +36,8 @@
             <div class="beatmap-discussion__top">
                 <div class="beatmap-discussion-post beatmap-discussion-post--discussion">
                     <div class="beatmap-discussion-post__content">
-                        <div class="beatmap-discussion-post__user-container">
-                            <div class="beatmap-discussion-post__avatar">
-                                <a href="{{ route('users.beatmapset-activities', $post->user) }}">
-                                    <div class="avatar avatar--full-rounded" style="background-image: url('{{$post->user->user_avatar}}');"></div>
-                                </a>
-                            </div>
-                            <div class="beatmap-discussion-post__user">
-                                <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">{!! link_to_user($post->user) !!}</span>
-                            </div>
-                        </div>
+                        @include('beatmapset_activities._user', ['user' => $post->user])
+
                         <div class="beatmap-discussion-post__message-container">
                             <div class="beatmap-discussion-post__message">{{$post->message}}</div>
                             <div class="beatmap-discussion-post__info-container">

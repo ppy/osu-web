@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,17 +17,27 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'show' => [
-        'fallback_translation' => 'Żądana strona nie została jeszcze przetłumaczona na wybrany język (:language). Pokazuję w języku angielskim.',
+        'fallback_translation' => 'Następująca strona nie jest jeszcze dostępna po polsku, w związku z czym zostanie wyświetlona wersja angielska.',
         'languages' => 'Języki',
-        'missing' => 'Żądana strona nie została odnaleziona.',
+        'missing' => 'Poszukiwana strona ":keyword" nie została odnaleziona.',
         'missing_title' => 'Nie znaleziono',
-        'missing_translation' => 'Żądana strona nie została odnaleziona dla obecnie ustawionego języka.',
+        'missing_translation' => 'Poszukiwana strona nie została odnaleziona dla obecnie ustawionego języka.',
+        'search' => 'Przeszukaj istniejące strony używając frazy :link.',
         'toc' => 'Spis treści',
+
         'edit' => [
             'link' => 'Pokaż na GitHubie',
             'refresh' => 'Odśwież',
+        ],
+
+        'translation' => [
+            'legal' => 'Niniejsze tłumaczenie zostało stworzone wyłącznie dla ułatwienia komunikacji. Jedynie :default językową tego tekstu należy traktować jako prawnie wiążącą.',
+            'outdated' => 'Tłumaczenie tego artykułu jest nieaktualne. Sprawdź :default dla najdokładniejszych informacji (oraz zaktualizuj tłumaczenie samodzielnie, jeśli chcesz pomóc)!',
+
+            'default' => 'oryginalną wersję',
         ],
     ],
 ];

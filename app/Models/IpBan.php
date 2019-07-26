@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,13 @@
 
 namespace App\Models;
 
+/**
+ * @property int $active
+ * @property int $ip
+ * @property int $length
+ * @property \Carbon\Carbon $timestamp
+ * @property int|null $user_id
+ */
 class IpBan extends Model
 {
     protected $table = 'osu_ip_bans';

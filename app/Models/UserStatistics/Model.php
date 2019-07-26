@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,16 +20,18 @@
 
 namespace App\Models\UserStatistics;
 
+use App\Models\Model as BaseModel;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model as BaseModel;
 
+/**
+ * @property mixed $country_acronym
+ * @property User $user
+ */
 abstract class Model extends BaseModel
 {
     protected $primaryKey = 'user_id';
 
     public $timestamps = false;
-
-    protected $guarded = [];
 
     const UPDATED_AT = 'last_update';
 
@@ -79,9 +81,7 @@ abstract class Model extends BaseModel
             return;
         }
 
-        $klass = get_class_namespace(static::class).'\\'.studly_case($modeStr);
-
-        return new $klass;
+        return get_class_namespace(static::class).'\\'.studly_case($modeStr);
     }
 
     public function __construct($attributes = [], $zeroInsteadOfNull = true)

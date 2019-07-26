@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,12 +15,21 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
-    'current_section' => 'beatmaps',
+@if (optional(Auth::user())->isAdmin())
+    @php
+        $extraFooterLinks = [
+            trans('common.buttons.admin') => route('admin.beatmapsets.show', $beatmapset->getKey()),
+        ];
+    @endphp
+@endif
+@extends('master', [
+    'currentSection' => 'beatmaps',
     'pageDescription' => $beatmapset->toMetaDescription(),
+    'titlePrepend' => "{$beatmapset->title} - {$beatmapset->artist}",
+    'extraFooterLinks' => $extraFooterLinks ?? [],
 ])
 
-@section("content")
+@section('content')
     <div class="js-react--beatmapset-page osu-layout osu-layout--full"></div>
 @endsection
 
@@ -33,6 +42,10 @@
 
     <script id="json-countries" type="application/json">
         {!! json_encode($countries) !!}
+    </script>
+
+    <script id="json-comments-beatmapset-{{ $beatmapset->getKey() }}" type="application/json">
+        {!! json_encode($commentBundle->toArray()) !!}
     </script>
 
     @include('layout._extra_js', ['src' => 'js/react/beatmapset-page.js'])

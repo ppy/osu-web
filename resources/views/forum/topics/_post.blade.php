@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -18,7 +18,6 @@
 <?php
     if (!isset($options['deleteLink'])) { $options['deleteLink'] = false; }
     if (!isset($options['editLink'])) { $options['editLink'] = false; }
-    if (!isset($options['overlay'])) { $options['overlay'] = false; }
     if (!isset($options['signature'])) { $options['signature'] = true; }
     if (!isset($options['replyLink'])) { $options['replyLink'] = false; }
     if (!isset($options['postPosition'])) { $options['postPosition'] = 1; }
@@ -27,7 +26,7 @@
     }
 ?>
 <div
-    class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} osu-page {{ $options['large'] ? '' : 'osu-page--small-desktop' }}"
+    class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} osu-page {{ $options['large'] ? '' : 'osu-page--small' }}"
     data-post-id="{{ $post->post_id }}"
     data-post-position="{{ $options["postPosition"] }}"
 >
@@ -43,24 +42,24 @@
 
         <div class="forum-post__body">
             <div class="forum-post__content forum-post__content--header">
-                <a class="js-post-url link link--gray" href="{{ route('forum.posts.show', $post->post_id) }}">
+                <a class="js-post-url link link--gray" rel="nofollow" href="{{ $post->exists ? route('forum.posts.show', $post->post_id) : '#' }}">
                     {!! trans("forum.post.posted_at", ["when" => timeago($post->post_time)]) !!}
                 </a>
             </div>
 
             <div class="forum-post__content forum-post__content--main">
                 <div class="forum-post-content {{ $options['contentExtraClasses'] ?? '' }}">
-                    {!! $post->bodyHTML !!}
+                    {!! $post->bodyHTML() !!}
                 </div>
             </div>
 
             @if($post->post_edit_count > 0)
                 <div class="forum-post__content forum-post__content--footer">
                     {!!
-                        trans("forum.post.edited", [
-                            "count" => $post->post_edit_count,
-                            "user" => $post->lastEditorNormalized()->username,
-                            "when" => timeago($post->post_edit_time),
+                        trans('forum.post.edited', [
+                            'count' => $post->post_edit_count,
+                            'user' => link_to_user($post->lastEditorNormalized(), null, ''),
+                            'when' => timeago($post->post_edit_time),
                         ])
                     !!}
                 </div>
@@ -86,14 +85,14 @@
                             data-remote="1"
                         >
                             <span class="btn-circle__content">
-                                <i class="fa fa-edit"></i>
+                                <i class="fas fa-pencil-alt"></i>
                             </span>
                         </button>
                     </div>
                 @endif
 
                 @if ($options["deleteLink"] === true)
-                    <div class="forum-post-actions__action">
+                    <div class="forum-post-actions__action js-post-delete-toggle">
                         @include('forum.topics._post_hide_action')
                     </div>
                 @endif
@@ -109,16 +108,12 @@
                             data-remote="1"
                         >
                             <span class="btn-circle__content">
-                                <i class="fa fa-reply"></i>
+                                <i class="fas fa-reply"></i>
                             </span>
                         </button>
                     </div>
                 @endif
             </div>
         </div>
-
-        @if($options["overlay"] === true)
-            <div class="forum-post__overlay"></div>
-        @endif
     </div>
 </div>

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,8 +23,8 @@ return [
 
     'button' => [
         'cancel' => 'Annuler',
-        'resend' => "Renvoyer l'email de vérification",
-        'set' => 'Définit le mot de passe',
+        'resend' => 'Renvoyer l\'email de vérification',
+        'set' => 'Définir le mot de passe',
         'start' => 'Démarrer',
     ],
 
@@ -37,7 +37,7 @@ return [
         'is_privileged' => 'Contacter peppy lulz.',
         'missing_key' => 'Requis.',
         'too_many_tries' => 'Trop de tentatives ratées.',
-        'user_not_found' => "L'utilisateur demandé n'existe pas.",
+        'user_not_found' => 'L\'utilisateur demandé n\'existe pas.',
         'wrong_key' => 'Code incorrect.',
     ],
 
@@ -54,6 +54,6 @@ return [
     ],
 
     'starting' => [
-        'username' => "Entrez une adresse email ou un nom d'utilisateur",
+        'username' => 'Entrez une adresse email ou un nom d\'utilisateur',
     ],
 ];

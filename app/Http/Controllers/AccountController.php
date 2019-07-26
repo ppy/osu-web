@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,9 +25,8 @@ use App\Exceptions\ModelNotSavedException;
 use App\Libraries\UserVerification;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
-use App\Models\User;
+use App\Models\OAuth\Client;
 use Auth;
-use DB;
 use Illuminate\Http\Request as HttpRequest;
 use Mail;
 use Request;
@@ -52,18 +51,20 @@ class AccountController extends Controller
                 'edit',
                 'reissueCode',
                 'updateEmail',
+                'updatePage',
                 'updatePassword',
                 'verify',
             ],
         ]);
 
-        $this->middleware('verify-user');
-        $this->middleware('throttle:60,10', [
-            'only' => [
-                'updateEmail',
-                'updatePassword',
-            ],
-        ]);
+        $this->middleware('verify-user', ['except' => [
+            'updateOptions',
+        ]]);
+
+        $this->middleware('throttle:60,10', ['only' => [
+            'updateEmail',
+            'updatePassword',
+        ]]);
 
         return parent::__construct();
     }
@@ -98,59 +99,48 @@ class AccountController extends Controller
 
     public function edit()
     {
-        return view('accounts.edit');
+        $blocks = Auth::user()->blocks()
+            ->orderBy('username')
+            ->get();
+
+        $sessions = Request::session()
+            ->currentUserSessions();
+
+        $currentSessionId = Request::session()
+            ->getIdWithoutKeyPrefix();
+
+        $authorizedClients = json_collection(Client::forUser(auth()->user()), 'OAuth\Client', 'user');
+
+        return view('accounts.edit', compact('authorizedClients', 'blocks', 'sessions', 'currentSessionId'));
     }
 
     public function update()
     {
-        $customizationParams = get_params(
-            Request::all(),
-            'user_profile_customization',
-            [
-                'extras_order:string[]',
-            ]
-        );
+        $user = Auth::user();
 
-        $userParams = get_params(
-            Request::all(),
-            'user',
-            [
-                'user_from:string',
-                'user_interests:string',
-                'user_msnm:string',
-                'user_occ:string',
-                'user_twitter:string',
-                'user_website:string',
-                'user_sig:string',
-                'osu_playstyle:string[]',
-            ]
-        );
+        $params = get_params(request(), 'user', [
+            'hide_presence:bool',
+            'osu_playstyle:string[]',
+            'playmode:string',
+            'pm_friends_only:bool',
+            'user_from:string',
+            'user_interests:string',
+            'user_msnm:string',
+            'user_notify:bool',
+            'user_occ:string',
+            'user_sig:string',
+            'user_twitter:string',
+            'user_website:string',
+            'user_discord:string',
+        ]);
 
         try {
-            $ok = DB::transaction(function () use ($customizationParams, $userParams) {
-                if (count($customizationParams) > 0) {
-                    if (!Auth::user()->profileCustomization()->update($customizationParams)) {
-                        throw new ModelNotSavedException('failed saving model');
-                    }
-                }
-
-                if (count($userParams) > 0) {
-                    if (!Auth::user()->update($userParams)) {
-                        throw new ModelNotSavedException('failed saving model');
-                    }
-                }
-
-                return true;
-            });
-        } catch (ModelNotSavedException $_e) {
-            $ok = false;
+            $user->fill($params)->saveOrExplode();
+        } catch (ModelNotSavedException $e) {
+            return $this->errorResponse($user, $e);
         }
 
-        if ($ok) {
-            return Auth::user()->defaultJson();
-        } else {
-            return error_popup(Auth::user()->validationErrors()->toSentence());
-        }
+        return $user->defaultJson();
     }
 
     public function updateEmail()
@@ -168,12 +158,28 @@ class AccountController extends Controller
                 Mail::to($address)->send(new UserEmailUpdated($user));
             }
 
-            return ['message' => trans('accounts.update_email.updated')];
+            return response([], 204);
         } else {
-            return response(['form_error' => [
-                'user' => $user->validationErrors()->all(),
-            ]], 422);
+            return $this->errorResponse($user);
         }
+    }
+
+    public function updateOptions()
+    {
+        $user = Auth::user();
+
+        $params = get_params(request(), 'user_profile_customization', [
+            'comments_sort:string',
+            'extras_order:string[]',
+        ]);
+
+        try {
+            $user->profileCustomization()->fill($params)->saveOrExplode();
+        } catch (ModelNotSavedException $e) {
+            return $this->errorResponse($user, $e);
+        }
+
+        return $user->defaultJson();
     }
 
     public function updatePage()
@@ -182,9 +188,13 @@ class AccountController extends Controller
 
         priv_check('UserPageEdit', $user)->ensureCan();
 
-        $user = $user->updatePage(Request::input('body'));
+        try {
+            $user = $user->updatePage(Request::input('body'));
 
-        return ['html' => $user->userPage->bodyHTML];
+            return ['html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']])];
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
+        }
     }
 
     public function updatePassword()
@@ -197,11 +207,9 @@ class AccountController extends Controller
                 Mail::to($user->user_email)->send(new UserPasswordUpdated($user));
             }
 
-            return ['message' => trans('accounts.update_password.updated')];
+            return response([], 204);
         } else {
-            return response(['form_error' => [
-                'user' => $user->validationErrors()->all(),
-            ]], 422);
+            return $this->errorResponse($user);
         }
     }
 
@@ -217,5 +225,13 @@ class AccountController extends Controller
         $verification = new UserVerification(Auth::user(), $request);
 
         return $verification->reissue();
+    }
+
+    private function errorResponse($user, $exception = null)
+    {
+        return response([
+            'form_error' => ['user' => $user->validationErrors()->all()],
+            'error' => optional($exception)->getMessage(),
+        ], 422);
     }
 }

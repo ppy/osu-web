@@ -1,0 +1,232 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.beatmap-scoreboard-table {
+  @_top: beatmap-scoreboard-table;
+  @activated-row: ~'@{_top}__body-row--menu-active';
+  @friend-row: ~'@{_top}__body-row--friend';
+  @passive-row: ~'@{_top}__body-row--highlightable';
+  @self-row: ~'@{_top}__body-row--self';
+
+  @handle: 16px;
+  @row-height: 1.8em;
+
+  .cell-color(@color, @highlight) {
+    color: @color;
+
+    && {
+      .@{activated-row} & {
+        color: @highlight;
+      }
+
+      .@{passive-row}:hover & {
+        color: @highlight;
+      }
+    }
+  }
+
+  .row-color(@name, @color) {
+    .@{activated-row}.@{name} & {
+      color: #fff;
+      background-color: @color;
+    }
+
+    .@{passive-row}.@{name} & {
+      background-color: @color;
+    }
+
+    .@{passive-row}.@{name}:hover & {
+      color: #fff;
+      background-color: lighten(@color, 20%);
+    }
+  }
+
+  margin-right: -@handle;
+  overflow-x: auto;
+
+  &__table {
+    width: 100%;
+    min-width: 800px;
+    font-size: 12px;
+  }
+
+  &__header {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+    color: @osu-colour-f1;
+
+    // in order of columns
+    &--rank {
+      width: 40px;
+      text-align: right;
+    }
+
+    &--grade {
+      width: 70px;
+    }
+
+    &--score {
+      width: 70px;
+    }
+
+    &--accuracy {
+      width: 70px;
+    }
+
+    &--flag {
+      width: 25px;
+    }
+
+    &--player {
+      width: 180px;
+    }
+
+    &--maxcombo {
+      width: 100px;
+    }
+
+    &--hitstat {
+      max-width: 55px;
+      min-width: 30px;
+      white-space: nowrap;
+      padding-right: 5px;
+    }
+
+    &--miss {
+      width: 70px;
+    }
+
+    &--pp {
+      width: 30px;
+    }
+
+    &--mods {
+      min-width: 50px;
+      padding-left: 5px;
+    }
+
+    &--popup-menu {
+      width: @handle;
+    }
+  }
+
+  &__body-row {
+    height: @row-height;
+
+    // @passive-row
+    &--highlightable {
+      .@{_top}--menu-active & {
+        pointer-events: none;
+      }
+    }
+  }
+
+  &__cell {
+    &:first-child {
+      // rounded corners for left side
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+
+    &:nth-last-child(2) {
+      // ...and right side
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      padding-right: 10px;
+    }
+
+    &--grade {
+      width: 100%;
+      height: @row-height;
+      .center-content();
+    }
+
+    &--mods {
+      width: 1%; // don't let the column expand unless required
+    }
+
+    &--perfect {
+      .cell-color(@green, @green-lighter);
+    }
+
+    &--rank {
+      font-weight: 700;
+      text-align: right;
+    }
+
+    &--score {
+      padding-right: 10px;
+
+      .@{_top}__body-row--first & {
+        font-weight: 700;
+      }
+    }
+
+    &--zero {
+      color: fade(#fff, 40%);
+    }
+
+    // when row is selected
+    .@{activated-row} & {
+      color: #fff;
+      background-color: @osu-colour-b3;
+    }
+
+    // when row is not selected
+    .@{passive-row} & {
+      background-color: @osu-colour-b5;
+    }
+
+    .@{passive-row}:nth-child(odd) & {
+      background-color: @osu-colour-b4;
+    }
+
+    // hovering over an unselected row
+    .@{passive-row}:hover & {
+      color: #fff;
+      background-color: @osu-colour-b3;
+    }
+
+    .@{passive-row}:hover:nth-child(odd) & {
+      background-color: @osu-colour-b3;
+    }
+
+    .row-color(@friend-row, fade(@yellow-dark, 20%));
+    .row-color(@self-row, fade(@green-dark, 30%));
+  }
+
+  &__popup-menu {
+    .@{activated-row} & {
+      opacity: 1;
+    }
+
+    .@{passive-row} & {
+      opacity: 0;
+    }
+
+    .@{passive-row}:hover & {
+      opacity: 1;
+    }
+  }
+
+  &__user-link {
+    .link-inverted();
+  }
+}

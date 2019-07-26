@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,7 +23,7 @@ return [
         'header' => [
             // size in font-size
             'big_description' => 'Houd je van osu!?<br/>
-                                Support de osu! dev :D',
+                                Support de ontwikkeling van osu! :D',
             'small_description' => '',
             'support_button' => 'Ik wil osu! supporten!',
         ],
@@ -32,6 +32,15 @@ return [
 <br/><br/>osu! wordt aan het einde van de dag voor het grootste gedeelte onderhouden door mezelf; degene die je waarschijnlijk het beste kent als "peppy".
 Ik ben gestopt met m\'n oude baan om osu! bij te kunnen houden en zelfs dan heb ik nog steeds moeite met het ophouden van mijn standaarden.
 Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar net zoveel degenen die dit geweldige spel en community ondersteunen in de toekomst :).',
+
+        'supporter_status' => [
+            'contribution' => 'Bedankt voor je hulp tot nu toe! Je hebt in totaal :dollars toegedragen in :tags supporter aankopen!',
+            'gifted' => ':giftedTags van je aankopen waren een cadeau voor iemand anders (een totaal van :giftedDollars), hoe vrijgevig!',
+            'not_yet' => "Je hebt nog geen supporter tag :(",
+            'title' => 'Huidige supporter status',
+            'valid_until' => 'Je huidige supporter tag is geldig tot :date!',
+            'was_valid_until' => 'Je supporter tag was geldig tot :date.',
+        ],
 
         'why_support' => [
             'title' => 'Waarom zou ik osu! supporten?',
@@ -103,7 +112,7 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
 
             'sort_options' => [
                 'title' => 'Sorteeropties',
-                'description' => 'NIEUW: De mogelijkheid om beatmaps scores per land / vrienden / mod-specifiek in-game te zien.',
+                'description' => 'De mogelijkheid om beatmaps scores per land / vrienden / mod-specifiek in-game te zien.',
             ],
 
             'feel_special' => [

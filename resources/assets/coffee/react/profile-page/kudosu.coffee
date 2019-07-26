@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,64 +16,70 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h3, ul, li, p, span} = ReactDOMFactories
+import { ExtraHeader } from './extra-header'
+import * as React from 'react'
+import { div, h3, ul, li, p, span } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
+import { ValueDisplay } from 'value-display'
 el = React.createElement
 
-class ProfilePage.Kudosu extends React.Component
+export class Kudosu extends React.Component
   render: =>
     div className: 'page-extra',
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+      el ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       div className: 'kudosu-box',
-        div className: 'kudosu-box__content',
-          h3 className: 'kudosu-box__title',
-            "#{osu.trans('users.show.extra.kudosu.total')}: "
-            span className: 'kudosu-box__count', @props.user.kudosu.total
-          p dangerouslySetInnerHTML:
+        el ValueDisplay,
+          modifiers: ['kudosu']
+          label: osu.trans('users.show.extra.kudosu.total')
+          value: osu.formatNumber(@props.user.kudosu.total)
+          description: span dangerouslySetInnerHTML:
             __html: osu.trans('users.show.extra.kudosu.total_info')
-        div className: 'kudosu-box__content',
-          h3 className: 'kudosu-box__title',
-            "#{osu.trans('users.show.extra.kudosu.available')}: "
-            span className: 'kudosu-box__count', @props.user.kudosu.available
-          p null, osu.trans('users.show.extra.kudosu.available_info')
 
-      div className: 'kudosu-entries',
-        h3 className: 'kudosu-entries__title',
-          osu.trans('users.show.extra.kudosu.recent_entries')
+        el ValueDisplay,
+          modifiers: ['kudosu']
+          label: osu.trans('users.show.extra.kudosu.available')
+          value: osu.formatNumber(@props.user.kudosu.available)
+          description: osu.trans('users.show.extra.kudosu.available_info')
 
-        if @props.recentlyReceivedKudosu?.length
-          ul className: 'profile-extra-entries',
-            for kudosu in @props.recentlyReceivedKudosu
-              continue if !kudosu.id?
+      if @props.recentlyReceivedKudosu?.length
+        ul className: 'profile-extra-entries profile-extra-entries--kudosu',
+          for kudosu in @props.recentlyReceivedKudosu
+            continue if !kudosu.id?
 
-              giver =
-                if kudosu.giver?
-                  osu.link kudosu.giver.url,
-                    kudosu.giver.username
-                    classNames: ['kudosu-entries__link']
-                else
-                  _.escape osu.trans('users.deleted')
+            giver =
+              if kudosu.giver?
+                osu.link kudosu.giver.url,
+                  kudosu.giver.username
+                  classNames: ['profile-extra-entries__link profile-extra-entries__link--kudosu']
+              else
+                _.escape osu.trans('users.deleted')
 
-              post = osu.link kudosu.post?.url,
-                kudosu.post?.title
-                classNames: ['kudosu-entries__link']
+            post = osu.link kudosu.post?.url,
+              kudosu.post?.title
+              classNames: ['profile-extra-entries__link profile-extra-entries__link--kudosu']
 
-              li key: "kudosu-#{kudosu.id}", className: 'profile-extra-entries__item',
-                div className: 'profile-extra-entries__detail',
-                  div className: 'profile-extra-entries__text', dangerouslySetInnerHTML:
-                    __html: osu.trans "users.show.extra.kudosu.entry.#{kudosu.model}.#{kudosu.action}",
-                      amount: "<strong class='kudosu-entries__amount'>#{osu.trans 'users.show.extra.kudosu.entry.amount', amount: Math.abs(kudosu.amount)}</strong>"
-                      giver: giver
-                      post: post
-                div className: 'profile-extra-entries__time', dangerouslySetInnerHTML:
-                  __html: osu.timeago(kudosu.created_at)
+            li key: "kudosu-#{kudosu.id}", className: 'profile-extra-entries__item',
+              div className: 'profile-extra-entries__detail',
+                div className: 'profile-extra-entries__text', dangerouslySetInnerHTML:
+                  __html: osu.trans "users.show.extra.kudosu.entry.#{kudosu.model}.#{kudosu.action}",
+                    amount: "<strong class='profile-extra-entries__kudosu-amount'>#{osu.trans 'users.show.extra.kudosu.entry.amount', amount: Math.abs(kudosu.amount)}</strong>"
+                    giver: giver
+                    post: post
+              div className: 'profile-extra-entries__time', dangerouslySetInnerHTML:
+                __html: osu.timeago(kudosu.created_at)
 
-            li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
-              el ProfilePage.ShowMoreLink,
-                collection: @props.recentlyReceivedKudosu
-                propertyName: 'recentlyReceivedKudosu'
-                pagination: @props.pagination['recentlyReceivedKudosu']
-                route: laroute.route 'users.kudosu', user: @props.user.id
+          li className: 'profile-extra-entries__item',
+            el ShowMoreLink,
+              modifiers: ['profile-page', 't-greyseafoam-dark']
+              event: 'profile:showMore'
+              hasMore: @props.pagination.recentlyReceivedKudosu.hasMore
+              loading: @props.pagination.recentlyReceivedKudosu.loading
+              data:
+                name: 'recentlyReceivedKudosu'
+                url: laroute.route 'users.kudosu', user: @props.user.id
 
-        else
-          div className: 'profile-extra-entries', osu.trans('users.show.extra.kudosu.entry.empty')
+      else
+        div
+          className: 'profile-extra-entries profile-extra-entries--kudosu'
+          osu.trans('users.show.extra.kudosu.entry.empty')

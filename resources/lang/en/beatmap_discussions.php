@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Must be logged in to edit.',
+            'null_user' => 'Must be signed in to edit.',
             'system_generated' => 'System-generated post can not be edited.',
             'wrong_user' => 'Must be owner of the post to edit.',
         ],
@@ -32,9 +32,14 @@ return [
     ],
 
     'index' => [
+        'deleted_beatmap' => 'deleted',
         'title' => 'Beatmap Discussions',
+
         'form' => [
+            '_' => 'Search',
             'deleted' => 'Include deleted discussions',
+            'types' => 'Message types',
+            'username' => 'Username',
 
             'user' => [
                 'label' => 'User',
@@ -57,7 +62,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Login to Respond',
+            'guest' => 'Sign in to Respond',
             'user' => 'Respond',
         ],
     ],
@@ -69,10 +74,8 @@ return [
         ],
     ],
 
-    'user' => [
-        'admin' => 'admin',
-        'bng' => 'nominator',
-        'owner' => 'mapper',
-        'qat' => 'qat',
+    'user_filter' => [
+        'everyone' => 'Everyone',
+        'label' => 'Filter by user',
     ],
 ];

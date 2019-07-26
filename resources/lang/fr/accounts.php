@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,17 +20,18 @@
 
 return [
     'edit' => [
-        'title' => 'Paramètres de compte <strong>Compte</strong>',
+        'title' => 'Paramètres de <strong>Compte</strong>',
         'title_compact' => 'paramètres',
+        'username' => 'nom d\'utilisateur',
 
         'avatar' => [
-            'title' => "Éditer l'Avatar",
+            'title' => 'Avatar',
         ],
 
         'email' => [
             'current' => 'email actuel',
             'new' => 'nouvel email',
-            'new_confirmation' => "confirmation de l'email",
+            'new_confirmation' => 'confirmation de l\'email',
             'title' => 'Email',
         ],
 
@@ -42,15 +43,16 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Éditer le Profil',
+            'title' => 'Profil',
 
             'user' => [
                 'user_from' => 'localisation actuelle',
-                'user_interests' => 'intérêts',
+                'user_interests' => 'centres d\'intérêt',
                 'user_msnm' => 'skype',
                 'user_occ' => 'occupation',
                 'user_twitter' => 'twitter',
                 'user_website' => 'site web',
+                'user_discord' => 'discord',
             ],
         ],
 
@@ -60,16 +62,19 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
-        'email_subject' => "Confirmation du changement d'email d'osu!",
+        'email_subject' => 'Confirmation du changement d\'email d\'osu!',
         'update' => 'mettre à jour',
-        'updated' => 'Email modifié',
     ],
 
     'update_password' => [
-        'email_subject' => "Confirmation du changement de mot de passe d'osu!",
+        'email_subject' => 'Confirmation du changement de mot de passe d\'osu!',
         'update' => 'mettre à jour',
-        'updated' => 'Mot de passe modifié',
     ],
 
     'playstyles' => [
@@ -77,6 +82,26 @@ return [
         'mouse' => 'souris',
         'keyboard' => 'clavier',
         'tablet' => 'tablette',
-        'touch' => 'tactile',
+        'touch' => 'écran tactile',
+    ],
+
+    'privacy' => [
+        'title' => 'Confidentialité',
+        'friends_only' => 'Bloque les messages privés des personnes qui ne sont pas dans votre liste d’amis',
+        'hide_online' => 'masquer votre présence en ligne',
+    ],
+
+    'notifications' => [
+        'title' => 'Notifications',
+        'topic_auto_subscribe' => 'activer automatiquement les notifications sur les nouveaux sujets de forum que vous créez',
+    ],
+
+    'security' => [
+        'current_session' => 'actuel',
+        'end_session' => 'Mettre fin à la session',
+        'end_session_confirmation' => 'Ceci va immédiatement mettre fin à votre session sur cet appareil. Êtes-vous sûr ?',
+        'last_active' => 'Dernière activité:',
+        'title' => 'Sécurité',
+        'web_sessions' => 'sessions web',
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,10 +25,15 @@ use App\Libraries\ModsHelper;
 trait Scoreable
 {
     protected $_enabledMods = null;
+    private $gameModeString = null;
 
-    public function gamemodeString()
+    public function gameModeString()
     {
-        return snake_case(get_class_basename(static::class));
+        if ($this->gameModeString === null) {
+            $this->gameModeString = snake_case(get_class_basename(static::class));
+        }
+
+        return $this->gameModeString;
     }
 
     public function getScoringType()
@@ -47,35 +52,35 @@ trait Scoreable
 
     public function totalHits()
     {
-        if ($this->gamemodeString() === 'osu') {
+        if ($this->gameModeString() === 'osu') {
             return ($this->count50 + $this->count100 + $this->count300 + $this->countmiss) * 300;
-        } elseif ($this->gamemodeString() === 'fruits') {
+        } elseif ($this->gameModeString() === 'fruits') {
             return $this->count50 + $this->count100 + $this->count300 +
                 $this->countmiss + $this->countkatu;
-        } elseif ($this->gamemodeString() === 'mania') {
+        } elseif ($this->gameModeString() === 'mania') {
             if ($this->getScoringType() === 'scorev2') {
                 return ($this->count50 + $this->count100 + $this->count300 + $this->countmiss + $this->countkatu + $this->countgeki) * 305;
             } else {
                 return ($this->count50 + $this->count100 + $this->count300 + $this->countmiss + $this->countkatu + $this->countgeki) * 300;
             }
-        } elseif ($this->gamemodeString() === 'taiko') {
+        } elseif ($this->gameModeString() === 'taiko') {
             return ($this->count100 + $this->count300 + $this->countmiss) * 300;
         }
     }
 
     public function hits()
     {
-        if ($this->gamemodeString() === 'osu') {
+        if ($this->gameModeString() === 'osu') {
             return $this->count50 * 50 + $this->count100 * 100 + $this->count300 * 300;
-        } elseif ($this->gamemodeString() === 'fruits') {
+        } elseif ($this->gameModeString() === 'fruits') {
             return $this->count50 + $this->count100 + $this->count300;
-        } elseif ($this->gamemodeString() === 'mania') {
+        } elseif ($this->gameModeString() === 'mania') {
             if ($this->getScoringType() === 'scorev2') {
                 return $this->count50 * 50 + $this->count100 * 100 + $this->countkatu * 200 + $this->count300 * 300 + $this->countgeki * 305;
             } else {
                 return $this->count50 * 50 + $this->count100 * 100 + $this->countkatu * 200 + ($this->count300 + $this->countgeki) * 300;
             }
-        } elseif ($this->gamemodeString() === 'taiko') {
+        } elseif ($this->gameModeString() === 'taiko') {
             return $this->count100 * 150 + $this->count300 * 300;
         }
     }

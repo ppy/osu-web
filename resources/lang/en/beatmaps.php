@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -39,13 +39,15 @@ return [
         'edit' => 'edit',
         'edited' => 'Last edited by :editor :update_time.',
         'kudosu_denied' => 'Denied from obtaining kudosu.',
-        'message_placeholder' => 'Type here to post',
+        'message_placeholder_deleted_beatmap' => 'This difficulty has been deleted so it may no longer be discussed.',
+        'message_placeholder_locked' => 'Discussion for this beatmap has been disabled.',
         'message_type_select' => 'Select Comment Type',
         'reply_notice' => 'Press enter to reply.',
         'reply_placeholder' => 'Type your response here',
-        'require-login' => 'Please login to post or reply',
+        'require-login' => 'Please sign in to post or reply',
         'resolved' => 'Resolved',
         'restore' => 'restore',
+        'show_deleted' => 'Show deleted',
         'title' => 'Discussions',
 
         'collapse' => [
@@ -58,14 +60,34 @@ return [
             'hidden' => 'No discussion matches selected filter.',
         ],
 
+        'lock' => [
+            'button' => [
+                'lock' => 'Lock discussion',
+                'unlock' => 'Unlock discussion',
+            ],
+
+            'prompt' => [
+                'lock' => 'Reason for locking',
+                'unlock' => 'Are you sure to unlock?',
+            ],
+        ],
+
         'message_hint' => [
             'in_general' => 'This post will go to general beatmapset discussion. To mod this beatmap, start message with timestamp (e.g. 00:12:345).',
             'in_timeline' => 'To mod multiple timestamps, post multiple times (one post per timestamp).',
         ],
 
+        'message_placeholder' => [
+            'general' => 'Type here to post to General (:version)',
+            'generalAll' => 'Type here to post to General (All difficulties)',
+            'timeline' => 'Type here to post to Timeline (:version)',
+        ],
+
         'message_type' => [
+            'disqualify' => 'Disqualify',
             'hype' => 'Hype!',
             'mapper_note' => 'Note',
+            'nomination_reset' => 'Reset Nomination',
             'praise' => 'Praise',
             'problem' => 'Problem',
             'suggestion' => 'Suggestion',
@@ -73,15 +95,20 @@ return [
 
         'mode' => [
             'events' => 'History',
-            'general' => 'General',
-            'general_all' => 'General (all difficulties)',
+            'general' => 'General :scope',
             'timeline' => 'Timeline',
+            'scopes' => [
+                'general' => 'This difficulty',
+                'generalAll' => 'All difficulties',
+            ],
         ],
 
         'new' => [
+            'pin' => 'Pin',
             'timestamp' => 'Timestamp',
             'timestamp_missing' => 'ctrl-c in edit mode and paste in your message to add a timestamp!',
             'title' => 'New Discussion',
+            'unpin' => 'Unpin',
         ],
 
         'show' => [
@@ -89,10 +116,9 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Sorted by:',
-            'created_at' => 'creation time',
-            'timeline' => 'timeline',
-            'updated_at' => 'last update',
+            'created_at' => 'Creation time',
+            'timeline' => 'Timeline',
+            'updated_at' => 'Last update',
         ],
 
         'stats' => [
@@ -113,6 +139,10 @@ return [
             'wip' => 'Note: This beatmap is marked as a work-in-progress by the creator.',
         ],
 
+        'votes' => [
+            'up' => 'Upvote this discussion',
+            'down' => 'Downvote this discussion',
+        ],
     ],
 
     'hype' => [
@@ -120,50 +150,89 @@ return [
         'button_done' => 'Already Hyped!',
         'confirm' => "Are you sure? This will use one out of your remaining :n hype and can't be undone.",
         'explanation' => 'Hype this beatmap to make it more visible for nomination and ranking!',
-        'explanation_guest' => 'Login and hype this beatmap to make it more visible for nomination and ranking!',
-        'new_time' => "You'll get another hype at :new_time.",
+        'explanation_guest' => 'Sign in and hype this beatmap to make it more visible for nomination and ranking!',
+        'new_time' => "You'll get another hype :new_time.",
         'remaining' => 'You have :remaining hype left.',
+        'required_text' => 'Hype: :current/:required',
         'section_title' => 'Hype Train',
         'title' => 'Hype',
     ],
 
+    'feedback' => [
+        'button' => 'Leave Feedback',
+    ],
+
     'nominations' => [
-        'disqualifed-at' => 'Disqualified :time_ago (:reason).',
-        'disqualifed_no_reason' => 'no reason specified',
-        'disqualification-prompt' => 'Reason for disqualification?',
+        'delete' => 'Delete',
+        'delete_own_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to your profile.',
+        'delete_other_confirm' => 'Are you sure? The beatmap will be deleted and you will be redirected back to the user\'s profile.',
+        'disqualification_prompt' => 'Reason for disqualification?',
+        'disqualified_at' => 'Disqualified :time_ago (:reason).',
+        'disqualified_no_reason' => 'no reason specified',
         'disqualify' => 'Disqualify',
         'incorrect_state' => 'Error performing that action, try refreshing the page.',
+        'love' => 'Love',
+        'love_confirm' => 'Love this beatmap?',
         'nominate' => 'Nominate',
-        'nominated-by' => 'nominated by :users',
-        'nominate-confirm' => 'Nominate this beatmap?',
+        'nominate_confirm' => 'Nominate this beatmap?',
+        'nominated_by' => 'nominated by :users',
         'qualified' => 'Estimated to be ranked :date, if no issues are found.',
-        'qualified-soon' => 'Estimated to be ranked soon, if no issues are found.',
-        'reset-confirm' => 'Are you sure? Posting a new problem will reset nominations.',
-        'required-text' => 'Nominations: :current/:required',
+        'qualified_soon' => 'Estimated to be ranked soon, if no issues are found.',
+        'required_text' => 'Nominations: :current/:required',
+        'reset_message_deleted' => 'deleted',
         'title' => 'Nomination Status',
         'unresolved_issues' => 'There are still unresolved issues that must be addressed first.',
+
+        'reset_at' => [
+            'nomination_reset' => 'Nomination process reset :time_ago by :user with new problem :discussion (:message).',
+            'disqualify' => 'Disqualified :time_ago by :user with new problem :discussion (:message).',
+        ],
+
+        'reset_confirm' => [
+            'nomination_reset' => 'Are you sure? Posting a new problem will reset the nomination process.',
+            'disqualify' => 'Are you sure? This will remove the beatmap from qualifying and reset the nomination process.',
+        ],
     ],
 
     'listing' => [
         'search' => [
             'prompt' => 'type in keywords...',
+            'login_required' => 'Sign in to search.',
             'options' => 'More Search Options',
+            'supporter_filter' => 'Filtering by :filters requires an active osu!supporter tag',
             'not-found' => 'no results',
             'not-found-quote' => '... nope, nothing found.',
             'filters' => [
+                'general' => 'General',
                 'mode' => 'Mode',
-                'status' => 'Rank Status',
+                'status' => 'Categories',
                 'genre' => 'Genre',
                 'language' => 'Language',
                 'extra' => 'extra',
                 'rank' => 'Rank Achieved',
+                'played' => 'Played',
+            ],
+            'sorting' => [
+                'title' => 'Title',
+                'artist' => 'Artist',
+                'difficulty' => 'Difficulty',
+                'favourites' => 'Favourites',
+                'updated' => 'Updated',
+                'ranked' => 'Ranked',
+                'rating' => 'Rating',
+                'plays' => 'Plays',
+                'relevance' => 'Relevance',
+                'nominations' => 'Nominations',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Filtering by :filters requires an active :link',
+                'link_text' => 'osu!supporter tag',
             ],
         ],
-        'mode' => 'Mode',
-        'status' => 'Rank Status',
-        'mapped-by' => 'mapped by :mapper',
-        'source' => 'from :source',
-        'load-more' => 'Load more...',
+    ],
+    'general' => [
+        'recommended' => 'Recommended difficulty',
+        'converts' => 'Include converted beatmaps',
     ],
     'mode' => [
         'any' => 'Any',
@@ -174,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Any',
-        'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
-        'qualified' => 'Qualified',
-        'loved' => 'Loved',
-        'faves' => 'Favourites',
-        'pending' => 'Pending',
+        'favourites' => 'Favourites',
         'graveyard' => 'Graveyard',
-        'my-maps' => 'My Maps',
+        'leaderboard' => 'Has Leaderboard',
+        'loved' => 'Loved',
+        'mine' => 'My Maps',
+        'pending' => 'Pending & WIP',
+        'qualified' => 'Qualified',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => 'Any',
@@ -196,27 +266,28 @@ return [
         'electronic' => 'Electronic',
     ],
     'mods' => [
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Fade In',
         '9K' => '9K',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Double Time',
+        'EZ' => 'Easy Mode',
+        'FI' => 'Fade In',
+        'FL' => 'Flashlight',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'NF' => 'No Fail',
         'NM' => 'No mods',
+        'PF' => 'Perfect',
+        'Relax' => 'Relax',
+        'SD' => 'Sudden Death',
+        'SO' => 'Spun Out',
+        'TD' => 'Touch Device',
     ],
     'language' => [
         'any' => 'Any',
@@ -232,6 +303,11 @@ return [
         'instrumental' => 'Instrumental',
         'other' => 'Other',
     ],
+    'played' => [
+        'any' => 'Any',
+        'played' => 'Played',
+        'unplayed' => 'Unplayed',
+    ],
     'extra' => [
         'video' => 'Has Video',
         'storyboard' => 'Has Storyboard',
@@ -246,5 +322,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => 'Playcount: :count',
+        'favourites' => 'Favourites: :count',
     ],
 ];

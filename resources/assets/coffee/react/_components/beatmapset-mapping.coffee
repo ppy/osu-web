@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,44 +16,59 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, a, ol, li} = ReactDOMFactories
+import * as React from 'react'
+import { div, span, a, time } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'beatmapset-mapping'
+dateFormat = 'LL'
 
-@BeatmapsetMapping = ({user, beatmapset}) ->
-  dateFormat = 'LL'
-  user ?= beatmapset.user
+export class BeatmapsetMapping extends React.PureComponent
+  render: =>
+    user = @props.user ? @props.beatmapset.user
 
-  div className: bn,
-    div
-      className: 'avatar avatar--beatmapset'
-      style:
-        backgroundImage: "url(#{user.avatar_url})"
 
-    div className: "#{bn}__content",
-      div className: "#{bn}__mapper",
-        osu.trans 'beatmapsets.show.details.made-by'
+    div className: bn,
+      if user.id?
         a
-          className: "#{bn}__user"
           href: laroute.route 'users.show', user: user.id
-          user.username
-
-      div null,
-        osu.trans 'beatmapsets.show.details.submitted'
-        span
-          className: "#{bn}__date"
-          moment(beatmapset.submitted_date).format dateFormat
-
-      if beatmapset.ranked > 0
-        div null,
-          osu.trans "beatmapsets.show.details.#{beatmapset.status}"
-          span
-            className: "#{bn}__date"
-            moment(beatmapset.ranked_date).format dateFormat
+          className: 'avatar avatar--beatmapset'
+          style:
+            backgroundImage: osu.urlPresence(user.avatar_url)
       else
-        div null,
-          osu.trans 'beatmapsets.show.details.updated'
-          span
-            className: "#{bn}__date"
-            moment(beatmapset.last_updated).format dateFormat
+        span className: 'avatar avatar--beatmapset avatar--guest'
+
+      div className: "#{bn}__content",
+        div
+          className: "#{bn}__mapper"
+          dangerouslySetInnerHTML:
+            __html: osu.trans 'beatmapsets.show.details.mapped_by',
+              mapper: @userLink(user)
+
+        @renderDate 'submitted', 'submitted_date'
+
+        if @props.beatmapset.ranked > 0
+          @renderDate @props.beatmapset.status, 'ranked_date'
+        else
+          @renderDate 'updated', 'last_updated'
+
+
+  renderDate: (key, attribute) =>
+    div null,
+      osu.trans "beatmapsets.show.details.#{key}"
+      time
+        className: "#{bn}__date js-tooltip-time"
+        dateTime: @props.beatmapset[attribute]
+        title: @props.beatmapset[attribute]
+        moment(@props.beatmapset[attribute]).format dateFormat
+
+
+  userLink: (user) ->
+    if user.id?
+      laroute.link_to_route 'users.show',
+        user.username
+        { user: user.id }
+        class: "#{bn}__user js-usercard"
+        'data-user-id': user.id
+    else
+      "<span class='#{bn}__user'>#{_.escape(user.username ? osu.trans('users.deleted'))}</span>"

@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@ class @ForumTopicReply
   constructor: (@forum, @stickyFooter) ->
     @container = document.getElementsByClassName('js-forum-topic-reply--container')
     @box = document.getElementsByClassName('js-forum-topic-reply')
+    @block = document.getElementsByClassName('js-forum-topic-reply--block')
     @input = document.getElementsByClassName('js-forum-topic-reply--input')
     @stickButtons = document.getElementsByClassName('js-forum-topic-reply--stick')
     @fixedBar = document.getElementsByClassName('js-sticky-footer--fixed-bar')
@@ -49,7 +50,7 @@ class @ForumTopicReply
     @activate() if @getState('active') == '1'
 
 
-  available: => @box.length
+  available: => @block.length
 
 
   deleteState: (key) =>
@@ -72,6 +73,8 @@ class @ForumTopicReply
 
     @stickyFooter.markerEnable @marker()
     $.publish 'stickyFooter:check'
+
+    @enableFlash() if @getState('sticking') != '1' && currentUser.id?
 
 
   activateWithReply: (e, data) =>
@@ -96,6 +99,16 @@ class @ForumTopicReply
     @setState 'active', '0'
     button.classList.remove 'js-activated' for button in @stickButtons
     $.publish 'stickyFooter:check'
+    @disableFlash()
+
+
+  disableFlash: ->
+    $('.js-forum-topic-reply').removeClass('js-forum-topic-reply-flash')
+
+
+  enableFlash: =>
+    $('.js-forum-topic-reply').addClass('js-forum-topic-reply-flash')
+    Timeout.set 500, @disableFlash # so animation doesn't play again when element gets transplanted from unsticking.
 
 
   inputChange: =>

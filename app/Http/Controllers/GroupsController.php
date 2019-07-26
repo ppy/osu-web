@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -40,8 +40,9 @@ class GroupsController extends Controller
             ->orderBy('username', 'asc')
             ->get();
 
-        $userlist = group_users_by_online_state($users);
+        $groupJson = $group->only('group_name', 'group_desc');
+        $usersJson = json_collection($users, 'UserCompact', ['cover', 'country']);
 
-        return view('groups.show', compact('group', 'userlist'));
+        return view('groups.show', compact('groupJson', 'usersJson'));
     }
 }

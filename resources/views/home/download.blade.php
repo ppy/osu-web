@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,18 +15,16 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
-    'body_additional_classes' => 'osu-layout--body-555'
-])
+@extends('master')
 
-@section("content")
+@section('content')
 <div class="osu-page osu-page--header">
     <div class="osu-page-header-v2 osu-page-header-v2--download">
         <div class="download-page-header">
             <span class="download-page-header__tagline">{!! trans('home.download.tagline') !!}</span>
 
             <div class="download-page-header__icon">
-                <i class="fa fa-download" aria-hidden="true"></i>
+                <i class="fas fa-download" aria-hidden="true"></i>
             </div>
 
             <a class="btn-osu-big btn-osu-big--download-page" href="{{ config('osu.urls.installer') }}">

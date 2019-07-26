@@ -1,0 +1,126 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.changelog-entry {
+  display: flex;
+  font-size: @font-size--title-small-3;
+  padding: 5px 0;
+  flex-direction: column;
+
+  a {
+    .link-default();
+  }
+
+  &__col {
+    margin: 5px;
+
+    &--user {
+      width: 110px;
+      flex: none;
+      font-weight: bold;
+      font-style: italic;
+      word-wrap: break-word;
+    }
+  }
+
+  &__icon {
+    opacity: 0.5;
+    font-size: 0.7em;
+  }
+
+  &__link {
+    color: @osu-colour-l1;
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  &__row {
+    word-wrap: break-word;
+
+    // having anything but markdown-formatted page inside may result in sadness.
+    &--message {
+      font-size: @font-size--normal;
+      color: @osu-colour-f1;
+      margin-top: 2px;
+
+      h1, h2, h3, h4, h5, h6 {
+        font-size: @font-size--title-small;
+        font-weight: bold;
+        font-style: normal;
+        color: inherit;
+        margin: 5px 0;
+      }
+
+      h1 {
+        font-size: @font-size--title-small-3;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      a {
+        .link-inverted();
+      }
+    }
+  }
+
+  &__title {
+    &--major {
+      color: @yellow;
+    }
+  }
+
+  &__title-icon {
+    position: absolute;
+    right: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: baseline;
+    padding-right: 5px;
+
+    // to align the icon
+    &::after {
+      content: 'x';
+      width: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &__user {
+    font-size: @font-size--normal;
+    font-style: italic;
+    padding-left: 10px;
+  }
+
+  &__user-link {
+    color: inherit;
+
+    .link-hover({
+      color: inherit;
+    });
+  }
+}

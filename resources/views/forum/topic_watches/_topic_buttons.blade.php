@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -24,24 +24,46 @@
     data-confirm="{{ trans('forum.topic_watches.topic_buttons.mark_read.confirmation') }}"
     title="{{ trans('forum.topic_watches.topic_buttons.mark_read.title') }}"
 >
-    <i class="fa fa-check"></i>
+    <i class="fas fa-check"></i>
 </a>
 --}}
+
+@php
+    $watch = $topicWatchStatus[$topic->getKey()];
+@endphp
+<button
+    type="button"
+    class="btn-circle btn-circle--topic-entry {{ $watch->mail ? 'btn-circle--activated' : '' }}"
+    title="{{ trans('forum.topics.watch.'.($watch->mail ? 'tooltip_mail_disable' : 'tooltip_mail_enable')) }}"
+    data-url="{{ route('forum.topic-watches.update', [
+        $topic,
+        'state' => $watch->mail ? 'watching' : 'watching_mail',
+        'return' => 'index'
+    ]) }}"
+    data-remote="1"
+    data-reload-on-success="1"
+    data-method="PUT"
+>
+    <span class="btn-circle__content">
+        <i class="fas fa-inbox"></i>
+    </span>
+</button>
 
 <button
     type="button"
     class="btn-circle btn-circle--topic-entry"
     title="{{ trans('forum.topic_watches.topic_buttons.remove.title') }}"
-    data-url="{{ route('forum.topics.watch', [
+    data-url="{{ route('forum.topic-watches.update', [
         $topic,
-        'watch' => false,
+        'state' => 'not_watching',
         'return' => 'index'
     ]) }}"
     data-remote="1"
-    data-method="POST"
+    data-reload-on-success="1"
+    data-method="PUT"
     data-confirm="{{ trans('forum.topic_watches.topic_buttons.remove.confirmation') }}"
 >
     <span class="btn-circle__content">
-        <i class="fa fa-trash"></i>
+        <i class="fas fa-trash"></i>
     </span>
 </button>

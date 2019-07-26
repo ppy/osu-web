@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,23 +21,31 @@
 return [
     'header' => [
         'small' => '享受游戏以外的竞赛体验。',
-        'large' => 'osu! 社区评选',
+        'large' => '社区评选',
     ],
     'voting' => [
         'over' => '这场评选的投票已经结束',
         'login_required' => '请登录后再投票.',
+
         'best_of' => [
-            'none_played' => '没有符合此次评选条件的谱面！',
+            'none_played' => "没有符合此次评选条件的谱面！",
+        ],
+
+        'button' => [
+            'add' => '投票',
+            'remove' => '取消投票',
+            'used_up' => '你已经用光了投票次数',
         ],
     ],
     'entry' => [
-        '_' => '参加',
+        '_' => '列表',
         'login_required' => '请登录后再参加评选。',
         'silenced_or_restricted' => '账户受限时无法参加评选。',
         'preparation' => '我们正在准备这场评选，请耐心等待！',
         'over' => '感谢参与！提交已经关闭，投票即将开始。',
         'limit_reached' => '您提交的参赛文件大小超出限制',
         'drop_here' => '将您的参赛文件拖到此处',
+        'download' => '下载 .osz',
         'wrong_type' => [
             'art' => '只接受 .jpg 和 .png 格式的文件.',
             'beatmap' => '只接受 .osu 格式的文件.',
@@ -49,15 +57,16 @@ return [
         'download' => '下载模板',
     ],
     'vote' => [
-        'list' => '投票',
+        'list' => '票数',
         'count' => ':count 票',
+        'points' => ':count 分',
     ],
     'dates' => [
         'ended' => '结束于 :date',
 
         'starts' => [
             '_' => '开始于 :date',
-            'soon' => 'soon™',
+            'soon' => '不久之后',
         ],
     ],
     'states' => [

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -35,7 +35,7 @@
                 user-verification__message-spinner
                 js-user-verification--message-spinner
             ">
-                <i class="fa fa-spinner fa-pulse"></i>
+                {!! spinner() !!}
             </span>
 
             <span class="js-user-verification--message-text"></span>
@@ -61,16 +61,15 @@
                 [],
                 ['class' => 'js-user-verification--reissue user-verification__link']
             ),
-            'logout_link' => link_to_route(
-                'logout',
-                trans('user_verification.box.info.logout_link'),
-                [],
-                [
-                    'class' => 'js-logout-link user-verification__link',
-                    'data-method' => 'delete',
-                    'data-remote' => '1',
-                ]
-            ),
+            'logout_link' =>
+                "<button
+                    class='js-logout-link user-verification__link'
+                    type='button'
+                    data-method='delete'
+                    data-remote='1'
+                    data-url='".route('logout')."'
+                >".trans('user_verification.box.info.logout_link')."
+                </button>",
         ]) !!}
     </p>
 </div>

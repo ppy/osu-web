@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,7 +26,7 @@ return [
 
     'incidents' => [
         'title' => '진행중인 문제',
-        'automated' => '자동', // automated
+        'automated' => '자동',
     ],
 
     'online' => [
@@ -40,7 +40,7 @@ return [
 
     'recent' => [
         'incidents' => [
-            'title' => '최근 사건', // 확인 시 사건보다 문제가 더 부드러울 경우 문제로
+            'title' => '최근 사건',
             'state' => [
                 'resolved' => '해결됨',
                 'resolving' => '해결 중',

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,8 +19,19 @@
  */
 
 return [
-    'errors' => [
-        'csrf' => 'Toegang Geweigerd',
-        'missing' => 'Niet Gevonden',
+    'error' => [
+        'chat' => [
+            'empty' => '',
+            'limit_exceeded' => 'Je stuurt te snel berichten, wacht even voordat je het weer probeert.',
+            'too_long' => 'Het bericht dat u probeert te verzenden, is te lang.',
+        ],
+    ],
+
+    'scopes' => [
+        'identify' => 'Identificeer je en lees je openbare profiel.',
+
+        'friends' => [
+            'read' => 'Zie wie u volgt.',
+        ],
     ],
 ];

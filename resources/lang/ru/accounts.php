@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,63 +20,88 @@
 
 return [
     'edit' => [
-        'title' => 'Настройки <strong>профиля</strong>',
+        'title' => 'Настройки <strong>аккаунта</strong>',
         'title_compact' => 'настройки',
+        'username' => 'имя пользователя',
 
         'avatar' => [
             'title' => 'Аватар',
         ],
 
         'email' => [
-            'current' => 'текущий email',
-            'new' => 'новый email',
-            'new_confirmation' => 'повтори email',
-            'title' => 'Email',
+            'current' => 'текущая почта',
+            'new' => 'новая почта',
+            'new_confirmation' => 'напишите ещё раз',
+            'title' => 'Смена почты',
         ],
 
         'password' => [
             'current' => 'текущий пароль',
             'new' => 'новый пароль',
-            'new_confirmation' => 'повтори пароль',
-            'title' => 'Пароль',
+            'new_confirmation' => 'напишите ещё раз',
+            'title' => 'Смена пароля',
         ],
 
         'profile' => [
-            'title' => 'Дополнительная информация',
+            'title' => 'Профиль',
 
             'user' => [
-                'user_from' => 'проживание',
+                'user_from' => 'место проживания',
                 'user_interests' => 'интересы',
-                'user_msnm' => 'скайп',
-                'user_occ' => 'профессия',
-                'user_twitter' => 'твиттер',
+                'user_msnm' => 'skype',
+                'user_occ' => 'род деятельности',
+                'user_twitter' => 'twitter',
                 'user_website' => 'веб-сайт',
+                'user_discord' => 'discord',
             ],
         ],
 
         'signature' => [
-            'title' => 'Подпись',
-            'update' => 'обновить',
+            'title' => 'Подпись на форуме',
+            'update' => 'сохранить',
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
-        'email_subject' => 'osu! подтверждение смены почты',
-        'update' => 'изменить',
-        'updated' => 'Почта изменена',
+        'email_subject' => 'Подтверждение смены почты аккаунта osu!',
+        'update' => 'сменить',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! подтверждение нового пароля',
-        'update' => 'изменить',
-        'updated' => 'Пароль изменён',
+        'email_subject' => 'Подтверждение смены пароля аккаунта osu!',
+        'update' => 'сменить',
     ],
 
     'playstyles' => [
-        'title' => 'Стиль игры',
-        'mouse' => 'на мышке',
-        'keyboard' => 'на клавиатуре',
-        'tablet' => 'на планшете',
-        'touch' => 'на сенсорном экране',
+        'title' => 'Устройства',
+        'mouse' => 'мышь',
+        'keyboard' => 'клавиатура',
+        'tablet' => 'графический планшет',
+        'touch' => 'сенсорный экран',
+    ],
+
+    'privacy' => [
+        'title' => 'Приватность',
+        'friends_only' => 'блокировать личные сообщения от людей, не входящих в мой список друзей',
+        'hide_online' => 'скрыть ваше присутствие',
+    ],
+
+    'notifications' => [
+        'title' => 'Уведомления',
+        'topic_auto_subscribe' => 'автоматически включать уведомления для тем на форуме, когда вы их создаёте',
+    ],
+
+    'security' => [
+        'current_session' => 'это вы',
+        'end_session' => 'Закончить сеанс',
+        'end_session_confirmation' => 'Сеанс на этом устройстве будет немедленно завершён. Вы уверены?',
+        'last_active' => 'Был активен:',
+        'title' => 'Безопасность',
+        'web_sessions' => 'последняя активность',
     ],
 ];

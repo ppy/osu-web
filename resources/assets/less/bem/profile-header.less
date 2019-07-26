@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,63 +17,27 @@
  */
 
 .profile-header {
-  @top: profile-header;
-  .default-header-overlay();
-  background-color: #333;
-  background-size: cover;
-  background-position: center;
-  transition: background-image 120ms;
+  background-color: @osu-colour-b5;
 
-  &__actions {
+  &__cover-editor {
     position: absolute;
-    right: 20px;
-    top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    will-change: opacity;
+    right: @gutter-profile-page;
+    top: 10px;
 
     @media @desktop {
-      opacity: 0;
       right: 0;
-      width: 0;
-      bottom: 20px;
       top: auto;
-    }
-
-    .@{top}:hover & {
-      opacity: 1;
-    }
-
-    .@{top}--editing & {
-      opacity: 1;
+      bottom: 100%;
+      margin-bottom: 10px;
     }
   }
 
-  &__column {
-    margin: 0 10px;
-  }
-
-  &__container {
-    min-height: @profile-header-height;
-    padding: 30px 40px 0;
+  &__top {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
 
     @media @desktop {
       flex-direction: row;
-      align-items: flex-end;
-      justify-content: space-between;
     }
-  }
-  &__spinner {
-    .full-size();
-    .center-content();
-
-    font-size: 80px;
-    color: #fff;
-    background-color: fade(#000, 70%);
   }
 }

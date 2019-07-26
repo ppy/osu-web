@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,8 +26,8 @@ return [
         'issuing' => 'Emitiendo nuevo código...',
 
         'info' => [
-            'check_spam' => 'Asegúrate de revisar la carpeta de correos no deseados si no logras encontrar el correo.',
-            'recover' => 'Si no puedes entrar a tu correo o has olvidado cuál usaste, sigue este :link.',
+            'check_spam' => "Asegúrate de revisar tu carpeta de spam si no puede encontrar el correo electrónico.",
+            'recover' => "Si no puede acceder a tu correo electrónico o has olvidado cual usaste, por favor sigue el :link.",
             'recover_link' => 'proceso de recuperación de correo electrónico aquí',
             'reissue' => 'También puedes :reissue_link o :logout_link.',
             'reissue_link' => 'solicitar otro código',
@@ -36,7 +36,7 @@ return [
     ],
 
     'email' => [
-        'subject' => 'osu! - Verificación de cuenta',
+        'subject' => 'Verificación de la cuenta de osu!',
     ],
 
     'errors' => [

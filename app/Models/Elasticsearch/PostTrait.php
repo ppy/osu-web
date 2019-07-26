@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -28,9 +28,20 @@ trait PostTrait
 {
     use EsIndexable;
 
+    public function esRouting()
+    {
+        // Post and Topic should have the same routing for relationships to work.
+        return $this->topic_id;
+    }
+
+    public function getEsId()
+    {
+        return "post-{$this->post_id}";
+    }
+
     public function toEsJson()
     {
-        $mappings = static::ES_MAPPINGS;
+        $mappings = static::esMappings();
 
         $values = [];
         foreach ($mappings as $field => $mapping) {
@@ -41,6 +52,11 @@ trait PostTrait
 
             $values[$field] = $value;
         }
+
+        $values['type'] = [
+            'name' => 'posts',
+            'parent' => "topic-{$this->topic_id}",
+        ];
 
         return $values;
     }
@@ -57,13 +73,18 @@ trait PostTrait
         return static::on('mysql-readonly')->withoutGlobalScopes()->whereIn('forum_id', $forumIds);
     }
 
-    public static function esMappings()
+    public static function esSchemaFile()
     {
-        return static::ES_MAPPINGS;
+        return config_path('schemas/posts.json');
     }
 
     public static function esType()
     {
         return 'posts';
+    }
+
+    public function esShouldIndex()
+    {
+        return $this->forum->enable_indexing && !$this->trashed();
     }
 }

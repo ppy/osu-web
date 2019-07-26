@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -23,7 +23,7 @@
     title="{{ trans('forum.topics.moderate_move.title') }}"
 >
     <span class="btn-circle__content">
-        <i class="fa fa-arrows"></i>
+        <i class="fas fa-arrows-alt"></i>
     </span>
 </button>
 

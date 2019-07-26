@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,13 +23,45 @@ namespace App\Models;
 use App\Exceptions\ScoreRetrievalException;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property int $approved
+ * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussions BeatmapDiscussion
+ * @property int $beatmap_id
+ * @property Beatmapset $beatmapset
+ * @property int|null $beatmapset_id
+ * @property string|null $checksum
+ * @property int $countNormal
+ * @property int $countSlider
+ * @property int $countSpinner
+ * @property int $countTotal
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property float $diff_approach
+ * @property float $diff_drain
+ * @property float $diff_overall
+ * @property float $diff_size
+ * @property \Illuminate\Database\Eloquent\Collection $difficulty BeatmapDifficulty
+ * @property \Illuminate\Database\Eloquent\Collection $difficultyAttribs BeatmapDifficultyAttrib
+ * @property float $difficultyrating
+ * @property \Illuminate\Database\Eloquent\Collection $failtimes BeatmapFailtimes
+ * @property string|null $filename
+ * @property int $hit_length
+ * @property \Carbon\Carbon $last_update
+ * @property mixed $mode
+ * @property bool $orphaned
+ * @property int $passcount
+ * @property int $playcount
+ * @property int $playmode
+ * @property int $total_length
+ * @property int $user_id
+ * @property string $version
+ * @property string|null $youtube_preview
+ */
 class Beatmap extends Model
 {
     use SoftDeletes;
 
     protected $table = 'osu_beatmaps';
     protected $primaryKey = 'beatmap_id';
-    protected $guarded = [];
 
     protected $casts = [
         'orphaned' => 'boolean',
@@ -89,27 +121,47 @@ class Beatmap extends Model
 
     public function getDiffSizeAttribute($value)
     {
+        /*
+         * Matches client implementation.
+         * all round()s here use PHP_ROUND_HALF_EVEN to match C# default Math.Round.
+         * References:
+         * - (implmentation) https://github.com/ppy/osu/blob/c9276ce2b8b2eb728b1e5fc74f5f7ef81b0c6e09/osu.Game.Rulesets.Mania/Beatmaps/ManiaBeatmapConverter.cs#L36
+         * - (rounding) https://msdn.microsoft.com/en-us/library/wyk4d9cy(v=vs.110).aspx
+         */
         if ($this->mode === 'mania') {
-            // Matches client implementation.
-            // Reference: https://github.com/ppy/osu/blob/8c2cc4c85b369aee4c04b151cc28725cb3280a86/osu.Game.Rulesets.Mania/UI/ManiaRulesetContainer.cs#L87
+            $roundedValue = (int) round($value, 0, PHP_ROUND_HALF_EVEN);
+
             if ($this->convert) {
                 $sliderOrSpinner = $this->countSlider + $this->countSpinner;
                 $total = max(1, $sliderOrSpinner + $this->countNormal);
                 $percentSliderOrSpinner = $sliderOrSpinner / $total;
 
-                $accuracy = (int) round($this->diff_overall);
+                $accuracy = (int) round($this->diff_overall, 0, PHP_ROUND_HALF_EVEN);
 
                 if ($percentSliderOrSpinner < 0.2) {
                     return 7;
-                } elseif ($percentSliderOrSpinner < 0.3 || round($value) >= 5) {
+                } elseif ($percentSliderOrSpinner < 0.3 || $roundedValue >= 5) {
                     return $accuracy > 5 ? 7 : 5;
                 } elseif ($percentSliderOrSpinner > 0.6) {
                     return $accuracy > 4 ? 5 : 4;
                 } else {
-                    return clamp($accuracy + 1, 1, 7);
+                    return clamp($accuracy + 1, 4, 7);
                 }
             } else {
-                return (int) max(1, round($value));
+                return max(1, $roundedValue);
+            }
+        }
+
+        return $value;
+    }
+
+    public function getVersionAttribute($value)
+    {
+        if ($this->mode === 'mania') {
+            $keys = $this->diff_size;
+
+            if (strpos($value, "{$keys}k") === false && strpos($value, "{$keys}K") === false) {
+                return "[{$keys}K] {$value}";
             }
         }
 

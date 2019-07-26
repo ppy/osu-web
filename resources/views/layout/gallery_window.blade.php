@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -48,6 +48,8 @@
                 <button type="button" class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 
                 <button type="button" class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <div class="js-pswp-buttons"></div>
 
                 <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
                 <!-- element will get modifier active when preloader is running -->

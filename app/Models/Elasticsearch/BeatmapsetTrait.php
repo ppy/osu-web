@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,6 +35,11 @@ trait BeatmapsetTrait
         );
     }
 
+    public function esShouldIndex()
+    {
+        return !$this->trashed();
+    }
+
     public static function esIndexName()
     {
         return config('osu.elasticsearch.prefix').'beatmaps';
@@ -44,15 +49,13 @@ trait BeatmapsetTrait
     {
         return static::on('mysql-readonly')
             ->withoutGlobalScopes()
+            ->active()
             ->with('beatmaps'); // note that the with query will run with the default scopes.
     }
 
-    public static function esMappings()
+    public static function esSchemaFile()
     {
-        return array_merge(
-            static::ES_MAPPINGS_BEATMAPSETS,
-            ['difficulties' => ['properties' => static::ES_MAPPINGS_BEATMAPS]]
-        );
+        return config_path('schemas/beatmaps.json');
     }
 
     public static function esType()
@@ -62,7 +65,7 @@ trait BeatmapsetTrait
 
     private function esBeatmapsetValues()
     {
-        $mappings = static::ES_MAPPINGS_BEATMAPSETS;
+        $mappings = static::esMappings();
 
         $values = [];
         foreach ($mappings as $field => $mapping) {
@@ -79,7 +82,7 @@ trait BeatmapsetTrait
 
     private function esBeatmapValues()
     {
-        $mappings = static::ES_MAPPINGS_BEATMAPS;
+        $mappings = static::esMappings()['difficulties']['properties'];
 
         $values = [];
         // initialize everything to an array.

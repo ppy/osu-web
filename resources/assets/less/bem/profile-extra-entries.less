@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,21 +18,22 @@
 
 .profile-extra-entries {
   list-style: none;
+  display: flex;
+  flex-direction: column;
   padding: 0;
-  margin: 0;
-  @item-height: 25px;
+  margin: -2px 0;
+  @item-height: 22px;
+
+  &--kudosu {
+    margin-top: 20px;
+  }
 
   &__item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 5px;
-    height: @item-height;
-    white-space: nowrap;
-
-    &--show-more {
-      justify-content: center;
-    }
+    align-items: baseline;
+    margin: 2px 0;
+    line-height: @item-height;
 
     &--top-ranks {
       height: auto;
@@ -42,8 +43,9 @@
 
       &::before {
         .full-size();
+        content: ' ';
         margin: 0 -10px;
-        width: calc(100% ~'+' 20px);
+        width: calc(100% + 20px);
         pointer-events: none;
         will-change: opacity;
         transition: all 25ms ease-out;
@@ -60,11 +62,25 @@
     }
   }
 
+  &__kudosu-amount {
+    font-weight: inherit;
+    font-style: italic;
+    color: @osu-colour-l1;
+  }
+
+  &__link {
+    .link-default();
+
+    &--kudosu {
+      font-style: italic;
+    }
+  }
+
   &__detail {
     flex: 1;
     min-width: 0;
     display: flex;
-    align-items: center;
+    align-items: baseline;
 
     &--vertical {
       flex-direction: column;
@@ -81,11 +97,6 @@
       min-width: 0;
       flex: 1;
     }
-  }
-
-  &__detail-row {
-    display: flex;
-    align-items: flex-end;
   }
 
   &__text {
@@ -115,9 +126,16 @@
   }
 
   &__icon {
+    .center-content();
+    align-self: flex-start;
     flex: none;
-    width: @item-height;
+    width: 28px;
     height: @item-height;
-    margin-right: 10px;
+    margin-right: 5px;
+    font-size: 14px; // icon size
+  }
+
+  &__time {
+    color: @osu-colour-f1;
   }
 }

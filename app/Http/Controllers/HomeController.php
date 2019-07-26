@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,12 +22,13 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Libraries\CurrentStats;
-use App\Libraries\Search;
+use App\Libraries\Search\AllSearch;
 use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
-use App\Models\News;
+use App\Models\NewsPost;
 use App\Models\User;
+use App\Models\UserDonation;
 use Auth;
 use Request;
 use View;
@@ -42,7 +43,6 @@ class HomeController extends Controller
             'only' => [
                 'downloadQuotaCheck',
                 'search',
-                'quickSearch',
             ],
         ]);
 
@@ -53,7 +53,7 @@ class HomeController extends Controller
     {
         $post = new Post(['post_text' => Request::input('text')]);
 
-        return $post->bodyHTML;
+        return $post->bodyHTML();
     }
 
     public function downloadQuotaCheck()
@@ -68,19 +68,6 @@ class HomeController extends Controller
         return view('home.download');
     }
 
-    public function getIcons()
-    {
-        return view('home.icons')
-        ->with('icons', [
-            'osu',
-            'mode-osu',
-            'mode-mania',
-            'mode-fruits',
-            'mode-taiko',
-            'social-patreon',
-        ]);
-    }
-
     public function index()
     {
         $host = Request::getHttpHost();
@@ -91,7 +78,7 @@ class HomeController extends Controller
         }
 
         if (Auth::check()) {
-            $news = News\Index::all();
+            $news = NewsPost::default()->limit(NewsPost::DASHBOARD_LIMIT + 1)->get();
             $newBeatmapsets = Beatmapset::latestRankedOrApproved();
             $popularBeatmapsetsPlaycount = Beatmapset::mostPlayedToday();
             $popularBeatmapsetIds = array_keys($popularBeatmapsetsPlaycount);
@@ -110,47 +97,49 @@ class HomeController extends Controller
         }
     }
 
+    public function messageUser($user)
+    {
+        // TODO: REMOVE ONCE COMPLETELY LIVE
+        $canWebChat = false;
+        if (Auth::check()) {
+            if (Auth::user()->isPrivileged()) {
+                $canWebChat = true;
+            }
+            if (config('osu.chat.webchat_enabled_supporter') && Auth::user()->isSupporter()) {
+                $canWebChat = true;
+            }
+            if (config('osu.chat.webchat_enabled_all')) {
+                $canWebChat = true;
+            }
+        }
+
+        if (!$canWebChat) {
+            return ujs_redirect("https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u={$user}");
+        } else {
+            return ujs_redirect(route('chat.index', ['sendto' => $user]));
+        }
+    }
+
     public function osuSupportPopup()
     {
         return view('objects._popup_support_osu');
     }
 
-    public function quickSearch()
-    {
-        $search = new Search([
-            'query' => Request::input('query'),
-            'limit' => 5,
-        ]);
-
-        if (!$search->hasQuery()) {
-            return response([], 204);
-        }
-
-        return view('home.nav_search_result', compact('search'));
-    }
-
     public function search()
     {
-        if (Request::input('mode') === 'beatmapset') {
-            return ujs_redirect(route('beatmapsets.index', ['q' => Request::input('query')]));
+        if (request('mode') === 'beatmapset') {
+            return ujs_redirect(route('beatmapsets.index', ['q' => request('query')]));
         }
 
-        $params = array_merge(Request::all(), [
-            'user' => Auth::user(),
-        ]);
+        $allSearch = new AllSearch(request(), ['user' => Auth::user()]);
+        $isSearchPage = true;
 
-        $search = new Search($params);
-
-        if ($search->mode === Search::DEFAULT_MODE) {
-            $search->params['limit'] = 8;
-        }
-
-        return view('home.search', compact('search'));
+        return view('home.search', compact('allSearch', 'isSearchPage'));
     }
 
     public function setLocale()
     {
-        $newLocale = get_valid_locale(Request::input('locale'));
+        $newLocale = get_valid_locale(Request::input('locale')) ?? config('app.fallback_locale');
         App::setLocale($newLocale);
 
         if (Auth::check()) {
@@ -165,35 +154,84 @@ class HomeController extends Controller
 
     public function supportTheGame()
     {
-        return view('home.support-the-game')
-        ->with('data', [
-            // why support's blocks
-            'blocks' => [
-                // localization's name => icon
-                'dev' => 'user',
-                'time' => 'clock-o',
-                'ads' => 'thumbs-up',
-                'goodies' => 'star',
-            ],
+        if (Auth::check()) {
+            $user = Auth::user();
 
-            // supporter's perks
-            'perks' => [
-                // localization's name => icon
-                'osu_direct' => 'search',
-                'auto_downloads' => 'cloud-download',
-                'upload_more' => 'cloud-upload',
-                'early_access' => 'flask',
-                'customisation' => 'picture-o',
-                'beatmap_filters' => 'filter',
-                'yellow_fellow' => 'fire',
-                'speedy_downloads' => 'dashboard',
-                'change_username' => 'magic',
-                'skinnables' => 'paint-brush',
-                'feature_votes' => 'thumbs-up',
-                'sort_options' => 'trophy',
-                'feel_special' => 'heart',
-                'more_to_come' => 'gift',
-            ],
-        ]);
+            // current status
+            $expiration = optional($user->osu_subscriptionexpiry)->addDays(1);
+            $current = $expiration !== null ? $expiration->isFuture() : false;
+
+            // purchased
+            $tagPurchases = $user->supporterTagPurchases;
+            $dollars = $tagPurchases->sum('amount');
+            $cancelledTags = $tagPurchases->where('cancel', true)->count() * 2; // 1 for purchase transaction and 1 for cancel transaction
+            $tags = $tagPurchases->count() - $cancelledTags;
+
+            // gifted
+            $gifted = $tagPurchases->where('target_user_id', '<>', $user->user_id);
+            $giftedDollars = $gifted->sum('amount');
+            $canceledGifts = $gifted->where('cancel', true)->count() * 2; // 1 for purchase transaction and 1 for cancel transaction
+            $giftedTags = $gifted->count() - $canceledGifts;
+
+            $supporterStatus = [
+                // current status
+                'current' => $current,
+                'expiration' => $expiration,
+                // purchased
+                'dollars' => currency($dollars, 2, false),
+                'tags' => i18n_number_format($tags),
+                // gifted
+                'giftedDollars' => currency($giftedDollars, 2, false),
+                'giftedTags' => i18n_number_format($giftedTags),
+            ];
+
+            if ($current) {
+                $lastTagPurchaseDate = UserDonation::where('target_user_id', $user->user_id)
+                    ->orderBy('timestamp', 'desc')
+                    ->pluck('timestamp')
+                    ->first();
+
+                if ($lastTagPurchaseDate === null) {
+                    $lastTagPurchaseDate = $expiration->copy()->subMonths(1);
+                }
+
+                $total = $expiration->diffInDays($lastTagPurchaseDate);
+                $used = $lastTagPurchaseDate->diffInDays();
+
+                $supporterStatus['remainingRatio'] = 100 - round(($used / $total) * 100, 2);
+            }
+        }
+
+        return view('home.support-the-game')
+            ->with('supporterStatus', $supporterStatus ?? [])
+            ->with('data', [
+                // why support's blocks
+                'blocks' => [
+                    // localization's name => icon
+                    'dev' => 'fas fa-user',
+                    'time' => 'far fa-clock',
+                    'ads' => 'fas fa-thumbs-up',
+                    'goodies' => 'fas fa-star',
+                ],
+
+                // supporter's perks
+                'perks' => [
+                    // localization's name => icon
+                    'osu_direct' => 'fas fa-search',
+                    'auto_downloads' => 'fas fa-download',
+                    'upload_more' => 'fas fa-cloud-upload-alt',
+                    'early_access' => 'fas fa-flask',
+                    'customisation' => 'far fa-image',
+                    'beatmap_filters' => 'fas fa-filter',
+                    'yellow_fellow' => 'fas fa-fire',
+                    'speedy_downloads' => 'fas fa-tachometer-alt',
+                    'change_username' => 'fas fa-magic',
+                    'skinnables' => 'fas fa-paint-brush',
+                    'feature_votes' => 'fas fa-thumbs-up',
+                    'sort_options' => 'fas fa-trophy',
+                    'feel_special' => 'fas fa-heart',
+                    'more_to_come' => 'fas fa-gift',
+                ],
+            ]);
     }
 }

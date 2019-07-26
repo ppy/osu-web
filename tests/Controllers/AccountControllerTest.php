@@ -26,11 +26,10 @@ class AccountControllerTest extends TestCase
         seeded_shuffle($newOrder);
 
         $this->actingAs($this->user())
-            ->withSession(['verified' => UserVerification::VERIFIED])
-            ->json('PUT', route('account.update'), [
+            ->json('PUT', route('account.options'), [
                 'order' => $newOrder,
             ])
-            ->assertJsonFragment(['profileOrder' => $newOrder]);
+            ->assertJsonFragment(['profile_order' => $newOrder]);
     }
 
     public function testDuplicatesInProfileOrder()
@@ -41,11 +40,10 @@ class AccountControllerTest extends TestCase
         $newOrderWithDuplicate[] = $newOrder[0];
 
         $this->actingAs($this->user())
-            ->withSession(['verified' => UserVerification::VERIFIED])
-            ->json('PUT', route('account.update'), [
+            ->json('PUT', route('account.options'), [
                 'order' => $newOrderWithDuplicate,
             ])
-            ->assertJsonFragment(['profileOrder' => $newOrder]);
+            ->assertJsonFragment(['profile_order' => $newOrder]);
     }
 
     public function testInvalidIdsInProfileOrder()
@@ -56,11 +54,10 @@ class AccountControllerTest extends TestCase
         $newOrderWithInvalid[] = 'test';
 
         $this->actingAs($this->user())
-            ->withSession(['verified' => UserVerification::VERIFIED])
-            ->json('PUT', route('account.update'), [
+            ->json('PUT', route('account.options'), [
                 'order' => $newOrderWithInvalid,
             ])
-            ->assertJsonFragment(['profileOrder' => $newOrder]);
+            ->assertJsonFragment(['profile_order' => $newOrder]);
     }
 
     public function testUpdateEmail()
@@ -76,7 +73,7 @@ class AccountControllerTest extends TestCase
                     'user_email_confirmation' => $newEmail,
                 ],
             ])
-            ->assertStatus(200);
+            ->assertSuccessful();
 
         $this->assertSame($newEmail, $this->user->fresh()->user_email);
 
@@ -112,7 +109,7 @@ class AccountControllerTest extends TestCase
                     'password_confirmation' => $newPassword,
                 ],
             ])
-            ->assertStatus(200);
+            ->assertSuccessful();
 
         $this->assertTrue(Hash::check($newPassword, $this->user->fresh()->user_password));
     }

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,91 +15,100 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="nav-popup nav-popup--sections">
-    <div class="nav-popup__section nav-popup__section--blank"></div>
+<div class="
+    login-box
+    @foreach ($modifiers ?? [] as $modifier)
+        login-box--{{ $modifier }}
+    @endforeach
+">
     <div
-        class="nav-popup__section nav-popup__section--register js-nav-popup--submenu"
-        data-visibility-animation="none"
-        data-nav-sub-mode="signup"
+        class="
+            login-box__content
+            js-click-menu
+            js-nav2--centered-popup
+            js-nav2--login-box
+        "
+        data-click-menu-id="nav2-login-box"
+        data-visibility="hidden"
     >
-        <h2 class="nav-popup__row nav-popup__row--title">{{ trans('layout.popup_login.register.title') }}</h2>
+        {!! Form::open([
+            'url' => route('login'),
+            'class' => '
+                login-box__section
+                login-box__section--login
+                js-login-form
+                js-nav-popup--submenu
+            ',
+            'data-remote' => true,
+        ]) !!}
+            <h2 class="login-box__row login-box__row--title">{{ trans('layout.popup_login.login.title') }}</h2>
 
-        <div class="nav-popup__row nav-popup__row--full">{{ trans('layout.popup_login.register.info') }}</div>
-
-        <div class="nav-popup__row nav-popup__row--actions nav-popup__row--with-gutter">
-            <div class="nav-popup__action"></div>
-
-            <div class="nav-popup__action">
-                <a href="{{ osu_url('user.signup') }}" class="btn-osu-big btn-osu-big--nav-popup">
-                    <div class="btn-osu-big__content">
-                        <span class="btn-osu-big__left">
-                            {{ trans('users.signup._') }}
-                        </span>
-
-                        <span class="fa fa-pencil-square-o"></span>
-                    </div>
-                </a>
+            <div class="login-box__row login-box__row--inputs">
+                <input
+                    class="login-box__form-input js-login-form-input js-nav2--autofocus"
+                    name="username"
+                    placeholder="{{ trans('layout.popup_login.login.email') }}"
+                    required
+                />
+                <input
+                    class="login-box__form-input js-login-form-input"
+                    name="password"
+                    type="password"
+                    placeholder="{{ trans('layout.popup_login.login.password') }}"
+                    required
+                />
             </div>
-        </div>
-    </div>
 
-    {!! Form::open([
-        'url' => route('login'),
-        'class' => '
-            nav-popup__section
-            nav-popup__section--login
-            js-login-form
-            js-nav-popup--submenu
-        ',
-        'data-remote' => true,
-        'data-visibility-animation' => 'none',
-        'data-nav-sub-mode' => 'login',
-    ]) !!}
-        <h2 class="nav-popup__row nav-popup__row--title">{{ trans('layout.popup_login.login.title') }}</h2>
+            <div class="login-box__row login-box__row--error js-login-form--error"></div>
 
-        <div class="nav-popup__row nav-popup__row--full nav-popup__row--error js-login-form--error"></div>
-
-        <div class="nav-popup__row nav-popup__row--with-gutter nav-popup__row--xs-vertical">
-            <input
-                class="nav-popup__form-input js-nav-auto-focus"
-                name="username"
-                placeholder="{{ trans('layout.popup_login.login.email') }}"
-                required
-            />
-            <input
-                class="nav-popup__form-input"
-                name="password"
-                type="password"
-                placeholder="{{ trans('layout.popup_login.login.password') }}"
-                required
-            />
-        </div>
-
-        <div class="nav-popup__row nav-popup__row--actions nav-popup__row--with-gutter">
-            <div class="nav-popup__action">
-                <a href="{{ route('password-reset') }}" class="nav-popup__link js-nav--hide">
+            <div class="login-box__row">
+                <a href="{{ route('password-reset') }}" class="login-box__link js-nav--hide">
                     {{ trans('layout.popup_login.login.forgot') }}
                 </a>
             </div>
 
-            <div class="nav-popup__action">
-                <button
-                    class="btn-osu-big btn-osu-big--nav-popup"
-                    data-disable-with="{{ trans('users.login.button_posting') }}"
-                >
-                    <div class="btn-osu-big__content">
-                        <span class="btn-osu-big__left">
-                            {{ trans('users.login._') }}
-                        </span>
+            <div class="login-box__row login-box__row--actions">
+                <div class="login-box__action">
+                    <button
+                        class="btn-osu-big btn-osu-big--nav-popup"
+                        data-disable-with="{{ trans('users.login.button_posting') }}"
+                    >
+                        <div class="btn-osu-big__content">
+                            <span class="btn-osu-big__left">
+                                {{ trans('users.login._') }}
+                            </span>
 
-                        <span class="fa fa-sign-in"></span>
-                    </div>
-                </button>
+                            <span class="fas fa-fw fa-sign-in-alt"></span>
+                        </div>
+                    </button>
+                </div>
             </div>
-        </div>
-    {!! Form::close() !!}
+        {!! Form::close() !!}
 
-    <div class="nav-popup__bar">
-        <span class="bar u-section-bg"></span>
+        @if ($withRegister ?? true)
+            <div class="login-box__section login-box__section--register">
+                <h2 class="login-box__row login-box__row--title">
+                    {{ trans('layout.popup_login.register.title') }}
+                </h2>
+
+                <div class="login-box__row">
+                    {{ trans('layout.popup_login.register.info') }}
+                </div>
+
+                <div class="login-box__row login-box__row--actions">
+                    <div class="login-box__action">
+                        <a href="{{ osu_url('user.signup') }}" class="btn-osu-big btn-osu-big--nav-popup">
+                            <div class="btn-osu-big__content">
+                                <span class="btn-osu-big__left">
+                                    {{ trans('users.signup._') }}
+                                </span>
+
+                                <span class="fas fa-fw fa-child"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 </div>

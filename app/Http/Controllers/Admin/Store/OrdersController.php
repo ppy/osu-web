@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Store;
 
 use App\Http\Controllers\Admin\Controller;
-use App\Models\Store;
+use App\Models\Store\Order;
 use Request;
 
 class OrdersController extends Controller
@@ -18,7 +18,7 @@ class OrdersController extends Controller
 
     public function show($orderId = null)
     {
-        $orders = Store\Order::with('user', 'address', 'address.country', 'items.product');
+        $orders = Order::with('user', 'address', 'address.country', 'items.product');
 
         if ($orderId) {
             $orders->where('orders.order_id', $orderId);
@@ -28,7 +28,7 @@ class OrdersController extends Controller
 
         $ordersItemsQuantities = $orders->itemsQuantities();
 
-        $orders = $orders->orderBy('created_at')->get();
+        $orders = $orders->orderBy('paid_at', 'asc')->get();
 
         $productId = (int) Request::input('product');
         if ($productId) {
@@ -42,7 +42,7 @@ class OrdersController extends Controller
 
     public function ship()
     {
-        $order = Store\Order::where('status', 'paid')
+        $order = Order::where('status', 'paid')
             ->where('tracking_code', 'like', 'EJ%')
             ->get();
 
@@ -56,7 +56,7 @@ class OrdersController extends Controller
 
     public function update($id)
     {
-        $order = Store\Order::findOrFail($id);
+        $order = Order::findOrFail($id);
 
         if ($order->status !== 'paid') {
             return error_popup("order status {$order->status} is invalid.");

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -29,16 +29,25 @@ class BBCodeFromDBTest extends TestCase
         $path = __DIR__.'/bbcode_examples';
 
         foreach (glob("{$path}/*.db.txt") as $dbFilePath) {
-            $htmlFilePath = preg_replace("/\.db\.txt$/", '.html', $dbFilePath);
+            $htmlFilePath = preg_replace('/\.db\.txt$/', '.html', $dbFilePath);
             $text->text = trim(file_get_contents($dbFilePath));
-            $referenceHtmlOutput = $this->wrapDiv(str_replace("\n", '', trim(file_get_contents($htmlFilePath))));
 
-            $this->assertSame($referenceHtmlOutput, $text->toHTML());
+            $output = $this->normalizeHTML($text->toHTML());
+            $referenceOutput = $this->normalizeHTML("<div class='bbcode'>".file_get_contents($htmlFilePath).'</div>');
+
+            $this->assertSame($referenceOutput, $output);
         }
     }
 
-    private function wrapDiv($text)
+    public function testRemoveBlockQuotes()
     {
-        return "<div class='bbcode'>{$text}</div>";
+        $path = __DIR__.'/bbcode_examples/remove_quotes';
+
+        foreach (glob("$path/*.db.txt") as $dbFilePath) {
+            $expectedFilePath = preg_replace('/\.db\.txt$/', '.expected.txt', $dbFilePath);
+            $text = BBCodeFromDB::removeBlockQuotes(file_get_contents($dbFilePath));
+
+            $this->assertStringEqualsFile($expectedFilePath, $text);
+        }
     }
 }

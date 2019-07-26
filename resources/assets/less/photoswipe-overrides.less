@@ -1,0 +1,59 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.pswp {
+  z-index: 9000;
+
+  &__ui {
+    position: static;
+  }
+
+  &__bg {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  &__button {
+    opacity: 0.75;
+    color: #fff;
+
+    &--contest-vote {
+      /*
+       * Overrides original sytle.
+       * The second selector is needed to override retina version that is slightly
+       * different than what we use.
+       */
+      && {
+        background-image: none;
+      }
+    }
+
+    &--contest-vote-active {
+      opacity: 0.9;
+      color: @contest-selected-colour;
+    }
+
+    // last so it overrides everything else
+    &--disabled {
+      cursor: default;
+
+      .link-hover({
+        opacity: 0.75;
+      });
+    }
+  }
+}

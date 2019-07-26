@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -48,6 +48,7 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
             'ranked_score' => $stats->ranked_score,
             'hit_accuracy' => $stats->accuracy_new,
             'play_count' => $stats->playcount,
+            'play_time' => $stats->total_seconds_played,
             'total_score' => $stats->total_score,
             'total_hits' => $stats->totalHits(),
             'maximum_combo' => $stats->max_combo,

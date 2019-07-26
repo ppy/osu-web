@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@if (priv_check('ForumTopicModerate', $topic)->can())
+@if ($userCanModerate)
     <button
         type="button"
         class="
@@ -26,7 +26,7 @@
             {{ $topic->isLocked() ? 'btn-circle--activated' : '' }}
         "
         data-topic-id="{{ $topic->topic_id }}"
-        title="{{ trans('forum.topics.lock.lock-'.(int) !$topic->isLocked()) }}"
+        title="{{ trans('forum.topics.lock.to_'.(int) !$topic->isLocked()) }}"
         data-remote="1"
         data-url="{{ route('forum.topics.lock', [
             $topic,
@@ -35,7 +35,7 @@
         data-method="post"
     >
         <span class="btn-circle__content">
-            <i class="fa fa-lock"></i>
+            <i class="fas fa-lock"></i>
         </span>
     </button>
 @else
@@ -46,7 +46,7 @@
             title="{{ trans('forum.topics.lock.is_locked') }}"
         >
             <span class="btn-circle__content">
-                <i class="fa fa-lock"></i>
+                <i class="fas fa-lock"></i>
             </span>
         </div>
     @endif

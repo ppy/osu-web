@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@
     data-toggle="modal"
     data-target="#forum-search-modal"
 >
-    <i class="fa fa-search"></i>
+    <i class="fas fa-search"></i>
 </a>
 
 @section("script")
@@ -37,7 +37,7 @@
                         <div class="text-addon-append">
                             <input type="text" class="form-control" />
                             <button type="submit">
-                                <i class="fa fa-search"></i>
+                                <i class="fas fa-search"></i>
                             </button>
                         </div>
 
@@ -63,7 +63,7 @@
                             <span>#</span>
                             <input type="text" class="form-control modal-af" name="n" placeholder="{{ trans("forum.search.post_number_input") }}" />
                             <button type="submit">
-                                <i class="fa fa-angle-right"></i>
+                                <i class="fas fa-angle-right"></i>
                             </button>
                         </form>
                         {{
@@ -77,7 +77,7 @@
             </div>
             <div class="modal-footer">
                 <span class="forum-search-logo">
-                    <i class="fa fa-search"></i>
+                    <i class="fas fa-search"></i>
                 </span>
             </div>
         </div></div>

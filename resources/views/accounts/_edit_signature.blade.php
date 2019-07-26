@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -36,14 +36,14 @@
                 </div>
             </div>
 
-            <label class="account-edit-entry account-edit-entry--wide account-edit-entry--no-label">
+            <div class="account-edit-entry account-edit-entry--wide account-edit-entry--no-label">
                 <textarea
                     class="account-edit-entry__input js-post-preview--auto js-bbcode-body"
                     name="user[user_sig]"
                     rows=6
                 >{{ bbcode_for_editor(Auth::user()->user_sig, Auth::user()->user_sig_bbcode_uid) }}</textarea>
 
-            </label>
+            </div>
 
             <div class="account-edit-entry account-edit-entry--wide account-edit-entry--no-label">
                 <div class="account-edit-entry__misc-info">
@@ -61,7 +61,7 @@
                         </div>
 
                         <div class="btn-osu-big__icon">
-                            <i class="fa fa-check"></i>
+                            <i class="fas fa-check"></i>
                         </div>
                     </div>
                 </button>

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -18,7 +18,7 @@
 @extends('contests.base')
 
 @section('contest-content')
-    <div class="contest__description">{!! Markdown::convertToHtml($contestMeta->description_voting) !!}</div>
+    <div class="contest__description">{!! markdown($contestMeta->description_voting) !!}</div>
     @include('contests._countdown', ['deadline' => $contestMeta->currentPhaseEndDate()])
     @if ($contestMeta->voting_ends_at !== null && $contestMeta->voting_ends_at->isPast())
         <div class='contest__voting-notice'>{{trans('contest.voting.over')}}</div>
@@ -31,7 +31,7 @@
                 <div class='panel contest__group'>
                     <a href="#{{$contest->id}}" class='contest__group-heading' data-toggle='collapse' data-parent='#contests-accordion' aria-expanded='false'>
                         <span>{!! $contest->name !!}</span>
-                        <i class="contest__section-toggle fa fa-fw fa-chevron-down"></i>
+                        <i class="contest__section-toggle fas fa-fw fa-chevron-down"></i>
                     </a>
                     <div class='contest__multi-panel collapse' id="{{$contest->id}}">
                         @include('contests._voting-entrylist')

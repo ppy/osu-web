@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,11 +25,36 @@ use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
 use Cache;
 
+/**
+ * @property \Carbon\Carbon|null $created_at
+ * @property string $description_enter
+ * @property string|null $description_voting
+ * @property \Illuminate\Database\Eloquent\Collection $entries ContestEntry
+ * @property \Carbon\Carbon|null $entry_ends_at
+ * @property mixed $entry_shape
+ * @property \Carbon\Carbon|null $entry_starts_at
+ * @property json|null $extra_options
+ * @property string $header_url
+ * @property int $id
+ * @property mixed $link_icon
+ * @property int $max_entries
+ * @property int $max_votes
+ * @property string $name
+ * @property int $show_votes
+ * @property mixed $type
+ * @property mixed $unmasked
+ * @property \Carbon\Carbon|null $updated_at
+ * @property bool $visible
+ * @property \Illuminate\Database\Eloquent\Collection $votes ContestVote
+ * @property \Carbon\Carbon|null $voting_ends_at
+ * @property \Carbon\Carbon|null $voting_starts_at
+ */
 class Contest extends Model
 {
     protected $dates = ['entry_starts_at', 'entry_ends_at', 'voting_starts_at', 'voting_ends_at'];
     protected $casts = [
         'extra_options' => 'json',
+        'visible' => 'boolean',
     ];
 
     public function entries()
@@ -116,7 +141,7 @@ class Contest extends Model
 
     public function getLinkIconAttribute()
     {
-        return $this->extra_options['link_icon'] ?? 'cloud-download';
+        return $this->extra_options['link_icon'] ?? 'download';
     }
 
     public function setLinkIconAttribute($icon)
@@ -238,10 +263,9 @@ class Contest extends Model
             if (!$this->show_votes) {
                 if ($this->unmasked) {
                     // For unmasked contests, we sort alphabetically.
-                    $sorted_entries = array_sort($contestJson['entries'], function ($item) {
-                        return $item['title'];
+                    usort($contestJson['entries'], function ($a, $b) {
+                        return strnatcasecmp($a['title'], $b['title']);
                     });
-                    $contestJson['entries'] = array_values($sorted_entries);
                 } else {
                     // We want the results to appear randomized to the user but be
                     // deterministic (i.e. we don't want the rows shuffling each time

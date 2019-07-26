@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,17 +18,11 @@
 
 .beatmap-pack-download {
   line-height: 1.75;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid @osu-colour-b4;
   padding: @beatmappack-listing--gutter;
 
-  &__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
   &__link {
-    .link-pink-dark();
+    .link-default();
     font-size: 120%;
     font-weight: bold;
   }

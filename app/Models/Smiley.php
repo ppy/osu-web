@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,16 @@ namespace App\Models;
 use Cache;
 use DB;
 
+/**
+ * @property string $code
+ * @property int $display_on_posting
+ * @property string $emotion
+ * @property int $smiley_height
+ * @property int $smiley_id
+ * @property int $smiley_order
+ * @property string $smiley_url
+ * @property int $smiley_width
+ */
 class Smiley extends Model
 {
     protected $table = 'phpbb_smilies';

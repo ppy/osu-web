@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,13 +20,15 @@
 
 return [
     'match' => [
-        'header' => 'Multiplayer Spel',
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
-        ],
+        'beatmap-deleted' => 'raderad beatmap',
+        'difference' => 'med :difference',
+        'failed' => 'MISSLYCKADES',
+        'header' => 'Multiplayer Matcher',
+        'in-progress' => '(pågående match)',
+        'in_progress_spinner_label' => 'matchen är pågående',
+        'loading-events' => 'Laddar händelser...',
+        'winner' => ':team vann',
+
         'events' => [
             'player-left' => ':user lämnade spelet',
             'player-joined' => ':user gick med i spelet',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'spelet upplöstes',
             'host-changed-no-user' => 'värden ändrades',
         ],
-        'in-progress' => '(pågående spel)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Precision',
@@ -50,23 +52,25 @@ return [
                 'score' => 'Poäng',
             ],
         ],
-        'failed' => 'MISSLYCKADES',
+
+        'team-types' => [
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Lag mot lag',
+            'tag-team-vs' => 'Tag Lag VS',
+        ],
+
         'teams' => [
             'blue' => 'Blått Lag',
             'red' => 'Rött Lag',
         ],
-        'winner' => ':team vann',
-        'difference' => 'med :difference',
-        'loading-events' => 'Laddar händelser...',
-        'more-events' => 'visa alla...',
-        'beatmap-deleted' => 'raderad beatmap',
     ],
     'game' => [
         'scoring-type' => [
             'score' => 'Högsta Poäng',
             'accuracy' => 'Högsta Precision',
             'combo' => 'Högsta Kombo',
-            'scorev2' => 'Poäng V2',
+            'scorev2' => 'Score V2',
         ],
     ],
 ];

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,6 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@address-box-padding: 20px;
+
 .address-list {
   margin-top: 20px;
 }
@@ -25,7 +27,7 @@
   background: white;
   border: 3px solid transparent;
   font-style: italic;
-  padding: 20px;
+  padding: @address-box-padding;
   &:last-child {
     margin-bottom: 20px;
   }
@@ -47,14 +49,14 @@
 }
 
 .address-delete-button {
+  .reset-input();
   color: @gray-light;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -@address-box-padding;
+  right: -@address-box-padding;
   z-index: 1;
-  .btn-flat;
-  padding: 10px 15px;
-  font-size: 24px;
+  padding: @address-box-padding;
+  font-size: 20px;
 
   &:hover {
     color: red;
@@ -141,56 +143,6 @@
   font-style: italic;
   .list-group;
   line-height: 36px;
-
-  li {
-    .default-border-radius();
-    .default-box-shadow();
-    list-style: none;
-    padding: 10px;
-    margin: 0 0 5px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    flex-wrap: wrap;
-    @media @desktop {
-      flex-wrap: nowrap;
-    }
-
-    .product-name {
-      flex: 0 1 auto;
-    }
-
-    > form {
-      flex: 0 1 100%;
-      @media @desktop {
-        flex: 0 0 300px;
-      }
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-
-      .item-quantity {
-        flex: 0 0 100px;
-      }
-
-      .subtotal {
-        flex: 0 0 150px;
-        padding: 0 20px;
-      }
-
-      button {
-        &:hover {
-          color: #f00;
-        }
-
-        &:active {
-          box-shadow: none; // remove bootstrap background
-        }
-      }
-    }
-  }
 }
 
 .cart-footer {
@@ -252,7 +204,7 @@ table.order-line-items {
 
 }
 
-.store_getCheckout, .store_getCart {
+.store_getCheckout, .store_cart-show {
   h1 { font-size: 24px; }
   h2 { font-size: 18px; }
   h3 { font-size: 15px; }

@@ -1,0 +1,49 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+ .chat-logo {
+  .center-content();
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  flex-shrink: 0;
+  background: @osu-colour-b6;
+
+  @media @mobile {
+    display: none;
+  }
+
+  &__icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
+    border-radius: 50%;
+    background-size: (@gutter-desktop - 30px);
+    background-position: center;
+    background-repeat: no-repeat;
+
+    box-shadow: inset 0 0 0 2px @osu-colour-h1;
+    background-image: url('/images/icons/chat.svg');
+  }
+
+  &__title {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+    font-size: 18px;
+    color: white;
+  }
+}

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,8 +26,8 @@ return [
         'issuing' => '새 코드 발급 중...',
 
         'info' => [
-            'check_spam' => '아직 메일을 받지 못하셨다면, 스팸 메일함을 확인해보세요.',
-            'recover' => '현재 이메일을 확인할 수 없거나, 이전에 사용하시던 이메일을 잊어버리셨다면, :link을 따라주시기 바랍니다.',
+            'check_spam' => "아직 메일을 받지 못하셨다면, 스팸 메일함을 확인해보세요.",
+            'recover' => "현재 이메일을 확인할 수 없거나, 이전에 사용하시던 이메일을 잊어버리셨다면, :link을 따라주시기 바랍니다.",
             'recover_link' => '이메일 복구 과정',
             'reissue' => ':reissue_link받거나, :logout_link하실 수도 있습니다.',
             'reissue_link' => '새 코드를 발급',

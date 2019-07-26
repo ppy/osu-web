@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -19,21 +19,23 @@
 export class StoreXsolla
   @promiseInit: (orderNumber) ->
     Promise.all([
-      StoreXsolla.fetchToken(), StoreXsolla.fetchScript()
+      StoreXsolla.fetchToken(orderNumber), StoreXsolla.fetchScript()
     ]).then (values) ->
       token = values[0]
       options = StoreXsolla.optionsWithToken(token)
-      StoreXsolla.onXsollaComplete(orderNumber)
+      StoreXsolla.onXsollaReady(orderNumber)
       XPayStationWidget.init(options)
+
 
   @fetchScript: ->
     new Promise (resolve, reject) ->
       loading = window.turbolinksReload.load 'https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js', resolve
       resolve() unless loading
 
-  @fetchToken: ->
+
+  @fetchToken: (orderNumber) ->
     new Promise (resolve, reject) ->
-      $.post laroute.route('payments.xsolla.token')
+      $.post laroute.route('payments.xsolla.token'), { orderNumber }
       .done (data) ->
         # Make sure laroute hasn't trolled us.
         return reject(message: 'wrong token length') unless data.length == 32
@@ -41,11 +43,13 @@ export class StoreXsolla
       .fail (xhr) ->
         reject(xhr: xhr)
 
+
   @optionsWithToken: (token) ->
     access_token: token,
     sandbox: process.env.PAYMENT_SANDBOX # injected by webpack.DefinePlugin
 
-  @onXsollaComplete: (orderNumber) ->
+
+  @onXsollaReady: (orderNumber) ->
     done = false
 
     XPayStationWidget.on XPayStationWidget.eventTypes.STATUS_DONE, ->

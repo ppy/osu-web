@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,15 +21,21 @@
 namespace App\Models\Score\Best;
 
 use App\Libraries\ModsHelper;
+use App\Libraries\ReplayFile;
+use App\Models\Beatmap;
+use App\Models\ReplayViewCount;
+use App\Models\Reportable;
 use App\Models\Score\Model as BaseModel;
 use App\Models\User;
-use Aws\S3\S3Client;
 use DB;
-use League\Flysystem\AwsS3v2\AwsS3Adapter;
-use League\Flysystem\Filesystem;
 
+/**
+ * @property User $user
+ */
 abstract class Model extends BaseModel
 {
+    use Reportable;
+
     public $position = null;
     public $weight = null;
     public $macros = [
@@ -38,77 +44,26 @@ abstract class Model extends BaseModel
         'userBest',
     ];
 
-    public function getReplay()
+    const RANK_TO_STATS_COLUMN_MAPPING = [
+        'A' => 'a_rank_count',
+        'S' => 's_rank_count',
+        'SH' => 'sh_rank_count',
+        'X' => 'x_rank_count',
+        'XH' => 'xh_rank_count',
+    ];
+
+    public function replayFile() : ?ReplayFile
     {
-        // this s3 retrieval should probably be moved out of the model going forward
-        if (!$this->replay) {
-            return;
-        }
-        $config = config('filesystems.disks.s3');
-        $client = S3Client::factory([
-            'key' => $config['key'],
-            'secret' => $config['secret'],
-            'region' => $config['region'],
-        ]);
-        $adapter = new AwsS3Adapter($client, "replay-{$this->gameModeString()}");
-        $s3 = new Filesystem($adapter);
-
-        try {
-            $replay = $s3->read($this->score_id);
-        } catch (Exception $e) {
-            $replay = null;
+        if ($this->replay) {
+            return new ReplayFile($this);
         }
 
-        return $replay;
-    }
-
-    public function position()
-    {
-        if ($this->position === null) {
-            /*
-             * pp is float and comparing floats is inaccurate thanks to
-             * all the castings involved and thus it's better to obtain the
-             * number directly from database. The result is this fancy query.
-             */
-            $this->position = static::where('user_id', $this->user_id)
-                ->where('pp', '>', function ($q) {
-                    $q->from($this->table)->where('score_id', $this->score_id)->select('pp');
-                })
-                ->count();
-        }
-
-        return $this->position;
-    }
-
-    public function weight()
-    {
-        if ($this->weight === null) {
-            $this->weight = pow(0.95, $this->position());
-        }
-
-        return $this->weight;
+        return null;
     }
 
     public function weightedPp()
     {
-        return $this->weight() * $this->pp;
-    }
-
-    /**
-     * $scores shall be pre-sorted by pp (or whatever default scoring order).
-     */
-    public static function fillInPosition($scores)
-    {
-        if (!isset($scores[0])) {
-            return;
-        }
-
-        $position = $scores[0]->position();
-
-        foreach ($scores as $score) {
-            $score->position = $position;
-            $position++;
-        }
+        return $this->weight * $this->pp;
     }
 
     public function macroForListing()
@@ -119,7 +74,20 @@ abstract class Model extends BaseModel
             $newQuery->getQuery()->orders = null;
 
             $baseResult = $newQuery->orderBy('score', 'desc')->get();
-            $baseResult = $baseResult->sortBy('date')->sortByDesc('score');
+
+            // Sort scores by score desc and then date asc if scores are equal
+            $baseResult = $baseResult->sort(function ($a, $b) {
+                if ($a->score === $b->score) {
+                    if ($a->date->timestamp === $b->date->timestamp) {
+                        // On the rare chance that both were submitted in the same second, default to submission order
+                        return ($a->score_id < $b->score_id) ? -1 : 1;
+                    }
+
+                    return ($a->date->timestamp < $b->date->timestamp) ? -1 : 1;
+                }
+
+                return ($a->score > $b->score) ? -1 : 1;
+            });
 
             $result = [];
             $users = [];
@@ -266,6 +234,7 @@ abstract class Model extends BaseModel
     public function scopeDefault($query)
     {
         return $query
+            ->whereHas('beatmap')
             ->whereHas('user', function ($userQuery) {
                 $userQuery->default();
             });
@@ -315,14 +284,54 @@ abstract class Model extends BaseModel
 
     public function scopeFriendsOf($query, $user)
     {
-        $userIds = $user->friends()->pluck('user_id');
+        $userIds = $user->friends()->allRelatedIds();
         $userIds[] = $user->getKey();
 
         return $query->whereIn('user_id', $userIds);
     }
 
+    public function replayViewCount()
+    {
+        $class = ReplayViewCount::class.'\\'.get_class_basename(static::class);
+
+        return $this->hasOne($class, 'score_id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function delete()
+    {
+        $result = $this->getConnection()->transaction(function () {
+            $stats = optional($this->user)->statistics($this->gameModeString());
+
+            if ($stats !== null) {
+                $statsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$this->rank] ?? null;
+
+                if ($statsColumn !== null) {
+                    $stats->decrement($statsColumn);
+                }
+            }
+
+            optional($this->replayViewCount)->delete();
+
+            return parent::delete();
+        });
+
+        optional($this->replayFile())->delete();
+
+        return $result;
+    }
+
+    protected function newReportableExtraParams() : array
+    {
+        return [
+            'mode' => Beatmap::modeInt($this->getMode()),
+            'reason' => 'Cheating', // TODO: probably want more options
+            'score_id' => $this->getKey(),
+            'user_id' => $this->user_id,
+        ];
     }
 }

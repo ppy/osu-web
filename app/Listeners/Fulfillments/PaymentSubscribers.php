@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,9 +21,13 @@
 namespace App\Listeners\Fulfillments;
 
 use App\Libraries\Fulfillments\FulfillmentFactory;
+use App\Mail\StorePaymentCompleted;
+use App\Models\Store\Order;
 use App\Traits\StoreNotifiable;
 use DB;
 use Exception;
+use Log;
+use Mail;
 
 /**
  * store.payments event dispatcher.
@@ -48,6 +52,8 @@ class PaymentSubscribers
                 foreach ($fulfillers as $fulfiller) {
                     $fulfiller->run();
                 }
+
+                static::sendPaymentCompletedMail($event->order);
             } catch (Exception $exception) {
                 $this->notifyError($exception, $event->order, $eventName);
                 throw $exception;
@@ -124,5 +130,16 @@ class PaymentSubscribers
             'store.payments.rejected.*',
             static::class.'@onPaymentRejected'
         );
+    }
+
+    private static function sendPaymentCompletedMail(Order $order)
+    {
+        if (!$order->isPaidOrDelivered()) {
+            Log::warning("Trying to send mail for unpaid order ({$order->order_id}), aborted.");
+
+            return;
+        }
+
+        Mail::to($order->user->user_email)->queue(new StorePaymentCompleted($order));
     }
 }

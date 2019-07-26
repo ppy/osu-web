@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,6 +30,11 @@ class XsollaPaymentProcessor extends PaymentProcessor
     const PAYMENT_NOTIFICATION_TYPES = ['payment', 'refund'];
     const USER_NOTIFICATION_TYPES = ['user_search', 'user_validation'];
 
+    public function getCountryCode()
+    {
+        return $this['user.country'];
+    }
+
     public function getOrderNumber()
     {
         return $this['transaction.external_id'];
@@ -37,7 +42,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
     public function getPaymentProvider()
     {
-        return 'xsolla';
+        return Order::PROVIDER_XSOLLA;
     }
 
     public function getPaymentTransactionId()
@@ -118,7 +123,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
         // order should be in the correct state
         if ($this->getNotificationType() === NotificationType::PAYMENT
-            && !in_array($order->status, ['incart', 'checkout'], true)) {
+            && $order->isAwaitingPayment() === false) {
             $this->validationErrors()->add('order.status', '.order.status.not_checkout', ['state' => $order->status]);
         }
 

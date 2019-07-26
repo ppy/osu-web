@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -18,18 +18,20 @@
 
 class @Fade
   @isVisible: (el) ->
-    el.getAttribute('data-visibility') != 'hidden'
+    el?.getAttribute('data-visibility') != 'hidden'
 
 
   @out: (el) ->
-    el.setAttribute('data-visibility', 'hidden')
+    el?.setAttribute('data-visibility', 'hidden')
 
 
   @in: (el) ->
-    el.setAttribute('data-visibility', '')
+    el?.setAttribute('data-visibility', 'visible')
 
 
   @toggle: (el, makeVisible) =>
+    return unless el?
+
     makeVisible ?= !@isVisible el
 
     if makeVisible

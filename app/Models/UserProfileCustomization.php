@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,8 +20,17 @@
 
 namespace App\Models;
 
+use App\Libraries\CommentBundleParams;
 use App\Libraries\ProfileCover;
 
+/**
+ * @property array|null $cover_json
+ * @property \Carbon\Carbon $created_at
+ * @property string|null $extras_order
+ * @property int $id
+ * @property \Carbon\Carbon $updated_at
+ * @property int|null $user_id
+ */
 class UserProfileCustomization extends Model
 {
     /**
@@ -29,7 +38,7 @@ class UserProfileCustomization extends Model
      */
     const SECTIONS = [
         'me',
-        'recent_activities',
+        'recent_activity',
         'top_ranks',
         'medals',
         'historical',
@@ -39,11 +48,27 @@ class UserProfileCustomization extends Model
 
     protected $casts = [
         'cover_json' => 'array',
+        'options' => 'array',
     ];
 
-    protected $guarded = [];
-
     private $cover;
+
+    public static function repairExtrasOrder($value)
+    {
+        // read from inside out
+        return
+            array_values(
+                // remove duplicate sections from previous merge
+                array_unique(
+                    // ensure all sections are included
+                    array_merge(
+                        // remove invalid sections
+                        array_intersect($value, static::SECTIONS),
+                        static::SECTIONS
+                    )
+                )
+            );
+    }
 
     public function cover()
     {
@@ -61,34 +86,43 @@ class UserProfileCustomization extends Model
         $this->save();
     }
 
+    public function getCommentsSortAttribute()
+    {
+        return $this->options['comments_sort'] ?? CommentBundleParams::DEFAULT_SORT;
+    }
+
+    public function setCommentsSortAttribute($value)
+    {
+        if ($value !== null && !in_array($value, array_keys(CommentBundleParams::SORTS), true)) {
+            $value = null;
+        }
+
+        $this->setOption('comments_sort', $value);
+    }
+
     public function getExtrasOrderAttribute($value)
     {
+        if ($value !== null) {
+            $value = json_decode($value, true);
+        }
+
+        $value = $this->options['extras_order'] ?? $value;
+
         if ($value === null) {
             return static::SECTIONS;
         }
 
-        return static::repairExtrasOrder(json_decode($value, true));
+        return static::repairExtrasOrder($value, true);
     }
 
     public function setExtrasOrderAttribute($value)
     {
-        $this->attributes['extras_order'] = json_encode(static::repairExtrasOrder($value));
+        $this->attributes['extras_order'] = null;
+        $this->setOption('extras_order', static::repairExtrasOrder($value));
     }
 
-    public static function repairExtrasOrder($value)
+    public function setOption($key, $value)
     {
-        // read from inside out
-        return
-            array_values(
-                // remove duplicate sections from previous merge
-                array_unique(
-                    // ensure all sections are included
-                    array_merge(
-                        // remove invalid sections
-                        array_intersect($value, static::SECTIONS),
-                        static::SECTIONS
-                    )
-                )
-            );
+        $this->options = array_merge($this->options ?? [], [$key => $value]);
     }
 }

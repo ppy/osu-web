@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,23 +19,32 @@
  */
 
 return [
-    'header' => 'Рейтинг :type',
+    'header' => 'Рейтинг по :type',
+
     'type' => [
-        'performance' => 'Производительности',
-        'charts' => 'Графики',
-        'score' => 'Очков',
-        'country' => 'Стран',
+        'performance' => 'производительности',
+        'charts' => 'чартам',
+        'score' => 'очкам',
+        'country' => 'странам',
     ],
+
+    'spotlight' => [
+        'end_date' => 'Дата окончания',
+        'map_count' => 'Количество карт',
+        'participants' => 'Участники',
+        'start_date' => 'Дата начала',
+    ],
+
     'stat' => [
         'accuracy' => 'Точность',
-        'active_users' => 'Активные пользователи',
+        'active_users' => 'Активные игроки',
         'country' => 'Страна',
         'play_count' => 'Количество игр',
         'performance' => 'Производительность',
         'total_score' => 'Всего очков',
         'ranked_score' => 'Рейтинговых очков',
-        'average_score' => 'Ср. очки',
-        'average_performance' => 'Ср. произ.',
+        'average_score' => 'Сред. очки',
+        'average_performance' => 'Сред. произ.',
         'ss' => 'SS',
         's' => 'S',
         'a' => 'A',

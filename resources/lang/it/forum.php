@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,6 +19,10 @@
  */
 
 return [
+    'pinned_topics' => 'Topic Fissati',
+    'slogan' => "è pericoloso giocare da soli.",
+    'subforums' => 'Subforum',
+    'title' => 'forum osu!',
 
     'covers' => [
         'create' => [
@@ -43,33 +47,79 @@ return [
         ],
     ],
 
-    'pinned_topics' => 'Topic Fissati',
-    'post' => [
-        'confirm_delete' => 'Vuoi veramente eliminare il post?',
-        'edited' => 'Ultima modifica di :user di :when, modificato :count volte in totale.',
-        'posted_at' => 'postato :when',
+    'mark_as_read' => [
+        'forum' => 'Contrassegna il forum come già letto',
+        'forums' => 'Contrassegna i forum come già letti',
+        'busy' => 'Contrassegnando come già letti...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'Modificare un sondaggio rimuoverà i risultati attuali!',
+
         'actions' => [
-            'delete' => 'Elimina post',
-            'edit' => 'Modifica post',
+            'edit' => 'Modifica sondaggio',
         ],
     ],
+
+    'post' => [
+        'confirm_destroy' => 'Vuoi veramente eliminare il post?',
+        'confirm_restore' => 'Vuoi veramente ripristinare il post?',
+        'edited' => 'Ultima modifica di :user di :when, modificato :count volte in totale.',
+        'posted_at' => 'postato :when',
+
+        'actions' => [
+            'destroy' => 'Elimina post',
+            'restore' => 'Ripristina post',
+            'edit' => 'Modifica post',
+        ],
+
+        'info' => [
+            'post_count' => ':count_delimited post|:count_delimited post',
+            'topic_starter' => '',
+        ],
+    ],
+
     'search' => [
         'go_to_post' => 'Vai al post',
         'post_number_input' => 'inserisci numero post',
         'total_posts' => ':posts_count post in totale',
     ],
-    'subforums' => 'Subforum',
-    'title' => 'comunità osu!',
+
     'topic' => [
+        'deleted' => 'discussione eliminata',
+        'go_to_latest' => 'guarda gli ultimi post',
+        'latest_post' => ':when da :user',
+        'latest_reply_by' => 'ultima risposta di :user',
+        'new_topic' => 'Scrivi nuovo topic',
+        'new_topic_login' => 'Effettua l\'accesso per postare un nuovo topic',
+        'post_reply' => 'Invia',
+        'reply_box_placeholder' => 'Scrivi qui per rispondere',
+        'reply_title_prefix' => 'Re',
+        'started_by' => 'da :user',
+        'started_by_verbose' => 'postato da :user',
+
         'create' => [
+            'preview' => 'Anteprima',
+            // TL note: this is used in the topic reply preview, when
+            // the user goes back from previewing to editing the reply
+            'preview_hide' => 'Scrivi',
+            'submit' => 'Invia',
+
+            'necropost' => [
+                'default' => 'Questa discussione è inattiva da un bel po\' di tempo. Posta solo se hai una motivazione in particolare.',
+
+                'new_topic' => [
+                    '_' => "Questa discussione è inattiva da un bel po' di tempo. Se non hai un motivo in particolare per postare qui, per favore :create.",
+                    'create' => 'crea una nuova discussione',
+                ],
+            ],
+
             'placeholder' => [
                 'body' => 'Scrivi il contenuto del post qui',
                 'title' => 'Clicca qui per impostare il titolo',
             ],
-            'preview' => 'Anteprima',
-            'submit' => 'Invia',
         ],
-        'go_to_latest' => 'guarda gli ultimi post',
+
         'jump' => [
             'enter' => 'clicca per inserire un numero del post specifico',
             'first' => 'vai al primo post',
@@ -77,31 +127,24 @@ return [
             'next' => 'salta i prossimi 10 post',
             'previous' => 'vai indietro di 10 post',
         ],
-        'latest_post' => ':when da :user',
-        'latest_reply_by' => 'ultima risposta di :user',
-        'new_topic' => 'Scrivi nuovo topic',
+
         'post_edit' => [
             'cancel' => 'Cancella',
             'post' => 'Salva',
-            'zoom' => [
-                'start' => 'Schermo intero',
-                'end' => 'Esci da Schermo Intero',
-            ],
         ],
-        'post_reply' => 'Invia',
-        'reply_box_placeholder' => 'Scrivi qui per rispondere',
-        'started_by' => 'da :user',
     ],
 
     'topic_watches' => [
         'index' => [
             'title' => 'Iscrizioni ai Topic',
             'title_compact' => 'iscrizioni',
+            'title_main' => 'Forum <strong>Sottoiscrizioni</strong>',
 
             'box' => [
                 'total' => 'Topic a cui sei iscritto',
                 'unread' => 'Topic con nuove risposte',
             ],
+
             'info' => [
                 'total' => 'Sei iscritto a :total topic.',
                 'unread' => 'Hai :unread risposte non lette nei topic a cui sei iscritto.',
@@ -120,11 +163,16 @@ return [
         '_' => 'Topic',
 
         'actions' => [
+            'login_reply' => 'Accedi per rispondere',
+            'reply' => 'Rispondi',
             'reply_with_quote' => 'Quota il post per rispondere',
+            'search' => 'Cerca',
         ],
 
         'create' => [
             'create_poll' => 'Creazione Sondaggio',
+
+            'preview' => 'Anteprima del post',
 
             'create_poll_button' => [
                 'add' => 'Crea un sondaggio',
@@ -132,8 +180,9 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => 'Nascondi i risultati del sondaggio.',
+                'hide_results_info' => 'Saranno mostrati solo dopo la conclusione del sondaggio.',
                 'length' => 'Durata del sondaggio:',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'giorni',
                 'length_info' => 'Lascia vuoto per un sondaggio senza fine',
                 'max_options' => 'Opzioni per Utente',
@@ -146,17 +195,64 @@ return [
             ],
         ],
 
+        'edit_title' => [
+            'start' => 'Modifica titolo',
+        ],
+
         'index' => [
-            'views' => 'visualizzazioni',
+            'feature_votes' => 'priorità stella',
             'replies' => 'risposte',
+            'views' => 'visualizzazioni',
+        ],
+
+        'issue_tag_added' => [
+            'to_0' => 'Rimuovi tag "aggiunto"',
+            'to_0_done' => 'Rimosso tag "aggiunto"',
+            'to_1' => 'Aggiungi tag "aggiunto"',
+            'to_1_done' => 'Aggiunto tag "aggiunto"',
+        ],
+
+        'issue_tag_assigned' => [
+            'to_0' => 'Rimuovi tag "assegnato"',
+            'to_0_done' => 'Rimosso tag "assegnato"',
+            'to_1' => 'Aggiungi tag "assegnato"',
+            'to_1_done' => 'Aggiunto tag "assegnato"',
+        ],
+
+        'issue_tag_confirmed' => [
+            'to_0' => 'Rimuovi tag "confermato"',
+            'to_0_done' => 'Rimosso tag "confermato"',
+            'to_1' => 'Aggiungi tag "confermato"',
+            'to_1_done' => 'Aggiunto tag "confermato"',
+        ],
+
+        'issue_tag_duplicate' => [
+            'to_0' => 'Rimuovi tag "duplicato"',
+            'to_0_done' => 'Rimosso tag "duplicato"',
+            'to_1' => 'Aggiungi tag "duplicato"',
+            'to_1_done' => 'Aggiunto tag "duplicato"',
+        ],
+
+        'issue_tag_invalid' => [
+            'to_0' => 'Rimuovi tag "invalido"',
+            'to_0_done' => 'Rimosso tag "invalido"',
+            'to_1' => 'Aggiungi tag "invalido"',
+            'to_1_done' => 'Aggiunto tag "invalido"',
+        ],
+
+        'issue_tag_resolved' => [
+            'to_0' => 'Rimuovi tag "risolto"',
+            'to_0_done' => 'Rimosso tag "risolto"',
+            'to_1' => 'Aggiungi tag "risolto"',
+            'to_1_done' => 'Aggiunto tag "risolto"',
         ],
 
         'lock' => [
             'is_locked' => 'Questo topic è bloccato e non può essere risposto',
-            'lock-0' => 'Sblocca topic',
-            'lock-1' => 'Blocca topic',
-            'state-0' => 'Il topic è stato sbloccato',
-            'state-1' => 'Il topic è stato bloccato',
+            'to_0' => 'Sblocca topic',
+            'to_0_done' => 'Il topic è stato sbloccato',
+            'to_1' => 'Blocca topic',
+            'to_1_done' => 'Il topic è stato bloccato',
         ],
 
         'moderate_move' => [
@@ -164,21 +260,32 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Togli dai topic fissati',
-            'pin-1' => 'Fissa topic',
-            'state-0' => 'Il topic è stato tolto dai topic fissati',
-            'state-1' => 'Il topic è stato fissato',
+            'to_0' => 'Togli dai topic fissati',
+            'to_0_done' => 'Il topic è stato tolto dai topic fissati',
+            'to_1' => 'Fissa topic',
+            'to_1_done' => 'Il topic è stato fissato',
+            'to_2' => 'Fissa discussione e segna come annuncio',
+            'to_2_done' => 'La discussione è stata fissata e segnata come annuncio',
         ],
 
         'show' => [
+            'deleted-posts' => 'Post cancellati',
+            'total_posts' => 'Post totali',
+
             'feature_vote' => [
                 'current' => 'Priorità Attuale: +:count',
                 'do' => 'Promuovi questa richiesta',
 
+                'info' => [
+                    '_' => 'Questa è una :feature_request. Le richieste di nuove funzionalità possono essere votate dai :supporters.',
+                    'feature_request' => 'richiedi una funzionalità',
+                    'supporters' => 'sostenitori',
+                ],
+
                 'user' => [
-                    'current' => 'Hai :votes rimanenti.',
                     'count' => '{0} nessun voto|{1} :count voto|[2,*] :count voti',
-                    'not_enough' => 'Non hai altri voti rimanenti',
+                    'current' => 'Hai :votes rimanenti.',
+                    'not_enough' => "Non hai altri voti rimanenti",
                 ],
             ],
 
@@ -186,19 +293,20 @@ return [
                 'vote' => 'Vota',
 
                 'detail' => [
-                    'total' => 'Voti totali: :count',
-                    'ended' => 'Il sondaggio è finito :time',
                     'end_time' => 'Il sondaggio scade tra :time',
+                    'ended' => 'Il sondaggio è finito :time',
+                    'results_hidden' => 'I risultati saranno mostrati dopo il termine della votazione.',
+                    'total' => 'Voti totali: :count',
                 ],
             ],
         ],
 
         'watch' => [
-            'state-0' => 'Disiscritto dal topic',
-            'state-1' => 'Iscritto al topic',
-            'watch-0' => 'Disiscriviti dal topic',
-            'watch-1' => 'Iscriviti al topic',
+            'to_not_watching' => 'Non preferito',
+            'to_watching' => 'Preferito',
+            'to_watching_mail' => 'Preferito con notifica',
+            'tooltip_mail_disable' => 'Le notifiche sono abilitate. Premi per disabilitarle',
+            'tooltip_mail_enable' => 'Le notifiche sono disabilitate. Premi per abilitarle',
         ],
     ],
-
 ];

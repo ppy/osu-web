@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,36 +19,41 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'liste',
-        'news-show' => 'post',
-    ],
-
     'index' => [
-        'title' => 'osu!news',
+        'title_page' => 'osu!news',
 
         'nav' => [
-            'newer' => 'Nouveaux posts',
-            'older' => 'Anciens posts',
+            'newer' => 'Nouveaux articles',
+            'older' => 'Anciens articles',
+        ],
+
+        'title' => [
+            '_' => 'Nouvelles :info',
+            'info' => 'FrontPage',
         ],
     ],
 
     'show' => [
-        'posted' => 'posté le :time',
+        'by' => 'par :user',
 
         'nav' => [
-            'newer' => 'Post le plus récent',
-            'older' => 'Post le plus ancien',
+            'newer' => 'Article le plus récent',
+            'older' => 'Article le plus ancien',
+        ],
+
+        'title' => [
+            '_' => 'Nouvelles :info',
+            'info' => 'Article',
         ],
     ],
 
     'store' => [
-        'button' => 'Modifiée',
-        'ok' => 'Liste modifiée.',
+        'button' => 'Mettre à jour',
+        'ok' => 'Liste mise à jour.',
     ],
 
     'update' => [
-        'button' => 'Modifier',
+        'button' => 'Mettre à jour',
         'ok' => 'Post modifié.',
     ],
 ];

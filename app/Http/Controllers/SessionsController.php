@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -41,7 +41,7 @@ class SessionsController extends Controller
     {
         $ip = Request::getClientIp();
         $username = trim(Request::input('username'));
-        $password = trim(Request::input('password'));
+        $password = Request::input('password');
         $remember = Request::input('remember') === 'yes';
 
         if (!present($username) || !present($password)) {
@@ -67,18 +67,8 @@ class SessionsController extends Controller
     public function destroy()
     {
         if (Auth::check()) {
-            Auth::logout();
-
-            // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
-            unset($_COOKIE['phpbb3_2cjk5_sid']);
-            unset($_COOKIE['phpbb3_2cjk5_sid_check']);
-            setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.ppy.sh');
-            setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.ppy.sh');
-            setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.osu.ppy.sh');
-            setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.osu.ppy.sh');
+            $this->logout();
         }
-
-        Request::session()->flush();
 
         return [];
     }

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -44,7 +44,7 @@
 
   &--no-line {
     .status-incident__state {
-      &:before, &:after {
+      &::before, &::after {
         content: none;
       }
     }
@@ -72,20 +72,20 @@
       background: @unknown;
     }
 
-    &:before, &:after {
+    &::before, &::after {
       content: ' ';
       position: absolute;
       background: #999;
     }
 
-    &:before {
+    &::before {
       width: 3px;
       height: 68px;
       top: 16px;
       left: 13px;
     }
 
-    &:after {
+    &::after {
       width: 3px;
       height: 62px;
       top: -62px;

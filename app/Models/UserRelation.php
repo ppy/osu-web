@@ -4,11 +4,24 @@ namespace App\Models;
 
 use DB;
 
+/**
+ * @property bool $foe
+ * @property bool $friend
+ * @property User $target
+ * @property User $user
+ * @property int $user_id
+ * @property int $zebra_id
+ */
 class UserRelation extends Model
 {
     protected $table = 'phpbb_zebra';
     public $timestamps = false;
-    protected $guarded = [];
+    protected $casts = [
+        'friend' => 'boolean',
+        'foe' => 'boolean',
+    ];
+
+    protected $primaryKeys = ['user_id', 'zebra_id'];
 
     public function user()
     {
@@ -18,6 +31,11 @@ class UserRelation extends Model
     public function target()
     {
         return $this->belongsTo(User::class, 'zebra_id', 'user_id');
+    }
+
+    public function scopeBlocks($query)
+    {
+        return $query->where('foe', true);
     }
 
     public function scopeFriends($query)

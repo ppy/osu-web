@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,17 +23,26 @@ return [
         'header' => [
             // size in font-size
             'big_description' => 'Ami osu!?<br/>
-                                Sostieni gli sviluppatori di osu! :D',
+                                Sostieni lo sviluppo di osu! :D',
             'small_description' => '',
             'support_button' => 'Voglio sostenere osu!',
         ],
 
-        'dev_quote' => 'osu! è un gioco completamente free-to-play, ma farlo funzionare è sicuramente non gratis. Tra i costi di commissione dei server e la banda internazionale di alta qualità, il tempo speso a mantenere il server e la communità, fornendo premi per le competizioni, rispondendo alle domande di assistenza e generalmente mantenendo le persone felici, osu! consuma una notevole quantità di denaro! Oh, e non dimenticare il fatto che lo facciamo senza alcuna pubblicità o partner with silly con barre degli strumenti stupide e cose simili!
+        'dev_quote' => 'osu! è un gioco completamente free-to-win, ma farlo funzionare è sicuramente non gratis. Tra i costi di commissione dei server e la banda internazionale di alta qualità, il tempo speso a mantenere il server e la communità, fornendo premi per le competizioni, rispondendo alle domande di assistenza e generalmente mantenendo le persone felici, osu! consuma una notevole quantità di denaro! Oh, e non dimenticare il fatto che lo facciamo senza alcuna pubblicità o partner with silly con barre degli strumenti stupide e cose simili!
             <br/><br/>osu! alla fine della giornata è in gran parte gestita da me, che mi conosci meglio come "peppy".
             Ho dovuto lasciare il mio lavoro per mantenere osu!,
             e a volte fatico a mantenere gli standard per cui lotto.
             Vorrei offrire i miei personali ringraziamenti a chi ha sostenuto osu! fino ad ora,
             e fare altrettanto a chi continuerà a sostenere questo fantastico gioco e la comunità nel futuro :).',
+
+        'supporter_status' => [
+            'contribution' => 'Grazie per il tuo sostegno finora! Hai contribuito un totale di :dollars in :tags tag acquistati!',
+            'gifted' => ':giftedTags dei tuo tag acquistati sono stati regalati (per un totale di :giftedDollars donati), come sei generoso!',
+            'not_yet' => "Non hai ancora un tag supporter ancora :(",
+            'title' => 'Stato supporter corrente',
+            'valid_until' => 'Il tuo attuale tag supporter è valido fino al :date!',
+            'was_valid_until' => 'Il tuo tag supporter era valido fino al :date.',
+        ],
 
         'why_support' => [
             'title' => 'Perchè dovrei sostenere osu!?',
@@ -105,7 +114,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Opzioni di Ordinamento',
-                'description' => 'NUOVO: La possibilità di vedere i rank per paese / amici / specifiche mod in gioco.',
+                'description' => 'La possibilità di vedere i rank per paese / amici / specifiche mod in gioco.',
             ],
 
             'feel_special' => [

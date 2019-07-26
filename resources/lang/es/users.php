@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,121 +21,221 @@
 return [
     'deleted' => '[usuario eliminado]',
 
+    'beatmapset_activities' => [
+        'title' => "Historial de Modding de :usuario",
+        'title_compact' => 'Modding',
+
+        'discussions' => [
+            'title_recent' => 'Discusiones recientemente empezadas',
+        ],
+
+        'events' => [
+            'title_recent' => 'Eventos recientes',
+        ],
+
+        'posts' => [
+            'title_recent' => 'Pubicaciones recientes',
+        ],
+
+        'votes_received' => [
+            'title_most' => 'Más votados por (últimos 3 meses)',
+        ],
+
+        'votes_made' => [
+            'title_most' => 'Más votados (últimos 3 meses)',
+        ],
+    ],
+
+    'blocks' => [
+        'banner_text' => 'Has bloqueado a este usuario.',
+        'blocked_count' => 'usuarios bloqueados (:count)',
+        'hide_profile' => 'ocultar perfil',
+        'not_blocked' => 'Ese usuario no está bloqueado.',
+        'show_profile' => 'mostrar perfil',
+        'too_many' => 'Límite de bloqueos alcanzado.',
+        'button' => [
+            'block' => 'bloquear',
+            'unblock' => 'desbloquear',
+        ],
+    ],
+
+    'card' => [
+        'loading' => 'Cargando...',
+        'send_message' => 'enviar mensaje',
+    ],
+
     'login' => [
         '_' => 'Iniciar sesión',
-        'locked_ip' => 'tu dirección IP está bloqueada. Espera unos minutos.',
+        'locked_ip' => 'Tu dirección IP está bloqueada. Espera unos minutos.',
         'username' => 'Nombre de usuario',
         'password' => 'Contraseña',
         'button' => 'Iniciar sesión',
         'button_posting' => 'Iniciando sesión...',
-        'remember' => 'Recordarme',
+        'remember' => 'Recordar este computador',
         'title' => 'Inicia sesión para continuar',
-        'failed' => 'Nombre de usuario o contraseña incorrectos',
-        'register' => '¿¡No tienes una cuenta de osu!? Crea una',
+        'failed' => 'Inicio de sesión incorrecto',
+        'register' => "¿No tienes una cuenta de osu!? Crea una nueva",
         'forgot' => '¿Olvidaste tu contraseña?',
         'beta' => [
             'main' => 'El acceso a la beta está actualmente restringido a usuarios privilegiados.',
-            'small' => '(supporters tendrán acceso pronto)',
+            'small' => '(los osu!supporters tendrán acceso pronto)',
         ],
 
         'here' => 'aquí', // this is substituted in when generating a link above. change it to suit the language.
     ],
+
+    'posts' => [
+        'title' => 'Publicaciones de :username',
+    ],
+
     'signup' => [
         '_' => 'Registrarse',
     ],
     'anonymous' => [
-        'login_link' => 'clic para iniciar sesión',
+        'login_link' => 'haz clic aquí para iniciar sesión',
+        'login_text' => 'iniciar sesión',
         'username' => 'Invitado',
         'error' => 'Necesitas haber iniciado sesión para hacer esto.',
     ],
-    'logout_confirm' => '¿Seguro que deseas salir? :(',
+    'logout_confirm' => '¿Estás seguro de que quieres cerrar la sesión? :(',
+    'report' => [
+        'button_text' => 'reportar',
+        'comments' => 'Comentarios Adicionales',
+        'placeholder' => 'Por favor proporcione cualquier información que usted cree que podría ser útil.',
+        'reason' => 'Razón',
+        'thanks' => '¡Gracias por tu informe!',
+        'title' => '¿Reportar :username?',
+
+        'actions' => [
+            'send' => 'Enviar Reporte',
+            'cancel' => 'Cancelar',
+        ],
+
+        'options' => [
+            'cheating' => 'Jugador tramposo',
+            'insults' => 'Insulta a mí / otros',
+            'spam' => 'Spam',
+            'unwanted_content' => 'Enlazando a contenido inapropiado',
+            'nonsense' => 'Incomprensible',
+            'other' => 'Otros (indicar abajo)',
+        ],
+    ],
+    'restricted_banner' => [
+        'title' => '¡Tu cuenta ha sido restringida!',
+        'message' => 'Mientras estás restringido, no podrás interactuar con otros jugadores y tus puntuaciones solo las podrás ver tú. Esto es, normalmente, el resultado de un proceso automatizado, y se levanta normalmente dentro de 24 horas. Si deseas apelar a tu restricción, por favor <a href="mailto:accounts@ppy.sh">contacta con el soporte</a>.',
+    ],
     'show' => [
-        '404' => '¡Usuario no encontrado! ;_;',
         'age' => ':age años',
-        'current_location' => 'Actualmente en :location',
-        'first_members' => 'Desde el comienzo',
+        'change_avatar' => '¡cambia tu avatar!',
+        'first_members' => 'Aquí desde el comienzo',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Se unió el :date',
+        'joined_at' => 'Se unió en :date',
         'lastvisit' => 'Visto por última vez :date',
-        'missingtext' => '¡Has cometido un error! (o el usuario pudo haber sido baneado)',
-        'origin_age' => ':age',
+        'lastvisit_online' => '',
+        'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido baneado)',
         'origin_country' => 'De :country',
-        'origin_country_age' => ':age de :country',
-        'page_description' => 'osu! - Todo lo que siempre quisiste saber acerca de :username!',
+        'page_description' => 'osu! - ¡Todo lo que siempre quisiste saber acerca de :username!',
+        'previous_usernames' => 'Antes conocido como',
         'plays_with' => 'Juega con :devices',
-        'title' => 'perfil / :username',
+        'title' => "Perfil de :username",
 
         'edit' => [
             'cover' => [
-                'button' => 'Cambiar portada de perfil',
-                'defaults_info' => 'Más portadas estarán disponibles en el futuro',
+                'button' => 'Cambiar Portada de Perfil',
+                'defaults_info' => 'Más opciones de portadas estarán disponibles en el futuro',
                 'upload' => [
-                    'broken_file' => 'No se pudo procesar. Verifica la imagen e intenta de nuevo.',
+                    'broken_file' => 'Error al procesar la imagen. Verifica la imagen subida e intenta de nuevo.',
                     'button' => 'Subir imagen',
                     'dropzone' => 'Suelta aquí para subir',
-                    'dropzone_info' => 'También puedes soltar la imagen aquí para subirla',
+                    'dropzone_info' => 'También puedes soltar tu imagen aquí para subirla',
                     'restriction_info' => "Subida solo disponible para <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
-                    'size_info' => 'El tamaño de la portada debe ser de 2000x700',
-                    'too_large' => 'El archivo es demasiado grande.',
+                    'size_info' => 'El tamaño de la portada debe ser de 2800x620',
+                    'too_large' => 'El archivo subido es demasiado grande.',
                     'unsupported_format' => 'Formato no soportado.',
                 ],
             ],
+
+            'default_playmode' => [
+                'is_default_tooltip' => 'modo de juego predeterminado',
+                'set' => 'establecer :mode como el modo de juego predeterminado del perfil',
+            ],
         ],
+
         'extra' => [
             'followers' => '1 seguidor|:count seguidores',
             'unranked' => 'No hay partidas recientes',
 
             'achievements' => [
-                'title' => 'Logros',
                 'achieved-on' => 'Obtenido el :date',
+                'locked' => 'Bloqueado',
+                'title' => 'Logros',
             ],
             'beatmaps' => [
+                'by_artist' => 'por :artist',
                 'none' => 'Ninguno... aún.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Beatmaps Favoritos (:count)',
+                    'title' => 'Beatmaps Favoritos',
+                ],
+                'graveyard' => [
+                    'title' => 'Beatmaps Abandonados',
+                ],
+                'loved' => [
+                    'title' => 'Beatmaps Amados',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmaps Rankeados & Aprobados (:count)',
+                    'title' => 'Beatmaps Rankeados y Aprobados',
+                ],
+                'unranked' => [
+                    'title' => 'Beatmaps Pendientes',
                 ],
             ],
             'historical' => [
                 'empty' => 'Sin récords de rendimiento. :(',
+                'title' => 'Histórico',
+
+                'monthly_playcounts' => [
+                    'title' => 'Historial de juego',
+                    'count_label' => 'Veces jugado',
+                ],
                 'most_played' => [
-                    'count' => 'veces jugado',
+                    'count' => 'veces jugadas',
                     'title' => 'Beatmaps Más Jugados',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisión: :percentage',
-                    'title' => 'Jugadas Recientes',
+                    'title' => 'Jugadas Recientes (24h)',
                 ],
-                'title' => 'Historial',
+                'replays_watched_counts' => [
+                    'title' => 'Historial de repeticiones vistas',
+                    'count_label' => 'Repeticiones vistas',
+                ],
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponible',
-                'available_info' => 'Kudosu puede ser intercambiado por estrellas kudosu, que ayudarán a tu beatmap a obtener más atención. Este es el número de kudosu que no has intercambiado aún.',
+                'available_info' => "Los kudosu se puede cambiar por estrellas kudosu, lo que ayudará a que tu beatmap reciba más atención. Este es el número de kudosus que aún has intercambiado.",
                 'recent_entries' => 'Historial de Kudosu Reciente',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu Total Obtenido',
-                'total_info' => 'Basado en qué tanto ha colaborado el usuario a la moderación del beatmap. Ve <a href="'.osu_url('user.kudosu').'">esta página</a> para más información.',
+                'total_info' => 'Basado en qué tanto ha colaborado el usuario a la moderación de beatmaps. Mira <a href="'.osu_url('user.kudosu').'">esta página</a> para más información.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => '¡Este usuario no ha recibido ningún kudosu!',
+                    'empty' => "¡Este usuario no ha recibido ningún kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Recibido :amount de revocación de negación de kudosu de la publicación de modding :post',
+                            'give' => 'Recibido :amount de revocación de negación de kudosu de la publicación de modding de :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Denegado :amount de la publicación de modding :post',
+                            'reset' => 'Denegado :amount de la publicación de modding de :post',
                         ],
 
                         'delete' => [
-                            'reset' => 'Perdido :amount por eliminación de la publicación de modding :post',
+                            'reset' => 'Perdido :amount por eliminación de la publicación de modding de :post',
                         ],
 
                         'restore' => [
@@ -146,65 +246,132 @@ return [
                             'give' => 'Recibido :amount por obtención de votos en la publicación de modding de :post',
                             'reset' => 'Perdido :amount por perder votos en la publicación de modding de :post',
                         ],
+
+                        'recalculate' => [
+                            'give' => 'Recibido :amount por recálculo de votos en la publicación de modding de :post',
+                            'reset' => 'Perdido :amount por recálculo de votos en la publicación de modding de :post',
+                        ],
                     ],
 
                     'forum_post' => [
                         'give' => 'Recibido :amount de :giver por una publicación en :post',
                         'reset' => 'Kudosu reiniciado por :giver por la publicación :post',
-                        'revoke' => 'Kudosu denegado por :giver por una publicación en :post',
+                        'revoke' => 'Kudosu denegado por :giver por la publicación :post',
                     ],
                 ],
             ],
             'me' => [
-                'title' => 'sobre mi!',
+                'title' => '¡yo!',
             ],
             'medals' => [
-                'empty' => 'Este usuario aún no ha conseguido ninguna. ;_;',
+                'empty' => "Este usuario aún no ha conseguido ninguna. ;_;",
+                'recent' => 'Más reciente',
                 'title' => 'Medallas',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Reciente',
             ],
             'top_ranks' => [
+                'download_replay' => 'Descargar Repetición',
+                'empty' => 'No hay records de rendimiento impresionantes aún. :(',
+                'not_ranked' => 'Sólo los mapas rankeados dan pp.',
+                'pp_weight' => 'valorado :percentage',
+                'title' => 'Rangos',
+
                 'best' => [
-                    'title' => 'Mejor rendimiento',
+                    'title' => 'Mejores Rendimientos',
                 ],
-                'empty' => 'No hay récords increíbles aún. :(',
                 'first' => [
                     'title' => 'Primeros Lugares',
                 ],
-                'pp' => ':amountpp',
-                'title' => 'Rangos',
-                'weighted_pp' => 'valorado en: :pp (:percentage)',
+            ],
+            'account_standing' => [
+                'title' => 'Estado de la cuenta',
+                'bad_standing' => "La cuenta de <strong>:username</strong> no está en buen estado :(",
+                'remaining_silence' => '<strong>:username</strong> podrá hablar otra vez dentro de :duration.',
+
+                'recent_infringements' => [
+                    'title' => 'Infracciones recientes',
+                    'date' => 'fecha',
+                    'action' => 'acción',
+                    'length' => 'duración',
+                    'length_permanent' => 'Permanente',
+                    'description' => 'descripción',
+                    'actor' => 'por :username',
+
+                    'actions' => [
+                        'restriction' => 'Restringir',
+                        'silence' => 'Silenciado',
+                        'note' => 'Nota',
+                    ],
+                ],
             ],
         ],
+
+        'header_title' => [
+            '_' => 'Información del jugador :info',
+            'info' => 'Información',
+        ],
+
+        'info' => [
+            'discord' => 'Discord',
+            'interests' => 'Intereses',
+            'lastfm' => 'Last.fm',
+            'location' => 'Ubicación actual',
+            'occupation' => 'Ocupación',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
+            'website' => 'Sitio web',
+        ],
+        'not_found' => [
+            'reason_1' => 'Pudo haber cambiado de nombre de usuario.',
+            'reason_2' => 'La cuenta puede estar temporalmente no disponible debido a problemas de seguridad o abuso.',
+            'reason_3' => '¡Es posible que hayas cometido un error tipográfico!',
+            'reason_header' => 'Hay algunas posibles razones para esto:',
+            'title' => '¡Usuario no encontrado! ;_;',
+        ],
         'page' => [
-            'description' => '<strong>sobre mi!</strong> es una área personalizable en tu perfil.',
-            'edit_big' => 'Editar sobre mi!',
-            'placeholder' => 'Escribe el contenido aquí',
-            'restriction_info' => "Necesitas ser un <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> para desbloquear esta característica.",
+            'button' => 'Editar pagina de perfil',
+            'description' => '<strong>¡yo!</strong> es una área personal y personalizable en tu perfil.',
+            'edit_big' => 'Editar ¡yo!',
+            'placeholder' => 'Escribe el contenido de la pagina aquí',
+            'restriction_info' => "Necesitas ser un <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> para desbloquear esta función.",
+        ],
+        'post_count' => [
+            '_' => 'Contribuyó en :link',
+            'count' => ':count publicación en el foro|:count publicaciones en el foro',
         ],
         'rank' => [
             'country' => 'Rank nacional para :mode',
+            'country_simple' => 'Ranking Nacional',
             'global' => 'Rank global para :mode',
+            'global_simple' => 'Ranking Global',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisión',
             'level' => 'Nivel :level',
+            'level_progress' => 'Progreso al siguiente nivel',
             'maximum_combo' => 'Combo máximo',
+            'medals' => 'Medallas',
             'play_count' => 'Conteo de jugadas',
+            'play_time' => 'Tiempo de juego total',
             'ranked_score' => 'Puntuación rankeada',
-            'replays_watched_by_others' => 'Replays observadas por otros',
+            'replays_watched_by_others' => 'Repeticiones vistas por otros',
             'score_ranks' => 'Clasificación de las puntuaciones',
-            'total_hits' => 'Aciertos totales',
+            'total_hits' => 'Golpes totales',
             'total_score' => 'Puntuación total',
         ],
     ],
+
     'status' => [
-        'online' => 'En línea',
-        'offline' => 'Desconectado',
+        'all' => '',
+        'online' => 'Conectados',
+        'offline' => 'Desconectados',
+    ],
+    'store' => [
+        'saved' => 'Usuario creado',
     ],
     'verify' => [
-        'title' => 'Verificación de la Cuenta',
+        'title' => 'Verificación de la cuenta',
     ],
 ];

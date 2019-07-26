@@ -21,10 +21,12 @@ return [
     | inside of your prefix. A common naming scheme is something like app.<app-name>.
     |
     */
-    'prefix' => env('DATADOG_PREFIX', 'osu.web'),
+    'prefix' => '',
+    'prefix_web' => env('DATADOG_PREFIX', 'osu.web'), // different key to revert to manually prefixed tags
     'api_key' => env('DATADOG_API_KEY'),
     'application_key' => env('DATADOG_APP_KEY'),
     'datadog_host' => env('DATADOG_HOST', 'https://app.datadoghq.com'),
     'statsd_server' => env('DATADOG_STATSD_HOST', 'localhost'),
     'statsd_port' => env('DATADOG_STATSD_PORT', 8125),
+    'middleware_disable_url_tag' => true,
 ];

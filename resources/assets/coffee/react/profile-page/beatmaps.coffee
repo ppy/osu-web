@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,45 +16,65 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, h3, ul, li, a, p, pre, span} = ReactDOMFactories
+import { ExtraHeader } from './extra-header'
+import { BeatmapsetPanel } from 'beatmapset-panel'
+import * as React from 'react'
+import { div, h2, h3, ul, li, a, p, pre, span } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
 el = React.createElement
 
-class ProfilePage.Beatmaps extends React.PureComponent
-  render: =>
-    allBeatmapsets =
-      favouriteBeatmapsets: @props.favouriteBeatmapsets
-      rankedAndApprovedBeatmapsets: @props.rankedAndApprovedBeatmapsets
-      unrankedBeatmapsets: @props.unrankedBeatmapsets
-      graveyardBeatmapsets: @props.graveyardBeatmapsets
+sections = [
+  'favouriteBeatmapsets'
+  'rankedAndApprovedBeatmapsets'
+  'lovedBeatmapsets'
+  'unrankedBeatmapsets'
+  'graveyardBeatmapsets'
+]
 
+export class Beatmaps extends React.PureComponent
+  render: =>
     div
       className: 'page-extra'
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
-      for own section, beatmapsets of allBeatmapsets
-        sectionSnaked = _.replace(_.snakeCase(section), '_beatmapsets', '')
-        div
-          key: section
-          h3
-            className: 'page-extra__title page-extra__title--small'
-            osu.trans("users.show.extra.beatmaps.#{sectionSnaked}.title", count: @props.counts[section])
+      el ExtraHeader, name: @props.name, withEdit: @props.withEdit
+      sections.map @renderBeatmapsets
 
-          if beatmapsets.length > 0
-            div className: 'osu-layout__col-container osu-layout__col-container--with-gutter',
-              for beatmapset in beatmapsets
-                div
-                  key: beatmapset.id
-                  className: 'osu-layout__col osu-layout__col--sm-6'
-                  el BeatmapsetPanel, beatmap: beatmapset
 
-              div
-                className: 'osu-layout__col text-center',
-                el ProfilePage.ShowMoreLink,
-                  collection: beatmapsets
-                  propertyName: section
-                  pagination: @props.pagination[section]
-                  route: laroute.route 'users.beatmapsets',
-                    user: @props.user.id
-                    type: sectionSnaked
+  renderBeatmapsets: (section) =>
+    sectionSnaked = _.replace(_.snakeCase(section), '_beatmapsets', '')
+    count = @props.counts[section]
+    beatmapsets = @props[section]
 
-          else
-            p className: 'page-extra-entries', osu.trans('users.show.extra.beatmaps.none')
+    div
+      key: section
+      h3
+        className: 'page-extra__title page-extra__title--small'
+        osu.trans("users.show.extra.beatmaps.#{sectionSnaked}.title")
+        ' '
+        if count > 0
+          span
+            className: 'page-extra__title-count'
+            osu.formatNumber(count)
+
+      if beatmapsets.length > 0
+        div className: 'osu-layout__col-container osu-layout__col-container--with-gutter',
+          for beatmapset in beatmapsets
+            div
+              key: beatmapset.id
+              className: 'osu-layout__col osu-layout__col--sm-6'
+              el BeatmapsetPanel, beatmap: beatmapset
+
+          div
+            className: 'osu-layout__col',
+            el ShowMoreLink,
+              modifiers: ['profile-page', 't-greyseafoam-dark']
+              event: 'profile:showMore'
+              hasMore: @props.pagination[section].hasMore
+              loading: @props.pagination[section].loading
+              data:
+                name: section
+                url: laroute.route 'users.beatmapsets',
+                  user: @props.user.id
+                  type: sectionSnaked
+
+      else
+        p className: 'page-extra-entries', osu.trans('users.show.extra.beatmaps.none')

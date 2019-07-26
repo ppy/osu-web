@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -40,30 +40,34 @@
                 {{ trans('beatmapset_watches.index.description') }}
             </div>
 
-            <table class="table">
-                <tr>
-                    <th></th>
-                    <th>
+            <table class="table beatmapset-watches__table">
+                <tr class="beatmapset-watches__row">
+                    <th class="beatmapset-watches__heading"></th>
+                    <th class="beatmapset-watches__heading">
                         {{ trans('beatmapset_watches.index.table.title') }}
                     </th>
-                    <th>
+                    <th class="beatmapset-watches__heading">
                         {{ trans('beatmapset_watches.index.table.state') }}
                     </th>
-                    <th>
+                    <th class="beatmapset-watches__heading">
                         {{ trans('beatmapset_watches.index.table.open_issues') }}
                     </th>
-                    <th></th>
+                    <th class="beatmapset-watches__heading"></th>
                 </tr>
 
                 @if (count($watches) > 0)
                     @foreach ($watches as $watch)
                         <tr>
                             <td class="beatmapset-watches__col beatmapset-watches__col--cover">
-                                <div {!! background_image($watch->beatmapset->coverURL('list'), false) !!} class="beatmapset-watches__cover">
-                                </div>
+                                <a href="{{ route('beatmapsets.discussion', $watch->beatmapset) }}">
+                                    <div
+                                        {!! background_image($watch->beatmapset->coverURL('list'), false) !!}
+                                        class="beatmapset-watches__cover"
+                                    ></div>
+                                </a>
                             </td>
                             <td class="beatmapset-watches__col">
-                                <a href="{{ route('beatmapsets.discussion', $watch->beatmapset) }}">
+                                <a href="{{ route('beatmapsets.discussion', $watch->beatmapset) }}" class="beatmapset-watches__link">
                                     @if ($watch->isRead())
                                         {{ $watch->beatmapset->title }}
                                     @else
@@ -89,9 +93,9 @@
                                     data-url="{{ route('beatmapsets.watches.destroy', $watch->beatmapset) }}"
                                     data-reload-on-success="1"
                                     data-confirm="{{ trans('common.confirmation') }}"
-                                    title="{{ trans('beatmapset_watches.button.action.to_0') }}"
+                                    title="{{ trans('common.buttons.watch.to_0') }}"
                                 >
-                                    <i class="fa fa-trash"></i>
+                                    <i class="fas fa-eye-slash"></i>
                                 </button>
                             </td>
                         </tr>
@@ -105,7 +109,7 @@
                 @endif
             </table>
 
-            @include('forum._pagination', ['object' => $watches])
+            @include('objects._pagination_v0', ['object' => $watches])
         </div>
     </div>
 @endsection

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,10 +26,9 @@ use Exception;
 use Illuminate\Auth\Access\AuthorizationException as LaravelAuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
-use Sentry;
+use Laravel\Passport\Exceptions\MissingScopeException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
@@ -67,8 +66,8 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
-        view()->share('current_action', $this->statusCode($e));
-        view()->share('current_section', 'error');
+        view()->share('currentAction', $this->statusCode($e));
+        view()->share('currentSection', 'error');
 
         // immediately done if the error should not be reported
         if ($this->shouldntReport($e)) {
@@ -101,34 +100,36 @@ class Handler extends ExceptionHandler
         }
 
         if (config('app.debug')) {
-            if ($this->isHttpException($e)) {
-                $response = $this->renderHttpException($e);
-            } else {
-                $response = parent::render($request, $e);
-            }
+            $response = parent::render($request, $e);
         } else {
-            if ($request->ajax()) {
-                $response = response(['error' => $this->ajaxMessage($e)]);
+            $message = $this->exceptionMessage($e);
+
+            if (is_json_request()) {
+                $response = response(['error' => $message]);
             } else {
-                $response = response()->view('layout.error');
+                $response = response()->view('layout.error', ['exceptionMessage' => $message]);
             }
         }
 
         return $response->setStatusCode($this->statusCode($e));
     }
 
-    protected function unauthenticated($request, $exception)
+    protected function unauthenticated($request, AuthenticationException $exception)
     {
-        if ($request->expectsJson()) {
+        if (is_json_request()) {
             return response(['authentication' => 'basic'], 401);
         }
 
         return response()->view('users.login');
     }
 
-    private function ajaxMessage($e)
+    private function exceptionMessage($e)
     {
-        if ($e instanceof QueryException) {
+        if ($e instanceof ModelNotFoundException) {
+            return;
+        }
+
+        if ($this->statusCode($e) >= 500) {
             return;
         }
 
@@ -137,10 +138,6 @@ class Handler extends ExceptionHandler
 
     private function reportWithSentry($e)
     {
-        $extra = [
-            'http_code' => $this->statusCode($e),
-        ];
-
         if (Auth::check()) {
             $userContext = [
                 'id' => Auth::user()->user_id,
@@ -152,9 +149,12 @@ class Handler extends ExceptionHandler
             ];
         }
 
-        Sentry::user_context($userContext);
+        app('sentry')->configureScope(function ($scope) use ($e, $userContext) {
+            $scope->setUser($userContext);
+            $scope->setTag('http_code', (string) $this->statusCode($e));
+        });
 
-        $ref = Sentry::captureException($e, compact('extra'));
+        $ref = app('sentry')->captureException($e);
 
         view()->share('ref', $ref);
     }
@@ -171,7 +171,7 @@ class Handler extends ExceptionHandler
             return 403;
         } elseif ($e instanceof AuthenticationException) {
             return 401;
-        } elseif ($e instanceof AuthorizationException) {
+        } elseif ($e instanceof AuthorizationException || $e instanceof MissingScopeException) {
             return 403;
         } else {
             return 500;

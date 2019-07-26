@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,11 +20,12 @@
 
 return [
     'edit' => [
-        'title' => '账户设置',
+        'title' => '<strong>账户</strong>设置',
         'title_compact' => '设置',
+        'username' => '用户名',
 
         'avatar' => [
-            'title' => '编辑头像',
+            'title' => '头像',
         ],
 
         'email' => [
@@ -42,15 +43,16 @@ return [
         ],
 
         'profile' => [
-            'title' => '编辑个人资料',
+            'title' => '个人资料',
 
             'user' => [
                 'user_from' => '当前位置',
                 'user_interests' => '兴趣爱好',
-                'user_msnm' => 'Skype',
+                'user_msnm' => 'skype',
                 'user_occ' => '职业',
                 'user_twitter' => '推特',
                 'user_website' => '个人主页',
+                'user_discord' => 'discord',
             ],
         ],
 
@@ -60,16 +62,19 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
-        'email_subject' => 'osu! 帐户邮箱更改',
+        'email_subject' => 'osu! 帐户邮箱更改确认',
         'update' => '更新',
-        'updated' => '邮箱已更改',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! 帐户密码更改',
+        'email_subject' => 'osu! 帐户密码更改确认',
         'update' => '更新',
-        'updated' => '密码已更改',
     ],
 
     'playstyles' => [
@@ -78,5 +83,25 @@ return [
         'keyboard' => '键盘',
         'tablet' => '数位板',
         'touch' => '触摸屏',
+    ],
+
+    'privacy' => [
+        'title' => '隐私政策',
+        'friends_only' => '屏蔽来自陌生人的私信',
+        'hide_online' => '隐藏在线状态',
+    ],
+
+    'notifications' => [
+        'title' => '通知',
+        'topic_auto_subscribe' => '自动启用自己创建的主题的通知',
+    ],
+
+    'security' => [
+        'current_session' => '当前',
+        'end_session' => '终止会话',
+        'end_session_confirmation' => '这将立刻结束该设备上的会话，你确定吗？',
+        'last_active' => '上次使用：',
+        'title' => '安全',
+        'web_sessions' => '浏览器会话',
     ],
 ];

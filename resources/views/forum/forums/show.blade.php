@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -16,18 +16,18 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'body_additional_classes' => 't-forum-'.$forum->categorySlug(),
+    'bodyAdditionalClasses' => 't-forum-'.$forum->categorySlug(),
     'search' => [
         'params' => [
             'forum_id' => $forum->forum_id,
         ],
         'url' => route('forum.forums.search'),
     ],
-    'titleAppend' => $forum->forum_name,
+    'titlePrepend' => $forum->forum_name,
     'pageDescription' => $forum->toMetaDescription(),
 ])
 
-@section("content")
+@section('content')
     <div class="osu-layout__row osu-layout__row--page-compact">
         <div class="page-header-nav">
             @include('forum._header_breadcrumb')
@@ -59,7 +59,7 @@
         </div>
     </div>
 
-    <div class="osu-layout__row osu-layout__row--page-compact">
+    <div class="osu-page osu-page--forum-compact">
         @if ($forum->subforums()->exists())
             <div class="forum-topics forum-topics--subforums">
                 <h2 class="forum-topics__title">{{ trans("forum.subforums") }}</h2>
@@ -74,23 +74,48 @@
                 'topics' => $pinnedTopics,
             ])
         @endif
+    </div>
 
-        <div id="topics">
-            @if (count($topics) > 0 || $forum->isOpen())
-                @include('forum.forums._topics', [
-                    'title' => trans('forum.topics._'),
-                    'topics' => $topics,
-                    'withNewTopicLink' => $forum->isOpen(),
-                ])
+    <div class="osu-page osu-page--forum-compact osu-page--has-anchor" id="topics">
+        @include('forum.forums._topics_sort', compact('forum'))
 
-                @include('forum._pagination', ['object' => $topics
-                    ->fragment('topics')
-                    ->appends([
-                        'sort' => Request::input('sort'),
-                        'with_replies' => Request::input('with_replies'),
+        @if (count($topics) > 0 || $forum->isOpen())
+            <div class="forum-topics-spacer">
+                <div class="forum-topics-spacer__group forum-topics-spacer__group--left">
+                    @include('forum.forums._new_topic', compact('forum'))
+                </div>
+
+                <div class="forum-topics-spacer__group forum-topics-spacer__group--right">
+                    @include('forum.forums._mark_as_read', compact('forum'))
+                </div>
+            </div>
+
+            @include('forum.forums._topics', [
+                'title' => trans('forum.topics._'),
+                'topics' => $topics,
+            ])
+
+            <div class="forum-topics-spacer forum-topics-spacer--pager">
+                <div class="forum-topics-spacer__group forum-topics-spacer__group--left">
+                    @include('forum.forums._new_topic', compact('forum'))
+                </div>
+
+                <div class="forum-topics-spacer__group forum-topics-spacer__group--pager">
+                    @include('objects._pagination_v0', [
+                        'object' => $topics
+                            ->fragment('topics')
+                            ->appends([
+                                'sort' => Request::input('sort'),
+                                'with_replies' => Request::input('with_replies'),
+                            ]),
+                        'modifiers' => ['light-bg']
                     ])
-                ])
-            @endif
-        </div>
+                </div>
+
+                <div class="forum-topics-spacer__group forum-topics-spacer__group--right">
+                    @include('forum.forums._mark_as_read', compact('forum'))
+                </div>
+            </div>
+        @endif
     </div>
 @endsection

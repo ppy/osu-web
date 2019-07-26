@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers\API;
 
-use Auth;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -28,9 +27,4 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use DispatchesJobs, ValidatesRequests;
-
-    public function __construct()
-    {
-        $this->middleware('auth:api');
-    }
 }

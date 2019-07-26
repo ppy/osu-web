@@ -1,0 +1,95 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.sort {
+  @_top: sort;
+  @_item-margin: 5px;
+
+  padding: 0;
+  display: flex;
+  font-size: @font-size--normal;
+
+  &--beatmapset-discussions {
+    padding: 0;
+  }
+
+  &--beatmapsets {
+    padding: 10px 0;
+  }
+
+  &--forum-topics {
+    padding: 10px 40px;
+    background: @osu-colour-b4;
+  }
+
+  &--user-list {
+    padding: 0;
+  }
+
+  &__item {
+    .reset-input();
+    margin: @_item-margin;
+    color: white;
+    padding: 5px 10px;
+    .default-border-radius();
+
+    &--button {
+      .link-plain();
+      .link-white();
+
+      &:hover {
+        background-color: @osu-colour-b3;
+      };
+    }
+
+    &--title {
+      padding: 0;
+    }
+
+    // overrides --button
+    &--active {
+      background-color: @osu-colour-b3;
+      color: @osu-colour-l1;
+      font-weight: bold;
+    }
+  }
+
+  &__item-arrow {
+    margin-left: 5px;
+    opacity: 0;
+
+    .@{_top}__item:hover & {
+      opacity: 1;
+    }
+
+    .@{_top}__item--active & {
+      opacity: 1;
+    }
+  }
+
+  &__item-icon {
+    margin-right: 5px;
+  }
+
+  &__items {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: -@_item-margin;
+  }
+}

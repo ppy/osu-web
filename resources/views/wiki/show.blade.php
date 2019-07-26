@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -17,9 +17,8 @@
 --}}
 
 @extends('master', [
-    'body_additional_classes' => 'osu-layout--body-333',
     'title' => null,
-    'titleAppend' => $page->title(true),
+    'titlePrepend' => $page->title(true),
 ])
 
 @section('content')
@@ -28,12 +27,20 @@
             <div class="osu-page-header__title-box">
                 @if (present($page->subtitle()))
                     <h2 class="osu-page-header__title osu-page-header__title--small">
-                        {{ $page->subtitle() }}
+                        @if ($page->hasParent())
+                            <a class="osu-page-header__link" href="{{ wiki_url($page->parentPath(), $page->requestedLocale) }}">
+                                {{ $page->subtitle() }}
+                            </a>
+                        @else
+                            {{ $page->subtitle() }}
+                        @endif
                     </h2>
                 @endif
 
                 <h1 class="osu-page-header__title osu-page-header__title--main">
-                    {{ $page->title() }}
+                    <a class="osu-page-header__link osu-page-header__link--plain" href="{{ wiki_url($page->path, $page->requestedLocale) }}">
+                        {{ $page->title() }}
+                    </a>
                 </h1>
             </div>
 
@@ -47,7 +54,7 @@
                             data-tooltip-position="left center"
                         >
                             <span class="btn-circle__content">
-                                <i class="fa fa-github"></i>
+                                <i class="fab fa-github"></i>
                             </span>
                         </a>
                     </div>
@@ -58,13 +65,13 @@
                                 type="button"
                                 class="btn-circle"
                                 data-remote="true"
-                                data-url="{{ route('wiki.show', [$page->path]) }}"
+                                data-url="{{ wiki_url($page->path) }}"
                                 data-method="PUT"
                                 title="{{ trans('wiki.show.edit.refresh') }}"
                                 data-tooltip-position="left center"
                             >
                                 <span class="btn-circle__content">
-                                    <i class="fa fa-refresh"></i>
+                                    <i class="fas fa-sync"></i>
                                 </span>
                             </button>
                         </div>
@@ -83,27 +90,29 @@
             </div>
         @endif
 
+        @if ($page->isLegalTranslation())
+            <div class="wiki-notice">
+                <div class="wiki-notice__box wiki-notice__box--important">
+                    {!! trans('wiki.show.translation.legal', [
+                        'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(trans('wiki.show.translation.default')).'</a>',
+                    ]) !!}
+                </div>
+            </div>
+        @endif
+
         @if ($page->isOutdated())
             <div class="wiki-notice">
                 <div class="wiki-notice__box">
-                    {!! trans('wiki.show.outdated._', [
-                        'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(trans('wiki.show.outdated.default')).'</a>',
+                    {!! trans('wiki.show.translation.outdated', [
+                        'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(trans('wiki.show.translation.default')).'</a>',
                     ]) !!}
                 </div>
             </div>
         @endif
 
         <div class="wiki-page">
-            <div
-                class="hidden-xs wiki-page__toc js-wiki-toc-float-container js-sticky-header"
-                data-sticky-header-target="wiki-toc"
-            >
-                <div class="js-sync-height--target" data-sync-height-id="wiki-toc"></div>
-
-                <div
-                    class="wiki-toc js-wiki-toc js-wiki-toc-float js-sync-height--reference"
-                    data-sync-height-target="wiki-toc"
-                >
+            <div class="hidden-xs wiki-page__toc">
+                <div class="wiki-toc">
                     <h2 class="wiki-toc__title">
                         {{ trans('wiki.show.toc') }}
                     </h2>
@@ -119,7 +128,15 @@
                     {!! $page->page()['output'] !!}
                 @else
                     <div class="wiki-content">
-                        {{ trans('wiki.show.missing') }}
+                        <p>
+                            {{ trans('wiki.show.missing', ['keyword' => $page->path ]) }}
+                        </p>
+
+                        <p>
+                            {!! trans('wiki.show.search', ['link' =>
+                                link_to(route('search', ['mode' => 'wiki_page', 'query' => $page->path]), $page->path)
+                            ]) !!}
+                        </p>
                     </div>
                 @endif
             </div>

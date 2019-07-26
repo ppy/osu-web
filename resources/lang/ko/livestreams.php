@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,8 +20,10 @@
 
 return [
     'top-headers' => [
-        'headline' => '라이브 스트림',
-        'description' => ' 목록은 5분 마다 갱신되며 twitch.tv를 통해 정보를 가져옵니다. 자유롭게 방송을 시작하셔서 이 곳에 노출시킬 수 있습니다! 방송을 하는 데 필요한 환경의 설치법은, 위키 페이지의 라이브 스트리밍 항목을 참조해주세요.',
+        'headline' => '라이브 스트리밍',
+        'description' => '이 목록은 5분마다 twitch.tv의 데이터를 통해 갱신됩니다. 자유롭게 방송을 시작하셔서 이곳에 방송을 노출시켜 보세요! 방송하는 데 필요한 정보는 위키 페이지의 라이브 스트리밍 항목을 참조해주세요.',
+
+        'link' => '위키 페이지의 라이브 스트리밍',
     ],
     'headers' => [
         'regular' => '현재 방송 중',

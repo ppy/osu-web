@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,13 +20,63 @@
 
 namespace App\Models;
 
+use App\Models\Store\Product;
 use Carbon\Carbon;
 
+/**
+ * @property \Carbon\Carbon|null $created_at
+ * @property string $description
+ * @property \Carbon\Carbon $end_date
+ * @property string|null $header_banner
+ * @property string|null $info_url
+ * @property string $name
+ * @property int $play_mode
+ * @property \Illuminate\Database\Eloquent\Collection $profileBanners ProfileBanner
+ * @property int|null $rank_max
+ * @property int|null $rank_min
+ * @property \Illuminate\Database\Eloquent\Collection $registrations TournamentRegistration
+ * @property \Carbon\Carbon $signup_close
+ * @property \Carbon\Carbon $signup_open
+ * @property \Carbon\Carbon $start_date
+ * @property int|null $tournament_banner_product_id
+ * @property int $tournament_id
+ * @property \Carbon\Carbon|null $updated_at
+ */
 class Tournament extends Model
 {
     protected $primaryKey = 'tournament_id';
 
     protected $dates = ['signup_open', 'signup_close', 'start_date', 'end_date'];
+
+    public static function getGroupedListing()
+    {
+        $tournaments = static::query()
+            ->with('registrations')
+            ->orderBy('tournament_id', 'desc')
+            ->get();
+
+        $now = Carbon::now();
+
+        return [
+            'current' => $tournaments->where('end_date', '>', $now),
+            'previous' => $tournaments->where('end_date', '<=', $now),
+        ];
+    }
+
+    public function profileBanners()
+    {
+        return $this->hasMany(ProfileBanner::class, 'tournament_id');
+    }
+
+    public function registrations()
+    {
+        return $this->hasMany(TournamentRegistration::class, 'tournament_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'tournament_banner_product_id');
+    }
 
     public function isRegistrationOpen()
     {
@@ -42,14 +92,9 @@ class Tournament extends Model
         return $this->start_date < $now && $this->end_date > $now;
     }
 
-    public function profileBanners()
+    public function isStoreBannerAvailable()
     {
-        return $this->hasMany(ProfileBanner::class, 'tournament_id');
-    }
-
-    public function registrations()
-    {
-        return $this->hasMany('App\Models\TournamentRegistration', 'tournament_id');
+        return $this->tournament_banner_product_id !== null && $this->product->isAvailable();
     }
 
     public function isSignedUp($user)
@@ -107,18 +152,29 @@ class Tournament extends Model
         $this->registrations()->save($reg);
     }
 
-    public static function getRegistrationStage()
-    {
-        return self::query()
-            ->where('signup_open', '<', Carbon::now())
-            ->where('signup_close', '>', Carbon::now())
-            ->orderBy('play_mode', 'desc')
-            ->orderBy('tournament_id', 'desc')
-            ->get();
-    }
-
     public function playModeStr()
     {
         return Beatmap::modeStr($this->play_mode);
+    }
+
+    public function pageLinks()
+    {
+        $links = [];
+
+        if ($this->info_url !== null) {
+            $links[] = [
+                'url' => $this->info_url,
+                'title' => trans('tournament.show.info_page'),
+            ];
+        }
+
+        if ($this->isStoreBannerAvailable()) {
+            $links[] = [
+                'url' => route('store.products.show', $this->tournament_banner_product_id),
+                'title' => trans('tournament.show.banner'),
+            ];
+        }
+
+        return $links;
     }
 }

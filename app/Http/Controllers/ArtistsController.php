@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -31,7 +31,7 @@ class ArtistsController extends Controller
 
     public function index()
     {
-        $artists = Artist::with('label')->withCount('tracks');
+        $artists = Artist::with('label')->withCount('tracks')->orderBy('name', 'asc');
         $user = Auth::user();
 
         if ($user === null || !$user->isAdmin()) {
@@ -67,21 +67,30 @@ class ArtistsController extends Controller
         // should probably move services to a separate model if the number increases further (HA HA HA)
         $links = [];
 
+        if ($artist->user_id) {
+            $links[] = [
+                'title' => trans('artist.links.osu'),
+                'url' => route('users.show', $artist->user_id),
+                'icon' => 'fas fa-user',
+                'class' => 'osu',
+            ];
+        }
+
         if ($artist->website) {
             $links[] = [
                 'title' => trans('artist.links.site'),
                 'url' => $artist->website,
-                'icon' => 'globe',
+                'icon' => 'fas fa-link',
                 'class' => 'website',
             ];
         }
 
-        foreach (['twitter', 'facebook', 'bandcamp', 'patreon', 'soundcloud', 'youtube'] as $service) {
+        foreach (['twitter', 'facebook', 'spotify', 'bandcamp', 'patreon', 'soundcloud', 'youtube'] as $service) {
             if ($artist->$service) {
                 $links[] = [
                     'title' => $service === 'youtube' ? 'YouTube' : ucwords($service),
                     'url' => $artist->$service,
-                    'icon' => $service === 'patreon' ? "extra-social-$service" : $service,
+                    'icon' => "fab fa-{$service}",
                     'class' => $service,
                 ];
             }

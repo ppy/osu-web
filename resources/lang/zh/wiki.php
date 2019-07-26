@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,11 +25,19 @@ return [
         'missing' => '请求的页面未找到',
         'missing_title' => '未找到',
         'missing_translation' => '请求的页面没有当前语言的版本',
+        'search' => '在 wiki 中搜索 :link 。',
         'toc' => '目录',
 
         'edit' => [
             'link' => '在 GitHub 上显示',
             'refresh' => '刷新',
+        ],
+
+        'translation' => [
+            'legal' => '本翻译仅为方便阅读，只有原始的 :default 才是唯一具有法律效力的版本。',
+            'outdated' => '本文是原始内容的过期翻译，请查阅 :default 以获得最准确的信息（欢迎你来帮助更新翻译）！',
+
+            'default' => '英文版本',
         ],
     ],
 ];

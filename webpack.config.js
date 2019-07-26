@@ -6,8 +6,16 @@
  */
 
 const path = require('path');
-require(path.resolve(__dirname, 'node_modules/laravel-mix/src/index'));
-Mix.paths.setRootPath(path.resolve(__dirname));
+const currentPath = path.resolve(__dirname);
+const mixPath = path.resolve(currentPath, 'node_modules/laravel-mix');
+
+require(path.resolve(mixPath, 'src/index'));
+
+Mix.paths.setRootPath(currentPath);
+
+let ComponentFactory = require(path.resolve(mixPath, 'src/components/ComponentFactory'));
+new ComponentFactory().installAll();
+
 require(Mix.paths.mix());
 
 /**
@@ -23,6 +31,6 @@ Mix.dispatch('init', Mix);
  * for Webpack. And that's all there is to it. Simple!
  */
 
-let WebpackConfig = require(path.resolve(__dirname, 'node_modules/laravel-mix/src/builder/WebpackConfig'));
+let WebpackConfig = require(path.resolve(mixPath, 'src/builder/WebpackConfig'));
 
 module.exports = new WebpackConfig().build();

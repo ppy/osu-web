@@ -1,0 +1,68 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.profile-detail {
+  .inner-shadow-top();
+
+  &__col {
+    flex: none;
+
+    &--bottom-left {
+      flex: 1;
+      margin-left: -15px; // compensates chart internal margin. Sync with ProfileDetail.RankChart.
+    }
+
+    &--bottom-right {
+      margin: -10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &--top-left {
+      margin: -5px;
+      display: flex;
+    }
+  }
+
+  &__empty-chart {
+    .full-size();
+    .center-content();
+    font-size: @font-size--normal;
+  }
+
+  &__row {
+    padding: 10px @gutter-desktop;
+    display: none;
+
+    @media @desktop {
+      display: flex;
+    }
+
+    &--top {
+      justify-content: space-between;
+    }
+  }
+
+  &__bottom-right-item {
+    padding: 10px;
+  }
+
+  &__top-left-item {
+    padding: 5px;
+  }
+}

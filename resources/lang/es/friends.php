@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,8 +20,16 @@
 
 return [
     'buttons' => [
-      'add' => 'Añadir amigo',
-      'remove' => 'Eliminar amigo',
+      'add' => 'agregar amigo',
+      'disabled' => 'amigos',
+      'remove' => 'eliminar amigo',
+    ],
+
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => '',
+        ],
     ],
 
     'state' => [

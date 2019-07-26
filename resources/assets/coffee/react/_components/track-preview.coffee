@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,10 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, a, i} = ReactDOMFactories
+import * as React from 'react'
+import { div, a, i } from 'react-dom-factories'
 el = React.createElement
 
-class @TrackPreview extends React.Component
+export class TrackPreview extends React.Component
   constructor: (props) ->
     super props
 
@@ -39,15 +40,14 @@ class @TrackPreview extends React.Component
 
   render: ->
     if @props.track.cover_url && !@props.track.album_id
-      coverStyle = backgroundImage: "url('#{@props.track.cover_url}')"
+      coverStyle = backgroundImage: osu.urlPresence(@props.track.cover_url)
 
     div className: 'tracklist__cover', style: coverStyle,
       a
         className: 'tracklist__preview js-audio--play'
         href: '#'
         'data-audio-url': @props.track.preview
-        el Icon,
-          name: if @state.playing then 'pause' else 'play'
+        i className: "fas #{if @state.playing then 'fa-pause' else 'fa-play'}"
 
 
   previewPlay: (_e, {url}) =>

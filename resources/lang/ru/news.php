@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,26 +19,31 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => 'список',
-        'news-show' => 'публикация',
-    ],
-
     'index' => [
-        'title' => 'osu!новости',
+        'title_page' => 'osu!новости',
 
         'nav' => [
-            'newer' => 'Новые публикации',
-            'older' => 'Старые публикации',
+            'newer' => 'Новые записи',
+            'older' => 'Старые записи',
+        ],
+
+        'title' => [
+            '_' => ':info новостей',
+            'info' => 'Главная страница',
         ],
     ],
 
     'show' => [
-        'posted' => 'опубликован :time',
+        'by' => 'от :user',
 
         'nav' => [
-            'newer' => 'Новая публикация',
-            'older' => 'Старая публикация',
+            'newer' => 'Новая запись',
+            'older' => 'Старая запись',
+        ],
+
+        'title' => [
+            '_' => ':info новости',
+            'info' => 'Просмотр',
         ],
     ],
 
@@ -49,6 +54,6 @@ return [
 
     'update' => [
         'button' => 'Обновить',
-        'ok' => 'Публикация обновлена.',
+        'ok' => 'Запись обновлена.',
     ],
 ];

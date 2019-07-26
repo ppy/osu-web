@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,9 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { CoverSelection } from './cover-selection'
+import { CoverUploader } from './cover-uploader'
+import * as React from 'react'
+import { div, p } from 'react-dom-factories'
 el = React.createElement
 
-class ProfilePage.CoverSelector extends React.Component
+export class CoverSelector extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -58,24 +62,25 @@ class ProfilePage.CoverSelector extends React.Component
   render: =>
     dropOverlayClass = 'profile-cover-change-popup__drop-overlay'
 
-    el 'div', className: 'profile-cover-change-popup js-profile-cover-upload--dropzone',
-      el 'div', className: 'profile-cover-change-popup__defaults',
+    div className: 'profile-cover-change-popup js-profile-cover-upload--dropzone',
+      div className: 'profile-cover-change-popup__defaults',
         for i in [1..8]
           i = i.toString()
-          el ProfilePage.CoverSelection,
+          div
+            className: 'profile-cover-change-popup__selection'
             key: i
-            name: i
-            isSelected: @props.cover.id == i
-            url: "/images/headers/profile-covers/c#{i}.jpg"
-            thumbUrl: "/images/headers/profile-covers/c#{i}t.jpg"
-        el 'p', className: 'profile-cover-change-popup__selections-info',
+            el CoverSelection,
+              name: i
+              isSelected: @props.cover.id == i
+              url: "/images/headers/profile-covers/c#{i}.jpg"
+              thumbUrl: "/images/headers/profile-covers/c#{i}t.jpg"
+        p className: 'profile-cover-change-popup__selections-info',
           osu.trans 'users.show.edit.cover.defaults_info'
-      el ProfilePage.CoverUploader, cover: @props.cover, canUpload: @props.canUpload
+      el CoverUploader, cover: @props.cover, canUpload: @props.canUpload
       if @props.canUpload
-        el 'div',
+        div
           className: "#{dropOverlayClass} #{dropOverlayClass}--#{@state.dropOverlayState}"
           'data-visibility': @state.dropOverlayVisibility
           onDragEnter: @_dropOverlayEnter
           onDragLeave: @_dropOverlayLeave
-          ref: 'dropOverlay'
           osu.trans 'users.show.edit.cover.upload.dropzone'

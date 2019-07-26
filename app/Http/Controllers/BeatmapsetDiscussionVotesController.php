@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,9 +30,10 @@ class BeatmapsetDiscussionVotesController extends Controller
 
     public function index()
     {
-        priv_check('BeatmapDiscussionModerate')->ensureCan();
+        $params = request();
+        $params['is_moderator'] = priv_check('BeatmapDiscussionModerate')->can();
 
-        $search = BeatmapDiscussionVote::search(request());
+        $search = BeatmapDiscussionVote::search($params);
         $votes = new LengthAwarePaginator(
             $search['query']->with([
                     'user',
@@ -45,7 +46,7 @@ class BeatmapsetDiscussionVotesController extends Controller
             $search['params']['limit'],
             $search['params']['page'],
             [
-                'path' => route('beatmapsets.discussions.votes.index'),
+                'path' => LengthAwarePaginator::resolveCurrentPath(),
                 'query' => $search['params'],
             ]
         );

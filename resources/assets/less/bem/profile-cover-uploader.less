@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,14 +17,14 @@
  */
 
 .profile-cover-uploader {
+  border-top: 1px solid @osu-colour-b5;
   padding: 10px;
-  padding-right: 5px;
-  border-top: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
 
   &__button {
+    margin-top: 10px;
     text-transform: none;
-    height: 30px;
-    margin-right: 5px;
 
     display: flex;
     align-items: center;
@@ -38,5 +38,10 @@
 
   &__info-entry {
     margin-bottom: 5px;
+
+    // TODO: remove once default link style becomes... default
+    a {
+      .link-default();
+    }
   }
 }

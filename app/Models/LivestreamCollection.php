@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -24,7 +24,7 @@ use Cache;
 
 class LivestreamCollection
 {
-    const FEATURED_CACHE_KEY = 'featuredStream:arr';
+    const FEATURED_CACHE_KEY = 'featuredStream:arr:v2';
 
     private $streams;
 
@@ -36,17 +36,45 @@ class LivestreamCollection
     public function all()
     {
         if ($this->streams === null) {
-            $this->streams = Cache::remember('livestreams:arr', 5, function () {
-                return $this->download()['streams'] ?? [];
+            $this->streams = Cache::remember('livestreams:arr:v2', 5, function () {
+                $streams = $this->downloadStreams()['data'] ?? [];
+
+                $userIds = array_map(function ($stream) {
+                    return $stream['user_id'];
+                }, $streams);
+
+                $users = [];
+
+                foreach ($this->downloadUsers($userIds)['data'] ?? [] as $user) {
+                    $users[$user['id']] = $user;
+                }
+
+                return array_map(function ($stream) use ($users) {
+                    return new Twitch\Stream($stream, $users[$stream['user_id']]);
+                }, $streams);
             });
         }
 
         return $this->streams;
     }
 
-    public function download()
+    public function downloadStreams()
     {
-        $streamsApi = 'https://api.twitch.tv/kraken/streams?stream_type=live&limit=40&offset=0&game=Osu!';
+        return $this->download('streams?first=40&game_id=21465');
+    }
+
+    public function downloadUsers($userIds)
+    {
+        if (count($userIds) === 0) {
+            return;
+        }
+
+        return $this->download('users?id='.implode('&id=', $userIds));
+    }
+
+    public function download($api)
+    {
+        $url = "https://api.twitch.tv/helix/{$api}";
         $clientId = config('osu.twitch_client_id');
         $ch = curl_init();
 
@@ -55,7 +83,7 @@ class LivestreamCollection
                 "Client-ID: {$clientId}",
             ],
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_URL => $streamsApi,
+            CURLOPT_URL => $url,
             CURLOPT_FAILONERROR => true,
         ]);
 
@@ -79,15 +107,10 @@ class LivestreamCollection
 
         if ($featuredStreamId !== null) {
             foreach ($this->all() as $stream) {
-                if ((string) $stream['_id'] !== $featuredStreamId) {
-                    continue;
+                if ($stream->data['id'] === $featuredStreamId) {
+                    return $stream;
                 }
-
-                $featuredStream = $stream;
-                break;
             }
         }
-
-        return $featuredStream ?? null;
     }
 }

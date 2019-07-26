@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,38 +19,81 @@
  */
 
 return [
-    'confirmation' => '확실합니까?', //  Are you sure?
+    'confirmation' => '확실합니까?',
+    'confirmation_unsaved' => '저장되지 않은 정보는 사라집니다. 계속하시겠습니까?',
     'saved' => '저장됨',
 
     'array_and' => [
-        'words_connector' => ', ', // A[[, ]]B[[, ]]C, and D 를 표시할 때 사용
-        'two_words_connector' => ' 와(과) ', // A[[ and ]]B 를 표시할 때 사용 (앞 종성에 따른 모호함이 발생)
-        'last_word_connector' => ', 그리고 ', // A, B, C[, and ] 를 표시할 때 사용
+        'words_connector' => ', ',
+        'two_words_connector' => ' 와(과) ',
+        'last_word_connector' => ', 그리고 ',
     ],
 
     'buttons' => [
+        'admin' => '관리',
+        'back_to_previous' => '이전 위치로 돌아가기',
+        'back_to_top' => '맨 위로',
         'cancel' => '취소',
+        'change' => '변경',
+        'click_to_copy' => '클립보드에 복사',
+        'click_to_copy_copied' => '클립보드에 복사되었습니다!',
+        'collapse' => '축소',
         'delete' => '삭제',
-        'permalink' => '고유 주소', // permalink
-        'post' => '게시하기', // Post
-        'reply' => '답변하기', // Reply
+        'edit' => '수정',
+        'expand' => '확장',
+        'hide' => '숨기기',
+        'permalink' => '고유 주소',
+        'permalink_copied' => '링크 복사됨',
+        'post' => '게시하기',
+        'reply' => '답변하기',
+        'reply_reopen' => '답변하고 토론 재개하기',
+        'reply_resolve' => '답변하고 토론 마무리하기',
         'reset' => '초기화',
+        'restore' => '되돌리기',
         'save' => '저장',
         'saving' => '저장 중...',
+        'search' => '검색',
+        'see_more' => '더 보기',
+        'show' => '표시',
+        'show_deleted' => '삭제된 내용 표시',
         'show_more' => '더 보기',
-        'upload_image' => '이미지 업로드',
+        'show_more_options' => '더 많은 옵션 보기',
+        'upload_image' => '이미지 올리기',
+
+        'watch' => [
+            'to_0' => '구독 해제하기',
+            'to_1' => '구독하기',
+        ],
     ],
 
     'count' => [
+        'badges' => ':count개의 배지|:count개의 배지',
+        'days' => ':count일',
+        'hour_short_unit' => '시간',
+        'hours' => ':count시간',
         'item' => ':count unit|:count units',
-        'months' => ':count 달|:count 달',
-        'years' => ':count 년|:count 년',
+        'minute_short_unit' => '분',
+        'minutes' => ':count분',
+        'months' => ':count달',
+        'second_short_unit' => '초',
+        'update' => ':count_delimited 업데이트',
+        'years' => ':count년',
+    ],
+
+    'countdown' => [
+        'days' => '일',
+        'hours' => '시간',
+        'minutes' => '분',
+        'seconds' => '초',
     ],
 
     'datetime' => [
         'year_month' => [
-            'moment' => 'MMMM YYYY',
-            'php' => 'MMMM y',
+            'moment' => 'YYYY년 MMMM',
+            'php' => 'y년 MMMM',
+        ],
+        'year_month_short' => [
+            'moment' => 'YYYY년 MMM',
         ],
     ],
 
@@ -58,7 +101,7 @@ return [
         'keyboard' => '키보드',
         'mouse' => '마우스',
         'tablet' => '태블릿',
-        'touch' => '터치 스크린',
+        'touch' => '터치스크린',
     ],
 
     'dropzone' => [
@@ -80,13 +123,13 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count 일 전',
-        'hours_ago' => ':count 시간 전',
+        'days_ago' => ':count일 전',
+        'hours_ago' => ':count시간 전|:count시간 전',
         'now' => '지금',
         'remaining' => '남은 시간',
     ],
 
     'title' => [
-        'notice' => '알림', // Notice
+        'notice' => '알림',
     ],
 ];

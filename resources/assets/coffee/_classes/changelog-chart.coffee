@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -25,6 +25,7 @@ class @ChangelogChart
         class: d3.scaleOrdinal()
 
     @area = d3.select area
+    @area.classed 'changelog-chart', true
 
     @svg = @area
       .append 'svg'
@@ -41,7 +42,7 @@ class @ChangelogChart
     @hoverArea = @svg.append 'rect'
       .classed 'changelog-chart__hover-area', true
       .on 'mouseout', @hideTooltip
-      .on 'mousemove', @positionTooltip
+      .on 'mousemove', @moveTooltip
 
     @tooltipArea = @area.append 'div'
       .classed 'changelog-chart__tooltip-area', true
@@ -69,21 +70,26 @@ class @ChangelogChart
 
     @tooltipLine = @tooltipContainer.selectAll '.changelog-chart__tooltip-line'
 
-  loadData: ->
-    chartConfig = osu.parseJson 'json-chart-config'
-    @options.order = chartConfig.order
-    @options.isBuild = chartConfig.isBuild
 
-    data = @normalizeData chartConfig.buildHistory
+  loadData: ->
+    @config = osu.parseJson 'json-chart-config'
+
+    {data, hasData} = @normalizeData @config.build_history
 
     stack = d3.stack()
-      .keys @options.order
+      .keys @config.order
       .value (d, val) ->
         if d[val]? then d[val].normalized else 0
 
     @data = stack data
 
+    @hasData = @config.build_history? &&
+      @config.build_history.length > 0 &&
+      hasData
+
+
     @resize()
+
 
   setDimensions: ->
     areaDims = @area.node().getBoundingClientRect()
@@ -91,15 +97,18 @@ class @ChangelogChart
     @width = areaDims.width
     @height = areaDims.height
 
+
   setSvgSize: ->
     @svg
       .attr 'width', @width
       .attr 'height', @height
 
+
   setHoverAreaSize: ->
     @hoverArea
       .attr 'width', @width
       .attr 'height', @height
+
 
   setScalesRange: ->
     @options.scales.x
@@ -111,11 +120,12 @@ class @ChangelogChart
       .domain [0, 1]
 
     @options.scales.class
-      .range _.map @options.order, (d, i) =>
-        # rotate over available build ids (0-11) when the amount of builds
+      .range _.map @config.order, (d, i) =>
+        # rotate over available build ids (0-6) when the amount of builds
         # exceeds the available amount of colors
-        if @options.isBuild then "build-#{i % 12}" else _.kebabCase d
-      .domain @options.order
+        if @config.stream_name? then "#{@config.stream_name}-build-#{i % 7}" else _.kebabCase d
+      .domain @config.order
+
 
   drawLines: ->
     @svgWrapper
@@ -126,16 +136,31 @@ class @ChangelogChart
       .attr 'class', (d) => "changelog-chart__area changelog-chart__area--#{@options.scales.class d.key}"
       .attr 'd', @areaFunction
 
+
   showTooltip: =>
     Fade.in @tooltipContainer.node()
+
 
   hideTooltip: =>
     Fade.out @tooltipContainer.node()
 
-  positionTooltip: =>
+
+  moveTooltip: =>
     mousePos = d3.mouse @hoverArea.node()
-    x = @options.scales.x.invert mousePos[0]
-    y = mousePos[1] / @height
+    @x = @options.scales.x.invert mousePos[0]
+    @y = mousePos[1] / @height
+
+    @showTooltip()
+
+    Timeout.clear @_autoHideTooltip
+    @_autoHideTooltip = Timeout.set 3000, @hideTooltip
+
+    @positionTooltip()
+
+
+  positionTooltip: =>
+    x = @x
+    y = @y
 
     pos = d3.bisector((d) -> d.data.date).left @data[0], x
 
@@ -148,17 +173,12 @@ class @ChangelogChart
         labelModifier = @options.scales.class currentLabel
         break
 
-    @showTooltip()
-
-    Timeout.clear @_autoHideTooltip
-    @_autoHideTooltip = Timeout.set 3000, @hideTooltip
-
     coord = @options.scales.x x
 
     @tooltipName
       .attr 'class', "changelog-chart__text changelog-chart__text--name changelog-chart__text--#{labelModifier}"
       .text currentLabel
-    @tooltipUserCount.text @data[dataRow][pos].data[currentLabel].user_count.toLocaleString()
+    @tooltipUserCount.text osu.formatNumber(@data[dataRow][pos].data[currentLabel].user_count)
     @tooltipDate.text @data[dataRow][pos].data.date_formatted
 
     tooltipWidth = @tooltip.node().getBoundingClientRect().width
@@ -180,31 +200,55 @@ class @ChangelogChart
     @tooltipLine
       .style 'transform', "translateX(#{coord}px)"
 
+
   resize: =>
+    @area.classed 'hidden', !@hasData
+
+    return if !@hasData
+
     @setDimensions()
     @setScalesRange()
     @setSvgSize()
     @setHoverAreaSize()
     @drawLines()
+    @positionTooltip()
 
-  normalizeData: (data) ->
+
+
+  normalizeData: (rawData) ->
     # normalize the user count values
     # and parse data into a form digestible by d3.stack()
 
-    for own timestamp, values of _.groupBy data, 'created_at'
-      sum = _.sumBy values, 'user_count'
+    resetLabel = null
+    hasData = null
 
-      # parse date stored in strings to JS Date object for use by
-      # d3 domains, and format it into a string shown on the tooltip
-      m = moment values[0].created_at
+    data =
+      for own timestamp, values of _.groupBy rawData, 'created_at'
+        sum = _.sumBy values, 'user_count'
 
-      obj =
-        created_at: timestamp
-        date: m.toDate()
-        date_formatted: m.format 'YYYY/MM/DD'
+        if sum == 0
+          fakedVal = _.find(values, label: resetLabel) if resetLabel?
+          unless fakedVal?
+            fakedVal = _.last(values)
+            resetLabel = fakedVal.label
+          fakedVal.user_count = 1
+          sum = 1
+        else
+          hasData ?= true
 
-      for val in values
-        val.normalized = val.user_count / sum
-        obj[val.label] = val
+        # parse date stored in strings to JS Date object for use by
+        # d3 domains, and format it into a string shown on the tooltip
+        m = moment values[0].created_at
 
-      obj
+        obj =
+          created_at: timestamp
+          date: m.toDate()
+          date_formatted: m.format 'YYYY/MM/DD'
+
+        for val in values
+          val.normalized = val.user_count / sum
+          obj[val.label] = val
+
+        obj
+
+    {data, hasData}

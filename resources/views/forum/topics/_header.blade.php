@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -16,12 +16,13 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <?php
+    $_forum = $forum ?? $topic->forum;
     $headerCover = $cover['fileUrl'] ?? $cover['defaultFileUrl'] ?? null;
     $newTopic = !isset($topic);
 ?>
 <div class="osu-page">
     @include('forum._header_breadcrumb', [
-        'forum' => $forum ?? $topic->forum,
+        'forum' => $_forum,
     ])
 
     <div
@@ -47,8 +48,8 @@
                     tabindex="1"
                     name="title"
                     type="text"
-                    value="{{ Request::old("title") }}"
-                    placeholder="{{ trans("forum.topic.create.placeholder.title") }}"
+                    placeholder="{{ $titlePlaceholder ?? trans("forum.topic.create.placeholder.title") }}"
+                    maxlength="{{ App\Models\Forum\Topic::MAX_FIELD_LENGTHS['topic_title'] }}"
                 />
             @else
                 <h1 class="forum-category-header__title">
@@ -61,7 +62,7 @@
                     @include('forum.topics._header_total_counter')
                 </div>
 
-                @if(!$newTopic && priv_check('ForumTopicModerate', $topic)->can())
+                @if(!$newTopic && $userCanModerate)
                     <div class="forum-category-header__counter">
                         @include('forum.topics._header_deleted_counter')
                     </div>
@@ -69,7 +70,7 @@
             </div>
         </div>
 
-        @if ($newTopic || priv_check('ForumTopicEdit', $topic)->can())
+        @if (($newTopic ? priv_check('ForumTopicCoverStore', $_forum) : priv_check('ForumTopicCoverEdit', $topic))->can())
             <div class="forum-category-header__actions">
                 @include('forum._cover_editor')
             </div>
@@ -77,6 +78,6 @@
     </div>
 
     @if (!$newTopic)
-        <div class="forum-topic-header__sticky-marker js-sticky-header" data-sticky-header-target="forum-topic-headernav"></div>
+        <div class="forum-topic-header__sticky-marker js-sticky-header"></div>
     @endif
 </div>

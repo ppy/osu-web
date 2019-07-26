@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,22 +20,27 @@
   @_top: page-mode;
   @_gutter: 10px;
 
-  background-color: #333;
+  background-color: @osu-colour-b5;
   color: #ccc;
 
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  display: block;
+  text-align: center;
 
   padding: 20px 10px 0;
   list-style: none;
-  flex-wrap: wrap;
   margin: 0;
   font-size: 15px;
   overflow: hidden;
 
+  @media @mobile {
+    font-size: 12px;
+    padding: 0px;
+    padding-top: 5px;
+  }
+
   &--page-extra-tabs {
     background-color: transparent;
+    padding-top: 5px;
   }
 
   &--post-reply {
@@ -44,6 +49,12 @@
     padding-left: 0;
     padding-right: 0;
     margin: 0 (-@_gutter);
+  }
+
+  &--profile-page-extra {
+    background-color: transparent;
+    padding: 0;
+    overflow: visible;
   }
 
   &--ranking-page-mode-tabs {
@@ -61,7 +72,9 @@
   }
 
   &__item {
-    display: flex;
+    .link-plain();
+    display: inline-flex;
+    vertical-align: bottom;
     line-height: 1;
 
     margin: 0 @_gutter;
@@ -80,10 +93,17 @@
     }
   }
 
+  &__item-icon {
+    // A bit too tall if same as the text.
+    // And looks like crap at other size. Or maybe at this size as well
+    // depending on zoom level and star alignment.
+    font-size: 89%;
+  }
+
   &__underline {
     margin-top: 0;
     border: 0;
     height: 1px;
-    background-image: linear-gradient(to right, transparent, #222, transparent);
+    background-image: linear-gradient(to right, transparent, @osu-colour-b6, transparent);
   }
 }

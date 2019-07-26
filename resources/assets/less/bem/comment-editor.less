@@ -1,0 +1,91 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.comment-editor {
+  @_top: comment-editor;
+  @_avatar: 50px;
+  @_avatar-margin: 10px;
+  @_spacing: 10px;
+  @_border-radius: @border-radius-large;
+
+  border-radius: @_border-radius;
+  display: flex;
+  flex-direction: column;
+  background-color: @osu-colour-b3;
+  border: 2px solid @osu-colour-b3;
+
+  &--fancy {
+    @media @desktop {
+      margin-left: (@_avatar + @_avatar-margin);
+    }
+  }
+
+  &__avatar {
+    position: absolute;
+    width: @_avatar;
+    height: @_avatar;
+    right: 100%;
+    margin-right: @_avatar-margin;
+    display: none;
+
+    @media @desktop {
+      display: block;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 0 (@_spacing - 2px);
+    border-radius: 0 0 @_border-radius @_border-radius;
+  }
+
+  &__footer-item {
+    font-size: @font-size--normal;
+    flex: none;
+    margin: 5px 2px;
+    color: white;
+
+    &--notice {
+      align-self: center;
+      flex: 1;
+    }
+  }
+
+  &__message {
+    .reset-input();
+    .content-font();
+
+    min-height: 3em;
+    padding: @_spacing;
+    font-size: @font-size--phone-input;
+    border-radius: @_border-radius @_border-radius 0 0;
+    resize: none;
+    background-color: @osu-colour-b5;
+
+    @media @desktop {
+      font-size: inherit;
+    }
+
+    color: white;
+    &::placeholder {
+      color: @osu-colour-f1;
+    }
+  }
+}

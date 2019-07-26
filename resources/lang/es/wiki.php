@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,15 +20,24 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'La página solicitada aún no está traducida al idioma seleccionado (:language). Mostrando versión en inglés.',
+        'fallback_translation' => 'La página solicitada aún no se ha traducido al idioma seleccionado (:language). Mostrando la versión en inglés.',
         'languages' => 'Idiomas',
-        'missing' => 'La página solicitada no fue encontrada.',
-        'missing_translation' => 'La página solicitada no se encontró en el idioma seleccionado.',
+        'missing' => 'La página solicitada ":keyword" no se pudo encontrar.',
+        'missing_title' => 'No encontrado',
+        'missing_translation' => 'La página solicitada no se pudo encontrar para el idioma actualmente seleccionado.',
+        'search' => 'Buscar páginas existentes para :link.',
         'toc' => 'Contenidos',
 
         'edit' => [
             'link' => 'Mostrar en GitHub',
-            'refresh' => 'Recargar',
+            'refresh' => 'Actualizar',
+        ],
+
+        'translation' => [
+            'legal' => 'Esta traducción sólo se proporciona para conveniencia. El original :default será la única versión legalmente vinculante de este texto.',
+            'outdated' => 'Esta página contiene una traducción desactualizada del contenido original. !Por favor revisa la :default para información más precisa (y considera actualizar la traducción si puedes ayudar)!',
+
+            'default' => 'Versión en inglés',
         ],
     ],
 ];

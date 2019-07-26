@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,10 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span} = ReactDOMFactories
+import * as React from 'react'
+import { div, span } from 'react-dom-factories'
 el = React.createElement
 
-class Status.Map extends React.Component
+export class Map extends React.Component
   constructor: (props) ->
     super props
 

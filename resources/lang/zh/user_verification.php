@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,8 +26,8 @@ return [
         'issuing' => '正在生成新的验证码',
 
         'info' => [
-            'check_spam' => '如果找不到这封邮件，请检查垃圾箱。',
-            'recover' => '无法登录邮箱或者忘记了所使用的邮箱？:link.',
+            'check_spam' => "如果找不到这封邮件，请检查垃圾箱。",
+            'recover' => "无法登录邮箱或者忘记了所使用的邮箱？:link.",
             'recover_link' => '点击此处',
             'reissue' => '也可以 :reissue_link 或者 :logout_link.',
             'reissue_link' => '重发验证码',

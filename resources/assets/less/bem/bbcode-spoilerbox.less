@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,33 +17,48 @@
  */
 
 .bbcode-spoilerbox {
-  @top: bbcode-spoilerbox;
+  @_top: bbcode-spoilerbox;
 
   &__arrow {
     display: inline-block;
-    color: @gray;
-    margin-right: 10px;
+    color: @osu-colour-b1;
+    margin-right: 5px;
 
-    .@{top}.js-spoilerbox--open & {
-      transform: rotate(180deg);
+    //TODO: remove after forum restyle
+    .forum-post__content & {
+      .link-old();
+    }
+
+    .@{_top}.js-spoilerbox--open & {
+      transform: rotate(90deg);
     }
   }
 
   &__body {
     display: none;
 
-    .@{top}.js-spoilerbox--open & {
+    .@{_top}.js-spoilerbox--open & {
+      .default-border-radius();
       display: block;
+      background: @osu-colour-b6;
+      padding: 20px;
+      margin-top: 4px;
+
+      //TODO: remove after forum restyle
+      .forum-post__content & {
+        background: #ddd;
+      }
     }
   }
 
   &__link {
-    color: @yellow-darker;
+    .reset-input();
+    .link-default();
+    font-weight: bold;
 
-    &:focus,
-    &:hover,
-    &:active {
-      color: @yellow-dark;
+    //TODO: remove after forum restyle
+    .forum-post__content & {
+      .link-old();
     }
   }
 }

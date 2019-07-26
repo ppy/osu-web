@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Country;
 use Carbon\Carbon;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
@@ -39,6 +40,18 @@ class UpdateUserLastvisit
             $this->auth->user()->update([
                 'user_lastvisit' => Carbon::createFromTime(null, null, 0),
             ], ['skipValidations' => true]);
+
+            // Add metadata to session to help user recognize this login location
+            $countryCode = presence(request_country($request)) ?? 'XX';
+            $request->session()->put('meta', [
+                'agent' => $request->header('User-Agent'),
+                'country' => [
+                    'code' => $countryCode,
+                    'name' => presence(Country::where('acronym', $countryCode)->pluck('name')->first()) ?? 'Unknown',
+                ],
+                'ip' => $request->ip(),
+                'last_visit' => Carbon::now(),
+            ]);
         }
 
         return $next($request);

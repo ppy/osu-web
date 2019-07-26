@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,10 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="notification-banner notification-banner--{{$type}}">
-    <div class="notification-banner__icon"></div>
-    <div class="notification-banner__icon-label">{{strtoupper($type)}}</div>
-    <div class="notification-banner__text">{{ $title }}</div>
-    <div class="notification-banner__text">{!! $message !!}</div>
-    <div class="notification-banner__light-bar"></div>
-</div>
+@php
+    $template = ($legacyNav ?? true) ? 'objects._notification_banner_v1' : 'objects._notification_banner_v2';
+@endphp
+@push('notification_banners')
+    @include($template, compact('type', 'title', 'message'))
+@endpush

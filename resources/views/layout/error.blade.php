@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,23 +15,25 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends('master')
 
-@section("content")
+@section('content')
 
-<div class="osu-layout__row osu-layout__row--page">
-    <h1 class="text-center">{{{ trans("layout.errors.$current_action.error") }}}</h1>
+<div class="osu-page osu-page--generic text-center">
+    <h1>{{{ trans("layout.errors.$currentAction.error") }}}</h1>
 
-    @if (Lang::get("layout.errors.$current_action.link") and Lang::get("layout.errors.$current_action.link.href") != "layout.errors.$current_action.link.href")
-        {!! trans("layout.errors.$current_action.description",
-                ["link" => '<a class="blue_normal" href="' . trans("layout.errors.$current_action.link.href") . '">' . trans("layout.errors.$current_action.link.text") . '</a>']
-            )!!}
-    @else
-        <div class="text-center">{{{ trans("layout.errors.$current_action.description") }}}</div>
+    @if (isset($exceptionMessage))
+        <p>{{ $exceptionMessage }}</p>
     @endif
 
+    <p>
+        {!! trans("layout.errors.$currentAction.description", ['link' =>
+            '<a class="blue_normal" href="'.trans("layout.errors.$currentAction.link.href").'">'.trans("layout.errors.$currentAction.link.text").'</a>',
+        ]) !!}
+    </p>
+
     @if (isset($ref))
-        <h4 class="text-center">{{{ trans("layout.errors.reference") }}}<br><small>{{{ $ref }}}</small> </h4>
+        <h4>{{ trans('layout.errors.reference') }}<br><small>{{ $ref }}</small></h4>
     @endif
 </div>
 

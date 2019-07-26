@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,45 +20,51 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Rytm jest tylko *kliknięcie* stąd! Z Ouendanem/EBA, Taiko i oryginalnymi trybami gry, a także w pełni funkcjonalnym edytorem!',
+        'page_description' => 'osu! - rytm jest tylko o *klik* stąd! Z Ouendanem/EBA, Taiko i oryginalnymi trybami gry, a także w pełni funkcjonalnym edytorem!',
     ],
 
     'menu' => [
         'home' => [
             '_' => 'strona główna',
             'account-edit' => 'ustawienia',
-            'friends' => 'znajomi',
             'friends-index' => 'znajomi',
             'changelog-index' => 'zmiany',
-            'changelog-show' => 'kompilacja',
+            'changelog-build' => 'kompilacja',
             'getDownload' => 'pobierz',
             'getIcons' => 'ikony',
             'groups-show' => 'grupy',
-            'index' => 'osu!',
+            'index' => 'przegląd',
             'legal-show' => 'informacje',
-            'news-index' => 'wiadomości',
-            'news-show' => 'wiadomości',
+            'messages-index' => 'wiadomości',
+            'news-index' => 'aktualności',
+            'news-show' => 'aktualności',
             'password-reset-index' => 'zresetuj hasło',
             'search' => 'wyszukiwarka',
             'supportTheGame' => 'wspomóż grę',
+            'team' => 'zespół',
         ],
         'help' => [
             '_' => 'pomoc',
-            'getWiki' => 'wiki',
             'getFaq' => 'faq',
+            'getRules' => 'zasady',
             'getSupport' => 'pomoc techniczna',
+            'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmapy',
-            'show' => 'informacje',
-            'index' => 'lista',
             'artists' => 'wyróżnieni artyści',
+            'beatmap_discussion_posts-index' => 'posty w dyskusji',
+            'beatmap_discussions-index' => 'dyskusje',
+            'beatmapset-watches-index' => 'obserwowane dyskusje',
+            'beatmapset_discussion_votes-index' => 'głosy w dyskusji',
+            'beatmapset_events-index' => 'historia zdarzeń zestawów beatmap',
+            'index' => 'lista',
             'packs' => 'paczki',
-            // 'getCharts' => 'wyróżnione',
+            'show' => 'informacje',
         ],
         'beatmapsets' => [
-            '_' => 'mapsety',
+            '_' => 'beatmapy',
             'discussion' => 'modowanie',
         ],
         'rankings' => [
@@ -72,11 +78,13 @@ return [
         ],
         'community' => [
             '_' => 'społeczność',
-            'dev' => 'osu!dev',
+            'chat' => 'czat',
+            'chat-index' => 'czat',
+            'dev' => 'rozwój',
             'getForum' => 'forum',
-            'getChat' => 'czat',
-            'getSupport' => 'pomoc techniczna',
             'getLive' => 'na żywo',
+            'comments-index' => 'komentarze',
+            'comments-show' => 'komentarz',
             'contests' => 'konkursy',
             'profile' => 'profil',
             'tournaments' => 'turnieje',
@@ -99,29 +107,39 @@ return [
             '401' => 'brak dostępu',
             '405' => 'nie znaleziono strony',
             '500' => 'coś się popsuło',
-            '503' => 'konserwacja',
+            '503' => 'przerwa techniczna',
         ],
         'user' => [
             '_' => 'użytkownik',
             'getLogin' => 'zaloguj się',
-            'disabled' => 'wyłączono',
+            'disabled' => 'wyłączone',
 
             'register' => 'zarejestruj się',
             'reset' => 'odzyskaj dostęp',
             'new' => 'nowy',
 
-            'messages' => 'Wiadomości',
-            'settings' => 'Ustawienia',
-            'logout' => 'Wyloguj się',
             'help' => 'Pomoc',
+            'logout' => 'Wyloguj się',
+            'messages' => 'Wiadomości',
+            'modding-history-discussions' => 'dyskusje',
+            'modding-history-events' => 'historia zdarzeń',
+            'modding-history-index' => 'historia użytkownika',
+            'modding-history-posts' => 'historia postów',
+            'modding-history-votesGiven' => 'głosy oddane',
+            'modding-history-votesReceived' => 'głosy otrzymane',
+            'oauth_login' => 'zaloguj się, aby użyć oauth',
+            'oauth_request' => 'autoryzacja oauth',
+            'settings' => 'Ustawienia',
         ],
         'store' => [
             '_' => 'sklep',
+            'checkout-show' => 'kasa',
             'getListing' => 'przedmioty',
-            'getCart' => 'koszyk',
+            'cart-show' => 'koszyk',
 
-            'getCheckout' => 'zapłać',
-            'getInvoice' => 'paragon',
+            'getCheckout' => 'płatność',
+            'getInvoice' => 'faktura',
+            'orders-index' => 'historia zamówień',
             'products-show' => 'produkt',
 
             'new' => 'nowy',
@@ -131,7 +149,7 @@ return [
         ],
         'admin-forum' => [
             '_' => 'admin::forum',
-            'forum-covers-index' => 'nagłówki na forum',
+            'forum-covers-index' => 'tła forum',
         ],
         'admin-store' => [
             '_' => 'admin::store',
@@ -140,11 +158,12 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
-            'root' => 'strona główna',
+            'beatmapsets-covers' => 'tła zestawu beatmap',
             'logs-index' => 'logi',
+            'root' => 'strona główna',
+
             'beatmapsets' => [
-                '_' => 'mapsety',
-                'covers' => 'nagłówki',
+                '_' => 'zestawy beatmap',
                 'show' => 'szczegóły',
             ],
         ],
@@ -160,84 +179,75 @@ return [
             'wiki' => 'Wiki',
         ],
         'help' => [
-            '_' => 'Pomoc i Społeczność',
+            '_' => 'Pomoc i społeczność',
             'faq' => 'Często zadawane pytania',
             'forum' => 'Forum',
             'livestreams' => 'Na żywo',
             'report' => 'Zgłoś problem',
         ],
-        'support' => [
-            '_' => 'Wspomóż osu!',
-            'tags' => 'Status donatora',
-            'merchandise' => 'Sklep',
-        ],
         'legal' => [
             '_' => 'Prawne i status',
             'copyright' => 'Prawa Autorskie (DMCA)',
-            'osu_status' => '@osustatus',
+            'privacy' => 'Prywatność',
             'server_status' => 'Status serwera',
+            'source_code' => 'Kod źródłowy',
             'terms' => 'Warunki świadczenia usług',
         ],
     ],
+
     'errors' => [
         '404' => [
             'error' => 'Nie znaleziono strony',
-            'description' => 'Przepraszamy, ale żądana strona nie istnieje!',
-            'link' => false,
+            'description' => "Przepraszamy, ale poszukiwana strona nie istnieje!",
         ],
         '403' => [
-            'error' => 'Nie powinieneś tu być.',
-            'description' => 'Jednakże, możesz spróbować się wrócić.',
-            'link' => false,
+            'error' => "Nie powinno cię tu być.",
+            'description' => 'Jednakże możesz spróbować się wrócić.',
         ],
         '401' => [
-            'error' => 'Nie powinieneś tu być.',
-            'description' => 'Jednakże, możesz spróbować się wrócić. Albo się zalogować',
-            'link' => false,
+            'error' => "Nie powinno cię tu być.",
+            'description' => 'Jednakże możesz spróbować się wrócić albo się zalogować.',
         ],
         '405' => [
             'error' => 'Nie znaleziono strony',
-            'description' => 'Przepraszamy, ale żądana strona nie istnieje!',
-            'link' => false,
+            'description' => "Przepraszamy, ale poszukiwana strona nie istnieje!",
         ],
         '500' => [
             'error' => 'O nie! Coś się popsuło! ;_;',
-            'description' => 'Jesteśmy automatycznie powiadamieni o tym problemie.',
-            'link' => false,
+            'description' => "Jesteśmy automatycznie powiadamiani o każdym problemie.",
         ],
         'fatal' => [
-            'error' => 'O nie! Coś się popsuło (bardzo)! ;_;',
-            'description' => 'Jesteśmy automatycznie powiadamieni o tym problemie.',
-            'link' => false,
+            'error' => 'O nie! Coś się (bardzo) popsuło! ;_;',
+            'description' => "Jesteśmy automatycznie powiadamiani o każdym problemie.",
         ],
         '503' => [
-            'error' => 'Konserwacja!',
-            'description' => 'Konserwacja zajmuje od 5 sekund do 10 minut. Jeżeli jesteśmy niedostępni na dłużej, spojrzyj <a>:link tutaj</a>, aby dowiedzieć się więcej.',
+            'error' => 'Przerwa techniczna!',
+            'description' => "Przerwa techniczna zajmuje od 5 sekund do 10 minut. Jeżeli jesteśmy niedostępni na dłużej, sprawdź :link, aby dowiedzieć się więcej.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Na wszelki wypadek, tutaj jest kod, który możesz przekazać osobom z pomocy technicznej!',
+        'reference' => "Na wszelki wypadek, tutaj jest kod, który możesz przekazać osobom z pomocy technicznej!",
     ],
 
     'popup_login' => [
         'login' => [
-            'email' => 'adres email',
-            'forgot' => 'Nie pamiętam moich danych logowania!',
+            'email' => 'adres e-mail',
+            'forgot' => "Nie pamiętam swoich danych logowania",
             'password' => 'hasło',
             'title' => 'Zaloguj się, aby przejść dalej',
 
             'error' => [
-                'email' => 'Nazwa użytkownika bądź email nie istnieją',
-                'password' => 'Niepoprawne hasło',
+                'email' => "Nazwa użytkownika bądź adres e-mail nie istnieją",
+                'password' => 'Nieprawidłowe hasło',
             ],
         ],
 
         'register' => [
-            'info' => 'Potrzebujesz konta. Dlaczego by takiego nie stworzyć?',
-            'title' => 'Nie masz konta?',
+            'info' => "Potrzebujesz konta. Dlaczego by takiego nie stworzyć?",
+            'title' => "Nie posiadasz konta?",
         ],
     ],
 
@@ -252,6 +262,6 @@ return [
 
     'popup_search' => [
         'initial' => 'Napisz, aby wyszukać!',
-        'retry' => 'Wyszukiwanie nieudane. Naciśnij tutaj, aby spróbować ponownie.',
+        'retry' => 'Wyszukiwanie nieudane. Kliknij tutaj, aby spróbować ponownie.',
     ],
 ];

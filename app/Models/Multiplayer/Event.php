@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,18 @@ namespace App\Models\Multiplayer;
 
 use App\Models\User;
 
+/**
+ * @property mixed $detail
+ * @property int $event_id
+ * @property Game $game
+ * @property int|null $game_id
+ * @property Match $match
+ * @property int $match_id
+ * @property string|null $text
+ * @property \Carbon\Carbon|null $timestamp
+ * @property User $user
+ * @property int|null $user_id
+ */
 class Event extends Model
 {
     protected $primaryKey = 'event_id';

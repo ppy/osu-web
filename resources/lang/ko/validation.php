@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,6 +19,6 @@
  */
 
 return [
-    'mixture' => ':attribute 속성을 찾을 수 없습니다.', // :attribute is missing number or letter
-    'required' => ':attribute 속성이 필요합니다', // :attribute is required
+    'mixture' => ':attribute 속성을 찾을 수 없습니다.',
+    'required' => ':attribute 속성이 필요합니다',
 ];

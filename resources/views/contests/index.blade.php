@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -17,10 +17,9 @@
 --}}
 
 @extends('master', [
-    'current_section' => 'community',
-    'current_action' => 'contests',
+    'currentSection' => 'community',
+    'currentAction' => 'contests',
     'title' => "Contests",
-    'body_additional_classes' => 'osu-layout--body-darker'
 ])
 
 @section('content')
@@ -39,7 +38,7 @@
                 @endforeach
             </div>
             @foreach ($contests as $contest)
-                <a href='{{route('contests.show', $contest->id)}}' class='contest-list-item contest-list-item--{{$contest->state()}}'>
+                <a href='{{route('contests.show', $contest->id)}}' class="contest-list-item contest-list-item--{{$contest->state()}}{{$contest->visible ? '' : ' contest-list-item--hidden'}}">
                     <div class='contest-list-item__image' style="background-image: url({{$contest->header_url}})"></div>
                     <div class='contest-list-item__container'>
                         <div class='contest-list-item__left-content'>

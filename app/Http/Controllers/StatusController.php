@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,30 +30,30 @@ class StatusController extends Controller
             'status' => [
                 'incidents' => [
                     [
-                        'description' => 'tried to swap a hdd, instructions unclear, got dick stuck on server.',
+                        'description' => 'tried to swap a hdd, instructions unclear, got eggplant stuck in server.',
                         'status' => 'resolved', // green
                         'date' => '23-2-2016 10:40:18',
                         'active' => true, // non-active incidents automatically inserts line-through
-                        'by' => 'Peppy',
+                        'by' => 'peppy',
                     ],
                     [
                         'description' => 'aliens are back, they took my cow.',
                         'status' => 'resolved', // yellow
                         'date' => '19-2-2016 20:40:18',
                         'active' => true,
-                        'by' => 'Peppy',
+                        'by' => 'peppy',
                     ],
                     [
                         'description' => 'there are flying monkeys in the server room, already throw bananas through the window.',
                         'status' => 'resolving', // yellow
                         'date' => '15-2-2016 20:40:18',
-                        'by' => 'Peppy',
+                        'by' => 'peppy',
                     ],
                     [
                         'description' => 'downloaded too much hentai, server\'s bandwidth is gone.',
                         'status' => 'unknown', // red
                         'date' => '10-2-2016 14:40:18',
-                        'by' => 'Peppy',
+                        'by' => 'peppy',
                     ],
                     [
                         'description' => 'it\'s raining aliens, oh Jesus y u do dis to me, aliens everywhere.',

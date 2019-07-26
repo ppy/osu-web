@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,15 +20,17 @@
 
 namespace App\Traits;
 
+use App\Models\Store\Order;
 use Session;
 
 trait CheckoutErrorSettable
 {
-    public function setAndRedirectCheckoutError($message = '', $errors = [])
+    public function setAndRedirectCheckoutError(?Order $order, $message = '', $errors = [])
     {
         Session::flash('checkout.error.message', $message);
         Session::flash('checkout.error.errors', $errors);
 
-        return ujs_redirect(route('store.checkout.index'), 422);
+        // TODO: what to do if order is null?
+        return ujs_redirect(route('store.checkout.show', $order), 422);
     }
 }

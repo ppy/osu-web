@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,36 +17,43 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'title' => 'Zresetuj hasło',
+
     'button' => [
         'cancel' => 'Anuluj',
-        'resend' => 'Wyślij ponownie email weryfikacyjny',
+        'resend' => 'Wyślij ponownie e-mail weryfikacyjny',
         'set' => 'Ustaw hasło',
         'start' => 'Rozpocznij',
     ],
+
     'email' => [
         'subject' => 'odzyskiwanie konta osu!',
     ],
+
     'error' => [
-        'contact_support' => 'Skontaktuj się z pomocą techniczną, aby odsyskać konto.',
+        'contact_support' => 'Skontaktuj się z pomocą techniczną, aby odzyskać konto.',
         'is_privileged' => 'Skontaktuj się z peppym.',
         'missing_key' => 'Wymagane.',
         'too_many_tries' => 'Za dużo błędnych prób.',
         'user_not_found' => 'Ten użytkownik nie istnieje.',
         'wrong_key' => 'Nieprawidłowy kod.',
     ],
+
     'notice' => [
-        'sent' => 'Sprawdź email, aby uzyskać kod.',
+        'sent' => 'Sprawdź e-mail, aby uzyskać kod weryfikacyjny.',
         'saved' => 'Nowe hasło zostało zapisane!',
     ],
+
     'started' => [
         'password' => 'Nowe hasło',
         'password_confirmation' => 'Potwierdź hasło',
         'title' => 'Resetowanie hasła dla konta <strong>:username</strong>.',
         'verification_key' => 'Kod weryfikacyjny',
     ],
+
     'starting' => [
-        'username' => 'Wprowadź email lub nazwę użytkownika',
+        'username' => 'Wprowadź e-mail lub nazwę użytkownika',
     ],
 ];

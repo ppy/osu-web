@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,55 +26,77 @@ use League\Fractal;
 class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'userAchievements',
+        'account_history',
+        'active_tournament_banner',
+        'badges',
+        'blocks',
         'defaultStatistics',
-        'followerCount',
+        'favourite_beatmapset_count',
+        'follower_count',
         'friends',
+        'graveyard_beatmapset_count',
+        'is_admin',
+        'loved_beatmapset_count',
+        'monthly_playcounts',
         'page',
-        'recentActivities',
-        'rankedAndApprovedBeatmapsetCount',
-        'unrankedBeatmapsetCount',
-        'graveyardBeatmapsetCount',
-        'favouriteBeatmapsetCount',
-        'disqus_auth',
+        'previous_usernames',
+        'ranked_and_approved_beatmapset_count',
+        'replays_watched_counts',
+        'scores_first_count',
+        'statistics',
+        'support_level',
+        'unranked_beatmapset_count',
+        'unread_pm_count',
+        'user_achievements',
     ];
 
     public function transform(User $user)
     {
         $profileCustomization = $user->profileCustomization();
 
+        $country = $user->country_acronym === null
+            ? null
+            : [
+                'code' => $user->country_acronym,
+                'name' => $user->countryName(),
+            ];
+
         return [
             'id' => $user->user_id,
             'username' => $user->username,
-            'join_date' => json_date($user->user_regdate),
-            'country' => [
-                'code' => $user->country_acronym,
-                'name' => $user->countryName(),
-            ],
-            'age' => $user->age(),
+            'join_date' => json_time($user->user_regdate),
+            'country' => $country,
             'avatar_url' => $user->user_avatar,
-            'isAdmin' => $user->isAdmin(),
-            'isSupporter' => $user->osu_subscriber,
-            'isGMT' => $user->isGMT(),
-            'isQAT' => $user->isQAT(),
-            'isBNG' => $user->isBNG(),
+            'is_supporter' => $user->osu_subscriber,
+            'has_supported' => $user->hasSupported(),
+            'is_gmt' => $user->isGMT(),
+            'is_nat' => $user->isNAT(),
+            'is_bng' => $user->isBNG(),
+            'is_full_bn' => $user->isFullBN(),
+            'is_limited_bn' => $user->isLimitedBN(),
+            'is_bot' => $user->isBot(),
             'is_active' => $user->isActive(),
+            'can_moderate' => $user->canModerate(),
             'interests' => $user->user_interests,
             'occupation' => $user->user_occ,
             'title' => $user->title(),
             'location' => $user->user_from,
-            'lastvisit' => json_time($user->user_lastvisit),
+            'last_visit' => json_time($user->displayed_last_visit),
+            'is_online' => $user->isOnline(),
             'twitter' => $user->user_twitter,
             'lastfm' => $user->user_lastfm,
             'skype' => $user->user_msnm,
             'website' => $user->user_website,
+            'discord' => $user->user_discord,
             'playstyle' => $user->osu_playstyle,
             'playmode' => $user->playmode,
+            'pm_friends_only' => $user->pm_friends_only,
+            'post_count' => $user->user_posts,
             'profile_colour' => $user->user_colour,
-            'profileOrder' => $profileCustomization->extras_order,
+            'profile_order' => $profileCustomization->extras_order,
             'cover_url' => $profileCustomization->cover()->url(),
             'cover' => [
-                'customUrl' => $profileCustomization->cover()->fileUrl(),
+                'custom_url' => $profileCustomization->cover()->fileUrl(),
                 'url' => $profileCustomization->cover()->url(),
                 'id' => $profileCustomization->cover()->id(),
             ],
@@ -82,8 +104,38 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'total' => $user->osu_kudostotal,
                 'available' => $user->osu_kudosavailable,
             ],
+            'max_blocks' => $user->maxBlocks(),
             'max_friends' => $user->maxFriends(),
         ];
+    }
+
+    public function includeAccountHistory(User $user)
+    {
+        $histories = $user->accountHistories()->recent();
+
+        if (!priv_check('UserSilenceShowExtendedInfo')->can() || is_api_request()) {
+            $histories->default();
+        } else {
+            $histories->with('actor');
+        }
+
+        return $this->collection(
+            $histories->get(),
+            new UserAccountHistoryTransformer()
+        );
+    }
+
+    public function includeActiveTournamentBanner(User $user)
+    {
+        return $this->item($user->profileBanners()->active(), new ProfileBannerTransformer);
+    }
+
+    public function includeBadges(User $user)
+    {
+        return $this->collection(
+            $user->badges()->orderBy('awarded', 'DESC')->get(),
+            new UserBadgeTransformer
+        );
     }
 
     public function includeDefaultStatistics(User $user)
@@ -91,6 +143,23 @@ class UserTransformer extends Fractal\TransformerAbstract
         $stats = $user->statistics($user->playmode);
 
         return $this->item($stats, new UserStatisticsTransformer);
+    }
+
+    public function includeFavouriteBeatmapsetCount(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return [
+                $user->profileBeatmapsetsFavourite()->count(),
+            ];
+        });
+    }
+
+    public function includeBlocks(User $user)
+    {
+        return $this->collection(
+            $user->relations()->blocks()->get(),
+            new UserRelationTransformer()
+        );
     }
 
     public function includeFollowerCount(User $user)
@@ -108,12 +177,45 @@ class UserTransformer extends Fractal\TransformerAbstract
         );
     }
 
+    public function includeGraveyardBeatmapsetCount(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return [
+                $user->profileBeatmapsetsGraveyard()->count(),
+            ];
+        });
+    }
+
+    public function includeIsAdmin(User $user)
+    {
+        return $this->primitive($user->isAdmin(), function ($flag) {
+            return $flag;
+        });
+    }
+
+    public function includeLovedBeatmapsetCount(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return [
+                $user->profileBeatmapsetsLoved()->count(),
+            ];
+        });
+    }
+
+    public function includeMonthlyPlaycounts(User $user)
+    {
+        return $this->collection(
+            $user->monthlyPlaycounts,
+            new UserMonthlyPlaycountTransformer
+        );
+    }
+
     public function includePage(User $user)
     {
         return $this->item($user, function ($user) {
             if ($user->userPage !== null) {
                 return [
-                    'html' => $user->userPage->bodyHTMLWithoutImageDimensions,
+                    'html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']]),
                     'raw' => $user->userPage->bodyRaw,
                 ];
             } else {
@@ -122,20 +224,11 @@ class UserTransformer extends Fractal\TransformerAbstract
         });
     }
 
-    public function includeUserAchievements(User $user)
+    public function includePreviousUsernames(User $user)
     {
-        return $this->collection(
-            $user->userAchievements()->orderBy('date', 'desc')->get(),
-            new UserAchievementTransformer()
-        );
-    }
-
-    public function includeRecentActivities(User $user)
-    {
-        return $this->collection(
-            $user->events()->recent()->get(),
-            new EventTransformer()
-        );
+        return $this->item($user, function ($user) {
+            return $user->previousUsernames()->unique()->values()->toArray();
+        });
     }
 
     public function includeRankedAndApprovedBeatmapsetCount(User $user)
@@ -144,6 +237,37 @@ class UserTransformer extends Fractal\TransformerAbstract
             return [
                 $user->profileBeatmapsetsRankedAndApproved()->count(),
             ];
+        });
+    }
+
+    public function includeReplaysWatchedCounts(User $user)
+    {
+        return $this->collection(
+            $user->replaysWatchedCounts,
+            new UserReplaysWatchedCountTransformer
+        );
+    }
+
+    public function includeScoresFirstCount(User $user, Fractal\ParamBag $params)
+    {
+        $mode = $params->get('mode')[0];
+
+        return $this->item($user, function ($user) use ($mode) {
+            return [$user->scoresFirst($mode)->count()];
+        });
+    }
+
+    public function includeStatistics(User $user, Fractal\ParamBag $params)
+    {
+        $stats = $user->statistics($params->get('mode')[0]);
+
+        return $this->item($stats, new UserStatisticsTransformer);
+    }
+
+    public function includeSupportLevel(User $user)
+    {
+        return $this->primitive($user->supportLevel(), function ($level) {
+            return $level;
         });
     }
 
@@ -156,44 +280,18 @@ class UserTransformer extends Fractal\TransformerAbstract
         });
     }
 
-    public function includeGraveyardBeatmapsetCount(User $user)
+    public function includeUnreadPmCount(User $user)
     {
-        return $this->item($user, function ($user) {
-            return [
-                $user->profileBeatmapsetsGraveyard()->count(),
-            ];
+        return $this->primitive($user, function ($user) {
+            return $user->notificationCount();
         });
     }
 
-    public function includeFavouriteBeatmapsetCount(User $user)
+    public function includeUserAchievements(User $user)
     {
-        return $this->item($user, function ($user) {
-            return [
-                $user->profileBeatmapsetsFavourite()->count(),
-            ];
-        });
-    }
-
-    public function includeDisqusAuth(User $user)
-    {
-        return $this->item($user, function ($user) {
-            $data = [
-                'id' => $user->user_id,
-                'username' => $user->username,
-                'email' => $user->user_email,
-                'avatar' => $user->user_avatar,
-                'url' => route('users.show', $user->user_id),
-            ];
-
-            $encodedData = base64_encode(json_encode($data));
-            $timestamp = time();
-            $hmac = hash_hmac('sha1', "$encodedData $timestamp", config('services.disqus.secret_key'));
-
-            return [
-                'short_name' => config('services.disqus.short_name'),
-                'public_key' => config('services.disqus.public_key'),
-                'auth_data' => "$encodedData $hmac $timestamp",
-            ];
-        });
+        return $this->collection(
+            $user->userAchievements()->orderBy('date', 'desc')->get(),
+            new UserAchievementTransformer()
+        );
     }
 }

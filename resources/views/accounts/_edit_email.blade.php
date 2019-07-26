@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -30,65 +30,62 @@
 
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
-            <label class="account-edit-entry js-parent-focus" data-user-email-field="current_password">
-                <div class="account-edit-entry__label">
-                    {{ trans('accounts.edit.password.current') }}
-                </div>
-
+            <div class="account-edit-entry js-form-error--field">
                 <input
-                    class="account-edit-entry__input js-form-clear--target"
+                    class="account-edit-entry__input"
                     name="user[current_password]"
                     type="password"
                     required
                 >
 
+                <div class="account-edit-entry__label">
+                    {{ trans('accounts.edit.password.current') }}
+                </div>
+
                 <div class="account-edit-entry__error js-form-error--error"></div>
-            </label>
+            </div>
         </div>
 
         <div class="account-edit__input-group">
-            <label class="account-edit-entry js-parent-focus" data-user-email-field="email">
-                <div class="account-edit-entry__label">
-                    {{ trans('accounts.edit.email.new') }}
-                </div>
-
+            <div class="account-edit-entry js-form-error--field">
                 <input
-                    class="account-edit-entry__input js-form-clear--target js-form-confirmation"
+                    class="account-edit-entry__input js-form-confirmation"
                     name="user[user_email]"
                     required
                 >
 
-                <div class="account-edit-entry__error js-form-error--error"></div>
-            </label>
-
-            <label
-                class="account-edit-entry js-parent-focus"
-                data-user-email-field="email_confirmation"
-            >
                 <div class="account-edit-entry__label">
-                    {{ trans('accounts.edit.email.new_confirmation') }}
+                    {{ trans('accounts.edit.email.new') }}
                 </div>
 
+                <div class="account-edit-entry__error js-form-error--error"></div>
+            </div>
+
+            <div class="account-edit-entry js-form-error--field">
                 <input
-                    class="account-edit-entry__input js-form-clear--target js-form-confirmation"
+                    class="account-edit-entry__input js-form-confirmation"
                     name="user[user_email_confirmation]"
                     required
                 >
 
+                <div class="account-edit-entry__label">
+                    {{ trans('accounts.edit.email.new_confirmation') }}
+                </div>
+
                 <div class="account-edit-entry__error js-form-error--error"></div>
-            </label>
+            </div>
         </div>
 
         <div class="account-edit__input-group">
-            <div class="account-edit-entry account-edit-entry--no-label js-parent-focus">
+            <div class="account-edit-entry account-edit-entry--no-label">
                 <button class="btn-osu-big btn-osu-big--account-edit" type="submit" data-disable-with="{{ trans('common.buttons.saving') }}">
                     <div class="btn-osu-big__content">
                         <div class="btn-osu-big__left">
-                            {{ trans('accounts.update_password.update') }}
+                            {{ trans('accounts.update_email.update') }}
                         </div>
 
                         <div class="btn-osu-big__icon">
-                            <i class="fa fa-check"></i>
+                            <i class="fas fa-check"></i>
                         </div>
                     </div>
                 </button>

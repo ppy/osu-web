@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@
     display: flex;
     flex-direction: column;
     margin: 5px;
-    background-color: @community-grayblue-tile-background;
+    background-color: @osu-colour-b4;
 
     .link-white();
     .link-plain();
@@ -36,7 +36,11 @@
           transform: scale(1.02);
         }
       }
-      background-color: lighten(@community-grayblue-tile-background, 5%);
+      background-color: @osu-colour-b3;
+    }
+
+    &--old {
+      flex-basis: calc(50% - 10px);
     }
 
     &__metadata {
@@ -67,7 +71,7 @@
     }
 
     &__registration-date {
-      color: @community-grayblue-text;
+      color: @osu-colour-f1;
       font-size: 12px;
 
       @media @mobile {
@@ -76,7 +80,7 @@
     }
 
     &__registrations {
-      color: @community-grayblue-text;
+      color: @osu-colour-f1;
       font-size: 15px;
 
       @media @mobile {
@@ -88,14 +92,25 @@
     }
 
     &__image-wrapper {
-      // hack using scale + overflow:hidden wrapper cuz background-size no worky with transition
       overflow: hidden;
     }
 
     &__image {
       transition: 50ms ease-in-out;
-      height: 450px;
-      background-size: cover;
-      background-position: center center;
+      height: 510px;
+      width: 100%;
+      object-fit: cover;
+      will-change: transform, filter, opacity;
+
+      .@{_top}--old & {
+        filter: grayscale();
+        opacity: 0.75;
+        height: 210px;
+      }
+
+      .@{_top}--old:hover & {
+        filter: none;
+        opacity: 1;
+      }
     }
   }

@@ -1,0 +1,108 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.notification-banner-v2 {
+  @_top: notification-banner-v2;
+  @_bar-width: 3px;
+  @_padding: 5px;
+  @_margin: 10px;
+
+  display: flex;
+  padding: 5px;
+  font-size: @font-size--normal;
+  color: #fff;
+  background-color: fade(@red-darker, 40%);
+  z-index: @z-index--notification-banner-v2;
+  flex-direction: column;
+  text-align: center;
+
+  @media @desktop {
+    margin: 2px;
+    flex-direction: row;
+    border-radius: 40px;
+    text-align: left;
+  }
+
+  &__col {
+    margin: @_padding;
+
+    &--icon {
+      height: 30px;
+
+      @media @desktop {
+        height: auto;
+        width: 30px;
+      }
+
+      flex: none;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      .@{_top}--alert &,
+      .@{_top}--warning & {
+        background-image: url(/images/layout/exclamation-icon.svg);
+      }
+    }
+
+    &--label {
+      flex: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      // own padding + bar paddings (both sides)
+      padding-bottom: (@_padding * 2 + @_bar-width);
+
+      @media @desktop {
+        // horizontal edition
+        padding-right: (@_padding * 3 + @_bar-width);
+        padding-bottom: 0;
+      }
+
+      &::after {
+        position: absolute;
+        content: '';
+        height: @_bar-width;
+        background-color: @red;
+        border-radius: 10px;
+
+        left: 0;
+        bottom: 0;
+        right: 0;
+
+        @media @desktop {
+          width: @_bar-width;
+          height: auto;
+          top: 0;
+          left: auto;
+        }
+      }
+    }
+  }
+
+  &__type {
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
+  &__text {
+    a {
+      .link-yellow();
+    }
+  }
+}

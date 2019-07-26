@@ -1,0 +1,83 @@
+{
+  "mappings": {
+    "users": {
+      "dynamic": false,
+      "properties": {
+        "is_old": {
+          "type": "boolean"
+        },
+        "previous_usernames": {
+          "type": "text",
+          "analyzer": "username_lower"
+        },
+        "user_lastvisit": {
+          "type": "date",
+          "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss"
+        },
+        "user_type": {
+          "type": "short"
+        },
+        "user_warnings": {
+          "type": "short"
+        },
+        "username": {
+          "type": "text",
+          "fields": {
+            "_slop": {
+              "type": "text",
+              "analyzer": "username_slop",
+              "search_analyzer": "username_lower"
+            },
+            "_whitespace": {
+              "type": "text",
+              "analyzer": "whitespace"
+            },
+            "raw": {
+              "type": "keyword"
+            }
+          },
+          "analyzer": "username_lower"
+        }
+      }
+    }
+  },
+  "settings": {
+    "index": {
+      "analysis": {
+        "filter": {
+          "username_slop_filter": {
+            "type": "ngram",
+            "min_gram": "2",
+            "max_gram": "8"
+          }
+        },
+        "analyzer": {
+          "whitespace": {
+            "filter": [
+              "lowercase"
+            ],
+            "type": "custom",
+            "tokenizer": "whitespace"
+          },
+          "username_slop": {
+            "filter": [
+              "lowercase",
+              "username_slop_filter"
+            ],
+            "type": "custom",
+            "tokenizer": "standard"
+          },
+          "username_lower": {
+            "filter": [
+              "lowercase"
+            ],
+            "type": "custom",
+            "tokenizer": "standard"
+          }
+        }
+      },
+      "number_of_shards": "1",
+      "number_of_replicas": "1"
+    }
+  }
+}

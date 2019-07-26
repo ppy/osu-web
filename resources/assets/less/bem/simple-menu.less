@@ -1,0 +1,212 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.simple-menu {
+  @_top: simple-menu;
+  @_item-padding-vertical: 5px;
+  @_item-padding-horizontal: 25px;
+  @_padding-vertical: 20px;
+  @_gutter: 5px;
+  @_border-radius: 20px;
+
+  .own-layer();
+  .default-box-shadow();
+  border-radius: @_border-radius;
+  background-color: @osu-colour-b6;
+  padding: @_padding-vertical @_gutter;
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  flex: none;
+  font-size: @font-size--title-small;
+  overflow: hidden;
+  z-index: @z-index--simple-menu;
+
+  &--beatmapset-watch {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+  }
+
+  &--forum-topic-watch {
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 10px;
+
+    // extends mouse hover area to cover margin-bottom
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 10px;
+    }
+  }
+
+  &--login-box {
+    position: absolute;
+    border-radius: @border-radius-large;
+  }
+
+  &--nav2 {
+    .own-layer();
+    will-change: transform, opacity;
+    transition: none;
+    border-radius: @border-radius-large;
+  }
+
+  &--nav2-left-aligned {
+    left: (-@_gutter + -@_item-padding-horizontal);
+  }
+
+  &--nav2-transparent {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  &--popup-menu {
+    border-radius: 10px;
+    padding: 10px @_gutter;
+  }
+
+  &--profile-page-bar {
+    margin-top: 5px;
+    top: 100%;
+    right: 0;
+    position: absolute;
+
+    @media @desktop {
+      right: auto;
+      left: 0;
+    }
+  }
+
+  &__content {
+    margin: 0 -@_gutter;
+    padding: 0 @_gutter;
+    display: flex;
+    flex-direction: column;
+
+    .@{_top}--nav2 & {
+      min-height: 100px;
+      max-height: calc(100vh - (@nav2-height + @_padding-vertical * 2));
+      overflow-y: auto;
+    }
+
+    .@{_top}--nav2-locales & {
+      // Hopefully wide enough for two columns (ie. no overflown text).
+      width: 440px;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__form {
+    margin: -@_padding-vertical -@_gutter;
+  }
+
+  &__header {
+    min-height: 100px;
+    margin: -@_padding-vertical -@_gutter @_padding-vertical;
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+
+    &::before {
+      .full-size();
+      content: '';
+      background-color: fade(#000, 50%);
+    }
+
+    &--link {
+      .link-plain();
+      .link-white();
+    }
+  }
+
+  &__header-icon {
+    width: 60px;
+  }
+
+  &__item {
+    .highlight-stripe() {
+      &::before {
+        content: '';
+        border-radius: 10px;
+        position: absolute;
+        top: (@_item-padding-vertical + 2px);
+        left: 10px;
+        width: 3px;
+        height: calc(100% - (@_item-padding-vertical * 2 + 4px));
+        background-color: @osu-colour-h1;
+      }
+    }
+
+    .reset-input();
+    .link-white();
+    .link-plain();
+    .default-border-radius();
+    white-space: nowrap;
+    line-height: normal;
+    padding: @_item-padding-vertical @_item-padding-horizontal;
+    color: #fff;
+    cursor: pointer;
+    text-align: left;
+    flex: none;
+
+    &:hover {
+      background-color: @osu-colour-b5;
+      .highlight-stripe();
+
+      .@{_top}--nav2-transparent & {
+        background-color: @osu-colour-b6;
+      }
+    }
+
+    &--active {
+      .highlight-stripe();
+    }
+
+    .@{_top}--nav2-locales & {
+      width: 50%;
+    }
+
+    &[disabled], &--disabled {
+      color: #999;
+      // disable hover
+      pointer-events: none;
+    }
+  }
+
+  &__item-loading-spinner {
+    opacity: 0;
+    will-change: opacity;
+    margin-left: 5px;
+
+    .js-forum-topic-watch-ajax--loading & {
+      opacity: 1;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -18,7 +18,29 @@
 
 @osu =
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
-  urlRegex: /(https?:\/\/(?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?)/ig
+  urlRegex: /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?))/ig
+
+  bottomPage: ->
+    osu.bottomPageDistance() == 0
+
+
+  bottomPageDistance: ->
+    body = document.documentElement ? document.body.parent ? document.body
+    (body.scrollHeight - body.scrollTop) - body.clientHeight
+
+
+  classWithModifiers: (className, modifiers) ->
+    ret = className
+
+    if modifiers?
+      ret += " #{className}--#{modifier}" for modifier in modifiers when modifier?
+
+    ret
+
+
+  currentUserIsFriendsWith: (user_id) ->
+    _.find currentUser.friends, target_id: user_id
+
 
   executeAction: (element) =>
     if !element?
@@ -47,10 +69,6 @@
     history.replaceState history.state, null, newUrl
 
 
-  bottomPage: ->
-    document.body.clientHeight == (document.body.scrollHeight - document.body.scrollTop)
-
-
   ajaxError: (xhr) ->
     osu.popup osu.xhrErrorMessage(xhr), 'danger'
 
@@ -74,11 +92,39 @@
 
 
   pageChange: ->
-    Timeout.set 0, -> $(document).trigger('osu:page:change')
+    Timeout.set 0, osu.pageChangeImmediate
 
 
-  parseJson: (id) ->
-    JSON.parse document.getElementById(id)?.text ? null
+  pageChangeImmediate: ->
+    $(document).trigger('osu:page:change')
+
+
+  parseJson: (id, remove = false) ->
+    element = document.getElementById(id)
+    return unless element?
+
+    json = JSON.parse element.text
+    element.remove() if remove
+
+    json
+
+
+  storeJson: (id, object) ->
+    json = JSON.stringify object
+    element = document.getElementById(id)
+
+    if !element?
+      element = document.createElement 'script'
+      element.id = id
+      element.type = 'application/json'
+      document.body.appendChild element
+
+    element.text = json
+
+
+  # make a clone of json-like object (object with simple values)
+  jsonClone: (object) ->
+    JSON.parse JSON.stringify(object ? null)
 
 
   isInputElement: (el) ->
@@ -94,7 +140,12 @@
       false
 
 
-  isMobile: -> ! window.matchMedia('(min-width: 840px)').matches
+  isDesktop: ->
+    # sync with boostrap-variables @screen-sm-min
+    window.matchMedia('(min-width: 900px)').matches
+
+
+  isMobile: -> !osu.isDesktop()
 
 
   # mobile safari zooms in on focus of input boxes with font-size < 16px, this works around that
@@ -110,7 +161,7 @@
 
   src2x: (mainUrl) ->
     src: mainUrl
-    srcSet: "#{mainUrl} 1x, #{mainUrl.replace(/(\.[^.]+)$/, '@2x$1')} 2x"
+    srcSet: "#{mainUrl} 1x, #{mainUrl?.replace(/(\.[^.]+)$/, '@2x$1')} 2x"
 
 
   link: (url, text, options = {}) ->
@@ -125,8 +176,8 @@
     el.outerHTML
 
 
-  linkify: (text) ->
-    return text.replace(osu.urlRegex, '<a href="$1" rel="nofollow">$1</a>')
+  linkify: (text, newWindow = false) ->
+    text.replace(osu.urlRegex, "<a href=\"$1\" rel=\"nofollow noreferrer\"#{if newWindow then ' target=\"_blank\"' else ''}>$2</a>")
 
 
   timeago: (time) ->
@@ -144,7 +195,38 @@
     return "#{bytes} B" if (bytes < k)
 
     i = Math.floor(Math.log(bytes) / Math.log(k))
-    return "#{(bytes / Math.pow(k, i)).toFixed(decimals)} #{suffixes[i]}"
+    "#{osu.formatNumber(bytes / Math.pow(k, i), decimals)} #{suffixes[i]}"
+
+
+  formatNumber: (number, precision, options, locale) ->
+    return null unless number?
+
+    options ?= {}
+
+    if precision?
+      options.minimumFractionDigits = precision
+      options.maximumFractionDigits = precision
+
+    number.toLocaleString locale ? currentLocale, options
+
+
+  formatNumberSuffixed: (number, precision, options = {}) ->
+    suffixes = ['', 'k', 'm', 'b', 't']
+    k = 1000
+
+    format = (n) ->
+      options ?= {}
+
+      if precision?
+        options.minimumFractionDigits = precision
+        options.maximumFractionDigits = precision
+
+      n.toLocaleString 'en', options
+
+    return "#{format number}" if (number < k)
+
+    i = Math.min suffixes.length - 1, Math.floor(Math.log(number) / Math.log(k))
+    "#{format(number / Math.pow(k, i))}#{suffixes[i]}"
 
 
   reloadPage: (keepScroll = true) ->
@@ -162,6 +244,15 @@
     osu.navigate url, keepScroll, action: 'replace'
 
 
+  urlPresence: (url) ->
+    "url(#{url})" if osu.presence(url)?
+
+
+  # TODO: add support for multiple badges and/or move server side?
+  # note: the display priority is as defined, from left to right
+  userGroupBadge: (user) ->
+    _.intersection(_.concat(user.default_group, user.groups), ['bot', 'dev', 'gmt', 'nat', 'bng', 'bng_limited', 'support', 'alumni'])[0]
+
   navigate: (url, keepScroll, {action = 'advance'} = {}) ->
     osu.keepScrollOnLoad() if keepScroll
     Turbolinks.visit url, action: action
@@ -175,28 +266,6 @@
 
     $(document).one 'turbolinks:load', ->
       window.scrollTo position[0], position[1]
-
-
-  getOS: (fallback='Windows') ->
-    nAgnt = navigator.userAgent
-    os = undefined
-    if /Windows (.*)/.test(nAgnt)
-      return 'Windows'
-    # Test for mobile first
-    if /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(navigator.appVersion)
-      return fallback
-    if /(macOS|Mac OS X|MacPPC|MacIntel|Mac_PowerPC|Macintosh)/.test(nAgnt)
-      return 'macOS'
-    if /(Linux|X11)/.test(nAgnt)
-      return 'Linux'
-    fallback
-
-
-  otherOS: (os) ->
-    choices = ['macOS', 'Linux', 'Windows']
-    index = choices.indexOf os
-    choices.splice index, 1
-    choices
 
 
   popup: (message, type = 'info') ->
@@ -225,8 +294,29 @@
     $alert.appendTo($popup).fadeIn()
 
 
-  trans: (key, replacements) ->
-    Lang.get key, replacements
+  popupShowing: ->
+    $('#overlay').is(':visible')
+
+
+  presence: (string) ->
+    if osu.present(string) then string else null
+
+
+  present: (string) ->
+    string? && string != ''
+
+
+  promisify: (deferred) ->
+    new Promise (resolve, reject) ->
+      deferred
+      .done resolve
+      .fail reject
+
+
+  trans: (key, replacements = {}, locale) ->
+    locale = fallbackLocale unless osu.transExists(key, locale)
+
+    Lang.get(key, replacements, locale)
 
 
   transArray: (array, key = 'common.array_and') ->
@@ -241,12 +331,49 @@
         "#{array[...-1].join(osu.trans("#{key}.words_connector"))}#{osu.trans("#{key}.last_word_connector")}#{_.last(array)}"
 
 
-  transChoice: (key, count, replacements) ->
-    Lang.choice key, count, replacements
+  transChoice: (key, count, replacements = {}, locale) ->
+    locale ?= currentLocale
+    isFallbackLocale = locale == fallbackLocale
+
+    if !isFallbackLocale && !osu.transExists(key, locale)
+      return osu.transChoice(key, count, replacements, fallbackLocale)
+
+    initialLocale = Lang.getLocale()
+    if locale != initialLocale
+      # FIXME: remove this setLocale hack once Lang.js is updated to the one with
+      #        locale pluralization rule bug fixed.
+      #
+      # How to check:
+      # > Lang.setLocale('be')
+      # > Lang.choice('common.count.months', 6, { count_delimited: 6 }, 'en')
+      # It should return "6 months" instead of undefined.
+      Lang.setLocale locale
+
+    replacements.count_delimited = osu.formatNumber(count, null, null, locale)
+    translated = Lang.choice(key, count, replacements, locale)
+
+    Lang.setLocale initialLocale if initialLocale?
+
+    if !isFallbackLocale && !translated?
+      delete replacements.count_delimited
+      # added by Lang.choice
+      delete replacements.count
+
+      return osu.transChoice(key, count, replacements, fallbackLocale)
+
+    translated
+
+
+  # Handles case where crowdin fills in untranslated key with empty string.
+  transExists: (key, locale) ->
+    translated = Lang.get(key, null, locale)
+
+    osu.present(translated) && translated != key
 
 
   uuid: ->
     Turbolinks.uuid() # no point rolling our own
+
 
   updateQueryString: (url, params) ->
     urlObj = new URL(url ? window.location.href, document.location.origin)
@@ -268,7 +395,7 @@
 
     message ?= xhr?.responseJSON?.error
 
-    if !message?
+    if !message? || message == ''
       errorKey = "errors.codes.http-#{xhr?.status}"
       message = osu.trans errorKey
       message = osu.trans 'errors.unknown' if message == errorKey

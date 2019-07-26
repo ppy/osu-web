@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -19,19 +19,26 @@
 class @UserLogin
 
 
-  constructor: (@nav) ->
+  constructor: ->
     # Used as callback on original action (where login was required)
     @clickAfterLogin = null
 
     $(document).on 'ajax:success', '.js-login-form', @loginSuccess
     $(document).on 'ajax:error', '.js-login-form', @loginError
+    $(document).on 'submit', '.js-login-form', @clearError
+    $(document).on 'input', '.js-login-form-input', @clearError
 
     $(document).on 'click', '.js-user-link', @showOnClick
     $(document).on 'click', '.js-login-required--click', @showToContinue
+    $(document).on 'ajax:before', '.js-login-required--click', -> currentUser.id?
 
     $(document).on 'ajax:error', @showOnError
     $(document).on 'turbolinks:load', @showOnLoad
     $.subscribe 'nav:popup:hidden', @reset
+
+
+  clearError: (_e) ->
+    $('.js-login-form--error').text('')
 
 
   loginError: (e, xhr) =>
@@ -45,14 +52,14 @@ class @UserLogin
     @clickAfterLogin = null
 
     @refreshToken()
-    @nav.hidePopup()
 
     $.publish 'user:update', data.user
 
     # To allow other ajax:* events attached to header menu
     # to be triggered before the element is removed.
     Timeout.set 0, =>
-      $('.js-user-header').html data.header
+      $('.js-user-login--menu')[0]?.click()
+      $('.js-user-header').replaceWith data.header
       $('.js-user-header-popup').html data.header_popup
 
       osu.executeAction toClick
@@ -71,13 +78,14 @@ class @UserLogin
   show: (target) =>
     @clickAfterLogin = target
 
-    @nav.setMode mode: 'user'
-    @nav.showPopup()
+    Timeout.set 0, ->
+      $(document).trigger 'gallery:close'
+      $('.js-user-login--menu')[0].click()
 
 
   showOnClick: (e) =>
-    e.currentTarget.dataset.navMode ?= 'user'
-    @nav.toggleMenu e
+    e.preventDefault()
+    @show()
 
 
   showOnError: (e, xhr) =>

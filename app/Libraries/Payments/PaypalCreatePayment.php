@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -29,6 +29,7 @@ use PayPal\Api\ItemList;
 use PayPal\Api\Payer;
 use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
+use PayPal\Api\ShippingAddress;
 use PayPal\Api\Transaction;
 use PayPal\Exception\PayPalConnectionException;
 
@@ -42,7 +43,10 @@ class PaypalCreatePayment
 {
     use StoreNotifiable;
 
+    /** @var Order */
     private $order;
+
+    /** @var Payment */
     private $payment;
 
     public function __construct(Order $order)
@@ -57,6 +61,12 @@ class PaypalCreatePayment
             ->setPayer($payer)
             ->setRedirectUrls($this->getRedirectUrls())
             ->setTransactions([$this->getTransaction()]);
+
+        if (!$this->order->requiresShipping()) {
+            // current version of SDK doesn't support application_context, so need to use
+            //  an experience profile instead.
+            $this->payment->setExperienceProfileId(config('payments.paypal.profiles.no_shipping'));
+        }
     }
 
     public function getApprovalLink()
@@ -100,7 +110,8 @@ class PaypalCreatePayment
                     ->setQuantity(1)
                     ->setSku($this->order->getOrderNumber())
                     ->setPrice($this->order->getSubTotal()),
-                ]);
+            ])
+            ->setShippingAddress($this->getShippingAddress());
     }
 
     private function getRedirectUrls()
@@ -108,6 +119,24 @@ class PaypalCreatePayment
         return (new RedirectUrls())
             ->setReturnUrl(route('payments.paypal.approved', ['order_id' => $this->order->order_id]))
             ->setCancelUrl(route('payments.paypal.declined', ['order_id' => $this->order->order_id]));
+    }
+
+    private function getShippingAddress()
+    {
+        if (!$this->order->requiresShipping()) {
+            return;
+        }
+
+        $address = $this->order->address;
+
+        return (new ShippingAddress())
+            ->setCity($address->city)
+            ->setCountryCode($address->country_code)
+            ->setLine1($address->street)
+            ->setPhone($address->phone)
+            ->setPostalCode($address->zip)
+            ->setRecipientName("{$address->first_name} {$address->last_name}") // what could possibly go wrong?
+            ->setState($address->state);
     }
 
     private function getTransaction()

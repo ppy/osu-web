@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -35,7 +35,7 @@ class TopicCoversController extends Controller
     {
         parent::__construct();
 
-        view()->share('current_action', 'forum-topic-covers-'.current_action());
+        view()->share('currentAction', 'forum-topic-covers-'.current_action());
 
         $this->middleware('auth', ['only' => [
             'destroy',
@@ -53,9 +53,9 @@ class TopicCoversController extends Controller
         $topic = null;
 
         if (presence(Request::input('topic_id')) !== null) {
-            $topic = Topic::findOrFail(Request::input('topic_id'));
+            $topic = Topic::with('forum')->findOrFail(Request::input('topic_id'));
 
-            priv_check('ForumTopicEdit', $topic)->ensureCan();
+            priv_check('ForumTopicCoverStore', $topic->forum)->ensureCan();
             if ($topic->cover !== null) {
                 abort(422);
             }

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -19,6 +19,6 @@
 <a href="{{ $href }}" class="btn-home btn-home--{{ $colour ?? '' }}">
     <span class="btn-home__text">{{ $label }}</span>
     <span class="btn-home__icon">
-        <i class="fa fa-fw fa-{{$icon}}"></i>
+        <i class="fas fa-fw fa-{{$icon}}"></i>
     </span>
 </a>

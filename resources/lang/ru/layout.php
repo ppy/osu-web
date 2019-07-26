@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,40 +20,48 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Ритм всего лишь в *клике* от тебя! С Ouendan/EBA, Taiko и оригинальным типом игры, включая многофункциональный редактор карт.',
+        'page_description' => 'osu! - Ритм всего лишь в *клике* от тебя! Игра с Ouendan/EBA, Taiko и оригинальным типом игры, с многофункциональным редактором карт.',
     ],
 
     'menu' => [
         'home' => [
-            '_' => 'главная',
+            '_' => 'общее',
             'account-edit' => 'настройки',
-            'friends' => 'друзья',
             'friends-index' => 'друзья',
-            'getChangelog' => 'список изменений',
-            'getDownload' => 'скачать',
+            'changelog-index' => 'список изменений',
+            'changelog-build' => 'сборка',
+            'getDownload' => 'скачать игру',
             'getIcons' => 'иконки',
-            'index' => 'osu!',
+            'groups-show' => 'группы',
+            'index' => 'главная',
             'legal-show' => 'информация',
+            'messages-index' => 'сообщения',
             'news-index' => 'новости',
             'news-show' => 'новости',
-            'password-reset-index' => 'восстановить пароль',
+            'password-reset-index' => 'сброс пароля',
             'search' => 'поиск',
             'supportTheGame' => 'поддержать игру',
+            'team' => 'команда',
         ],
         'help' => [
             '_' => 'помощь',
             'getFaq' => 'чаво',
-            'getSupport' => 'поддержка',
+            'getRules' => 'правила',
+            'getSupport' => 'мне правда нужна помощь!',
             'getWiki' => 'вики',
             'wiki-show' => 'вики',
         ],
         'beatmaps' => [
             '_' => 'карты',
-            'show' => 'информация',
-            'index' => 'список',
-            'artists' => 'избранные исполнители',
-            'packs' => 'паки',
-            // 'getCharts' => 'charts',
+            'artists' => 'osu!featured artists',
+            'beatmap_discussion_posts-index' => 'публикации в обсуждений карты',
+            'beatmap_discussions-index' => 'обсуждения карты',
+            'beatmapset-watches-index' => 'подписки на карты',
+            'beatmapset_discussion_votes-index' => 'голоса в обсуждений карты',
+            'beatmapset_events-index' => 'события карты',
+            'index' => 'библиотека',
+            'packs' => 'сборки',
+            'show' => 'инфо',
         ],
         'beatmapsets' => [
             '_' => 'карты',
@@ -62,42 +70,44 @@ return [
         'rankings' => [
             '_' => 'рейтинг',
             'index' => 'производительности',
-            'performance' => 'производительности',
-            'charts' => 'по месяцам',
+            'performance' => 'performance',
+            'charts' => 'по графикам',
             'score' => 'по очкам',
             'country' => 'по странам',
             'kudosu' => 'кудосу',
         ],
         'community' => [
             '_' => 'сообщество',
-            'dev' => 'osu!dev',
+            'chat' => 'сообщения',
+            'chat-index' => 'сообщения',
+            'dev' => 'разработка',
             'getForum' => 'форумы',
-            'getChat' => 'чат',
-            'getSupport' => 'поддержка',
-            'getLive' => 'трансляции по osu!',
+            'getLive' => 'прямые трансляции',
+            'comments-index' => 'комментарии',
+            'comments-show' => 'комментарий',
             'contests' => 'конкурсы',
             'profile' => 'профиль',
             'tournaments' => 'турниры',
             'tournaments-index' => 'турниры',
             'tournaments-show' => 'информация о турнире',
-            'forum-topic-watches-index' => 'подписки',
-            'forum-topics-create' => 'форум',
-            'forum-topics-show' => 'форум',
-            'forum-forums-index' => 'форум',
-            'forum-forums-show' => 'форум',
+            'forum-topic-watches-index' => 'подписки на темы',
+            'forum-topics-create' => 'форумы',
+            'forum-topics-show' => 'форумы',
+            'forum-forums-index' => 'форумы',
+            'forum-forums-show' => 'форумы',
         ],
         'multiplayer' => [
             '_' => 'мультиплеер',
-            'show' => 'матчи',
+            'show' => 'матч',
         ],
         'error' => [
             '_' => 'ошибка',
-            '404' => 'не найдено',
+            '404' => 'потеряно',
             '403' => 'запрещено',
-            '401' => 'требуется подтверждение',
-            '405' => 'не найдено',
+            '401' => 'вы не авторизованы',
+            '405' => 'потеряно',
             '500' => 'что-то сломалось',
-            '503' => 'обслуживание',
+            '503' => 'тех. работы',
         ],
         'user' => [
             '_' => 'пользователь',
@@ -108,18 +118,28 @@ return [
             'reset' => 'восстановить',
             'new' => 'новый',
 
-            'messages' => 'Сообщения',
-            'settings' => 'Настройки',
-            'logout' => 'Выход',
             'help' => 'Помощь',
+            'logout' => 'Выход',
+            'messages' => 'Сообщения',
+            'modding-history-discussions' => 'обсуждение',
+            'modding-history-events' => 'история событий',
+            'modding-history-index' => 'активность карты пользователя',
+            'modding-history-posts' => 'история публикаций',
+            'modding-history-votesGiven' => 'голоса',
+            'modding-history-votesReceived' => 'полученные голоса',
+            'oauth_login' => 'вход для oauth',
+            'oauth_request' => 'авторизация oauth',
+            'settings' => 'Настройки',
         ],
         'store' => [
             '_' => 'магазин',
+            'checkout-show' => 'проверка',
             'getListing' => 'товары',
-            'getCart' => 'корзина',
+            'cart-show' => 'корзина',
 
             'getCheckout' => 'проверка',
             'getInvoice' => 'чек',
+            'orders-index' => 'история заказов',
             'products-show' => 'товар',
 
             'new' => 'новый',
@@ -138,11 +158,12 @@ return [
         ],
         'admin' => [
             '_' => 'админ',
-            'root' => 'главная',
+            'beatmapsets-covers' => 'обложки карт',
             'logs-index' => 'логи',
+            'root' => 'главная',
+
             'beatmapsets' => [
                 '_' => 'карты',
-                'covers' => 'обложки',
                 'show' => 'детали',
             ],
         ],
@@ -152,8 +173,8 @@ return [
         'general' => [
             '_' => 'Общее',
             'home' => 'Главная',
-            'changelog' => 'Список изменений',
-            'beatmaps' => 'Список карт',
+            'changelog-index' => 'Список изменений',
+            'beatmaps' => 'Библиотека карт',
             'download' => 'Скачать osu!',
             'wiki' => 'Вики',
         ],
@@ -164,16 +185,12 @@ return [
             'livestreams' => 'Прямые трансляции',
             'report' => 'Сообщить о проблеме',
         ],
-        'support' => [
-            '_' => 'Поддержите osu!',
-            'tags' => 'Саппорт',
-            'merchandise' => 'Магазин osu!',
-        ],
         'legal' => [
             '_' => 'Права и статус',
             'copyright' => 'Авторские права (DMCA)',
-            'osu_status' => '@osustatus',
+            'privacy' => 'Конфиденциальность',
             'server_status' => 'Статус серверов',
+            'source_code' => 'Исходный код',
             'terms' => 'Условия использования',
         ],
     ],
@@ -181,62 +198,56 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Страница не найдена',
-            'description' => 'Извини, но страница не найдена!',
-            'link' => false,
+            'description' => "Извините, но запрашиваемая Вами страница не найдена.",
         ],
         '403' => [
-            'error' => 'Ты не должен быть здесь.',
-            'description' => 'Доступ к этой странице ограничен, вернись назад.',
-            'link' => false,
+            'error' => "Вы не должны быть здесь.",
+            'description' => 'Вы можете попробовать вернуться назад, наверно.',
         ],
         '401' => [
-            'error' => 'Ты не должен быть здесь.',
-            'description' => 'Доступ к этой странице ограничен. Вернись назад или авторизуйся.',
-            'link' => false,
+            'error' => "Вы не должны быть здесь.",
+            'description' => 'Вы можете попробовать вернуться назад, наверно. Или может войти.',
         ],
         '405' => [
-            'error' => 'Страница отсутствует',
-            'description' => 'Извини, но запрашиваемая страница не найдена!',
-            'link' => false,
+            'error' => 'Страница не найдена',
+            'description' => "Извините, но запрашиваемая Вами страница не найдена.",
         ],
         '500' => [
             'error' => 'О нет! Что-то сломалось! ;_;',
-            'description' => 'Мы уже автоматически оповещены о проблеме.',
-            'link' => false,
+            'description' => "Нам уже известно о проблеме и мы работаем над ее исправлением.",
         ],
         'fatal' => [
             'error' => 'О нет! Что-то сломалось (ужасно)! ;_;',
-            'description' => 'Мы уже автоматически оповещены о проблеме.',
-            'link' => false,
+            'description' => "Нам уже известно о проблеме и мы работаем над ее исправлением.",
         ],
         '503' => [
             'error' => 'Закрыты на обслуживание!',
-            'description' => 'Техническое обслуживание обычно занимает от 5 секунд до 10 минут. Если оно затягивается, смотри :link для получения дополнительной информации.',
+            'description' => "Техническое обслуживание обычно занимает от 5 секунд до 10 минут. Если оно затягивается, смотри :link для получения дополнительной информации.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'На всякий случай, вот код, который ты можешь дать поддержке!',
+        'reference' => "На всякий случай, вот код, который вы можете сообщить поддержке!",
     ],
 
     'popup_login' => [
         'login' => [
-            'email' => 'email или никнейм',
-            'forgot' => 'Я забыл свои данные',
+            'email' => 'почта или никнейм',
+            'forgot' => "я не помню, помогите",
             'password' => 'пароль',
-            'title' => 'Войди, чтобы продолжить',
+            'title' => 'Войдите для продолжения',
 
             'error' => [
-                'email' => 'Никнейм или email адрес не существует',
+                'email' => "Почта или никнейм не существуют",
                 'password' => 'Неверный пароль',
             ],
         ],
 
         'register' => [
-            'info' => 'Тебе нужен аккаунт. Почему бы не завести один?',
-            'title' => 'Ещё не зарегистрирован?',
+            'info' => "Вам нужен аккаунт, сэр. Почему у вас его всё ещё нет?",
+            'title' => "Нет аккаунта?",
         ],
     ],
 
@@ -250,7 +261,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => 'Начинай вводить ключевые слова.',
-        'retry' => 'Поиск не удался. Нажми для повтора.',
+        'initial' => 'Начинайте вводить!',
+        'retry' => 'Ошибка поиска. Нажмите для повтора.',
     ],
 ];

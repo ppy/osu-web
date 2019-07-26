@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,18 @@
 
 namespace App\Models;
 
+/**
+ * @property \Illuminate\Database\Eloquent\Collection $artists Artist
+ * @property \Carbon\Carbon|null $created_at
+ * @property string $description
+ * @property string $header_url
+ * @property string $icon_url
+ * @property int $id
+ * @property string $name
+ * @property string|null $soundcloud
+ * @property \Carbon\Carbon|null $updated_at
+ * @property string|null $website
+ */
 class Label extends Model
 {
     public function artists()

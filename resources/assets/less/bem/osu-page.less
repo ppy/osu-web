@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,12 +18,12 @@
 
 .osu-page {
   .width(@extra-margin: 0px) {
-    width: calc(100% ~'-' (@extra-margin * 2));
+    width: calc(100% - (@extra-margin * 2));
     max-width: (@container-sm - @extra-margin * 2);
   }
 
   .width-desktop(@extra-margin: 0px) {
-    width: calc(100% ~'-' ((@extra-margin + @grid-gutter-width) * 2));
+    width: calc(100% - ((@extra-margin + @grid-gutter-width) * 2));
     max-width: (@container-sm - @extra-margin * 2);
   }
 
@@ -31,6 +31,13 @@
   margin-left: auto;
   margin-right: auto;
   flex: none;
+
+  .default {
+    background-color: @osu-colour-b5;
+    color: #fff;
+    .default-box-shadow();
+    margin-bottom: 10px;
+  }
 
   .width();
   @media @desktop {
@@ -41,15 +48,32 @@
     .default-box-shadow();
   }
 
+  &--has-anchor {
+    .fragment-target-fn();
+  }
+
   &--beatmapsets-search-header {
     .default-box-shadow();
     margin-bottom: 10px;
   }
 
+  &--changelog {
+    .default;
+    background-color: @osu-colour-b4;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+
+  &--comment {
+    .default;
+    padding: 10px 0 0;
+    margin-bottom: 0;
+  }
+
   &--comments {
-    .default-box-shadow();
-    background-color: #fff;
-    padding: 10px 20px;
+    .default;
+    padding: 10px 0;
   }
 
   &--contest {
@@ -60,24 +84,32 @@
   }
 
   &--contests {
-    @media @desktop {
-      margin-bottom: 10px;
-    }
+    .default;
   }
 
   &--download {
     .width(20px);
-    .default-box-shadow();
+    .default;
 
     display: flex;
     flex-direction: column;
-    margin-bottom: 5px;
-
-    background-color: #333;
 
     @media @desktop {
       .width-desktop(20px);
     }
+  }
+
+  &--forum-compact {
+    .default-box-shadow();
+    background-color: white;
+    margin-bottom: 10px;
+  }
+
+  &--forum-topic-feature-vote {
+    .default-box-shadow();
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 5px;
   }
 
   &--forum-pippi {
@@ -89,32 +121,57 @@
   }
 
   &--generic {
-    .default-box-shadow();
-    background-color: #fff;
+    .default;
     padding: 20px;
-    margin-bottom: 10px;
+  }
+
+  &--generic-compact {
+    .default;
   }
 
   &--header {
-    .default-box-shadow();
-    background-color: #333;
+    .default;
+    margin-bottom: 0;
   }
 
   &--header-news, &--groups {
     .default-box-shadow();
     background-color: #333;
-    margin-bottom: 10px;
+  }
+
+  &--header-v3 {
+    align-self: auto;
+  }
+
+  &--header-v3-compact {
+    @media @desktop {
+      align-self: flex-start;
+      margin-top: 90px;
+      width: 100%;
+    }
   }
 
   &--landing-buttons {
     flex: 1 0 auto;
   }
 
+  &--news {
+    .default;
+    .default-gutter();
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+
+  &--notification-banners {
+    @media @desktop {
+      height: 0;
+      top: (@nav2-height + 10px);
+    }
+  }
+
   &--password-reset {
-    .default-box-shadow();
+    .default;
     .inner-shadow-top();
-    margin-bottom: 10px;
-    background-color: #333;
 
     @media @desktop {
       .width-desktop(20px);
@@ -122,20 +179,11 @@
   }
 
   &--rankings {
-    .default-box-shadow();
-    margin-bottom: 10px;
+    .default;
     padding: 15px 20px 0;
-    background-color: #333;
   }
 
   &--small {
-    .width(20px);
-    @media @desktop {
-      .width-desktop(20px);
-    }
-  }
-
-  &--small-desktop {
     @media @desktop {
       .width-desktop(20px);
     }
@@ -153,20 +201,17 @@
     }
   }
 
+  &--users {
+    .default;
+    background-color: @osu-colour-b4;
+  }
+
   &--users-show-header {
     .default-box-shadow();
   }
 
-  &--users-show-header-extra {
-    .default-box-shadow();
-    .inner-shadow-top();
-    margin-bottom: 10px;
-  }
-
   &--wiki {
-    .inner-shadow-top();
-    background-color: #333;
-    color: #fff;
+    .default;
     font-size: @font-size--wiki;
     padding: 20px;
 
@@ -176,8 +221,17 @@
     }
   }
 
-  // color overrides goes here
-  &--dark-bg {
-    background-color: #333;
+  &--chat {
+    .default;
+
+    flex: 1 0 auto;
+    display: flex;
+    height: calc((var(--vh, 1vh) * 100) - 150px); // viewport height - compact header+footer
+    width: 100vw;
+    margin-bottom: 0;
+
+    @media @mobile {
+      height: calc((var(--vh, 1vh) * 100) - 110px);
+    }
   }
 }

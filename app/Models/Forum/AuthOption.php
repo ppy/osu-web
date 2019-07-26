@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,12 +20,17 @@
 
 namespace App\Models\Forum;
 
+/**
+ * @property string $auth_option
+ * @property int $auth_option_id
+ * @property int $founder_only
+ * @property int $is_global
+ * @property int $is_local
+ */
 class AuthOption extends Model
 {
     protected $table = 'phpbb_acl_options';
 
     protected $primaryKey = 'auth_option_id';
     public $timestamps = false;
-
-    protected $guarded = [];
 }

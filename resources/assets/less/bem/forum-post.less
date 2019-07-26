@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,7 +17,7 @@
  */
 
 .forum-post {
-  @_reply-xs-top-margin: 4px;
+  @_top: forum-post;
 
   .default-box-shadow();
   background-color: #fff;
@@ -33,15 +33,22 @@
   }
 
   &--reply {
-    backface-visibility: hidden;
-    transition: opacity 120ms;
+    height: 100%;
+    background-color: transparent;
     box-shadow: none;
-    width: 100%;
-    margin-bottom: 0;
   }
 
   .js-forum-post--hidden & {
     opacity: 0.5;
+  }
+
+  .js-forum-post--highlighted & {
+    outline: 3px solid @blue-darker;
+  }
+
+  //TODO: remove after forum restyle
+  a {
+    .link-old();
   }
 
   &__actions {
@@ -71,18 +78,12 @@
     right: 30px;
     bottom: 20px;
     .desktop-position();
-
-    &--reply {
-      top: (-@_reply-xs-top-margin);
-      height: 0;
-      .desktop-position();
-    }
   }
 
   &__body {
     flex: none;
     @media @desktop {
-      flex: 1 1 auto;
+      flex: 1;
     }
 
     display: flex;
@@ -92,8 +93,10 @@
     // reference: https://bugzilla.mozilla.org/show_bug.cgi?id=1108514#c2
     min-width: 0;
 
-    &--reply-form {
-      flex: 1 1 auto;
+    .@{_top}--reply & {
+      @media @desktop {
+        flex: none;
+      }
     }
   }
 
@@ -102,11 +105,19 @@
     flex: none;
 
     padding: 20px 30px;
+    overflow: hidden;
+
+    .@{_top}__preview & {
+      @media @mobile {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
 
     &--edit-bar {
       background-color: @gray-lighter;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       padding-top: 10px;
       padding-bottom: 10px;
     }
@@ -139,6 +150,10 @@
 
       padding-top: 0;
 
+      .@{_top}__preview & {
+        text-transform: uppercase;
+      }
+
       @media @desktop {
         order: 0;
         padding-top: 20px;
@@ -167,7 +182,8 @@
     }
 
     &--signature {
-      background-color: #eee;
+      background-color: @light-gray;
+      border-top: 1px solid #eee;
 
       padding-top: 20px;
       padding-bottom: 20px;
@@ -177,6 +193,11 @@
         overflow: hidden;
       }
     }
+  }
+
+  &__info-link {
+    .link-gray-dark();
+    .link-plain();
   }
 
   &__info-panel {
@@ -195,7 +216,6 @@
     background-color: fade(#fff, 90%);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     flex: 1 0 auto;
     padding: 10px;
     text-align: center;
@@ -260,34 +280,27 @@
     }
   }
 
-  &__overlay {
-    .full-size();
+  &__preview {
+    background-color: #ccc;
+
+    @media @mobile {
+      padding: 10px;
+      margin: 0 20px;
+      .default-border-radius;
+    }
   }
 
   &__reply-body {
     .default-box-shadow();
     background-color: #fff;
-    flex: 1;
+    flex: none;
     display: flex;
     flex-direction: column;
     min-width: 0;
-  }
-
-  &__reply-container {
-    background-color: fade(#333, 90%);
-    width: 100%;
-    height: 100%;
-    padding-bottom: 20px;
-    padding-top: @_reply-xs-top-margin;
 
     @media @desktop {
-      padding-top: 10px;
+      flex: 1;
     }
-  }
-
-  &__reply-content {
-    display: flex;
-    height: 100%;
   }
 
   &__reply-stick {
@@ -311,6 +324,24 @@
     }
   }
 
+  &__topic-starter {
+    display: inline-flex;
+    background-color: @blue-darker;
+    color: #fff;
+    font-style: normal;
+    font-weight: normal;
+    border-radius: 10000px;
+    padding: 2px 10px;
+    margin: 5px 0;
+  }
+
+  &__user-link-xs {
+    // Overrides the ".forum-post a" above.
+    && {
+      color: #fff;
+    }
+  }
+
   &__username {
     .default-text-shadow();
     display: block;
@@ -321,7 +352,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
-    color: #fff;
+    color: white !important; //TODO: remove after forum restyle
 
     &:hover {
       color: #fff;

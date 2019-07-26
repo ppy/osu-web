@@ -1,0 +1,62 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.notification-popup {
+  background-color: @osu-colour-b4;
+  color: #fff;
+  padding: 10px 10px 15px; // to balance with type header's line height
+  border-radius: @border-radius-large;
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 10px;
+  max-width: 400px;
+  width: 90vw;
+
+  @media @desktop {
+    margin-top: 0;
+  }
+
+  &__scroll-container {
+    -webkit-overflow-scrolling: touch;
+    overflow: auto;
+    padding: 0 10px;
+    max-height: calc(var(--vh, 1vh) * 100 - (@nav2-height + 20px));
+  }
+
+  &__show-more {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__empty-with-more {
+    margin-top: -5px; // negates show-more's margin-top and rebalance the main padding
+  }
+
+  &__empty {
+    margin: 10px 0 5px; // balances the main padding
+    white-space: nowrap;
+  }
+
+  &__item {
+    & + & {
+      margin-top: 10px;
+    }
+  }
+}

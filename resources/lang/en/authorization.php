@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,14 +26,23 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
+            'full_bn_required' => 'You must be a full nominator to perform this qualifying nomination.',
+            'full_bn_required_hybrid' => 'You must be a full nominator to nominate beatmap sets with more than one game mode.',
+            'incorrect_state' => 'Error performing that action, try refreshing the page.',
+            'owner' => "Can't nominate own beatmap.",
         ],
         'resolve' => [
             'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
         ],
 
+        'store' => [
+            'mapper_note_wrong_user' => 'Only beatmap owner or nominator/NAT group member can post mapper notes.',
+        ],
+
         'vote' => [
             'limit_exceeded' => 'Please wait a while before casting more votes',
-            'owner' => 'Can not vote own discussion!',
+            'owner' => "Can't vote on own discussion.",
+            'wrong_beatmapset_state' => 'Can only vote on discussions of pending beatmaps.',
         ],
     ],
 
@@ -42,24 +51,22 @@ return [
             'system_generated' => 'Automatically generated post can not be edited.',
             'not_owner' => 'Only the poster can edit post.',
         ],
+        'store' => [
+            'beatmapset_locked' => 'This beatmap is locked for discussion.',
+        ],
     ],
 
     'chat' => [
-        'channel' => [
-            'read' => [
-                'no_access' => 'Access to requested channel is not permitted.',
-            ],
-        ],
-        'message' => [
-            'send' => [
-                'channel' => [
-                    'no_access' => 'Access to target channel is required.',
-                    'moderated' => 'Channel is currently moderated.',
-                    'not_lazer' => 'You can only speak in #lazer at this time.',
-                ],
+        'blocked' => 'Cannot message a user that is blocking you or that you have blocked.',
+        'friends_only' => 'User is blocking messages from people not on their friends list.',
+        'moderated' => 'That channel is currently moderated.',
+        'no_access' => 'You do not have access to that channel.',
+        'restricted' => 'You cannot send messages while silenced, restricted or banned.',
+    ],
 
-                'not_allowed' => 'Can not send message while banned/restricted/silenced.',
-            ],
+    'comment' => [
+        'update' => [
+            'deleted' => "Can't edit deleted post.",
         ],
     ],
 
@@ -68,6 +75,10 @@ return [
     ],
 
     'forum' => [
+        'moderate' => [
+            'no_permission' => 'No permission to moderate this forum.',
+        ],
+
         'post' => [
             'delete' => [
                 'only_last_post' => 'Only last post can be deleted.',
@@ -83,17 +94,22 @@ return [
                 'not_owner' => 'Only poster can edit the post.',
                 'topic_locked' => 'Can not edit post of a locked topic.',
             ],
+
+            'store' => [
+                'play_more' => 'Try playing the game before posting on the forums, please! If you have a problem with playing, please post to the Help and Support forum.',
+                'too_many_help_posts' => "You need to play the game more before you can make additional posts. If you're still having trouble playing the game, email support@ppy.sh", // FIXME: unhardcode email address.
+            ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'You just posted. Wait a bit or edit your last post.',
+                'double_post' => 'Please edit your last post instead of posting again.',
                 'locked' => 'Can not reply to a locked thread.',
                 'no_forum_access' => 'Access to requested forum is required.',
                 'no_permission' => 'No permission to reply.',
 
                 'user' => [
-                    'require_login' => 'Please login to reply.',
+                    'require_login' => 'Please sign in to reply.',
                     'restricted' => "Can't reply while restricted.",
                     'silenced' => "Can't reply while silenced.",
                 ],
@@ -108,10 +124,11 @@ return [
             'vote' => [
                 'no_forum_access' => 'Access to requested forum is required.',
                 'over' => 'Polling is over and can not be voted on anymore.',
+                'play_more' => 'You need to play more before voting on forum.',
                 'voted' => 'Changing vote is not allowed.',
 
                 'user' => [
-                    'require_login' => 'Please login to vote.',
+                    'require_login' => 'Please sign in to vote.',
                     'restricted' => "Can't vote while restricted.",
                     'silenced' => "Can't vote while silenced.",
                 ],
@@ -127,6 +144,9 @@ return [
                 'uneditable' => 'Invalid cover specified.',
                 'not_owner' => 'Only owner can edit cover.',
             ],
+            'store' => [
+                'forum_not_allowed' => 'This forum does not accept topic covers.',
+            ],
         ],
 
         'view' => [
@@ -134,7 +154,7 @@ return [
         ],
     ],
 
-    'require_login' => 'Please login to proceed.',
+    'require_login' => 'Please sign in to proceed.',
 
     'unauthorized' => 'Access denied.',
 
@@ -147,7 +167,7 @@ return [
             'edit' => [
                 'locked' => 'User page is locked.',
                 'not_owner' => 'Can only edit own user page.',
-                'require_supporter_tag' => 'Supporter tag is required.',
+                'require_supporter_tag' => 'osu!supporter tag is required.',
             ],
         ],
     ],

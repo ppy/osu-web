@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -65,6 +65,18 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('osu_apikeys', 'DYNAMIC');
 
+        Schema::create('osu_badges', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
+            $table->unsignedMediumInteger('user_id');
+            $table->string('image', 255);
+            $table->string('description', 255);
+            $table->timestamp('awarded')->nullable()->useCurrent();
+            $table->primary(['user_id', 'image']);
+        });
+        $this->setRowFormat('osu_badges', 'DYNAMIC');
+
         Schema::create('osu_beatmap_difficulty', function (Blueprint $table) {
             $table->charset = 'utf8mb4';
 
@@ -77,6 +89,17 @@ class BaseTables extends Migration
             $table->primary(['beatmap_id', 'mode', 'mods'], 'osu_beatmap_difficulty_primary');
             $table->index(['mode', 'mods', 'diff_unified'], 'diff_sort');
         });
+
+        Schema::create('osu_beatmap_difficulty_attribs', function (Blueprint $table) {
+            $table->unsignedMediumInteger('beatmap_id');
+            $table->unsignedTinyInteger('mode');
+            $table->unsignedInteger('mods');
+            $table->unsignedTinyInteger('attrib_id')->comment('see osu_difficulty_attribs table');
+
+            $table->primary(['beatmap_id', 'mode', 'mods', 'attrib_id'], 'attribs_primary');
+        });
+
+        DB::statement('ALTER TABLE osu_beatmap_difficulty_attribs ADD value float null');
 
         Schema::create('osu_beatmaps', function (Blueprint $table) {
             $table->charset = 'utf8';
@@ -215,6 +238,25 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('osu_changelog', 'DYNAMIC');
 
+        Schema::create('osu_charts', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
+            $table->unsignedSmallInteger('chart_id', true);
+            $table->string('acronym', 10)->default('');
+            $table->string('name', 50)->default('');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->boolean('mode_specific')->default(0);
+            $table->string('type', 50)->default('monthly');
+            $table->boolean('active')->default(1);
+            $table->date('chart_month')->nullable();
+            $table->unique('acronym', 'acronym');
+            $table->index('end_date', 'enddate');
+            $table->index(['type', 'chart_month'], 'type');
+        });
+        $this->setRowFormat('osu_charts', 'DYNAMIC');
+
         Schema::create('osu_builds', function ($table) {
             $table->mediumIncrements('build_id');
             $table->string('version', 40)->nullable();
@@ -255,6 +297,20 @@ class BaseTables extends Migration
             $table->bigInteger('count')->unsigned();
         });
         $this->setRowFormat('osu_counts', 'DYNAMIC');
+
+        Schema::create('osu_downloads', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
+            $table->unsignedMediumInteger('user_id');
+            $table->integer('timestamp');
+            $table->mediumInteger('beatmapset_id');
+            $table->tinyInteger('fulfilled')->default(0);
+            $table->unsignedTinyInteger('mirror_id')->default(0);
+
+            $table->index(['user_id', 'timestamp', 'beatmapset_id'], 'user_id');
+        });
+        $this->setRowFormat('osu_downloads', 'DYNAMIC');
 
         Schema::create('osu_events', function (Blueprint $table) {
             $table->charset = 'utf8';
@@ -403,6 +459,7 @@ class BaseTables extends Migration
             $table->smallInteger('enabled_mods')->unsigned()->default(0);
             $table->boolean('pass')->default(0);
             $table->timestamp('date')->useCurrent();
+            $table->bigInteger('high_score_id')->unsigned()->nullable();
             $table->primary(['score_id', 'date']);
             // $table->index(['user_id','date'], 'user_id');
         });
@@ -411,6 +468,65 @@ class BaseTables extends Migration
         DB::statement('ALTER TABLE `osu_scores_fruits` ADD KEY (`scorechecksum`)');
         DB::statement('ALTER TABLE `osu_scores_fruits` ADD KEY `user_id` (`user_id`, `date`)');
         DB::statement('ALTER TABLE `osu_scores_fruits` MODIFY COLUMN `score_id` INT UNSIGNED AUTO_INCREMENT');
+
+        Schema::create('osu_mirrors', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
+            $table->tinyIncrements('mirror_id');
+            $table->string('base_url', 255);
+            $table->bigInteger('traffic_used')->default(0);
+            $table->bigInteger('traffic_limit')->default(0);
+            $table->string('secret_key', 50)->default('');
+            $table->integer('provider_user_id');
+            $table->tinyInteger('enabled')->default(1);
+            $table->decimal('version', 4, 2)->nullable();
+            $table->string('pending_purge', 8192)->default('');
+            $table->tinyInteger('pending_updates')->default(1);
+            $table->string('regions', 8192)->nullable();
+            $table->bigInteger('disk_space_free')->nullable();
+        });
+        $this->setRowFormat('osu_mirrors', 'DYNAMIC');
+
+        Schema::create('osu_replays', function (Blueprint $table) {
+            $table->charset = 'latin1';
+            $table->collation = 'latin1_swedish_ci';
+
+            $table->unsignedInteger('score_id')->default(0)->primary();
+            $table->unsignedInteger('play_count')->default(0);
+            $table->integer('version')->nullable();
+        });
+        $this->setRowFormat('osu_replays', 'DYNAMIC');
+
+        Schema::create('osu_replays_fruits', function (Blueprint $table) {
+            $table->charset = 'latin1';
+            $table->collation = 'latin1_swedish_ci';
+
+            $table->unsignedInteger('score_id')->default(0)->primary();
+            $table->unsignedInteger('play_count')->default(0);
+            $table->integer('version')->nullable();
+        });
+        $this->setRowFormat('osu_replays_fruits', 'DYNAMIC');
+
+        Schema::create('osu_replays_mania', function (Blueprint $table) {
+            $table->charset = 'latin1';
+            $table->collation = 'latin1_swedish_ci';
+
+            $table->unsignedInteger('score_id')->default(0)->primary();
+            $table->unsignedInteger('play_count')->default(0);
+            $table->integer('version')->nullable();
+        });
+        $this->setRowFormat('osu_replays_mania', 'DYNAMIC');
+
+        Schema::create('osu_replays_taiko', function (Blueprint $table) {
+            $table->charset = 'latin1';
+            $table->collation = 'latin1_swedish_ci';
+
+            $table->unsignedInteger('score_id')->default(0)->primary();
+            $table->unsignedInteger('play_count')->default(0);
+            $table->integer('version')->nullable();
+        });
+        $this->setRowFormat('osu_replays_taiko', 'DYNAMIC');
 
         Schema::create('osu_scores_fruits_high', function (Blueprint $table) {
             $table->charset = 'utf8';
@@ -516,6 +632,7 @@ class BaseTables extends Migration
             $table->integer('enabled_mods')->unsigned()->default(0);
             $table->boolean('pass')->default(0);
             $table->timestamp('date')->useCurrent();
+            $table->bigInteger('high_score_id')->unsigned()->nullable();
             $table->primary(['score_id', 'date']);
             // $table->index(['user_id','date'], 'user_id');
         });
@@ -547,6 +664,7 @@ class BaseTables extends Migration
             $table->smallInteger('enabled_mods')->unsigned()->default(0);
             $table->boolean('pass')->default(0);
             $table->timestamp('date')->useCurrent();
+            $table->bigInteger('high_score_id')->unsigned()->nullable();
             $table->primary(['score_id', 'date']);
             // $table->index(['user_id','date'], 'user_id');
         });
@@ -606,6 +724,7 @@ class BaseTables extends Migration
             $table->smallInteger('enabled_mods')->unsigned()->default(0);
             $table->boolean('pass')->default(0);
             $table->timestamp('date')->useCurrent();
+            $table->bigInteger('high_score_id')->unsigned()->nullable();
             $table->primary(['score_id', 'date']);
             // $table->index(['user_id','date'], 'user_id');
         });
@@ -622,6 +741,7 @@ class BaseTables extends Migration
             $table->mediumInteger('user_id');
             $table->mediumInteger('achievement_id');
             $table->timestamp('date')->useCurrent();
+            $table->mediumInteger('beatmap_id')->nullable();
             $table->primary(['user_id', 'achievement_id']);
             $table->index(['user_id', 'date'], 'user_id');
         });
@@ -682,6 +802,18 @@ class BaseTables extends Migration
             $column->charset = 'utf8';
         });
         $this->comment('osu_username_change_history', 'Stores historical changes to user\'\'s usernames over time.');
+
+        Schema::create('osu_user_month_playcount', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
+            $table->unsignedMediumInteger('user_id');
+            $table->char('year_month', 4);
+            $table->unsignedSmallInteger('playcount');
+
+            $table->primary(['user_id', 'year_month']);
+        });
+        $this->setRowFormat('osu_user_month_playcount', 'COMPRESSED');
 
         Schema::create('osu_user_performance_rank', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
@@ -785,6 +917,54 @@ class BaseTables extends Migration
         DB::statement("ALTER TABLE `osu_user_performance_rank` PARTITION BY RANGE (mode) ({$partitions});");
         $this->setRowFormat('osu_user_performance_rank', 'DYNAMIC');
 
+        Schema::create('osu_user_reports', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
+            $table->increments('report_id');
+            $table->integer('user_id');
+            $table->unsignedInteger('score_id')->default(0);
+            $table->tinyInteger('mode')->default(0);
+            $table->enum('reason', ['Insults', 'Spam', 'Cheating', 'UnwantedContent', 'Nonsense', 'Other'])->default('Cheating');
+            $table->integer('reporter_id');
+            $table->text('comments');
+            $table->timestamp('timestamp')->useCurrent();
+
+            $table->unique(['reporter_id', 'user_id', 'mode', 'score_id'], 'unique-new');
+            $table->index('timestamp', 'timestamp');
+            $table->index('user_id', 'user_lookup');
+        });
+
+        $this->setRowFormat('osu_user_reports', 'DYNAMIC');
+
+        Schema::create('osu_user_replayswatched', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
+            $table->unsignedMediumInteger('user_id');
+            $table->char('year_month', 4);
+            $table->unsignedMediumInteger('count');
+
+            $table->primary(['user_id', 'year_month']);
+        });
+        $this->setRowFormat('osu_user_replayswatched', 'COMPRESSED');
+
+        Schema::create('osu_user_security', function (Blueprint $table) {
+            $table->unsignedMediumInteger('user_id');
+        });
+        $this->addBinary('osu_user_security', 'osu_md5', 16, true);
+        $this->addBinary('osu_user_security', 'unique_md5', 16, true);
+        $this->addBinary('osu_user_security', 'disk_md5', 16, true);
+        $this->addBinary('osu_user_security', 'mac_md5', 16, true);
+        Schema::table('osu_user_security', function (Blueprint $table) {
+            $table->timestamp('timestamp')->useCurrent();
+            $table->boolean('verified')->default(false);
+
+            $table->primary(['user_id', 'osu_md5', 'unique_md5']);
+            $table->index('disk_md5', 'disk_md5');
+            $table->index('unique_md5', 'unique_md5');
+        });
+
         Schema::create('osu_user_stats_fruits', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_general_ci';
@@ -798,6 +978,7 @@ class BaseTables extends Migration
             $table->bigInteger('accuracy_count')->unsigned();
             $table->float('accuracy');
             $table->mediumInteger('playcount');
+            $table->bigInteger('total_seconds_played')->default(0);
             $table->bigInteger('ranked_score');
             $table->bigInteger('total_score');
             $table->mediumInteger('x_rank_count');
@@ -836,6 +1017,7 @@ class BaseTables extends Migration
             $table->bigInteger('accuracy_count')->unsigned();
             $table->float('accuracy');
             $table->mediumInteger('playcount');
+            $table->bigInteger('total_seconds_played')->default(0);
             $table->bigInteger('ranked_score');
             $table->bigInteger('total_score');
             $table->mediumInteger('x_rank_count');
@@ -874,6 +1056,7 @@ class BaseTables extends Migration
             $table->bigInteger('accuracy_count')->unsigned();
             $table->float('accuracy');
             $table->mediumInteger('playcount');
+            $table->bigInteger('total_seconds_played')->default(0);
             $table->bigInteger('ranked_score');
             $table->bigInteger('total_score');
             $table->mediumInteger('x_rank_count');
@@ -912,6 +1095,7 @@ class BaseTables extends Migration
             $table->bigInteger('accuracy_count')->unsigned();
             $table->float('accuracy');
             $table->mediumInteger('playcount');
+            $table->bigInteger('total_seconds_played')->default(0);
             $table->bigInteger('ranked_score');
             $table->bigInteger('total_score');
             $table->mediumInteger('x_rank_count');
@@ -1039,6 +1223,17 @@ class BaseTables extends Migration
             $table->index(['left_id', 'right_id'], 'left_right_id');
         });
         $this->setRowFormat('phpbb_forums', 'DYNAMIC');
+
+        Schema::create('phpbb_forums_track', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
+
+            $table->mediumInteger('user_id')->unsigned()->default(0);
+            $table->mediumInteger('forum_id')->unsigned()->default(0);
+            $table->integer('mark_time')->unsigned()->default(0);
+            $table->primary(['user_id', 'forum_id']);
+        });
+        $this->setRowFormat('phpbb_forums_track', 'DYNAMIC');
 
         Schema::create('phpbb_posts', function (Blueprint $table) {
             $table->charset = 'utf8';
@@ -1169,6 +1364,21 @@ class BaseTables extends Migration
             $table->index(['forum_id', 'topic_type', 'osu_starpriority', 'topic_last_post_time'], 'star_sort');
         });
         $this->setRowFormat('phpbb_topics', 'DYNAMIC');
+
+        Schema::create('phpbb_topics_stars', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
+            $table->mediumIncrements('star_id');
+            $table->unsignedMediumInteger('topic_id');
+            $table->unsignedMediumInteger('user_id');
+            $table->enum('type', ['user', 'supporter']);
+            $table->timestamp('date')->useCurrent();
+
+            $table->index(['user_id'], 'user_id');
+            $table->index(['topic_id', 'user_id'], 'topic_id');
+        });
+        $this->setRowFormat('phpbb_topics_stars', 'DYNAMIC');
 
         Schema::create('phpbb_topics_track', function (Blueprint $table) {
             $table->charset = 'utf8';
@@ -1396,7 +1606,9 @@ class BaseTables extends Migration
     {
         Schema::drop('osu_achievements');
         Schema::drop('osu_apikeys');
+        Schema::drop('osu_badges');
         Schema::drop('osu_beatmap_difficulty');
+        Schema::drop('osu_beatmap_difficulty_attribs');
         Schema::drop('osu_beatmaps');
         Schema::drop('osu_beatmapsets');
         Schema::drop('osu_user_beatmapset_ratings');
@@ -1404,6 +1616,7 @@ class BaseTables extends Migration
         Schema::drop('osu_builds');
         Schema::drop('osu_countries');
         Schema::drop('osu_counts');
+        Schema::drop('osu_downloads');
         Schema::drop('osu_events');
         Schema::drop('osu_favouritemaps');
         Schema::drop('osu_genres');
@@ -1414,6 +1627,11 @@ class BaseTables extends Migration
         Schema::drop('osu_leaders');
         Schema::drop('osu_leaders_taiko');
         Schema::drop('osu_login_attempts');
+        Schema::drop('osu_mirrors');
+        Schema::drop('osu_replays');
+        Schema::drop('osu_replays_fruits');
+        Schema::drop('osu_replays_mania');
+        Schema::drop('osu_replays_taiko');
         Schema::drop('osu_scores_fruits_high');
         Schema::drop('osu_scores_fruits');
         Schema::drop('osu_scores_high');
@@ -1427,7 +1645,11 @@ class BaseTables extends Migration
         Schema::drop('osu_user_beatmap_playcount');
         Schema::drop('osu_user_donations');
         Schema::drop('osu_username_change_history');
+        Schema::drop('osu_user_month_playcount');
         Schema::drop('osu_user_performance_rank');
+        Schema::drop('osu_user_replayswatched');
+        Schema::drop('osu_user_reports');
+        Schema::drop('osu_user_security');
         Schema::drop('osu_user_stats_fruits');
         Schema::drop('osu_user_stats_mania');
         Schema::drop('osu_user_stats');
@@ -1441,6 +1663,7 @@ class BaseTables extends Migration
         Schema::drop('phpbb_ranks');
         Schema::drop('phpbb_smilies');
         Schema::drop('phpbb_topics');
+        Schema::drop('phpbb_topics_stars');
         Schema::drop('phpbb_topics_track');
         Schema::drop('phpbb_user_group');
         Schema::drop('phpbb_users');

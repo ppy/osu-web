@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,25 +15,44 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@php
+    $keys = [];
+
+    foreach (['stream', 'from', 'to'] as $key) {
+        if (isset($indexJson['search'][$key])) {
+            if ($key === 'stream') {
+                $value = $indexJson['builds'][0]['update_stream']['display_name'] ?? null;
+            }
+
+            if (!isset($value)) {
+                $value = $indexJson['search'][$key];
+            }
+
+            $keys[$key] = $value;
+        }
+    }
+
+    $title = trans('changelog.index.page_title._'.implode('_', array_keys($keys)), $keys);
+@endphp
+@extends('master', [
+    'legacyNav' => false,
+    'title' => $title,
+])
 
 @section('content')
-    <div class="osu-layout__section osu-layout__section--full">
-        @include('changelog._changelog_header', [
-            'url' => route('changelog.index'),
-            'breadcrumb' => trans('changelog.feed_title')
-        ])
+    <div class="js-react--changelog-index osu-layout osu-layout--full"></div>
 
-        <div class="osu-layout__row osu-layout__row--page-compact">
-            <div class="changelog">
-                @foreach($changelogs as $date => $logs)
-                    <p class="changelog__text changelog__text--date">{{ $date }}</p>
+    <script id="json-index" type="application/json">
+        {!! json_encode($indexJson) !!}
+    </script>
 
-                    <div class="changelog__list">
-                        @each('changelog._changelog_change', $logs, 'log')
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
+    <script id="json-update-streams" type="application/json">
+        {!! json_encode($updateStreams) !!}
+    </script>
+
+    <script id="json-chart-config" type="application/json">
+        {!! json_encode($chartConfig) !!}
+    </script>
+
+    @include('layout._extra_js', ['src' => 'js/react/changelog-index.js'])
 @endsection

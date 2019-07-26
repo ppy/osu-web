@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -18,19 +18,19 @@
 
 preventUsernameSubmission = ->
   StoreCart.setEnabled(false)
-  $('#username-check-price').html ''
+  $('#username-check-price').text ''
 
 checkUsernameValidity = ->
   $status = $('#username-check-status')
   requestedUsername = $('#username.form-control').val()
 
-  $.post '/users/check-username-availability', username: requestedUsername
+  $.post laroute.route('users.check-username-availability'), username: requestedUsername
   .done (data) ->
     return unless data.username == $('#username.form-control').val()
 
     if data.available
       $('.js-store-add-to-cart').attr 'disabled', false
-      $('#username-check-price').html data.costString
+      $('#username-check-price').text data.costString
       $('#username-form-price').val data.cost
       $('#product-form').data('disabled', false)
     else
@@ -54,9 +54,9 @@ $(document).on 'input', '.js-username-change #username.form-control', ->
   preventUsernameSubmission()
 
   if requestedUsername.length == 0
-    $status.html 'Enter a username to check availability!'
+    $status.text osu.trans('store.username_change.check')
   else
-    $status.html "Checking availability of #{requestedUsername}..."
+    $status.text osu.trans('store.username_change.checking', username: requestedUsername)
     debouncedCheckUsernameValidity()
 
 $(document).on 'turbolinks:load', ->

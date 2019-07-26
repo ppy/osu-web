@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -18,7 +18,7 @@
 @extends('contests.base')
 
 @section('contest-content')
-    <div class="contest__description">{!! Markdown::convertToHtml($contestMeta->description_enter) !!}</div>
+    <div class="contest__description">{!! markdown($contestMeta->description_enter) !!}</div>
     @include('contests._countdown', ['deadline' => $contestMeta->currentPhaseEndDate()])
     @if (!Auth::check())
       <div class='contest__voting-notice contest__voting-notice--padding'>{{trans('contest.entry.login_required')}}</div>

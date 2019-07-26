@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,28 +16,53 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-Turbolinks.BrowserAdapter::showProgressBarAfterDelay = ->
-  @progressBarTimeout = Timeout.set 0, @showProgressBar
-
-
 # Anchor navigation with turbolinks. Works around [1].
 # [1] https://github.com/turbolinks/turbolinks/issues/75
 $(document).on 'click', 'a[href^="#"]', (e) ->
-  targetId = e.currentTarget.getAttribute('href')[1..]
+  link = e.currentTarget
+
+  return if link.dataset.toggle == 'collapse'
+
+  href = link.href
+  targetId = decodeURIComponent href[href.indexOf('#') + 1..]
+
+  return if targetId == ''
+
   target = document.getElementById targetId
 
   return if !target?
 
   e.preventDefault()
-  $.scrollTo target
+  # still behaves weird in cases where push/popping state wouldn't normally result in a scroll.
+  Turbolinks.controller.advanceHistory href if location.href != href
+  target.scrollIntoView()
 
 
 # Monkey patch Turbolinks to render 403, 404, and 500 normally
 # Reference: https://github.com/turbolinks/turbolinks/issues/179
-Turbolinks.HttpRequest.prototype.requestLoaded = ->
+Turbolinks.HttpRequest::requestLoaded = ->
   @endRequest =>
     if 200 <= @xhr.status < 300 || @xhr.status in [403, 404, 500]
       @delegate.requestCompletedWithResponse(@xhr.responseText, @xhr.getResponseHeader("Turbolinks-Location"))
     else
       @failed = true
       @delegate.requestFailedWithStatusCode(@xhr.status, @xhr.responseText)
+
+
+# may or may not actually work
+Turbolinks.Controller::advanceHistory = (url) ->
+  return if url == document.location.href
+
+  snapshot = @view.getSnapshot()
+  location = @lastRenderedLocation
+  @cache.put location, snapshot.clone()
+  @lastRenderedLocation = Turbolinks.Location.wrap(url)
+  @pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
+
+
+# Ignore anchor check on loading snapshot to prevent repeating requesting page
+# when the target doesn't exist.
+Turbolinks.Snapshot::hasAnchor = -> true
+
+Turbolinks.Controller::locationIsVisitable = (location) ->
+  location.isPrefixedBy(@view.getRootLocation()) && Url.isInternal(location) && Url.isHTML(location)

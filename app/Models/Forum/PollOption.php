@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,19 +23,28 @@ namespace App\Models\Forum;
 use App\Libraries\BBCodeForDB;
 use DB;
 
+/**
+ * @property int $poll_option_id
+ * @property string $poll_option_text
+ * @property int $poll_option_total
+ * @property Post $post
+ * @property Topic $topic
+ * @property int $topic_id
+ * @property \Illuminate\Database\Eloquent\Collection $votes PollVote
+ */
 class PollOption extends Model
 {
     protected $table = 'phpbb_poll_options';
     protected $primaryKey = null;
     public $incrementing = false;
     public $timestamps = false;
-    protected $guarded = [];
 
-    // for bbcode_uid
+    // For bbcode_uid, the first post (even if the post is deleted).
     public function post()
     {
         return $this
             ->belongsTo(Post::class, 'topic_id', 'topic_id')
+            ->withTrashed()
             ->orderBy('post_id', 'ASC')
             ->limit(1);
     }
@@ -114,7 +123,11 @@ class PollOption extends Model
 
     public function optionTextHTML()
     {
-        return bbcode($this->poll_option_text, $this->post->bbcode_uid, ['withGallery' => true]);
+        return bbcode(
+            $this->poll_option_text,
+            $this->post->bbcode_uid,
+            ['withGallery' => true]
+        );
     }
 
     public function optionTextRaw()

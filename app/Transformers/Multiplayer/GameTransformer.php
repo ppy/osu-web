@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,6 @@
 
 namespace App\Transformers\Multiplayer;
 
-use App\Models\Beatmap;
 use App\Models\Multiplayer\Game;
 use App\Transformers\BeatmapCompactTransformer;
 use App\Transformers\ScoreTransformer;
@@ -36,6 +35,7 @@ class GameTransformer extends Fractal\TransformerAbstract
     public function transform(Game $game)
     {
         return [
+            'id' => $game->game_id,
             'start_time' => json_time($game->start_time),
             'end_time' => json_time($game->end_time),
             'mode' => $game->mode,

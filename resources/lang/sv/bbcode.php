@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,8 +19,8 @@
  */
 
 return [
-    'bold' => 'Fet',
-    'heading' => 'Huvud',
+    'bold' => 'Fetstil',
+    'heading' => 'Rubrik',
     'image' => 'Bild',
     'italic' => 'Kursiv',
     'link' => 'Länk',
@@ -33,6 +33,6 @@ return [
         'normal' => 'Normal',
         'large' => 'Stor',
     ],
-    'spoilerbox' => 'Spoiler Låda',
-    'strikethrough' => 'Igenom struken',
+    'spoilerbox' => 'Spoilerlåda',
+    'strikethrough' => 'Genomstruken',
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,17 @@
 return [
     'error' => [
         'chat' => [
+            'empty' => 'Não é possível enviar mensagens em branco.',
             'limit_exceeded' => 'Você está enviando mensagens muito rapidamente, espere um pouco antes de tentar novamente.',
+            'too_long' => 'A mensagem que você está tentando enviar é longa demais.',
+        ],
+    ],
+
+    'scopes' => [
+        'identify' => 'Identifique-se e leia seu perfil público.',
+
+        'friends' => [
+            'read' => 'Veja quem você está seguindo.',
         ],
     ],
 ];

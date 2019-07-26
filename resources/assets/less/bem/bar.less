@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -30,12 +30,12 @@
 
   &--beatmap-stats {
     height: 5px;
-    background-color: fade(#fff, 50%);
+    background-color: @osu-colour-b6;
   }
 
   &--beatmap-success-rate {
     height: 5px;
-    background-color: #ddd;
+    background-color: @osu-colour-b6;
     margin-top: 5px;
   }
 
@@ -46,11 +46,15 @@
   }
 
   &--beatmapset-nomination-off {
-    background-color: #222;
+    background-color: @osu-colour-b6;
+  }
+
+  &--beatmapset-nomination-off-light {
+    background-color: #ddd;
   }
 
   &--beatmapset-nomination-on {
-    background-color: @green;
+    background-color: @osu-colour-lime-3;
   }
 
   &--double {
@@ -58,7 +62,8 @@
   }
 
   &--forum-poll {
-    height: 5px;
+    .default-border-radius();
+    height: unset;
     background-color: #eee;
   }
 
@@ -67,9 +72,9 @@
   }
 
   &--user-profile {
-    height: 10px;
-    background-color: #ddd;
-    margin-bottom: 5px;
+    border-radius: 10000px;
+    height: 6px;
+    background-color: @osu-colour-b6;
   }
 
   &__fill {
@@ -94,16 +99,26 @@
     }
 
     .@{_top}--forum-poll & {
-      background-color: @pink-darker;
+      .default-border-radius();
+      position: absolute;
+      background-color: @blue-lighter;
     }
 
     // must be after --forum-poll
     .@{_top}--forum-poll-voted & {
-      background-color: @purple-darker;
+      background-color: @pink-lighter;
     }
 
     .@{_top}--user-profile & {
-      background-color: @blue-dark;
+      border-radius: 10000px;
+      background-color: @osu-colour-h1;
     }
+  }
+
+  &__text {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 2px;
   }
 }

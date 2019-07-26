@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,10 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, span, table, tbody, td, th, tr} = ReactDOMFactories
+import { BeatmapBasicStats } from 'beatmap-basic-stats'
+import * as React from 'react'
+import { a, div, span, table, tbody, td, th, tr, i } from 'react-dom-factories'
 el = React.createElement
 
-class BeatmapsetPage.Stats extends React.Component
+export class Stats extends React.Component
   constructor: (props) ->
     super props
 
@@ -60,9 +62,8 @@ class BeatmapsetPage.Stats extends React.Component
         href: '#'
         className: "beatmapset-stats__row beatmapsets-stats__row beatmapset-stats__row--preview js-audio--play"
         'data-audio-url': @props.beatmapset.preview_url
-        el Icon,
-          name: if @state.preview == 'ended' then 'play' else 'stop'
-          parentClass: 'beatmapset-stats__preview-icon'
+        span className: 'beatmapset-stats__preview-icon',
+          i className: "fas fa-#{if @state.preview == 'ended' then 'play' else 'stop'}"
 
         div
           className: 'beatmapset-stats__elapsed-bar'
@@ -87,9 +88,9 @@ class BeatmapsetPage.Stats extends React.Component
 
               valueText =
                 if stat == 'stars'
-                  value.toFixed 2
+                  osu.formatNumber(value, 2)
                 else
-                  value.toLocaleString()
+                  osu.formatNumber(value)
 
               if @props.beatmap.mode == 'mania' && stat == 'cs'
                 stat += '-mania'
@@ -115,8 +116,8 @@ class BeatmapsetPage.Stats extends React.Component
                 width: "#{(ratingsNegative / ratingsAll) * 100}%"
 
           div className: 'beatmapset-stats__rating-values',
-            span null, ratingsNegative.toLocaleString()
-            span null, ratingsPositive.toLocaleString()
+            span null, osu.formatNumber(ratingsNegative)
+            span null, osu.formatNumber(ratingsPositive)
 
           div className: 'beatmapset-stats__rating-header', osu.trans 'beatmapsets.show.stats.rating-spread'
 

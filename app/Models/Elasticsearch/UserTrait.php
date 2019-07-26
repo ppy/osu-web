@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -44,6 +44,8 @@ trait UserTrait
 
         $values['is_old'] = $this->isOld();
 
+        $values['previous_usernames'] = $this->previousUsernames(true)->unique()->values();
+
         return $values;
     }
 
@@ -69,39 +71,6 @@ trait UserTrait
         return array_intersect_key(static::esMappings(), $columnMap);
     }
 
-    public static function esAnalysisSettings()
-    {
-        static $settings = [
-            'filter' => [
-                // sloppy match index filter
-                'username_slop_filter' => [
-                    'type' => 'ngram',
-                    'min_gram' => 2,
-                    'max_gram' => 8,
-                ],
-            ],
-            'analyzer' => [
-                'username_slop' => [
-                    'type' => 'custom',
-                    'tokenizer' => 'standard',
-                    'filter' => ['lowercase', 'username_slop_filter'],
-                ],
-                'username_lower' => [
-                    'type' => 'custom',
-                    'tokenizer' => 'standard',
-                    'filter' => ['lowercase'],
-                ],
-                'whitespace' => [
-                    'type' => 'custom',
-                    'tokenizer' => 'whitespace',
-                    'filter' => ['lowercase'],
-                ],
-            ],
-        ];
-
-        return $settings;
-    }
-
     public static function esIndexName()
     {
         return config('osu.elasticsearch.prefix').'users';
@@ -112,53 +81,19 @@ trait UserTrait
         $columns = array_keys((new static())->esFilterFields());
         array_unshift($columns, 'user_id');
 
-        return static::on('mysql-readonly')->withoutGlobalScopes()->select($columns);
+        return static::on('mysql-readonly')
+            ->withoutGlobalScopes()
+            ->with('usernameChangeHistoryPublic')
+            ->select($columns);
     }
 
-    public static function esMappings()
+    public static function esSchemaFile()
     {
-        return static::ES_MAPPINGS;
+        return config_path('schemas/users.json');
     }
 
     public static function esType()
     {
         return 'users';
-    }
-
-    public static function usernameSearchQuery(string $username)
-    {
-        static $lowercase_stick = [
-            'analyzer' => 'username_lower',
-            'type' => 'most_fields',
-            'fields' => ['username', 'username._*'],
-        ];
-
-        static $whitespace_stick = [
-            'analyzer' => 'whitespace',
-            'type' => 'most_fields',
-            'fields' => ['username', 'username._*'],
-        ];
-
-        return [
-            'filtered' => [
-                'query' => [
-                    'bool' => [
-                        'should' => [
-                            ['match' => ['username.raw' => ['query' => $username, 'boost' => 5]]],
-                            ['multi_match' => array_merge(['query' => $username], $lowercase_stick)],
-                            ['multi_match' => array_merge(['query' => $username], $whitespace_stick)],
-                            ['match' => ['username._slop' => ['query' => $username, 'type' => 'phrase']]],
-                        ],
-                        'must_not' => [
-                            ['term' => ['is_old' => true]],
-                        ],
-                    ],
-                ],
-                'filter' => [
-                    ['term' => ['user_warnings' => 0]],
-                    ['term' => ['user_type' => 0]],
-                ],
-            ],
-        ];
     }
 }

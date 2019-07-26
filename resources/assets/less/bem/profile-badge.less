@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,12 +18,14 @@
 
 .profile-badge {
   height: @profile-badge-size;
+  width: @profile-badge-size;
   text-align: center;
-  background-position: 50%;
   background-repeat: no-repeat;
+  margin: 0 -3px;
 
   &--level {
     .at2x("/images/badges/levelbadge.png", @profile-badge-size, @profile-badge-size);
+    order: 1;
   }
 
   &--achievements {

@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,71 +16,82 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+bn = 'line-chart'
+
 class @LineChart
   constructor: (area, @options = {}) ->
+    @margins =
+      top: 20
+      right: 20
+      bottom: 50
+      left: 60
+
+    _.assign @margins, @options.margins
+
     @id = Math.floor(Math.random() * 1000)
-    @options.scales ||= {}
-    @options.scales.x ||= d3.scaleTime()
-    @options.scales.y ||= d3.scaleLinear()
+    @options.scales ?= {}
+    @options.scales.x ?= d3.scaleTime()
+    @options.scales.y ?= d3.scaleLinear()
+    @options.circleLine ?= false
+    @options.axisLabels ?= true
 
     @area = d3.select(area)
+      .classed osu.classWithModifiers(bn, @options.modifiers), true
 
     @svg = @area.append 'svg'
 
-    @createXAxisLine()
-
     @svgWrapper = @svg.append 'g'
-      .classed 'chart__wrapper', true
+      .classed "#{bn}__wrapper", true
 
-    @svgXAxis = @svgWrapper.append 'g'
-      .classed 'chart__axis chart__axis--x', true
+    if @options.axisLabels
+      @svgXAxis = @svgWrapper.append 'g'
+        .classed "#{bn}__axis #{bn}__axis--x", true
 
-    @svgYAxis = @svgWrapper.append 'g'
-      .classed 'chart__axis chart__axis--y', true
+      @svgYAxis = @svgWrapper.append 'g'
+        .classed "#{bn}__axis #{bn}__axis--y", true
 
     @svgLine = @svgWrapper.append 'path'
-      .classed 'chart__line', true
+      .classed "#{bn}__line", true
 
-    @svgHoverArea = @svgWrapper.append 'rect'
-      .classed 'chart__hover-area', true
-      .on 'mouseout', @hideTooltip
-      .on 'mousemove', @positionTooltip
-      .on 'drag', @positionTooltip
+    @hoverArea = @area.append 'div'
+      .classed "#{bn}__hover-area", true
+      .on 'mouseout', @hoverEnd
+      .on 'mousemove', @onHover
+      .on 'drag', @onHover
 
-    @svgHoverMark = @svgWrapper.append 'circle'
-      .classed 'chart__hover-mark', true
-      .attr 'data-visibility', 'hidden'
-      .attr 'r', 5
+    for own pos, size of @margins
+      @hoverArea.style pos, "#{size}px"
 
-    @tooltip = @area.append 'div'
-      .classed 'chart__tooltip', true
+    @hover = @hoverArea.append 'div'
+      .classed "#{bn}__hover", true
       .attr 'data-visibility', 'hidden'
 
-    @tooltipContainer = @tooltip.append 'div'
-      .classed 'chart__tooltip-container', true
+    if @options.circleLine
+      @hoverLine = @hover.append 'div'
+        .classed "#{bn}__hover-line", true
 
-    @tooltipY = @tooltipContainer.append 'div'
-      .classed 'chart__tooltip-text chart__tooltip-text--y', true
+    @hoverCircle = @hover.append 'div'
+      .classed "#{bn}__hover-circle", true
 
-    @tooltipX = @tooltipContainer.append 'div'
-      .classed 'chart__tooltip-text chart__tooltip-text--x', true
+    @hoverInfoBox = @hover.append 'div'
+      .classed "#{bn}__hover-info-box", true
+      .attr 'data-float', 'left'
 
-    @xAxis = d3.axisBottom()
-      .ticks 15
-      .tickSizeOuter 0
-      .tickPadding 5
+    @hoverInfoBoxX = @hoverInfoBox.append 'div'
+      .classed "#{bn}__hover-info-box-text #{bn}__hover-info-box-text--x", true
 
-    @yAxis = d3.axisLeft().ticks(4)
+    @hoverInfoBoxY = @hoverInfoBox.append 'div'
+      .classed "#{bn}__hover-info-box-text #{bn}__hover-info-box-text--y", true
+
+    if @options.axisLabels
+      @xAxis = d3.axisBottom()
+        .tickSizeOuter 0
+        .tickPadding 5
+
+      @yAxis = d3.axisLeft().ticks(4)
 
     @line = d3.line()
-      .curve(d3.curveMonotoneX)
-
-
-  margins:
-    top: 20
-    right: 20
-    bottom: 50
-    left: 80
+      .curve(@options.curve ? d3.curveMonotoneX)
 
 
   loadData: (data) =>
@@ -90,30 +101,15 @@ class @LineChart
     @resize()
 
 
-  createXAxisLine: =>
-    @xAxisLine = @svg.append 'defs'
-      .append 'linearGradient'
-      .attr 'id', "x-axis-line-gradient-#{@id}"
-      .attr 'gradientUnits', 'userSpaceOnUse'
-      .attr 'x1', '0'
-      .attr 'x2', '0'
-      .attr 'y1', '-100%'
-      .attr 'y2', '0'
-
-    @xAxisLine.append 'stop'
-      .classed 'chart__tick-gradient chart__tick-gradient--start', true
-      .attr 'offset', '20%'
-
-    @xAxisLine.append 'stop'
-      .classed 'chart__tick-gradient chart__tick-gradient--end', true
-      .attr 'offset', '100%'
-
-
   setDimensions: =>
     areaDims = @area.node().getBoundingClientRect()
 
+    return false unless areaDims.width > 0 && areaDims.height > 0
+
     @width = areaDims.width - (@margins.left + @margins.right)
     @height = areaDims.height - (@margins.top + @margins.bottom)
+
+    true
 
 
   setScalesRange: =>
@@ -127,16 +123,19 @@ class @LineChart
 
 
   setAxesSize: =>
+    return unless @options.axisLabels
+
     @xAxis
       .scale @options.scales.x
       .tickSizeInner -@height
-      .tickFormat @options.formats?.x
+      .ticks @options.ticks?.x ? 15
+      .tickFormat @options.formats.x
       .tickValues @options.tickValues?.x
 
     @yAxis
       .scale @options.scales.y
       .tickSizeInner -@width
-      .tickFormat @options.formats?.y
+      .tickFormat @options.formats.y
       .tickValues @options.tickValues?.y
 
 
@@ -156,13 +155,10 @@ class @LineChart
     @svgWrapper
       .attr 'transform', "translate(#{@margins.left}, #{@margins.top})"
 
-  setHoverAreaSize: =>
-    @svgHoverArea
-      .attr 'width', @width
-      .attr 'height', @height
-
 
   drawAxes: =>
+    return unless @options.axisLabels
+
     @svgXAxis
       .transition()
       .attr 'transform', "translate(0, #{@height})"
@@ -173,11 +169,10 @@ class @LineChart
       .call @yAxis
 
     @svgXAxis.selectAll '.tick line'
-      .classed 'chart__tick-line', true
-      .attr 'stroke', "url(#x-axis-line-gradient-#{@id})"
+      .classed "#{bn}__tick-line #{bn}__tick-line--default", true
 
     @svgYAxis.selectAll '.tick line'
-      .classed 'chart__tick-line chart__tick-line--default', true
+      .classed "#{bn}__tick-line #{bn}__tick-line--default", true
 
     @svgXAxis.selectAll '.domain'
       .classed 'u-hidden', true
@@ -188,10 +183,10 @@ class @LineChart
     @svgXAxis.selectAll 'text'
       .style 'text-anchor', 'start'
       .attr 'transform', 'rotate(45) translate(5, 0)'
-      .classed 'chart__tick-text chart__tick-text--strong', true
+      .classed "#{bn}__tick-text #{bn}__tick-text--strong", true
 
     @svgYAxis.selectAll 'text'
-      .classed 'chart__tick-text', true
+      .classed "#{bn}__tick-text", true
 
 
   drawLine: =>
@@ -200,65 +195,77 @@ class @LineChart
       .attr 'd', @line
 
 
-  showTooltip: =>
-    Fade.in @svgHoverMark.node()
-    Fade.in @tooltip.node()
+  hoverEnd: =>
+    Fade.out @hover.node()
 
 
-  hideTooltip: =>
-    Fade.out @svgHoverMark.node()
-    Fade.out @tooltip.node()
+  hoverReset: =>
+    style = (key, value) =>
+      elem.style(key, value) for elem in [@hoverLine, @hoverCircle]
+    # Immediately hide so its position can be invisibly reset.
+    style 'transition', 'none'
+    @hoverEnd()
+    style 'transform', null
+    # Out of current loop so browser doesn't optimize out the styling
+    # and ignores previously set transition override.
+    Timeout.set 0, => style 'transition', null
 
 
-  positionTooltip: =>
-    x = @options.scales.x.invert(d3.mouse(@svgHoverArea.node())[0])
-    i = @lookupIndexFromX x
-
-    return unless i
-
-    @showTooltip()
-    Timeout.clear @_autoHideTooltip
-    @_autoHideTooltip = Timeout.set 3000, @hideTooltip
-
-    d = if x - @data[i - 1].x <= @data[i].x - x then @data[i - 1] else @data[i]
-    coords = ['x', 'y'].map (axis) => @options.scales[axis] d[axis]
-
-    # avoids blurry positioning
-    coordsTooltip = [
-      coords[0] + @margins.left
-      coords[1] + @margins.top
-    ].map (coord) => "#{Math.round coord}px"
-
-    @svgHoverMark
-      .attr 'transform', "translate(#{coords.join(', ')})"
-
-    @tooltipX.html (@options.tooltipFormats?.x || @options.formats.x)(d.x)
-    @tooltipY.html (@options.tooltipFormats?.y || @options.formats.y)(d.y)
-    @tooltip
-      .style 'transform', "translate(#{coordsTooltip.join(', ')})"
-
-    unless @tooltipContainer.attr('data-width-set') == '1'
-      width = @tooltipContainer.node().getBoundingClientRect().width * 1.2
-      @tooltipContainer
-        .attr 'data-width-set', '1'
-        .style 'width', "#{width}px"
-        .style 'margin-left', "-#{width / 2}px"
+  hoverStart: =>
+    Fade.in @hover.node()
 
 
   lookupIndexFromX: (x) =>
     d3.bisector((d) => d.x).left @data, x
 
 
+  onHover: =>
+    x = @options.scales.x.invert(d3.mouse(@hoverArea.node())[0])
+    i = @lookupIndexFromX x
+
+    return unless i
+    return unless @data[i - 1] && @data[i]
+
+    @hoverStart()
+    Timeout.clear @_autoEndHover
+    @_autoEndHover = Timeout.set(3000, @hoverEnd) if osu.isMobile()
+
+    d = if x - @data[i - 1].x <= @data[i].x - x then @data[i - 1] else @data[i]
+    coords = ['x', 'y'].map (axis) =>
+      # rounded to avoid blurry positioning
+      "#{Math.round(@options.scales[axis](d[axis]))}px"
+
+    @hoverLine.style 'transform', "translateX(#{coords[0]})"
+    @hoverCircle.style 'transform', "translate(#{coords.join(',')})"
+
+    @hoverInfoBoxX.html (@options.infoBoxFormats?.x ? @options.formats.x)(d.x)
+    @hoverInfoBoxY.html (@options.infoBoxFormats?.y ? @options.formats.y)(d.y)
+
+    mouseX = d3.event.clientX
+
+    if mouseX?
+      infoBoxRect = @hoverInfoBox.node().getBoundingClientRect()
+      if @hoverInfoBox.attr('data-float') == 'right'
+        if mouseX > infoBoxRect.left
+          @hoverInfoBox.attr('data-float', 'left')
+      else
+        if mouseX < infoBoxRect.right
+          @hoverInfoBox.attr('data-float', 'right')
+
+
   resize: =>
-    @setDimensions()
+    hasDimensions = @setDimensions()
+
+    return unless hasDimensions
 
     @setScalesRange()
 
     @setSvgSize()
     @setWrapperSize()
-    @setHoverAreaSize()
     @setAxesSize()
     @setLineSize()
 
     @drawAxes()
     @drawLine()
+
+    @hoverReset()

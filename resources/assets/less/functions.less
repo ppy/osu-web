@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -29,6 +29,57 @@
   transition: @target @duration @type;
 }
 
+.fancy-scrollbar() {
+  /* Turn on custom 8px wide scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px; /* 1px wider than Lion. */
+    /* This is more usable for users trying to click it. */
+    background-color: rgba(255, 255, 255, 0.025);
+    -webkit-border-radius: 100px;
+  }
+  /* hover effect for both scrollbar area, and scrollbar 'thumb' */
+  ::-webkit-scrollbar:hover {
+    background-color: rgba(0, 0, 0, 0.09);
+  }
+
+  ::-webkit-scrollbar:horizontal {
+    height: 10px;
+  }
+
+  /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+  ::-webkit-scrollbar-thumb {
+    /* This is the EXACT color of Mac OS scrollbars.
+      Yes, I pulled out digital color meter */
+    background: rgba(255,255,255,0.5);
+    -webkit-border-radius: 100px;
+    background-clip: padding-box;
+    border: 2px solid rgba(255, 255, 255, 0);
+    min-height: 10px; /*Prevent it from getting too small */
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: rgba(255,255,255,0.61); /* Some darker color when you click it */
+    -webkit-border-radius: 100px;
+  }
+}
+
+.fragment-target-fn(@offset: 0) {
+  position: static; // relative will still block pointer-events
+
+  &[id]::before {
+    content: '';
+    display: block;
+    height: @nav2-height--pinned + @offset;
+    margin: -(@nav2-height--pinned + @offset) 0 0;
+    pointer-events: none;
+
+    @media @mobile {
+      height: @navbar-height + @offset;
+      margin: -(@navbar-height + @offset) 0 0;
+    }
+  }
+}
+
+
 .default-border-radius() {
   border-radius: @border-radius-base;
 }
@@ -41,10 +92,21 @@
   transition: @property @duration @function;
 }
 
+.default-gutter() {
+  padding-left: @gutter;
+  padding-right: @gutter;
+
+  @media @desktop {
+    padding-left: @gutter-desktop;
+    padding-right: @gutter-desktop;
+  }
+}
+
 .default-header-overlay() {
   &::before {
     .full-size();
-    background-image: linear-gradient(fade(#000, 30%), fade(#000, 80%));
+    content: ' ';
+    background-image: linear-gradient(.osu-hsla(@osu-colour-b6, 0.3)[@hsla], .osu-hsla(@osu-colour-b6, 0.8)[@hsla]);
   }
 }
 
@@ -56,11 +118,34 @@
   box-shadow: inset 0 1px 3px fade(#000, 30%);
 }
 
-.link-default() {
-  color: @link-color;
+.link-blue-dark() {
+  color: @blue-dark;
 
   .link-hover({
-    color: @link-hover-color;
+    color: @blue;
+  });
+}
+
+// This style is for the remaining un-restyled sections,
+// nuke this when the entire site is correctly restyled
+.link-old() {
+  color: #2299bb;
+  .link-hover({ color: #6cf; });
+}
+
+.link-default() {
+  color: @osu-colour-l1;
+
+  .link-hover({
+    color: white;
+  });
+}
+
+.link-inverted() {
+  color: white;
+
+  .link-hover({
+    color: @osu-colour-l1;
   });
 }
 
@@ -96,27 +181,12 @@
   }
 }
 
+// still used by store
 .link-pink() {
   color: @pink;
 
   .link-hover({
     color: @pink-text;
-  });
-}
-
-.link-pink-dark() {
-  color: @pink-dark;
-
-  .link-hover({
-    color: @pink-light;
-  });
-}
-
-.link-pink-light() {
-  color: @pink-light;
-
-  .link-hover({
-    color: @pink-lighter;
   });
 }
 
@@ -136,6 +206,7 @@
   });
 }
 
+// used in notification banner
 .link-yellow() {
   color: @yellow;
 
@@ -174,6 +245,11 @@
   align-items: center;
 }
 
+.at2x(@url, @w: auto, @h: auto) {
+  .at2x-simple(@url);
+  background-size: @w @h;
+}
+
 .at2x-simple(@url) {
   @url2x: replace(@url, "(\.[^.]+)$", "@2x$1");
   background-image: url(@url);
@@ -196,7 +272,15 @@
   top: 0;
   height: 100%;
   width: 100%;
-  content: ' ';
+}
+
+// used to account rounding error in chrome where 100% is few pixels short to the actual 100%.
+.full-size-overflow() {
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  right: -10px;
+  bottom: -10px;
 }
 
 .btn-bg() {
@@ -221,7 +305,23 @@
 }
 
 .content-font() {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: @font-content;
   line-height: 1.35;
   color: #444;
+}
+
+.default-font() {
+  font-family: @font-default;
+  font-family: var(--font-default-override, var(--font-default));
+}
+
+.webkit-line-clamp(@lines) {
+  // Magic line-clamping on webkit browsers (safari, chrome, etc).
+  // Other browsers won't show ellipses.
+  display: -webkit-box;
+  -webkit-line-clamp: @lines;
+  // It's required to tell autoprefixer to ignore the following line.
+  // Reference: https://github.com/postcss/autoprefixer/issues/1141
+  /* autoprefixer: ignore next */
+  -webkit-box-orient: vertical;
 }

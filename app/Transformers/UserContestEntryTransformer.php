@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -25,13 +25,28 @@ use League\Fractal;
 
 class UserContestEntryTransformer extends Fractal\TransformerAbstract
 {
+    protected $availableIncludes = [
+        'user',
+    ];
+
     public function transform(UserContestEntry $entry)
     {
         return [
             'id' => $entry->id,
             'filename' => $entry->original_filename,
             'filesize' => $entry->filesize,
+            'url' => $entry->fileUrl(),
+            'thumb' => mini_asset($entry->fileUrl()),
             'created_at' => json_time($entry->created_at),
+            'deleted' => $entry->deleted_at !== null,
         ];
+    }
+
+    public function includeUser(UserContestEntry $entry)
+    {
+        return $this->item(
+            $entry->user ?? (new DeletedUser),
+            new UserCompactTransformer
+        );
     }
 }

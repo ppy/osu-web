@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,23 @@ namespace App\Models\Multiplayer;
 use App\Libraries\ModsHelper;
 use App\Models\Beatmap;
 
+/**
+ * @property Beatmap $beatmap
+ * @property int|null $beatmap_id
+ * @property \Carbon\Carbon|null $end_time
+ * @property \Illuminate\Database\Eloquent\Collection $events Event
+ * @property int $game_id
+ * @property Match $match
+ * @property int|null $match_id
+ * @property int|null $match_type
+ * @property mixed $mode
+ * @property int|null $mods
+ * @property int|null $play_mode
+ * @property \Illuminate\Database\Eloquent\Collection $scores Score
+ * @property int|null $scoring_type
+ * @property \Carbon\Carbon|null $start_time
+ * @property int|null $team_type
+ */
 class Game extends Model
 {
     protected $primaryKey = 'game_id';

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,12 +19,21 @@
 @import "app";
 
 .bbcode {
+  @_top: bbcode;
   word-wrap: break-word;
   line-height: 1.5;
 
+  a {
+    .link-default();
+
+    .forum-post-content & {
+      .link-old();
+    }
+  }
+
   h2,
   h4 {
-    font-family: @font-family-sans-serif;
+    .default-font();
     font-style: normal;
     font-weight: bold;
   }
@@ -32,6 +41,11 @@
   // heading tag
   h2 {
     font-size: @font-size--forum-post-heading;
+    color: @osu-colour-l1;
+
+    .forum-post-content & {
+      color: @osu-colour-h2;
+    }
   }
 
   // quote tag
@@ -41,6 +55,7 @@
 
   blockquote {
     font-size: inherit;
+    padding-right: 0;
   }
 
   img {
@@ -63,6 +78,18 @@
   .size-50 { font-size: 50%; }
   .size-85 { font-size: 85%; }
   .size-150 { font-size: 150%; }
+
+  // overrides bootstrap styling for [notice]
+  .well {
+    margin: 0;
+    background: @osu-colour-b6;
+    border: none;
+
+    .forum-post-content & {
+      background: #eee;
+      border: 1px solid #ddd;
+    }
+  }
 
   &--normal-line-height {
     line-height: inherit;

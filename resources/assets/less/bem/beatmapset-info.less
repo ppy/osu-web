@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,12 +17,14 @@
  */
 
 .beatmapset-info {
-  @height: 220px;
+  @min-height: 220px;
+  @max-height: 270px;
   @box-margin--top: 15px;
   @header-margin--top: 15px;
   @header-margin--bottom: 5px;
 
   font-size: @font-size--normal;
+  color: white;
 
   display: flex;
   flex-direction: column;
@@ -31,7 +33,8 @@
 
   @media @desktop {
     flex-direction: row;
-    height: @height;
+    min-height: @min-height;
+    max-height: @max-height;
   }
 
   &__box {
@@ -41,12 +44,20 @@
     &--description {
       flex: 1;
       min-width: 0;
+      display: flex;
+      flex-direction: column;
     }
 
     &--meta {
+      // TODO: remove once default link style becomes... default
+      a {
+        .link-default();
+      }
+
       @media @desktop {
         width: 175px;
         overflow: hidden;
+        margin-bottom: 10px;
       }
     }
 
@@ -55,6 +66,26 @@
         width: @beatmapset-float-box-width;
       }
     }
+  }
+
+  &__description {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+    padding-right: 10px;
+
+    // to prevent overflow from extending container box
+    @media @desktop {
+      .full-size();
+    }
+    @media @mobile {
+      max-height: @max-height;
+    }
+  }
+
+  &__description-container {
+    min-height: 0;
+    max-height: @max-height;
+    flex: 1;
   }
 
   &__edit-description {
@@ -71,14 +102,12 @@
     }
   }
 
-  &__description {
-    height: @height
-            - @box-margin--top
-            - @header-margin--top
-            - @header-margin--bottom
-            - ceil(@font-size--title-small * 1.1); // 1.1 is line-height from...somewhere;
+  &__half-box {
+    display: flex;
+  }
 
-    overflow-y: auto;
+  &__half-entry {
+    flex: 1;
   }
 
   &__header {

@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -18,9 +18,59 @@
 
 class @Search
   constructor: ->
-    $(document).on 'click', '.js-search--advanced-forum-post-reset', @forumPostReset
+    @debouncedSubmitInput = _.debounce @submitInput, 500
+
+    $(document).on 'click', '.js-search--forum-options-reset', @forumPostReset
+    $(document).on 'input', '.js-search--input', @debouncedSubmitInput
+    $(document).on 'keydown', '.js-search--input', @maybeSubmitInput
+    $(document).on 'submit', '.js-search', @submitForm
+    addEventListener 'turbolinks:load', @restoreFocus
 
 
   forumPostReset: =>
-    $('[name=username], [name=forum_id]').val ''
-    $('[name=forum_children]').prop 'checked', false
+    $form = $('.js-search')
+
+    $form.find('[name=username], [name=forum_id]').val ''
+    $form.find('[name=forum_children]').prop 'checked', false
+
+
+  maybeSubmitInput: (e) =>
+    return if e.keyCode != 13
+
+    e.preventDefault()
+    @submitInput(e)
+
+
+  submitInput: (e) =>
+    input = e.currentTarget
+    value = input.value.trim()
+
+    return if value in ['', input.dataset.searchCurrent?.trim()]
+
+    input.dataset.searchCurrent = value
+    @submit()
+
+
+  submitForm: (e) =>
+    e.preventDefault()
+    @submit()
+
+
+  submit: =>
+    @searchingToggle(true)
+    params = $('.js-search').serialize()
+
+    $(document).one 'turbolinks:before-cache', =>
+      @activeElement = document.activeElement
+      @searchingToggle(false)
+
+    Turbolinks.visit("?#{params}")
+
+
+  searchingToggle: (state) =>
+    $('.js-search--header').toggleClass('js-search--searching', state)
+
+
+  restoreFocus: =>
+    @activeElement?.focus()
+    @activeElement = null

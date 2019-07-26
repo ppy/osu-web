@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -31,17 +31,18 @@
             {{ Auth::user()->username }}
         </a>
 
-        <a
+        <button
             class="navbar-mobile-item__main navbar-mobile-item__main--logout js-logout-link"
-            href="{{ route('logout') }}"
+            type="button"
+            data-url="{{ route('logout') }}"
             data-method="DELETE"
             data-confirm="{{ trans('users.logout_confirm') }}"
             data-remote="1"
             data-toggle="collapse"
             data-target=".js-navbar-mobile--menu"
         >
-            <i class="fa fa-sign-out"></i>
-        </a>
+            <i class="fas fa-sign-out-alt"></i>
+        </button>
     @else
         <a
             class="js-user-link navbar-mobile-item__main navbar-mobile-item__main--user"

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,53 +15,89 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-{!! Form::open([
-    'route' => ['forum.topics.vote', $topic->topic_id],
-    'method' => 'POST',
-    'data-remote' => true,
-    'data-checkbox-validation' => json_encode([
-        'forum_topic_vote[option_ids][]' => [
-            'min' => 1,
-            'max' => $topic->poll_max_options,
-        ],
-    ]),
-    'class' => 'forum-poll js-checkbox-validation',
-]) !!}
-    <h2 class="forum-poll__row forum-poll__row--title">
-        {!! $topic->pollTitleHTML() !!}
-    </h2>
 
-    <table class="forum-poll__row forum-poll__row--options">
-        <tbody>
-            @foreach ($pollSummary['options'] as $pollOptionId => $pollOption)
-                @include('forum.topics._poll_row', compact($pollOptionId, $pollOption, $pollSummary))
-            @endforeach
-        </tbody>
-    </table>
+<?php
+    $canViewResults = priv_check('ForumTopicPollShowResults', $topic)->can();
+?>
 
-    <div class="forum-poll__row forum-poll__row--details">
-        <div class="forum-poll__detail">
-            {{ trans('forum.topics.show.poll.detail.total', ['count' => $pollSummary['total']]) }}
+<div class="forum-poll js-forum-poll">
+    {!! Form::open([
+        'route' => ['forum.topics.vote', $topic->topic_id],
+        'method' => 'POST',
+        'data-remote' => true,
+        'data-checkbox-validation' => json_encode([
+            'forum_topic_vote[option_ids][]' => [
+                'min' => 1,
+                'max' => $topic->poll_max_options,
+            ],
+        ]),
+        'class' => 'js-checkbox-validation',
+    ]) !!}
+        <h2 class="forum-poll__row forum-poll__row--title">
+            {!! $topic->pollTitleHTML() !!}
+        </h2>
+
+        <div class="forum-poll__row forum-poll__row--options">
+            <table>
+                <tbody>
+                    @foreach ($pollSummary['options'] as $pollOptionId => $pollOption)
+                        @include('forum.topics._poll_row', compact('pollOptionId', 'pollOption', 'pollSummary'))
+                    @endforeach
+                </tbody>
+            </table>
         </div>
 
-        @if ($topic->pollEnd() !== null)
-            <div class="forum-poll__detail forum-poll__detail--sub">
-                @if ($topic->pollEnd()->isFuture())
-                    {{ trans('forum.topics.show.poll.detail.end_time', ['time' => $topic->pollEnd()]) }}
-                @else
-                    {{ trans('forum.topics.show.poll.detail.ended', ['time' => $topic->pollEnd()]) }}
-                @endif
+        <div class="forum-poll__row forum-poll__row--details">
+            <div class="forum-poll__detail">
+                {{ trans('forum.topics.show.poll.detail.total', ['count' => $pollSummary['total']]) }}
             </div>
-        @endif
-    </div>
 
-    <div class="forum-poll__row">
-        @if (!priv_check('ForumTopicVote', $topic)->can())
-            {{ priv_check('ForumTopicVote', $topic)->message() }}
-        @else
-            <button class="btn-osu-lite btn-osu-lite--default js-checkbox-validation--submit">
-                {{ trans('forum.topics.show.poll.vote') }}
-            </button>
-        @endif
-    </div>
-{!! Form::close() !!}
+            @if ($topic->pollEnd() !== null)
+                <div class="forum-poll__detail forum-poll__detail--sub">
+                    @if ($topic->pollEnd()->isFuture())
+                        {{ trans('forum.topics.show.poll.detail.end_time', ['time' => $topic->pollEnd()]) }}
+                    @else
+                        {{ trans('forum.topics.show.poll.detail.ended', ['time' => $topic->pollEnd()]) }}
+                    @endif
+                </div>
+
+                @if (!$canViewResults)
+                    <div class="forum-poll__detail forum-poll__detail--sub">
+                        {{ trans('forum.topics.show.poll.detail.results_hidden') }}
+                    </div>
+                @endif
+            @endif
+        </div>
+
+        <div class="forum-poll__row">
+            @if (!priv_check('ForumTopicVote', $topic)->can())
+                {{ priv_check('ForumTopicVote', $topic)->message() }}
+            @else
+                <button class="btn-osu-lite btn-osu-lite--default js-checkbox-validation--submit" disabled>
+                    {{ trans('forum.topics.show.poll.vote') }}
+                </button>
+            @endif
+        </div>
+    {!! Form::close() !!}
+
+    @if ($canEditPoll ?? false)
+        <div class="forum-poll__actions">
+            <div class="forum-post-actions">
+                <div class="forum-post-actions__action">
+                    <button
+                        type="button"
+                        class="btn-circle edit-post-link js-forum-poll-edit"
+                        title="{{ trans('forum.poll.actions.edit') }}"
+                        data-tooltip-position="left center"
+                        data-url="{{ route('forum.topics.edit-poll', $topic) }}"
+                        data-remote="1"
+                    >
+                        <span class="btn-circle__content">
+                            <i class="fas fa-pencil-alt"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    @endif
+</div>

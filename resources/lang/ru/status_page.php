@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'header' => [
         'title' => 'статус',
-        'description' => 'что вообще происходит, чувак?',
+        'description' => 'что вообще происходит, ребят?',
     ],
 
     'incidents' => [
@@ -62,7 +62,7 @@ return [
             'month' => 'месяц',
             'all_time' => 'всё время',
             'last_week' => 'последняя неделя',
-            'weeks_ago' => ':count неделю назад|:count недель назад',
+            'weeks_ago' => ':count неделю назад|:count недели назад|:count недель назад',
         ],
     ],
 ];

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,7 +17,7 @@
  */
 
  .tournament-list {
-    background-color: @gray-blue-dark;
+    background-color: @osu-colour-b5;
     font-weight: 300;
     padding: 20px;
 
@@ -25,11 +25,23 @@
       padding: 5px;
     }
 
+    &__heading {
+      color: white;
+    }
+
+    &__group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+
+      &--old {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+    }
+
     &__none-running {
-      color: @pink-light;
-      font-size: 20px;
-      font-weight: 100;
-      margin: 0;
+      color: @osu-colour-l1;
       margin-left: 10px;
     }
   }

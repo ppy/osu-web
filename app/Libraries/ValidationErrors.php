@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,8 @@
 
 namespace App\Libraries;
 
+use Lang;
+
 class ValidationErrors
 {
     private $errors = [];
@@ -30,7 +32,7 @@ class ValidationErrors
         $this->keyBase = $keyBase;
     }
 
-    public function add($column, $rawMessage, $params = null)
+    public function add($column, $rawMessage, $params = null) : self
     {
         $this->errors[$column] ?? ($this->errors[$column] = []);
 
@@ -41,17 +43,22 @@ class ValidationErrors
         }
         $rawMessage = $this->keyBase.$rawMessage;
 
-        $params['attribute'] = $column;
+        $attributeKey = $this->keyBase.$this->prefix.'.attributes.'.$column;
+        $params['attribute'] = Lang::has($attributeKey) ? trans($attributeKey) : $column;
 
         $this->errors[$column][] = trans($rawMessage, $params);
+
+        return $this;
     }
 
-    public function addTranslated($column, $message)
+    public function addTranslated($column, $message) : self
     {
         $this->errors[$column][] = $message;
+
+        return $this;
     }
 
-    public function merge(self $validationErrors)
+    public function merge(self $validationErrors) : self
     {
         $errors = $validationErrors->all();
         foreach ($errors as $key => $value) {

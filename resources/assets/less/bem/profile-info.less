@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,51 +17,170 @@
  */
 
 .profile-info {
+  @_top: profile-info;
+
   .default-text-shadow();
+  padding: 20px @gutter-profile-page;
   display: flex;
-  align-items: flex-end;
-  padding-bottom: 20px;
   color: #fff;
-  font-size: @font-size--normal;
+  flex: none;
+  width: 100%;
 
   @media @desktop {
-    margin-right: 20px;
+    align-self: flex-start;
+    padding-left: @gutter-profile-page-desktop;
+    flex: 1;
+    width: auto;
+    min-width: 0;
   }
 
-  &__bar {
-    position: absolute;
-    width: 100%;
-    height: 5px;
-    bottom: 0;
-    left: 0;
+  &__avatar {
+    .own-layer(); // required by safari for border-radius to be applied correctly
+    flex: none;
+    width: @profile-avatar-size;
+    height: @profile-avatar-size;
+    border-radius: 25%;
+    overflow: hidden;
+  }
 
-    background-color: @blue-darker;
+  &__bg {
+    .full-size();
+    background-size: cover;
+    background-position: center;
+
+    @media @desktop {
+      display: none;
+    }
+
+    &::after {
+      .full-size();
+      content: '';
+      background-color: fade(#000, 80%);
+    }
   }
 
   &__details {
+    padding-left: 10px;
     flex: 1;
-
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    padding-left: 20px;
   }
 
-  &__flags {
-    margin-top: 10px;
+  &__flag {
+    .link-plain();
+    height: 30px;
     display: flex;
+    align-items: center;
+    font-size: @font-size--title-small;
+
+    color: @osu-colour-l1;
+    .link-hover({
+      color: @osu-colour-l1;
+    });
+
+    @media @desktop {
+      border-top: 2px solid;
+      padding-top: 5px;
+      height: 27px; // 20px + border + padding
+    }
+  }
+
+  &__flag-flag {
+    align-self: stretch;
+    .@{_top}__flag--country & {
+      width: 45px;
+
+      @media @desktop {
+        width: 30px;
+      }
+    }
+  }
+
+  &__flag-text {
+    display: none;
+    padding-left: 10px;
+
+    @media @desktop {
+      display: block;
+    }
+  }
+
+  &__icon {
+    .center-content();
+    border-radius: 10000px;
+    font-size: 18px; // icon size
+    height: 30px;
+    color: white;
+    text-shadow: none;
+    padding: 0 10px;
+
+    @media @desktop {
+      font-size: 12px; // icon size
+      height: 20px;
+    }
+
+    &--supporter {
+      background-color: @osu-colour-h1;
+    }
+  }
+
+  &__icon-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+
+    @media @desktop {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+  }
+
+  &__icons {
+    display: flex;
+
+    &--flag {
+      @media @desktop {
+        margin-top: 10px;
+      }
+    }
   }
 
   &__name {
-    font-size: @font-size--title;
-    font-style: italic;
-    color: inherit;
+    align-self: flex-start;
+    color: #fff;
+    padding: 0;
     margin: 0;
+    font-size: @font-size--title;
+    font-weight: normal;
+    font-style: normal;
+    line-height: normal; // prevent text clipping by u-ellipsis-overflow
+    max-width: 100%;
+    display: flex;
   }
 
-  &__supporter-icon {
-    .circle(25px);
-    .center-content();
-    .default-box-shadow();
-    border: 2px solid #fff;
+  &__previous-usernames {
+    transform: translateY(-0.3em);
+    display: inline-block;
+
+    @media @desktop {
+      transform: translateY(-0.7em);
+      position: absolute;
+      left: 100%;
+
+      &:hover {
+        z-index: @z-index--profile-previous-usernames;
+      }
+    }
+  }
+
+  &__title {
+    font-size: @font-size--title-small-4;
+    padding: 0 0 15px;
+    line-height: normal;
+
+    @media @desktop {
+      padding-bottom: 5px;
+    }
   }
 }

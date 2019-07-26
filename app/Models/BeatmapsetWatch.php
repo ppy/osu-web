@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,10 +22,19 @@ namespace App\Models;
 
 use Carbon\Carbon;
 
+/**
+ * @property Beatmapset $beatmapset
+ * @property int $beatmapset_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property int $id
+ * @property \Carbon\Carbon|null $last_notified
+ * @property \Carbon\Carbon $last_read
+ * @property \Carbon\Carbon|null $updated_at
+ * @property User $user
+ * @property int $user_id
+ */
 class BeatmapsetWatch extends Model
 {
-    protected $guarded = [];
-
     protected $dates = ['last_read', 'last_notified'];
 
     public static function check($beatmapset, $user)
@@ -66,8 +75,15 @@ class BeatmapsetWatch extends Model
     {
         $query->where(function ($query) {
             $query
-                ->whereColumn('last_read', '>', 'last_notified')
+                ->whereColumn('last_read', '>=', 'last_notified')
                 ->orWhereNull('last_notified');
+        });
+    }
+
+    public function scopeVisible($query)
+    {
+        $query->whereHas('beatmapset', function ($q) {
+            $q->active();
         });
     }
 

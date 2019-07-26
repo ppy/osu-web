@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,30 +19,38 @@
  */
 
 return [
-    'page_description' => 'Artistas Destacados en osu!',
+    'page_description' => 'Artistas destacados en osu!',
     'title' => 'Artistas Destacados',
 
     'admin' => [
-        'hidden' => 'EL ARTISTA ESTÁ OCULTO ACTUALMENTE',
+        'hidden' => 'EL ARTISTA ESTÁ ACTUALMENTE OCULTO',
     ],
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Descargar Plantilla del Beatmap',
-        'download-na' => 'La Plantilla del Beatmap no está disponible aún',
+        'download' => 'Descargar la plantilla del Beatmap',
+        'download-na' => 'La plantilla del Beatmap no está disponible aún',
     ],
 
     'index' => [
-        'description' => 'Los artistas destacados son artistas con los que trabajamos conjuntamente para brindarles música nueva y original a osu!. Estos artistas y una selección de sus trabajos han sido escogidos por el equipo de osu! por ser geniales y adecuados para el mapping. Algunos de estos artistas destacados también han creado nuevas canciones exclusivas para su uso en osu!.<br><br>Toda la música en esta sección es proporcionada como archivos .osz con ritmo previamente calculado y han sido licensiados oficialmente para su uso en osu! y contenido relacionado con osu!.',
+        'description' => 'Los artistas destacados son artistas con los que colaboramos para brindarle música nueva y original a osu!. Estos artistas y una selección de sus trabajos han sido escogidos por el equipo de osu! por ser geniales y adecuados para mapeo. Algunos de estos artistas destacados también crearon nuevas canciones exclusivas para su uso en osu!.<br><br>Todas las canciones en esta sección son proporcionadas como archivos .osz con ritmo previamente calculado y han sido licenciadas oficialmente para su uso en osu! y contenido relacionado con osu!.',
     ],
 
     'links' => [
-        'site' => 'Sitio Web Oficial',
+        'osu' => 'Perfil de osu!',
+        'site' => 'Sitio web oficial',
     ],
 
     'songs' => [
         '_' => 'Canciones',
-        'count' => '1 canción|:count canciones',
+        'count' => ':count canción|:count canciones',
         'exclusive' => 'exclusiva para osu!',
+    ],
+
+    'tracklist' => [
+        'title' => 'título',
+        'length' => 'duración',
+        'bpm' => 'bpm',
+        'genre' => 'género',
     ],
 ];

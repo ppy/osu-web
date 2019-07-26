@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 return [
     'confirmation' => 'Êtes-vous sûr?',
+    'confirmation_unsaved' => 'Les modifications non enregistrées seront perdues. Êtes-vous sûr ?',
     'saved' => 'Sauvegardé',
 
     'array_and' => [
@@ -29,28 +30,70 @@ return [
     ],
 
     'buttons' => [
+        'admin' => 'Admin',
+        'back_to_previous' => 'Retour à la position précédente',
+        'back_to_top' => 'Retour en haut',
         'cancel' => 'Annuler',
+        'change' => 'changer',
+        'click_to_copy' => 'cliquez pour copier dans le presse-papiers',
+        'click_to_copy_copied' => 'copié dans le presse-papiers !',
+        'collapse' => 'réduire',
         'delete' => 'Supprimer',
+        'edit' => 'Éditer',
+        'expand' => 'agrandir',
+        'hide' => 'masquer',
         'permalink' => 'permalien',
+        'permalink_copied' => 'lien copié',
         'post' => 'Poster',
         'reply' => 'Répondre',
+        'reply_reopen' => 'Répondre et rouvrir',
+        'reply_resolve' => 'Répondre et fermer',
         'reset' => 'Réinitialiser',
+        'restore' => 'Restaurer',
         'save' => 'Sauvegarder',
         'saving' => 'Sauvegarde...',
+        'search' => 'Rechercher',
+        'see_more' => 'voir plus',
+        'show' => 'afficher',
+        'show_deleted' => 'Afficher supprimé',
         'show_more' => 'Plus de résultats',
-        'upload_image' => "mettre en ligne l'image",
+        'show_more_options' => 'afficher plus d’options',
+        'upload_image' => 'mettre en ligne une image',
+
+        'watch' => [
+            'to_0' => 'Ne plus suivre',
+            'to_1' => 'Suivre',
+        ],
     ],
 
     'count' => [
+        'badges' => ':count badge|:count badges',
+        'days' => ':count jour|:count jours',
+        'hour_short_unit' => 'h|h',
+        'hours' => ':count heure|:count heures',
         'item' => ':count objet|:count objets',
+        'minute_short_unit' => 'min|mins',
+        'minutes' => ':count minute|:count minutes',
         'months' => ':count mois|:count mois',
-        'years' => ':count année|:count années',
+        'second_short_unit' => 'sec|secs',
+        'update' => ':count_delimited mise à jour|:count_delimited mises à jour',
+        'years' => ':count an|:count ans',
+    ],
+
+    'countdown' => [
+        'days' => 'jours',
+        'hours' => 'heures',
+        'minutes' => 'minutes',
+        'seconds' => 'secondes',
     ],
 
     'datetime' => [
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
         ],
     ],
 

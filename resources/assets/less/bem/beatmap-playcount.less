@@ -1,0 +1,139 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.beatmap-playcount {
+  .cover-border-radius() {
+    border-radius: @border-radius-large 0 0 @border-radius-large;
+  }
+
+  @_top: beatmap-playcount;
+
+  color: #fff;
+  background-color: #000;
+  border-radius: @border-radius-large;
+  display: flex;
+  margin-bottom: 2px;
+  line-height: normal;
+
+  &__artist {
+    margin-right: 10px;
+
+    @media @desktop {
+      display: none;
+    }
+  }
+
+  &__count {
+    color: @yellow;
+    font-size: @font-size--large;
+    display: flex;
+    align-items: center;
+  }
+
+  &__count-icon {
+    font-size: 0.6em; // icon size
+    margin-right: 5px;
+    margin-top: 0.2em; // manual adjustment to align with the numbers
+  }
+
+  &__cover {
+    .cover-border-radius();
+    flex: none;
+    width: 80px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    @media @desktop {
+      width: 100px;
+    }
+  }
+
+  &__cover-count {
+    .cover-border-radius();
+    .full-size();
+    .center-content();
+    padding-right: @border-radius-large;
+    background-color: fade(#000, 75%);
+
+    @media @desktop {
+      display: none;
+    }
+  }
+
+  &__detail {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    background-color: @osu-colour-b4;
+    border-radius: @border-radius-large;
+    margin-left: -@border-radius-large;
+    padding: 10px;
+
+    .@{_top}:hover & {
+      background-color: @osu-colour-b3;
+    }
+  }
+
+  &__detail-count {
+    display: none;
+    align-items: center;
+
+    @media @desktop {
+      display: flex;
+    }
+  }
+
+  &__info {
+    min-width: 0;
+    flex: 1;
+  }
+
+  &__info-row {
+    font-size: @font-size--normal;
+  }
+
+  &__mapper {
+    color: @osu-colour-f1;
+  }
+
+  &__mapper-link {
+    font-weight: bold;
+    color: @osu-colour-f1;
+
+    .link-hover({
+      color: @osu-colour-l1;
+    });
+  }
+
+  &__title {
+    .link-white();
+    font-size: @font-size--title-small-3;
+    font-weight: bold;
+    min-width: 0;
+  }
+
+  &__title-artist {
+    display: none;
+    font-weight: normal;
+
+    @media @desktop {
+      display: inline;
+    }
+  }
+}

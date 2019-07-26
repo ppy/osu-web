@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,25 +15,30 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $legacyNav ?? ($legacyNav = true);
+
+    if (!isset($title)) {
+        $titleTree = [];
+
+        if (isset($titlePrepend)) {
+            $titleTree[] = $titlePrepend;
+        }
+
+        $titleTree[] = trans("layout.menu.{$currentSection}.{$currentAction}");
+        $titleTree[] = trans("layout.menu.{$currentSection}._");
+
+        $title = implode(' · ', $titleTree);
+    }
+
+    $title .= ' | osu!';
+    $currentHue = $currentHue ?? section_to_hue_map($currentSection);
+@endphp
 <!DOCTYPE html>
 <html>
     <head>
         @include("layout.metadata")
-        <title>
-            @if (isset($titleAppend))
-                {{
-                    trans("layout.menu.$current_section._").
-                    ' › '.
-                    trans("layout.menu.$current_section.$current_action").
-                    ': '.
-                    $titleAppend
-                }}
-            @elseif (isset($title))
-                {{ $title }}
-            @else
-                {{ trans("layout.menu.$current_section._") }} / {{ trans("layout.menu.$current_section.$current_action") }}
-            @endif
-        </title>
+        <title>{{ $title }}</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
@@ -42,27 +47,40 @@
         class="
             osu-layout
             osu-layout--body
-            t-section-{{ $current_section or "error" }}
-            action-{{ $current_action }}
-            {{ $body_additional_classes or "" }}
+            t-section
+            action-{{ $currentAction }}
+            {{ $bodyAdditionalClasses ?? '' }}
         "
     >
+        <style>:root {--base-hue: {{ $currentHue }};}</style>
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
         <div class="blackout js-blackout" data-visibility="hidden"></div>
 
+        @if (Auth::user() && Auth::user()->isRestricted())
+            @include('objects._notification_banner', [
+                'type' => 'alert',
+                'title' => trans('users.restricted_banner.title'),
+                'message' => trans('users.restricted_banner.message'),
+            ])
+        @endif
+
         @if (!isset($blank))
             @include("layout.header")
+
+            <div class="osu-page {{ $legacyNav ? '' : 'osu-page--notification-banners' }} js-notification-banners">
+                @stack('notification_banners')
+            </div>
         @endif
-        <div class="osu-layout__section osu-layout__section--full js-content {{ $current_section }}_{{ $current_action }}">
+        <div class="osu-layout__section osu-layout__section--full js-content {{ $currentSection }}_{{ $currentAction }}">
             @include("layout.popup")
             @if (View::hasSection('content'))
                 @yield('content')
             @else
                 <div class="osu-layout__row osu-layout__row--page">
                     <h1 class="text-center">
-                        <span class="dark">{{ $current_section }}</span>
+                        <span class="dark">{{ $currentSection }}</span>
                         /
-                        <span class="dark">{{ $current_action }}</span>
+                        <span class="dark">{{ $currentAction }}</span>
                         is <span class="normal">now printing</span> <span class="light">♪</span>
                     </h1>
                 </div>
@@ -91,6 +109,7 @@
 
         @include("layout._global_variables")
         @include('layout._loading_overlay')
+        @include('layout.popup-container')
 
         @yield("script")
     </body>

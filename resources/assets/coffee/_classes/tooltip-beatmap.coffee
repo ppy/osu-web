@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -18,10 +18,10 @@
 
 class @TooltipBeatmap
   tmpl: _.template '<div class="tooltip-beatmap__text tooltip-beatmap__text--title"><%- beatmapTitle %></div>' +
-      '<div class="tooltip-beatmap__text tooltip-beatmap__text--<%- difficulty %>"><%- stars %> <i class="fa fa-star" aria-hidden="true"></i></div>'
+      '<div class="tooltip-beatmap__text tooltip-beatmap__text--<%- difficulty %>"><%- stars %> <i class="fas fa-star" aria-hidden="true"></i></div>'
 
   constructor: ->
-    $(document).on 'mouseover', '.js-beatmap-tooltip', @onMouseOver
+    $(document).on 'mouseover touchstart', '.js-beatmap-tooltip', @onMouseOver
 
   onMouseOver: (event) =>
     el = event.currentTarget
@@ -51,12 +51,15 @@ class @TooltipBeatmap
         event: event.type
         ready: true
       hide:
-        inactive: 3000
+        event: 'click mouseleave'
       style:
         classes: 'qtip tooltip-beatmap'
         tip:
           width: 10
           height: 9
+
+    if event.type == 'touchstart'
+      options.hide = inactive: 3000
 
     $(el).qtip options, event
 

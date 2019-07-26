@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,11 +26,28 @@
 
 ::selection {
   color: #fff;
-  background-color: @pink;
+  background-color: @osu-colour-h2;
+}
+
+:root {
+  --font-default: @font-default;
+  --font-default-vi: @font-default-vi;
+  --font-default-zh: @font-default-zh;
+  --font-content: @font-content;
 }
 
 html, body {
   height: 100%;
+}
+
+body {
+  .default-font();
+  // no overlap between rightmost side and scrollbar
+  -ms-overflow-style: scrollbar;
+  // prevent moving navbar
+  overflow-y: scroll;
+  // fix tooltip positioning on edge when combined with overflow-y scroll above
+  position: static;
 }
 
 .content {

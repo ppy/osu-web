@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -29,7 +29,7 @@
 @link-color: @blue-darker;
 @link-hover-color: @blue;
 
-@font-family-sans-serif: "Exo 2", "Arial Grande",Tahoma,Helvetica,Arial,"Microsoft YaHei",SimHei,"Arial Unicode MS",sans-serif;
+@font-family-sans-serif: @font-default;
 
 @font-size-base: 16px;
 
@@ -53,11 +53,11 @@
 @input-color: @gray-dark;
 @input-border-focus: @pink;
 
-@screen-sm-min: 840px;
+@screen-sm-min: 900px; // sync with osu.isDesktop
 @screen-lg-min: 1300px;
 @screen-md-min: @screen-sm-min;
 
-@grid-gutter-width: 40px;
+@grid-gutter-width: 20px;
 
 @container-tablet: 1000px;
 @container-sm: @container-tablet;
@@ -72,18 +72,6 @@
 @badge-link-hover-color: @pink-dark;
 @badge-bg: #fff;
 
-
-@navbar-default-bg: @pink-darker;
-
-@navbar-default-brand-color: #fff;
-@navbar-default-brand-hover-color: #fff;
-
-@navbar-default-toggle-border-color: fade(#fff, 50%);
-@navbar-default-toggle-hover-bg: fade(#fff, 50%);
-
-@navbar-height: 60px;
-@navbar-padding-horizontal: 10px;
-@navbar-padding-vertical: 10px;
 
 @nav-link-hover-bg: transparent;
 @nav-link-padding: 10px;

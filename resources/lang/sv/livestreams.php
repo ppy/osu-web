@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,8 +20,10 @@
 
 return [
     'top-headers' => [
-        'headline' => 'Live Strömmar',
-        'description' => 'Data är hämtad från twitch.tv varje femte minut baserad på kataloglista. Känn dig fri att börja strömma och bli inlagd i listan! För mer information om hur du sätter igång, var vänlig att kolla in wiki sidan om live strömning.',
+        'headline' => 'Direktsändningar',
+        'description' => 'Data hämtas från twitch.tv var femte minut baserad på kataloglistan. Känn dig fri att börja strömma och bli inlagd i listan! För mer information om hur du sätter igång, var vänlig att kolla in wikisidan om liveströmning.',
+
+        'link' => '',
     ],
     'headers' => [
         'regular' => 'Strömmar Nu',

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,11 +26,33 @@
   font-size: @font-size--wiki;
   word-wrap: break-word;
 
+  hr {
+    border-color: @osu-colour-b3;
+  }
+
+  iframe {
+    max-width: 100%;
+  }
+
   img {
     max-width: 100%;
   }
 
+  video {
+    max-width: 100%;
+  }
+
   &--news {
+    padding: 20px 25px 0;
+    color: white;
+    font-size: @font-size--wiki;
+
+    @media @mobile {
+      padding: 20px 0 0;
+    }
+  }
+
+  &--store {
     padding: 0;
   }
 
@@ -51,40 +73,57 @@
   }
 
   &__header {
-    font-family: @font-family-sans-serif;
+    .default-font();
+    .fragment-target-fn();
+
     font-weight: bold;
     font-style: normal;
-    color: @pink-light;
+    color: white;
 
     &:first-child {
       margin-top: 0;
     }
 
+    > a {
+      .fragment-target-fn();
+    }
+
+    &--1 {
+      margin-top: 40px;
+    }
+
     &--2 {
       font-size: @font-size--header-wiki-2;
-      margin: 50px -20px 10px;
-      color: #fff;
+      margin: 20px 0 10px -20px;
+      color: white;
 
       .@{top}--news & {
-        color: @pink-darker;
+        font-size: @font-size--title;
         margin-left: 0;
       }
     }
 
     &--3 {
       font-size: @font-size--header-wiki-3;
-      margin: 30px -20px 10px;
+      margin: 30px 0 10px -20px;
+      color: @osu-colour-l2;
 
       .@{top}--news & {
-        color: @pink-darker;
+        font-size: @font-size--title-small-4;
         margin-left: 0;
       }
     }
 
     &--4 {
       font-size: @font-size--header-wiki-4;
-      margin: 30px -10px 10px;
+      margin: 30px 0 10px -10px;
       font-style: italic;
+      color: @osu-colour-l3;
+
+      .@{top}--news & {
+        font-size: inherit;
+        color: inherit;
+      }
     }
 
     &--5 {
@@ -107,10 +146,10 @@
   }
 
   &__link {
-    .link-yellow();
+    .link-default();
 
-    .@{top}--news & {
-      .link-default();
+    .@{top}--store & {
+      .link-blue-dark()
     }
   }
 
@@ -121,23 +160,35 @@
   &__list-item {
     margin: 5px 0;
 
-    &--deep {
-      color: #ccc;
+    .@{top}--store & {
+      margin-left: 10px;
     }
   }
 
   &__paragraph {
     margin-bottom: @paragraph-space;
     line-height: 1.5;
+
+    .@{top}--store & {
+      margin-bottom: 10px;
+    }
   }
 
+  // not actual table but its container
   &__table {
-    font-family: @font-family-sans-serif;
+    .default-font();
+    overflow-x: auto;
     margin-bottom: 20px;
+
+    .@{top}--store & {
+      table {
+        width: 100%;
+      }
+    }
   }
 
   &__table-data {
-    border-top: 1px solid fade(@yellow, 50%);
+    border-top: 1px solid @osu-colour-b4;
     padding: 5px;
 
     &--center {
@@ -146,7 +197,7 @@
 
     &--header {
       border-top: none;
-      border-bottom: 2px solid @yellow;
+      border-bottom: 2px solid @osu-colour-b3;
       font-weight: bold;
     }
 
@@ -161,14 +212,14 @@
 
   code {
     .default-border-radius();
-    background-color: #222;
-    border: 1px solid #111;
-    color: @blue;
+    background-color: @osu-colour-b6;
+    color: @osu-colour-l1;
     padding: 1px 4px;
   }
 
   pre {
-    background-color: #222;
+    background-color: @osu-colour-b6;
+    color: @osu-colour-l1;
     border: none;
     border-radius: 0px;
 

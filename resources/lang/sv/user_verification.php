@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,30 +20,30 @@
 
 return [
     'box' => [
-        'sent' => 'Ett email att skickats till :mail med en verifikations kod. Skriv in koden.',
-        'title' => 'Konto Verifiering',
-        'verifying' => 'Verifieras...',
-        'issuing' => 'Utfärdar ny kod...',
+        'sent' => 'Ett email har skickats till :mail med en verifieringskod. Skriv in koden.',
+        'title' => 'Kontobekräftelse',
+        'verifying' => 'Verifierar...',
+        'issuing' => 'Skickar ny kod...',
 
         'info' => [
-            'check_spam' => 'Dubbelkolla din skräpkorg ifall du inte kan hitta emailet.',
-            'recover' => 'Om du inte har åtkomst till din email eller har glömt vad du använde, var vänlig att följa :link.',
+            'check_spam' => "Dubbelkolla skräpposten ifall du inte kan hitta emailet.",
+            'recover' => "Om du inte har tillgång till din email eller har glömt vad du använde, var vänlig följ :link.",
             'recover_link' => 'email återställning processen här',
             'reissue' => 'Du kan också :reissue_link eller :logout_link.',
-            'reissue_link' => 'begära annan kod',
+            'reissue_link' => 'begär en ny kod',
             'logout_link' => 'logga ut',
         ],
     ],
 
     'email' => [
-        'subject' => 'osu! konto verifiering',
+        'subject' => 'osu! kontobekräftelse',
     ],
 
     'errors' => [
-        'expired' => 'Verifierings kod är utgången, ny verifierings email skickad.',
-        'incorrect_key' => 'Felaktig verifierings kod.',
-        'retries_exceeded' => 'Felaktig verifierings kod. Försöks gräns uppnådd, ny verifierings email skickad.',
-        'reissued' => 'Verifierings kod återutfärdat, ny verifierings email skickad.',
-        'unknown' => 'Okänt problem uppstod, ny verifierings email skickad.',
+        'expired' => 'Verifieringskoden har utgått, ett nytt bekräftelsemail har skickats.',
+        'incorrect_key' => 'Felaktig verifieringskod.',
+        'retries_exceeded' => 'Felaktig verifieringskod. Försöksgräns uppnådd, ett nytt bekräftelsemail har skickats.',
+        'reissued' => 'Verifieringskod återutfärdad, ett nytt bekräftelsemail har skickats.',
+        'unknown' => 'Ett okänt problem uppstod, ett nytt bekräftelsemail har skickats.',
     ],
 ];

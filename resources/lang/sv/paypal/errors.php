@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,7 +19,7 @@
  */
 
 return [
-    'instrument_declined' => 'Vald betalningsmetod blev avvisad av Paypal.',
+    'instrument_declined' => 'Den valda betalningsmetoden blev avvisad av Paypal.',
     'invalid_resource_id' => 'Ingen betalningsinformation kunde hittas.',
-    'unknown' => 'Betalningen blev avvisad, men vi är inte helt säkra varför.',
+    'unknown' => "Betalningen blev avvisad, men vi är inte helt säkra varför.",
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -185,11 +185,13 @@ class LegacyController extends BaseController
         $mode = intval(Request::input('m', 0));
         $type = Request::input('type', 'id');
 
-        $scores = $best === true ? Score\Best\Model::getClass($mode) : Score\Model::getClass($mode);
+        $scoresClass = $best === true ? Score\Best\Model::getClass($mode) : Score\Model::getClass($mode);
 
-        if ($scores === null) {
+        if ($scoresClass === null) {
             return;
         }
+
+        $scores = $scoresClass::query();
 
         if (present($user_id)) {
             $user = User::lookup($user_id, $type);
@@ -236,7 +238,7 @@ class LegacyController extends BaseController
             return Response::json([]);
         }
 
-        $replay = $score->getReplay();
+        $replay = optional($score->replayFile())->get();
         if ($replay === null) {
             return Response::json([]);
         }

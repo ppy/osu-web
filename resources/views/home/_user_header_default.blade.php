@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -28,7 +28,7 @@
             </h1>
             <p class="osu-page-header__detail">
                 <a class="osu-page-header__link" href="{{ osu_url('user.inbox') }}">
-                    {{ trans_choice('home.user.header.messages', number_format(Auth::user()->notificationCount())) }}
+                    {{ trans_choice('home.user.header.messages', Auth::user()->notificationCount()) }}
                 </a>
             </p>
         </div>
@@ -39,7 +39,7 @@
                     {{ trans('home.user.header.stats.friends') }}
                 </div>
                 <div class="js-forum-topic-watch--unread osu-page-header__status-text">
-                    {{ number_format($stats->onlineFriends) }}
+                    {{ i18n_number_format($stats->onlineFriends) }}
                 </div>
             </div>
 
@@ -48,7 +48,7 @@
                     {{ trans('home.user.header.stats.games') }}
                 </div>
                 <div class="js-forum-topic-watch--unread osu-page-header__status-text">
-                    {{ number_format($stats->currentGames) }}
+                    {{ i18n_number_format($stats->currentGames) }}
                 </div>
             </div>
 
@@ -57,7 +57,7 @@
                     {{ trans('home.user.header.stats.online') }}
                 </div>
                 <div class="osu-page-header__status-text">
-                    <strong>{{ number_format($stats->currentOnline) }}</strong>
+                    <strong>{{ i18n_number_format($stats->currentOnline) }}</strong>
                 </div>
             </div>
 

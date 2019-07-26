@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,13 +20,14 @@
   @top: search-result;
   .default-border-radius();
   .thicker-box-shadow();
-  background-color: #333;
+  background-color: @osu-colour-b4;
   padding: 10px 20px;
   padding-right: 0;
   margin-top: 20px;
 
   &::before {
     .full-size();
+    content: ' ';
     width: 5px;
     border-top-left-radius: @border-radius-base;
     border-bottom-left-radius: @border-radius-base;
@@ -53,28 +54,19 @@
     display: flex;
     flex-wrap: wrap;
     margin: -5px;
-  }
-
-  &__entry {
-    flex: none;
-    padding: 5px;
-    width: 100%;
-
-    .@{top}--beatmapset & {
-      @media @desktop {
-        width: 50%;
-      }
-    }
+    min-width: 0;
 
     .@{top}--user & {
-      width: auto;
+      display: block;
+      margin: 0;
     }
   }
 
   &__more-button {
     flex: none;
     .link-plain();
-    .link-gray-light();
+    .link-default();
+    color: @osu-colour-f1;
     .center-content();
     font-size: 20px; // icon size
     padding: 5px;
@@ -98,11 +90,12 @@
     &--notice {
       font-size: @font-size--title-small;
       text-align: center;
-      color: #ccc;
     }
 
     &--more {
-      .link-gray-light();
+      .link-default();
+      .link-plain();
+      color: @osu-colour-f1;
       font-size: @font-size--normal;
       display: block;
       text-align: center;
@@ -114,7 +107,7 @@
 
     &--title {
       font-size: @font-size--title-small-2;
-      color: #fff;
+      color: white;
       font-style: italic;
       margin: 0;
     }

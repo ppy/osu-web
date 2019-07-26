@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,12 +15,24 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    if (!isset($stateText)) {
+        if (method_exists($state, 'stateText')) {
+            $stateText = $state->stateText();
+        } elseif (is_bool($state)) {
+            $stateText = $state ? '1' : '0';
+        } else {
+            $stateText = (string) $state;
+        }
+    }
+@endphp
 Timeout.set(0, function() {
+    $('.js-forum-topic-{{ $type }}--extra[data-topic-id={{ $topic->topic_id }}]').remove();
     $('.js-forum-topic-{{ $type }}[data-topic-id={{ $topic->topic_id }}]')
-        .replaceWith({!! json_encode(render_to_string('forum.topics._'.$type, [
-            'topic' => $topic,
-            'state' => $state
-        ])) !!});
+        .replaceWith({!! json_encode(render_to_string(
+            'forum.topics._'.$type,
+            compact('topic', 'state', 'userCanModerate')
+        )) !!});
 
-    osu.popup({!! json_encode(trans('forum.topics.'.$type.'.state-'.(int) $state)) !!}, 'success');
+    osu.popup({!! json_encode(trans('forum.topics.'.$type.'.to_'.$stateText.'_done')) !!}, 'success');
 });

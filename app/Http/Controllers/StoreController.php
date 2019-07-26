@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -38,21 +38,17 @@ class StoreController extends Controller
     {
         $this->middleware('auth', ['only' => [
             'getInvoice',
-            'postUpdateCart',
-            'postAddToCart',
             'postNewAddress',
             'postUpdateAddress',
-            'postUpdateCart',
         ]]);
 
-        $this->middleware('check-user-restricted', ['only' => [
-            'getInvoice',
-            'postUpdateCart',
-            'postAddToCart',
-            'postNewAddress',
-            'postUpdateAddress',
-            'postUpdateCart',
-        ]]);
+        if (!$this->isAllowRestrictedUsers()) {
+            $this->middleware('check-user-restricted', ['only' => [
+                'getInvoice',
+                'postNewAddress',
+                'postUpdateAddress',
+            ]]);
+        }
 
         $this->middleware('verify-user', ['only' => [
             'getInvoice',
@@ -62,55 +58,33 @@ class StoreController extends Controller
         return parent::__construct();
     }
 
-    // GET /store
-
-    public function getIndex()
-    {
-        return ujs_redirect('/store/listing');
-    }
-
     public function getListing()
     {
         return view('store.index')
             ->with('cart', $this->userCart())
-            ->with('products', Store\Product::latest()->simplePaginate(30));
+            ->with('products', Store\Product::latest()->get());
     }
 
     public function getInvoice($id = null)
     {
-        $order = Store\Order::where('status', '<>', 'incart')->findOrFail($id);
+        $order = Store\Order::whereHasInvoice()
+            ->with('items.product')
+            ->findOrFail($id);
+
         if (Auth::user()->user_id !== $order->user_id && !Auth::user()->isAdmin()) {
             abort(403);
         }
 
         $sentViaAddress = Store\Address::sender();
+        $forShipping = Auth::user()->isAdmin() && get_bool(Request::input('for_shipping'));
+        $copies = clamp(get_int(request('copies')), 1, config('store.invoice.max_copies'));
 
-        return view('store.invoice')
-            ->with('order', $order)
-            ->with('copies', Request::input('copies', 1))
-            ->with('sentViaAddress', $sentViaAddress);
-    }
-
-    public function getCart($id = null)
-    {
-        return view('store.cart')
-            ->with('order', $this->userCart());
+        return view('store.invoice', compact('order', 'forShipping', 'copies', 'sentViaAddress'));
     }
 
     public function missingMethod($parameters = [])
     {
         abort(404);
-    }
-
-    public function postUpdateCart()
-    {
-        $result = $this->userCart()->updateItem(Request::input('item', []));
-
-        if ($result[0]) {
-            return js_view('layout.ujs-reload');
-        } else {
-            return error_popup($result[1]);
-        }
     }
 
     public function postUpdateAddress()
@@ -155,7 +129,16 @@ class StoreController extends Controller
             'address' => Request::input('address'),
         ]));
 
-        $addressInput = Request::all()['address'];
+        $addressInput = get_params(request(), 'address', [
+            'first_name',
+            'last_name',
+            'street',
+            'city',
+            'state',
+            'zip',
+            'country_code',
+            'phone',
+        ]);
 
         $validator = Validator::make($addressInput, [
             'first_name' => ['required'],
@@ -183,16 +166,5 @@ class StoreController extends Controller
         $order->save();
 
         return js_view('layout.ujs-reload');
-    }
-
-    public function postAddToCart()
-    {
-        $result = $this->userCart()->updateItem(Request::input('item', []), true);
-
-        if ($result[0]) {
-            return ujs_redirect('/store/cart');
-        } else {
-            return error_popup($result[1]);
-        }
     }
 }

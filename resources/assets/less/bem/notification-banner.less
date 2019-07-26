@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -31,6 +31,7 @@
 
   &::before {
     .full-size();
+    content: ' ';
     height: 5px;
     background-image: url(/images/layout/caution-bar.png);
     background-position: top center;
@@ -44,6 +45,14 @@
     background-image: linear-gradient(to bottom, fade(@yellow-darker, 25%), fade(black, 25%));
   }
 
+  &__button-group {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__button {
+    margin: 0px 5px;
+  }
 
   &__icon {
     width: 40px;

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -79,7 +79,7 @@ class ApplySupporterTag extends OrderItemFulfillment
             $this->updateVotes($this->duration);
             $this->applySubscription();
 
-            $this->donor->supports()->save($donation);
+            $donation->saveOrExplode();
             $this->donor->saveOrExplode();
             $this->target->saveOrExplode();
         });

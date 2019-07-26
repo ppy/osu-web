@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,20 +15,24 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', [
+    'legacyNav' => false,
+])
 
 @section('content')
-    <div class="osu-page osu-page--groups">
-        <div class="osu-page-header osu-page-header--groups">
-            <h1 class="osu-page-header__title">
-                {{ $group->group_name }}
-            </h1>
-            <div class="osu-page-header__title osu-page-header__title--small">
-                {{ $group->group_desc }}
-            </div>
-        </div>
-    </div>
-    <div class="osu-page osu-page--generic osu-page--dark-bg">
-        @include('objects._userlist', ['userlist' => $userlist])
-    </div>
+    <div class="js-react--groups-show osu-layout osu-layout--full"></div>
+@endsection
+
+@section("script")
+    @parent
+
+    <script id="json-group" type="application/json">
+        {!! json_encode($groupJson) !!}
+    </script>
+
+    <script id="json-users" type="application/json">
+        {!! json_encode($usersJson) !!}
+    </script>
+
+    @include('layout._extra_js', ['src' => 'js/react/groups-show.js'])
 @endsection

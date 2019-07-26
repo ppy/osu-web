@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'header' => [
         'title' => 'status',
-        'description' => 'vad händer mah dude?',
+        'description' => 'vad händer mina bekanta?',
     ],
 
     'incidents' => [
@@ -31,8 +31,8 @@ return [
 
     'online' => [
         'title' => [
-            'users' => 'Användare Online dem senaste 24 timmarna',
-            'score' => 'Poäng Inlämningar dem senaste 24 timmarna',
+            'users' => 'Användare Online de senaste 24 timmarna',
+            'score' => 'Poäng Inlämningar de senaste 24 timmarna',
         ],
         'current' => 'Nuvarande Användare Online',
         'score' => 'Poäng Inlämningar per Sekund',
@@ -43,7 +43,7 @@ return [
             'title' => 'Senaste Incidenter',
             'state' => [
                 'resolved' => 'Löst',
-                'resolving' => 'Lösande',
+                'resolving' => 'Skickar förfrågan',
                 'unknown' => 'Okänd',
             ],
         ],
@@ -61,7 +61,7 @@ return [
             'week' => 'vecka',
             'month' => 'månad',
             'all_time' => 'all tid',
-            'last_week' => 'senaste vecka',
+            'last_week' => 'förra veckan',
             'weeks_ago' => ':count vecka sedan|:count veckor sedan',
         ],
     ],

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,13 +20,15 @@
 
 return [
     'match' => [
-        'header' => 'Multiplayer Matches',
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
-        ],
+        'beatmap-deleted' => 'deleted beatmap',
+        'difference' => 'by :difference',
+        'failed' => 'FAILED',
+        'header' => 'Multi Matches',
+        'in-progress' => '(match in progress)',
+        'in_progress_spinner_label' => 'match in progress',
+        'loading-events' => 'Loading events...',
+        'winner' => ':team wins',
+
         'events' => [
             'player-left' => ':user left the match',
             'player-joined' => ':user joined the match',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'the match was disbanded',
             'host-changed-no-user' => 'the host was changed',
         ],
-        'in-progress' => '(match in progress)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Accuracy',
@@ -50,16 +52,18 @@ return [
                 'score' => 'Score',
             ],
         ],
-        'failed' => 'FAILED',
+
+        'team-types' => [
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
+        ],
+
         'teams' => [
             'blue' => 'Blue Team',
             'red' => 'Red Team',
         ],
-        'winner' => ':team wins',
-        'difference' => 'by :difference',
-        'loading-events' => 'Loading events...',
-        'more-events' => 'view all...',
-        'beatmap-deleted' => 'deleted beatmap',
     ],
     'game' => [
         'scoring-type' => [

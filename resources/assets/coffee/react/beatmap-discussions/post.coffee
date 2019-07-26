@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,16 +16,22 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, span} = ReactDOMFactories
+import { MessageLengthCounter } from './message-length-counter'
+import { BigButton } from 'big-button'
+import * as React from 'react'
+import { a, button, div, i, span } from 'react-dom-factories'
+import { UserAvatar } from 'user-avatar'
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
 
-class BeatmapDiscussions.Post extends React.PureComponent
+export class Post extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @textarea = React.createRef()
     @throttledUpdatePost = _.throttle @updatePost, 1000
+    @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
     @xhr = {}
     @cache = {}
 
@@ -64,12 +70,11 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     userBadge =
       if @isOwner()
-        'owner'
+        'mapper'
       else
-        @userModerationGroup()
+        @userGroupBadge()
 
     topClasses += " #{bn}--#{userBadge}" if userBadge?
-    userColor = @props.user.profile_colour if !@isOwner()
 
     div
       className: topClasses
@@ -79,35 +84,39 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
       div
         className: "#{bn}__content"
-        a
+        div
           className: "#{bn}__user-container"
-          href: laroute.route('users.show', user: @props.user.id)
-          style:
-            color: userColor
+
           div className: "#{bn}__avatar",
-            el UserAvatar, user: @props.user, modifiers: ['full-rounded']
+            a
+              className: "#{bn}__user-link"
+              href: laroute.route('users.show', user: @props.user.id)
+              el UserAvatar, user: @props.user, modifiers: ['full-rounded']
           div
             className: "#{bn}__user"
-            span
-              className: "#{bn}__user-text u-ellipsis-overflow"
-              style:
-                color: userColor
-              @props.user.username
+            div
+              className: "#{bn}__user-row"
+              a
+                className: "#{bn}__user-link"
+                href: laroute.route('users.show', user: @props.user.id)
+                span
+                  className: "#{bn}__user-text u-ellipsis-overflow"
+                  @props.user.username
+
+              if !@props.user.is_bot
+                a
+                  className: "#{bn}__user-modding-history-link"
+                  href: laroute.route('users.modding.index', user: @props.user.id)
+                  title: osu.trans('beatmap_discussion_posts.item.modding_history_link')
+                  i className: 'fas fa-align-left'
 
             div
               className: "#{bn}__user-badge"
-              style:
-                backgroundColor: userColor
-                opacity: 0 if !userBadge?
               if userBadge?
-                osu.trans("beatmap_discussions.user.#{userBadge}")
-              else
-                ':' # placeholder, not actually visible
+                div className: "user-group-badge user-group-badge--#{userBadge}"
 
           div
             className: "#{bn}__user-stripe"
-            style:
-              backgroundColor: userColor
 
         @messageViewer()
         @messageEditor()
@@ -120,63 +129,15 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
 
   editStart: =>
-    @textarea.style.minHeight = "#{@messageBody.getBoundingClientRect().height + 50}px"
+    @textarea.current?.style.minHeight = "#{@messageBody.getBoundingClientRect().height + 50}px"
 
     @setState editing: true, =>
-      @textarea.focus()
+      @textarea.current?.focus()
 
-  discussionLinkify: (text) =>
-    route = laroute.route('beatmapsets.discussion', {'beatmapset': "([0-9]+)"}) # what could possibly go wrong?
-    routeRegex = new RegExp(route.replace('/' , '\/'), 'i')
-
-    matches = text.match osu.urlRegex
-    currentUrl = new URL(window.location)
-
-    _.each matches, (url) ->
-      targetUrl = new URL(url)
-
-      if targetUrl.host == currentUrl.host
-        # target is osu site
-        if targetUrl.pathname == currentUrl.pathname
-          # same beatmapset, format: #123
-          linkText = targetUrl.hash.replace '/', ''
-          text = text.replace(url, "<a class='js-beatmap-discussion--jump' href='#{url}' rel='nofollow'>#{linkText}</a>")
-          return
-        else
-          if beatmapset = targetUrl.pathname.match routeRegex
-            # different beatmapset, format: 1234#567
-            linkText = "#{beatmapset[1]}#{targetUrl.hash}".replace '#/', '#'
-            text = text.replace(url, "<a href='#{url}' rel='nofollow'>#{linkText}</a>")
-            return
-
-      # otherwise just linkify url as normal
-      text = text.replace url, osu.linkify(url)
-
-    return text
-
-  formattedMessage: =>
-    text = @props.post.message
-    text = _.escape text
-    text = text.trim()
-    text = @discussionLinkify text
-    text = BeatmapDiscussionHelper.linkTimestamp text, ["#{bn}__timestamp"]
-    # replace newlines with <br>
-    # - trim trailing spaces
-    # - then join with <br>
-    # - limit to 2 consecutive <br>s
-    text = text
-      .split '\n'
-      .map (x) -> x.trim()
-      .join '<br>'
-      .replace /(?:<br>){2,}/g, '<br><br>'
-    text
-
-
-  handleEnter: (e) =>
-    return if e.keyCode != 13 || e.shiftKey
-
-    e.preventDefault()
-    @throttledUpdatePost()
+  handleKeyDownCallback: (type, event) =>
+    switch type
+      when InputHandler.SUBMIT
+        @throttledUpdatePost()
 
 
   isOwner: =>
@@ -190,14 +151,13 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
       el TextareaAutosize,
-        minRows: 3
         disabled: @state.posting
         className: "#{bn}__message #{bn}__message--editor"
         onChange: @setMessage
-        onKeyDown: @handleEnter
+        onKeyDown: @handleKeyDown
         value: @state.message
-        inputRef: (el) => @textarea = el
-      el BeatmapDiscussions.MessageLengthCounter, message: @state.message
+        ref: @textarea
+      el MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div className: "#{bn}__actions",
         div className: "#{bn}__actions-group"
@@ -230,7 +190,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
         className: "#{bn}__message"
         ref: (el) => @messageBody = el
         dangerouslySetInnerHTML:
-          __html: @formattedMessage()
+          __html: BeatmapDiscussionHelper.format @props.post.message
 
       div className: "#{bn}__info-container",
         span
@@ -248,7 +208,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
                   classNames: ["#{bn}__info-user"]
                 delete_time: osu.timeago @props.post.deleted_at
 
-        if @props.post.updated_at != @props.post.created_at && @props.post.updated_at != @props.post.deleted_at && @props.lastEditor?.id
+        if @props.post.updated_at != @props.post.created_at && @props.lastEditor?.id
           span
             className: "#{bn}__info #{bn}__info--edited"
             dangerouslySetInnerHTML:
@@ -269,8 +229,9 @@ class BeatmapDiscussions.Post extends React.PureComponent
           className: "#{bn}__actions-group"
           if @props.type == 'discussion'
             a
-              href: BeatmapDiscussionHelper.hash discussionId: @props.discussion.id
+              href: BeatmapDiscussionHelper.url discussion: @props.discussion
               onClick: @permalink
+              rel: 'nofollow'
               className: "#{bn}__action #{bn}__action--button"
 
               if @state.permalinkTimer?
@@ -320,8 +281,13 @@ class BeatmapDiscussions.Post extends React.PureComponent
                 'data-confirm': osu.trans('common.confirmation')
                 osu.trans('beatmaps.discussions.allow_kudosu')
 
+
   clearPermalinkClicked: =>
     @setState permalinkTimer: null
+
+
+  isTimeline: =>
+    @props.discussion.timestamp?
 
 
   permalink: (e) =>
@@ -356,19 +322,19 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     .done (data) =>
       @setState editing: false
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data
+      $.publish 'beatmapsetDiscussions:update', beatmapset: data
 
     .fail osu.ajaxError
 
     .always => @setState posting: false
 
 
-  userModerationGroup: =>
-    if !@cache.hasOwnProperty('userModerationGroup')
-      @cache.userModerationGroup = BeatmapDiscussionHelper.moderationGroup(@props.user)
+  userGroupBadge: =>
+    if !@cache.hasOwnProperty('userGroupBadge')
+      @cache.userGroupBadge = osu.userGroupBadge(@props.user)
 
-    @cache.userModerationGroup
+    @cache.userGroupBadge
 
 
   validPost: =>
-    BeatmapDiscussionHelper.validMessageLength(@state.message)
+    BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())

@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -70,14 +70,17 @@ class @Menu
 
 
   onTouchStart: (e) =>
-    target = e.currentTarget.getAttribute('data-menu-target')
-    return unless target
+    link = e.currentTarget
+    target = link.dataset.menuTarget
 
-    $target = $(e.currentTarget)
+    return unless target?
+
+    $target = $(target)
     e.preventDefault()
+    timeout = parseInt(link.dataset.menuShowDelay ? @menuTimeout, 10)
 
     Timeout.clear @refreshTimeout
-    @refreshTimeout = Timeout.set @menuTimeout, =>
+    @refreshTimeout = Timeout.set timeout, =>
       @currentMenu =
         if @currentMenu == target
           @closestMenuId $target
@@ -89,9 +92,10 @@ class @Menu
 
   onMouseEnter: (e) =>
     link = e.currentTarget
+    timeout = parseInt(link.dataset.menuShowDelay ? @menuTimeout, 10)
 
     Timeout.clear @refreshTimeout
-    @refreshTimeout = Timeout.set @menuTimeout, =>
+    @refreshTimeout = Timeout.set timeout, =>
       @currentMenu = link.dataset.menuTarget
       @currentMenu ?= @closestMenuId $(link)
       @refresh()
@@ -127,12 +131,7 @@ class @Menu
       if currentTree.indexOf(menuId) == -1
         Fade.out menu
         @$menuLink(menuId).removeClass('js-menu--active')
-
       else
-        last = $(menu).children('a:last')
-        bottom = last.position().top + last.height()
-        height = Math.max(210, bottom + 110)
-        $('.js-nav-popup-auto-size').css('height', "#{height}px")
-
         Fade.in menu
         @$menuLink(menuId).addClass('js-menu--active')
+        $(menu).trigger 'menu:showing'

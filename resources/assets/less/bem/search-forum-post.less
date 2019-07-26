@@ -1,0 +1,117 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.search-forum-post {
+  @avatar-size: 50px;
+  @margin: 5px;
+
+  &__actual {
+    // the actual content of the element.
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    line-height: 1.5;
+    pointer-events: none;
+  }
+
+  &__avatar {
+    flex: none;
+    width: @avatar-size;
+    height: @avatar-size;
+    margin: @margin;
+    pointer-events: auto;
+  }
+
+  &__avatar-image {
+    .full-size();
+    border-radius: 50%;
+  }
+
+  &__content {
+    flex: 1;
+    margin-left: @margin;
+    min-width: 0;
+  }
+
+  &__link {
+    // make link element take the full size of the element.
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__more {
+    display: flex;
+  }
+
+  &__poster {
+    display: inline-block;
+    margin-right: 1em;
+    pointer-events: auto;
+
+    .link-default();
+    color: @osu-colour-f1;
+
+    @media @mobile {
+      display: block;
+    }
+  }
+
+  &__text {
+    color: white;
+
+    &--excerpt {
+      font-size: @font-size--small-2;
+    }
+
+    &--footer {
+      color: @osu-colour-f1;
+      font-size: @font-size--small;
+    }
+
+    &--title {
+      font-size: @font-size--title-small-2;
+      margin-bottom: @margin;
+    }
+  }
+
+  &__time {
+    display: inline-block;
+    pointer-events: auto;
+
+    @media @mobile {
+      display: block;
+    }
+  }
+
+  &__url {
+    display: inline-block;
+    margin-right: 1em;
+
+    @media @mobile {
+      display: none;
+    }
+  }
+
+  &__username {
+    font-weight: bold;
+  }
+}

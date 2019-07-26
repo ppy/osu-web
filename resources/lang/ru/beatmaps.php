@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -38,13 +38,17 @@ return [
         'deny_kudosu' => 'запретить кудосу',
         'edit' => 'изменить',
         'edited' => 'Последний раз изменён :editor в :update_time',
-        'message_placeholder' => 'Нажмите сюда для публикации',
+        'kudosu_denied' => 'Отказано в получении кудосу.',
+        'message_placeholder_deleted_beatmap' => 'Эта сложность была удалена и отзываться о ней нельзя.',
+        'message_placeholder_locked' => 'Обсуждение этой карты было отключено.',
         'message_type_select' => 'Выбрать тип комментария',
-        'reply_placeholder' => 'Введи тут ответ',
+        'reply_notice' => 'Нажмите Enter для ответа.',
+        'reply_placeholder' => 'Введите тут ответ',
         'require-login' => 'Войди для публикации или ответа',
         'resolved' => 'Решено',
         'restore' => 'восстановить',
-        'title' => 'Обсуждения',
+        'show_deleted' => 'Показать удалённые',
+        'title' => 'Отзывы',
 
         'collapse' => [
             'all-collapse' => 'Скрыть всё',
@@ -52,80 +56,183 @@ return [
         ],
 
         'empty' => [
-            'empty' => 'Нет обсуждения!',
-            'hidden' => 'Ни одно обсуждение не соответствует выбранному фильтру.',
+            'empty' => 'Нет отзывов!',
+            'hidden' => 'Ни один отзыв не соответствует указанному фильтру.',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => 'Заблокировать возможность обсуждения',
+                'unlock' => 'Разблокировать возможность обсуждения',
+            ],
+
+            'prompt' => [
+                'lock' => 'Причина блокировки',
+                'unlock' => 'Вы уверены, что хотите разблокировать обсуждение?',
+            ],
         ],
 
         'message_hint' => [
-            'in_general' => 'Этот пост пойдет в общее обсуждение. Чтобы изменить эту карту, начни своё сообщение с отметкой времени (к примеру 00:12:345).',
-            'in_timeline' => 'Для изменения нескольких временных отметок, опубликуй несколько отметок (одна публикация на отметку).',
+            'in_general' => 'Этот пост пойдет в общую ветку отзывов. Чтобы изменить эту карту, начните своё сообщение с временной отметкой (к примеру 00:12:345).',
+            'in_timeline' => 'Для изменения нескольких отметок, опубликуйте несколько отметок (одна публикация на отметку).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Введите здесь, чтобы запостить в Общий (:version)',
+            'generalAll' => 'Введите здесь, чтобы запостить в Общий (Все сложности)',
+            'timeline' => 'Введите здесь, чтобы запостить в временную шкалу (:version)',
         ],
 
         'message_type' => [
+            'disqualify' => 'Дисквалифицировать',
+            'hype' => 'Хайпануть!',
+            'mapper_note' => 'Заметка',
+            'nomination_reset' => 'Сбросить номинацию',
             'praise' => 'Хвала',
             'problem' => 'Проблема',
             'suggestion' => 'Запрос',
         ],
 
         'mode' => [
-            'general' => 'Главная',
-            'general_all' => 'Главная (все сложности)',
+            'events' => 'История',
+            'general' => 'Общее :scope',
             'timeline' => 'График',
+            'scopes' => [
+                'general' => 'эта сложность',
+                'generalAll' => 'все сложности',
+            ],
         ],
 
         'new' => [
+            'pin' => 'Закрепить',
             'timestamp' => 'Временная отметка',
-            'timestamp_missing' => 'нажмите ctrl-c в режиме редактирования для получения временной отметки и добавь его!',
-            'title' => 'Новое обсуждение',
+            'timestamp_missing' => 'нажмите ctrl-c в редакторе чтобы скопировать временную отметку!',
+            'title' => 'Новый отзыв',
+            'unpin' => 'Открепить',
         ],
 
         'show' => [
-            'title' => ':title сделанный :mapper',
+            'title' => ':title от :mapper',
+        ],
+
+        'sort' => [
+            'created_at' => 'дате создания',
+            'timeline' => 'хронологии',
+            'updated_at' => 'дате изменения',
         ],
 
         'stats' => [
             'deleted' => 'Удалено',
-            'mine' => 'Мои', // TODO: wut
+            'mapper_notes' => 'Заметки',
+            'mine' => 'Мои',
             'pending' => 'Ожидающий',
             'praises' => 'Похвалы',
             'resolved' => 'Решено',
+            'total' => 'Все',
+        ],
+
+        'status-messages' => [
+            'approved' => 'Эта карта была одобрена :date!',
+            'graveyard' => "Эта карта не обновлялась с :date и похоже, что автор её забросил...",
+            'loved' => 'Эта карта была признана "любимой" :date!',
+            'ranked' => 'Эта карта была ранкнута :date!',
+            'wip' => 'Заметьте: Эта карта была помечена создателем как незавершённая.',
+        ],
+
+        'votes' => [
+            'up' => 'Проголосовать за это обсуждение',
+            'down' => 'Проголосовать против этого обсуждения',
         ],
     ],
 
+    'hype' => [
+        'button' => 'Хайпануть карту!',
+        'button_done' => 'Уже хайпанута!',
+        'confirm' => "Вы уверены? Это действие отберёт один из :n хайпов и не может быть отменено.",
+        'explanation' => 'Это сделает карту доступной для номинирования!',
+        'explanation_guest' => 'Войдите в аккаунт, чтобы сделать карту доступной для номинирования!',
+        'new_time' => "Вы получите другой хайп :new_time.",
+        'remaining' => 'У вас осталось :remaining хайпа.',
+        'required_text' => 'Хайп: :current/:required',
+        'section_title' => 'Прогресс хайпа',
+        'title' => 'Хайпаните',
+    ],
+
+    'feedback' => [
+        'button' => 'Оставить отзыв',
+    ],
+
     'nominations' => [
-        'disqualifed-at' => 'дисквалифицирован :time_ago (:reason).',
-        'disqualifed_no_reason' => 'причина не указана',
-        'disqualification-prompt' => 'Причина для дисквалификации?',
+        'delete' => 'Удалить',
+        'delete_own_confirm' => 'Уверены? Карта будет удалена, и вы будете перенаправлены обратно в свой профиль.',
+        'delete_other_confirm' => 'Уверены? Карта будет удалена, и вы будете перенаправлены в профиль пользователя.',
+        'disqualification_prompt' => 'Причина для дисквалификации?',
+        'disqualified_at' => 'дисквалифицирован :time_ago (:reason).',
+        'disqualified_no_reason' => 'причина не указана',
         'disqualify' => 'Дисквалифицировать',
-        'incorrect_state' => 'Не удалось выполнить данную задачу, пробовал перезагрузить страницу?',
+        'incorrect_state' => 'Не удалось выполнить данную задачу, попробуйте перезагрузить страницу.',
+        'love' => 'Любимое',
+        'love_confirm' => 'Отметить карту как любимую?',
         'nominate' => 'Номинировать',
-        'nominate-confirm' => 'Номинировать эту карту?',
-        'qualified' => 'Если больше не будет выявлено каких-либо проблем, карта получит рейтинговый статус примерно в :date.',
-        'qualified-soon' => 'Если больше не будет выявлено каких-либо проблем, карта получит рейтинговый статус очень скоро.',
-        'required-text' => 'Номинации: :current/:required',
+        'nominate_confirm' => 'Номинировать эту карту?',
+        'nominated_by' => 'номинирована :users',
+        'qualified' => 'Если больше нет проблем, то карта получит ранкнутый статус примерно :date.',
+        'qualified_soon' => 'Если больше нет проблем, то карта получит ранкнутый статус очень скоро.',
+        'required_text' => 'Номинации: :current/:required',
+        'reset_message_deleted' => 'удалено',
         'title' => 'Статус номинации',
+        'unresolved_issues' => 'Вы должны решить все проблемы.',
+
+        'reset_at' => [
+            'nomination_reset' => ':user сбросил прогресс номинаций :time_ago из-за новой проблемы :discussion (:message).',
+            'disqualify' => ':user дисквалифицировал :time_ago из-за новой проблемы :discussion (:message).',
+        ],
+
+        'reset_confirm' => [
+            'nomination_reset' => 'Вы уверены? Сообщение о новой проблеме сбросит статус номинации.',
+            'disqualify' => 'Уверены? Карта будет снята с квалификации и статус номинирования будет сброшен.',
+        ],
     ],
 
     'listing' => [
         'search' => [
-            'prompt' => 'начинай вводить ключевые слова ...',
+            'prompt' => 'начните вводить ключевые слова ...',
+            'login_required' => 'Войдите, чтобы искать.',
             'options' => 'Больше настроек поиска',
+            'supporter_filter' => 'Фильтрация по :filters требует наличия osu!supporter',
             'not-found' => 'нет результатов',
             'not-found-quote' => '... увы, ничего не найдено.',
             'filters' => [
+                'general' => 'Общее',
                 'mode' => 'Режим игры',
-                'status' => 'Статус',
+                'status' => 'Категории',
                 'genre' => 'Жанр',
                 'language' => 'Язык',
                 'extra' => 'Дополнительно',
                 'rank' => 'Рейтинг',
+                'played' => 'Сыграно',
+            ],
+            'sorting' => [
+                'title' => 'названию',
+                'artist' => 'исполнителю',
+                'difficulty' => 'сложности',
+                'favourites' => 'Избранное',
+                'updated' => 'дате обновления',
+                'ranked' => 'дате ранка',
+                'rating' => 'рейтингу',
+                'plays' => 'количеству игр',
+                'relevance' => 'релевантности',
+                'nominations' => 'номинациям',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Фильтрация по :filters требует :link',
+                'link_text' => 'тэг osu!supporter',
             ],
         ],
-        'mode' => 'Режим игры',
-        'status' => 'Статус одобрения',
-        'mapped-by' => 'автор :mapper',
-        'source' => 'от :source',
-        'load-more' => 'Загрузить ещё...',
+    ],
+    'general' => [
+        'recommended' => 'рекомендуемая сложность',
+        'converts' => 'показывать конвертированные карты',
     ],
     'mode' => [
         'any' => 'Все',
@@ -136,17 +243,19 @@ return [
     ],
     'status' => [
         'any' => 'Все',
-        'ranked-approved' => 'Рейтинговые и одобренные',
         'approved' => 'Одобренные',
+        'favourites' => '',
+        'graveyard' => 'Заброшенные',
+        'leaderboard' => '',
         'loved' => 'Любимые',
-        'faves' => 'Избранные',
-        'pending' => 'Ожидающие',
-        'graveyard' => 'Заброшенные', // TODO: найти перевод лучше
-        'my-maps' => 'Мои карты',
+        'mine' => '',
+        'pending' => 'Ожидающие и в процессе разработки',
+        'qualified' => 'Квалифицированные',
+        'ranked' => '',
     ],
     'genre' => [
         'any' => 'Все',
-        'unspecified' => 'Неопределенные',
+        'unspecified' => 'Не определён',
         'video-game' => 'Видео игры',
         'anime' => 'Аниме',
         'rock' => 'Рок',
@@ -154,30 +263,31 @@ return [
         'other' => 'Другой',
         'novelty' => 'Новый',
         'hip-hop' => 'Хип-хоп',
-        'electronic' => 'Электроника', // TODO: найти перевод лучше
+        'electronic' => 'Электроника',
     ],
-    'mods' => [ // Кажется, что перевод не нужен
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
+    'mods' => [
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Fade In',
         '9K' => '9K',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Double Time',
+        'EZ' => 'Easy Mode',
+        'FI' => 'Fade In',
+        'FL' => 'Flashlight',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'NF' => 'No Fail',
         'NM' => 'No mods',
+        'PF' => 'Perfect',
+        'Relax' => 'Relax',
+        'SD' => 'Sudden Death',
+        'SO' => 'Spun Out',
+        'TD' => 'Touch Device',
     ],
     'language' => [
         'any' => 'Все',
@@ -193,9 +303,14 @@ return [
         'instrumental' => 'Инструментальный',
         'other' => 'Другой',
     ],
+    'played' => [
+        'any' => 'Все',
+        'played' => 'Сыграно',
+        'unplayed' => 'Не сыграно',
+    ],
     'extra' => [
         'video' => 'Есть видео',
-        'storyboard' => 'Есть сторибоард',
+        'storyboard' => 'Есть сториборд',
     ],
     'rank' => [
         'any' => 'Все',
@@ -207,5 +322,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => 'Количество игр: :count',
+        'favourites' => 'В любимых: :count',
     ],
 ];

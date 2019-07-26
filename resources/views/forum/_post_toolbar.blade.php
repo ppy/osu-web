@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@
         type="button"
     >
         <span class="btn-circle__content">
-            <strong>B</strong>
+            <i class="fas fa-bold"></i>
         </span>
     </button>
 
@@ -32,7 +32,7 @@
         type="button"
     >
         <span class="btn-circle__content">
-            <em>I</em>
+            <i class="fas fa-italic"></i>
         </span>
     </button>
 
@@ -42,7 +42,7 @@
         type="button"
     >
         <span class="btn-circle__content">
-            <i class="fa fa-strikethrough"></i>
+            <i class="fas fa-strikethrough"></i>
         </span>
     </button>
 
@@ -52,7 +52,7 @@
         type="button"
     >
         <span class="btn-circle__content">
-            <span>H</span>
+            <i class="fas fa-heading"></i>
         </span>
     </button>
 
@@ -62,7 +62,7 @@
         type="button"
     >
         <span class="btn-circle__content">
-            <i class="fa fa-link"></i>
+            <i class="fas fa-link"></i>
         </span>
     </button>
 
@@ -71,7 +71,7 @@
         title="{{ trans("bbcode.spoilerbox") }}"
         type="button"
     >
-        <i class="fa fa-barcode"></i>
+        <i class="fas fa-barcode"></i>
     </button>
 
     <button
@@ -80,7 +80,7 @@
         type="button"
     >
         <span class="btn-circle__content">
-            <i class="fa fa-list-ol"></i>
+            <i class="fas fa-list-ol"></i>
         </span>
     </button>
 
@@ -90,7 +90,7 @@
         type="button"
     >
         <span class="btn-circle__content">
-            <i class="fa fa-list"></i>
+            <i class="fas fa-list"></i>
         </span>
     </button>
 
@@ -100,7 +100,7 @@
         type="button"
     >
         <span class="btn-circle__content">
-            <i class="fa fa-image"></i>
+            <i class="fas fa-image"></i>
         </span>
     </button>
 
@@ -108,7 +108,7 @@
         <span class="bbcode-size-select__label">
             {{ trans("bbcode.size._") }}
         </span>
-        <i class="fa fa-chevron-down"></i>
+        <i class="fas fa-chevron-down"></i>
 
         <select class="bbcode-size-select__select js-bbcode-btn--size">
             <option value="50">{{ trans("bbcode.size.tiny") }}</option>

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,10 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends('store/layout')
 
-@section("content")
-@include("store.header")
+@section('content')
+@include('store.header')
 <style>
 .address {
     border: none;
@@ -30,7 +30,7 @@
 </style>
 
 @if(!$order)
-<div class="grid grid--gutters osu-layout__row osu-layout__row--page">
+<div class="grid grid--gutters osu-layout__row osu-layout__row--page osu-layout--store">
     <div class="grid-cell grid-cell--fill">
         <h1>Not Found</h1>
         <p>The requested order could not be found.</p>
@@ -38,7 +38,7 @@
 </div>
 @else
 @if(Request::has('thanks'))
-<div class="grid grid--gutters osu-layout__row osu-layout__row--page no-print">
+<div class="grid grid--gutters osu-layout__row osu-layout__row--page no-print osu-layout--store">
     <div class="grid-cell grid-cell--fill">
         <h1>Thanks for your order!</h1>
         <p>
@@ -52,7 +52,7 @@
     @if($i > 0)
     <div class='print-page-break'></div>
     @endif
-    <div class="grid grid--gutters osu-layout__row osu-layout__row--page invoice-page"><div class="grid-cell grid-cell--fill">
+    <div class="grid grid--gutters osu-layout__row osu-layout__row--page invoice-page osu-layout--store"><div class="grid-cell grid-cell--fill">
         <div class="grid grid--xs">
             <div class="grid-cell grid-cell--5of12">
                 <div>
@@ -101,7 +101,12 @@
 
         <div class="grid">
             <div class="grid-cell">
-                @include("store.objects.order", ['order' => $order, 'weight' => true, 'shipping' => false])
+                @include('store.objects.order', [
+                    'order' => $order,
+                    'weight' => true,
+                    'checkout' => false,
+                    'forShipping' => $forShipping,
+                ])
             </div>
         </div>
 
@@ -125,7 +130,7 @@
                 @endif
                 </td>
                 <td>FOB Japan</td>
-                <td>{{ $order->getPaymentProvider() }} ({{ $order->getStatusText() }})</td>
+                <td>{{ studly_case($order->getPaymentProvider()) }} ({{ $order->getPaymentStatusText() }})</td>
             </tr>
         </table>
         @endif
@@ -146,7 +151,7 @@ window.onload = function() {
 </script>
 @endif
 
-<div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 no-print">
+<div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 no-print osu-layout--store">
     <div class='osu-layout__sub-row osu-layout__sub-row--with-separator'>
         <h3>Order Status</h3>
 
@@ -155,10 +160,15 @@ window.onload = function() {
             <p>
                 If you have any issues with your purchase, please contact the <a href='mailto:osustore@ppy.sh'>osu!store support</a>.
             </p>
-        @elseif ($order->status == 'incart')
-            <p><strong>Your payment has not yet been confirmed!</strong></p>
+        @elseif ($order->isProcessing())
+            <p><strong>{{ trans('store.invoice.status.processing.title') }}</strong></p>
             <p>
-                If you have already paid, we may still be waiting to receive confirmation of your payment. Please refresh this page in a minute or two!
+                {{ trans('store.invoice.status.processing.line_1') }}
+            </p>
+            <p>
+                {!! trans('store.invoice.status.processing.line_2._', [
+                    'link' => Html::link(route('store.checkout.show', $order), trans('store.invoice.status.processing.line_2.link_text')),
+                ]) !!}
             </p>
         @elseif ($order->status == 'cancelled')
             <p><strong>Your order has been cancelled</strong></p>
@@ -190,7 +200,7 @@ window.onload = function() {
 
             @if ($order->isPendingEcheck())
                 <p>
-                    As your payment was an eCheck, please allow up to 10 extra days for the payment to clear through paypal!
+                    {{ trans('store.invoice.echeck_delay') }}
                 </p>
             @endif
         @endif

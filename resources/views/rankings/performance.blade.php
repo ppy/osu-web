@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -50,33 +50,35 @@
                         #{{ $scores->firstItem() + $index }}
                     </td>
                     <td class="ranking-page-table__column">
-                        <a class="ranking-page-table__user-link" href="{{route('users.show', $score->user_id)}}">
-                            @include('objects._country_flag', [
-                                'country_name' => $score->user->country->name,
-                                'country_code' => $score->user->country->acronym,
-                            ])
-                            <span class="ranking-page-table__user-link-text js-usercard" data-user-id="{{$score->user_id}}" data-tooltip-position="right center">
+                        <div class="ranking-page-table__user-link">
+                            <a href="{{route('rankings', ['mode' => 'osu', 'type' => 'performance', 'country' => $score->user->country->acronym])}}">
+                                @include('objects._country_flag', [
+                                    'country_name' => $score->user->country->name,
+                                    'country_code' => $score->user->country->acronym,
+                                ])
+                            </a>
+                            <a href="{{route('users.show', $score->user_id)}}" class="ranking-page-table__user-link-text js-usercard" data-user-id="{{$score->user_id}}" data-tooltip-position="right center">
                                 {{ $score->user->username }}
-                            </span>
-                        </a>
+                            </a>
+                        </div>
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ format_percentage($score->accuracy_new) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ number_format($score->playcount) }}
+                        {{ i18n_number_format($score->playcount) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--focused">
-                        {{ number_format(round($score->rank_score)) }}
+                        {{ i18n_number_format(round($score->rank_score)) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ number_format(max(0, $score->x_rank_count + $score->xh_rank_count)) }}
+                        {{ i18n_number_format(max(0, $score->x_rank_count + $score->xh_rank_count)) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ number_format(max(0, $score->s_rank_count + $score->sh_rank_count)) }}
+                        {{ i18n_number_format(max(0, $score->s_rank_count + $score->sh_rank_count)) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ number_format(max(0, $score->a_rank_count)) }}
+                        {{ i18n_number_format(max(0, $score->a_rank_count)) }}
                     </td>
                 </tr>
             @endforeach

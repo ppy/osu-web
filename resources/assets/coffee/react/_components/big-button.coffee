@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,15 +16,23 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, span} = ReactDOMFactories
+import * as React from 'react'
+import { a, button, span, i } from 'react-dom-factories'
+import { Spinner } from 'spinner'
 el = React.createElement
 
-@BigButton = ({modifiers = [], text, icon, props = {}, extraClasses = []}) ->
-  props.className = 'btn-osu-big'
-  props.className += " btn-osu-big--#{mod}" for mod in modifiers
+export BigButton = ({modifiers = [], text, icon, props = {}, extraClasses = []}) ->
+  props.className = osu.classWithModifiers('btn-osu-big', modifiers)
   props.className += " #{klass}" for klass in extraClasses
 
-  blockElement = if props.href? then a else button
+  blockElement =
+    if props.href?
+      if props.disabled
+        span
+      else
+        a
+    else
+      button
 
   blockElement props,
     span className: "btn-osu-big__content #{if !text? || !icon? then 'btn-osu-big__content--center' else ''}",
@@ -36,4 +44,8 @@ el = React.createElement
       if icon?
         span className: 'btn-osu-big__icon',
           # ensure no random width change when changing icon
-          el Icon, name: icon, modifiers: ['fw']
+          span className: 'fa-fw',
+            if icon == '_spinner'
+              el Spinner
+            else
+              i className: icon

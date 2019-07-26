@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,26 +16,30 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, a, span} = ReactDOMFactories
+import core from 'osu-core-singleton'
+import * as React from 'react'
+import { div, a, i, span } from 'react-dom-factories'
 el = React.createElement
+controller = core.beatmapsetSearchController
 
-class Beatmaps.SearchSort extends React.PureComponent
+export class SearchSort extends React.PureComponent
   render: =>
-    div className: 'beatmapsets-sorting',
-      for field in @fields()
-        selected = @selected(field)
+    div className: 'sort sort--beatmapsets',
+      div className: 'sort__items',
+        span className: 'sort__item sort__item--title', osu.trans('sort._')
+        for field in @fields()
+          selected = @selected(field)
 
-        a
-          key: field
-          href: '#'
-          className: "beatmapsets-sorting__item #{'beatmapsets-sorting__item--selected' if selected}"
-          onClick: @select
-          'data-field': field
-          field
-          span
-            className: 'beatmapsets-sorting__item-arrow'
-            'data-visibility': ('hidden' if !selected)
-            el Icon, name: "caret-#{if @props.sorting.order == 'asc' then 'up' else 'down'}"
+          a
+            key: field
+            href: '#'
+            className: "sort__item sort__item--button #{'sort__item--active' if selected}"
+            onClick: @select
+            'data-field': field
+            osu.trans "beatmaps.listing.search.sorting.#{field}"
+            span
+              className: 'sort__item-arrow'
+              i className: "fas fa-caret-#{if @props.sorting.order == 'asc' then 'up' else 'down'}"
 
 
   fields: =>
@@ -43,21 +47,27 @@ class Beatmaps.SearchSort extends React.PureComponent
       title: true
       artist: true
       difficulty: true
-      ranked: false
       updated: false
+      ranked: false
       rating: true
       plays: true
+      favourites: true
       relevance: false
-      hype: false
+      nominations: false
 
     if !_.isEmpty(@props.filters.query)
       fields.relevance = true
 
-    if @props.filters.status in [4, 5]
+    if @props.filters.status in ['graveyard', 'pending']
       fields.updated = true
-      fields.hype = true
+      fields.nominations = true
+      fields.plays = false
+    else if @props.filters.status == 'mine'
+      fields.updated = true
+      fields.ranked = true
     else
       fields.ranked = true
+
 
     field for own field, enabled of fields when enabled
 
@@ -72,7 +82,7 @@ class Beatmaps.SearchSort extends React.PureComponent
     else
       order = 'desc'
 
-    $(document).trigger 'beatmap:search:filtered', sort: "#{field}_#{order}"
+    controller.updateFilters sort: "#{field}_#{order}"
 
 
   selected: (field) =>

@@ -44,6 +44,7 @@ return [
     |
     */
 
+    // NOTE: This does nothing because we overrode SessionManager::buildSession
     'encrypt' => false,
 
     /*

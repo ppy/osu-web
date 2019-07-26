@@ -1,0 +1,93 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.value-display {
+  @_top: value-display;
+  display: flex;
+  flex-direction: column;
+  min-width: 60px;
+
+  &::before {
+    height: 2px;
+    display: block;
+    content: '';
+    background-color: @osu-colour-h1;
+    border-radius: 10000px;
+    margin-bottom: 2px;
+  }
+
+  &--kudosu {
+    padding: 4px;
+    flex: 1;
+  }
+
+  &--kudosu::before {
+    background-color: @osu-colour-h1;
+  }
+
+  &--medals::before {
+    background-color: @green-light;
+  }
+
+  &--pp::before {
+    background-color: @red;
+  }
+
+  &__description {
+    font-size: @font-size--title-small;
+    color: white;
+
+    a {
+      .link-default();
+    }
+  }
+
+  &__label {
+    font-weight: bold;
+    font-size: @font-size--title-small-3;
+
+    @media @desktop {
+      font-size: @font-size--normal;
+    }
+
+    .@{_top}--large & {
+      @media @desktop {
+        font-size: @font-size--title-small;
+      }
+    }
+  }
+
+  &__value {
+    font-size: @font-size--title;
+    font-weight: 100;
+
+    @media @desktop {
+      font-size: @font-size--title-small-4;
+    }
+
+    .@{_top}--kudosu & {
+      font-size: @font-size--large-3;
+    }
+
+    .@{_top}--large & {
+      @media @desktop {
+        font-size: @font-size--large-3;
+      }
+    }
+  }
+}

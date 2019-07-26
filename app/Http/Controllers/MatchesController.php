@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Country;
 use App\Models\Multiplayer\Match;
 use App\Models\User;
 use App\Transformers\Multiplayer\EventTransformer;
@@ -32,26 +31,46 @@ class MatchesController extends Controller
 {
     protected $section = 'multiplayer';
 
-    public function show($match_id)
+    public function show($id)
     {
-        $match = Match::findOrFail($match_id);
+        $match = Match::findOrFail($id);
 
-        $match = json_item(
+        priv_check('MatchView', $match)->ensureCan();
+
+        $eventsJson = $this->eventsJson([
+            'match' => $match,
+            'after' => request('after'),
+            'before' => request('before'),
+        ]);
+
+        $matchJson = json_item(
             $match,
             new MatchTransformer
         );
 
-        $full = Request::input('full', false);
-
-        return view('multiplayer.match', compact('match', 'full'));
+        return view('multiplayer.match', compact('matchJson', 'eventsJson'));
     }
 
-    public function history($match_id)
+    public function history($matchId)
     {
-        $since = Request::input('since', 0);
-        $full = Request::input('full', false) === 'true';
+        $match = Match::findOrFail($matchId);
 
-        $match = Match::findOrFail($match_id);
+        priv_check('MatchView', $match)->ensureCan();
+
+        return $this->eventsJson([
+            'match' => $match,
+            'after' => request('after'),
+            'before' => request('before'),
+            'limit' => request('limit'),
+        ]);
+    }
+
+    private function eventsJson($params)
+    {
+        $match = $params['match'];
+        $after = get_int($params['after'] ?? null);
+        $before = get_int($params['before'] ?? null);
+        $limit = clamp(get_int($params['limit'] ?? null) ?? 100, 1, 101);
 
         $events = $match->events()
             ->with([
@@ -59,38 +78,28 @@ class MatchesController extends Controller
                 'game.scores' => function ($query) {
                     $query->with('game')->default();
                 },
-            ])
-            ->where('event_id', '>', $since);
+            ])->limit($limit);
 
-        if ($full) {
-            $events->default();
-        } else {
+        if (isset($after)) {
             $events
-                ->orderBy('event_id', 'desc')
-                ->take(config('osu.mp-history.event-count'));
+                ->where('event_id', '>', $after)
+                ->orderBy('event_id', 'ASC');
+        } else {
+            if (isset($before)) {
+                $events->where('event_id', '<', $before);
+            }
+
+            $events->orderBy('event_id', 'DESC');
+            $reverseOrder = true;
         }
 
         $events = $events->get();
 
-        if (!$full) {
+        if ($reverseOrder ?? false) {
             $events = $events->reverse();
         }
 
-        $userIds = [];
-
-        foreach ($events as $event) {
-            if ($event->user_id) {
-                $userIds[] = $event->user_id;
-            }
-
-            if ($event->game) {
-                foreach ($event->game->scores as $score) {
-                    $userIds[] = $score->user_id;
-                }
-            }
-        }
-
-        $users = User::with('country')->whereIn('user_id', array_unique($userIds))->get();
+        $users = User::with('country')->whereIn('user_id', $this->usersFromEvents($events))->get();
 
         $users = json_collection(
             $users,
@@ -107,7 +116,27 @@ class MatchesController extends Controller
         return [
             'events' => $events,
             'users' => $users,
-            'all_events_count' => $match->events()->count(),
+            'latest_event_id' => $match->events()->select('event_id')->last()->getKey(),
+            'current_game_id' => optional($match->currentGame())->getKey(),
         ];
+    }
+
+    private function usersFromEvents($events)
+    {
+        $userIds = [];
+
+        foreach ($events as $event) {
+            if ($event->user_id) {
+                $userIds[] = $event->user_id;
+            }
+
+            if ($event->game) {
+                foreach ($event->game->scores as $score) {
+                    $userIds[] = $score->user_id;
+                }
+            }
+        }
+
+        return array_unique($userIds);
     }
 }

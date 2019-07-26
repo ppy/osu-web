@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,20 +19,34 @@
 .osu-layout {
   ._page {
     .default-box-shadow();
-    background-color: #fff;
+    background-color: @osu-colour-b5;
   }
 
   display: flex;
   flex-direction: column;
 
-  &--body {
-    background-color: transparent;
+  transition: filter 200ms ease-in-out, opacity 200ms ease-in-out; // for fading in after &--masked is removed
 
+  &--mobile-app {
+    .fancy-scrollbar();
+
+    @media @mobile {
+      position: fixed;
+    }
+  }
+
+  &--body {
+    background-color: @osu-colour-b6;
+  }
+
+  &--body-landing {
+    background-color: @osu-colour-b6;
     // inspired by
     // https://fourword.fourkitchens.com/article/fix-scrolling-performance-css-will-change-property
     // using backface-visibility since IE doesn't have will-change property yet.
     &::before {
-      .at2x("/images/backgrounds/page-light.png", 500px, 500px);
+      .at2x("/images/backgrounds/page-dark.png", 500px, 500px);
+      opacity: 0.25;
       position: fixed;
       backface-visibility: hidden;
       width: 100%;
@@ -44,64 +58,47 @@
     }
   }
 
-  &--body-dark {
-    background-color: #333;
-
-    &::before {
-      .at2x("/images/backgrounds/page-dark.png", 500px, 500px);
-
-      opacity: 0.25;
-    }
-  }
-
-  &--body-darker {
-    &::before {
-      .at2x("/images/backgrounds/page-darker.png", 500px, 500px);
-    }
-  }
-
-  &--body-333 {
-    &::before {
-      .at2x("/images/backgrounds/page-333.png", 500px, 500px);
-    }
-  }
-
-  &--body-555 {
-    &::before {
-      .at2x("/images/backgrounds/page-555.png", 500px, 500px);
-    }
-  }
-
-  &--body-ddd {
-    &::before {
-      .at2x("/images/backgrounds/page-ddd.png", 500px, 500px);
-    }
-  }
-
   &--full {
     flex: 1 0 auto;
     width: 100%;
   }
 
+  &--masked {
+    position: absolute;
+    filter: brightness(0);
+    opacity: 0.8;
+    pointer-events: none;
+    backface-visibility: hidden; // prevents flashing in some browers on resize/transition start
+
+    @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+      /* IE10+ fallback */
+      opacity: 0;
+    }
+  }
+
+  &--store {
+    background-color: white !important;
+  }
+
   &__col {
-    width: calc(100% ~'-' 10px);
+    width: calc(100% - 10px);
     margin: 5px;
 
     &--sm-6 {
       @media @desktop {
-        width: calc((6 / 12 * 100%) ~'-' 10px);
+        width: calc((6 / 12 * 100%) - 10px);
       }
     }
 
     &--sm-4 {
       @media @desktop {
-        width: calc((4 / 12 * 100%) ~'-' 10px);
+        width: calc((4 / 12 * 100%) - 10px);
       }
     }
 
     &--sm-3 {
       @media @desktop {
-        width: calc((3 / 12 * 100%) ~'-' 10px);
+        width: calc((3 / 12 * 100%) - 10px);
       }
     }
   }
@@ -119,14 +116,19 @@
     }
   }
 
+  &__no-scroll {
+    overflow: hidden;
+    flex: 1 0 auto;
+  }
+
   &__row {
     ._width(@extra-margin: 0px) {
-      width: calc(100% ~'-' (@extra-margin * 2));
+      width: calc(100% - (@extra-margin * 2));
       max-width: (@container-sm - @extra-margin * 2);
     }
 
     ._width-desktop(@extra-margin: 0px) {
-      width: calc(100% ~'-' ((@extra-margin + @grid-gutter-width) * 2));
+      width: calc(100% - ((@extra-margin + @grid-gutter-width) * 2));
       max-width: (@container-sm - @extra-margin * 2);
     }
 
@@ -141,12 +143,6 @@
 
     &--bootstrap {
       .clearfix;
-    }
-
-    &--changelog-header {
-      ._page;
-      background-color: #555;
-      margin-bottom: 10px;
     }
 
     &--forum-post-create {
@@ -169,6 +165,77 @@
       ._page;
       padding: 20px;
       margin-bottom: 10px;
+    }
+
+    &--page-admin {
+      ._page;
+      padding: 20px;
+      margin-bottom: 10px;
+      color: white;
+
+      h1, h2, h3, h4 {
+        font-style: normal;
+        color: white;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      h2 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 2px solid @osu-colour-h1;
+        width: max-content;
+        max-width: 100%;
+      }
+
+      h3 {
+        font-size: 14px;
+      }
+
+      h4 {
+        font-size: 12px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      a {
+        .link-default();
+      }
+
+      pre {
+        background-color: @osu-colour-b6;
+        border: none;
+        color: white;
+      }
+
+      small {
+        color: @osu-colour-f1;
+      }
+
+      // bootstrap override
+      .label-default {
+        color: @osu-colour-f1;
+        background-color: @osu-colour-b6;
+      }
+    }
+
+    &--page-admin-store {
+      color: black;
+
+      a {
+        .link-blue-dark();
+      }
+
+      .panel-title > small {
+        font-size: 12px;
+        color: black;
+      }
     }
 
     &--page-artist-index {
@@ -195,6 +262,12 @@
       margin-bottom: 10px;
     }
 
+    &--page-watches {
+      ._page;
+      margin-bottom: 10px;
+      background-color: white;
+    }
+
     &--page-compact-no-margin {
       ._page;
     }
@@ -209,6 +282,8 @@
     &--page-mp-history {
       ._page;
       padding: 20px;
+      margin-bottom: 10px;
+      background-color: white;
     }
 
     &--sm1 {
@@ -238,7 +313,7 @@
     &--landing-sitemap {
       max-width: 800px;
       margin: 35px 0 40px;
-      width: calc(100% ~'-' 20px);
+      width: calc(100% - 20px);
     }
   }
 
@@ -247,9 +322,7 @@
     flex-direction: column;
 
     &--extra {
-      .inner-shadow-top();
       flex: 1 0 auto;
-      background-color: fade(#000, 75%);
       padding: 10px 0;
     }
 
@@ -264,6 +337,12 @@
     &--landing-footer {
       flex: none;
       .at2x("/images/backgrounds/page-000.png", 500px, 500px);
+    }
+
+    &--users-extra {
+      flex: 1 0 auto;
+      background-color: @osu-colour-b6;
+      padding: 10px 0;
     }
   }
 

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,48 +15,38 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<li class="forum-topic-entry clickable-row u-forum--hover-area">
-    <div class="forum-topic-entry__bg"></div>
 
-    <a
-        class="
-            forum-topic-entry__col
-            forum-topic-entry__col--icon
-            forum-topic-entry__col--icon-plus
-            js-login-required--click
-        "
-        href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}"
-    >
-        <i class="fa fa-plus"></i>
+@php
+    $newTopicAuth = priv_check('ForumTopicStore', $forum);
+    $newTopicEnabled = $newTopicAuth->can() || $newTopicAuth->requireLogin();
+@endphp
+
+@if ($newTopicEnabled)
+    <a class="btn-osu-big btn-osu-big--forum-button js-login-required--click"
+        href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}">
+        @if (Auth::check())
+            <span class="btn-osu-big__content">
+                <span class="btn-osu-big__left">
+                    {{ trans('forum.topic.new_topic') }}
+                </span>
+                <span class="btn-osu-big__icon"><i class="fas fa-plus"></i></span>
+            </span>
+        @else
+            <span class="btn-osu-big__content">
+                <span class="btn-osu-big__left">
+                    {{ trans('forum.topic.new_topic_login') }}
+                </span>
+                <span class="btn-osu-big__icon"><i class="fas fa-sign-in-alt"></i></span>
+            </span>
+        @endif
     </a>
-
-    <div class="forum-topic-entry__col forum-topic-entry__col--main">
-        <div class="forum-topic-entry__content forum-topic-entry__content--left">
-            <a
-                class="
-                    u-forum--link
-                    u-forum--hover-target
-                    clickable-row-link
-                    js-login-required--click
-                    forum-topic-entry__title
-                "
-                href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}"
-            >
+@else
+    <span class="btn-osu-big btn-osu-big--forum-button" title="{{ $newTopicAuth->message() }}" disabled>
+        <span class="btn-osu-big__content">
+            <span class="btn-osu-big__left">
                 {{ trans('forum.topic.new_topic') }}
-            </a>
-        </div>
-    </div>
-
-    <a
-        class="
-            forum-topic-entry__col
-            forum-topic-entry__col--last-link
-            js-login-required--click
-            u-forum--link-hover
-        "
-        href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}"
-        title="{{ trans('forum.topic.new_topic') }}"
-    >
-        <i class="fa fa-chevron-right"></i>
-    </a>
-</li>
+            </span>
+            <span class="btn-osu-big__icon"><i class="fas fa-plus"></i></span>
+        </span>
+    </span>
+@endif

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,24 +20,33 @@
 
 return [
     'header' => ':type Rankning',
+
     'type' => [
         'performance' => 'Prestanda',
-        'charts' => 'Diagram',
+        'charts' => 'I rampljuset',
         'score' => 'Poäng',
         'country' => 'Land',
     ],
+
+    'spotlight' => [
+        'end_date' => '',
+        'map_count' => '',
+        'participants' => '',
+        'start_date' => '',
+    ],
+
     'stat' => [
-        'accuracy' => 'Precision',
+        'accuracy' => 'Träffsäkerhet',
         'active_users' => 'Aktiva Användare',
         'country' => 'Land',
-        'play_count' => 'Antal Spel',
+        'play_count' => 'Antal Gånger Spelat',
         'performance' => 'Prestanda',
         'total_score' => 'Total Poäng',
         'ranked_score' => 'Rankad Poäng',
-        'average_score' => 'Genoms. Poäng',
-        'average_performance' => 'Genoms. Prestanda',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+        'average_score' => 'Snittpoäng',
+        'average_performance' => 'Snittprestanda',
+        'ss' => '',
+        's' => '',
+        'a' => '',
     ],
 ];

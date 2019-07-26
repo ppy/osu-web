@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -31,7 +31,7 @@ return [
             'recover_link' => 'email recovery process here',
             'reissue' => 'You can also :reissue_link or :logout_link.',
             'reissue_link' => 'request another code',
-            'logout_link' => 'logout',
+            'logout_link' => 'sign out',
         ],
     ],
 

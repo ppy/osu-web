@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,17 +15,20 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', [
+    'legacyNav' => false,
+])
 
 @section('content')
-    @include('home._user_header_default', [
-        'title' => trans('home.user.header.welcome', ['username' => Auth::user()->username])
-    ])
+    <div class="js-react--friends-index osu-layout osu-layout--full"></div>
+@endsection
 
-    <div class="osu-page osu-page--generic osu-page--small osu-page--dark-bg">
-        <div class="user-friends">
-            <h2 class="user-friends__title">{{trans('friends.title')}}</h2>
-            @include('objects._userlist', ['userlist' => $userlist])
-        </div>
-    </div>
+@section("script")
+    @parent
+
+    <script id="json-users" type="application/json">
+        {!! json_encode($usersJson) !!}
+    </script>
+
+    @include('layout._extra_js', ['src' => 'js/react/friends-index.js'])
 @endsection

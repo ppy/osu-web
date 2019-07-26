@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,10 +20,12 @@
 
 return [
     'top-headers' => [
-        'headline' => 'Live Streams',
-        'description' => 'Data is fetched from twitch.tv every five minutes based on the directory listing. Feel free to start streaming and get yourself listed! For more information on how to get setup, please check out the wiki page on live streaming.',
+        'headline' => 'Livestream',
+        'description' => 'I dati sono reperiti da twitch.tv ogni 5 minuti basandosi sulla directory listing. Sentiti libero di andare in diretta e comparire sulla lista! Per maggiori informazioni su come fare, controlla la voce sul "live streaming" della wiki.',
+
+        'link' => 'la pagina della wiki sulle livestreams',
     ],
     'headers' => [
-        'regular' => 'Currently Streaming',
+        'regular' => 'In Diretta',
     ],
 ];

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,23 +22,20 @@
   margin: 2px 0;
 
   &__body {
-    background-color: #eee;
+    background-color: @osu-colour-b3;
   }
 
   &__header {
     padding: @beatmappack-listing--gutter;
-    background-color: #fff;
+    background-color: @osu-colour-b3;
     cursor: pointer;
 
-    &:hover {
-      background-color: darken(#fff, 5%);
-      .js-accordion__item--expanded & {
-        background-color: #fff;
-      }
+    .js-accordion__item--expanded & {
+      background-color: @osu-colour-b2;
     }
 
-    .js-accordion__item--expanded & {
-      cursor: auto;
+    &:hover {
+      background-color: @osu-colour-b2;
     }
   }
 
@@ -55,7 +52,7 @@
   }
 
   &__name {
-    color: @purple-dark;
+    color: white;
 
     &.beatmap-packs__cell {
       flex-grow: 4;

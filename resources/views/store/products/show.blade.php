@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,19 +15,19 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends('master', ['titlePrepend' => $product->name])
 
-@section("content")
-    @include("store.header")
+@section('content')
+    @include('store.header')
 
     {!! Form::open([
-        "url" => "store/add-to-cart",
+        "url" => route('store.cart.store', ['add' => true]),
         "data-remote" => true,
         "id" => "product-form",
-        "class" => "osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1"
+        "class" => "osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 osu-layout--store"
     ]) !!}
         <div class="osu-layout__sub-row osu-layout__sub-row--lg1" id="product-header" style="background-image: url({{ $product->header_image }})">
-            <div>{!! Markdown::convertToHtml($product->header_description) !!}</div>
+            <div>{!! markdown($product->header_description) !!}</div>
         </div>
 
         <div class="osu-layout__sub-row">
@@ -41,7 +41,7 @@
 
                 <div class="grid">
                     <div class="grid-cell grid-cell--fill">
-                        {!! Markdown::convertToHtml($product->description) !!}
+                        {!! markdown($product->description, 'store') !!}
                     </div>
                 </div>
 
@@ -84,7 +84,7 @@
                 <div class="grid-cell grid-cell--1of2">
                     <div class="grid">
                         <div class="grid-cell grid-cell--fill">
-                            {!! Markdown::convertToHtml($product->description) !!}
+                            {!! markdown($product->description, 'store') !!}
                         </div>
                     </div>
                     <div class="grid price-box">
@@ -166,7 +166,7 @@
 
             @if($requestedNotification && !$product->inStock())
                 <div class="store-notification-requested-alert">
-                    <span class="fa fa-check-circle-o store-notification-requested-alert__icon"></span>
+                    <span class="far fa-check-circle store-notification-requested-alert__icon"></span>
                     <p class="store-notification-requested-alert__text">
                         {!! trans('store.product.notification_success', [
                             'link' => link_to_route(

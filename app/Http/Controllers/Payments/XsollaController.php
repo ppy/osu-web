@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -50,8 +50,9 @@ class XsollaController extends Controller
     {
         $projectId = config('payments.xsolla.project_id');
         $user = Auth::user();
-        // FIXME: use a different method?
-        $order = Order::cart($user);
+        $order = Order::whereIn('status', ['incart', 'processing'])
+            ->whereOrderNumber(request('orderNumber'))
+            ->first();
 
         if ($order === null) {
             return;
@@ -105,7 +106,8 @@ class XsollaController extends Controller
         } catch (XsollaUserNotFoundException $exception) {
             return $this->errorResponse('INVALID_USER', 'INVALID_USER', 404);
         } catch (Exception $exception) {
-            Log::error($exception);
+            log_error($exception);
+
             // status code needs to be a 4xx code to make Xsolla an error to the user.
             return $this->errorResponse('Something went wrong.', 'FATAL_ERROR', 422);
         }
@@ -117,7 +119,7 @@ class XsollaController extends Controller
     public function completed()
     {
         $orderNumber = Request::input('foreignInvoice') ?? '';
-        $order = OrderCheckout::complete($orderNumber);
+        $order = OrderCheckout::for($orderNumber)->completeCheckout();
 
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }

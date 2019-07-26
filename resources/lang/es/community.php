@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,24 +22,36 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => '¿¡Amas osu!?<br/>
-                                Ayuda a su desarrollo :D',
+            'big_description' => '¿Te encanta osu!?<br/>
+                                Ayúdanos con su desarrollo :D',
             'small_description' => '',
-            'support_button' => '¡Quiero ayudar a osu!',
+            'support_button' => 'Quiero ayudar a osu!',
         ],
 
-        'dev_quote' => 'osu! es un juego completamente Free To Play, pero mantenerlo definitivamente no es gratis. Entre el coste de alquilar servidores y banda ancha de alta calidad, el tiempo invertido manteniendo el sistema y la comunidad, dando premios para las competiciones, respondiendo preguntas de soporte y generalmente manteniendo a las personas felices, ¡osu! consume una cantidad de dinero bastante considerable! Oh, y no olvides el hecho de que lo hacemos sin ningún tipo de anuncio o asociándonos con tontas barras de herramientas.
-            <br/><br/>Al final osu! es en gran parte dirigido por mí, a quien puedes conocer mejor como "peppy".
-            He tenido que dejar mi trabajo con el fin de mantenerme al día con osu!,
+        'dev_quote' => 'osu! es un juego completamente gratuito, pero mantenerlo definitivamente no es tan gratis.
+        Entre el costo de alquilar servidores y el ancho de banda internacional de alta calidad, el tiempo dedicado al mantenimiento del sistema y la comunidad,
+        proporcionando premios para competencias, responder preguntas de soporte y, en general, mantener a la gente contenta, osu! ¡consume una cantidad considerable de dinero!
+        ¡Ah, y no olvides el hecho de que lo hacemos sin publicidad ni asociación con barras de herramientas tontas y cosas por el estilo!
+            <br/><br/>osu! es, al final del día, en gran parte administrado por mí, al que pueden conocer mejor como "peppy".
+            Tuve que dejar mi trabajo con el fin de manternerme al dia con osu!,
             y en ocasiones lucho para mantener los estándares por los que me esfuerzo.
-            Me gustaría ofrecer mi agradecimiento personal a aquellos que han apoyado osu! hasta ahora,
-            y también a aquellos que continúen apoyando este increíble juego y a la comunidad en el futuro :).',
+            Me gustaría ofrecer mi agradecimiento personal a aquellos que han apoyado a osu! hasta ahora,
+            y tanto como para aquellos que continúan apoyando este increíble juego y comunidad en el futuro :).',
+
+        'supporter_status' => [
+            'contribution' => '¡Gracias por tu apoyo hasta ahora! ¡Has contribuido un total de :dollars con la compra de :tags tags!',
+            'gifted' => ':giftedTags de tus compras de tags han sido regaladas (un total de :giftedDollars regalados), ¡qué generoso!',
+            'not_yet' => "Todavía no tienes un tag de supporter aún :(",
+            'title' => 'Estado de supporter actual',
+            'valid_until' => 'Tu tag de supporter actual es válida hasta el :date!',
+            'was_valid_until' => 'Tu tag de supporter fue válida hasta :date.',
+        ],
 
         'why_support' => [
-            'title' => '¿¡Por qué debo apoyar osu!?',
+            'title' => '¿Por qué deberia apoyar a osu!?',
             'blocks' => [
                 'dev' => 'Desarollado y mantenido principalmente por un hombre en Australia',
-                'time' => 'Toma demasiado tiempo mantenerlo funcionando al punto de no poder llamarlo un "hobby".',
+                'time' => 'Toma demasiado tiempo para mantenerlo funcionando, llegando al punto de que ya no es posible llamarlo un "pasatiempo".',
                 'ads' => 'Sin anuncios en ningún lado. <br/><br/>
                         Al contrario que el 99.95% de la web, no obtenemos ingresos poniéndote cosas en tu cara.',
                 'goodies' => '¡Obtienes algunos beneficios extra!',
@@ -50,7 +62,7 @@ return [
             'title' => '¿Oh? ¡¿Qué obtengo?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'Acceso rápido y sencillo para buscar beatmaps sin salir del juego.',
+                'description' => 'acceso rápido y sencillo para buscar Beatmaps sin salir del juego.',
             ],
 
             'auto_downloads' => [
@@ -60,12 +72,12 @@ return [
 
             'upload_more' => [
                 'title' => 'Sube más',
-                'description' => 'Espacios para beatmaps pendientes adicionales (por beatmap rankeado) hasta un máximo de 10.',
+                'description' => 'Ranuras de Beatmaps pendientes adicionales (por beatmap rankeado) hasta un máximo de 10.',
             ],
 
             'early_access' => [
-                'title' => 'Acceso Temprano',
-                'description' => '¡Acceso a lanzamientos tempranos, donde puedes probar nuevas características antes de que sean públicas!',
+                'title' => 'Acceso anticipado',
+                'description' => '¡Acceso a lanzamientos anticipados, donde puedes probar nuevas características antes de que sean públicas!',
             ],
 
             'customisation' => [
@@ -75,7 +87,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => 'Filtros de Beatmap',
-                'description' => 'Filtra búsquedas de beatmaps por mapas jugados, no jugados y por puntuación obtenida.',
+                'description' => 'Filtra búsquedas de beatmaps por mapas jugados, no jugados y por puntuación obtenida. (Sí la hay).',
             ],
 
             'yellow_fellow' => [
@@ -89,8 +101,8 @@ return [
             ],
 
             'change_username' => [
-                'title' => 'Cambiar Nombre',
-                'description' => 'La habilidad de cambiar tu nombre de usuario. (máximo una vez)',
+                'title' => 'Cambiar Nombre de usuario',
+                'description' => 'La habilidad de cambiar tu nombre de usuario sin costes adicionales. (máximo una vez)',
             ],
 
             'skinnables' => [
@@ -105,7 +117,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Opciones de Orden',
-                'description' => 'NUEVO: La habilidad de ver rankings nacionales / amigos / por mod de un beatmap dentro del juego.',
+                'description' => 'La habilidad de ver rankings nacionales / amigos / por mod de un beatmap dentro del juego.',
             ],
 
             'feel_special' => [
@@ -121,7 +133,7 @@ return [
 
         'convinced' => [
             'title' => '¡Estoy convencido! :D',
-            'support' => 'Apoyar osu!',
+            'support' => 'apoyar a osu!',
             'gift' => 'o regalar supporter a otros jugadores',
             'instructions' => 'clic al botón del corazón para proceder a la osu!store',
         ],

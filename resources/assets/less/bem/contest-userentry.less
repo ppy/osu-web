@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,9 +18,9 @@
 
 .contest-userentry {
   height: 150px;
-  background: #313D40;
+  background: @osu-colour-b4;
   margin: 10px;
-  width: calc(50% ~'-' 20px);
+  width: calc(50% - 20px);
   .default-box-shadow();
   transition: 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 
@@ -38,7 +38,7 @@
 
   &__filesize {
     font-size: 12px;
-    color: @blue;
+    color: @osu-colour-f1;
   }
 
   &__icon {
@@ -56,11 +56,11 @@
 
 
   &--dragndrop-active {
-    background-color: lighten(#313D40, 5%);
+    background-color: @osu-colour-b3;
   }
 
   &--new:hover, &--dragndrop-hover {
-    background-color: lighten(#313D40, 15%);
+    background-color: @osu-colour-b3;
     transform: scale(1.01);
   }
 

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@
   @_line-total-width: 15px;
   @_point-diameter: 7px;
   @_line-width: 3px;
-  @_line-color: #555;
+  @_line-color: @osu-colour-b6;
 
   // avatar + paddings + margins
   height: (@beatmap-discussion--avatar-size + 20px + 10px);
@@ -45,6 +45,7 @@
   }
 
   &__text {
+    color: @osu-colour-f1;
     font-size: @_text-size;
     // To prevent the height being included when calculating vertical center
     // position of the icons.

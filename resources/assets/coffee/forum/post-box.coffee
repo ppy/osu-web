@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -40,8 +40,10 @@ insert = (event, tagOpen, tagClose = '') ->
     box.selectionStart = startPos
     box.selectionEnd = texts[0].length + texts[1].length + tagClose.length
 
-  $box.trigger 'input'
-  $box.focus()
+  $box
+    .trigger 'bbcode:inserted' # for react
+    .trigger 'input' # ignored by react
+    .focus()
 
 [
   ['bold', '[b]', '[/b]']
@@ -60,8 +62,13 @@ insert = (event, tagOpen, tagClose = '') ->
     insert e, openTag, closeTag
 
 
+$(document).on 'turbolinks:load', ->
+  $('.js-bbcode-btn--size').val('')
+
+
 $(document).on 'change', '.js-bbcode-btn--size', (e) ->
   $select = $(e.target)
   val = parseInt $select.val(), 10
+  $select.val('')
 
   insert e, "[size=#{val}]", '[/size]'

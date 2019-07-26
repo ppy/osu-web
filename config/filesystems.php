@@ -1,5 +1,22 @@
 <?php
 
+foreach (['osu', 'taiko', 'fruits', 'mania'] as $mode) {
+    $replays[$mode] = [
+        'local' => [
+            'driver' => 'local',
+            'root' => public_path().'/uploads-replay/'.$mode,
+        ],
+
+        's3' => [
+            'driver' => 's3',
+            'key' => env('S3_KEY'),
+            'secret' => env('S3_SECRET'),
+            'region' => env('S3_REGION'),
+            'bucket' => "replay-{$mode}",
+        ],
+    ];
+}
+
 return [
 
     /*
@@ -42,6 +59,7 @@ return [
     */
 
     'disks' => [
+        'replays' => $replays,
 
         'local' => [
             'driver' => 'local',
@@ -73,6 +91,13 @@ return [
             'base_url' => env('S3_AVATAR_BASE_URL'),
         ],
 
+        's3-beatmap' => [
+            'driver' => 's3',
+            'key' => env('S3_BEATMAPSET_KEY'),
+            'secret' => env('S3_BEATMAPSET_SECRET'),
+            'region' => env('S3_BEATMAPSET_REGION'),
+            'bucket' => env('S3_BEATMAPSET_BUCKET'),
+        ],
     ],
 
 ];

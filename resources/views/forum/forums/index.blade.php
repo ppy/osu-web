@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,14 +15,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
+@extends('master', [
     'search' => [
         'url' => route('forum.forums.search'),
     ],
     'pageDescription' => trans('forum.title')
 ])
 
-@section("content")
+@section('content')
     <div class="osu-page">
         <div class="osu-page-header osu-page-header--forum-index">
             <div class="osu-page-header__title-box">
@@ -56,5 +56,13 @@
                 @include("forum.forums._forums", ["forums" => $category->subforums])
             </div>
         @endforeach
+
+        <div class="forum-category col-sm-12">
+            <div class="forums">
+                <div class="forums__forum forums__forum--mark-as-read">
+                    @include('forum.forums._mark_as_read')
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

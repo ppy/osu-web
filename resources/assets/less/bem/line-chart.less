@@ -1,0 +1,164 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.line-chart {
+  @_top: line-chart;
+  @_marker-radius: 6px;
+  @_marker-radius-profile-page: 10px;
+  @_line-width: 3px;
+  @_line-width-profile-page: 2px;
+
+  &__axis {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  &__hover {
+    .full-size();
+    pointer-events: none;
+  }
+
+  &__hover-area {
+    position: absolute;
+  }
+
+  &__hover-circle {
+    .circle(@_marker-radius * 2);
+    background-color: #fff;
+    border: @_line-width solid @pink-darker;
+    top: (-@_marker-radius);
+    left: (-@_marker-radius);
+
+    .@{_top}--profile-page & {
+      .circle(@_marker-radius-profile-page * 2);
+      background-color: @osu-colour-b5;
+      border-color: @yellow;
+      border-width: (@_line-width-profile-page * 2);
+      top: (-@_marker-radius-profile-page);
+      left: (-@_marker-radius-profile-page);
+    }
+  }
+
+  &__hover-line {
+    background-color: @pink-darker;
+    width: @_line-width;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: (-@_line-width / 2);
+
+    .@{_top}--profile-page & {
+      background-color: @yellow;
+      width: @_line-width-profile-page;
+      left: (-@_line-width-profile-page / 2);
+    }
+  }
+
+  &__hover-info-box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 5px;
+    background-color: @osu-colour-b6;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: @font-size--normal;
+    display: flex;
+    flex-direction: column;
+
+    .@{_top}--status-page & {
+      background-color: @pink-darker;
+    }
+
+    &[data-float=right] {
+      left: auto;
+      right: 0;
+    }
+  }
+
+  &__hover-info-box-text {
+    white-space: nowrap;
+
+    &--x {
+      .@{_top}--profile-page & {
+        color: @osu-colour-l1;
+        order: 1;
+      }
+      .@{_top}--status-page & {
+        color: #fff;
+      }
+    }
+
+    &--y {
+      .@{_top}--profile-page & {
+        color: #fff;
+      }
+      .@{_top}--status-page & {
+        color: #fff;
+      }
+    }
+  }
+
+  &__line {
+    fill: none;
+    stroke: @pink-darker;
+    stroke-width: @_line-width;
+
+    .@{_top}--profile-page & {
+      stroke: @yellow;
+      stroke-width: @_line-width-profile-page;
+    }
+  }
+
+  &__tick-gradient {
+    &--end {
+      stop-color: #ccc;
+    }
+
+    &--start {
+      stop-color: #fff;
+    }
+  }
+
+  &__tick-line {
+    fill: none;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+
+    &--default {
+      stroke: #ccc;
+
+      .@{_top}--profile-page & {
+        stroke: @osu-colour-b6;
+      }
+    }
+  }
+
+  &__tick-text {
+    fill: @text-color;
+    font-size: @font-size--normal;
+
+    &--strong {
+      font-weight: 700;
+    }
+
+    .@{_top}--profile-page & {
+      fill: @osu-colour-f1;
+    }
+  }
+}

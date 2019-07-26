@@ -1,0 +1,289 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.user-card {
+  @top: user-card;
+  @avatar-border-radius: 6px;
+  @avatar-size: 60px;
+  @background-color: @osu-colour-b4;
+  @card-border-radius: 10px;
+  @card-item-spacing: 10px;
+  @flag-width: @icon-height * 1.5;
+  @icon-height: 26px; // starts becoming a muddled mess lower than this.
+  @flag-gutter: 6px;
+  @fade-duration: 220ms;
+
+  display: inline-block;
+
+  transition: all ease-in-out 120ms;
+
+  width: 100%;
+  height: @user-card-height;
+  background-color: @background-color;
+  border-radius: @card-border-radius;
+
+  // to make broken cover images less ugly
+  overflow: hidden;
+
+  .qtip--user-card & {
+    width: @user-card-width;
+  }
+
+  &--has-outline::after {
+    .@{top}:hover&, .@{top}--active& {
+      .full-size();
+      content: '';
+      border: 2px solid @osu-colour-l1;
+      border-radius: @card-border-radius;
+      pointer-events: none;
+
+      .search-result--user & {
+        border-color: @blue-dark;
+      }
+    }
+  }
+
+  &--highlightable {
+    .user-cards--menu-active & {
+      pointer-events: none;
+    }
+  }
+
+  &__avatar {
+    .full-size();
+    border-radius: @avatar-border-radius;
+    object-fit: contain;
+    background-color: @background-color;
+    transition: opacity ease-in-out @fade-duration;
+    opacity: 0;
+
+    &--loaded {
+      opacity: 1;
+    }
+  }
+
+  &__avatar-space {
+    width: @avatar-size;
+    height: @avatar-size;
+    flex: none;
+  }
+
+  &__avatar-spinner {
+    .full-size();
+    .center-content();
+    border-radius: @avatar-border-radius;
+    color: #fff;
+    font-size: 14px;
+    background: fade(#fff, 10%);
+    transition: opacity ease-in-out @fade-duration;
+    opacity: 0.25;
+
+    &--loaded {
+      // needs display: none or element to be removed to remove the layer in Safari
+      // but can't transition a display change...
+      opacity: 0;
+    }
+  }
+
+  &__background {
+    // to prevent annoying white-pixel artefacts appearing due to
+    // browsers not handling 'overflow: hidden' properly
+    border-radius: @card-border-radius;
+    .full-size();
+    object-fit: cover;
+    transition: opacity ease-in-out @fade-duration;
+
+    &--loading {
+      opacity: 0;
+    }
+  }
+
+  &__background-container {
+    .full-size();
+
+    .@{top}--active & {
+      pointer-events: none;
+    }
+  }
+
+  &__background-overlay {
+    .full-size();
+    border-radius: @card-border-radius;
+    transition: opacity 0.2s ease-in-out;
+    background-color: @osu-colour-b5;
+    opacity: 0.7;
+
+    &--online {
+      opacity: 0.6;
+    }
+  }
+
+  &__card {
+    .link-white();
+    .link-plain();
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    pointer-events: none;
+
+    height: 100%;
+  }
+
+  &__content {
+    padding: @card-item-spacing;
+
+    &--details {
+      display: grid;
+      grid-template-columns: @avatar-size 1fr;
+    }
+
+    &--status {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0;
+    }
+  }
+
+  &__details {
+    display: grid;
+    grid-template-rows: @icon-height 1fr;
+    margin-left: @card-item-spacing;
+  }
+
+  &__icon {
+    height: @icon-height;
+    width: @icon-height;
+    font-size: @icon-height / 2;
+
+    display: flex;
+    pointer-events: auto;
+
+    & + & {
+      margin-left: @flag-gutter;
+    }
+
+    .user-cards--menu-active & {
+      pointer-events: none;
+    }
+
+    &:empty {
+      display: none;
+    }
+
+    &--flag {
+      width: @flag-width;
+    }
+
+    &--menu {
+      .circle(25px);
+      font-size: 10px;
+      background-color: @osu-colour-b6;
+      opacity: 0;
+      transition:
+        background-color 120ms ease-in-out,
+        opacity 120ms ease-in-out;
+
+      // NB: there is a issue where clicking on the button to close the menu
+      // causes the state to momentarily unhover and rehover
+      .@{top}:hover & {
+        opacity: 1;
+
+        &:hover {
+          background-color: @osu-colour-b5;
+        }
+      }
+
+      // needs the higher specificity over .@{top}:hover
+      .@{top}--active && {
+        opacity: 1;
+        background-color: @osu-colour-b5;
+      }
+    }
+  }
+
+  &__icons {
+    display: flex;
+    flex: none;
+  }
+
+  &__link-wrapper {
+    .link-white();
+    .link-plain();
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__status {
+    display: flex;
+    align-items: center;
+
+    min-width: 0;
+  }
+
+  &__status-icon {
+    .circle(25px);
+    border: solid 4px #000;
+
+    &--online {
+      border: solid 4px @green-light;
+    }
+  }
+
+  &__status-icon-container {
+    .center-content();
+    flex: none;
+    width: @avatar-size;
+  }
+
+  &__status-message {
+    &--sub {
+      font-size: 12px;
+    }
+  }
+
+  &__status-messages {
+    display: flex;
+    flex-direction: column;
+    margin-left: @card-item-spacing;
+
+    font-size: 14px;
+    min-width: 0;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+
+    height: @avatar-size;
+    min-width: 0;
+  }
+
+  &__username {
+    display: flex;
+    align-items: center;
+    font-style: italic;
+    min-width: 0;
+    font-weight: 600;
+  }
+}

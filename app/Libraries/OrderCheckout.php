@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 namespace App\Libraries;
 
+use App\Exceptions\InvariantException;
 use App\Libraries\Payments\InvalidOrderStateException;
 use App\Models\Store\Order;
 use App\Models\User;
@@ -28,32 +29,74 @@ use Request;
 
 class OrderCheckout
 {
+    /**
+     * @var Order
+     */
     private $order;
 
-    public function __construct(Order $order)
+    /**
+     * @var string|null
+     */
+    private $provider;
+
+    /** @var string|null */
+    private $providerReference;
+
+    public function __construct(Order $order, ?string $provider = null, ?string $providerReference = null)
     {
+        if ($provider === Order::PROVIDER_SHOPIFY && $providerReference === null) {
+            throw new InvariantException('shopify provider requires a providerReference (checkout id).');
+        }
+
         $this->order = $order;
+        $this->provider = $provider;
+        $this->providerReference = $providerReference;
     }
 
+    /**
+     * @return Order
+     */
     public function getOrder()
     {
         return $this->order;
     }
 
-    public function allowedCheckoutTypes()
+    /**
+     * @return string|null
+     */
+    public function getProvider()
     {
-        $allowed = ['paypal'];
-        if ($this->allowCentiliPayment()) {
-            $allowed[] = 'centili';
-        }
-
-        if ($this->allowXsollaPayment()) {
-            $allowed[] = 'xsolla';
-        }
-
-        return $allowed;
+        return $this->provider;
     }
 
+    /**
+     * @return string[]
+     */
+    public function allowedCheckoutProviders()
+    {
+        if ($this->order->isShouldShopify()) {
+            return [Order::PROVIDER_SHOPIFY];
+        }
+
+        if ($this->order->getTotal() > 0) {
+            $allowed = [Order::PROVIDER_PAYPAL];
+            if ($this->allowCentiliPayment()) {
+                $allowed[] = Order::PROVIDER_CENTILLI;
+            }
+
+            if ($this->allowXsollaPayment()) {
+                $allowed[] = Order::PROVIDER_XSOLLA;
+            }
+
+            return $allowed;
+        }
+
+        return [Order::PROVIDER_FREE];
+    }
+
+    /**
+     * @return string
+     */
     public function getCentiliPaymentLink()
     {
         $params = [
@@ -67,21 +110,47 @@ class OrderCheckout
         return config('payments.centili.widget_url').'?'.http_build_query($params);
     }
 
+    /**
+     * @return bool
+     */
     public function isShippingDelayed()
     {
         return Order::where('orders.status', 'paid')->count() > config('osu.store.delayed_shipping_order_threshold');
     }
 
+    public function beginCheckout()
+    {
+        // something that shouldn't happen just happened.
+        if (!in_array($this->provider, $this->allowedCheckoutProviders(), true)) {
+            throw new InvariantException("{$this->provider} not in allowed checkout providers.");
+        }
+
+        DB::connection('mysql-store')->transaction(function () {
+            $order = $this->order->lockSelf();
+            if (!$order->canCheckout()) {
+                throw new InvalidOrderStateException(
+                    "`Order {$order->order_id}` cannot be checked out: `{$order->status}`"
+                );
+            }
+
+            $order->status = 'processing';
+            $order->transaction_id = $this->newOrderTransactionId();
+            $order->reserveItems();
+
+            $order->saveorExplode();
+        });
+    }
+
     public function completeCheckout()
     {
-        DB::connection('mysql-store')->transaction(function () {
+        return DB::connection('mysql-store')->transaction(function () {
             $order = $this->order->lockSelf();
 
             // cart should only be in:
-            // incart -> if user hits the callback first.
+            // processing -> if user hits the callback first.
             // paid -> if payment provider hits the callback first.
             // any other state should be considered invalid.
-            if ($order->status === 'incart') {
+            if ($order->isProcessing()) {
                 $order->status = 'checkout';
                 $order->saveorExplode();
             } elseif (!$order->isPaidOrDelivered()) {
@@ -90,56 +159,87 @@ class OrderCheckout
                     "`Order {$order->order_id}` in wrong state: `{$order->status}`"
                 );
             }
+
+            return $order;
         });
     }
 
-    public function validate()
+    public function failCheckout()
     {
-        $itemErrors = [];
-        $items = $this->order->items()->with('product')->get();
-        foreach ($items as $item) {
-            if (!$item->isValid()) {
-                $itemErrors[$item->id] = $item->validationErrors()->allMessages();
+        return DB::connection('mysql-store')->transaction(function () {
+            $order = $this->order->lockSelf();
+            if ($order->isProcessing() === false) {
+                throw new InvalidOrderStateException(
+                    "`Order {$order->order_id}` failed checkout but is not processing"
+                );
             }
 
-            if ($item->product->custom_class === 'username-change') {
-                $changeUsername = new ChangeUsername($this->order->user, $item->extra_info, 'paid');
-                $messages = $changeUsername->validate()->allMessages();
-                if (!empty($messages)) {
-                    // merge with existing errors, if any.
-                    $itemErrors[$item->id] = array_merge(
-                        $itemErrors[$item->id] ?? [],
-                        $messages
-                    );
-                }
-            }
-        }
+            $order->transaction_id = "{$this->provider}-failed";
+            $order->releaseItems();
 
-        $errors = [];
-        if ($itemErrors !== []) {
-            $errors['orderItems'] = $itemErrors;
-        }
+            $order->saveorExplode();
 
-        return $errors;
+            return $order;
+        });
     }
 
     /**
-     * Helper method for completing checkout with just the order number.
-     *
-     * @param string $orderNumber
-     * @return Order
+     * @return array
      */
-    public static function complete($orderNumber)
+    public function validate()
     {
-        // select for update will lock the table if the row doesn't exist,
-        // so do a double select.
-        $order = Order::whereOrderNumber($orderNumber)->firstOrFail();
-        $checkout = new static($order);
-        $checkout->completeCheckout();
+        $shouldShopify = $this->order->isShouldShopify();
+        // TODO: nested indexed ValidationError...somehow.
+        $itemErrors = [];
+        $items = $this->order->items()->with('product')->get();
+        foreach ($items as $item) {
+            $messages = [];
+            if (!$item->isValid()) {
+                $messages[] = $item->validationErrors()->allMessages();
+            }
 
-        return $order;
+            // Checkout process level validations, should not be part of OrderItem validation.
+            if ($item->product === null || !$item->product->isAvailable()) {
+                $messages[] = trans('model_validation/store/product.not_available');
+            }
+
+            if (!$item->product->inStock($item->quantity)) {
+                $messages[] = trans('model_validation/store/product.insufficient_stock');
+            }
+
+            if ($item->quantity > $item->product->max_quantity) {
+                $messages[] = trans('model_validation/store/product.too_many', ['count' => $item->product->max_quantity]);
+            }
+
+            if ($shouldShopify && !$item->product->isShopify()) {
+                $messages[] = trans('model_validation/store/product.must_separate');
+            }
+
+            $customClass = $item->getCustomClassInstance();
+            if ($customClass !== null) {
+                $messages[] = $customClass->validate()->allMessages();
+            }
+
+            $flattened = array_flatten($messages);
+            if (!empty($flattened)) {
+                $itemErrors[$item->id] = $flattened;
+            }
+        }
+
+        return $itemErrors === [] ? [] : ['orderItems' => $itemErrors];
     }
 
+    /**
+     * Helper method for creating an OrderCheckout with just the order number.
+     */
+    public static function for(?string $orderNumber) : self
+    {
+        return new static(Order::whereOrderNumber($orderNumber)->firstOrFail());
+    }
+
+    /**
+     * @return bool
+     */
     private function allowCentiliPayment()
     {
         // Geolocation header from Cloudflare
@@ -150,8 +250,16 @@ class OrderCheckout
             && Request::input('intl') !== '1';
     }
 
+    /**
+     * @return bool
+     */
     private function allowXsollaPayment()
     {
         return !$this->order->requiresShipping();
+    }
+
+    private function newOrderTransactionId()
+    {
+        return $this->provider === Order::PROVIDER_SHOPIFY ? "{$this->provider}-{$this->providerReference}" : $this->provider;
     }
 }

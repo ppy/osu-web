@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -45,13 +45,13 @@
     padding: 0;
     text-align: center;
     justify-content: center;
-  }
 
-  &--beatmapsets-header-guest {
-    .default-box-shadow();
-    height: 200px;
-    padding: 30px;
-    align-items: center;
+    &::before {
+      .full-size();
+      content: ' ';
+      background-color: @osu-colour-b6;
+      opacity: 0.6;
+    }
   }
 
   &--forum-index {
@@ -80,27 +80,34 @@
       height: 150px;
     }
 
+    @media @mobile {
+      display: none;
+    }
+
     &::before {
       .full-size();
+      content: ' ';
+
+      background-image: linear-gradient(to bottom, fade(#000, 25%), fade(#000, 75%));
+
       @media @desktop {
         background-image: linear-gradient(to bottom, fade(#000, 0%), fade(#000, 75%));
-      }
-      @media @mobile {
-        background-image: linear-gradient(to bottom, fade(#000, 25%), fade(#000, 75%));
       }
     }
 
   }
 
   &--live {
-    .at2x-simple("/images/headers/live-top.png");
+    .at2x-simple("/images/headers/live-top.jpg");
     height: 165px;
   }
 
   &--mp-history {
     .at2x-simple("/images/headers/mp-history.jpg");
     background-position: center;
-    height: 125px;
+    @media @desktop {
+      height: 125px;
+    }
   }
 
   &--news {
@@ -180,7 +187,7 @@
 
       @media @desktop {
         margin: 0 10px;
-        width: calc(60% ~'-' 20px);
+        width: calc(60% - 20px);
       }
     }
 
@@ -192,11 +199,11 @@
       padding-top: 5px;
       justify-content: flex-start;
       margin: 0 -10px;
-      width: calc(100% ~'+' 20px);
+      width: calc(100% + 20px);
 
       @media @desktop {
         margin: 0 10px;
-        width: calc(40% ~'-' 20px);
+        width: calc(40% - 20px);
       }
     }
   }
@@ -208,8 +215,17 @@
     margin: 0;
   }
 
+
+  &__description-link {
+    .link-default();
+  }
+
   &__link {
     .link-white();
+
+    &--plain {
+      .link-plain();
+    }
   }
 
   &__status {
@@ -231,7 +247,7 @@
   }
 
   &__status-text {
-    color: @yellow;
+    color: @osu-colour-l1;
     font-size: @font-size--title-small-2;
     .@{top}__status--selected & {
       font-size: @font-size--title-small-3;
@@ -240,7 +256,7 @@
 
   &__title {
     .default-text-shadow();
-    font-size: @font-size--header-title;
+    font-size: @font-size--header-title-mobile;
     // avoid clipping
     margin: -5px -5px 5px;
     padding: 5px;
@@ -248,20 +264,16 @@
 
     font-style: italic;
 
+    @media @desktop {
+      font-size: @font-size--header-title;
+    }
+
     &--small {
       font-size: @font-size--header-subtitle;
     }
 
     &--smaller {
       font-size: @font-size--header-description;
-    }
-
-    .@{top}--beatmapsets-header-guest & {
-      font-size: @font-size--large-3;
-      font-style: normal;
-      font-weight: 300;
-      margin: 0;
-      padding: 0;
     }
 
     .@{top}--forum-index & {
@@ -285,7 +297,7 @@
       font-style: normal;
       font-size: @font-size--new-header-title;
       font-weight: 300;
-      color: @gray-blue;
+      color: @osu-colour-b6;
       text-shadow: none;
     }
 
@@ -326,6 +338,10 @@
 
     .@{top}--wiki & {
       bottom: 0;
+
+      @media @mobile {
+        padding-right: 55px;
+      }
     }
   }
 }

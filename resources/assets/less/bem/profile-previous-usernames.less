@@ -1,0 +1,98 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.profile-previous-usernames {
+  @_top: profile-previous-usernames;
+  @_spacing: 10px;
+  @_line-spacing: 5px;
+  @_icon-size: @font-size--title-small;
+
+  border-radius: @border-radius-large;
+  display: flex;
+  align-items: baseline;
+  transition: all 200ms cubic-bezier(.22,.61,.36,1);
+  font-style: italic;
+
+  @media @desktop {
+    width: 300px;
+    pointer-events: none;
+    margin: 5px;
+  }
+
+  &:hover {
+    @media @desktop {
+      background-color: @osu-colour-b6;
+      transform: translateY(-(@_icon-size + @_line-spacing));
+      pointer-events: auto;
+    }
+  }
+
+  &__content {
+    padding-left: 0;
+    opacity: 0;
+    will-change: opacity;
+    transition: inherit;
+    display: none;
+
+    @media @desktop {
+      display: block;
+      padding: @_spacing;
+    }
+
+    .@{_top}:hover & {
+      opacity: 1;
+    }
+  }
+
+  &__icon {
+    .reset-input();
+    .link-white();
+    .link-plain();
+    pointer-events: auto;
+    flex: none;
+    font-size: @_icon-size;
+
+    &--plain {
+      padding: @_spacing; // easier hover targeting
+      display: none;
+
+      @media @desktop {
+        display: block;
+      }
+    }
+
+    &--with-title {
+      margin-left: @_spacing; // better tooltip positioning
+
+      @media @desktop {
+        display: none;
+      }
+    }
+  }
+
+  &__names {
+    margin-top: @_line-spacing;
+    font-weight: bold;
+    font-size: @font-size--normal;
+    line-height: 1.2;
+  }
+
+  &__title {
+    font-size: @font-size--small;
+  }
+}

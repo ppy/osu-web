@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -50,12 +50,14 @@
                 <div class="forum__user-flags forum__info-row">
                     @foreach ($user->flags() as $flagType => $flagValue)
                         @if ($flagType === "country")
-                            <img
-                                class="forum__user-flag forum__user-flag--country"
-                                src="{{ flag_path($flagValue[0]) }}"
-                                alt="{{ $flagValue[0] }}"
-                                title="{{ $flagValue[1] }}"
-                            />
+                            <a href="{{route('rankings', ['mode' => 'osu', 'type' => 'performance', 'country' => $flagValue[0]])}}">
+                                <img
+                                    class="forum__user-flag forum__user-flag--country"
+                                    src="{{ flag_path($flagValue[0]) }}"
+                                    alt="{{ $flagValue[0] }}"
+                                    title="{{ $flagValue[1] }}"
+                                />
+                            </a>
                         @endif
                     @endforeach
                 </div>
@@ -63,9 +65,27 @@
         </div>
 
         <div class="forum-post__info-panel-extra-bottom">
-            <div class="forum-post__info-row">
-                {!! display_regdate($user) !!}
-            </div>
+            @if (isset($topic) && $topic->topic_poster === $user->getKey())
+                <div class="forum-post__info-row">
+                    <div
+                        class="forum-post__topic-starter"
+                        style="{{ user_color_style($user->user_colour, "background-color") }}"
+                    >
+                        {{ trans('forum.post.info.topic_starter') }}
+                    </div>
+                </div>
+            @endif
+
+            @if ($user->getKey() !== null)
+                <div class="forum-post__info-row">
+                    <a class="forum-post__info-link" href="{{ route("users.posts", $user) }}">
+                        {{ trans_choice('forum.post.info.post_count', $user->user_posts) }}
+                    </a>
+                </div>
+                <div class="forum-post__info-row">
+                    {!! display_regdate($user) !!}
+                </div>
+            @endif
         </div>
     </div>
 </div>
@@ -86,7 +106,7 @@
 
         <div class="forum-post__info-panel-xs-main">
             <div class="forum-post__info-panel-xs-name">
-                <a class="link--white" href="{{ route("users.show", $user) }}">
+                <a class="forum-post__user-link-xs" href="{{ route("users.show", $user) }}">
                     {{ $user->username }}
                 </a>
 

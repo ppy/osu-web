@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,9 +15,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div href="#" class="logo">
-    <span class="logo__main logo__main--glow"></span>
-    <span class="logo__main logo__main--glow logo__main--delayed"></span>
-    <span class="logo__main logo__main--bounce"></span>
-    <span class="logo__main logo__main--overlay"></span>
+<div class="logo">
+    <span class="logo__main"></span>
 </div>

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,8 +19,8 @@
  */
 
 return [
-    'page_description' => 'osu! 의 주요 아티스트',
-    'title' => '주요 아티스트',
+    'page_description' => 'osu! 공식 아티스트',
+    'title' => '공식 아티스트',
 
     'admin' => [
         'hidden' => '아티스트가 현재 감춰져 있습니다',
@@ -29,14 +29,15 @@ return [
     'beatmaps' => [
         '_' => '비트맵',
         'download' => '비트맵 템플릿 다운로드',
-        'download-na' => '비트맵 템플릿을 아직 다운로드할 수 없습니다',
+        'download-na' => '비트맵 템플릿 준비중',
     ],
 
     'index' => [
-        'description' => '주요 아티스트는 osu!와 협력하여 osu!의 오리지널 곡을 작업중인 분들입니다. osu!팀은 정말 멋있고 비트맵으로 만들기에 제격인 곡들과 그 아티스트들을 엄선하였습니다. 여기 주요 아티스트중 몇몇은 이미 osu!에서 사용될 고유한 곡을 작곡하기도 했습니다.<br><br>이 곳에 실린 모든 곡들은 비트매핑되지 않은 .osz파일로 제공되며, 공식적으로 osu! 또는 osu!와 관련된 콘텐츠에 사용되도록 허가되었습니다.',
+        'description' => '공식 아티스트들은 osu!와 협력하여 osu!의 오리지널 곡을 작업 중인 분들입니다. osu!팀은 귀르가즘이 오고 비트맵으로 만들기에 제격인 곡들 및 그 아티스트들을 엄선하였습니다. 이 공식 아티스트들 중 몇몇은 이미 osu!에서 사용될 고유한 곡을 작곡하기도 했습니다.<br><br>이 곳에 실린 모든 곡들은 타이밍만 맞춘 .osz 파일로 제공되며, 공식적으로 osu! 또는 osu!와 관련된 콘텐츠에 사용되도록 허가되었습니다.',
     ],
 
     'links' => [
+        'osu' => 'osu! 프로필',
         'site' => '공식 웹사이트',
     ],
 
@@ -44,5 +45,12 @@ return [
         '_' => '곡',
         'count' => ':count 곡',
         'exclusive' => 'osu! 고유 곡',
+    ],
+
+    'tracklist' => [
+        'title' => '제목',
+        'length' => '길이',
+        'bpm' => 'bpm',
+        'genre' => '장르',
     ],
 ];

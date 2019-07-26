@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,9 +19,15 @@
  */
 
 return [
-
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => '재생성',
+            'regenerating' => '재생성 중...',
+            'remove' => '제거',
+            'removing' => '제거 중...',
+        ],
         'show' => [
+            'covers' => '비트맵셋 표지 관리',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => '활성화 하기',
@@ -64,7 +70,7 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => '관리자 콘솔 같은거', // Admin Console Thingy
+            'title' => '관리자 콘솔 같은거',
 
             'sections' => [
                 'forum' => '포럼',
@@ -85,7 +91,7 @@ return [
     'users' => [
         'restricted_banner' => [
             'title' => '이 사용자 계정은 현재 제한된 상태입니다.',
-            'message' => '(관리자만 이 메세지를 볼 수 있습니다)',
+            'message' => '(관리자만 이 메시지를 볼 수 있습니다)',
         ],
     ],
 

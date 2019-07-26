@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@ namespace App\Models\Wiki;
 
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuWiki;
-use Cache;
+use Exception;
 
 class Image
 {
@@ -50,7 +50,7 @@ class Image
     public function data()
     {
         if (!array_key_exists('data', $this->cache)) {
-            $this->cache['data'] = Cache::remember($this->cacheKeyData(), static::CACHE_DURATION, function () {
+            $this->cache['data'] = cache_remember_with_fallback($this->cacheKeyData(), static::CACHE_DURATION, function () {
                 try {
                     $data = OsuWiki::fetchContent('wiki/'.$this->path);
                     $type = image_type_to_mime_type(
@@ -58,14 +58,23 @@ class Image
                     );
 
                     return compact('data', 'type');
-                } catch (GitHubNotFoundException $e) {
-                    if ($this->url !== null && $this->referrer !== null && starts_with($this->url, $this->referrer)) {
-                        $newPath = 'shared/'.substr($this->url, strlen($this->referrer));
+                } catch (Exception $e) {
+                    if ($e instanceof GitHubNotFoundException) {
+                        // try alternative path
+                        if (
+                            $this->url !== null &&
+                            $this->referrer !== null &&
+                            starts_with($this->url, $this->referrer)
+                        ) {
+                            $newPath = 'shared/'.substr($this->url, strlen($this->referrer));
 
-                        return (new static($newPath))->data();
+                            return (new static($newPath))->data();
+                        }
+                        // return nothing otherwise
+                    } else {
+                        // throw everything else
+                        throw $e;
                     }
-
-                    throw $e;
                 }
             });
         }

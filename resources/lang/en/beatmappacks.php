@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,7 +26,7 @@ return [
                 '_' => "Installation: Once a pack has been downloaded, extract the .rar into your osu! Songs directory.
                     All songs are still .zip'd and/or .osz'd inside the pack, so osu! will need to extract the beatmaps itself the next time you go into Play mode.
                     :scary extract the zip's/osz's yourself,
-                    or the beatmaps will display incorrectly in osu and will not function properly.",
+                    or the beatmaps will display incorrectly in osu! and will not function properly.",
                 'scary' => 'Do NOT',
             ],
             'note' => [
@@ -48,13 +48,13 @@ return [
 
     'mode' => [
         'artist' => 'Artist/Album',
-        'chart' => 'Chart',
+        'chart' => 'Spotlights',
         'standard' => 'Standard',
         'theme' => 'Theme',
     ],
 
     'require_login' => [
         '_' => 'You need to be :link to download',
-        'link_text' => 'logged in',
+        'link_text' => 'signed in',
     ],
 ];

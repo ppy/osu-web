@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,9 +22,10 @@ return [
     'edit' => [
         'title' => '<strong>Account</strong> Settings',
         'title_compact' => 'settings',
+        'username' => 'username',
 
         'avatar' => [
-            'title' => 'Edit Avatar',
+            'title' => 'Avatar',
         ],
 
         'email' => [
@@ -42,15 +43,16 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Edit Profile',
+            'title' => 'Profile',
 
             'user' => [
                 'user_from' => 'current location',
-                'user_interests' => 'interest',
+                'user_interests' => 'interests',
                 'user_msnm' => 'skype',
                 'user_occ' => 'occupation',
                 'user_twitter' => 'twitter',
                 'user_website' => 'website',
+                'user_discord' => 'discord',
             ],
         ],
 
@@ -60,16 +62,19 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => 'OAuth',
+        'authorized_clients' => 'authorized clients',
+    ],
+
     'update_email' => [
         'email_subject' => 'osu! email change confirmation',
         'update' => 'update',
-        'updated' => 'Email updated',
     ],
 
     'update_password' => [
         'email_subject' => 'osu! password change confirmation',
         'update' => 'update',
-        'updated' => 'Password updated',
     ],
 
     'playstyles' => [
@@ -78,5 +83,25 @@ return [
         'keyboard' => 'keyboard',
         'tablet' => 'tablet',
         'touch' => 'touch',
+    ],
+
+    'privacy' => [
+        'title' => 'Privacy',
+        'friends_only' => 'block private messages from people not on your friends list',
+        'hide_online' => 'hide your online presence',
+    ],
+
+    'notifications' => [
+        'title' => 'Notifications',
+        'topic_auto_subscribe' => 'automatically enable notifications on new forum topics that you create',
+    ],
+
+    'security' => [
+        'current_session' => 'current',
+        'end_session' => 'End Session',
+        'end_session_confirmation' => 'This will immediately end your session on that device. Are you sure?',
+        'last_active' => 'Last active:',
+        'title' => 'Security',
+        'web_sessions' => 'web sessions',
     ],
 ];

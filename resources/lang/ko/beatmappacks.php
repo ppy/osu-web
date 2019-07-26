@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,19 +23,19 @@ return [
         'blurb' => [
             'important' => '[[ 다운로드 하기 전에 읽어주세요 ]]',
             'instruction' => [
-                '_' => '설치 방법: 맵팩 다운로드가 끝나면, .rar 파일안의 내용물을 osu!의 Songs폴더에 압축 해제합니다.
-                    맵팩에 동봉된 모든 곡들은 .zip 또는 .osz로 압축된 상태입니다. 따라서, 플레이하기 전에 osu! 프로그램이 이 비트맵들을 압축 해제할 필요가 있습니다.
-                    :scary 여러분이 직접 압축을 풀지 마세요. 직접 풀게되면,
-                    osu! 프로그램이 이를 비정상적으로 받아들이고 제대로 작동하지 않을 수 있습니다.',
+                '_' => "설치 방법: 맵팩 다운로드가 끝나면 .rar 파일을 osu!의 Songs 폴더에 압축 해제하세요.
+                    맵팩에 동봉된 모든 곡은 .zip 또는 .osz로 압축된 상태입니다. 플레이하기 전 osu!가 직접 비트맵들을 압축 해제할 것입니다.
+                    :scary 여러분이 직접 압축을 해제하지 마세요. 그렇게 되면
+                    osu!가 이를 비정상적으로 받아들이고 제대로 작동하지 않을 수 있습니다.",
                 'scary' => '절대',
             ],
             'note' => [
-                '_' => '또한, 저희는 :scary을 강력히 추천합니다. 정말 오래된 맵들은 요즘 나온 맵보다 질적으로 떨어질 수 있으니까요.',
-                'scary' => '최신 맵팩부터 다운로드 하는것',
+                '_' => '옛날 맵들은 최신 맵보다 질적으로 떨어질 수 있기 때문에 저희는 :scary을 강력히 추천합니다.',
+                'scary' => '최근에 나온 맵팩 순으로 내려받는 것',
             ],
         ],
         'title' => '비트맵 팩',
-        'description' => '비슷한 주제를 기준으로 압축한 비트맵 모음집입니다.', // Pre-packaged collections of beatmaps based around a common theme
+        'description' => '비슷한 테마를 기준으로 모아놓은 비트맵 모음집입니다.',
     ],
 
     'show' => [
@@ -47,10 +47,10 @@ return [
     ],
 
     'mode' => [
-        'artist' => '가수/앨범별',
-        'chart' => '차트별',
+        'artist' => '아티스트/앨범',
+        'chart' => '스포트라이트',
         'standard' => '표준',
-        'theme' => '테마별',
+        'theme' => '테마',
     ],
 
     'require_login' => [

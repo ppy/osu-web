@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -117,9 +117,9 @@ class XsollaPaymentProcessorTest extends TestCase
         $this->runSubject($subject);
     }
 
-    public function testWhenOrderIncartState()
+    public function testWhenOrderProcessingState()
     {
-        $this->order = factory(Order::class)->states('incart')->create();
+        $this->order = factory(Order::class)->states('processing')->create();
         $params = $this->getTestParams();
         $subject = new XsollaPaymentProcessor($params, $this->validSignature());
         $subject->run();

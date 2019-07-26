@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,5 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-reactTurbolinks.register 'beatmap-discussions', BeatmapDiscussions.Main, ->
+import { Main } from './beatmap-discussions/main'
+
+reactTurbolinks.registerPersistent 'beatmap-discussions', Main, true, (target) ->
   initial: osu.parseJson 'json-beatmapset-discussion'
+  container: target

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,8 +21,6 @@
 namespace App\Jobs;
 
 use App\Mail\BeatmapsetUpdateNotice;
-use App\Models\Beatmapset;
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -35,16 +33,18 @@ class NotifyBeatmapsetUpdate implements ShouldQueue
 
     private $beatmapset;
     private $user;
+    private $updatedAt;
 
-    public static function dispatch($attributes)
+    public function __construct($data)
     {
-        return dispatch((new static($attributes))->delay(Carbon::now()->addMinutes(5)));
+        $this->beatmapset = $data['beatmapset'];
+        $this->user = $data['user'];
+        $this->updatedAt = Carbon::now();
     }
 
-    public function __construct($attributes)
+    public function delayedDispatch()
     {
-        $this->beatmapset = $attributes['beatmapset'];
-        $this->user = $attributes['user'];
+        return dispatch($this)->delay(Carbon::now()->addMinutes(5));
     }
 
     public function handle()
@@ -53,27 +53,11 @@ class NotifyBeatmapsetUpdate implements ShouldQueue
             return;
         }
 
-        $discussions = $this->beatmapset->beatmapDiscussions();
-        $lastDiscussion = $discussions->orderBy('id', 'DESC')->first();
-
-        $events = $this->beatmapset->events();
-        $lastEvent = $events->orderBy('id', 'DESC')->first();
-
-        $lastUpdate = max([
-            $this->beatmapset->last_update,
-            $lastDiscussion->updated_at ?? null,
-            $lastEvent->updated_at ?? null,
-        ]);
-
-        if ($lastUpdate === null) {
-            return;
-        }
-
         $watches = $this
             ->beatmapset
             ->watches()
             ->read()
-            ->where('last_read', '<', $lastUpdate)
+            ->where('last_read', '<', $this->updatedAt)
             ->with('user');
 
         if ($this->user !== null) {

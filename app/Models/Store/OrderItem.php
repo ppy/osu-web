@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,11 +21,27 @@
 namespace App\Models\Store;
 
 use App\Exceptions\ValidationException;
+use App\Libraries\ChangeUsername;
 use App\Models\SupporterTag;
 use App\Traits\Validatable;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property float|null $cost
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property array|null $extra_data
+ * @property string|null $extra_info
+ * @property int $id
+ * @property Order $order
+ * @property int $order_id
+ * @property Product $product
+ * @property int $product_id
+ * @property int $quantity
+ * @property bool $reserved
+ * @property \Carbon\Carbon|null $updated_at
+ */
 class OrderItem extends Model
 {
     use SoftDeletes, Validatable;
@@ -35,12 +51,21 @@ class OrderItem extends Model
     protected $casts = [
         'cost' => 'float',
         'extra_data' => 'array',
+        'reserved' => 'boolean',
     ];
+
     // The format for extra_data is:
     // [
     //     'type' => 'custom-extra-info',
     //     ...additional fields
     // ]
+
+    public function scopeHasShipping($query)
+    {
+        return $query->whereHas('product', function ($q) {
+            return $q->hasShipping();
+        });
+    }
 
     public function isValid()
     {
@@ -68,7 +93,8 @@ class OrderItem extends Model
 
     public function save(array $options = [])
     {
-        if (!$this->isValid()) {
+        $skipValidations = $options['skipValidations'] ?? false;
+        if (!$skipValidations && !$this->isValid()) {
             // FIXME: Simpler to just throw instead of fixing all the save() calls right now.
             throw new ValidationException($this->validationErrors());
         }
@@ -106,6 +132,14 @@ class OrderItem extends Model
         $this->cost = $this->product->cost;
     }
 
+    public function getCustomClassInstance()
+    {
+        // only one for now
+        if ($this->product->custom_class === 'username-change') {
+            return new ChangeUsername($this->order->user, $this->extra_info);
+        }
+    }
+
     public function getDisplayName()
     {
         switch ($this->product->custom_class) {
@@ -114,7 +148,7 @@ class OrderItem extends Model
                 $duration = (int) $this->extra_data['duration'];
                 $text = SupporterTag::getDurationText($duration);
 
-                return __('store.order.item.display_name.supporter_tag', [
+                return trans('store.order.item.display_name.supporter_tag', [
                     'name' => $this->product->name,
                     // test data didn't include username, so ?? ''
                     'username' => $this->extra_data['username'] ?? '',
@@ -122,6 +156,24 @@ class OrderItem extends Model
                 ]);
             default:
                 return $this->product->name.($this->extra_info !== null ? " ({$this->extra_info})" : '');
+        }
+    }
+
+    public function releaseProduct()
+    {
+        if ($this->reserved) {
+            $this->product->release($this->quantity);
+            $this->reserved = false;
+            $this->saveOrExplode();
+        }
+    }
+
+    public function reserveProduct()
+    {
+        if (!$this->reserved) {
+            $this->product->reserve($this->quantity);
+            $this->reserved = true;
+            $this->saveOrExplode();
         }
     }
 

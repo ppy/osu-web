@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,130 +16,235 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,a,i,input,h1,h2} = ReactDOMFactories
+import { SearchFilter } from './search-filter'
+import { Observer } from 'mobx-react'
+import core from 'osu-core-singleton'
+import * as React from 'react'
+import { div, a, i, input, h1, h2, li, ol, span } from 'react-dom-factories'
 el = React.createElement
+controller = core.beatmapsetSearchController
 
-class Beatmaps.SearchPanel extends React.PureComponent
+# props don't change anymore when selecting a new filter
+export class SearchPanel extends React.Component
   constructor: (props) ->
     super props
 
+    @inputRef = React.createRef()
+    @pinnedInputRef = React.createRef()
+
+    # containers for React to render portal into; turbolinks and React portals
+    # don't play well together, otherwise. These aren't needed without turbolinks.
+    @breadcrumbsPortal = document.createElement('div')
+    @breadcrumbsPortal.id = 'search-panel-breadcrumbs-portal'
+    @contentPortal = document.createElement('div')
+    @contentPortal.id = 'search-panel-content-portal'
+
     @prevText = null
-    @debouncedSubmit = _.debounce @submit, 500
+    @breadcrumbsElement = window.stickyHeader.breadcrumbsElement()
+    @contentElement = window.stickyHeader.contentElement()
 
 
   componentDidMount: =>
-    $(document).on 'turbolinks:before-cache.beatmaps-search-cache', @componentWillUnmount
+    $(document).on 'sticky-header:sticking.search-panel', @setHeaderPinned
+    @mountPortal @breadcrumbsPortal, @breadcrumbsElement
+    @mountPortal @contentPortal, @contentElement
 
 
   componentWillUnmount: =>
-    $(document).off '.beatmaps-search-cache'
-    @debouncedSubmit.cancel()
+    $(document).off '.search-panel'
+    @unmountPortal @breadcrumbsPortal, @breadcrumbsElement
+    @unmountPortal @contentPortal, @contentElement
+
+
+  expand: (e) ->
+    e.preventDefault()
+    controller.isExpanded = true
 
 
   render: =>
+    el Observer, null, =>
+      div null,
+        if @breadcrumbsElement?
+          ReactDOM.createPortal @renderBreadcrumbs(), @breadcrumbsPortal
+
+        if @contentElement?
+          ReactDOM.createPortal @renderStickyContent(), @contentPortal
+
+        div
+          className: 'osu-page osu-page--beatmapsets-search-header'
+          if currentUser.id?
+            @renderUser()
+          else
+            @renderGuest()
+
+
+  renderBreadcrumbs: =>
+    return null unless currentUser.id?
+
+    # TODO: replace with component that takes an array of {name, link}.
+    ol className: 'sticky-header-breadcrumbs',
+      li className: 'sticky-header-breadcrumbs__item',
+        span
+          className: 'sticky-header-breadcrumbs__link'
+          osu.trans 'beatmapsets.index.guest_title'
+
+      li className: 'sticky-header-breadcrumbs__item',
+        span
+          className: 'sticky-header-breadcrumbs__link'
+          osu.trans 'home.search.title'
+
+
+  renderStickyContent: =>
+    return null unless currentUser.id?
+
     div
-      className: 'osu-page osu-page--beatmapsets-search-header'
-      if currentUser.id?
-        @renderUser()
-      else
-        @renderGuest()
+      className: 'beatmapsets-search beatmapsets-search--sticky'
+      div
+        className: 'beatmapsets-search__input-container'
+        input
+          className: 'beatmapsets-search__input js-beatmapsets-search-input'
+          ref: @pinnedInputRef
+          type: 'textbox'
+          name: 'search'
+          onChange: @onChange
+          placeholder: osu.trans('beatmaps.listing.search.prompt')
+          defaultValue: controller.filters.query
+        div className: 'beatmapsets-search__icon',
+          i className: 'fas fa-search'
+
+      div
+        className: 'beatmapsets-search__filters'
+        @renderFilter
+          name: 'status'
+          options: @props.availableFilters.statuses
+          showTitle: false
+
+        @renderFilter
+          name: 'mode'
+          options: @props.availableFilters.modes
+          showTitle: false
 
 
-  onInput: (event) =>
-    event.persist()
-    @debouncedSubmit event
+  onChange: (event) =>
+    query = event.target.value
+    @pinnedInputRef.current.value = query
+    @inputRef.current.value = query
+
+    controller.updateFilters { query }
+
+
+  renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>
+    el SearchFilter,
+      filters: controller.filters
+      name: name
+      title: osu.trans("beatmaps.listing.search.filters.#{name}") if showTitle
+      options: options
+      multiselect: multiselect
+      recommendedDifficulty: controller.recommendedDifficulty
+      selected: controller.filters.selectedValue(name)
 
 
   renderGuest: =>
     div
-      className: 'osu-page-header osu-page-header--beatmapsets-header-guest'
+      ref: @props.innerRef
+      className: 'beatmapsets-search'
       div
         className: 'osu-page-header__background'
         style:
-          backgroundImage: "url(#{@props.background})"
-      h1
-        className: 'osu-page-header__title'
-        'Beatmaps'
+          backgroundImage: osu.urlPresence(@props.background)
+      div className: 'beatmapsets-search__input-container js-user-link',
+        input
+          className: 'beatmapsets-search__input'
+          disabled: true
+          type: 'textbox'
+          placeholder: osu.trans('beatmaps.listing.search.login_required')
+        div className: 'beatmapsets-search__icon',
+          i className: 'fas fa-search'
 
 
   renderUser: =>
     filters = @props.availableFilters
+    cssClasses = 'beatmapsets-search'
+    cssClasses += ' beatmapsets-search--expanded' if controller.isExpanded
 
     div
-      className: "beatmapsets-search #{'beatmapsets-search--expanded' if @props.isExpanded}"
+      ref: @props.innerRef
+      className: cssClasses
       div
         className: 'beatmapsets-search__background'
         style:
-          backgroundImage: "url(#{@props.background})"
-      div className: 'fancy-search fancy-search--beatmapsets',
+          backgroundImage: osu.urlPresence(@props.background)
+      div className: 'beatmapsets-search__input-container',
         input
-          className: 'fancy-search__input js-beatmapsets-search-input'
+          className: 'beatmapsets-search__input js-beatmapsets-search-input'
+          ref: @inputRef
           type: 'textbox'
           name: 'search'
+          onChange: @onChange
           placeholder: osu.trans('beatmaps.listing.search.prompt')
-          onInput: @onInput
-          defaultValue: @props.filters.query
-        div className: 'fancy-search__icon',
-          el Icon, name: 'search'
+          defaultValue: controller.filters.query
+        div className: 'beatmapsets-search__icon',
+          i className: 'fas fa-search'
 
-      el Beatmaps.SearchFilter,
+      @renderFilter
+        multiselect: true
+        name: 'general'
+        options: filters.general
+
+      @renderFilter
         name: 'mode'
-        title: osu.trans('beatmaps.listing.search.filters.mode')
         options: filters.modes
-        default: @props.filterDefaults.mode
-        selected: @props.filters.mode
 
-      el Beatmaps.SearchFilter,
-        name:'status'
-        title: osu.trans('beatmaps.listing.search.filters.status')
+      @renderFilter
+        name: 'status'
         options: filters.statuses
-        default: @props.filterDefaults.status
-        selected: @props.filters.status
 
       a
         className: 'beatmapsets-search__expand-link'
-        href:'#'
-        onClick: @props.expand
+        href: '#'
+        onClick: @expand
         div {}, osu.trans('beatmaps.listing.search.options')
-        div {}, i className:'fa fa-angle-down'
+        div {}, i className: 'fas fa-angle-down'
 
       div className: 'beatmapsets-search__advanced',
-        el Beatmaps.SearchFilter,
+        @renderFilter
           name: 'genre'
-          title: osu.trans('beatmaps.listing.search.filters.genre')
           options: filters.genres
-          default: @props.filterDefaults.genre
-          selected: @props.filters.genre
 
-        el Beatmaps.SearchFilter,
+        @renderFilter
           name: 'language'
-          title: osu.trans('beatmaps.listing.search.filters.language')
           options: filters.languages
-          default: @props.filterDefaults.language
-          selected: @props.filters.language
 
-        el Beatmaps.SearchFilter,
-          name: 'extra'
-          title: osu.trans('beatmaps.listing.search.filters.extra')
-          options: filters.extras
+        @renderFilter
           multiselect: true
-          selected: @props.filters.extra
+          name: 'extra'
+          options: filters.extras
 
-        if currentUser.isSupporter
-          el Beatmaps.SearchFilter,
-            name: 'rank'
-            title: osu.trans('beatmaps.listing.search.filters.rank')
-            options: filters.ranks
-            multiselect: true
-            selected: @props.filters.rank
+        @renderFilter
+          multiselect: true
+          name: 'rank'
+          options: filters.ranks
+
+        @renderFilter
+          name: 'played'
+          options: filters.played
 
 
-  submit: (e) =>
-    text = e.target.value.trim()
+  setHeaderPinned: (_event, pinned) =>
+    if pinned && document.activeElement == @inputRef.current
+      @pinnedInputRef.current.focus()
+    else if !pinned && document.activeElement == @pinnedInputRef.current
+      @inputRef.current.focus()
 
-    if text == @prevText
-      return
 
-    @prevText = text
+  mountPortal: (portal, root) ->
+    # clean up any existing element when navigating backwards.
+    existingElement = document.getElementById(portal.id)
+    existingElement?.remove()
 
-    $(document).trigger 'beatmap:search:filtered', query: text
+    root?.appendChild portal
+
+
+  unmountPortal: (portal, root) ->
+    if portal.offsetParent?
+      root?.removeChild portal

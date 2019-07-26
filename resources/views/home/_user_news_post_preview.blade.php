@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -19,24 +19,24 @@
 <div class="news-post-preview{{$collapsed ? ' news-post-preview--collapsed' : ''}}">
     <a
         class="news-post-preview__image"
-        href='{{ route('news.show', $post->getKey() )}}'
+        href='{{ route('news.show', $post->slug) }}'
         {!! background_image($post->firstImage()) !!}
     ></a>
     <div class="news-post-preview__body">
-        <div class="news-post-preview__post-date">
+        <div class="news-post-preview__post-date js-tooltip-time" title="{{ json_time($post->published_at) }}">
             <div class="news-post-preview__date">
-                {{$post->createdAt()->formatLocalized('%d')}}
+                {{$post->published_at->formatLocalized('%d')}}
             </div>
             <div class="news-post-preview__month-year">
                 @if ($collapsed)
-                    &nbsp;{{$post->createdAt()->formatLocalized('%b')}}
+                    &nbsp;{{$post->published_at->formatLocalized('%b')}}
                 @else
-                    {{$post->createdAt()->formatLocalized('%b %Y')}}
+                    {{$post->published_at->formatLocalized('%b %Y')}}
                 @endif
             </div>
         </div>
         <div class="news-post-preview__post-right">
-            <a href='{{ route('news.show', $post->getKey()) }}' class='news-post-preview__post-title'>
+            <a href='{{ route('news.show', $post->slug) }}' class='news-post-preview__post-title'>
                 {{ $post->title() }}
             </a>
             <div class="news-post-preview__post-content">

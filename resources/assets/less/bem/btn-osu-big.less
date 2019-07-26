@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -26,11 +26,8 @@
 
   display: inline-block;
 
-  background-color: @blue-darker;
-  background-image: url('/images/backgrounds/buttonblue@2x.png');
-  background-size: cover;
-  background-position: 50% 50%;
-  transition: background-position 120ms;
+  background-color: @osu-colour-h2;
+  transition: background-color 120ms;
 
   padding: 5px;
   color: #fff;
@@ -41,39 +38,32 @@
   text-transform: none;
   white-space: nowrap;
 
-  &:hover,
   &:focus,
+  &:hover,
   &:active {
     color: #fff;
-    background-position: calc(50% ~'-' 20px) 50%;
+    background-color: @osu-colour-h1;
   }
 
   &[disabled] {
-    &:hover,
-    &:focus,
-    &:active {
-      background-position: 50% 50%;
-    }
-
-    &::before {
-      .full-size();
-      border-radius: inherit;
-      background-color: fade(#fff, 50%);
-    }
+    background-color: @osu-colour-b3;
+    color: @osu-colour-f1;
   }
 
   &--account-edit {
+    display: block;
     width: @avatar-size--base;
     padding: 7px 10px;
     text-align: left;
   }
 
-  &--beatmap-discussion {
+  &--beatmap-discussion-new {
     margin-left: 5px;
+    margin-top: 5px;
   }
 
   &--beatmapset-header {
-    width: 120px;
+    min-width: 120px;
     height: 45px;
     margin: 0 5px 5px 0;
   }
@@ -84,8 +74,35 @@
     margin: 0 5px 5px 0;
   }
 
-  &--beatmapset-header-square-unfavourite {
-    background-image: url('/images/backgrounds/buttonpink@2x.png');
+  &--comment-editor {
+    min-width: 80px;
+    border-radius: 10000px;
+    padding: 5px;
+  }
+
+  &--comment-editor[disabled] {
+    background-color: @osu-colour-b5;
+    color: @osu-colour-f1;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  &--chat-send {
+    min-width: 80px;
+    border-radius: 10000px;
+    padding: 10px;
+
+    background-color: @osu-colour-h2;
+
+    &:hover {
+      background-color: @osu-colour-l3;
+    }
+    @media @desktop {
+      min-width: 130px;
+      padding: 10px 20px;
+    }
   }
 
   &--contest-download {
@@ -93,7 +110,7 @@
     height: 45px;
     margin: 0 5px 5px 0;
     &:hover {
-      background-position: calc(50% ~'-' (20px - 2px)) 50%;
+      background-position: calc(50% - (20px - 2px)) 50%;
     }
   }
 
@@ -112,6 +129,8 @@
     background-image: url("/images/backgrounds/button.svg");
     background-color: @blue-darker;
     background-size: 150%;
+    background-position: 50% 50%;
+    transition: background-position 120ms;
 
     flex: none;
     height: 50px;
@@ -119,6 +138,13 @@
     margin-bottom: 20px;
 
     flex-direction: column;
+
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: @blue-darker;
+      background-position: calc(50% - 20px) 50%;
+    }
   }
 
   &--mega {
@@ -128,11 +154,28 @@
     .center-content();
   }
 
+  &--forum-button {
+    border-radius: 18px;
+    padding: 0 10px;
+    height: 36px;
+    min-width: @forum-topic-new-topic-button--width;
+    // remove line descenders on <a>; should probably go on the block if
+    // the existing doesn't magically break.
+    vertical-align: middle;
+
+    .@{top}__icon {
+      font-size: 120%;
+    }
+
+    @media @narrow {
+      flex: 1;
+    }
+  }
+
   &--forum-reply {
     border-radius: (@btn-circle-diameter / 2);
     padding: 0 5px;
     height: @btn-circle-diameter;
-    background-image: none;
   }
 
   &--full {
@@ -159,10 +202,19 @@
     background-color: @pink;
   }
 
+  &--rounded {
+    padding: 10px 15px;
+    border-radius: 100000px;
+  }
+
   &--search-advanced {
     flex: 1 0 auto;
     text-transform: lowercase;
     margin: 0 5px;
+  }
+
+  &--wrap-text {
+    white-space: normal;
   }
 
   &--user-homepage {
@@ -175,13 +227,13 @@
   }
 
   &--activated, &.js-activated {
-    background-color: @blue;
-    color: #000;
+    background-color: @osu-colour-h2;
+    color: white;
 
     &:focus,
     &:hover,
     &:active {
-      color: #000;
+      color: white;
     }
   }
 
@@ -228,11 +280,19 @@
     margin: 0 5px;
     font-size: 150%;
 
+    &--normal {
+      font-size: inherit;
+    }
+
     .@{top}--account-edit & {
       height: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
+    }
+
+    .@{top}--comment-editor, .@{top}--chat-send & {
+      font-size: 120%;
     }
 
     .@{top}--download-landing & {

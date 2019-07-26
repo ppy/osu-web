@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,40 +20,48 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - ¡El ritmo está a solo un *clic* de distancia!  Con Ouendan/EBA, Taiko y modos de juego originales, así como un editor de niveles totalmente funcional.',
+        'page_description' => 'osu! - El ritmo está a solo un *clic* de distancia! Con Ouendan/EBA, Taiko y modos de juego originales, así como un editor de niveles totalmente funcional.',
     ],
 
     'menu' => [
         'home' => [
             '_' => 'inicio',
             'account-edit' => 'ajustes',
-            'friends' => 'amigos',
             'friends-index' => 'amigos',
-            'getChangelog' => 'listado de cambios',
+            'changelog-index' => 'lista de Cambios',
+            'changelog-build' => 'compilación',
             'getDownload' => 'descargar',
             'getIcons' => 'iconos',
-            'index' => 'osu!',
+            'groups-show' => 'grupos',
+            'index' => 'panel',
             'legal-show' => 'información',
-            'news-index' => 'novedades',
-            'news-show' => 'novedades',
+            'messages-index' => 'mensajes',
+            'news-index' => 'noticias',
+            'news-show' => 'noticias',
             'password-reset-index' => 'reestablecer contraseña',
             'search' => 'buscar',
             'supportTheGame' => 'apoya el juego',
+            'team' => 'equipo',
         ],
         'help' => [
             '_' => 'ayuda',
             'getFaq' => 'preguntas frecuentes',
-            'getSupport' => 'soporte',
+            'getRules' => 'reglas',
+            'getSupport' => 'no, en serio, ¡necesito ayuda!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'show' => 'información',
-            'index' => 'listado',
             'artists' => 'artistas destacados',
-            // 'getPacks' => 'packs',
-            // 'getCharts' => 'charts',
+            'beatmap_discussion_posts-index' => 'publicaciones de discusión del beatmap',
+            'beatmap_discussions-index' => 'discusiones del beatmap',
+            'beatmapset-watches-index' => 'lista de seguimiento del modding',
+            'beatmapset_discussion_votes-index' => 'votos de la discusión del beatmap',
+            'beatmapset_events-index' => 'eventos del beatmap',
+            'index' => 'listado',
+            'packs' => 'paquetes',
+            'show' => 'información',
         ],
         'beatmapsets' => [
             '_' => 'beatmapsets',
@@ -70,33 +78,35 @@ return [
         ],
         'community' => [
             '_' => 'comunidad',
-            'dev' => 'osu!dev',
-            'getForum' => 'foro',
-            'getChat' => 'chat',
-            'getSupport' => 'soporte',
-            'getLive' => 'live',
+            'chat' => 'chat',
+            'chat-index' => 'chat',
+            'dev' => 'desarrollo',
+            'getForum' => 'foros',
+            'getLive' => 'en vivo',
+            'comments-index' => 'comentarios',
+            'comments-show' => 'comentario',
             'contests' => 'concursos',
             'profile' => 'perfil',
             'tournaments' => 'torneos',
             'tournaments-index' => 'torneos',
             'tournaments-show' => 'información de torneos',
             'forum-topic-watches-index' => 'suscripciones',
-            'forum-topics-create' => 'foro',
-            'forum-topics-show' => 'foro',
-            'forum-forums-index' => 'foro',
-            'forum-forums-show' => 'foro',
+            'forum-topics-create' => 'foros',
+            'forum-topics-show' => 'foros',
+            'forum-forums-index' => 'foros',
+            'forum-forums-show' => 'foros',
         ],
         'multiplayer' => [
-            '_' => 'multiplayer',
-            'show' => 'match',
+            '_' => 'multijugador',
+            'show' => 'partida',
         ],
         'error' => [
             '_' => 'error',
             '404' => 'no encontrado',
             '403' => 'prohibido',
             '401' => 'no autorizado',
-            '405' => 'no encontrado',
-            '500' => 'algo va mal',
+            '405' => 'página faltante',
+            '500' => 'algo se rompió',
             '503' => 'mantenimiento',
         ],
         'user' => [
@@ -105,21 +115,31 @@ return [
             'disabled' => 'desactivado',
 
             'register' => 'registrarse',
-            'reset' => 'reiniciar',
+            'reset' => 'recuperar',
             'new' => 'nuevo',
 
-            'messages' => 'Mensajes',
-            'settings' => 'Opciones',
-            'logout' => 'Salir',
             'help' => 'Ayuda',
+            'logout' => 'Cerrar sesión',
+            'messages' => 'Mensajes',
+            'modding-history-discussions' => 'discusiones sobre modding',
+            'modding-history-events' => 'eventos sobre modding',
+            'modding-history-index' => 'historial de moddding del usuario',
+            'modding-history-posts' => 'publicaciones de modding del usuario',
+            'modding-history-votesGiven' => 'votos dados sobre modding del usuario',
+            'modding-history-votesReceived' => 'votos recibidos sobre modding del usuario',
+            'oauth_login' => 'inicia sesión para oauth',
+            'oauth_request' => 'autorización oauth',
+            'settings' => 'Ajustes',
         ],
         'store' => [
             '_' => 'tienda',
+            'checkout-show' => 'caja',
             'getListing' => 'listado',
-            'getCart' => 'carro',
+            'cart-show' => 'carrito',
 
             'getCheckout' => 'caja',
             'getInvoice' => 'factura',
+            'orders-index' => 'historial de pedidos',
             'products-show' => 'producto',
 
             'new' => 'nuevo',
@@ -128,21 +148,22 @@ return [
             'thanks' => 'gracias',
         ],
         'admin-forum' => [
-            '_' => 'admin::forum',
+            '_' => 'administrador::foro',
             'forum-covers-index' => 'portadas del foro',
         ],
         'admin-store' => [
-            '_' => 'admin::store',
+            '_' => 'administrador::tienda',
             'orders-index' => 'órdenes',
-            'orders-show' => 'órdenes',
+            'orders-show' => 'órden',
         ],
         'admin' => [
-            '_' => 'admin',
-            'root' => 'índice',
+            '_' => 'administrador',
+            'beatmapsets-covers' => 'portadas de los beatmap',
             'logs-index' => 'registro',
+            'root' => 'índice',
+
             'beatmapsets' => [
-                '_' => 'beatmapsets',
-                'covers' => 'portadas',
+                '_' => 'sets de beatmaps',
                 'show' => 'detalles',
             ],
         ],
@@ -152,9 +173,9 @@ return [
         'general' => [
             '_' => 'General',
             'home' => 'Inicio',
-            'changelog' => 'Listado de Cambios',
+            'changelog-index' => 'Lista de Cambios',
             'beatmaps' => 'Lista de Beatmaps',
-            'download' => 'Descarga osu!',
+            'download' => 'Descargar osu!',
             'wiki' => 'Wiki',
         ],
         'help' => [
@@ -164,16 +185,12 @@ return [
             'livestreams' => 'Transmisiones en vivo',
             'report' => 'Reportar un Error',
         ],
-        'support' => [
-            '_' => 'Apoyar osu!',
-            'tags' => 'Supporter',
-            'merchandise' => 'Mercancías',
-        ],
         'legal' => [
             '_' => 'Estatus Legal',
-            'copyright' => 'Copyright (DMCA)',
-            'osu_status' => '@osustatus',
+            'copyright' => 'Derechos de autor (DMCA)',
+            'privacy' => 'Privacidad',
             'server_status' => 'Estado del Servidor',
+            'source_code' => 'Código Fuente',
             'terms' => 'Términos de Servicio',
         ],
     ],
@@ -181,62 +198,56 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Página no encontrada',
-            'description' => '¡Lo sentimos, la página que has solicitado no está aquí!',
-            'link' => false,
+            'description' => "¡Lo sentimos, la página que has solicitado no está aquí!",
         ],
         '403' => [
-            'error' => 'No deberías estar aquí.',
+            'error' => "No deberías estar aquí.",
             'description' => 'Aunque podrías intentar volver atrás.',
-            'link' => false,
         ],
         '401' => [
-            'error' => 'No deberías estar aquí.',
-            'description' => 'Aunque podrías intentar volver atrás. O iniciar sesión.',
-            'link' => false,
+            'error' => "No deberías estar aquí.",
+            'description' => 'Aunque podrías intentar volver atrás. O quizá iniciar sesión.',
         ],
         '405' => [
             'error' => 'Página no encontrada',
-            'description' => '¡Lo sentimos, la página que has solicitado no está aquí!',
-            'link' => false,
+            'description' => "¡Lo sentimos, la página que has solicitado no está aquí!",
         ],
         '500' => [
             'error' => '¡Oh no! ¡Algo se ha roto! ;_;',
-            'description' => 'Hemos sido notificados del error.',
-            'link' => false,
+            'description' => "Somos notificados automáticamente de cada error.",
         ],
         'fatal' => [
             'error' => '¡Oh no! ¡Algo se ha roto (gravemente)! ;_;',
-            'description' => 'Hemos sido notificados del error.',
-            'link' => false,
+            'description' => "Somos notificados automáticamente de cada error.",
         ],
         '503' => [
-            'error' => '¡En mantenimiento!',
-            'description' => 'El mantenimiento normalmente tarda entre 5 segundos y 10 minutos. Si continúa pasado ese tiempo, haz clic en :link para más información.',
+            'error' => '¡Fuera de servicio por mantenimiento!',
+            'description' => "El mantenimiento normalmente tarda entre 5 segundos y 10 minutos. Si continúa pasado ese tiempo, ve :link para más información.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => '¡Por si acaso, aquí tienes un código que puedes dar al soporte técnico!',
+        'reference' => "¡Por si acaso, aquí tienes un código que le puedes dar al soporte técnico!",
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'correo electrónico',
-            'forgot' => 'He olvidado mis datos',
+            'forgot' => "He olvidado mis datos",
             'password' => 'contraseña',
-            'title' => 'Regístrate para continuar',
+            'title' => 'Iniciar sesión para continuar',
 
             'error' => [
-                'email' => 'El nombre de usuario o correo electrónico no existe',
+                'email' => "El nombre de usuario o correo electrónico no existe",
                 'password' => 'Contraseña incorrecta',
             ],
         ],
 
         'register' => [
-            'info' => 'Necesitas una cuenta, amigo. ¿Por qué aún no tienes una?',
-            'title' => '¿No tienes una cuenta?',
+            'info' => "Necesita una cuenta, señor. ¿Por qué aún no tiene una?",
+            'title' => "¿No tienes una cuenta?",
         ],
     ],
 
@@ -251,6 +262,6 @@ return [
 
     'popup_search' => [
         'initial' => '¡Escribe para buscar!',
-        'retry' => 'Búsqueda fallida. Clic para reintentar.',
+        'retry' => 'Búsqueda fallida. Haz clic aquí para reintentar.',
     ],
 ];

@@ -1,0 +1,77 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.comments {
+  @_top: comments;
+  @_header-spacing: 20px;
+
+  display: flex;
+  flex-direction: column;
+  background-color: @osu-colour-b5;
+  color: white;
+
+  &__content {
+    background-color: @osu-colour-b4;
+  }
+
+  &__count {
+    font-size: 80%;
+    padding: 5px 10px;
+    margin-left: 5px;
+    border-radius: 10000px;
+    font-style: normal;
+    font-weight: bold;
+    background-color: @osu-colour-b6;
+    color: @osu-colour-f1;
+  }
+
+  &__items {
+    padding-top: 10px;
+
+    &--empty {
+      .default-gutter();
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    &--loading {
+      opacity: 0.5;
+    }
+
+    &--toolbar {
+      .default-gutter();
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__new {
+    .default-gutter();
+    padding-top: @_header-spacing;
+    padding-bottom: @_header-spacing;
+  }
+
+  &__title {
+    .default-gutter();
+    padding-top: @_header-spacing;
+    padding-bottom: 0;
+    font-size: @font-size--title-small-4;
+    margin: 0;
+    color: @osu-colour-l1;
+  }
+}

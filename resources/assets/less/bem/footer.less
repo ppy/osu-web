@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,17 +19,12 @@
 .footer {
   @top: footer;
 
-  .default-text-shadow();
-  background-color: fade(#000, 60%);
-  background-image: linear-gradient(to bottom, fade(#000, 60%) 0, transparent 4px);
-
-  color: #ccc;
+  background-color: @osu-colour-b5;
+  color: @osu-colour-f1;
   font-size: 10px;
-
   display: flex;
   flex-direction: column;
   flex: none;
-
   padding: 10px 0 5px;
 
   &--landing {
@@ -50,15 +45,21 @@
   &__link {
     .link-plain();
     font-weight: bold;
-    color: #fff;
+    color: white;
     margin: 0 10px;
 
     &:hover, &:focus, &:active {
-      color: @pink;
+      color: @osu-colour-l1;
     }
 
     .@{top}--landing & {
       font-weight: inherit;
+    }
+  }
+
+  .osu-layout--mobile-app & {
+    @media @mobile {
+      display: none;
     }
   }
 }

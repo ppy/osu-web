@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -137,10 +137,16 @@ class @BeatmapDiscussionsChart
 
     @svgPoints
       .attr 'xlink:href', (d) =>
-        BeatmapDiscussionHelper.hash discussionId: d.id
+        BeatmapDiscussionHelper.url discussion: d
       .attr 'class', (d) ->
         type = if d.resolved then 'resolved' else _.kebabCase(d.message_type)
-        "js-beatmap-discussion--jump #{bn}__point #{bn}__point--#{type}"
+        classes = "js-beatmap-discussion--jump #{bn}__point #{bn}__point--#{type}"
+        classes += " #{bn}__point--deleted" if d.deleted_at?
+        classes
+      .attr 'title', (d) ->
+        BeatmapDiscussionHelper.formatTimestamp d.timestamp
+      .attr 'data-tooltip-position', 'bottom center'
+      .attr 'data-tooltip-modifiers', 'extra-padding'
 
     # refresh the icons
     @svgPoints
@@ -149,10 +155,12 @@ class @BeatmapDiscussionsChart
     @svgPoints
       .select ".#{bn}__icon"
       .append 'tspan'
-      .classed 'fa', true
-      .html (d) =>
+      .attr 'class', (d) ->
         type = if d.resolved then 'resolved' else _.camelCase(d.message_type)
-        BeatmapDiscussionHelper.messageType.iconText[type]
+        BeatmapDiscussionHelper.messageType.iconText[type][0]
+      .html (d) ->
+        type = if d.resolved then 'resolved' else _.camelCase(d.message_type)
+        BeatmapDiscussionHelper.messageType.iconText[type][1]
 
     @resize()
 

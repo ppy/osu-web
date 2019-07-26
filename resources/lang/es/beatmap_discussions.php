@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,8 +22,48 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Debes iniciar sesión para editar.',
-            'system_generated' => 'No se puede editar una publicación generada por el sistema.',
-            'wrong_user' => 'Debes ser dueño del post para editarlo.',
+            'system_generated' => 'Una publicación generada por el sistema no se puede editar.',
+            'wrong_user' => 'Debes ser el dueño de la publicación para editarla.',
+        ],
+    ],
+
+    'events' => [
+        'empty' => 'Nada ha sucedido... aún.',
+    ],
+
+    'index' => [
+        'deleted_beatmap' => 'eliminado',
+        'title' => 'Discusiones del beatmap',
+
+        'form' => [
+            '_' => 'Buscar',
+            'deleted' => 'Incluir discusiones eliminadas',
+            'types' => 'Tipos de mensaje',
+            'username' => 'Nombre de usuario',
+
+            'user' => [
+                'label' => 'Usuario',
+                'overview' => 'Resumen de actividades',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => 'Fecha de publicación',
+        'deleted_at' => 'Fecha de eliminación',
+        'message_type' => 'Tipo',
+        'permalink' => 'Permalink',
+    ],
+
+    'nearby_posts' => [
+        'confirm' => 'Ninguna de las publicaciones aborda mi asunto',
+        'notice' => 'Ya hay posts cerca de :timestamp (:existing_timestamps). Por favor revísalos antes de publicar.',
+    ],
+
+    'reply' => [
+        'open' => [
+            'guest' => 'Inicia sesión para responder',
+            'user' => 'Responder',
         ],
     ],
 
@@ -32,5 +72,17 @@ return [
             'true' => 'Marcado como resuelto por :user',
             'false' => 'Reabierto por :user',
         ],
+    ],
+
+    'user' => [
+        'admin' => 'administrador',
+        'bng' => 'nominador',
+        'owner' => 'mapper',
+        'nat' => '',
+    ],
+
+    'user_filter' => [
+        'everyone' => 'Todos',
+        'label' => 'Filtrar por usuario',
     ],
 ];

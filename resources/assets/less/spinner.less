@@ -1,0 +1,67 @@
+/*!
+ * Load Awesome v1.1.0-osu (http://github.danielcardoso.net/load-awesome/)
+ * Copyright 2015 Daniel Cardoso <@DanielCardoso>
+ * Copyright 2018 ppy Pty. Ltd.
+ * Licensed under MIT
+ *
+ * Changelogs for -osu:
+ * - main container changes:
+ *   - set display to inline-flex
+ *   - set width and height to 1em
+ *   - remove font-size
+ *   - remove color
+ * - content divs:
+ *   - moved as ::before of the parent
+ *   - set width and height to 90%
+ *   - set border to 0.18em
+ *   - remove display, float
+ * - remove variations (.la-dark, .la-<sizes>)
+ * - remove prefixes
+ */
+.la-ball-clip-rotate {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+
+  &::before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 0.18em solid currentColor;
+    border-bottom-color: transparent;
+    border-radius: 100%;
+    animation: ball-clip-rotate .75s linear infinite;
+
+    .la-ball-clip-rotate--loaded& {
+      animation-iteration-count: 1;
+    }
+  }
+
+  // adjust position so it looks centered
+  &--center-inline {
+    bottom: -0.1em;
+  }
+
+  // adjust position so it looks centered
+  &--comment-editor {
+    bottom: -0.1em;
+  }
+}
+/*
+ * Animation
+ */
+@keyframes ball-clip-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,13 +21,12 @@
 namespace App\Libraries\Elasticsearch;
 
 use Elasticsearch\Common\Exceptions\Missing404Exception;
-use Es;
 
 class Indexing
 {
     public static function deleteIndex(string $name)
     {
-        return Es::indices()->delete([
+        return Es::getClient()->indices()->delete([
             'index' => $name,
             'client' => ['ignore' => 404],
         ]);
@@ -37,31 +36,10 @@ class Indexing
     {
         try {
             // getAlias returns a dictionary where the keys are the names of the indices.
-            return array_keys(Es::indices()->getAlias(['name' => $alias]));
+            return array_keys(Es::getClient()->indices()->getAlias(['name' => $alias]));
         } catch (Missing404Exception $_e) {
             return [];
         }
-    }
-
-    /**
-     * Creates an index with mappings from multiple types.
-     * This is intended for compatibility with the existing index.
-     */
-    public static function createMultiTypeIndex(string $name, array $types)
-    {
-        $mappings = [];
-        foreach ($types as $type) {
-            $mappings[$type::esType()] = ['properties' => $type::esMappings()];
-        }
-
-        $params = [
-            'index' => $name,
-            'body' => [
-                'mappings' => $mappings,
-            ],
-        ];
-
-        return Es::indices()->create($params);
     }
 
     /**
@@ -77,7 +55,7 @@ class Indexing
 
         // updateAliases doesn't work if the alias doesn't exist :D
         if (count($oldIndices) === 0) {
-            return Es::indices()->putAlias(['index' => $indices, 'name' => $alias]);
+            return Es::getClient()->indices()->putAlias(['index' => $indices, 'name' => $alias]);
         }
 
         $actions = [];
@@ -89,7 +67,7 @@ class Indexing
             $actions[] = ['add' => ['index' => $index, 'alias' => $alias]];
         }
 
-        return Es::indices()->updateAliases([
+        return Es::getClient()->indices()->updateAliases([
             'body' => [
                 'actions' => $actions,
             ],

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -19,13 +19,8 @@
 
 <div class="beatmap-pack-download">
     @if(Auth::check())
-        <ul class="beatmap-pack-download__list">
-            @foreach ($pack->downloadUrls() as $download)
-                <li>
-                    <a href="{{ $download['url'] }}"
-                        class="beatmap-pack-download__link">{{ trans('beatmappacks.show.download') }}</a> {{ $download['host'] }}
-            @endforeach
-        </ul>
+        <a href="{{ $pack->downloadUrl()['url'] }}"
+            class="beatmap-pack-download__link">{{ trans('beatmappacks.show.download') }}</a>
     @else
         {!! require_login('beatmappacks.require_login._', 'beatmappacks.require_login.link_text') !!}
     @endif
@@ -33,7 +28,7 @@
 <ul class="beatmap-pack-items">
     @foreach ($sets as $set)
         <li class="beatmap-pack-items__set">
-            <span class="fa fa-extra-mode-{{$mode}} beatmap-pack-items__icon {{ $set->count > 0 ? 'beatmap-pack-items__icon--cleared' : '' }}"
+            <span class="fal fa-extra-mode-{{$mode}} beatmap-pack-items__icon {{ $set->count > 0 ? 'beatmap-pack-items__icon--cleared' : '' }}"
                   title="{{ $set->count > 0 ? trans('beatmappacks.show.item.cleared') : trans('beatmappacks.show.item.not_cleared') }}"
             ></span>
             <a href="{{ route('beatmapsets.show', ['beatmapset' => $set->getKey()]) }}" class="beatmap-pack-items__link">

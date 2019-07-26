@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -21,15 +21,9 @@
 
 @foreach($posts as $post)
     @php
-        $withDeleteLink = Auth::check()
-            ? $post->poster_id === Auth::user()->user_id
-            : false;
+        $withDeleteLink = priv_check('ForumPostDelete', $post)->can();
 
-        if (!$withDeleteLink) {
-            $withDeleteLink = priv_check('ForumPostDelete', $post)->can();
-        }
-
-        if ($post->trashed() && $postPosition > 0) {
+        if ($post->trashed() && $postPosition > 0 && !$loop->first) {
             $postPosition--;
         }
 

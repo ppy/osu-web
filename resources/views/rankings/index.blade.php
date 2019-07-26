@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,24 +15,25 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends('master')
 
-@section("content")
+@section('content')
     @php
         $selectorParams = [
             'type' => $type,
             'mode' => $mode,
-            'route' => function($mode, $type) use ($country) {
+            'route' => function($routeMode, $routeType) use ($country, $spotlight) {
                 return trim(route('rankings', [
-                    'mode' => $mode,
-                    'type' => $type,
-                    'country' => $country['acronym'],
+                    'mode' => $routeMode,
+                    'type' => $routeType,
+                    'spotlight' => $routeType === 'charts' ? $spotlight ?? null : null,
+                    'country' => $routeType !== 'charts' ? $country['acronym'] : null,
                 ]), '?');
             }
         ];
     @endphp
     <div class="osu-page">
-        @include('objects._mode_selector', $selectorParams)
+        @include('rankings._mode_selector', $selectorParams)
         <div class="ranking-page-header">
             @include('rankings._type_selector', $selectorParams)
             <hr class="page-mode__underline">
@@ -44,24 +45,38 @@
                             'country_code' => $country['acronym'],
                             'country_name' => $country['name'],
                         ])
-                        <div class='ranking-page-header__flag-overlay'><i class="fa fa-fw fa-times"></i></div>
+                        <div class='ranking-page-header__flag-overlay'><i class="fas fa-fw fa-times"></i></div>
                     </a>
                 @endif
                 {!! trans('rankings.header', [
                     'type' => "<span class='ranking-page-header__title-type'>".trans("rankings.type.{$type}")."</span>"
                 ]) !!}
             </div>
+            @yield('ranking-header')
         </div>
     </div>
     <div class="osu-page osu-page--small osu-page--rankings">
+        @if ($hasPager)
+            @include('objects._pagination', [
+                'object' => $scores
+                    ->appends(['country' => $country['acronym']])
+                    ->fragment('scores')
+            ])
+        @endif
+
         <div class="ranking-page">
-            <div class="ranking-page__jump-target" id="jump-target"></div>
-            @yield("scores")
+            <div class="ranking-page__jump-target" id="scores"></div>
+            @yield('scores')
         </div>
-        @include('objects._pagination', [
-            'object' => $scores
-                ->appends(['country' => $country['acronym']])
-                ->fragment('jump-target')
-        ])
+
+        @yield('ranking-footer')
+
+        @if ($hasPager)
+            @include('objects._pagination', [
+                'object' => $scores
+                    ->appends(['country' => $country['acronym']])
+                    ->fragment('scores')
+            ])
+        @endif
     </div>
 @endsection

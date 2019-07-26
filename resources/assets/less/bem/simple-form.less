@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,14 +21,68 @@
   display: flex;
   flex-wrap: wrap;
 
+  &--search-box {
+    .default-border-radius();
+    background-color: @osu-colour-b4;
+    padding: 10px 10px 0;
+    margin: 10px 0;
+    font-size: @font-size--normal;
+  }
+
+  &__checkbox {
+    text-transform: none;
+    cursor: pointer;
+
+    &--inline {
+      flex: none;
+      margin: 5px 10px;
+    }
+
+    &--overflow {
+      margin: 0;
+      padding: 5px 10px;
+    }
+  }
+
+  &__checkbox-overflow-container {
+    flex: none;
+    width: 100%;
+
+    @media @desktop {
+      width: 33%;
+    }
+  }
+
+  &__checkboxes-inline {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -5px -10px;
+  }
+
+  &__checkboxes-overflow {
+    max-height: 300px;
+    overflow-y: auto;
+    // Fancier scrolling and visible scroll bar on safari ios.
+    // Doesn't seem to work with `display: flex` though.
+    -webkit-overflow-scrolling: touch;
+    margin: -5px -10px;
+    width: 100%;
+
+    @media @desktop {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
   &__info {
+    margin: 0;
     font-weight: normal;
   }
 
   &__input {
     .default-border-radius();
     .default-box-shadow();
-    flex: 1;
+    flex: 1 0 auto;
     display: inline-flex;
 
     border: none;
@@ -39,10 +93,26 @@
     background-color: #fff;
     color: @input-color;
     font-weight: normal;
+    font-size: @font-size--phone-input;
+    width: 100%;
+
+    @media @desktop {
+      width: auto;
+      font-size: inherit;
+    }
 
     &:focus {
       border: none;
       outline: none;
+    }
+
+    &[type="date"] {
+      // for some reason resizable in chrome
+      resize: none;
+    }
+
+    &--equal-width {
+      flex: 1;
     }
 
     &--small {
@@ -54,6 +124,20 @@
     }
   }
 
+  &__input-arrow-next {
+    width: 100%;
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+
+    @media @desktop {
+      width: auto;
+      padding-top: 0;
+      padding-bottom: 0;
+      transform: rotate(-90deg);
+    }
+  }
+
   &__input-group {
     display: flex;
     align-items: center;
@@ -61,9 +145,6 @@
 
   &__input-group-label {
     font-weight: normal;
-    &--prefix {
-      margin-right: 5px;
-    }
 
     &--suffix {
       margin-left: 5px;
@@ -73,6 +154,12 @@
   &__label {
     width: @_base-column-width;
     flex: none;
+    font-weight: bold;
+
+    margin: 10px 0;
+    @media @desktop {
+      margin: 0;
+    }
 
     &--full {
       width: auto;
@@ -83,8 +170,22 @@
     flex: 1 0 100%;
     display: flex;
     margin-bottom: 10px;
-    align-items: flex-start;
+    align-items: baseline;
     text-transform: none;
+    flex-direction: column;
+
+    @media @desktop {
+      flex-direction: row;
+    }
+
+    &--no-label {
+      margin-top: 10px;
+
+      @media @desktop {
+        margin-top: 0;
+        padding-left: @_base-column-width;
+      }
+    }
 
     &--half {
       flex-basis: 50%;

@@ -3,6 +3,7 @@
 use App\Models\Forum;
 use App\Models\User;
 use App\Models\UserGroup;
+use App\Models\UserStatistics\Osu as StatisticsOsu;
 
 class ForumTopicsControllerTest extends TestCase
 {
@@ -17,9 +18,7 @@ class ForumTopicsControllerTest extends TestCase
 
     public function testReply()
     {
-        $forum = factory(Forum\Forum::class, 'parent')->create([
-            'forum_type' => 1,
-        ]);
+        $forum = factory(Forum\Forum::class, 'child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
@@ -38,6 +37,22 @@ class ForumTopicsControllerTest extends TestCase
         $initialPostCount = Forum\Post::count();
         $initialTopicCount = Forum\Topic::count();
 
+        // fail because no plays =)
+        $this
+            ->actingAs($user)
+            ->post(route('forum.topics.reply', $topic->topic_id), [
+                'body' => 'This is test reply',
+            ])
+            ->assertStatus(403);
+
+        $this->assertSame($initialPostCount, Forum\Post::count());
+        $this->assertSame($initialTopicCount, Forum\Topic::count());
+
+        // add some plays so it passes
+        $this->addPlaycount($user);
+        // reset auth
+        app()->make('OsuAuthorize')->cacheReset();
+
         $this
             ->actingAs($user)
             ->post(route('forum.topics.reply', $topic->topic_id), [
@@ -45,16 +60,13 @@ class ForumTopicsControllerTest extends TestCase
             ])
             ->assertStatus(200);
 
-        $newPostCount = Forum\Post::count();
-        $newTopicCount = Forum\Topic::count();
-
-        $this->assertSame(1, $newPostCount - $initialPostCount);
-        $this->assertSame(0, $newTopicCount - $initialTopicCount);
+        $this->assertSame($initialPostCount + 1, Forum\Post::count());
+        $this->assertSame($initialTopicCount, Forum\Topic::count());
     }
 
     public function testShow()
     {
-        $forum = factory(Forum\Forum::class, 'parent')->create();
+        $forum = factory(Forum\Forum::class, 'child')->create();
         $topic = factory(Forum\Topic::class)->create([
             'forum_id' => $forum->forum_id,
         ]);
@@ -70,9 +82,7 @@ class ForumTopicsControllerTest extends TestCase
 
     public function testStore()
     {
-        $forum = factory(Forum\Forum::class, 'parent')->create([
-            'forum_type' => 1,
-        ]);
+        $forum = factory(Forum\Forum::class, 'child')->create();
         $user = factory(User::class)->create()->fresh();
         $userGroup = $this->defaultUserGroup($user);
         $authOption = Forum\AuthOption::firstOrCreate([
@@ -88,6 +98,23 @@ class ForumTopicsControllerTest extends TestCase
         $initialPostCount = Forum\Post::count();
         $initialTopicCount = Forum\Topic::count();
 
+        // fail because no plays =)
+        $this
+            ->actingAs($user)
+            ->post(route('forum.topics.store', ['forum_id' => $forum->forum_id]), [
+                'title' => 'Test post',
+                'body' => 'This is test post',
+            ])
+            ->assertStatus(403);
+
+        $this->assertSame($initialPostCount, Forum\Post::count());
+        $this->assertSame($initialTopicCount, Forum\Topic::count());
+
+        // add some plays so it passes
+        $this->addPlaycount($user);
+        // reset auth
+        app()->make('OsuAuthorize')->cacheReset();
+
         $this
             ->actingAs($user)
             ->post(route('forum.topics.store', ['forum_id' => $forum->forum_id]), [
@@ -99,11 +126,58 @@ class ForumTopicsControllerTest extends TestCase
                 Forum\Topic::orderBy('topic_id', 'DESC')->first()->topic_id
             ));
 
-        $newPostCount = Forum\Post::count();
-        $newTopicCount = Forum\Topic::count();
+        $this->assertSame($initialPostCount + 1, Forum\Post::count());
+        $this->assertSame($initialTopicCount + 1, Forum\Topic::count());
+    }
 
-        $this->assertSame(1, $newPostCount - $initialPostCount);
-        $this->assertSame(1, $newTopicCount - $initialTopicCount);
+    public function testUpdateTitle()
+    {
+        $forum = factory(Forum\Forum::class, 'child')->create();
+        $user = factory(User::class)->create();
+        $userGroup = $this->defaultUserGroup($user);
+        $initialTitle = 'New topic';
+        $topic = Forum\Topic::createNew($forum, [
+            'title' => $initialTitle,
+            'user' => $user,
+            'body' => 'This is a new topic',
+        ]);
+
+        $newTitle = 'A different title';
+
+        $this
+            ->actingAs($user)
+            ->put(route('forum.topics.update', $topic), [
+                'forum_topic' => [
+                    'topic_title' => $newTitle,
+                ],
+            ])
+            ->assertSuccessful();
+
+        $this->assertSame($newTitle, $topic->fresh()->topic_title);
+    }
+
+    public function testUpdateTitleBlank()
+    {
+        $forum = factory(Forum\Forum::class, 'child')->create();
+        $user = factory(User::class)->create();
+        $userGroup = $this->defaultUserGroup($user);
+        $initialTitle = 'New topic';
+        $topic = Forum\Topic::createNew($forum, [
+            'title' => $initialTitle,
+            'user' => $user,
+            'body' => 'This is a new topic',
+        ]);
+
+        $this
+            ->actingAs($user)
+            ->put(route('forum.topics.update', $topic), [
+                'forum_topic' => [
+                    'topic_title' => null,
+                ],
+            ])
+            ->assertStatus(422);
+
+        $this->assertSame($initialTitle, $topic->fresh()->topic_title);
     }
 
     private function defaultUserGroup($user)
@@ -124,5 +198,21 @@ class ForumTopicsControllerTest extends TestCase
         DB::table($table)->insert($conditions);
 
         return UserGroup::where($conditions)->first();
+    }
+
+    private function addPlaycount($user, $playcount = null)
+    {
+        $playcount ?? $playcount = config('osu.forum.minimum_plays');
+
+        if ($user->statisticsOsu === null) {
+            factory(StatisticsOsu::class)->create([
+                'playcount' => $playcount,
+                'user_id' => $user->getKey(),
+            ]);
+        } else {
+            $user->statisticsOsu->update(['playcount' => $playcount]);
+        }
+
+        $user->refresh();
     }
 }

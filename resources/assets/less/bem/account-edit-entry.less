@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -55,6 +55,48 @@
     overflow: hidden;
   }
 
+  &__button {
+    margin-left: 10px;
+
+    @media @mobile {
+      margin-left: 5px;
+    }
+  }
+
+  &__checkbox {
+    margin: 0;
+    cursor: pointer;
+    text-transform: inherit;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+
+  &__checkbox-label {
+    margin-bottom: 5px;
+    width: 100%;
+    order: -1;
+
+    @media @desktop {
+      margin-bottom: 0;
+      width: auto;
+      order: 0;
+    }
+  }
+
+  &__checkbox-status {
+    pointer-events: none;
+
+    @media @desktop {
+      position: absolute;
+      right: 100%;
+      height: 100%;
+      display: flex;
+      align-items: baseline;
+    }
+  }
+
   &__drop-overlay {
     .full-size();
     .center-content();
@@ -64,6 +106,7 @@
 
     &::before {
       .full-size();
+      content: ' ';
       background-color: #000;
       opacity: 0;
       transition: all 120ms;
@@ -86,7 +129,7 @@
     display: none;
     margin-top: 5px;
     width: 100%;
-    color: @yellow;
+    color: @osu-colour-h1;
     padding-left: 10px;
 
     @media @desktop {
@@ -105,7 +148,7 @@
     flex: 1;
     max-width: @input-width;
     align-self: stretch;
-    background-color: #444;
+    background-color: @osu-colour-b3;
     border: 2px solid transparent;
     color: #fff;
     font-weight: normal;
@@ -115,8 +158,12 @@
       font-size: @font-size--phone-input;
     }
 
-    &:focus, .@{top}.js-parent-focus--focus & {
-      border-color: @yellow;
+    .@{top}--read-only & {
+      background: none;
+    }
+
+    &:focus {
+      border-color: @osu-colour-l1;
     }
 
     .@{top}[data-form-error-state=error] & {
@@ -132,6 +179,9 @@
     width: 100%;
     flex: none;
     padding-bottom: 5px;
+    order: -1;
+    font-weight: bold;
+    color: @osu-colour-f1;
 
     @media @desktop {
       align-self: center;
@@ -141,8 +191,12 @@
       text-align: right;
     }
 
-    .@{top}.js-parent-focus--focus & {
-      color: #fff;
+    &--top-pinned {
+      align-self: flex-start;
+    }
+
+    *:focus ~ & {
+      color: @osu-colour-l1;
     }
   }
 

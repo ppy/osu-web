@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,12 +19,16 @@
  */
 
 return [
+    'pinned_topics' => 'Sujets épinglés',
+    'slogan' => "it's dangerous to play alone.",
+    'subforums' => 'Sous-forums',
+    'title' => 'osu! forum',
 
     'covers' => [
         'create' => [
             '_' => 'Définir la bannière',
             'button' => 'Uploader une image',
-            'info' => "La bannière devrait avoir les résolutions :dimensions. Vous pouvez aussi \"dropper\" l'image ici.",
+            'info' => 'La bannière devrait avoir les résolutions :dimensions. Vous pouvez aussi faire glisser l\'image ici pour l\'uploader',
         ],
 
         'destroy' => [
@@ -43,60 +47,91 @@ return [
         ],
     ],
 
-    'pinned_topics' => 'Sujets épinglés',
+    'mark_as_read' => [
+        'forum' => 'Marquer le forum comme lu',
+        'forums' => 'Marquer les forums comme lus',
+        'busy' => 'Marquer comme lu...',
+    ],
+
+    'poll' => [
+        'edit_warning' => 'Éditer un sondage supprimera les résultats actuels !',
+
+        'actions' => [
+            'edit' => 'Éditer le sondage',
+        ],
+    ],
+
     'post' => [
-        'confirm_destroy' => 'Vraiment supprimer ce post?',
-        'confirm_restore' => 'Vraiment restaurer ce post?',
+        'confirm_destroy' => 'Voulez-vous vraiment supprimer ce post ?',
+        'confirm_restore' => 'Voulez-vous vraiment restaurer ce post ?',
         'edited' => 'Modifié par :user le :when, édité :count fois en tout.',
         'posted_at' => 'posté :when',
+
         'actions' => [
             'destroy' => 'Supprimer le post',
             'restore' => 'Restaurer le post',
             'edit' => 'Modifier le post',
         ],
+
+        'info' => [
+            'post_count' => ':count_delimited discussion|:count_delimited discussions',
+            'topic_starter' => 'Créateur du sujet',
+        ],
     ],
+
     'search' => [
         'go_to_post' => 'Aller au post',
         'post_number_input' => 'entrer le numéro du post',
         'total_posts' => ':posts_count posts au total',
     ],
-    'subforums' => 'Sous-forums',
-    'title' => 'osu!community',
-    'slogan' => 'Il est dangereux de jouer seul.',
+
     'topic' => [
+        'deleted' => 'sujet supprimé',
+        'go_to_latest' => 'voir le dernier post',
+        'latest_post' => ':when par :user',
+        'latest_reply_by' => 'dernière réponse par :user',
+        'new_topic' => 'Poster un nouveau sujet',
+        'new_topic_login' => 'Connectez-vous pour poster un nouveau sujet',
+        'post_reply' => 'Poster',
+        'reply_box_placeholder' => 'Tapez ici pour répondre',
+        'reply_title_prefix' => 'Re',
+        'started_by' => 'par :user',
+        'started_by_verbose' => 'suivi par :user',
+
         'create' => [
-            'placeholder' => [
-                'body' => 'Tapez le contenu du post ici',
-                'title' => 'Cliquez ici pour définir le titre du post',
-            ],
             'preview' => 'Prévisualisation',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Écrire',
             'submit' => 'Poster',
+
+            'necropost' => [
+                'default' => 'Cette discussion a été inactive depuis un certain temps. Postez ici seulement si vous avez une raison particulière de le faire.',
+
+                'new_topic' => [
+                    '_' => "Cette discussion a été inactive pendant un certain temps. Si vous n’avez pas de raison particulière de poster ici, s’il vous plaît :create au lieu de cela.",
+                    'create' => 'créer une nouvelle discussion',
+                ],
+            ],
+
+            'placeholder' => [
+                'body' => 'Tapez le contenu du post ici',
+                'title' => 'Cliquez ici pour définir le titre du post',
+            ],
         ],
-        'go_to_latest' => 'voir le dernier post',
+
         'jump' => [
             'enter' => 'cliquez pour entrer un numéro de post spécifique',
             'first' => 'aller au premier post',
             'last' => 'aller au dernier post',
             'next' => 'passer de 10 posts suivants',
-            'previous' => 'passer à 10 posts précédents',
+            'previous' => 'revenir 10 posts en arrière',
         ],
-        'latest_post' => ':when par :user',
-        'latest_reply_by' => 'dernière réponse par :user',
-        'new_topic' => 'Poster un nouveau sujet',
+
         'post_edit' => [
             'cancel' => 'Annuler',
             'post' => 'Sauvegarder',
-            'zoom' => [
-                'start' => 'Plein écran',
-                'end' => 'Sortir du plein écran',
-            ],
         ],
-        'post_reply' => 'Poster',
-        'reply_box_placeholder' => 'Tapez ici pour répondre',
-        'started_by' => 'par :user',
     ],
 
     'topic_watches' => [
@@ -109,6 +144,7 @@ return [
                 'total' => 'Sujets suivis',
                 'unread' => 'Sujets avec nouvelles réponses',
             ],
+
             'info' => [
                 'total' => 'Vous suivez un total de :total sujets.',
                 'unread' => 'Vous avez :unread réponses non-lues aux sujets suivis.',
@@ -127,11 +163,16 @@ return [
         '_' => 'Sujets',
 
         'actions' => [
+            'login_reply' => 'Connectez-vous pour Répondre',
+            'reply' => 'Répondre',
             'reply_with_quote' => 'Citer un post et répondre',
+            'search' => 'Rechercher',
         ],
 
         'create' => [
             'create_poll' => 'Créer un sondage',
+
+            'preview' => 'Aperçu de la discussion',
 
             'create_poll_button' => [
                 'add' => 'Créer un sondage',
@@ -139,73 +180,79 @@ return [
             ],
 
             'poll' => [
-                'length' => 'Lancer le sujet pour',
-                'length_days_prefix' => '',
+                'hide_results' => 'Masquer les résultats du sondage.',
+                'hide_results_info' => 'Ils ne seront affichés qu\'après la clôture du sondage.',
+                'length' => 'Durée du sondage',
                 'length_days_suffix' => 'jours',
-                'length_info' => 'Laissez blanc pour un sondage sans fin',
+                'length_info' => 'Laissez vide pour un sondage sans fin',
                 'max_options' => 'Réponses par utlisateur',
-                'max_options_info' => "C'est le nombre de réponses qu'un utilisateur peut choisir.",
+                'max_options_info' => 'C\'est le nombre de réponses qu\'un utilisateur peut choisir.',
                 'options' => 'Réponses',
-                'options_info' => 'Placez chaque réponse sur une ligne.',
+                'options_info' => 'Entrez chaque réponse sur une nouvelle ligne. Vous pouvez entrer jusqu\'à 10 réponses.',
                 'title' => 'Question',
                 'vote_change' => 'Autoriser le changement de vote.',
-                'vote_change_info' => "Si c'est activé, vous permettez aux utilisateurs de changer leur vote.",
+                'vote_change_info' => 'Si cette option est activée, les utilisateurs pourront changer leur vote.',
             ],
         ],
 
+        'edit_title' => [
+            'start' => 'Modifier le titre',
+        ],
+
         'index' => [
-            'views' => 'vues',
+            'feature_votes' => 'priorité d\'étoiles',
             'replies' => 'réponses',
+            'views' => 'vues',
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Supprimer le tag "added"',
-            'action-1' => 'Ajouter le tag "added"',
-            'state-0' => 'Tag "added" supprimé',
-            'state-1' => 'Tag "added" ajouté',
+            'to_0' => 'Supprimer le tag "added"',
+            'to_0_done' => 'Tag "added" supprimé',
+            'to_1' => 'Ajouter le tag "added"',
+            'to_1_done' => 'Tag "added" ajouté',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Supprimer le tag "assigned"',
-            'action-1' => 'Ajouter le tag "assigned"',
-            'state-0' => 'Tag "assigned" supprimé',
-            'state-1' => 'Tag "assigned" ajouté',
+            'to_0' => 'Supprimer le tag "assigned"',
+            'to_0_done' => 'Tag "assigned" supprimé',
+            'to_1' => 'Ajouter le tag "assigned"',
+            'to_1_done' => 'Tag "assigned" ajouté',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Supprimer le tag "confirmed"',
-            'action-1' => 'Ajouter le tag "confirmed"',
-            'state-0' => 'Tag "confirmed" supprimé',
-            'state-1' => 'Tag "confirmed" ajouté',
+            'to_0' => 'Supprimer le tag "confirmed"',
+            'to_0_done' => 'Tag "confirmed" supprimé',
+            'to_1' => 'Ajouter le tag "confirmed"',
+            'to_1_done' => 'Tag "confirmed" ajouté',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Supprimer le tag "duplicate"',
-            'action-1' => 'Ajouter le tag "duplicate"',
-            'state-0' => 'Tag "duplicate" supprimé',
-            'state-1' => 'Tag "duplicate" ajouté',
+            'to_0' => 'Supprimer le tag "duplicate"',
+            'to_0_done' => 'Tag "duplicate" supprimé',
+            'to_1' => 'Ajouter le tag "duplicate"',
+            'to_1_done' => 'Tag "duplicate" ajouté',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Supprimer le tag "invalid"',
-            'action-1' => 'Ajouter le tag "invalid"',
-            'state-0' => 'Tag "invalid" supprimé',
-            'state-1' => 'Tag "invalid" ajouté',
+            'to_0' => 'Supprimer le tag "invalid"',
+            'to_0_done' => 'Tag "invalid" supprimé',
+            'to_1' => 'Ajouter le tag "invalid"',
+            'to_1_done' => 'Tag "invalid" ajouté',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Supprimer le tag "resolved"',
-            'action-1' => 'Ajouter le tag "resolved"',
-            'state-0' => 'Tag "resolved" supprimé',
-            'state-1' => 'Tag "resolved" ajouté',
+            'to_0' => 'Supprimer le tag "resolved"',
+            'to_0_done' => 'Tag "resolved" supprimé',
+            'to_1' => 'Ajouter le tag "resolved"',
+            'to_1_done' => 'Tag "resolved" ajouté',
         ],
 
         'lock' => [
-            'is_locked' => 'Ce sujet est verouillé, vous ne pouvez pas répondre',
-            'lock-0' => 'Déverouiller le sujet',
-            'lock-1' => 'Verouiller le sujet',
-            'state-0' => 'Le sujet a été déverouillé',
-            'state-1' => 'Le sujet a été verouillé',
+            'is_locked' => 'Ce sujet est verrouillé, vous ne pouvez pas y répondre',
+            'to_0' => 'Déverrouiller le sujet',
+            'to_0_done' => 'Le sujet a été déverrouillé',
+            'to_1' => 'Verrouiller le sujet',
+            'to_1_done' => 'Le sujet a été verrouillé',
         ],
 
         'moderate_move' => [
@@ -213,23 +260,31 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Désépingler le sujet',
-            'pin-1' => 'Épingler le sujet',
-            'state-0' => 'Le sujet a été désépinglé',
-            'state-1' => 'Le sujet a été épinglé',
+            'to_0' => 'Désépingler le sujet',
+            'to_0_done' => 'Le sujet a été désépinglé',
+            'to_1' => 'Épingler le sujet',
+            'to_1_done' => 'Le sujet a été épinglé',
+            'to_2' => 'Épingler le sujet et marquer en tant qu\'annonce',
+            'to_2_done' => 'Le sujet a été épinglé et marqué en tant qu\'annonce',
         ],
 
         'show' => [
-            'total_posts' => 'Total des Posts',
             'deleted-posts' => 'Posts Supprimés',
+            'total_posts' => 'Total des Posts',
 
             'feature_vote' => [
                 'current' => 'Priorité : +:count',
                 'do' => 'Promouvoir cette requête',
 
+                'info' => [
+                    '_' => 'Il s\'agit d\'une :feature_request. Les demandes de fonctionnalité peuvent être votées par des :supporters.',
+                    'feature_request' => 'demande de fonctionnalité',
+                    'supporters' => 'supporters',
+                ],
+
                 'user' => [
-                    'current' => 'Il vous reste :votes.',
                     'count' => '{0} pas de vote|{1} :count vote|[2,*] :count votes',
+                    'current' => 'Il vous reste :votes.',
                     'not_enough' => "Vous n'avez plus de votes disponibles",
                 ],
             ],
@@ -238,19 +293,20 @@ return [
                 'vote' => 'Voter',
 
                 'detail' => [
-                    'total' => 'Total de votes: :count',
-                    'ended' => 'Sondage terminé :time',
                     'end_time' => 'Le sondage termine à :time',
+                    'ended' => 'Sondage terminé :time',
+                    'results_hidden' => 'Les résultats seront affichés après la fin du sondage.',
+                    'total' => 'Total de votes: :count',
                 ],
             ],
         ],
 
         'watch' => [
-            'state-0' => 'Vous ne suivez pas ce sujet',
-            'state-1' => 'Vous suivez ce sujet',
-            'watch-0' => 'Se désabonner du sujet',
-            'watch-1' => "S'abonner au sujet",
+            'to_not_watching' => 'Vous ne suivez pas ce sujet',
+            'to_watching' => 'Suivre',
+            'to_watching_mail' => 'Suivre avec notifications',
+            'tooltip_mail_disable' => 'La notification est activée. Cliquez pour désactiver',
+            'tooltip_mail_enable' => 'La notification est désactivée. Cliquez pour activer',
         ],
     ],
-
 ];

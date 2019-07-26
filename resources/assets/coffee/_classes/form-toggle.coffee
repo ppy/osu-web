@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -18,12 +18,24 @@
 
 class @FormToggle
   constructor: ->
-    $(document).on 'change', '.js-form-toggle--input', @togglePollForm
+    addEventListener 'turbolinks:load', @sync
+    $(document).on 'change', '.js-form-toggle--input', @onChange
 
 
-  togglePollForm: (e) =>
-    show = e.currentTarget.checked
-    id = e.currentTarget.dataset.formToggleId
+  onChange: (e) =>
+    @toggle e.currentTarget
+
+
+  sync: =>
+    inputs = document.getElementsByClassName('js-form-toggle--input')
+
+    @toggle(input) for input in inputs
+
+
+  toggle: (input) ->
+    id = input.dataset.formToggleId
+    show = input.checked
+
     $form = $(".js-form-toggle--form[data-form-toggle-id='#{id}']")
 
     direction = if show then 'Down' else 'Up'

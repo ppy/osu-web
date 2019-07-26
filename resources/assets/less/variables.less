@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,9 +18,39 @@
 
 @import "app";
 
+@font-content: 'Open Sans', sans-serif;
+@font-default: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
+@font-default-vi: Exo, 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
+@font-default-zh: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+
 @screen-mobile-max: (@screen-sm-min - 1px);
 @desktop: ~"(min-width: @{screen-sm-min})";
 @mobile: ~"(max-width: @{screen-mobile-max})";
+@narrow: ~"(max-width: 480px)";
+
+@highdpi: ~"(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx)";
+
+@hover-transition-duration: 120ms;
+
+@header-pinned: js-header-is-pinned;
+@header-pinned-animation-duration: 300ms;
+
+@admin-menu-icon-width: 50px;
+
+// update import-shims.coffee when changing the height of the header.
+@nav2-avatar-height: 60px;
+@nav2-avatar-height--pinned : 40px;
+@nav2-height: 90px;
+@nav2-height--pinned: 50px;
+@nav2-header-height: 360px;
+@nav2-header-image-height: 310px;
+
+
+// mobile nav
+// TODO: un-bootstrap names
+@navbar-height: 60px;
+@navbar-padding-horizontal: 10px;
+@navbar-padding-vertical: 10px;
 
 @bar-size: 3px;
 @logo-size: 100px;
@@ -29,39 +59,52 @@
 // ┐(ﾟ ヮﾟ)┌
 @padding-wiki-desktop: 40px;
 
+@gutter-profile-page: 20px;
+@gutter-profile-page-desktop: @gutter-desktop;
+@padding-profile-page: 10px;
+@profile-page-action: 20px;
+
+@gutter: 30px;
+@gutter-desktop: 70px;
+
 @height--nav-popup: 210px; // min-height; actual height will be calculated by js.
 
 @navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
 
-
 @border-radius--nav-avatar: 10px;
+@border-radius--extra: 20px;
 
 // here be z-indexes
-@z-index--visibility-hidden: 0;
+@z-index--header-bg: -1;
+
 @z-index--body-background: 0;
-@z-index--user-profile-avatar: 2;
-@z-index--beatmaps-panel: 4;
-@z-index--page-extra-tabs: 5;
-@zindex-navbar: 500; // bootstrap
-@zindex-dropdown: 500; // bootstrap
-@z-index--forum-topic-headernav: 501;
-@z-index--fixed-bar: 501;
-@z-index--blackout: 510;
-@z-index--blackout-visible: 511;
-@zindex-navbar-fixed: 530; // bootstrap
-@zindex-modal-background: 540; // bootstrap
-@zindex-modal: 550; // bootstrap
-@zindex-popover: 560; // bootstrap
-@zindex-tooltip: 570; // bootstrap
-@z-index--nav-popup: 998;
-@z-index--nav-float: 999;
-// Xsolla overlay: 1000
-@z-index--overlay: 9990;
 
 @z-index--beatmapset-header: 1;
 @z-index--contest-header: 1;
 @z-index--download-header: 1;
+@z-index--page-header: 1;
 @z-index--tournament-header: 1;
+@z-index--notification-banner-v2: 1;
+
+@z-index--beatmaps-panel: 4;
+@z-index--profile-page-cover-selector: 5;
+@z-index--profile-previous-usernames: 10;
+@z-index--profile-tournament-banner: 11;
+@z-index--nav2: 100;
+@z-index--simple-menu: 101;
+@z-index--admin-menu: 499;
+@z-index--back-to-top: 500;
+@z-index--fixed-bar: 501;
+@z-index--nav-bar: 502;
+@z-index--user-card-tooltip: 509;
+@z-index--blackout: 510;
+@z-index--blackout-visible: 511;
+@z-index--nav-float: 999;
+// Xsolla overlay: 1000
+// navbar-static-top: 1000 (bootstrap nav for mobile)
+// modal-backdrop: 1040
+// modal: 1050
+@z-index--overlay: 9990;
 
 @box-shadow-x: 0;
 @box-shadow-y: 1px;
@@ -75,13 +118,12 @@
 @profile-badge-size: 50px;
 @profile-header-height: 350px;
 @profile-user-bar-height: 60px;
-@profile-avatar-size: 110px;
-@profile-cover-thumb-size: 85px;
-@profile-stats-box-width: 280px;
+@profile-avatar-size: 120px;
+@profile-stats-box-width: 280px; // FIXME: remove this
+@profile-stats-box-width-desktop: 300px;
 
 @beatmapset-avatar-size: 50px;
 
-@beatmapset-scoreboard-avatar-size: 70px;
 @beatmapset-float-box-width: 275px;
 
 // top padding + menu + page title
@@ -99,6 +141,7 @@
 @font-size--title-small: 14px;
 @font-size--title-small-2: 15px;
 @font-size--title-small-3: 16px;
+@font-size--title-small-4: 18px;
 @font-size--large: 20px;
 @font-size--title: 24px;
 @font-size--large-2: 35px;
@@ -107,14 +150,15 @@
 @font-size--wiki: 14px;
 
 @font-size--header-title: 32px;
+@font-size--header-title-mobile: 24px;
 @font-size--header-subtitle: 16px;
 @font-size--header-description: 12px;
 
 @font-size--header-wiki-2: 26px;
-@font-size--header-wiki-3: 20px;
-@font-size--header-wiki-4: 18px;
-@font-size--header-wiki-5: 16px;
-@font-size--header-wiki-6: 14px;
+@font-size--header-wiki-3: @font-size--large;
+@font-size--header-wiki-4: @font-size--title-small-4;
+@font-size--header-wiki-5: @font-size--title-small-3;
+@font-size--header-wiki-6: @font-size--title-small;
 
 @font-size--new-header-title: 30px;
 @font-size--new-header-subtitle: 14px;
@@ -184,55 +228,47 @@
 
 @forum-post--xs-avatar: 50px;
 
+@forum-topic-new-topic-button--width: 150px;
+@forum-topic-entry--main-margin: 40px;
+
 @beatmap-discussion--avatar-size: 40px;
 @beatmap-discussion--reply-padding: (20px + @beatmap-discussion--avatar-size);
 @beatmap-discussion--timestamp-width: 110px;
 
-@beatmap-discussion--color-hype: @blue-dark;
-@beatmap-discussion--color-mapper-note: @purple;
-@beatmap-discussion--color-praise: @blue-dark;
-@beatmap-discussion--color-problem: @pink-dark;
-@beatmap-discussion--color-resolved: @green;
-@beatmap-discussion--color-suggestion: @yellow-dark;
+@beatmap-discussion--color-hype: @osu-colour-blue-3;
+@beatmap-discussion--color-mapper-note: @osu-colour-purple-1;
+@beatmap-discussion--color-praise: @osu-colour-blue-3;
+@beatmap-discussion--color-problem: @osu-colour-red-3;
+@beatmap-discussion--color-resolved: @osu-colour-lime-3;
+@beatmap-discussion--color-suggestion: @osu-colour-orange-3;
 
 @beatmappack-listing--gutter: 20px;
-
-@section-color--default: @pink-darker;
-
-@section-color--beatmaps: @pink-darker;
-@section-color--community: @pink-darker;
-@section-color--multiplayer: @pink-darker;
-@section-color--error: @pink-darker;
-@section-color--help: @yellow-darker;
-@section-color--home: @purple-darker;
-@section-color--ranking: @green-darker;
-@section-color--store: @pink-darker;
-@section-color--user: @blue-darker;
 
 @user-color-default: @blue-darker;
 
 @changelog-stream--stable: @blue;
-@changelog-stream--stable-fallback: @green;
-@changelog-stream--beta: @yellow;
-@changelog-stream--cutting-edge: @yellow;
+@changelog-stream--stable-fallback: @blue-darker;
+@changelog-stream--beta: @yellow-light;
+@changelog-stream--cutting-edge: @yellow-dark;
 @changelog-stream--lazer: @red;
 @changelog-stream--lazer-experimental: @red;
+@changelog-stream--web: @purple;
+@changelog-stream--wiki: #999;
 
-@changelog-stream--build-0: @purple;
-@changelog-stream--build-1: @purple-darker;
-@changelog-stream--build-2: @pink;
-@changelog-stream--build-3: @pink-darker;
-@changelog-stream--build-4: @blue;
-@changelog-stream--build-5: @blue-darker;
-@changelog-stream--build-6: @yellow;
-@changelog-stream--build-7: @yellow-darker;
-@changelog-stream--build-8: @green;
-@changelog-stream--build-9: @green-darker;
-@changelog-stream--build-10: @red;
-@changelog-stream--build-11: @red-darker;
+// FIXME: see FIXME for .fn-changelog-stream
+@changelog-stream--all: #fff;
+@changelog-stream--online: @green-light;
+@changelog-stream--offline: #000;
 
-@page-extra-side-padding--small: 10px;
-@page-extra-side-padding--large: 30px;
+@changelog-fg: #fff;
+@changelog-fg-content: @pink-lighter;
+
+@comment-dark-bg: @osu-colour-b5;
+@comment-dark-bg-extra: #222;
+@comment-dark-border-bg: @osu-colour-b2;
+@comment-dark-fg: #fff;
+
+@contest-selected-colour: #ffa500;
 
 @mod-width: 45px;
 @mod-height: 32px;
@@ -248,6 +284,8 @@
 @rank-width: 60px;
 @rank-height: 40px;
 
+@ranking-page-header-inset: 40px;
+
 @btn-circle-diameter: 30px;
 
 // difficulty colours
@@ -261,10 +299,6 @@
 // for when black text won't just work on dark background
 @diff-expert-plus--light: #999;
 
-// user profile detail-row
-@detail-row--bottom-min-height: 18px;
-@detail-row--score-details-gap: 2px;
-
 // store slider
 @slider-callout--arrow-height: 12px;
 @slider-callout--arrow-gap: 2px;
@@ -274,5 +308,6 @@
 @slider-handle-width: 10px;
 @slider-height: 10px;
 
-@usercard-width: 260px;
-@usercard-height: 100px;
+@user-card-width: 290px;
+@user-card-width-min: 280px;
+@user-card-height: 120px;

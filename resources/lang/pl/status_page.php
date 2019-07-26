@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'header' => [
         'title' => 'status',
-        'description' => 'co się dzieje, ziomek?',
+        'description' => 'co się właśnie dzieje?',
     ],
 
     'incidents' => [
@@ -31,11 +31,11 @@ return [
 
     'online' => [
         'title' => [
-            'users' => 'Ilość użytkoników online w ciągu ostatnich 24 godzin',
-            'score' => 'Ilość ustanowionych wyników w ciągu ostatnich 24 godzin',
+            'users' => 'Liczba użytkowników online w ciągu ostatnich 24 godzin',
+            'score' => 'Liczba wysłanych wyników w ciągu ostatnich 24 godzin',
         ],
         'current' => 'Obecnie online',
-        'score' => 'Ilość ustanawianych wyników na sekundę',
+        'score' => 'Liczba wysyłanych wyników na sekundę',
     ],
 
     'recent' => [
@@ -62,7 +62,7 @@ return [
             'month' => 'miesiąc',
             'all_time' => 'od zawsze',
             'last_week' => 'ostatni tydzień',
-            'weeks_ago' => '{1} tydzień temu|[2,4] :count tygodnie temu|{5,*} :count tygodni temu',
+            'weeks_ago' => ':count_delimited tydzień temu|:count_delimited tygodnie temu:count_delimited tygodni temu',
         ],
     ],
 ];

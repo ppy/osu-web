@@ -1,66 +1,82 @@
-version: '3'
+version: '3.4'
+
+x-env: &x-env
+  BROADCAST_DRIVER: redis
+  CACHE_DRIVER: redis
+  COMPOSER_HOME: /data/osuweb/.docker/.composer
+  DB_HOST: db
+  ES_HOST: elasticsearch:9200
+  HOME: /data/osuweb/.docker
+  NOTIFICATION_REDIS_HOST: redis
+  REDIS_HOST: redis
+  SESSION_DRIVER: redis
+  YARN_CACHE_FOLDER: /data/osuweb/.docker/.yarn
 
 services:
-  php:
-    build:
-      context: ./docker/php
-      args:
-        _uid: ${_UID:-1000}
-        _gid: ${_GID:-1000}
-    container_name: osuweb-php
-    working_dir: /data/osuweb
-    volumes:
-      - .:/data/osuweb
-      - ./docker/php/overrides.conf:/etc/php/7.1/fpm/pool.d/zz-overrides.conf
-    environment:
-      DB_HOST: osuweb-mysql
   nginx:
     image: nginx:latest
-    container_name: osuweb-nginx
+    depends_on:
+      - notification-server
+      - php
     volumes:
       - ./docker/nginx/nginx-osu-next:/etc/nginx/conf.d/default.conf
       - .:/data/osuweb
     ports:
-      - "8080:80"
+      - "${NGINX_PORT:-8080}:80"
   db:
-    image: mysql:latest
-    container_name: osuweb-mysql
+    image: mysql:8.0
     volumes:
       - database:/var/lib/mysql
       - ./bin/db_setup.sh:/docker-entrypoint-initdb.d/db_setup.sh
       - ./docker/mysql/db_user.sql:/docker-entrypoint-initdb.d/db_user.sql
     environment:
+      <<: *x-env
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_ONETIME_PASSWORD: "yes"
-  composer:
+    command: --default-authentication-plugin=mysql_native_password
+  redis:
+    image: redis:latest
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.1
+    volumes:
+      - elasticsearch:/usr/share/elasticsearch/data
+    environment:
+      discovery.type: single-node
+  php:
     build:
       context: ./docker/php
-      args:
-        _uid: ${_UID:-1000}
-        _gid: ${_GID:-1000}
+    working_dir: /data/osuweb
+    volumes:
+      - .:/data/osuweb
+    user: ${UID:?err}
+    environment:
+      <<: *x-env
+    command: ['/usr/sbin/php-fpm7', '-y', '/data/osuweb/docker/php/php-fpm.conf']
+  notification-server:
+    build:
+      context: ./docker/notification-server
+    depends_on:
+      - redis
+    working_dir: /data/osuweb
+    volumes:
+      - .:/data/osuweb
+    user: ${UID:?err}
+    environment:
+      <<: *x-env
+    command: ./docker/notification-server/start.sh
+  dependencies:
+    build:
+      context: ./docker/dependencies
+    volumes:
+      - .:/data/osuweb
     depends_on:
       - db
-    container_name: osuweb-composer
-    volumes:
-      - .:/data/osuweb
-      - ./docker/php/overrides.conf:/etc/php/7.1/fpm/pool.d/zz-overrides.conf
     environment:
-      DB_HOST: osuweb-mysql
-    user: osuweb
+      <<: *x-env
+    user: ${UID:?err}
     working_dir: /data/osuweb
-    command: bash -c "mkdir -p node_modules && cp -n .env.example .env && ./build.sh"
-  yarn:
-    build:
-      context: ./docker/yarn
-      args:
-        _uid: ${_UID:-1000}
-        _gid: ${_GID:-1000}
-    container_name: osuweb-yarn
-    volumes:
-      - .:/data/osuweb
-    user: osuweb
-    working_dir: /data/osuweb
-    command: bash -c "yarn && yarn run watch"
+    command: ['./docker/dependencies/start.sh', 'db:3306']
 
 volumes:
   database:
+  elasticsearch:

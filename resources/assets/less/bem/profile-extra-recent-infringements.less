@@ -1,0 +1,104 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.profile-extra-recent-infringements {
+  @_top: profile-extra-recent-infringements;
+
+  overflow-x: auto;
+  line-height: normal;
+
+  &__action {
+    width: 100%;
+    border-radius: 20px;
+
+    margin: -2px -10px;
+    padding: 2px 10px;
+
+    &--note {
+      background-color: @blue;
+      color: #000;
+    }
+
+    &--restriction {
+      background-color: @red;
+      color: #fff;
+    }
+
+    &--silence {
+      background-color: @yellow;
+      color: #000;
+    }
+  }
+
+  &__description {
+    a {
+      .link-default();
+    }
+  }
+
+  &__table {
+    width: 100%;
+    min-width: 800px;
+
+    margin: 0 -5px;
+
+    @media @desktop {
+      min-width: auto;
+    }
+  }
+
+  &__table-cell {
+    padding: 5px;
+    vertical-align: baseline;
+
+    &--action {
+      width: 115px;
+    }
+
+    &--date {
+      color: @osu-colour-f1;
+      width: 160px;
+      padding-right: 20px;
+    }
+
+    &--length {
+      width: 145px;
+      padding-right: 40px;
+    }
+
+    // overrides other modifiers
+    &--header {
+      font-size: @font-size--small;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #fff;
+    }
+  }
+
+  &__actor {
+    color: @osu-colour-l1;
+
+    &::before {
+      content: ' ';
+    }
+
+    a {
+      .link-default();
+    }
+  }
+}

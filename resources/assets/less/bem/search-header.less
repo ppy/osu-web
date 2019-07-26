@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,9 @@
  */
 
 .search-header {
+  @_top: search-header;
+  @_search-icon-width: 40px;
+
   .default-header-overlay();
   .default-box-shadow();
   .at2x-simple('/images/headers/search.jpg');
@@ -29,26 +32,53 @@
   padding: 20px 60px;
 
   &__box {
-    .default-border-radius();
-    background-color: fade(#000, 50%);
-    display: flex;
-    font-size: @font-size--title-small-2;
+    position: relative;
+    width: 100%;
   }
 
   &__icon {
     .reset-input();
     .center-content();
-    flex: none;
-    padding: 0 10px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: @_search-icon-width;
+    font-size: @font-size--title-small-2;
+
+    *:-webkit-autofill ~ & {
+      color: #000;
+    }
+
+    &--normal {
+      .@{_top}.js-search--searching & {
+        display: none;
+      }
+    }
+
+    &--searching {
+      display: none;
+
+      .@{_top}.js-search--searching & {
+        display: inline-flex;
+      }
+    }
   }
 
   &__input {
     .reset-input();
+    width: 100%;
     font-size: @font-size--phone-input;
-    flex: 1;
-    padding: 20px 10px;
+    padding: 20px 10px 20px @_search-icon-width;
     font-weight: normal;
     min-width: 0;
+    .default-border-radius();
+    background-color: .osu-hsla(@osu-colour-b6, 0.5)[@hsla];
+    display: flex;
+
+    &::placeholder {
+      color: @osu-colour-f1;
+    }
 
     @media @desktop {
       font-size: inherit;

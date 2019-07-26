@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,9 +19,15 @@
  */
 
 return [
-
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => 'Regenerar',
+            'regenerating' => 'Regenerando...',
+            'remove' => 'Eliminar',
+            'removing' => 'Eliminando...',
+        ],
         'show' => [
+            'covers' => 'Administrar las portadas de los Beatmap',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'activar',
@@ -46,10 +52,10 @@ return [
                     'update' => 'Actualizar',
                 ],
 
-                'title' => 'Lista de portadas',
+                'title' => 'Lista de portadas del foro',
 
                 'type-title' => [
-                    'default-topic' => 'Portada del tema por defecto',
+                    'default-topic' => 'Portada por defecto del tema ',
                     'main' => 'Portada de foro',
                 ],
             ],
@@ -58,13 +64,13 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Observador de Registro',
+            'title' => 'Visualizador del Registro',
         ],
     ],
 
     'pages' => [
         'root' => [
-            'title' => 'Consola de Administración',
+            'title' => 'Consola de administración',
 
             'sections' => [
                 'forum' => 'Foro',
@@ -77,8 +83,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Listado de Pedidos',
+                'title' => 'Listado de pedidos',
             ],
+        ],
+    ],
+
+    'users' => [
+        'restricted_banner' => [
+            'title' => 'Este usuario está actualmente restringido.',
+            'message' => '(solo los administradores pueden ver esto)',
         ],
     ],
 

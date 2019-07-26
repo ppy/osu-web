@@ -12,12 +12,13 @@
     <testsuites>
         <testsuite name="Application Test Suite">
             <directory>./tests/</directory>
+            <exclude>./tests/Browser</exclude>
         </testsuite>
     </testsuites>
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
-        <env name="CAMO_KEY" value=""/>
+        <env name="BROADCAST_DRIVER" value="log"/>
     </php>
 </phpunit>

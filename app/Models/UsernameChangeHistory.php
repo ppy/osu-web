@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,14 @@
 
 namespace App\Models;
 
+/**
+ * @property int $change_id
+ * @property \Carbon\Carbon|null $timestamp
+ * @property mixed $type
+ * @property int $user_id
+ * @property string $username
+ * @property string|null $username_last
+ */
 class UsernameChangeHistory extends Model
 {
     protected $table = 'osu_username_change_history';
@@ -27,4 +35,9 @@ class UsernameChangeHistory extends Model
 
     protected $dates = ['timestamp'];
     public $timestamps = false;
+
+    public function scopeVisible($query)
+    {
+        $query->whereIn('type', ['support', 'paid']);
+    }
 }

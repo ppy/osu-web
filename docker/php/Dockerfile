@@ -1,23 +1,26 @@
-FROM phpdockerio/php71-fpm:latest
+FROM alpine:3.9
 
-RUN apt-get update \
-    && apt-get -y --no-install-recommends install \
-        php7.1-curl \
-        php7.1-gd \
-        php7.1-intl \
-        php7.1-json \
-        php7.1-mbstring \
-        php7.1-mcrypt \
-        php7.1-mysql \
-        php7.1-xml \
-        php7.1-zip
-
-ARG _uid
-ARG _gid
-
-ENV _uid ${_uid}
-ENV _gid ${_gid}
-
-COPY setup.sh /data/
-
-RUN ./data/setup.sh
+RUN apk update && \
+    apk add --no-cache \
+    php7 \
+    php7-ctype \
+    php7-curl \
+    php7-dom \
+    php7-fileinfo \
+    php7-fpm \
+    php7-gd \
+    php7-intl \
+    php7-json \
+    php7-mbstring \
+    php7-mcrypt \
+    php7-mysqli \
+    php7-pdo_mysql \
+    php7-phar \
+    php7-redis \
+    php7-session \
+    php7-simplexml \
+    php7-sqlite3 \
+    php7-tokenizer \
+    php7-xml \
+    php7-xmlwriter \
+    php7-zip

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,6 +21,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Jobs\RegenerateBeatmapsetCover;
+use App\Jobs\RemoveBeatmapsetCover;
 use App\Models\Beatmapset;
 use Request;
 
@@ -39,7 +40,9 @@ class BeatmapsetsController extends Controller
     public function removeCovers($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
-        $beatmapset->removeCovers();
+
+        $job = (new RemoveBeatmapsetCover($beatmapset))->onQueue('beatmap_high');
+        $this->dispatch($job);
 
         return response([], 204);
     }
@@ -48,7 +51,7 @@ class BeatmapsetsController extends Controller
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
-        $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_processor');
+        $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_high');
         $this->dispatch($job);
 
         return response([], 204);

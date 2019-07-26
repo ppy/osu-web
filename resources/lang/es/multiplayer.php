@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => 'beatmap eliminado',
+        'difference' => 'por :difference',
+        'failed' => 'FALLIDO',
         'header' => 'Partidas Multijugador',
-        'team-types' => [
-            'head-to-head' => 'Uno a uno',
-            'tag-coop' => 'Tag Cooperativo',
-            'team-vs' => 'Equipos',
-            'tag-team-vs' => 'Tag Equipos',
-        ],
+        'in-progress' => '(partida en progreso)',
+        'in_progress_spinner_label' => 'partida en progreso',
+        'loading-events' => 'Cargando eventos...',
+        'winner' => ':team gana',
+
         'events' => [
             'player-left' => ':user abandonó la partida',
             'player-joined' => ':user se unió a la partida',
@@ -42,7 +44,7 @@ return [
             'match-disbanded-no-user' => 'la partida fue disuelta',
             'host-changed-no-user' => 'el anfitrión ha cambiado',
         ],
-        'in-progress' => '(partida en progreso)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Precisión',
@@ -50,16 +52,18 @@ return [
                 'score' => 'Puntuación',
             ],
         ],
-        'failed' => 'FALLIDO',
+
+        'team-types' => [
+            'head-to-head' => 'Cabeza a cabeza',
+            'tag-coop' => 'Tag Cooperativo',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
+        ],
+
         'teams' => [
             'blue' => 'Equipo Azul',
             'red' => 'Equipo Rojo',
         ],
-        'winner' => ':team gana',
-        'difference' => 'por :difference',
-        'loading-events' => 'Cargando eventos...',
-        'more-events' => 'ver todo...',
-        'beatmap-deleted' => 'beatmap eliminado',
     ],
     'game' => [
         'scoring-type' => [

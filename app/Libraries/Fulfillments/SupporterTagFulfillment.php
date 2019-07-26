@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,8 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Events\Fulfillments\OrderFulfillerEvent;
+use App\Events\Fulfillments\SupporterTagEvent;
+use App\Models\Event;
 use App\Models\Store\OrderItem;
 use App\Models\SupporterTag;
 use App\Models\User;
@@ -31,6 +32,7 @@ class SupporterTagFulfillment extends OrderFulfiller
 {
     const TAGGED_NAME = 'supporter-tag';
 
+    private $continued;
     private $fulfillers;
     private $orderItems;
     private $minimumRequired = 0; // do not read this field outside of minimumRequired()
@@ -39,13 +41,17 @@ class SupporterTagFulfillment extends OrderFulfiller
     {
         $this->throwOnFail($this->validateRun());
 
+        $this->continued = $this->order->user->supporterTagPurchases()->exists();
         $fulfillers = $this->getOrderItemFulfillers();
 
         foreach ($fulfillers as $fulfiller) {
             $fulfiller->run();
         }
 
-        event("store.fulfillments.run.{$this->taggedName()}", new OrderFulfillerEvent($this->order));
+        event(
+            "store.fulfillments.run.{$this->taggedName()}",
+            new SupporterTagEvent($this->order, $this->getOrderItems())
+        );
 
         $this->afterRun();
     }
@@ -58,40 +64,56 @@ class SupporterTagFulfillment extends OrderFulfiller
             $fulfiller->revoke();
         }
 
-        event("store.fulfillments.revoke.{$this->taggedName()}", new OrderFulfillerEvent($this->order));
+        event(
+            "store.fulfillments.revoke.{$this->taggedName()}",
+            new SupporterTagEvent($this->order, $this->getOrderItems())
+        );
     }
 
     private function afterRun()
     {
         $items = $this->getOrderItems();
         $donor = $this->order->user;
-        $giftees = [];
+        $gifts = [];
         $donationTotal = $items->sum('cost');
-        $length = 0;
+        $totalDuration = 0;
 
         foreach ($items as $item) {
-            $length += (int) $item['extra_data']['duration'];
+            $duration = (int) $item['extra_data']['duration'];
+            $totalDuration += $duration;
             $targetId = $item['extra_data']['target_id'];
             $target = User::find($targetId);
             // TODO: warn if user doesn't exist, but don't explode.
             if ($donor->getKey() !== $target->getKey()) {
-                $giftees[$targetId] = $target;
+                if (($gifts[$targetId] ?? null) === null) {
+                    $gifts[$targetId] = ['target' => $target, 'duration' => $duration];
+                } else {
+                    $gifts[$targetId]['duration'] += $duration;
+                }
             }
         }
 
-        $isGift = count($giftees) !== 0;
+        $isGift = count($gifts) !== 0;
+
+        Event::generate(
+            $this->continued ? 'userSupportAgain' : 'userSupportFirst',
+            ['user' => $donor, 'date' => $this->order->paid_at]
+        );
 
         if (present($donor->user_email)) {
             Mail::to($donor->user_email)
-                ->queue(new \App\Mail\DonationThanks($donor, $length, $donationTotal, $isGift));
+                ->queue(new \App\Mail\DonationThanks($donor, $totalDuration, $donationTotal, $isGift, $this->continued));
         } else {
             Log::warning("User ({$$donor->getKey()}) does not have an email address set!");
         }
 
-        foreach ($giftees as $giftee) {
+        foreach ($gifts as $_key => $value) {
+            $giftee = $value['target'];
+            Event::generate('userSupportGift', ['user' => $giftee, 'date' => $this->order->paid_at]);
+
             if (present($giftee->user_email)) {
                 Mail::to($giftee->user_email)
-                    ->queue(new \App\Mail\SupporterGift($donor, $giftee, $length));
+                    ->queue(new \App\Mail\SupporterGift($donor, $giftee, $value['duration']));
             } else {
                 Log::warning("User ({$giftee->getKey()}) does not have an email address set!");
             }

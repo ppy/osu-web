@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,29 +20,30 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Ajustes</strong> de la Cuenta',
+        'title' => '<strong>Ajustes</strong> de la cuenta',
         'title_compact' => 'ajustes',
+        'username' => 'nombre de usuario',
 
         'avatar' => [
-            'title' => 'Editar Avatar',
+            'title' => 'Avatar',
         ],
 
         'email' => [
             'current' => 'correo electrónico actual',
             'new' => 'nuevo correo electrónico',
-            'new_confirmation' => 'verificar correo electrónico',
-            'title' => 'Correo Electrónico',
+            'new_confirmation' => 'confirmar correo electrónico',
+            'title' => 'Correo electrónico',
         ],
 
         'password' => [
             'current' => 'contraseña actual',
             'new' => 'nueva contraseña',
-            'new_confirmation' => 'verificar contraseña',
+            'new_confirmation' => 'confirmar contraseña',
             'title' => 'Contraseña',
         ],
 
         'profile' => [
-            'title' => 'Editar Perfil',
+            'title' => 'Perfil',
 
             'user' => [
                 'user_from' => 'ubicación actual',
@@ -51,6 +52,7 @@ return [
                 'user_occ' => 'ocupación',
                 'user_twitter' => 'twitter',
                 'user_website' => 'sitio web',
+                'user_discord' => 'discord',
             ],
         ],
 
@@ -60,16 +62,19 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'title' => '',
+        'authorized_clients' => '',
+    ],
+
     'update_email' => [
-        'email_subject' => 'osu! - Confirmación de cambio de correo electrónico',
+        'email_subject' => 'Confirmación de cambio de correo electrónico de osu!',
         'update' => 'actualizar',
-        'updated' => 'Correo electrónico actualizado',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! - Confirmación de cambio de contraseña',
+        'email_subject' => 'Confirmación de cambio de contraseña de osu!',
         'update' => 'actualizar',
-        'updated' => 'Contraseña actualizada',
     ],
 
     'playstyles' => [
@@ -78,5 +83,25 @@ return [
         'keyboard' => 'teclado',
         'tablet' => 'tableta',
         'touch' => 'táctil',
+    ],
+
+    'privacy' => [
+        'title' => 'Privacidad',
+        'friends_only' => 'Bloquear mensajes privados de gente que no está en tu lista de amigos',
+        'hide_online' => 'mostrarse como desconectado',
+    ],
+
+    'notifications' => [
+        'title' => '',
+        'topic_auto_subscribe' => '',
+    ],
+
+    'security' => [
+        'current_session' => 'actual',
+        'end_session' => 'Cerrar sesión',
+        'end_session_confirmation' => 'Esto cerrará inmediatamente su sesión en ese dispositivo. ¿Esta seguro?',
+        'last_active' => 'Última vez activo:',
+        'title' => 'Seguridad',
+        'web_sessions' => 'sesiones web',
     ],
 ];

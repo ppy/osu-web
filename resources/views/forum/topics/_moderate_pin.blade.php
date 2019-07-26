@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -18,7 +18,7 @@
 @php
     $types = [
         'sticky' => [
-            'icon' => 'thumb-tack',
+            'icon' => 'thumbtack',
         ],
         'announcement' => [
             'icon' => 'bullhorn',
@@ -26,38 +26,33 @@
     ];
     $normalTypeInt = App\Models\Forum\Topic::typeInt('normal');
 @endphp
-<div
-    class="
-        js-forum-topic-moderate_pin
-    "
-    data-topic-id="{{ $topic->topic_id }}"
->
-    @foreach ($types as $type => $attrs)
-        @php
-            $typeInt = App\Models\Forum\Topic::typeInt($type);
-            $activated = $topic->topic_type === $typeInt;
-            $actionInt = $activated ? $normalTypeInt : $typeInt;
-        @endphp
-
-        <button
-            type="button"
-            class="
-                btn-circle
-                btn-circle--topic-nav
-                btn-circle--yellow
-                {{ $activated ? 'btn-circle--activated' : '' }}
-            "
-            data-url="{{ route('forum.topics.pin', [
-                $topic,
-                'pin' => $actionInt,
-            ]) }}"
-            data-remote="1"
-            data-method="post"
-            title="{{ trans('forum.topics.moderate_pin.pin-'.$actionInt) }}"
-        >
-            <span class="btn-circle__content">
-                <i class="fa fa-{{ $attrs['icon'] }}"></i>
-            </span>
-        </button>
-    @endforeach
-</div>
+@foreach ($types as $type => $attrs)
+    @php
+        $typeInt = App\Models\Forum\Topic::typeInt($type);
+        $activated = $topic->topic_type === $typeInt;
+        $actionInt = $activated ? $normalTypeInt : $typeInt;
+    @endphp
+    <button
+        type="button"
+        class="
+            btn-circle
+            btn-circle--topic-nav
+            btn-circle--yellow
+            {{ $activated ? 'btn-circle--activated' : '' }}
+            js-forum-topic-moderate_pin
+            {{ $loop->first ? '' : 'js-forum-topic-moderate_pin--extra' }}
+        "
+        data-topic-id="{{ $topic->topic_id }}"
+        data-url="{{ route('forum.topics.pin', [
+            $topic,
+            'pin' => $actionInt,
+        ]) }}"
+        data-remote="1"
+        data-method="post"
+        title="{{ trans('forum.topics.moderate_pin.to_'.$actionInt) }}"
+    >
+        <span class="btn-circle__content">
+            <i class="fas fa-{{ $attrs['icon'] }}"></i>
+        </span>
+    </button>
+@endforeach

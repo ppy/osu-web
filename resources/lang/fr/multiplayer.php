@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,13 +20,15 @@
 
 return [
     'match' => [
+        'beatmap-deleted' => 'beatmap supprimée',
+        'difference' => 'de :difference points',
+        'failed' => 'Échec',
         'header' => 'Match multijoueur',
-        'team-types' => [
-            'head-to-head' => 'Chacun pour soi',
-            'tag-coop' => 'Tag en coopération',
-            'team-vs' => 'Équipes en versus',
-            'tag-team-vs' => 'Tag en versus (2 équipes)',
-        ],
+        'in-progress' => '(match en cours)',
+        'in_progress_spinner_label' => 'match en cours',
+        'loading-events' => 'Chargement des évènements...',
+        'winner' => ':team gagne',
+
         'events' => [
             'player-left' => ':user a quitté le match',
             'player-joined' => ':user a rejoint le match',
@@ -40,9 +42,9 @@ return [
             'player-kicked-no-user' => 'un joueur a été exclu du match',
             'match-created-no-user' => 'le match a été créé',
             'match-disbanded-no-user' => 'le match a été dissous',
-            'host-changed-no-user' => "l'hôte a changé",
+            'host-changed-no-user' => 'l\'hôte a changé',
         ],
-        'in-progress' => '(match en cours)',
+
         'score' => [
             'stats' => [
                 'accuracy' => 'Précision',
@@ -50,16 +52,18 @@ return [
                 'score' => 'Score',
             ],
         ],
-        'failed' => 'Échec',
+
+        'team-types' => [
+            'head-to-head' => 'Chacun pour soi',
+            'tag-coop' => 'Tag en coopération',
+            'team-vs' => 'Équipes en versus',
+            'tag-team-vs' => 'Tag en versus (2 équipes)',
+        ],
+
         'teams' => [
             'blue' => 'Équipe bleue',
             'red' => 'Équipe rouge',
         ],
-        'winner' => ':team gagne',
-        'difference' => 'de :difference points',
-        'loading-events' => 'Chargement des évènements...',
-        'more-events' => 'voir tout...',
-        'beatmap-deleted' => 'beatmap supprimée',
     ],
     'game' => [
         'scoring-type' => [

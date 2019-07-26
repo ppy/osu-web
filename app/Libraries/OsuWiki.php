@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -31,6 +31,9 @@ class OsuWiki
     const REPOSITORY = 'osu-wiki';
     const USER = 'ppy';
 
+    public $path;
+    public $data;
+
     public static function cleanPath($path)
     {
         return preg_replace('|//+|', '/', trim($path, '/'));
@@ -57,6 +60,17 @@ class OsuWiki
 
     public static function fetchContent($path)
     {
-        return base64_decode(static::fetch($path)['content'], true);
+        return (new static($path))->content();
+    }
+
+    public function __construct($path)
+    {
+        $this->path = $path;
+        $this->data = static::fetch($this->path);
+    }
+
+    public function content()
+    {
+        return base64_decode($this->data['content'], true);
     }
 }

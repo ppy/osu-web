@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,26 +21,26 @@
 return [
     'header' => [
         'title' => 'estado',
-        'description' => 'o que tá acontecendo?',
+        'description' => 'que que tá acontecendo, meu parsa?',
     ],
 
     'incidents' => [
-        'title' => 'Incidentes ativos',
+        'title' => 'Incidentes Ativos',
         'automated' => 'automatizado',
     ],
 
     'online' => [
         'title' => [
-            'users' => 'Usuários online nas últimas 24 horas',
-            'score' => 'Pontuações atingidas nas últimas 24 horas',
+            'users' => 'Usuários online nas últimas 24 Horas',
+            'score' => 'Pontuações atingidas nas últimas 24 Horas',
         ],
-        'current' => 'Usuários online',
-        'score' => 'Pontuações atingidas por segundo',
+        'current' => 'Usuários Online',
+        'score' => 'Pontuações Atingidas por Segundo',
     ],
 
     'recent' => [
         'incidents' => [
-            'title' => 'Incidentes recentes',
+            'title' => 'Incidentes Recentes',
             'state' => [
                 'resolved' => 'Resolvidos',
                 'resolving' => 'Resolvendo',
@@ -49,7 +49,7 @@ return [
         ],
 
         'uptime' => [
-            'title' => 'Tempo de atividade',
+            'title' => 'Tempo de Atividade',
             'graphs' => [
                 'server' => 'servidor',
                 'web' => 'web',

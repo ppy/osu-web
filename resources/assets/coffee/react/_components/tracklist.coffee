@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,10 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, table, thead, tbody, tr, th} = ReactDOMFactories
+import * as React from 'react'
+import { div, table, thead, tbody, tr, th } from 'react-dom-factories'
+import { TracklistTrack } from 'tracklist-track'
 el = React.createElement
 
-class @Tracklist extends React.Component
+export class Tracklist extends React.Component
   render: ->
     return null unless @props.tracks.length > 0
 
@@ -33,9 +35,9 @@ class @Tracklist extends React.Component
         thead {},
             tr className: 'tracklist__row--header',
                 th className: 'tracklist__col tracklist__col--preview', ''
-                th className: 'tracklist__col tracklist__col--title', 'title'
-                th className: 'tracklist__col tracklist__col--length', 'length'
-                th className: 'tracklist__col tracklist__col--bpm', 'bpm'
-                th className: 'tracklist__col tracklist__col--genre', 'genre'
+                th className: 'tracklist__col tracklist__col--title', osu.trans('artist.tracklist.title')
+                th className: 'tracklist__col tracklist__col--length', osu.trans('artist.tracklist.length')
+                th className: 'tracklist__col tracklist__col--bpm', osu.trans('artist.tracklist.bpm')
+                th className: 'tracklist__col tracklist__col--genre', osu.trans('artist.tracklist.genre')
                 th className: 'tracklist__col tracklist__col--dl',
         tbody {}, tracks

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -19,18 +19,12 @@
 <ul class="page-mode page-mode--ranking-page-mode-tabs">
     @foreach (['performance', 'charts', 'score', 'country'] as $tab)
         <li class="page-mode__item">
-            @if ($tab == 'charts')
-                <span class="page-mode-link page-mode-link--white page-mode-link--is-disabled" title="Coming soon!™">
-                    {{trans("rankings.type.{$tab}")}}
-                </span>
-            @else
-                <a class="page-mode-link page-mode-link--white{{$type == $tab ? ' page-mode-link--is-active' : ''}}"
-                    href="{{$tab == 'country' ? route('rankings', ['mode' => $mode, 'type' => $tab]) : $route($mode, $tab)}}"
-                >
-                    {{trans("rankings.type.{$tab}")}}
-                    <span class="page-mode-link__stripe page-mode-link__stripe--black"></span>
-                </a>
-            @endif
+            <a class="page-mode-link page-mode-link--white{{$type == $tab ? ' page-mode-link--is-active' : ''}}"
+                href="{{$tab == 'country' ? route('rankings', ['mode' => $mode, 'type' => $tab]) : $route($mode, $tab)}}"
+            >
+                {{trans("rankings.type.{$tab}")}}
+                <span class="page-mode-link__stripe page-mode-link__stripe--black"></span>
+            </a>
         </li>
     @endforeach
 </ul>

@@ -3,8 +3,14 @@
 // osu config~
 return [
     'avatar' => [
-        'storage' => env('AVATAR_STORAGE', 'local-avatar'),
         'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
+        'default' => env('DEFAULT_AVATAR', '/images/layout/avatar-guest.png'),
+        'storage' => env('AVATAR_STORAGE', 'local-avatar'),
+    ],
+
+    'assets' => [
+        'base_url' => env('ASSETS_URL'),
+        'mini_url' => env('MINI_ASSETS_URL'),
     ],
 
     'bbcode' => [
@@ -22,33 +28,69 @@ return [
         'sentry' => env('BM_PROCESSOR_SENTRY'),
     ],
     'beatmapset' => [
+        'discussion_kudosu_per_user' => get_int(env('BEATMAPSET_DISCUSSION_KUDOSU_PER_USER')) ?? 10,
+        'download_limit' => intval(env('BEATMAPSET_USER_DOWNLOAD_LIMIT_HOURLY', 10)),
+        'download_limit_supporter' => intval(env('BEATMAPSET_USER_DOWNLOAD_LIMIT_HOURLY_SUPPORTER', 20)),
+        'es_cache_duration' => get_float(env('BEATMAPSET_ES_CACHE_DURATION')) ?? 1.0,
+        'favourite_limit' => intval(env('BEATMAPSET_USER_FAVOURITE_LIMIT', 100)),
+        'favourite_limit_supporter' => intval(env('BEATMAPSET_USER_FAVOURITE_LIMIT_SUPPORTER', 1000)),
+        'rank_per_day' => get_int(env('BEATMAPSET_RANK_PER_DAY')) ?? 8,
+        'rank_per_run' => get_int(env('BEATMAPSET_RANK_PER_RUN')) ?? 2,
         'required_hype' => get_int(env('BEATMAPSET_REQUIRED_HYPE')) ?? 5,
+        'storage' => env('BEATMAPSET_STORAGE'),
+        'user_daily_nominations' => get_int(env('BEATMAPSET_USER_DAILY_NOMINATIONS', 10)) ?? 10,
         'user_weekly_hype' => get_int(env('BEATMAPSET_USER_WEEKLY_HYPE')) ?? 3,
     ],
     'camo' => [
-        'key' => env('CAMO_KEY'),
+        'key' => presence(env('CAMO_KEY')),
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
+    ],
+    'chat' => [
+        'message_length_limit' => get_int(env('CHAT_MESSAGE_LENGTH_LIMIT')) ?? 100,
+        'public_backlog_limit' => get_int(env('CHAT_PUBLIC_BACKLOG_LIMIT_HOURS')) ?? 24,
+        'webchat_enabled_supporter' => get_int(env('CHAT_WEBCHAT_ENABLED_SUPPORTER')) ?? false,
+        'webchat_enabled_all' => get_int(env('CHAT_WEBCHAT_ENABLED_ALL')) ?? false,
+        'rate_limits' => [
+            'public' => [
+                'limit' => get_int(env('CHAT_PUBLIC_LIMIT')) ?? 1,
+                'window' => get_int(env('CHAT_PUBLIC_WINDOW')) ?? 1,
+            ],
+            'private' => [
+                'limit' => get_int(env('CHAT_PRIVATE_LIMIT')) ?? 1,
+                'window' => get_int(env('CHAT_PRIVATE_WINDOW')) ?? 1,
+            ],
+        ],
     ],
     'client' => [
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
+        'number_of_shards' => env('ES_DEFAULT_SHARDS', 1),
         'prefix' => env('ES_INDEX_PREFIX'),
         'index' => [
             'wiki_pages' => env('ES_INDEX_PREFIX').'osu:wiki_pages_20171130',
         ],
+        'search_timeout' => env('ES_SEARCH_TIMEOUT', '5s'),
     ],
     'emails' => [
         'account' => 'accounts@ppy.sh',
     ],
     'forum' => [
-        'admin_forum_id' => intval(env('ADMIN_FORUM_ID', 28)),
-        'help_forum_ids' => array_map('intval', explode(' ', env('HELP_FORUM_IDS', '4 5 29 30 101'))),
+        'admin_forum_id' => get_int(env('ADMIN_FORUM_ID')) ?? 28,
+        'feature_forum_id' => get_int(env('FEATURE_FORUM_ID')) ?? 4,
+        'feature_topic_small_star_min' => get_int(env('FEATURE_TOPIC_SMALL_STAR_MIN')) ?? 1000,
+        'help_forum_id' => get_int(env('HELP_FORUM_ID')) ?? 5,
+        'initial_help_forum_ids' => array_map('intval', explode(' ', env('INITIAL_HELP_FORUM_IDS', '5 47 85'))),
+        'issue_forum_ids' => array_map('intval', explode(' ', env('ISSUE_FORUM_IDS', '4 5 29 30 101'))),
+        'max_post_length' => get_int(env('FORUM_POST_MAX_LENGTH')) ?? 60000,
+        'minimum_plays' => get_int(env('FORUM_POST_MINIMUM_PLAYS')) ?? 200,
+        'necropost_months' => 6,
+        'poll_edit_hours' => get_int(env('FORUM_POLL_EDIT_HOURS')) ?? 1,
+
         'double_post_time' => [
-            'normal' => 72,
             'author' => 24,
+            'normal' => 72,
         ],
-        'feature_forum_id' => get_int(env('FEATURE_FORUM_ID')),
 
         'slack_watch' => [
             'forum_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_FORUM_IDS', '5 29 101 4 30 2'))),
@@ -56,14 +98,15 @@ return [
         ],
     ],
     'git-sha' => env('GIT_SHA', 'unknown-version'),
-    'mp-history' => [
-        'event-count' => 500,
-    ],
     'landing' => [
         'video_url' => env('LANDING_VIDEO_URL', 'https://assets.ppy.sh/media/landing.mp4'),
     ],
     'legacy' => [
         'shared_interop_secret' => env('SHARED_INTEROP_SECRET', ''),
+    ],
+    'notification' => [
+        'endpoint' => presence(env('NOTIFICATION_ENDPOINT'), '/home/notifications/feed'),
+        'queue_name' => presence(env('NOTIFICATION_QUEUE'), 'notification'),
     ],
     'search' => [
         'minimum_length' => get_int(env('SEARCH_MINIMUM_LENGTH', 2)),
@@ -72,6 +115,14 @@ return [
             'user' => 100,
         ],
     ],
+    'score_replays' => [
+        'storage' => env('SCORE_REPLAYS_STORAGE', 'local'),
+    ],
+    'scores' => [
+        'es_cache_duration' => get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5,
+    ],
+    'site-switcher-js-hash' => env('SITE_SWITCHER_JS_HASH', ''),
+    'static' => env('LEGACY_STATICS_HOST', ''),
     'support' => [
         'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),
     ],
@@ -81,24 +132,33 @@ return [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE'))),
     ],
     'twitch_client_id' => env('TWITCH_CLIENT_ID'),
+    'tournament_banner' => [
+        'current' => [
+            'id' => get_int(env('TOURNAMENT_BANNER_CURRENT_ID')),
+            'prefix' => env('TOURNAMENT_BANNER_CURRENT_PREFIX'),
+        ],
+        'previous' => [
+            'id' => get_int(env('TOURNAMENT_BANNER_PREVIOUS_ID')),
+            'prefix' => env('TOURNAMENT_BANNER_PREVIOUS_PREFIX'),
+            'winner_id' => env('TOURNAMENT_BANNER_PREVIOUS_WINNER_ID'),
+        ],
+    ],
     'urls' => [
         'base' => 'https://osu.ppy.sh',
         'dev' => 'https://discord.gg/ppy',
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
-        'osx' => 'https://osx.ppy.sh',
-        'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
         'legacy-forum-thread-prefix' => '/forum/t/',
+        'osx' => 'https://osx.ppy.sh',
+        'server_status' => 'https://twitter.com/osustatus',
         'smilies' => '/forum/images/smilies',
+        'source_code' => 'https://github.com/ppy',
         'support-the-game' => '/p/support#transactionarea',
+        'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
 
         'social' => [
             'facebook' => 'https://facebook.com/osugame',
-            'twitter' => '/p/twitter',
-        ],
-        'status' => [
-            'osustatus' => 'https://twitter.com/osustatus',
-            'server' => 'http://stat.ppy.sh/',
+            'twitter' => '/help/wiki/Twitter',
         ],
         'user' => [
             'kudosu' => '/wiki/Kudosu',
@@ -120,24 +180,30 @@ return [
         ],
     ],
     'user' => [
+        'allow_registration' => get_bool(env('ALLOW_REGISTRATION', false)),
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
         'max_friends' => 250,
         'max_friends_supporter' => 500,
+        'max_multiplayer_rooms' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS')) ?? 1,
+        'max_multiplayer_rooms_supporter' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS_SUPPORTER')) ?? 5,
         'online_window' => intval(env('USER_ONLINE_WINDOW', 10)),
+        'username_lock_rank_limit' => get_int(env('USER_USERNAME_LOCK_RANK_LIMIT')) ?? 100000,
         'password_reset' => [
             'expires_hour' => 2,
             'key_length' => 8,
             'tries' => 8,
         ],
         'super_friendly' => array_map('intval', explode(' ', env('SUPER_FRIENDLY', '3'))),
+        'ban_persist_days' => get_int(env('BAN_PERSIST_DAYS')) ?? 28,
     ],
     'changelog' => [
-        'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
-        'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
-        'recent_weeks' => intval(env('CHANGELOG_RECENT_WEEKS', 6)),
-        'chart_days' => intval(env('CHANGELOG_CHART_DAYS', 7)),
         'build_history_interval' => intval(env('CHANGELOG_BUILD_HISTORY_INTERVAL', 30)),
+        'chart_days' => intval(env('CHANGELOG_CHART_DAYS', 7)),
+        'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
+        'github_token' => env('CHANGELOG_GITHUB_TOKEN'),
+        'recent_weeks' => intval(env('CHANGELOG_RECENT_WEEKS', 6)),
+        'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
     ],
 ];

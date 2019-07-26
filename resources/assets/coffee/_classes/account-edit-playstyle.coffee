@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -28,6 +28,7 @@ class @AccountEditPlaystyle
     target = e.currentTarget
     target.dataset.playstyleUpdating = '1'
 
+    @xhr?.abort()
     @setState 'saving'
     @debouncedUpdate()
 
@@ -61,7 +62,6 @@ class @AccountEditPlaystyle
       checkbox = field.getElementsByTagName('input')[0]
       arr.push field.dataset.playstyle if checkbox.checked
 
-    @xhr?.abort()
     @xhr = $.ajax laroute.route('account.update'),
       method: 'PUT'
       data:

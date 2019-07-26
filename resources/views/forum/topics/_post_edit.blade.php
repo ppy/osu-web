@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -29,7 +29,7 @@
         ></div>
     @endif
 
-    @include("forum.topics._post_info", ["user" => $post->user])
+    @include("forum.topics._post_info", ["user" => $post->userNormalized()])
 
     <div class="forum-post__body">
         <div class="forum-post__content">

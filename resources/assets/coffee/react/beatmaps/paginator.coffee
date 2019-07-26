@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -16,21 +16,24 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,a,span,i} = ReactDOMFactories
+import core from 'osu-core-singleton'
+import * as React from 'react'
+import { div, a, span, i } from 'react-dom-factories'
+import { ShowMoreLink } from 'show-more-link'
 el = React.createElement
 
-class Beatmaps.Paginator extends React.PureComponent
+export class Paginator extends React.PureComponent
   constructor: (props) ->
     super props
 
     @throttledAutoPagerOnScroll = _.throttle(@autoPagerOnScroll, 500)
     @autoPagerTriggerDistance = 3000
+    @autoPagerTarget = React.createRef()
 
 
   componentDidMount: =>
     Timeout.set 0, @throttledAutoPagerOnScroll
     $(window).on 'scroll.paginator', @throttledAutoPagerOnScroll
-    $(document).on 'turbolinks:before-cache.paginator', @componentWillUnmount
 
 
   componentWillUnmount: =>
@@ -40,33 +43,24 @@ class Beatmaps.Paginator extends React.PureComponent
 
 
   render: =>
-    return div() if !@props.paging.loading && !@props.paging.more
-
-    div
-      className: 'beatmapsets-show-more'
-      if @props.paging.loading
-        el Icon, name: 'refresh', modifiers: ['spin']
-      else if @props.paging.more
-        a
-          href: @props.paging.url
-          className: 'beatmapsets-show-more__link'
-          ref: (el) => @autoPagerTarget = el
-          onClick: @showMore
-          osu.trans('common.buttons.show_more')
+    el ShowMoreLink,
+      loading: @props.loading
+      callback: @showMore
+      hasMore: @props.more
+      ref: @autoPagerTarget
+      modifiers: ['beatmapsets', 't-ddd']
 
 
   autoPagerOnScroll: =>
-    return if !@props.paging.more || @props.paging.loading
+    return if @props.error? || !@props.more || @props.loading || !@autoPagerTarget.current?
 
-    currentTarget = @autoPagerTarget.getBoundingClientRect().top
+    currentTarget = @autoPagerTarget.current.getBoundingClientRect().top
     target = document.documentElement.clientHeight + @autoPagerTriggerDistance
 
-    if !@autoPagerTarget? || currentTarget > target
-      return
+    return if currentTarget > target
 
-    $(document).trigger 'beatmap:load_more'
+    @showMore()
 
 
-  showMore: (e) =>
-    e.preventDefault()
-    $(document).trigger 'beatmap:load_more'
+  showMore: (e) ->
+    core.beatmapsetSearchController.loadMore()

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -32,18 +32,21 @@ class ImageProcessor
 
     public $inputDim = null;
     public $inputFileSize = null;
+    public $inputPath = null;
+    public $targetDim = null;
+    public $targetFileSize = null;
 
     public function __construct($inputPath, $targetDim, $targetFileSize)
     {
         $this->inputPath = $inputPath;
         $this->targetDim = $targetDim;
         $this->targetFileSize = $targetFileSize;
+
+        $this->parseInput();
     }
 
     public function basicCheck()
     {
-        $this->parseInput();
-
         if ($this->inputFileSize > $this->hardMaxFileSize) {
             throw new ImageProcessorException(trans('users.show.edit.cover.upload.too_large'));
         }
@@ -59,37 +62,27 @@ class ImageProcessor
 
     public function ext()
     {
-        $this->parseInput();
-
         return image_type_to_extension($this->inputDim[2], false);
     }
 
-    public function parseInput($force = false)
+    public function parseInput()
     {
-        if ($force === false && $this->inputDim !== null && $this->inputFileSize !== null) {
-            return;
-        }
-
         $this->inputDim = read_image_properties($this->inputPath);
         $this->inputFileSize = filesize($this->inputPath);
     }
 
     public function purgeExif()
     {
-        $this->parseInput();
-
         if ($this->inputDim[2] !== IMAGETYPE_JPEG) {
             return;
         }
 
         exec('jhead -autorot -purejpg -q '.escapeshellarg($this->inputPath));
-        $this->parseInput(true);
+        $this->parseInput();
     }
 
     public function process()
     {
-        $this->parseInput();
-
         $this->basicCheck();
 
         $this->purgeExif();
@@ -100,8 +93,8 @@ class ImageProcessor
             throw new ImageProcessorException(trans('users.show.edit.cover.upload.broken_file'));
         }
 
-        if ($this->inputDim[0] === $this->targetDim[0] &&
-            $this->inputDim[1] === $this->targetDim[1]) {
+        if ($this->inputDim[0] <= $this->targetDim[0] &&
+            $this->inputDim[1] <= $this->targetDim[1]) {
             if ($this->inputFileSize < $this->targetFileSize) {
                 return;
             }
@@ -127,10 +120,24 @@ class ImageProcessor
             }
 
             $image = imagecreatetruecolor($outDim[0], $outDim[1]);
+            imagesavealpha($image, true);
+            imagefill($image, 0, 0, imagecolorallocatealpha($image, 0, 0, 0, 127));
             imagecopyresampled($image, $inputImage, 0, 0, $start[0], $start[1], $outDim[0], $outDim[1], $inDim[0], $inDim[1]);
         }
 
-        imagejpeg($image, $this->inputPath);
-        $this->parseInput(true);
+        $toJpeg = true;
+
+        if ($this->inputDim[2] === IMAGETYPE_PNG || $this->inputDim[2] === IMAGETYPE_GIF) {
+            imagepng($image, $this->inputPath);
+
+            $this->parseInput();
+            $toJpeg = $this->inputFileSize > $this->targetFileSize;
+        }
+
+        if ($toJpeg) {
+            imagejpeg($image, $this->inputPath, 90);
+        }
+
+        $this->parseInput();
     }
 }

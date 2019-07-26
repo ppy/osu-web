@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -45,8 +45,8 @@
         @if((isset($modifiable) && $modifiable))
             {!! Form::hidden('id', $data->address_id) !!}
 
-            <button type="submit" class="address-delete-button" name="action" value="remove"><i class="fa fa-trash-o"></i></button>
-            <button type="submit" class="clickable-row-link address-select-button" name="action" value="use"><i class="fa fa-check"></i> Use</button>
+            <button type="submit" class="address-delete-button" name="action" value="remove"><i class="fas fa-trash"></i></button>
+            <button type="submit" class="clickable-row-link address-select-button" name="action" value="use"><i class="fas fa-check"></i> Use</button>
         @endif
 
         @if((isset($modifiable) && $modifiable))

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,83 +17,100 @@
  */
 
 .tooltip-achievement {
-  @_top: ~"tooltip-achievement";
+  @_top: tooltip-achievement;
   @_badge-height: 120px;
 
-  .default-border-radius();
-  background-color: fade(@blue-dark, 80%);
+  border-radius: 30px;
+  background-color: @osu-colour-b6;
   border: 0 solid transparent;
-  width: 280px;
-
-  &--locked {
-    background-color: fade(@gray, 50%);
-  }
+  width: 200px;
+  line-height: normal;
 
   .qtip-content {
-    padding: 5px;
+    overflow: visible;
+    padding: 0;
   }
 
   &__badge {
-    height: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    font-size: 70px; // icon size
   }
 
   &__content {
     padding: 20px;
-    padding-top: (20px + @_badge-height / 2);
     text-align: center;
-  }
-
-  &__description {
-    margin-top: 10px;
-    font-size: 12px;
   }
 
   &__date {
     margin-top: 10px;
-    font-size: 10px;
-    color: #999;
+    font-size: @font-size--small;
+    color: #fff;
+  }
+
+  &__description {
+    margin-top: 10px;
+    font-size: @font-size--normal;
+    font-style: italic;
+    color: #ccc;
+  }
+
+  &__detail {
+    transition: opacity 500ms;
+    min-height: 90px;
+
+    &--hover {
+      .full-size();
+      height: auto;
+      opacity: 0;
+
+      .@{_top}__detail-container--hoverable:hover & {
+        position: relative;
+        opacity: 1;
+      }
+    }
+
+    &--normal {
+      .@{_top}__detail-container--hoverable:hover & {
+        .full-size();
+        opacity: 0;
+      }
+    }
+  }
+
+  &__grouping {
+    text-align: center;
+
+    padding: 10px;
+    color: #fff;
+
+    font-size: @font-size--normal;
+  }
+
+  &__instructions {
+    color: @osu-colour-l1;
+    font-style: italic;
+    font-size: @font-size--title-small;
+    font-weight: 300;
+
+    a {
+      .link-white();
+    }
   }
 
   &__main {
-    .default-border-radius();
-    overflow: hidden;
-    .default-box-shadow();
-    background-color: #fff;
-    display: flex;
-    line-height: 1.1;
-
-    width: 100%;
-
-    .@{_top}--locked & {
-      background-color: #ccc;
-    }
-  }
-
-  &__nickname {
-    font-size: 24px;
-    font-style: italic;
-  }
-
-  &__title {
-    background-color: @blue-darker;
-    background-image: url("/images/backgrounds/button.svg");
-    background-size: cover;
-    color: #fff;
     text-align: center;
 
-    padding: 20px;
-    padding-bottom: (20px + @_badge-height / 2);
+    width: 100%;
+    padding: 20px 10px;
+  }
 
-    font-weight: bold;
+  &__name {
+    font-size: @font-size--large;
     font-style: italic;
-    font-size: 14px;
-
-    .@{_top}--locked & {
-      background-color: #999;
-      color: @gray;
-    }
+    font-weight: 300;
+    color: #fff;
   }
 }

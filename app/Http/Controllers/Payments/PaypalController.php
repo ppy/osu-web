@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,6 +22,7 @@ namespace App\Http\Controllers\Payments;
 
 use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ValidationException;
+use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\NotificationType;
 use App\Libraries\Payments\PaypalCreatePayment;
 use App\Libraries\Payments\PaypalExecutePayment;
@@ -58,7 +59,7 @@ class PaypalController extends Controller
         $orderId = Request::input('order_id');
 
         $order = Order::where('user_id', Auth::user()->user_id)
-            ->where('status', 'incart')
+            ->processing()
             ->findOrFail($orderId);
 
         try {
@@ -66,7 +67,7 @@ class PaypalController extends Controller
             $payment = $command->run();
             Log::debug($payment);
         } catch (PayPalConnectionException $e) {
-            return $this->setAndRedirectCheckoutError($this->userErrorMessage($e));
+            return $this->setAndRedirectCheckoutError($order, $this->userErrorMessage($e));
         }
 
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
@@ -77,7 +78,7 @@ class PaypalController extends Controller
     {
         $orderId = Request::input('order_id');
 
-        $order = Order::where('user_id', Auth::user()->user_id)->where('status', 'incart')->findOrFail($orderId);
+        $order = Order::where('user_id', Auth::user()->user_id)->processing()->findOrFail($orderId);
         $command = new PaypalCreatePayment($order);
         $link = $command->getApprovalLink();
 
@@ -87,7 +88,14 @@ class PaypalController extends Controller
     // Payment declined by user.
     public function declined()
     {
-        return $this->setAndRedirectCheckoutError(trans('store.checkout.declined'));
+        $orderId = Request::input('order_id');
+
+        $order = Order::where('user_id', Auth::user()->user_id)->processing()->find($orderId);
+        if ($order) {
+            (new OrderCheckout($order, Order::PROVIDER_PAYPAL))->failCheckout();
+        }
+
+        return $this->setAndRedirectCheckoutError($order, trans('store.checkout.declined'));
     }
 
     // Called by Paypal.

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -97,7 +97,7 @@ class BBCodeForDB
     public function parseColour($text)
     {
         return preg_replace(
-            ",\[(color=(?:#[[:xdigit:]]{6}|[[:alpha:]]+))\](.*?)\[(/color)\],",
+            ",\[(color=(?:#[[:xdigit:]]{6}|[[:alpha:]]+))\](.*?)\[(/color)\],s",
             "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
             $text
         );
@@ -140,13 +140,13 @@ class BBCodeForDB
     * - Italic (i)
     * - Strike (strike, s)
     * - Underline (u)
-    * - Heading (heading)
+    * - Spoiler (spoiler)
     */
     public function parseInlineSimple($text)
     {
-        foreach (['b', 'i', 'strike', 's', 'u', 'heading'] as $tag) {
+        foreach (['b', 'i', 'strike', 's', 'u', 'spoiler'] as $tag) {
             $text = preg_replace(
-                "#\[{$tag}](.*?)\[/{$tag}\]#",
+                "#\[{$tag}](.*?)\[/{$tag}\]#s",
                 "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
                 $text
             );
@@ -155,11 +155,22 @@ class BBCodeForDB
         return $text;
     }
 
+    public function parseHeading($text)
+    {
+        $text = preg_replace(
+            "#\[heading](.*?)\[/heading\]#",
+            "[heading:{$this->uid}]\\1[/heading:{$this->uid}]",
+            $text
+        );
+
+        return $text;
+    }
+
     public function parseLinks($text)
     {
         $spaces = ["(^|\s)", "((?:\.|\))?(?:$|\s|\n|\r))"];
-        // plain http/https/ftp
 
+        // plain http/https/ftp
         $text = preg_replace(
             "#{$spaces[0]}((?:https?|ftp)://[^\s]+?){$spaces[1]}#",
             "\\1<!-- m --><a href='\\2' rel='nofollow'>\\2</a><!-- m -->\\3",
@@ -239,7 +250,7 @@ class BBCodeForDB
     public function parseSize($text)
     {
         return preg_replace(
-            "#\[(size=(?:\d+))\](.+?)\[(/size)\]#",
+            "#\[(size=(?:\d+))\](.*?)\[(/size)\]#s",
             "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
             $text
         );
@@ -318,6 +329,7 @@ class BBCodeForDB
         $text = $this->parseBlockSimple($text);
         $text = $this->parseImage($text);
         $text = $this->parseInlineSimple($text);
+        $text = $this->parseHeading($text);
         $text = $this->parseAudio($text);
         $text = $this->parseEmail($text);
         $text = $this->parseUrl($text);

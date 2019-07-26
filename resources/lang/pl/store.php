@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,19 +23,99 @@ return [
         'warehouse' => 'Magazyn',
     ],
 
+    'cart' => [
+        'checkout' => 'Zapłać',
+        'more_goodies' => 'Chcę przejrzeć inne produkty przed zakończeniem zamówienia',
+        'shipping_fees' => 'koszt wysyłki',
+        'title' => 'Koszyk',
+        'total' => 'łącznie',
+
+        'errors_no_checkout' => [
+            'line_1' => 'Oho, wystąpił problem z twoim koszykiem uniemożliwiający płatność!',
+            'line_2' => 'Usuń lub zmień przedmioty powyżej, aby kontynuować.',
+        ],
+
+        'empty' => [
+            'text' => 'Twój koszyk jest pusty.',
+            'return_link' => [
+                '_' => 'Wróć na :link, aby znaleźć coś interesującego!',
+                'link_text' => 'listę produktów',
+            ],
+        ],
+    ],
+
     'checkout' => [
+        'cart_problems' => 'O nie, wystąpił problem z twoim koszykiem!',
+        'cart_problems_edit' => 'Kliknij tutaj, aby go zedytować.',
+        'declined' => 'Płatność została anulowana.',
+        'delayed_shipping' => 'Obecnie jesteśmy przeciążeni zamówieniami! Wciąż możesz złożyć swoje zamówienie, ale spodziewaj się **dodatkowego opóźnienia w postaci 1-2 tygodni**, dopóki te już istniejące nie zostaną zakończone.',
+        'old_cart' => 'Zawartość twojego koszyka była przestarzała i została odświeżona, spróbuj ponownie.',
         'pay' => 'Zapłać przez PayPal',
-        'delayed_shipping' => 'Jesteśmy obecnie przeciążeni zamówieniami! Możesz złożyć swoje zamówienie, ale spodziewaj się **dodatkowego opóźnienia 1-2 tygodni** dopóki nie uporamy się z obecnymi zamówieniami.',
+
+        'has_pending' => [
+            '_' => 'Masz kilka niedokończonych zamówień, kliknij :link, aby je wyświetlić.',
+            'link_text' => 'tutaj',
+        ],
+
+        'pending_checkout' => [
+            'line_1' => 'Poprzednio podjęta próba złożenia zamówienia nie została zakończona.',
+            'line_2' => 'Możesz kontynuować proces zamówienia poprzez wybranie metody płatności.',
+        ],
     ],
 
     'discount' => 'zaoszczędź :percent%',
 
+    'invoice' => [
+        'echeck_delay' => 'Jako że twoja płatność została przesłana czekiem elektronicznym, odczekaj do 10 dni na przetworzenie transakcji przez PayPal.',
+        'status' => [
+            'processing' => [
+                'title' => 'Twoja płatność nie została jeszcze potwierdzona!',
+                'line_1' => 'Jeśli zamówienie zostało już opłacone, możliwe, że wciąż oczekujemy na potwierdzenie. Odśwież tę stronę za kilka minut!',
+                'line_2' => [
+                    '_' => 'Jeśli napotkasz problem podczas realizacji transakcji, :link',
+                    'link_text' => 'kliknij tutaj, by kontynuować proces zamówienia',
+                ],
+            ],
+        ],
+    ],
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => 'Otrzymaliśmy twoje zamówienie!',
+        ],
+    ],
+
     'order' => [
+        'paid_on' => 'Zamówienie złożone :date',
+
+        'invoice' => 'Pokaż fakturę',
+        'no_orders' => 'Brak zamówień do wyświetlenia.',
+        'resume' => 'Wznów zamówienie',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name dla :username (:duration)',
             ],
             'quantity' => 'Ilość',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'Nie możesz edytować swojego zamówienia, ponieważ zostało ono anulowane.',
+            'checkout' => 'Nie możesz edytować swojego zamówienia, ponieważ jest ono aktualnie przetwarzane.', // checkout and processing should have the same message.
+            'default' => 'Zamówienie nie może zostać zmienione',
+            'delivered' => 'Nie możesz edytować swojego zamówienia, ponieważ zostało ono już dostarczone.',
+            'paid' => 'Nie możesz edytować swojego zamówienia, ponieważ zostało ono już opłacone.',
+            'processing' => 'Nie możesz edytować swojego zamówienia, ponieważ jest ono aktualnie przetwarzane.',
+            'shipped' => 'Nie możesz edytować swojego zamówienia, ponieważ zostało ono już wysłane.',
+        ],
+
+        'status' => [
+            'cancelled' => 'Anulowane',
+            'checkout' => 'Przygotowywane',
+            'delivered' => 'Dostarczone',
+            'paid' => 'Opłacone',
+            'processing' => 'Oczekiwanie na potwierdzenie',
+            'shipped' => 'W transporcie',
         ],
     ],
 
@@ -43,31 +123,33 @@ return [
         'name' => 'Nazwa',
 
         'stock' => [
-            'out' => 'Obecnie brak :(. Sprawdź poźniej.',
-            'out_with_alternative' => 'Obecnie brak :(. Spróbuj z innym rozmiarem/typem bądź sprawdź później.',
+            'out' => 'Ten przedmiot jest obecnie niedostępny. Sprawdź później!',
+            'out_with_alternative' => 'Niestety ten przedmiot jest obecnie niedostępny. Spróbuj z innym rozmiarem/typem bądź sprawdź później.',
         ],
 
         'add_to_cart' => 'Dodaj do koszyka',
-        'notify' => 'Powiadom mnie, kiedy będzie dostępne!',
+        'notify' => 'Powiadom mnie, kiedy produkt będzie dostępny!',
 
         'notification_success' => 'dostaniesz powiadomienie, kiedy produkt będzie dostępny. kliknij :link aby anulować.',
         'notification_remove_text' => 'tutaj',
 
-        'notification_in_stock' => 'Produkt jest dostępny!',
+        'notification_in_stock' => 'Ten produkt jest już dostępny!',
     ],
 
     'supporter_tag' => [
+        'gift' => 'podaruj innemu użytkownikowi',
         'require_login' => [
-            '_' => 'Aby zdobyć status donatora, musisz się :link!',
+            '_' => 'Aby uzyskać status donatora osu!, musisz się :link!',
             'link_text' => 'zalogować',
         ],
     ],
 
     'username_change' => [
+        'check' => 'Wprowadź nazwę użytkownika, aby sprawdzić, czy jest dostępna!',
+        'checking' => 'Sprawdzanie możliwości zmiany na :username...',
         'require_login' => [
-            '_' => 'Aby zmienić swój pseudonim, musisz się :link!',
+            '_' => 'Aby zmienić swoją nazwę użytkownika, musisz się :link!',
             'link_text' => 'zalogować',
         ],
     ],
-
 ];

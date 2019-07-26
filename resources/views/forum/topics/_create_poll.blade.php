@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,21 +15,34 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $topic = $topic ?? null;
+    $options = optional($topic)->pollOptions() ?? collect()
+@endphp
+
 <div
-    class="simple-form js-form-toggle--form"
+    class="simple-form simple js-form-toggle--form"
     {{-- inlined style to work with jquery's slide animation --}}
-    style="display: none;"
+    @if (!$edit)
+        style="display: none;"
+    @endif
     data-form-toggle-id="poll-create"
 >
-    <h2 class="simple-form__row simple-form__row--title">
-        {{ trans('forum.topics.create.create_poll') }}
-    </h2>
+    @if (!$edit)
+        <h2 class="simple-form__row simple-form__row--title">
+            {{ trans('forum.topics.create.create_poll') }}
+        </h2>
+    @endif
 
     <label class="simple-form__row">
         <div class="simple-form__label">
             {{ trans('forum.topics.create.poll.title') }}
         </div>
-        <input class="simple-form__input" name="forum_topic_poll[title]" />
+        <input
+            class="simple-form__input"
+            name="forum_topic_poll[title]"
+            value="{{ optional($topic)->poll_title }}"
+        />
     </label>
 
     <label class="simple-form__row">
@@ -37,7 +50,10 @@
             {{ trans('forum.topics.create.poll.options') }}
             <p class="simple-form__info">{{ trans('forum.topics.create.poll.options_info') }}</p>
         </div>
-        <textarea class="simple-form__input simple-form__input--full-height" name="forum_topic_poll[options]"></textarea>
+        <textarea
+            class="simple-form__input simple-form__input--full-height"
+            name="forum_topic_poll[options]"
+        >{{ $options->pluck('poll_option_text')->implode("\n") }}</textarea>
     </label>
 
     <label class="simple-form__row simple-form__row--half">
@@ -45,7 +61,11 @@
             {{ trans('forum.topics.create.poll.max_options') }}
             <p class="simple-form__info">{{ trans('forum.topics.create.poll.max_options_info') }}</p>
         </div>
-        <input class="simple-form__input simple-form__input--small" name="forum_topic_poll[max_options]" />
+        <input
+            class="simple-form__input simple-form__input--small"
+            name="forum_topic_poll[max_options]"
+            value="{{ optional($topic)->poll_max_options }}"
+        />
     </label>
 
     <label class="simple-form__row simple-form__row--half">
@@ -54,10 +74,11 @@
             <p class="simple-form__info">{{ trans('forum.topics.create.poll.length_info') }}</p>
         </div>
         <div class="simple-form__input-group">
-            <span class="simple-form__input-group-label simple-form__input-group-label--prefix">
-                {{ trans('forum.topics.create.poll.length_days_prefix') }}
-            </span>
-            <input class="simple-form__input simple-form__input--small simple-form__input--centered" name="forum_topic_poll[length_days]" />
+            <input
+                class="simple-form__input simple-form__input--small simple-form__input--centered"
+                name="forum_topic_poll[length_days]"
+                value="{{ optional($topic)->poll_length > 0 ? $topic->poll_length_days : '' }}"
+            />
             <span class="simple-form__input-group-label simple-form__input-group-label--suffix">
                 {{ trans('forum.topics.create.poll.length_days_suffix') }}
             </span>
@@ -67,10 +88,17 @@
     <label class="simple-form__row">
         <div class="simple-form__label simple-form__label--full">
             <div class="osu-checkbox">
-                <input class="osu-checkbox__input" name="forum_topic_poll[vote_change]" type="checkbox" />
+                <input
+                    class="osu-checkbox__input"
+                    name="forum_topic_poll[vote_change]"
+                    type="checkbox"
+                    @if (optional($topic)->poll_vote_change)
+                        checked
+                    @endif
+                />
                 <span class="osu-checkbox__box"></span>
                 <span class="osu-checkbox__tick">
-                    <i class="fa fa-check"></i>
+                    <i class="fas fa-check"></i>
                 </span>
             </div>
 
@@ -78,23 +106,47 @@
             <span class="simple-form__info">{{ trans('forum.topics.create.poll.vote_change_info') }}</span>
         </div>
     </label>
+
+    <label class="simple-form__row">
+        <div class="simple-form__label simple-form__label--full">
+            <div class="osu-checkbox">
+                <input
+                    class="osu-checkbox__input"
+                    name="forum_topic_poll[hide_results]"
+                    type="checkbox"
+                    @if (optional($topic)->poll_hide_results)
+                        checked
+                    @endif
+                />
+                <span class="osu-checkbox__box"></span>
+                <span class="osu-checkbox__tick">
+                    <i class="fas fa-check"></i>
+                </span>
+            </div>
+
+            {{ trans('forum.topics.create.poll.hide_results') }}
+            <span class="simple-form__info">{{ trans('forum.topics.create.poll.hide_results_info') }}</span>
+        </div>
+    </label>
 </div>
 
-<label class="btn-osu-lite btn-osu-lite--default">
-    <div class="label-toggle">
-        <input
-            class="label-toggle__checkbox js-form-toggle--input"
-            data-form-toggle-id="poll-create"
-            name="with_poll"
-            type="checkbox"
-        />
+@if (!$edit)
+    <label class="btn-osu-lite btn-osu-lite--default">
+        <div class="label-toggle">
+            <input
+                class="label-toggle__checkbox js-form-toggle--input"
+                data-form-toggle-id="poll-create"
+                name="with_poll"
+                type="checkbox"
+            />
 
-        <span class="label-toggle__label label-toggle__label--uncheck">
-            {{ trans('forum.topics.create.create_poll_button.remove') }}
-        </span>
+            <span class="label-toggle__label label-toggle__label--uncheck">
+                {{ trans('forum.topics.create.create_poll_button.remove') }}
+            </span>
 
-        <span class="label-toggle__label label-toggle__label--check">
-            {{ trans('forum.topics.create.create_poll_button.add') }}
-        </span>
-    </div>
-</label>
+            <span class="label-toggle__label label-toggle__label--check">
+                {{ trans('forum.topics.create.create_poll_button.add') }}
+            </span>
+        </div>
+    </label>
+@endif

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -60,16 +60,6 @@ class RouteTest extends TestCase
     public function testWikiRoutes()
     {
         $this->assertGetRoutes(['/help/wiki']);
-    }
-
-    /**
-     * Test the support page doesn't error.
-     *
-     * @return void
-     */
-    public function testSupportRoutes()
-    {
-        $this->assertGetRoutes(['/help/support']);
     }
 
     /**

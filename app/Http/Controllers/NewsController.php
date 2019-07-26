@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,8 +20,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\News;
-use Request;
+use App\Libraries\CommentBundle;
+use App\Models\NewsPost;
 
 class NewsController extends Controller
 {
@@ -30,30 +30,48 @@ class NewsController extends Controller
 
     public function index()
     {
-        $page = get_int(Request::input('page'));
-        $limit = get_int(Request::input('limit'));
+        $search = NewsPost::search(array_merge(['limit' => 12], request()->all()));
 
-        return view('news.index', [
-            'posts' => News\Index::all($page, $limit),
-        ]);
+        $postsJson = [
+            'news_posts' => json_collection($search['query']->get(), 'NewsPost', ['preview']),
+            'search' => $search['params'],
+        ];
+
+        if (is_json_request()) {
+            return $postsJson;
+        } else {
+            return view('news.index', compact('postsJson'));
+        }
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $post = (new News\Post($id));
+        if (request('key') === 'id') {
+            $post = NewsPost::findOrFail($slug);
 
-        if ($post->page() === null) {
+            return ujs_redirect(route('news.show', $post->slug));
+        }
+
+        $post = NewsPost::lookupAndSync($slug);
+
+        if ($post === null) {
             abort(404);
         }
 
-        return view('news.show', compact('post'));
+        return view('news.show', [
+            'post' => $post,
+            'postJson' => [
+                'post' => json_item($post, 'NewsPost', ['content', 'navigation']),
+                'comment_bundle' => CommentBundle::forEmbed($post)->toArray(),
+            ],
+        ]);
     }
 
     public function store()
     {
         priv_check('NewsIndexUpdate')->ensureCan();
 
-        News\Index::cacheClear();
+        NewsPost::syncAll();
 
         return ['message' => trans('news.store.ok')];
     }
@@ -62,7 +80,7 @@ class NewsController extends Controller
     {
         priv_check('NewsPostUpdate')->ensureCan();
 
-        (new News\Post($id))->cacheClear();
+        NewsPost::findOrFail($id)->sync(true);
 
         return ['message' => trans('news.update.ok')];
     }

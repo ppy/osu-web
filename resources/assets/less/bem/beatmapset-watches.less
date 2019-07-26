@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  */
 
 .beatmapset-watches {
+  color: white;
   margin: 20px;
 
   &__col {
@@ -27,6 +28,7 @@
 
     && { // bootstrap override
       vertical-align: middle;
+      border-top: 2px solid @osu-colour-b4;
     }
   }
 
@@ -41,5 +43,14 @@
 
   &__description {
     margin-bottom: 20px;
+  }
+
+  &__heading {
+    border-top: none !important;
+  }
+
+  &__link {
+    color: @osu-colour-l1;
+    .link-hover({ color: white });
   }
 }

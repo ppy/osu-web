@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,15 +15,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
-    'current_section' => 'beatmaps',
-    'current_action' => 'artists',
+@extends('master', [
+    'currentSection' => 'beatmaps',
+    'currentAction' => 'artists',
     'title' => "Featured Artist: $artist->name",
     'pageDescription' => $artist->description,
-    'body_additional_classes' => 'osu-layout--body-darker'
 ])
 
-@section("content")
+@section('content')
     @include('objects.css-override', ['mapping' => [
         '.osu-page-header-v2--artist' => $images['header_url'],
         '.artist__portrait' => $images['cover_url'],
@@ -42,12 +41,12 @@
                 @if (!$artist->visible)
                     <div class="artist__admin-note">{{ trans('artist.admin.hidden') }}</div>
                 @endif
-                <div class="artist__description">{!! Markdown::convertToHtml($artist->description) !!}</div>
+                <div class="artist__description">{!! markdown($artist->description) !!}</div>
                 @if (count($albums) > 0)
                     <div class="artist__albums">
                         @foreach ($albums as $album)
                             <div class="artist__album">
-                                <a name="album-{{$album['id']}}" id="album-{{$album['id']}}"></a>
+                                <a class="fragment-target" name="album-{{$album['id']}}" id="album-{{$album['id']}}"></a>
                                 <div class="artist__album-header">
                                     <div class="artist__album-header-overlay" style="background-image: url({{$album['cover_url']}});"></div>
                                     <img class="artist__album-cover" src="{{$album['cover_url']}}">
@@ -84,9 +83,9 @@
                     @foreach ($links as $link)
                         <a class='artist-link-button artist-link-button--{{$link['class']}}' href='{{$link['url']}}'>
                             <span class='artist-link-button__lightbar'></span>
-                            <i class='fa fa-fw fa-{{$link['icon']}}'></i>
+                            <i class="fa-fw {{$link['icon']}}"></i>
                             <span class='artist-link-button__text'>{{$link['title']}}</span>
-                            <i class='fa fa-fw fa-chevron-right artist-link-button__chevron'></i>
+                            <i class='fas fa-fw fa-chevron-right artist-link-button__chevron'></i>
                         </a>
                     @endforeach
                 </div>

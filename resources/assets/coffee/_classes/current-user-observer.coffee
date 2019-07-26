@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -29,12 +29,13 @@ class @CurrentUserObserver
   reinit: =>
     @setAvatars()
     @setCovers()
+    @setSentryUser()
 
 
   setAvatars: (elements) =>
     elements ?= @avatars
 
-    bgImage = if currentUser.id? then "url('#{currentUser.avatar_url}')" else ''
+    bgImage = osu.urlPresence(currentUser.avatar_url) if currentUser.id?
     for el in elements
       el.style.backgroundImage = bgImage
 
@@ -42,7 +43,7 @@ class @CurrentUserObserver
   setCovers: (elements) =>
     elements ?= @covers
 
-    bgImage = if currentUser.id? then "url('#{currentUser.cover_url}')" else ''
+    bgImage = osu.urlPresence(currentUser.cover_url) if currentUser.id?
     for el in elements
       el.style.backgroundImage = bgImage
 
@@ -51,3 +52,10 @@ class @CurrentUserObserver
     window.currentUser = data
 
     @reinit()
+
+
+  setSentryUser: ->
+    return unless Sentry?
+
+    Sentry.configureScope (scope) ->
+      scope.setUser id: currentUser.id, username: currentUser.username

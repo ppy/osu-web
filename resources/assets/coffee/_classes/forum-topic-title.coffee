@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -30,9 +30,9 @@ class @ForumTopicTitle
     addEventListener 'turbolinks:before-cache', @abort
     $(document).on 'click', '.js-forum-topic-title--edit-start', @editShow
     $(document).on 'click', '.js-forum-topic-title--save', @save
-    $(document).on 'keyup', '.js-forum-topic-title--input', @onInput
+    $(document).on 'keyup', '.js-forum-topic-title--input', @onKeyup
     $(document).on 'click', '.js-forum-topic-title--cancel', @cancel
-    $(document).on 'input', '.js-forum-topic-title--input', @syncPadding
+    $(document).on 'input', '.js-forum-topic-title--input', @onInput
 
 
   abort: =>
@@ -65,7 +65,12 @@ class @ForumTopicTitle
     @main[0].classList.remove 'hidden'
 
 
-  onInput: (e) =>
+  onInput: =>
+    @saveButton[0].disabled = !osu.presence(@input[0].value)?
+    @syncPadding()
+
+
+  onKeyup: (e) =>
     switch e.keyCode
       # enter
       when 13 then @save()
@@ -76,6 +81,8 @@ class @ForumTopicTitle
   save: =>
     input = @input[0]
     newTitle = input.value
+
+    return if !osu.presence(newTitle)?
 
     return @cancel() if newTitle == @current()
 

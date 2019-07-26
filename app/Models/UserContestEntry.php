@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,13 +22,29 @@ namespace App\Models;
 
 use App\Traits\Uploadable;
 use DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\UploadedFile;
 
+/**
+ * @property Contest $contest
+ * @property int|null $contest_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property string|null $ext
+ * @property int|null $filesize
+ * @property string|null $hash
+ * @property int $id
+ * @property string|null $original_filename
+ * @property \Carbon\Carbon|null $updated_at
+ * @property User $user
+ * @property int|null $user_id
+ */
 class UserContestEntry extends Model
 {
+    use SoftDeletes;
     use Uploadable;
 
-    protected $guarded = [];
+    protected $dates = ['deleted_at'];
 
     public function getFileRoot()
     {

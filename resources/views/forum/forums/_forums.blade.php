@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@
                 <div class="forums__hover-bar hidden-xs">
                     <div class="forums__colour-stripe u-forum--bg"></div>
                     <div class="forums__hover-bar-icon">
-                        <i class="fa fa-angle-right"></i>
+                        <i class="fas fa-angle-right"></i>
                     </div>
                 </div>
                 <div class="left">
@@ -32,7 +32,7 @@
                         @foreach($forum->subforums as $subforum)
                             <li>
                                 <a class="name u-forum--link" href="{{ route("forum.forums.show", $subforum->forum_id) }}" title="{{ $subforum->forum_desc }}">
-                                    <i class="fa fa-bars"></i>{{ $subforum->forum_name }}
+                                    <i class="fas fa-bars"></i>{{ $subforum->forum_name }}
                                 </a>
                             </li>
                         @endforeach
@@ -41,27 +41,31 @@
 
                 <div class="right hidden-xs">
                     <div class="right-content">
-                        @if ($forum->lastTopic())
-                        <div class="last-post">
+                        @if (($lastTopic = $lastTopics[$forum->getKey()] ?? null) !== null)
                             <a
-                                class="u-forum--link title"
-                                href="{{ post_url($forum->lastTopic()->topic_id, "unread", false) }}"
-                                title="{{ $forum->lastTopic()->topic_title }}"
+                                class="forums__forum-topic-link u-forum--link u-ellipsis-overflow"
+                                href="{{ post_url($lastTopic->topic_id, "unread", false) }}"
                             >
-                                {{ $forum->lastTopic()->topic_title }}
+                                @if ($lastTopic->topic_replies > 0)
+                                    {{ trans('forum.topic.reply_title_prefix') }}:
+                                @endif
+                                {{ $lastTopic->topic_title }}
                             </a>
-                        </div>
-                        <div class="when-post">
-                            {!! trans("forum.topic.latest_post", ["when" => timeago($forum->lastTopic()->topic_last_post_time), "user" => link_to_user($forum->lastTopic()->topic_last_poster_id, $forum->lastTopic()->topic_last_poster_name, $forum->lastTopic()->topic_last_poster_colour)]) !!}
-                        </div>
+
+                            <div>
+                                {!! trans("forum.topic.latest_post", [
+                                    "when" => timeago($lastTopic->topic_last_post_time),
+                                    "user" => link_to_user($lastTopic->topic_last_poster_id, $lastTopic->topic_last_poster_name, $lastTopic->topic_last_poster_colour)
+                                ]) !!}
+                            </div>
+                        @endif
                     </div>
-                    @endif
                 </div>
             @elseif ($forum->forum_type === 2)
                 <div class="forums__hover-bar hidden-xs">
                     <div class="forums__colour-stripe u-forum--bg"></div>
                     <div class="forums__hover-bar-icon">
-                        <i class="fa fa-link"></i>
+                        <i class="fas fa-link"></i>
                     </div>
                 </div>
                 <div class="left">

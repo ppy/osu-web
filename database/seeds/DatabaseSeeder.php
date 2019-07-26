@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder
             // Miscellaneous Data (e.g. counts)
             $this->call(MiscSeeder::class);
 
+            // Countries
+            $this->call(CountrySeeder::class);
+
             // Users, Stats, Ranks
             $this->call(UserSeeder::class);
 

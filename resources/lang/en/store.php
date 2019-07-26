@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,23 +23,99 @@ return [
         'warehouse' => 'Warehouse',
     ],
 
+    'cart' => [
+        'checkout' => 'Checkout',
+        'more_goodies' => 'I want to check out more goodies before completing the order',
+        'shipping_fees' => 'shipping fees',
+        'title' => 'Shopping Cart',
+        'total' => 'total',
+
+        'errors_no_checkout' => [
+            'line_1' => 'Uh oh, there are problems with your cart preventing a checkout!',
+            'line_2' => 'Remove or update items above to continue.',
+        ],
+
+        'empty' => [
+            'text' => 'Your cart is empty.',
+            'return_link' => [
+                '_' => 'Return to the :link to find some goodies!',
+                'link_text' => 'store listing',
+            ],
+        ],
+    ],
+
     'checkout' => [
         'cart_problems' => 'Uh oh, there are problems with your cart!',
         'cart_problems_edit' => 'Click here to go edit it.',
         'declined' => 'The payment was cancelled.',
-        'error' => 'There was a problem completing your checkout :(',
-        'pay' => 'Checkout with Paypal',
         'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
+        'old_cart' => 'Your cart appears to be out of date and has been reloaded, please try again.',
+        'pay' => 'Checkout with Paypal',
+
+        'has_pending' => [
+            '_' => 'You have incomplete checkouts, click :link to view them.',
+            'link_text' => 'here',
+        ],
+
+        'pending_checkout' => [
+            'line_1' => 'A previous checkout was started but did not finish.',
+            'line_2' => 'Resume your checkout by selecting a payment method.',
+        ],
     ],
 
     'discount' => 'save :percent%',
 
+    'invoice' => [
+        'echeck_delay' => 'As your payment was an eCheck, please allow up to 10 extra days for the payment to clear through PayPal!',
+        'status' => [
+            'processing' => [
+                'title' => 'Your payment has not yet been confirmed!',
+                'line_1' => 'If you have already paid, we may still be waiting to receive confirmation of your payment. Please refresh this page in a minute or two!',
+                'line_2' => [
+                    '_' => 'If you encountered a problem during checkout, :link',
+                    'link_text' => 'click here to resume your checkout',
+                ],
+            ],
+        ],
+    ],
+
+    'mail' => [
+        'payment_completed' => [
+            'subject' => 'We received your osu!store order!',
+        ],
+    ],
+
     'order' => [
+        'paid_on' => 'Order placed :date',
+
+        'invoice' => 'View Invoice',
+        'no_orders' => 'No orders to view.',
+        'resume' => 'Resume Checkout',
+
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name for :username (:duration)',
             ],
             'quantity' => 'Quantity',
+        ],
+
+        'not_modifiable_exception' => [
+            'cancelled' => 'You cannot modify your order as it has been cancelled.',
+            'checkout' => 'You cannot modify your order while it is being processed.', // checkout and processing should have the same message.
+            'default' => 'Order is not modifiable',
+            'delivered' => 'You cannot modify your order as it has already been delivered.',
+            'paid' => 'You cannot modify your order as it has already been paid for.',
+            'processing' => 'You cannot modify your order while it is being processed.',
+            'shipped' => 'You cannot modify your order as it has already been shipped.',
+        ],
+
+        'status' => [
+            'cancelled' => 'Cancelled',
+            'checkout' => 'Preparing',
+            'delivered' => 'Delivered',
+            'paid' => 'Paid',
+            'processing' => 'Pending confirmation',
+            'shipped' => 'Shipped',
         ],
     ],
 
@@ -63,15 +139,17 @@ return [
     'supporter_tag' => [
         'gift' => 'gift to player',
         'require_login' => [
-            '_' => 'You need to be :link to get a supporter tag!',
-            'link_text' => 'logged in',
+            '_' => 'You need to be :link to get an osu!supporter tag!',
+            'link_text' => 'signed in',
         ],
     ],
 
     'username_change' => [
+        'check' => 'Enter a username to check availability!',
+        'checking' => 'Checking availability of :username...',
         'require_login' => [
             '_' => 'You need to be :link to change your name!',
-            'link_text' => 'logged in',
+            'link_text' => 'signed in',
         ],
     ],
 ];

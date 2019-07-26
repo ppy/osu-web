@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -17,8 +17,10 @@
 ###
 
 @polyfills ?= new Polyfills
-Lang.setLocale(currentLocale)
-Lang.setFallback(fallbackLocale)
+
+Turbolinks.setProgressBarDelay(0)
+
+Lang.setLocale(@currentLocale)
 jQuery.timeago.settings.allowFuture = true
 
 # loading animation overlay
@@ -34,13 +36,20 @@ $(document).on 'turbolinks:load', ->
   StoreSupporterTag.initialize()
   StoreCheckout.initialize()
 
+# ensure currentUser is updated early enough.
+@currentUserObserver ?= new CurrentUserObserver
+@throttledWindowEvents ?= new ThrottledWindowEvents
+@syncHeight ?= new SyncHeight
+@stickyHeader ?= new StickyHeader
+
 @accountEdit ?= new AccountEdit
-@accountEditPlaystyle ?= new AccountEditPlaystyle
 @accountEditAvatar ?= new AccountEditAvatar
+@accountEditPlaystyle ?= new AccountEditPlaystyle
+@accountEditBlocklist ?= new AccountEditBlocklist
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
-@currentUserObserver ?= new CurrentUserObserver
+@clickMenu ?= new ClickMenu
 @fancyGraph ?= new FancyGraph
 @formClear ?= new FormClear
 @formError ?= new FormError
@@ -50,42 +59,34 @@ $(document).on 'turbolinks:load', ->
 @forumAutoClick ?= new ForumAutoClick
 @forumCover ?= new ForumCover
 @forumTopicTitle ?= new ForumTopicTitle
+@forumTopicWatchAjax ?= new ForumTopicWatchAjax
 @gallery ?= new Gallery
 @globalDrag ?= new GlobalDrag
 @landingGraph ?= new LandingGraph
-@landingHero ?= new LandingHero
 @menu ?= new Menu
-@nav ?= new Nav
-@navSearch ?= new NavSearch
+@nav2 ?= new Nav2
+@navButton ?= new NavButton
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
-@parentFocus ?= new ParentFocus
 @postPreview ?= new PostPreview
-@reactTurbolinks ?= new ReactTurbolinks
 @replyPreview ?= new ReplyPreview
 @scale ?= new Scale
 @search ?= new Search
 @stickyFooter ?= new StickyFooter
-@stickyHeader ?= new StickyHeader
-@syncHeight ?= new SyncHeight
-@throttledWindowEvents ?= new ThrottledWindowEvents
 @timeago ?= new Timeago
 @tooltipBeatmap ?= new TooltipBeatmap
 @tooltipDefault ?= new TooltipDefault
 @turbolinksReload ?= new TurbolinksReload
-@twitchPlayer ?= new TwitchPlayer
-@wiki ?= new Wiki
-@userCard ?= new UserCard
+@userLogin ?= new UserLogin
+@userVerification ?= new UserVerification
 
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
 @forumSearchModal ?= new ForumSearchModal(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
-@turbolinksDisable ?= new TurbolinksDisable(@turbolinksReload)
-@turbolinksDisqus ?= new TurbolinksDisqus(@turbolinksReload)
-@userLogin ?= new UserLogin(@nav)
-@userVerification ?= new UserVerification(@nav)
+@twitchPlayer ?= new TwitchPlayer(@turbolinksReload)
+_exported.WindowVHPatcher.init(window)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
@@ -95,17 +96,6 @@ $(document).on 'change', '.js-url-selector', (e) ->
 $(document).on 'keydown', (e) ->
   $.publish 'key:esc' if e.keyCode == 27
 
-# Globally init countdown timers
-reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
-  deadline: e.dataset.deadline
-
-# Globally init friend buttons
-reactTurbolinks.register 'friendButton', FriendButton, (target) ->
-  container: target
-  user_id: parseInt(target.dataset.target)
-
-reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
-  JSON.parse(el.dataset.beatmapsetPanel)
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port

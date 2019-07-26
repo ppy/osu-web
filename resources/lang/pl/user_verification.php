@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,29 +17,33 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'box' => [
-        'sent' => 'Mail z kodem weryfikacyjnym został wysłany na email :mail Wpisz kod.',
+        'sent' => 'E-mail z kodem weryfikacyjnym został wysłany na adres :mail. Wprowadź otrzymany kod.',
         'title' => 'Weryfikacja konta',
         'verifying' => 'Weryfikowanie...',
         'issuing' => 'Tworzenie nowego kodu...',
+
         'info' => [
-            'check_spam' => 'Sprawdź folder spam, jeżeli nie możesz znaleźć maila.',
-            'recover' => 'Jeżeli nie masz dostępu do maila, lub nie pamiętasz, który jest przypisany do konta, spróbuj :link.',
-            'recover_link' => 'odzyskać maila tutaj',
+            'check_spam' => "Sprawdź folder spam, jeżeli nie możesz znaleźć e-maila.",
+            'recover' => "Jeżeli nie masz dostępu do e-maila, lub nie pamiętasz, który jest przypisany do konta, spróbuj :link.",
+            'recover_link' => 'odzyskać go tutaj',
             'reissue' => 'Możesz także :reissue_link lub :logout_link.',
             'reissue_link' => 'poprosić o inny kod',
             'logout_link' => 'wylogować się',
         ],
     ],
+
     'email' => [
         'subject' => 'weryfikacja konta osu!',
     ],
+
     'errors' => [
         'expired' => 'Ten kod wygasł. Wysłano nowy kod weryfikacyjny.',
-        'incorrect_key' => 'Wprowadzono zły kod weryfikacyjny.',
-        'retries_exceeded' => 'Wprowadzono zły kod weryfikacyjny. Przekroczyłeś liczbę prób. Wysłano nowy kod weryfikacyjny.',
-        'reissued' => 'Odświeżono kod weryfikacyjny. Wysłano nowy kod weryfikacyjny',
-        'unknown' => 'Wystąpił nieoczekiwany błąd. Wysłano nowy kod weryfikacyjny.',
+        'incorrect_key' => 'Wprowadzono nieprawidłowy kod weryfikacyjny.',
+        'retries_exceeded' => 'Wprowadzono nieprawidłowy kod weryfikacyjny. Liczba prób została przekroczona, w związku z tym wysłaliśmy nowy kod weryfikacyjny.',
+        'reissued' => 'Wygenerowano nowy kod weryfikacyjny. Sprawdź swoją skrzynkę odbiorczą.',
+        'unknown' => 'Wystąpił nieoczekiwany błąd. Wysłano nowy e-mail weryfikacyjny.',
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,17 +23,26 @@ return [
         'header' => [
             // size in font-size
             'big_description' => '喜欢 osu! 吗！？<br/>
-                                那就支持 osu! 开发者吧 (￣3￣)',
+                                那就支持 osu! 开发吧 (￣3￣)',
             'small_description' => '',
             'support_button' => '我想支持 osu!',
         ],
 
         'dev_quote' => 'osu! 是一款完全免费的游戏，但是经营它却不是免费的。在我们租用服务器和高速网络、维护系统及社区、向比赛提供奖品、提供疑难解答以及让玩家们开心的同时，osu! 已经消耗了大量的金钱！噢，别忘了我们是凭着爱好在做 osu! ，没有任何的广告合作！
-            <br/><br/>osu! 由我一个人运营着，
-            为了维护 osu! 我已经辞去了我的日常工作，
+            <br/><br/>大部分时间里，osu! 由我一个人运营着，
+            为了维护 osu! 我不得不辞去日常工作，
             而我时常感受到使 osu! 维持我所期望的质量是一件很艰难的事情，
             我以个人的名义感谢至今为止所有支持 osu! 的人，
             也包括继续支持 osu! 的所有人 :)。',
+
+        'supporter_status' => [
+            'contribution' => '感谢你一直以来的支持！你已经捐赠了 :dollars 并购买了 :tags 次支持者标签！',
+            'gifted' => '你已经捐赠了 :giftedTags 次支持者标签（花费了 :giftedDollars ），真慷慨啊！',
+            'not_yet' => "你还没有支持者标签 :(",
+            'title' => '当前支持者状态',
+            'valid_until' => '你的支持者标签将在 :date 到期',
+            'was_valid_until' => '你的支持者标签已于 :date 到期',
+        ],
 
         'why_support' => [
             'title' => '为什么要支持 osu! ？',
@@ -41,7 +50,7 @@ return [
                 'dev' => 'osu! 最初是 ppy 个人开发和维护的',
                 'time' => '运营它的成本和投入的精力已经超出了“兴趣”的范围',
                 'ads' => '无广告 <br/><br/>
-                        不像 99.95% 的网站，我们不推送广告，也没有从中获利。',
+                        不像 99.95% 的网站，我们不会为了钱而糊你一脸的广告。',
                 'goodies' => '解锁更多高级功能！',
             ],
         ],
@@ -49,7 +58,7 @@ return [
         'perks' => [
             'title' => '我能得到什么？',
             'osu_direct' => [
-                'title' => 'osu!direct', //不翻译
+                'title' => 'osu!direct',
                 'description' => '在游戏客户端内搜索和下载谱面。',
             ],
 
@@ -74,37 +83,37 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => '谱面筛选器',
-                'description' => '更多角度的去筛选谱面。',
+                'title' => '筛选铺面',
+                'description' => '可在搜索谱面时以更多角度筛选。',
             ],
 
             'yellow_fellow' => [
-                'title' => '高亮用户名',
+                'title' => '用户名高亮',
                 'description' => '聊天时，用户名会变成亮黄色。',
             ],
 
             'speedy_downloads' => [
                 'title' => '高速下载',
-                'description' => '更快的下载速度，尤其是使用 osu!direct 时。',
+                'description' => '更快的下载速度。使用 osu!direct 的话甚至会更快。',
             ],
 
             'change_username' => [
                 'title' => '修改用户名',
-                'description' => '修改用户名而不需要支付费用（最多 1 次）。',
+                'description' => '你能得到一次免费修改用户名的机会。',
             ],
 
             'skinnables' => [
-                'title' => '更多的定制',
+                'title' => '更多的皮肤',
                 'description' => '自定义更多的游戏界面元素，例如主菜单的背景。',
             ],
 
             'feature_votes' => [
                 'title' => '新特性投票',
-                'description' => '为新特性请求投票（每月 2 票）。',
+                'description' => '为新功能投票（每月 2 票）。',
             ],
 
             'sort_options' => [
-                'title' => '排名',
+                'title' => '详细的排名',
                 'description' => '查看排名时可按 国家/好友/所选MOD 进行排名。',
             ],
 

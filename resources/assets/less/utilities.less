@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -32,6 +32,16 @@
   }
 }
 
+.u-fancy-scrollbar {
+  .fancy-scrollbar();
+}
+
+// so elements with anchors as subelements don't create stacking contexts
+// that block each other.
+.u-has-anchor {
+  position: static;
+}
+
 .u-hidden {
   display: none !important;
 }
@@ -46,6 +56,6 @@
   z-index: @z-index--nav-float !important;
 }
 
-.u-nav-popup {
-  z-index: @z-index--nav-popup !important;
+.u-full-size {
+  .full-size();
 }

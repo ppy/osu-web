@@ -1,0 +1,131 @@
+<?php
+
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+return [
+    'not_negative' => ':attribute nem lehet negatív.',
+    'required' => ':attribute kötelező.',
+    'too_long' => ':attribute elérte a maximális hosszt - csak :limit karakter hosszú lehet.',
+    'wrong_confirmation' => 'A megerősítés nem egyezik.',
+
+    'beatmap_discussion_post' => [
+        'discussion_locked' => 'A megbeszélés zárolva van.',
+        'first_post' => 'Nem lehet a kezdő posztot törölni.',
+    ],
+
+    'beatmapset_discussion' => [
+        'beatmap_missing' => 'Időbélyeg meg van adva, de a beatmap hiányzik.',
+        'beatmapset_no_hype' => "A beatmap-et nem lehet hype-olni.",
+        'hype_requires_null_beatmap' => 'A Hype-olás az Általános (összes nehézség) szekcióban végzendő.',
+        'invalid_beatmap_id' => 'Érvénytelen nehézség lett megadva.',
+        'invalid_beatmapset_id' => 'Érvénytelen beatmap lett megadva.',
+        'locked' => 'A megbeszélés zárolva van.',
+
+        'hype' => [
+            'guest' => 'A hype-oláshoz bejelentkezve kell lenned.',
+            'hyped' => 'Már hype-oltad ezt a beatmap-et.',
+            'limit_exceeded' => 'Az összes hype-odat elhasználtad.',
+            'not_hypeable' => 'Ezt a beatmap-et nem lehet hype-olni',
+            'owner' => 'Saját beatmap-et nem lehet hype-olni.',
+        ],
+
+        'timestamp' => [
+            'exceeds_beatmapset_length' => 'A megadott időbélyeg későbbi mint a beatmap hossza.',
+            'negative' => "Időbélyeg nem lehet negatív.",
+        ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => 'Törölt hozzászólásokra nem lehet válaszolni.',
+    ],
+
+    'follow' => [
+        'invalid' => '',
+    ],
+
+    'forum' => [
+        'feature_vote' => [
+            'not_feature_topic' => 'Csak jövőbeli feature-re lehet szavazni.',
+            'not_enough_feature_votes' => 'Nincs elég szavazat.',
+        ],
+
+        'poll_vote' => [
+            'invalid' => 'Érvénytelen beállítás lett megadva.',
+        ],
+
+        'post' => [
+            'beatmapset_post_no_delete' => 'Beatmap metaadat törlése nem engedélyezett.',
+            'beatmapset_post_no_edit' => 'Beatmap metaadat poszt szerkesztése nem engedélyezett.',
+            'only_quote' => 'A válaszod csak egy idézetet tartalmaz.',
+        ],
+
+        'topic_poll' => [
+            'duplicate_options' => 'Duplikálás nem engedélyezett.',
+            'grace_period_expired' => 'Nem lehet szerkeszteni a szavazást több mint :limit óra után',
+            'hiding_results_forever' => 'Egy végtelen szavazás eredményeit nem lehet elrejteni.',
+            'invalid_max_options' => 'Felhasználónkénti opciók száma nem haladhatja meg az elérhető opciók mennyiségét.',
+            'minimum_one_selection' => 'Minimum egy opció kell felhasználónként.',
+            'minimum_two_options' => 'Legalább 2 választási lehetőség kell.',
+            'too_many_options' => 'Elérted a maximum opciók számát.',
+        ],
+
+        'topic_vote' => [
+            'required' => 'Válassz egy opciót szavazásnál.',
+            'too_many' => 'Az engedélyezettnél több opciót választottál.',
+        ],
+    ],
+
+    'user' => [
+        'contains_username' => 'A jelszó nem tartalmazhat felhasználónevet.',
+        'email_already_used' => 'Ez az e-mail cím már használatban van.',
+        'invalid_country' => 'Az ország nincs az adatbázisban.',
+        'invalid_discord' => 'Érvénytelen Discord felhasználónév.',
+        'invalid_email' => "Nem úgy néz ki, hogy ez érvényes e-mail cím lenne.",
+        'too_short' => 'Az új jelszó túl rövid.',
+        'unknown_duplicate' => 'Ez a felhasználónév vagy e-mail cím már használatban van.',
+        'username_available_in' => 'Ez a felhasználónév elérhető lesz :duration időn belül.',
+        'username_available_soon' => 'Ez a felhasználónév bármelyik pillanatban elérhető lehet!',
+        'username_invalid_characters' => 'A kért felhasználónév nem felhasználható karaktereket tartalmaz.',
+        'username_in_use' => 'Foglalt felhasználónév!',
+        'username_locked' => 'A név már használatban van!', // TODO: language for this should be slightly different.
+        'username_no_space_userscore_mix' => 'Vagy alsóvonalat használj, vagy space gomb lenyomásával üres teret, nem menő mind a kettő!',
+        'username_no_spaces' => "A felhasználóneved nem kezdődhet és nem is végződhet üres hellyel!",
+        'username_not_allowed' => 'Ez a felhasználónév nem engedett.',
+        'username_too_short' => 'A kért felhasználónév túl rövid.',
+        'username_too_long' => 'A kért felhasználónév túl hosszú.',
+        'weak' => 'Feketelistás jelszó.',
+        'wrong_current_password' => 'A jelenlegi jelszó nem megfelelő.',
+        'wrong_email_confirmation' => 'Email megerősítés nem egyezik.',
+        'wrong_password_confirmation' => 'Jelszó megerősítés nem egyezik.',
+        'too_long' => 'Elérted a maximum hosszúságot - maximum :limit karaktert használhatsz.',
+
+        'change_username' => [
+            'restricted' => 'Felfüggesztett állapotban nem változtathatsz felhasználónevet.',
+            'supporter_required' => [
+                '_' => ':link szükséges a névváltoztatáshoz!',
+                'link_text' => 'támogatta osu!-t',
+            ],
+            'username_is_same' => 'Már ez a felhasználóneved te butus!',
+        ],
+    ],
+
+    'user_report' => [
+        'self' => "Nem jelentheted magadat!",
+    ],
+];

@@ -1,0 +1,157 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * container of this component should have its own stacking context otherwise
+ * fun things will happen
+ */
+.login-box {
+  @_top: login-box;
+
+  position: fixed;
+  width: 100%;
+  z-index: @z-index--nav-float;
+  top: @navbar-height;
+
+  @media @desktop {
+    top: @nav2-height;
+    transition: top @header-pinned-animation-duration;
+
+    .@{header-pinned} & {
+      top: @nav2-height--pinned;
+    }
+  }
+
+  &--landing {
+    @media @desktop {
+      position: relative;
+      top: 0;
+    }
+  }
+
+  &__content {
+    .default-box-shadow();
+    .own-layer();
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: @font-size--nav-popup-section;
+    overflow: hidden;
+    transition: none;
+    color: #999;
+
+    @media @desktop {
+      .default-border-radius();
+      width: 300px;
+      margin-top: 5px; // sync with Nav2#centerPopup
+    }
+  }
+
+  &__action {
+    margin: 5px;
+  }
+
+  &__form-input {
+    .default-border-radius();
+    border: none;
+    outline: none;
+    background-color: #222;
+    padding: 10px 5px;
+    margin-bottom: 5px;
+
+    font-size: @font-size--phone-input;
+
+    @media @desktop {
+      font-size: inherit;
+    }
+
+    &::placeholder {
+      color: #777;
+    }
+  }
+
+  &__link {
+    .reset-input();
+    color: @yellow;
+    font-size: @font-size--nav-popup-link;
+
+    &:focus,
+    &:hover {
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+
+  &__row {
+    flex: none;
+    margin: 0 0 10px;
+    display: flex;
+
+    &--actions {
+      justify-content: flex-end;
+      align-items: center;
+      white-space: nowrap;
+      margin: -5px -5px 5px;
+    }
+
+    &--error {
+      color: @purple-light;
+
+      &:empty {
+        display: none;
+      }
+    }
+
+    &--inputs {
+      flex-direction: column;
+      margin-bottom: 5px;
+    }
+
+    &--title {
+      color: #fff;
+      font-size: @font-size--nav-popup-title;
+      font-style: normal;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__section {
+    flex: none;
+    padding: 20px 20px 0;
+    display: flex;
+    flex-direction: column;
+
+    &--login {
+      background-color: #333;
+
+      .@{_top}--landing & {
+        background-color: #444;
+      }
+    }
+
+    &--register {
+      background-color: #444;
+
+      .@{_top}--landing & {
+        display: none;
+      }
+    }
+  }
+}

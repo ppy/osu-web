@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,41 +19,41 @@
  */
 
 return [
-    'title' => 'Восстановление пароля',
+    'title' => 'Сброс пароля',
 
     'button' => [
-        'cancel' => 'Отмена',
-        'resend' => 'Отправить письмо заново',
-        'set' => 'Установить пароль',
-        'start' => 'Начать',
+        'cancel' => 'Отменить процесс',
+        'resend' => 'Переотправить письмо с подтверждением',
+        'set' => 'Сохранить пароль',
+        'start' => 'Начать процесс',
     ],
 
     'email' => [
-        'subject' => 'osu! восстановление аккаунта',
+        'subject' => 'Восстановления доступа к аккаунту osu!',
     ],
 
     'error' => [
-        'contact_support' => 'Просим связаться с поддержкой для восстановления пароля.',
-        'is_privileged' => 'Свяжись с peppy кек.',
-        'missing_key' => 'Обязательно.',
-        'too_many_tries' => 'Слишком много попыток.',
-        'user_not_found' => 'Запрошенный пользователь не найден.',
+        'contact_support' => 'Свяжитесь с поддержкой для восстановления аккаунта.',
+        'is_privileged' => 'Пиши peppy кек.',
+        'missing_key' => 'Это поле необходимо.',
+        'too_many_tries' => 'Слишком много неудачных попыток.',
+        'user_not_found' => 'Указанный пользователь не существует.',
         'wrong_key' => 'Неверный код.',
     ],
 
     'notice' => [
-        'sent' => 'Проверь свою почту для кода подтверждения.',
-        'saved' => 'Новый пароль установлен!',
+        'sent' => 'Проверьте свою почту для подтверждения.',
+        'saved' => 'Новый пароль сохранён!',
     ],
 
     'started' => [
         'password' => 'Новый пароль',
-        'password_confirmation' => 'Повтори пароль',
-        'title' => 'Сброс пароля для <strong>:username</strong>.',
-        'verification_key' => 'Ключ подтверждения',
+        'password_confirmation' => 'Повторите новый пароль',
+        'title' => 'Восстановление доступа к аккаунту <strong>:username</strong>.',
+        'verification_key' => 'Код подтверждения',
     ],
 
     'starting' => [
-        'username' => 'Введи почту или никнейм',
+        'username' => 'Введите почту или никнейм',
     ],
 ];

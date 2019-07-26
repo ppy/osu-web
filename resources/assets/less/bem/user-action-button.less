@@ -1,0 +1,118 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.user-action-button {
+  @_top: user-action-button;
+
+  .reset-input();
+  .link-plain();
+  .link-white();
+  .center-content();
+  display: flex;
+  border-radius: 10px;
+  height: 20px;
+  width: 50px;
+  text-align: center;
+
+  font-size: @font-size--title-small;
+  background: @osu-colour-b6;
+
+  &:hover {
+    background: @osu-colour-b5;
+  }
+
+  &--message {
+    &:hover {
+      background: fade(@blue-darker, 70%);
+    }
+  }
+
+  &--mutual {
+    background: fade(@pink, 70%);
+    &:hover {
+      background: fade(lighten(@pink, 5%), 70%);
+    }
+  }
+
+  &--friend {
+    background: fade(@green, 70%);
+    &:hover {
+      background: fade(lighten(@green, 5%), 70%);
+    }
+  }
+
+  &--user-card {
+    height: 26px;
+    width: 26px;
+    font-size: 13px;
+    border-radius: 50%;
+  }
+
+  &--profile-page {
+    .default-text-shadow();
+    min-width: 80px;
+    width: auto;
+    height: auto;
+    padding: 10px 10px;
+    border-radius: 10000px;
+    font-weight: bold;
+  }
+
+  &--right-margin {
+    margin-right: 10px;
+  }
+
+  &[disabled] {
+    pointer-events: none;
+  }
+
+  &__counter {
+    padding-right: 10px;
+  }
+
+  &__icon {
+    .full-size();
+    .center-content();
+    will-change: opacity;
+
+    .user-card & {
+      will-change: unset;
+    }
+
+    &--hover-hidden {
+      opacity: 1;
+
+      .@{_top}:hover & {
+        opacity: 0;
+      }
+    }
+
+    &--hover-visible {
+      opacity: 0;
+
+      .@{_top}:hover & {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__icon-container {
+    .center-content();
+    width: 50px;
+  }
+}

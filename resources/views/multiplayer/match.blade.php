@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,20 +15,20 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends('master')
 
-@section("content")
+@section('content')
     <div class="js-react--mp-history"></div>
 @endsection
 
 @section("script")
     @parent
     <script id="json-match" type="application/json">
-        {!! json_encode($match) !!}
+        {!! json_encode($matchJson) !!}
     </script>
 
-    <script>
-        var full = {!! json_encode($full) !!};
+    <script id="json-events" type="application/json">
+        {!! json_encode($eventsJson) !!}
     </script>
 
     @include('layout._extra_js', ['src' => 'js/react/mp-history.js'])

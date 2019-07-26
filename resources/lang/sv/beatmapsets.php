@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -34,24 +34,96 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
-            'made-by' => 'gjord av ',
-            'submitted' => 'inkommen den ',
-            'updated' => 'senast uppdaterad den ',
-            'ranked' => 'rankad den ',
             'approved' => 'godkänd den ',
-            'qualified' => 'kvalificerad den ',
-            'loved' => 'älskad den ',
+            'favourite' => 'Favorisera denna beatmapset',
+            'favourited_count' => '+ 1 annan!|+ :count andra!',
             'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!',
+            'loved' => 'älskad den ',
+            'mapped_by' => 'skapad av :mapper',
+            'qualified' => 'kvalificerad den ',
+            'ranked' => 'rankad den ',
+            'submitted' => 'uppladdad den ',
+            'unfavourite' => 'Ta bort favorisering på denna beatmapset',
+            'updated' => 'senast uppdaterad den ',
+            'updated_timeago' => 'senast ändrad :timeago',
+
             'download' => [
                 '_' => 'Ladda Ner',
-                'video' => 'med Video',
-                'no-video' => 'utan Video',
                 'direct' => 'osu!direct',
+                'no-video' => 'utan Video',
+                'video' => 'med Video',
             ],
-            'favourite' => 'Favorisera denna beatmapset',
-            'unfavourite' => 'Ta bort favorisering på denna beatmapset',
-            'favourited_count' => '+ 1 annan!|+ :count andra!',
+
+            'login_required' => [
+                'bottom' => '',
+                'top' => '',
+            ],
         ],
+
+        'favourites' => [
+            'limit_reached' => '',
+        ],
+
+        'hype' => [
+            'action' => '',
+
+            'current' => [
+                '_' => '',
+
+                'status' => [
+                    'pending' => '',
+                    'qualified' => '',
+                    'wip' => '',
+                ],
+            ],
+        ],
+
+        'info' => [
+            'description' => 'Beskrivning',
+            'genre' => 'Genre',
+            'language' => 'Språk',
+            'no_scores' => 'Data beräknas...',
+            'points-of-failure' => 'Punkter av Misslyckande',
+            'source' => 'Källa',
+            'success-rate' => 'Genomsnittig Succe',
+            'tags' => 'Taggar',
+            'unranked' => 'Ej rankad beatmap',
+        ],
+
+        'scoreboard' => [
+            'achieved' => 'uppnått :when',
+            'country' => 'Nationell rankning',
+            'friend' => 'Rankning bland vänner',
+            'global' => 'Global rankning',
+            'supporter-link' => 'Klicka <a href=":link">här</a> för att se alla fina funktioner du kommer få!',
+            'supporter-only' => 'Du behöver vara en supporter för att komma åt vän och land rankningar!',
+            'title' => 'Resultattavla',
+
+            'headers' => [
+                'accuracy' => 'Precision',
+                'combo' => 'Högsta Kombo',
+                'miss' => 'Missar',
+                'mods' => 'Tillägg',
+                'player' => 'Spelare',
+                'pp' => '',
+                'rank' => 'Rank',
+                'score_total' => 'Total Poäng',
+                'score' => 'Poäng',
+            ],
+
+            'no_scores' => [
+                'country' => 'Ingen från ditt land har satt ett poäng på denna map än!',
+                'friend' => 'Ingen av dina vänner har satt ett poäng på denna map än!',
+                'global' => 'Inga poäng än. Du kanske ska försöka sätta några?',
+                'loading' => 'Laddar poäng...',
+                'unranked' => 'Ej rankad beatmap.',
+            ],
+            'score' => [
+                'first' => 'Leder',
+                'own' => 'Ditt Bästa',
+            ],
+        ],
+
         'stats' => [
             'cs' => 'Cirkel Storlek',
             'cs-mania' => 'Antal Tangenter',
@@ -65,47 +137,8 @@ return [
             'count_sliders' => 'Antal Sliders',
             'user-rating' => 'Användar Betyg',
             'rating-spread' => 'Betyg Spridning',
-        ],
-        'info' => [
-            'no_scores' => 'Ej rankad beatmap',
-            'points-of-failure' => 'Punkter av Misslyckande',
-            'success-rate' => 'Genomsnittig Succe',
-
-            'description' => 'Beskrivning',
-
-            'source' => 'Källa',
-            'tags' => 'Taggar',
-        ],
-        'scoreboard' => [
-            'achieved' => 'uppnått :when',
-            'country' => 'Land Ranking',
-            'friend' => 'Vän Ranking',
-            'global' => 'Global Ranking',
-            'supporter-link' => 'Klicka <a href=":link">här</a> för att se alla fina funktioner du kommer få!',
-            'supporter-only' => 'Du behöver vara en supporter för att komma åt vän och land rankningar!',
-            'title' => 'Resultattavla',
-
-            'list' => [
-                'accuracy' => 'Precision',
-                'player-header' => 'Spelare',
-                'rank-header' => 'Rank',
-                'score' => 'Poäng',
-            ],
-            'no_scores' => [
-                'country' => 'Ingen från ditt land har satt ett poäng på denna map än!',
-                'friend' => 'Ingen av dina vänner har satt ett poäng på denna map än!',
-                'global' => 'Inga poäng än. Du kanske ska försöka sätta några?',
-                'loading' => 'Laddar poäng...',
-                'unranked' => 'Ej rankad beatmap.',
-            ],
-            'score' => [
-                'first' => 'Leder',
-                'own' => 'Ditt Bästa',
-            ],
-            'stats' => [
-                'accuracy' => 'Precision',
-                'score' => 'Poäng',
-            ],
+            'nominations' => 'Nomineringar',
+            'playcount' => 'Speltid',
         ],
     ],
 ];

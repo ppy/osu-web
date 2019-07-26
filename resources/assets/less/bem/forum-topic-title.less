@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,22 +17,30 @@
  */
 
 .forum-topic-title {
+  @_line-height: 1.4;
+  @_buttons-margin-left: 20px;
+  @_button-edit-width: 35px;
   // actual font takes more than the 1.1 default line height.
-  line-height: 1.4;
+  line-height: @_line-height;
 
   /* force line-breaking and hide overflow */
-  word-break: break-all;
-  max-height: 4.2em;
+  word-wrap: break-word;
+  max-height: unit(@_line-height * 3, em);
   overflow: hidden;
 
   &__button {
-    margin-left: 5px;
+    flex: none;
     display: flex;
+    padding-left: 5px;
     pointer-events: auto;
+
+    &--edit {
+      width: @_button-edit-width;
+    }
   }
 
   &__buttons {
-    padding-left: 20px;
+    flex: none;
     display: flex;
   }
 
@@ -47,6 +55,8 @@
     pointer-events: none;
     opacity: 0;
     overflow: hidden;
+    white-space: pre;
+    margin-right: @_buttons-margin-left;
   }
 
   &__group {
@@ -59,17 +69,18 @@
     flex: 1;
     // Overrides browser default. Actual width handled by flex.
     width: 0;
+    // ensure correct height in ie
+    height: unit(@_line-height, em);
   }
 
   &__title {
     .link-white();
     .link-plain();
-    margin-right: 10px;
+    flex: none;
+    padding-right: @_buttons-margin-left;
+    min-width: 0;
+    max-width: calc(100% - @_button-edit-width);
 
-    /* magic line-clamping on webkit browsers (safari, chrome, etc) */
-    /* (other browsers won't show ellipses) */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+    .webkit-line-clamp(3);
   }
 }

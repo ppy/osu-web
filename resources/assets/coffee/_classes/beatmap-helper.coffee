@@ -1,5 +1,5 @@
 ###
-#    Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 #
 #    This file is part of osu!web. osu!web is distributed with the hope of
 #    attracting more community contributions to the core ecosystem of osu!.
@@ -18,7 +18,8 @@
 
 class @BeatmapHelper
   @default: ({group, items, mode}) =>
-    return _.last(items) if items?
+    if items?
+      return _.findLast(items, (i) -> !i.deleted_at? && !i.convert) ? _.last(items)
 
     return unless group?
 
@@ -38,15 +39,15 @@ class @BeatmapHelper
 
 
   @getDiffRating: (rating) ->
-    if rating < 1.5
+    if rating < 2
       'easy'
-    else if rating < 2.25
+    else if rating < 2.7
       'normal'
-    else if rating < 3.75
+    else if rating < 4
       'hard'
-    else if rating < 5.25
+    else if rating < 5.3
       'insane'
-    else if rating < 6.75
+    else if rating < 6.5
       'expert'
     else
       'expert-plus'
@@ -64,9 +65,7 @@ class @BeatmapHelper
 
 
   @sort: (beatmaps) ->
-    sortBy = ['convert', 'difficulty_rating']
-
     if beatmaps[0].mode == 'mania'
-      sortBy.unshift 'difficulty_size'
-
-    _.sortBy beatmaps, sortBy
+      _.orderBy beatmaps, ['convert', 'cs', 'difficulty_rating'], ['desc', 'asc', 'asc']
+    else
+      _.orderBy beatmaps, ['convert', 'difficulty_rating'], ['desc', 'asc']

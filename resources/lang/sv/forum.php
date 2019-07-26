@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,6 +19,10 @@
  */
 
 return [
+    'pinned_topics' => 'Nålade Ämnen',
+    'slogan' => "det är farligt att spela ensam.",
+    'subforums' => 'Subforums',
+    'title' => 'osu! forumen',
 
     'covers' => [
         'create' => [
@@ -43,39 +47,79 @@ return [
         ],
     ],
 
-    'pinned_topics' => 'Nålade Ämnen',
+    'mark_as_read' => [
+        'forum' => '',
+        'forums' => '',
+        'busy' => '',
+    ],
+
+    'poll' => [
+        'edit_warning' => '',
+
+        'actions' => [
+            'edit' => '',
+        ],
+    ],
+
     'post' => [
         'confirm_destroy' => 'Verkligen radera inlägg?',
         'confirm_restore' => 'Verkligen återställa inlägg?',
         'edited' => 'Senast redigerad av :user den :when, redigerad :count gånger totalt.',
         'posted_at' => 'upplagd :when',
+
         'actions' => [
             'destroy' => 'Radera inlägg',
             'restore' => 'Återställ inlägg',
             'edit' => 'Redigera inlägg',
         ],
+
+        'info' => [
+            'post_count' => '',
+            'topic_starter' => '',
+        ],
     ],
+
     'search' => [
         'go_to_post' => 'Gå till inlägg',
         'post_number_input' => 'skriv inläggs nummer',
         'total_posts' => ':posts_count inlägg totalt',
     ],
-    'subforums' => 'Subforums',
-    'title' => 'osu!community',
-    'slogan' => 'det är farligt att spela ensam.',
+
     'topic' => [
+        'deleted' => 'raderat ämne',
+        'go_to_latest' => 'visa senaste inlägg',
+        'latest_post' => ':when av :user',
+        'latest_reply_by' => 'senaste svar av :user',
+        'new_topic' => 'Lägg upp nytt ämne',
+        'new_topic_login' => 'Logga in för att lägga upp ett nytt ämne',
+        'post_reply' => 'Lägg upp',
+        'reply_box_placeholder' => 'Tryck här för att svara',
+        'reply_title_prefix' => 'Åter',
+        'started_by' => 'av :user',
+        'started_by_verbose' => 'startad av :user',
+
         'create' => [
-            'placeholder' => [
-                'body' => 'Skriv ditt inläggs innehåll här',
-                'title' => 'Klicka här för att sätta titel',
-            ],
             'preview' => 'Förhandsvisning',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Skriv',
             'submit' => 'Lägg upp',
+
+            'necropost' => [
+                'default' => 'Detta ämne har varit inaktiv ett tag. Skapa endast ett inlägg om du har en särskild skäl till att göra så.',
+
+                'new_topic' => [
+                    '_' => "Detta ämne har varit inaktiv ett tag. Om du inte har ett särskilt skäl att lägga upp här, vänligen :create istället.",
+                    'create' => 'skapa ett nytt ämne',
+                ],
+            ],
+
+            'placeholder' => [
+                'body' => 'Skriv ditt inläggs innehåll här',
+                'title' => 'Klicka här för att sätta titel',
+            ],
         ],
-        'go_to_latest' => 'visa senaste inlägg',
+
         'jump' => [
             'enter' => 'klicka för att skriva ett specifik inläggs nummer',
             'first' => 'gå till första inlägget',
@@ -83,16 +127,11 @@ return [
             'next' => 'hoppa över nästa 10 inlägg',
             'previous' => 'gå bakåt 10 inlägg',
         ],
-        'latest_post' => ':when av :user',
-        'latest_reply_by' => 'senaste svar av :user',
-        'new_topic' => 'Lägg upp nytt ämne',
+
         'post_edit' => [
             'cancel' => 'Avbryt',
             'post' => 'Spara',
         ],
-        'post_reply' => 'Lägg upp',
-        'reply_box_placeholder' => 'Tryck här för att svara',
-        'started_by' => 'av :user',
     ],
 
     'topic_watches' => [
@@ -105,6 +144,7 @@ return [
                 'total' => 'Ämne prenumererade',
                 'unread' => 'Ämnen med nya svar',
             ],
+
             'info' => [
                 'total' => 'Du prenumererade till :total ämnen.',
                 'unread' => 'Du har :unread olästa svar till prenumererade ämnen.',
@@ -123,6 +163,7 @@ return [
         '_' => 'Ämnen',
 
         'actions' => [
+            'login_reply' => 'Logga in för att Svara',
             'reply' => 'Svara',
             'reply_with_quote' => 'Citera inlägg för svar',
             'search' => 'Sök',
@@ -131,14 +172,17 @@ return [
         'create' => [
             'create_poll' => 'Skapande av enkät',
 
+            'preview' => '',
+
             'create_poll_button' => [
                 'add' => 'Skapa en enkät',
                 'remove' => 'Avbryt skapande av enkät',
             ],
 
             'poll' => [
+                'hide_results' => '',
+                'hide_results_info' => '',
                 'length' => 'Kör enkät i',
-                'length_days_prefix' => '',
                 'length_days_suffix' => 'dagar',
                 'length_info' => 'Lämna tom för inget avslut av enkät',
                 'max_options' => 'Val per användare',
@@ -156,58 +200,59 @@ return [
         ],
 
         'index' => [
-            'views' => 'visningar',
+            'feature_votes' => '',
             'replies' => 'svar',
+            'views' => 'visningar',
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Ta bort "tillagd" tagg',
-            'action-1' => 'Lägg till "tillagd" tagg',
-            'state-0' => 'Tog bort "tillagd" tagg',
-            'state-1' => 'La till "tillagd" tagg',
+            'to_0' => 'Ta bort "tillagd" tagg',
+            'to_0_done' => 'Tog bort "tillagd" tagg',
+            'to_1' => 'Lägg till "tillagd" tagg',
+            'to_1_done' => 'La till "tillagd" tagg',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Ta bort "tilldelad" tagg',
-            'action-1' => 'Lägg till "tilldelad" tagg',
-            'state-0' => 'Tog bort "tilldelad" tagg',
-            'state-1' => 'La till "tilldelad" tagg',
+            'to_0' => 'Ta bort "tilldelad" tagg',
+            'to_0_done' => 'Tog bort "tilldelad" tagg',
+            'to_1' => 'Lägg till "tilldelad" tagg',
+            'to_1_done' => 'La till "tilldelad" tagg',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Ta bort "bekräftad" tagg',
-            'action-1' => 'Lägg till "bekräftad" tagg',
-            'state-0' => 'Tog bort "bekräftad" tagg',
-            'state-1' => 'La till "bekräftad" tagg',
+            'to_0' => 'Ta bort "bekräftad" tagg',
+            'to_0_done' => 'Tog bort "bekräftad" tagg',
+            'to_1' => 'Lägg till "bekräftad" tagg',
+            'to_1_done' => 'La till "bekräftad" tagg',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Ta bort "duplikat" tagg',
-            'action-1' => 'Lägg till "duplikat" tagg',
-            'state-0' => 'Tog bort "duplikat" tagg',
-            'state-1' => 'La till "duplikat" tagg',
+            'to_0' => 'Ta bort "duplikat" tagg',
+            'to_0_done' => 'Tog bort "duplikat" tagg',
+            'to_1' => 'Lägg till "duplikat" tagg',
+            'to_1_done' => 'La till "duplikat" tagg',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Ta bort "ogiltlig" tagg',
-            'action-1' => 'Lägg till "ogiltlig" tagg',
-            'state-0' => 'Tog bort "ogiltlig" tagg',
-            'state-1' => 'La till "ogiltlig" tagg',
+            'to_0' => 'Ta bort "ogiltlig" tagg',
+            'to_0_done' => 'Tog bort "ogiltlig" tagg',
+            'to_1' => 'Lägg till "ogiltlig" tagg',
+            'to_1_done' => 'La till "ogiltlig" tagg',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Ta bort "löst" tagg',
-            'action-1' => 'Lägg till "löst" tagg',
-            'state-0' => 'Tog bort "löst" tagg',
-            'state-1' => 'La till "löst" tagg',
+            'to_0' => 'Ta bort "löst" tagg',
+            'to_0_done' => 'Tog bort "löst" tagg',
+            'to_1' => 'Lägg till "löst" tagg',
+            'to_1_done' => 'La till "löst" tagg',
         ],
 
         'lock' => [
             'is_locked' => 'Detta ämne är låst och kan ej svaras på',
-            'lock-0' => 'Lås upp ämne',
-            'lock-1' => 'Lås ämne',
-            'state-0' => 'Ämne har blivit upplåst',
-            'state-1' => 'Ämne har blivit låst',
+            'to_0' => 'Lås upp ämne',
+            'to_0_done' => 'Ämne har blivit upplåst',
+            'to_1' => 'Lås ämne',
+            'to_1_done' => 'Ämne har blivit låst',
         ],
 
         'moderate_move' => [
@@ -215,26 +260,32 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Ta bort nålat ämne',
-            'pin-1' => 'Nåla ämne',
-            'pin-2' => 'Nåla ämne och markera som meddelande',
-            'state-0' => 'Nål på ämne har tagits bort',
-            'state-1' => 'Ämne har blivit nålat',
-            'state-2' => 'Ämne har blivit nålat och markerat som meddelande',
+            'to_0' => 'Ta bort nålat ämne',
+            'to_0_done' => 'Nål på ämne har tagits bort',
+            'to_1' => 'Nåla ämne',
+            'to_1_done' => 'Ämne har blivit nålat',
+            'to_2' => 'Nåla ämne och markera som meddelande',
+            'to_2_done' => 'Ämne har blivit nålat och markerat som meddelande',
         ],
 
         'show' => [
-            'total_posts' => 'Totala Inlägg',
             'deleted-posts' => 'Raderade Inlägg',
+            'total_posts' => 'Totala Inlägg',
 
             'feature_vote' => [
                 'current' => 'Nuvarande Prioritet: +:count',
                 'do' => 'Uppmuntra denna begäran',
 
+                'info' => [
+                    '_' => '',
+                    'feature_request' => '',
+                    'supporters' => '',
+                ],
+
                 'user' => [
-                    'current' => 'Du har :votes kvar.',
                     'count' => '{0} ingen röst|{1} :count röst|[2,*] :count röster',
-                    'not_enough' => 'Du har inga röster kvar',
+                    'current' => 'Du har :votes kvar.',
+                    'not_enough' => "Du har inga röster kvar",
                 ],
             ],
 
@@ -242,19 +293,20 @@ return [
                 'vote' => 'Rösta',
 
                 'detail' => [
-                    'total' => 'Totala röster: :count',
-                    'ended' => 'Enkät avslutades :time',
                     'end_time' => 'Enkät kommer avslutas :time',
+                    'ended' => 'Enkät avslutades :time',
+                    'results_hidden' => '',
+                    'total' => 'Totala röster: :count',
                 ],
             ],
         ],
 
         'watch' => [
-            'state-0' => 'Prenumeration sades upp från ämne',
-            'state-1' => 'Prenumererade på ämne',
-            'watch-0' => 'Säg upp prenumeration från ämne',
-            'watch-1' => 'Prenumerera på ämne',
+            'to_not_watching' => 'Inte bokmärkt',
+            'to_watching' => 'Bokmärk',
+            'to_watching_mail' => 'Bokmärke med notifikation',
+            'tooltip_mail_disable' => '',
+            'tooltip_mail_enable' => '',
         ],
     ],
-
 ];

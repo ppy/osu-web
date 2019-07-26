@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'No se ha podido guardar la publicación.',
+            'error' => 'Error al guardar la publicación',
         ],
     ],
 
@@ -32,100 +32,207 @@ return [
     ],
 
     'discussions' => [
-        'allow_kudosu' => 'otorgar kudosu',
+        'allow_kudosu' => 'permitir kudosu',
         'delete' => 'eliminar',
         'deleted' => 'Eliminado por :editor :delete_time',
         'deny_kudosu' => 'denegar kudosu',
         'edit' => 'editar',
         'edited' => 'Última edición por :editor :update_time',
-        'message_placeholder' => 'Escribe aquí para publicar',
-        'message_type_select' => 'Seleccionar Tipo de Comentario',
+        'kudosu_denied' => 'Negado de obtener kudosu.',
+        'message_placeholder_deleted_beatmap' => 'Esta dificultad se ha eliminado, por lo que ya puede ser discutida.',
+        'message_placeholder_locked' => '',
+        'message_type_select' => 'Seleccionar tipo de comentario',
+        'reply_notice' => 'Presione enter para responder.',
         'reply_placeholder' => 'Escribe tu respuesta aquí',
         'require-login' => 'Inicia sesión para publicar o responder',
         'resolved' => 'Resuelto',
         'restore' => 'restaurar',
+        'show_deleted' => '',
         'title' => 'Discusiones',
 
         'collapse' => [
-            'all-collapse' => 'Contraer todo.',
-            'all-expand' => 'Expandir todo.',
+            'all-collapse' => 'Desplegar todo',
+            'all-expand' => 'Expandir todo',
         ],
 
         'empty' => [
-            'empty' => '¡Aún no hay discusiones!',
+            'empty' => '¡Sin discusiones aún!',
             'hidden' => 'Ninguna discusión coincide con el filtro seleccionado.',
         ],
 
+        'lock' => [
+            'button' => [
+                'lock' => '',
+                'unlock' => '',
+            ],
+
+            'prompt' => [
+                'lock' => '',
+                'unlock' => '',
+            ],
+        ],
+
         'message_hint' => [
-            'in_general' => 'Este post irá a la discusión general de beatmaps. Para moddear este beatmap, empieza un mensaje con marca de tiempo (ejemplo: 00:12:345).',
-            'in_timeline' => 'Para moddear multiples lineas de tiempo, escríbelas múltiples veces (una publicación por marca de tiempo).',
+            'in_general' => 'Esta publicación irá a la discusión general del Beatmapset. Para modificar este Beatmap, comienca el mensaje con una marca de tiempo (Ej: 00:12:345).',
+            'in_timeline' => 'Para modificar varias marcas de tiempo, publíca varias veces (una publicación por marca de tiempo).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Escribe aquí para publicar en General (:version)',
+            'generalAll' => 'Escribe aquí para publicar en General (todas las dificultades)',
+            'timeline' => 'Escribe aquí para publicar en la Línea de tiempo (:version)',
         ],
 
         'message_type' => [
+            'disqualify' => 'Descalificación',
+            'hype' => '¡Hype!',
+            'mapper_note' => 'Nota',
+            'nomination_reset' => 'Reiniciar Nominación',
             'praise' => 'Elogio',
             'problem' => 'Problema',
             'suggestion' => 'Sugerencia',
         ],
 
         'mode' => [
-            'general' => 'General',
-            'general_all' => 'General (todas las dificultades)',
+            'events' => 'Historial',
+            'general' => 'General :scope',
             'timeline' => 'Línea de tiempo',
+            'scopes' => [
+                'general' => 'Esta dificultad',
+                'generalAll' => 'Todas las dificultades',
+            ],
         ],
 
         'new' => [
+            'pin' => '',
             'timestamp' => 'Marca de tiempo',
-            'timestamp_missing' => '¡Usa Ctrl + C en el modo de edición y pega en tu mensaje para añadir una marca de tiempo!',
+            'timestamp_missing' => '¡Usa Ctrl+C en el modo de edición y pega tu mensaje para agregar una marca de tiempo!',
             'title' => 'Nueva Discusión',
+            'unpin' => '',
         ],
 
         'show' => [
             'title' => ':title mappeado por :mapper',
         ],
 
+        'sort' => [
+            'created_at' => 'Tiempo de creación',
+            'timeline' => 'Línea de tiempo',
+            'updated_at' => 'Última actualización',
+        ],
+
         'stats' => [
             'deleted' => 'Eliminado',
-            'mine' => 'Propio', // I'm not aware of the context of this string, I tried from other translations (like FR) but it was the same...
+            'mapper_notes' => 'Notas',
+            'mine' => 'Mío',
             'pending' => 'Pendiente',
             'praises' => 'Elogios',
             'resolved' => 'Resuelto',
+            'total' => 'Todo',
+        ],
+
+        'status-messages' => [
+            'approved' => '¡Este beatmap fue aprobado el :date!',
+            'graveyard' => "Este beatmap no se ha actualizado desde el :date y muy probablemente haya sido abandonado por el creador...",
+            'loved' => '¡Este Beatmap fue agregado a Amados el :date!',
+            'ranked' => '¡Este Beatmap fue rankeado el :date!',
+            'wip' => 'Nota: Este Beatmap fue marcado como trabajo en proceso por el creador.',
+        ],
+
+        'votes' => [
+            'up' => '',
+            'down' => '',
         ],
     ],
 
+    'hype' => [
+        'button' => '¡Hypear este Beatmap!',
+        'button_done' => '¡Hypeado!',
+        'confirm' => "¿Estás seguro? Esto usará uno de tus :n Hype restantes y no se puede deshacer.",
+        'explanation' => '¡Hypea este Beatmap para hacerlo más visible para la nominación y el ranking!',
+        'explanation_guest' => '¡Inicia sesión y Hypea este Beatmap para hacerlo más visible para la nominación y el ranking!',
+        'new_time' => "Obtendrás otro hype :new_time.",
+        'remaining' => 'Te quedan :remaining Hypes.',
+        'required_text' => 'Hype: :current/:required',
+        'section_title' => 'Tren del Hype',
+        'title' => 'Hype',
+    ],
+
+    'feedback' => [
+        'button' => 'Dejar comentarios',
+    ],
+
     'nominations' => [
-        'disqualifed-at' => 'descalificado :time_ago (:reason).',
-        'disqualifed_no_reason' => 'motivo no especificado',
-        'disqualification-prompt' => '¿Motivo de descalificación?',
+        'delete' => 'Borrar',
+        'delete_own_confirm' => '¿Estás seguro? El beatmap será eliminado y serás redirijido de vuelta a tu perfil.',
+        'delete_other_confirm' => '¿Estás seguro? El beatmap será eliminado y serás redirijido de vuelta al perfil de usuario.',
+        'disqualification_prompt' => '¿Motivo de la descalificación?',
+        'disqualified_at' => 'Descalificado :time_ago (:reason).',
+        'disqualified_no_reason' => 'motivo no especificado',
         'disqualify' => 'Descalificar',
-        'incorrect_state' => 'Error al realizar esa acción, intenta recargando la página.',
+        'incorrect_state' => 'Error al realizar esa acción, intente actualizando la página.',
+        'love' => 'Amor',
+        'love_confirm' => '¿Te encanta este beatmap?',
         'nominate' => 'Nominar',
-        'nominate-confirm' => '¿Nominar este beatmap?',
-        'qualified' => 'Se estima que será rankeado :date, si no se encuentra ningún problema.',
-        'qualified-soon' => 'Se estima que será rankeado pronto, si no se encuentra ningún problema.',
-        'required-text' => 'Nominaciones: :current/:required',
+        'nominate_confirm' => '¿Nominar este Beatmap?',
+        'nominated_by' => 'nominado por :users',
+        'qualified' => 'Se estima que será rankeado el :date, si no se encuentra ningún problema.',
+        'qualified_soon' => 'Se estima que será rankeado pronto, si no se encuentra ningún problema.',
+        'required_text' => 'Nominaciones: :current/:required',
+        'reset_message_deleted' => 'eliminado',
         'title' => 'Estado de Nominación',
+        'unresolved_issues' => 'Todavía hay problemas sin resolver que deben abordarse primero.',
+
+        'reset_at' => [
+            'nomination_reset' => 'Reinicio del proceso de nominación: time_ago por: usuario a causa de un nuevo problema :discusión (:mensaje).',
+            'disqualify' => 'Descalificado :time_ago por :user a causa del nuevo problema :discussion (:message).',
+        ],
+
+        'reset_confirm' => [
+            'nomination_reset' => '¿Estás seguro? Publicar un nuevo problema reiniciará todas las nominaciones.',
+            'disqualify' => '¿Estás seguro? Esto removerá el beatmap de qualifying y reiniciará el proceso de nominación.',
+        ],
     ],
 
     'listing' => [
         'search' => [
             'prompt' => 'escribe en palabras clave...',
+            'login_required' => 'Inicia sesión para buscar.',
             'options' => 'Más opciones de búsqueda',
+            'supporter_filter' => 'Filtrar por :filters requiere un tag activo de osu!supporter',
             'not-found' => 'no hay resultados',
-            'not-found-quote' => '... nope, nada encontrado.',
+            'not-found-quote' => '...nop, nada encontrado.',
             'filters' => [
+                'general' => 'General',
                 'mode' => 'Modo',
-                'status' => 'Estado de aprobación',
+                'status' => 'Categorías',
                 'genre' => 'Género',
-                'language' => 'Lenguaje',
+                'language' => 'Idioma',
                 'extra' => 'Adicional',
                 'rank' => 'Rango conseguido',
+                'played' => 'Jugado',
+            ],
+            'sorting' => [
+                'title' => 'Título',
+                'artist' => 'Artista',
+                'difficulty' => 'Dificultad',
+                'favourites' => 'Favoritos',
+                'updated' => 'Actualizado',
+                'ranked' => 'Ranked',
+                'rating' => 'Calificación',
+                'plays' => 'Veces jugado',
+                'relevance' => 'Relevancia',
+                'nominations' => 'Nominaciones',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Necesitas un :link activo para filtrar por :filters',
+                'link_text' => 'tag de osu!supporter',
             ],
         ],
-        'mode' => 'Modo',
-        'status' => 'Estado de Rank',
-        'mapped-by' => 'mappeado por :mapper',
-        'source' => 'de :source',
-        'load-more' => 'Cargar más...',
+    ],
+    'general' => [
+        'recommended' => 'Dificultades recomendadas',
+        'converts' => 'Incluir beatmaps convertidos',
     ],
     'mode' => [
         'any' => 'Cualquiera',
@@ -136,17 +243,19 @@ return [
     ],
     'status' => [
         'any' => 'Cualquiera',
-        'ranked-approved' => 'Rankeados y Aprobados',
         'approved' => 'Aprobados',
+        'favourites' => '',
+        'graveyard' => 'Abandonados',
+        'leaderboard' => '',
         'loved' => 'Amados',
-        'faves' => 'Favoritos',
-        'pending' => 'Pendientes',
-        'graveyard' => 'Cementerio',
-        'my-maps' => 'Mis mapas',
+        'mine' => '',
+        'pending' => 'Pendiente y trabajo en progreso',
+        'qualified' => 'Calificados',
+        'ranked' => '',
     ],
     'genre' => [
         'any' => 'Cualquiera',
-        'unspecified' => 'No especificado',
+        'unspecified' => 'Sin especificar',
         'video-game' => 'Videojuego',
         'anime' => 'Anime',
         'rock' => 'Rock',
@@ -157,27 +266,28 @@ return [
         'electronic' => 'Electrónica',
     ],
     'mods' => [
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Fade In',
         '9K' => '9K',
-        'NM' => 'No mods',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Doble Time',
+        'EZ' => 'Easy Mode',
+        'FI' => 'Fade In',
+        'FL' => 'Flashlight',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'NF' => 'No Fail',
+        'NM' => 'Sin mods',
+        'PF' => 'Perfecto',
+        'Relax' => 'Relax',
+        'SD' => 'Muerte Súbita',
+        'SO' => 'Spun Out',
+        'TD' => 'Dispositivo touch',
     ],
     'language' => [
         'any' => 'Cualquiera',
@@ -193,6 +303,11 @@ return [
         'instrumental' => 'Instrumental',
         'other' => 'Otro',
     ],
+    'played' => [
+        'any' => 'Cualquiera',
+        'played' => 'Jugado',
+        'unplayed' => 'No jugado',
+    ],
     'extra' => [
         'video' => 'Contiene video',
         'storyboard' => 'Contiene storyboard',
@@ -207,5 +322,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => 'Número de jugadores: :count',
+        'favourites' => 'Favoritos: :count',
     ],
 ];

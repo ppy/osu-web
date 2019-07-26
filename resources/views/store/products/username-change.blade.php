@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -35,7 +35,7 @@
             {!! Form::text('item[extra_info]', '', ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Requested Username', 'autocomplete' => 'off']) !!}
         </div>
         <strong>
-            <div id="username-check-status">Enter a username to check availability!</div>
+            <div id="username-check-status">{{ trans('store.username_change.check') }}</div>
         </strong>
         <div>Your current username is "<i>{{ Auth::user()->username }}</i>".</div>
     </div>

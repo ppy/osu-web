@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,13 +21,13 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Misslyckades spara inlägg',
+            'error' => 'Kunde ej spara inlägg',
         ],
     ],
 
     'discussion-votes' => [
         'update' => [
-            'error' => 'Misslyckades uppdatera röst',
+            'error' => 'Kunde ej uppdatera röst',
         ],
     ],
 
@@ -38,14 +38,16 @@ return [
         'deny_kudosu' => 'neka kudosu',
         'edit' => 'redigera',
         'edited' => 'Senast redigerad av :editor :update_time.',
-        'kudosu_denied' => 'Nekad från att skaffa kudosu.',
-        'message_placeholder' => 'Skriv här för att lägga upp inlägg',
+        'kudosu_denied' => 'Kudosu nekad.',
+        'message_placeholder_deleted_beatmap' => 'Denna svårighetsgrad har blivit borttagen så den kan inte längre diskuteras.',
+        'message_placeholder_locked' => '',
         'message_type_select' => 'Välj Kommentar Typ',
         'reply_notice' => 'Tryck enter för att svara.',
         'reply_placeholder' => 'Skriv ditt svar här',
         'require-login' => 'Var vänlig logga in för att lägga upp inlägg eller svara',
         'resolved' => 'Löst',
         'restore' => 'återställ',
+        'show_deleted' => '',
         'title' => 'Diskussioner',
 
         'collapse' => [
@@ -55,7 +57,19 @@ return [
 
         'empty' => [
             'empty' => 'Inga diskussioner än!',
-            'hidden' => 'Inga diskussioner matchar vald filter.',
+            'hidden' => 'Inga diskussioner matchar valt filter.',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => '',
+                'unlock' => '',
+            ],
+
+            'prompt' => [
+                'lock' => '',
+                'unlock' => '',
+            ],
         ],
 
         'message_hint' => [
@@ -63,28 +77,48 @@ return [
             'in_timeline' => 'För att modda flera tidsstämplar, lägg upp flera inlägg (ett inlägg för varje tidsstämpel).',
         ],
 
+        'message_placeholder' => [
+            'general' => 'Skriv här för att posta till General (:version)',
+            'generalAll' => 'Skriv här för att posta till General (Alla svårighetsgrader)',
+            'timeline' => 'Skriv här för att posta till Tidslinjen (:version)',
+        ],
+
         'message_type' => [
+            'disqualify' => 'Diskvalificera',
+            'hype' => 'Hype!',
             'mapper_note' => 'Anteckning',
+            'nomination_reset' => 'Återställ Nominering',
             'praise' => 'Beröm',
             'problem' => 'Problem',
             'suggestion' => 'Förslag',
         ],
 
         'mode' => [
-            'events' => 'Historia',
-            'general' => 'Allmänt',
-            'general_all' => 'Allmänt (alla svårighetsgrader)',
+            'events' => 'Historik',
+            'general' => 'Allmänt :scope',
             'timeline' => 'Tidslinje',
+            'scopes' => [
+                'general' => 'Denna svårighetsgrad',
+                'generalAll' => 'Alla svårighetsgrader',
+            ],
         ],
 
         'new' => [
+            'pin' => '',
             'timestamp' => 'Tidsstämpel',
-            'timestamp_missing' => 'ctrl-c i redigerings läge och klistra in ditt meddelande för att lägga till en tidsstämpel!',
+            'timestamp_missing' => 'Tryck ctrl-c i redigeringsläget och klistra in ditt meddelande för att lägga till en tidsstämpel!',
             'title' => 'Ny Diskussion',
+            'unpin' => '',
         ],
 
         'show' => [
             'title' => ':title mappad av :mapper',
+        ],
+
+        'sort' => [
+            'created_at' => '',
+            'timeline' => '',
+            'updated_at' => '',
         ],
 
         'stats' => [
@@ -99,58 +133,106 @@ return [
 
         'status-messages' => [
             'approved' => 'This beatmap was approved on :date!',
-            'graveyard' => 'Denna beatmap har inte blivit uppdaterad sen :date och har mest troligast blivit övergiven av skaparen...',
+            'graveyard' => "Denna beatmap har inte blivit uppdaterad sen :date och har mest troligast blivit övergiven av skaparen...",
             'loved' => 'Denna beatmap blev tillagd i älskad :date!',
             'ranked' => 'Denna beatmap blev rankad :date!',
             'wip' => 'Notera: Denna beatmap är markerad som pågående arbete av skaparen.',
         ],
 
+        'votes' => [
+            'up' => '',
+            'down' => '',
+        ],
     ],
 
     'hype' => [
         'button' => 'Hype Beatmap!',
-        'button-done' => 'Redan Hyped!',
+        'button_done' => 'Redan hypad!',
+        'confirm' => "Är du säker? Detta kommer att använda en av dina återstånde :n hypes och kan inte tas tillbaka.",
         'explanation' => 'Att lägga till beröm ❤ kommer höja denna beatmaps hype, vilket gör den mer synlig för nominering och rankning!',
-        'section-title' => 'Hype Tåg',
+        'explanation_guest' => 'Logga in och hypa denna beatmap för att göra den mer synlig för nomineringar och rankning!',
+        'new_time' => "Du kommer att få en till hype :new_time.",
+        'remaining' => 'Du har :remaining hypes kvar.',
+        'required_text' => 'Hype: :current/:required',
+        'section_title' => 'Hype Tåg',
         'title' => 'Hype',
     ],
 
+    'feedback' => [
+        'button' => 'Lämna Feedback',
+    ],
+
     'nominations' => [
-        'disqualifed-at' => 'Diskvalificerad :time_ago (:reason).',
-        'disqualifed_no_reason' => 'inget anledning specificerad',
-        'disqualification-prompt' => 'Anledning för diskvalificering?',
+        'delete' => '',
+        'delete_own_confirm' => '',
+        'delete_other_confirm' => '',
+        'disqualification_prompt' => 'Anledning för diskvalificering?',
+        'disqualified_at' => 'Diskvalificerad :time_ago (:reason).',
+        'disqualified_no_reason' => 'inget anledning specificerad',
         'disqualify' => 'Diskvalificera',
-        'incorrect-state' => 'Fel uppstod när återgärden skulle utföras, försök ladda om sidan.',
+        'incorrect_state' => 'Ett fel uppstod, pröva att uppdatera sidan.',
+        'love' => 'Kärlek',
+        'love_confirm' => 'Älskar du denna beatmap?',
         'nominate' => 'Nominera',
-        'nominated-by' => 'nominerad av :users',
-        'nominate-confirm' => 'Nominera denna beatmap?',
+        'nominate_confirm' => 'Nominera denna beatmap?',
+        'nominated_by' => 'nominerad av :users',
         'qualified' => 'Beräknad tid när den är rankad är :date, om inga fel hittas.',
-        'qualified-soon' => 'Beräknat att den rankas snart, om inga fel hittas.',
-        'reset-confirm' => 'Är du säker? Lägga upp ett nytt problem kommer återställa nomineringar.',
-        'required-text' => 'Nomineringar: :current/:required',
+        'qualified_soon' => 'Beräknat att den rankas snart, om inga fel hittas.',
+        'required_text' => 'Nomineringar: :current/:required',
+        'reset_message_deleted' => 'raderad',
         'title' => 'Nominering Status',
+        'unresolved_issues' => 'Det finns fortfarande olösta problem som måste tas hand om först.',
+
+        'reset_at' => [
+            'nomination_reset' => 'Nomineringsprocessen återställdes :time_ago av :user med ett nytt problem :discussion (:message).',
+            'disqualify' => 'Diskvalificerad :time_ago av :user med ett nytt problem :discussion (:message).',
+        ],
+
+        'reset_confirm' => [
+            'nomination_reset' => 'Är du säker? Lägga upp ett nytt problem kommer återställa nomineringar.',
+            'disqualify' => '',
+        ],
     ],
 
     'listing' => [
         'search' => [
             'prompt' => 'skriv in nyckelord...',
+            'login_required' => 'Logga in för att söka.',
             'options' => 'Mer Sök Alternativ',
+            'supporter_filter' => 'Filtrering av :filters kräver en aktiv osu!supporter tagg',
             'not-found' => 'inga resultat',
             'not-found-quote' => '... nope, ingenting hittades.',
             'filters' => [
+                'general' => 'Allmänt',
                 'mode' => 'Läge',
-                'status' => 'Rank Status',
+                'status' => 'Kategorier',
                 'genre' => 'Genre',
                 'language' => 'Språk',
                 'extra' => 'extra',
                 'rank' => 'Rank Uppnådd',
+                'played' => 'Spelade',
+            ],
+            'sorting' => [
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'favourites' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
+            ],
+            'supporter_filter_quote' => [
+                '_' => 'Filtrering av :filters kräver en aktiv :link',
+                'link_text' => 'osu!supporter tagg',
             ],
         ],
-        'mode' => 'Läge',
-        'status' => 'Rank Status',
-        'mapped-by' => 'mappad av :mapper',
-        'source' => 'från :source',
-        'load-more' => 'Ladda mer...',
+    ],
+    'general' => [
+        'recommended' => 'Rekommenderad svårighetsgrad',
+        'converts' => 'Inkludera konverterade beatmaps',
     ],
     'mode' => [
         'any' => 'Alla',
@@ -161,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Alla',
-        'ranked-approved' => 'Rankad & Godkänd',
         'approved' => 'Godkänd',
-        'qualified' => 'Kvalificerad',
-        'loved' => 'Älskad',
-        'faves' => 'Favoriter',
-        'pending' => 'Avvaktar',
+        'favourites' => '',
         'graveyard' => 'Kyrkogård',
-        'my-maps' => 'Mina Maps',
+        'leaderboard' => '',
+        'loved' => 'Älskad',
+        'mine' => '',
+        'pending' => 'Pågående & WIP',
+        'qualified' => 'Kvalificerad',
+        'ranked' => '',
     ],
     'genre' => [
         'any' => 'Alla',
@@ -183,27 +266,28 @@ return [
         'electronic' => 'Elektronisk',
     ],
     'mods' => [
-        'NF' => 'Ingen Fail',
-        'EZ' => 'Enkelt Läge',
-        'HD' => 'Gömd',
-        'HR' => 'Hård Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Dubbel Tid',
-        'Relax' => 'Lugn',
-        'HT' => 'Halv Tid',
-        'NC' => 'Nightcore',
-        'FL' => 'Ficklampa',
-        'SO' => 'Spinnat Ut',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfekt',
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Tona In',
         '9K' => '9K',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Dubbel Tid',
+        'EZ' => 'Enkelt Läge',
+        'FI' => 'Tona In',
+        'FL' => 'Ficklampa',
+        'HD' => 'Gömd',
+        'HR' => 'Hård Rock',
+        'HT' => 'Halv Tid',
+        'NC' => 'Nightcore',
+        'NF' => 'Ingen Fail',
         'NM' => 'Inga mods',
+        'PF' => 'Perfekt',
+        'Relax' => 'Lugn',
+        'SD' => 'Sudden Death',
+        'SO' => 'Spinnat Ut',
+        'TD' => '',
     ],
     'language' => [
         'any' => 'Alla',
@@ -219,6 +303,11 @@ return [
         'instrumental' => 'Instrumental',
         'other' => 'Annat',
     ],
+    'played' => [
+        'any' => 'Alla',
+        'played' => 'Spelade',
+        'unplayed' => 'Ej spelade',
+    ],
     'extra' => [
         'video' => 'Har Video',
         'storyboard' => 'Har Storyboard',
@@ -233,5 +322,9 @@ return [
         'B' => 'B',
         'C' => 'C',
         'D' => 'D',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
     ],
 ];

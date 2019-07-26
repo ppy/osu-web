@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,40 +19,81 @@
 // main: compiled.less
 @import "app";
 
-.fn-section(admin, @gray-darker, @gray-text);
-.fn-section(admin-forum, @gray-darker, @gray-text);
-.fn-section(admin-store, @gray-darker, @gray-text);
-.fn-section(beatmaps, @pink-darker, @pink-text);
-.fn-section(beatmapsets, @pink-darker, @pink-text);
-.fn-section(community, @pink-darker, @pink-text);
-.fn-section(error, @pink-darker, @pink-text);
-.fn-section(help, @yellow-darker, @yellow-text);
-.fn-section(home, @purple-darker, @purple-text);
-.fn-section(multiplayer, @pink-darker, @pink-text);
-.fn-section(rankings, @green-darker, @green-text);
-.fn-section(store, @pink-darker, @pink-text);
-.fn-section(user, @blue-darker, @blue-text);
+.t-section {
+  .u-section--bg-normal {
+    // the bar that shows the section we're currently in
+    background-color: @osu-colour-h1 !important;
+  }
 
-.fn-section(@section, @bg-color, @text-color) {
-  .t-section-@{section} {
-    .u-section--bg {
-      background-color: @bg-color !important;
-    }
-
-    .u-section--color-hover {
-      &:focus,
-      &:hover,
-      &:active {
-        color: @text-color !important;
-      }
-    }
-
-    .u-section--gradient-down {
-      background-image: linear-gradient(fade(@bg-color, 90%) 0%, @bg-color 75%, @bg-color 100%) !important;
+  .u-section--color-hover {
+    &:focus,
+    &:hover,
+    &:active {
+      color: @osu-colour-l1 !important;
     }
   }
 
-  .u-section-@{section}--bg {
-    background-color: @bg-color !important;
+  .u-section--gradient-down {
+    // the parts after 50% are for the header size transition.
+
+    background-image: linear-gradient(
+      .osu-hsla(@osu-colour-h2, 0.9)[@hsla] 0%,
+      @osu-colour-h2 37.5%,
+      @osu-colour-h2 50%,
+      @osu-colour-h2 50%,
+      @osu-colour-h2 100%
+    );
+    background-size: 200% 200%;
+  }
+}
+
+.u-section--bg {
+  background-color: @osu-colour-h2;
+}
+
+.menu-colour(beatmaps, blue);
+.menu-colour(beatmapsets, blue);
+.menu-colour(community, pink);
+.menu-colour(error, pink);
+.menu-colour(help, yellow);
+.menu-colour(home, purple);
+.menu-colour(multiplayer, pink);
+.menu-colour(rankings, green);
+.menu-colour(store, pink);
+
+.menu-colour(@section, @colour) {
+  .u-section-@{section}--before-bg-normal {
+    &::before {
+      background-color: @@colour !important;
+    }
+  }
+}
+
+.fn-changelog-stream(stable);
+.fn-changelog-stream(stable-fallback);
+.fn-changelog-stream(beta);
+.fn-changelog-stream(cutting-edge);
+.fn-changelog-stream(lazer);
+.fn-changelog-stream(lazer-experimental);
+.fn-changelog-stream(web);
+.fn-changelog-stream(wiki);
+
+// Actually user filters, not changelog streams
+.fn-changelog-stream(all);
+.fn-changelog-stream(online);
+.fn-changelog-stream(offline);
+
+// FIXME: change to something more generic like selection filter
+.fn-changelog-stream(@stream) {
+  @color-name: "changelog-stream--@{stream}";
+
+  .t-changelog-stream--@{stream} {
+    .u-changelog-stream--bg {
+      background-color: @@color-name;
+    }
+
+    .u-changelog-stream--text {
+      color: @@color-name;
+    }
   }
 }

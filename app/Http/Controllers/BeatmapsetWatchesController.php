@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserSubscriptionChangeEvent;
 use App\Models\Beatmapset;
 use Auth;
 use Exception;
@@ -40,7 +41,7 @@ class BeatmapsetWatchesController extends Controller
     {
         return view('beatmapset_watches.index')
             ->with([
-                'watches' => Auth::user()->beatmapsetWatches()->has('beatmapset')->paginate(50),
+                'watches' => Auth::user()->beatmapsetWatches()->visible()->paginate(50),
             ]);
     }
 
@@ -56,7 +57,9 @@ class BeatmapsetWatchesController extends Controller
             }
         }
 
-        return $beatmapset->defaultJson();
+        event(new UserSubscriptionChangeEvent('add', Auth::user(), $beatmapset));
+
+        return response([], 204);
     }
 
     public function destroy($beatmapsetId)
@@ -65,6 +68,8 @@ class BeatmapsetWatchesController extends Controller
 
         $beatmapset->watches()->where('user_id', '=', Auth::user()->getKey())->delete();
 
-        return $beatmapset->defaultJson();
+        event(new UserSubscriptionChangeEvent('remove', Auth::user(), $beatmapset));
+
+        return response([], 204);
     }
 }

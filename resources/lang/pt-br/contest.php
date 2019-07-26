@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,23 +21,31 @@
 return [
     'header' => [
         'small' => 'Compita de outras formas além de clicar em círculos.',
-        'large' => 'Concursos comunitários osu!',
+        'large' => 'Concursos da Comunidade',
     ],
     'voting' => [
         'over' => 'A votação deste concurso já foi encerrada',
-        'login_required' => 'Por favor, inicie a sessão para votar.',
+        'login_required' => 'Por favor, conecte-se para votar.',
+
         'best_of' => [
-            'none_played' => 'Parece que você não jogou nenhum dos beatmaps qualificados para este concurso!',
+            'none_played' => "Parece que você não jogou nenhum dos beatmaps qualificados para este concurso!",
+        ],
+
+        'button' => [
+            'add' => 'Votar',
+            'remove' => 'Remover voto',
+            'used_up' => 'Você usou todos seus votos',
         ],
     ],
     'entry' => [
         '_' => 'inscrição',
-        'login_required' => 'Por favor, inicie a sessão para participar deste concurso.',
+        'login_required' => 'Por favor, conecte-se para participar deste concurso.',
         'silenced_or_restricted' => 'Você não pode participar de concursos enquanto restrito ou silenciado.',
-        'preparation' => 'Estamos preparando este concurso. Aguarde pacientemente!',
+        'preparation' => 'Estamos preparando este concurso. Por favor, aguarde pacientemente!',
         'over' => 'Agradecemos a sua participação! As inscrições para este concurso foram encerradas e a votação abrirá em breve.',
         'limit_reached' => 'Você atingiu o limite de inscrições para este concurso',
         'drop_here' => 'Solte a sua inscrição aqui',
+        'download' => 'Baixar .osz',
         'wrong_type' => [
             'art' => 'Apenas arquivos .jpg e .png são aceitos para este concurso.',
             'beatmap' => 'Apenas arquivos .osu são aceitos para este concurso.',
@@ -46,23 +54,24 @@ return [
         'too_big' => 'Inscrições não podem exceder :limit.',
     ],
     'beatmaps' => [
-        'download' => 'Baixar inscrição',
+        'download' => 'Baixar Inscrição',
     ],
     'vote' => [
         'list' => 'votos',
-        'count' => '1 voto|:count votos',
+        'count' => ':count voto|:count votos',
+        'points' => ':count ponto|:count pontos',
     ],
     'dates' => [
         'ended' => 'Encerrada em :date',
 
         'starts' => [
             '_' => 'Começa em :date',
-            'soon' => 'breve™',
+            'soon' => 'em breve™',
         ],
     ],
     'states' => [
-        'entry' => 'Entrada aberta',
-        'voting' => 'Votação iniciada',
+        'entry' => 'Inscrição Aberta',
+        'voting' => 'Votação Iniciada',
         'results' => 'Resultados',
     ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Models\BeatmapDiscussion;
 use Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -41,13 +42,13 @@ class BeatmapDiscussionsController extends Controller
         $discussion = BeatmapDiscussion::findOrFail($id);
         priv_check('BeatmapDiscussionAllowOrDenyKudosu', $discussion)->ensureCan();
 
-        $error = $discussion->allowKudosu(Auth::user());
-
-        if ($error === null) {
-            return $discussion->beatmapset->defaultDiscussionJson();
-        } else {
-            return error_popup($error);
+        try {
+            $discussion->allowKudosu(Auth::user());
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
+
+        return $discussion->beatmapset->defaultDiscussionJson();
     }
 
     public function denyKudosu($id)
@@ -55,13 +56,13 @@ class BeatmapDiscussionsController extends Controller
         $discussion = BeatmapDiscussion::findOrFail($id);
         priv_check('BeatmapDiscussionAllowOrDenyKudosu', $discussion)->ensureCan();
 
-        $error = $discussion->denyKudosu(Auth::user());
-
-        if ($error === null) {
-            return $discussion->beatmapset->defaultDiscussionJson();
-        } else {
-            return error_popup($error);
+        try {
+            $discussion->denyKudosu(Auth::user());
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
+
+        return $discussion->beatmapset->defaultDiscussionJson();
     }
 
     public function destroy($id)
@@ -69,23 +70,22 @@ class BeatmapDiscussionsController extends Controller
         $discussion = BeatmapDiscussion::whereNull('deleted_at')->findOrFail($id);
         priv_check('BeatmapDiscussionDestroy', $discussion)->ensureCan();
 
-        $error = $discussion->softDelete(Auth::user());
-
-        if ($error === null) {
-            return $discussion->beatmapset->defaultDiscussionJson();
-        } else {
-            return error_popup($error);
+        try {
+            $discussion->softDeleteOrExplode(Auth::user());
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
+
+        return $discussion->beatmapset->defaultDiscussionJson();
     }
 
     public function index()
     {
-        priv_check('BeatmapDiscussionModerate')->ensureCan();
-
+        $isModerator = priv_check('BeatmapDiscussionModerate')->can();
         $params = request();
+        $params['is_moderator'] = $isModerator;
 
-        // for when the priv_check lock above is removed
-        if (!priv_check('BeatmapDiscussionModerate')->can()) {
+        if (!$isModerator) {
             $params['with_deleted'] = false;
         }
 
@@ -100,7 +100,7 @@ class BeatmapDiscussionsController extends Controller
             $search['params']['limit'],
             $search['params']['page'],
             [
-                'path' => route('beatmap-discussions.index'),
+                'path' => LengthAwarePaginator::resolveCurrentPath(),
                 'query' => $search['params'],
             ]
         );

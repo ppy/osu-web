@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,17 +20,19 @@
 
 return [
     'match' => [
-        'header' => 'Многопользовательские игры',
-        'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
-        ],
+        'beatmap-deleted' => 'удалённая карта',
+        'difference' => 'с разницей в :difference очков',
+        'failed' => 'ПРОИГРЫШ',
+        'header' => 'Многопользовательская игра',
+        'in-progress' => '(игра в процессе)',
+        'in_progress_spinner_label' => 'игра в процессе',
+        'loading-events' => 'Загрузка событий...',
+        'winner' => ':team победила,',
+
         'events' => [
             'player-left' => ':user покинул игру',
-            'player-joined' => ':user присоединился к игре',
-            'player-kicked' => ':user был кикнут из игры',
+            'player-joined' => ':user зашёл в игру',
+            'player-kicked' => ':user был выгнан из игры',
             'match-created' => ':user создал игру',
             'match-disbanded' => 'игра была распущена',
             'host-changed' => ':user стал хостом',
@@ -42,24 +44,26 @@ return [
             'match-disbanded-no-user' => 'игра была распущена',
             'host-changed-no-user' => 'хост игры поменялся',
         ],
-        'in-progress' => '(игра в процессе)',
+
         'score' => [
             'stats' => [
-                'accuracy' => 'Точность',
-                'combo' => 'Комбо',
-                'score' => 'Очки',
+                'accuracy' => 'точность',
+                'combo' => 'комбо',
+                'score' => 'очки',
             ],
         ],
-        'failed' => 'ПРОИГРЫШ',
+
+        'team-types' => [
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
+        ],
+
         'teams' => [
             'blue' => 'Синяя команда',
             'red' => 'Красная команда',
         ],
-        'winner' => ':team победила',
-        'difference' => 'по :difference', // ?
-        'loading-events' => 'Загрузка событий...',
-        'more-events' => 'посмотреть все...',
-        'beatmap-deleted' => 'удалённая карта',
     ],
     'game' => [
         'scoring-type' => [
