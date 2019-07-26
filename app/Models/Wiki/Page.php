@@ -211,15 +211,20 @@ class Page
         return $this->source;
     }
 
-    public function isOutdated()
+    public function isOutdated() : bool
     {
         return $this->page()['header']['outdated'] ?? false;
     }
 
-    public function isLegalTranslation()
+    public function isLegalTranslation() : bool
     {
-        return $this->locale !== config('app.fallback_locale')
+        return $this->isTranslation()
             && ($this->page()['header']['legal'] ?? false);
+    }
+
+    public function isTranslation() : bool
+    {
+        return $this->locale !== config('app.fallback_locale');
     }
 
     public function page()
