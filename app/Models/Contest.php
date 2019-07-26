@@ -282,4 +282,11 @@ class Contest extends Model
             new UserContestEntryTransformer
         );
     }
+
+    public function toMetaDescription()
+    {
+        $section = trans('layout.menu.community.contests');
+        
+        return "osu! » {$section} » {$this->name}";
+    }
 }
