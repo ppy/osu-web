@@ -167,7 +167,7 @@ class ModdingHistoryController extends Controller
             'events' => json_collection(
                 $events['items'],
                 'BeatmapsetEvent',
-                ['user', 'beatmapset', 'beatmapset.user']
+                ['user', 'discussion', 'discussion.posts', 'beatmapset', 'beatmapset.user']
             ),
             'posts' => json_collection(
                 $posts['items'],

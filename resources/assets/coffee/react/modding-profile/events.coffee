@@ -28,6 +28,9 @@ export class Events extends React.Component
       div className: 'beatmapset-events',
         [
           for event in @props.events
+            if !event.beatmapset
+              continue
+
             cover = if event.beatmapset then event.beatmapset.covers.list else ''
             eventClass = _.replace(event.type, /_/g, '-')
             discussionId = if event.comment && event.comment.beatmap_discussion_id then event.comment.beatmap_discussion_id else null
@@ -47,9 +50,9 @@ export class Events extends React.Component
                     className: "beatmapset-event__content"
                     dangerouslySetInnerHTML:
                       __html: osu.trans "beatmapset_events.event.#{@typeForTranslation(event)}",
-                        'user': event.user_id
+                        'user': @props.users[event.user_id].username
                         'discussion': (if discussionId then "<a href='#{discussionLink}'>##{discussionId}</a>" else '')
-                        'text': (if event.comment then event.comment else '[no preview]')
+                        'text': (if event.discussion then _.truncate(event.discussion.posts[0].message, {length: 100}) else '[no preview]')
 
                   div
                     className: 'beatmap-discussion-post__info'

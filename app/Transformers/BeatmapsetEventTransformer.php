@@ -20,6 +20,7 @@
 
 namespace App\Transformers;
 
+use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapsetEvent;
 use League\Fractal;
 
@@ -57,13 +58,13 @@ class BeatmapsetEventTransformer extends Fractal\TransformerAbstract
 
     public function includeDiscussion(BeatmapsetEvent $event)
     {
-        if ($event->discussion === null) {
+        if ($event->comment === null) {
             return null;
         }
 
         return $this->item(
-            $event->beatmapset,
-            new BeatmapsetCompactTransformer()
+            BeatmapDiscussion::where('id', $event->comment['beatmap_discussion_id'])->first(),
+            new BeatmapDiscussionTransformer()
         );
     }
 }

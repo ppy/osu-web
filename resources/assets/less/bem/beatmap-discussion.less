@@ -28,6 +28,12 @@
   &--preview {
     flex-grow: 1;
     overflow: hidden;
+
+    // used to override the username padding for matching discussion and post layouts in the modding section of user profiles
+    .beatmap-discussion-post--reply .beatmap-discussion-post__content {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
   }
 
   &__actions {

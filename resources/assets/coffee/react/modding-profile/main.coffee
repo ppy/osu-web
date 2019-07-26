@@ -212,6 +212,7 @@ export class Main extends React.PureComponent
         props:
           events: @state.events
           pagination: @state.showMorePagination
+          users: @state.users
         component: Events
 
       when 'kudosu'
