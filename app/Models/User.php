@@ -713,11 +713,6 @@ class User extends Model implements AuthenticatableContract
         return $this->isGroup(UserGroup::GROUPS['bng_limited']);
     }
 
-    public function isHax()
-    {
-        return $this->isGroup(UserGroup::GROUPS['hax']);
-    }
-
     public function isDev()
     {
         return $this->isGroup(UserGroup::GROUPS['dev']);
@@ -1443,7 +1438,7 @@ class User extends Model implements AuthenticatableContract
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
             $supportLength = 0;
 
-            foreach ($this->supporterTags as $support) {
+            foreach ($this->supporterTagPurchases as $support) {
                 if ($support->cancel === true) {
                     $supportLength -= $support->length;
                 } else {
