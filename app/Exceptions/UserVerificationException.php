@@ -24,15 +24,13 @@ use Exception;
 
 class UserVerificationException extends Exception
 {
-    private $reasonKey;
     private $shouldReissue;
 
     public function __construct(string $reasonKey, bool $shouldReissue)
     {
-        $this->reasonKey = $reasonKey;
         $this->shouldReissue = $shouldReissue;
 
-        $message = trans("user_verification.errors.{$this->reasonKey}");
+        $message = trans("user_verification.errors.{$reasonKey}");
 
         parent::__construct($message);
     }
