@@ -98,7 +98,7 @@ class UserVerificationState
         $previousLinkKey = $this->session->get('verification_link_key');
 
         if (present($previousLinkKey)) {
-            cache()->forget("verification:{$linkKey}");
+            cache()->forget("verification:{$previousLinkKey}");
         }
 
         // 1 byte = 2^8 bits = 16^2 bits = 2 hex characters
