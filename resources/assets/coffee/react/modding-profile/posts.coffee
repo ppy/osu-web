@@ -30,7 +30,7 @@ export class Posts extends React.Component
       div className: 'osu-layout',
         [
           for post in @props.posts
-            canModeratePosts = BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
+            canModeratePosts = BeatmapDiscussionHelper.canModeratePosts(currentUser)
             canBeDeleted = canModeratePosts || currentUser.id? == post.user_id
 
             topClasses = 'beatmap-discussion beatmap-discussion--preview'
@@ -54,7 +54,7 @@ export class Posts extends React.Component
                     beatmapset: post.beatmap_discussion.beatmapset
                     discussion: post.beatmap_discussion
                     post: post
-                    type: 'discussion'
+                    type: 'reply'
                     users: @props.users
                     user: @props.users[post.user_id]
                     read: true
