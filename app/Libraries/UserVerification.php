@@ -34,17 +34,17 @@ class UserVerification
     public static function fromCurrentRequest()
     {
         return new static(
+            auth()->user(),
             request(),
-            UserVerificationState::fromCurrentRequest(),
-            auth()->user()
+            UserVerificationState::fromCurrentRequest()
         );
     }
 
-    private function __construct($request, $state, $user)
+    private function __construct($user, $request, $state)
     {
+        $this->user = $user;
         $this->request = $request;
         $this->state = $state;
-        $this->user = $user;
     }
 
     public function initiate()
