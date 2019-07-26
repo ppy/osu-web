@@ -70,7 +70,7 @@ class UserVerificationState
         ]);
     }
 
-    public function __construct(array $params)
+    private function __construct(array $params)
     {
         $this->user = $params['user'];
         $this->session = $params['session'];
