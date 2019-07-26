@@ -51,7 +51,7 @@
         <div class="osu-layout__row">
             <div class="beatmap-packs__list js-accordion">
                 @foreach ($packs as $pack)
-                    <div class="beatmap-pack js-beatmap-pack js-accordion__item" data-pack-id="{{ $pack['pack_id'] }}">
+                    <div id="pack-{{ $pack['pack_id'] }}" class="beatmap-pack js-beatmap-pack js-accordion__item" data-pack-id="{{ $pack['pack_id'] }}">
                         <div class="beatmap-packs__row beatmap-pack__header js-accordion__item-header">
                             <div class="beatmap-packs__cell beatmap-pack__name">{{ $pack['name'] }}</div>
                             <div class="beatmap-packs__cell beatmap-packs__cell--right">
