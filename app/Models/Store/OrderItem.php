@@ -179,11 +179,6 @@ class OrderItem extends Model
 
     public function validationErrorsTranslationPrefix()
     {
-        return 'store/order_item';
-    }
-
-    public function validationErrorsKeyBase()
-    {
-        return 'model_validation/';
+        return 'store.order_item';
     }
 }

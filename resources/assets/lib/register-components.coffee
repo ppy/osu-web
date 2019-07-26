@@ -42,9 +42,7 @@ reactTurbolinks.register 'comments', CommentsManager, (el) ->
   props
 
 notificationWorker = new NotificationWidgetWorker()
-resetNotificationWorker = ->
-  notificationWorker.userId = currentUser.id
-  notificationWorker.boot()
+resetNotificationWorker = -> notificationWorker.setUserId(currentUser.id)
 $(document).ready resetNotificationWorker
 $.subscribe 'user:update', resetNotificationWorker
 
