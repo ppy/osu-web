@@ -99,11 +99,7 @@ class ModdingHistoryController extends Controller
 
         $posts = BeatmapDiscussionPost::search($this->searchParams);
         $posts['items'] = $posts['query']->with([
-                'user',
-                'beatmapset',
-                'beatmapDiscussion',
                 'beatmapDiscussion.beatmapset',
-                'beatmapDiscussion.user',
                 'beatmapDiscussion.startingPost',
             ])->get();
 
@@ -116,8 +112,8 @@ class ModdingHistoryController extends Controller
             $events['items'] = $events['query']->with(['user', 'beatmapset', 'beatmapset.user'])->get();
         }
 
-        $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
-        $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
+//        $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
+//        $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
 
         $userIncludes = [
             "statistics:mode(osu)", // TODO: fix
@@ -136,10 +132,10 @@ class ModdingHistoryController extends Controller
         ];
 
         $perPage = [
-            'rankedAndApprovedBeatmapsets' => 6,
-            'lovedBeatmapsets' => 6,
-            'unrankedBeatmapsets' => 6,
-            'graveyardBeatmapsets' => 2,
+//            'rankedAndApprovedBeatmapsets' => 6,
+//            'lovedBeatmapsets' => 6,
+//            'unrankedBeatmapsets' => 6,
+//            'graveyardBeatmapsets' => 2,
             'recentlyReceivedKudosu' => 5,
         ];
 
@@ -162,20 +158,20 @@ class ModdingHistoryController extends Controller
             'discussions' => json_collection(
                 $discussions['items'],
                 'BeatmapDiscussion',
-                ['posts', 'beatmapset', 'current_user_attributes']
+                ['startingPost', 'beatmapset', 'current_user_attributes']
             ),
             'events' => json_collection(
                 $events['items'],
                 'BeatmapsetEvent',
-                ['user', 'discussion', 'discussion.posts', 'beatmapset', 'beatmapset.user']
+                ['user', 'discussion.startingPost', 'beatmapset', 'beatmapset.user']
             ),
             'posts' => json_collection(
                 $posts['items'],
                 'BeatmapDiscussionPost',
-                ['beatmap_discussion', 'beatmap_discussion.beatmapset']
+                ['beatmap_discussion.beatmapset']
             ),
-            'receivedVotes' => $receivedVotes,
-            'votes' => $votes,
+//            'receivedVotes' => $receivedVotes,
+//            'votes' => $votes,
         ];
 
         return view('users.beatmapset_activities', compact(

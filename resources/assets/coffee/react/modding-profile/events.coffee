@@ -52,7 +52,7 @@ export class Events extends React.Component
                       __html: osu.trans "beatmapset_events.event.#{@typeForTranslation(event)}",
                         'user': @props.users[event.user_id].username
                         'discussion': (if discussionId then "<a href='#{discussionLink}'>##{discussionId}</a>" else '')
-                        'text': (if event.discussion then _.truncate(event.discussion.posts[0].message, {length: 100}) else '[no preview]')
+                        'text': (if event.discussion then _.truncate(event.discussion.startingPost.message, {length: 100}) else '[no preview]')
 
                   div
                     className: 'beatmap-discussion-post__info'

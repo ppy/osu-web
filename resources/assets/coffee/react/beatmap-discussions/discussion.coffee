@@ -49,7 +49,7 @@ export class Discussion extends React.PureComponent
 
   render: =>
     return null if !@isVisible(@props.discussion)
-    return null if !@props.discussion.posts || @props.discussion.posts.length == 0
+    return null if !@props.discussion.startingPost && (!@props.discussion.posts || @props.discussion.posts.length == 0)
 
     topClasses = "#{bn} js-beatmap-discussion-jump"
     topClasses += " #{bn}--highlighted" if @state.highlighted
@@ -72,7 +72,7 @@ export class Discussion extends React.PureComponent
 
       div className: "#{bn}__discussion",
         div className: "#{bn}__top",
-          @post @props.discussion.posts[0], 'discussion'
+          @post @props.discussion.startingPost || @props.discussion.posts[0], 'discussion'
 
           if !@state.preview
             div className: "#{bn}__actions",
