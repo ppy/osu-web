@@ -25,6 +25,11 @@ use League\Fractal;
 
 class BeatmapsetEventTransformer extends Fractal\TransformerAbstract
 {
+    protected $availableIncludes = [
+        'beatmapset',
+        'discussion'
+    ];
+
     public function transform(BeatmapsetEvent $event = null)
     {
         $userId = priv_check('BeatmapsetEventViewUserId', $event)->can() ? $event->user_id : null;
@@ -36,5 +41,29 @@ class BeatmapsetEventTransformer extends Fractal\TransformerAbstract
             'created_at' => json_time($event->created_at),
             'user_id' => $userId,
         ];
+    }
+
+    public function includeBeatmapset(BeatmapsetEvent $event)
+    {
+        if ($event === null || $event->beatmapset === null) {
+            return null;
+        }
+
+        return $this->item(
+            $event->beatmapset,
+            new BeatmapsetCompactTransformer()
+        );
+    }
+
+    public function includeDiscussion(BeatmapsetEvent $event)
+    {
+        if ($event->discussion === null) {
+            return null;
+        }
+
+        return $this->item(
+            $event->beatmapset,
+            new BeatmapsetCompactTransformer()
+        );
     }
 }

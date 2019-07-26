@@ -28,12 +28,37 @@ export class Events extends React.Component
       div className: 'beatmapset-events',
         [
           for event in @props.events
+            cover = if event.beatmapset then event.beatmapset.covers.list else ''
+            eventClass = _.replace(event.type, /_/g, '-')
+            discussionId = if event.comment && event.comment.beatmap_discussion_id then event.comment.beatmap_discussion_id else null
+            discussionLink = laroute.route('beatmapsets.discussion', beatmapset: event.beatmapset.id)
+            if (discussionId)
+                discussionLink = "#{discussionLink}#/#{discussionId}"
+
             div className: 'beatmapset-events__event', key: event.id,
               div className: 'beatmapset-event',
-                a href: '#',
-                  img className: 'beatmapset-activities__beatmapset-cover', src: 'https://assets.ppy.sh/beatmaps/698526/covers/list.jpg?1554598842',
-                div className: "beatmapset-event__icon beatmapset-event__icon--issue-resolve beatmapset-activities__event-icon-spacer"
+                a href: discussionLink,
+                  img className: 'beatmapset-activities__beatmapset-cover', src: cover,
+
+                div className: "beatmapset-event__icon beatmapset-event__icon--#{eventClass} beatmapset-activities__event-icon-spacer"
+
                 div {},
-                  div className: "beatmapset-event__content", JSON.stringify(event)
-                  div {}, '4 months ago'
+                  div
+                    className: "beatmapset-event__content"
+                    dangerouslySetInnerHTML:
+                      __html: osu.trans "beatmapset_events.event.#{@typeForTranslation(event)}",
+                        'user': event.user_id
+                        'discussion': (if discussionId then "<a href='#{discussionLink}'>##{discussionId}</a>" else '')
+                        'text': (if event.comment then event.comment else '[no preview]')
+
+                  div
+                    className: 'beatmap-discussion-post__info'
+                    dangerouslySetInnerHTML:
+                      __html: osu.timeago(event.created_at)
         ]
+
+  typeForTranslation: (event) =>
+    if event.type == 'disqualify' && !_.isArray(event.comment)
+      'disqualify_legacy'
+
+    event.type
