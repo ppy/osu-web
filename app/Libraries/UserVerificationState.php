@@ -63,18 +63,18 @@ class UserVerificationState
         $session->setId($params['sessionId']);
         $session->start();
 
-        return new static([
-            'user' => User::find($params['userId']),
-            'session' => $session,
-            'legacySessionQueryWhere' => $params['legacySessionQueryWhere'],
-        ]);
+        return new static(
+            User::find($params['userId']),
+            $session,
+            $params['legacySessionQueryWhere']
+        );
     }
 
-    private function __construct(array $params)
+    private function __construct($user, $session, $legacySessionQueryWhere)
     {
-        $this->user = $params['user'];
-        $this->session = $params['session'];
-        $this->legacySessionQueryWhere = $params['legacySessionQueryWhere'];
+        $this->legacySessionQueryWhere = $legacySessionQueryWhere;
+        $this->session = $session;
+        $this->user = $user;
 
         if ($this->session->getId() === session()->getId()) {
             // Override passed session if it's the same as current session
