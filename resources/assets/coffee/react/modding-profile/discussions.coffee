@@ -29,7 +29,7 @@ export class Discussions extends React.Component
       div className: 'osu-layout',
         [
           for discussion in @props.discussions
-            div style: { 'display': 'flex' },
+            div key: discussion.id, style: { 'display': 'flex' },
               a href: laroute.route('beatmapsets.show', {beatmapset: discussion.beatmapset_id}), style: {margin: '20px 10px'},
                 img className: 'beatmapset-activities__beatmapset-cover', src: discussion.beatmapset.covers.list,
 

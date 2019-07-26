@@ -38,7 +38,7 @@ export class Posts extends React.Component
             if post.deleted_at?
               topClasses += " beatmap-discussion--deleted"
 
-            div className: topClasses, style: { 'display': 'flex' },
+            div key: post.id, className: topClasses, style: { 'display': 'flex' },
               a href: laroute.route('beatmapsets.show', {beatmapset: post.beatmap_discussion.beatmapset_id}), style: {margin: '20px 10px'},
                 img className: 'beatmapset-activities__beatmapset-cover', src: post.beatmap_discussion.beatmapset.covers.list,
 
