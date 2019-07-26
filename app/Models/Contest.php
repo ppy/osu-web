@@ -286,7 +286,7 @@ class Contest extends Model
     public function toMetaDescription()
     {
         $section = trans('layout.menu.community.contests');
-        
+
         return "osu! » {$section} » {$this->name}";
     }
 }
