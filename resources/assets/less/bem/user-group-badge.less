@@ -23,6 +23,18 @@
   color: white;
   padding: 2px 10px;
   font-weight: bold;
+  display: flex;
+
+  &::before {
+    align-self: center;
+  }
+
+  &--ppy{
+    color: @osu-colour-group-ppy;
+    &::before {
+      content: 'PPY';
+    }
+  }
 
   &--bot {
     background-color: @osu-colour-group-bot;

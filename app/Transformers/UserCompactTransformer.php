@@ -75,6 +75,10 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
         return $this->item($user, function ($user) {
             $groups = [];
 
+            if ($user->user_id === 2) {
+                $groups[] = 'ppy';
+            }
+
             foreach ($user->groupIds() as $id) {
                 $name = array_search_null($id, UserGroup::GROUPS);
                 if ($name !== null && $id !== UserGroup::GROUPS['admin']) {
