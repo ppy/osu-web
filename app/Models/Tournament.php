@@ -177,4 +177,11 @@ class Tournament extends Model
 
         return $links;
     }
+
+    public function toMetaDescription()
+    {
+        $section = trans('layout.menu.community.tournaments');
+
+        return "osu! » {$section} » {$this->name}";
+    }
 }

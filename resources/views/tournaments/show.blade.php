@@ -19,6 +19,7 @@
     'currentSection' => 'community',
     'currentAction' => 'tournaments',
     'title' => $tournament->name,
+    'pageDescription' => $tournament->toMetaDescription(),
 ])
 
 @section('content')
