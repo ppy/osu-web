@@ -23,6 +23,7 @@
 
   &__body {
     background-color: @osu-colour-b3;
+    margin-left: 4px;
   }
 
   &__header {
@@ -51,11 +52,24 @@
     font-size: 90%;
   }
 
+  &__clear {
+    color: @osu-colour-l1;
+    font-weight: 600;
+
+    &.beatmap-packs__cell {
+      flex-grow: 1;
+    }
+  }
+
   &__name {
     color: white;
 
-    &.beatmap-packs__cell {
-      flex-grow: 4;
+    .beatmap-packs__cell& {
+      flex-grow: 1;
+
+      &--clear {
+        flex-grow: 0;
+      }
     }
 
     .js-accordion__item--expanded & {

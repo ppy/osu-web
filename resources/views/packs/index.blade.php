@@ -51,9 +51,19 @@
         <div class="osu-layout__row">
             <div class="beatmap-packs__list js-accordion">
                 @foreach ($packs as $pack)
+                    @php
+                        $cleared = $pack->clearedBy(Auth::user());
+                    @endphp
                     <div class="beatmap-pack js-beatmap-pack js-accordion__item" data-pack-id="{{ $pack['pack_id'] }}">
+                        <div class="beatmap-packs__stripe {{ $cleared ? 'beatmap-packs__stripe--clear' : '' }}"></div>
                         <div class="beatmap-packs__row beatmap-pack__header js-accordion__item-header">
-                            <div class="beatmap-packs__cell beatmap-pack__name">{{ $pack['name'] }}</div>
+                            <div class="beatmap-packs__cell beatmap-pack__name {{ $cleared ? 'beatmap-pack__name--clear' : '' }}">{{ $pack['name'] }}</div>
+                            @if ($cleared)
+                                <div class="beatmap-packs__cell beatmap-pack__clear">
+                                    <span class="fas fa-check"></span>
+                                    {{ trans('beatmappacks.show.all_cleared') }}
+                                </div>
+                            @endif
                             <div class="beatmap-packs__cell beatmap-packs__cell--right">
                                 <span class="beatmap-pack__date">{{ $pack['date']->formatLocalized('%Y-%m-%d') }}</span>
                                 <span class="beatmap-pack__author">by </span>
