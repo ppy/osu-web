@@ -31,7 +31,7 @@ class BeatmapPacksController extends Controller
     public function index()
     {
         $type = presence(Request::input('type')) ?? BeatmapPack::DEFAULT_TYPE;
-        $packs = BeatmapPack::getPacks($type);
+        $packs = BeatmapPack::getPacks($type)->with('items');
         if ($packs === null) {
             abort(404);
         }
