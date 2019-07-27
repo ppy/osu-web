@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Beatmap;
 use App\Models\BeatmapPack;
 use Auth;
 use Request;
@@ -45,14 +44,12 @@ class BeatmapPacksController extends Controller
     public function show($id)
     {
         $pack = BeatmapPack::findOrFail($id);
-        $mode = Beatmap::modeStr($pack->playmode ?? 0);
-
         $sets = $pack
             ->beatmapsets()
             ->select()
             ->withHasCompleted($pack->playmode ?? 0, Auth::user())
             ->get();
 
-        return view('packs.show', compact('pack', 'sets', 'mode'));
+        return view('packs.show', compact('pack', 'sets'));
     }
 }
