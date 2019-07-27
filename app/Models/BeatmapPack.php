@@ -66,6 +66,23 @@ class BeatmapPack extends Model
         return $this->downloadUrls()[0];
     }
 
+    public function clearedBy(User $user) : bool
+    {
+        if ($user === null) {
+            return false;
+        }
+
+        $mapsCleared = $this
+            ->beatmapsets()
+            ->withHasCompleted($this->playmode ?? 0, $user)
+            ->get()
+            ->reduce(function ($clearedSets, $set) {
+                return $clearedSets + ($set->count > 0);
+            }, 0);
+
+        return $mapsCleared === $this->items->count();
+    }
+
     public static function getPacks($type)
     {
         if (!in_array($type, array_keys(static::$tagMappings), true)) {
