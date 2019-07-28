@@ -28,6 +28,7 @@ use Request;
 class BeatmapPacksController extends Controller
 {
     protected $section = 'beatmaps';
+    private const PER_PAGE = 20;
 
     public function index()
     {
@@ -38,7 +39,7 @@ class BeatmapPacksController extends Controller
         }
 
         return view('packs.index')
-            ->with('packs', $packs->paginate(BeatmapPack::PER_PAGE)->appends(['type' => $type]))
+            ->with('packs', $packs->paginate(static::PER_PAGE)->appends(['type' => $type]))
             ->with('type', $type);
     }
 
@@ -50,7 +51,7 @@ class BeatmapPacksController extends Controller
             $pack = BeatmapPack::where('tag', $idOrTag)->firstOrFail();
         }
 
-        return ujs_redirect($pack->indexLink());
+        return ujs_redirect($this->indexLink($pack));
     }
 
     public function raw($id)
@@ -65,5 +66,15 @@ class BeatmapPacksController extends Controller
             ->get();
 
         return view('packs.show', compact('pack', 'sets', 'mode'));
+    }
+
+    private function indexLink(BeatmapPack $pack) : string
+    {
+        $type = $pack->type();
+        $indexInPagination = BeatmapPack::getPacks($type)->get()->search($pack);
+        $page = intdiv($indexInPagination, static::PER_PAGE) + 1;
+
+        return route('packs.index', ['type' => $type, 'page' => $page === 1 ? null : $page])
+            .'#pack-'.$pack->getKey();
     }
 }

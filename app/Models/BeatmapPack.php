@@ -33,7 +33,6 @@ namespace App\Models;
 class BeatmapPack extends Model
 {
     const DEFAULT_TYPE = 'standard';
-    const PER_PAGE = 20;
     private static $tagMappings = [
         'standard' => 'S',
         'theme' => 'T',
@@ -67,14 +66,9 @@ class BeatmapPack extends Model
         return $this->downloadUrls()[0];
     }
 
-    public function indexLink() : string
+    public function type() : string
     {
-        $type = array_search($this->tag[0], static::$tagMappings, true);
-        $indexInPagination = static::getPacks($type)->get()->search($this);
-        $page = intdiv($indexInPagination, static::PER_PAGE) + 1;
-
-        return route('packs.index', ['type' => $type, 'page' => $page === 1 ? null : $page])
-            .'#pack-'.$this->getKey();
+        return array_search($this->tag[0], static::$tagMappings, true);
     }
 
     public static function getPacks($type)
