@@ -261,27 +261,23 @@
         opacity: 1;
 
         &:hover {
-          background-color: @osu-colour-b5;
+          background-color: @osu-colour-l1;
         }
       }
 
       // needs the higher specificity over .@{top}:hover
       .@{top}--active && {
         opacity: 1;
-        background-color: @osu-colour-b5;
+        background-color: @osu-colour-l1;
       }
 
       .@{top}--list & {
-        position: absolute;
-        top: 0;
-        // make it look connected
-        left: -3px;
-        z-index: -1;
-
+        transition: none;
+        opacity: 1;
+        border-radius: 0 @card-border-radius @card-border-radius 0;
         background-color: transparent;
-        border-radius: 0 @avatar-border-radius @avatar-border-radius 0;
+        width: 20px;
         height: @avatar-size--list;
-        width: 15px;
       }
     }
   }
@@ -289,14 +285,6 @@
   &__icons {
     display: flex;
     flex: none;
-
-    &--menu {
-      .@{top}--list & {
-        position: absolute;
-        top: 0;
-        right: 0;
-      }
-    }
 
     .@{top}--list & {
       align-items: center;
@@ -325,9 +313,10 @@
     width: @avatar-size;
 
     .@{top}--list & {
-      order: 1
+      order: 1;
+      width: unset;
+      margin: 0 10px;
     }
-
   }
 
   &__status-message {
