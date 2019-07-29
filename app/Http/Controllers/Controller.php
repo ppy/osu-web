@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App;
+use App\Http\Middleware\VerifyPrivilegedUser;
 use App\Libraries\LocaleMeta;
 use App\Models\Log;
 use Auth;
@@ -81,7 +82,7 @@ abstract class Controller extends BaseController
 
         session()->flush();
         session()->regenerateToken();
-        session()->put('requires_verification', $user->isPrivileged());
+        session()->put('requires_verification', VerifyPrivilegedUser::isRequired($user));
         Auth::login($user, $remember);
         session()->migrate(true, Auth::user()->user_id);
     }

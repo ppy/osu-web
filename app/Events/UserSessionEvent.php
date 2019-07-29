@@ -33,6 +33,14 @@ class UserSessionEvent extends NotificationEventBase
         return new static('logout', $userId, compact('keys'));
     }
 
+    public static function newVerificationRequirementChange($userId, $key, $isRequired)
+    {
+        return new static('require_verification', $userId, [
+            'key' => $key,
+            'requires_verification' => $isRequired,
+        ]);
+    }
+
     public static function newVerified($userId, $key)
     {
         return new static('verified', $userId, compact('key'));
