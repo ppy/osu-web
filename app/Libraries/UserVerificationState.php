@@ -45,7 +45,7 @@ class UserVerificationState
 
     public static function fromVerifyLink($linkKey)
     {
-        $params = cache()->get("verifications:{$linkKey}");
+        $params = cache()->get("verification:{$linkKey}");
 
         if ($params !== null) {
             $state = static::load($params);
@@ -112,7 +112,7 @@ class UserVerificationState
         $this->session->put('verification_tries', 0);
         $this->session->save();
 
-        cache()->put("verifications:{$linkKey}", $this->dump(), $expires);
+        cache()->put("verification:{$linkKey}", $this->dump(), $expires);
 
         return [
             'link' => $linkKey,
