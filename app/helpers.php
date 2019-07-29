@@ -1357,3 +1357,16 @@ function section_to_hue_map($section): int
 
     return isset($sectionMapping[$section]) ? $colourToHue[$sectionMapping[$section]] : $colourToHue['pink'];
 }
+
+function search_error_message(?Exception $e): ?string
+{
+    if ($e === null) {
+        return null;
+    }
+
+    $basename = snake_case(get_class_basename(get_class($e)));
+    $key = "errors.search.${basename}";
+    $text = trans($key);
+
+    return $text === $key ? trans('errors.search.default') : $text;
+}
