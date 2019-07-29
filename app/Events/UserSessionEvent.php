@@ -28,12 +28,12 @@ class UserSessionEvent extends NotificationEventBase
     public $data;
     public $userId;
 
-    public static function onLogout($userId, $keys)
+    public static function newLogout($userId, $keys)
     {
         return new static('logout', $userId, compact('keys'));
     }
 
-    public static function onVerified($userId, $key)
+    public static function newVerified($userId, $key)
     {
         return new static('verified', $userId, compact('key'));
     }

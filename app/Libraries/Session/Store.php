@@ -37,7 +37,7 @@ class Store extends \Illuminate\Session\Store
         }
 
         $keys = static::keys($userId);
-        event(UserSessionEvent::onLogout($userId, $keys));
+        event(UserSessionEvent::newLogout($userId, $keys));
         Redis::del(array_merge([static::listKey($userId)], $keys));
     }
 
@@ -101,7 +101,7 @@ class Store extends \Illuminate\Session\Store
             $userId = static::parseKey($key)['userId'];
         }
 
-        event(UserSessionEvent::onLogout($userId, [$key]));
+        event(UserSessionEvent::newLogout($userId, [$key]));
         Redis::srem(static::listKey($userId), $key);
         Redis::del($key);
     }
