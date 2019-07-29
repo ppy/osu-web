@@ -249,9 +249,12 @@
 
 
   # TODO: add support for multiple badges and/or move server side?
-  # note: the display priority is as defined, from left to right
+  # note: the display priority is as defined, from left to right. an exception for "bot" is made because users are only displayed as bots when it is their primary group
   userGroupBadge: (user) ->
-    _.intersection(_.concat(user.default_group, user.groups), ['bot', 'dev', 'gmt', 'nat', 'bng', 'bng_limited', 'support', 'alumni'])[0]
+    if user.is_bot
+      'bot'
+    else
+      _.intersection(_.concat(user.default_group, user.groups), ['dev', 'gmt', 'nat', 'bng', 'bng_limited', 'support', 'alumni'])[0]
 
   navigate: (url, keepScroll, {action = 'advance'} = {}) ->
     osu.keepScrollOnLoad() if keepScroll
