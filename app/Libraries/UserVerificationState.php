@@ -159,7 +159,7 @@ class UserVerificationState
         if (!array_key_exists('value', $this->legacySession)) {
             $this->legacySession['value'] = LegacySession
                 ::where($this->legacySessionQueryWhere)
-                ->where(['user_id' => $this->user->getKey()])
+                ->where(['session_user_id' => $this->user->getKey()])
                 ->first();
         }
 
