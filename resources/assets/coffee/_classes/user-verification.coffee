@@ -23,6 +23,7 @@ class @UserVerification
     $(document).on 'turbolinks:load', @showOnLoad
     $(document).on 'input', '.js-user-verification--input', @autoSubmit
     $(document).on 'click', '.js-user-verification--reissue', @reissue
+    $.subscribe 'user-verification:success', @success
 
     $(window).on 'throttled-resize throttled-scroll', @reposition
 
@@ -75,6 +76,10 @@ class @UserVerification
       modal.style.paddingTop = "#{referenceBottom}px"
 
 
+  isActive: =>
+    @modal?.classList.contains('js-user-verification--active')
+
+
   prepareForRequest: (type) =>
     @request?.abort()
     @setMessage osu.trans("user_verification.box.#{type}"), true
@@ -93,7 +98,7 @@ class @UserVerification
 
 
   reposition: =>
-    return unless @modal?.classList.contains('js-user-verification--active')
+    return unless @isActive()
 
     if osu.isMobile()
       @float(true, @modal)
@@ -118,6 +123,8 @@ class @UserVerification
 
 
   success: =>
+    return unless @isActive()
+
     @$modal().modal 'hide'
     @modal.classList.remove('js-user-verification--active')
 

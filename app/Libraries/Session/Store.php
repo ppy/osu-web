@@ -20,8 +20,7 @@
 
 namespace App\Libraries\Session;
 
-use App\Events\UserLogoutEvent;
-use App\Libraries\UserVerification;
+use App\Events\UserSessionEvent;
 use Auth;
 use Illuminate\Support\Str;
 use Jenssegers\Agent\Agent;
@@ -38,7 +37,7 @@ class Store extends \Illuminate\Session\Store
         }
 
         $keys = static::keys($userId);
-        event(new UserLogoutEvent($userId, $keys));
+        event(UserSessionEvent::newLogout($userId, $keys));
         Redis::del(array_merge([static::listKey($userId)], $keys));
     }
 
@@ -102,7 +101,7 @@ class Store extends \Illuminate\Session\Store
             $userId = static::parseKey($key)['userId'];
         }
 
-        event(new UserLogoutEvent($userId, [$key]));
+        event(UserSessionEvent::newLogout($userId, [$key]));
         Redis::srem(static::listKey($userId), $key);
         Redis::del($key);
     }
@@ -194,13 +193,23 @@ class Store extends \Illuminate\Session\Store
             $sessionMeta[$id]['device'] = $agent->device();
             $sessionMeta[$id]['platform'] = $agent->platform();
             $sessionMeta[$id]['browser'] = $agent->browser();
-            $sessionMeta[$id]['verified'] = isset($session['verified']) && $session['verified'] === UserVerification::VERIFIED;
+            $sessionMeta[$id]['verified'] = (bool) ($session['verified'] ?? false);
         }
 
         // returns sessions sorted from most to least recently active
         return array_reverse(array_sort($sessionMeta, function ($value) {
             return $value['last_visit'];
         }), true);
+    }
+
+    /**
+     * Returns current session key (cache prefix + prefix + id)
+     *
+     * @return string
+     */
+    public function getKey()
+    {
+        return config('cache.prefix').':'.$this->getId();
     }
 
     /**
@@ -253,7 +262,7 @@ class Store extends \Illuminate\Session\Store
         parent::save();
 
         if (!$this->isGuestSession()) {
-            Redis::sadd(config('cache.prefix').':'.$this->getCurrentKeyPrefix(), config('cache.prefix').':'.$this->getId());
+            Redis::sadd(config('cache.prefix').':'.$this->getCurrentKeyPrefix(), $this->getKey());
         }
     }
 

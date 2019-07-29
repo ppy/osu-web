@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,28 +16,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Middleware;
+.account-verification-message {
+  text-align: center;
 
-use App\Events\UserSessionEvent;
+  &__icon {
+    font-size: 60px; // icon size
+    color: @green;
+  }
 
-class VerifyPrivilegedUser extends VerifyUser
-{
-    public static function isRequired($user)
-    {
-        return $user !== null && $user->isPrivileged();
-    }
+  &__text {
+    font-size: @font-size--normal;
+  }
 
-    public function requiresVerification($request)
-    {
-        $user = auth()->user();
-        $isRequired = static::isRequired($user);
-
-        if ($user !== null && session()->get('requires_verification') !== $isRequired) {
-            session()->put('requires_verification', $isRequired);
-            session()->save();
-            event(UserSessionEvent::newVerificationRequirementChange($user->getKey(), $isRequired));
-        }
-
-        return $isRequired;
-    }
+  &__title {
+    margin: 10px 0;
+  }
 }
