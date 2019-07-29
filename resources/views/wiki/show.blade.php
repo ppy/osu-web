@@ -103,9 +103,13 @@
         @if ($page->isOutdated())
             <div class="wiki-notice">
                 <div class="wiki-notice__box">
-                    {!! trans('wiki.show.translation.outdated', [
-                        'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(trans('wiki.show.translation.default')).'</a>',
-                    ]) !!}
+                    @if ($page->isTranslation())
+                        {!! trans('wiki.show.translation.outdated', [
+                            'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(trans('wiki.show.translation.default')).'</a>',
+                        ]) !!}
+                    @else
+                        {!! trans('wiki.show.incomplete_or_outdated') !!}
+                    @endif
                 </div>
             </div>
         @endif
