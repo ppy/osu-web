@@ -30,7 +30,7 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
         'country',
         'cover',
         'groups',
-        'support_level'
+        'support_level',
     ];
 
     public function transform(User $user)

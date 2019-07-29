@@ -1531,6 +1531,15 @@ class User extends Model implements AuthenticatableContract
             ->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
     }
 
+    public function scopeEagerloadForListing($query)
+    {
+        return $query->with([
+            'country',
+            'supporterTags',
+            'userProfileCustomization',
+        ]);
+    }
+
     public function checkPassword($password)
     {
         return Hash::check($password, $this->getAuthPassword());

@@ -32,10 +32,7 @@ class GroupsController extends Controller
         $group = Group::visible()->findOrFail($id);
 
         $users = $group->users()
-            ->with([
-                'country',
-                'userProfileCustomization',
-            ])
+            ->eagerloadForListing()
             ->default()
             ->orderBy('username', 'asc')
             ->get();

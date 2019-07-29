@@ -53,10 +53,7 @@ class FriendsController extends Controller
     {
         $friends = Auth::user()
             ->friends()
-            ->with([
-                'userProfileCustomization',
-                'country',
-            ])
+            ->eagerloadForListing()
             ->orderBy('username', 'asc')
             ->get();
 
