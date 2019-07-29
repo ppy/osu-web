@@ -34,7 +34,7 @@ class VerifyPrivilegedUser extends VerifyUser
         $user = auth()->user();
         $isRequired = static::isRequired($user);
 
-        if (session()->get('requires_verification') !== $isRequired) {
+        if ($user !== null && session()->get('requires_verification') !== $isRequired) {
             session()->put('requires_verification', $isRequired);
             session()->save();
             event(UserSessionEvent::newVerificationRequirementChange($user->getKey(), $isRequired));
