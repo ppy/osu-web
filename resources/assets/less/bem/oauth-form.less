@@ -64,7 +64,7 @@
   }
 
   &__dialog {
-    background-color: #333;
+    background-color: @osu-colour-b5;
     border-radius: @border-radius-large;
     width: 500px;
     max-width: 100%;
@@ -158,6 +158,17 @@
     &--title {
       align-items: center;
       margin-bottom: 25px;
+    }
+
+    &--verification-completed {
+      display: block;
+      margin-top: -20px; // undo --title
+      margin-bottom: 50px;
+    }
+
+    &--verification-invalid {
+      display: block;
+      margin-bottom: 50px;
     }
 
     &--wrong-user {

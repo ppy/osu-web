@@ -47,10 +47,16 @@
             --font-default-override: var(--font-default-vi);
         }
     </style>
-@elseif (App::getLocale() === 'zh' || App::getLocale() === 'zh-tw')
+@elseif (App::getLocale() === 'zh')
     <style>
         :root {
             --font-default-override: var(--font-default-zh);
+        }
+    </style>
+@elseif (App::getLocale() === 'zh-tw')
+    <style>
+        :root {
+            --font-default-override: var(--font-default-zh-tw);
         }
     </style>
 @endif

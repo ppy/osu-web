@@ -318,6 +318,15 @@ export class Main extends React.PureComponent
           "#{name}": state
           showMorePagination: paginationState
 
+      .catch (error) =>
+        osu.ajaxError error
+
+        paginationState = _.cloneDeep @state.showMorePagination
+        paginationState[name].loading = false
+
+        @setState
+          showMorePagination: paginationState
+
 
   pageJump: (_e, page) =>
     if page == 'main'
