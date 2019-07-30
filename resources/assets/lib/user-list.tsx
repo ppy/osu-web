@@ -82,18 +82,18 @@ export class UserList extends React.PureComponent<Props> {
   private get sortFromUrl() {
     const url = new URL(location.href);
 
-    return this.getAllowedQueryStringValue(sortModes, url.searchParams.get('user_sort'));
+    return this.getAllowedQueryStringValue(sortModes, url.searchParams.get('sort'));
   }
 
   private get viewFromUrl() {
     const url = new URL(location.href);
 
-    return this.getAllowedQueryStringValue(viewModes, url.searchParams.get('user_view'));
+    return this.getAllowedQueryStringValue(viewModes, url.searchParams.get('view'));
   }
 
   onSortSelected = (event: React.SyntheticEvent) => {
     const value = (event.currentTarget as HTMLElement).dataset.value;
-    const url = osu.updateQueryString(null, { user_sort: value });
+    const url = osu.updateQueryString(null, { sort: value });
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ sortMode: value });
@@ -101,7 +101,7 @@ export class UserList extends React.PureComponent<Props> {
 
   onViewSelected = (event: React.SyntheticEvent) => {
     const value = (event.currentTarget as HTMLElement).dataset.value;
-    const url = osu.updateQueryString(null, { user_view: value });
+    const url = osu.updateQueryString(null, { view: value });
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ viewMode: value });
