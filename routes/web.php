@@ -175,6 +175,7 @@ Route::group(['prefix' => 'home'], function () {
         Route::put('password', 'AccountController@updatePassword')->name('password');
         Route::post('reissue-code', 'AccountController@reissueCode')->name('reissue-code');
         Route::resource('sessions', 'Account\SessionsController', ['only' => ['destroy']]);
+        Route::get('verify', 'AccountController@verifyLink');
         Route::post('verify', 'AccountController@verify')->name('verify');
         Route::put('/', 'AccountController@update')->name('update');
     });
@@ -201,6 +202,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
     Route::resource('news', 'NewsController', ['only' => ['index', 'show', 'store', 'update']]);
     Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
+    Route::get('notifications/endpoint', 'NotificationsController@endpoint')->name('notifications.endpoint');
     Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
 
     Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');

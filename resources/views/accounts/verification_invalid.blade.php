@@ -16,25 +16,27 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    // Verification doesn't inherit from App\Controller, thus these variables aren't set. Thus we set them here:
-    'currentSection' => 'error',
-    'currentAction' => '401',
+    'blank' => true,
+    'title' => trans('accounts.verification_invalid.title'),
 ])
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page">
-        <h1>{{ trans('users.verify.title') }}</h1>
+    <div class="oauth-form">
+        <div class="oauth-form__dialog">
+            <div class="oauth-form__row oauth-form__row--header"></div>
+
+            <div class="oauth-form__row oauth-form__row--title">
+                <div class="oauth-form__logo"></div>
+                <h1 class="oauth-form__title">{{ trans('users.verify.title') }}</h1>
+            </div>
+
+            <div class="oauth-form__row oauth-form__row--verification-invalid">
+                <div class="account-verification-message">
+                    <div class="account-verification-message__title">
+                        {{ trans('accounts.verification_invalid.title') }}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-@endsection
-
-@section('script')
-    @parent
-
-    <script>
-        window.showVerificationModal = true;
-    </script>
-@endsection
-
-@section('user-verification-box')
-    @include('users._verify_box', compact('email'))
 @endsection
