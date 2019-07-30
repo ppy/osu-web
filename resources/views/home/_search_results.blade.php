@@ -16,7 +16,11 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="search-result search-result--{{ $mode }}">
-    @if ($search->total() === 0)
+    @if ($search->getError() !== null)
+        <div class="search-result__row search-result__row--notice">
+            {{ search_error_message($search->getError()) }}
+        </div>
+    @elseif ($search->total() === 0)
         <div class="search-result__row search-result__row--notice">
             {{ trans('home.search.empty_result') }}
         </div>

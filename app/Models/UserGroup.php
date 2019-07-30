@@ -42,7 +42,6 @@ class UserGroup extends Model
         'nat' => 7,
         'dev' => 11,
         'alumni' => 16,
-        'hax' => 17,
         'mod' => 18,
         'bng' => 28,
         'bot' => 29,
