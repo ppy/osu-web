@@ -1535,7 +1535,7 @@ class User extends Model implements AuthenticatableContract
     {
         return $query->with([
             'country',
-            'supporterTags',
+            'supporterTagPurchases',
             'userProfileCustomization',
         ]);
     }
