@@ -292,7 +292,7 @@ class TopicsController extends Controller
             ->with('topic')
             ->with('user.rank')
             ->with('user.country')
-            ->with('user.supporterTags')
+            ->with('user.supporterTagPurchases')
             ->get()
             ->sortBy('post_id');
 
