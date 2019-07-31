@@ -25,7 +25,7 @@ export class Events extends React.Component
   render: =>
     div className: 'page-extra',
       h2 className: 'page-extra__title', osu.trans("users.show.extra.#{@props.name}.title_longer")
-      div className: 'beatmapset-events',
+      div className: 'beatmapset-events beatmapset-events--profile',
         [
           for event in @props.events
             if !event.beatmapset
