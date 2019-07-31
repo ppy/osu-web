@@ -127,7 +127,7 @@ export class Main extends React.Component
 
   minNextEventId: =>
     if @state.currentGameId?
-      currentGame = _.find(@state.events, game_id: @state.currentGameId)
+      currentGame = _.find(@state.events, (e) => e.game?.id == @state.currentGameId)
 
       id = currentGame.id - 1 if currentGame?
 

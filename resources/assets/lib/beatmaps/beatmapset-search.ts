@@ -30,6 +30,7 @@ import { BeatmapsetStore } from 'stores/beatmapset-store';
 export interface SearchResponse {
   beatmapsets: BeatmapsetJSON[];
   cursor: JSON;
+  error?: string;
   recommended_difficulty: number;
   total: number;
 }

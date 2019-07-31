@@ -76,16 +76,42 @@ class ChangelogEntry extends Model
         ]);
     }
 
+    public static function guessCategory($data)
+    {
+        static $ignored = [
+            'resolves issue',
+        ];
+
+        foreach ($data['pull_request']['labels'] as $label) {
+            $name = $label['name'];
+
+            if (!in_array(strtolower($name), $ignored, true)) {
+                return ucwords($name);
+            }
+        }
+    }
+
+    public static function guessType($data)
+    {
+        $title = $data['pull_request']['title'];
+
+        if (strtolower(substr($title, 0, 4)) === 'add ') {
+            return 'add';
+        }
+    }
+
     public static function importFromGithub($data)
     {
         $githubUser = GithubUser::importFromGithub($data['pull_request']['user']);
         $repository = Repository::importFromGithub($data['repository']);
 
         $entry = $repository->changelogEntries()->make([
-            'github_pull_request_id' => $data['pull_request']['number'],
-            'title' => $data['pull_request']['title'],
-            'message' => $data['pull_request']['body'],
+            'category' => static::guessCategory($data),
             'created_at' => Carbon::parse($data['pull_request']['merged_at']),
+            'github_pull_request_id' => $data['pull_request']['number'],
+            'message' => $data['pull_request']['body'],
+            'title' => $data['pull_request']['title'],
+            'type' => static::guessType($data),
         ]);
         $entry->githubUser()->associate($githubUser);
 

@@ -18,28 +18,37 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Middleware;
+namespace App\Libraries\Search;
 
-use App\Events\UserSessionEvent;
+use App\Libraries\Elasticsearch\SearchResponse;
+use Cache;
 
-class VerifyPrivilegedUser extends VerifyUser
+/**
+ * Version of BeatmapsetSearch that caches response() if cacheable and doesn't include source in the response.
+ */
+class BeatmapsetSearchCached extends BeatmapsetSearch
 {
-    public static function isRequired($user)
+    public function response() : SearchResponse
     {
-        return $user !== null && $user->isPrivileged();
-    }
+        $this->source(false);
 
-    public function requiresVerification($request)
-    {
-        $user = auth()->user();
-        $isRequired = static::isRequired($user);
-
-        if ($user !== null && session()->get('requires_verification') !== $isRequired) {
-            session()->put('requires_verification', $isRequired);
-            session()->save();
-            event(UserSessionEvent::newVerificationRequirementChange($user->getKey(), $isRequired));
+        if (!$this->params->isCacheable()) {
+            return parent::response();
         }
 
-        return $isRequired;
+        $key = "es-response:{$this->params->getCacheKey()}";
+
+        $value = Cache::get($key);
+        if ($value !== null) {
+            return $value;
+        }
+
+        $value = parent::response();
+
+        if ($this->getError() === null) {
+            Cache::put($key, $value, config('osu.beatmapset.es_cache_duration'));
+        }
+
+        return $value;
     }
 }

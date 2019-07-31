@@ -30,11 +30,22 @@
 }
 
 .fancy-scrollbar() {
+  @_scrollbar-track: rgba(255, 255, 255, 0.025);
+  @_scrollbar-thumb: rgba(255,255,255,0.5);
+
+  scrollbar-color: @_scrollbar-thumb @_scrollbar-track;
+  scrollbar-width: thin;
+
+  // scrollbar-width isn't inherited
+  * {
+    scrollbar-width: thin;
+  }
+
   /* Turn on custom 8px wide scrollbar */
   ::-webkit-scrollbar {
     width: 10px; /* 1px wider than Lion. */
     /* This is more usable for users trying to click it. */
-    background-color: rgba(255, 255, 255, 0.025);
+    background-color: @_scrollbar-track;
     -webkit-border-radius: 100px;
   }
   /* hover effect for both scrollbar area, and scrollbar 'thumb' */
@@ -48,9 +59,7 @@
 
   /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
   ::-webkit-scrollbar-thumb {
-    /* This is the EXACT color of Mac OS scrollbars.
-      Yes, I pulled out digital color meter */
-    background: rgba(255,255,255,0.5);
+    background: @_scrollbar-thumb;
     -webkit-border-radius: 100px;
     background-clip: padding-box;
     border: 2px solid rgba(255, 255, 255, 0);
