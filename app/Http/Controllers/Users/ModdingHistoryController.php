@@ -116,6 +116,8 @@ class ModdingHistoryController extends Controller
         $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
 
         $userIds = array_merge(
+            $discussions['items']->pluck('user_id')->toArray(),
+            $posts['items']->pluck('user_id')->toArray(),
             $events['items']->pluck('user_id')->toArray(),
             $votes['items']->pluck('user_id')->toArray(),
             $receivedVotes['items']->pluck('user_id')->toArray()
