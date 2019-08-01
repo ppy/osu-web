@@ -24,16 +24,11 @@ export class Badges extends React.PureComponent
   render: =>
     div className: 'profile-badges',
       for badge in @props.badges
-        badgeEl = div
+        element = if osu.present badge.url then a else div
+
+        element
           key: badge.image_url
+          href: badge.url if osu.present badge.url
           className: 'profile-badges__badge'
           style: backgroundImage: osu.urlPresence(badge.image_url)
           title: badge.description
-
-        if osu.present badge.url
-          a
-            href: badge.url
-            key: badge.image_url
-            badgeEl
-        else
-          badgeEl
