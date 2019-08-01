@@ -24,42 +24,50 @@ el = React.createElement
 export class Events extends React.Component
   render: =>
     div className: 'page-extra',
-      h2 className: 'page-extra__title', osu.trans("users.show.extra.#{@props.name}.title_longer")
+      h2 className: 'page-extra__title', osu.trans('users.show.extra.events.title_longer')
       div className: 'beatmapset-events beatmapset-events--profile',
-        [
-          for event in @props.events
-            if !event.beatmapset
-              continue
+        if @props.events.length == 0
+          div className: 'modding-profile__empty-section', osu.trans('users.show.extra.none')
+        else
+          [
+            for event in @props.events
+              if !event.beatmapset
+                continue
 
-            cover = if event.beatmapset then event.beatmapset.covers.list else ''
-            eventClass = _.replace(event.type, /_/g, '-')
-            discussionId = if event.comment && event.comment.beatmap_discussion_id then event.comment.beatmap_discussion_id else null
-            discussionLink = laroute.route('beatmapsets.discussion', beatmapset: event.beatmapset.id)
-            if (discussionId)
-                discussionLink = "#{discussionLink}#/#{discussionId}"
+              cover = if event.beatmapset then event.beatmapset.covers.list else ''
+              eventClass = _.replace(event.type, /_/g, '-')
+              discussionId = if event.comment && event.comment.beatmap_discussion_id then event.comment.beatmap_discussion_id else null
+              discussionLink = laroute.route('beatmapsets.discussion', beatmapset: event.beatmapset.id)
+              if (discussionId)
+                  discussionLink = "#{discussionLink}#/#{discussionId}"
 
-            div className: 'beatmapset-events__event', key: event.id,
-              div className: 'beatmapset-event',
-                a href: discussionLink,
-                  img className: 'beatmapset-activities__beatmapset-cover', src: cover,
+              div className: 'beatmapset-events__event', key: event.id,
+                div className: 'beatmapset-event',
+                  a href: discussionLink,
+                    img className: 'beatmapset-activities__beatmapset-cover', src: cover,
 
-                div className: "beatmapset-event__icon beatmapset-event__icon--#{eventClass} beatmapset-activities__event-icon-spacer"
+                  div className: "beatmapset-event__icon beatmapset-event__icon--#{eventClass} beatmapset-activities__event-icon-spacer"
 
-                div {},
-                  div
-                    className: "beatmapset-event__content"
-                    dangerouslySetInnerHTML:
-                      __html: osu.trans "beatmapset_events.event.#{@typeForTranslation(event)}",
-                        'user': @props.users[event.user_id].username
-                        'discussion': (if discussionId then "<a href='#{discussionLink}'>##{discussionId}</a>" else '')
-                        'text': (if event.discussion then _.truncate(event.discussion.startingPost.message, {length: 100}) else '[no preview]')
+                  div {},
+                    div
+                      className: "beatmapset-event__content"
+                      dangerouslySetInnerHTML:
+                        __html: osu.trans "beatmapset_events.event.#{@typeForTranslation(event)}",
+                          'user': @props.users[event.user_id].username
+                          'discussion': (if discussionId then "<a href='#{discussionLink}'>##{discussionId}</a>" else '')
+                          'text': (if event.discussion then _.truncate(event.discussion.startingPost.message, {length: 100}) else '[no preview]')
 
-                  div
-                    className: 'beatmap-discussion-post__info'
-                    dangerouslySetInnerHTML:
-                      __html: osu.timeago(event.created_at)
-        ]
+                    div
+                      className: 'beatmap-discussion-post__info'
+                      dangerouslySetInnerHTML:
+                        __html: osu.timeago(event.created_at)
 
+            a
+              className: 'modding-profile__show-more'
+              key: 'show-more'
+              href: laroute.route('users.modding.events', {user: @props.user.id}),
+              osu.trans('users.show.extra.events.show_more')
+          ]
   typeForTranslation: (event) =>
     if event.type == 'disqualify' && !_.isArray(event.comment)
       'disqualify_legacy'

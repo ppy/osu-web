@@ -25,21 +25,28 @@ el = React.createElement
 export class Discussions extends React.Component
   render: =>
     div className: 'page-extra',
-      h2 className: 'page-extra__title', osu.trans("users.show.extra.#{@props.name}.title_longer")
+      h2 className: 'page-extra__title', osu.trans("users.show.extra.discussions.title_longer")
       div className: 'osu-layout',
-        [
-          for discussion in @props.discussions
-            div key: discussion.id, style: { 'display': 'flex' },
-              a href: laroute.route('beatmapsets.show', {beatmapset: discussion.beatmapset_id}), style: {margin: '20px 10px'},
-                img className: 'beatmapset-activities__beatmapset-cover', src: discussion.beatmapset.covers.list,
+        if @props.discussions.length == 0
+          div className: 'modding-profile__empty-section', osu.trans('users.show.extra.none')
+        else
+          [
+            for discussion in @props.discussions
+              div key: discussion.id, style: { 'display': 'flex' },
+                a href: laroute.route('beatmapsets.show', {beatmapset: discussion.beatmapset_id}), style: {margin: '20px 10px'},
+                  img className: 'beatmapset-activities__beatmapset-cover', src: discussion.beatmapset.covers.list,
 
-              el Discussion,
-                discussion: discussion
-                users: @props.users
-                currentUser: currentUser
-                beatmapset: discussion.beatmapset
-                isTimelineVisible: false
-                visible: false
-                showDeleted: true
-                preview: true
-        ]
+                el Discussion,
+                  discussion: discussion
+                  users: @props.users
+                  currentUser: currentUser
+                  beatmapset: discussion.beatmapset
+                  isTimelineVisible: false
+                  visible: false
+                  showDeleted: true
+                  preview: true
+            a
+              className: 'modding-profile__show-more'
+              href: laroute.route('users.modding.discussions', {user: @props.user.id}),
+              osu.trans('users.show.extra.discussions.show_more')
+          ]

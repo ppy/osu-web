@@ -27,15 +27,18 @@ export class Votes extends React.Component
 
     div className: 'page-extra',
       h1 className: 'page-extra__title', osu.trans("users.show.extra.upvotes.title_longer")
-
       ['received', 'given'].map (direction) =>
-        div {},
+        [
           h2 className: 'page-extra__subtitle', osu.trans("users.show.extra.upvotes.#{direction}")
           div style: { display: 'flex', flexWrap: 'wrap' },
-            [
-              for vote in @props.votes[direction]
-                @renderUser(@props.users[vote.user_id], vote.score, vote.count)
-            ]
+            if @props.votes[direction].length == 0
+              div className: 'modding-profile__empty-section', osu.trans('users.show.extra.none')
+            else
+              [
+                for vote in @props.votes[direction]
+                  @renderUser(@props.users[vote.user_id], vote.score, vote.count)
+              ]
+        ]
 
   renderUser: (user, score, count) =>
     bn = 'modding-profile-vote-card'

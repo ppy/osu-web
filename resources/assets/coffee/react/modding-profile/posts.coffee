@@ -26,41 +26,48 @@ el = React.createElement
 export class Posts extends React.Component
   render: =>
     div className: 'page-extra',
-      h2 className: 'page-extra__title', osu.trans("users.show.extra.#{@props.name}.title_longer")
+      h2 className: 'page-extra__title', osu.trans('users.show.extra.posts.title_longer')
       div className: 'osu-layout',
-        [
-          for post in @props.posts
-            canModeratePosts = BeatmapDiscussionHelper.canModeratePosts(currentUser)
-            canBeDeleted = canModeratePosts || currentUser.id? == post.user_id
+        if @props.posts.length == 0
+          div className: 'modding-profile__empty-section', osu.trans('users.show.extra.none')
+        else
+          [
+            for post in @props.posts
+              canModeratePosts = BeatmapDiscussionHelper.canModeratePosts(currentUser)
+              canBeDeleted = canModeratePosts || currentUser.id? == post.user_id
 
-            topClasses = 'beatmap-discussion beatmap-discussion--preview'
+              topClasses = 'beatmap-discussion beatmap-discussion--preview'
 
-            if post.deleted_at?
-              topClasses += " beatmap-discussion--deleted"
+              if post.deleted_at?
+                topClasses += " beatmap-discussion--deleted"
 
-            div key: post.id, className: topClasses, style: { 'display': 'flex' },
-              a href: laroute.route('beatmapsets.show', {beatmapset: post.beatmap_discussion.beatmapset_id}), style: {margin: '20px 10px'},
-                img className: 'beatmapset-activities__beatmapset-cover', src: post.beatmap_discussion.beatmapset.covers.list,
+              div key: post.id, className: topClasses, style: { 'display': 'flex' },
+                a href: laroute.route('beatmapsets.show', {beatmapset: post.beatmap_discussion.beatmapset_id}), style: {margin: '20px 10px'},
+                  img className: 'beatmapset-activities__beatmapset-cover', src: post.beatmap_discussion.beatmapset.covers.list,
 
-              div className: "beatmap-discussion__timestamp hidden-xs",
-                div className: "beatmap-discussion-timestamp",
-                  div className: "beatmap-discussion-timestamp__icons-container",
-                    span className: "fas fa-reply"
+                div className: "beatmap-discussion__timestamp hidden-xs",
+                  div className: "beatmap-discussion-timestamp",
+                    div className: "beatmap-discussion-timestamp__icons-container",
+                      span className: "fas fa-reply"
 
-              div className: "beatmap-discussion__discussion",
-                div className: "beatmap-discussion__top",
-                  el Post,
-                    key: post.id
-                    beatmapset: post.beatmap_discussion.beatmapset
-                    discussion: post.beatmap_discussion
-                    post: post
-                    type: 'reply'
-                    users: @props.users
-                    user: @props.users[post.user_id]
-                    read: true
-    #                lastEditor: @props.users[post.last_editor_id]
-                    canBeEdited: currentUser.is_admin || currentUser.id? == post.user_id
-                    canBeDeleted: canBeDeleted
-                    canBeRestored: canModeratePosts
-                    currentUser: currentUser
-            ]
+                div className: "beatmap-discussion__discussion",
+                  div className: "beatmap-discussion__top",
+                    el Post,
+                      key: post.id
+                      beatmapset: post.beatmap_discussion.beatmapset
+                      discussion: post.beatmap_discussion
+                      post: post
+                      type: 'reply'
+                      users: @props.users
+                      user: @props.users[post.user_id]
+                      read: true
+      #                lastEditor: @props.users[post.last_editor_id]
+                      canBeEdited: currentUser.is_admin || currentUser.id? == post.user_id
+                      canBeDeleted: canBeDeleted
+                      canBeRestored: canModeratePosts
+                      currentUser: currentUser
+            a
+              className: 'modding-profile__show-more'
+              href: laroute.route('users.modding.posts', {user: @props.user.id}),
+              osu.trans('users.show.extra.posts.show_more')
+          ]

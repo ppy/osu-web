@@ -207,12 +207,14 @@ export class Main extends React.PureComponent
       when 'discussions'
         props:
           discussions: @state.discussions
+          user: @state.user
           users: @indexedUsers()
         component: Discussions
 
       when 'events'
         props:
           events: @state.events
+          user: @state.user
           users: @indexedUsers()
         component: Events
 
@@ -226,12 +228,14 @@ export class Main extends React.PureComponent
       when 'posts'
         props:
           posts: @state.posts
+          user: @state.user
           users: @indexedUsers()
         component: Posts
 
       when 'upvotes'
         props:
           votes: @state.votes
+          user: @state.user
           users: @indexedUsers()
         component: Votes
 

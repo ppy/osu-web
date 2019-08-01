@@ -164,6 +164,7 @@ return [
 
         'extra' => [
             'followers' => ':count_delimited follower|:count_delimited followers',
+            'none' => 'none',
             'unranked' => 'No recent plays',
 
             'achievements' => [
@@ -195,10 +196,12 @@ return [
             'discussions' => [
                 'title' => 'Discussions',
                 'title_longer' => 'Recent Discussions',
+                'show_more' => 'see more discussions',
             ],
             'events' => [
                 'title' => 'Events',
                 'title_longer' => 'Recent Events',
+                'show_more' => 'see more events',
             ],
             'historical' => [
                 'empty' => 'No performance records. :(',
@@ -279,6 +282,7 @@ return [
             'posts' => [
                 'title' => 'Posts',
                 'title_longer' => 'Recent Posts',
+                'show_more' => 'see more posts',
             ],
             'recent_activity' => [
                 'title' => 'Recent',
