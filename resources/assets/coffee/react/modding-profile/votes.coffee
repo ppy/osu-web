@@ -71,5 +71,5 @@ export class Votes extends React.Component
         className: "#{bn}__user-stripe"
 
       div className: "#{bn}__votes-container",
-        div className: "#{bn}__score", "#{if score > 0 then '+'+score else score }"
-        div className: "#{bn}__count", "#{count} votes"
+        div className: "#{bn}__score", if score > 0 then "+#{score}" else score
+        div className: "#{bn}__count", osu.transChoice('users.show.extra.upvotes.vote_count', count)

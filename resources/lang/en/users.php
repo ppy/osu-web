@@ -302,6 +302,7 @@ return [
                 'received' => 'Upvotes Received (last 3 months)',
                 'title' => 'Upvotes',
                 'title_longer' => 'Recent Upvotes',
+                'vote_count' => ':count vote|:count votes'
             ],
             'account_standing' => [
                 'title' => 'Account Standing',
