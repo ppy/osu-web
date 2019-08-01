@@ -137,13 +137,32 @@
     margin: 0 0 20px;
     font-style: normal;
     font-weight: bold;
-    font-size: @font-size--title-small-3;
+    font-size: 16px;
 
     &--small {
       margin-top: 20px;
       padding-bottom: 0;
       border-bottom: none;
-      font-size: @font-size--title-small-3;
+    }
+  }
+
+  &__subtitle {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300; // semibold?
+    color: white;
+    margin-bottom: 20px;
+    text-transform: capitalize; //TODO: remove
+
+    &::before {
+      content: ' ';
+      .full-size();
+      width: 4px;
+      height: 12px;
+      margin-top: 2px;
+      background: @osu-colour-h1;
+      margin-left: -15px;
+      .default-border-radius();
     }
   }
 

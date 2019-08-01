@@ -21,7 +21,7 @@ import { ExtraTab } from '../profile-page/extra-tab'
 import { Discussions} from './discussions'
 import { Header } from './header'
 import { Kudosu } from '../profile-page/kudosu'
-import { Placeholder } from './placeholder'
+import { Votes } from './votes'
 import { BlockButton } from 'block-button'
 import { NotificationBanner } from 'notification-banner'
 import { Posts } from "./posts"
@@ -55,6 +55,7 @@ export class Main extends React.PureComponent
         user: props.user
         users: props.users
         posts: props.posts
+        votes: props.votes
         profileOrder: ['events', 'discussions', 'posts', 'upvotes', 'kudosu']
         rankedAndApprovedBeatmapsets: @props.extras.rankedAndApprovedBeatmapsets
         lovedBeatmapsets: @props.extras.lovedBeatmapsets
@@ -62,6 +63,7 @@ export class Main extends React.PureComponent
         graveyardBeatmapsets: @props.extras.graveyardBeatmapsets
         recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
         showMorePagination: {}
+        usersCache: null
 
       for own elem, perPage of @props.perPage
         @state.showMorePagination[elem] ?= {}
@@ -165,7 +167,7 @@ export class Main extends React.PureComponent
                 ref: @tabs
                 for m in profileOrder
                   a
-                    className: "page-mode__item #{'js-sortable--tab' if @isSortablePage m}"
+                    className: "page-mode__item#{if @isSortablePage m then ' js-sortable--tab' else ''}"
                     key: m
                     'data-page-id': m
                     onClick: @tabClick
@@ -185,8 +187,9 @@ export class Main extends React.PureComponent
 
   extraPage: (name) =>
     {extraClass, props, component} = @extraPageParams name
-    topClassName = 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
-    topClassName += ' js-sortable--page' if @isSortablePage name
+    classes = 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
+    classes += ' js-sortable--page' if @isSortablePage name
+    classes += " #{extraClass}" if extraClass?
     props.name = name
 
     @extraPages ?= {}
@@ -194,7 +197,7 @@ export class Main extends React.PureComponent
     div
       key: name
       'data-page-id': name
-      className: "#{topClassName} #{extraClass}"
+      className: classes
       ref: (el) => @extraPages[name] = el
       el component, props
 
@@ -204,15 +207,13 @@ export class Main extends React.PureComponent
       when 'discussions'
         props:
           discussions: @state.discussions
-          pagination: @state.showMorePagination
-          users: @state.users
+          users: @indexedUsers()
         component: Discussions
 
       when 'events'
         props:
           events: @state.events
-          pagination: @state.showMorePagination
-          users: @state.users
+          users: @indexedUsers()
         component: Events
 
       when 'kudosu'
@@ -225,13 +226,14 @@ export class Main extends React.PureComponent
       when 'posts'
         props:
           posts: @state.posts
-          pagination: @state.showMorePagination
-          users: @state.users
+          users: @indexedUsers()
         component: Posts
 
-      when 'upvotes'#, 'posts'
-        props: []
-        component: Placeholder
+      when 'upvotes'
+        props:
+          votes: @state.votes
+          users: @indexedUsers()
+        component: Votes
 
   showMore: (e, {name, url, perPage = 50}) =>
     offset = @state[name].length
@@ -386,3 +388,13 @@ export class Main extends React.PureComponent
 
   isSortablePage: (page) ->
     _.includes @state.profileOrder, page
+
+  indexedUsers: () =>
+    usersCache = @state.usersCache
+
+    if (usersCache == null)
+      usersCache = osu.reindex(@state.users, 'id')
+      @setState usersCache: usersCache
+
+    usersCache
+

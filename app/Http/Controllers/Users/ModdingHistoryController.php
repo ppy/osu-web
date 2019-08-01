@@ -112,8 +112,19 @@ class ModdingHistoryController extends Controller
             $events['items'] = $events['query']->with(['user', 'beatmapset', 'beatmapset.user'])->get();
         }
 
-//        $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
-//        $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
+        $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
+        $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
+
+        $userIds = array_merge(
+            $events['items']->pluck('user_id')->toArray(),
+            $votes['items']->pluck('user_id')->toArray(),
+            $receivedVotes['items']->pluck('user_id')->toArray()
+        );
+
+        $users = User::whereIn('user_id', array_unique($userIds))
+            ->with('userGroups')
+            ->default()
+            ->get();
 
         $userIncludes = [
             "statistics:mode(osu)", // TODO: fix
@@ -170,8 +181,15 @@ class ModdingHistoryController extends Controller
                 'BeatmapDiscussionPost',
                 ['beatmap_discussion.beatmapset']
             ),
-//            'receivedVotes' => $receivedVotes,
-//            'votes' => $votes,
+            'votes' => [
+                'given' => $votes['items'],
+                'received' => $receivedVotes['items'],
+            ],
+            'users' => json_collection(
+                $users,
+                'UserCompact',
+                ['groups']
+            ),
         ];
 
         return view('users.beatmapset_activities', compact(

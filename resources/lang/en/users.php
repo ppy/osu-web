@@ -298,8 +298,10 @@ return [
                 ],
             ],
             'upvotes' => [
+                'given' => 'Upvotes Given (last 3 months)',
+                'received' => 'Upvotes Received (last 3 months)',
                 'title' => 'Upvotes',
-                'title_longer' => 'Top Upvotes',
+                'title_longer' => 'Recent Upvotes',
             ],
             'account_standing' => [
                 'title' => 'Account Standing',
