@@ -189,7 +189,7 @@ class Beatmap extends Model
     {
         $mode ?? ($mode = $this->mode);
 
-        if (!array_key_exists($mode, static::MODES)) {
+        if (!static::isModeValid($mode)) {
             throw new ScoreRetrievalException(trans('errors.beatmaps.invalid_mode'));
         }
 
