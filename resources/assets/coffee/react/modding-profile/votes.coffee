@@ -52,7 +52,7 @@ export class Votes extends React.Component
       div className: "#{bn}__avatar",
         a
           className: "#{bn}__user-link"
-          href: laroute.route('users.show', user: user.id)
+          href: laroute.route('users.modding.index', user: user.id) + '#upvotes'
           el UserAvatar, user: user, modifiers: ['full-rounded']
       div
         className: "#{bn}__user"
@@ -60,7 +60,7 @@ export class Votes extends React.Component
           className: "#{bn}__user-row"
           a
             className: "#{bn}__user-link"
-            href: laroute.route('users.show', user: user.id)
+            href: laroute.route('users.modding.index', user: user.id) + '#upvotes'
             span
               className: "#{bn}__user-text u-ellipsis-overflow"
               user.username

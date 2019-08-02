@@ -33,7 +33,7 @@ export class Discussions extends React.Component
           [
             for discussion in @props.discussions
               div key: discussion.id, style: { 'display': 'flex' },
-                a href: laroute.route('beatmapsets.show', {beatmapset: discussion.beatmapset_id}), style: {margin: '20px 10px'},
+                a href: BeatmapDiscussionHelper.url(discussion: discussion), style: {margin: '20px 10px'},
                   img className: 'beatmapset-activities__beatmapset-cover', src: discussion.beatmapset.covers.list,
 
                 el Discussion,

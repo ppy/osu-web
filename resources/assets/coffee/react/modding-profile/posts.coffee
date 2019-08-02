@@ -42,7 +42,7 @@ export class Posts extends React.Component
                 topClasses += " beatmap-discussion--deleted"
 
               div key: post.id, className: topClasses, style: { 'display': 'flex' },
-                a href: laroute.route('beatmapsets.show', {beatmapset: post.beatmap_discussion.beatmapset_id}), style: {margin: '20px 10px'},
+                a href: BeatmapDiscussionHelper.url(discussion: post.beatmap_discussion), style: {margin: '20px 10px'},
                   img className: 'beatmapset-activities__beatmapset-cover', src: post.beatmap_discussion.beatmapset.covers.list,
 
                 div className: "beatmap-discussion__timestamp hidden-xs",
