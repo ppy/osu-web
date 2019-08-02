@@ -149,11 +149,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     public function includeFavouriteBeatmapsetCount(User $user)
     {
-        return $this->item($user, function ($user) {
-            return [
-                $user->profileBeatmapsetsFavourite()->count(),
-            ];
-        });
+        return $this->primitive($user->profileBeatmapsetsFavourite()->count());
     }
 
     public function includeBlocks(User $user)
@@ -166,9 +162,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     public function includeFollowerCount(User $user)
     {
-        return $this->item($user, function ($user) {
-            return [$user->followerCount()];
-        });
+        return $this->primitive($user->followerCount());
     }
 
     public function includeFriends(User $user)
@@ -181,11 +175,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     public function includeGraveyardBeatmapsetCount(User $user)
     {
-        return $this->item($user, function ($user) {
-            return [
-                $user->profileBeatmapsetsGraveyard()->count(),
-            ];
-        });
+        return $this->primitive($user->profileBeatmapsetsGraveyard()->count());
     }
 
     public function includeGroups(User $user)
@@ -217,11 +207,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     public function includeLovedBeatmapsetCount(User $user)
     {
-        return $this->item($user, function ($user) {
-            return [
-                $user->profileBeatmapsetsLoved()->count(),
-            ];
-        });
+        return $this->primitive($user->profileBeatmapsetsLoved()->count());
     }
 
     public function includeMonthlyPlaycounts(User $user)
@@ -255,11 +241,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     public function includeRankedAndApprovedBeatmapsetCount(User $user)
     {
-        return $this->item($user, function ($user) {
-            return [
-                $user->profileBeatmapsetsRankedAndApproved()->count(),
-            ];
-        });
+        return $this->primitive($user->profileBeatmapsetsRankedAndApproved()->count());
     }
 
     public function includeReplaysWatchedCounts(User $user)
@@ -274,9 +256,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         $mode = $params->get('mode')[0];
 
-        return $this->item($user, function ($user) use ($mode) {
-            return [$user->scoresFirst($mode)->count()];
-        });
+        return $this->primitive($user->scoresFirst($mode)->count());
     }
 
     public function includeStatistics(User $user, Fractal\ParamBag $params)
@@ -295,11 +275,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     public function includeUnrankedBeatmapsetCount(User $user)
     {
-        return $this->item($user, function ($user) {
-            return [
-                $user->profileBeatmapsetsUnranked()->count(),
-            ];
-        });
+        return $this->primitive($user->profileBeatmapsetsUnranked()->count());
     }
 
     public function includeUnreadPmCount(User $user)

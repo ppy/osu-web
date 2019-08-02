@@ -20,25 +20,29 @@
   @top: user-card;
   @avatar-border-radius: 6px;
   @avatar-size: 60px;
+  @avatar-size--list: 40px;
   @background-color: @osu-colour-b4;
+  @background-overlay-fade--online: .osu-hsla(@osu-colour-b5, 0.6)[@hsla];
+  @background-overlay-fade--offline: .osu-hsla(@osu-colour-b5, 0.7)[@hsla];
   @card-border-radius: 10px;
   @card-item-spacing: 10px;
-  @flag-width: @icon-height * 1.5;
-  @icon-height: 26px; // starts becoming a muddled mess lower than this.
+  @flag-width: @user-card-icon-size * 1.5;
   @flag-gutter: 6px;
   @fade-duration: 220ms;
 
   display: inline-block;
-
-  transition: all ease-in-out 120ms;
 
   width: 100%;
   height: @user-card-height;
   background-color: @background-color;
   border-radius: @card-border-radius;
 
-  // to make broken cover images less ugly
   overflow: hidden;
+
+  &--list {
+    height: @avatar-size--list;
+    border-radius: @avatar-border-radius;
+  }
 
   .qtip--user-card & {
     width: @user-card-width;
@@ -54,6 +58,10 @@
 
       .search-result--user & {
         border-color: @blue-dark;
+      }
+
+      .@{top}--list& {
+        border-radius: @avatar-border-radius;
       }
     }
   }
@@ -75,12 +83,21 @@
     &--loaded {
       opacity: 1;
     }
+
+    .@{top}--list & {
+      border-radius: @avatar-border-radius 0 0 @avatar-border-radius
+    }
   }
 
   &__avatar-space {
     width: @avatar-size;
     height: @avatar-size;
     flex: none;
+
+    .@{top}--list & {
+      width: @avatar-size--list;
+      height: @avatar-size--list;
+    }
   }
 
   &__avatar-spinner {
@@ -111,6 +128,14 @@
     &--loading {
       opacity: 0;
     }
+
+    .@{top}--list & {
+      position: absolute;
+      left: unset;
+      right: 0;
+      width: 50%;
+      border-radius: @avatar-border-radius;
+    }
   }
 
   &__background-container {
@@ -124,12 +149,27 @@
   &__background-overlay {
     .full-size();
     border-radius: @card-border-radius;
-    transition: opacity 0.2s ease-in-out;
-    background-color: @osu-colour-b5;
-    opacity: 0.7;
+    background: @background-overlay-fade--offline;
 
     &--online {
-      opacity: 0.6;
+      background: @background-overlay-fade--online;
+    }
+
+    .@{top}--list & {
+      border-radius: @avatar-border-radius;
+      background: linear-gradient(
+        to right,
+        @osu-colour-b5 50%,
+        @background-overlay-fade--offline
+      );
+
+      &--online {
+        background: linear-gradient(
+          to right,
+          @osu-colour-b5 50%,
+          @background-overlay-fade--online
+        );
+      }
     }
   }
 
@@ -144,6 +184,10 @@
     pointer-events: none;
 
     height: 100%;
+
+    .@{top}--list & {
+      flex-direction: row;
+    }
   }
 
   &__content {
@@ -151,7 +195,7 @@
 
     &--details {
       display: grid;
-      grid-template-columns: @avatar-size 1fr;
+      grid-template-columns: minmax(min-content, auto) 1fr;
     }
 
     &--status {
@@ -161,21 +205,31 @@
       justify-content: space-between;
       padding-top: 0;
     }
+
+    .@{top}--list & {
+      padding: 0;
+    }
   }
 
   &__details {
     display: grid;
-    grid-template-rows: @icon-height 1fr;
+    grid-template-rows: @user-card-icon-size 1fr;
     margin-left: @card-item-spacing;
+
+    .@{top}--list & {
+      grid-gap: @card-item-spacing;
+      grid-template-rows: unset;
+      grid-template-columns: repeat(3, min-content);
+    }
   }
 
   &__icon {
-    height: @icon-height;
-    width: @icon-height;
-    font-size: @icon-height / 2;
-
     display: flex;
     pointer-events: auto;
+
+    a& {
+      .link-plain();
+    }
 
     & + & {
       margin-left: @flag-gutter;
@@ -190,6 +244,7 @@
     }
 
     &--flag {
+      height: @user-card-icon-size;
       width: @flag-width;
     }
 
@@ -198,9 +253,7 @@
       font-size: 10px;
       background-color: @osu-colour-b6;
       opacity: 0;
-      transition:
-        background-color 120ms ease-in-out,
-        opacity 120ms ease-in-out;
+      transition: background-color 120ms ease-in-out;
 
       // NB: there is a issue where clicking on the button to close the menu
       // causes the state to momentarily unhover and rehover
@@ -208,14 +261,23 @@
         opacity: 1;
 
         &:hover {
-          background-color: @osu-colour-b5;
+          background-color: @osu-colour-l1;
         }
       }
 
       // needs the higher specificity over .@{top}:hover
       .@{top}--active && {
         opacity: 1;
-        background-color: @osu-colour-b5;
+        background-color: @osu-colour-l1;
+      }
+
+      .@{top}--list & {
+        transition: none;
+        opacity: 1;
+        border-radius: 0 @card-border-radius @card-border-radius 0;
+        background-color: transparent;
+        width: 20px;
+        height: @avatar-size--list;
       }
     }
   }
@@ -223,15 +285,10 @@
   &__icons {
     display: flex;
     flex: none;
-  }
 
-  &__link-wrapper {
-    .link-white();
-    .link-plain();
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
+    .@{top}--list & {
+      align-items: center;
+    }
   }
 
   &__status {
@@ -253,12 +310,23 @@
   &__status-icon-container {
     .center-content();
     flex: none;
+    // TODO: put in grid instead?
     width: @avatar-size;
+
+    .@{top}--list & {
+      order: 1;
+      width: unset;
+      margin: 0 10px;
+    }
   }
 
   &__status-message {
     &--sub {
       font-size: 12px;
+    }
+
+    @media @mobile {
+      display: none;
     }
   }
 
@@ -269,6 +337,14 @@
 
     font-size: 14px;
     min-width: 0;
+
+    .@{top}--list & {
+      text-align: right;
+    }
+
+    @media @narrow {
+      display: none;
+    }
   }
 
   &__user {
@@ -277,6 +353,10 @@
 
     height: @avatar-size;
     min-width: 0;
+
+    .@{top}--list & {
+      height: @avatar-size--list;
+    }
   }
 
   &__username {

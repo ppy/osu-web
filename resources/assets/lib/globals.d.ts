@@ -101,6 +101,7 @@ interface User {
   last_visit?: string;
   pm_friends_only: boolean;
   profile_colour?: string;
+  support_level?: number;
   unread_pm_count?: number;
   username: string;
 }

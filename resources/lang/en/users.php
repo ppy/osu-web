@@ -402,4 +402,9 @@ return [
     'verify' => [
         'title' => 'Account Verification',
     ],
+
+    'view_mode' => [
+        'card' => 'Card view',
+        'list' => 'List view',
+    ],
 ];
