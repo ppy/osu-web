@@ -20,6 +20,7 @@
 
 namespace App\Models\UserStatistics;
 
+use App\Exceptions\ClassNotFoundException;
 use App\Models\Model as BaseModel;
 use App\Models\User;
 
@@ -81,7 +82,12 @@ abstract class Model extends BaseModel
             return;
         }
 
-        return get_class_namespace(static::class).'\\'.studly_case($modeStr);
+        $class = get_class_namespace(static::class).'\\'.studly_case(str_replace('\\', '', $modeStr));
+        if (class_exists($class)) {
+            return $class;
+        }
+
+        throw new ClassNotFoundException();
     }
 
     public function __construct($attributes = [], $zeroInsteadOfNull = true)
