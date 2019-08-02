@@ -36,19 +36,22 @@ class ModelTest extends TestCase
         }
     }
 
-    public function testGetClassByStringThrowsExceptionIfModeDoesNotExist()
+    /**
+     * @dataProvider modes
+     */
+    public function testGetClassByStringThrowsExceptionIfModeDoesNotExist($mode)
     {
-        $modes = ['does', 'not exist', 'not_real', 'best\\_osu'];
-        $errored = [];
-        foreach ($modes as $mode) {
-            try {
-                Model::getClassByString($mode);
-            } catch (ClassNotFoundException $_e) {
-                $errored[] = $mode;
-            }
-        }
+        $this->expectException(ClassNotFoundException::class);
+        Model::getClassByString($mode);
+    }
 
-        // assert with canonicalize = true to print the missing error
-        $this->assertEquals($modes, $errored, '', 0, 10, true);
+    public function modes()
+    {
+        return [
+            ['does'],
+            ['not exist'],
+            ['not_real'],
+            ['best\\_osu'],
+        ];
     }
 }
