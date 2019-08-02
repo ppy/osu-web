@@ -254,7 +254,7 @@
     if user.is_bot
       'bot'
     else
-      _.intersection(['ppy', 'bot', 'dev', 'gmt', 'nat', 'bng', 'bng_limited', 'support', 'alumni'], _.concat(user.default_group, user.groups))[0]
+      _.intersection(['ppy', 'dev', 'gmt', 'nat', 'bng', 'bng_limited', 'support', 'alumni'], _.concat(user.default_group, user.groups))[0]
 
 
   navigate: (url, keepScroll, {action = 'advance'} = {}) ->
