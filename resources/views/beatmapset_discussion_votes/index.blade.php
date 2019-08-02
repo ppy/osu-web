@@ -30,7 +30,7 @@
                 @include('beatmapset_discussion_votes._item', compact('vote'))
             @endforeach
 
-            @include('objects._pagination_v0', ['object' => $votes])
+            @include('objects._pagination_v2', ['object' => $votes])
         </div>
     </div>
 @endsection

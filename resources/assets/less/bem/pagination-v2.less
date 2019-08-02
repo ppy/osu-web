@@ -16,56 +16,63 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.pagination-v0 {
-  @_top: pagination-v0;
+.pagination-v2 {
+  @_top: pagination-v2;
 
-  padding: 10px;
-  color: @osu-colour-b2;
-
-  // TODO: remove after forum/store restyle
-  &--light-bg {
-    color: black;
-  }
-
-  &__row {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-    font-size: 12px;
-  }
+  padding: 8px;
+  color: @osu-colour-l2;
+  list-style: none;
+  margin: 0;
+  justify-content: center;
+  font-size: @font-size--normal;
+  display: flex;
 
   &__item {
-    display: inline-block;
+    margin: 2px;
   }
 
   &__link {
     .link-plain();
     display: block;
-    padding: 5px;
+    padding: 4px 10px;
+    border-radius: 10000px;
 
     &--active {
-      font-weight: bold;
-      color: white;
+      font-weight: 600;
+      color: @osu-colour-b5;
+      background-color: @osu-colour-h1;
 
       // TODO: remove after forum/store restyle
       .@{_top}--light-bg & {
-        color: black;
+        color: @osu-colour-c1;
+        background-color: @osu-colour-h2;
       }
     }
 
-    &--big {
-      padding: 0 10px;
-      font-size: 16px;
-      font-weight: bold;
+    &--disabled {
+      opacity: 0.5;
     }
 
     &--link {
       .link-default();
+
+      .@{_top}--light-bg & {
+        .link-hover({
+          color: @osu-colour-h1;
+        });
+      }
     }
 
-    &--separator {
-      font-weight: bold;
+    &--quick {
+      padding-left: 15px;
+      padding-right: 15px;
+      background-color: @osu-colour-b4;
+      text-transform: uppercase;
+
+      // TODO: remove after forum/store restyle
+      .@{_top}--light-bg & {
+        background-color: .osu-hsla(@osu-colour-l1, 0.2)[@hsla];
+      }
     }
   }
 }
