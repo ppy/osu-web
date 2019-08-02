@@ -26,11 +26,21 @@ export class Votes extends React.Component
   render: =>
 
     div className: 'page-extra',
-      h1 className: 'page-extra__title', osu.trans("users.show.extra.upvotes.title_longer")
+      h1 className: 'page-extra__title',
+        osu.trans("users.show.extra.votes.title_longer")
+
       ['received', 'given'].map (direction) =>
         [
-          h2 className: 'page-extra__subtitle', osu.trans("users.show.extra.upvotes.#{direction}")
-          div style: { display: 'flex', flexWrap: 'wrap' },
+          h2
+            key: "#{direction}-title"
+            className: 'page-extra__subtitle',
+
+            osu.trans("users.show.extra.votes.#{direction}")
+
+          div
+            key: direction
+            className: 'modding-profile__section modding-profile__section--votes',
+
             if @props.votes[direction].length == 0
               div className: 'modding-profile__empty-section', osu.trans('users.show.extra.none')
             else
@@ -47,12 +57,13 @@ export class Votes extends React.Component
     topClasses += " #{bn}--#{userBadge}" if userBadge?
 
     div
+      key: user.id
       className: topClasses
 
       div className: "#{bn}__avatar",
         a
           className: "#{bn}__user-link"
-          href: laroute.route('users.modding.index', user: user.id) + '#upvotes'
+          href: laroute.route('users.modding.index', user: user.id) + '#votes'
           el UserAvatar, user: user, modifiers: ['full-rounded']
       div
         className: "#{bn}__user"
@@ -60,7 +71,7 @@ export class Votes extends React.Component
           className: "#{bn}__user-row"
           a
             className: "#{bn}__user-link"
-            href: laroute.route('users.modding.index', user: user.id) + '#upvotes'
+            href: laroute.route('users.modding.index', user: user.id) + '#votes'
             span
               className: "#{bn}__user-text u-ellipsis-overflow"
               user.username
@@ -75,4 +86,4 @@ export class Votes extends React.Component
 
       div className: "#{bn}__votes-container",
         div className: "#{bn}__score", if score > 0 then "+#{score}" else score
-        div className: "#{bn}__count", osu.transChoice('users.show.extra.upvotes.vote_count', count)
+        div className: "#{bn}__count", osu.transChoice('users.show.extra.votes.vote_count', count)

@@ -17,11 +17,24 @@
  */
 
 .modding-profile {
+  &__beatmap-thumbnail {
+    margin: 20px 10px;
+  }
+
   &__empty-section {
     color: @osu-colour-f1;
     font-style: italic;
     margin-bottom: 10px;
   }
+
+  &__section {
+    display: flex;
+
+    &--votes {
+      flex-wrap: wrap;
+    }
+  }
+
   &__show-more {
     .link-default();
     .link-plain();

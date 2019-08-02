@@ -36,14 +36,20 @@ export class Posts extends React.Component
               canModeratePosts = BeatmapDiscussionHelper.canModeratePosts(currentUser)
               canBeDeleted = canModeratePosts || currentUser.id? == post.user_id
 
-              topClasses = 'beatmap-discussion beatmap-discussion--preview'
+              topClasses = 'modding-profile__section beatmap-discussion beatmap-discussion--preview'
 
               if post.deleted_at?
-                topClasses += " beatmap-discussion--deleted"
+                topClasses += ' beatmap-discussion--deleted'
 
-              div key: post.id, className: topClasses, style: { 'display': 'flex' },
-                a href: BeatmapDiscussionHelper.url(discussion: post.beatmap_discussion), style: {margin: '20px 10px'},
-                  img className: 'beatmapset-activities__beatmapset-cover', src: post.beatmap_discussion.beatmapset.covers.list,
+              div
+                key: post.id
+                className: topClasses,
+
+                a
+                  className: 'modding-profile__beatmap-thumbnail'
+                  href: BeatmapDiscussionHelper.url(discussion: post.beatmap_discussion),
+
+                  img className: 'beatmapset-activities__beatmapset-cover', src: post.beatmap_discussion.beatmapset.covers.list
 
                 div className: "beatmap-discussion__timestamp hidden-xs",
                   div className: "beatmap-discussion-timestamp",
@@ -67,6 +73,7 @@ export class Posts extends React.Component
                       canBeRestored: canModeratePosts
                       currentUser: currentUser
             a
+              key: 'show-more'
               className: 'modding-profile__show-more'
               href: laroute.route('users.modding.posts', {user: @props.user.id}),
               osu.trans('users.show.extra.posts.show_more')

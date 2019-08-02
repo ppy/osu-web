@@ -145,10 +145,6 @@ class ModdingHistoryController extends Controller
         ];
 
         $perPage = [
-//            'rankedAndApprovedBeatmapsets' => 6,
-//            'lovedBeatmapsets' => 6,
-//            'unrankedBeatmapsets' => 6,
-//            'graveyardBeatmapsets' => 2,
             'recentlyReceivedKudosu' => 5,
         ];
 
@@ -338,32 +334,6 @@ class ModdingHistoryController extends Controller
     {
         // Grouped by $transformer and sorted alphabetically ($transformer and then $page).
         switch ($page) {
-            // Beatmapset
-            case 'graveyardBeatmapsets':
-                $transformer = 'Beatmapset';
-                $includes = ['beatmaps'];
-                $query = $user->profileBeatmapsetsGraveyard()
-                    ->orderBy('last_update', 'desc');
-                break;
-            case 'lovedBeatmapsets':
-                $transformer = 'Beatmapset';
-                $includes = ['beatmaps'];
-                $query = $user->profileBeatmapsetsLoved()
-                    ->orderBy('approved_date', 'desc');
-                break;
-            case 'rankedAndApprovedBeatmapsets':
-                $transformer = 'Beatmapset';
-                $includes = ['beatmaps'];
-                $query = $user->profileBeatmapsetsRankedAndApproved()
-                    ->orderBy('approved_date', 'desc');
-                break;
-            case 'unrankedBeatmapsets':
-                $transformer = 'Beatmapset';
-                $includes = ['beatmaps'];
-                $query = $user->profileBeatmapsetsUnranked()
-                    ->orderBy('last_update', 'desc');
-                break;
-
             // KudosuHistory
             case 'recentlyReceivedKudosu':
                 $transformer = 'KudosuHistory';

@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user's Modding History",
-        'title_compact' => 'Mappering',
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Recently started discussions',
@@ -301,11 +301,11 @@ return [
                     'title' => 'First Place Ranks',
                 ],
             ],
-            'upvotes' => [
-                'given' => 'Upvotes Given (last 3 months)',
-                'received' => 'Upvotes Received (last 3 months)',
-                'title' => 'Upvotes',
-                'title_longer' => 'Recent Upvotes',
+            'votes' => [
+                'given' => 'Votes Given (last 3 months)',
+                'received' => 'Votes Received (last 3 months)',
+                'title' => 'Votes',
+                'title_longer' => 'Recent Votes',
                 'vote_count' => ':count vote|:count votes'
             ],
             'account_standing' => [
@@ -333,7 +333,7 @@ return [
 
         'header_title' => [
             '_' => 'Player :info',
-            'info' => 'Playering',
+            'info' => 'Info',
         ],
 
         'info' => [

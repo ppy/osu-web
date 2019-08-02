@@ -56,7 +56,7 @@ export class Main extends React.PureComponent
         users: props.users
         posts: props.posts
         votes: props.votes
-        profileOrder: ['events', 'discussions', 'posts', 'upvotes', 'kudosu']
+        profileOrder: ['events', 'discussions', 'posts', 'votes', 'kudosu']
         rankedAndApprovedBeatmapsets: @props.extras.rankedAndApprovedBeatmapsets
         lovedBeatmapsets: @props.extras.lovedBeatmapsets
         unrankedBeatmapsets: @props.extras.unrankedBeatmapsets
@@ -74,34 +74,11 @@ export class Main extends React.PureComponent
 
 
   componentDidMount: =>
+    $.subscribe 'user:update.profilePage', @userUpdate
     $.subscribe 'profile:showMore.profilePage', @showMore
     $.subscribe 'profile:page:jump.profilePage', @pageJump
     $(window).on 'throttled-scroll.profilePage', @pageScan
     $(document).on 'turbolinks:before-cache.profilePage', @saveStateToContainer
-
-    $(@pages.current).sortable
-      cursor: 'move'
-      handle: '.js-profile-page-extra--sortable-handle'
-      items: '.js-sortable--page'
-      revert: 150
-      scrollSpeed: 10
-      update: @updateOrder
-
-    $(@tabs.current).sortable
-      containment: 'parent'
-      cursor: 'move'
-      disabled: true
-      items: '.js-sortable--tab'
-      revert: 150
-      scrollSpeed: 0
-      update: @updateOrder
-      start: =>
-        # Somehow click event still goes through when dragging.
-        # This prevents triggering @tabClick.
-        Timeout.clear @draggingTabTimeout
-        @draggingTab = true
-      stop: =>
-        @draggingTabTimeout = Timeout.set 500, => @draggingTab = false
 
     osu.pageChange()
 
@@ -114,9 +91,6 @@ export class Main extends React.PureComponent
   componentWillUnmount: =>
     $.unsubscribe '.profilePage'
     $(window).off '.profilePage'
-
-    for sortable in [@pages, @tabs]
-      $(sortable.current).sortable 'destroy'
 
     $(window).stop()
     Timeout.clear @modeScrollTimeout
@@ -167,7 +141,7 @@ export class Main extends React.PureComponent
                 ref: @tabs
                 for m in profileOrder
                   a
-                    className: "page-mode__item#{if @isSortablePage m then ' js-sortable--tab' else ''}"
+                    className: 'page-mode__item'
                     key: m
                     'data-page-id': m
                     onClick: @tabClick
@@ -188,7 +162,6 @@ export class Main extends React.PureComponent
   extraPage: (name) =>
     {extraClass, props, component} = @extraPageParams name
     classes = 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
-    classes += ' js-sortable--page' if @isSortablePage name
     classes += " #{extraClass}" if extraClass?
     props.name = name
 
@@ -232,7 +205,7 @@ export class Main extends React.PureComponent
           users: @indexedUsers()
         component: Posts
 
-      when 'upvotes'
+      when 'votes'
         props:
           votes: @state.votes
           user: @state.user
@@ -319,9 +292,6 @@ export class Main extends React.PureComponent
     @setCurrentPage null, page.dataset.pageId
 
 
-  saveStateToContainer: =>
-    @props.container.dataset.profilePageState = JSON.stringify(@state)
-
   setCurrentPage: (_e, page, extraCallback) =>
     callback = =>
       extraCallback?()
@@ -336,38 +306,7 @@ export class Main extends React.PureComponent
   tabClick: (e) =>
     e.preventDefault()
 
-    # See $(@tabs.current).sortable.
-    return if @draggingTab
-
     @pageJump null, e.currentTarget.dataset.pageId
-
-
-  updateOrder: (event) =>
-    $elems = $(event.target)
-
-    newOrder = $elems.sortable('toArray', attribute: 'data-page-id')
-
-    LoadingOverlay.show()
-
-    $elems.sortable('cancel')
-
-    @setState profileOrder: newOrder, =>
-      $.ajax laroute.route('account.options'),
-        method: 'PUT'
-        dataType: 'JSON'
-        data:
-          user_profile_customization:
-            extras_order: @state.profileOrder
-
-      .done (userData) =>
-        $.publish 'user:update', userData
-
-      .fail (xhr) =>
-        osu.emitAjaxError() xhr
-
-        @setState profileOrder: @state.user.profile_order
-
-      .always LoadingOverlay.hide
 
 
   userUpdate: (_e, user) =>
@@ -376,22 +315,6 @@ export class Main extends React.PureComponent
     # this component needs full user object but sometimes this event only sends part of it
     @setState user: _.assign({}, @state.user, user)
 
-
-  userPageUpdate: (_e, newUserPage) =>
-    currentUserPage = _.cloneDeep @state.userPage
-    @setState userPage: _.extend(currentUserPage, newUserPage)
-
-
-  validMode: (mode) =>
-    modes = BeatmapHelper.modes
-
-    if _.includes(modes, mode)
-      mode
-    else
-      modes[0]
-
-  isSortablePage: (page) ->
-    _.includes @state.profileOrder, page
 
   indexedUsers: () =>
     usersCache = @state.usersCache

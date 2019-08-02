@@ -32,9 +32,15 @@ export class Discussions extends React.Component
         else
           [
             for discussion in @props.discussions
-              div key: discussion.id, style: { 'display': 'flex' },
-                a href: BeatmapDiscussionHelper.url(discussion: discussion), style: {margin: '20px 10px'},
-                  img className: 'beatmapset-activities__beatmapset-cover', src: discussion.beatmapset.covers.list,
+              div
+                className: 'modding-profile__section'
+                key: discussion.id,
+
+                a
+                  className: 'modding-profile__beatmap-thumbnail'
+                  href: BeatmapDiscussionHelper.url(discussion: discussion),
+
+                  img className: 'beatmapset-activities__beatmapset-cover', src: discussion.beatmapset.covers.list
 
                 el Discussion,
                   discussion: discussion
@@ -46,6 +52,7 @@ export class Discussions extends React.Component
                   showDeleted: true
                   preview: true
             a
+              key: 'show-more'
               className: 'modding-profile__show-more'
               href: laroute.route('users.modding.discussions', {user: @props.user.id}),
               osu.trans('users.show.extra.discussions.show_more')
