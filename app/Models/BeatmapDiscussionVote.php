@@ -36,6 +36,7 @@ class BeatmapDiscussionVote extends Model
 {
     public static function recentlyReceivedByUser($userId, $timeframeMonths = 3)
     {
+        //todo: optimize
         return static::where('beatmap_discussion_votes.created_at', '>', Carbon::now()->subMonth($timeframeMonths))
             ->join('beatmap_discussions', 'beatmap_discussion_votes.beatmap_discussion_id', 'beatmap_discussions.id')
             ->select('beatmap_discussion_votes.user_id')

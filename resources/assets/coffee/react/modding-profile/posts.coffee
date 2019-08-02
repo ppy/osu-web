@@ -67,7 +67,7 @@ export class Posts extends React.Component
                       users: @props.users
                       user: @props.users[post.user_id]
                       read: true
-      #                lastEditor: @props.users[post.last_editor_id]
+                      lastEditor: @props.users[post.last_editor_id]
                       canBeEdited: currentUser.is_admin || currentUser.id? == post.user_id
                       canBeDeleted: canBeDeleted
                       canBeRestored: canModeratePosts

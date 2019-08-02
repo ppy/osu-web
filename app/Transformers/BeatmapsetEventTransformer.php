@@ -63,7 +63,7 @@ class BeatmapsetEventTransformer extends Fractal\TransformerAbstract
         }
 
         return $this->item(
-            BeatmapDiscussion::where('id', $event->comment['beatmap_discussion_id'])->first(),
+            $event->beatmapDiscussion,
             new BeatmapDiscussionTransformer()
         );
     }

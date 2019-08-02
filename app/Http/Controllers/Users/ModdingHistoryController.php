@@ -92,57 +92,62 @@ class ModdingHistoryController extends Controller
 
         $discussions = BeatmapDiscussion::search($this->searchParams);
         $discussions['items'] = $discussions['query']->with([
-                'user',
-                'beatmapset',
-                'startingPost',
-            ])->get();
+            'user',
+            'beatmapDiscussionVotes',
+            'beatmapset',
+            'startingPost',
+        ])->get();
 
         $posts = BeatmapDiscussionPost::search($this->searchParams);
         $posts['items'] = $posts['query']->with([
-                'beatmapDiscussion.beatmapset',
-                'beatmapDiscussion.startingPost',
-            ])->get();
+            'beatmapDiscussion.beatmapset',
+        ])->get();
 
         $events = BeatmapsetEvent::search($this->searchParams);
         if ($this->isModerator) {
-            $events['items'] = $events['query']->with('user')->with(['beatmapset' => function ($query) {
+            $events['items'] = $events['query']->with(['beatmapset' => function ($query) {
                 $query->withTrashed();
-            }])->with('beatmapset.user')->get();
+            }])->with('beatmapDiscussion')->get();
         } else {
-            $events['items'] = $events['query']->with(['user', 'beatmapset', 'beatmapset.user'])->get();
+            $events['items'] = $events['query']->with(['beatmapset', 'beatmapDiscussion'])->get();
         }
 
         $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
         $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
 
-        $userIds = array_merge(
-            $discussions['items']->pluck('user_id')->toArray(),
-            $posts['items']->pluck('user_id')->toArray(),
-            $events['items']->pluck('user_id')->toArray(),
-            $votes['items']->pluck('user_id')->toArray(),
-            $receivedVotes['items']->pluck('user_id')->toArray()
-        );
+        $userIdSources = [
+            $discussions['items']
+                ->pluck('user_id')
+                ->toArray(),
+            $posts['items']
+                ->pluck('user_id')
+                ->toArray(),
+            $posts['items']
+                ->pluck('last_editor_id')
+                ->toArray(),
+            $events['items']
+                ->pluck('user_id')
+                ->toArray(),
+            $votes['items']
+                ->pluck('user_id')
+                ->toArray(),
+            $receivedVotes['items']
+                ->pluck('user_id')
+                ->toArray(),
+        ];
 
-        $users = User::whereIn('user_id', array_unique($userIds))
+        $userIds = [];
+
+        foreach ($userIdSources as $source) {
+            $userIds = array_merge($userIds, $source);
+        }
+
+        $userIds = array_values(array_filter(array_unique($userIds)));
+
+        $users = User::whereIn('user_id', $userIds)
             ->with('userGroups')
             ->default()
             ->get();
-
-        $userIncludes = [
-            "statistics:mode({$user->playmode})",
-            'active_tournament_banner',
-            'badges',
-            'follower_count',
-            'graveyard_beatmapset_count',
-            'groups',
-            'loved_beatmapset_count',
-            'previous_usernames',
-            'ranked_and_approved_beatmapset_count',
-            'statistics.rank',
-            'statistics.scoreRanks',
-            'support_level',
-            'unranked_beatmapset_count',
-        ];
 
         $perPage = [
             'recentlyReceivedKudosu' => 5,
@@ -162,7 +167,21 @@ class ModdingHistoryController extends Controller
             'user' => json_item(
                 $user,
                 'User',
-                $userIncludes
+                [
+                    "statistics:mode({$user->playmode})",
+                    'active_tournament_banner',
+                    'badges',
+                    'follower_count',
+                    'graveyard_beatmapset_count',
+                    'groups',
+                    'loved_beatmapset_count',
+                    'previous_usernames',
+                    'ranked_and_approved_beatmapset_count',
+                    'statistics.rank',
+                    'statistics.scoreRanks',
+                    'support_level',
+                    'unranked_beatmapset_count',
+                ]
             ),
             'discussions' => json_collection(
                 $discussions['items'],
