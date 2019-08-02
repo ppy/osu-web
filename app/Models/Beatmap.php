@@ -79,6 +79,11 @@ class Beatmap extends Model
         'mania' => 3,
     ];
 
+    public static function isModeValid(?string $mode)
+    {
+        return array_key_exists($mode, static::MODES);
+    }
+
     public static function modeInt($str)
     {
         return static::MODES[$str] ?? null;

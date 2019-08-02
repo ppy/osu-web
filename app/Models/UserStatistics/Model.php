@@ -21,6 +21,7 @@
 namespace App\Models\UserStatistics;
 
 use App\Exceptions\ClassNotFoundException;
+use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
 use App\Models\User;
 
@@ -78,16 +79,11 @@ abstract class Model extends BaseModel
 
     public static function getClass($modeStr)
     {
-        if ($modeStr === null) {
-            return;
+        if (!Beatmap::isModeValid($modeStr)) {
+            throw new ClassNotFoundException();
         }
 
-        $class = get_class_namespace(static::class).'\\'.studly_case(str_replace('\\', '', $modeStr));
-        if (class_exists($class)) {
-            return $class;
-        }
-
-        throw new ClassNotFoundException();
+        return get_class_namespace(static::class).'\\'.studly_case($modeStr);
     }
 
     public function __construct($attributes = [], $zeroInsteadOfNull = true)
