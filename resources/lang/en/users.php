@@ -383,6 +383,11 @@ return [
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Total Hits',
             'total_score' => 'Total Score',
+            # modding stats
+            'ranked_and_approved_beatmapset_count' => 'Ranked & Approved Beatmaps',
+            'loved_beatmapset_count' => 'Loved Beatmaps',
+            'unranked_beatmapset_count' => 'Pending Beatmaps',
+            'graveyard_beatmapset_count' => 'Graveyarded Beatmaps',
         ],
     ],
 

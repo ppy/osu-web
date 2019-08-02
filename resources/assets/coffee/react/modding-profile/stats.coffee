@@ -38,7 +38,7 @@ export class Stats extends React.PureComponent
     dl
       className: 'profile-stats__entry'
       key: key
-      dt className: 'profile-stats__key', key #osu.trans("users.show.stats.#{key}")
+      dt className: 'profile-stats__key', osu.trans("users.show.stats.#{key}")
       dd className: 'profile-stats__value', @formatValue(key)
 
 
