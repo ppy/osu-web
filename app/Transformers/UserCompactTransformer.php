@@ -30,6 +30,7 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
         'country',
         'cover',
         'groups',
+        'support_level',
     ];
 
     public function transform(User $user)
@@ -84,5 +85,10 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
 
             return $groups;
         });
+    }
+
+    public function includeSupportLevel(User $user)
+    {
+        return $this->primitive($user->supportLevel());
     }
 }

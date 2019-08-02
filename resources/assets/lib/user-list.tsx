@@ -19,6 +19,7 @@
 import * as moment from 'moment';
 import * as React from 'react';
 import { Sort } from 'sort';
+import { ViewMode } from 'user-card';
 import { UserCards } from 'user-cards';
 
 type Filter = 'all' | 'online' | 'offline';
@@ -26,6 +27,7 @@ type SortMode = 'last_visit' | 'username';
 
 const filters: Filter[] = ['all', 'online', 'offline'];
 const sortModes: SortMode[] = ['last_visit', 'username'];
+const viewModes: ViewMode[] = ['card', 'list'];
 
 interface Props {
   title?: string;
@@ -35,6 +37,7 @@ interface Props {
 interface State {
   filter: Filter;
   sortMode: SortMode;
+  viewMode: ViewMode;
 }
 
 function usernameSortAscending(x: User, y: User) {
@@ -45,6 +48,7 @@ export class UserList extends React.PureComponent<Props> {
   readonly state: State = {
     filter: this.filterFromUrl,
     sortMode: this.sortFromUrl,
+    viewMode: this.viewFromUrl,
   };
 
   private get filterFromUrl() {
@@ -78,15 +82,29 @@ export class UserList extends React.PureComponent<Props> {
   private get sortFromUrl() {
     const url = new URL(location.href);
 
-    return this.getAllowedQueryStringValue(sortModes, url.searchParams.get('user_sort'));
+    return this.getAllowedQueryStringValue(sortModes, url.searchParams.get('sort'));
+  }
+
+  private get viewFromUrl() {
+    const url = new URL(location.href);
+
+    return this.getAllowedQueryStringValue(viewModes, url.searchParams.get('view'));
   }
 
   onSortSelected = (event: React.SyntheticEvent) => {
     const value = (event.currentTarget as HTMLElement).dataset.value;
-    const url = osu.updateQueryString(null, { user_sort: value });
+    const url = osu.updateQueryString(null, { sort: value });
 
     Turbolinks.controller.advanceHistory(url);
     this.setState({ sortMode: value });
+  }
+
+  onViewSelected = (event: React.SyntheticEvent) => {
+    const value = (event.currentTarget as HTMLElement).dataset.value;
+    const url = osu.updateQueryString(null, { view: value });
+
+    Turbolinks.controller.advanceHistory(url);
+    this.setState({ viewMode: value });
   }
 
   optionSelected = (event: React.SyntheticEvent) => {
@@ -104,10 +122,11 @@ export class UserList extends React.PureComponent<Props> {
         {this.renderSelections()}
         <div className='user-list'>
           <div className='user-list__toolbar'>
-            {this.renderSorter()}
+            <div className='user-list__toolbar-item'>{this.renderSorter()}</div>
+            <div className='user-list__toolbar-item'>{this.renderViewMode()}</div>
           </div>
 
-          <UserCards users={this.sortedUsers} />
+          <UserCards users={this.sortedUsers} viewMode={this.state.viewMode} />
         </div>
       </>
     );
@@ -156,6 +175,29 @@ export class UserList extends React.PureComponent<Props> {
         sortMode={this.state.sortMode}
         values={sortModes}
       />
+    );
+  }
+
+  renderViewMode() {
+    return (
+      <div className='user-list__view-modes'>
+        <button
+          className={osu.classWithModifiers('user-list__view-mode', this.state.viewMode === 'card' ? ['active'] : [])}
+          data-value='card'
+          title={osu.trans('users.view_mode.card')}
+          onClick={this.onViewSelected}
+        >
+          <span className='fas fa-square' />
+        </button>
+        <button
+          className={osu.classWithModifiers('user-list__view-mode', this.state.viewMode === 'list' ? ['active'] : [])}
+          data-value='list'
+          title={osu.trans('users.view_mode.list')}
+          onClick={this.onViewSelected}
+        >
+          <span className='fas fa-bars' />
+        </button>
+      </div>
     );
   }
 

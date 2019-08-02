@@ -32,6 +32,7 @@ use App\Models\User;
 use App\Models\UsernameChangeHistory;
 use App\Models\UserNotFound;
 use Auth;
+use Elasticsearch\Common\Exceptions\ElasticsearchException;
 use Request;
 
 class UsersController extends Controller
@@ -219,7 +220,9 @@ class UsersController extends Controller
             $perPage = $this->sanitizedLimitParam();
         }
 
-        return $this->getExtra($this->user, $page, ['mode' => $this->mode], $perPage, $this->offset);
+        $json = $this->getExtra($this->user, $page, ['mode' => $this->mode], $perPage, $this->offset);
+
+        return response($json, is_null($json['error'] ?? null) ? 200 : 504);
     }
 
     public function me()
@@ -386,88 +389,92 @@ class UsersController extends Controller
 
     private function getExtra($user, $page, $options, $perPage = 10, $offset = 0)
     {
-        // Grouped by $transformer and sorted alphabetically ($transformer and then $page).
-        switch ($page) {
-            // BeatmapPlaycount
-            case 'beatmapPlaycounts':
-                $transformer = 'BeatmapPlaycount';
-                $query = $user->beatmapPlaycounts()
-                    ->with('beatmap', 'beatmap.beatmapset')
-                    ->whereHas('beatmap.beatmapset')
-                    ->orderBy('playcount', 'desc')
-                    ->orderBy('beatmap_id', 'desc'); // for consistent sorting
-                break;
+        try {
+            // Grouped by $transformer and sorted alphabetically ($transformer and then $page).
+            switch ($page) {
+                // BeatmapPlaycount
+                case 'beatmapPlaycounts':
+                    $transformer = 'BeatmapPlaycount';
+                    $query = $user->beatmapPlaycounts()
+                        ->with('beatmap', 'beatmap.beatmapset')
+                        ->whereHas('beatmap.beatmapset')
+                        ->orderBy('playcount', 'desc')
+                        ->orderBy('beatmap_id', 'desc'); // for consistent sorting
+                    break;
 
-            // Beatmapset
-            case 'favouriteBeatmapsets':
-                $transformer = 'Beatmapset';
-                $includes = ['beatmaps'];
-                $query = $user->profileBeatmapsetsFavourite();
-                break;
-            case 'graveyardBeatmapsets':
-                $transformer = 'Beatmapset';
-                $includes = ['beatmaps'];
-                $query = $user->profileBeatmapsetsGraveyard()
-                    ->orderBy('last_update', 'desc');
-                break;
-            case 'lovedBeatmapsets':
-                $transformer = 'Beatmapset';
-                $includes = ['beatmaps'];
-                $query = $user->profileBeatmapsetsLoved()
-                    ->orderBy('approved_date', 'desc');
-                break;
-            case 'rankedAndApprovedBeatmapsets':
-                $transformer = 'Beatmapset';
-                $includes = ['beatmaps'];
-                $query = $user->profileBeatmapsetsRankedAndApproved()
-                    ->orderBy('approved_date', 'desc');
-                break;
-            case 'unrankedBeatmapsets':
-                $transformer = 'Beatmapset';
-                $includes = ['beatmaps'];
-                $query = $user->profileBeatmapsetsUnranked()
-                    ->orderBy('last_update', 'desc');
-                break;
+                // Beatmapset
+                case 'favouriteBeatmapsets':
+                    $transformer = 'Beatmapset';
+                    $includes = ['beatmaps'];
+                    $query = $user->profileBeatmapsetsFavourite();
+                    break;
+                case 'graveyardBeatmapsets':
+                    $transformer = 'Beatmapset';
+                    $includes = ['beatmaps'];
+                    $query = $user->profileBeatmapsetsGraveyard()
+                        ->orderBy('last_update', 'desc');
+                    break;
+                case 'lovedBeatmapsets':
+                    $transformer = 'Beatmapset';
+                    $includes = ['beatmaps'];
+                    $query = $user->profileBeatmapsetsLoved()
+                        ->orderBy('approved_date', 'desc');
+                    break;
+                case 'rankedAndApprovedBeatmapsets':
+                    $transformer = 'Beatmapset';
+                    $includes = ['beatmaps'];
+                    $query = $user->profileBeatmapsetsRankedAndApproved()
+                        ->orderBy('approved_date', 'desc');
+                    break;
+                case 'unrankedBeatmapsets':
+                    $transformer = 'Beatmapset';
+                    $includes = ['beatmaps'];
+                    $query = $user->profileBeatmapsetsUnranked()
+                        ->orderBy('last_update', 'desc');
+                    break;
 
-            // Event
-            case 'recentActivity':
-                $transformer = 'Event';
-                $query = $user->events()->recent();
-                break;
+                // Event
+                case 'recentActivity':
+                    $transformer = 'Event';
+                    $query = $user->events()->recent();
+                    break;
 
-            // KudosuHistory
-            case 'recentlyReceivedKudosu':
-                $transformer = 'KudosuHistory';
-                $query = $user->receivedKudosu()
-                    ->with('post', 'post.topic', 'giver', 'kudosuable')
-                    ->orderBy('exchange_id', 'desc');
-                break;
+                // KudosuHistory
+                case 'recentlyReceivedKudosu':
+                    $transformer = 'KudosuHistory';
+                    $query = $user->receivedKudosu()
+                        ->with('post', 'post.topic', 'giver', 'kudosuable')
+                        ->orderBy('exchange_id', 'desc');
+                    break;
 
-            // Score
-            case 'scoresBest':
-                $transformer = 'Score';
-                $includes = ['beatmap', 'beatmapset', 'weight', 'user'];
-                $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ['beatmap', 'beatmap.beatmapset', 'user']);
-                break;
-            case 'scoresFirsts':
-                $transformer = 'Score';
-                $includes = ['beatmap', 'beatmapset', 'user'];
-                $query = $user->scoresFirst($options['mode'], true)
-                    ->orderBy('score_id', 'desc')
-                    ->with('beatmap', 'beatmap.beatmapset', 'user');
-                break;
-            case 'scoresRecent':
-                $transformer = 'Score';
-                $includes = ['beatmap', 'beatmapset', 'best', 'user'];
-                $query = $user->scores($options['mode'], true)
-                    ->with('beatmap', 'beatmap.beatmapset', 'best', 'user');
-                break;
+                // Score
+                case 'scoresBest':
+                    $transformer = 'Score';
+                    $includes = ['beatmap', 'beatmapset', 'weight', 'user'];
+                    $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ['beatmap', 'beatmap.beatmapset', 'user']);
+                    break;
+                case 'scoresFirsts':
+                    $transformer = 'Score';
+                    $includes = ['beatmap', 'beatmapset', 'user'];
+                    $query = $user->scoresFirst($options['mode'], true)
+                        ->orderBy('score_id', 'desc')
+                        ->with('beatmap', 'beatmap.beatmapset', 'user');
+                    break;
+                case 'scoresRecent':
+                    $transformer = 'Score';
+                    $includes = ['beatmap', 'beatmapset', 'best', 'user'];
+                    $query = $user->scores($options['mode'], true)
+                        ->with('beatmap', 'beatmap.beatmapset', 'best', 'user');
+                    break;
+            }
+
+            if (!isset($collection)) {
+                $collection = $query->limit($perPage)->offset($offset)->get();
+            }
+
+            return json_collection($collection, $transformer, $includes ?? []);
+        } catch (ElasticsearchException $e) {
+            return ['error' => search_error_message($e)];
         }
-
-        if (!isset($collection)) {
-            $collection = $query->limit($perPage)->offset($offset)->get();
-        }
-
-        return json_collection($collection, $transformer, $includes ?? []);
     }
 }

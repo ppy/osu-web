@@ -1438,7 +1438,7 @@ class User extends Model implements AuthenticatableContract
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
             $supportLength = 0;
 
-            foreach ($this->supporterTags as $support) {
+            foreach ($this->supporterTagPurchases as $support) {
                 if ($support->cancel === true) {
                     $supportLength -= $support->length;
                 } else {
@@ -1524,6 +1524,15 @@ class User extends Model implements AuthenticatableContract
         return $query
             ->where('user_allow_viewonline', true)
             ->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
+    }
+
+    public function scopeEagerloadForListing($query)
+    {
+        return $query->with([
+            'country',
+            'supporterTagPurchases',
+            'userProfileCustomization',
+        ]);
     }
 
     public function checkPassword($password)

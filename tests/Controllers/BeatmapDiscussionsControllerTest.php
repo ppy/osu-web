@@ -97,7 +97,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this
             ->actingAs($this->bngUser)
-            ->withSession(['verified' => \App\Libraries\UserVerification::VERIFIED])
+            ->withSession(['verified' => true])
             ->put(route('beatmap-discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
@@ -181,7 +181,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this
             ->actingAs($this->bngUser)
-            ->withSession(['verified' => \App\Libraries\UserVerification::VERIFIED])
+            ->withSession(['verified' => true])
             ->put(route('beatmap-discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
