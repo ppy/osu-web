@@ -147,7 +147,7 @@ export default class ConversationView extends React.Component<any, any> {
         </div>
         <div className='chat-conversation__chat-label'>
           {channel.type === 'PM' ? (
-            osu.trans('chat.talking_with', {name: channel.name})
+            <span>{osu.trans('chat.talking_with')} <a href={laroute.route('users.show', {user: channel.pmTarget})}>{channel.name}</a></span>
           ) : (
             osu.trans('chat.talking_in', {channel: channel.name})
           )}
