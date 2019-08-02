@@ -129,7 +129,7 @@ class ModdingHistoryController extends Controller
             ->get();
 
         $userIncludes = [
-            "statistics:mode(osu)", // TODO: fix
+            "statistics:mode({$user->playmode})",
             'active_tournament_banner',
             'badges',
             'follower_count',
