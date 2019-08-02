@@ -31,6 +31,7 @@ class UserBadgeTransformer extends Fractal\TransformerAbstract
             'awarded_at' => json_time($badge->awarded),
             'description' => $badge->description,
             'image_url' => $badge->imageUrl(),
+            'url' => $badge->url,
         ];
     }
 }
