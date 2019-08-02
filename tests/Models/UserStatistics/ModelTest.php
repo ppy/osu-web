@@ -18,20 +18,40 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Transformers;
+namespace Tests\UserStatistics;
 
-use App\Models\UserBadge;
-use League\Fractal;
+use App\Exceptions\ClassNotFoundException;
+use App\Models\Beatmap;
+use App\Models\UserStatistics\Model;
+use TestCase;
 
-class UserBadgeTransformer extends Fractal\TransformerAbstract
+class ModelTest extends TestCase
 {
-    public function transform(UserBadge $badge)
+    public function testGetClass()
+    {
+        $modes = array_keys(Beatmap::MODES);
+        foreach ($modes as $mode) {
+            $class = Model::getClass($mode);
+            $this->assertInstanceOf(Model::class, new $class);
+        }
+    }
+
+    /**
+     * @dataProvider modes
+     */
+    public function testGetClassByThrowsExceptionIfModeDoesNotExist($mode)
+    {
+        $this->expectException(ClassNotFoundException::class);
+        Model::getClass($mode);
+    }
+
+    public function modes()
     {
         return [
-            'awarded_at' => json_time($badge->awarded),
-            'description' => $badge->description,
-            'image_url' => $badge->imageUrl(),
-            'url' => $badge->url,
+            ['does'],
+            ['not exist'],
+            ['not_real'],
+            ['best\\_osu'],
         ];
     }
 }

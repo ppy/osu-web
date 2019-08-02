@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,51 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.store-order-item {
-  .default-border-radius();
-  .default-box-shadow();
-  list-style: none;
-  padding: 10px;
-  margin: 0 0 5px;
+namespace App\Exceptions;
 
-  @media @desktop {
-    flex-wrap: nowrap;
-  }
-
-  &__error {
-    list-style: none;
-  }
-
-  &__errors {
-    color: @red;
-  }
-
-  &__line {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    @media @narrow {
-      flex-direction: column;
+class ClassNotFoundException extends SilencedException
+{
+    public function getStatusCode()
+    {
+        return 404;
     }
-  }
-
-  &__options {
-    display: flex;
-    align-self: flex-end;
-    justify-content: flex-end;
-  }
-
-  &__quantity {
-    min-width: 100px;
-  }
-
-  &__name {
-    align-self: flex-start;
-  }
-
-  &__subtotal {
-    min-width: 150px;
-    padding: 0 20px;
-  }
 }

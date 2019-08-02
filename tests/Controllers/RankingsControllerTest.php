@@ -17,26 +17,33 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-namespace App\Models;
-
-/**
- * @property \Carbon\Carbon|null $awarded
- * @property string $description
- * @property string $image
- * @property string $url
- * @property int $user_id
- */
-class UserBadge extends Model
+class RankingsControllerTest extends TestCase
 {
-    protected $table = 'osu_badges';
-    protected $primaryKey = 'user_id';
-
-    protected $dates = ['awarded'];
-    public $timestamps = false;
-
-    public function imageUrl()
+    public function testIndex()
     {
-        return "https://assets.ppy.sh/profile-badges/{$this->image}";
+        $this
+            ->get(route('rankings', ['mode' => 'osu', 'type' => 'performance']))
+            ->assertSuccessful();
+    }
+
+    public function testIndexRedirect()
+    {
+        $this
+            ->get(route('rankings', ['mode' => 'osu']))
+            ->assertRedirect(route('rankings', ['mode' => 'osu', 'type' => 'performance']));
+    }
+
+    public function testIndexInvalidMode()
+    {
+        $this
+            ->get(route('rankings', ['mode' => 'nope', 'type' => 'performance']))
+            ->assertStatus(404);
+    }
+
+    public function testIndexInvalidType()
+    {
+        $this
+            ->get(route('rankings', ['mode' => 'osu', 'type' => 'notatype']))
+            ->assertStatus(404);
     }
 }
