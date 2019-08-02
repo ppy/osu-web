@@ -78,7 +78,10 @@ abstract class Model extends BaseModel
 
     public static function getClassByString(string $mode)
     {
-        return get_class_namespace(static::class).'\\'.studly_case($mode);
+        $className = get_class_namespace(static::class).'\\'.studly_case($mode);
+        if (class_exists($className)) {
+            return $className;
+        }
     }
 
     public static function getMode() : string
