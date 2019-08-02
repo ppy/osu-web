@@ -74,7 +74,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             );
 
             $this->mode = get_int($request['m']);
-            if (!Beatmap::isModeValid($this->mode)) {
+            if (!in_array($this->mode, Beatmap::MODES, true)) {
                 $this->mode = null;
             }
 
