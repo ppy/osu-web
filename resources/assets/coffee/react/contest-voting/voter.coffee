@@ -86,14 +86,10 @@ export class Voter extends React.Component
         props.className = classes.concat(selected_class).join(' ')
         icon = i className: 'fas fa-fw fa-star'
       else
-        if isLoading && !isSelected
-          props.className = classes.join(' ')
-          icon = i className: 'fas fa-fw fa-sync contest__voting-star--spin'
-        else
-          component = a
-          props.className = classes.concat(selected_class).join(' ')
-          props.href = '#'
-          props.onClick = @handleClick
-          icon = i className: 'fas fa-fw fa-star'
+        component = a
+        props.className = classes.concat(selected_class).join(' ')
+        props.href = '#'
+        props.onClick = @handleClick
+        icon = i className: 'fas fa-fw fa-star'
 
     component props, icon
