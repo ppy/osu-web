@@ -32,6 +32,18 @@ formatDuration = (value) ->
   else
     "#{m}:#{_.padStart s, 2, 0}"
 
+truncate = (number) ->
+  suffixes = ["", "k", "m", "b", "t"]
+  k = 1000
+  i = Math.floor(Math.log(number) / Math.log(k))
+  j = number / Math.pow(k, i)
+  formattedNumber = j.toFixed(2)
+
+  if k > number
+    "#{number}"
+  else
+    "#{formattedNumber}#{suffixes[i]}"
+
 
 export BeatmapBasicStats = ({beatmapset, beatmap}) ->
   div
@@ -39,7 +51,7 @@ export BeatmapBasicStats = ({beatmapset, beatmap}) ->
     for stat in ['total_length', 'bpm', 'count_circles', 'count_sliders']
       value =
         if stat == 'bpm'
-          beatmapset.bpm
+          truncate beatmapset.bpm
         else
           beatmap[stat]
 
