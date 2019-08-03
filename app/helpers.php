@@ -1261,8 +1261,11 @@ function suffixed_number_format($number, $isShortened)
 
     $i = floor(log($number) / log($k));
 
-    if($isShortened == true) return number_format($number / pow($k, $i), 2).$shortenedSuffixes[$i];
-    else return number_format($number / pow($k, $i), 2).' '.$suffixes[$i];
+    if ($isShortened === true) {
+        return number_format($number / pow($k, $i), 2).$shortenedSuffixes[$i];
+    } else {
+        return number_format($number / pow($k, $i), 2).' '.$suffixes[$i];
+    }
 }
 
 function suffixed_number_format_tag($number, $isShortened)
