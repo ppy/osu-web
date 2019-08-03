@@ -1249,9 +1249,10 @@ function clamp($number, $min, $max)
 }
 
 // e.g. 100634983048665 -> 100.63 trillion
-function suffixed_number_format($number)
+function suffixed_number_format($number, $isShortened)
 {
-    $suffixes = ['', 'k', 'million', 'billion', 'trillion']; // TODO: localize
+    $suffixes = ['', 'k', 'million', 'billion', 'trillion']; // TODO: localize & Discussion: use short scale or long scale numbers?
+    $shortenedSuffixes = ['', 'k', 'm', 'b', 't']; //Discussion: use short scale or long scale numbers?
     $k = 1000;
 
     if ($number < $k) {
@@ -1260,12 +1261,13 @@ function suffixed_number_format($number)
 
     $i = floor(log($number) / log($k));
 
-    return number_format($number / pow($k, $i), 2).' '.$suffixes[$i];
+    if($isShortened == true) return number_format($number / pow($k, $i), 2).$shortenedSuffixes[$i];
+    else return number_format($number / pow($k, $i), 2).' '.$suffixes[$i];
 }
 
-function suffixed_number_format_tag($number)
+function suffixed_number_format_tag($number, $isShortened)
 {
-    return "<span title='".i18n_number_format($number)."'>".suffixed_number_format($number).'</span>';
+    return "<span title='".i18n_number_format($number)."'>".suffixed_number_format($number, $isShortened).'</span>';
 }
 
 // formats a number as a percentage with a fixed number of precision
