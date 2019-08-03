@@ -67,10 +67,10 @@
                     {{ i18n_number_format($score->playcount) }}
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                    {!! suffixed_number_format_tag($score->total_score) !!}
+                    {!! suffixed_number_format_tag($score->total_score, false) !!}
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--focused">
-                    {!! suffixed_number_format_tag($score->ranked_score) !!}
+                    {!! suffixed_number_format_tag($score->ranked_score, false) !!}
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                     {{ i18n_number_format(max(0, $score->x_rank_count + $score->xh_rank_count)) }}

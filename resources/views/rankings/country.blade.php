@@ -70,16 +70,16 @@
                         {{ i18n_number_format($score->user_count) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {!! suffixed_number_format_tag($score->play_count) !!}
+                        {!! suffixed_number_format_tag($score->play_count, false) !!}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {!! suffixed_number_format_tag($score->ranked_score) !!}
+                        {!! suffixed_number_format_tag($score->ranked_score, false) !!}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {!! suffixed_number_format_tag(round($score->ranked_score / max($score->user_count, 1))) !!}
+                        {!! suffixed_number_format_tag(round($score->ranked_score / max($score->user_count, 1)), false) !!}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--focused">
-                        {!! suffixed_number_format_tag(round($score->performance)) !!}
+                        {!! suffixed_number_format_tag(round($score->performance), false) !!}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ i18n_number_format(round($score->performance / max($score->user_count, 1))) }}
