@@ -18,46 +18,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Events;
+namespace App\Exceptions;
 
-use Illuminate\Broadcasting\Channel;
+use Exception;
 
-class UserLogoutEvent extends NotificationEventBase
+class UserVerificationException extends Exception
 {
-    public $action;
-    public $userId;
-    public $channelName;
+    private $shouldReissue;
 
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
-    public function __construct($userId, $sessionKeys)
+    public function __construct(string $reasonKey, bool $shouldReissue)
     {
-        parent::__construct();
+        $this->shouldReissue = $shouldReissue;
 
-        $this->userId = $userId;
-        $this->sessionKeys = $sessionKeys;
+        $message = trans("user_verification.errors.{$reasonKey}");
+
+        parent::__construct($message);
     }
 
-    public function broadcastAs()
+    public function shouldReissue()
     {
-        return 'logout';
-    }
-
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return Channel|array
-     */
-    public function broadcastOn()
-    {
-        return new Channel("user_session:{$this->userId}");
-    }
-
-    public function broadcastWith()
-    {
-        return ['keys' => $this->sessionKeys];
+        return $this->shouldReissue;
     }
 }
