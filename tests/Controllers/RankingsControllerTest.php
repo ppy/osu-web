@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -15,40 +17,33 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-.user-list {
-  padding: 0 0 20px;
-
-  &__toolbar {
-    display: flex;
-    padding: 20px 40px;
-    font-size: @font-size--title-small;
-    justify-content: flex-end;
-
-    @media @narrow {
-      padding: 20px 10px;
-    }
-  }
-
-  &__toolbar-item {
-    & + & {
-      margin-left: 10px;
-    }
-  }
-
-  &__view-mode {
-    .reset-input();
-    .default-border-radius();
-
-    color: white;
-    padding: 5px;
-
-    &:hover {
-      color: @osu-colour-l1;
+class RankingsControllerTest extends TestCase
+{
+    public function testIndex()
+    {
+        $this
+            ->get(route('rankings', ['mode' => 'osu', 'type' => 'performance']))
+            ->assertSuccessful();
     }
 
-    &--active {
-      color: @osu-colour-l1;
+    public function testIndexRedirect()
+    {
+        $this
+            ->get(route('rankings', ['mode' => 'osu']))
+            ->assertRedirect(route('rankings', ['mode' => 'osu', 'type' => 'performance']));
     }
-  }
+
+    public function testIndexInvalidMode()
+    {
+        $this
+            ->get(route('rankings', ['mode' => 'nope', 'type' => 'performance']))
+            ->assertStatus(404);
+    }
+
+    public function testIndexInvalidType()
+    {
+        $this
+            ->get(route('rankings', ['mode' => 'osu', 'type' => 'notatype']))
+            ->assertStatus(404);
+    }
 }

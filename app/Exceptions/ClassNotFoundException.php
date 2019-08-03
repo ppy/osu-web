@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,39 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.user-list {
-  padding: 0 0 20px;
+namespace App\Exceptions;
 
-  &__toolbar {
-    display: flex;
-    padding: 20px 40px;
-    font-size: @font-size--title-small;
-    justify-content: flex-end;
-
-    @media @narrow {
-      padding: 20px 10px;
+class ClassNotFoundException extends SilencedException
+{
+    public function getStatusCode()
+    {
+        return 404;
     }
-  }
-
-  &__toolbar-item {
-    & + & {
-      margin-left: 10px;
-    }
-  }
-
-  &__view-mode {
-    .reset-input();
-    .default-border-radius();
-
-    color: white;
-    padding: 5px;
-
-    &:hover {
-      color: @osu-colour-l1;
-    }
-
-    &--active {
-      color: @osu-colour-l1;
-    }
-  }
 }

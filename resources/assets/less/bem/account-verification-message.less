@@ -16,39 +16,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.user-list {
-  padding: 0 0 20px;
+.account-verification-message {
+  text-align: center;
 
-  &__toolbar {
-    display: flex;
-    padding: 20px 40px;
-    font-size: @font-size--title-small;
-    justify-content: flex-end;
-
-    @media @narrow {
-      padding: 20px 10px;
-    }
+  &__icon {
+    font-size: 60px; // icon size
+    color: @green;
   }
 
-  &__toolbar-item {
-    & + & {
-      margin-left: 10px;
-    }
+  &__text {
+    font-size: @font-size--normal;
   }
 
-  &__view-mode {
-    .reset-input();
-    .default-border-radius();
-
-    color: white;
-    padding: 5px;
-
-    &:hover {
-      color: @osu-colour-l1;
-    }
-
-    &--active {
-      color: @osu-colour-l1;
-    }
+  &__title {
+    margin: 10px 0;
   }
 }

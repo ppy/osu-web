@@ -18,28 +18,40 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Middleware;
+namespace Tests\Score;
 
-use App\Events\UserSessionEvent;
+use App\Exceptions\ClassNotFoundException;
+use App\Models\Beatmap;
+use App\Models\Score\Model;
+use TestCase;
 
-class VerifyPrivilegedUser extends VerifyUser
+class ModelTest extends TestCase
 {
-    public static function isRequired($user)
+    public function testGetClassByString()
     {
-        return $user !== null && $user->isPrivileged();
+        $modes = array_keys(Beatmap::MODES);
+        foreach ($modes as $mode) {
+            $class = Model::getClassByString($mode);
+            $this->assertInstanceOf(Model::class, new $class);
+        }
     }
 
-    public function requiresVerification($request)
+    /**
+     * @dataProvider modes
+     */
+    public function testGetClassByStringThrowsExceptionIfModeDoesNotExist($mode)
     {
-        $user = auth()->user();
-        $isRequired = static::isRequired($user);
+        $this->expectException(ClassNotFoundException::class);
+        Model::getClassByString($mode);
+    }
 
-        if ($user !== null && session()->get('requires_verification') !== $isRequired) {
-            session()->put('requires_verification', $isRequired);
-            session()->save();
-            event(UserSessionEvent::newVerificationRequirementChange($user->getKey(), $isRequired));
-        }
-
-        return $isRequired;
+    public function modes()
+    {
+        return [
+            ['does'],
+            ['not exist'],
+            ['not_real'],
+            ['best\\_osu'],
+        ];
     }
 }
