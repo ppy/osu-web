@@ -37,7 +37,7 @@ truncate = (number) ->
   k = 1000
   i = Math.floor(Math.log(number) / Math.log(k))
   j = number / Math.pow(k, i)
-  formattedNumber = j.toFixed(2)
+  formattedNumber = j.toFixed()
 
   if k > number
     "#{number}"
@@ -53,7 +53,7 @@ export BeatmapBasicStats = ({beatmapset, beatmap}) ->
         if stat == 'bpm'
           truncate beatmapset.bpm
         else
-          beatmap[stat]
+          truncate beatmap[stat]
 
       value =
         if stat == 'total_length'
@@ -67,6 +67,10 @@ export BeatmapBasicStats = ({beatmapset, beatmap}) ->
         title: osu.trans "beatmapsets.show.stats.#{stat}",
           if stat == 'total_length'
             hit_length: formatDuration(beatmap['hit_length'])
+          else if stat == 'bpm'
+            count: beatmapset.bpm
+          else
+            count: value
         div
           className: "#{bn}__entry-icon"
           style:
