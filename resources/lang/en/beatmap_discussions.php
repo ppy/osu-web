@@ -84,5 +84,5 @@ return [
         'bng' => 'Beatmap Nominator',
         'bng_limited' => 'Probationary Beatmap Nominator',
         'nat' => 'Nomination Assessment Team Member',
-    ]
+    ],
 ];
