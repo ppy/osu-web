@@ -78,4 +78,11 @@ return [
         'everyone' => 'Everyone',
         'label' => 'Filter by user',
     ],
+
+    'user_title' -> [
+        'mapper' => 'Beatmap Creator',
+        'bng' => 'Beatmap Nominator',
+        'bng_limited' => 'Probationary Beatmap Nominator',
+        'nat' => 'Nomination Assessment Team Member',
+    ]
 ];
