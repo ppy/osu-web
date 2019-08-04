@@ -115,6 +115,8 @@ class LegacyInterOpController extends Controller
 
         Event::generate('achievement', compact('achievement', 'user'));
         broadcast_notification(Notification::USER_ACHIEVEMENT_UNLOCK, $achievement, $user);
+
+        return $achievement->getKey();
     }
 
     public function userBestScoresCheck($id)

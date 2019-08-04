@@ -263,7 +263,7 @@ class UsersController extends Controller
 
         $currentMode = $mode ?? $user->playmode;
 
-        if (!array_key_exists($currentMode, Beatmap::MODES)) {
+        if (!Beatmap::isModeValid($currentMode)) {
             abort(404);
         }
 
@@ -368,7 +368,7 @@ class UsersController extends Controller
         }
 
         $this->mode = Request::route('mode') ?? Request::input('mode') ?? $this->user->playmode;
-        if (!array_key_exists($this->mode, Beatmap::MODES)) {
+        if (!Beatmap::isModeValid($this->mode)) {
             abort(404);
         }
 

@@ -58,7 +58,7 @@ class RankingController extends Controller
                 return ujs_redirect(route('rankings', ['mode' => 'osu', 'type' => 'performance']));
             }
 
-            if (!array_key_exists($mode, Beatmap::MODES)) {
+            if (!Beatmap::isModeValid($mode)) {
                 abort(404);
             }
 

@@ -133,7 +133,7 @@ return [
 
         'status-messages' => [
             'approved' => 'This beatmap was approved on :date!',
-            'graveyard' => "This beatmap hasn't been updated since :date and has most likely been abandoned by the creator...",
+            'graveyard' => "This beatmap wasn't updated since :date so it was graveyarded...",
             'loved' => 'This beatmap was added to loved on :date!',
             'ranked' => 'This beatmap was ranked on :date!',
             'wip' => 'Note: This beatmap is marked as a work-in-progress by the creator.',
