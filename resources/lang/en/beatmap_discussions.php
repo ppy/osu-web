@@ -79,7 +79,7 @@ return [
         'label' => 'Filter by user',
     ],
 
-    'user_title' -> [
+    'user_title' => [
         'mapper' => 'Beatmap Creator',
         'bng' => 'Beatmap Nominator',
         'bng_limited' => 'Probationary Beatmap Nominator',
