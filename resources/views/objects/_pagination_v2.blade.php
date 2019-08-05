@@ -33,7 +33,7 @@
     @endphp
 
     <nav class="{{ $blockClass }}">
-        <div class="pagination-v2__quick">
+        <div class="pagination-v2__col">
             @if ($currentPage === 1)
                 <span class="pagination-v2__link pagination-v2__link--quick pagination-v2__link--disabled">
                     <i class="fas fa-angle-left"></i>
@@ -51,25 +51,7 @@
             @endif
         </div>
 
-        <div class="pagination-v2__quick pagination-v2__quick--next">
-            @if ($currentPage >= $object->lastPage())
-                <span class="pagination-v2__link pagination-v2__link--quick pagination-v2__link--disabled">
-                    <span class="hidden-xs">
-                        {{ trans('common.pagination.next') }}
-                    </span>
-                    <i class="fas fa-angle-right"></i>
-                </span>
-            @else
-                <a class="pagination-v2__link pagination-v2__link--link pagination-v2__link--quick" href="{{ $object->url($currentPage + 1) }}">
-                    <span class="hidden-xs">
-                        {{ trans('common.pagination.next') }}
-                    </span>
-                    <i class="fas fa-angle-right"></i>
-                </a>
-            @endif
-        </div>
-
-        <ul class="pagination-v2__pages">
+        <ul class="pagination-v2__col pagination-v2__col--pages">
             {{-- decide if we're showing first page link separately --}}
             @if ($currentPage > 3)
                 <li class="pagination-v2__item">
@@ -79,7 +61,7 @@
 
             @if ($currentPage > 4)
                 <li class="pagination-v2__item">
-                    <span class="pagination-v2__link pagination-v2__link--separator">...</span>
+                    <span class="pagination-v2__link">...</span>
                 </li>
             @endif
 
@@ -99,7 +81,7 @@
             {{-- first, see if `...` is needed --}}
             @if (($currentPage + 2) < ($object->lastPage() - 1))
                 <li class="pagination-v2__item">
-                    <span class="pagination-v2__link pagination-v2__link--separator">...</span>
+                    <span class="pagination-v2__link">...</span>
                 </li>
             @endif
 
@@ -110,5 +92,23 @@
                 </li>
             @endif
         </ul>
+
+        <div class="pagination-v2__col">
+            @if ($currentPage >= $object->lastPage())
+                <span class="pagination-v2__link pagination-v2__link--quick pagination-v2__link--disabled">
+                    <span class="hidden-xs">
+                        {{ trans('common.pagination.next') }}
+                    </span>
+                    <i class="fas fa-angle-right"></i>
+                </span>
+            @else
+                <a class="pagination-v2__link pagination-v2__link--link pagination-v2__link--quick" href="{{ $object->url($currentPage + 1) }}">
+                    <span class="hidden-xs">
+                        {{ trans('common.pagination.next') }}
+                    </span>
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            @endif
+        </div>
     </nav>
 @endif
