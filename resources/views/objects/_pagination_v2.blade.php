@@ -66,15 +66,13 @@
             @endif
 
             @foreach(range(max($currentPage - 2, 1), min($currentPage + 2, $object->lastPage())) as $page)
-                @if ($page === $currentPage)
-                    <li class="pagination-v2__item">
+                <li class="pagination-v2__item">
+                    @if ($page === $currentPage)
                         <span class="pagination-v2__link pagination-v2__link--active">{{ $page }}</span>
-                    </li>
-                @else
-                    <li class="pagination-v2__item">
+                    @else
                         <a class="pagination-v2__link pagination-v2__link--link" href="{{ $object->url($page) }}">{{ $page }}</a>
-                    </li>
-                @endif
+                    @endif
+                </li>
             @endforeach
 
             {{-- decide if we're showing last page link separately --}}
