@@ -32,73 +32,83 @@
         }
     @endphp
 
-    <ul class="{{ $blockClass }}">
-        <li class="pagination-v2__item">
+    <nav class="{{ $blockClass }}">
+        <div class="pagination-v2__quick">
             @if ($currentPage === 1)
                 <span class="pagination-v2__link pagination-v2__link--quick pagination-v2__link--disabled">
                     <i class="fas fa-angle-left"></i>
-                    {{ trans("common.pagination.previous") }}
+                    <span class="hidden-xs">
+                        {{ trans("common.pagination.previous") }}
+                    </span>
                 </span>
             @else
                 <a class="pagination-v2__link pagination-v2__link--link pagination-v2__link--quick" href="{{ $object->url($currentPage - 1) }}">
                     <i class="fas fa-angle-left"></i>
-                    {{ trans("common.pagination.previous") }}
+                    <span class="hidden-xs">
+                        {{ trans("common.pagination.previous") }}
+                    </span>
                 </a>
             @endif
-        </li>
+        </div>
 
-        {{-- decide if we're showing first page link separately --}}
-        @if ($currentPage > 3)
-            <li class="pagination-v2__item">
-                <a class="pagination-v2__link pagination-v2__link--link" href="{{ $object->url(1) }}">1</a>
-            </li>
-        @endif
-
-        @if ($currentPage > 4)
-            <li class="pagination-v2__item">
-                <span class="pagination-v2__link pagination-v2__link--separator">...</span>
-            </li>
-        @endif
-
-        @foreach(range(max($currentPage - 2, 1), min($currentPage + 2, $object->lastPage())) as $page)
-            @if ($page === $currentPage)
-                <li class="pagination-v2__item">
-                    <span class="pagination-v2__link pagination-v2__link--active">{{ $page }}</span>
-                </li>
-            @else
-                <li class="pagination-v2__item">
-                    <a class="pagination-v2__link pagination-v2__link--link" href="{{ $object->url($page) }}">{{ $page }}</a>
-                </li>
-            @endif
-        @endforeach
-
-        {{-- decide if we're showing last page link separately --}}
-        {{-- first, see if `...` is needed --}}
-        @if (($currentPage + 2) < ($object->lastPage() - 1))
-            <li class="pagination-v2__item">
-                <span class="pagination-v2__link pagination-v2__link--separator">...</span>
-            </li>
-        @endif
-
-        {{-- see if the link is needed --}}
-        @if (($currentPage + 2) < $object->lastPage())
-            <li class="pagination-v2__item">
-                <a class="pagination-v2__link pagination-v2__link--link" href="{{ $object->url($object->lastPage()) }}">{{ $object->lastPage() }}</a>
-            </li>
-        @endif
-
-        <li class="pagination-v2__item">
+        <div class="pagination-v2__quick pagination-v2__quick--next">
             @if ($currentPage >= $object->lastPage())
                 <span class="pagination-v2__link pagination-v2__link--quick pagination-v2__link--disabled">
-                    {{ trans("common.pagination.next") }}
+                    <span class="hidden-xs">
+                        {{ trans("common.pagination.next") }}
+                    </span>
                     <i class="fas fa-angle-right"></i>
                 </span>
             @else
                 <a class="pagination-v2__link pagination-v2__link--link pagination-v2__link--quick" href="{{ $object->url($currentPage + 1) }}">
-                    {{ trans("common.pagination.next") }}
+                    <span class="hidden-xs">
+                        {{ trans("common.pagination.next") }}
+                    </span>
                     <i class="fas fa-angle-right"></i>
                 </a>
             @endif
-        </li>
-    </ul>
+        </div>
+
+        <ul class="pagination-v2__pages">
+            {{-- decide if we're showing first page link separately --}}
+            @if ($currentPage > 3)
+                <li class="pagination-v2__item">
+                    <a class="pagination-v2__link pagination-v2__link--link" href="{{ $object->url(1) }}">1</a>
+                </li>
+            @endif
+
+            @if ($currentPage > 4)
+                <li class="pagination-v2__item">
+                    <span class="pagination-v2__link pagination-v2__link--separator">...</span>
+                </li>
+            @endif
+
+            @foreach(range(max($currentPage - 2, 1), min($currentPage + 2, $object->lastPage())) as $page)
+                @if ($page === $currentPage)
+                    <li class="pagination-v2__item">
+                        <span class="pagination-v2__link pagination-v2__link--active">{{ $page }}</span>
+                    </li>
+                @else
+                    <li class="pagination-v2__item">
+                        <a class="pagination-v2__link pagination-v2__link--link" href="{{ $object->url($page) }}">{{ $page }}</a>
+                    </li>
+                @endif
+            @endforeach
+
+            {{-- decide if we're showing last page link separately --}}
+            {{-- first, see if `...` is needed --}}
+            @if (($currentPage + 2) < ($object->lastPage() - 1))
+                <li class="pagination-v2__item">
+                    <span class="pagination-v2__link pagination-v2__link--separator">...</span>
+                </li>
+            @endif
+
+            {{-- see if the link is needed --}}
+            @if (($currentPage + 2) < $object->lastPage())
+                <li class="pagination-v2__item">
+                    <a class="pagination-v2__link pagination-v2__link--link" href="{{ $object->url($object->lastPage()) }}">{{ $object->lastPage() }}</a>
+                </li>
+            @endif
+        </ul>
+    </nav>
 @endif
