@@ -38,14 +38,14 @@
                 <span class="pagination-v2__link pagination-v2__link--quick pagination-v2__link--disabled">
                     <i class="fas fa-angle-left"></i>
                     <span class="hidden-xs">
-                        {{ trans("common.pagination.previous") }}
+                        {{ trans('common.pagination.previous') }}
                     </span>
                 </span>
             @else
                 <a class="pagination-v2__link pagination-v2__link--link pagination-v2__link--quick" href="{{ $object->url($currentPage - 1) }}">
                     <i class="fas fa-angle-left"></i>
                     <span class="hidden-xs">
-                        {{ trans("common.pagination.previous") }}
+                        {{ trans('common.pagination.previous') }}
                     </span>
                 </a>
             @endif
@@ -55,14 +55,14 @@
             @if ($currentPage >= $object->lastPage())
                 <span class="pagination-v2__link pagination-v2__link--quick pagination-v2__link--disabled">
                     <span class="hidden-xs">
-                        {{ trans("common.pagination.next") }}
+                        {{ trans('common.pagination.next') }}
                     </span>
                     <i class="fas fa-angle-right"></i>
                 </span>
             @else
                 <a class="pagination-v2__link pagination-v2__link--link pagination-v2__link--quick" href="{{ $object->url($currentPage + 1) }}">
                     <span class="hidden-xs">
-                        {{ trans("common.pagination.next") }}
+                        {{ trans('common.pagination.next') }}
                     </span>
                     <i class="fas fa-angle-right"></i>
                 </a>
