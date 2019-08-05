@@ -83,6 +83,6 @@ return [
         'mapper' => 'Beatmap Creator',
         'bng' => 'Beatmap Nominator',
         'bng_limited' => 'Probationary Beatmap Nominator',
-        'nat' => 'Nomination Assessment Team Member',
+        'nat' => 'Nomination Assessment Team',
     ],
 ];
