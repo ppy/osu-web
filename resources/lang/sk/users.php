@@ -148,7 +148,6 @@ return [
                     'button' => 'Nahrať obrázok',
                     'dropzone' => 'Tu vložte pre nahratie',
                     'dropzone_info' => 'Taktiež môžeš tu pretiahnuť pre nahranie',
-                    'restriction_info' => "Nahranie k dispozícii pre <a href='".route('store.products.show', 'supporter-tag')."iba ' target='_blank'>osu!supporteri</a>",
                     'size_info' => 'Veľkosť pokrytia by mala byť 2800x620',
                     'too_large' => 'Nahraný súbor je príliš veľký.',
                     'unsupported_format' => 'Nepodporovaný formát.',
@@ -218,7 +217,6 @@ return [
                 'recent_entries' => 'Nedávna Kudosu História',
                 'title' => 'Kudosu!',
                 'total' => 'Celkovo Získané Kudosu',
-                'total_info' => 'Na základe toho, ako veľa používateľ prispel k moderácii mapy. Pozri <a href=" pre viacej informácií'.osu_url('user.kudosu').'">túto stránku</a> pre viac informácii.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -334,7 +332,6 @@ return [
             'description' => '<strong>ja!</strong> je osobná prispôsobiteľná plocha na tvojom profile.',
             'edit_big' => 'Uprav ma!',
             'placeholder' => 'Tu napíš obsah stránky',
-            'restriction_info' => "Musíš byť <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> aby si odomkol túto funkciu.",
         ],
         'post_count' => [
             '_' => 'Prispel :link',

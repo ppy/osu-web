@@ -149,7 +149,6 @@ return [
                     'button' => 'Subir imagen',
                     'dropzone' => 'Suelta aquí para subir',
                     'dropzone_info' => 'También puedes soltar tu imagen aquí para subirla',
-                    'restriction_info' => "Subida solo disponible para <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
                     'size_info' => 'El tamaño de la portada debe ser de 2800x620',
                     'too_large' => 'El archivo subido es demasiado grande.',
                     'unsupported_format' => 'Formato no soportado.',
@@ -219,7 +218,6 @@ return [
                 'recent_entries' => 'Historial de Kudosu Reciente',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu Total Obtenido',
-                'total_info' => 'Basado en qué tanto ha colaborado el usuario a la moderación de beatmaps. Mira <a href="'.osu_url('user.kudosu').'">esta página</a> para más información.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -335,7 +333,6 @@ return [
             'description' => '<strong>¡yo!</strong> es una área personal y personalizable en tu perfil.',
             'edit_big' => 'Editar ¡yo!',
             'placeholder' => 'Escribe el contenido de la pagina aquí',
-            'restriction_info' => "Necesitas ser un <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> para desbloquear esta función.",
         ],
         'post_count' => [
             '_' => 'Contribuyó en :link',
