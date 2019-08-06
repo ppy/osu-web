@@ -115,7 +115,7 @@ export class Post extends React.PureComponent
               if userBadge?
                 div
                   className: "user-group-badge user-group-badge--#{userBadge}"
-                  title: osu.trans "beatmap_discussions.user_title.#{userBadge}" if !@props.user.is_bot
+                  title: osu.trans "beatmap_discussions.user_title.#{userBadge}"
 
           div
             className: "#{bn}__user-stripe"
