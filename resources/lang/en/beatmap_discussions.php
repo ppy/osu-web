@@ -80,6 +80,7 @@ return [
     ],
 
     'user_title' => [
+        'bot' => 'Automated Message',
         'bng' => 'Beatmap Nominator',
         'bng_limited' => 'Probationary Beatmap Nominator',
         'dev' => 'Game Developer',
