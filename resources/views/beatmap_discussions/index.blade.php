@@ -96,7 +96,7 @@
                 @endforeach
             </div>
 
-            @include('objects._pagination_v0', ['object' => $discussions])
+            @include('objects._pagination_v2', ['object' => $discussions])
         </div>
     </div>
 @endsection

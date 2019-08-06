@@ -1,0 +1,95 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.pagination-v2 {
+  @_top: pagination-v2;
+
+  padding: 10px 0;
+  color: @osu-colour-l2;
+  justify-content: center;
+  font-size: @font-size--normal;
+  display: flex;
+  align-items: center;
+
+  @media @desktop {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  &__col {
+    display: flex;
+    margin: 2px;
+
+    &--pages {
+      list-style: none;
+      margin: -2px;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__item {
+    margin: 2px;
+  }
+
+  &__link {
+    .link-plain();
+    display: block;
+    padding: 4px 10px;
+    border-radius: 10000px;
+
+    &--active {
+      font-weight: 600;
+      color: @osu-colour-b5;
+      background-color: @osu-colour-h1;
+
+      // TODO: remove after forum/store restyle
+      .@{_top}--light-bg & {
+        color: @osu-colour-c1;
+        background-color: @osu-colour-h2;
+      }
+    }
+
+    &--disabled {
+      opacity: 0.5;
+    }
+
+    &--link {
+      .link-default();
+
+      .@{_top}--light-bg & {
+        .link-hover({
+          color: @osu-colour-h1;
+        });
+      }
+    }
+
+    &--quick {
+      white-space: nowrap;
+      text-transform: uppercase;
+      padding-left: 15px;
+      padding-right: 15px;
+      background-color: @osu-colour-b4;
+
+      // TODO: remove after forum/store restyle
+      .@{_top}--light-bg & {
+        background-color: .osu-hsla(@osu-colour-l1, 0.2)[@hsla];
+      }
+    }
+  }
+}

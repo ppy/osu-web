@@ -56,6 +56,6 @@
             'row' => 'forum.topic_watches._topic',
         ])
 
-        @include('objects._pagination_v0', ['object' => $topics, 'modifiers' => ['light-bg']])
+        @include('objects._pagination_v2', ['object' => $topics, 'modifiers' => ['light-bg']])
     </div>
 @endsection
