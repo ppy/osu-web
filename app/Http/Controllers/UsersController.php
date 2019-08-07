@@ -225,9 +225,9 @@ class UsersController extends Controller
         return response($json, is_null($json['error'] ?? null) ? 200 : 504);
     }
 
-    public function me()
+    public function me($mode = null)
     {
-        return self::show(Auth::user()->user_id);
+        return static::show(auth()->user()->user_id, $mode);
     }
 
     public function show($id, $mode = null)
