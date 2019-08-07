@@ -370,7 +370,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
         Route::resource('friends', 'FriendsController', ['only' => ['index']]);
 
         //  GET /api/v2/me
-        Route::get('me', 'UsersController@me');
+        Route::get('me/{mode?}', 'UsersController@me');
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck');
 
