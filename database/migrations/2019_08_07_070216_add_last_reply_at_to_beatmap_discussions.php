@@ -15,6 +15,7 @@ class AddLastReplyAtToBeatmapDiscussions extends Migration
     {
         Schema::table('beatmap_discussions', function (Blueprint $table) {
             $table->timestamp('last_reply_at')->nullable();
+            $table->index(['user_id', 'updated_at']);
         });
 
         // use the current updated_at timestamp as last_reply_at's initial value
