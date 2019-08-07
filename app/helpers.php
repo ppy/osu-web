@@ -420,6 +420,17 @@ function strip_utf8_bom($input)
     return $input;
 }
 
+function tag($element, $attributes = [], $content = null)
+{
+    $attributeString = '';
+
+    foreach ($attributes ?? [] as $key => $value) {
+        $attributeString .= ' '.$key.'="'.e($value).'"';
+    }
+
+    return '<'.$element.$attributeString.'>'.($content ?? '').'</'.$element.'>';
+}
+
 function to_sentence($array, $key = 'common.array_and')
 {
     switch (count($array)) {
