@@ -112,3 +112,11 @@ Run the above command to rebuild the database and seed with sample data. In orde
 To continuously generate assets as you make changes to files (less, coffeescript) you can run `webpack` in `watch` mode.
 
     $ yarn run watch
+
+# Documentation
+
+```bash
+$ php artisan apidoc:generate
+```
+
+Documentation will be generated in the `docs` folder in both html and markdown formats.
