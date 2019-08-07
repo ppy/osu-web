@@ -58,7 +58,7 @@ class BeatmapDiscussion extends Model
         'resolved' => 'boolean',
     ];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'last_post_at'];
 
     const KUDOSU_STEPS = [1, 2, 5];
 
@@ -585,11 +585,7 @@ class BeatmapDiscussion extends Model
                 BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_RESTORE, $restoredBy, $this)->saveOrExplode();
             }
 
-            $timestamps = $this->timestamps;
-            $this->timestamps = false;
             $this->update(['deleted_at' => null]);
-            $this->timestamps = $timestamps;
-
             $this->refreshKudosu('restore');
         });
     }
@@ -610,24 +606,17 @@ class BeatmapDiscussion extends Model
 
     public function softDeleteOrExplode($deletedBy)
     {
-        $timestamps = $this->timestamps;
+        DB::transaction(function () use ($deletedBy) {
+            if ($deletedBy->getKey() !== $this->user_id) {
+                BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_DELETE, $deletedBy, $this)->saveOrExplode();
+            }
 
-        try {
-            DB::transaction(function () use ($deletedBy) {
-                if ($deletedBy->getKey() !== $this->user_id) {
-                    BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_DELETE, $deletedBy, $this)->saveOrExplode();
-                }
-
-                $this->timestamps = false;
-                $this->fill([
-                    'deleted_by_id' => $deletedBy->user_id ?? null,
-                    'deleted_at' => Carbon::now(),
-                ])->saveOrExplode();
-                $this->refreshKudosu('delete');
-            });
-        } finally {
-            $this->timestamps = $timestamps;
-        }
+            $this->fill([
+                'deleted_by_id' => $deletedBy->user_id ?? null,
+                'deleted_at' => Carbon::now(),
+            ])->saveOrExplode();
+            $this->refreshKudosu('delete');
+        });
     }
 
     public function trashed()
