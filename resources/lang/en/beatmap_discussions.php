@@ -78,16 +78,4 @@ return [
         'everyone' => 'Everyone',
         'label' => 'Filter by user',
     ],
-
-    'user_title' => [
-        'bot' => 'Automated Message',
-        'bng' => 'Beatmap Nominator',
-        'bng_limited' => 'Probationary Beatmap Nominator',
-        'dev' => 'Game Developer',
-        'gmt' => 'Global Moderation Team',
-        'mapper' => 'Beatmap Creator',
-        'nat' => 'Nomination Assessment Team',
-        'support' => 'Support Team',
-        'alumni' => 'osu! Alumni',
-    ],
 ];

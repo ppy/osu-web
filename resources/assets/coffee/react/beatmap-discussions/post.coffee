@@ -21,6 +21,7 @@ import { BigButton } from 'big-button'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
+import { UserBadge } from 'user-badge'
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -113,9 +114,8 @@ export class Post extends React.PureComponent
             div
               className: "#{bn}__user-badge"
               if userBadge?
-                div
-                  className: "user-group-badge user-group-badge--#{userBadge}"
-                  title: osu.trans "beatmap_discussions.user_title.#{userBadge}"
+                el UserBadge
+                  type: userBadge
 
           div
             className: "#{bn}__user-stripe"
