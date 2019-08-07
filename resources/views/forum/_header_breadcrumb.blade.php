@@ -15,44 +15,35 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<ol class="page-mode page-mode--breadcrumb js-header--main">
-    <li class="page-mode__bg u-forum--bg-link"></li>
+@php
+    if (isset($forum)) {
+        $tree = [];
 
-    <li class="page-mode__item">
-        <a href="{{ route('forum.forums.index') }}" class="page-mode-link">
-            {{ trans('forum.title') }}
+        $tree[route('forum.forums.index')] = trans('forum.title');
 
-            <span class="page-mode-link__stripe u-forum--bg">
-            </span>
-        </a>
-    </li>
+        foreach ($forum->forum_parents as $forumId => $forumData) {
+            $url = $forumData[1] === 0
+                ? route('forum.forums.index').'#forum-'.$forumId
+                : route('forum.forums.show', $forumId);
+            $title = $forumData[0];
 
-    @foreach ($forum->forum_parents as $forumId => $forumData)
-        <li class="page-mode__item">
-            <a
-                href="{{ $forumData[1] === 0 ?
-                    route('forum.forums.index')."#forum-{$forumId}"
-                    : route('forum.forums.show', $forumId)
-                }}"
-                class="page-mode-link"
-            >
-                {{ $forumData[0] }}
+            $tree[$url] = $title;
 
-                <span class="page-mode-link__stripe u-forum--bg">
-                </span>
+        }
+        $tree[route("forum.forums.show", $forum->forum_id)] = $forum->forum_name;
+    } else {
+        // assume on index page
+        $tree = [
+            route('forum.forums.index') => trans('forum.forums.index.title'),
+        ];
+    }
+@endphp
+<ol class="header-nav-v4 js-header--main">
+    @foreach ($tree as $url => $name)
+        <li class="header-nav-v4__item">
+            <a href="{{ $url }}" class="header-nav-v4__link">
+                {{ $name }}
             </a>
         </li>
     @endforeach
-
-    <li class="page-mode__item">
-        <a
-            href="{{ route("forum.forums.show", $forum->forum_id) }}"
-            class="page-mode-link page-mode-link--is-active"
-        >
-            {{ $forum->forum_name }}
-
-            <span class="page-mode-link__stripe u-forum--bg">
-            </span>
-        </a>
-    </li>
 </ol>

@@ -27,16 +27,20 @@
         @if (Auth::check())
             <span class="btn-osu-big__content">
                 <span class="btn-osu-big__left">
-                    {{ trans('forum.topic.new_topic') }}
+                    <span>
+                        <i class="fas fa-plus"></i>
+                        {{ trans('forum.topic.new_topic') }}
+                    </span>
                 </span>
-                <span class="btn-osu-big__icon"><i class="fas fa-plus"></i></span>
             </span>
         @else
             <span class="btn-osu-big__content">
                 <span class="btn-osu-big__left">
-                    {{ trans('forum.topic.new_topic_login') }}
+                    <span>
+                        <i class="fas fa-sign-in-alt"></i>
+                        {{ trans('forum.topic.new_topic_login') }}
+                    </span>
                 </span>
-                <span class="btn-osu-big__icon"><i class="fas fa-sign-in-alt"></i></span>
             </span>
         @endif
     </a>
@@ -44,9 +48,11 @@
     <span class="btn-osu-big btn-osu-big--forum-button" title="{{ $newTopicAuth->message() }}" disabled>
         <span class="btn-osu-big__content">
             <span class="btn-osu-big__left">
-                {{ trans('forum.topic.new_topic') }}
+                <span>
+                    <i class="fas fa-plus"></i>
+                    {{ trans('forum.topic.new_topic') }}
+                </span>
             </span>
-            <span class="btn-osu-big__icon"><i class="fas fa-plus"></i></span>
         </span>
     </span>
 @endif

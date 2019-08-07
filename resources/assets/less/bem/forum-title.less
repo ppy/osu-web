@@ -16,24 +16,39 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-pippi {
-  @extra-margin: (-@grid-gutter-width + 5px);
+.forum-title {
+  @_top: forum-title;
+  flex: 1;
 
-  .at2x-simple('/images/layout/forum-top-pippi.png');
-  background-size: 924px 210px;
-  background-position: right bottom;
-  background-repeat: no-repeat;
+  &--forum {
+    padding: 10px;
 
-  pointer-events: none;
+    @media @desktop {
+      padding: 20px @padding-big-v4;
+    }
+  }
 
-  position: absolute;
+  &__description {
+    color: @osu-colour-c2;
+    margin: 0;
+    padding: 0;
+    font-size: @font-size--normal;
 
-  height: 210px;
-  width: calc(100% - @extra-margin);
+    @media @desktop {
+      font-size: @font-size--title-small;
+    }
+  }
 
-  bottom: 0;
-  right: 0;
+  &__name {
+    color: @osu-colour-c1;
+    font-style: normal;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    font-size: @font-size--title-small-4;
 
-  margin-right: @extra-margin;
-  margin-bottom: -10px;
+    @media @desktop {
+      font-size: @font-size--new-header-title;
+    }
+  }
 }

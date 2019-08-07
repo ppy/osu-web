@@ -42,6 +42,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Latest Post',
+
+        'index' => [
+            'title' => 'Forum Index',
+        ],
+
         'topics' => [
             'empty' => 'No topics!',
         ],

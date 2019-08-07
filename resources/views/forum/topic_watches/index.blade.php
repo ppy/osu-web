@@ -18,8 +18,8 @@
 @extends('master')
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page-watches osu-layout__row--sm1 osu-layout__row--full t-forum-category-osu">
-        <div class="osu-layout__sub-row osu-layout__sub-row--lg1-compact ">
+    <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 osu-layout__row--full">
+        <div class="osu-layout__sub-row osu-layout__sub-row--lg1-compact">
             @include('home._user_header_nav')
 
             <div class="osu-page-header osu-page-header--home-user js-current-user-cover">
@@ -51,10 +51,20 @@
             </div>
         </div>
 
-        @include('forum.forums._topics', [
-            'title' => trans('forum.topic_watches.index.title'),
-            'row' => 'forum.topic_watches._topic',
-        ])
+        <div class="forum-list">
+            <div class="forum-list__header">
+                <h2 class="title">
+                    {{ trans('forum.topic_watches.index.title') }}
+                </h2>
+            </div>
+
+            <ul class="forum-list__items">
+                @include('forum.forums._topics', [
+                    'row' => 'forum.topic_watches._topic',
+                    'topics' => $topics,
+                ])
+            </ul>
+        </div>
 
         @include('objects._pagination_v2', ['object' => $topics, 'modifiers' => ['light-bg']])
     </div>

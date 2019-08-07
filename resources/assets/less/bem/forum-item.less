@@ -1,0 +1,107 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.forum-item {
+  padding: 5px 3px;
+  margin: 2px -8px;
+  display: flex;
+
+  .default-border-radius();
+  background-color: @osu-colour-b4;
+  font-size: @font-size--normal;
+
+  &:hover {
+    background-color: @osu-colour-b3;
+  }
+
+  @media @desktop {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  &__arrow {
+    font-size: 14px; // icon size
+    margin: 5px;
+    align-self: center;
+    flex: none;
+
+    @media @desktop {
+      display: none;
+    }
+  }
+
+  &__details {
+    margin: 5px;
+    flex: 1;
+  }
+
+  &__latest-post {
+    margin: 5px;
+    flex-direction: column;
+    justify-content: center;
+    color: @osu-colour-c2;
+    flex: none;
+    width: 300px;
+    display: none;
+
+    @media @desktop {
+      display: flex;
+    }
+  }
+
+  &__latest-post-label {
+    font-weight: 600;
+  }
+
+  &__link {
+    .link-default();
+  }
+
+  &__name {
+    font-size: @font-size--title-small-3;
+    font-weight: 400;
+    color: @osu-colour-c1;
+
+    .link-hover({
+      color: @osu-colour-c1;
+    });
+  }
+
+  &__subforum {
+    white-space: nowrap;
+    margin: 2px 10px;
+  }
+
+  &__subforum-icon {
+    margin-right: 2px;
+  }
+
+  &__subforums {
+    list-style: none;
+    padding: 0;
+    margin: 8px -10px -2px;
+    flex-wrap: wrap;
+    display: none;
+
+    @media @desktop {
+      display: flex;
+    }
+  }
+}
