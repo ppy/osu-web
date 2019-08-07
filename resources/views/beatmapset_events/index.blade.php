@@ -127,7 +127,7 @@
                     @include('beatmapset_events._item', compact('event'))
                 @endforeach
             </div>
-            @include('objects._pagination_v0', ['object' => $events->fragment('events')])
+            @include('objects._pagination_v2', ['object' => $events->fragment('events')])
         </div>
     </div>
 @endsection

@@ -20,6 +20,7 @@
 
 namespace App\Models\Score;
 
+use App\Exceptions\ClassNotFoundException;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
 use App\Models\User;
@@ -78,6 +79,10 @@ abstract class Model extends BaseModel
 
     public static function getClassByString(string $mode)
     {
+        if (!Beatmap::isModeValid($mode)) {
+            throw new ClassNotFoundException();
+        }
+
         return get_class_namespace(static::class).'\\'.studly_case($mode);
     }
 

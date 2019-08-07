@@ -31,7 +31,7 @@
                     @include('beatmap_discussion_posts._item', compact('post'))
                 @endforeach
 
-                @include('objects._pagination_v0', ['object' => $posts])
+                @include('objects._pagination_v2', ['object' => $posts])
             </div>
         </div>
     </div>
