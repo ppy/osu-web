@@ -105,9 +105,7 @@ Note that if you use the bundled docker-compose setup, yarn/webpack will be alre
 
 Run the above command to rebuild the database and seed with sample data. In order for the seeder to seed beatmaps, you must enter a valid osu! API key into your `.env` configuration file as it obtains beatmap data from the osu! API.
 
-# Development
-
-## Generating assets while developing
+## Continuous asset generation while developing
 
 To continuously generate assets as you make changes to files (less, coffeescript) you can run `webpack` in `watch` mode.
 
