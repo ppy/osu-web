@@ -15,7 +15,6 @@ class AddLastPostAtToBeatmapDiscussions extends Migration
     {
         Schema::table('beatmap_discussions', function (Blueprint $table) {
             $table->timestamp('last_post_at')->nullable();
-            $table->index(['user_id', 'updated_at']);
         });
 
         // use the current updated_at timestamp as last_post_at's initial value
