@@ -216,7 +216,7 @@ class BeatmapDiscussionPost extends Model
         try {
             return $this->getConnection()->transaction(function () use ($options) {
                 if (!$this->exists) {
-                    $this->beatmapDiscussion->update(['last_reply_at' => Carbon::now()]);
+                    $this->beatmapDiscussion->update(['last_post_at' => Carbon::now()]);
                 }
 
                 if (!parent::save($options)) {

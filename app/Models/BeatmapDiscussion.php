@@ -58,7 +58,7 @@ class BeatmapDiscussion extends Model
         'resolved' => 'boolean',
     ];
 
-    protected $dates = ['deleted_at', 'last_reply_at'];
+    protected $dates = ['deleted_at', 'last_post_at'];
 
     const KUDOSU_STEPS = [1, 2, 5];
 
