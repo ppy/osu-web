@@ -31,7 +31,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
         'posts',
         'current_user_attributes',
         'startingPost',
-        'votes'
+        'votes',
     ];
 
     public function transform(BeatmapDiscussion $discussion)

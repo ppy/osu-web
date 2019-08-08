@@ -306,7 +306,7 @@ return [
                 'received' => 'Votes Received (last 3 months)',
                 'title' => 'Votes',
                 'title_longer' => 'Recent Votes',
-                'vote_count' => ':count vote|:count votes'
+                'vote_count' => ':count vote|:count votes',
             ],
             'account_standing' => [
                 'title' => 'Account Standing',
@@ -383,7 +383,7 @@ return [
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Total Hits',
             'total_score' => 'Total Score',
-            # modding stats
+            // modding stats
             'ranked_and_approved_beatmapset_count' => 'Ranked & Approved Beatmaps',
             'loved_beatmapset_count' => 'Loved Beatmaps',
             'unranked_beatmapset_count' => 'Pending Beatmaps',

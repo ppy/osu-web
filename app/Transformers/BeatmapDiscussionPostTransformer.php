@@ -51,7 +51,6 @@ class BeatmapDiscussionPostTransformer extends Fractal\TransformerAbstract
         ];
     }
 
-
     public function includeBeatmapDiscussion(BeatmapDiscussionPost $post)
     {
         return $this->item(

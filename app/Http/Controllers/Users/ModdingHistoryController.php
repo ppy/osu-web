@@ -348,7 +348,6 @@ class ModdingHistoryController extends Controller
         return view('beatmapset_discussion_votes.index', compact('votes', 'user'));
     }
 
-
     private function getExtra($user, $page, $options, $perPage = 10, $offset = 0)
     {
         // Grouped by $transformer and sorted alphabetically ($transformer and then $page).

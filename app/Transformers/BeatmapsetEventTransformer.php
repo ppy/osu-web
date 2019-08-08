@@ -20,7 +20,6 @@
 
 namespace App\Transformers;
 
-use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapsetEvent;
 use League\Fractal;
 
@@ -28,7 +27,7 @@ class BeatmapsetEventTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmapset',
-        'discussion'
+        'discussion',
     ];
 
     public function transform(BeatmapsetEvent $event = null)
@@ -47,7 +46,7 @@ class BeatmapsetEventTransformer extends Fractal\TransformerAbstract
     public function includeBeatmapset(BeatmapsetEvent $event)
     {
         if ($event === null || $event->beatmapset === null) {
-            return null;
+            return;
         }
 
         return $this->item(
@@ -59,7 +58,7 @@ class BeatmapsetEventTransformer extends Fractal\TransformerAbstract
     public function includeDiscussion(BeatmapsetEvent $event)
     {
         if ($event->comment === null) {
-            return null;
+            return;
         }
 
         return $this->item(
