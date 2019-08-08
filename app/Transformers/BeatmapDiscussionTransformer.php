@@ -54,6 +54,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
             'created_at' => json_time($discussion->created_at),
             'updated_at' => json_time($discussion->updated_at),
             'deleted_at' => json_time($discussion->deleted_at),
+            'last_post_at' => json_time($discussion->last_post_at),
 
             'kudosu_denied' => $discussion->kudosu_denied,
         ];

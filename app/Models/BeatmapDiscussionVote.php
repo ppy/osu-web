@@ -34,6 +34,8 @@ use Carbon\Carbon;
  */
 class BeatmapDiscussionVote extends Model
 {
+    protected $touches = ['beatmapDiscussion'];
+
     public static function recentlyReceivedByUser($userId, $timeframeMonths = 3)
     {
         //todo: optimize
