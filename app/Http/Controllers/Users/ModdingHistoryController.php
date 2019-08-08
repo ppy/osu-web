@@ -92,14 +92,14 @@ class ModdingHistoryController extends Controller
 
         $discussions = BeatmapDiscussion::search($this->searchParams);
         $discussions['items'] = $discussions['query']->with([
-            'user',
-            'beatmapDiscussionVotes',
+            'beatmap',
             'beatmapset',
             'startingPost',
         ])->get();
 
         $posts = BeatmapDiscussionPost::search($this->searchParams);
         $posts['items'] = $posts['query']->with([
+            'beatmapDiscussion.beatmap',
             'beatmapDiscussion.beatmapset',
         ])->get();
 

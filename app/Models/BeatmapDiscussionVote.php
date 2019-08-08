@@ -38,13 +38,13 @@ class BeatmapDiscussionVote extends Model
 
     public static function recentlyReceivedByUser($userId, $timeframeMonths = 3)
     {
-        //todo: optimize
         return static::where('beatmap_discussion_votes.created_at', '>', Carbon::now()->subMonth($timeframeMonths))
             ->join('beatmap_discussions', 'beatmap_discussion_votes.beatmap_discussion_id', 'beatmap_discussions.id')
             ->select('beatmap_discussion_votes.user_id')
             ->selectRaw('sum(beatmap_discussion_votes.score) as score')
             ->selectRaw('count(beatmap_discussion_votes.score) as count')
             ->where('beatmap_discussions.user_id', $userId)
+            ->where('beatmap_discussions.updated_at', '>', Carbon::now()->subMonth($timeframeMonths))
             ->whereHas('user', function ($userQuery) {
                 $userQuery->default();
             })
@@ -61,6 +61,7 @@ class BeatmapDiscussionVote extends Model
             ->selectRaw('sum(beatmap_discussion_votes.score) as score')
             ->selectRaw('count(beatmap_discussion_votes.score) as count')
             ->where('beatmap_discussion_votes.user_id', $userId)
+            ->where('beatmap_discussions.updated_at', '>', Carbon::now()->subMonth($timeframeMonths))
             ->whereHas('beatmapDiscussion.user', function ($userQuery) {
                 $userQuery->default();
             })
