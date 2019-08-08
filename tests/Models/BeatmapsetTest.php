@@ -168,6 +168,16 @@ class BeatmapsetTest extends TestCase
         $this->assertSame($notifications, Notification::count());
     }
 
+    public function testGlobalScopeActive()
+    {
+        $beatmapset = factory(Beatmapset::class)->states('inactive')->create();
+        $id = $beatmapset->getKey();
+
+        $this->assertNull(Beatmapset::find($id)); // global scope
+        $this->assertNull(Beatmapset::withoutGlobalScopes()->active()->find($id)); // scope still applies after removing global scope
+        $this->assertTrue($beatmapset->is(Beatmapset::withoutGlobalScopes()->find($id))); // no global scopes
+    }
+
     private function createBeatmapset($params = []) : Beatmapset
     {
         $defaultParams = [

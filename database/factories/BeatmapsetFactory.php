@@ -40,10 +40,10 @@ $factory->define(App\Models\Beatmapset::class, function (Faker\Generator $faker)
     ];
 });
 
-$factory->state(App\Models\Beatmapset::class, 'no_discussion', function () {
-    return ['discussion_enabled' => false];
-});
-
 $factory->state(App\Models\Beatmapset::class, 'inactive', function () {
     return ['active' => 0];
+});
+
+$factory->state(App\Models\Beatmapset::class, 'no_discussion', function () {
+    return ['discussion_enabled' => false];
 });
