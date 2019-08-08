@@ -40,6 +40,7 @@ export class Main extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @cache = {}
     @tabs = React.createRef()
     @pages = React.createRef()
     @state = JSON.parse(props.container.dataset.profilePageState ? null)
@@ -63,7 +64,6 @@ export class Main extends React.PureComponent
         graveyardBeatmapsets: @props.extras.graveyardBeatmapsets
         recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
         showMorePagination: {}
-        usersCache: null
 
       for own elem, perPage of @props.perPage
         @state.showMorePagination[elem] ?= {}
@@ -181,14 +181,14 @@ export class Main extends React.PureComponent
         props:
           discussions: @state.discussions
           user: @state.user
-          users: @indexedUsers()
+          users: @users()
         component: Discussions
 
       when 'events'
         props:
           events: @state.events
           user: @state.user
-          users: @indexedUsers()
+          users: @users()
         component: Events
 
       when 'kudosu'
@@ -202,14 +202,14 @@ export class Main extends React.PureComponent
         props:
           posts: @state.posts
           user: @state.user
-          users: @indexedUsers()
+          users: @users()
         component: Posts
 
       when 'votes'
         props:
           votes: @state.votes
           user: @state.user
-          users: @indexedUsers()
+          users: @users()
         component: Votes
 
   showMore: (e, {name, url, perPage = 50}) =>
@@ -316,12 +316,10 @@ export class Main extends React.PureComponent
     @setState user: _.assign({}, @state.user, user)
 
 
-  indexedUsers: () =>
-    usersCache = @state.usersCache
+  users: =>
+    if !@cache.users?
+      @cache.users = _.keyBy @state.users, 'id'
+      @cache.users[null] = @cache.users[undefined] =
+        username: osu.trans 'users.deleted'
 
-    if (usersCache == null)
-      usersCache = osu.reindex(@state.users, 'id')
-      @setState usersCache: usersCache
-
-    usersCache
-
+    @cache.users

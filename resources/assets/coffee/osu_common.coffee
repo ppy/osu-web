@@ -316,26 +316,6 @@
       .done resolve
       .fail reject
 
-  # reindexes an array based on a common field, e.g. reindex(users, 'user_id')
-  # based on https://gist.github.com/Rich-Harris/5969002
-  reindex: (array, idField) ->
-    newArray = {}
-
-    if (Object.prototype.toString.call(array) != '[object Array]')
-      throw new Error('Cannot reindex a non-array!')
-
-    if (!idField)
-      throw new Error('You must specify an ID field')
-
-    i = array.length
-
-    while (i--)
-      record = array[i]
-      if (record.hasOwnProperty(idField))
-        newArray[record[idField]] = record
-
-    newArray
-
 
   trans: (key, replacements = {}, locale) ->
     locale = fallbackLocale unless osu.transExists(key, locale)
