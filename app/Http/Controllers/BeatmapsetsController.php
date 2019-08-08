@@ -42,7 +42,7 @@ class BeatmapsetsController extends Controller
 
     public function destroy($id)
     {
-        $beatmapset = Beatmapset::active()->findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
 
         priv_check('BeatmapsetDelete', $beatmapset)->ensureCan();
 
@@ -149,7 +149,7 @@ class BeatmapsetsController extends Controller
     {
         priv_check('BeatmapsetDiscussionLock')->ensureCan();
 
-        $beatmapset = Beatmapset::active()->where('discussion_enabled', true)->findOrFail($id);
+        $beatmapset = Beatmapset::where('discussion_enabled', true)->findOrFail($id);
         $beatmapset->discussionUnlock(Auth::user(), request('reason'));
 
         return $beatmapset->defaultDiscussionJson();
@@ -159,7 +159,7 @@ class BeatmapsetsController extends Controller
     {
         priv_check('BeatmapsetDiscussionLock')->ensureCan();
 
-        $beatmapset = Beatmapset::active()->where('discussion_enabled', true)->findOrFail($id);
+        $beatmapset = Beatmapset::where('discussion_enabled', true)->findOrFail($id);
         $beatmapset->discussionLock(Auth::user(), request('reason'));
 
         return $beatmapset->defaultDiscussionJson();
@@ -167,7 +167,7 @@ class BeatmapsetsController extends Controller
 
     public function download($id)
     {
-        $beatmapset = Beatmapset::active()->findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
 
         if ($beatmapset->download_disabled) {
             abort(404);
@@ -199,7 +199,7 @@ class BeatmapsetsController extends Controller
 
     public function nominate($id)
     {
-        $beatmapset = Beatmapset::active()->findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
 
         priv_check('BeatmapsetNominate', $beatmapset)->ensureCan();
 
@@ -219,7 +219,7 @@ class BeatmapsetsController extends Controller
 
     public function love($id)
     {
-        $beatmapset = Beatmapset::active()->findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
 
         priv_check('BeatmapsetLove')->ensureCan();
 
@@ -239,7 +239,7 @@ class BeatmapsetsController extends Controller
 
     public function update($id)
     {
-        $beatmapset = Beatmapset::active()->findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
 
         priv_check('BeatmapsetDescriptionEdit', $beatmapset)->ensureCan();
 
@@ -266,7 +266,7 @@ class BeatmapsetsController extends Controller
             abort(403);
         }
 
-        $beatmapset = Beatmapset::active()->findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
         $user = Auth::user();
 
         switch (Request::input('action')) {

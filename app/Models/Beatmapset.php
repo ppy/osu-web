@@ -1158,4 +1158,13 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
         return preg_replace($pattern, '', $text);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('active', function ($builder) {
+            $builder->active();
+        });
+    }
 }
