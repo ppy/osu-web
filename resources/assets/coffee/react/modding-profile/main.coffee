@@ -77,6 +77,8 @@ export class Main extends React.PureComponent
     $.subscribe 'user:update.profilePage', @userUpdate
     $.subscribe 'profile:showMore.profilePage', @showMore
     $.subscribe 'profile:page:jump.profilePage', @pageJump
+    $.subscribe 'beatmapsetDiscussions:update.profilePage', @discussionUpdate
+    $(document).on 'ajax:success.beatmapDiscussions', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
     $(window).on 'throttled-scroll.profilePage', @pageScan
     $(document).on 'turbolinks:before-cache.profilePage', @saveStateToContainer
 
@@ -94,6 +96,47 @@ export class Main extends React.PureComponent
 
     $(window).stop()
     Timeout.clear @modeScrollTimeout
+
+
+  discussionUpdate: (_e, options) =>
+    {beatmapset} = options
+    return unless beatmapset?
+
+    discussions = @state.discussions
+    posts = @state.posts
+    users = @state.users
+
+    discussionIds = _.map discussions, 'id'
+    postIds = _.map posts, 'id'
+    userIds = _.map users, 'id'
+
+    # Due to the entire hierarchy of discussions being sent back when a post is updated (instead of just the modified post),
+    #   we need to iterate over each discussion and their posts to extract the updates we want.
+    _.each beatmapset.discussions, (newDiscussion) ->
+      if discussionIds.includes(newDiscussion.id)
+        discussion = _.find discussions, id: newDiscussion.id
+        discussions = _.reject discussions, id: newDiscussion.id
+        newDiscussion = _.merge(discussion, newDiscussion)
+        # The discussion list shows discussions started by the current user, so it can be assumed that the first post is theirs
+        newDiscussion.startingPost = newDiscussion.posts[0]
+        discussions.push(newDiscussion)
+
+      _.each newDiscussion.posts, (newPost) ->
+        if postIds.includes(newPost.id)
+          post = _.find posts, id: newPost.id
+          posts = _.reject posts, id: newPost.id
+          posts.push(_.merge(post, newPost))
+
+    _.each beatmapset.related_users, (newUser) ->
+      if userIds.includes(newUser.id)
+        users = _.reject users, id: newUser.id
+        users.push(newUser)
+
+    @cache.users = null
+    @setState
+      discussions: _.reverse(_.sortBy(discussions, (d) -> Date.parse(d.startingPost.created_at)))
+      posts: _.reverse(_.sortBy(posts, (p) -> Date.parse(p.created_at)))
+      users: users
 
 
   render: =>
@@ -323,3 +366,8 @@ export class Main extends React.PureComponent
         username: osu.trans 'users.deleted'
 
     @cache.users
+
+
+  ujsDiscussionUpdate: (_e, data) =>
+    # to allow ajax:complete to be run
+    Timeout.set 0, => @discussionUpdate(null, beatmapset: data)
