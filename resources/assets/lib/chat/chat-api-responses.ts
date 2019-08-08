@@ -73,8 +73,8 @@ export interface UserJSON {
   can_moderate: boolean;
   country_code: string; // TODO: country object?
   id: number;
-  is_admin: boolean;
   is_active: boolean;
+  is_admin: boolean;
   is_bot: boolean;
   is_online: boolean;
   is_supporter: boolean;
