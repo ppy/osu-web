@@ -18,7 +18,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 use App\Models\Beatmapset;
-use App\Models\User;
 
 class BeatmapsetControllerTest extends TestCase
 {
