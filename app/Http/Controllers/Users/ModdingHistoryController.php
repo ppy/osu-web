@@ -116,10 +116,14 @@ class ModdingHistoryController extends Controller
         $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
         $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
 
+        $discussionUserIds = [];
+        foreach ($discussions['items'] as $discussion) {
+            $discussionUserIds[] = $discussion->user_id;
+            $discussionUserIds[] = $discussion->startingPost->last_editor_id;
+        }
+
         $userIdSources = [
-            $discussions['items']
-                ->pluck('user_id')
-                ->toArray(),
+            $discussionUserIds,
             $posts['items']
                 ->pluck('user_id')
                 ->toArray(),
