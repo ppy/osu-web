@@ -74,7 +74,6 @@ export class Main extends React.PureComponent
 
 
   componentDidMount: =>
-    $.subscribe 'user:update.profilePage', @userUpdate
     $.subscribe 'profile:showMore.profilePage', @showMore
     $.subscribe 'profile:page:jump.profilePage', @pageJump
     $.subscribe 'beatmapsetDiscussions:update.profilePage', @discussionUpdate
@@ -350,13 +349,6 @@ export class Main extends React.PureComponent
     e.preventDefault()
 
     @pageJump null, e.currentTarget.dataset.pageId
-
-
-  userUpdate: (_e, user) =>
-    return @forceUpdate() if user?.id != @state.user.id
-
-    # this component needs full user object but sometimes this event only sends part of it
-    @setState user: _.assign({}, @state.user, user)
 
 
   users: =>
