@@ -19,8 +19,19 @@
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 bn = 'user-group-badge'
+group_names =
+  bot: 'Automated Message'
+  bng: 'Beatmap Nominator'
+  bng_limited: 'Probationary Beatmap Nominator'
+  dev: 'Game Developer'
+  gmt: 'Global Moderation Team'
+  mapper: 'Beatmap Creator'
+  nat: 'Nomination Assessment Team'
+  support: 'Support Team'
+  alumni: 'osu! Alumni'
+
 
 export UserBadge = ({type}) ->
   div
     className: osu.classWithModifiers(bn, type)
-    title: osu.trans "common.group_name.#{type}"
+    title: @group_names.#{type}
