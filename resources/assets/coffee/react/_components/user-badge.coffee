@@ -34,4 +34,4 @@ group_names =
 export UserBadge = ({type}) ->
   div
     className: osu.classWithModifiers(bn, type)
-    title: @group_names.#{type}
+    title: @group_names[type]
