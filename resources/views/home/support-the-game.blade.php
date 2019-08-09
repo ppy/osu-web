@@ -91,21 +91,28 @@
         </div>
         <div class="stg-block">
             <h3 class="stg-block__title">
-                {{ trans('community.support.why_support.title') }}
+                {{ trans('community.support.money_goes_where.title') }}
             </h3>
 
             <div class="stg-block__perks">
-                @foreach($data['blocks'] as $name => $icon)
+                @foreach($data['blocks'] as $name => $icons)
                     <div class="stg-perk">
                         <div class="stg-perk__icon">
                             <span class="fa-stack">
                                 <i class="fas fa-circle fa-stack-2x stg-perk__icon-bg"></i>
-                                <i class="{{ $icon }} fa-stack-1x"></i>
+                                @foreach($icons as $icon)
+                                    <i class="{{ $icon }} fa-stack-1x"></i>
+                                @endforeach
                             </span>
                         </div>
 
                         <div class="stg-perk__text">
-                            {!! trans('community.support.why_support.blocks.'.$name) !!}
+                            <h4 class="stg-perk__title">
+                                {!! trans("community.support.money_goes_where.blocks.{$name}.title") !!}
+                            </h4>
+                            <p class="stg-perk__content">
+                                {!! trans("community.support.money_goes_where.blocks.{$name}.body") !!}
+                            </p>
                         </div>
                     </div>
                 @endforeach

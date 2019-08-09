@@ -20,39 +20,46 @@
 
 return [
     'support' => [
-        'header' => [
-            // size in font-size
-            'big_description' => 'Love osu!?<br/>
-                                Support the development of osu! :D',
-            'small_description' => '',
-            'support_button' => 'I want to support osu!',
+        'convinced' => [
+            'title' => 'I\'m convinced! :D',
+            'support' => 'support osu!',
+            'gift' => 'or gift support to other players',
+            'instructions' => 'click the heart button to proceed to the osu!store',
         ],
-
-        'supporter_status' => [
-            'contribution' => 'Thanks for your support so far! You have contributed a total of :dollars over :tags tag purchases!',
-            'gifted' => ':giftedTags of your tag purchases were gifted (for a total of :giftedDollars gifted), how generous!',
-            'not_yet' => "You don't have an osu!supporter tag yet :(",
-            'title' => 'Current osu!supporter status',
-            'valid_until' => 'Your current osu!supporter tag is valid until :date!',
-            'was_valid_until' => 'Your osu!supporter tag was valid until :date.',
-        ],
-
-        'why_support' => [
-            'title' => 'Why should I support osu!?',
+        'money_goes_where' => [
+            'title' => 'Why should I support osu!? Where does the money go?',
             'blocks' => [
-                'dev' => 'Developed and maintained predominantly by one guy in Australia',
-                'time' => 'Takes so much time to keep running that it\'s no longer possible to call it a "hobby".',
-                'ads' => 'No ads anywhere. <br/><br/>
-                        Unlike 99.95% of the web, we don\'t profit off shoving stuff in your face.',
-                'goodies' => 'You get some extra goodies!',
+                'team' => [
+                    'title' => 'Support the Team',
+                    'body' => 'A small team develops and runs osu!. Your support helps them, you know... live.',
+                ],
+                'infra' => [
+                    'title' => 'Server Infrastructure',
+                    'body' => 'Contributions go towards servers for running the website, multiplayer services, online leaderboards, etc.',
+                ],
+                'featured-artists' => [
+                    'title' => 'Featured Artists',
+                    'body' => 'With your support, we can approach even more awesome artists and license great music for use in osu!',
+                ],
+                'ads' => [
+                    'title' => 'Keep osu! self-sustaining',
+                    'body' => 'Your contributions help keep the game independent and completely free from ads and outside sponsors.',
+                ],
+                'tournaments' => [
+                    'title' => 'Official Tournaments',
+                    'body' => 'Help fund the running of, and the prizes for, the official osu! World Cup tournaments.',
+                ],
+                'bounty-program' => [
+                    'title' => 'Open Source Bounty Program',
+                    'body' => 'Support community contributors that have given their time and effort to help make osu! better.',
+                ],
             ],
         ],
-
         'perks' => [
-            'title' => 'Oh? What do I get?!',
+            'title' => 'Cool, but do I get any perks?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'Quick and easy access to search beatmaps without leaving the game.',
+                'description' => 'Quick and easy access to searching and downloading of beatmaps without leaving the game.',
             ],
 
             'auto_downloads' => [
@@ -120,12 +127,13 @@ return [
                 'description' => '',
             ],
         ],
-
-        'convinced' => [
-            'title' => 'I\'m convinced! :D',
-            'support' => 'support osu!',
-            'gift' => 'or gift support to other players',
-            'instructions' => 'click the heart button to proceed to the osu!store',
+        'supporter_status' => [
+            'contribution' => 'Thanks for your support so far! You have contributed a total of :dollars over :tags tag purchases!',
+            'gifted' => ':giftedTags of your tag purchases were gifted (for a total of :giftedDollars gifted), how generous!',
+            'not_yet' => "You don't have an osu!supporter tag yet :(",
+            'title' => 'Current osu!supporter status',
+            'valid_until' => 'Your current osu!supporter tag is valid until :date!',
+            'was_valid_until' => 'Your osu!supporter tag was valid until :date.',
         ],
     ],
 ];

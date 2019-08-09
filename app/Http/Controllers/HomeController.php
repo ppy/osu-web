@@ -208,10 +208,12 @@ class HomeController extends Controller
                 // why support's blocks
                 'blocks' => [
                     // localization's name => icon
-//                    'dev' => 'fas fa-user',
-                    'time' => 'far fa-clock',
-                    'ads' => 'fas fa-thumbs-up',
-                    'goodies' => 'fas fa-star',
+                    'team' => ['fas fa-users'],
+                    'infra' => ['fas fa-server'],
+                    'featured-artists' => ['fas fa-user-astronaut'],
+                    'ads' => ['fas fa-ad', 'fas fa-slash'],
+                    'tournaments' => ['fas fa-trophy'],
+                    'bounty-program' => ['fas fa-child'],
                 ],
 
                 // supporter's perks
@@ -225,14 +227,9 @@ class HomeController extends Controller
                 // supporter's perks #2
                 'perks2' => [
                     // localization's name => icon
-//                    'yellow_fellow' => 'fas fa-fire',
-//                    'speedy_downloads' => 'fas fa-tachometer-alt',
-//                    'change_username' => 'fas fa-magic',
-//                    'skinnables' => 'fas fa-paint-brush',
                     'feature_votes' => 'fas fa-thumbs-up',
                     'sort_options' => 'fas fa-trophy',
                     'feel_special' => 'fas fa-heart',
-//                    'more_to_come' => 'fas fa-gift',
                 ],
 
                 // supporter's perks #3
@@ -242,10 +239,6 @@ class HomeController extends Controller
                     'speedy_downloads' => 'fas fa-tachometer-alt',
                     'change_username' => 'fas fa-magic',
                     'skinnables' => 'fas fa-paint-brush',
-//                    'feature_votes' => 'fas fa-thumbs-up',
-//                    'sort_options' => 'fas fa-trophy',
-//                    'feel_special' => 'fas fa-heart',
-//                    'more_to_come' => 'fas fa-gift',
                 ],
             ]);
     }
