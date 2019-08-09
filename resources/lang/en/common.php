@@ -108,18 +108,6 @@ return [
         'target' => 'drop here to upload',
     ],
 
-    'group_name' => [
-        'bot' => 'Automated Message',
-        'bng' => 'Beatmap Nominator',
-        'bng_limited' => 'Probationary Beatmap Nominator',
-        'dev' => 'Game Developer',
-        'gmt' => 'Global Moderation Team',
-        'mapper' => 'Beatmap Creator',
-        'nat' => 'Nomination Assessment Team',
-        'support' => 'Support Team',
-        'alumni' => 'osu! Alumni',
-    ],
-
     'pagination' => [
         'previous' => 'prev',
         'next' => 'next',
