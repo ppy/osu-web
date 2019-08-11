@@ -26,6 +26,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'disclaimer' => 'Please ensure your avatar is <strong>suitable for all ages</strong>.<br/>This means no nudity or profanity at all.'
         ],
 
         'email' => [

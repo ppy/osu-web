@@ -112,6 +112,8 @@
                                 data-url="{{ route('account.avatar') }}"
                             >
                         </label>
+
+                        <span class="account-edit-entry__disclaimer">{{ trans('accounts.avatar.disclaimer') }}</span>
                     </div>
                 </div>
             </div>
