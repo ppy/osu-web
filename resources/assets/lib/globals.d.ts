@@ -66,6 +66,7 @@ interface OsuCommon {
   isDesktop(): boolean;
   isMobile(): boolean;
   updateQueryString(url: string | null, params: { [key: string]: string | undefined }): string;
+  link(url: string, text: string, options?: { isRemote?: boolean; classNames?: string[] }): string;
 }
 
 interface Country {
