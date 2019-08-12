@@ -42,6 +42,7 @@ export class EntryList extends BaseEntryList
         key: entry.id,
         rank: index + 1,
         entry: entry,
+        clickedEntry: @state.clickedEntry,
         waitingForResponse: @state.waitingForResponse,
         options: @state.options,
         contest: @state.contest,

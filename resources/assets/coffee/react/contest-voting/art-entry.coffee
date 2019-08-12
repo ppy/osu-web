@@ -68,6 +68,7 @@ export class ArtEntry extends React.Component
         el Voter,
           key: @props.entry.id,
           entry: @props.entry,
+          clickedEntry: @props.clickedEntry,
           waitingForResponse: @props.waitingForResponse,
           voteCount: @props.selected.length,
           contest: @props.contest,

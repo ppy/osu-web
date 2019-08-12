@@ -63,7 +63,7 @@ export class Entry extends React.Component
         div className: 'contest-voting-list__title u-ellipsis-overflow', @props.entry.title
 
       div className: "contest__voting-star#{if @props.contest.show_votes then ' contest__voting-star--dark-bg' else ''}",
-        el Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, selected: @props.selected, contest: @props.contest
+        el Voter, key: @props.entry.id, entry: @props.entry, clickedEntry: @props.clickedEntry, waitingForResponse: @props.waitingForResponse, selected: @props.selected, contest: @props.contest
 
       if @props.contest.show_votes
         if @props.contest.best_of

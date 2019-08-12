@@ -24,6 +24,7 @@ export class BaseEntryList extends React.Component
       waitingForResponse: false
       contest: @props.contest
       selected: @props.selected
+      previouslySelected: @props.selected
       options:
         showPreview: @props.options.showPreview ? false
         showLink: @props.options.showLink ? false
@@ -41,6 +42,7 @@ export class BaseEntryList extends React.Component
 
     @setState
       selected: selected
+      clickedEntry: entry_id
       waitingForResponse: true
       callback
 
@@ -50,6 +52,7 @@ export class BaseEntryList extends React.Component
     @setState
       contest: response.contest
       selected: response.userVotes
+      clickedEntry: null
       waitingForResponse: false
       callback
 

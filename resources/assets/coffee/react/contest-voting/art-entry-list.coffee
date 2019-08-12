@@ -35,6 +35,7 @@ export class ArtEntryList extends BaseEntryList
         key: index,
         displayIndex: index,
         entry: entry,
+        clickedEntry: @state.clickedEntry
         waitingForResponse: @state.waitingForResponse,
         options: @state.options,
         contest: @state.contest,
