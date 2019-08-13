@@ -20,6 +20,7 @@ import { observer } from 'mobx-react';
 import { Client } from 'oauth/client';
 import * as React from 'react';
 import { Spinner } from 'spinner';
+import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
 
 interface Props {
@@ -30,10 +31,9 @@ interface Props {
 export class AuthorizedClient extends React.Component<Props> {
   render() {
     const client = this.props.client;
-    const parts = osu.trans('oauth.authorized-clients.owned_by').split(/(:user)/g);
-    const ownerParts = parts.map((part, index) => {
-      return part === ':user' ? <UserLink key={index} user={client.user} /> : part;
-    });
+    const mappings = {
+      ':user': <UserLink key='user' user={client.user} />,
+    };
 
     return (
       <div className='authorized-client'>
@@ -42,7 +42,7 @@ export class AuthorizedClient extends React.Component<Props> {
             {client.name}
           </div>
           <span className='authorized-client__owner'>
-            {ownerParts}
+            <StringWithComponent pattern={osu.trans('oauth.authorized-clients.owned_by')} mappings={mappings} />
           </span>
           <div className='authorized-client__scopes'>
             {this.renderPermissions()}

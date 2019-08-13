@@ -149,7 +149,6 @@ return [
                     'button' => 'Ladda upp bild',
                     'dropzone' => 'Släpp här för att ladda upp',
                     'dropzone_info' => 'Du kan också släppa din bild här för att ladda upp',
-                    'restriction_info' => "Uppladdning tillgängligt för <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> endast",
                     'size_info' => 'Omslagets storlek bör vara 2800x620',
                     'too_large' => 'Uppladdad bild är för stor.',
                     'unsupported_format' => 'Formatet stöds ej.',
@@ -219,7 +218,6 @@ return [
                 'recent_entries' => 'Nyligen Kudosu Historia',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Intjänad',
-                'total_info' => 'Baserad på hur mycket bidrag användaren har gjort till beatmap moderation. Se <a href="'.osu_url('user.kudosu').'">denna sida</a> för mer information.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -335,7 +333,6 @@ return [
             'description' => '<strong>jag!</strong> är en personlig anpassningsbar del på din profil sida.',
             'edit_big' => 'Redigera mig!',
             'placeholder' => 'Skriv sidoinnehåll här',
-            'restriction_info' => "Du behöver vara en <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> för att låsa upp denna funktion.",
         ],
         'post_count' => [
             '_' => 'Bidragit med :link',
