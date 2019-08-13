@@ -113,7 +113,7 @@
                             >
                         </label>
 
-                        <span class="account-edit-entry__disclaimer">{{ trans('accounts.avatar.disclaimer') }}</span>
+                        <div class="account-edit-entry__disclaimer">{!! trans('accounts.edit.avatar.disclaimer') !!}</div>
                     </div>
                 </div>
             </div>
