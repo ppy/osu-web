@@ -49,6 +49,7 @@ interface OsuCommon {
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
+  link: (url: string, text: string, options?: { classNames?: string[]; isRemote?: boolean }) => string;
   linkify: (text: string, newWindow?: boolean) => string;
   parseJson: (id: string, remove?: boolean) => any;
   popup: (message: string, type: string) => void;
@@ -66,7 +67,6 @@ interface OsuCommon {
   isDesktop(): boolean;
   isMobile(): boolean;
   updateQueryString(url: string | null, params: { [key: string]: string | undefined }): string;
-  link(url: string, text: string, options?: { isRemote?: boolean; classNames?: string[] }): string;
 }
 
 interface Country {
