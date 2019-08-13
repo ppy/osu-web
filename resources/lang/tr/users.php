@@ -149,7 +149,6 @@ return [
                     'button' => 'Resim yükle',
                     'dropzone' => 'Yüklemek için dosyayı bırak',
                     'dropzone_info' => 'Yüklemek için resmi buraya da bırakabilirsiniz',
-                    'restriction_info' => "Yükleme <a href=' için uygun".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter'lara</a> özel",
                     'size_info' => 'Kapak boyutu 2800x620 olmalı',
                     'too_large' => 'Yüklenen dosya boyutu çok büyük.',
                     'unsupported_format' => 'Desteklenmeyen biçim.',
@@ -219,7 +218,6 @@ return [
                 'recent_entries' => 'Son Kudosu Geçmişi',
                 'title' => 'Kudosu!',
                 'total' => 'Kazanılan Toplam Kudosu',
-                'total_info' => 'Kullanıcının beatmap\'lere ne kadar katkıda bulunduğuna bağlıdır. Daha fazla bilgi için <a href="'.osu_url('user.kudosu').'daha fazla bilgi için ">bu sayfaya</a> bakınız.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -335,7 +333,6 @@ return [
             'description' => '<strong>ben!</strong>, profil sayfanızdaki kişiselleştirilebilir bir alandır.',
             'edit_big' => 'Beni düzenle!',
             'placeholder' => 'Sayfanın içeriğini buraya yaz',
-            'restriction_info' => "<a href=' olmanız gerekiyor".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> olmanız gerekir.",
         ],
         'post_count' => [
             '_' => ':link kadar katkı',

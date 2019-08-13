@@ -149,7 +149,6 @@ return [
                     'button' => '上傳圖片',
                     'dropzone' => '拖動到此處以上傳',
                     'dropzone_info' => '您也可以將圖片拉到此處上傳',
-                    'restriction_info' => "自定義皮膚只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!贊助者</a> 可用",
                     'size_info' => '圖片尺寸應為2800x620',
                     'too_large' => '上傳的圖片檔案過大.',
                     'unsupported_format' => '不支援的檔案格式.',
@@ -219,7 +218,6 @@ return [
                 'recent_entries' => '近期 Kudosu 記錄',
                 'title' => 'Kudosu!',
                 'total' => '總共獲得 kudosu',
-                'total_info' => '根據使用者對於製作圖譜的貢獻度。請參閱 <a href="'.osu_url('user.kudosu').'">> 本頁</a> 以瞭解更多資訊。',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -335,7 +333,6 @@ return [
             'description' => '<strong>個人介紹</strong> 在您的個人簡介網頁可以自行修改。',
             'edit_big' => '編輯',
             'placeholder' => '在這裡編輯',
-            'restriction_info' => "您必須是 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!贊助者</a> 以解鎖此功能.",
         ],
         'post_count' => [
             '_' => '發表 :link',

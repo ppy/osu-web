@@ -149,7 +149,6 @@ return [
                     'button' => 'Загрузить изображение',
                     'dropzone' => 'Брось изображение сюда для загрузки',
                     'dropzone_info' => 'Вы также можете перетащить изображение сюда для загрузки',
-                    'restriction_info' => "Загрузка своих обложек доступна только для владельцев <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a>",
                     'size_info' => 'Размер обложки должен быть равен 2800x620',
                     'too_large' => 'Загруженное изображение слишком большое.',
                     'unsupported_format' => 'Неподдерживаемый формат.',
@@ -219,7 +218,6 @@ return [
                 'recent_entries' => 'Последние обмены',
                 'title' => 'Кудосу!',
                 'total' => 'Кудосу накоплено',
-                'total_info' => 'Исходя из того, сколько правок внёс пользователь во время модерации карт. Загляните <a href="'.osu_url('user.kudosu').'">сюда</a> для дополнительной информации.',
 
                 'entry' => [
                     'amount' => ':amount кудосу',
@@ -335,7 +333,6 @@ return [
             'description' => '<strong>обо мне!</strong> - это ваше личное редактируемое пространство в профиле.',
             'edit_big' => 'редактировать',
             'placeholder' => 'Введите контент страницы сюда',
-            'restriction_info' => "Вы должны иметь <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> для разблокировки данной возможности.",
         ],
         'post_count' => [
             '_' => 'Написал :link',
