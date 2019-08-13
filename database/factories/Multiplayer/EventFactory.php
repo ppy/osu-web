@@ -37,3 +37,9 @@ $factory->state(App\Models\Multiplayer\Event::class, 'part', function (Faker\Gen
         'text' => 'PART',
     ];
 });
+
+$factory->state(App\Models\Multiplayer\Event::class, 'game', function (Faker\Generator $faker) {
+    return [
+        'text' => 'test game',
+    ];
+});
