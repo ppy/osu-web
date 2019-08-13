@@ -14,13 +14,13 @@ $factory->define(App\Models\Multiplayer\Game::class, function (Faker\Generator $
     ];
 });
 
-$factory->state(App\Models\Multiplayer\Game::class, "in_progress", function (Faker\Generator $faker) {
+$factory->state(App\Models\Multiplayer\Game::class, 'in_progress', function (Faker\Generator $faker) {
     return [
         'end_time' => null,
     ];
 });
 
-$factory->state(App\Models\Multiplayer\Game::class, "complete", function (Faker\Generator $faker) {
+$factory->state(App\Models\Multiplayer\Game::class, 'complete', function (Faker\Generator $faker) {
     return [
         'end_time' => Carbon::now(),
     ];
