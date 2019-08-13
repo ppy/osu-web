@@ -43,8 +43,12 @@
   }
 
   &--is-disabled {
-    .link-gray-555();
+    color: @osu-colour-f1;
     cursor: default;
+
+    .link-hover({
+      color: @osu-colour-f1;
+    });
 
     &.@{top}--white {
       .link-white();

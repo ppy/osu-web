@@ -29,10 +29,10 @@ sortPresets =
   updated_at:
     text: osu.trans('beatmaps.discussions.sort.updated_at')
     sort: (a, b) ->
-      if a.updated_at == b.updated_at
+      if a.last_post_at == b.last_post_at
         b.id - a.id
       else
-        Date.parse(b.updated_at) - Date.parse(a.updated_at)
+        Date.parse(b.last_post_at) - Date.parse(a.last_post_at)
 
   created_at:
     text: osu.trans('beatmaps.discussions.sort.created_at')
