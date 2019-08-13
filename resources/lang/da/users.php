@@ -149,7 +149,6 @@ return [
                     'button' => 'Upload billede',
                     'dropzone' => 'Smid her for at uploade',
                     'dropzone_info' => 'Du kan også smide dit billede her for at uploade',
-                    'restriction_info' => "Upload er kun tilgængelig for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
                     'size_info' => 'Coverbilledet burde være 2800x620',
                     'too_large' => 'Den uploadede fil er for stor.',
                     'unsupported_format' => 'Ikke-understøttet format.',
@@ -219,7 +218,6 @@ return [
                 'recent_entries' => 'Seneste Kudosu Historie',
                 'title' => 'Kudosu!',
                 'total' => 'Samlet Kudosu Optjent',
-                'total_info' => 'Baseret på hvor stort et bidrag brugeren har givet til beatmaps. Se <a href="'.osu_url('user.kudosu').'">denne side</a> for mere information.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -335,7 +333,6 @@ return [
             'description' => '<strong>me!</strong> er et brugerdefinerbart felt på din profilside.',
             'edit_big' => 'Ændr mig!',
             'placeholder' => 'Skriv indhold her',
-            'restriction_info' => "Du skal være <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> for at bruge denne funktion.",
         ],
         'post_count' => [
             '_' => 'Bidraget :link',

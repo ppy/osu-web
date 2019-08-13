@@ -149,7 +149,6 @@ return [
                     'button' => 'อัพโหลดรูปภาพ',
                     'dropzone' => 'วางที่นี่เพื่ออัพโหลด',
                     'dropzone_info' => 'นอกจากนี้คุณยังสามารถวางรูปภาพเพื่ออัปโหลด',
-                    'restriction_info' => "อัพโหลดพร้อมแล้ว สำหรับ <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!ผู้สนับสนุน</a> เท่านั้น",
                     'size_info' => 'รูปภาพหน้าปกควรจะมีขนาด 2800x620',
                     'too_large' => 'ไฟล์มีขนาดใหญ่เกินไป',
                     'unsupported_format' => 'ไม่รองรับไฟล์นามสกุลนี้',
@@ -219,8 +218,6 @@ return [
                 'recent_entries' => 'ประวัติ Kudosu ล่าสุด',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu ที่ได้รับ',
-                'total_info' => 'ขึ้นอยู่กับจำนวนผู้ใช้ที่ได้รับการดูแล บีทแมพ. 
-ดู <a href="'.osu_url('user.kudosu').'">this page</a> สำหรับข้อมูลเพิ่มเติม',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -336,7 +333,6 @@ return [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
         ],
         'post_count' => [
             '_' => 'การมีส่วนร่วม :link',

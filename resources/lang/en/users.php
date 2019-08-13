@@ -149,10 +149,14 @@ return [
                     'button' => 'Upload image',
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
-                    'restriction_info' => "Upload available for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> only",
                     'size_info' => 'Cover size should be 2800x620',
                     'too_large' => 'Uploaded file is too large.',
                     'unsupported_format' => 'Unsupported format.',
+
+                    'restriction_info' => [
+                        '_' => 'Upload available for :link only',
+                        'link' => 'osu!supporters',
+                    ],
                 ],
             ],
 
@@ -219,7 +223,6 @@ return [
                 'recent_entries' => 'Recent Kudosu History',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Earned',
-                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.osu_url('user.kudosu').'">this page</a> for more information.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -258,6 +261,11 @@ return [
                         'reset' => 'Kudosu reset by :giver for the post :post',
                         'revoke' => 'Denied kudosu by :giver for the post :post',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => 'Based on how much of a contribution the user has made to beatmap moderation. See :link for more information.',
+                    'link' => 'this page',
                 ],
             ],
             'me' => [
@@ -335,7 +343,11 @@ return [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+
+            'restriction_info' => [
+                '_' => 'You need to be an :link to unlock this feature.',
+                'link' => 'osu!supporter',
+            ],
         ],
         'post_count' => [
             '_' => 'Contributed :link',

@@ -18,8 +18,9 @@
 
 import { ExtraHeader } from './extra-header'
 import * as React from 'react'
-import { div, h3, ul, li, p, span } from 'react-dom-factories'
+import { a, div, h3, ul, li, p, span } from 'react-dom-factories'
 import { ShowMoreLink } from 'show-more-link'
+import { StringWithComponent } from 'string-with-component'
 import { ValueDisplay } from 'value-display'
 el = React.createElement
 
@@ -33,8 +34,14 @@ export class Kudosu extends React.Component
           modifiers: ['kudosu']
           label: osu.trans('users.show.extra.kudosu.total')
           value: osu.formatNumber(@props.user.kudosu.total)
-          description: span dangerouslySetInnerHTML:
-            __html: osu.trans('users.show.extra.kudosu.total_info')
+          description:
+            el StringWithComponent,
+              mappings:
+                ':link': a
+                  href: laroute.route('wiki.show', page: 'Kudosu')
+                  key: 'link'
+                  osu.trans 'users.show.extra.kudosu.total_info.link'
+              pattern: osu.trans('users.show.extra.kudosu.total_info._')
 
         el ValueDisplay,
           modifiers: ['kudosu']
