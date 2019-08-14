@@ -151,7 +151,8 @@ export default class ConversationView extends React.Component<any, any> {
           {channel.type === 'PM' ? (
             <StringWithComponent
               pattern={osu.trans('chat.talking_with')}
-              mappings={{':name': <UserLink key='user' user={{id: channel.pmTarget || 0, username: channel.name, cover: {}, default_group: '', is_active: false, is_bot: false, is_online: false, is_supporter: false, pm_friends_only: false}}/>}}/>
+              // TODO: rework this once the user class situation is resolved
+              mappings={{':name': <a key='user' className="js-usercard" data-user-id={channel.pmTarget} data-tooltip-position="top center" href={laroute.route('users.show', {user: channel.pmTarget})}>{channel.name}</a>}}/>
           ) : (
             osu.trans('chat.talking_in', {channel: channel.name})
           )}
