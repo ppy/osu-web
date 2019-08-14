@@ -16,45 +16,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmapset-watches {
-  color: white;
-  margin: 20px;
+import * as React from 'react';
 
-  &__table-container {
-    overflow-x: auto;
-  }
+interface Props {
+  mappings: any;
+  pattern: string;
+}
 
-  &__col {
-    &--cover {
-      width: 70px;
-      padding: 0;
-    }
+export function StringWithComponent(props: Props) {
+  const keys = Object.keys(props.mappings);
+  const regex = new RegExp(`(${keys.join('|')})`);
+  const parts = props.pattern.split(regex);
 
-    && { // bootstrap override
-      vertical-align: middle;
-      border-top: 2px solid @osu-colour-b4;
-    }
-  }
-
-  &__cover {
-    .default-border-radius();
-    width: 70px;
-    height: 60px;
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-  }
-
-  &__description {
-    margin-bottom: 20px;
-  }
-
-  &__heading {
-    border-top: none !important;
-  }
-
-  &__link {
-    color: @osu-colour-l1;
-    .link-hover({ color: white });
-  }
+  return (
+    <>
+      {
+        parts.map((part) => {
+          return props.mappings[part] ? props.mappings[part] : part;
+        })
+      }
+    </>
+  );
 }
