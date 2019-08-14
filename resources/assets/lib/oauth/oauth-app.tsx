@@ -24,9 +24,21 @@ interface Props {
 }
 
 export class OAuthApp extends React.Component<Props> {
+  async delete() {
+    return $.ajax({
+      method: 'DELETE',
+      url: laroute.route('oauth.apps.destroy', { app: this.props.app.id }),
+    }).then(() => {
+
+    }).always(() => {
+
+    });
+  }
+
   deleteClicked = (event: React.MouseEvent<HTMLElement>) => {
     if (!confirm('Deleting the application cannot be undone!')) { return; }
 
+    this.delete().catch(osu.ajaxError);
     // this.props.app.delete().catch(osu.ajaxError);
   }
 
@@ -43,7 +55,7 @@ export class OAuthApp extends React.Component<Props> {
             {app.redirect}
           </div>
           <div>
-            {app.revoked}
+            {app.revoked ? 'revoked' : 'active'}
           </div>
         </div>
 
