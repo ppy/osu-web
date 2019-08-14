@@ -26,6 +26,8 @@ import RootDataStore from 'stores/root-data-store';
 import { UserAvatar } from 'user-avatar';
 import MessageDivider from './message-divider';
 import MessageGroup from './message-group';
+import { StringWithComponent } from 'string-with-component';
+import { UserLink } from 'user-link';
 
 @inject('dataStore')
 @observer
@@ -147,11 +149,9 @@ export default class ConversationView extends React.Component<any, any> {
         </div>
         <div className='chat-conversation__chat-label'>
           {channel.type === 'PM' ? (
-            <span
-              dangerouslySetInnerHTML={{__html: osu.trans('chat.talking_with', {
-                name: osu.link(laroute.route('users.show', {user: channel.pmTarget}), channel.name),
-            })}}
-            />
+            <StringWithComponent
+              pattern={osu.trans('chat.talking_with')}
+              mappings={{':name': <UserLink key='user' user={{id: channel.pmTarget || 0, username: channel.name, cover: {}, default_group: '', is_active: false, is_bot: false, is_online: false, is_supporter: false, pm_friends_only: false}}/>}}/>
           ) : (
             osu.trans('chat.talking_in', {channel: channel.name})
           )}
