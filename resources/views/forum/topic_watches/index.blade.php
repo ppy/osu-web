@@ -53,7 +53,7 @@
 
         <div class="forum-list">
             <div class="forum-list__header">
-                <h2 class="title">
+                <h2 class="title title--no-margin">
                     {{ trans('forum.topic_watches.index.title') }}
                 </h2>
             </div>

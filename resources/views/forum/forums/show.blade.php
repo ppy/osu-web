@@ -45,7 +45,7 @@
 
         @if ($forum->subforums()->exists())
             <div class="forum-list">
-                <h2 class="title title--forums-show">{{ trans("forum.subforums") }}</h2>
+                <h2 class="title title--no-margin">{{ trans("forum.subforums") }}</h2>
 
                 <ul class="forum-list__items">
                     @foreach ($forum->subforums as $subforum)
@@ -58,7 +58,7 @@
         @if (count($pinnedTopics) > 0)
             <div class="forum-list">
                 <div class="forum-list__header">
-                    <h2 class="title title--forums-show">
+                    <h2 class="title title--no-margin">
                         {{ trans('forum.pinned_topics') }}
                     </h2>
                 </div>
@@ -72,7 +72,7 @@
         @if (count($topics) > 0 || $forum->isOpen())
             <div id="topics" class="forum-list">
                 <div class="forum-list__header">
-                    <h2 class="title title--forums-show">
+                    <h2 class="title title--no-margin">
                         {{ trans('forum.topics._') }}
                     </h2>
 
