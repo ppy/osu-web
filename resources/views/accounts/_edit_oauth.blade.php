@@ -31,5 +31,14 @@
                 </div>
             </div>
         </div>
+
+        <div class="account-edit__input-group">
+            <div class="account-edit-entry">
+                <div class="account-edit-entry__label account-edit-entry__label--top-pinned">{{ trans('accounts.oauth.apps') }}</div>
+                <div class="account-edit__input-groups">
+                    <div class="js-react--oauth-apps"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

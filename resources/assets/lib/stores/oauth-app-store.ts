@@ -16,24 +16,29 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { AuthorizedClients } from 'oauth/authorized-clients';
-import { OAuthApps } from 'oauth/oauth-apps';
-import core from 'osu-core-singleton';
+import DispatcherAction from 'actions/dispatcher-action';
+import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
+import { action, observable } from 'mobx';
+import Store from 'stores/store';
 
-reactTurbolinks.register('authorized-clients', AuthorizedClients, (container: HTMLElement) => {
-  const json = osu.parseJson('json-authorized-clients', true);
-  if (json != null) {
-    core.dataStore.clientStore.initialize(json);
+export default class OAuthAppStore extends Store {
+  @observable apps = new Map<number, JSON>();
+
+  handleDispatchAction(dispatchedAction: DispatcherAction) {
+    if (dispatchedAction instanceof UserLoginAction
+      || dispatchedAction instanceof UserLogoutAction) {
+      this.flushStore();
+    }
   }
 
-  return {};
-});
-
-reactTurbolinks.register('oauth-apps', OAuthApps, (container: HTMLElement) => {
-  const json = osu.parseJson('json-oauth-apps', true);
-  if (json != null) {
-    core.dataStore.oauthAppStore.initialize(json);
+  initialize(data: JSON[]) {
+    for (const item of data) {
+      this.apps.set(item.id, item);
+    }
   }
 
-  return {};
-});
+  @action
+  private flushStore() {
+    this.apps.clear();
+  }
+}

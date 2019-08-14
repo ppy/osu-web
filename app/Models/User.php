@@ -179,7 +179,10 @@ use Request;
 class User extends Model implements AuthenticatableContract
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
-    use HasApiTokens, Authenticatable, Reportable, UserAvatar, UserScoreable, Validatable;
+    use Authenticatable, Reportable, UserAvatar, UserScoreable, Validatable;
+    use HasApiTokens {
+        clients as oauthClients;
+    }
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';

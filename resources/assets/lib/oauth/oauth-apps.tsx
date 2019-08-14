@@ -16,24 +16,28 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { AuthorizedClients } from 'oauth/authorized-clients';
-import { OAuthApps } from 'oauth/oauth-apps';
+import { OAuthApp } from 'oauth/oauth-app';
 import core from 'osu-core-singleton';
+import * as React from 'react';
 
-reactTurbolinks.register('authorized-clients', AuthorizedClients, (container: HTMLElement) => {
-  const json = osu.parseJson('json-authorized-clients', true);
-  if (json != null) {
-    core.dataStore.clientStore.initialize(json);
+const store = core.dataStore.oauthAppStore;
+
+export class OAuthApps extends React.Component {
+  render() {
+    return (
+      <div className='authorized-clients'>
+        {store.apps.size > 0 ? this.renderOAuthApps() : this.renderEmpty()}
+      </div>
+    );
   }
 
-  return {};
-});
-
-reactTurbolinks.register('oauth-apps', OAuthApps, (container: HTMLElement) => {
-  const json = osu.parseJson('json-oauth-apps', true);
-  if (json != null) {
-    core.dataStore.oauthAppStore.initialize(json);
+  renderEmpty() {
+    return osu.trans('oauth.authorized-clients.none');
   }
 
-  return {};
-});
+  renderOAuthApps() {
+    return [...store.apps.values()].map((app) => {
+      return <OAuthApp app={app} key={app.id} />;
+    });
+  }
+}

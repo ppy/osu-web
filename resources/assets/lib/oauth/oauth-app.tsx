@@ -16,24 +16,22 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { AuthorizedClients } from 'oauth/authorized-clients';
-import { OAuthApps } from 'oauth/oauth-apps';
-import core from 'osu-core-singleton';
+import * as React from 'react';
 
-reactTurbolinks.register('authorized-clients', AuthorizedClients, (container: HTMLElement) => {
-  const json = osu.parseJson('json-authorized-clients', true);
-  if (json != null) {
-    core.dataStore.clientStore.initialize(json);
+interface Props {
+  app: any;
+}
+
+export class OAuthApp extends React.Component<Props> {
+  render() {
+    return (
+      <div className='authorized-client'>
+        {this.props.app.name}
+        {this.props.app.redirect}
+        {this.props.app.personal_access_client}
+        {this.props.app.password_client}
+        {this.props.app.revoked}
+      </div>
+    );
   }
-
-  return {};
-});
-
-reactTurbolinks.register('oauth-apps', OAuthApps, (container: HTMLElement) => {
-  const json = osu.parseJson('json-oauth-apps', true);
-  if (json != null) {
-    core.dataStore.oauthAppStore.initialize(json);
-  }
-
-  return {};
-});
+}
