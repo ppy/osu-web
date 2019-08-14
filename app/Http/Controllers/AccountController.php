@@ -116,7 +116,7 @@ class AccountController extends Controller
             ->getIdWithoutKeyPrefix();
 
         $authorizedClients = json_collection(Client::forUser(auth()->user()), 'OAuth\Client', 'user');
-        $oauthApps = auth()->user()->oauthClients;
+        $oauthApps = auth()->user()->oauthClients()->where('revoked', false)->get();
 
         return view('accounts.edit', compact('authorizedClients', 'blocks', 'oauthApps', 'sessions', 'currentSessionId'));
     }
