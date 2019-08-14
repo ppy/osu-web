@@ -16,7 +16,9 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @if (count($topics) === 0)
-    @include('forum.forums._topic_empty')
+    <li class="forum-topic-entry">
+        {{ trans('forum.forums.topics.empty') }}
+    </li>
 @else
     @foreach($topics as $topic)
         @include($row ?? 'forum.forums._topic')
