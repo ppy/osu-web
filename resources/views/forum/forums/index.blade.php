@@ -34,7 +34,30 @@
                     </div>
 
                     <div class="forum-list__buttons">
-                        @include('forum.forums._mark_as_read', ['forum' => $category, 'recursive' => true])
+                        <div class="forum-list__button">
+                            @include('forum.forums._mark_as_read', ['forum' => $category, 'recursive' => true])
+                        </div>
+                    </div>
+
+                    <div class="forum-list__menu">
+                        @php
+                            $menuId = "forum-{$category->getKey()}";
+                        @endphp
+                        <button class="forum-list__menu-button js-click-menu" data-click-menu-target="{{ $menuId }}">
+                            <span class="fas fa-ellipsis-v"></span>
+                        </button>
+
+                        <div
+                            class="simple-menu simple-menu--forum-list js-click-menu"
+                            data-visibility="hidden"
+                            data-click-menu-id="{{ $menuId }}"
+                        >
+                            @include('forum.forums._mark_as_read', [
+                                'blockClass' => 'simple-menu__item',
+                                'forum' => $category,
+                                'recursive' => true,
+                            ])
+                        </div>
                     </div>
                 </div>
 

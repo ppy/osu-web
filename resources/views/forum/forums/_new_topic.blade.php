@@ -15,44 +15,37 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-
 @php
     $newTopicAuth = priv_check('ForumTopicStore', $forum);
     $newTopicEnabled = $newTopicAuth->can() || $newTopicAuth->requireLogin();
-@endphp
+    $blockClass = $blockClass ?? 'btn-osu-big btn-osu-big--forum-button';
 
-@if ($newTopicEnabled)
-    <a class="btn-osu-big btn-osu-big--forum-button js-login-required--click"
-        href="{{ route('forum.topics.create', ['forum_id' => $forum]) }}">
-        @if (Auth::check())
-            <span class="btn-osu-big__content">
-                <span class="btn-osu-big__left">
-                    <span>
-                        <i class="fas fa-plus"></i>
-                        {{ trans('forum.topic.new_topic') }}
-                    </span>
-                </span>
-            </span>
-        @else
-            <span class="btn-osu-big__content">
-                <span class="btn-osu-big__left">
-                    <span>
-                        <i class="fas fa-sign-in-alt"></i>
-                        {{ trans('forum.topic.new_topic_login') }}
-                    </span>
-                </span>
-            </span>
-        @endif
-    </a>
-@else
-    <span class="btn-osu-big btn-osu-big--forum-button" title="{{ $newTopicAuth->message() }}" disabled>
-        <span class="btn-osu-big__content">
-            <span class="btn-osu-big__left">
-                <span>
-                    <i class="fas fa-plus"></i>
-                    {{ trans('forum.topic.new_topic') }}
-                </span>
-            </span>
-        </span>
-    </span>
-@endif
+    if ($newTopicEnabled) {
+        $element = 'a';
+        $blockClass .= ' js-login-required--click';
+        $attributes = [
+            'href' => route('forum.topics.create', ['forum_id' => $forum]),
+        ];
+        if (!auth()->check()) {
+            $icon = 'fas fa-sign-in-alt';
+            $text = trans('forum.topic.new_topic_login');
+        }
+    } else {
+        $element = 'span';
+        $attributes = [
+            'disabled' => 1,
+            'title' => $newTopicAuth->message(),
+        ];
+    }
+@endphp
+<{!! $element !!}
+    class="{{ $blockClass }}"
+    @foreach ($attributes as $key => $value)
+        {{ $key }}="{{ $value }}"
+    @endforeach
+>
+    @if ($withIcon ?? true)
+        <i class="{{ $icon ?? 'fas fa-plus' }}"></i>
+    @endif
+    {{ $text ?? trans('forum.topic.new_topic') }}
+</{!! $element !!}>

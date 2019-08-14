@@ -45,7 +45,7 @@
 
         @if ($forum->subforums()->exists())
             <div class="forum-list">
-                <h2 class="title">{{ trans("forum.subforums") }}</h2>
+                <h2 class="title title--forums-show">{{ trans("forum.subforums") }}</h2>
 
                 <ul class="forum-list__items">
                     @foreach ($forum->subforums as $subforum)
@@ -58,7 +58,7 @@
         @if (count($pinnedTopics) > 0)
             <div class="forum-list">
                 <div class="forum-list__header">
-                    <h2 class="title">
+                    <h2 class="title title--forums-show">
                         {{ trans('forum.pinned_topics') }}
                     </h2>
                 </div>
@@ -72,9 +72,27 @@
         @if (count($topics) > 0 || $forum->isOpen())
             <div id="topics" class="forum-list">
                 <div class="forum-list__header">
-                    <h2 class="title">
+                    <h2 class="title title--forums-show">
                         {{ trans('forum.topics._') }}
                     </h2>
+
+                    <div class="forum-list__menu">
+                        @php
+                            $menuId = "forum-{$forum->getKey()}";
+                        @endphp
+                        <button class="forum-list__menu-button js-click-menu" data-click-menu-target="{{ $menuId }}">
+                            <span class="fas fa-ellipsis-v"></span>
+                        </button>
+
+                        <div
+                            class="simple-menu simple-menu--forum-list js-click-menu"
+                            data-visibility="hidden"
+                            data-click-menu-id="{{ $menuId }}"
+                        >
+                            @include('forum.forums._new_topic', ['blockClass' => 'simple-menu__item', 'forum' => $forum, 'withIcon' => false])
+                            @include('forum.forums._mark_as_read', ['blockClass' => 'simple-menu__item', 'forum' => $forum])
+                        </div>
+                    </div>
                 </div>
 
                 <div class="forum-list__buttons">
