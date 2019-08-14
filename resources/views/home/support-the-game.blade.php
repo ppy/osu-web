@@ -126,27 +126,6 @@
 
         @foreach($data['perks'] as $group)
             @switch ($group['type'])
-                @case('hero')
-                    <div class="stg-perk--big">
-                        <div class="stg-perk__direct"></div>
-                        <div class="stg-perk__meta">
-                            <div class="stg-perk__icon">
-                                <span class="fa-stack">
-                                    <i class="fas fa-circle fa-stack-2x stg-perk__icon-bg"></i>
-                                    <i class="{{$group['icon']}} fa-stack-1x"></i>
-                                </span>
-                            </div>
-                            <div class="stg-perk__text">
-                                <h4 class="stg-perk__title">
-                                    {{ trans('community.support.perks.'.$group['name'].'.title') }}
-                                </h4>
-                                <p class="stg-perk__content">
-                                    {{ trans('community.support.perks.'.$group['name'].'.description') }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    @break
                 @case('group')
                     <div class="stg-block stg-block--features">
                         <div class="stg-block__perks">
@@ -170,6 +149,53 @@
                                     </div>
                                 @endif
                             @endforeach
+                        </div>
+                    </div>
+                    @break
+                @case('hero')
+                    <div class="stg-perk--customisation">
+                        <div class="stg-perk__meta">
+                            <div class="stg-perk__icon">
+                                <span class="fa-stack">
+                                    <i class="fas fa-circle fa-stack-2x stg-perk__icon-bg"></i>
+                                    <i class="{{$group['icon']}} fa-stack-1x"></i>
+                                </span>
+                            </div>
+                            <div class="stg-perk__text">
+                                <h4 class="stg-perk__title">
+                                    {{ trans('community.support.perks.'.$group['name'].'.title') }}
+                                </h4>
+                                <p class="stg-perk__content">
+                                    {{ trans('community.support.perks.'.$group['name'].'.description') }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    @break
+                @case('image')
+                @case('image-flipped')
+                    <div class="stg-perk--big{{$group['type'] === 'image-flipped' ? ' stg-perk--flipped' : ''}}">
+                        <div class="stg-perk__image">
+                            <img
+                                src="{{$group['image']}}"
+                                srcSet="{{$group['image']}} 1x, {{retinaify($group['image'])}} 2x"
+                            />
+                        </div>
+                        <div class="stg-perk__meta">
+                            <div class="stg-perk__icon">
+                                <span class="fa-stack">
+                                    <i class="fas fa-circle fa-stack-2x stg-perk__icon-bg"></i>
+                                    <i class="{{$group['icon']}} fa-stack-1x"></i>
+                                </span>
+                            </div>
+                            <div class="stg-perk__text">
+                                <h4 class="stg-perk__title">
+                                    {{ trans('community.support.perks.'.$group['name'].'.title') }}
+                                </h4>
+                                <p class="stg-perk__content">
+                                    {{ trans('community.support.perks.'.$group['name'].'.description') }}
+                                </p>
+                            </div>
                         </div>
                     </div>
                     @break

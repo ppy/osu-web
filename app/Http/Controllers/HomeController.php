@@ -220,9 +220,10 @@ class HomeController extends Controller
                 'perks' => [
                     // localization's name => icon
                     [
-                        'type' => 'hero',
+                        'type' => 'image',
                         'name' => 'osu_direct',
                         'icon' => 'fas fa-search',
+                        'image' => '/images/layout/supporter/direct.png',
                     ],
                     [
                         'type' => 'group',
@@ -233,14 +234,16 @@ class HomeController extends Controller
                         ],
                     ],
                     [
-                        'type' => 'hero',
+                        'type' => 'image-flipped',
                         'name' => 'beatmap_filters',
                         'icon' => 'fas fa-filter',
+                        'image' => '/images/layout/supporter/filter.jpg',
                     ],
                     [
                         'type' => 'hero',
                         'name' => 'customisation',
                         'icon' => 'fas fa-image',
+                        'image' => '/images/layout/supporter/customisation.jpg',
                     ],
                     [
                         'type' => 'image-group',
