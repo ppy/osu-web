@@ -17,8 +17,8 @@
 --}}
 @extends('master', [
     'legacyNav' => false,
-    'pageDescription' => trans('forum.title')
-    'search' => ['url' => route('forum.forums.search')],
+    'pageDescription' => trans('forum.title'),
+    'searchParams' => ['mode' => 'forum_post'],
 ])
 
 @section('content')

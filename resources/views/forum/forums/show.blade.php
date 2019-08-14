@@ -18,9 +18,9 @@
 @extends('master', [
     'legacyNav' => false,
     'pageDescription' => $forum->toMetaDescription(),
-    'search' => [
-        'params' => ['forum_id' => $forum->forum_id],
-        'url' => route('forum.forums.search'),
+    'searchParams' => [
+        'forum_id' => $forum->getKey(),
+        'mode' => 'forum_post',
     ],
     'titlePrepend' => $forum->forum_name,
 ])
