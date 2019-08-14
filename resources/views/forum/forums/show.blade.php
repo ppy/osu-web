@@ -101,7 +101,7 @@
                 </div>
 
                 <div class="forum-topics-spacer__group forum-topics-spacer__group--pager">
-                    @include('objects._pagination_v0', [
+                    @include('objects._pagination_v2', [
                         'object' => $topics
                             ->fragment('topics')
                             ->appends([

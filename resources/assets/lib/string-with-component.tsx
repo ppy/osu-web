@@ -16,35 +16,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.paginator {
-  display: flex;
-  width: 100%;
-  padding: 15px 0;
-  .center-content();
+import * as React from 'react';
 
-  &--search {
-    padding: 0;
-  }
+interface Props {
+  mappings: any;
+  pattern: string;
+}
 
-  &__page {
-    margin: 0 5px;
-    padding: 0 8px;
-    font-size: @font-size--paginator;
-    .center-content();
+export function StringWithComponent(props: Props) {
+  const keys = Object.keys(props.mappings);
+  const regex = new RegExp(`(${keys.join('|')})`);
+  const parts = props.pattern.split(regex);
 
-    .link-plain();
-    .link-inverted();
-
-    &--current {
-      color: @osu-colour-l1;
-      font-weight: bold;
-    }
-
-    &--disabled {
-      color: @osu-colour-b6;
-      .link-hover({
-        color: @osu-colour-b6;
-      });
-    }
-  }
+  return (
+    <>
+      {
+        parts.map((part) => {
+          return props.mappings[part] ? props.mappings[part] : part;
+        })
+      }
+    </>
+  );
 }

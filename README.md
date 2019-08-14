@@ -18,7 +18,7 @@ See the [setup guide](SETUP.md) for a rundown on how to get a development enviro
 
 We welcome all contributions, but keep in mind that we already have the full site designed (mock-ups). If you wish to work on a new section, please open a ticket and we will give you what you need from a design perspective to proceed. If you want to make *changes* to the design, we recommend you open an issue with your intentions before spending too much time, to ensure no effort is wasted.
 
-If you wish to help with localisation efforts, head over to [crowdin](https://crowdin.com/project/osu-web). If you're unsure of what you can help with, check out the [list of open issues](https://github.com/ppy/osu-web/issues). If you're unsure of what you can help with, check out the [list of open issues](https://github.com/ppy/osu-web/issues) (especially those with the ["good first issue"](https://github.com/ppy/osu-web/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22good+first+issue%22) label).
+If you wish to help with localisation efforts, head over to [crowdin](https://crowdin.com/project/osu-web). If you're unsure of what you can help with, check out the [list of open issues](https://github.com/ppy/osu-web/issues). (especially those with the ["good first issue"](https://github.com/ppy/osu-web/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22good+first+issue%22) label).
 
 Please see [CONTRIBUTING.md](CONTRIBUTING.md) for information about the code standards we expect from pull requests.
 

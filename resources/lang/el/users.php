@@ -149,7 +149,6 @@ return [
                     'button' => 'Ανεβάστε εικόνα',
                     'dropzone' => 'Αφήστε εδώ για να ανεβεί',
                     'dropzone_info' => 'Μπορείτε επίσης να σύρετε την εικόνα σας εδώ για να ανεβεί',
-                    'restriction_info' => "Διαθέσιμη μεταφόρτωση για <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> μόνο",
                     'size_info' => 'Το μέγεθος του εξωφύλλου πρέπει να είναι 2800x620',
                     'too_large' => 'Το αρχείο είναι πολύ μεγάλο.',
                     'unsupported_format' => 'Μη υποστηριζόμενη μορφή.',
@@ -219,7 +218,6 @@ return [
                 'recent_entries' => 'Πρόσφατο Ιστορικό Kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Σύνολο Εξασφαλισμένων Kudosu',
-                'total_info' => 'Βασισμένο στο πόσο έχει συνεισφέρει ο χρήστης για τον έλεγχο των beatmap. Δείτε <a href="'.osu_url('user.kudosu').'">αυτήν τη σελίδα</a> για περισσότερες πληροφορίες.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -335,7 +333,6 @@ return [
             'description' => 'To <strong>me!</strong> είναι μια προσωπική προσαρμόσιμη περιοχή στη σελίδα του προφίλ σας.',
             'edit_big' => 'Επεξεργασία!',
             'placeholder' => 'Γράψτε το περιεχόμενο της σελίδας εδώ',
-            'restriction_info' => "Χρειάζεται να είστε <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> για να ξεκλειδώσετε αυτή τη δυνατότητα.",
         ],
         'post_count' => [
             '_' => 'Συνεισφορά :link',

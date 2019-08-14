@@ -183,7 +183,6 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('search', 'HomeController@search')->name('search');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
     Route::get('changelog/{stream}/{build}', 'ChangelogController@build')->name('changelog.build');
-    Route::get('changelog/{stream}', 'ChangelogController@stream')->name('changelog.stream');
     Route::post('changelog/github', 'ChangelogController@github');
     Route::resource('changelog', 'ChangelogController', ['only' => ['index', 'show']]);
     Route::get('download', 'HomeController@getDownload')->name('download');
@@ -370,7 +369,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
         Route::resource('friends', 'FriendsController', ['only' => ['index']]);
 
         //  GET /api/v2/me
-        Route::get('me', 'UsersController@me');
+        Route::get('me/{mode?}', 'UsersController@me');
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck');
 

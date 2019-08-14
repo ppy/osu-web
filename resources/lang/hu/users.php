@@ -149,7 +149,6 @@ return [
                     'button' => 'Kép feltöltése',
                     'dropzone' => 'Húzd ide a feltöltendő fájlokat',
                     'dropzone_info' => 'Feltöltéshez ide is dobhatod a képed',
-                    'restriction_info' => "Feltöltés elérhető <a href='".route('store.products.show', 'supporter-tag')."csak ' target='_blank'>osu!támogatók</a>",
                     'size_info' => 'A borítónak 2800x620-asnak kellene lennie',
                     'too_large' => 'A feltöltött fájl túl nagy.',
                     'unsupported_format' => 'Nem támogatott formátum.',
@@ -219,7 +218,6 @@ return [
                 'recent_entries' => 'Legutóbbi Kudosu történelem',
                 'title' => 'Kudosu!',
                 'total' => 'Összesen megszerzett Kudosu',
-                'total_info' => 'Az alapján, hogy mennyire járult hozzá a felhasználó a beatmap moderáláshoz. Lásd <a href="'.osu_url('user.kudosu').'">ezt az oldalt</a> bővebb információkért.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -335,7 +333,6 @@ return [
             'description' => '<strong>Rólam!</strong> egy személyre szabható része a profilodnak.',
             'edit_big' => 'A rólam! szerkesztése!',
             'placeholder' => 'Írd ide az oldal tartalmát',
-            'restriction_info' => "A funkció feloldásához <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!támogató</a> kell hogy legyél.",
         ],
         'post_count' => [
             '_' => 'Hozzájárult :link',
