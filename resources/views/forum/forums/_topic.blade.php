@@ -79,11 +79,11 @@
             </div>
         </div>
 
-        <div class="forum__issue-icons">
+        <div class="forum-topic-entry__issue-icons">
             @foreach ($topic->issueTags() as $tag)
                 <div
                     title="{{ $tag }}"
-                    class="forum__issue-icon forum__issue-icon--{{ $tag }}"
+                    class="forum-issue-icon forum-issue-icon--{{ $tag }}"
                 >
                     <i class="{{ issue_icon($tag) }}"></i>
                 </div>

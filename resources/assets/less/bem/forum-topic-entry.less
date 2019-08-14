@@ -135,6 +135,19 @@
     }
   }
 
+  &__issue-icons {
+    flex: none;
+    display: flex;
+    padding: 5px 5px 0;
+    order: 1;
+
+    @media @desktop {
+      align-self: center;
+      order: 0;
+      padding-top: 0;
+    }
+  }
+
   &__link {
     .link-default();
   }
