@@ -23,10 +23,10 @@
   overflow: hidden;
   color: #fff;
   font-size: @font-size--title-small;
-  //text-align: center;
   transition: .25s all;
 
   width: calc(100% - 10px);
+
   @media @desktop {
     width: calc(33% - 10px);
   }
@@ -36,8 +36,20 @@
     padding: 20px;
   }
 
+  &--first {
+    margin-top: -50px;
+    background: @osu-colour-b4;
+  }
+
   &--flipped {
     flex-direction: row-reverse;
+  }
+
+  &--hero {
+    height: 500px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
   }
 
   &--img {
@@ -53,7 +65,7 @@
   }
 
   &__content {
-    .@{top}--customisation & {
+    .@{top}--hero & {
       margin: 0;
     }
 
@@ -68,6 +80,11 @@
     border-radius: 10px;
     display: inline-block;
     overflow: hidden;
+  }
+
+  &__hero-image {
+    .full-size();
+    object-fit: cover;
   }
 
   &__img {
@@ -91,11 +108,11 @@
     transition: .25s all;
 
     .@{top}--big & {
-      margin-left: -50px;
+      margin-left: -45px;
       margin-top: 10px;
     }
 
-    .@{top}--customisation & {
+    .@{top}--hero & {
       padding: 20px;
       margin-top: -50px;
       margin-bottom: -50px;
@@ -120,13 +137,12 @@
   }
 
   &__meta {
-    .@{top}--customisation & {
+    .@{top}--hero & {
       width: 300px;
       background-color: .osu-hsla(@osu-colour-b4, 0.8)[@hsla];
       border-radius: 10px;
       padding: 10px;
       align-self: center;
-      margin-right: 30px;
       margin-top: -50px
     }
   }

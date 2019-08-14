@@ -94,7 +94,7 @@
                 {{ trans('community.support.money_goes_where.title') }}
             </h3>
 
-            <div class="support__perks">
+            <div class="support__perk">
                 @foreach($data['blocks'] as $name => $icons)
                     <div class="support-perk">
                         <div class="support-perk__icon">
@@ -124,115 +124,122 @@
             </h3>
         </div>
 
-        @foreach($data['perks'] as $group)
-            @switch ($group['type'])
-                @case('group')
-                    <div class="support support--features">
-                        <div class="support__perks">
-                            @foreach($group['items'] as $perk => $icon)
-                                @if (strlen($perk) > 0)
-                                    <div class="support-perk support-perk--feature">
-                                        <div class="support-perk__icon">
-                                            <span class="fa-stack">
-                                                <i class="fas fa-circle fa-stack-2x support-perk__icon-bg"></i>
-                                                <i class="{{ $icon }} fa-stack-1x"></i>
-                                            </span>
+        <div class="support__perks">
+            @foreach($data['perks'] as $index => $group)
+                @switch ($group['type'])
+                    @case('group')
+                        <div class="support support--features">
+                            <div class="support__perk">
+                                @foreach($group['items'] as $perk => $icon)
+                                    @if (strlen($perk) > 0)
+                                        <div class="support-perk support-perk--feature{{$index == 0 ? ' support-perk--first' : ''}}">
+                                            <div class="support-perk__icon">
+                                                <span class="fa-stack">
+                                                    <i class="fas fa-circle fa-stack-2x support-perk__icon-bg"></i>
+                                                    <i class="{{ $icon }} fa-stack-1x"></i>
+                                                </span>
+                                            </div>
+                                            <div class="support-perk__text">
+                                                <h4 class="support-perk__title">
+                                                    {{ trans('community.support.perks.'.$perk.'.title') }}
+                                                </h4>
+                                                <p class="support-perk__content">
+                                                    {!! trans('community.support.perks.'.$perk.'.description') !!}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div class="support-perk__text">
-                                            <h4 class="support-perk__title">
-                                                {{ trans('community.support.perks.'.$perk.'.title') }}
-                                            </h4>
-                                            <p class="support-perk__content">
-                                                {!! trans('community.support.perks.'.$perk.'.description') !!}
-                                            </p>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                    @break
-                @case('hero')
-                    <div class="support-perk--customisation">
-                        <div class="support-perk__meta">
-                            <div class="support-perk__icon">
-                                <span class="fa-stack">
-                                    <i class="fas fa-circle fa-stack-2x support-perk__icon-bg"></i>
-                                    <i class="{{$group['icon']}} fa-stack-1x"></i>
-                                </span>
-                            </div>
-                            <div class="support-perk__text">
-                                <h4 class="support-perk__title">
-                                    {{ trans('community.support.perks.'.$group['name'].'.title') }}
-                                </h4>
-                                <p class="support-perk__content">
-                                    {{ trans('community.support.perks.'.$group['name'].'.description') }}
-                                </p>
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
-                    </div>
-                    @break
-                @case('image')
-                @case('image-flipped')
-                    <div class="support-perk--big{{$group['type'] === 'image-flipped' ? ' support-perk--flipped' : ''}}">
-                        <div class="support-perk__image">
+                        @break
+                    @case('hero')
+                        <div class="support-perk--hero{{$index == 0 ? ' support-perk--first' : ''}}">
                             <img
+                                class="support-perk__hero-image"
                                 src="{{$group['image']}}"
                                 srcSet="{{$group['image']}} 1x, {{retinaify($group['image'])}} 2x"
                             />
-                        </div>
-                        <div class="support-perk__meta">
-                            <div class="support-perk__icon">
-                                <span class="fa-stack">
-                                    <i class="fas fa-circle fa-stack-2x support-perk__icon-bg"></i>
-                                    <i class="{{$group['icon']}} fa-stack-1x"></i>
-                                </span>
+                            <div class="support-perk__meta">
+                                <div class="support-perk__icon">
+                                    <span class="fa-stack">
+                                        <i class="fas fa-circle fa-stack-2x support-perk__icon-bg"></i>
+                                        <i class="{{$group['icon']}} fa-stack-1x"></i>
+                                    </span>
+                                </div>
+                                <div class="support-perk__text">
+                                    <h4 class="support-perk__title">
+                                        {{ trans('community.support.perks.'.$group['name'].'.title') }}
+                                    </h4>
+                                    <p class="support-perk__content">
+                                        {{ trans('community.support.perks.'.$group['name'].'.description') }}
+                                    </p>
+                                </div>
                             </div>
-                            <div class="support-perk__text">
-                                <h4 class="support-perk__title">
-                                    {{ trans('community.support.perks.'.$group['name'].'.title') }}
-                                </h4>
-                                <p class="support-perk__content">
-                                    {{ trans('community.support.perks.'.$group['name'].'.description') }}
-                                </p>
+                        </div>
+                        @break
+                    @case('image')
+                    @case('image-flipped')
+                        <div class="support-perk--big{{$group['type'] === 'image-flipped' ? ' support-perk--flipped' : ''}}{{$index == 0 ? ' support-perk--first' : ''}}">
+                            <div class="support-perk__image">
+                                <img
+                                    src="{{$group['image']}}"
+                                    srcSet="{{$group['image']}} 1x, {{retinaify($group['image'])}} 2x"
+                                />
+                            </div>
+                            <div class="support-perk__meta">
+                                <div class="support-perk__icon">
+                                    <span class="fa-stack">
+                                        <i class="fas fa-circle fa-stack-2x support-perk__icon-bg"></i>
+                                        <i class="{{$group['icon']}} fa-stack-1x"></i>
+                                    </span>
+                                </div>
+                                <div class="support-perk__text">
+                                    <h4 class="support-perk__title">
+                                        {{ trans('community.support.perks.'.$group['name'].'.title') }}
+                                    </h4>
+                                    <p class="support-perk__content">
+                                        {{ trans('community.support.perks.'.$group['name'].'.description') }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @break
-                @case('image-group')
-                    <div class="support support--features-2">
-                        <div class="support__perks support__perks--imglist">
-                            @foreach($group['items'] as $name => $perk)
-                                @if (strlen($name) > 0)
-                                    <div class="support-perk support-perk--feature support-perk--img">
-                                        <div class="support-perk__text">
-                                            <h4 class="support-perk__title">
-                                                {{ trans('community.support.perks.'.$name.'.title') }}
-                                            </h4>
-                                            <p class="support-perk__content">
-                                                {!! trans('community.support.perks.'.$name.'.description') !!}
-                                            </p>
+                        @break
+                    @case('image-group')
+                        <div class="support support--features-2">
+                            <div class="support__perk support__perk--imglist">
+                                @foreach($group['items'] as $name => $perk)
+                                    @if (strlen($name) > 0)
+                                        <div class="support-perk support-perk--feature support-perk--img{{$index == 0 ? ' support-perk--first' : ''}}">
+                                            <div class="support-perk__text">
+                                                <h4 class="support-perk__title">
+                                                    {{ trans('community.support.perks.'.$name.'.title') }}
+                                                </h4>
+                                                <p class="support-perk__content">
+                                                    {!! trans('community.support.perks.'.$name.'.description') !!}
+                                                </p>
+                                            </div>
+                                            <div class="support-perk__icon">
+                                                <span class="fa-stack">
+                                                    <i class="fas fa-circle fa-stack-2x support-perk__icon-bg"></i>
+                                                    <i class="{{ $perk['icon'] }} fa-stack-1x"></i>
+                                                </span>
+                                            </div>
+                                            <div class="support-perk__img">
+                                                <img
+                                                    src="{{$perk['image']}}"
+                                                    srcSet="{{$perk['image']}} 1x, {{retinaify($perk['image'])}} 2x"
+                                                />
+                                            </div>
                                         </div>
-                                        <div class="support-perk__icon">
-                                            <span class="fa-stack">
-                                                <i class="fas fa-circle fa-stack-2x support-perk__icon-bg"></i>
-                                                <i class="{{ $perk['icon'] }} fa-stack-1x"></i>
-                                            </span>
-                                        </div>
-                                        <div class="support-perk__img">
-                                            <img
-                                                src="{{$perk['image']}}"
-                                                srcSet="{{$perk['image']}} 1x, {{retinaify($perk['image'])}} 2x"
-                                            />
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
+                                    @endif
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
-                    @break
-            @endswitch
-        @endforeach
+                        @break
+                @endswitch
+            @endforeach
+        </div>
         <div class="support">
             <h3 class="support__title">
                 {{ trans('community.support.convinced.title') }}
