@@ -32,28 +32,23 @@ formatDuration = (value) ->
   else
     "#{m}:#{_.padStart s, 2, 0}"
 
-truncate = (number) ->
-  suffixes = ["", "k", "m", "b", "t"]
-  k = 1000
-  i = Math.floor(Math.log(number) / Math.log(k))
-  j = number / Math.pow(k, i)
-  formattedNumber = j.toFixed()
-
-  if k > number
-    "#{number}"
-  else
-    "#{formattedNumber}#{suffixes[i]}"
-
-
 export BeatmapBasicStats = ({beatmapset, beatmap}) ->
   div
     className: bn
     for stat in ['total_length', 'bpm', 'count_circles', 'count_sliders']
       value =
         if stat == 'bpm'
-          truncate beatmapset.bpm
+          beatmapset.bpm
         else
-          truncate beatmap[stat]
+          beatmap[stat]
+
+      suffixedValue =
+        if stat == 'bpm'
+          osu.formatNumberSuffixed(beatmapset.bpm, 1)
+        else if stat == 'total_length'
+          formatDuration beatmap[stat]
+        else
+          osu.formatNumberSuffixed(beatmap[stat], 1)
 
       value =
         if stat == 'total_length'
@@ -67,12 +62,10 @@ export BeatmapBasicStats = ({beatmapset, beatmap}) ->
         title: osu.trans "beatmapsets.show.stats.#{stat}",
           if stat == 'total_length'
             hit_length: formatDuration(beatmap['hit_length'])
-          else if stat == 'bpm'
-            count: beatmapset.bpm
           else
             count: value
         div
           className: "#{bn}__entry-icon"
           style:
             backgroundImage: "url(/images/layout/beatmapset-page/#{stat}.svg)"
-        span null, value
+        span null, suffixedValue
