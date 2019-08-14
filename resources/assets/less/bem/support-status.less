@@ -16,12 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.stg-status {
-  @top: stg-status;
+.support-status {
+  @top: support-status;
   @animation-rate: 937.5ms; // 64bpm (aka 128bpm at half-time)
   color: white;
 
-  @keyframes stg-fill-pour {
+  @keyframes support-fill-pour {
     0%   { width: 0; }
   }
 
@@ -94,7 +94,7 @@
 
     &--active {
       opacity: 1;
-      animation: stg-fill-pour @animation-rate ease-in-out;
+      animation: support-fill-pour @animation-rate ease-in-out;
     }
   }
 

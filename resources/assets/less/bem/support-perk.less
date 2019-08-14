@@ -16,8 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.stg-perk {
-  @top: stg-perk;
+.support-perk {
+  @top: support-perk;
   flex: none;
   margin: 5px;
   overflow: hidden;
@@ -33,6 +33,7 @@
 
   &--big {
     display: flex;
+    padding: 20px;
   }
 
   &--flipped {
@@ -51,15 +52,6 @@
     }
   }
 
-  &--customisation {
-    .at2x-simple('/images/layout/supporter/customisation.jpg');
-    background-size: cover;
-    width: 100%;
-    height: 480px;
-    display: flex;
-    flex-direction: row-reverse;
-  }
-
   &__content {
     .@{top}--customisation & {
       margin: 0;
@@ -70,26 +62,12 @@
     }
   }
 
-  &__direct {
-    .at2x-simple('/images/layout/supporter/direct.png');
-    background-size: cover;
+  &__image {
     width: 1050px;
-    background-position: top center;
     height: 320px;
     border-radius: 10px;
     display: inline-block;
-  }
-
-  &__filter {
-    .at2x-simple('/images/layout/supporter/filter.jpg');
-    background-size: cover;
-    width: 1050px;
-    background-position: top center;
-    height: 320px;
-    border-radius: 10px;
-    display: inline-block;
-
-    margin: 20px;
+    overflow: hidden;
   }
 
   &__img {
@@ -137,9 +115,6 @@
       color: @osu-colour-lime-3;
     }
     .@{top}--big & {
-      color: @osu-colour-lime-3;
-    }
-    .@{top}--customisation & {
       color: @osu-colour-lime-3;
     }
   }
