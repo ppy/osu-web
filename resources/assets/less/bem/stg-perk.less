@@ -60,16 +60,6 @@
     flex-direction: row-reverse;
   }
 
-  &__customisation {
-    //.at2x-simple('/images/layout/supporter/customisation.jpg');
-    //background-size: cover;
-    //width: 1050px;
-    //background-position: top center;
-    //height: 320px;
-    //border-radius: 35px;
-    //display: inline-block;
-  }
-
   &__content {
     .@{top}--customisation & {
       margin: 0;
@@ -108,20 +98,8 @@
     background-position: top center;
     height: 100px;
     border-radius: 10px;
+    overflow: hidden;
     flex-shrink: 0;
-
-    &--yellow_fellow {
-      .at2x-simple('/images/layout/supporter/yellow_fellow.jpg');
-    }
-    &--speedy_downloads {
-      .at2x-simple('/images/layout/supporter/speedy_downloads.jpg');
-    }
-    &--change_username {
-      .at2x-simple('/images/layout/supporter/change_username.jpg');
-    }
-    &--skinnables {
-      .at2x-simple('/images/layout/supporter/skinnables.jpg');
-    }
 
     @media @mobile {
       flex-shrink: 1;

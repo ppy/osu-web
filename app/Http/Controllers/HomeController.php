@@ -205,9 +205,9 @@ class HomeController extends Controller
         return view('home.support-the-game')
             ->with('supporterStatus', $supporterStatus ?? [])
             ->with('data', [
-                // why support's blocks
+                // why support sections
                 'blocks' => [
-                    // localization's name => icon
+                    // localization's name => array of icons
                     'team' => ['fas fa-users'],
                     'infra' => ['fas fa-server'],
                     'featured-artists' => ['fas fa-user-astronaut'],
@@ -216,29 +216,53 @@ class HomeController extends Controller
                     'bounty-program' => ['fas fa-child'],
                 ],
 
-                // supporter's perks
+                // supporter perks
                 'perks' => [
                     // localization's name => icon
-                    'auto_downloads' => 'fas fa-download',
-                    'upload_more' => 'fas fa-cloud-upload-alt',
-                    'early_access' => 'fas fa-flask',
-                ],
-
-                // supporter's perks #2
-                'perks2' => [
-                    // localization's name => icon
-                    'feature_votes' => 'fas fa-thumbs-up',
-                    'sort_options' => 'fas fa-trophy',
-                    'feel_special' => 'fas fa-heart',
-                ],
-
-                // supporter's perks #3
-                'perks3' => [
-                    // localization's name => icon
-                    'yellow_fellow' => 'fas fa-fire',
-                    'speedy_downloads' => 'fas fa-tachometer-alt',
-                    'change_username' => 'fas fa-magic',
-                    'skinnables' => 'fas fa-paint-brush',
+                    [
+                        'type' => 'hero',
+                        'name' => 'osu_direct',
+                        'icon' => 'fas fa-search',
+                    ],
+                    [
+                        'type' => 'group',
+                        'items' => [
+                            'auto_downloads' => 'fas fa-download',
+                            'upload_more' => 'fas fa-cloud-upload-alt',
+                            'early_access' => 'fas fa-flask',
+                        ],
+                    ],
+                    [
+                        'type' => 'hero',
+                        'name' => 'beatmap_filters',
+                        'icon' => 'fas fa-filter',
+                    ],
+                    [
+                        'type' => 'hero',
+                        'name' => 'customisation',
+                        'icon' => 'fas fa-image',
+                    ],
+                    [
+                        'type' => 'image-group',
+                        'items' => [
+                            'yellow_fellow' => [
+                                'icon' => 'fas fa-fire',
+                                'image' => '/images/layout/supporter/yellow_fellow.jpg',
+                            ],
+                            'speedy_downloads' => [
+                                'icon' => 'fas fa-tachometer-alt',
+                                'image' => '/images/layout/supporter/speedy_downloads.jpg',
+                            ],
+                            'change_username' => [
+                                'icon' => 'fas fa-magic',
+                                'image' => '/images/layout/supporter/change_username.jpg',
+                            ],
+                            'skinnables' => [
+                                'icon' => 'fas fa-paint-brush',
+                                'image' => '/images/layout/supporter/skinnables.jpg',
+                            ],
+                        ],
+                    ],
                 ],
             ]);
     }

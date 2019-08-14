@@ -27,46 +27,46 @@
             <div class="stg-status">
                 <div class="stg-status__pippi"></div>
                 @if (!empty($supporterStatus))
-                <!-- supporter status  -->
-                <div class="stg-status__flex-container">
-                    <div class="stg-heart{{ $supporterStatus['current'] ? ' stg-heart--active' : '' }}"></div>
-                    <div class="stg-status__flex-container-inner">
-                        <div class="stg-status__title">
-                            {{ trans('community.support.supporter_status.title') }}
+                    <!-- supporter status  -->
+                    <div class="stg-status__flex-container">
+                        <div class="stg-heart{{ $supporterStatus['current'] ? ' stg-heart--active' : '' }}"></div>
+                        <div class="stg-status__flex-container-inner">
+                            <div class="stg-status__title">
+                                {{ trans('community.support.supporter_status.title') }}
+                            </div>
+                            <div class="stg-status__progress-bar stg-status__progress-bar--active">
+                                <div class="stg-status__progress-bar-fill stg-status__progress-bar-fill--active" style="width: {{$supporterStatus['remainingRatio'] ?? 0}}%;"></div>
+                            </div>
+                            @if ($supporterStatus['expiration'] !== null)
+                            <div class="stg-status__text stg-status__text--first">
+                                {!! trans('community.support.supporter_status.'.($supporterStatus['current'] ? 'valid_until' : 'was_valid_until'), [
+                                    'date' => '<strong>'.i18n_date($supporterStatus['expiration']).'</strong>'
+                                ]) !!}
+                            </div>
+                            @else
+                            <div class="stg-status__text">
+                                {!! trans('community.support.supporter_status.not_yet') !!}
+                            </div>
+                            @endif
+                            @if ($supporterStatus['tags'] > 0)
+                            <div class="stg-status__text">
+                                {!! trans('community.support.supporter_status.contribution', [
+                                    'dollars' => "<strong>{$supporterStatus['dollars']}</strong>",
+                                    'tags' => "<strong>{$supporterStatus['tags']}</strong>"
+                                ]) !!}
+                            </div>
+                            @endif
+                            @if ($supporterStatus['giftedTags'] > 0)
+                            <div class="stg-status__text">
+                                {!! trans('community.support.supporter_status.gifted', [
+                                    'giftedDollars' => "<strong>{$supporterStatus['giftedDollars']}</strong>",
+                                    'giftedTags' => "<strong>{$supporterStatus['giftedTags']}</strong>"
+                                ]) !!}
+                            </div>
+                            @endif
                         </div>
-                        <div class="stg-status__progress-bar stg-status__progress-bar--active">
-                            <div class="stg-status__progress-bar-fill stg-status__progress-bar-fill--active" style="width: {{$supporterStatus['remainingRatio'] ?? 0}}%;"></div>
-                        </div>
-                        @if ($supporterStatus['expiration'] !== null)
-                        <div class="stg-status__text stg-status__text--first">
-                            {!! trans('community.support.supporter_status.'.($supporterStatus['current'] ? 'valid_until' : 'was_valid_until'), [
-                                'date' => '<strong>'.i18n_date($supporterStatus['expiration']).'</strong>'
-                            ]) !!}
-                        </div>
-                        @else
-                        <div class="stg-status__text">
-                            {!! trans('community.support.supporter_status.not_yet') !!}
-                        </div>
-                        @endif
-                        @if ($supporterStatus['tags'] > 0)
-                        <div class="stg-status__text">
-                            {!! trans('community.support.supporter_status.contribution', [
-                                'dollars' => "<strong>{$supporterStatus['dollars']}</strong>",
-                                'tags' => "<strong>{$supporterStatus['tags']}</strong>"
-                            ]) !!}
-                        </div>
-                        @endif
-                        @if ($supporterStatus['giftedTags'] > 0)
-                        <div class="stg-status__text">
-                            {!! trans('community.support.supporter_status.gifted', [
-                                'giftedDollars' => "<strong>{$supporterStatus['giftedDollars']}</strong>",
-                                'giftedTags' => "<strong>{$supporterStatus['giftedTags']}</strong>"
-                            ]) !!}
-                        </div>
-                        @endif
                     </div>
-                </div>
-                <!-- end: supporter status -->
+                    <!-- end: supporter status -->
                 @endif
             </div>
             <ol class="page-mode-v2 page-mode-v2--breadcrumbs"></ol>
@@ -122,142 +122,91 @@
             <h3 class="stg-block__title">
                 {{ trans('community.support.perks.title') }}
             </h3>
-            <div class="stg-perk--big">
-                <div class="stg-perk__direct"></div>
-                <div class="stg-perk__meta">
-                    <div class="stg-perk__icon">
-                        <span class="fa-stack">
-                            <i class="fas fa-circle fa-stack-2x stg-perk__icon-bg"></i>
-                            <i class="fas fa-search fa-stack-1x"></i>
-                        </span>
+        </div>
+
+        @foreach($data['perks'] as $group)
+            @switch ($group['type'])
+                @case('hero')
+                    <div class="stg-perk--big">
+                        <div class="stg-perk__direct"></div>
+                        <div class="stg-perk__meta">
+                            <div class="stg-perk__icon">
+                                <span class="fa-stack">
+                                    <i class="fas fa-circle fa-stack-2x stg-perk__icon-bg"></i>
+                                    <i class="{{$group['icon']}} fa-stack-1x"></i>
+                                </span>
+                            </div>
+                            <div class="stg-perk__text">
+                                <h4 class="stg-perk__title">
+                                    {{ trans('community.support.perks.'.$group['name'].'.title') }}
+                                </h4>
+                                <p class="stg-perk__content">
+                                    {{ trans('community.support.perks.'.$group['name'].'.description') }}
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="stg-perk__text">
-                        <h4 class="stg-perk__title">
-                            {{ trans('community.support.perks.osu_direct.title') }}
-                        </h4>
-                        <p class="stg-perk__content">
-                            {!! trans('community.support.perks.osu_direct.description') !!}
-                        </p>
+                    @break
+                @case('group')
+                    <div class="stg-block stg-block--features">
+                        <div class="stg-block__perks">
+                            @foreach($group['items'] as $perk => $icon)
+                                @if (strlen($perk) > 0)
+                                    <div class="stg-perk stg-perk--feature">
+                                        <div class="stg-perk__icon">
+                                            <span class="fa-stack">
+                                                <i class="fas fa-circle fa-stack-2x stg-perk__icon-bg"></i>
+                                                <i class="{{ $icon }} fa-stack-1x"></i>
+                                            </span>
+                                        </div>
+                                        <div class="stg-perk__text">
+                                            <h4 class="stg-perk__title">
+                                                {{ trans('community.support.perks.'.$perk.'.title') }}
+                                            </h4>
+                                            <p class="stg-perk__content">
+                                                {!! trans('community.support.perks.'.$perk.'.description') !!}
+                                            </p>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="stg-block stg-block--features">
-            <div class="stg-block__perks">
-                @foreach($data['perks'] as $name => $icon)
-                    @if (strlen($name) > 0)
-                        <div class="stg-perk stg-perk--feature">
-                            <div class="stg-perk__icon">
-                                <span class="fa-stack">
-                                    <i class="fas fa-circle fa-stack-2x stg-perk__icon-bg"></i>
-                                    <i class="{{ $icon }} fa-stack-1x"></i>
-                                </span>
-                            </div>
-                            <div class="stg-perk__text">
-                                <h4 class="stg-perk__title">
-                                    {{ trans('community.support.perks.'.$name.'.title') }}
-                                </h4>
-                                <p class="stg-perk__content">
-                                    {!! trans('community.support.perks.'.$name.'.description') !!}
-                                </p>
-                            </div>
+                    @break
+                @case('image-group')
+                    <div class="stg-block stg-block--features-2">
+                        <div class="stg-block__perks stg-block__perks--imglist">
+                            @foreach($group['items'] as $name => $perk)
+                                @if (strlen($name) > 0)
+                                    <div class="stg-perk stg-perk--feature stg-perk--img">
+                                        <div class="stg-perk__text">
+                                            <h4 class="stg-perk__title">
+                                                {{ trans('community.support.perks.'.$name.'.title') }}
+                                            </h4>
+                                            <p class="stg-perk__content">
+                                                {!! trans('community.support.perks.'.$name.'.description') !!}
+                                            </p>
+                                        </div>
+                                        <div class="stg-perk__icon">
+                                            <span class="fa-stack">
+                                                <i class="fas fa-circle fa-stack-2x stg-perk__icon-bg"></i>
+                                                <i class="{{ $perk['icon'] }} fa-stack-1x"></i>
+                                            </span>
+                                        </div>
+                                        <div class="stg-perk__img">
+                                            <img
+                                                src="{{$perk['image']}}"
+                                                srcSet="{{$perk['image']}} 1x, {{retinaify($perk['image'])}} 2x"
+                                            />
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>
-
-        <div class="stg-perk--big stg-perk--flipped">
-            <div class="stg-perk__filter"></div>
-            <div class="stg-perk__meta">
-                <div class="stg-perk__icon">
-                    <span class="fa-stack">
-                        <i class="fas fa-circle fa-stack-2x stg-perk__icon-bg"></i>
-                        <i class="fas fa-filter fa-stack-1x"></i>
-                    </span>
-                </div>
-                <div class="stg-perk__text">
-                    <h4 class="stg-perk__title">
-                        {{ trans('community.support.perks.beatmap_filters.title') }}
-                    </h4>
-                    <p class="stg-perk__content">
-                        {!! trans('community.support.perks.beatmap_filters.description') !!}
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="stg-block stg-block--features">
-            <div class="stg-block__perks">
-                @foreach($data['perks2'] as $name => $icon)
-                    @if (strlen($name) > 0)
-                        <div class="stg-perk stg-perk--feature">
-                            <div class="stg-perk__icon">
-                                <span class="fa-stack">
-                                    <i class="fas fa-circle fa-stack-2x stg-perk__icon-bg"></i>
-                                    <i class="{{ $icon }} fa-stack-1x"></i>
-                                </span>
-                            </div>
-                            <div class="stg-perk__text">
-                                <h4 class="stg-perk__title">
-                                    {{ trans('community.support.perks.'.$name.'.title') }}
-                                </h4>
-                                <p class="stg-perk__content">
-                                    {!! trans('community.support.perks.'.$name.'.description') !!}
-                                </p>
-                            </div>
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>
-
-        <div class="stg-perk--customisation">
-            <div class="stg-perk__meta">
-                <div class="stg-perk__icon">
-                    <span class="fa-stack">
-                        <i class="fas fa-circle fa-stack-2x stg-perk__icon-bg"></i>
-                        <i class="fas fa-image fa-stack-1x"></i>
-                    </span>
-                </div>
-                <div class="stg-perk__text">
-                    <h4 class="stg-perk__title">
-                        {{ trans('community.support.perks.customisation.title') }}
-                    </h4>
-                    <p class="stg-perk__content">
-                        {!! trans('community.support.perks.customisation.description') !!}
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="stg-block stg-block--features-2">
-            <div class="stg-block__perks stg-block__perks--imglist">
-                @foreach($data['perks3'] as $name => $icon)
-                    @if (strlen($name) > 0)
-                        <div class="stg-perk stg-perk--feature stg-perk--img">
-                            <div class="stg-perk__text">
-                                <h4 class="stg-perk__title">
-                                    {{ trans('community.support.perks.'.$name.'.title') }}
-                                </h4>
-                                <p class="stg-perk__content">
-                                    {!! trans('community.support.perks.'.$name.'.description') !!}
-                                </p>
-                            </div>
-                            <div class="stg-perk__icon">
-                                <span class="fa-stack">
-                                    <i class="fas fa-circle fa-stack-2x stg-perk__icon-bg"></i>
-                                    <i class="{{ $icon }} fa-stack-1x"></i>
-                                </span>
-                            </div>
-                            <div class="stg-perk__img stg-perk__img--{{$name}}"></div>
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>
-
+                    </div>
+                    @break
+            @endswitch
+        @endforeach
         <div class="stg-block">
             <h3 class="stg-block__title">
                 {{ trans('community.support.convinced.title') }}
