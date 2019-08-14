@@ -26,7 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'disclaimer' => 'Please ensure your avatar is <strong>suitable for all ages</strong>.<br/>This means no nudity or profanity at all.',
+            'rules' => 'Please ensure your avatar adheres to :link.<br/>This means it must be <strong>suitable for all ages</strong>. i.e. no nudity, profanity or suggestive content.',
+            'rules_link' => 'the community rules',
         ],
 
         'email' => [
