@@ -17,20 +17,47 @@
  */
 
 import * as React from 'react';
+import { Spinner } from 'spinner';
 
 interface Props {
   app: any;
 }
 
 export class OAuthApp extends React.Component<Props> {
+  deleteClicked = (event: React.MouseEvent<HTMLElement>) => {
+    if (!confirm('Deleting the application cannot be undone!')) { return; }
+
+    // this.props.app.delete().catch(osu.ajaxError);
+  }
+
   render() {
+    const app = this.props.app;
+
     return (
       <div className='authorized-client'>
-        {this.props.app.name}
-        {this.props.app.redirect}
-        {this.props.app.personal_access_client}
-        {this.props.app.password_client}
-        {this.props.app.revoked}
+        <div className='authorized-client__details'>
+          <div className='authorized-client__name'>
+            {app.name}
+          </div>
+          <div>
+            {app.redirect}
+          </div>
+          <div>
+            {app.revoked}
+          </div>
+        </div>
+
+        <div className='authorized-client__actions'>
+          <button
+            className={osu.classWithModifiers('authorized-client__button', app.deleted ? ['revoked'] : [])}
+            onClick={this.deleteClicked}
+            disabled={app.isDeleting || app.deleted}
+          >
+            {
+              app.isDeleting ? <Spinner /> : 'Delete'
+            }
+          </button>
+        </div>
       </div>
     );
   }
