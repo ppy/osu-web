@@ -20,4 +20,5 @@ import { ClientJSON } from 'oauth/client-json';
 
 export interface OwnClientJSON extends ClientJSON {
   redirect: string;
+  secret: string;
 }

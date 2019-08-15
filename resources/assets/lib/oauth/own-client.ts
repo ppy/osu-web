@@ -22,11 +22,13 @@ import { OwnClientJSON } from 'oauth/own-client-json';
 
 export class OwnClient extends Client {
   redirect: string;
+  secret: string;
 
   constructor(client: OwnClientJSON) {
     super(client);
 
     this.redirect = client.redirect;
+    this.secret = client.secret;
   }
 
   @action

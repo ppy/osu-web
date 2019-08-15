@@ -46,6 +46,9 @@ export class OwnClient extends React.Component<Props> {
             {client.redirect}
           </div>
           <div>
+            {client.secret}
+          </div>
+          <div>
             {client.revoked ? 'revoked' : 'active'}
           </div>
         </div>
