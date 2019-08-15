@@ -16,42 +16,26 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.support {
-  background: @osu-colour-b5;
+.supporter-eyecatch {
+  .at2x-simple('/images/layout/supporter/banner-bg.jpg');
+  background-size: cover;
+  width: auto;
+  height: 480px;
+  background-position: center;
   padding: 30px;
 
-  &--convinced {
-    .at2x-simple('/images/layout/supporter/banner-bg.jpg');
+  &::before {
+    content: ' ';
+    .full-size();
+    background: linear-gradient(to bottom, .osu-hsla(@osu-colour-b5, 1)[@hsla] 4%, .osu-hsla(@osu-colour-b5, 0)[@hsla] 100%);
+  }
+
+  &::after {
+    content: ' ';
+    .full-size();
+    .at2x-simple('/images/layout/supporter/banner-fg.png');
     background-size: cover;
-    width: auto;
-    height: 480px;
     background-position: center;
-
-    &::before {
-      content: ' ';
-      .full-size();
-      background: linear-gradient(to bottom, .osu-hsla(@osu-colour-b5, 1)[@hsla] 4%, .osu-hsla(@osu-colour-b5, 0)[@hsla] 100%);
-    }
-
-    &::after {
-      content: ' ';
-      .full-size();
-      .at2x-simple('/images/layout/supporter/banner-fg.png');
-      background-size: cover;
-      background-position: center;
-    }
-  }
-
-  &--big-feature {
-    background-color: @osu-colour-b4;
-  }
-
-  &--features {
-    background-color: @osu-colour-b3;
-  }
-
-  &--features-2 {
-    background-color: @osu-colour-b5;
   }
 
   &__box {
@@ -74,20 +58,8 @@
     .link-plain();
   }
 
-  &__perk {
-    margin: -5px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    &--imglist {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-
-  &__run {
-    font-size: @font-size--title-small;
+  &__text {
+    font-size: @font-size--title-small-3;
     font-style: italic;
     color: @osu-colour-l1;
     margin: 10px 0 0;
@@ -106,14 +78,5 @@
     &--sub-2 {
       margin-top: 40px;
     }
-  }
-
-  &__title {
-    font-size: @font-size--title;
-    color: @osu-colour-orange-1;
-    font-weight: 100;
-    font-style: italic;
-    margin: 0 0 30px;
-    text-align: center;
   }
 }
