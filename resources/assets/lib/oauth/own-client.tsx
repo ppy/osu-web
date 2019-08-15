@@ -16,7 +16,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import { Client } from 'oauth/client';
 import * as React from 'react';
@@ -28,23 +27,10 @@ interface Props {
 
 @observer
 export class OwnClient extends React.Component<Props> {
-  @action
-  async delete() {
-    return $.ajax({
-      method: 'DELETE',
-      url: laroute.route('oauth.own-clients.destroy', { own_client: this.props.client.id }),
-    }).then(() => {
-      this.props.client.revoked = true;
-    }).always(() => {
-      this.props.client.isRevoking = false;
-    });
-  }
-
   deleteClicked = (event: React.MouseEvent<HTMLElement>) => {
     if (!confirm('Deleting the application cannot be undone!')) { return; }
 
-    this.delete().catch(osu.ajaxError);
-    // this.props.app.delete().catch(osu.ajaxError);
+    this.props.client.delete().catch(osu.ajaxError);
   }
 
   render() {
