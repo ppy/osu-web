@@ -122,7 +122,10 @@ function onMouseOver(event: JQueryEventObject) {
   if (el._tooltip !== el.dataset.userId) {
     // wrong userId, destroy current tooltip
     const qtip = $(el).qtip('api');
-    if (qtip != null) { qtip.destroy(); }
+    if (qtip != null) {
+      qtip.destroy();
+      delete el._tooltip;
+    }
   }
 }
 
