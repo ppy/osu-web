@@ -76,18 +76,15 @@
     <div class="osu-page osu-page--supporter">
         <div class="support-quote">
             <blockquote class="support-quote__content">
-                "osu! is a completely free-to-play game, but running it is most definitely not so free.
-                Between the cost of commissioning servers and high quality international bandwidth, the time spent maintaining the system and community,
-                providing prizes for competitions, answering support questions and generally keeping people happy, osu! consumes quite a hefty amount of money!
-                Oh, and don't forget the fact that we do it without any advertising or partnering with silly toolbars and the likes!
+                "I've always tried to run osu! exactly how I'd want to see it run if I were a player. While this does mean osu! will never be a super-profitable business, that was never the goal (nor will it ever be!). We intentionally avoid advertising, partnerships, etc because I feel that would detract from the core experience.
                 <br/><br/>
-                osu! is at the end of the day largely run by myself, to which you may know best as "peppy".
-                I have had to quit my day job in order to keep up with osu!,
-                and do at times struggle to maintain the standards I strive for.
-                I would like to offer my personal thanks to those who have supported osu! thus far,
-                and just as much to those who continue to support this amazing game and community into the future :)."
+                osu! is free-to-win – supporting osu! won’t give you any competitive advantage (but it might make you cooler amongst your friends!). I am hugely grateful, and honestly astounded, that we have come this far purely on donations, but this is where we are! Your contributions cover completely our small team's salaries, licensing efforts via the Featured Artist program, prizes and funding for official tournaments, but most importantly make sure we have quality servers and bandwidth available around the globe.
+                <br/><br/>
+                I would like to offer thanks and gratitude on behalf of myself and the rest of the team, to those who have supported osu!.
+                <br/><br/>
+                You keep osu! running."
             </blockquote>
-            <div class="support-quote__signature">— Dean "peppy" Herbert</div>
+            <div class="support-quote__signature">— Dean "peppy" Herbert, creator of osu!</div>
         </div>
         <div class="support">
             <h3 class="support__title">
