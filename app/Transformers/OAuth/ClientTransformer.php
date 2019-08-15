@@ -22,6 +22,7 @@ namespace App\Transformers\OAuth;
 
 use App\Models\OAuth\Client;
 use App\Transformers\UserCompactTransformer;
+use Laravel\Passport\Client as PassportClient;
 use League\Fractal;
 
 class ClientTransformer extends Fractal\TransformerAbstract
@@ -30,7 +31,7 @@ class ClientTransformer extends Fractal\TransformerAbstract
         'user',
     ];
 
-    public function transform(Client $client)
+    public function transform(PassportClient $client)
     {
         return [
             'id' => $client->id,

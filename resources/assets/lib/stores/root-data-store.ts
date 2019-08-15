@@ -21,7 +21,7 @@ import Dispatcher from 'dispatcher';
 import { BeatmapsetStore } from './beatmapset-store';
 import ChannelStore from './channel-store';
 import ClientStore from './client-store';
-import OAuthAppStore from './oauth-app-store';
+import OwnClientStore from './own-client-store';
 import UIStateStore from './ui-state-store';
 import UserStore from './user-store';
 
@@ -30,7 +30,7 @@ export default class RootDataStore {
   beatmapsetStore: BeatmapsetStore;
   channelStore: ChannelStore;
   clientStore: ClientStore;
-  oauthAppStore: OAuthAppStore;
+  ownClientStore: OwnClientStore;
   uiState: UIStateStore;
   userStore: UserStore;
 
@@ -41,7 +41,7 @@ export default class RootDataStore {
     this.beatmapsetSearch = new BeatmapsetSearch(this.beatmapsetStore, dispatcher);
     this.clientStore = new ClientStore(this, dispatcher);
     this.channelStore = new ChannelStore(this, dispatcher);
-    this.oauthAppStore = new OAuthAppStore(this, dispatcher);
+    this.ownClientStore = new OwnClientStore(this, dispatcher);
     this.userStore = new UserStore(this, dispatcher);
   }
 }

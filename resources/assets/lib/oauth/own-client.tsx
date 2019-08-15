@@ -16,22 +16,27 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { action } from 'mobx';
+import { observer } from 'mobx-react';
+import { Client } from 'oauth/client';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 
 interface Props {
-  app: any;
+  client: Client;
 }
 
-export class OAuthApp extends React.Component<Props> {
+@observer
+export class OwnClient extends React.Component<Props> {
+  @action
   async delete() {
     return $.ajax({
       method: 'DELETE',
-      url: laroute.route('oauth.apps.destroy', { app: this.props.app.id }),
+      url: laroute.route('oauth.own-clients.destroy', { own_client: this.props.client.id }),
     }).then(() => {
-
+      this.props.client.revoked = true;
     }).always(() => {
-
+      this.props.client.isRevoking = false;
     });
   }
 
@@ -43,30 +48,30 @@ export class OAuthApp extends React.Component<Props> {
   }
 
   render() {
-    const app = this.props.app;
+    const client = this.props.client;
 
     return (
       <div className='authorized-client'>
         <div className='authorized-client__details'>
           <div className='authorized-client__name'>
-            {app.name}
+            {client.name}
           </div>
           <div>
-            {app.redirect}
+            {client.redirect}
           </div>
           <div>
-            {app.revoked ? 'revoked' : 'active'}
+            {client.revoked ? 'revoked' : 'active'}
           </div>
         </div>
 
         <div className='authorized-client__actions'>
           <button
-            className={osu.classWithModifiers('authorized-client__button', app.deleted ? ['revoked'] : [])}
+            className={osu.classWithModifiers('authorized-client__button', client.revoked ? ['revoked'] : [])}
             onClick={this.deleteClicked}
-            disabled={app.isDeleting || app.deleted}
+            disabled={client.isRevoking || client.revoked}
           >
             {
-              app.isDeleting ? <Spinner /> : 'Delete'
+              client.isRevoking ? <Spinner /> : 'Delete'
             }
           </button>
         </div>

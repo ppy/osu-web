@@ -22,7 +22,7 @@ namespace App\Http\Controllers\OAuth;
 
 use App\Http\Controllers\Controller;
 
-class AppsController extends Controller
+class OwnClientsController extends Controller
 {
     protected $section = 'user';
 
@@ -36,14 +36,14 @@ class AppsController extends Controller
 
     public function destroy($clientId)
     {
-        $app = auth()->user()->oauthClients()->findOrFail($clientId);
-        $app->getConnection()->transaction(function () use ($app) {
+        $client = auth()->user()->oauthClients()->findOrFail($clientId);
+        $client->getConnection()->transaction(function () use ($client) {
             $now = now('UTC');
             // TODO: also revoke refresh tokens.
-            $app->tokens()->update(['revoked' => true, 'updated_at' => $now]);
+            $client->tokens()->update(['revoked' => true, 'updated_at' => $now]);
             // TODO: set timestamp to false on authcodes
-            // $app->authCodes()->update(['revoked' => true]);
-            $app->update(['revoked' => true, 'updated_at' => $now]);
+            // $client->authCodes()->update(['revoked' => true]);
+            $client->update(['revoked' => true, 'updated_at' => $now]);
         });
 
         return response(null, 204);

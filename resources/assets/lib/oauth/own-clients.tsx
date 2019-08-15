@@ -16,29 +16,27 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import DispatcherAction from 'actions/dispatcher-action';
-import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
-import { action, observable } from 'mobx';
-import Store from 'stores/store';
+import { OwnClient } from 'oauth/own-client';
+import core from 'osu-core-singleton';
+import * as React from 'react';
 
-export default class OAuthAppStore extends Store {
-  @observable apps = new Map<number, JSON>();
+const store = core.dataStore.ownClientStore;
 
-  handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof UserLoginAction
-      || dispatchedAction instanceof UserLogoutAction) {
-      this.flushStore();
-    }
+export class OwnClients extends React.Component {
+  render() {
+    return (
+      <div className='authorized-clients'>
+        {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
+      </div>
+    );
   }
 
-  initialize(data: JSON[]) {
-    for (const item of data) {
-      this.apps.set(item.id, item);
-    }
+  renderClients() {
+    return [...store.clients.values()].map((client) => {
+      return <OwnClient client={client} key={client.id} />;
+    });
   }
-
-  @action
-  private flushStore() {
-    this.apps.clear();
+  renderEmpty() {
+    return osu.trans('oauth.authorized-clients.none');
   }
 }

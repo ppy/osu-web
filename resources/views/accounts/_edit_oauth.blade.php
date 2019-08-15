@@ -34,9 +34,9 @@
 
         <div class="account-edit__input-group">
             <div class="account-edit-entry">
-                <div class="account-edit-entry__label account-edit-entry__label--top-pinned">{{ trans('accounts.oauth.apps') }}</div>
+                <div class="account-edit-entry__label account-edit-entry__label--top-pinned">{{ trans('accounts.oauth.own_clients') }}</div>
                 <div class="account-edit__input-groups">
-                    <div class="js-react--oauth-apps"></div>
+                    <div class="js-react--own-clients"></div>
                 </div>
             </div>
         </div>

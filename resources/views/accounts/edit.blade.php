@@ -166,8 +166,8 @@
     {!! json_encode($authorizedClients) !!}
   </script>
 
-  <script id="json-oauth-apps" type="application/json">
-    {!! json_encode($oauthApps) !!}
+  <script id="json-own-clients" type="application/json">
+    {!! json_encode($ownClients) !!}
   </script>
 
   @include('layout._extra_js', ['src' => 'js/react/account-edit.js'])
