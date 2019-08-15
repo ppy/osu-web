@@ -23,7 +23,7 @@ return [
         'convinced' => [
             'title' => 'I\'m convinced! :D',
             'support' => 'support osu!',
-            'gift' => 'or gift support to other players',
+            'gift' => 'or gift supporter to other players',
             'instructions' => 'click the heart button to proceed to the osu!store',
         ],
         'money_goes_where' => [
@@ -31,15 +31,15 @@ return [
             'blocks' => [
                 'team' => [
                     'title' => 'Support the Team',
-                    'body' => 'A small team develops and runs osu!. Your support helps them, you know... live.',
+                    'body' => 'A small team develops and runs osu!. Your support helps them to, you know... live.',
                 ],
                 'infra' => [
                     'title' => 'Server Infrastructure',
-                    'body' => 'Contributions go towards servers for running the website, multiplayer services, online leaderboards, etc.',
+                    'body' => 'Contributions go towards the servers for running the website, multiplayer services, online leaderboards, etc.',
                 ],
                 'featured-artists' => [
                     'title' => 'Featured Artists',
-                    'body' => 'With your support, we can approach even more awesome artists and license great music for use in osu!',
+                    'body' => 'With your support, we can approach even more awesome artists and license more great music for use in osu!',
                 ],
                 'ads' => [
                     'title' => 'Keep osu! self-sustaining',
@@ -47,24 +47,25 @@ return [
                 ],
                 'tournaments' => [
                     'title' => 'Official Tournaments',
-                    'body' => 'Help fund the running of, and the prizes for, the official osu! World Cup tournaments.',
+                    'body' => 'Help fund the running of (and the prizes for) the official osu! World Cup tournaments.',
                 ],
                 'bounty-program' => [
                     'title' => 'Open Source Bounty Program',
-                    'body' => 'Support community contributors that have given their time and effort to help make osu! better.',
+                    'body' => 'Support the community contributors that have given their time and effort to help make osu! better. :link',
+                    'link_text' => 'Click here to find out more!',
                 ],
             ],
         ],
         'perks' => [
-            'title' => 'Cool, but do I get any perks?',
+            'title' => 'Cool, but what perks do I get?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'Quick and easy access to searching and downloading of beatmaps without leaving the game.',
+                'description' => 'Gain quick and easy access to search for and download beatmaps without having to leave the game.',
             ],
 
             'auto_downloads' => [
-                'title' => 'Auto Downloads',
-                'description' => 'Automatic downloads when playing multiplayer, spectating others, or clicking links in chat!',
+                'title' => 'Automatic Downloads',
+                'description' => 'Beatmaps will automatically download in multiplayer games, while spectating others, or when clicking relevant links in chat!',
             ],
 
             'upload_more' => [
@@ -74,17 +75,17 @@ return [
 
             'early_access' => [
                 'title' => 'Early Access',
-                'description' => 'Access to early releases, where you can try new features before they go public!',
+                'description' => 'Gain early access to new releases with new features before they go public!<br/><br/>This includes early access to new features on the website too!',
             ],
 
             'customisation' => [
                 'title' => 'Customisation',
-                'description' => 'Customise your profile by adding a fully customisable user page.',
+                'description' => "Stand out by uploading a custom cover image or by creating a fully customizable 'me!' section within your user profile.",
             ],
 
             'beatmap_filters' => [
                 'title' => 'Beatmap Filters',
-                'description' => 'Filter beatmap searches by played and unplayed maps and rank achieved (if any).',
+                'description' => 'Filter beatmap searches by played and unplayed maps, or by rank achieved.',
             ],
 
             'yellow_fellow' => [
@@ -99,7 +100,7 @@ return [
 
             'change_username' => [
                 'title' => 'Change Username',
-                'description' => 'The ability to change your username without additional costs. (once max)',
+                'description' => 'One free name change is included with your first supporter purchase.',
             ],
 
             'skinnables' => [
