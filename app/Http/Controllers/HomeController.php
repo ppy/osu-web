@@ -246,6 +246,14 @@ class HomeController extends Controller
                         'image' => '/images/layout/supporter/customisation.jpg',
                     ],
                     [
+                        'type' => 'group',
+                        'items' => [
+                            'more_favourites' => 'fas fa-star',
+                            'more_friends' => 'fas fa-user-friends',
+                            'friend_filtering' => 'fas fa-medal',
+                        ],
+                    ],
+                    [
                         'type' => 'image-group',
                         'items' => [
                             'yellow_fellow' => [
@@ -266,14 +274,6 @@ class HomeController extends Controller
                             ],
                         ],
                     ],
-                    [
-                        'type' => 'group',
-                        'items' => [
-                            'more_favourites' => 'fas fa-star',
-                            'more_friends' => 'fas fa-user-friends',
-                            'friend_filtering' => 'fas fa-medal',
-                        ],
-                    ]
                 ],
             ]);
     }
