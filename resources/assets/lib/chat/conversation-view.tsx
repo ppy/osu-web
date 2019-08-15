@@ -23,11 +23,10 @@ import * as moment from 'moment';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import RootDataStore from 'stores/root-data-store';
+import { StringWithComponent } from 'string-with-component';
 import { UserAvatar } from 'user-avatar';
 import MessageDivider from './message-divider';
 import MessageGroup from './message-group';
-import { StringWithComponent } from 'string-with-component';
-import { UserLink } from 'user-link';
 
 @inject('dataStore')
 @observer
@@ -152,7 +151,8 @@ export default class ConversationView extends React.Component<any, any> {
             <StringWithComponent
               pattern={osu.trans('chat.talking_with')}
               // TODO: rework this once the user class situation is resolved
-              mappings={{':name': <a key='user' className="js-usercard" data-user-id={channel.pmTarget} data-tooltip-position="top center" href={laroute.route('users.show', {user: channel.pmTarget})}>{channel.name}</a>}}/>
+              mappings={{':name': <a key='user' className='js-usercard' data-user-id={channel.pmTarget} href={laroute.route('users.show', {user: channel.pmTarget})}>{channel.name}</a>}}
+            />
           ) : (
             osu.trans('chat.talking_in', {channel: channel.name})
           )}
