@@ -26,6 +26,7 @@ use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
 use App\Libraries\UsernameValidation;
+use App\Models\OAuth\Client;
 use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
@@ -70,6 +71,7 @@ use Request;
  * @property int $group_id
  * @property mixed $hide_presence
  * @property \Illuminate\Database\Eloquent\Collection $monthlyPlaycounts UserMonthlyPlaycount
+ * @property \Illuminate\Database\Eloquent\Collection $oauthClients Client
  * @property int $osu_featurevotes
  * @property int $osu_kudosavailable
  * @property int $osu_kudosdenied
@@ -179,10 +181,7 @@ use Request;
 class User extends Model implements AuthenticatableContract
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
-    use Authenticatable, Reportable, UserAvatar, UserScoreable, Validatable;
-    use HasApiTokens {
-        clients as oauthClients;
-    }
+    use Authenticatable, HasApiTokens, Reportable, UserAvatar, UserScoreable, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -1298,6 +1297,11 @@ class User extends Model implements AuthenticatableContract
     public function changelogs()
     {
         return $this->hasMany(Changelog::class, 'user_id');
+    }
+
+    public function oauthClients()
+    {
+        return $this->hasMany(Client::class, 'user_id');
     }
 
     public function getPlaymodeAttribute($value)
