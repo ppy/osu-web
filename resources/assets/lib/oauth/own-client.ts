@@ -16,32 +16,30 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import DispatcherAction from 'actions/dispatcher-action';
-import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
-import { action, observable } from 'mobx';
-import { OwnClient as Client } from 'oauth/own-client';
+import { action } from 'mobx';
+import { Client } from 'oauth/client';
 import { OwnClientJSON } from 'oauth/own-client-json';
-import Store from 'stores/store';
 
-export default class OwnClientStore extends Store {
-  @observable clients = new Map<number, Client>();
+export class OwnClient extends Client {
+  redirect: string;
 
-  handleDispatchAction(dispatchedAction: DispatcherAction) {
-    if (dispatchedAction instanceof UserLoginAction
-      || dispatchedAction instanceof UserLogoutAction) {
-      this.flushStore();
-    }
-  }
+  constructor(client: OwnClientJSON) {
+    super(client);
 
-  initialize(data: OwnClientJSON[]) {
-    for (const item of data) {
-      const client = new Client(item);
-      this.clients.set(client.id, client);
-    }
+    this.redirect = client.redirect;
   }
 
   @action
-  private flushStore() {
-    this.clients.clear();
+  async delete() {
+    this.isRevoking = true;
+
+    return $.ajax({
+      method: 'DELETE',
+      url: laroute.route('oauth.own-clients.destroy', { own_client: this.id }),
+    }).then(() => {
+      this.revoked = true;
+    }).always(() => {
+      this.isRevoking = false;
+    });
   }
 }

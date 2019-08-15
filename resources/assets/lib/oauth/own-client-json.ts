@@ -16,27 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { OwnClient } from 'oauth/own-client-component';
-import core from 'osu-core-singleton';
-import * as React from 'react';
+import { ClientJSON } from 'oauth/client-json';
 
-const store = core.dataStore.ownClientStore;
-
-export class OwnClients extends React.Component {
-  render() {
-    return (
-      <div className='authorized-clients'>
-        {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
-      </div>
-    );
-  }
-
-  renderClients() {
-    return [...store.clients.values()].map((client) => {
-      return <OwnClient client={client} key={client.id} />;
-    });
-  }
-  renderEmpty() {
-    return osu.trans('oauth.authorized-clients.none');
-  }
+export interface OwnClientJSON extends ClientJSON {
+  redirect: string;
 }

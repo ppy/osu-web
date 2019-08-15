@@ -37,20 +37,6 @@ export class Client {
   }
 
   @action
-  async delete() {
-    this.isRevoking = true;
-
-    return $.ajax({
-      method: 'DELETE',
-      url: laroute.route('oauth.own-clients.destroy', { own_client: this.id }),
-    }).then(() => {
-      this.revoked = true;
-    }).always(() => {
-      this.isRevoking = false;
-    });
-  }
-
-  @action
   async revoke() {
     this.isRevoking = true;
 
