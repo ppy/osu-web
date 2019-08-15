@@ -229,7 +229,7 @@ class HomeController extends Controller
                         'type' => 'group',
                         'items' => [
                             'auto_downloads' => 'fas fa-download',
-                            'upload_more' => 'fas fa-cloud-upload-alt',
+                            'more_beatmaps' => 'fas fa-file-upload',
                             'early_access' => 'fas fa-flask',
                         ],
                     ],
@@ -266,6 +266,14 @@ class HomeController extends Controller
                             ],
                         ],
                     ],
+                    [
+                        'type' => 'group',
+                        'items' => [
+                            'more_favourites' => 'fas fa-star',
+                            'more_friends' => 'fas fa-user-friends',
+                            'friend_filtering' => 'fas fa-medal',
+                        ],
+                    ]
                 ],
             ]);
     }

@@ -117,15 +117,23 @@ return [
                 'description' => 'The ability to view beatmap country / friend / mod-specific rankings in-game.',
             ],
 
-            'feel_special' => [
-                'title' => 'Feel Special',
-                'description' => 'The warm and fuzzy feeling of doing your part to keep osu! running smoothly!',
+            'more_favourites' => [
+                'title' => 'More Favourites',
+                'description' => 'The maximum number of beatmaps you can favourite is increased from 99 &rarr; 1024',
+            ],
+            'more_friends' => [
+                'title' => 'More Friends',
+                'description' => 'The maximum number of friends you can have is increased from 250 &rarr; 500',
+            ],
+            'more_beatmaps' => [
+                'title' => 'Upload More Beatmaps',
+                'description' => 'How many non-ranked beatmaps you can have at once is calculated from a base value plus an additional bonus for each ranked beatmap you currently have (up to a limit).<br/><br/>Normally this is 4 plus 1 per ranked beatmap (up to 2). With supporter, this increases to 8 plus 1 per ranked beatmap (up to 12).',
+            ],
+            'friend_filtering' => [
+                'title' => 'Friend Leaderboards',
+                'description' => 'Compete with your friends and see how you rank up against them!*<br/><br/><small>* not yet available on new site, comingsoonlol(tm)</small>',
             ],
 
-            'more_to_come' => [
-                'title' => 'More to come',
-                'description' => '',
-            ],
         ],
         'supporter_status' => [
             'contribution' => 'Thanks for your support so far! You have contributed a total of :dollars over :tags tag purchases!',
