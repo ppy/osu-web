@@ -74,41 +74,40 @@
     </div>
 
     <div class="osu-page osu-page--supporter">
-        <div class="supporter-quote">
-            <blockquote class="supporter-quote__content">
-                "I've always tried to run osu! exactly how I'd want to see it run if I were a player. While this does mean osu! will never be a super-profitable business, that was never the goal (nor will it ever be!). We intentionally avoid advertising, partnerships, etc because I feel that would detract from the core experience.
-                <br/><br/>
-                osu! is free-to-win – supporting osu! won’t give you any competitive advantage (but it might make you cooler amongst your friends!). I am hugely grateful, and honestly astounded, that we have come this far purely on donations, but this is where we are! Your contributions cover completely our small team's salaries, licensing efforts via the Featured Artist program, prizes and funding for official tournaments, but most importantly make sure we have quality servers and bandwidth available around the globe.
-                <br/><br/>
-                I would like to offer thanks and gratitude on behalf of myself and the rest of the team, to those who have supported osu!.
-                <br/><br/>
-                You keep osu! running."
-            </blockquote>
-            <div class="supporter-quote__signature">— Dean "peppy" Herbert, creator of osu!</div>
-        </div>
         <div class="supporter">
-            <div class="supporter__block">
-                <h3 class="supporter__title">
-                    {{ trans('community.support.money_goes_where.title') }}
-                </h3>
-
-                <div class="supporter__perk">
+            <div class="supporter-quote">
+                <blockquote class="supporter-quote__content">
+                    "I've always tried to run osu! exactly how I'd want to see it run if I were a player. While this does mean osu! will never be a super-profitable business, that was never the goal (nor will it ever be!). We intentionally avoid advertising, partnerships, etc because I feel that would detract from the core experience.
+                    <br/><br/>
+                    osu! is free-to-win – supporting osu! won’t give you any competitive advantage (but it might make you cooler amongst your friends!). I am hugely grateful, and honestly astounded, that we have come this far purely on donations, but this is where we are! Your contributions cover completely our small team's salaries, licensing efforts via the Featured Artist program, prizes and funding for official tournaments, but most importantly make sure we have quality servers and bandwidth available around the globe.
+                    <br/><br/>
+                    I would like to offer thanks and gratitude on behalf of myself and the rest of the team, to those who have supported osu!.
+                    <br/><br/>
+                    You keep osu! running."
+                </blockquote>
+                <div class="supporter-quote__signature">— Dean "peppy" Herbert, creator of osu!</div>
+            </div>
+            <h3 class="supporter__title">
+                {{ trans('community.support.money_goes_where.title') }}
+            </h3>
+            <div class="supporter-perk-list">
+                <div class="supporter-perk-list__list">
                     @foreach($data['blocks'] as $name => $icons)
-                        <div class="supporter-perk">
-                            <div class="supporter-perk__icon">
+                        <div class="supporter-perk-item">
+                            <div class="supporter-perk-item__icon">
                                 <span class="fa-stack">
-                                    <i class="fas fa-circle fa-stack-2x supporter-perk__icon-bg"></i>
+                                    <i class="fas fa-circle fa-stack-2x supporter-perk-item__icon-bg"></i>
                                     @foreach($icons as $icon)
                                         <i class="{{ $icon }} fa-stack-1x"></i>
                                     @endforeach
                                 </span>
                             </div>
 
-                            <div class="supporter-perk__text">
-                                <h4 class="supporter-perk__title">
+                            <div class="supporter-perk-item__text">
+                                <h4 class="supporter-perk-item__title">
                                     {!! trans("community.support.money_goes_where.blocks.{$name}.title") !!}
                                 </h4>
-                                <p class="supporter-perk__content">
+                                <p class="supporter-perk-item__content">
                                     {!! trans("community.support.money_goes_where.blocks.{$name}.body") !!}
                                 </p>
                             </div>
@@ -116,132 +115,33 @@
                     @endforeach
                 </div>
             </div>
-            <div class="supporter__block supporter__block--image">
+            <div class="supporter__block supporter__block--bg-0">
                 <h3 class="supporter__title">
                     {{ trans('community.support.perks.title') }}
                 </h3>
-                <div class="supporter__perks">
-                    @foreach($data['perks'] as $index => $group)
-                        @switch ($group['type'])
-                            @case('group')
-                                <div class="supporter supporter--features">
-                                    <div class="supporter__perk">
-                                        @foreach($group['items'] as $perk => $icon)
-                                            @if (strlen($perk) > 0)
-                                                <div class="supporter-perk supporter-perk--feature{{$index == 0 ? ' supporter-perk--first' : ''}}">
-                                                    <div class="supporter-perk__icon">
-                                                        <span class="fa-stack">
-                                                            <i class="fas fa-circle fa-stack-2x supporter-perk__icon-bg"></i>
-                                                            <i class="{{ $icon }} fa-stack-1x"></i>
-                                                        </span>
-                                                    </div>
-                                                    <div class="supporter-perk__text">
-                                                        <h4 class="supporter-perk__title">
-                                                            {{ trans('community.support.perks.'.$perk.'.title') }}
-                                                        </h4>
-                                                        <p class="supporter-perk__content">
-                                                            {!! trans('community.support.perks.'.$perk.'.description') !!}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
-                                @break
-                            @case('hero')
-                                <div class="supporter-perk--hero{{$index == 0 ? ' supporter-perk--first' : ''}}">
-                                    <img
-                                        class="supporter-perk__hero-image"
-                                        src="{{$group['image']}}"
-                                        srcSet="{{$group['image']}} 1x, {{retinaify($group['image'])}} 2x"
-                                    />
-                                    <div class="supporter-perk__meta">
-                                        <div class="supporter-perk__icon">
-                                            <span class="fa-stack">
-                                                <i class="fas fa-circle fa-stack-2x supporter-perk__icon-bg"></i>
-                                                <i class="{{$group['icon']}} fa-stack-1x"></i>
-                                            </span>
-                                        </div>
-                                        <div class="supporter-perk__text">
-                                            <h4 class="supporter-perk__title">
-                                                {{ trans('community.support.perks.'.$group['name'].'.title') }}
-                                            </h4>
-                                            <p class="supporter-perk__content">
-                                                {{ trans('community.support.perks.'.$group['name'].'.description') }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                @break
-                            @case('image')
-                            @case('image-flipped')
-                                <div class="supporter-perk--big{{$group['type'] === 'image-flipped' ? ' supporter-perk--flipped' : ''}}{{$index == 0 ? ' supporter-perk--first' : ''}}">
-                                    <div class="supporter-perk__image">
-                                        <img
-                                            src="{{$group['image']}}"
-                                            srcSet="{{$group['image']}} 1x, {{retinaify($group['image'])}} 2x"
-                                        />
-                                    </div>
-                                    <div class="supporter-perk__meta">
-                                        <div class="supporter-perk__icon">
-                                            <span class="fa-stack">
-                                                <i class="fas fa-circle fa-stack-2x supporter-perk__icon-bg"></i>
-                                                <i class="{{$group['icon']}} fa-stack-1x"></i>
-                                            </span>
-                                        </div>
-                                        <div class="supporter-perk__text">
-                                            <h4 class="supporter-perk__title">
-                                                {{ trans('community.support.perks.'.$group['name'].'.title') }}
-                                            </h4>
-                                            <p class="supporter-perk__content">
-                                                {{ trans('community.support.perks.'.$group['name'].'.description') }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                @break
-                            @case('image-group')
-                                <div class="supporter supporter--features-2">
-                                    <div class="supporter__perk supporter__perk--imglist">
-                                        @foreach($group['items'] as $name => $perk)
-                                            @if (strlen($name) > 0)
-                                                <div class="supporter-perk supporter-perk--feature supporter-perk--img{{$index == 0 ? ' supporter-perk--first' : ''}}">
-                                                    <div class="supporter-perk__text">
-                                                        <h4 class="supporter-perk__title">
-                                                            {{ trans('community.support.perks.'.$name.'.title') }}
-                                                        </h4>
-                                                        <p class="supporter-perk__content">
-                                                            {!! trans('community.support.perks.'.$name.'.description') !!}
-                                                        </p>
-                                                    </div>
-                                                    <div class="supporter-perk__icon">
-                                                        <span class="fa-stack">
-                                                            <i class="fas fa-circle fa-stack-2x supporter-perk__icon-bg"></i>
-                                                            <i class="{{ $perk['icon'] }} fa-stack-1x"></i>
-                                                        </span>
-                                                    </div>
-                                                    <div class="supporter-perk__img">
-                                                        <img
-                                                            src="{{$perk['image']}}"
-                                                            srcSet="{{$perk['image']}} 1x, {{retinaify($perk['image'])}} 2x"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
-                                @break
-                        @endswitch
-                    @endforeach
+            </div>
+            @foreach($data['perks'] as $index => $group)
+                <div class="supporter__block supporter__block--{{'bg-'.$index % 3}}">
+                    @switch ($group['type'])
+                        @case('group')
+                            @include('home._supporter_perks_group', ['perks' => $group['items']])
+                            @break
+                        @case('hero')
+                            @include('home._supporter_perks_hero', ['perk' => $group])
+                            @break
+                        @case('image')
+                        @case('image-flipped')
+                            @include('home._supporter_perks_image', ['perk' => $group])
+                            @break
+                        @case('image-group')
+                            @include('home._supporter_perks_image_group', ['perks' => $group['items']])
+                            @break
+                    @endswitch
                 </div>
-            </div>
-            <div class="supporter__block">
-                <h3 class="supporter__title">
-                    {{ trans('community.support.convinced.title') }}
-                </h3>
-            </div>
+            @endforeach
+            <h3 class="supporter__title supporter__title--convinced">
+                {{ trans('community.support.convinced.title') }}
+            </h3>
             <div class="supporter-eyecatch">
                 <div class="supporter-eyecatch__box">
                     <a class="supporter-eyecatch__link" href="{{ route('store.products.show', 'supporter-tag') }}">

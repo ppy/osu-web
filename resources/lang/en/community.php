@@ -57,7 +57,7 @@ return [
             ],
         ],
         'perks' => [
-            'title' => 'Cool, but what perks do I get?',
+            'title' => 'Cool! What perks do I get?',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'Gain quick and easy access to search for and download beatmaps without having to leave the game.',

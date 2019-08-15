@@ -16,30 +16,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.supporter {
-  &__block {
-    background-color: @osu-colour-b5;
+.supporter-perk-list {
+  @top: supporter-perk-list;
+  padding: 30px;
 
-    &--bg-0 {
-      background-color: @osu-colour-b4;
-    }
+  &__list {
+    margin: -5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
-    &--bg-1 {
-      background-color: @osu-colour-b3;
-    }
-  }
-
-  &__title {
-    font-size: @font-size--title;
-    color: @osu-colour-orange-1;
-    font-weight: 100;
-    font-style: italic;
-    margin: 0;
-    padding: 30px;
-    text-align: center;
-
-    &--convinced {
-      margin-top: -30px;
+    .@{top}--image-list & {
+      flex-direction: column;
+      align-items: center;
     }
   }
 }
