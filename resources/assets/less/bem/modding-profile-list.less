@@ -16,23 +16,24 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.modding-profile {
-  &__beatmap-thumbnail {
+.modding-profile-list {
+  &--votes {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__thumbnail {
     margin: 20px 10px;
   }
 
-  &__empty-section {
+  &__empty {
     color: @osu-colour-f1;
     font-style: italic;
     margin-bottom: 10px;
   }
 
-  &__section {
+  &__row {
     display: flex;
-
-    &--votes {
-      flex-wrap: wrap;
-    }
   }
 
   &__show-more {
@@ -43,5 +44,10 @@
     display: block;
     text-align: center;
     margin-top: 20px;
+  }
+
+  &__timestamp {
+    width: 110px;
+    flex-shrink: 0;
   }
 }

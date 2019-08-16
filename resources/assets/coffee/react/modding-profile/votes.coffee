@@ -39,10 +39,10 @@ export class Votes extends React.Component
 
           div
             key: direction
-            className: 'modding-profile__section modding-profile__section--votes',
+            className: 'modding-profile-list modding-profile-list--votes',
 
             if @props.votes[direction].length == 0
-              div className: 'modding-profile__empty-section', osu.trans('users.show.extra.none')
+              div className: 'modding-profile-list__empty', osu.trans('users.show.extra.none')
             else
               [
                 for vote in @props.votes[direction]

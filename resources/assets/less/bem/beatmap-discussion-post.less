@@ -139,6 +139,11 @@
     }
 
     .@{_top}--reply & {
+      // override padding for discussion previews
+      .beatmap-discussion--preview & {
+        padding: 10px @_content-gutter-base;
+      }
+
       @media @desktop {
         padding-left: @beatmap-discussion--reply-padding;
         padding-right: @beatmap-discussion--reply-padding;
