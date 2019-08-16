@@ -57,7 +57,7 @@ class BeatmapsetEventTransformer extends Fractal\TransformerAbstract
 
     public function includeDiscussion(BeatmapsetEvent $event)
     {
-        if ($event->comment === null) {
+        if ($event->beatmapDiscussion === null) {
             return;
         }
 

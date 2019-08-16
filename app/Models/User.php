@@ -461,7 +461,7 @@ class User extends Model implements AuthenticatableContract
 
         $user = $user->first();
 
-        if (!$user->exists() && $searchPastUsernames) {
+        if ($user === null && $searchPastUsernames) {
             $change = UsernameChangeHistory::visible()
                 ->where('username_last', $usernameOrId)
                 ->orderBy('change_id', 'desc')
