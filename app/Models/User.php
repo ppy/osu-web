@@ -430,7 +430,7 @@ class User extends Model implements AuthenticatableContract
         return $this->api->api_key === $key;
     }
 
-    public static function lookup($usernameOrId, $type = null, $findAll = false)
+    public static function lookup($usernameOrId, $type = null, $findAll = false, $searchPastUsernames = false)
     {
         if (!present($usernameOrId)) {
             return;
@@ -459,7 +459,20 @@ class User extends Model implements AuthenticatableContract
             $user->where('user_type', 0)->where('user_warnings', 0);
         }
 
-        return $user->first();
+        $user = $user->first();
+
+        if (!$user->exists() && $searchPastUsernames) {
+            $change = UsernameChangeHistory::visible()
+                ->where('username_last', $usernameOrId)
+                ->orderBy('change_id', 'desc')
+                ->first();
+
+            if ($change !== null) {
+                return User::lookup($change->user_id, 'id');
+            }
+        }
+
+        return $user;
     }
 
     public function getCountryAcronymAttribute($value)
