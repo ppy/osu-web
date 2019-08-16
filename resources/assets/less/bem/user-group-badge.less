@@ -23,6 +23,32 @@
   color: white;
   padding: 2px 10px;
   font-weight: bold;
+  display: flex;
+
+  &::before {
+    align-self: center;
+  }
+
+  &--alumni {
+    color: @osu-colour-group-alumni;
+    &::before {
+      content: 'ALUMNI';
+    }
+  }
+
+  &--bng {
+    color: @osu-colour-group-bng;
+    &::before {
+      content: 'BN';
+    }
+  }
+
+  &--bng_limited {
+    color: @osu-colour-group-bng;
+    &::before {
+      content: 'BN';
+    }
+  }
 
   &--bot {
     background-color: @osu-colour-group-bot;
@@ -46,6 +72,13 @@
     }
   }
 
+  &--mapper {
+    color: @osu-colour-blue-1;
+    &::before {
+      content: 'MAPPER';
+    }
+  }
+
   &--nat {
     color: @osu-colour-group-nat;
     &::before {
@@ -53,24 +86,10 @@
     }
   }
 
-  &--bng {
-    color: @osu-colour-group-bng;
+  &--ppy {
+    color: @osu-colour-group-ppy;
     &::before {
-      content: 'BN';
-    }
-  }
-
-  &--bng_limited {
-    color: @osu-colour-group-bng;
-    &::before {
-      content: 'BN';
-    }
-  }
-
-  &--alumni {
-    color: @osu-colour-group-alumni;
-    &::before {
-      content: 'ALUMNI';
+      content: 'PPY';
     }
   }
 
@@ -78,13 +97,6 @@
     color: @osu-colour-group-support;
     &::before {
       content: 'SUPPORT';
-    }
-  }
-
-  &--mapper {
-    color: @osu-colour-blue-1;
-    &::before {
-      content: 'MAPPER';
     }
   }
 }
