@@ -58,21 +58,20 @@ export class Posts extends React.Component
 
                 div className: discussionClasses,
                   div className: "beatmap-discussion__discussion",
-                    div className: "beatmap-discussion__top",
-                      el Post,
-                        key: post.id
-                        beatmapset: post.beatmap_discussion.beatmapset
-                        discussion: post.beatmap_discussion
-                        post: post
-                        type: 'reply'
-                        users: @props.users
-                        user: @props.users[post.user_id]
-                        read: true
-                        lastEditor: @props.users[post.last_editor_id]
-                        canBeEdited: currentUser.is_admin || currentUser.id? == post.user_id
-                        canBeDeleted: canBeDeleted
-                        canBeRestored: canModeratePosts
-                        currentUser: currentUser
+                    el Post,
+                      key: post.id
+                      beatmapset: post.beatmap_discussion.beatmapset
+                      discussion: post.beatmap_discussion
+                      post: post
+                      type: 'reply'
+                      users: @props.users
+                      user: @props.users[post.user_id]
+                      read: true
+                      lastEditor: @props.users[post.last_editor_id]
+                      canBeEdited: currentUser.is_admin || currentUser.id? == post.user_id
+                      canBeDeleted: canBeDeleted
+                      canBeRestored: canModeratePosts
+                      currentUser: currentUser
             a
               key: 'show-more'
               className: 'modding-profile-list__show-more'
