@@ -45,7 +45,7 @@ class BeatmapsetEventTransformer extends Fractal\TransformerAbstract
 
     public function includeBeatmapset(BeatmapsetEvent $event)
     {
-        if ($event === null || $event->beatmapset === null) {
+        if ($event->beatmapset === null) {
             return;
         }
 

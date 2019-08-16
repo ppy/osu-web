@@ -23,17 +23,10 @@ el = React.createElement
 bn = 'profile-detail'
 
 export class Detail extends React.PureComponent
-  constructor: (props) ->
-    super props
-
-    @state = extended: true
-
-
   render: =>
     div className: bn,
       div className: "#{bn}__bar",
         el DetailBar,
           stats: @props.stats
-          toggleExtend: @toggleExtend
-          extended: @state.extended
+          extended: false
           user: @props.user

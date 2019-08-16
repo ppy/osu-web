@@ -74,12 +74,11 @@ export class Main extends React.PureComponent
 
 
   componentDidMount: =>
-    $.subscribe 'profile:showMore.profilePage', @showMore
-    $.subscribe 'profile:page:jump.profilePage', @pageJump
-    $.subscribe 'beatmapsetDiscussions:update.profilePage', @discussionUpdate
-    $(document).on 'ajax:success.beatmapDiscussions', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
-    $(window).on 'throttled-scroll.profilePage', @pageScan
-    $(document).on 'turbolinks:before-cache.profilePage', @saveStateToContainer
+    $.subscribe 'profile:showMore.moddingProfilePage', @showMore
+    $.subscribe 'profile:page:jump.moddingProfilePage', @pageJump
+    $.subscribe 'beatmapsetDiscussions:update.moddingProfilePage', @discussionUpdate
+    $(document).on 'ajax:success.moddingProfilePage', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
+    $(window).on 'throttled-scroll.moddingProfilePage', @pageScan
 
     osu.pageChange()
 
@@ -90,8 +89,8 @@ export class Main extends React.PureComponent
 
 
   componentWillUnmount: =>
-    $.unsubscribe '.profilePage'
-    $(window).off '.profilePage'
+    $.unsubscribe '.moddingProfilePage'
+    $(window).off '.moddingProfilePage'
 
     $(window).stop()
     Timeout.clear @modeScrollTimeout
@@ -117,7 +116,7 @@ export class Main extends React.PureComponent
         discussions = _.reject discussions, id: newDiscussion.id
         newDiscussion = _.merge(discussion, newDiscussion)
         # The discussion list shows discussions started by the current user, so it can be assumed that the first post is theirs
-        newDiscussion.startingPost = newDiscussion.posts[0]
+        newDiscussion.starting_post = newDiscussion.posts[0]
         discussions.push(newDiscussion)
 
       _.each newDiscussion.posts, (newPost) ->
@@ -133,13 +132,13 @@ export class Main extends React.PureComponent
 
     @cache.users = null
     @setState
-      discussions: _.reverse(_.sortBy(discussions, (d) -> Date.parse(d.startingPost.created_at)))
+      discussions: _.reverse(_.sortBy(discussions, (d) -> Date.parse(d.starting_post.created_at)))
       posts: _.reverse(_.sortBy(posts, (p) -> Date.parse(p.created_at)))
       users: users
 
 
   render: =>
-    profileOrder = @state.profileOrder.slice()
+    profileOrder = @state.profileOrder
     isBlocked = _.find(currentUser.blocks, target_id: @state.user.id)
 
     div
@@ -176,22 +175,21 @@ export class Main extends React.PureComponent
 
         div
           className: 'hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
-          if profileOrder.length > 1
-            div className: 'osu-page',
-              div
-                className: 'page-mode page-mode--profile-page-extra'
-                ref: @tabs
-                for m in profileOrder
-                  a
-                    className: 'page-mode__item'
-                    key: m
-                    'data-page-id': m
-                    onClick: @tabClick
-                    href: "##{m}"
-                    el ExtraTab,
-                      page: m
-                      currentPage: @state.currentPage
-                      currentMode: @state.currentMode
+          div className: 'osu-page',
+            div
+              className: 'page-mode page-mode--profile-page-extra'
+              ref: @tabs
+              for m in profileOrder
+                a
+                  className: 'page-mode__item'
+                  key: m
+                  'data-page-id': m
+                  onClick: @tabClick
+                  href: "##{m}"
+                  el ExtraTab,
+                    page: m
+                    currentPage: @state.currentPage
+                    currentMode: @state.currentMode
 
         div
           className: 'osu-layout__section osu-layout__section--users-extra'

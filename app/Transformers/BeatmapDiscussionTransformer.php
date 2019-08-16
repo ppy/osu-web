@@ -30,7 +30,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
         'beatmapset',
         'posts',
         'current_user_attributes',
-        'startingPost',
+        'starting_post',
         'votes',
     ];
 

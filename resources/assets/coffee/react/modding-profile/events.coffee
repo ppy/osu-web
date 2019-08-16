@@ -35,8 +35,7 @@ export class Events extends React.Component
                 continue
 
               cover = if event.beatmapset then event.beatmapset.covers.list else ''
-              eventClass = _.replace(event.type, /_/g, '-')
-              discussionId = if event.comment && event.comment.beatmap_discussion_id then event.comment.beatmap_discussion_id else null
+              discussionId = event.comment?.beatmap_discussion_id ? null
               discussionLink = laroute.route('beatmapsets.discussion', beatmapset: event.beatmapset.id)
               if (discussionId)
                   discussionLink = "#{discussionLink}#/#{discussionId}"
@@ -46,7 +45,7 @@ export class Events extends React.Component
                   a href: discussionLink,
                     img className: 'beatmapset-activities__beatmapset-cover', src: cover,
 
-                  div className: "beatmapset-event__icon beatmapset-event__icon--#{eventClass} beatmapset-activities__event-icon-spacer"
+                  div className: "beatmapset-event__icon beatmapset-event__icon--#{_.kebabCase(event.type)} beatmapset-activities__event-icon-spacer"
 
                   div {},
                     div
@@ -55,7 +54,7 @@ export class Events extends React.Component
                         __html: osu.trans "beatmapset_events.event.#{@typeForTranslation(event)}",
                           'user': @props.users[event.user_id].username
                           'discussion': (if discussionId then "<a href='#{discussionLink}'>##{discussionId}</a>" else '')
-                          'text': (if event.discussion then _.truncate(event.discussion.startingPost.message, {length: 100}) else '[no preview]')
+                          'text': (if event.discussion then _.truncate(event.discussion.starting_post.message, {length: 100}) else '[no preview]')
 
                     div
                       className: 'beatmap-discussion-post__info'

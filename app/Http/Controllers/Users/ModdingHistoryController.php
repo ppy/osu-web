@@ -191,12 +191,12 @@ class ModdingHistoryController extends Controller
             'discussions' => json_collection(
                 $discussions['items'],
                 'BeatmapDiscussion',
-                ['startingPost', 'beatmapset', 'current_user_attributes']
+                ['starting_post', 'beatmapset', 'current_user_attributes']
             ),
             'events' => json_collection(
                 $events['items'],
                 'BeatmapsetEvent',
-                ['user', 'discussion.startingPost', 'beatmapset', 'beatmapset.user']
+                ['user', 'discussion.starting_post', 'beatmapset', 'beatmapset.user']
             ),
             'posts' => json_collection(
                 $posts['items'],
@@ -229,7 +229,7 @@ class ModdingHistoryController extends Controller
             $search['query']->with([
                     'user',
                     'beatmapset',
-                    'startingPost',
+                    'starting_post',
                 ])->get(),
             $search['query']->realCount(),
             $search['params']['limit'],

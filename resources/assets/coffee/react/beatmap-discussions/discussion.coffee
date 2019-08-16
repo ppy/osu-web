@@ -34,7 +34,6 @@ export class Discussion extends React.PureComponent
     @state =
       collapsed: false
       highlighted: false
-      preview: @props.preview || false
 
 
   componentWillMount: =>
@@ -49,13 +48,13 @@ export class Discussion extends React.PureComponent
 
   render: =>
     return null if !@isVisible(@props.discussion)
-    return null if !@props.discussion.startingPost && (!@props.discussion.posts || @props.discussion.posts.length == 0)
+    return null if !@props.discussion.starting_post && (!@props.discussion.posts || @props.discussion.posts.length == 0)
 
     topClasses = "#{bn} js-beatmap-discussion-jump"
     topClasses += " #{bn}--highlighted" if @state.highlighted
     topClasses += " #{bn}--deleted" if @props.discussion.deleted_at?
     topClasses += " #{bn}--timeline" if @props.discussion.timestamp?
-    topClasses += " #{bn}--preview" if @state.preview
+    topClasses += " #{bn}--preview" if @props.preview
 
     lineClasses = "#{bn}__line"
     lineClasses += " #{bn}__line--resolved" if @props.discussion.resolved
@@ -72,9 +71,9 @@ export class Discussion extends React.PureComponent
 
       div className: "#{bn}__discussion",
         div className: "#{bn}__top",
-          @post @props.discussion.startingPost || @props.discussion.posts[0], 'discussion'
+          @post @props.discussion.starting_post || @props.discussion.posts[0], 'discussion'
 
-          if !@state.preview
+          if !@props.preview
             div className: "#{bn}__actions",
               ['up', 'down'].map (direction) =>
                 div
@@ -89,7 +88,7 @@ export class Discussion extends React.PureComponent
                   className: "beatmap-discussion-expand #{'beatmap-discussion-expand--expanded' if !@state.collapsed}"
                   i className: 'fas fa-chevron-down'
 
-        if !@state.preview
+        if !@props.preview
           div
             className: "#{bn}__expanded #{'hidden' if @state.collapsed}"
             div
@@ -200,7 +199,7 @@ export class Discussion extends React.PureComponent
       discussion: @props.discussion
       post: post
       type: type
-      read: _.includes(@props.readPostIds, post.id) || @isOwner(post) || @state.preview
+      read: _.includes(@props.readPostIds, post.id) || @isOwner(post) || @props.preview
       users: @props.users
       user: @props.users[post.user_id]
       lastEditor: @props.users[post.last_editor_id]

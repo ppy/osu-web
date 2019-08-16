@@ -39,10 +39,4 @@ export class Stats extends React.PureComponent
       className: 'profile-stats__entry'
       key: key
       dt className: 'profile-stats__key', osu.trans("users.show.stats.#{key}")
-      dd className: 'profile-stats__value', @formatValue(key)
-
-
-  formatValue: (key) =>
-    val = @props.user[key]
-
-    osu.formatNumber(val)
+      dd className: 'profile-stats__value', osu.formatNumber(@props.user[key])

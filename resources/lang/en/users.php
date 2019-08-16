@@ -306,7 +306,7 @@ return [
                 'received' => 'Votes Received (last 3 months)',
                 'title' => 'Votes',
                 'title_longer' => 'Recent Votes',
-                'vote_count' => ':count vote|:count votes',
+                'vote_count' => ':count_delimited vote|:count_delimited votes',
             ],
             'account_standing' => [
                 'title' => 'Account Standing',
