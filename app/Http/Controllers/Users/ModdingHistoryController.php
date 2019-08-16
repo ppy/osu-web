@@ -217,7 +217,7 @@ class ModdingHistoryController extends Controller
             $search['query']->with([
                     'user',
                     'beatmapset',
-                    'starting_post',
+                    'startingPost',
                 ])->get(),
             $search['query']->realCount(),
             $search['params']['limit'],
