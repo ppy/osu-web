@@ -235,7 +235,7 @@ class UsersController extends Controller
         // If no user is found, search for a previous username
         // only if parameter is not a number (assume number is an id lookup).
 
-        $user = User::lookup($id, null, true, true);
+        $user = User::lookupWithHistory($id, null, true);
 
         if ($user === null || !priv_check('UserShow', $user)->can()) {
             if (is_json_request()) {
