@@ -22,7 +22,7 @@
             $forum->forum_name,
             ["class" => "forum-item__name clickable-row-link"]
         ) !!}
-        <div class="">{{ $forum->forum_desc }}</div>
+        <div>{{ $forum->forum_desc }}</div>
 
         @if (count($forum->subforums) > 0)
             <ul class="forum-item__subforums">
