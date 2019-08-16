@@ -132,7 +132,7 @@ return [
         'is_supporter' => 'osu!ผู้สนับสนุน',
         'joined_at' => 'เข้าร่วมเมื่อ :date',
         'lastvisit' => 'ออนไลน์ล่าสุด :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'ออนไลน์ในขณะนี้',
         'missingtext' => 'คุณอาจจะผิดพลาดนะ! (หรือไม่ก็ผู้ใช้อาจจะถูกแบน)',
         'origin_country' => 'มาจาก :country',
         'page_description' => 'osu! - ทุกสิ่งทุกอย่างที่คุณอยากรู้เกี่ยวกับ :username!',
@@ -152,6 +152,11 @@ return [
                     'size_info' => 'รูปภาพหน้าปกควรจะมีขนาด 2800x620',
                     'too_large' => 'ไฟล์มีขนาดใหญ่เกินไป',
                     'unsupported_format' => 'ไม่รองรับไฟล์นามสกุลนี้',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -257,6 +262,11 @@ return [
                         'revoke' => 'Denied kudosu by :giver for the post :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'ฉัน!',
@@ -333,6 +343,11 @@ return [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'การมีส่วนร่วม :link',
@@ -361,7 +376,7 @@ return [
     ],
 
     'status' => [
-        'all' => '',
+        'all' => 'ทั้งหมด',
         'online' => 'ออนไลน์',
         'offline' => 'ออฟไลน์',
     ],
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'ยืนยันตัวตนบัญชี',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

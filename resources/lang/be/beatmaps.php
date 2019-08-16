@@ -244,14 +244,14 @@ return [
     'status' => [
         'any' => 'Усе',
         'approved' => 'Усхваліныя',
-        'favourites' => '',
+        'favourites' => 'Абраныя',
         'graveyard' => 'Закінутыя',
-        'leaderboard' => '',
+        'leaderboard' => 'З табліца лідараў',
         'loved' => 'Любімыя',
-        'mine' => '',
+        'mine' => 'Мае мапы',
         'pending' => 'Чаканыя і ў працэсе распрацоўкі',
         'qualified' => 'Кваліфікаваныя',
-        'ranked' => '',
+        'ranked' => 'Ранкаваныя',
     ],
     'genre' => [
         'any' => 'Усе',

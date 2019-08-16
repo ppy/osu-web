@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Discuția este închisă.',
         'first_post' => 'Nu se poate șterge postarea de pornire.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Dificultatea specificată nu este validă.',
         'invalid_beatmapset_id' => 'Beatmapul specificat nu este valid.',
         'locked' => 'Discuția este închisă.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'Trebuie să fii autentificat pentru a acorda un hype.',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Nu este permis să răspunzi la un comentariu șters.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Ștergerea metadatei unui beatmap nu este permisă.',
             'beatmapset_post_no_edit' => 'Editarea metadatei unui beatmap nu este permisă.',
             'only_quote' => 'Răspunsul tău conţine doar un citat.',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,6 +106,10 @@ return [
             'minimum_one_selection' => 'Este necesar cel puțin o opțiune per utilizator.',
             'minimum_two_options' => 'Este nevoie de cel puțin două opțiuni.',
             'too_many_options' => 'Ai depășit numărul maxim de opțiuni permise.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,6 +142,12 @@ return [
         'wrong_password_confirmation' => 'Parola de confirmare nu se potrivește.',
         'too_long' => 'Ai depășit lungimea maximă - nu poate fi decât până la :limit caractere.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
             'restricted' => '',
             'supporter_required' => [
@@ -127,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "Nu te poți raporta pe tine însuți!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

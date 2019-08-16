@@ -152,6 +152,11 @@ return [
                     'size_info' => 'El tamaño de la portada debe ser de 2800x620',
                     'too_large' => 'El archivo subido es demasiado grande.',
                     'unsupported_format' => 'Formato no soportado.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -257,6 +262,11 @@ return [
                         'revoke' => 'Kudosu denegado por :giver por la publicación :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => '¡yo!',
@@ -333,6 +343,11 @@ return [
             'description' => '<strong>¡yo!</strong> es una área personal y personalizable en tu perfil.',
             'edit_big' => 'Editar ¡yo!',
             'placeholder' => 'Escribe el contenido de la pagina aquí',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Contribuyó en :link',
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Verificación de la cuenta',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

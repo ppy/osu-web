@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Ảnh đại diện',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Trang cá nhân',
 
             'user' => [
+                'user_discord' => 'discord',
                 'user_from' => 'vị trí hiện tại',
                 'user_interests' => 'sở thích',
                 'user_msnm' => 'skype',
                 'user_occ' => 'nghề nghiệp',
                 'user_twitter' => 'twitter',
                 'user_website' => 'trang web',
-                'user_discord' => 'discord',
             ],
         ],
 
@@ -62,9 +64,37 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => 'Thông báo',
+        'topic_auto_subscribe' => 'tự động nhận thông báo cho các topic bạn tạo trong forum',
+    ],
+
     'oauth' => [
-        'title' => '',
         'authorized_clients' => '',
+        'title' => '',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'bàn phím',
+        'mouse' => 'chuột',
+        'tablet' => 'tablet',
+        'title' => 'Lối Chơi',
+        'touch' => 'touchscreen',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'chặn tin nhắn từ những người không có trong danh sách bạn bè của bạn',
+        'hide_online' => 'Ẩn sự xuất hiện của bạn khi bạn online',
+        'title' => 'Quyền Riêng Tư',
+    ],
+
+    'security' => [
+        'current_session' => 'hiện tại',
+        'end_session' => 'Kết thúc Phiên',
+        'end_session_confirmation' => 'Việc này sẽ ngay lập tức kết thúc phiên của bạn trên thiết bị đó. Bạn có chắc không?',
+        'last_active' => 'Hoạt động lần cuối:',
+        'title' => 'Bảo mật',
+        'web_sessions' => 'phiên trên web',
     ],
 
     'update_email' => [
@@ -77,31 +107,12 @@ return [
         'update' => 'cập nhật',
     ],
 
-    'playstyles' => [
-        'title' => 'Lối Chơi',
-        'mouse' => 'chuột',
-        'keyboard' => 'bàn phím',
-        'tablet' => 'tablet',
-        'touch' => 'touchscreen',
+    'verification_completed' => [
+        'text' => '',
+        'title' => '',
     ],
 
-    'privacy' => [
-        'title' => 'Quyền Riêng Tư',
-        'friends_only' => 'chặn tin nhắn từ những người không có trong danh sách bạn bè của bạn',
-        'hide_online' => 'Ẩn sự xuất hiện của bạn khi bạn online',
-    ],
-
-    'notifications' => [
-        'title' => 'Thông báo',
-        'topic_auto_subscribe' => 'tự động nhận thông báo cho các topic bạn tạo trong forum',
-    ],
-
-    'security' => [
-        'current_session' => 'hiện tại',
-        'end_session' => 'Kết thúc Phiên',
-        'end_session_confirmation' => 'Việc này sẽ ngay lập tức kết thúc phiên của bạn trên thiết bị đó. Bạn có chắc không?',
-        'last_active' => 'Hoạt động lần cuối:',
-        'title' => 'Bảo mật',
-        'web_sessions' => 'phiên trên web',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

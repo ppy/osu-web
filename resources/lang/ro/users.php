@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Dimensiunea coperții trebuie să fie de 2800x620',
                     'too_large' => 'Fișierul încărcat este prea mare.',
                     'unsupported_format' => 'Format nesuportat.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -257,6 +262,11 @@ return [
                         'revoke' => 'Kudosu respinși de :giver pentru postarea :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'eu!',
@@ -333,6 +343,11 @@ return [
             'description' => '<strong>eu!</strong> este o zonă personală personalizabilă în pagina ta de profil.',
             'edit_big' => 'Editează-mă!',
             'placeholder' => 'Introdu conținutul paginii aici',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'A contribuit la :link',
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Verificarea contului',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

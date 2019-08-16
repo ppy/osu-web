@@ -27,6 +27,7 @@ return [
         'home' => [
             '_' => 'főoldal',
             'account-edit' => 'beállítások',
+            'account-verifyLink' => '',
             'friends-index' => 'barátok',
             'changelog-index' => 'változtatások',
             'changelog-build' => 'verzió',

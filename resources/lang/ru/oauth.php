@@ -34,14 +34,14 @@ return [
     ],
 
     'authorized-clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Вы уверены, что вы хотите удалить эти права доступа клиента?',
+        'scopes_title' => 'Это приложение может:',
+        'owned_by' => 'Владелец: :user',
+        'none' => 'Нет клиентов',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Запретить доступ',
+            'true' => 'Доступ запрещён',
         ],
     ],
 

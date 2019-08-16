@@ -152,6 +152,11 @@ return [
                     'size_info' => 'O tamanho da capa deve ser 2800x620',
                     'too_large' => 'O arquivo enviado é muito grande.',
                     'unsupported_format' => 'Formato não suportado.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -257,6 +262,11 @@ return [
                         'revoke' => 'Kudosu negado por :giver na publicação :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'eu!',
@@ -333,6 +343,11 @@ return [
             'description' => '<strong>eu!</strong> é uma área pessoal customizável na sua página de perfil.',
             'edit_big' => 'Me edite!',
             'placeholder' => 'Digite o conteúdo da página aqui',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Contribuiu com :link',
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Verificação de Conta',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

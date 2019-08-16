@@ -73,7 +73,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'これは一般のディスカッションに投稿されます。 この譜面をmodするにはタイムスタンプ（例:　00:12:345）で始まるメッセージを入力してください。',
+            'in_general' => 'これは一般のディスカッションに投稿されます。 このビートマップをmodするにはタイムスタンプ（例：00:12:345）を付けたメッセージを入力してください。',
             'in_timeline' => '複数のタイムスタンプをmodするには、投稿を複数回に分けてください。',
         ],
 
@@ -244,14 +244,14 @@ return [
     'status' => [
         'any' => '全て',
         'approved' => 'Approved',
-        'favourites' => '',
+        'favourites' => 'お気に入り',
         'graveyard' => 'Graveyard',
-        'leaderboard' => '',
+        'leaderboard' => 'リーダーボード',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => 'マイマップ',
         'pending' => 'Pending & WIP',
         'qualified' => 'Qualified',
-        'ranked' => '',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => '全て',

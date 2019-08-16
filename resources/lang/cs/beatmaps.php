@@ -40,14 +40,14 @@ return [
         'edited' => 'Naposledy upravil :editor v :update_time.',
         'kudosu_denied' => 'Odepřen od získávání kudosu.',
         'message_placeholder_deleted_beatmap' => 'Tato obtížnost byla smazána, takže už nemůže být probírána.',
-        'message_placeholder_locked' => '',
+        'message_placeholder_locked' => 'Diskuze o této mapě byly vypnuty.',
         'message_type_select' => 'Vybrat typ komentáře',
         'reply_notice' => 'Stiskni enter pro odpověď.',
         'reply_placeholder' => 'Napiš svou odpověď sem',
         'require-login' => 'Pro psaní odpovědí nebo přidávání příspěvků se prosím přihlaš',
         'resolved' => 'Vyřešeno',
         'restore' => 'obnovit',
-        'show_deleted' => '',
+        'show_deleted' => 'Zobrazit smazané',
         'title' => 'Diskuze',
 
         'collapse' => [
@@ -62,13 +62,13 @@ return [
 
         'lock' => [
             'button' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'Zamknout diskuze',
+                'unlock' => 'Odemknout diskuze',
             ],
 
             'prompt' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'Důvod k uzamknutí',
+                'unlock' => 'Jste si jistý o uzamknutí?',
             ],
         ],
 
@@ -104,11 +104,11 @@ return [
         ],
 
         'new' => [
-            'pin' => '',
+            'pin' => 'Pin',
             'timestamp' => 'Časová sekvence',
             'timestamp_missing' => 'ctrl-c v režimu úprav a vložte do zprávy pro přidání časové sekvence!',
             'title' => 'Nová diskuze',
-            'unpin' => '',
+            'unpin' => 'Odepnout',
         ],
 
         'show' => [
@@ -140,8 +140,8 @@ return [
         ],
 
         'votes' => [
-            'up' => '',
-            'down' => '',
+            'up' => 'Upvotenout tuto diskuzi',
+            'down' => 'Downvotenout tuto diskuzi',
         ],
     ],
 
@@ -216,7 +216,7 @@ return [
                 'title' => 'Název',
                 'artist' => 'Umělec',
                 'difficulty' => 'Obtížnost',
-                'favourites' => '',
+                'favourites' => 'Oblíbené',
                 'updated' => 'Aktualizováno',
                 'ranked' => 'Hodnocené',
                 'rating' => 'Hodnocení',
@@ -244,14 +244,14 @@ return [
     'status' => [
         'any' => 'Jakékoliv',
         'approved' => 'Schválené',
-        'favourites' => '',
+        'favourites' => 'Oblíbené',
         'graveyard' => 'Hřbitov',
         'leaderboard' => '',
         'loved' => 'Oblíbené',
-        'mine' => '',
+        'mine' => 'Moje mapy',
         'pending' => 'Čekající & Rozpracované',
         'qualified' => 'Kvalifikované',
-        'ranked' => '',
+        'ranked' => 'Hodnocené',
     ],
     'genre' => [
         'any' => 'Jakékoliv',

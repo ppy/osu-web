@@ -75,7 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited publicación|:count_delimited publicaciones',
-            'topic_starter' => '',
+            'topic_starter' => 'Topic Starter',
         ],
     ],
 
@@ -180,8 +180,8 @@ return [
             ],
 
             'poll' => [
-                'hide_results' => '',
-                'hide_results_info' => '',
+                'hide_results' => 'Ocultar los resultados de la encuesta.',
+                'hide_results_info' => 'Solo se mostrarán después de que finalice la encuesta.',
                 'length' => 'Duración de la encuesta',
                 'length_days_suffix' => 'días',
                 'length_info' => 'Deja en blanco para una encuesta sin fin',
@@ -295,7 +295,7 @@ return [
                 'detail' => [
                     'end_time' => 'La encuesta terminará el :time',
                     'ended' => 'Encuesta terminada el :time',
-                    'results_hidden' => '',
+                    'results_hidden' => 'Los resultados se mostrarán después de que finalice la encuesta.',
                     'total' => 'Votos totales: :count',
                 ],
             ],

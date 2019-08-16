@@ -26,8 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Dosáhl jsi dnešního limitu nominací, zkus to prosím zítra.',
-            'full_bn_required' => '',
-            'full_bn_required_hybrid' => '',
+            'full_bn_required' => 'Musíte být plný nominátor, abyste mohl provést kvalifikační nominaci.',
+            'full_bn_required_hybrid' => 'Musíte být nominátor k nominaci setů map s více než jedním herním módem.',
             'incorrect_state' => 'Nastala chyba při provádění akce, zkuste stránku obnovit.',
             'owner' => "Nelze nominovat vlastní beatmapu.",
         ],
@@ -52,7 +52,7 @@ return [
             'not_owner' => 'Pouze autor může příspěvek upravovat.',
         ],
         'store' => [
-            'beatmapset_locked' => '',
+            'beatmapset_locked' => 'Tato beatmapa je zablokována od diskuze.',
         ],
     ],
 
@@ -124,7 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'K vybranému fóru je vyžadován přístup.',
                 'over' => 'Hlasování je ukončeno a už nelze hlasovat.',
-                'play_more' => '',
+                'play_more' => 'Potřebuješ hrát více před hlasováním na fóru.',
                 'voted' => 'Změna hlasu není povolena.',
 
                 'user' => [

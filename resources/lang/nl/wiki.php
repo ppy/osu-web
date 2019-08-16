@@ -21,6 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'De opgevraagde pagina is nog niet vertaald naar de geselecteerde taal (:language). Engelse versie wordt getoond.',
+        'incomplete_or_outdated' => '',
         'languages' => 'Talen',
         'missing' => 'Gevraagde pagina ":keyword" kon niet worden gevonden.',
         'missing_title' => 'Niet Gevonden',

@@ -34,14 +34,14 @@ return [
     ],
 
     'authorized-clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Weet u zeker dat u de rechten van deze client wilt intrekken?',
+        'scopes_title' => 'Deze applicatie kan:',
+        'owned_by' => 'Dit is in bezit door :user',
+        'none' => 'Geen clients',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Toegang intrekken',
+            'true' => 'Toegang Ingetrokken',
         ],
     ],
 

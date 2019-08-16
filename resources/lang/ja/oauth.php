@@ -34,14 +34,14 @@ return [
     ],
 
     'authorized-clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'このクライアントの認証を無効化しますか？',
+        'scopes_title' => 'このアプリケーションでできること:',
+        'owned_by' => '所有者 :user',
+        'none' => 'クライアントがありません',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'アクセスを無効化',
+            'true' => 'アクセスが無効化されました',
         ],
     ],
 

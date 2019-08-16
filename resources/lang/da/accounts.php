@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Profilbillede',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Profil',
 
             'user' => [
+                'user_discord' => '',
                 'user_from' => 'nuværende placering',
                 'user_interests' => 'interesser',
                 'user_msnm' => 'skype',
                 'user_occ' => 'stilling',
                 'user_twitter' => 'twitter',
                 'user_website' => 'hjemmeside',
-                'user_discord' => '',
             ],
         ],
 
@@ -62,9 +64,37 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => 'Notifikationer',
+        'topic_auto_subscribe' => 'aktiver automatisk notifikationer på nye forum emner du opretter',
+    ],
+
     'oauth' => [
-        'title' => '',
         'authorized_clients' => '',
+        'title' => '',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'tastatur',
+        'mouse' => 'mus',
+        'tablet' => 'tablet',
+        'title' => 'Spillestile',
+        'touch' => 'touch',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'Bloker private beskeder fra folk, der ikke er på din venneliste',
+        'hide_online' => 'skjul din online status',
+        'title' => 'Privacy',
+    ],
+
+    'security' => [
+        'current_session' => 'nuværende',
+        'end_session' => 'Afslut Session',
+        'end_session_confirmation' => 'Dette vil straks afslutte sessionen på enheden. Er du sikker?',
+        'last_active' => 'Sidst aktiv:',
+        'title' => 'Sikkerhed',
+        'web_sessions' => 'websessioner',
     ],
 
     'update_email' => [
@@ -77,31 +107,12 @@ return [
         'update' => 'opdater',
     ],
 
-    'playstyles' => [
-        'title' => 'Spillestile',
-        'mouse' => 'mus',
-        'keyboard' => 'tastatur',
-        'tablet' => 'tablet',
-        'touch' => 'touch',
+    'verification_completed' => [
+        'text' => '',
+        'title' => '',
     ],
 
-    'privacy' => [
-        'title' => 'Privacy',
-        'friends_only' => 'Bloker private beskeder fra folk, der ikke er på din venneliste',
-        'hide_online' => 'skjul din online status',
-    ],
-
-    'notifications' => [
-        'title' => 'Notifikationer',
-        'topic_auto_subscribe' => 'aktiver automatisk notifikationer på nye forum emner du opretter',
-    ],
-
-    'security' => [
-        'current_session' => 'nuværende',
-        'end_session' => 'Afslut Session',
-        'end_session_confirmation' => 'Dette vil straks afslutte sessionen på enheden. Er du sikker?',
-        'last_active' => 'Sidst aktiv:',
-        'title' => 'Sikkerhed',
-        'web_sessions' => 'websessioner',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

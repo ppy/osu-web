@@ -27,6 +27,7 @@ return [
         'home' => [
             '_' => 'αρχική σελίδα',
             'account-edit' => 'ρυθμίσεις',
+            'account-verifyLink' => '',
             'friends-index' => 'φίλοι',
             'changelog-index' => 'αρχείο καταγραφής αλλαγών',
             'changelog-build' => 'έκδοση',

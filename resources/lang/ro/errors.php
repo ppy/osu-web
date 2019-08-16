@@ -37,6 +37,11 @@ return [
     'checkout' => [
         'generic' => 'A apărut o eroare în timpul preparării comenzii tale.',
     ],
+    'search' => [
+        'default' => '',
+        'operation_timeout_exception' => '',
+    ],
+
     'logged_out' => 'Ai fost deconectat. Te rugăm să te conectezi și să incerci din nou.',
     'supporter_only' => 'Trebuie să fii un suporter pentru a folosi această funcție.',
     'no_restricted_access' => 'Nu ești capabil să efectuezi această acțiune în timp ce contul tău se află într-un statut restricționat.',

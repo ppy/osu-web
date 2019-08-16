@@ -152,6 +152,11 @@ return [
                     'size_info' => '推奨の画像サイズは2800x620です',
                     'too_large' => 'アップロードファイルが大きすぎます。',
                     'unsupported_format' => 'サポートされていないフォーマットです。',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -257,6 +262,11 @@ return [
                         'revoke' => ':postの:giverによるkudosu拒否',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'me!',
@@ -333,6 +343,11 @@ return [
             'description' => '<strong>me!</strong>はプロフィール上で自由に編集できる領域です。',
             'edit_big' => 'me!を編集',
             'placeholder' => 'ここにページの内容を入力',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'フォーラム投稿数 :link',
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'アカウントの認証',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];
