@@ -468,7 +468,7 @@ class User extends Model implements AuthenticatableContract
                 ->first();
 
             if ($change !== null) {
-                return User::lookup($change->user_id, 'id');
+                return self::lookup($change->user_id, 'id');
             }
         }
 
