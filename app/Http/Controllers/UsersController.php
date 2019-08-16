@@ -29,7 +29,6 @@ use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\User;
-use App\Models\UsernameChangeHistory;
 use App\Models\UserNotFound;
 use Auth;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;

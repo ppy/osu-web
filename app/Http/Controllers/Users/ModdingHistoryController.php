@@ -26,7 +26,6 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapDiscussionVote;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
-use App\Models\UsernameChangeHistory;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ModdingHistoryController extends Controller
