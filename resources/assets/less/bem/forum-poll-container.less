@@ -16,35 +16,28 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.link {
-  ._colour(@link-colour, @hover-colour) {
-    color: @link-colour;
+.forum-poll-container {
+  @_top: forum-poll-container;
 
-    &:focus,
-    &:hover,
-    &:active {
-      color: @hover-colour;
+  &__content {
+    display: none;
+
+    &--edit {
+      .@{_top}[data-edit="1"] & {
+        display: block;
+      }
     }
-  }
 
-  &--default {
-    .link-default();
-  }
+    &--form {
+      .@{_top}[data-page=form][data-edit="0"] & {
+        display: block;
+      }
+    }
 
-  &--gray {
-    ._colour(#999, #333);
-  }
-
-  &--white {
-    ._colour(#fff, #fff);
-  }
-
-  &--no-underline {
-    &,
-    &:focus,
-    &:hover,
-    &:active {
-      text-decoration: none;
+    &--results {
+      .@{_top}[data-page=results][data-edit="0"] & {
+        display: block;
+      }
     }
   }
 }

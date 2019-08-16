@@ -182,10 +182,117 @@
     }
   }
 
+  &--forum-cover {
+    .default-text-shadow();
+    background-color: @osu-colour-orange-3;
+    color: @osu-colour-c1;
+    padding: 8px 15px;
+    border-radius: 100000px;
+    font-weight: normal;
+
+    .link-hover({
+      background-color: @osu-colour-orange-2;
+    });
+
+    &[disabled] {
+      background-color: @osu-colour-orange-3;
+      color: @osu-colour-c1;
+      opacity: 0.5;
+    }
+  }
+
+  &--forum-cover-edit {
+    margin: 10px 15px;
+    min-width: 135px;
+  }
+
+  &--forum-poll {
+    .default-text-shadow();
+    border-radius: 10000px;
+    padding: 8px 20px;
+    margin: 5px;
+    background-color: @osu-colour-lime-2;
+
+    .link-hover({
+      background-color: @osu-colour-lime-2;
+    });
+
+    &[disabled] {
+      background-color: @osu-colour-lime-3;
+      color: @osu-colour-c1;
+      opacity: 0.5;
+    }
+  }
+
+  &--forum-post-edit-preview {
+    .default-text-shadow();
+    border-radius: 10000px;
+    padding: 8px 20px;
+    background-color: @osu-colour-blue-3;
+    font-weight: normal;
+
+    .link-hover({
+      background-color: @osu-colour-blue-2;
+    });
+
+    &[disabled] {
+      background-color: @osu-colour-blue-3;
+      color: @osu-colour-c1;
+      opacity: 0.5;
+    }
+  }
+
+  &--forum-primary {
+    border-radius: 10000px;
+    padding: 8px 20px;
+    background-color: @osu-colour-lime-3;
+    font-weight: normal;
+    .default-text-shadow();
+
+    .link-hover({
+      background-color: @osu-colour-lime-2;
+    });
+
+    &[disabled] {
+      background-color: @osu-colour-lime-3;
+      color: @osu-colour-c1;
+      opacity: 0.5;
+    }
+  }
+
   &--forum-reply {
-    border-radius: (@btn-circle-diameter / 2);
+    margin: 0 3px;
+    border-radius: 10000px;
     padding: 0 5px;
     height: @btn-circle-diameter;
+    background-color: @osu-colour-l4;
+
+    &:focus {
+      background-color: @osu-colour-l4;
+    }
+
+    &:hover,
+    &:active {
+      background-color: @osu-colour-l3;
+    }
+  }
+
+  &--forum-secondary {
+    border-radius: 10000px;
+    padding: 8px 20px;
+    background-color: @osu-colour-orange-3;
+    font-weight: normal;
+    .default-text-shadow();
+
+    .link-hover({
+      background-color: @osu-colour-orange-2;
+    });
+
+    &[disabled] {
+      background-color: @osu-colour-orange-3;
+      color: @osu-colour-c1;
+      opacity: 0.5;
+    }
   }
 
   &--full {
@@ -339,6 +446,16 @@
 
     .@{top}--beatmap-discussion-reply-open & {
       margin-right: 20px;
+    }
+  }
+
+  &__loading-spinner {
+    position: absolute;
+    right: 10px;
+    opacity: 0;
+
+    .@{top}[data-state="loading"] & {
+      opacity: 1;
     }
   }
 

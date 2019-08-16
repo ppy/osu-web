@@ -16,44 +16,52 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.create-topic {
-  flex: 1 0 auto;
-  min-height: 600px;
+.forum-post-info {
+  width: 180px;
+  flex: none;
+  background-color: @osu-colour-b5;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  align-items: center;
+  padding: 10px;
+  text-align: center;
 
-  [name=title] {
-    .reset-input();
-    .default-text-shadow();
+  &__row {
+    margin: 5px 0;
 
-    width: 100%;
-    color: #fff;
-    text-align: center;
-    font-style: normal;
+    &--avatar {
+      width: 100%;
+      padding: 0 40px;
+    }
 
-    &::placeholder {
-      color: #fff;
+    &--posts {
+      font-size: @font-size--normal;
+    }
+
+    &--registration {
+      font-size: @font-size--normal;
+
+      strong  {
+        font-weight: 600;
+      }
+    }
+
+    &--support-level {
+      .center-content();
+      background-color: @osu-colour-pink-1;
+      font-size: 8px; // icon size
+      min-width: 50px;
+      padding: 2px 5px;
+      border-radius: 10000px;
+    }
+
+    &--username {
+      font-size: @font-size--title-small-3;
+      color: @osu-colour-c1;
+
+      .link-hover({
+        color: @osu-colour-c1;
+      });
     }
   }
-
-  [name=body] {
-    flex: 1;
-    resize: vertical;
-    background: none;
-    margin-bottom: 10px;
-  }
-
-  .create-topic-buttons {
-    display: flex;
-    justify-content: flex-end;
-
-    > * {
-      margin-left: 10px;
-    }
-  }
-}
-
-#topic-post-form {
-  flex: 1 0 auto;
 }

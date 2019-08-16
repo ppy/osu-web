@@ -29,7 +29,7 @@
 @section('content')
     @include('forum._header', [
         'background' => $cover['fileUrl'] ?? null,
-        'modifiers' => ['forums-show']
+        'modifiers' => ['forum']
     ])
 
     <div class="osu-page osu-page--forum t-forum-{{ $forum->categorySlug() }}">

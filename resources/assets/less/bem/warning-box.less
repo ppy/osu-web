@@ -18,12 +18,17 @@
 
 .warning-box {
   .default-box-shadow();
-  background-color: #555;
-  color: #fff;
+  background-color: @osu-colour-b2;
+  color: @osu-colour-c1;
   display: flex;
   align-items: center;
   font-size: @font-size--warning;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  border-radius: @border-radius-large;
+
+  &__content {
+    padding: 10px;
+  }
 
   &__icon {
     align-self: stretch;
@@ -33,6 +38,7 @@
     align-items: center;
     justify-content: center;
     font-size: @font-size--warning-icon;
-    margin-right: 10px;
+
+    border-radius: @border-radius-large 0 0 @border-radius-large;
   }
 }

@@ -31,6 +31,7 @@ class TopicPoll
     private $topic;
     private $validated = false;
     private $params;
+    private $votedBy = [];
 
     public function canEdit()
     {
@@ -53,6 +54,38 @@ class TopicPoll
         $this->validated = false;
 
         return $this;
+    }
+
+    public function isOpen()
+    {
+        if ($this->topic === null) {
+            return false;
+        }
+
+        if ($this->topic->pollEnd() === null) {
+            return true;
+        }
+
+        return $this->topic->pollEnd()->isFuture();
+    }
+
+    public function votedBy($user)
+    {
+        if ($user === null) {
+            return false;
+        }
+
+        if ($this->topic === null) {
+            return false;
+        }
+
+        $userId = $user->getKey();
+
+        if (!isset($this->votedBy[$userId])) {
+            $this->votedBy[$userId] = $this->topic->pollVotes()->where('vote_user_id', $userId)->exists();
+        }
+
+        return $this->votedBy[$userId];
     }
 
     public function isValid($revalidate = false)

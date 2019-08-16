@@ -30,7 +30,7 @@
     type="button"
     class="btn-circle"
     title="{{ trans('forum.post.actions.'.$deleteString) }}"
-    data-tooltip-position="left center"
+    data-tooltip-position="top center"
     data-url="{{ route("forum.posts.$deleteString", $post) }}"
     data-remote="true"
     data-method="{{ $method }}"

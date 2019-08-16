@@ -26,16 +26,21 @@
   text-shadow: inherit;
 
   flex: none;
-  background-color: @osu-colour-l2;
+  background-color: @osu-colour-l4;
   color: #fff;
   transition: all 120ms ease-in-out;
   font-size: 14px;
 
-  &:focus,
+  &:focus {
+    background-color: @osu-colour-l4;
+    text-decoration: none;
+    box-shadow: 0 5px 15px fade(#000, 40%);
+  }
+
   &:hover,
   &:active {
     color: #fff;
-    background-color: @osu-colour-l1;
+    background-color: @osu-colour-l3;
     text-decoration: none;
     box-shadow: 0 5px 15px fade(#000, 40%);
   }
@@ -45,11 +50,12 @@
     margin: 2px;
     font-size: 13px;
     box-shadow: none;
+    background-color: transparent;
 
     &:focus,
     &:hover,
     &:active {
-      .default-box-shadow();
+      background-color: @osu-colour-l3;
     }
   }
 
@@ -79,7 +85,7 @@
   }
 
   &--topic-nav {
-    margin: 0 5px;
+    margin: 0 3px;
   }
 
   &--activated, &.js-activated {

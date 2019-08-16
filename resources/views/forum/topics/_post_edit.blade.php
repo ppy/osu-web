@@ -21,14 +21,8 @@
     'data-remote' => true,
     'class' => 'js-forum-post-edit forum-post '.($post->userNormalized()->isSpecial() ? 'forum-post--special' : ''),
     'data-post-position' => $post->postPosition,
+    'data-post-id' => $post->getKey(),
 ]) !!}
-    @if ($post->userNormalized()->isSpecial())
-        <div
-            class="forum-post__stripe"
-            style="{{ user_color_style($post->userNormalized()->user_colour, "background-color") }}"
-        ></div>
-    @endif
-
     @include("forum.topics._post_info", ["user" => $post->userNormalized()])
 
     <div class="forum-post__body">

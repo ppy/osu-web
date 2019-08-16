@@ -95,10 +95,9 @@
     margin-bottom: 10px;
   }
 
-  &--forum-compact {
-    .default-box-shadow();
-    background-color: white;
-    margin-bottom: 10px;
+  &--forum-topic {
+    background-color: @osu-colour-b4;
+    color: @osu-colour-c1;
   }
 
   &--forum-topic-feature-vote {
@@ -106,6 +105,36 @@
     background-color: #fff;
     padding: 20px;
     margin-bottom: 5px;
+  }
+
+  &--forum-topic-reply {
+    background-color: @osu-colour-b2;
+    color: @osu-colour-c1;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+
+    &.js-forum-topic-reply-flash {
+      animation: forum-topic-reply-flash 500ms ease-in-out;
+
+      @keyframes forum-topic-reply-flash {
+        50% { background-color: @osu-colour-b1; }
+      }
+    }
+
+    &[data-state=active] {
+      position: fixed;
+      z-index: @z-index--forum-topic-reply-stick;
+      bottom: 0; // weird flashing in firefox android on certain scroll if using top
+      height: calc(var(--vh, 1vh) * 100);
+
+      @media @desktop {
+        position: relative;
+        top: auto;
+        z-index: auto;
+        height: auto;
+      }
+    }
   }
 
   &--full {

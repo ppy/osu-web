@@ -17,70 +17,42 @@
  */
 
 .forum-topic-title {
-  @_line-height: 1.4;
-  @_buttons-margin-left: 20px;
-  @_button-edit-width: 35px;
-  // actual font takes more than the 1.1 default line height.
-  line-height: @_line-height;
+  .default-gutter-v2(-5px);
+  padding-top: 5px;
+  padding-bottom: 5px;
 
-  /* force line-breaking and hide overflow */
-  word-wrap: break-word;
-  max-height: unit(@_line-height * 3, em);
-  overflow: hidden;
+  background-color: @osu-colour-b4;
+  display: flex;
+  flex-direction: column;
 
-  &__button {
-    flex: none;
-    display: flex;
-    padding-left: 5px;
-    pointer-events: auto;
+  @media @desktop {
+    flex-direction: row;
+  }
 
-    &--edit {
-      width: @_button-edit-width;
+  &__item {
+    margin: 5px;
+
+    &--counters {
+      display: flex;
+      flex: none;
+      margin: 0;
+    }
+
+    &--main {
+      flex: 1;
     }
   }
 
-  &__buttons {
-    flex: none;
-    display: flex;
-  }
-
-  &__buttons-container {
-    .full-size();
-    display: flex;
-    align-items: center;
-    pointer-events: none;
-  }
-
-  &__buttons-padding {
-    pointer-events: none;
-    opacity: 0;
-    overflow: hidden;
-    white-space: pre;
-    margin-right: @_buttons-margin-left;
-  }
-
-  &__group {
-    display: flex;
-    align-items: center;
-  }
-
-  &__input {
-    .reset-input();
-    flex: 1;
-    // Overrides browser default. Actual width handled by flex.
-    width: 0;
-    // ensure correct height in ie
-    height: unit(@_line-height, em);
-  }
-
   &__title {
-    .link-white();
-    .link-plain();
-    flex: none;
-    padding-right: @_buttons-margin-left;
-    min-width: 0;
-    max-width: calc(100% - @_button-edit-width);
+    padding: 0;
+    margin: 0;
+    font-size: @font-size--title;
+    font-style: normal;
+    color: @osu-colour-c1;
+  }
 
-    .webkit-line-clamp(3);
+  &__post-time {
+    color: @osu-colour-c2;
+    font-size: @font-size--normal;
   }
 }

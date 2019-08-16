@@ -17,23 +17,9 @@
 --}}
 @php
     $topic = $topic ?? null;
-    $options = optional($topic)->pollOptions() ?? collect()
+    $options = optional($topic)->pollOptions() ?? collect();
 @endphp
-
-<div
-    class="simple-form simple js-form-toggle--form"
-    {{-- inlined style to work with jquery's slide animation --}}
-    @if (!$edit)
-        style="display: none;"
-    @endif
-    data-form-toggle-id="poll-create"
->
-    @if (!$edit)
-        <h2 class="simple-form__row simple-form__row--title">
-            {{ trans('forum.topics.create.create_poll') }}
-        </h2>
-    @endif
-
+<div class="simple-form">
     <label class="simple-form__row">
         <div class="simple-form__label">
             {{ trans('forum.topics.create.poll.title') }}
@@ -53,6 +39,7 @@
         <textarea
             class="simple-form__input simple-form__input--full-height"
             name="forum_topic_poll[options]"
+            rows="10"
         >{{ $options->pluck('poll_option_text')->implode("\n") }}</textarea>
     </label>
 
@@ -115,24 +102,3 @@
         </div>
     </label>
 </div>
-
-@if (!$edit)
-    <label class="btn-osu-lite btn-osu-lite--default">
-        <div class="label-toggle">
-            <input
-                class="label-toggle__checkbox js-form-toggle--input"
-                data-form-toggle-id="poll-create"
-                name="with_poll"
-                type="checkbox"
-            />
-
-            <span class="label-toggle__label label-toggle__label--uncheck">
-                {{ trans('forum.topics.create.create_poll_button.remove') }}
-            </span>
-
-            <span class="label-toggle__label label-toggle__label--check">
-                {{ trans('forum.topics.create.create_poll_button.add') }}
-            </span>
-        </div>
-    </label>
-@endif

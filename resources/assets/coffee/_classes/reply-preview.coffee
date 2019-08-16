@@ -46,6 +46,8 @@ class @ReplyPreview
       @showPreview()
       return
 
+    $('.js-forum-reply-preview').attr('data-state', 'loading-preview')
+
     $.ajax
       url: url
       method: 'POST'
@@ -60,22 +62,13 @@ class @ReplyPreview
 
 
   showPreview: =>
-    $(@editBox).addClass 'hidden'
-    $(@previewBox).removeClass 'hidden'
-
-    $(@previewButton).addClass 'js-is-active'
-    $(@writeButton).removeClass 'js-is-active'
+    $('.js-forum-reply-preview').attr('data-state', 'preview')
 
     osu.pageChange()
 
   hidePreview: (e) =>
     e?.preventDefault()
-
-    $(@editBox).removeClass 'hidden'
-    $(@previewBox).addClass 'hidden'
-
-    $(@previewButton).removeClass 'js-is-active'
-    $(@writeButton).addClass 'js-is-active'
+    $('.js-forum-reply-preview').attr('data-state', 'write')
 
     osu.pageChange()
 

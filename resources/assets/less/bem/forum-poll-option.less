@@ -16,9 +16,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-topic-header {
-  &__sticky-marker {
-    position: absolute;
-    bottom: 20px;
+.forum-poll-option {
+  display: flex;
+  margin: 5px 0;
+  width: max-content;
+  max-width: 100%;
+  text-transform: none;
+  font-weight: normal;
+  cursor: pointer;
+  font-size: @font-size--title-small;
+
+  &__input {
+    margin-right: 10px;
   }
 }
