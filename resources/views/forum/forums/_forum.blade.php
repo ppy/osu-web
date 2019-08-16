@@ -23,15 +23,18 @@
             ["class" => "forum-item__name clickable-row-link"]
         ) !!}
         <div class="">{{ $forum->forum_desc }}</div>
-        <ul class="forum-item__subforums">
-            @foreach($forum->subforums as $subforum)
-                <li class="forum-item__subforum">
-                    <a class="forum-item__link" href="{{ route("forum.forums.show", $subforum->forum_id) }}" title="{{ $subforum->forum_desc }}">
-                        <i class="forum-item__subforum-icon fas fa-angle-right"></i>{{ $subforum->forum_name }}
-                    </a>
-                </li>
-            @endforeach
-        </ul>
+
+        @if (count($forum->subforums) > 0)
+            <ul class="forum-item__subforums">
+                @foreach($forum->subforums as $subforum)
+                    <li class="forum-item__subforum">
+                        <a class="forum-item__link" href="{{ route("forum.forums.show", $subforum->forum_id) }}" title="{{ $subforum->forum_desc }}">
+                            <i class="forum-item__subforum-icon fas fa-angle-right"></i>{{ $subforum->forum_name }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        @endif
     </div>
 
     <div class="forum-item__latest-post">
