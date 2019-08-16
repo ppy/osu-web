@@ -53,9 +53,9 @@ export class Events extends React.Component
                         className: "beatmapset-event__content"
                         dangerouslySetInnerHTML:
                           __html: osu.trans "beatmapset_events.event.#{@typeForTranslation(event)}",
-                            'user': @props.users[event.user_id].username
-                            'discussion': (if discussionId then "<a href='#{discussionLink}'>##{discussionId}</a>" else '')
-                            'text': (if event.discussion then _.truncate(event.discussion.starting_post.message, {length: 100}) else '[no preview]')
+                            user: @props.users[event.user_id].username
+                            discussion: (if discussionId then "<a href='#{discussionLink}'>##{discussionId}</a>" else '')
+                            text: (if event.discussion then _.truncate(event.discussion.starting_post.message, {length: 100}) else '[no preview]')
 
                       div
                         className: 'beatmap-discussion-post__info'
