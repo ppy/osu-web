@@ -24,7 +24,7 @@
 @endphp
 <div class="{{ $blockClass }}">
     <div class="header-v4__bg-container">
-        <div class="header-v4__bg js-header-cover"></div>
+        <div class="header-v4__bg" {!! background_image($background ?? null, false) !!}></div>
     </div>
 
     <div class="header-v4__content">
