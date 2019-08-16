@@ -70,8 +70,8 @@
                         'class' => 'forum-topic-entry__user-icon',
                         'style' => user_color_style($topic->topic_first_poster_colour, 'background-color'),
                     ]).' '.link_to_user(
-                        $topic->topic_last_poster_id,
-                        $topic->topic_last_poster_name,
+                        $topic->topic_poster,
+                        $topic->topic_first_poster_name,
                         null,
                         ['forum-topic-entry__link']
                     )
