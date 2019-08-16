@@ -149,7 +149,6 @@ return [
                     'button' => 'Mettre en ligne l\'image',
                     'dropzone' => 'Déplacez ici pour uploader',
                     'dropzone_info' => 'Vous pouvez aussi glisser-déposer l\'image ici pour la mettre en ligne',
-                    'restriction_info' => "Mise en ligne disponible pour les <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> uniquement",
                     'size_info' => 'La taille de la bannière devrait être de 2800x620',
                     'too_large' => 'Le fichier est trop volumineux.',
                     'unsupported_format' => 'Format non supporté.',
@@ -219,7 +218,6 @@ return [
                 'recent_entries' => 'Historique de Kudosu récent',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu reçus au total',
-                'total_info' => 'Basé sur la contribution de l\'utilisateur à la modération de beatmaps. Voir <a href="'.osu_url('user.kudosu').'">cette page</a> pour plus d\'informations.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -335,7 +333,6 @@ return [
             'description' => '<strong>Moi !</strong> est une zone personnalisable du profil.',
             'edit_big' => 'Éditez-moi !',
             'placeholder' => 'Tapez le contenu de la page',
-            'restriction_info' => "Vous devez être <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> pour débloquer cette fonctionnalité.",
         ],
         'post_count' => [
             '_' => 'A contribué à :link',

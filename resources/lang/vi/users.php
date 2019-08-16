@@ -149,7 +149,6 @@ return [
                     'button' => 'Tải ảnh lên',
                     'dropzone' => 'Thả vào đây để tải lên',
                     'dropzone_info' => 'Bạn cũng có thể thả hình ảnh vào đây để tải lên',
-                    'restriction_info' => "Tải lên chỉ có sẵn cho <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>người hỗ trợ osu!</a>",
                     'size_info' => 'Kích cỡ ảnh bìa nên là 2800x620',
                     'too_large' => 'Tệp đã tải lên quá lơn.',
                     'unsupported_format' => 'Định dạng không được hỗ trợ.',
@@ -219,7 +218,6 @@ return [
                 'recent_entries' => 'Lịch Sử Kudosu Gần Đây',
                 'title' => 'Kudosu!',
                 'total' => 'Tông Số Kudosu Nhận Được',
-                'total_info' => 'Dựa vào số lượng đóng góp mà người dùng này đã thực hiện để điều chỉnh beatmap. Xem <a href="'.osu_url('user.kudosu').'">trang này</a> để biết thêm thông tin.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -335,7 +333,6 @@ return [
             'description' => '<strong>tôi!</strong> là một khu vực cá nhân có thể tùy chỉnh trong trang cá nhân của bạn.',
             'edit_big' => 'Chỉnh sửa tôi!',
             'placeholder' => 'Nhập nội dung trang vào đây',
-            'restriction_info' => "Bạn cần phải là <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>người hỗ trợ osu!</a> để mở khóa tính năng này.",
         ],
         'post_count' => [
             '_' => 'Đã đóng góp :link',

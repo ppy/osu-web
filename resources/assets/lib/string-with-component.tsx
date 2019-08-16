@@ -16,6 +16,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.store-orders {
-  color: white;
+import * as React from 'react';
+
+interface Props {
+  mappings: any;
+  pattern: string;
+}
+
+export function StringWithComponent(props: Props) {
+  const keys = Object.keys(props.mappings);
+  const regex = new RegExp(`(${keys.join('|')})`);
+  const parts = props.pattern.split(regex);
+
+  return (
+    <>
+      {
+        parts.map((part) => {
+          return props.mappings[part] ? props.mappings[part] : part;
+        })
+      }
+    </>
+  );
 }

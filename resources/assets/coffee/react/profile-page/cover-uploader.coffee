@@ -18,7 +18,8 @@
 
 import { CoverSelection } from './cover-selection'
 import * as React from 'react'
-import { div, label, p, strong } from 'react-dom-factories'
+import { a, div, label, p, strong } from 'react-dom-factories'
+import { StringWithComponent } from 'string-with-component'
 el = React.createElement
 
 
@@ -83,8 +84,14 @@ export class CoverUploader extends React.Component
       div className: 'profile-cover-uploader__info',
         p className: 'profile-cover-uploader__info-entry',
           strong
-            dangerouslySetInnerHTML:
-              __html: osu.trans 'users.show.edit.cover.upload.restriction_info'
+            el StringWithComponent,
+              mappings:
+                ':link': a
+                  href: laroute.route('store.products.show', product: 'supporter-tag')
+                  key: 'link'
+                  target: '_blank'
+                  osu.trans 'users.show.edit.cover.upload.restriction_info.link'
+              pattern: osu.trans 'users.show.edit.cover.upload.restriction_info._'
 
         p className: 'profile-cover-uploader__info-entry',
           osu.trans 'users.show.edit.cover.upload.dropzone_info'

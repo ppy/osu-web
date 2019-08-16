@@ -149,7 +149,6 @@ return [
                     'button' => 'Lataa kuva',
                     'dropzone' => 'Pudota tiedosto tähän ladataksesi',
                     'dropzone_info' => 'Voit myös lähettää kuvan pudottamalla sen tähän',
-                    'restriction_info' => "Kuvien lähetys käytössä vain <a href='".route('store.products.show', 'supporter-tag')."'target='_blank'>vain Tukijoille</a>",
                     'size_info' => 'Kansikuvan kuuluisi olla 2800x620 pikseliä',
                     'too_large' => 'Lähetetty tiedosto on liian iso.',
                     'unsupported_format' => 'Tiedostomuotoa ei tueta.',
@@ -219,7 +218,6 @@ return [
                 'recent_entries' => 'Viimeisimmät Kudosut',
                 'title' => 'Kudosu!',
                 'total' => 'Ansaittu Kudosu',
-                'total_info' => 'Perustuu käyttäjän tekemään vaikutukseen beatmappien moderoinnissa. Katso <a href="'.osu_url('user.kudosu').'">tämä sivu</a> saadaksesi lisätietoja.',
 
                 'entry' => [
                     'amount' => ':amount kudosun',
@@ -335,7 +333,6 @@ return [
             'description' => '<strong>Minä!</strong> on henkilökohtainen alue profiilisivullasi, jota voit muokata.',
             'edit_big' => 'Muokkaa minua!',
             'placeholder' => 'Kirjoita sivun sisältö tähän',
-            'restriction_info' => "Sinun pitää olla <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'> Tukija</a> avataksesi tämän toiminnon.",
         ],
         'post_count' => [
             '_' => 'Mukana toiminnassa :link',
