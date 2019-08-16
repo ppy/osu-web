@@ -26,7 +26,10 @@
 
     <div class="osu-page osu-page--forum">
         @foreach($forums as $category)
-            <div id="forum-{{ $category->forum_id }}" class="forum-list">
+            <div class="forum-list">
+                <div class="u-has-anchor">
+                    <div class="fragment-target fragment-target--no-event" id="forum-{{ $category->getKey() }}"></div>
+                </div>
                 <div class="forum-list__header">
                     <div class="forum-title">
                         <h3 class="forum-title__name">{{ $category->forum_name }}</h3>
