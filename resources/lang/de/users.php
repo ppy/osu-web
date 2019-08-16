@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Banner sollte 2800x620 groß sein',
                     'too_large' => 'Datei ist zu groß.',
                     'unsupported_format' => 'Format wird nicht unterstützt.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -257,6 +262,11 @@ return [
                         'revoke' => 'Kudosu von :giver im Post :post verwehrt',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'ich!',
@@ -333,6 +343,11 @@ return [
             'description' => '<strong>me!</strong> ist ein persönlicher Bereich auf deinem osu!-Profil, den du nach deinem Belieben anpassen kannst.',
             'edit_big' => 'me! bearbeiten',
             'placeholder' => 'Seiteninhalt hier eingeben',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => ':link beigetragen',
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Accountbestätigung',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

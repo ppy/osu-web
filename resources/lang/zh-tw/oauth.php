@@ -25,7 +25,7 @@ return [
         'authorise' => '授權',
         'request' => '正在要求權限以存取你的帳號。',
         'scopes_title' => '此應用程式將可以：',
-        'title' => '',
+        'title' => '授權請求',
 
         'wrong_user' => [
             '_' => '您已以 :user 的身分登入。 :logout_link',
@@ -34,14 +34,14 @@ return [
     ],
 
     'authorized-clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => '確定撤回客戶端的權限？',
+        'scopes_title' => '這個應用程式可以：',
+        'owned_by' => '被 :user 擁有',
+        'none' => '沒有客戶端',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => '撤回存取權限',
+            'true' => '存取遭撤回',
         ],
     ],
 

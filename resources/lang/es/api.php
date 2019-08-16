@@ -21,7 +21,7 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => '',
+            'empty' => 'No se puede enviar un mensaje en blanco.',
             'limit_exceeded' => 'Estás enviando mensajes demasiado rápido, espera un poco e inténtalo de nuevo.',
             'too_long' => 'El mensaje que intentas enviar es demasiado largo.',
         ],

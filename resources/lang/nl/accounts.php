@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Profiel',
 
             'user' => [
+                'user_discord' => 'discord',
                 'user_from' => 'huidige locatie',
                 'user_interests' => 'interesses',
                 'user_msnm' => 'skype',
                 'user_occ' => 'bezigheid',
                 'user_twitter' => 'twitter',
                 'user_website' => 'website',
-                'user_discord' => 'discord',
             ],
         ],
 
@@ -62,9 +64,37 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => 'Meldingen',
+        'topic_auto_subscribe' => 'automatisch meldingen inschakelen op nieuwe forum onderwerpen die u maakt',
+    ],
+
     'oauth' => [
-        'title' => '',
-        'authorized_clients' => '',
+        'authorized_clients' => 'autoriseer clients',
+        'title' => 'OAuth',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'toetsenbord',
+        'mouse' => 'muis',
+        'tablet' => 'tablet',
+        'title' => 'Speelstijlen',
+        'touch' => 'touch',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'blokkeer privéberichten van mensen niet in jouw vriendenlijst',
+        'hide_online' => 'verberg je online aanwezigheid',
+        'title' => 'Privacy',
+    ],
+
+    'security' => [
+        'current_session' => 'huidige',
+        'end_session' => 'Stop de sessie',
+        'end_session_confirmation' => 'Dit zal onmiddellijk je sessie op dat apparaat beëindigen. Weet je het zeker?',
+        'last_active' => 'Laatst actief:',
+        'title' => 'Beveiliging',
+        'web_sessions' => 'web sessies',
     ],
 
     'update_email' => [
@@ -77,31 +107,12 @@ return [
         'update' => 'bijwerken',
     ],
 
-    'playstyles' => [
-        'title' => 'Speelstijlen',
-        'mouse' => 'muis',
-        'keyboard' => 'toetsenbord',
-        'tablet' => 'tablet',
-        'touch' => 'touch',
-    ],
-
-    'privacy' => [
-        'title' => 'Privacy',
-        'friends_only' => 'blokkeer privéberichten van mensen niet in jouw vriendenlijst',
-        'hide_online' => 'verberg je online aanwezigheid',
-    ],
-
-    'notifications' => [
+    'verification_completed' => [
+        'text' => '',
         'title' => '',
-        'topic_auto_subscribe' => '',
     ],
 
-    'security' => [
-        'current_session' => 'huidige',
-        'end_session' => 'Stop de sessie',
-        'end_session_confirmation' => 'Dit zal onmiddellijk je sessie op dat apparaat beëindigen. Weet je het zeker?',
-        'last_active' => 'Laatst actief:',
-        'title' => 'Beveiliging',
-        'web_sessions' => 'web sessies',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

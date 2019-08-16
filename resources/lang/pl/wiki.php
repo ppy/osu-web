@@ -21,6 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'Następująca strona nie jest jeszcze dostępna po polsku, w związku z czym zostanie wyświetlona wersja angielska.',
+        'incomplete_or_outdated' => '',
         'languages' => 'Języki',
         'missing' => 'Poszukiwana strona ":keyword" nie została odnaleziona.',
         'missing_title' => 'Nie znaleziono',

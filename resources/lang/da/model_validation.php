@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Diskussionen er låst.',
         'first_post' => 'Kan ikke slette det startende opslag.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Ugyldig sværhedsgrad angivet.',
         'invalid_beatmapset_id' => 'Ugyldig beatmap angivet.',
         'locked' => 'Diskussionen er låst.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'Du skal være logget ind for at kunne hype.',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Besvarelse af slettede kommentar er ikke tilladt.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Sletning af beatmap metadata indlæg er ikke tilladt.',
             'beatmapset_post_no_edit' => 'Redigering af beatmap metadata indlæg er ikke tilladt.',
             'only_quote' => '',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,6 +106,10 @@ return [
             'minimum_one_selection' => 'Et minimum af en valgmulighed pr. bruger er nødvendig.',
             'minimum_two_options' => 'Der skal være mindst 2 valgmuligheder.',
             'too_many_options' => 'Overskrider det maksimale antal tilladte valgmuligheder.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,6 +142,12 @@ return [
         'wrong_password_confirmation' => 'Adgangskodebekræftelsen er forkert.',
         'too_long' => 'Overskrider maksimale længde - kan højest være op til :limit karakterer.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
             'restricted' => '',
             'supporter_required' => [
@@ -127,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "Du kan ikke rapportere dig selv!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

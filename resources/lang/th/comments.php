@@ -23,7 +23,7 @@ return [
     'deleted_count' => ':count_delimited คอมเม้นต์ที่ลบไป|:count_delimited คอมเม้นต์ที่ลบไป',
     'edited' => 'แก้ไขเมื่อ :timeago โดย :user',
     'empty' => 'ยังไม่มีความคิดเห็นเลย',
-    'load_replies' => '',
+    'load_replies' => 'โหลดข้อความตอบกลับ',
     'replies' => 'ตอบกลับ',
     'title' => 'ความคิดเห็น',
 

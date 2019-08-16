@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Discussie is vergrendeld.',
         'first_post' => 'Je kan de startpost niet verwijderen.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Ongeldige moeilijkheidsgraad opgegeven.',
         'invalid_beatmapset_id' => 'Ongeldige beatmap opgegeven.',
         'locked' => 'Discussie is vergrendeld.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'He moet ingelogd zijn om te hypen.',
@@ -53,10 +62,14 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Op een verwijderde comment reageren is niet toegestaan.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => 'Ongeldig :attribute opgegeven.',
     ],
 
     'forum' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Beatmap metadata post verwijderen is niet toegestaan.',
             'beatmapset_post_no_edit' => 'Beatmap metadata post bewerken is niet toegestaan.',
             'only_quote' => 'Uw antwoord bevat slechts een citaat.',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,6 +106,10 @@ return [
             'minimum_one_selection' => 'Minstens een optie per gebruiker is vereist.',
             'minimum_two_options' => 'Moet ten minste twee opties hebben.',
             'too_many_options' => 'Maximum aantal opties overschreden.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,6 +142,12 @@ return [
         'wrong_password_confirmation' => 'Wachtwoord bevestiging komt niet overeen.',
         'too_long' => 'Maximum lengte overschreden - kan enkel tot :limit karakters zijn.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
             'restricted' => 'Je kan je gebruikersnaam niet wijzigen terwijl je restricted bent.',
             'supporter_required' => [
@@ -127,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "Je kunt jezelf niet rapporteren!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

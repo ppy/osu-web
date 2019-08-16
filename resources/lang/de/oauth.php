@@ -34,14 +34,14 @@ return [
     ],
 
     'authorized-clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Bist du sicher, dass du die Berechtigungen dieses Gerätes widerrufen möchtest?',
+        'scopes_title' => 'Diese Anwendung kann:',
+        'owned_by' => 'Im Besitz von :user',
+        'none' => 'Keine Geräte',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Zugriff widerrufen',
+            'true' => 'Zugriff entfernt',
         ],
     ],
 

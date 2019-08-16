@@ -37,6 +37,11 @@ return [
     'checkout' => [
         'generic' => 'Une erreur s’est produite lors de la préparation de votre commande.',
     ],
+    'search' => [
+        'default' => '',
+        'operation_timeout_exception' => '',
+    ],
+
     'logged_out' => 'Vous avez été déconnecté. Merci de vous connecter et de réessayer.',
     'supporter_only' => 'Vous devez être un osu!supporter pour utiliser cette fonctionnalité.',
     'no_restricted_access' => 'Vous ne pouvez pas effectuer cette action avec un compte restreint.',

@@ -27,6 +27,7 @@ return [
         'home' => [
             '_' => 'início',
             'account-edit' => 'definições',
+            'account-verifyLink' => '',
             'friends-index' => 'amigos',
             'changelog-index' => 'lista de mudanças',
             'changelog-build' => 'compilação',
@@ -47,7 +48,7 @@ return [
             '_' => 'ajuda',
             'getFaq' => 'perguntas frequentes',
             'getRules' => 'regras',
-            'getSupport' => 'não, a sério, eu preciso de ajuda!',
+            'getSupport' => 'não, a sério, preciso mesmo de ajuda!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -180,9 +181,9 @@ return [
         ],
         'help' => [
             '_' => 'Ajuda e Comunidade',
-            'faq' => 'Perguntas Frequentes',
+            'faq' => 'Perguntas Frequentes (em brasileiro)',
             'forum' => 'Fóruns da Comunidade',
-            'livestreams' => 'Transmissões Ao Vivo',
+            'livestreams' => 'Transmissões ao Vivo',
             'report' => 'Comunicar um Problema',
         ],
         'legal' => [
@@ -246,7 +247,7 @@ return [
         ],
 
         'register' => [
-            'info' => "Precisa de uma conta, senhor. Porque é que ainda não tem uma?",
+            'info' => "Precisa duma conta, senhor. Porque é que ainda não tem uma?",
             'title' => "Não tens uma conta?",
         ],
     ],

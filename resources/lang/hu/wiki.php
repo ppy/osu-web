@@ -21,6 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'A kért oldal még nem lett lefordítva a kiválasztott (:language) nyelvre. Az angol verzió látható.',
+        'incomplete_or_outdated' => '',
         'languages' => 'Nyelvek',
         'missing' => 'Az oldal ":keyword" nem található.',
         'missing_title' => 'Nem található',

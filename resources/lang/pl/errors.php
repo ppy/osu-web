@@ -37,6 +37,11 @@ return [
     'checkout' => [
         'generic' => 'Wystąpił błąd podczas przygotowywania twojego zamówienia.',
     ],
+    'search' => [
+        'default' => '',
+        'operation_timeout_exception' => '',
+    ],
+
     'logged_out' => 'Wylogowano. Zaloguj się i spróbuj ponownie.',
     'supporter_only' => 'Potrzebujesz statusu donatora osu!, aby korzystać z tej funkcji.',
     'no_restricted_access' => 'Nie możesz wykonać tej czynności podczas blokady konta.',

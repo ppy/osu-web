@@ -74,13 +74,6 @@ return [
         ],
     ],
 
-    'user' => [
-        'admin' => 'ylläpitäjä',
-        'bng' => 'suosittelija',
-        'owner' => 'mappaaja',
-        'nat' => 'nat',
-    ],
-
     'user_filter' => [
         'everyone' => 'Jokainen',
         'label' => 'Suodata käyttäjien mukaan',

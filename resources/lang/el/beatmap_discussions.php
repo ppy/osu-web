@@ -74,13 +74,6 @@ return [
         ],
     ],
 
-    'user' => [
-        'admin' => 'διαχειριστής',
-        'bng' => 'nominator',
-        'owner' => 'δημιουργός',
-        'nat' => 'nat',
-    ],
-
     'user_filter' => [
         'everyone' => 'Όλοι',
         'label' => 'Φιλτράρισμα ανά χρήστη',

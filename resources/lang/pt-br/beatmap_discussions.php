@@ -74,13 +74,6 @@ return [
         ],
     ],
 
-    'user' => [
-        'admin' => 'admin',
-        'bng' => 'nominator',
-        'owner' => 'mapper',
-        'nat' => 'nat',
-    ],
-
     'user_filter' => [
         'everyone' => 'Todos',
         'label' => 'Filtrar por usuário',

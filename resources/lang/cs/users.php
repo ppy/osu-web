@@ -132,7 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Členem od :date',
         'lastvisit' => 'Naposledy spatřen :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'Momentálně aktivní',
         'missingtext' => 'Možná jste se přepsal! (nebo byl uživatel zabanován)',
         'origin_country' => 'Z :country',
         'page_description' => 'osu! - Všechno co jste kdy chtěli vědět o :username!',
@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Velikost záhlaví by měla být 2800x620',
                     'too_large' => 'Nahraný soubor je příliš velký.',
                     'unsupported_format' => 'Nepodporovaný formát.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -257,6 +262,11 @@ return [
                         'revoke' => 'Odepřeno kudosu od :giver za příspěvek :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'já!',
@@ -333,6 +343,11 @@ return [
             'description' => '<strong>já!</strong> je osobní přizpůsobitelná plocha na vašem profilu.',
             'edit_big' => 'Uprav mě!',
             'placeholder' => 'Zde napiš obsah stánky',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Přispěl :link',
@@ -361,7 +376,7 @@ return [
     ],
 
     'status' => [
-        'all' => '',
+        'all' => 'Všichni',
         'online' => 'Online',
         'offline' => 'Offline',
     ],
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Ověření účtu',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

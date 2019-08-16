@@ -27,6 +27,7 @@ return [
         'home' => [
             '_' => 'acasă',
             'account-edit' => 'setări',
+            'account-verifyLink' => '',
             'friends-index' => 'prieteni',
             'changelog-index' => 'jurnalul modificărilor',
             'changelog-build' => 'versiune',

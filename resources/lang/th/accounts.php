@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'รูปโปรไฟล์',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'โปรไฟล์',
 
             'user' => [
+                'user_discord' => '',
                 'user_from' => 'ที่อยู่ปัจจุบัน',
                 'user_interests' => 'สิ่งที่สนใจ',
                 'user_msnm' => 'skype',
                 'user_occ' => 'อาชีพ',
                 'user_twitter' => 'ทวิตเตอร์',
                 'user_website' => 'เว็บไซต์',
-                'user_discord' => '',
             ],
         ],
 
@@ -62,9 +64,37 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => 'การแจ้งเตือน',
+        'topic_auto_subscribe' => 'เปิดการแจ้งเตือนอัตโนมัติในกระทู้ที่คุณสร้างขึ้น',
+    ],
+
     'oauth' => [
-        'title' => '',
-        'authorized_clients' => '',
+        'authorized_clients' => 'ตัวรับที่ได้รับการยืนยัน',
+        'title' => 'OAuth',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'คีย์บอร์ด',
+        'mouse' => 'เมาส์',
+        'tablet' => 'แท็บเล็ต',
+        'title' => 'รูปแบบการเล่น',
+        'touch' => 'จอสัมผัส',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'บล็อกข้อความส่วนตัวจากคนที่ไม่ได้อยู่ในรายชื่อเพื่อน',
+        'hide_online' => 'ซ่อนสถานะออนไลน์ของคุณ',
+        'title' => 'ความเป็นส่วนตัว',
+    ],
+
+    'security' => [
+        'current_session' => 'ปัจจุบัน',
+        'end_session' => 'เซสชันสิ้นสุด',
+        'end_session_confirmation' => 'ขั้นตอนนี้จะสิ้นสุดเซสชันของคุณในอุปกรณ์นั้นทันที คุณแน่ใจไหม?',
+        'last_active' => 'ใช้งานล่าสุด:',
+        'title' => 'ความปลอดภัย',
+        'web_sessions' => 'เซสชันของเว็บ',
     ],
 
     'update_email' => [
@@ -77,31 +107,12 @@ return [
         'update' => 'อัพเดต',
     ],
 
-    'playstyles' => [
-        'title' => 'รูปแบบการเล่น',
-        'mouse' => 'เมาส์',
-        'keyboard' => 'คีย์บอร์ด',
-        'tablet' => 'แท็บเล็ต',
-        'touch' => 'จอสัมผัส',
-    ],
-
-    'privacy' => [
-        'title' => 'ความเป็นส่วนตัว',
-        'friends_only' => 'บล็อกข้อความส่วนตัวจากคนที่ไม่ได้อยู่ในรายชื่อเพื่อน',
-        'hide_online' => 'ซ่อนสถานะออนไลน์ของคุณ',
-    ],
-
-    'notifications' => [
+    'verification_completed' => [
+        'text' => '',
         'title' => '',
-        'topic_auto_subscribe' => '',
     ],
 
-    'security' => [
-        'current_session' => 'ปัจจุบัน',
-        'end_session' => 'เซสชันสิ้นสุด',
-        'end_session_confirmation' => 'ขั้นตอนนี้จะสิ้นสุดเซสชันของคุณในอุปกรณ์นั้นทันที คุณแน่ใจไหม?',
-        'last_active' => 'ใช้งานล่าสุด:',
-        'title' => 'ความปลอดภัย',
-        'web_sessions' => 'เซสชันของเว็บ',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

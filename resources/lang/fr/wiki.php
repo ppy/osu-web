@@ -21,6 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'La page demandée n\'est pas encore traduite dans votre langue (:language). Affichage de la version anglaise',
+        'incomplete_or_outdated' => '',
         'languages' => 'Langues',
         'missing' => 'La page demandée n\'a pas pu être trouvée.',
         'missing_title' => 'Non Trouvée',

@@ -27,6 +27,7 @@ return [
         'home' => [
             '_' => 'общее',
             'account-edit' => 'настройки',
+            'account-verifyLink' => '',
             'friends-index' => 'друзья',
             'changelog-index' => 'список изменений',
             'changelog-build' => 'сборка',

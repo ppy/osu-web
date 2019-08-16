@@ -28,7 +28,7 @@ return [
     'index' => [
         'title' => [
             '_' => '',
-            'info' => '',
+            'info' => 'Přátelé',
         ],
     ],
 

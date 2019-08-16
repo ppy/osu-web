@@ -21,11 +21,11 @@
 return [
     '_' => 'Şuna göre sırala',
 
-    'last_visit' => '',
+    'last_visit' => 'Son zamanlarda aktif',
     'new' => 'En son yüklenen',
     'old' => 'Eski',
     'top' => 'En üst',
-    'username' => '',
+    'username' => 'Kullanıcı adı',
 
     'forum_topics' => [
         'new' => 'Son Yanıt',

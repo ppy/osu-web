@@ -21,11 +21,11 @@
 return [
     'scores' => [
         'button' => '檢舉成績',
-        'title' => '檢舉 :username 的成績？',
+        'title' => '檢舉 :username\'s 的成績？',
     ],
 
     'comment' => [
         'button' => '檢舉',
-        'title' => '檢舉 :username 的評論？',
+        'title' => '檢舉 :username\'s 的評論？',
     ],
 ];

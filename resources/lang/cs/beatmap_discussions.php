@@ -74,13 +74,6 @@ return [
         ],
     ],
 
-    'user' => [
-        'admin' => 'admin',
-        'bng' => 'nominátor',
-        'owner' => 'mappér',
-        'nat' => '',
-    ],
-
     'user_filter' => [
         'everyone' => 'Všichni',
         'label' => 'Filtrovat podle uživatele',

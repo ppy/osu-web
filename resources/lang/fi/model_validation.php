@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Keskustelu on lukittu.',
         'first_post' => 'Aloitusviestiä ei voida poistaa.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Määritelly vaikeustaso on virheellinen.',
         'invalid_beatmapset_id' => 'Määritelty beatmap on virheellinen.',
         'locked' => 'Keskustelu on lukittu.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'Sinun on kirjauduttava sisään hurrataksesi.',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Poistettuun kommenttiin ei voida vastata.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Beatmapin metatietoviestiä ei voida poistaa.',
             'beatmapset_post_no_edit' => 'Beatmapin metatietoviestiä ei voida muokata.',
             'only_quote' => 'Sinun vastauksesi sisältää ainoastaan lainauksen.',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,6 +106,10 @@ return [
             'minimum_one_selection' => 'Vähintään yksi valinta käyttäjää kohti on vaadittu.',
             'minimum_two_options' => 'Tarvitsee ainakin kaksi valintaa.',
             'too_many_options' => 'Sallittujen valintojen määrä ylittyi.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,6 +142,12 @@ return [
         'wrong_password_confirmation' => 'Salasanat eivät vastaa toisiaan.',
         'too_long' => 'Liian pitkä - Kirjaimia voi olla enintään :limit.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
             'restricted' => '',
             'supporter_required' => [
@@ -127,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "Et voi ilmiantaa itseäsi!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

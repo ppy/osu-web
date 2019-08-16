@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2800x620',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -204,7 +209,7 @@ return [
                     'title' => 'Najczęściej grane beatmapy',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'precyzja: :percentage',
+                    'accuracy' => 'celność: :percentage',
                     'title' => 'Ostatnie wyniki (24 godz.)',
                 ],
                 'replays_watched_counts' => [
@@ -256,6 +261,11 @@ return [
                         'reset' => 'Zresetowano kudosu przez :giver za post :post',
                         'revoke' => 'Odebrano kudosu przez :giver za post :post',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -333,6 +343,11 @@ return [
             'description' => '<strong>ja!</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => ':link',
@@ -345,7 +360,7 @@ return [
             'global_simple' => 'Ranking globalny',
         ],
         'stats' => [
-            'hit_accuracy' => 'Precyzja',
+            'hit_accuracy' => 'Celność',
             'level' => 'Poziom :level',
             'level_progress' => 'Postęp do następnego poziomu',
             'maximum_combo' => 'Maksymalne combo',
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Weryfikacja konta',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];
