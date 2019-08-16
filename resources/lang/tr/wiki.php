@@ -21,6 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'İstenen sayfa, istenilen dile (:language) henüz çevrilmedi. İngilizce sürümü gösteriliyor.',
+        'incomplete_or_outdated' => '',
         'languages' => 'Diller',
         'missing' => 'İstenilen ":keyword" sayfası bulunamadı.',
         'missing_title' => 'Bulunamadı',

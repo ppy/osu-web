@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Ukuran gambar sampul yang optimal selayaknya adalah 2800x620',
                     'too_large' => 'File yang diunggah terlalu besar.',
                     'unsupported_format' => 'Format tidak didukung.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -257,6 +262,11 @@ return [
                         'revoke' => 'Kudosu ditolak oleh :giver untuk posting di :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'saya!',
@@ -333,6 +343,11 @@ return [
             'description' => '<strong>saya!</strong> adalah area pribadi yang dapat dimodifikasi di laman profil Anda.',
             'edit_big' => 'Sunting saya!',
             'placeholder' => 'Ketik konten laman di sini',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Berkontribusi sebanyak :link',
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Verifikasi Akun',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

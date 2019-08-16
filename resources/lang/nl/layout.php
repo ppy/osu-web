@@ -27,6 +27,7 @@ return [
         'home' => [
             '_' => 'start',
             'account-edit' => 'instellingen',
+            'account-verifyLink' => '',
             'friends-index' => 'vrienden',
             'changelog-index' => 'changelog',
             'changelog-build' => 'versie',

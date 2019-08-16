@@ -244,14 +244,14 @@ return [
     'status' => [
         'any' => 'Jakikolwiek',
         'approved' => 'Zatwierdzone',
-        'favourites' => '',
+        'favourites' => 'Ulubione',
         'graveyard' => 'Porzucone',
-        'leaderboard' => '',
+        'leaderboard' => 'Z tabelą wyników',
         'loved' => 'Ulubione społeczności',
-        'mine' => '',
+        'mine' => 'Moje beatmapy',
         'pending' => 'Oczekujące i rozwijane',
         'qualified' => 'Zakwalifikowane',
-        'ranked' => '',
+        'ranked' => 'Rankingowe',
     ],
     'genre' => [
         'any' => 'Jakikolwiek',

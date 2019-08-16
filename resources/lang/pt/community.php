@@ -23,12 +23,12 @@ return [
         'header' => [
             // size in font-size
             'big_description' => 'Adoras o osu!?<br/>
-                                Apoia o desenvolvimento do osu! :D',
+                                Apoia o desenvolvimento dele! :D',
             'small_description' => '',
             'support_button' => 'Eu quero ajudar o osu!',
         ],
 
-        'dev_quote' => 'osu! é um jogo completamente grátis, mas mantê-lo já não é assim tão grátis. 
+        'dev_quote' => 'osu! é um jogo completamente grátis, mas mantê-lo a funcionar já não é assim tão grátis. 
         Entre o custo de servidores de aluguer e banda-larga internacional de alta qualidade, o tempo gasto em manutenção do sistema e da comunidade,  -----
         fornecer prémios para competições, responder a questões de suporte e geralmente manter as pessoas felizes, osu! consome uma boa quantidade pesada de dinheiro!
         Ah, e não te esqueças do facto que nós o fazemos sem qualquer tipo de anúncio ou parcerias com barras de ferramentas tontas e do género!

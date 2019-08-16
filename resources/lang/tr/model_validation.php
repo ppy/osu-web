@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Tartışma kilitli.',
         'first_post' => 'Başlangıç yazısı silinemez.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Yanlış zorluk belirtildi.',
         'invalid_beatmapset_id' => 'Yanlış beatmap belirtildi.',
         'locked' => 'Tartışma kilitli.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'Destek oyu vermek için giriş yapmalısın.',
@@ -53,10 +62,14 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Silinmiş yorumlara cevap verilemez.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => 'Geçersiz :attribute belirtildi.',
     ],
 
     'forum' => [
@@ -73,16 +86,30 @@ return [
             'beatmapset_post_no_delete' => 'Beatmap üstverisi gönderisinin silinmesi yasaktır.',
             'beatmapset_post_no_edit' => 'Beatmap üstverisi gönderisini düzenlemek yasaktır.',
             'only_quote' => 'Cevabınız sadece bir alıntı içeriyor.',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Yinelenen seçenekler yasaktır.',
             'grace_period_expired' => ':limit saatten sonra bir anket düzenlenemez',
-            'hiding_results_forever' => '',
+            'hiding_results_forever' => 'Asla bitmeyen bir anketin sonuçları saklanamaz.',
             'invalid_max_options' => 'Kullanıcı başına seçenek sayısı mevcut seçenek sayısını geçemez.',
             'minimum_one_selection' => 'Kullanıcı başına en az bir seçenek gereklidir.',
             'minimum_two_options' => 'En az iki seçenek gereklidir.',
             'too_many_options' => 'İzin verilen maksimum seçenek sayısı aşıldı.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,6 +142,12 @@ return [
         'wrong_password_confirmation' => 'Şifre doğrulaması eşleşmiyor.',
         'too_long' => 'Maksimum uzunluk aşıldı - yalnızca :limit karakter olabilir.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
             'restricted' => 'Kısıtlanmış iken kullanıcı adını değiştiremezsin.',
             'supporter_required' => [
@@ -127,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "Kendinizi raporlayamazsınız!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

@@ -21,6 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => '要求されたページは選択された言語（:language）に翻訳されていません。英語版を表示します。',
+        'incomplete_or_outdated' => '',
         'languages' => '言語',
         'missing' => '要求されたページ”:keyword”は見つかりませんでした。',
         'missing_title' => 'Not Found',

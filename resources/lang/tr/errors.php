@@ -35,8 +35,13 @@ return [
         'standard_converts_only' => 'Bu beatmap zorluğunda seçilen mod\'da şuanda skor mevcut değil.',
     ],
     'checkout' => [
-        'generic' => '',
+        'generic' => 'Çıkışınızı yaparken bir hata oluştu.',
     ],
+    'search' => [
+        'default' => '',
+        'operation_timeout_exception' => '',
+    ],
+
     'logged_out' => 'Oturumunuz kapatıldı. Lütfen giriş yapın ve tekrar deneyin.',
     'supporter_only' => 'Bu özelliği kullanabilmeniz için supporter olmanız gerekmektedir.',
     'no_restricted_access' => 'Hesabınız kısıtlanmış durumdayken bu işlemi gerçekleştiremezsiniz.',

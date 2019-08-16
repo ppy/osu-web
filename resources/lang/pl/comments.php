@@ -23,7 +23,7 @@ return [
     'deleted_count' => ':count_delimited usunięty komentarz|:count_delimited usunięte komentarze|:count_delimited usuniętych komentarzy',
     'edited' => 'ostatnio edytowane :timeago przez :user',
     'empty' => 'Brak komentarzy.',
-    'load_replies' => '',
+    'load_replies' => 'wczytaj odpowiedzi',
     'replies' => 'Odpowiedzi',
     'title' => 'Komentarze',
 
@@ -63,8 +63,8 @@ return [
 
     'show' => [
         'title' => [
-            '_' => 'Komentarze » :info',
-            'info' => 'Szczegóły',
+            '_' => 'Komentarze',
+            'info' => 'Komentarze',
         ],
     ],
 ];

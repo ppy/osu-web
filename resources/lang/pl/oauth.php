@@ -34,14 +34,14 @@ return [
     ],
 
     'authorized-clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Czy na pewno chcesz odebrać uprawnienia tej aplikacji?',
+        'scopes_title' => 'Ta aplikacja może:',
+        'owned_by' => 'Należy do użytkownika :user',
+        'none' => 'Brak aplikacji',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Odbierz dostęp',
+            'true' => 'Dostęp został odebrany',
         ],
     ],
 

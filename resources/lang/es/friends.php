@@ -27,8 +27,8 @@ return [
 
     'index' => [
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Inicio :info',
+            'info' => 'Amigos',
         ],
     ],
 

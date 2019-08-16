@@ -19,7 +19,7 @@
  */
 
 return [
-    'all_read' => '',
+    'all_read' => 'Tất cả các thông báo đã được đọc!',
     'mark_all_read' => 'Xoá tất cả',
 
     'item' => [
@@ -29,11 +29,11 @@ return [
             'beatmapset_discussion' => [
                 '_' => 'Góc thảo luận beatmap',
                 'beatmapset_discussion_lock' => 'Beatmap ":title" đã bị khóa để thảo luận.',
-                'beatmapset_discussion_lock_compact' => '',
+                'beatmapset_discussion_lock_compact' => 'Cuộc thảo luận đã được khóa',
                 'beatmapset_discussion_post_new' => ':username đã đăng tin nhắn mới trong cuộc thảo luận beatmap ":title".',
-                'beatmapset_discussion_post_new_compact' => '',
-                'beatmapset_discussion_unlock' => '',
-                'beatmapset_discussion_unlock_compact' => '',
+                'beatmapset_discussion_post_new_compact' => 'Bài đăng mới bởi :username',
+                'beatmapset_discussion_unlock' => 'Cuộc thảo luận trên ":title" đã được mở khóa',
+                'beatmapset_discussion_unlock_compact' => 'Cuộc thảo luận đã được mở khóa',
             ],
 
             'beatmapset_state' => [
@@ -41,19 +41,19 @@ return [
                 'beatmapset_disqualify' => '',
                 'beatmapset_disqualify_compact' => '',
                 'beatmapset_love' => '',
-                'beatmapset_love_compact' => '',
+                'beatmapset_love_compact' => 'Beatmap đã được tiến vào danh mục Được yêu thích',
                 'beatmapset_nominate' => '',
-                'beatmapset_nominate_compact' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_qualify_compact' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_rank_compact' => '',
+                'beatmapset_nominate_compact' => 'Beatmap đã được đề cử',
+                'beatmapset_qualify' => '":title" đã nhận được đủ đề cử và tiến vào danh mục Được xếp hạng',
+                'beatmapset_qualify_compact' => 'Beatmap đã được thêm vào hàng chờ xếp hạng',
+                'beatmapset_rank' => '":title" đã được xếp hạng',
+                'beatmapset_rank_compact' => 'Beatmap đã được xếp hạng',
                 'beatmapset_reset_nominations' => '',
                 'beatmapset_reset_nominations_compact' => '',
             ],
 
             'comment' => [
-                '_' => '',
+                '_' => 'Bình luận mới',
 
                 'comment_new' => '',
                 'comment_new_compact' => '',
@@ -68,7 +68,7 @@ return [
                 'pm' => [
                     'channel_message' => '',
                     'channel_message_compact' => '',
-                    'channel_message_group' => '',
+                    'channel_message_group' => 'từ :username',
                 ],
             ],
         ],
@@ -77,7 +77,7 @@ return [
             '_' => '',
 
             'comment' => [
-                '_' => '',
+                '_' => 'Bình luận mới',
 
                 'comment_new' => '',
                 'comment_new_compact' => '',
@@ -115,11 +115,11 @@ return [
         ],
 
         'user_achievement' => [
-            '_' => '',
+            '_' => 'Huy chương',
 
             'user_achievement_unlock' => [
-                '_' => '',
-                'user_achievement_unlock' => '',
+                '_' => 'Huy chương mới',
+                'user_achievement_unlock' => 'Đã mở khóa ":title"!',
             ],
         ],
     ],

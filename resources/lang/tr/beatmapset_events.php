@@ -22,11 +22,11 @@ return [
     'event' => [
         'approve' => 'Onaylı.',
         'discussion_delete' => 'Moderatör :discussion tartışmasını sildi.',
-        'discussion_lock' => '',
+        'discussion_lock' => 'Bu beatmap için tartışma sağlandı',
         'discussion_post_delete' => ':discussion tartışmasındaki gönderi Moderatör tarafından silindi.',
         'discussion_post_restore' => ':discussion tartışmasındaki gönderi Moderatör tarafından restore edildi.',
         'discussion_restore' => ':discussion tartışması moderatör tarafından restore edildi.',
-        'discussion_unlock' => '',
+        'discussion_unlock' => 'Bu beatmap için tartışma sağlandı.',
         'disqualify' => ':user tarafından diskalifiye edildi. Sebep: :discussion (:text).',
         'disqualify_legacy' => ':user tarafından diskalifiye edildi. Sebep: :text.',
         'issue_reopen' => ':discussion tartışmasında çözülen sorun tekrar tartışmaya açıldı.',

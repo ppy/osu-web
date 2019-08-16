@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Η συζήτηση έχει κλειδωθεί.',
         'first_post' => 'Το αρχικό post δε μπορεί να διαγραφεί.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Προσδιορίστηκε μη έγκυρη δυσκολία.',
         'invalid_beatmapset_id' => 'Προσδιορίστηκε μη έγκυρο beatmap.',
         'locked' => 'Η συζήτηση είναι κλειδωμένη.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'Πρέπει να είστε συνδεδεμένοι για να κάνετε hype.',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Δεν επιτρέπεται η απάντηση σε διαγραμμένο σχόλιο.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Η διαγραφή του post για τα μεταδεδομένα το beatmap δεν είναι επιτρεπτή.',
             'beatmapset_post_no_edit' => 'Η επεξεργασία του post για τα μεταδεδομένα το beatmap δεν είναι επιτρεπτή.',
             'only_quote' => 'Η απάντησή σας περιέχει μόνο μία αναφορά.',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,6 +106,10 @@ return [
             'minimum_one_selection' => 'Το ελάχιστο που απαιτείται είναι μία επιλογή ανά χρήστη.',
             'minimum_two_options' => 'Χρειάζονται τουλάχιστον δύο επιλογές.',
             'too_many_options' => 'Υπερβήκατε το μέγιστο αριθμό επιλογών που επιτρέπεται.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,6 +142,12 @@ return [
         'wrong_password_confirmation' => 'Η πιστοποίηση του κωδικού δεν ταιριάζει.',
         'too_long' => 'Έχετε υπερβεί το μέγιστο όριο - μπορεί να είναι μέχρι :limit χαρακτήρες.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
             'restricted' => 'Δεν μπορείτε να αλλάξετε όνομα χρήστη ενώ είστε restricted.',
             'supporter_required' => [
@@ -127,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "Δεν μπορείτε να αποκλέισετε τον εαυτό σας!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

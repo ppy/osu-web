@@ -37,6 +37,11 @@ return [
     'checkout' => [
         'generic' => '支払い準備中にエラーが発生しました。',
     ],
+    'search' => [
+        'default' => '',
+        'operation_timeout_exception' => '',
+    ],
+
     'logged_out' => 'ログアウトされています。ログインしてから再度お試しください。',
     'supporter_only' => 'osu!サポーター限定の機能です。',
     'no_restricted_access' => 'アカウントが制限中は無効です。',

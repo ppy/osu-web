@@ -37,6 +37,11 @@ return [
     'checkout' => [
         'generic' => 'Ocorreu um erro durante o preparamento do seu pagamento.',
     ],
+    'search' => [
+        'default' => '',
+        'operation_timeout_exception' => '',
+    ],
+
     'logged_out' => 'Você foi desconectado. Conecte-se e tente novamente.',
     'supporter_only' => 'Você precisa ser um osu!supporter para usar esta função.',
     'no_restricted_access' => 'Você não pode executar esta ação enquanto sua conta estiver restrita.',

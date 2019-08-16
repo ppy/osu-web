@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Diskussion ist gesperrt.',
         'first_post' => 'Der erste Beitrag kann nicht gelöscht werden.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Ungültige Schwierigkeitsstufe gewählt.',
         'invalid_beatmapset_id' => 'Ungültige Beatmap gewählt.',
         'locked' => 'Die Diskussion ist gesperrt.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'Zum Hypen muss man eingeloggt sein.',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Das Antworten auf den gelöschten Kommentar ist nicht erlaubt.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Den Metadaten-Post einer Beatmap kann man nicht löschen.',
             'beatmapset_post_no_edit' => 'Den Metadaten-Post einer Beatmap kann man nicht bearbeiten.',
             'only_quote' => 'In deiner Antwort ist nur ein Zitat enthalten.',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,6 +106,10 @@ return [
             'minimum_one_selection' => 'Mindestens eine Antwort wird pro Benutzer benötigt.',
             'minimum_two_options' => 'Mindestens zwei Antworten werden benötigt.',
             'too_many_options' => 'Maximale Anzahl an Antworten überschritten',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,6 +142,12 @@ return [
         'wrong_password_confirmation' => 'Passwortbestätigung stimmt nicht überein.',
         'too_long' => 'Maximale Länge überschritten - höchstens :limit Zeichen.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
             'restricted' => 'Du kannst deinen Benutzernamen nicht ändern solange dein Zugang beschränkt ist.',
             'supporter_required' => [
@@ -127,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "Du kannst dich nicht selbst melden!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

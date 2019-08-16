@@ -153,6 +153,11 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                     'size_info' => 'L\'immagine di copertina dovrebbe essere 2800x620',
                     'too_large' => 'Il file caricato è troppo grande.',
                     'unsupported_format' => 'Formato non supportato.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -258,6 +263,11 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                         'revoke' => 'Kudosu negato da :giver per il post :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'io!',
@@ -334,6 +344,11 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
             'description' => '<strong>io!</strong> è un\'area personale personalizzabile nella tua pagina del profilo.',
             'edit_big' => 'Modificami!',
             'placeholder' => 'Scrivi il contenuto della pagina qui',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Ha contribuito :link',
@@ -371,5 +386,10 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
     ],
     'verify' => [
         'title' => 'Verifica dell\'account',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

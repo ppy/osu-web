@@ -244,14 +244,14 @@ return [
     'status' => [
         'any' => 'ไม่เจาะจง',
         'approved' => 'อนุมัติ',
-        'favourites' => '',
+        'favourites' => 'รายการโปรด',
         'graveyard' => 'สุสาน',
-        'leaderboard' => '',
+        'leaderboard' => 'สถิติการจัดลำดับ',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => 'แมพของฉัน',
         'pending' => 'รอดำเนินการ & WIP',
         'qualified' => 'ผ่านเกณฑ์',
-        'ranked' => '',
+        'ranked' => 'จัดอันดับแล้ว',
     ],
     'genre' => [
         'any' => 'ไม่เจาะจง',

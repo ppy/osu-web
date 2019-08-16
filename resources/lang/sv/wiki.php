@@ -21,6 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'Den begärda sidan är inte översatt till det valda språket (:language). Visar den Engelska versionen.',
+        'incomplete_or_outdated' => '',
         'languages' => 'Språk',
         'missing' => 'Begärd sida kunde ej hittas.',
         'missing_title' => 'Hittades inte',

@@ -75,7 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited post|:count_delimited post',
-            'topic_starter' => '',
+            'topic_starter' => 'Comincia-conversazioni',
         ],
     ],
 
