@@ -32,10 +32,10 @@
             <div class="header-v4__icon"></div>
             <div class="header-v4__title">
                 <span class="header-v4__title-section">
-                    {{ trans("layout.menu.{$currentSection}._") }}
+                    {{ trans('layout.header.community._') }}
                 </span>
                 <span class="header-v4__title-action">
-                    {{ trans("layout.menu.{$currentSection}.{$currentAction}") }}
+                    {{ trans('layout.header.community.forum') }}
                 </span>
             </div>
         </div>
