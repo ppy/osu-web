@@ -67,25 +67,11 @@ export class DetailBar extends React.PureComponent
         @renderExtraMenu()
 
       div className: "#{bn}__column #{bn}__column--right",
-        if @props.extended
-          div
-            title: osu.trans('users.show.stats.level_progress')
-            className: "#{bn}__entry #{bn}__entry--level-progress"
-            div className: 'bar bar--user-profile',
-              div
-                className: 'bar__fill'
-                style:
-                  width: "#{@props.stats.level.progress}%"
-              div className: "bar__text",
-                "#{@props.stats.level.progress}%"
+        div className: "#{bn}__entry #{bn}__entry--ranking",
+          el Rank, type: 'global', stats: @props.stats
 
-        if !@props.extended
-          div className: "#{bn}__entry #{bn}__entry--ranking",
-            el Rank, type: 'global', stats: @props.stats
-
-        if !@props.extended
-          div className: "#{bn}__entry #{bn}__entry--ranking",
-            el Rank, type: 'country', stats: @props.stats
+        div className: "#{bn}__entry #{bn}__entry--ranking",
+          el Rank, type: 'country', stats: @props.stats
 
         div className: "#{bn}__entry #{bn}__entry--level",
           div
