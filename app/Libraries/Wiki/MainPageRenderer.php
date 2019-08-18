@@ -20,19 +20,74 @@
 namespace App\Libraries\Wiki;
 
 use App\Libraries\Markdown\OsuMarkdown;
+use App\Libraries\Markdown\OsuMarkdownProcessor;
+use League\CommonMark\Environment;
+use League\CommonMark\DocParser;
+use League\CommonMark\Inline\Element\Link;
+use League\CommonMark\Block\Element\Heading;
 
 class MainPageRenderer extends Renderer
 {
+    private $parser;
+
+    public function __construct($page, $body)
+    {
+        parent::__construct($page, $body);
+
+        $env = Environment::createCommonMarkEnvironment();
+        $this->parser = new DocParser($env);
+    }
+
+    /**
+     * @param \League\CommonMark\Block\Element\Document $document
+     * @return array[]
+     */
+    private function getElements($document)
+    {
+        $walker = $document->walker();
+
+        $sections = [];
+        $heading = [];
+
+        while ($event = $walker->next()) {
+            $node = $event->getNode();
+
+            if (!$event->isEntering() && !($node instanceof Heading)) {
+                continue;
+            }
+
+            if ($node instanceof Heading) {
+                if ($event->isEntering()) {
+                    $heading = [
+                        "level" => $node->getLevel(),
+                        "text" => OsuMarkdownProcessor::getText($node),
+                    ];
+                } else {
+                    array_push($sections, $heading);
+                }
+            } elseif ($node instanceof Link) {
+                $heading["url"] = $node->getUrl();
+            }
+        }
+
+        return $sections;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function render() {
         $body = OsuMarkdown::parseYamlHeader($this->body);
 
+        $document = $this->parser->parse($body["document"]);
+        $elements = $this->getElements($document);
+
         $page = [
             "header" => $body["header"],
-            "output" => "",
+            "output" => view("wiki.generators.main", ["elements" => array_slice($elements, 1)])->render(),
         ];
+
+        $page["header"]["title"] = $elements[0]["text"];
 
         return $page;
     }

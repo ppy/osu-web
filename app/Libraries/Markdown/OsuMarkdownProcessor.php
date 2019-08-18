@@ -163,7 +163,11 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         }
     }
 
-    public function getText($node)
+    /**
+     * @var \League\CommonMark\Node\Node $node
+     * @return string
+     */
+    public static function getText($node)
     {
         $text = '';
 
@@ -174,7 +178,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             } elseif (method_exists($child, 'getContent')) {
                 $text .= $child->getContent();
             } elseif (method_exists($child, 'children')) {
-                $text .= $this->getText($child);
+                $text .= static::getText($child);
             }
         }
 
