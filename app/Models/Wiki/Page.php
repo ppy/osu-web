@@ -41,10 +41,12 @@ class Page
 
     const TEMPLATES = [
         'markdown_page' => 'wiki.show',
+        'main_page' => 'wiki.main',
     ];
 
     const RENDERERS = [
         'markdown_page' => App\Libraries\Wiki\MarkdownRenderer::class,
+        'main_page' => App\Libraries\Wiki\MainPageRenderer::class,
     ];
 
     public $locale;
