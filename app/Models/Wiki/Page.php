@@ -43,6 +43,10 @@ class Page
         'markdown_page' => 'wiki.show',
     ];
 
+    const RENDERERS = [
+        'markdown_page' => App\Libraries\Wiki\MarkdownRenderer::class,
+    ];
+
     public $locale;
     public $requestedLocale;
 
@@ -274,9 +278,12 @@ class Page
                     }
 
                     if (present($body)) {
-                        $page = (new OsuMarkdown('wiki', [
-                            'relative_url_root' => wiki_url($this->path),
-                        ]))->load($body)->toArray();
+                        // prefilling the header so type() works
+                        $this->cache["page"]["header"] = OsuMarkdown::parseYamlHeader($body)["header"];
+
+                        $rendererClass = static::RENDERERS[$this->type()];
+
+                        $page = (new $rendererClass($this, $body))->render();
                     }
                 }
 
