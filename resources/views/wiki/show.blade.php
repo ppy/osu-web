@@ -82,13 +82,7 @@
     </div>
 
     <div class="osu-page osu-page--wiki">
-        @if ($page->page() !== null && $page->locale !== $page->requestedLocale)
-            <div class="wiki-notice">
-                <div class="wiki-notice__box">
-                    {{ trans('wiki.show.fallback_translation', ['language' => locale_name($page->requestedLocale)]) }}
-                </div>
-            </div>
-        @endif
+        @include('wiki._notice')
 
         @if ($page->isLegalTranslation())
             <div class="wiki-notice">
