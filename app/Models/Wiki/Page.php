@@ -39,6 +39,10 @@ class Page
     const REINDEX_AFTER = 300;
     const VERSION = 1;
 
+    const TEMPLATES = [
+        'markdown_page' => 'wiki.show',
+    ];
+
     public $locale;
     public $requestedLocale;
 
@@ -350,6 +354,19 @@ class Page
         }
 
         return presence($this->page()["header"]["type"] ?? null) ?? "markdown_page";
+    }
+
+    public function template()
+    {
+        if ($this->page() === null) {
+            return;
+        }
+
+        if (!array_key_exists($this->type(), static::TEMPLATES)) {
+            throw new \Exception("Invalid wiki page type");
+        }
+
+        return static::TEMPLATES[$this->type()];
     }
 
     private function log($action)
