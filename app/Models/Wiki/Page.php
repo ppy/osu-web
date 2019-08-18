@@ -316,7 +316,7 @@ class Page
 
     public function tags()
     {
-        return $this->page()['header']['tags'] ?? [];
+        return $this->page()["header"]["tags"] ?? [];
     }
 
     public function title($withSubtitle = false)
@@ -341,6 +341,15 @@ class Page
         }
 
         return presence($this->page()['header']['subtitle'] ?? null) ?? $this->defaultSubtitle;
+    }
+
+    public function type()
+    {
+        if ($this->page() === null) {
+            return;
+        }
+
+        return presence($this->page()["header"]["type"] ?? null) ?? "markdown_page";
     }
 
     private function log($action)
