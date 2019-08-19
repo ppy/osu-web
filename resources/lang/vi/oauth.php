@@ -35,12 +35,12 @@ return [
 
     'authorized-clients' => [
         'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
+        'scopes_title' => 'Ứng dụng này có thể :',
+        'owned_by' => 'Được sở hữu bởi :user',
         'none' => '',
 
         'revoked' => [
-            'false' => '',
+            'false' => 'Thu hồi quyền truy cập',
             'true' => '',
         ],
     ],

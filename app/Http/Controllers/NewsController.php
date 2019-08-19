@@ -30,17 +30,33 @@ class NewsController extends Controller
 
     public function index()
     {
-        $search = NewsPost::search(array_merge(['limit' => 12], request()->all()));
+        $isAtom = request('format') === 'atom';
+        $limit = $isAtom ? 20 : 12;
+
+        $search = NewsPost::search(array_merge(['limit' => $limit], request()->all()));
+
+        $posts = $search['query']->get();
+
+        if ($isAtom) {
+            return response()
+                ->view('news.index-atom', compact('posts'))
+                ->header('Content-Type', 'application/atom+xml');
+        }
 
         $postsJson = [
-            'news_posts' => json_collection($search['query']->get(), 'NewsPost', ['preview']),
+            'news_posts' => json_collection($posts, 'NewsPost', ['preview']),
             'search' => $search['params'],
         ];
 
         if (is_json_request()) {
             return $postsJson;
         } else {
-            return view('news.index', compact('postsJson'));
+            $atom = [
+                'url' => route('news.index', ['format' => 'atom']),
+                'title' => 'osu!news Feed',
+            ];
+
+            return view('news.index', compact('postsJson', 'atom'));
         }
     }
 

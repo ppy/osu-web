@@ -27,8 +27,8 @@ return [
 
     'index' => [
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Trang chủ :info',
+            'info' => 'Bạn bè',
         ],
     ],
 

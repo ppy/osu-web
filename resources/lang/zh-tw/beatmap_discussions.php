@@ -74,13 +74,6 @@ return [
         ],
     ],
 
-    'user' => [
-        'admin' => '管理員',
-        'bng' => '譜面管理團隊',
-        'owner' => '作圖者',
-        'nat' => '',
-    ],
-
     'user_filter' => [
         'everyone' => '所有人',
         'label' => '按使用者篩選',

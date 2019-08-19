@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Kích cỡ ảnh bìa nên là 2800x620',
                     'too_large' => 'Tệp đã tải lên quá lơn.',
                     'unsupported_format' => 'Định dạng không được hỗ trợ.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -257,6 +262,11 @@ return [
                         'revoke' => 'Từ chối kudosu kudosu :giver cho bài đăng :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'tôi!',
@@ -333,6 +343,11 @@ return [
             'description' => '<strong>tôi!</strong> là một khu vực cá nhân có thể tùy chỉnh trong trang cá nhân của bạn.',
             'edit_big' => 'Chỉnh sửa tôi!',
             'placeholder' => 'Nhập nội dung trang vào đây',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Đã đóng góp :link',
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Xác Thực Tài Khoản',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

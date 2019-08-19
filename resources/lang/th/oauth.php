@@ -34,14 +34,14 @@ return [
     ],
 
     'authorized-clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'คุณแน่ใจหรือไม่ว่าต้องการเพิกถอนสิทธิ์รายนี้?',
+        'scopes_title' => 'โปรแกรมนี้สามารถ:',
+        'owned_by' => 'เป็นเจ้าของโดย :user',
+        'none' => 'ไม่มีไคลอันต์นี้',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'ยกเลิกการเข้าถึง',
+            'true' => 'การเข้าถึงถูกยกเลิก',
         ],
     ],
 

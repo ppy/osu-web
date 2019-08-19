@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => '토론이 잠겨있습니다.',
         'first_post' => '시작글은 삭제할 수 없습니다.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => '난이도가 올바르지 않습니다.',
         'invalid_beatmapset_id' => '비트맵이 올바르지 않습니다.',
         'locked' => '토론이 잠겨있습니다.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => '로그인하셔야 Hype하실 수 있습니다.',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => '삭제된 댓글에 답글을 달 수 없습니다.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => '비트맵 메타데이터 글을 삭제할 수 없습니다.',
             'beatmapset_post_no_edit' => '비트맵 메타데이터 글을 수정할 수 없습니다.',
             'only_quote' => '답글에 인용만 포함하고 있습니다.',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,6 +106,10 @@ return [
             'minimum_one_selection' => '투표자들이 최소 한 개 이상은 선택할 수 있도록 해야합니다.',
             'minimum_two_options' => '투표 항목이 적어도 두 개는 필요합니다.',
             'too_many_options' => '허용된 것 보다 많은 항목을 선택하셨습니다.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,6 +142,12 @@ return [
         'wrong_password_confirmation' => '비밀번호와 비밀번호 확인란이 일치하지 않습니다.',
         'too_long' => '최대 길이를 초과하셨습니다 - :limit자리 까지만 가능합니다.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
             'restricted' => '제한된 상태의 계정은 사용자 이름을 변경할 수 없습니다.',
             'supporter_required' => [
@@ -127,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "자기 자신은 신고할 수 없습니다!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

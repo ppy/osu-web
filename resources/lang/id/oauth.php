@@ -34,14 +34,14 @@ return [
     ],
 
     'authorized-clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Apakah Anda yakin akan mencabut izin ini?',
+        'scopes_title' => 'Aplikasi ini dapat:',
+        'owned_by' => 'Dimiliki oleh :user',
+        'none' => 'Tidak ada klien',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Cabut Akses',
+            'true' => 'Akses Dicabut',
         ],
     ],
 

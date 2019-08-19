@@ -165,7 +165,7 @@ return [
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'La pagina utente è bloccata.',
+                'locked' => 'La tua userpage è bloccata.',
                 'not_owner' => 'Puoi modificare solo la tua pagina utente.',
                 'require_supporter_tag' => 'è necessario avere una supporter tag.',
             ],

@@ -34,14 +34,14 @@ return [
     ],
 
     'authorized-clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Er du sikker på at du vil inndra tillatelsen til denne applikasjonen?',
+        'scopes_title' => 'Denne applikasjonen kan:',
+        'owned_by' => 'Eid av :user',
+        'none' => 'Ingen autoriserte applikasjoner',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Opphev tilgang',
+            'true' => 'Tilgang opphevet',
         ],
     ],
 

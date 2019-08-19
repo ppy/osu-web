@@ -21,6 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'Запытаная старонка яшчэ не перакладзена на выбраную мову (:language). Ідзе паказ старонкі па-англійску.',
+        'incomplete_or_outdated' => '',
         'languages' => 'Мовы',
         'missing' => 'Запытаная старонка «:keyword» не знойдзена.',
         'missing_title' => 'Не знойдзена',

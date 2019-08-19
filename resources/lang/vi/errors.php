@@ -37,6 +37,11 @@ return [
     'checkout' => [
         'generic' => 'Đã xảy ra lỗi khi chuẩn bị thanh toán.',
     ],
+    'search' => [
+        'default' => '',
+        'operation_timeout_exception' => '',
+    ],
+
     'logged_out' => 'Bạn đã đăng xuất. Hãy đăng nhập và thử lại.',
     'supporter_only' => 'Bạn phải là người hỗ trợ để sử dụng tính năng này.',
     'no_restricted_access' => 'Bạn không được cho phép thực hiện hành động này trong khi tài khoản của bạn đang trong trạng thái hạn chế.',

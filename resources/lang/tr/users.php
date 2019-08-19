@@ -132,7 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => ':date tarihinde katıldı',
         'lastvisit' => 'Son görülme :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'Şu an çevrimiçi',
         'missingtext' => 'Yazım hatası yapmış olabilirsin! (veya bu kullanıcı banlanmış olabilir)',
         'origin_country' => 'Ülke: :country',
         'page_description' => 'osu! - :username hakkında bilmek istediğiniz her şey!',
@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Kapak boyutu 2800x620 olmalı',
                     'too_large' => 'Yüklenen dosya boyutu çok büyük.',
                     'unsupported_format' => 'Desteklenmeyen biçim.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -257,6 +262,11 @@ return [
                         'revoke' => ':post gönderisinde :giver tarafından kudosu reddedildi',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'ben!',
@@ -333,6 +343,11 @@ return [
             'description' => '<strong>ben!</strong>, profil sayfanızdaki kişiselleştirilebilir bir alandır.',
             'edit_big' => 'Beni düzenle!',
             'placeholder' => 'Sayfanın içeriğini buraya yaz',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => ':link kadar katkı',
@@ -361,7 +376,7 @@ return [
     ],
 
     'status' => [
-        'all' => '',
+        'all' => 'Tümü',
         'online' => 'Çevrimiçi',
         'offline' => 'Çevrimdışı',
     ],
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Hesap Doğrulama',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

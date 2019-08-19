@@ -244,14 +244,14 @@ return [
     'status' => [
         'any' => 'Alle',
         'approved' => 'Godkjent',
-        'favourites' => '',
+        'favourites' => 'Favoritter',
         'graveyard' => 'Gravplassert',
-        'leaderboard' => '',
+        'leaderboard' => 'Har Resultatliste',
         'loved' => 'Elsket',
-        'mine' => '',
+        'mine' => 'Mine Maps',
         'pending' => 'Ventende & WIP',
         'qualified' => 'Kvalifisert',
-        'ranked' => '',
+        'ranked' => 'Rangert',
     ],
     'genre' => [
         'any' => 'Alle',

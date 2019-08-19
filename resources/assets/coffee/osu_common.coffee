@@ -254,7 +254,8 @@
     if user.is_bot
       'bot'
     else
-      _.intersection(_.concat(user.default_group, user.groups), ['dev', 'gmt', 'nat', 'bng', 'bng_limited', 'support', 'alumni'])[0]
+      _.intersection(['ppy', 'dev', 'gmt', 'nat', 'bng', 'bng_limited', 'support', 'alumni'], _.concat(user.default_group, user.groups))[0]
+
 
   navigate: (url, keepScroll, {action = 'advance'} = {}) ->
     osu.keepScrollOnLoad() if keepScroll

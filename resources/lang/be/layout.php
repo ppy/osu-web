@@ -27,6 +27,7 @@ return [
         'home' => [
             '_' => 'галоўная',
             'account-edit' => 'налады',
+            'account-verifyLink' => '',
             'friends-index' => 'сябры',
             'changelog-index' => 'спic змен',
             'changelog-build' => 'зборка',

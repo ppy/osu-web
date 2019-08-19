@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Omslagets storlek bör vara 2800x620',
                     'too_large' => 'Uppladdad bild är för stor.',
                     'unsupported_format' => 'Formatet stöds ej.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -257,6 +262,11 @@ return [
                         'revoke' => 'Nekad kudosu av :giver för inlägget :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'jag!',
@@ -333,6 +343,11 @@ return [
             'description' => '<strong>jag!</strong> är en personlig anpassningsbar del på din profil sida.',
             'edit_big' => 'Redigera mig!',
             'placeholder' => 'Skriv sidoinnehåll här',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Bidragit med :link',
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Kontoverifiering',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

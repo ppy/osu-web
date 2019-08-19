@@ -21,7 +21,7 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => '',
+            'empty' => 'Nelze odeslat prázdnou zprávu.',
             'limit_exceeded' => 'Posíláte zprávy moc rychle, vyčkejte prosím chvíli a zkuste to znovu.',
             'too_long' => 'Zpráva, kterou se snažíte poslat, je moc dlouhá.',
         ],

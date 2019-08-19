@@ -27,8 +27,8 @@ return [
 
     'index' => [
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Ana menü :info',
+            'info' => 'Arkadaşlar',
         ],
     ],
 

@@ -211,6 +211,7 @@ mix
 .js(...reactComponentSet('comments-index'))
 .js(...reactComponentSet('comments-show'))
 .js(...reactComponentSet('mp-history'))
+.js(...reactComponentSet('modding-profile'))
 .js(...reactComponentSet('profile-page'))
 .js(...reactComponentSet('status-page'))
 .js(...reactComponentSet('admin/contest'))

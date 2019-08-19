@@ -21,6 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => '請求的頁面還未被翻譯為選中語言 (:language)，現在正顯示英文版本。',
+        'incomplete_or_outdated' => '',
         'languages' => '語言',
         'missing' => '請求的頁面未找到',
         'missing_title' => '未找到',
@@ -34,8 +35,8 @@ return [
         ],
 
         'translation' => [
-            'legal' => '',
-            'outdated' => '',
+            'legal' => '此翻譯僅為方便起見而提供。原本 :default 應是本文的唯一具有法律約束力的版本。',
+            'outdated' => '此頁面包含原始內容的過時翻譯。請檢查 :default 獲取最準確的資訊（及如果您能夠提供幫助，請考慮更新翻譯）！',
 
             'default' => '英文版本',
         ],
