@@ -139,10 +139,7 @@ class LegacyInterOpController extends Controller
 
         foreach (Beatmap::MODES as $modeStr => $modeId) {
             $class = Best\Model::getClassByString($modeStr);
-            $table = (new $class)->getTable();
-            $user->getConnection()->insert(
-                "INSERT INTO score_process_queue (score_id, mode, status) SELECT score_id, {$modeId}, 1 FROM {$table} WHERE user_id = {$user->getKey()}"
-            );
+            $class::queueIndexingForUser($user);
         }
 
         return response(null, 204);

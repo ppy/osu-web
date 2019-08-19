@@ -52,6 +52,17 @@ abstract class Model extends BaseModel
         'XH' => 'xh_rank_count',
     ];
 
+    public static function queueIndexingForUser(User $user)
+    {
+        $instance = new static;
+        $table = $instance->getTable();
+        $modeId = Beatmap::MODES[static::getMode()];
+
+        $instance->getConnection()->insert(
+            "INSERT INTO score_process_queue (score_id, mode, status) SELECT score_id, {$modeId}, 1 FROM {$table} WHERE user_id = {$user->getKey()}"
+        );
+    }
+
     public function replayFile() : ?ReplayFile
     {
         if ($this->replay) {
