@@ -17,7 +17,7 @@
  */
 
 import { observer } from 'mobx-react';
-import { OwnClient as Client } from 'oauth/own-client';
+import { OwnClient as Client } from 'models/oauth/own-client';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 

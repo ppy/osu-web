@@ -17,7 +17,7 @@
  */
 
 import { observer } from 'mobx-react';
-import { Client } from 'oauth/client';
+import { Client } from 'models/oauth/client';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { StringWithComponent } from 'string-with-component';

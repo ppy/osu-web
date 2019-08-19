@@ -16,32 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { action } from 'mobx';
-import { Client } from 'oauth/client';
-import { OwnClientJSON } from 'oauth/own-client-json';
+import { ClientJSON } from 'interfaces/client-json';
 
-export class OwnClient extends Client {
+export interface OwnClientJSON extends ClientJSON {
   redirect: string;
   secret: string;
-
-  constructor(client: OwnClientJSON) {
-    super(client);
-
-    this.redirect = client.redirect;
-    this.secret = client.secret;
-  }
-
-  @action
-  async delete() {
-    this.isRevoking = true;
-
-    return $.ajax({
-      method: 'DELETE',
-      url: laroute.route('oauth.own-clients.destroy', { own_client: this.id }),
-    }).then(() => {
-      this.revoked = true;
-    }).always(() => {
-      this.isRevoking = false;
-    });
-  }
 }
