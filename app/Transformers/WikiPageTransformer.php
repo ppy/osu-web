@@ -18,19 +18,32 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries\Search;
+namespace App\Transformers;
 
-use Illuminate\Http\Request;
+use App\Models\Wiki\Page;
+use League\Fractal\TransformerAbstract;
 
-class WikiSearchRequestParams extends WikiSearchParams
+class WikiPageTransformer extends TransformerAbstract
 {
-    public function __construct(Request $request)
-    {
-        parent::__construct();
+    protected $availableIncludes = ['content'];
 
-        $this->queryString = trim($request['query']);
-        $this->locale = $request['locale'];
-        $this->from = $this->pageAsFrom(get_int($request['page']));
-        $this->titleOnly = $request['title_only'] === true;
+    public function transform(Page $page)
+    {
+        return [
+            'title' => $page->title(),
+            'path' => $page->path,
+            'source_path' => $page->pagePath(),
+            'edit_url' => $page->editUrl(),
+            'outdated' => $page->isOutdated(),
+            'legal_translation' => $page->isLegalTranslation(),
+            'tags' => $page->tags(),
+        ];
+    }
+
+    public function includeContent(Page $page)
+    {
+        return $this->item($page, function ($page) {
+            return [$page->page()];
+        });
     }
 }

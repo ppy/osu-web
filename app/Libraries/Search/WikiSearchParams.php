@@ -32,6 +32,12 @@ class WikiSearchParams extends SearchParams
     /** @var string|null */
     public $locale = null;
 
+    /** @var bool|false */
+    public $titleOnly = false;
+
+    /** {@inheritdoc} */
+    public $size = 10;
+
     /**
      * {@inheritdoc}
      */

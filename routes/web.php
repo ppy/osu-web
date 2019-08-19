@@ -181,6 +181,7 @@ Route::group(['prefix' => 'home'], function () {
     });
 
     Route::get('search', 'HomeController@search')->name('search');
+    Route::get('search/suggestions', 'HomeController@searchSuggestions')->name('search.suggestions');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
     Route::get('changelog/{stream}/{build}', 'ChangelogController@build')->name('changelog.build');
     Route::post('changelog/github', 'ChangelogController@github');

@@ -137,6 +137,16 @@ class HomeController extends Controller
         return view('home.search', compact('allSearch', 'isSearchPage'));
     }
 
+    public function searchSuggestions()
+    {
+        request()->request->add(['title_only' => true]);
+
+        return json_item(
+            new AllSearch(request(), ['user' => Auth::user()]),
+            'AllSearch'
+        );
+    }
+
     public function setLocale()
     {
         $newLocale = get_valid_locale(Request::input('locale')) ?? config('app.fallback_locale');
