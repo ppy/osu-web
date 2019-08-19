@@ -74,13 +74,6 @@ return [
         ],
     ],
 
-    'user' => [
-        'admin' => 'administratör',
-        'bng' => 'nominerade',
-        'owner' => 'mappare',
-        'nat' => '',
-    ],
-
     'user_filter' => [
         'everyone' => 'Alla',
         'label' => 'Filtrera på användare',

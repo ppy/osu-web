@@ -37,6 +37,11 @@ return [
     'checkout' => [
         'generic' => 'Ha ocurrido un error mientras preparábamos tu compra.',
     ],
+    'search' => [
+        'default' => '',
+        'operation_timeout_exception' => '',
+    ],
+
     'logged_out' => 'Tu sesión ha expirado. Por favor, inicia sesión y vuelve a intentarlo.',
     'supporter_only' => 'Debes ser supporter para usar esta característica.',
     'no_restricted_access' => 'No puedse realizar esta acción mientras tu cuenta esté en un estado restringido.',

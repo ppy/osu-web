@@ -27,6 +27,7 @@ return [
         'home' => [
             '_' => '主页',
             'account-edit' => '设置',
+            'account-verifyLink' => '',
             'friends-index' => '好友',
             'changelog-index' => '更新日志',
             'changelog-build' => '版本',

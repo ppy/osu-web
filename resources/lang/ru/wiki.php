@@ -21,6 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'Запрашиваемая страница не переведена на русский язык. Показывается версия на английском.',
+        'incomplete_or_outdated' => '',
         'languages' => 'Языки',
         'missing' => 'Запрашиваемая страница ":keyword" не найдена.',
         'missing_title' => 'Не найдено',

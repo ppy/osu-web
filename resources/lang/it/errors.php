@@ -37,6 +37,11 @@ return [
     'checkout' => [
         'generic' => 'Si è verificato un errore durante la preparazione del tuo checkout.',
     ],
+    'search' => [
+        'default' => '',
+        'operation_timeout_exception' => '',
+    ],
+
     'logged_out' => 'Sei stato disconnesso. Per favore effettua di nuovo il login e riprova.',
     'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalità.',
     'no_restricted_access' => 'Non puoi fare questa azione mentre il tuo account è ristretto.',

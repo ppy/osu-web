@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Discussão está trancada.',
         'first_post' => 'Não é possível excluir a publicação inicial.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Dificuldade especificada inválida.',
         'invalid_beatmapset_id' => 'Beatmap inválido especificado.',
         'locked' => 'Discussão está trancada.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'Precisa estar conectado para hypar.',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Não é permitido responder comentários excluídos.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Deletar postagem de metadados de um beatmap não é permitido.',
             'beatmapset_post_no_edit' => 'Editar postagem de metadados de um beatmap não é permitido.',
             'only_quote' => 'Sua resposta contém apenas uma citação.',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,6 +106,10 @@ return [
             'minimum_one_selection' => 'É necessário no mínimo uma opção por usuário.',
             'minimum_two_options' => 'É necessário no mínimo duas opções.',
             'too_many_options' => 'Número máximo de opções permitidas excedido.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,6 +142,12 @@ return [
         'wrong_password_confirmation' => 'Confirmação de senha não confere.',
         'too_long' => 'ultrapassou tamanho máximo - deve ser até :limit caracteres.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
             'restricted' => 'Não é possível alterar seu nome de usuário enquanto estiver em modo restrito.',
             'supporter_required' => [
@@ -127,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "Você não pode se denunciar!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

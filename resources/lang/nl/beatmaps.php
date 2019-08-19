@@ -244,14 +244,14 @@ return [
     'status' => [
         'any' => 'Alles',
         'approved' => 'Goedgekeurd',
-        'favourites' => '',
+        'favourites' => 'Favorieten',
         'graveyard' => 'Begraafplaats',
-        'leaderboard' => '',
+        'leaderboard' => 'Heeft Ranglijst',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => 'Mijn Mappen',
         'pending' => 'Pending & WIP',
         'qualified' => 'Gekwalificeerd',
-        'ranked' => '',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => 'Alles',

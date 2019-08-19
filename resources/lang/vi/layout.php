@@ -27,6 +27,7 @@ return [
         'home' => [
             '_' => 'trang chủ',
             'account-edit' => 'cài đặt',
+            'account-verifyLink' => '',
             'friends-index' => 'bạn bè',
             'changelog-index' => 'changelog',
             'changelog-build' => 'build',

@@ -190,7 +190,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => '你確定嗎？提出新的問題會重置提名。',
-            'disqualify' => '',
+            'disqualify' => '你確定嗎？這個會移除圖譜從進榜和重設提名進度。',
         ],
     ],
 
@@ -232,7 +232,7 @@ return [
     ],
     'general' => [
         'recommended' => '推薦難度',
-        'converts' => '包括转谱',
+        'converts' => '包括轉換圖譜',
     ],
     'mode' => [
         'any' => '所有',
@@ -244,14 +244,14 @@ return [
     'status' => [
         'any' => '所有',
         'approved' => '批准',
-        'favourites' => '',
+        'favourites' => '收藏',
         'graveyard' => '拋棄',
-        'leaderboard' => '',
+        'leaderboard' => '擁有排行榜',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => '我的圖譜',
         'pending' => 'Pending & WIP',
         'qualified' => '提名',
-        'ranked' => '',
+        'ranked' => '已進榜',
     ],
     'genre' => [
         'any' => '所有',

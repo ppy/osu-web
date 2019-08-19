@@ -21,6 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'หน้าที่คุณเรียกยังไม่ถูกแปลในภาษาที่เลือกอยู่ (:language) กำลังแสดงเนื้อหาฉบับภาษาอังกฤษ',
+        'incomplete_or_outdated' => '',
         'languages' => 'ภาษา',
         'missing' => 'ไม่พบหน้า ":keyword" ที่คุณเรียก',
         'missing_title' => 'ไม่พบ',

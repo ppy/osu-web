@@ -21,7 +21,7 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => '',
+            'empty' => 'Kan geen leeg bericht verzenden.',
             'limit_exceeded' => 'Je stuurt te snel berichten, wacht even voordat je het weer probeert.',
             'too_long' => 'Het bericht dat u probeert te verzenden, is te lang.',
         ],

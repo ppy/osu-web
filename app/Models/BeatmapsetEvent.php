@@ -246,6 +246,16 @@ class BeatmapsetEvent extends Model
         return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
     }
 
+    public function getBeatmapDiscussionIdAttribute()
+    {
+        return $this->comment['beatmap_discussion_id'] ?? null;
+    }
+
+    public function beatmapDiscussion()
+    {
+        return $this->belongsTo(BeatmapDiscussion::class, 'beatmap_discussion_id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

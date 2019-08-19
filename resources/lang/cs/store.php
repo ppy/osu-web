@@ -90,7 +90,7 @@ return [
 
         'invoice' => 'Zobrazit fakturu',
         'no_orders' => 'Nejsou zde žádné objednávky k zobrazení.',
-        'resume' => '',
+        'resume' => 'Obnovit objednávku',
 
         'item' => [
             'display_name' => [

@@ -47,7 +47,7 @@ return [
 
         'score' => [
             'stats' => [
-                'accuracy' => 'Precyzja',
+                'accuracy' => 'Celność',
                 'combo' => 'Combo',
                 'score' => 'Wynik',
             ],
@@ -68,7 +68,7 @@ return [
     'game' => [
         'scoring-type' => [
             'score' => 'Najlepszy wynik',
-            'accuracy' => 'Najwyższa precyzja',
+            'accuracy' => 'Najwyższa celność',
             'combo' => 'Największe combo',
             'scorev2' => 'Score V2',
         ],

@@ -28,20 +28,20 @@ return [
 
             'beatmapset_discussion' => [
                 '_' => '圖譜討論',
-                'beatmapset_discussion_lock' => '',
+                'beatmapset_discussion_lock' => '已鎖定「:title」的討論',
                 'beatmapset_discussion_lock_compact' => '討論已被鎖定',
-                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_post_new' => '新帖子於 ":title" 的 :username',
                 'beatmapset_discussion_post_new_compact' => ':username 的新主題',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_unlock' => '討論於 ":title" 已解鎖',
                 'beatmapset_discussion_unlock_compact' => '討論已被解鎖',
             ],
 
             'beatmapset_state' => [
                 '_' => '圖譜狀態已變更',
-                'beatmapset_disqualify' => '',
-                'beatmapset_disqualify_compact' => '',
-                'beatmapset_love' => '',
-                'beatmapset_love_compact' => '',
+                'beatmapset_disqualify' => '":title" 被取消資格',
+                'beatmapset_disqualify_compact' => '圖譜被取消資格',
+                'beatmapset_love' => '":title" 被提升為 loved',
+                'beatmapset_love_compact' => '圖譜被提升為 loved',
                 'beatmapset_nominate' => '「:title」已被提名',
                 'beatmapset_nominate_compact' => '圖譜已被提名',
                 'beatmapset_qualify' => '「:title」已獲得足夠提名并因此進入了上架列隊',

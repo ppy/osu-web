@@ -51,7 +51,6 @@ trait UserScoreable
                     'aggs' => [
                         'top_scores' => [
                             'top_hits' => [
-                                '_source' => ['score_id'],
                                 'size' => 1,
                                 'sort' => [['pp' => ['order' => 'desc']]],
                             ],
@@ -76,7 +75,7 @@ trait UserScoreable
         $buckets = $this->aggregatedScoresBest($mode, $size)->aggregations('by_beatmaps')['buckets'] ?? [];
 
         return array_map(function ($bucket) {
-            return array_get($bucket, 'top_scores.hits.hits.0._source.score_id');
+            return array_get($bucket, 'top_scores.hits.hits.0._id');
         }, $buckets);
     }
 

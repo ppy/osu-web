@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'プロフィール画像',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'プロフィール',
 
             'user' => [
+                'user_discord' => 'discord',
                 'user_from' => '現在地',
                 'user_interests' => '趣味',
                 'user_msnm' => 'skype',
                 'user_occ' => '職業',
                 'user_twitter' => 'twitter',
                 'user_website' => 'ウェブサイト',
-                'user_discord' => 'discord',
             ],
         ],
 
@@ -62,9 +64,37 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => '通知',
+        'topic_auto_subscribe' => '作成した新しいフォーラムトピックに関する通知を自動的に有効にします',
+    ],
+
     'oauth' => [
-        'title' => '',
-        'authorized_clients' => '',
+        'authorized_clients' => '認証済みのクライアント',
+        'title' => 'OAuth',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'キーボード',
+        'mouse' => 'マウス',
+        'tablet' => 'ペンタブ',
+        'title' => 'プレイスタイル',
+        'touch' => 'タッチスクリーン',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'フレンドリストにいない人からのプライベートメッセージをブロックする',
+        'hide_online' => 'オンライン状態を隠す',
+        'title' => 'プライバシー',
+    ],
+
+    'security' => [
+        'current_session' => '現在',
+        'end_session' => 'セッション終了',
+        'end_session_confirmation' => 'このデバイスでのセッションが終了します。本当によろしいですか？',
+        'last_active' => '最終ログイン：',
+        'title' => 'セキュリティ',
+        'web_sessions' => 'webセッション',
     ],
 
     'update_email' => [
@@ -77,31 +107,12 @@ return [
         'update' => '更新',
     ],
 
-    'playstyles' => [
-        'title' => 'プレイスタイル',
-        'mouse' => 'マウス',
-        'keyboard' => 'キーボード',
-        'tablet' => 'ペンタブ',
-        'touch' => 'タッチスクリーン',
+    'verification_completed' => [
+        'text' => '',
+        'title' => '',
     ],
 
-    'privacy' => [
-        'title' => 'プライバシー',
-        'friends_only' => 'フレンドリストにいない人からのプライベートメッセージをブロックする',
-        'hide_online' => 'オンライン状態を隠す',
-    ],
-
-    'notifications' => [
-        'title' => '通知',
-        'topic_auto_subscribe' => '作成した新しいフォーラムトピックに関する通知を自動的に有効にします',
-    ],
-
-    'security' => [
-        'current_session' => '現在',
-        'end_session' => 'セッション終了',
-        'end_session_confirmation' => 'このデバイスでのセッションが終了します。本当によろしいですか？',
-        'last_active' => '最終ログイン：',
-        'title' => 'セキュリティ',
-        'web_sessions' => 'webセッション',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

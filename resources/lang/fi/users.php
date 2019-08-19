@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Kansikuvan kuuluisi olla 2800x620 pikseliä',
                     'too_large' => 'Lähetetty tiedosto on liian iso.',
                     'unsupported_format' => 'Tiedostomuotoa ei tueta.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -257,6 +262,11 @@ return [
                         'revoke' => 'Kudosuhylkäys käyttäjältä :giver keskustelussa :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'minä!',
@@ -333,6 +343,11 @@ return [
             'description' => '<strong>Minä!</strong> on henkilökohtainen alue profiilisivullasi, jota voit muokata.',
             'edit_big' => 'Muokkaa minua!',
             'placeholder' => 'Kirjoita sivun sisältö tähän',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Mukana toiminnassa :link',
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Tilin vahvistaminen',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];
