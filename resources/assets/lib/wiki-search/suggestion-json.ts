@@ -17,13 +17,13 @@
  */
 
 export default interface SuggestionJSON {
-  title: string;
+  edit_url: string;
   highlighted_title: string;
-  subtitle: string;
+  legal_translation: boolean;
+  outdated: boolean;
   path: string;
   source_path: string;
-  edit_url: string;
-  outdated: boolean;
-  legal_translation: boolean;
+  subtitle: string;
   tags: string[];
+  title: string;
 }

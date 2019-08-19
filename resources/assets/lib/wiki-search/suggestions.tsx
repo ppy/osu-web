@@ -17,22 +17,21 @@
  */
 
 import * as React from 'react';
-import SuggestionJSON from './suggestion-json';
 import { Spinner } from 'spinner';
 import Suggestion from './suggestion';
+import SuggestionJSON from './suggestion-json';
 
 interface Props {
-  visible: boolean;
+  highlighted: number|null;
   loading: boolean;
   suggestions: SuggestionJSON[];
-  highlighted: number|null;
+  visible: boolean;
 }
 
 export default class Suggestions extends React.Component<Props, {}> {
   render() {
     return (
-      <div
-        className={osu.classWithModifiers('wiki-search-suggestions', [this.props.visible ? 'visible' : ''])}>
+      <div className={osu.classWithModifiers('wiki-search-suggestions', [this.props.visible ? 'visible' : ''])}>
 
         {this.props.loading &&
           <div className='wiki-search-suggestions__spinner'>
@@ -45,7 +44,8 @@ export default class Suggestions extends React.Component<Props, {}> {
             key={i}
             position={i}
             suggestion={s}
-            highlighted={i == this.props.highlighted}/>
+            highlighted={i === this.props.highlighted}
+          />,
         )}
 
         {this.props.highlighted == null &&
@@ -54,6 +54,6 @@ export default class Suggestions extends React.Component<Props, {}> {
           </div>
         }
       </div>
-    )
+    );
   }
 }

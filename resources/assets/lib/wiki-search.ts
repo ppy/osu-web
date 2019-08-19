@@ -18,4 +18,4 @@
 
 import Main from 'wiki-search/main';
 
-reactTurbolinks.registerPersistent('wiki-search', Main)
+reactTurbolinks.registerPersistent('wiki-search', Main);

@@ -20,12 +20,16 @@ import * as React from 'react';
 import SuggestionJSON from './suggestion-json';
 
 interface Props {
-  suggestion: SuggestionJSON;
   highlighted: boolean;
   position: number;
+  suggestion: SuggestionJSON;
 }
 
 export default class Suggestion extends React.PureComponent<Props, {}> {
+  onClick = (e: React.MouseEvent) => {
+    this.publishEvent('select', e);
+  }
+
   onMouseEnter = (e: React.MouseEvent) => {
     this.publishEvent('mouseenter', e);
   }
@@ -34,12 +38,8 @@ export default class Suggestion extends React.PureComponent<Props, {}> {
     this.publishEvent('mouseleave', e);
   }
 
-  onClick = (e: React.MouseEvent) => {
-    this.publishEvent('select', e);
-  }
-
   publishEvent(type: string, e: React.MouseEvent) {
-    let el = e.target as HTMLDivElement;
+    const el = e.target as HTMLDivElement;
 
     if (el.dataset.position != null) {
       $.publish(`suggestion:${type}`, el.dataset.position);
@@ -53,12 +53,15 @@ export default class Suggestion extends React.PureComponent<Props, {}> {
         data-position={this.props.position}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
-        onClick={this.onClick}>
+        onClick={this.onClick}
+      >
         <span
           className='wiki-search-suggestions__suggestion-text'
-          dangerouslySetInnerHTML={{__html: this.props.suggestion.highlighted_title}}/>
+          dangerouslySetInnerHTML={{__html: this.props.suggestion.highlighted_title}}
+        />
         <span
-          className={osu.classWithModifiers('wiki-search-suggestions__suggestion-text', ['path'])}>
+          className={osu.classWithModifiers('wiki-search-suggestions__suggestion-text', ['path'])}
+        >
           {osu.trans('wiki.search.path')} {this.props.suggestion.subtitle}
         </span>
       </div>

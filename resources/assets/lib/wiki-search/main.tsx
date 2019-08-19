@@ -16,126 +16,37 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as React from 'react';
 import * as _ from 'lodash';
+import * as React from 'react';
 import SuggestionJSON from './suggestion-json';
 import Suggestions from './suggestions';
 
 interface State {
+  highlightedSuggestion: number|null;
   loading: boolean;
   suggestions: SuggestionJSON[];
-  highlightedSuggestion: number|null;
 }
 
 export default class Main extends React.Component<{}, State> {
-  xhr: JQuery.jqXHR|null;
   input = React.createRef<HTMLInputElement>();
   suggestionsDebounced = _.debounce(() => this.getSuggestions(), 500);
+  xhr: JQuery.jqXHR|null;
 
-  constructor (props: {}) {
+  constructor(props: {}) {
     super(props);
 
     this.state = {
+      highlightedSuggestion: null,
       loading: false,
       suggestions: [],
-      highlightedSuggestion: null,
     };
 
     this.xhr = null;
     this.input = React.createRef();
   }
 
-  getSuggestions = () => {
-    let input = this.input.current;
-    let query: string = '';
-
-    if (input) {
-      query = input.value;
-    }
-
-    this.xhr = $.ajax(laroute.route('search.suggestions'), {
-      method: 'GET',
-      data: {
-        mode: 'wiki_page',
-        query: query
-      }
-    }).done((xhr, status) => {
-      this.setState({
-        suggestions: xhr.wiki_page.slice(0, 10)
-      })
-    }).always(() => {
-      this.setState({
-        loading: false
-      });
-    });
-  }
-
-  hideSuggestions = () => {
-    this.setState({
-      suggestions: [],
-      highlightedSuggestion: null,
-    });
-  }
-
-  shiftSuggestion = (delta: number) => {
-    if (this.state.suggestions.length == 0 || (this.state.highlightedSuggestion == null && delta == -1)) {
-      return;
-    }
-
-    let newPosition: number|null = this.state.highlightedSuggestion != null ? this.state.highlightedSuggestion + delta : 0;
-
-    if (newPosition > this.state.suggestions.length - 1) {
-      newPosition--;
-    } else if (newPosition == - 1) {
-      newPosition = null;
-    }
-
-    this.setState({
-      highlightedSuggestion: newPosition
-    });
-  }
-
-  highlightSuggestion = (e: React.KeyboardEvent, position: number) => {
-    console.log(position);
-
-    this.setState({
-      highlightedSuggestion: position
-    });
-  }
-
-  resetHighlight = () => {
-    this.setState({
-      highlightedSuggestion: null
-    });
-  }
-
-  selectHighlightedSuggestion = () => {
-    if (this.state.highlightedSuggestion == null) {
-      return;
-    }
-
-    Turbolinks.visit(laroute.route('wiki.show', {
-      page: this.state.suggestions[this.state.highlightedSuggestion].path
-    }));
-  }
-
-  performSearch = () => {
-    let input = this.input.current;
-
-    if (input) {
-      if (input.value == '') {
-        return;
-      }
-
-      Turbolinks.visit(laroute.route('search', {
-        mode: 'wiki_page',
-        query: input.value
-      }));
-    }
-  }
-
   componentDidMount() {
-    let input = this.input.current;
+    const input = this.input.current;
 
     if (input) {
       input.focus();
@@ -155,15 +66,53 @@ export default class Main extends React.Component<{}, State> {
     }
   }
 
-  onInput = () => {
-    let input = this.input.current;
+  getSuggestions = () => {
+    const input = this.input.current;
+    let query: string = '';
 
     if (input) {
-      let inputNotEmpty = input.value != '';
+      query = input.value;
+    }
+
+    this.xhr = $.ajax(laroute.route('search.suggestions'), {
+      data: {
+        mode: 'wiki_page',
+        query,
+      },
+      method: 'GET',
+    }).done((xhr, status) => {
+      this.setState({
+        suggestions: xhr.wiki_page.slice(0, 10),
+      });
+    }).always(() => {
+      this.setState({
+        loading: false,
+      });
+    });
+  }
+
+  hideSuggestions = () => {
+    this.setState({
+      highlightedSuggestion: null,
+      suggestions: [],
+    });
+  }
+
+  highlightSuggestion = (e: React.KeyboardEvent, position: number) => {
+    this.setState({
+      highlightedSuggestion: position,
+    });
+  }
+
+  onInput = () => {
+    const input = this.input.current;
+
+    if (input) {
+      const inputNotEmpty = input.value !== '';
 
       this.setState({
+        loading: inputNotEmpty,
         suggestions: [],
-        loading: inputNotEmpty
       });
 
       if (inputNotEmpty) {
@@ -195,6 +144,21 @@ export default class Main extends React.Component<{}, State> {
     }
   }
 
+  performSearch = () => {
+    const input = this.input.current;
+
+    if (input) {
+      if (input.value === '') {
+        return;
+      }
+
+      Turbolinks.visit(laroute.route('search', {
+        mode: 'wiki_page',
+        query: input.value,
+      }));
+    }
+  }
+
   render() {
     return (
       <div className='wiki-search'>
@@ -203,7 +167,8 @@ export default class Main extends React.Component<{}, State> {
           ref={this.input}
           placeholder={osu.trans('common.input.search')}
           onInput={this.onInput}
-          onKeyDown={this.onKeyDown}/>
+          onKeyDown={this.onKeyDown}
+        />
 
         <span className='wiki-search__button fa fa-search' onClick={this.performSearch}/>
 
@@ -211,8 +176,44 @@ export default class Main extends React.Component<{}, State> {
           loading={this.state.loading}
           suggestions={this.state.suggestions}
           visible={this.state.suggestions.length > 0}
-          highlighted={this.state.highlightedSuggestion}/>
+          highlighted={this.state.highlightedSuggestion}
+        />
       </div>
-    )
+    );
   }
+
+  resetHighlight = () => {
+    this.setState({
+      highlightedSuggestion: null,
+    });
+  }
+
+  selectHighlightedSuggestion = () => {
+    if (this.state.highlightedSuggestion == null) {
+      return;
+    }
+
+    Turbolinks.visit(laroute.route('wiki.show', {
+      page: this.state.suggestions[this.state.highlightedSuggestion].path,
+    }));
+  }
+
+  shiftSuggestion = (delta: number) => {
+    if (this.state.suggestions.length === 0 || (this.state.highlightedSuggestion === null && delta === -1)) {
+      return;
+    }
+
+    let newPosition: number|null = this.state.highlightedSuggestion != null ? this.state.highlightedSuggestion + delta : 0;
+
+    if (newPosition > this.state.suggestions.length - 1) {
+      newPosition--;
+    } else if (newPosition === - 1) {
+      newPosition = null;
+    }
+
+    this.setState({
+      highlightedSuggestion: newPosition,
+    });
+  }
+
 }
