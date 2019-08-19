@@ -28,9 +28,9 @@
 
   @keyframes stg-circle-glow {
     // this is basically .default-box-shadow() animated to have a less intense shadow with an added glow when pulsating
-    0%   { box-shadow: 0 1px @box-shadow-radius @box-shadow-color, inset 0 0 0px white;  }
+    0%   { box-shadow: 0 1px @box-shadow-radius @box-shadow-color, inset 0 0 0 white;  }
     20%  { box-shadow: 0 1px @box-shadow-radius lighten(@box-shadow-color, 70%), inset 0 0 5px white;  }
-    80%  { box-shadow: 0 1px @box-shadow-radius @box-shadow-color, inset 0 0 0px white;  }
+    80%  { box-shadow: 0 1px @box-shadow-radius @box-shadow-color, inset 0 0 0 white;  }
   }
 
   @keyframes stg-heart-pulsate {
@@ -40,9 +40,9 @@
   }
 
   @keyframes stg-heart-glow {
-    0%   { text-shadow: 0 0 0px white; }
+    0%   { text-shadow: 0 0 0 white; }
     20%  { text-shadow: 0 0 10px white; }
-    80%  { text-shadow: 0 0 0px white; }
+    80%  { text-shadow: 0 0 0 white; }
   }
 
   @keyframes stg-fill-stripes {
@@ -51,7 +51,7 @@
   }
 
   @keyframes stg-fill-pour {
-    0%   { width: 0%; }
+    0%   { width: 0; }
   }
 
   background-color: #eee;

@@ -722,7 +722,7 @@ body {
   transition-duration: 230ms;
 }
 .tocify-wrapper .tocify-focus {
-  box-shadow: 0px 1px 0px #000;
+  box-shadow: 0 1px 0 #000;
   background-color: #2467af;
   color: #fff;
 }
@@ -863,7 +863,7 @@ body {
   padding: 0 28px;
   box-sizing: border-box;
   display: block;
-  text-shadow: 0px 1px 0px #fff;
+  text-shadow: 0 1px 0 #fff;
 }
 .content > ul,
 .content > ol {
@@ -1013,7 +1013,7 @@ body {
   float: right;
   clear: right;
   box-sizing: border-box;
-  text-shadow: 0px 1px 2px rgba(0,0,0,0.4);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
 }
 .content pre > p,
 .content blockquote > p {
