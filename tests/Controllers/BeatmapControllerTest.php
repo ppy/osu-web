@@ -30,6 +30,13 @@ class BeatmapControllerTest extends TestCase
         $this->beatmap = factory(Beatmap::class)->states('approved')->create();
     }
 
+    public function testInvalidMode()
+    {
+        $this->json('GET', route('beatmaps.scores', ['id' => $this->beatmap->beatmap_id]), [
+            'mode' => 'nope',
+        ])->assertStatus(404);
+    }
+
     /**
      * Checks whether HTTP 403 is thrown when a logged out
      * user tries to access the non-general (country or friend ranking)

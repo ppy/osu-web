@@ -68,7 +68,7 @@
   }
 
   &__row {
-    background-color: fade(#000, 50%);
+    background-color: .osu-hsla(@osu-colour-b6, 0.5)[@hsla];
     margin-top: 1px;
     padding: 7.5px 15px;
     display: flex;
@@ -87,8 +87,8 @@
       padding: 10px;
       cursor: pointer;
 
-      &:not(:hover) {
-        background-color: fade(#000, 25%);
+      &:hover {
+        background-color: .osu-hsla(@osu-colour-b6, 0.75)[@hsla];
       }
     }
 

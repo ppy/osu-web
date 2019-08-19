@@ -45,17 +45,26 @@ export class UserFilter extends React.PureComponent
 
 
   mapUserProperties: (user) ->
+    default_group: user.default_group
+    groups: user.groups
     id: user.id
     text: user.username
 
 
   renderItem: ({ cssClasses, children, item, onClick }) =>
+    userBadge = if @isOwner(item) then 'mapper' else osu.userGroupBadge(item)
+    cssClasses += " beatmap-discussions-user-filter__item--#{userBadge}" if userBadge?
+
     a
       className: cssClasses
       href: BeatmapDiscussionHelper.url user: item?.id, true
       key: item?.id
       onClick: onClick
       children
+
+
+  isOwner: (user) =>
+    user? && user.id == @props.ownerId
 
 
   onItemSelected: (item) ->

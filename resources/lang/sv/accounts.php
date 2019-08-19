@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Profilbild',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Profil',
 
             'user' => [
+                'user_discord' => '',
                 'user_from' => 'nuvarande position',
                 'user_interests' => 'intressen',
                 'user_msnm' => '',
                 'user_occ' => 'sysselsättning',
                 'user_twitter' => '',
                 'user_website' => 'hemsida',
-                'user_discord' => '',
             ],
         ],
 
@@ -60,6 +62,39 @@ return [
             'title' => 'Signatur',
             'update' => 'uppdatera',
         ],
+    ],
+
+    'notifications' => [
+        'title' => '',
+        'topic_auto_subscribe' => '',
+    ],
+
+    'oauth' => [
+        'authorized_clients' => '',
+        'title' => '',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'tangentbord',
+        'mouse' => 'mus',
+        'tablet' => 'platta',
+        'title' => 'Spelstil',
+        'touch' => 'pekskärm',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'Blockera privata meddelanden från icke-vänner',
+        'hide_online' => '',
+        'title' => 'Sekretess',
+    ],
+
+    'security' => [
+        'current_session' => '',
+        'end_session' => '',
+        'end_session_confirmation' => '',
+        'last_active' => '',
+        'title' => '',
+        'web_sessions' => '',
     ],
 
     'update_email' => [
@@ -72,26 +107,12 @@ return [
         'update' => 'uppdatera',
     ],
 
-    'playstyles' => [
-        'title' => 'Spelstil',
-        'mouse' => 'mus',
-        'keyboard' => 'tangentbord',
-        'tablet' => 'platta',
-        'touch' => 'pekskärm',
-    ],
-
-    'privacy' => [
-        'title' => 'Sekretess',
-        'friends_only' => 'Blockera privata meddelanden från icke-vänner',
-        'hide_online' => '',
-    ],
-
-    'security' => [
-        'current_session' => '',
-        'end_session' => '',
-        'end_session_confirmation' => '',
-        'last_active' => '',
+    'verification_completed' => [
+        'text' => '',
         'title' => '',
-        'web_sessions' => '',
+    ],
+
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

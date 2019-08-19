@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'Tukija',
         'joined_at' => 'Liittyi :date',
         'lastvisit' => 'Nähty viimeksi :date',
+        'lastvisit_online' => 'Tällä hetkellä paikalla',
         'missingtext' => 'Taisit tehdä kirjoitusvirheen! (tai käyttäjällä on porttikielto)',
         'origin_country' => 'Maasta :country',
         'page_description' => 'osu! - Kaikki mitä olet koskaan halunnut tietää :username:sta!',
@@ -148,10 +149,14 @@ return [
                     'button' => 'Lataa kuva',
                     'dropzone' => 'Pudota tiedosto tähän ladataksesi',
                     'dropzone_info' => 'Voit myös lähettää kuvan pudottamalla sen tähän',
-                    'restriction_info' => "Kuvien lähetys käytössä vain <a href='".route('store.products.show', 'supporter-tag')."'target='_blank'>vain Tukijoille</a>",
                     'size_info' => 'Kansikuvan kuuluisi olla 2800x620 pikseliä',
                     'too_large' => 'Lähetetty tiedosto on liian iso.',
                     'unsupported_format' => 'Tiedostomuotoa ei tueta.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -218,7 +223,6 @@ return [
                 'recent_entries' => 'Viimeisimmät Kudosut',
                 'title' => 'Kudosu!',
                 'total' => 'Ansaittu Kudosu',
-                'total_info' => 'Perustuu käyttäjän tekemään vaikutukseen beatmappien moderoinnissa. Katso <a href="'.osu_url('user.kudosu').'">tämä sivu</a> saadaksesi lisätietoja.',
 
                 'entry' => [
                     'amount' => ':amount kudosun',
@@ -257,6 +261,11 @@ return [
                         'reset' => 'Kudosunollaus käyttäjältä :giver keskustelussa :post',
                         'revoke' => 'Kudosuhylkäys käyttäjältä :giver keskustelussa :post',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -334,7 +343,11 @@ return [
             'description' => '<strong>Minä!</strong> on henkilökohtainen alue profiilisivullasi, jota voit muokata.',
             'edit_big' => 'Muokkaa minua!',
             'placeholder' => 'Kirjoita sivun sisältö tähän',
-            'restriction_info' => "Sinun pitää olla <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'> Tukija</a> avataksesi tämän toiminnon.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Mukana toiminnassa :link',
@@ -361,7 +374,9 @@ return [
             'total_score' => 'Kokonaispisteet',
         ],
     ],
+
     'status' => [
+        'all' => 'Kaikki',
         'online' => 'Paikalla',
         'offline' => 'Poissa',
     ],
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Tilin vahvistaminen',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

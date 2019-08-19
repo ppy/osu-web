@@ -111,9 +111,21 @@ class ChangelogController extends Controller
         if (request('key') === 'id') {
             $build = Build::default()->findOrFail($version);
         } else {
+            // Search by exact version first.
             $build = Build::default()->where('version', '=', $version)->first();
         }
 
+        // Failing that, check if $version is actually a stream name.
+        if ($build === null) {
+            $stream = UpdateStream::where('name', '=', $version)->first();
+
+            if ($stream !== null) {
+                $build = $stream->builds()->default()->orderBy('build_id', 'desc')->first();
+            }
+        }
+
+        // When there's no build found, strip everything but numbers and dots then search again.
+        // 404 if still nothing found.
         if ($build === null) {
             $normalizedVersion = preg_replace('#[^0-9.]#', '', $version);
 

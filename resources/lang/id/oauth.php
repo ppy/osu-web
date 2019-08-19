@@ -33,6 +33,18 @@ return [
         ],
     ],
 
+    'authorized-clients' => [
+        'confirm_revoke' => 'Apakah Anda yakin akan mencabut izin ini?',
+        'scopes_title' => 'Aplikasi ini dapat:',
+        'owned_by' => 'Dimiliki oleh :user',
+        'none' => 'Tidak ada klien',
+
+        'revoked' => [
+            'false' => 'Cabut Akses',
+            'true' => 'Akses Dicabut',
+        ],
+    ],
+
     'login' => [
         'download' => 'Klik di sini untuk mengunduh osu! dan membuat akun',
         'label' => 'Pertama-tama, mari masuk ke dalam akun Anda!',

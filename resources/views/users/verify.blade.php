@@ -16,6 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
+    // Verification doesn't inherit from App\Controller, thus these variables aren't set. Thus we set them here:
     'currentSection' => 'error',
     'currentAction' => '401',
 ])
@@ -35,5 +36,5 @@
 @endsection
 
 @section('user-verification-box')
-    @include('users._verify_box', ['email' => Auth::user()->user_email])
+    @include('users._verify_box', compact('email'))
 @endsection

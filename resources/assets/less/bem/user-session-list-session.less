@@ -28,10 +28,10 @@
   }
 
   &__current-badge {
-    background: #444;
+    background: @osu-colour-b6;
     padding: 2px 8px;
     border-radius: 13px;
-    color: #ccc;
+    color: @osu-colour-f1;
     font-size: 10px;
     text-transform: uppercase;
     margin-left: 5px;
@@ -47,7 +47,7 @@
     flex-direction: row;
     flex-grow: 1;
     justify-content: space-between;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid @osu-colour-b5;
 
     @media @desktop {
       align-items: center;
@@ -70,6 +70,8 @@
   }
 
   &__last-active {
+    color: @osu-colour-f1;
+
     @media @desktop {
       width: 50%;
       padding-left: 20px;
@@ -82,7 +84,7 @@
 
   &__logout {
     .reset-input();
-    .link-gray-light();
+    .link-inverted();
 
     flex-shrink: 0;
     margin-right: 5px;

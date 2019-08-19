@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Rendezve:',
             'created_at' => 'Létrehozás ideje',
             'timeline' => 'Idővonal',
             'updated_at' => 'Utolsó frissítés',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Bármelyik',
-        'ranked-approved' => 'Rangsorolt & Jóváhagyott',
         'approved' => 'Jóváhagyott',
-        'qualified' => 'Kvalifikált',
-        'loved' => 'Loved',
-        'faves' => 'Kedvencek',
-        'pending' => 'Függőben lévő & WIP',
+        'favourites' => '',
         'graveyard' => 'Temető',
-        'my-maps' => 'Saját Map-jeim',
+        'leaderboard' => '',
+        'loved' => 'Loved',
+        'mine' => '',
+        'pending' => 'Függőben lévő & WIP',
+        'qualified' => 'Kvalifikált',
+        'ranked' => '',
     ],
     'genre' => [
         'any' => 'Bármelyik',

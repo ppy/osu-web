@@ -27,7 +27,7 @@ use Request;
 
 class ChatController extends Controller
 {
-    protected $section = 'home';
+    protected $section = 'community';
     protected $actionPrefix = 'chat-';
 
     public function __construct()

@@ -21,6 +21,7 @@
 return [
     'error' => [
         'chat' => [
+            'empty' => '',
             'limit_exceeded' => 'Trimiți mesaje prea repede, te rugăm să aștepți puțin înainte de a trimite unul nou.',
             'too_long' => 'Mesajul pe care dorești să-l trimiți este prea lung.',
         ],

@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Erweiterte Suche',
         'button' => 'Suchen',
         'empty_result' => 'Nichts gefunden!',
+        'keyword_required' => 'Ein Suchbegriff ist erforderlich',
         'placeholder' => 'Zum Suchen Text eingeben',
         'title' => 'Suchergebnisse',
 

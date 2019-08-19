@@ -22,6 +22,7 @@ namespace App\Models;
 
 use App\Exceptions\ChangeUsernameException;
 use App\Exceptions\ModelNotSavedException;
+use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
 use App\Libraries\UsernameValidation;
@@ -170,6 +171,7 @@ use Request;
  * @property string $user_website
  * @property string $username
  * @property \Illuminate\Database\Eloquent\Collection $usernameChangeHistory UsernameChangeHistory
+ * @property \Illuminate\Database\Eloquent\Collection $usernameChangeHistoryPublic publically visible UsernameChangeHistory containing only user_id and username_last
  * @property string $username_clean
  * @property string|null $username_previous
  * @property int|null $userpage_post_id
@@ -270,7 +272,7 @@ class User extends Model implements AuthenticatableContract
 
     public function changeUsername(string $newUsername, string $type) : UsernameChangeHistory
     {
-        $errors = $this->validateChangeUsername($newUsername);
+        $errors = $this->validateChangeUsername($newUsername, $type);
         if ($errors->isAny()) {
             throw new ChangeUsernameException($errors);
         }
@@ -334,6 +336,7 @@ class User extends Model implements AuthenticatableContract
 
             $skipValidations = in_array($type, ['inactive', 'revert'], true);
             $this->saveOrExplode(['skipValidations' => $skipValidations]);
+            dispatch(new EsIndexDocument($this));
 
             return $history;
         });
@@ -385,19 +388,40 @@ class User extends Model implements AuthenticatableContract
 
     public function getUsernameAvailableAt() : Carbon
     {
-        if ($this->group_id !== 2 || $this->user_type === 1) {
+        $playCount = $this->playCount();
+
+        if ($this->group_id !== 2) {
             //reserved usernames
-            return Carbon::now()->addYears(10);
+            return Carbon::now()->addYears(10);  //This will always be in the future, which is wanted
         }
 
+        if ($this->user_type === 1) {
+            $minDays = 0;
+            $expMod = 0.35;
+            $linMod = 0.75;
+        } else {
+            $minDays = static::INACTIVE_DAYS;
+            $expMod = 1;
+            $linMod = 1;
+        }
+
+        // This is a exponential decay function with the identity 1-e^{-$playCount}.
+        // The constant multiplier of 1580 causes the formula to flatten out at around 1580 days (~4.3 years).
+        // $playCount is then divided by the constant value 5900 causing it to flatten out at about 40,000 plays.
+        // A linear bonus of $playCount * 8 / 5900 is added to reward long-term players.
+        // Furthermore, when the user is restricted, the exponential decay function and the linear bonus are lowered.
+        // An interactive graph of the formula can be found at https://www.desmos.com/calculator/s7bxytxbbt
+
         return $this->user_lastvisit
-            ->addDays(static::INACTIVE_DAYS) //base inactivity period for all accounts
-            ->addDays($this->playCount() * 0.75);    //bonus based on playcount
+                ->addDays(intval(
+                    $minDays +
+                    1580 * (1 - pow(M_E, $playCount * $expMod * -1 / 5900)) +
+                    ($playCount * $linMod * 8 / 5900)));
     }
 
-    public function validateChangeUsername(string $username)
+    public function validateChangeUsername(string $username, string $type = 'paid')
     {
-        return (new ChangeUsername($this, $username))->validate();
+        return (new ChangeUsername($this, $username, $type))->validate();
     }
 
     // verify that an api key is correct
@@ -436,6 +460,24 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $user->first();
+    }
+
+    public static function lookupWithHistory($usernameOrId, $type = null, $findAll = false)
+    {
+        $user = static::lookup($usernameOrId, $type, $findAll);
+
+        if ($user !== null) {
+            return $user;
+        }
+
+        $change = UsernameChangeHistory::visible()
+            ->where('username_last', $usernameOrId)
+            ->orderBy('change_id', 'desc')
+            ->first();
+
+        if ($change !== null) {
+            return static::lookup($change->user_id, 'id');
+        }
     }
 
     public function getCountryAcronymAttribute($value)
@@ -687,11 +729,6 @@ class User extends Model implements AuthenticatableContract
     public function isLimitedBN()
     {
         return $this->isGroup(UserGroup::GROUPS['bng_limited']);
-    }
-
-    public function isHax()
-    {
-        return $this->isGroup(UserGroup::GROUPS['hax']);
     }
 
     public function isDev()
@@ -1131,6 +1168,15 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(UsernameChangeHistory::class, 'user_id');
     }
 
+    public function usernameChangeHistoryPublic()
+    {
+        return $this->usernameChangeHistory()
+            ->visible()
+            ->select(['user_id', 'username_last'])
+            ->withPresent('username_last')
+            ->orderBy('timestamp', 'ASC');
+    }
+
     public function relations()
     {
         return $this->hasMany(UserRelation::class, 'user_id');
@@ -1410,7 +1456,7 @@ class User extends Model implements AuthenticatableContract
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
             $supportLength = 0;
 
-            foreach ($this->supporterTags as $support) {
+            foreach ($this->supporterTagPurchases as $support) {
                 if ($support->cancel === true) {
                     $supportLength -= $support->length;
                 } else {
@@ -1457,7 +1503,7 @@ class User extends Model implements AuthenticatableContract
             return pow($stats->rank_score, 0.4) * 0.195;
         }
 
-        return 0.0;
+        return 1.0;
     }
 
     public function refreshForumCache($forum = null, $postsChangeCount = 0)
@@ -1496,6 +1542,15 @@ class User extends Model implements AuthenticatableContract
         return $query
             ->where('user_allow_viewonline', true)
             ->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
+    }
+
+    public function scopeEagerloadForListing($query)
+    {
+        return $query->with([
+            'country',
+            'supporterTagPurchases',
+            'userProfileCustomization',
+        ]);
     }
 
     public function checkPassword($password)
@@ -1600,6 +1655,24 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $this->memoized[__FUNCTION__];
+    }
+
+    /**
+     * User's previous usernames
+     *
+     * @param bool $includeCurrent true if previous usernames matching the the current one should be included.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection string
+     */
+    public function previousUsernames(bool $includeCurrent = false)
+    {
+        $history = $this->usernameChangeHistoryPublic;
+
+        if (!$includeCurrent) {
+            $history = $history->where('username_last', '<>', $this->username);
+        }
+
+        return $history->pluck('username_last');
     }
 
     public function profileCustomization()

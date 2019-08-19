@@ -40,7 +40,7 @@ return [
         'edited' => '最後由 :editor 編輯於 :update_time 。',
         'kudosu_denied' => 'kudosu 被收回',
         'message_placeholder_deleted_beatmap' => '該難度已被刪除，無法繼續討論',
-        'message_placeholder_locked' => '',
+        'message_placeholder_locked' => '此圖譜的討論已被禁用。',
         'message_type_select' => '選擇回覆類型',
         'reply_notice' => '按下 Enter 以回覆',
         'reply_placeholder' => '在此處輸入您的回覆',
@@ -62,13 +62,13 @@ return [
 
         'lock' => [
             'button' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => '鎖定討論',
+                'unlock' => '解鎖討論',
             ],
 
             'prompt' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => '鎖定的原因',
+                'unlock' => '確認解鎖？',
             ],
         ],
 
@@ -116,9 +116,8 @@ return [
         ],
 
         'sort' => [
-            '_' => '排序：',
             'created_at' => '建立時間',
-            'timeline' => '',
+            'timeline' => '時間軸',
             'updated_at' => '最後更新',
         ],
 
@@ -141,8 +140,8 @@ return [
         ],
 
         'votes' => [
-            'up' => '',
-            'down' => '',
+            'up' => '正評此討論',
+            'down' => '負評此討論',
         ],
     ],
 
@@ -191,7 +190,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => '你確定嗎？提出新的問題會重置提名。',
-            'disqualify' => '',
+            'disqualify' => '你確定嗎？這個會移除圖譜從進榜和重設提名進度。',
         ],
     ],
 
@@ -214,16 +213,16 @@ return [
                 'played' => '玩過',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
+                'title' => '曲名',
+                'artist' => '演出者',
                 'difficulty' => '難度',
-                'favourites' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
+                'favourites' => '我的最愛',
+                'updated' => '已更新',
+                'ranked' => '進榜',
+                'rating' => '評分',
                 'plays' => '遊玩次數',
-                'relevance' => '',
-                'nominations' => '',
+                'relevance' => '相關度',
+                'nominations' => '提名狀態',
             ],
             'supporter_filter_quote' => [
                 '_' => '按 :filters 篩選需先成為 :link',
@@ -233,7 +232,7 @@ return [
     ],
     'general' => [
         'recommended' => '推薦難度',
-        'converts' => '包括转谱',
+        'converts' => '包括轉換圖譜',
     ],
     'mode' => [
         'any' => '所有',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => '所有',
-        'ranked-approved' => '進榜/批准',
         'approved' => '批准',
-        'qualified' => '提名',
-        'loved' => 'Loved',
-        'faves' => '我的最愛',
-        'pending' => 'Pending & WIP',
+        'favourites' => '收藏',
         'graveyard' => '拋棄',
-        'my-maps' => '我的圖譜',
+        'leaderboard' => '擁有排行榜',
+        'loved' => 'Loved',
+        'mine' => '我的圖譜',
+        'pending' => 'Pending & WIP',
+        'qualified' => '提名',
+        'ranked' => '已進榜',
     ],
     'genre' => [
         'any' => '所有',
@@ -324,7 +324,7 @@ return [
         'D' => 'D',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => '遊玩次數：:count',
+        'favourites' => '收藏次數：:count',
     ],
 ];

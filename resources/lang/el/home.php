@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Σύνθετη αναζήτηση',
         'button' => 'Αναζήτηση',
         'empty_result' => 'Δεν βρέθηκε τίποτα!',
+        'keyword_required' => '',
         'placeholder' => 'πληκτρολογήστε για αναζήτηση',
         'title' => 'Αναζήτηση',
 

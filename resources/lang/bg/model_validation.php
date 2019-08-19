@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Дискусията е заключена.',
         'first_post' => 'Не можете да изтриете началната публикация.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Невалидна трудност зададена.',
         'invalid_beatmapset_id' => 'Невалиден бийтмап зададен.',
         'locked' => 'Дискусията е заключена.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'Трябва да влезете в профила си за да надъхате.',
@@ -53,6 +62,14 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Не е позволено отговарянето на изтрит коментар.',
+
+        'attributes' => [
+            'message' => '',
+        ],
+    ],
+
+    'follow' => [
+        'invalid' => '',
     ],
 
     'forum' => [
@@ -69,16 +86,30 @@ return [
             'beatmapset_post_no_delete' => 'Изтриването на метаданните на този бийтмап не е позволено.',
             'beatmapset_post_no_edit' => 'Редактирането на метаданните на този бийтмап не е позволено.',
             'only_quote' => 'Вашият отговор съдържа само цитат.',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Дублираната опция не е позволена.',
             'grace_period_expired' => 'Не може да редактирате анкета след повече от :limit часа',
-            'hiding_results_forever' => '',
+            'hiding_results_forever' => 'Скриването на резултатите на безкрайна анкета е невъзможно.',
             'invalid_max_options' => 'Изборите на потребителя не трябва да надвишават броя на налични опции.',
             'minimum_one_selection' => 'Изисква се минимум една опция от потребителя.',
             'minimum_two_options' => 'Необходими са поне две опции.',
             'too_many_options' => 'Достигнат е максимум брой позволени опции.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -111,6 +142,12 @@ return [
         'wrong_password_confirmation' => 'Потвърждението на паролата не съотвества.',
         'too_long' => 'Превишена максимална дължина - може да бъде само до :limit символа.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
             'restricted' => '',
             'supporter_required' => [
@@ -123,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "Не може да докладвате себе си!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

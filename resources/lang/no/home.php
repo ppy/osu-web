@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Avansert søk',
         'button' => 'Søk',
         'empty_result' => 'Ingenting funnet!',
+        'keyword_required' => 'Et søkeord er nødvendig',
         'placeholder' => 'skriv for å søke',
         'title' => 'Søk',
 

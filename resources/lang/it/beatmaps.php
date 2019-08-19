@@ -40,14 +40,14 @@ return [
         'edited' => 'Ultima modifica di :editor :update_time',
         'kudosu_denied' => 'Negato dall\'ottenimento di kudosu.',
         'message_placeholder_deleted_beatmap' => 'La difficoltà è stata eliminata quindi non può più essere discussa.',
-        'message_placeholder_locked' => '',
+        'message_placeholder_locked' => 'La discussione per questa beatmap è stata disabilitata.',
         'message_type_select' => 'Seleziona il tipo di commento',
         'reply_notice' => 'Premi invio per rispondere.',
         'reply_placeholder' => 'Scrivi la tua risposta qui',
         'require-login' => 'Per favore effettua il login per postare o rispondere',
         'resolved' => 'Risolto',
         'restore' => 'ripristina',
-        'show_deleted' => '',
+        'show_deleted' => 'Mostra eliminati',
         'title' => 'Discussioni',
 
         'collapse' => [
@@ -62,13 +62,13 @@ return [
 
         'lock' => [
             'button' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'Blocca discussione',
+                'unlock' => 'Sblocca discussione',
             ],
 
             'prompt' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'Motivo del blocco',
+                'unlock' => 'Sei sicuro di voler sbloccare?',
             ],
         ],
 
@@ -104,11 +104,11 @@ return [
         ],
 
         'new' => [
-            'pin' => '',
+            'pin' => 'Fissa',
             'timestamp' => 'Timestamp',
             'timestamp_missing' => 'fai ctrl-c nell\'editor e incolla il tuo messaggio per aggiungere un timestamp!',
             'title' => 'Nuova Discussione',
-            'unpin' => '',
+            'unpin' => 'Rimuovi discussione fissata',
         ],
 
         'show' => [
@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Ordina per:',
             'created_at' => 'Data della creazione',
             'timeline' => 'Linea temporale',
             'updated_at' => 'Ultimo aggiornamento',
@@ -141,8 +140,8 @@ return [
         ],
 
         'votes' => [
-            'up' => '',
-            'down' => '',
+            'up' => 'Upvota questa discussione',
+            'down' => 'Downvota questa discussione',
         ],
     ],
 
@@ -200,7 +199,7 @@ return [
             'prompt' => 'scrivi le parole chiave...',
             'login_required' => 'Accedi per effettuare una ricerca.',
             'options' => 'Più Opzioni di Ricerca',
-            'supporter_filter' => 'Filtrare per :filters necessita di un tag supporter attivo',
+            'supporter_filter' => 'Filtrare per :filters necessita di una supporter tag attiva',
             'not-found' => 'nessun risultato',
             'not-found-quote' => '... no, non abbiamo trovato nulla.',
             'filters' => [
@@ -217,7 +216,7 @@ return [
                 'title' => 'Titolo',
                 'artist' => 'Artista',
                 'difficulty' => 'Difficoltà',
-                'favourites' => '',
+                'favourites' => 'Preferiti',
                 'updated' => 'Aggiornato',
                 'ranked' => 'Classificata',
                 'rating' => 'Valutazione',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Tutto',
-        'ranked-approved' => 'Classificate e Approvate',
         'approved' => 'Approvate',
-        'qualified' => 'Qualificate',
-        'loved' => 'Amate',
-        'faves' => 'Preferite',
-        'pending' => 'In Attesa & In Lavorazione',
+        'favourites' => 'Preferiti',
         'graveyard' => 'Cimitero',
-        'my-maps' => 'Mie Mappe',
+        'leaderboard' => 'Ha la classifica',
+        'loved' => 'Amate',
+        'mine' => 'Le mie mappe',
+        'pending' => 'In Attesa & In Lavorazione',
+        'qualified' => 'Qualificate',
+        'ranked' => 'Rankata',
     ],
     'genre' => [
         'any' => 'Qualsiasi',

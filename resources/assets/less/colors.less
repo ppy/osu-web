@@ -75,104 +75,92 @@
 // @gray-light:             lighten(@gray-base, 46.7%); // #777
 // @gray-lighter:           lighten(@gray-base, 93.5%); // #eee
 
-// osu!palette 2016
-@gray-blue: #35444f;
-@gray-blue-dark: #293336;
-@gray-blue-darker: #181f21;
-
-@dark-purple-light: #cba4da;
-@dark-purple-dark: #312436;
-@dark-graypurple: #584261;
-
+// TODO: remove after remaining white-background sections have been updated (forum, store)
 // osu!palette 2017(?)
 @gray: #262626;
 @gray-dark: #1a1a1a;
 @gray-darker: #0e0e0e;
 @light-gray: #f5f5f5;
 
-// osu!palette 2018 :rolling_eyes:
-@community-blue:  #0481ff;
-@community-blue-lighter: mix(white, @community-blue, 75%);
-@community-blue-dark:    #343c44;
-@community-blue-darker:  #2b3035;
-@community-blue-darkest: #202326;
-@community-blue-bg:      #222;
+// osu!palette 2019v2-final-copy-last-FINAL
+// The default hue is osu! pink (333) and is injected into the body via master.blade.php as var(--base-hue) within :root
+// The section-to-colour mapping is done via section_to_hue_map() in helpers.php
+@osu-colour-p: hsl(var(--base-hue), 100%, 50%);
+@osu-colour-h1: hsl(var(--base-hue), 100%, 70%);
+@osu-colour-h2: hsl(var(--base-hue), 50%, 45%);
+@osu-colour-c1: hsl(var(--base-hue), 40%, 99%);
+@osu-colour-c2: hsl(var(--base-hue), 40%, 80%);
+@osu-colour-l1: hsl(var(--base-hue), 40%, 70%);
+@osu-colour-l2: hsl(var(--base-hue), 40%, 60%);
+@osu-colour-l3: hsl(var(--base-hue), 40%, 50%);
+@osu-colour-d1: hsl(var(--base-hue), 20%, 35%);
+@osu-colour-d2: hsl(var(--base-hue), 20%, 30%);
+@osu-colour-d3: hsl(var(--base-hue), 20%, 25%);
+@osu-colour-d4: hsl(var(--base-hue), 20%, 20%);
+@osu-colour-d5: hsl(var(--base-hue), 20%, 15%);
+@osu-colour-d6: hsl(var(--base-hue), 20%, 10%);
+@osu-colour-f1: hsl(var(--base-hue), 10%, 60%);
+@osu-colour-b1: hsl(var(--base-hue), 10%, 40%);
+@osu-colour-b2: hsl(var(--base-hue), 10%, 30%);
+@osu-colour-b3: hsl(var(--base-hue), 10%, 25%);
+@osu-colour-b4: hsl(var(--base-hue), 10%, 20%);
+@osu-colour-b5: hsl(var(--base-hue), 10%, 15%);
+@osu-colour-b6: hsl(var(--base-hue), 10%, 10%);
 
-// community events(?) palette idk (used for contest and tournaments)
-@community-grayblue-page-background: #1A2223;
-@community-grayblue-tile-background: #323E41;
-@community-grayblue-text: #93B8C4;
+//
+// "Basic" Colour Theme (as of 2019)
+//
 
-@community-user-green-dark: #a6cc00;
-@community-user-graygreen-light: #77998e;
+// Purple
+@osu-colour-purple-hue: 255;
+@osu-colour-purple-1: hsl(@osu-colour-purple-hue, 100%, 70%);
+@osu-colour-purple-2: hsl(@osu-colour-purple-hue, 80%, 60%);
+@osu-colour-purple-3: hsl(@osu-colour-purple-hue, 60%, 50%);
+// Blue
+@osu-colour-blue-hue: 200;
+@osu-colour-blue-1: hsl(@osu-colour-blue-hue, 100%, 70%);
+@osu-colour-blue-2: hsl(@osu-colour-blue-hue, 80%, 60%);
+@osu-colour-blue-3: hsl(@osu-colour-blue-hue, 60%, 50%);
+// Mint
+@osu-colour-mint-hue: 125;
+@osu-colour-mint-1: hsl(@osu-colour-mint-hue, 100%, 70%);
+@osu-colour-mint-2: hsl(@osu-colour-mint-hue, 80%, 60%);
+@osu-colour-mint-3: hsl(@osu-colour-mint-hue, 60%, 50%);
+// Lime
+@osu-colour-lime-hue: 90;
+@osu-colour-lime-1: hsl(@osu-colour-lime-hue, 100%, 70%);
+@osu-colour-lime-2: hsl(@osu-colour-lime-hue, 80%, 60%);
+@osu-colour-lime-3: hsl(@osu-colour-lime-hue, 60%, 50%);
+// Orange
+@osu-colour-orange-hue: 45;
+@osu-colour-orange-1: hsl(@osu-colour-orange-hue, 100%, 70%);
+@osu-colour-orange-2: hsl(@osu-colour-orange-hue, 80%, 60%);
+@osu-colour-orange-3: hsl(@osu-colour-orange-hue, 60%, 50%);
+// Red
+@osu-colour-red-hue: 360;
+@osu-colour-red-1: hsl(@osu-colour-red-hue, 100%, 70%);
+@osu-colour-red-2: hsl(@osu-colour-red-hue, 80%, 60%);
+@osu-colour-red-3: hsl(@osu-colour-red-hue, 60%, 50%);
 
-// osu!palette 2019
-@red-lighter: #ffcaca;
-@red-light: #ff8989;
-@red: #eb5757;
-@red-dark: #af4646;
-@red-darker: #643232;
+//
+// New group colours (as of 2019)
+// TODO: replace group_colour in phpbb_groups and use that instead?
+//
+@osu-colour-group-bot: @osu-colour-f1; // note: bot badges are inverted, so this is actually the background colour
+@osu-colour-group-ppy: #0066FF;
+@osu-colour-group-dev: #EB47D0;
+@osu-colour-group-gmt: #99EB47;
+@osu-colour-group-nat: #EB8C47;
+@osu-colour-group-bng: #A347EB;
+@osu-colour-group-alumni: #999999;
+@osu-colour-group-support: #EBD047;
 
-@sky: #6bb5ff;
-@greysky-lighter: #c6e3f4;
-@greysky-light: #8ab3cc;
-@greysky: #405461;
-@greysky-dark: #303d47;
-@greysky-darker: #21272c;
-
-@seafoam: #05ffa2;
-@greyseafoam-lighter: #9ebab1;
-@greyseafoam-light: #4d7365;
-@greyseafoam: #33413c;
-@greyseafoam-dark: #2c3532;
-@greyseafoam-darker: #1e2422;
-
-@cyan: #05f4fd;
-@greycyan-lighter: #77b1b3;
-@greycyan-light: #436d6f;
-@greycyan: #293d3e;
-@greycyan-dark: #243536;
-@greycyan-darker: #1e2929;
-
-@lime: #82ff05;
-@greylime-lighter: #deff87;
-@greylime-light: #657259;
-@greylime: #3f443a;
-@greylime-dark: #32352e;
-@greylime-darker: #2e302b;
-
-@violet: #bf04ff;
-@greyviolet-lighter: #ebb8fe;
-@greyviolet-light: #685370;
-@greyviolet: #46334d;
-@greyviolet-dark: #2c2230;
-@greyviolet-darker: #201823;
-
-@carmine: #ff0542;
-@greycarmine-lighter: #deaab4;
-@greycarmine-light: #644f53;
-@greycarmine: #342b2d;
-@greycarmine-dark: #302a2b;
-@greycarmine-darker: #241d1e;
-
-.colors(@name) {
-  @lighter: "@{name}-lighter";
-  @light: "@{name}-light";
-  @dark: "@{name}-dark";
-  @darker: "@{name}-darker";
-
-  .@{name}-lighter { color: @@lighter !important; }
-  .@{name}-light { color: @@light !important; }
-  .@{name}-normal { color: @@name !important; }
-  .@{name}-dark { color: @@dark !important; }
-  .@{name}-darker { color: @@darker !important; }
+// Use this instead of fade(colour, amount) - LESS tries to parse the css var as a colour and fails.
+// This is not ideal, but not sure of a better way to do this (without modifying LESS at least)
+.osu-hsla(@colour, @alpha) {
+  @string: replace("@{colour}", "hsl\(([^,]+), ([^,]+), ([^,]+)\)", "hsla($1, $2, $3, @{alpha})");
+  @hsla: ~"@{string}";
 }
-
-.colors(pink);
-.colors(green);
-.colors(blue);
-.colors(yellow);
-.colors(purple);
 
 @pink-text: @pink-dark;
 @green-text: @green-darker;

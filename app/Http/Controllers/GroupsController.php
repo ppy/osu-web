@@ -32,16 +32,13 @@ class GroupsController extends Controller
         $group = Group::visible()->findOrFail($id);
 
         $users = $group->users()
-            ->with([
-                'country',
-                'userProfileCustomization',
-            ])
+            ->eagerloadForListing()
             ->default()
             ->orderBy('username', 'asc')
             ->get();
 
         $groupJson = $group->only('group_name', 'group_desc');
-        $usersJson = json_collection($users, 'UserCompact', ['cover', 'country']);
+        $usersJson = json_collection($users, 'UserCompact', ['cover', 'country', 'support_level']);
 
         return view('groups.show', compact('groupJson', 'usersJson'));
     }

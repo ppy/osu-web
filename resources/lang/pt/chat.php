@@ -42,7 +42,7 @@ return [
         'send' => 'Enviar',
     ],
     'no-conversations' => [
-        'howto' => "Começa conversações de um perfil de utilizador ou de um popup cartão de utilizador.",
+        'howto' => "Começa a conversar a partir do perfil dum utilizador ou dum popup cartão de utilizador.",
         'lazer' => 'Canais públicos que te juntes via <a href=":link">osu!lazer</a> também serão visíveis aqui.',
         'pm_limitations' => 'Somente pessoas que usem <a href=":link">osu!lazer</a> ou o novo website é que receberão mensagens privadas.',
         'title' => 'ainda sem conversações',

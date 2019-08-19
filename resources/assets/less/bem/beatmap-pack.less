@@ -22,19 +22,20 @@
   margin: 2px 0;
 
   &__body {
-    background-color: #eee;
+    background-color: @osu-colour-b3;
   }
 
   &__header {
     padding: @beatmappack-listing--gutter;
-    background-color: #fff;
+    background-color: @osu-colour-b3;
     cursor: pointer;
 
+    .js-accordion__item--expanded & {
+      background-color: @osu-colour-b2;
+    }
+
     &:hover {
-      background-color: darken(#fff, 5%);
-      .js-accordion__item--expanded & {
-        background-color: #fff;
-      }
+      background-color: @osu-colour-b2;
     }
   }
 
@@ -51,7 +52,7 @@
   }
 
   &__name {
-    color: @purple-dark;
+    color: white;
 
     &.beatmap-packs__cell {
       flex-grow: 4;

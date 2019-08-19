@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Profilbilde',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Profil',
 
             'user' => [
+                'user_discord' => '',
                 'user_from' => 'nåværende plassering',
                 'user_interests' => 'interesser',
                 'user_msnm' => '',
                 'user_occ' => 'yrke',
                 'user_twitter' => '',
                 'user_website' => 'nettside',
-                'user_discord' => '',
             ],
         ],
 
@@ -60,6 +62,39 @@ return [
             'title' => 'Signatur',
             'update' => 'oppdater',
         ],
+    ],
+
+    'notifications' => [
+        'title' => 'Varsler',
+        'topic_auto_subscribe' => 'aktiver automatiske varslinger på nye forum emner som du lager',
+    ],
+
+    'oauth' => [
+        'authorized_clients' => 'autoriserte applikasjoner',
+        'title' => 'OAuth',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'tastatur',
+        'mouse' => 'mus',
+        'tablet' => 'tegnebrett',
+        'title' => 'Spillemåter',
+        'touch' => 'touch-skjerm',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'blokker private meldinger fra personer som ikke er på vennelisten din',
+        'hide_online' => 'skjul påloggingsstatus',
+        'title' => 'Personvern',
+    ],
+
+    'security' => [
+        'current_session' => 'nåværende',
+        'end_session' => 'Avslutt økt',
+        'end_session_confirmation' => 'Dette vil umiddelbart avslutte økten på denne enheten. Er du sikker?',
+        'last_active' => 'Sist aktiv:',
+        'title' => 'Sikkerhet',
+        'web_sessions' => 'websideøkter',
     ],
 
     'update_email' => [
@@ -72,26 +107,12 @@ return [
         'update' => 'oppdater',
     ],
 
-    'playstyles' => [
-        'title' => 'Spillemåter',
-        'mouse' => 'mus',
-        'keyboard' => 'tastatur',
-        'tablet' => 'tegnebrett',
-        'touch' => 'touch-skjerm',
+    'verification_completed' => [
+        'text' => '',
+        'title' => '',
     ],
 
-    'privacy' => [
-        'title' => 'Personvern',
-        'friends_only' => 'blokker private meldinger fra personer som ikke er på vennelisten din',
-        'hide_online' => 'skjul påloggingsstatus',
-    ],
-
-    'security' => [
-        'current_session' => 'nåværende',
-        'end_session' => 'Avslutt økt',
-        'end_session_confirmation' => 'Dette vil umiddelbart avslutte økten på denne enheten. Er du sikker?',
-        'last_active' => 'Sist aktiv:',
-        'title' => 'Sikkerhet',
-        'web_sessions' => 'websideøkter',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

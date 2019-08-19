@@ -27,6 +27,7 @@ return [
         'home' => [
             '_' => 'strona główna',
             'account-edit' => 'ustawienia',
+            'account-verifyLink' => '',
             'friends-index' => 'znajomi',
             'changelog-index' => 'zmiany',
             'changelog-build' => 'kompilacja',

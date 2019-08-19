@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Diskussion är låst.',
         'first_post' => 'Kan inte radera ursprungs inlägg.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Ogiltig svårighetgrad angiven.',
         'invalid_beatmapset_id' => 'Ogiltig beatmap angiven.',
         'locked' => 'Diskussion är låst.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'Måste vara inloggad för att hypa.',
@@ -53,6 +62,14 @@ return [
 
     'comment' => [
         'deleted_parent' => '',
+
+        'attributes' => [
+            'message' => '',
+        ],
+    ],
+
+    'follow' => [
+        'invalid' => '',
     ],
 
     'forum' => [
@@ -69,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Radera beatmap metadata inlägg är inte tillåtet.',
             'beatmapset_post_no_edit' => 'Redigera beatmap metadata inlägg är inte tillåtet.',
             'only_quote' => '',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
@@ -79,6 +106,10 @@ return [
             'minimum_one_selection' => 'Minst ett val per användare krävs.',
             'minimum_two_options' => 'Behöver åtminstone två val.',
             'too_many_options' => 'Överskred max antal tillåtna val.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -111,6 +142,12 @@ return [
         'wrong_password_confirmation' => 'Lösenordsbekräftelse matchar inte.',
         'too_long' => 'Överskred maxlängd - kan endast vara upp till :limit karaktärer.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
             'restricted' => '',
             'supporter_required' => [
@@ -123,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

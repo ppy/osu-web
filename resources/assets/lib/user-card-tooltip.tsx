@@ -110,7 +110,7 @@ function onMouseOver(event: JQueryEventObject) {
   if (osu.isMobile()) { return; }
 
   const el = event.currentTarget as HTMLElement;
-  const userId = el.dataset.userId;
+  const userId = osu.presence(el.dataset.userId);
   if (userId == null) { return; }
   // don't show cards for blocked users
   if (_.find(currentUser.blocks, { target_id: parseInt(userId, 10)})) { return; }
@@ -122,7 +122,10 @@ function onMouseOver(event: JQueryEventObject) {
   if (el._tooltip !== el.dataset.userId) {
     // wrong userId, destroy current tooltip
     const qtip = $(el).qtip('api');
-    if (qtip != null) { qtip.destroy(); }
+    if (qtip != null) {
+      qtip.destroy();
+      delete el._tooltip;
+    }
   }
 }
 
@@ -134,9 +137,16 @@ function hideEffect() {
   $(this).fadeTo(110, 0);
 }
 
-function shouldShow(event: JQueryEventObject) {
+function shouldShow(event: JQueryEventObject, api: any) {
   if (tooltipWithActiveMenu != null || osu.isMobile()) {
+    return event.preventDefault();
+  }
+
+  // keyed React components can end up with reused DOM elements with a previously set tooltip.
+  const target = api.target[0] as HTMLElement;
+  if (target._tooltip !== target.dataset.userId) {
     event.preventDefault();
+    $(target).trigger('mouseover');
   }
 }
 

@@ -34,37 +34,40 @@ use Carbon\Carbon;
  */
 class BeatmapDiscussionVote extends Model
 {
+    protected $touches = ['beatmapDiscussion'];
+
     public static function recentlyReceivedByUser($userId, $timeframeMonths = 3)
     {
-        $query = static::with('user')->where('created_at', '>', Carbon::now()->subMonth($timeframeMonths));
-        $query->whereIn('beatmap_discussion_id', BeatmapDiscussion::where('user_id', '=', $userId)->select('id'))
+        return static::where('beatmap_discussion_votes.created_at', '>', Carbon::now()->subMonth($timeframeMonths))
+            ->join('beatmap_discussions', 'beatmap_discussion_votes.beatmap_discussion_id', 'beatmap_discussions.id')
+            ->select('beatmap_discussion_votes.user_id')
+            ->selectRaw('sum(beatmap_discussion_votes.score) as score')
+            ->selectRaw('count(beatmap_discussion_votes.score) as count')
+            ->where('beatmap_discussions.user_id', $userId)
+            ->where('beatmap_discussions.updated_at', '>', Carbon::now()->subMonth($timeframeMonths))
             ->whereHas('user', function ($userQuery) {
                 $userQuery->default();
-            });
-
-        $result = $query->get()
-            ->groupBy('user_id')
-            ->sortByDesc(function ($obj, $key) {
-                return $obj->sum('score');
-            });
-
-        return $result;
+            })
+            ->groupBy('beatmap_discussion_votes.user_id')
+            ->orderByDesc('count')
+            ->get();
     }
 
     public static function recentlyGivenByUser($userId, $timeframeMonths = 3)
     {
-        $query = static::with(['beatmapDiscussion', 'beatmapDiscussion.user'])->where('created_at', '>', Carbon::now()->subMonth($timeframeMonths));
-        $query->where('user_id', $userId)->whereHas('user', function ($userQuery) {
-            $userQuery->default();
-        });
-
-        $result = $query->get()
-            ->groupBy('beatmapDiscussion.user_id')
-            ->sortByDesc(function ($obj, $key) {
-                return $obj->sum('score');
-            });
-
-        return $result;
+        return static::where('beatmap_discussion_votes.created_at', '>', Carbon::now()->subMonth($timeframeMonths))
+            ->join('beatmap_discussions', 'beatmap_discussion_votes.beatmap_discussion_id', 'beatmap_discussions.id')
+            ->select('beatmap_discussions.user_id')
+            ->selectRaw('sum(beatmap_discussion_votes.score) as score')
+            ->selectRaw('count(beatmap_discussion_votes.score) as count')
+            ->where('beatmap_discussion_votes.user_id', $userId)
+            ->where('beatmap_discussions.updated_at', '>', Carbon::now()->subMonth($timeframeMonths))
+            ->whereHas('beatmapDiscussion.user', function ($userQuery) {
+                $userQuery->default();
+            })
+            ->groupBy('beatmap_discussions.user_id')
+            ->orderByDesc('count')
+            ->get();
     }
 
     public static function search($rawParams = [])

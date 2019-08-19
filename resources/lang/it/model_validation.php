@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'La discussione è chiusa.',
         'first_post' => 'Non puoi cancellare il post iniziale.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Difficoltà specificata non valida.',
         'invalid_beatmapset_id' => 'Beatmap specificata non valida.',
         'locked' => 'La discussione è chiusa.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'Devi avere effettuato il login per promuovere.',
@@ -53,6 +62,14 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Non è permesso rispondere ad un commento eliminato.',
+
+        'attributes' => [
+            'message' => '',
+        ],
+    ],
+
+    'follow' => [
+        'invalid' => ':attribute specificato invalido.',
     ],
 
     'forum' => [
@@ -69,16 +86,30 @@ return [
             'beatmapset_post_no_delete' => 'Cancellare i metadata di una beatmap non è consentito.',
             'beatmapset_post_no_edit' => 'Modificare i metadata di una beatmap non è consentito.',
             'only_quote' => 'La tua risposta contiene solo una citazione.',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Non è permesso avere un\'opzione duplicata.',
             'grace_period_expired' => 'Non è possibile modificare un sondaggio dopo :limit ore',
-            'hiding_results_forever' => '',
+            'hiding_results_forever' => 'Non è possibile nascondere i risultati di un sondaggio che non finisce mai.',
             'invalid_max_options' => 'Le opzioni per utente non possono superare il numero di opzioni disponibili.',
             'minimum_one_selection' => 'È richiesto un minimo di un\'opzione per utente.',
             'minimum_two_options' => 'È necessario almeno due opzioni.',
             'too_many_options' => 'Raggiunto il massimo numero di opzioni permesse.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -91,7 +122,7 @@ return [
         'contains_username' => 'Password potrebbe non contenere il nome utente.',
         'email_already_used' => 'Indirizzo email già in uso.',
         'invalid_country' => 'Paese non presente nel database.',
-        'invalid_discord' => 'Nome utente Discord non valido.',
+        'invalid_discord' => 'Nome utente di Discord non valido.',
         'invalid_email' => "Non sembra essere un indirizzo email valido.",
         'too_short' => 'La nuova password è troppo corta.',
         'unknown_duplicate' => 'Nome utente o indirizzo email già in uso.',
@@ -111,8 +142,14 @@ return [
         'wrong_password_confirmation' => 'La conferma della password non coincide.',
         'too_long' => 'Lunghezza massima superata - può essere solo fino a :limit caratteri.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
-            'restricted' => '',
+            'restricted' => 'Non puoi cambiare il tuo nome utente mentre sei limitato.',
             'supporter_required' => [
                 '_' => 'Devi essere :link per cambiare il tuo nome!',
                 'link_text' => 'osu! sostenuto',
@@ -123,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "Non puoi segnalare te stesso!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

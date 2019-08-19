@@ -54,3 +54,13 @@ osu!api requires a valid token to be included with all API requests in a header 
 <aside class="notice">
 You must replace <code>@{{token}}</code> with your OAuth2 token.
 </aside>
+
+# Changelog
+
+For a full list of changes, see the
+[Changelog on the site]({{ route('changelog.show', ['version' => 'web']) }}).
+
+## Breaking Changes
+
+### 2019-07-18
+- [`User`](#user) now returns counts directly as primitives instead of numbers wrapped in an array.

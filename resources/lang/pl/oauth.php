@@ -33,6 +33,18 @@ return [
         ],
     ],
 
+    'authorized-clients' => [
+        'confirm_revoke' => 'Czy na pewno chcesz odebrać uprawnienia tej aplikacji?',
+        'scopes_title' => 'Ta aplikacja może:',
+        'owned_by' => 'Należy do użytkownika :user',
+        'none' => 'Brak aplikacji',
+
+        'revoked' => [
+            'false' => 'Odbierz dostęp',
+            'true' => 'Dostęp został odebrany',
+        ],
+    ],
+
     'login' => [
         'download' => 'Kliknij tutaj, aby pobrać grę i utworzyć konto.',
         'label' => 'Na początek zaloguj się na swoje konto!',

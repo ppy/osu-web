@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Расширенный поиск',
         'button' => 'Найти',
         'empty_result' => 'Ничего не найдено!',
+        'keyword_required' => 'Требуется ключевое слово для поиска',
         'placeholder' => 'начинайте вводить',
         'title' => 'Поиск',
 

@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Sortiert nach:',
             'created_at' => 'Erstellungszeitpunkt',
             'timeline' => 'Timeline',
             'updated_at' => 'Letzte Aktualisierung',
@@ -198,7 +197,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'stichwörter eingeben...',
-            'login_required' => 'Melde dich um, um zu suchen.',
+            'login_required' => 'Melde dich an, um zu suchen.',
             'options' => 'Mehr Suchoptionen',
             'supporter_filter' => 'Filtern nach :filters benötigt ein aktives osu!supporter Tag',
             'not-found' => 'keine ergebnisse',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Alle',
-        'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
-        'qualified' => 'Qualifiziert',
-        'loved' => 'Loved',
-        'faves' => 'Favoriten',
-        'pending' => 'Ausstehend & WIP',
+        'favourites' => 'Favoriten',
         'graveyard' => 'Graveyard',
-        'my-maps' => 'Meine Beatmaps',
+        'leaderboard' => 'Hat Ranglisten',
+        'loved' => 'Loved',
+        'mine' => 'Meine Maps',
+        'pending' => 'Ausstehend & WIP',
+        'qualified' => 'Qualifiziert',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => 'Alle',

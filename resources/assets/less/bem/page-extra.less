@@ -22,7 +22,7 @@
   .own-layer();
   .default-box-shadow();
   .at2x-simple('/images/backgrounds/page-extra-footer.png');
-  background-color: @greyseafoam-darker;
+  background-color: @osu-colour-b5;
   background-position: bottom center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -90,6 +90,9 @@
   &__content-overflow-wrapper-inner {
     padding-right: @gutter-profile-page;
     padding-bottom: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 
     @media @desktop {
       padding-right: @gutter-profile-page-desktop;
@@ -98,8 +101,6 @@
 
   &__content-overflow-wrapper-outer {
     max-height: 400px;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
   }
 
   &__recent-medal {
@@ -116,7 +117,7 @@
   }
 
   &__recent-medals-box {
-    background-color: @greyseafoam-dark;
+    background-color: @osu-colour-b4;
     margin: 0 (-@gutter-profile-page);
     padding: 0 @gutter-profile-page 20px;
 
@@ -131,23 +132,41 @@
   &__title {
     display: inline-block;
     color: #fff;
-    border-bottom: 2px solid @seafoam;
+    border-bottom: 2px solid @osu-colour-h1;
     padding-bottom: 5px;
     margin: 0 0 20px;
     font-style: normal;
     font-weight: bold;
-    font-size: @font-size--title-small-3;
+    font-size: 16px;
 
     &--small {
       margin-top: 20px;
       padding-bottom: 0;
       border-bottom: none;
-      font-size: @font-size--title-small-3;
+    }
+  }
+
+  &__subtitle {
+    font-size: 14px;
+    font-style: normal;
+    color: white;
+    margin: 20px 0px;
+
+    &::before {
+      content: ' ';
+      .full-size();
+      width: 4px;
+      height: 12px;
+      margin-top: 2px;
+      background: @osu-colour-h1;
+      margin-left: -15px;
+      .default-border-radius();
     }
   }
 
   &__title-count {
-    background-color: #111;
+    color: @osu-colour-f1;
+    background-color: @osu-colour-b6;
     margin-left: 5px;
     padding: 5px 10px;
     border-radius: 10000px;

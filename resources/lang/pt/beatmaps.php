@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Ordenadas por:',
             'created_at' => 'Data de criação',
             'timeline' => 'Cronologia',
             'updated_at' => 'Última atualização',
@@ -197,8 +196,8 @@ return [
 
     'listing' => [
         'search' => [
-            'prompt' => 'digita em palavras-chave...',
-            'login_required' => 'Inicia sessão para pesquisar.',
+            'prompt' => 'escreve em palavras-chave...',
+            'login_required' => 'Inicia sessão para procurar',
             'options' => 'Mais Opções de Pesquisa',
             'supporter_filter' => 'Filtrar por :filters requer uma etiqueta de osu!supporter',
             'not-found' => 'sem resultados',
@@ -219,7 +218,7 @@ return [
                 'difficulty' => 'Dificuldade',
                 'favourites' => 'Favoritos',
                 'updated' => 'Atualizado',
-                'ranked' => 'Classificado',
+                'ranked' => 'Classificados',
                 'rating' => 'Avaliação',
                 'plays' => 'Partidas',
                 'relevance' => 'Relevância',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Qualquer',
-        'ranked-approved' => 'Classificados e Aprovados',
         'approved' => 'Aprovados',
-        'qualified' => 'Qualificados',
-        'loved' => 'Adorados',
-        'faves' => 'Favoritos',
-        'pending' => 'Pendente & WIP',
+        'favourites' => 'Favoritos',
         'graveyard' => 'Cemitério',
-        'my-maps' => 'Meus Mapas',
+        'leaderboard' => 'Possui uma Tabela de Classificações',
+        'loved' => 'Adorados',
+        'mine' => 'Meus Mapas',
+        'pending' => 'Pendente & WIP',
+        'qualified' => 'Qualificados',
+        'ranked' => 'Classificados',
     ],
     'genre' => [
         'any' => 'Qualquer',

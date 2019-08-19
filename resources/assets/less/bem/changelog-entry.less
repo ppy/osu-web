@@ -22,6 +22,10 @@
   padding: 5px 0;
   flex-direction: column;
 
+  a {
+    .link-default();
+  }
+
   &__col {
     margin: 5px;
 
@@ -40,10 +44,10 @@
   }
 
   &__link {
-    color: @blue-light;
+    color: @osu-colour-l1;
 
     &:hover {
-      color: @blue-lighter;
+      color: white;
     }
   }
 
@@ -53,7 +57,7 @@
     // having anything but markdown-formatted page inside may result in sadness.
     &--message {
       font-size: @font-size--normal;
-      color: @greyviolet-lighter;
+      color: @osu-colour-f1;
       margin-top: 2px;
 
       h1, h2, h3, h4, h5, h6 {
@@ -75,12 +79,16 @@
       ul {
         padding-left: 20px;
       }
+
+      a {
+        .link-inverted();
+      }
     }
   }
 
   &__title {
     &--major {
-      color: @yellow-light;
+      color: @yellow;
     }
   }
 

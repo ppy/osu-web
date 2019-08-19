@@ -23,12 +23,11 @@ namespace App\Http\Controllers;
 use App\Exceptions\ImageProcessorException;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\UserVerification;
+use App\Libraries\UserVerificationState;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
-use App\Models\User;
+use App\Models\OAuth\Client;
 use Auth;
-use DB;
-use Illuminate\Http\Request as HttpRequest;
 use Mail;
 use Request;
 
@@ -39,7 +38,9 @@ class AccountController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => [
+            'verifyLink',
+        ]]);
 
         $this->middleware(function ($request, $next) {
             if (Auth::check() && Auth::user()->isSilenced()) {
@@ -55,16 +56,21 @@ class AccountController extends Controller
                 'updatePage',
                 'updatePassword',
                 'verify',
+                'verifyLink',
             ],
         ]);
 
-        $this->middleware('verify-user');
-        $this->middleware('throttle:60,10', [
-            'only' => [
-                'updateEmail',
-                'updatePassword',
-            ],
-        ]);
+        $this->middleware('verify-user', ['except' => [
+            'updateOptions',
+        ]]);
+
+        $this->middleware('throttle:60,10', ['only' => [
+            'reissueCode',
+            'updateEmail',
+            'updatePassword',
+            'verify',
+            'verifyLink',
+        ]]);
 
         return parent::__construct();
     }
@@ -109,54 +115,33 @@ class AccountController extends Controller
         $currentSessionId = Request::session()
             ->getIdWithoutKeyPrefix();
 
-        return view('accounts.edit', compact('blocks', 'sessions', 'currentSessionId'));
+        $authorizedClients = json_collection(Client::forUser(auth()->user()), 'OAuth\Client', 'user');
+
+        return view('accounts.edit', compact('authorizedClients', 'blocks', 'sessions', 'currentSessionId'));
     }
 
     public function update()
     {
         $user = Auth::user();
 
-        $customizationParams = get_params(
-            request(),
-            'user_profile_customization',
-            [
-                'extras_order:string[]',
-            ]
-        );
-
-        $userParams = get_params(
-            request(),
-            'user',
-            [
-                'hide_presence:bool',
-                'osu_playstyle:string[]',
-                'playmode:string',
-                'pm_friends_only:bool',
-                'user_from:string',
-                'user_interests:string',
-                'user_msnm:string',
-                'user_notify:bool',
-                'user_occ:string',
-                'user_sig:string',
-                'user_twitter:string',
-                'user_website:string',
-                'user_discord:string',
-            ]
-        );
+        $params = get_params(request(), 'user', [
+            'hide_presence:bool',
+            'osu_playstyle:string[]',
+            'playmode:string',
+            'pm_friends_only:bool',
+            'user_from:string',
+            'user_interests:string',
+            'user_msnm:string',
+            'user_notify:bool',
+            'user_occ:string',
+            'user_sig:string',
+            'user_twitter:string',
+            'user_website:string',
+            'user_discord:string',
+        ]);
 
         try {
-            DB::transaction(function () use ($customizationParams, $user, $userParams) {
-                if (count($customizationParams) > 0) {
-                    $user
-                        ->profileCustomization()
-                        ->fill($customizationParams)
-                        ->saveOrExplode();
-                }
-
-                if (count($userParams) > 0) {
-                    $user->fill($userParams)->saveOrExplode();
-                }
-            });
+            $user->fill($params)->saveOrExplode();
         } catch (ModelNotSavedException $e) {
             return $this->errorResponse($user, $e);
         }
@@ -183,6 +168,24 @@ class AccountController extends Controller
         } else {
             return $this->errorResponse($user);
         }
+    }
+
+    public function updateOptions()
+    {
+        $user = Auth::user();
+
+        $params = get_params(request(), 'user_profile_customization', [
+            'comments_sort:string',
+            'extras_order:string[]',
+        ]);
+
+        try {
+            $user->profileCustomization()->fill($params)->saveOrExplode();
+        } catch (ModelNotSavedException $e) {
+            return $this->errorResponse($user, $e);
+        }
+
+        return $user->defaultJson();
     }
 
     public function updatePage()
@@ -216,18 +219,27 @@ class AccountController extends Controller
         }
     }
 
-    public function verify(HttpRequest $request)
+    public function verify()
     {
-        $verification = new UserVerification(Auth::user(), $request);
-
-        return $verification->verify();
+        return UserVerification::fromCurrentRequest()->verify();
     }
 
-    public function reissueCode(HttpRequest $request)
+    public function verifyLink()
     {
-        $verification = new UserVerification(Auth::user(), $request);
+        $state = UserVerificationState::fromVerifyLink(request('key'));
 
-        return $verification->reissue();
+        if ($state === null) {
+            return response()->view('accounts.verification_invalid')->setStatusCode(404);
+        }
+
+        $state->markVerified();
+
+        return view('accounts.verification_completed');
+    }
+
+    public function reissueCode()
+    {
+        return UserVerification::fromCurrentRequest()->reissue();
     }
 
     private function errorResponse($user, $exception = null)

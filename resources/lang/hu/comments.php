@@ -23,8 +23,8 @@ return [
     'deleted_count' => ':count_delimited törölt komment|:count_delimited törölt kommentek',
     'edited' => ':user által szerkesztve :timeago',
     'empty' => 'Még nincsenek hozzászólások.',
+    'load_replies' => 'válaszok betöltése',
     'replies' => 'Válaszok',
-    'show_replies' => 'válaszok megjelenítése',
     'title' => 'Hozzászólások',
 
     'commentable_name' => [

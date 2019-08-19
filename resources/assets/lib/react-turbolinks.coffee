@@ -23,36 +23,72 @@ export class ReactTurbolinks
   constructor: (@components = {}) ->
     @documentReady = false
     @targets = []
-    $(document).on 'turbolinks:load', =>
-      @documentReady = true
-      @destroyPersisted()
-      @boot()
-    $(document).on 'turbolinks:before-cache', =>
-      @documentReady = false
-      @destroy()
+    @newVisit = true
+    @scrolled = false
+
+    $(document).on 'turbolinks:before-cache', @onBeforeCache
+    $(document).on 'turbolinks:before-visit', @onBeforeVisit
+    $(document).on 'turbolinks:load', @onLoad
+
+
+  allTargets: (callback) =>
+    for own name, component of @components
+      for target in component.targets
+        callback({ name, component, target })
 
 
   boot: =>
     return unless @documentReady
 
-    for own _name, component of @components
-      for target in component.targets
-        continue if target.dataset.reactTurbolinksLoaded == '1'
-        target.dataset.reactTurbolinksLoaded = '1'
-        @targets.push target
-        ReactDOM.render React.createElement(component.element, component.propsFunction(target)), target
+    @allTargets ({ target, component }) =>
+      return if target.dataset.reactTurbolinksLoaded == '1'
+
+      target.dataset.reactTurbolinksLoaded = '1'
+      @targets.push target
+      ReactDOM.render React.createElement(component.element, component.propsFunction(target)), target
+
+
+  deleteLoadedMarker: =>
+    @allTargets ({ target }) =>
+      delete target.dataset.reactTurbolinksLoaded if target.dataset.reactTurbolinksLoaded?
 
 
   destroy: =>
-    for own _name, component of @components
-      for target in component.targets
-        continue if target.dataset.reactTurbolinksLoaded != '1'
-        target.dataset.reactTurbolinksLoaded = null
-        ReactDOM.unmountComponentAtNode target if !component.persistent
+    @allTargets ({ target, component }) =>
+      if target.dataset.reactTurbolinksLoaded == '1' && !component.persistent
+        ReactDOM.unmountComponentAtNode target
 
 
   destroyPersisted: =>
     ReactDOM.unmountComponentAtNode(target) while target = @targets.pop()
+
+
+  onBeforeCache: =>
+    Timeout.clear @scrollTimeout
+    @documentReady = false
+    @destroy()
+
+
+  onBeforeVisit: =>
+    @newVisit = true
+
+
+  onLoad: =>
+    @scrolled = false
+    $(window).off 'scroll', @onWindowScroll
+    $(window).on 'scroll', @onWindowScroll
+
+    # Delayed to wait until cacheSnapshot finishes. The delay matches Turbolinks' defer.
+    Timeout.set 1, =>
+      @deleteLoadedMarker()
+      @destroyPersisted()
+      @documentReady = true
+      @boot()
+      @scrollTimeout = Timeout.set 100, @scrollOnNewVisit
+
+
+  onWindowScroll: =>
+    @scrolled = @scrolled || window.scrollX != 0 || window.scrollY != 0
 
 
   register: (name, element, propsFunction = ->) =>
@@ -70,3 +106,17 @@ export class ReactTurbolinks
       propsFunction: propsFunction
 
     @boot()
+
+
+  scrollOnNewVisit: =>
+    $(window).off 'scroll', @onWindowScroll
+    newVisit = @newVisit
+    @newVisit = false
+
+    return if !newVisit || @scrolled
+
+    targetId = document.location.hash.substr(1)
+
+    return if targetId == ''
+
+    document.getElementById(targetId)?.scrollIntoView()

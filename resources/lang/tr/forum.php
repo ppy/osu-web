@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ': sınırlandırılmış mesaj sayısı |: sınırlandırılmış mesaj sayıları',
+            'topic_starter' => 'Konu Başlığı',
         ],
     ],
 

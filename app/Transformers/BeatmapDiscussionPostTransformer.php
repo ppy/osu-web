@@ -25,6 +25,10 @@ use League\Fractal;
 
 class BeatmapDiscussionPostTransformer extends Fractal\TransformerAbstract
 {
+    protected $availableIncludes = [
+        'beatmap_discussion',
+    ];
+
     public function transform(BeatmapDiscussionPost $post)
     {
         if (!priv_check('BeatmapDiscussionPostShow', $post)->can()) {
@@ -45,5 +49,13 @@ class BeatmapDiscussionPostTransformer extends Fractal\TransformerAbstract
             'updated_at' => json_time($post->updated_at),
             'deleted_at' => json_time($post->deleted_at),
         ];
+    }
+
+    public function includeBeatmapDiscussion(BeatmapDiscussionPost $post)
+    {
+        return $this->item(
+            $post->beatmapDiscussion,
+            new BeatmapDiscussionTransformer()
+        );
     }
 }

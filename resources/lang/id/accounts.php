@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Profil',
 
             'user' => [
+                'user_discord' => 'discord',
                 'user_from' => 'lokasi saat ini',
                 'user_interests' => 'minat',
                 'user_msnm' => 'skype',
                 'user_occ' => 'pekerjaan',
                 'user_twitter' => 'twitter',
                 'user_website' => 'situs web',
-                'user_discord' => 'discord',
             ],
         ],
 
@@ -60,6 +62,39 @@ return [
             'title' => 'Tanda Tangan',
             'update' => 'perbarui',
         ],
+    ],
+
+    'notifications' => [
+        'title' => 'Notifikasi',
+        'topic_auto_subscribe' => 'hidupkan notifikasi secara otomatis di topik forum baru yang anda buat',
+    ],
+
+    'oauth' => [
+        'authorized_clients' => 'klien yang memiliki akses',
+        'title' => 'OAuth',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'keyboard',
+        'mouse' => 'mouse',
+        'tablet' => 'tablet',
+        'title' => 'Gaya Bermain',
+        'touch' => 'layar sentuh',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'Blokir pesan pribadi dari orang yang tidak ada dalam daftar teman Anda',
+        'hide_online' => 'sembunyikan keberadaan online Anda',
+        'title' => 'Kebijakan Privasi',
+    ],
+
+    'security' => [
+        'current_session' => 'saat ini',
+        'end_session' => 'Akhiri Sesi',
+        'end_session_confirmation' => 'Aksi ini akan langsung mengakhiri sesi di perangkat Anda. Apa anda yakin?',
+        'last_active' => 'Terakhir aktif:',
+        'title' => 'Keamanan',
+        'web_sessions' => 'web session',
     ],
 
     'update_email' => [
@@ -72,26 +107,12 @@ return [
         'update' => 'perbarui',
     ],
 
-    'playstyles' => [
-        'title' => 'Gaya Bermain',
-        'mouse' => 'mouse',
-        'keyboard' => 'keyboard',
-        'tablet' => 'tablet',
-        'touch' => 'layar sentuh',
+    'verification_completed' => [
+        'text' => '',
+        'title' => '',
     ],
 
-    'privacy' => [
-        'title' => 'Kebijakan Privasi',
-        'friends_only' => 'Blokir pesan pribadi dari orang yang tidak ada dalam daftar teman Anda',
-        'hide_online' => 'sembunyikan keberadaan online Anda',
-    ],
-
-    'security' => [
-        'current_session' => 'saat ini',
-        'end_session' => 'Akhiri Sesi',
-        'end_session_confirmation' => 'Aksi ini akan langsung mengakhiri sesi di perangkat Anda. Apa anda yakin?',
-        'last_active' => 'Terakhir aktif:',
-        'title' => 'Keamanan',
-        'web_sessions' => 'web session',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

@@ -1,18 +1,22 @@
 version: '3.4'
 
 x-env: &x-env
+  BROADCAST_DRIVER: redis
   CACHE_DRIVER: redis
   COMPOSER_HOME: /data/osuweb/.docker/.composer
   DB_HOST: db
   ES_HOST: elasticsearch:9200
   HOME: /data/osuweb/.docker
+  NOTIFICATION_REDIS_HOST: redis
   REDIS_HOST: redis
+  SESSION_DRIVER: redis
   YARN_CACHE_FOLDER: /data/osuweb/.docker/.yarn
 
 services:
   nginx:
     image: nginx:latest
     depends_on:
+      - notification-server
       - php
     volumes:
       - ./docker/nginx/nginx-osu-next:/etc/nginx/conf.d/default.conf
@@ -41,27 +45,37 @@ services:
   php:
     build:
       context: ./docker/php
+    working_dir: /data/osuweb
+    volumes:
+      - .:/data/osuweb
+    user: ${UID:?err}
+    environment:
+      <<: *x-env
+    command: ['/usr/sbin/php-fpm7', '-y', '/data/osuweb/docker/php/php-fpm.conf']
+  notification-server:
+    build:
+      context: ./docker/notification-server
+    depends_on:
+      - redis
+    working_dir: /data/osuweb
+    volumes:
+      - .:/data/osuweb
+    user: ${UID:?err}
+    environment:
+      <<: *x-env
+    command: ./docker/notification-server/start.sh
+  dependencies:
+    build:
+      context: ./docker/dependencies
+    volumes:
+      - .:/data/osuweb
     depends_on:
       - db
-    working_dir: /data/osuweb
-    volumes:
-      - .:/data/osuweb
-    user: ${UID:?err}
-    environment:
-      <<: *x-env
-      OSU_INSTALL_DEV: 1
-      OSU_SKIP_CACHE_PERMISSION_OVERRIDE: 1
-    command: ['./docker/php/start.sh', 'db:3306']
-  yarn:
-    build:
-      context: ./docker/yarn
-    volumes:
-      - .:/data/osuweb
     environment:
       <<: *x-env
     user: ${UID:?err}
     working_dir: /data/osuweb
-    command: sh -c "yarn && yarn run watch"
+    command: ['./docker/dependencies/start.sh', 'db:3306']
 
 volumes:
   database:

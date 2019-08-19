@@ -20,10 +20,9 @@
   .link-plain();
   .own-layer();
   display: flex;
-
-  color: #222;
-
   transition: 0.1s;
+  .link-default();
+  color: @osu-colour-f1;
 
   // undo padding from container
   margin: 10px -20px;
@@ -39,8 +38,7 @@
   }
 
   &:hover {
-    background-color: lighten(#333, 10%);
-    color: #fff;
+    background-color: @osu-colour-b3;
   }
 
   &__artist {
@@ -81,7 +79,7 @@
   }
 
   &__playcount {
-    color: @yellow;
+    color: @osu-colour-f1;
   }
 
   &__title {

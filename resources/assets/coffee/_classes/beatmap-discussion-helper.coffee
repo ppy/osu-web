@@ -31,7 +31,7 @@ class @BeatmapDiscussionHelper
   @canModeratePosts: (user) =>
     user ?= currentUser
 
-    user.is_admin || user.is_gmt || user.is_nat
+    user.is_admin || user.can_moderate
 
 
   # text should be pre-escaped.
@@ -126,10 +126,6 @@ class @BeatmapDiscussionHelper
       problem: ['fas', '&#xf06a;']
       resolved: ['far', '&#xf058;']
       suggestion: ['far', '&#xf111;']
-
-
-  @moderationGroup: (user) =>
-    _.intersection(_.concat(user.default_group, user.groups), ['nat', 'bng', 'bng_limited'])[0]
 
 
   @previewMessage = (message) =>

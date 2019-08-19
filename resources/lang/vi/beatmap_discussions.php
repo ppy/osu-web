@@ -22,7 +22,7 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Cần phải đăng nhập để chỉnh sửa.',
-            'system_generated' => 'Không thể chỉnh sửa bài đăng được tạo tự động.',
+            'system_generated' => 'Không thể chỉnh sửa bài đăng được tạo bởi hệ thống.',
             'wrong_user' => 'Chỉ chủ bài đăng mới được chỉnh sửa.',
         ],
     ],
@@ -72,13 +72,6 @@ return [
             'true' => 'Đã đánh dấu là được giải quyết bởi :user',
             'false' => 'Đã mở lại bởi :user',
         ],
-    ],
-
-    'user' => [
-        'admin' => 'admin',
-        'bng' => 'người đề cử',
-        'owner' => 'mapper',
-        'nat' => 'nat',
     ],
 
     'user_filter' => [

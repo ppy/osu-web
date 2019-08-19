@@ -27,6 +27,7 @@ return [
         'home' => [
             '_' => '메인',
             'account-edit' => '설정',
+            'account-verifyLink' => '',
             'friends-index' => '친구',
             'changelog-index' => '변경 사항',
             'changelog-build' => '빌드 버전',

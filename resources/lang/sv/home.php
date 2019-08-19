@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Avancerad sökning',
         'button' => 'Sök',
         'empty_result' => 'Ingenting hittades!',
+        'keyword_required' => '',
         'placeholder' => 'skriv för att söka',
         'title' => 'Sök',
 

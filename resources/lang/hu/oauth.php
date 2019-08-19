@@ -33,6 +33,18 @@ return [
         ],
     ],
 
+    'authorized-clients' => [
+        'confirm_revoke' => 'Biztosan vissza akarod vonni ezen kliens jogait?',
+        'scopes_title' => 'Az alkalmazás képes:',
+        'owned_by' => ':user tulajdona',
+        'none' => 'Nincs Kliens',
+
+        'revoked' => [
+            'false' => 'Hozzáférés visszavonása',
+            'true' => 'Hozzáférés visszavonva',
+        ],
+    ],
+
     'login' => [
         'download' => 'Kattints ide a játék letöltése és egy felhasználó létrehozásához',
         'label' => 'Először is, jelentkezz be a fiókodba!',

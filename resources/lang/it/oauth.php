@@ -19,23 +19,35 @@
  */
 
 return [
-    'cancel' => '',
+    'cancel' => 'Annulla',
 
     'authorise' => [
-        'authorise' => '',
-        'request' => '',
-        'scopes_title' => '',
-        'title' => '',
+        'authorise' => 'Autorizza',
+        'request' => 'sta richiedendo l\'autorizzazione di accedere al tuo account.',
+        'scopes_title' => 'Questa applicazione sarà in grado di:',
+        'title' => 'Richiesta di autorizzazione',
 
         'wrong_user' => [
-            '_' => '',
-            'logout_link' => '',
+            '_' => 'Hai effettuato l\'accesso come :user. :logout_link.',
+            'logout_link' => 'Clicca qui per accedere come un utente differente',
+        ],
+    ],
+
+    'authorized-clients' => [
+        'confirm_revoke' => 'Sei sicuro di voler revocare i permessi a questo client?',
+        'scopes_title' => 'Questa applicazione può:',
+        'owned_by' => 'Di :user',
+        'none' => 'Nessun client',
+
+        'revoked' => [
+            'false' => 'Revoca l\'accesso',
+            'true' => 'Accesso scaduto',
         ],
     ],
 
     'login' => [
-        'download' => '',
-        'label' => '',
-        'title' => '',
+        'download' => 'Clicca qui per scaricare il gioco e creare un account',
+        'label' => 'Prima di tutto, accedi al tuo account!',
+        'title' => 'Accesso account',
     ],
 ];

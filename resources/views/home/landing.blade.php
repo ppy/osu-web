@@ -18,7 +18,7 @@
 @extends('master', [
     'title' => trans('home.landing.title'),
     'blank' => 'true',
-    'bodyAdditionalClasses' => 'osu-layout--body-dark'
+    'bodyAdditionalClasses' => 'osu-layout--body-landing'
 ])
 
 @section('content')

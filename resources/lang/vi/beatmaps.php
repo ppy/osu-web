@@ -62,13 +62,13 @@ return [
 
         'lock' => [
             'button' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'Khóa thảo luận',
+                'unlock' => 'Mở khóa thảo luận',
             ],
 
             'prompt' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'Lí do khóa',
+                'unlock' => 'Bạn có chắc chắn muốn mở khóa không ?',
             ],
         ],
 
@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Sắp xếp bởi:',
             'created_at' => 'Thời gian tạo',
             'timeline' => 'Timeline',
             'updated_at' => 'Cập nhật lần cuối',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Bất Kì',
-        'ranked-approved' => 'Được Xếp Hạng & Được Chấp Nhận',
         'approved' => 'Được Chấp Nhận',
-        'qualified' => 'Qualified',
-        'loved' => 'Loved',
-        'faves' => 'Yêu Thích',
-        'pending' => 'Đang chờ & WIP',
+        'favourites' => '',
         'graveyard' => 'Graveyard',
-        'my-maps' => 'Map Của Tôi',
+        'leaderboard' => 'Có danh sách xếp hạng',
+        'loved' => 'Loved',
+        'mine' => '',
+        'pending' => 'Đang chờ & WIP',
+        'qualified' => 'Qualified',
+        'ranked' => '',
     ],
     'genre' => [
         'any' => 'Bất Kì',

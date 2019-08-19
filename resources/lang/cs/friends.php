@@ -25,6 +25,13 @@ return [
       'remove' => 'odebrat z přátel',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => 'Přátelé',
+        ],
+    ],
+
     'state' => [
       'friends' => 'přátelé',
       'mutual' => 'vzájemní',

@@ -32,25 +32,25 @@
     }
 
     $title .= ' | osu!';
+    $currentHue = $currentHue ?? section_to_hue_map($currentSection);
 @endphp
 <!DOCTYPE html>
 <html>
     <head>
         @include("layout.metadata")
         <title>{{ $title }}</title>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 
     <body
         class="
             osu-layout
             osu-layout--body
-            t-section-{{ $currentSection ?? 'error' }}
+            t-section
             action-{{ $currentAction }}
             {{ $bodyAdditionalClasses ?? '' }}
         "
     >
+        <style>:root {--base-hue: {{ $currentHue }};}</style>
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
         <div class="blackout js-blackout" data-visibility="hidden"></div>
 

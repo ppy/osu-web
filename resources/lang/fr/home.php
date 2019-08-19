@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Recherche avancée',
         'button' => 'Rechercher',
         'empty_result' => 'Aucun résultat !',
+        'keyword_required' => 'Un mot clé de recherche est requis',
         'placeholder' => 'tapez pour rechercher',
         'title' => 'Rechercher',
 

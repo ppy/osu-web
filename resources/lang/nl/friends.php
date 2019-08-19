@@ -25,6 +25,13 @@ return [
       'remove' => 'verwijder vriend',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => 'Home :info',
+            'info' => 'Vrienden',
+        ],
+    ],
+
     'state' => [
       'friends' => 'vrienden',
       'mutual' => 'wederzijdse',

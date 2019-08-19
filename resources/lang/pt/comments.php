@@ -23,8 +23,8 @@ return [
     'deleted_count' => ':count_delimited eliminou o comentário|:count_delimited eliminou os comentários',
     'edited' => 'editado há :timeago por :user',
     'empty' => 'Ainda sem comentários.',
+    'load_replies' => 'carregar respostas',
     'replies' => 'Respostas',
-    'show_replies' => 'mostrar respostas',
     'title' => 'Comentários',
 
     'commentable_name' => [

@@ -25,6 +25,13 @@ return [
       'remove' => '친구 삭제',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => '',
+            'info' => '친구',
+        ],
+    ],
+
     'state' => [
       'friends' => '친구',
       'mutual' => '서로친구',

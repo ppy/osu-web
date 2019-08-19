@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Sortir berdasarkan:',
             'created_at' => 'Tanggal pembuatan',
             'timeline' => 'Linimasa',
             'updated_at' => 'Pembaruan terakhir',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Semua',
-        'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
-        'qualified' => 'Qualified',
-        'loved' => 'Loved',
-        'faves' => 'Favorit',
-        'pending' => 'Pending & WIP',
+        'favourites' => 'Favorit',
         'graveyard' => 'Graveyard',
-        'my-maps' => 'Map Saya',
+        'leaderboard' => 'Berpapan Peringkat',
+        'loved' => 'Loved',
+        'mine' => 'Map Saya',
+        'pending' => 'Pending & WIP',
+        'qualified' => 'Qualified',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => 'Semua',

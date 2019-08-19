@@ -875,7 +875,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function playmodes()
     {
-        return $this->beatmaps->pluck('playmode')->unique();
+        return $this->beatmaps->pluck('playmode')->unique()->values();
     }
 
     public function playmodeCount()
@@ -970,6 +970,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
                 'beatmapDiscussions.beatmapDiscussionVotes',
                 'beatmapDiscussions.beatmapset',
                 'beatmapDiscussions.beatmap',
+                'beatmapDiscussions.beatmapDiscussionVotes',
             ])->find($this->getKey()),
             'Beatmapset',
             [
@@ -978,6 +979,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
                 'discussions',
                 'discussions.current_user_attributes',
                 'discussions.posts',
+                'discussions.votes',
                 'events',
                 'nominations',
                 'related_users',

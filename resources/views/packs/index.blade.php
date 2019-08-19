@@ -19,7 +19,6 @@
     'currentAction' => 'packs',
     'title' => trans('beatmappacks.index.title'),
     'pageDescription' => trans('beatmappacks.index.description'),
-    'bodyAdditionalClasses' => 'osu-layout--body-222',
 ])
 
 @section('content')
@@ -66,7 +65,7 @@
                 @endforeach
 
                 <div class="beatmap-packs__pager">
-                    @include('objects._pagination', ['object' => $packs])
+                    @include('objects._pagination_v2', ['object' => $packs])
                 </div>
             </div>
         </div>

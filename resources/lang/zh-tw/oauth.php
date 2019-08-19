@@ -22,10 +22,10 @@ return [
     'cancel' => '取消',
 
     'authorise' => [
-        'authorise' => '',
-        'request' => '',
-        'scopes_title' => '',
-        'title' => '',
+        'authorise' => '授權',
+        'request' => '正在要求權限以存取你的帳號。',
+        'scopes_title' => '此應用程式將可以：',
+        'title' => '授權請求',
 
         'wrong_user' => [
             '_' => '您已以 :user 的身分登入。 :logout_link',
@@ -33,9 +33,21 @@ return [
         ],
     ],
 
+    'authorized-clients' => [
+        'confirm_revoke' => '確定撤回客戶端的權限？',
+        'scopes_title' => '這個應用程式可以：',
+        'owned_by' => '被 :user 擁有',
+        'none' => '沒有客戶端',
+
+        'revoked' => [
+            'false' => '撤回存取權限',
+            'true' => '存取遭撤回',
+        ],
+    ],
+
     'login' => [
         'download' => '點擊這裡下載遊戲並創建一個帳戶',
-        'label' => '',
+        'label' => '首先，登入您的帳號吧！',
         'title' => '登入',
     ],
 ];

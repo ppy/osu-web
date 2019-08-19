@@ -19,13 +19,6 @@
  */
 
 return [
-    'button' => [
-        'action' => [
-            'to_0' => 'Batal Amati',
-            'to_1' => 'Amati',
-        ],
-    ],
-
     'index' => [
         'description' => 'Berikut adalah diskusi beatmap yang Anda amati. Anda akan diberitahu jika ada pembaruan atau kiriman terbaru.',
         'title_compact' => 'daftar pengamatan modding',

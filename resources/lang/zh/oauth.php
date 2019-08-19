@@ -33,6 +33,18 @@ return [
         ],
     ],
 
+    'authorized-clients' => [
+        'confirm_revoke' => '你确定要撤回给予的权限吗？',
+        'scopes_title' => '该应用能够：',
+        'owned_by' => '由 :user 开发',
+        'none' => '无授权第三方',
+
+        'revoked' => [
+            'false' => '撤回权限',
+            'true' => '权限已撤回',
+        ],
+    ],
+
     'login' => [
         'download' => '点此以下载游戏并创建账号',
         'label' => '首先，让我们登录你的账号',

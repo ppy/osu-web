@@ -59,6 +59,11 @@ return [
         'show_more' => 'toon meer',
         'show_more_options' => 'toon meer opties',
         'upload_image' => 'upload afbeelding',
+
+        'watch' => [
+            'to_0' => 'Niet meer volgen',
+            'to_1' => 'Bekijk',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count_delimited minuut|:count_delimited minuten',
         'months' => ':count maand|:count maanden',
         'second_short_unit' => 'second|seconden',
+        'update' => ':count_delimited update|:count_delimited updates',
         'years' => ':count jaar|:count jaar',
     ],
 

@@ -48,16 +48,16 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => '將論壇標為已讀',
+        'forums' => '將論壇標為已讀',
+        'busy' => '標記已讀…',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => '編輯投票將會清除目前結果！',
 
         'actions' => [
-            'edit' => '',
+            'edit' => '編輯投票',
         ],
     ],
 
@@ -74,7 +74,8 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited 主題',
+            'topic_starter' => '主題開啟者',
         ],
     ],
 
@@ -105,7 +106,7 @@ return [
             'submit' => '發表',
 
             'necropost' => [
-                'default' => '',
+                'default' => '此主題不被討論一段時間了。如非有特殊理由，請勿在此回覆。',
 
                 'new_topic' => [
                     '_' => "此主題不被討論一段時間了。如果你沒有在這裡發文的具體理由, 請用 :create 代替。",
@@ -171,7 +172,7 @@ return [
         'create' => [
             'create_poll' => '建立投票',
 
-            'preview' => '',
+            'preview' => '主題預覽',
 
             'create_poll_button' => [
                 'add' => '建立投票',
@@ -179,8 +180,8 @@ return [
             ],
 
             'poll' => [
-                'hide_results' => '',
-                'hide_results_info' => '',
+                'hide_results' => '隱藏投票結果。',
+                'hide_results_info' => '這些內容只在投票結束後顯示。',
                 'length' => '投票持續',
                 'length_days_suffix' => '天',
                 'length_info' => '如果無期限則留空',
@@ -199,7 +200,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => '星級優先',
             'replies' => '回覆數',
             'views' => '瀏覽數',
         ],
@@ -276,9 +277,9 @@ return [
                 'do' => '提升這個請求',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => '這是一個:feature_request。:supporters 可為新功能建議投票。',
+                    'feature_request' => '新功能建議',
+                    'supporters' => '贊助者',
                 ],
 
                 'user' => [
@@ -294,7 +295,7 @@ return [
                 'detail' => [
                     'end_time' => '將於 :time 結束',
                     'ended' => '結束於 :time',
-                    'results_hidden' => '',
+                    'results_hidden' => '結果將於投票結束後顯示。',
                     'total' => '總票數: :count',
                 ],
             ],
@@ -304,8 +305,8 @@ return [
             'to_not_watching' => '未訂閱',
             'to_watching' => '訂閱',
             'to_watching_mail' => '訂閱並開啟電子郵件通知',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => '通知已啟用。點擊以禁用。',
+            'tooltip_mail_enable' => '通知已禁用。點擊以啟用。',
         ],
     ],
 ];

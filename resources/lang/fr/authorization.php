@@ -144,6 +144,9 @@ return [
                 'uneditable' => 'Bannière spécifiée invalide.',
                 'not_owner' => 'Seul l\'auteur du post peut en éditer la bannière.',
             ],
+            'store' => [
+                'forum_not_allowed' => 'Ce forum n\'accepte pas les couvertures de sujets.',
+            ],
         ],
 
         'view' => [

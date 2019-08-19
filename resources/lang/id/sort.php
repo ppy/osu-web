@@ -21,9 +21,11 @@
 return [
     '_' => 'Sortir',
 
+    'last_visit' => 'Baru-baru ini aktif',
     'new' => 'Komentar Terbaru',
     'old' => 'Komentar Terlama',
     'top' => 'Komentar Terbaik',
+    'username' => 'Nama Pengguna',
 
     'forum_topics' => [
         'new' => 'Balasan Terakhir',

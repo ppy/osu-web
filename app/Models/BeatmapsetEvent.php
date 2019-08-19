@@ -135,7 +135,7 @@ class BeatmapsetEvent extends Model
         }
 
         if (isset($rawParams['types'])) {
-            $params['types'] = array_merge($params['types'], get_arr($rawParams['types'], 'get_string'));
+            $params['types'] = array_merge($params['types'], get_arr($rawParams['types'], 'get_string') ?? []);
         }
 
         if ($searchByUser) {
@@ -244,6 +244,16 @@ class BeatmapsetEvent extends Model
     public function beatmapset()
     {
         return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
+    }
+
+    public function getBeatmapDiscussionIdAttribute()
+    {
+        return $this->comment['beatmap_discussion_id'] ?? null;
+    }
+
+    public function beatmapDiscussion()
+    {
+        return $this->belongsTo(BeatmapDiscussion::class, 'beatmap_discussion_id');
     }
 
     public function user()

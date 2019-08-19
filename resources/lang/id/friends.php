@@ -25,6 +25,13 @@ return [
       'remove' => 'hapus teman',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => 'Beranda :info',
+            'info' => 'Teman',
+        ],
+    ],
+
     'state' => [
       'friends' => 'teman',
       'mutual' => 'mutual',

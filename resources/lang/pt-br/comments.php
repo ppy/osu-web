@@ -20,11 +20,11 @@
 
 return [
     'deleted' => 'excluído',
-    'deleted_count' => '',
+    'deleted_count' => ':count_delimited comentário excluído|:count_delimited comentários excluídos',
     'edited' => 'editado por :user :timeago',
     'empty' => 'Sem comentários no momento.',
+    'load_replies' => '',
     'replies' => 'Respostas',
-    'show_replies' => 'mostrar respostas',
     'title' => 'Comentários',
 
     'commentable_name' => [

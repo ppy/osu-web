@@ -170,10 +170,12 @@ Route::group(['prefix' => 'home'], function () {
         Route::post('avatar', 'AccountController@avatar')->name('avatar');
         Route::post('cover', 'AccountController@cover')->name('cover');
         Route::put('email', 'AccountController@updateEmail')->name('email');
+        Route::put('options', 'AccountController@updateOptions')->name('options');
         Route::put('page', 'AccountController@updatePage')->name('page');
         Route::put('password', 'AccountController@updatePassword')->name('password');
         Route::post('reissue-code', 'AccountController@reissueCode')->name('reissue-code');
         Route::resource('sessions', 'Account\SessionsController', ['only' => ['destroy']]);
+        Route::get('verify', 'AccountController@verifyLink');
         Route::post('verify', 'AccountController@verify')->name('verify');
         Route::put('/', 'AccountController@update')->name('update');
     });
@@ -199,6 +201,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
     Route::resource('news', 'NewsController', ['only' => ['index', 'show', 'store', 'update']]);
     Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
+    Route::get('notifications/endpoint', 'NotificationsController@endpoint')->name('notifications.endpoint');
     Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
 
     Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
@@ -208,6 +211,10 @@ Route::group(['prefix' => 'home'], function () {
 });
 
 Route::get('legal/{page}', 'LegalController@show')->name('legal');
+
+Route::group(['as' => 'oauth.', 'prefix' => 'oauth', 'namespace' => 'OAuth'], function () {
+    Route::resource('authorized-clients', 'AuthorizedClientsController', ['only' => ['destroy']]);
+});
 
 Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');
 
@@ -362,7 +369,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
         Route::resource('friends', 'FriendsController', ['only' => ['index']]);
 
         //  GET /api/v2/me
-        Route::get('me', 'UsersController@me');
+        Route::get('me/{mode?}', 'UsersController@me');
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck');
 
@@ -407,6 +414,7 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
     Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'LegacyInterOpController@userAchievement')->name('lio.user-achievement');
     Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
     Route::delete('/user-sessions/{user}', 'LegacyInterOpController@userSessionsDestroy');
+    Route::post('user-index/{user}', 'LegacyInterOpController@userIndex');
     Route::get('/news', 'LegacyInterOpController@news');
 });
 

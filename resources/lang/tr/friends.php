@@ -25,6 +25,13 @@ return [
       'remove' => 'arkadaşlıktan çıkar',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => 'Ana menü :info',
+            'info' => 'Arkadaşlar',
+        ],
+    ],
+
     'state' => [
       'friends' => 'arkadaşlar',
       'mutual' => 'karşılıklı',

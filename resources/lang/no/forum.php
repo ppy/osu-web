@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited innlegg|:count_delimited innlegg',
+            'topic_starter' => 'Trådstarter',
         ],
     ],
 

@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'donator osu!',
         'joined_at' => 'Na osu! od :date',
         'lastvisit' => 'Ostatnio online :date',
+        'lastvisit_online' => 'Obecnie online',
         'missingtext' => 'Wprowadzona nazwa użytkownika jest błędna lub użytkownik został zablokowany',
         'origin_country' => 'Pochodzi z :country',
         'page_description' => 'osu! - Wszystko co chcesz wiedzieć o :username!',
@@ -148,10 +149,14 @@ return [
                     'button' => 'Dodaj tło',
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
-                    'restriction_info' => "Aby odblokować tę funkcję, potrzebujesz <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>statusu donatora</a>.",
                     'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2800x620',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -204,7 +209,7 @@ return [
                     'title' => 'Najczęściej grane beatmapy',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'precyzja: :percentage',
+                    'accuracy' => 'celność: :percentage',
                     'title' => 'Ostatnie wyniki (24 godz.)',
                 ],
                 'replays_watched_counts' => [
@@ -218,7 +223,6 @@ return [
                 'recent_entries' => 'Ostatnio zdobyte kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Zdobyte kudosu',
-                'total_info' => 'Oparte na tym, ile użytkownik zrobił dla modowania beatmap. Sprawdź <a href="'.osu_url('user.kudosu').'">tutaj</a>, aby dowiedzieć się więcej.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -257,6 +261,11 @@ return [
                         'reset' => 'Zresetowano kudosu przez :giver za post :post',
                         'revoke' => 'Odebrano kudosu przez :giver za post :post',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -334,7 +343,11 @@ return [
             'description' => '<strong>ja!</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
-            'restriction_info' => "Musisz posiadać <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>status donatora</a>, aby odblokować tę funkcję.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => ':link',
@@ -347,7 +360,7 @@ return [
             'global_simple' => 'Ranking globalny',
         ],
         'stats' => [
-            'hit_accuracy' => 'Precyzja',
+            'hit_accuracy' => 'Celność',
             'level' => 'Poziom :level',
             'level_progress' => 'Postęp do następnego poziomu',
             'maximum_combo' => 'Maksymalne combo',
@@ -361,7 +374,9 @@ return [
             'total_score' => 'Łączny wynik',
         ],
     ],
+
     'status' => [
+        'all' => 'Wszyscy',
         'online' => 'Online',
         'offline' => 'Offline',
     ],
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Weryfikacja konta',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

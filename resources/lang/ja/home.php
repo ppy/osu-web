@@ -36,6 +36,7 @@ return [
         'advanced_link' => '高度な検索',
         'button' => '検索',
         'empty_result' => '何も見つかりませんでした！',
+        'keyword_required' => '検索キーワードが必要です',
         'placeholder' => '検索キーワードを入力',
         'title' => '検索結果',
 

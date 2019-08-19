@@ -21,9 +21,11 @@
 return [
     '_' => 'Sắp xếp theo',
 
+    'last_visit' => 'Hoạt động gần nhất',
     'new' => 'Gần đây',
     'old' => 'Cũ',
     'top' => 'Hàng đầu',
+    'username' => 'Tên người chơi',
 
     'forum_topics' => [
         'new' => 'Trả lời cuối',

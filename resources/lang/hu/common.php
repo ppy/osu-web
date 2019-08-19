@@ -59,6 +59,11 @@ return [
         'show_more' => 'több megjelenítése',
         'show_more_options' => 'további opciók mutatása',
         'upload_image' => 'kép feltöltése',
+
+        'watch' => [
+            'to_0' => 'Követés megszüntetése',
+            'to_1' => 'Követés',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count perc |:count percek',
         'months' => ':count hónap|:count hónap',
         'second_short_unit' => 'mp|mp',
+        'update' => '',
         'years' => ':count év|:count év',
     ],
 

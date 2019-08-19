@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => '排序：',
             'created_at' => '创建时间',
             'timeline' => '时间轴',
             'updated_at' => '最后更新时间',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => '所有',
-        'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
-        'qualified' => 'Qualified',
-        'loved' => 'Loved',
-        'faves' => '收藏夹',
-        'pending' => 'Pending & WIP',
+        'favourites' => '收藏夹',
         'graveyard' => '坟图',
-        'my-maps' => '我的',
+        'leaderboard' => '计入排名',
+        'loved' => 'Loved',
+        'mine' => '我的谱面',
+        'pending' => 'Pending & WIP',
+        'qualified' => 'Qualified',
+        'ranked' => '进榜',
     ],
     'genre' => [
         'any' => '所有',

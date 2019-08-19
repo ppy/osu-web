@@ -55,10 +55,15 @@ return [
         'search' => 'Hledat',
         'see_more' => 'zobrazit více',
         'show' => 'zobrazit',
-        'show_deleted' => '',
+        'show_deleted' => 'Zobrazit smazané',
         'show_more' => 'zobrazit více',
         'show_more_options' => 'zobrazit více možností',
         'upload_image' => 'nahrát obrázek',
+
+        'watch' => [
+            'to_0' => 'Přestat sledovat',
+            'to_1' => 'Sledovat',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count minuta|:count minuty|:count minut',
         'months' => ':count měsíc|:count měsíců',
         'second_short_unit' => 'sek',
+        'update' => ':count_delimited aktualizace|:count_delimited aktualizace',
         'years' => ':count rok|:count let',
     ],
 

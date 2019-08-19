@@ -59,6 +59,11 @@ return [
         'show_more' => 'vis mer',
         'show_more_options' => 'vis flere valg',
         'upload_image' => 'last opp bilde',
+
+        'watch' => [
+            'to_0' => 'Slutt å følge',
+            'to_1' => 'Følg',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => '::count_delimited minutt|:count_delimited minutter',
         'months' => '::count_delimited måned|:count_delimited måneder',
         'second_short_unit' => 's|s',
+        'update' => ':count_delimited oppdater|:count_delimited oppdateringer',
         'years' => ':count_delimited år|:count_delimited år',
     ],
 

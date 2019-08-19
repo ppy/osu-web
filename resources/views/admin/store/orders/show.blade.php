@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('admin/master')
 
 @section('content')
 
@@ -24,9 +24,7 @@
 .product_2, .product_4 { background-color: #D3FEB8; }
 .product_5, .product_6, .product_7, .product_8 { background-color: #FCDD2C; }
 .product_12, .product_13, .product_14, .product_15, .product_16, .product_17, .product_18, .product_19 { background-color: #BDFF5E; }
-
 .product_20, .product_21, .product_22, .product_23, .product_24, .product_25, .product_26, .product_27, .product_28, .product_29, .product_30, .product_31 { background-color: #e88cb8; }
-
 .product_33, .product_34, .product_35, .product_36 { background-color: #54F35B; }
 
 .product_name_expanded {
@@ -52,7 +50,7 @@
 
 </style>
 
-<div class="osu-layout__row osu-layout__row--page">
+<div class="osu-layout__row osu-layout__row--page-admin osu-layout__row--page-admin-store">
     <div>
         <h1>Store Admin <small>{!! count($orders) !!} orders waiting to be shipped!</small></h1>
     </div>
@@ -60,7 +58,7 @@
     <div>
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">{{ trans("store.admin.warehouse") }}</h3>
+                <div class="panel-title">{{ trans("store.admin.warehouse") }}</div>
             </div>
 
             <table class="table table-striped">
@@ -84,7 +82,7 @@
     <div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Order #{{ $o->order_id }} for
+                <div class="panel-title">Order #{{ $o->order_id }} for
                 <small>
                     @if ($o->user !== null)
                         {{ $o->user->username }} ({{ $o->user->user_email }})
@@ -94,7 +92,7 @@
                     <a href="{{ route('store.invoice.show', ['invoice' => $o->getKey(), 'for_shipping' => 1]) }}">invoice</a>
                     <a href="{{ route('store.invoice.show', ['invoice' => $o->getKey(), 'for_shipping' => 1, 'copies' => 2]) }}" target="_blank">(print)</a>
                 </small>
-                </h3>
+                </div>
             </div>
             <div class="panel-body">
                 <div class="grid grid--gutters">
@@ -167,7 +165,7 @@
 <div class="osu-layout__row osu-layout__row--page">
     {!! Form::open(['route' => 'admin.store.orders.ship', 'method' => 'post', 'data-remote' => true]) !!}
     <div class="big-button">
-        <button type="submit" class="btn-osu btn-osu-danger">Ship all tracked orders</button>
+        <button type="submit" class="btn-osu btn-osu-default">Ship all tracked orders</button>
     </div>
     {!! Form::close() !!}
 </div>

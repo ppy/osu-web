@@ -21,9 +21,11 @@
 return [
     '_' => 'Sorteer op',
 
+    'last_visit' => 'Onlangs actief',
     'new' => 'Recent',
     'old' => 'Oud',
     'top' => 'Terug naar boven',
+    'username' => 'Gebruikersnaam',
 
     'forum_topics' => [
         'new' => 'Laatste antwoord',

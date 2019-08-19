@@ -59,6 +59,11 @@ return [
         'show_more' => 'näytä lisää',
         'show_more_options' => 'näytä lisävaihtoehtoja',
         'upload_image' => 'lataa kuva',
+
+        'watch' => [
+            'to_0' => 'Lopeta seuraaminen',
+            'to_1' => 'Seuraa',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count_delimited minuutti|:count_delimited minuuttia',
         'months' => ':count kuukausi|:count kuukautta',
         'second_short_unit' => 's|s',
+        'update' => '',
         'years' => ':count vuosi|:count vuotta',
     ],
 

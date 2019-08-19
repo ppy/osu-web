@@ -37,12 +37,12 @@ return [
         ],
     ],
     'input' => [
-        'disabled' => '無法傳送訊息。',
+        'disabled' => '無法傳送訊息...',
         'placeholder' => '輸入訊息中...',
-        'send' => '送出',
+        'send' => '發送',
     ],
     'no-conversations' => [
-        'howto' => "",
+        'howto' => "在使用者個人資料或卡片的彈出方塊上點擊信封圖案以開始聊天。",
         'lazer' => '您通過 <a href=":link">osu! lazer</a> 加入的公開頻道也會顯示在這裡。',
         'pm_limitations' => '只有使用 <a href=":link">osu! lazer</a> 或是新網站的人才會收到才會收到訊息',
         'title' => '還沒有聊天過',

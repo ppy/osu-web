@@ -19,7 +19,7 @@
 .artist {
   @_top: artist;
   &__index {
-    background-color: @gray-blue-dark;
+    background-color: @osu-colour-b5;
     padding: 10px;
     font-weight: 300;
     .default-box-shadow();
@@ -39,7 +39,7 @@
   }
 
   &__album {
-    background-color: #161A1C;
+    background-color: @osu-colour-b4;
     padding: 20px;
     align-items: center;
     .default-box-shadow();
@@ -104,7 +104,7 @@
   }
 
   &__admin-note {
-    background-color: @yellow-dark;
+    background-color: @osu-colour-h2;
     color: black;
     font-weight: bold;
     padding: 20px;
@@ -131,23 +131,23 @@
 
   &__name {
     text-align: center;
-    color: #FFCD23;
+    color: @osu-colour-l1;
     font-size: 14px;
     margin-top: 5px;
     display: block;
     &:hover {
-      color: #FFCD23;
+      color: white;
     }
   }
 
   &__track-count {
-    color: #777777;
+    color: @osu-colour-f1;
     font-size: 12px;
     text-align: center;
   }
 
   &__description {
-    background-color: @gray-blue-dark;
+    background-color: @osu-colour-b4;
     color: white;
     font-size: 14px;
     font-weight: 300;
@@ -165,7 +165,6 @@
 
     &--index {
       padding: 30px;
-      background-color: @community-grayblue-page-background;
     }
   }
 
@@ -221,7 +220,7 @@
 
     @media @desktop {
       .default-box-shadow();
-      background: #2A3336;
+      background: @osu-colour-b5;
     }
 
     &--albums {

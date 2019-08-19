@@ -30,17 +30,17 @@ return [
     ],
 
     'buttons' => [
-        'admin' => '',
+        'admin' => '管理員',
         'back_to_previous' => '返回到上一個位置',
         'back_to_top' => '返回頂部',
         'cancel' => '取消',
         'change' => '變更',
         'click_to_copy' => '點擊以複製到剪貼簿',
         'click_to_copy_copied' => '已複製到剪貼簿！',
-        'collapse' => '',
+        'collapse' => '摺疊',
         'delete' => '刪除',
         'edit' => '編輯',
-        'expand' => '',
+        'expand' => '展開',
         'hide' => '隱藏',
         'permalink' => '永久連結',
         'permalink_copied' => '連結已複製',
@@ -57,8 +57,13 @@ return [
         'show' => '顯示',
         'show_deleted' => '顯示刪除的項目',
         'show_more' => '顯示更多',
-        'show_more_options' => '',
+        'show_more_options' => '顯示更多選項',
         'upload_image' => '上傳圖片',
+
+        'watch' => [
+            'to_0' => '取消關注',
+            'to_1' => '關注',
+        ],
     ],
 
     'count' => [
@@ -68,9 +73,10 @@ return [
         'hours' => ':count 小時',
         'item' => ':count 個',
         'minute_short_unit' => '分',
-        'minutes' => '',
+        'minutes' => ':count_delimited 分鐘|:count_delimited 分鐘',
         'months' => ':count 個月',
         'second_short_unit' => '秒',
+        'update' => ':count_delimited 更新|:count_delimited 更新',
         'years' => ':count 年',
     ],
 

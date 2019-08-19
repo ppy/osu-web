@@ -57,10 +57,8 @@ export class UserEntryDeleteButton extends React.Component
       label = 'Delete'
       onClick = @delete
 
-    a
-      href: '#'
-      'data-confirm': 'Are you sure?'
+    button
       onClick: onClick
-      className: "btn btn-#{btnClass}",
+      title: label
+      className: "btn-osu-big",
       i className: "fa-fw #{icon}"
-      label

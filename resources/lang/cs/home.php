@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Pokročilé vyhledávání',
         'button' => 'Hledat',
         'empty_result' => 'Nebylo nic nenalezeno!',
+        'keyword_required' => '',
         'placeholder' => 'zadejte hledaný výraz',
         'title' => 'Hledat',
 

@@ -22,6 +22,7 @@
 @font-default: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
 @font-default-vi: Exo, 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
 @font-default-zh: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+@font-default-zh-tw: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
 
 @screen-mobile-max: (@screen-sm-min - 1px);
 @desktop: ~"(min-width: @{screen-sm-min})";
@@ -235,29 +236,14 @@
 @beatmap-discussion--reply-padding: (20px + @beatmap-discussion--avatar-size);
 @beatmap-discussion--timestamp-width: 110px;
 
-@beatmap-discussion--color-hype: @blue-dark;
-@beatmap-discussion--color-mapper-note: @purple;
-@beatmap-discussion--color-praise: @blue-dark;
-@beatmap-discussion--color-problem: @pink-dark;
-@beatmap-discussion--color-resolved: @green;
-@beatmap-discussion--color-suggestion: @yellow-dark;
-
-@beatmap-discussion--user-color-moderator: @yellow-dark;
-@beatmap-discussion--user-color-owner: @green-dark;
+@beatmap-discussion--color-hype: @osu-colour-blue-3;
+@beatmap-discussion--color-mapper-note: @osu-colour-purple-1;
+@beatmap-discussion--color-praise: @osu-colour-blue-3;
+@beatmap-discussion--color-problem: @osu-colour-red-3;
+@beatmap-discussion--color-resolved: @osu-colour-lime-3;
+@beatmap-discussion--color-suggestion: @osu-colour-orange-3;
 
 @beatmappack-listing--gutter: 20px;
-
-@section-color--default: @pink-darker;
-
-@section-color--beatmaps: @pink-darker;
-@section-color--community: @pink-darker;
-@section-color--multiplayer: @pink-darker;
-@section-color--error: @pink-darker;
-@section-color--help: @yellow-darker;
-@section-color--home: @purple-darker;
-@section-color--ranking: @green-darker;
-@section-color--store: @pink-darker;
-@section-color--user: @blue-darker;
 
 @user-color-default: @blue-darker;
 
@@ -275,16 +261,15 @@
 @changelog-stream--online: @green-light;
 @changelog-stream--offline: #000;
 
-@changelog-bg: @dark-purple-dark;
-@changelog-bg-extra: @greyviolet-darker;
-@changelog-border-bg: fade(@changelog-bg-extra, 50%);
 @changelog-fg: #fff;
 @changelog-fg-content: @pink-lighter;
 
-@comment-dark-bg: #333;
+@comment-dark-bg: @osu-colour-b5;
 @comment-dark-bg-extra: #222;
-@comment-dark-border-bg: #222;
+@comment-dark-border-bg: @osu-colour-b2;
 @comment-dark-fg: #fff;
+
+@contest-selected-colour: #ffa500;
 
 @mod-width: 45px;
 @mod-height: 32px;
@@ -324,6 +309,7 @@
 @slider-handle-width: 10px;
 @slider-height: 10px;
 
+@user-card-icon-size: 26px; // starts becoming a muddled mess lower than this.
 @user-card-width: 290px;
 @user-card-width-min: 280px;
 @user-card-height: 120px;

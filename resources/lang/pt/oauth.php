@@ -33,6 +33,18 @@ return [
         ],
     ],
 
+    'authorized-clients' => [
+        'confirm_revoke' => 'Tens a certeza de que queres revogar as permissões deste cliente?',
+        'scopes_title' => 'Esta aplicação consegue:',
+        'owned_by' => 'Proprietário de :user',
+        'none' => 'Sem Clientes',
+
+        'revoked' => [
+            'false' => 'Revogar Acesso',
+            'true' => 'Acesso Revogado',
+        ],
+    ],
+
     'login' => [
         'download' => 'Clica aqui para transferir o jogo e criar uma conta',
         'label' => 'Primeiro, vamos entrar na tua conta!',

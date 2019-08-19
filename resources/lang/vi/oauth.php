@@ -33,6 +33,18 @@ return [
         ],
     ],
 
+    'authorized-clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => 'Ứng dụng này có thể :',
+        'owned_by' => 'Được sở hữu bởi :user',
+        'none' => '',
+
+        'revoked' => [
+            'false' => 'Thu hồi quyền truy cập',
+            'true' => '',
+        ],
+    ],
+
     'login' => [
         'download' => 'Nhấp vào đây để tải trò chơi và tạo tài khoản',
         'label' => 'Đầu tiên, hãy đăng nhập vào tài khoản của bạn!',

@@ -27,6 +27,7 @@ return [
         'home' => [
             '_' => 'ホーム',
             'account-edit' => '設定',
+            'account-verifyLink' => '',
             'friends-index' => 'フレンド',
             'changelog-index' => '更新履歴',
             'changelog-build' => 'ビルド',

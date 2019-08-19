@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited δημοσίευση|:count_delimited δημοσιεύσεις',
+            'topic_starter' => '',
         ],
     ],
 
@@ -179,8 +180,8 @@ return [
             ],
 
             'poll' => [
-                'hide_results' => '',
-                'hide_results_info' => '',
+                'hide_results' => 'Απόκρυψη των αποτελεσμάτων της ψηφοφορίας.',
+                'hide_results_info' => 'Θα φανερωθούν μόνο μετά τη λήξη της ψηφοφορίας.',
                 'length' => 'Διεξαγωγή ψηφοφορίας για',
                 'length_days_suffix' => 'μέρες',
                 'length_info' => 'Αφήστε κενό για μία ατελείωτη ψηφοφορία',
@@ -294,7 +295,7 @@ return [
                 'detail' => [
                     'end_time' => 'Η ψηφοφορία θα λήξει στις :time',
                     'ended' => 'H ψηφοφορία έληξε στις :time',
-                    'results_hidden' => '',
+                    'results_hidden' => 'Τα αποτελέσματα θα φανερωθούν μόνο μετά τη λήξη της ψηφοφορίας.',
                     'total' => 'Σύνολο ψήφων: :count',
                 ],
             ],

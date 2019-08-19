@@ -55,10 +55,15 @@ return [
         'search' => 'Arama',
         'see_more' => 'daha fazla',
         'show' => 'göster',
-        'show_deleted' => '',
+        'show_deleted' => 'Silineni göster',
         'show_more' => 'daha fazla göster',
         'show_more_options' => 'daha fazla seçenek göster',
         'upload_image' => 'görsel yükle',
+
+        'watch' => [
+            'to_0' => 'İzlemeyi Bırak',
+            'to_1' => 'İzle',
+        ],
     ],
 
     'count' => [
@@ -71,6 +76,7 @@ return [
         'minutes' => ':count dakika |:count dakika',
         'months' => ':count ay|:count ay',
         'second_short_unit' => 'sn|sn',
+        'update' => ':count_delimited güncelleme|:count_delimited güncellemeler',
         'years' => ':count yıl|:count yıl',
     ],
 

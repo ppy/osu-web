@@ -103,13 +103,13 @@ body .initially-hidden {
 }
 
 select.form-control {
-    .default-box-shadow();
-    font-weight: 700;
+  .default-box-shadow();
+  font-weight: 700;
 
-    &:focus {
-      .default-box-shadow();
-    }
+  &:focus {
+    .default-box-shadow();
   }
+}
 
 .btn-osu {
   &:extend(.btn all);
@@ -198,42 +198,46 @@ select.form-control {
   }
 }
 
-.btn-osu(@main, @secondary) {
-  background-color: @main;
-  box-shadow: 0 10px @secondary, 0 7px 10px fade(#000, 80%);
+// hopefully this is just a placeholder until the new button design is implemented...
+.btn-osu-default {
+  background-color: @osu-colour-h1;
+  box-shadow: 0 10px @osu-colour-h2, 0 7px 10px fade(#000, 80%);
   margin-bottom: 10px;
+  overflow: hidden; // hide the &::before highlight layer
 
   transition: all .1s ease-in-out;
 
+  &::before {
+    content: ' ';
+    .full-size();
+    background: fade(white, 15%);
+    opacity: 0;
+    transition: all .1s ease-in-out;
+  }
+
   &[disabled], &.disabled {
-    background-color: lighten(@main, 20%);
-    box-shadow: 0 10px lighten(@secondary, 30%), 0 7px 10px fade(#000, 60%);
+    background-color: @osu-colour-l1;
+    box-shadow: 0 10px @osu-colour-b6, 0 7px 10px fade(#000, 60%);
   }
 
   &:focus {
-    background-color: darken(@main, 5%);
-    box-shadow: 0 10px darken(@secondary, 5%), 0 7px 10px fade(#000, 80%);
+    box-shadow: 0 10px @osu-colour-l2, 0 7px 10px fade(#000, 80%);
+    &::before {
+      opacity: 1;
+    }
   }
 
   &:hover {
-    background-color: darken(@main, 10%);
-    box-shadow: 0 10px darken(@secondary, 10%), 0 7px 10px fade(#000, 80%);
+    box-shadow: 0 10px @osu-colour-l2, 0 7px 10px fade(#000, 80%);
+    &::before {
+      opacity: 1;
+    }
   }
 
   &:active, &.active {
     transform: translate(0, 5px);
-
-    background-color: darken(@main, 10%);
-    box-shadow: 0 5px darken(@secondary, 10%), 0 5px 5px fade(#000, 80%);
+    box-shadow: 0 5px @osu-colour-l2, 0 5px 5px fade(#000, 80%);
   }
-}
-
-.btn-osu-default {
-  .btn-osu(@blue-dark, @blue-darker);
-}
-
-.btn-osu-danger {
-  .btn-osu(@pink, @pink-dark);
 }
 
 iframe {

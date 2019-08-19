@@ -33,6 +33,18 @@ return [
         ],
     ],
 
+    'authorized-clients' => [
+        'confirm_revoke' => 'Bist du sicher, dass du die Berechtigungen dieses Gerätes widerrufen möchtest?',
+        'scopes_title' => 'Diese Anwendung kann:',
+        'owned_by' => 'Im Besitz von :user',
+        'none' => 'Keine Geräte',
+
+        'revoked' => [
+            'false' => 'Zugriff widerrufen',
+            'true' => 'Zugriff entfernt',
+        ],
+    ],
+
     'login' => [
         'download' => 'Klicke hier, um das Spiel herunterzuladen und ein Konto zu erstellen',
         'label' => 'Zuerst, melde dich mit deinen Konto an!',

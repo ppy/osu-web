@@ -21,6 +21,7 @@
 return [
     'error' => [
         'chat' => [
+            'empty' => '無法傳送內容為空的訊息。',
             'limit_exceeded' => '您發送訊息的速度太快了，請稍後再試。',
             'too_long' => '你要發送的訊息太長。',
         ],

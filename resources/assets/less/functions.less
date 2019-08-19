@@ -30,11 +30,22 @@
 }
 
 .fancy-scrollbar() {
+  @_scrollbar-track: rgba(255, 255, 255, 0.025);
+  @_scrollbar-thumb: rgba(255,255,255,0.5);
+
+  scrollbar-color: @_scrollbar-thumb @_scrollbar-track;
+  scrollbar-width: thin;
+
+  // scrollbar-width isn't inherited
+  * {
+    scrollbar-width: thin;
+  }
+
   /* Turn on custom 8px wide scrollbar */
   ::-webkit-scrollbar {
     width: 10px; /* 1px wider than Lion. */
     /* This is more usable for users trying to click it. */
-    background-color: rgba(255,255,255,0);
+    background-color: @_scrollbar-track;
     -webkit-border-radius: 100px;
   }
   /* hover effect for both scrollbar area, and scrollbar 'thumb' */
@@ -48,9 +59,7 @@
 
   /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
   ::-webkit-scrollbar-thumb {
-    /* This is the EXACT color of Mac OS scrollbars.
-      Yes, I pulled out digital color meter */
-    background: rgba(255,255,255,0.5);
+    background: @_scrollbar-thumb;
     -webkit-border-radius: 100px;
     background-clip: padding-box;
     border: 2px solid rgba(255, 255, 255, 0);
@@ -106,7 +115,7 @@
   &::before {
     .full-size();
     content: ' ';
-    background-image: linear-gradient(fade(#000, 30%), fade(#000, 80%));
+    background-image: linear-gradient(.osu-hsla(@osu-colour-b6, 0.3)[@hsla], .osu-hsla(@osu-colour-b6, 0.8)[@hsla]);
   }
 }
 
@@ -118,14 +127,6 @@
   box-shadow: inset 0 1px 3px fade(#000, 30%);
 }
 
-.link-blue-light() {
-  color: @blue-light;
-
-  .link-hover({
-    color: @blue-lighter;
-  });
-}
-
 .link-blue-dark() {
   color: @blue-dark;
 
@@ -134,11 +135,26 @@
   });
 }
 
+// This style is for the remaining un-restyled sections,
+// nuke this when the entire site is correctly restyled
+.link-old() {
+  color: #2299bb;
+  .link-hover({ color: #6cf; });
+}
+
 .link-default() {
-  color: @link-color;
+  color: @osu-colour-l1;
 
   .link-hover({
-    color: @link-hover-color;
+    color: white;
+  });
+}
+
+.link-inverted() {
+  color: white;
+
+  .link-hover({
+    color: @osu-colour-l1;
   });
 }
 
@@ -174,27 +190,12 @@
   }
 }
 
+// still used by store
 .link-pink() {
   color: @pink;
 
   .link-hover({
     color: @pink-text;
-  });
-}
-
-.link-pink-dark() {
-  color: @pink-dark;
-
-  .link-hover({
-    color: @pink-light;
-  });
-}
-
-.link-pink-light() {
-  color: @pink-light;
-
-  .link-hover({
-    color: @pink-lighter;
   });
 }
 
@@ -214,6 +215,7 @@
   });
 }
 
+// used in notification banner
 .link-yellow() {
   color: @yellow;
 

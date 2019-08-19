@@ -52,7 +52,7 @@ return [
             'not_owner' => 'Kun ejeren af dette opslag kan redigere det.',
         ],
         'store' => [
-            'beatmapset_locked' => '',
+            'beatmapset_locked' => 'Dette beatmap er låst for diskussion.',
         ],
     ],
 
@@ -143,6 +143,9 @@ return [
             'edit' => [
                 'uneditable' => 'Ugyldigt cover valgt.',
                 'not_owner' => 'Kun ejeren kan redigere dette cover.',
+            ],
+            'store' => [
+                'forum_not_allowed' => 'Dette forum accepterer ikke emne coverbilleder.',
             ],
         ],
 

@@ -23,16 +23,13 @@ namespace App\Http\Controllers;
 use App\Jobs\BeatmapsetDelete;
 use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Libraries\CommentBundle;
-use App\Libraries\Search\BeatmapsetSearch;
+use App\Libraries\Search\BeatmapsetSearchCached;
 use App\Libraries\Search\BeatmapsetSearchRequestParams;
-use App\Models\Beatmap;
 use App\Models\BeatmapDownload;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetWatch;
 use App\Models\Country;
-use App\Models\Genre;
-use App\Models\Language;
 use App\Transformers\BeatmapsetTransformer;
 use App\Transformers\CountryTransformer;
 use Auth;
@@ -54,9 +51,9 @@ class BeatmapsetsController extends Controller
 
     public function index()
     {
-        $beatmaps = $this->search();
+        $beatmaps = $this->getSearchResponse();
 
-        $filters = $this->getFilters();
+        $filters = BeatmapsetSearchRequestParams::getAvailableFilters();
 
         return view('beatmaps.index', compact('filters', 'beatmaps'));
     }
@@ -108,34 +105,9 @@ class BeatmapsetsController extends Controller
 
     public function search()
     {
-        $params = new BeatmapsetSearchRequestParams(request(), Auth::user());
-        $search = (new BeatmapsetSearch($params))->source(false);
+        $response = $this->getSearchResponse();
 
-        $records = datadog_timing(function () use ($params, $search) {
-            $ids = $params->fetchCacheable(
-                'search-cache:',
-                config('osu.beatmapset.es_cache_duration'),
-                function () use ($search) {
-                    return $search->response()->ids();
-                }
-            );
-
-            return Beatmapset::whereIn('beatmapset_id', $ids)
-                ->orderByField('beatmapset_id', $ids)
-                ->with('beatmaps')
-                ->get();
-        }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
-
-        return [
-            'beatmapsets' => json_collection(
-                $records,
-                new BeatmapsetTransformer,
-                'beatmaps'
-            ),
-            'cursor' => $search->getSortCursor(),
-            'recommended_difficulty' => $params->getRecommendedDifficulty(),
-            'total' => $search->count(),
-        ];
+        return response($response, is_null($response['error']) ? 200 : 504);
     }
 
     public function discussion($id)
@@ -317,48 +289,25 @@ class BeatmapsetsController extends Controller
         ];
     }
 
-    private function getFilters()
+    private function getSearchResponse()
     {
-        $languages = Language::listing();
-        $genres = Genre::listing();
+        $params = new BeatmapsetSearchRequestParams(request(), Auth::user());
+        $search = (new BeatmapsetSearchCached($params));
 
-        $general = [
-            ['id' => 'recommended', 'name' => trans('beatmaps.general.recommended')],
-            ['id' => 'converts', 'name' => trans('beatmaps.general.converts')],
+        $records = datadog_timing(function () use ($search) {
+            return $search->records();
+        }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
+
+        return [
+            'beatmapsets' => json_collection(
+                $records,
+                new BeatmapsetTransformer,
+                'beatmaps'
+            ),
+            'cursor' => $search->getSortCursor(),
+            'recommended_difficulty' => $params->getRecommendedDifficulty(),
+            'error' => search_error_message($search->getError()),
+            'total' => $search->count(),
         ];
-
-        $modes = [['id' => null, 'name' => trans('beatmaps.mode.any')]];
-        foreach (Beatmap::MODES as $name => $id) {
-            $modes[] = ['id' => $id, 'name' => trans("beatmaps.mode.{$name}")];
-        }
-
-        $statuses = [
-            ['id' => 7, 'name' => trans('beatmaps.status.any')],
-            ['id' => 0, 'name' => trans('beatmaps.status.ranked-approved')],
-            ['id' => 3, 'name' => trans('beatmaps.status.qualified')],
-            ['id' => 8, 'name' => trans('beatmaps.status.loved')],
-            ['id' => 2, 'name' => trans('beatmaps.status.faves')],
-            ['id' => 4, 'name' => trans('beatmaps.status.pending')],
-            ['id' => 5, 'name' => trans('beatmaps.status.graveyard')],
-            ['id' => 6, 'name' => trans('beatmaps.status.my-maps')],
-        ];
-
-        $extras = [
-            ['id' => 'video', 'name' => trans('beatmaps.extra.video')],
-            ['id' => 'storyboard', 'name' => trans('beatmaps.extra.storyboard')],
-        ];
-
-        $ranks = [];
-        foreach (['XH', 'X', 'SH', 'S', 'A', 'B', 'C', 'D'] as $rank) {
-            $ranks[] = ['id' => $rank, 'name' => trans("beatmaps.rank.{$rank}")];
-        }
-
-        $played = [
-            ['id' => null, 'name' => trans('beatmaps.played.any')],
-            ['id' => 'played', 'name' => trans('beatmaps.played.played')],
-            ['id' => 'unplayed', 'name' => trans('beatmaps.played.unplayed')],
-        ];
-
-        return compact('general', 'modes', 'statuses', 'genres', 'languages', 'played', 'extras', 'ranks');
     }
 }

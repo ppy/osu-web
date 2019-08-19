@@ -40,14 +40,14 @@ return [
         'edited' => 'En son :editor tarafından :update_time tarihinde düzenlendi.',
         'kudosu_denied' => 'Kudosu almaktan mahrum bırakıldı.',
         'message_placeholder_deleted_beatmap' => 'Bu zorluk seviyesi silindi o yüzden hakkında daha fazla tartışılamaz.',
-        'message_placeholder_locked' => '',
+        'message_placeholder_locked' => 'Bu beatmap için tartışma devre dışı bırakıldı.',
         'message_type_select' => 'Yorum Türünü Seçin',
         'reply_notice' => 'Cevaplamak için Enter tuşuna basın.',
         'reply_placeholder' => 'Yanıtınızı buraya yazın',
         'require-login' => 'Lütfen yorum yapmak ya da cevaplamak için giriş yapınız',
         'resolved' => 'Çözüldü',
         'restore' => 'restore et',
-        'show_deleted' => '',
+        'show_deleted' => 'Silineni göster',
         'title' => 'Tartışmalar',
 
         'collapse' => [
@@ -62,13 +62,13 @@ return [
 
         'lock' => [
             'button' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'Tartışmayı kilitle',
+                'unlock' => 'Tartışmanın kilidini aç',
             ],
 
             'prompt' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'Kilitleme sebebi',
+                'unlock' => 'Kilidi açmak istediğinizden emin misiniz?',
             ],
         ],
 
@@ -104,11 +104,11 @@ return [
         ],
 
         'new' => [
-            'pin' => '',
+            'pin' => 'Sabitle',
             'timestamp' => 'Zaman damgası',
             'timestamp_missing' => 'bir zaman damgası eklemek için editörde ctrl-c\'ye basıp mesajınıza yapıştırın!',
             'title' => 'Yeni Tartışma',
-            'unpin' => '',
+            'unpin' => 'Sabitlemeyi kaldır',
         ],
 
         'show' => [
@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Şuna göre sıralandı:',
             'created_at' => 'Oluşturulma zamanı',
             'timeline' => 'Zaman Çizgisi',
             'updated_at' => 'Son güncelleme',
@@ -141,8 +140,8 @@ return [
         ],
 
         'votes' => [
-            'up' => '',
-            'down' => '',
+            'up' => 'Bu tartışmaya artı oy ver',
+            'down' => 'Bu tartışmaya eksi oy ver',
         ],
     ],
 
@@ -217,7 +216,7 @@ return [
                 'title' => 'Başlık',
                 'artist' => 'Sanatçı',
                 'difficulty' => 'Zorluk',
-                'favourites' => '',
+                'favourites' => 'Favoriler',
                 'updated' => 'Güncellendi',
                 'ranked' => 'Sırada yer aldı',
                 'rating' => 'Derecelendirme',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Hepsi',
-        'ranked-approved' => 'Dereceli & Onaylı',
         'approved' => 'Onaylı',
-        'qualified' => 'Nitelikli',
-        'loved' => 'Sevilen',
-        'faves' => 'Favoriler',
-        'pending' => 'Beklemede & Yapım Aşamasında',
+        'favourites' => 'Favoriler',
         'graveyard' => 'Mezarlık',
-        'my-maps' => 'Haritalarım',
+        'leaderboard' => 'Liderlik tablosu olanlar',
+        'loved' => 'Sevilen',
+        'mine' => 'Benim haritalarım',
+        'pending' => 'Beklemede & Yapım Aşamasında',
+        'qualified' => 'Nitelikli',
+        'ranked' => 'Dereceli',
     ],
     'genre' => [
         'any' => 'Hepsi',

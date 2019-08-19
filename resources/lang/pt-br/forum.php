@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited publicação|:count_delimited publicações',
+            'topic_starter' => 'Autor do tópico',
         ],
     ],
 
@@ -179,8 +180,8 @@ return [
             ],
 
             'poll' => [
-                'hide_results' => '',
-                'hide_results_info' => '',
+                'hide_results' => 'Esconder os resultados da enquete.',
+                'hide_results_info' => 'Eles apenas serão exibidos após a conclusão da enquete.',
                 'length' => 'Manter enquete aberta por',
                 'length_days_suffix' => 'dias',
                 'length_info' => 'Deixe em branco para uma votação sem fim',
@@ -294,7 +295,7 @@ return [
                 'detail' => [
                     'end_time' => 'A votação encerrará às :time',
                     'ended' => 'Votação encerrada :time',
-                    'results_hidden' => '',
+                    'results_hidden' => 'Os resultados serão exibidos após a conclusão da enquete.',
                     'total' => 'Total de votos: :count',
                 ],
             ],

@@ -47,12 +47,12 @@
     }
 
     .@{passive-row}.@{name} & {
-      background-color: lighten(@color, 20%);
+      background-color: @color;
     }
 
     .@{passive-row}.@{name}:hover & {
       color: #fff;
-      background-color: @color;
+      background-color: lighten(@color, 20%);
     }
   }
 
@@ -70,6 +70,7 @@
     font-weight: 700;
     text-transform: uppercase;
     padding-bottom: 5px;
+    color: @osu-colour-f1;
 
     // in order of columns
     &--rank {
@@ -102,8 +103,10 @@
     }
 
     &--hitstat {
-      max-width: 45px;
+      max-width: 55px;
       min-width: 30px;
+      white-space: nowrap;
+      padding-right: 5px;
     }
 
     &--miss {
@@ -135,7 +138,6 @@
     }
   }
 
-  // styles applied to td instead of tr 'cuz firefox is a poop (can't do rounded corners on tr)
   &__cell {
     &:first-child {
       // rounded corners for left side
@@ -178,36 +180,36 @@
     }
 
     &--zero {
-      .cell-color(#aaa, #aaa);
+      color: fade(#fff, 40%);
     }
 
     // when row is selected
     .@{activated-row} & {
       color: #fff;
-      background-color: #555;
+      background-color: @osu-colour-b3;
     }
 
     // when row is not selected
     .@{passive-row} & {
-      background-color: #fff;
+      background-color: @osu-colour-b5;
     }
 
     .@{passive-row}:nth-child(odd) & {
-      background-color: #eee;
+      background-color: @osu-colour-b4;
     }
 
     // hovering over an unselected row
     .@{passive-row}:hover & {
       color: #fff;
-      background-color: #555;
+      background-color: @osu-colour-b3;
     }
 
     .@{passive-row}:hover:nth-child(odd) & {
-      background-color: #555;
+      background-color: @osu-colour-b3;
     }
 
-    .row-color(@friend-row, @yellow-light);
-    .row-color(@self-row, @green-light);
+    .row-color(@friend-row, fade(@yellow-dark, 20%));
+    .row-color(@self-row, fade(@green-dark, 30%));
   }
 
   &__popup-menu {
@@ -225,12 +227,6 @@
   }
 
   &__user-link {
-    .cell-color(#555, #fff);
-    transition: none;
-
-    &:hover {
-      font-weight: bold;
-      text-decoration: none;
-    }
+    .link-inverted();
   }
 }

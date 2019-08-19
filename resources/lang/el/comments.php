@@ -20,11 +20,11 @@
 
 return [
     'deleted' => 'διαγράφηκε',
-    'deleted_count' => '',
+    'deleted_count' => ':count_delimited διαγραμμένο σχόλιο|:count_delimited διαγραμμένα σχόλια',
     'edited' => 'επεξεργάστηκε :timeago απο :user',
     'empty' => 'Κανένα σχόλιο ακόμη.',
+    'load_replies' => '',
     'replies' => 'Απαντήσεις',
-    'show_replies' => 'εμφάνιση απαντήσεων',
     'title' => 'Σχόλια',
 
     'commentable_name' => [

@@ -64,7 +64,7 @@
   }
 
   &__dialog {
-    background-color: #333;
+    background-color: @osu-colour-b5;
     border-radius: @border-radius-large;
     width: 500px;
     max-width: 100%;
@@ -160,25 +160,21 @@
       margin-bottom: 25px;
     }
 
+    &--verification-completed {
+      display: block;
+      margin-top: -20px; // undo --title
+      margin-bottom: 50px;
+    }
+
+    &--verification-invalid {
+      display: block;
+      margin-bottom: 50px;
+    }
+
     &--wrong-user {
       display: block;
       font-size: @font-size--normal;
     }
-  }
-
-  &__scope-icon {
-    color: @green;
-    font-size: @font-size--normal;
-    width: 20px;
-    margin-left: -20px;
-    display: inline-block;
-  }
-
-  &__scopes {
-    list-style: none;
-    margin: 0;
-    padding: 0 0 0 20px;
-    font-size: @font-size--title-small;
   }
 
   &__title {

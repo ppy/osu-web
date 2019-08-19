@@ -22,10 +22,6 @@
   display: flex;
   flex-direction: column;
 
-  &:hover {
-    background-color: #eee;
-  }
-
   &__achieved {
     margin: 2px 0;
     font-size: @font-size--small;
@@ -52,6 +48,7 @@
     padding: 10px;
     display: flex;
 
+    background-color: @osu-colour-b4;
     .default-border-radius();
     .default-box-shadow();
 
@@ -77,13 +74,15 @@
   &__stat-header {
     font-size: 10px;
     font-weight: 700;
+    color: @osu-colour-f1;
 
     padding-bottom: 2px;
 
-    border-bottom: 2px solid #BBB;
+    border-bottom: 2px solid @osu-colour-b3;
     text-transform: uppercase;
 
-    width: 50px;
+    min-width: 50px;
+    white-space: nowrap;
 
     &--wider {
       min-width: 80px;
@@ -99,7 +98,7 @@
   &__stat-value {
     font-size: 22px;
     font-weight: 300;
-    color: #555;
+    color: white;
     margin-top: 4px;
 
     line-height: 0.9;
@@ -134,9 +133,9 @@
     font-style: italic;
     font-weight: 700;
     margin-bottom: 2px;
-    color: #555;
     display: block;
     margin-right: 10px;
+    .link-inverted();
   }
 
   &__wrapping-container {

@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited příspěvek|:count_delimited příspěvky|:count_delimited příspěvků',
+            'topic_starter' => '',
         ],
     ],
 

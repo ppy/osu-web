@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'suporter osu!',
         'joined_at' => 'Încris :date',
         'lastvisit' => 'Văzut ultima dată :date',
+        'lastvisit_online' => '',
         'missingtext' => 'S-ar putea să fi făcut o greșeală de scriere! (sau este posibil ca utilizatorul să fi fost restricționat)',
         'origin_country' => 'Din :country',
         'page_description' => 'osu! - Tot ce ai dorit vreodată să știi despre :username!',
@@ -148,10 +149,14 @@ return [
                     'button' => 'Încarcă imaginea',
                     'dropzone' => 'Plasați fișiere aici pentru a le încărca',
                     'dropzone_info' => 'Poți, de asemenea, să-ți plasezi imaginea aici pentru a o încărca',
-                    'restriction_info' => "Încărcare disponibilă pentru <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>numai</a>suporteri osu!",
                     'size_info' => 'Dimensiunea coperții trebuie să fie de 2800x620',
                     'too_large' => 'Fișierul încărcat este prea mare.',
                     'unsupported_format' => 'Format nesuportat.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -218,7 +223,6 @@ return [
                 'recent_entries' => 'Istoricul Kudosu recent',
                 'title' => 'Kudosu!',
                 'total' => 'Suma totală de Kudosu câștigați',
-                'total_info' => 'Bazat pe cât de mult a contribuit utilizatorul la moderarea unui beatmap. Vezi <a href="'.osu_url('user.kudosu').'">această pagină</a> pentru mai multe informații.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -257,6 +261,11 @@ return [
                         'reset' => 'Kudosu resetați de :giver pentru postarea :post',
                         'revoke' => 'Kudosu respinși de :giver pentru postarea :post',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -334,7 +343,11 @@ return [
             'description' => '<strong>eu!</strong> este o zonă personală personalizabilă în pagina ta de profil.',
             'edit_big' => 'Editează-mă!',
             'placeholder' => 'Introdu conținutul paginii aici',
-            'restriction_info' => "Trebuie să fii un <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>suporter osu!</a> pentru a debloca această funcție.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'A contribuit la :link',
@@ -361,7 +374,9 @@ return [
             'total_score' => 'Scor total',
         ],
     ],
+
     'status' => [
+        'all' => '',
         'online' => 'Online',
         'offline' => 'Offline',
     ],
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Verificarea contului',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

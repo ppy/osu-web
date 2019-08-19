@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Разширено търсене',
         'button' => 'Търсене',
         'empty_result' => 'Нищо не бе открито!',
+        'keyword_required' => '',
         'placeholder' => 'Пишете тук за търсене…',
         'title' => 'Търсене',
 
@@ -52,7 +53,7 @@ return [
             'title' => 'Форум',
 
             'label' => [
-                'forum' => 'търсене във форуми',
+                'forum' => 'търсене във форумите',
                 'forum_children' => 'прибави и подфорумите',
                 'topic_id' => 'тема #',
                 'username' => 'автор',

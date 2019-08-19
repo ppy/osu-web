@@ -27,6 +27,10 @@ class ChangeUsername
 {
     use Validatable;
 
+    const LESS_VALIDATION_TYPES = ['admin', 'revert', 'support'];
+
+    protected $type;
+
     /** @var User */
     protected $user;
 
@@ -42,8 +46,9 @@ class ChangeUsername
         return trans('model_validation.user.change_username.supporter_required._', ['link' => $link]);
     }
 
-    public function __construct(User $user, string $newUsername)
+    public function __construct(User $user, string $newUsername, string $type = 'paid')
     {
+        $this->type = $type;
         $this->username = $newUsername;
         $this->user = $user;
     }
@@ -55,11 +60,11 @@ class ChangeUsername
             return $this->validationErrors()->addTranslated('user_id', 'This user cannot be renamed');
         }
 
-        if ($this->user->isRestricted()) {
+        if ($this->hasExtraValidations() && $this->user->isRestricted()) {
             return $this->validationErrors()->add('username', '.change_username.restricted');
         }
 
-        if (!$this->user->hasSupported()) {
+        if ($this->hasExtraValidations() && !$this->user->hasSupported()) {
             return $this->validationErrors()->addTranslated('username', static::requireSupportedMessage());
         }
 
@@ -81,5 +86,10 @@ class ChangeUsername
     public function validationErrorsTranslationPrefix()
     {
         return 'user';
+    }
+
+    private function hasExtraValidations()
+    {
+        return !in_array($this->type, static::LESS_VALIDATION_TYPES, true);
     }
 }

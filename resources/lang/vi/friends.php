@@ -25,6 +25,13 @@ return [
       'remove' => 'xóa bạn',
     ],
 
+    'index' => [
+        'title' => [
+            '_' => 'Trang chủ :info',
+            'info' => 'Bạn bè',
+        ],
+    ],
+
     'state' => [
       'friends' => 'bạn bè',
       'mutual' => 'mutual',

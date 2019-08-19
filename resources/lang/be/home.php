@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Пашыраны пошук',
         'button' => 'Пошук',
         'empty_result' => 'Нічога не знойдзена!',
+        'keyword_required' => 'Пошукавае слова абавязковае',
         'placeholder' => 'пішыце тут',
         'title' => 'Пошук',
 

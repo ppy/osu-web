@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Căutare avansată',
         'button' => 'Căutare',
         'empty_result' => 'Nimic găsit!',
+        'keyword_required' => '',
         'placeholder' => 'tastează pentru a căuta',
         'title' => 'Caută',
 

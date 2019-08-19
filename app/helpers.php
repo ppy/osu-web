@@ -604,7 +604,7 @@ function issue_icon($issue)
 
 function build_url($build)
 {
-    return route('changelog.build', [$build->updateStream->name, $build->version]);
+    return route('changelog.build', [optional($build->updateStream)->name ?? 'unknown', $build->version]);
 }
 
 function post_url($topicId, $postId, $jumpHash = true, $tail = false)
@@ -1324,4 +1324,54 @@ function check_url(string $url): bool
     curl_close($ch);
 
     return !$errored;
+}
+
+function mini_asset(string $url): string
+{
+    return present(config('osu.assets.mini_url'))
+        ? str_replace(config('osu.assets.base_url'), config('osu.assets.mini_url'), $url)
+        : $url;
+}
+
+function section_to_hue_map($section): int
+{
+    static $colourToHue = [
+        'red' => 0,
+        'pink' => 333,
+        'orange' => 46,
+        'green' => 115,
+        'purple' => 255,
+        'blue' => 200,
+    ];
+
+    static $sectionMapping = [
+        'admin' => 'red',
+        'admin-forum' => 'red',
+        'admin-store' => 'red',
+        'beatmaps' => 'blue',
+        'beatmapsets' => 'blue',
+        'community' => 'pink',
+        'error' => 'pink',
+        'help' => 'orange',
+        'home' => 'purple',
+        'multiplayer' => 'pink',
+        'rankings' => 'green',
+        'store' => 'pink',
+        'user' => 'pink',
+    ];
+
+    return isset($sectionMapping[$section]) ? $colourToHue[$sectionMapping[$section]] : $colourToHue['pink'];
+}
+
+function search_error_message(?Exception $e): ?string
+{
+    if ($e === null) {
+        return null;
+    }
+
+    $basename = snake_case(get_class_basename(get_class($e)));
+    $key = "errors.search.${basename}";
+    $text = trans($key);
+
+    return $text === $key ? trans('errors.search.default') : $text;
 }

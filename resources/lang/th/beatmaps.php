@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'เรียงตาม:',
             'created_at' => 'เวลาที่สร้าง',
             'timeline' => 'ไทม์ไลน์',
             'updated_at' => 'อัพเดทล่าสุด',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'ไม่เจาะจง',
-        'ranked-approved' => 'จัดอันดับและอนุมัติ',
         'approved' => 'อนุมัติ',
-        'qualified' => 'ผ่านเกณฑ์',
-        'loved' => 'Loved',
-        'faves' => 'รายการโปรด',
-        'pending' => 'รอดำเนินการ & WIP',
+        'favourites' => 'รายการโปรด',
         'graveyard' => 'สุสาน',
-        'my-maps' => 'แมพของฉัน',
+        'leaderboard' => 'สถิติการจัดลำดับ',
+        'loved' => 'Loved',
+        'mine' => 'แมพของฉัน',
+        'pending' => 'รอดำเนินการ & WIP',
+        'qualified' => 'ผ่านเกณฑ์',
+        'ranked' => 'จัดอันดับแล้ว',
     ],
     'genre' => [
         'any' => 'ไม่เจาะจง',

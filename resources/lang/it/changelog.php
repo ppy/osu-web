@@ -55,7 +55,7 @@ return [
     'support' => [
         'heading' => 'Adori questo aggiornamento?',
         'text_1' => 'Sostieni gli sviluppi futuri di osu! e :link oggi!',
-        'text_1_link' => 'diventa un sostenitore',
+        'text_1_link' => 'diventa un supporter',
         'text_2' => 'Non solo aiuterai a velocizzare lo sviluppo, ma riceverai anche nuove funzionalità e opzioni!',
     ],
 ];

@@ -20,7 +20,6 @@
     'currentAction' => 'artists',
     'title' => "Featured Artist: $artist->name",
     'pageDescription' => $artist->description,
-    'bodyAdditionalClasses' => 'osu-layout--body-darker'
 ])
 
 @section('content')

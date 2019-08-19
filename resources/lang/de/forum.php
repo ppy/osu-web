@@ -75,6 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited Beitrag | :count_delimited Beiträge',
+            'topic_starter' => 'Thread Starter',
         ],
     ],
 

@@ -23,7 +23,7 @@ class RouteScopesTest extends TestCase
     {
         $expected = [
             'api/v2/friends' => ['friends.read'],
-            'api/v2/me' => ['identify'],
+            'api/v2/me/{mode?}' => ['identify'],
         ];
 
         $loaded = [];

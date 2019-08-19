@@ -132,6 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Juntou-se em :date',
         'lastvisit' => 'Visto pela última vez em :date',
+        'lastvisit_online' => 'Atualmente online',
         'missingtext' => 'Poderás ter escrito mal! (ou o utilizador poderá ter sido banido)',
         'origin_country' => 'De :country',
         'page_description' => 'osu! - Tudo o que sempre quiseste saber sobre :username!',
@@ -148,10 +149,14 @@ return [
                     'button' => 'Carregar imagem',
                     'dropzone' => 'Larga aqui para carregar',
                     'dropzone_info' => 'Também podes largar aqui a tua imagem para carregar',
-                    'restriction_info' => "Carregamento disponível para <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> só",
                     'size_info' => 'O tamanho da capa deveria ser 2800x620',
                     'too_large' => 'O ficheiro carregado é demasiado grande.',
                     'unsupported_format' => 'Formato não suportado.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -218,7 +223,6 @@ return [
                 'recent_entries' => 'Historial Recente de Kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Total de Kudosu Ganhos',
-                'total_info' => 'Baseado no quão o utilizador contribuiu para a moderação do beatmap. Confirma em <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informação.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -257,6 +261,11 @@ return [
                         'reset' => 'Kudosu reiniciado por :giver para a publicação :post',
                         'revoke' => 'Kudosu negado por :giver para a publicação :post',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -334,7 +343,11 @@ return [
             'description' => '<strong>eu!</strong> é uma área pessoal personalizável na tua página de perfil.',
             'edit_big' => 'Edita-me!',
             'placeholder' => 'Escreve o conteúdo da página aqui',
-            'restriction_info' => "Precisas de ser um <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> para desbloquear esta funcionalidade.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Contribuiu em :link',
@@ -361,7 +374,9 @@ return [
             'total_score' => 'Pontuação Total',
         ],
     ],
+
     'status' => [
+        'all' => 'Todos',
         'online' => 'Online',
         'offline' => 'Offline',
     ],
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Verificação da Conta',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

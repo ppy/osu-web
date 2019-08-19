@@ -21,6 +21,7 @@
 return [
     'error' => [
         'chat' => [
+            'empty' => 'Nie możesz wysłać pustej wiadomości.',
             'limit_exceeded' => 'Wysyłasz wiadomości zbyt szybko, poczekaj chwilę zanim zaczniesz wysyłać kolejne.',
             'too_long' => 'Wiadomość, którą chcesz wysłać, jest zbyt długa.',
         ],
@@ -30,7 +31,7 @@ return [
         'identify' => 'zidentyfikować cię i uzyskać publiczne informacje z twojego profilu.',
 
         'friends' => [
-            'read' => 'Zobacz, kogo obserwujesz.',
+            'read' => 'zobaczyć, kogo obserwujesz.',
         ],
     ],
 ];

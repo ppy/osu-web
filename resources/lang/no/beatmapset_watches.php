@@ -19,13 +19,6 @@
  */
 
 return [
-    'button' => [
-        'action' => [
-            'to_0' => 'Stopp overvåkning',
-            'to_1' => 'Overvåk',
-        ],
-    ],
-
     'index' => [
         'description' => 'Dette er beatmapdiskusjonene som du følger. Du vil varsles om nye innlegg eller oppdateringer.',
         'title_compact' => 'modding overvåkningsliste',

@@ -265,11 +265,11 @@ export class Main extends React.PureComponent
           unrankedBeatmapsets: @state.unrankedBeatmapsets
           graveyardBeatmapsets: @state.graveyardBeatmapsets
           counts:
-            favouriteBeatmapsets: @state.user.favourite_beatmapset_count[0]
-            rankedAndApprovedBeatmapsets: @state.user.ranked_and_approved_beatmapset_count[0]
-            lovedBeatmapsets: @state.user.loved_beatmapset_count[0]
-            unrankedBeatmapsets: @state.user.unranked_beatmapset_count[0]
-            graveyardBeatmapsets: @state.user.graveyard_beatmapset_count[0]
+            favouriteBeatmapsets: @state.user.favourite_beatmapset_count
+            rankedAndApprovedBeatmapsets: @state.user.ranked_and_approved_beatmapset_count
+            lovedBeatmapsets: @state.user.loved_beatmapset_count
+            unrankedBeatmapsets: @state.user.unranked_beatmapset_count
+            graveyardBeatmapsets: @state.user.graveyard_beatmapset_count
           pagination: @state.showMorePagination
         component: Beatmaps
 
@@ -316,6 +316,15 @@ export class Main extends React.PureComponent
 
         @setState
           "#{name}": state
+          showMorePagination: paginationState
+
+      .catch (error) =>
+        osu.ajaxError error
+
+        paginationState = _.cloneDeep @state.showMorePagination
+        paginationState[name].loading = false
+
+        @setState
           showMorePagination: paginationState
 
 
@@ -409,7 +418,7 @@ export class Main extends React.PureComponent
     $elems.sortable('cancel')
 
     @setState profileOrder: newOrder, =>
-      $.ajax laroute.route('account.update'),
+      $.ajax laroute.route('account.options'),
         method: 'PUT'
         dataType: 'JSON'
         data:

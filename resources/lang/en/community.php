@@ -40,7 +40,7 @@ return [
 
         'supporter_status' => [
             'contribution' => 'Thanks for your support so far! You have contributed a total of :dollars over :tags tag purchases!',
-            'gifted' => ':giftedTags of your tag purchases was gifted (for a total of :giftedDollars gifted), how generous!',
+            'gifted' => ':giftedTags of your tag purchases were gifted (for a total of :giftedDollars gifted), how generous!',
             'not_yet' => "You don't have an osu!supporter tag yet :(",
             'title' => 'Current osu!supporter status',
             'valid_until' => 'Your current osu!supporter tag is valid until :date!',
@@ -62,7 +62,7 @@ return [
             'title' => 'Oh? What do I get?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'quick and easy access to search beatmaps without leaving the game.',
+                'description' => 'Quick and easy access to search beatmaps without leaving the game.',
             ],
 
             'auto_downloads' => [

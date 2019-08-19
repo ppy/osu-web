@@ -45,34 +45,8 @@
     }
   }
 
-  &--changelog {
-    &::after {
-      background-color: @violet;
-    }
-  }
-
-  &--chat {
-    &::after {
-      background-color: @community-blue;
-    }
-  }
-
-  &--comments {
-    &::after {
-      background-color: @blue;
-    }
-  }
-
-  &--news {
-    &::after {
-      background-color: @violet;
-    }
-  }
-
-  &--users {
-    &::after {
-      background-color: @seafoam;
-    }
+  &::after {
+    background-color: @osu-colour-h1;
   }
 
   &__item {
@@ -87,21 +61,7 @@
       padding: 5px 5px 15px;
       margin: 0 5px;
 
-      .@{_top}--changelog & {
-        color: @violet;
-      }
-
-      .@{_top}--chat & {
-        color: @community-blue;
-      }
-
-      .@{_top}--comments & {
-        color: @blue;
-      }
-
-      .@{_top}--news & {
-        color: @violet;
-      }
+      color: @osu-colour-h1;
 
       .@{_top}--users & {
         display: none;
@@ -132,52 +92,20 @@
       will-change: transform;
       pointer-events: none;
       transform: scaleY(0);
-      z-index: @z-index--page-header; // prevent page content from covering the bottom poart
+      z-index: @z-index--page-header; // prevent page content from covering the bottom part
     }
 
     &:hover::before {
       transform: scaleY(1);
     }
 
-    .@{_top}--changelog & {
-      color: @violet;
+    color: @osu-colour-h1;
+    .link-hover({ color: @osu-colour-h1 });
 
-      &::before {
-        background-color: @violet;
-      }
+    &::before {
+      background-color: @osu-colour-h1;
     }
 
-    .@{_top}--chat & {
-      color: @community-blue;
-
-      &::before {
-        background-color: @community-blue;
-      }
-    }
-
-    .@{_top}--comments & {
-      color: @blue;
-
-      &::before {
-        background-color: @blue;
-      }
-    }
-
-    .@{_top}--news & {
-      color: @violet;
-
-      &::before {
-        background-color: @violet;
-      }
-    }
-
-    .@{_top}--users & {
-      color: @seafoam;
-
-      &::before {
-        background-color: @seafoam;
-      }
-    }
 
     &&--active {
       color: #fff;

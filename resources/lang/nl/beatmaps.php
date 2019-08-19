@@ -116,7 +116,6 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Gesorteerd op:',
             'created_at' => 'Gemaakt op',
             'timeline' => 'Tijdlijn',
             'updated_at' => 'Laatst bijgewerkt',
@@ -244,14 +243,15 @@ return [
     ],
     'status' => [
         'any' => 'Alles',
-        'ranked-approved' => 'Gerankt & Goedgekeurd',
         'approved' => 'Goedgekeurd',
-        'qualified' => 'Gekwalificeerd',
-        'loved' => 'Loved',
-        'faves' => 'Favorieten',
-        'pending' => 'Pending & WIP',
+        'favourites' => 'Favorieten',
         'graveyard' => 'Begraafplaats',
-        'my-maps' => 'Mijn Mappen',
+        'leaderboard' => 'Heeft Ranglijst',
+        'loved' => 'Loved',
+        'mine' => 'Mijn Mappen',
+        'pending' => 'Pending & WIP',
+        'qualified' => 'Gekwalificeerd',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => 'Alles',

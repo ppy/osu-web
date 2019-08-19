@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Tarkempi haku',
         'button' => 'Hae',
         'empty_result' => 'Mitään ei löytynyt!',
+        'keyword_required' => '',
         'placeholder' => 'kirjoita hakeaksesi',
         'title' => 'Hae',
 
@@ -112,7 +113,7 @@ return [
     ],
 
     'user' => [
-        'title' => 'hallinta',
+        'title' => 'yleiskatsaus',
         'news' => [
             'title' => 'Uutiset',
             'error' => 'Virhe ladattaessa uutisia. Kokeile sivun päivittämistä.',

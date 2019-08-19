@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Tìm kiếm nâng cao',
         'button' => 'Tìm kiếm ',
         'empty_result' => 'Không có kết quả!',
+        'keyword_required' => '',
         'placeholder' => 'nhập để tìm kiếm',
         'title' => 'Tìm Kiếm',
 

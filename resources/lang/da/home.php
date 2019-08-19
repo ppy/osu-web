@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Avanceret søgning',
         'button' => 'Søg',
         'empty_result' => 'Intet fundet!',
+        'keyword_required' => '',
         'placeholder' => 'klik for at søge',
         'title' => 'Søg',
 

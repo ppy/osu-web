@@ -29,7 +29,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Log;
-use Raven_Client;
+use Sentry\ClientBuilder;
+use Sentry\State\Scope;
 
 class RegenerateBeatmapsetCover implements ShouldQueue
 {
@@ -71,11 +72,9 @@ class RegenerateBeatmapsetCover implements ShouldQueue
             Datadog::increment(['thumbdonger.processed', 'thumbdonger.error']);
             Log::warning("[beatmapset_id: {$this->beatmapset->beatmapset_id}] Cover regeneration FAILED.");
             if (config('osu.beatmap_processor.sentry')) {
-                $tags = [
-                    'beatmapset_id' => $this->beatmapset->beatmapset_id,
-                ];
-                $client = new Raven_Client(config('osu.beatmap_processor.sentry'), ['tags' => $tags]);
-                $client->captureException($e);
+                $client = ClientBuilder::create(['dsn' => config('osu.beatmap_processor.sentry')])->getClient();
+                $scope = (new Scope)->setTag('beatmapset_id', (string) $this->beatmapset->beatmapset_id);
+                $client->captureException($e, $scope);
                 throw new SilencedException('Silenced Exception: ['.get_class($e).'] '.$e->getMessage());
             } else {
                 throw $e;

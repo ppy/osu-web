@@ -36,6 +36,7 @@ return [
         'advanced_link' => 'Részletes keresés',
         'button' => 'Keresés',
         'empty_result' => 'Nincs találat!',
+        'keyword_required' => '',
         'placeholder' => 'keresendő szöveg',
         'title' => 'Keresés',
 
