@@ -21,10 +21,10 @@ namespace App\Libraries\Wiki;
 
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\Markdown\OsuMarkdownProcessor;
-use League\CommonMark\Environment;
-use League\CommonMark\DocParser;
-use League\CommonMark\Inline\Element\Link;
 use League\CommonMark\Block\Element\Heading;
+use League\CommonMark\DocParser;
+use League\CommonMark\Environment;
+use League\CommonMark\Inline\Element\Link;
 
 class MainPageRenderer extends Renderer
 {
@@ -59,14 +59,14 @@ class MainPageRenderer extends Renderer
             if ($node instanceof Heading) {
                 if ($event->isEntering()) {
                     $heading = [
-                        "level" => $node->getLevel(),
-                        "text" => OsuMarkdownProcessor::getText($node),
+                        'level' => $node->getLevel(),
+                        'text' => OsuMarkdownProcessor::getText($node),
                     ];
                 } else {
                     array_push($sections, $heading);
                 }
             } elseif ($node instanceof Link) {
-                $heading["url"] = $node->getUrl();
+                $heading['url'] = $node->getUrl();
             }
         }
 
@@ -76,18 +76,19 @@ class MainPageRenderer extends Renderer
     /**
      * {@inheritdoc}
      */
-    public function render() {
+    public function render()
+    {
         $body = OsuMarkdown::parseYamlHeader($this->body);
 
-        $document = $this->parser->parse($body["document"]);
+        $document = $this->parser->parse($body['document']);
         $elements = $this->getElements($document);
 
         $page = [
-            "header" => $body["header"],
-            "output" => view("wiki.generators.main", ["elements" => array_slice($elements, 1)])->render(),
+            'header' => $body['header'],
+            'output' => view('wiki.generators.main', ['elements' => array_slice($elements, 1)])->render(),
         ];
 
-        $page["header"]["title"] = $elements[0]["text"];
+        $page['header']['title'] = $elements[0]['text'];
 
         return $page;
     }

@@ -282,7 +282,7 @@ class Page
 
                     if (present($body)) {
                         // prefilling the header so type() works
-                        $this->cache["page"]["header"] = OsuMarkdown::parseYamlHeader($body)["header"];
+                        $this->cache['page']['header'] = OsuMarkdown::parseYamlHeader($body)['header'];
 
                         $rendererClass = static::RENDERERS[$this->type()];
 
@@ -330,7 +330,7 @@ class Page
 
     public function tags()
     {
-        return $this->page()["header"]["tags"] ?? [];
+        return $this->page()['header']['tags'] ?? [];
     }
 
     public function title($withSubtitle = false)
@@ -363,7 +363,7 @@ class Page
             return;
         }
 
-        return presence($this->page()["header"]["type"] ?? null) ?? "markdown_page";
+        return presence($this->page()['header']['type'] ?? null) ?? 'markdown_page';
     }
 
     public function template()
@@ -373,7 +373,7 @@ class Page
         }
 
         if (!array_key_exists($this->type(), static::TEMPLATES)) {
-            throw new \Exception("Invalid wiki page type");
+            throw new \Exception('Invalid wiki page type');
         }
 
         return static::TEMPLATES[$this->type()];
