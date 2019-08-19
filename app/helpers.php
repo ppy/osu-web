@@ -710,7 +710,7 @@ function nav_links()
         'orders-index' => route('store.orders.index'),
     ];
     $links['help'] = [
-        'getWiki' => wiki_url('Welcome'),
+        'getWiki' => wiki_url('Main_Page'),
         'getFaq' => wiki_url('FAQ'),
         'getRules' => wiki_url('Rules'),
         'getSupport' => wiki_url('Help_Centre'),
@@ -727,7 +727,7 @@ function footer_landing_links()
             'changelog-index' => route('changelog.index'),
             'beatmaps' => action('BeatmapsetsController@index'),
             'download' => route('download'),
-            'wiki' => wiki_url('Welcome'),
+            'wiki' => wiki_url('Main_Page'),
         ],
         'help' => [
             'faq' => wiki_url('FAQ'),
