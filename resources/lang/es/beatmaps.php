@@ -40,14 +40,14 @@ return [
         'edited' => 'Última edición por :editor :update_time',
         'kudosu_denied' => 'Negado de obtener kudosu.',
         'message_placeholder_deleted_beatmap' => 'Esta dificultad se ha eliminado, por lo que ya puede ser discutida.',
-        'message_placeholder_locked' => '',
+        'message_placeholder_locked' => 'La discusión para este beatmap ha sido desactivada.',
         'message_type_select' => 'Seleccionar tipo de comentario',
         'reply_notice' => 'Presione enter para responder.',
         'reply_placeholder' => 'Escribe tu respuesta aquí',
         'require-login' => 'Inicia sesión para publicar o responder',
         'resolved' => 'Resuelto',
         'restore' => 'restaurar',
-        'show_deleted' => '',
+        'show_deleted' => 'Mostrar eliminados',
         'title' => 'Discusiones',
 
         'collapse' => [
@@ -62,13 +62,13 @@ return [
 
         'lock' => [
             'button' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'Bloquear discusión',
+                'unlock' => 'Desbloquear discusión',
             ],
 
             'prompt' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'Razón del bloqueo',
+                'unlock' => '¿Estás seguro que deseas desbloquear?',
             ],
         ],
 
@@ -104,11 +104,11 @@ return [
         ],
 
         'new' => [
-            'pin' => '',
+            'pin' => 'Fijar',
             'timestamp' => 'Marca de tiempo',
             'timestamp_missing' => '¡Usa Ctrl+C en el modo de edición y pega tu mensaje para agregar una marca de tiempo!',
             'title' => 'Nueva Discusión',
-            'unpin' => '',
+            'unpin' => 'Dejar de fijar',
         ],
 
         'show' => [
@@ -140,8 +140,8 @@ return [
         ],
 
         'votes' => [
-            'up' => '',
-            'down' => '',
+            'up' => 'Votar positivamente esta discusión',
+            'down' => 'Votar negativamente esta discusión',
         ],
     ],
 
@@ -244,14 +244,14 @@ return [
     'status' => [
         'any' => 'Cualquiera',
         'approved' => 'Aprobados',
-        'favourites' => '',
+        'favourites' => 'Favoritos',
         'graveyard' => 'Abandonados',
-        'leaderboard' => '',
+        'leaderboard' => 'Tiene Liderazgo',
         'loved' => 'Amados',
-        'mine' => '',
+        'mine' => 'Mis mapas',
         'pending' => 'Pendiente y trabajo en progreso',
         'qualified' => 'Calificados',
-        'ranked' => '',
+        'ranked' => 'Clasificado',
     ],
     'genre' => [
         'any' => 'Cualquiera',

@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Аватар',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Профіль',
 
             'user' => [
+                'user_discord' => '',
                 'user_from' => 'бягучае месцазнаходжанне',
                 'user_interests' => 'цікаўнасці',
                 'user_msnm' => '',
                 'user_occ' => 'занятак',
                 'user_twitter' => '',
                 'user_website' => 'вэб-сайт',
-                'user_discord' => '',
             ],
         ],
 
@@ -62,9 +64,37 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => 'Апавяшчэнні',
+        'topic_auto_subscribe' => 'аўтаматычна ўключаць апавяшчэнні для вашых тэм з форума',
+    ],
+
     'oauth' => [
-        'title' => '',
-        'authorized_clients' => '',
+        'authorized_clients' => 'аўтарызаваныя кліенты',
+        'title' => 'OAuth',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'клавіятура',
+        'mouse' => 'мыш',
+        'tablet' => 'планшэт',
+        'title' => 'Стыль гульні',
+        'touch' => 'сэнсарны экран',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'заблакаваць прыватныя паведамленні ад людзей не з майго спіса сяброў',
+        'hide_online' => 'схаваць анлайн прысутнасць',
+        'title' => 'Прыватнасць',
+    ],
+
+    'security' => [
+        'current_session' => 'бягучы',
+        'end_session' => 'Скончыць сеанс',
+        'end_session_confirmation' => 'Сеанс на гэтай прыладзе будзе неадкладна завершаны. Вы ўпэўнены?',
+        'last_active' => 'Апошняя актыўнасць:',
+        'title' => 'Бяспека',
+        'web_sessions' => 'вэб-сеансы',
     ],
 
     'update_email' => [
@@ -77,31 +107,12 @@ return [
         'update' => 'абнавіць',
     ],
 
-    'playstyles' => [
-        'title' => 'Стыль гульні',
-        'mouse' => 'мыш',
-        'keyboard' => 'клавіятура',
-        'tablet' => 'планшэт',
-        'touch' => 'сэнсарны экран',
+    'verification_completed' => [
+        'text' => '',
+        'title' => '',
     ],
 
-    'privacy' => [
-        'title' => 'Прыватнасць',
-        'friends_only' => 'заблакаваць прыватныя паведамленні ад людзей не з майго спіса сяброў',
-        'hide_online' => 'схаваць анлайн прысутнасць',
-    ],
-
-    'notifications' => [
-        'title' => 'Апавяшчэнні',
-        'topic_auto_subscribe' => 'аўтаматычна ўключаць апавяшчэнні для вашых тэм з форума',
-    ],
-
-    'security' => [
-        'current_session' => 'бягучы',
-        'end_session' => 'Скончыць сеанс',
-        'end_session_confirmation' => 'Сеанс на гэтай прыладзе будзе неадкладна завершаны. Вы ўпэўнены?',
-        'last_active' => 'Апошняя актыўнасць:',
-        'title' => 'Бяспека',
-        'web_sessions' => 'вэб-сеансы',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

@@ -21,6 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => '请求的页面还没有没有被翻译为选中语言 (:language). 正在显示英文版本.',
+        'incomplete_or_outdated' => '',
         'languages' => '语言',
         'missing' => '请求的页面未找到',
         'missing_title' => '未找到',

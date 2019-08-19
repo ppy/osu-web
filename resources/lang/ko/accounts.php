@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => '아바타',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => '프로필',
 
             'user' => [
+                'user_discord' => 'Discord',
                 'user_from' => '거주지',
                 'user_interests' => '관심 분야',
                 'user_msnm' => 'Skype',
                 'user_occ' => '직업',
                 'user_twitter' => 'Twitter',
                 'user_website' => '웹사이트',
-                'user_discord' => 'Discord',
             ],
         ],
 
@@ -62,9 +64,37 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => '알림',
+        'topic_auto_subscribe' => '당신이 만드는 새로운 포럼 주제에 대한 알림을 자동적으로 활성화합니다.',
+    ],
+
     'oauth' => [
-        'title' => '',
         'authorized_clients' => '',
+        'title' => '',
+    ],
+
+    'playstyles' => [
+        'keyboard' => '키보드',
+        'mouse' => '마우스',
+        'tablet' => '태블릿',
+        'title' => '플레이 방식',
+        'touch' => '터치스크린',
+    ],
+
+    'privacy' => [
+        'friends_only' => '친구 목록에 없는 사람들이 보낸 개인 메시지를 차단하기',
+        'hide_online' => '온라인 상태 숨기기',
+        'title' => '개인 정보',
+    ],
+
+    'security' => [
+        'current_session' => '현재 세션',
+        'end_session' => '세션 종료',
+        'end_session_confirmation' => '이 작업은 그 장치의 세션을 즉시 종료합니다. 확실한가요?',
+        'last_active' => '최근 활동:',
+        'title' => '보안',
+        'web_sessions' => '웹 세션',
     ],
 
     'update_email' => [
@@ -77,31 +107,12 @@ return [
         'update' => '변경',
     ],
 
-    'playstyles' => [
-        'title' => '플레이 방식',
-        'mouse' => '마우스',
-        'keyboard' => '키보드',
-        'tablet' => '태블릿',
-        'touch' => '터치스크린',
+    'verification_completed' => [
+        'text' => '',
+        'title' => '',
     ],
 
-    'privacy' => [
-        'title' => '개인 정보',
-        'friends_only' => '친구 목록에 없는 사람들이 보낸 개인 메시지를 차단하기',
-        'hide_online' => '온라인 상태 숨기기',
-    ],
-
-    'notifications' => [
-        'title' => '알림',
-        'topic_auto_subscribe' => '당신이 만드는 새로운 포럼 주제에 대한 알림을 자동적으로 활성화합니다.',
-    ],
-
-    'security' => [
-        'current_session' => '현재 세션',
-        'end_session' => '세션 종료',
-        'end_session_confirmation' => '이 작업은 그 장치의 세션을 즉시 종료합니다. 확실한가요?',
-        'last_active' => '최근 활동:',
-        'title' => '보안',
-        'web_sessions' => '웹 세션',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

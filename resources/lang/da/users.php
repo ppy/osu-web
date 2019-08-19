@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Coverbilledet burde være 2800x620',
                     'too_large' => 'Den uploadede fil er for stor.',
                     'unsupported_format' => 'Ikke-understøttet format.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -257,6 +262,11 @@ return [
                         'revoke' => 'Benægtet kudosu af :giver for opslaget :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'me!',
@@ -333,6 +343,11 @@ return [
             'description' => '<strong>me!</strong> er et brugerdefinerbart felt på din profilside.',
             'edit_big' => 'Ændr mig!',
             'placeholder' => 'Skriv indhold her',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Bidraget :link',
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Kontobekræftelse',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

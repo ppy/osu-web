@@ -37,6 +37,11 @@ return [
     'checkout' => [
         'generic' => 'Ocorreu um erro ao preparar o teu pagamento.',
     ],
+    'search' => [
+        'default' => '',
+        'operation_timeout_exception' => '',
+    ],
+
     'logged_out' => 'Foste desconectado. Por favor inicia sessão e tenta outra vez.',
     'supporter_only' => 'Tu tens de ser um apoiante para utilizar esta funcionalidade.',
     'no_restricted_access' => 'Tu não és capaz de desempenhar esta ação enquanto a tua conta estiver num estado restrito.',

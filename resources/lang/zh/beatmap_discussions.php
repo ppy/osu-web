@@ -74,13 +74,6 @@ return [
         ],
     ],
 
-    'user' => [
-        'admin' => '管理员',
-        'bng' => '谱面管理团队',
-        'owner' => '谱面作者',
-        'nat' => '',
-    ],
-
     'user_filter' => [
         'everyone' => '所有人',
         'label' => '按用户筛选',

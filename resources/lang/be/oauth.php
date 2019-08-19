@@ -34,14 +34,14 @@ return [
     ],
 
     'authorized-clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Вы ўпэўнены, што хочаце адклікаць дазволы гэтаму кліенты?',
+        'scopes_title' => 'Гэта праграма можа:',
+        'owned_by' => 'Уладальнік :user',
+        'none' => 'Няма кліентаў',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Адклікаць доступ',
+            'true' => 'Доступ адкліканы',
         ],
     ],
 

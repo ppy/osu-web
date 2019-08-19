@@ -74,13 +74,6 @@ return [
         ],
     ],
 
-    'user' => [
-        'admin' => 'admin',
-        'bng' => 'nomináló',
-        'owner' => 'készítő',
-        'nat' => 'nat',
-    ],
-
     'user_filter' => [
         'everyone' => 'Mindenki',
         'label' => 'Szűrés felhasználó szerint',

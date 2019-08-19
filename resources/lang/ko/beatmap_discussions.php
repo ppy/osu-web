@@ -74,13 +74,6 @@ return [
         ],
     ],
 
-    'user' => [
-        'admin' => '관리자',
-        'bng' => 'nominator',
-        'owner' => '매퍼',
-        'nat' => 'nat',
-    ],
-
     'user_filter' => [
         'everyone' => '모두',
         'label' => '사용자순 필터링',

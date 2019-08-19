@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count_delimited follower|:count_delimited followers',
+            'none' => 'none',
             'unranked' => 'No recent plays',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Pending Beatmaps',
                 ],
+            ],
+            'discussions' => [
+                'title' => 'Discussions',
+                'title_longer' => 'Recent Discussions',
+                'show_more' => 'see more discussions',
+            ],
+            'events' => [
+                'title' => 'Events',
+                'title_longer' => 'Recent Events',
+                'show_more' => 'see more events',
             ],
             'historical' => [
                 'empty' => 'No performance records. :(',
@@ -276,6 +287,11 @@ return [
                 'recent' => 'Latest',
                 'title' => 'Medals',
             ],
+            'posts' => [
+                'title' => 'Posts',
+                'title_longer' => 'Recent Posts',
+                'show_more' => 'see more posts',
+            ],
             'recent_activity' => [
                 'title' => 'Recent',
             ],
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'First Place Ranks',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Votes Given (last 3 months)',
+                'received' => 'Votes Received (last 3 months)',
+                'title' => 'Votes',
+                'title_longer' => 'Recent Votes',
+                'vote_count' => ':count_delimited vote|:count_delimited votes',
             ],
             'account_standing' => [
                 'title' => 'Account Standing',
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Total Hits',
             'total_score' => 'Total Score',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Ranked & Approved Beatmaps',
+            'loved_beatmapset_count' => 'Loved Beatmaps',
+            'unranked_beatmapset_count' => 'Pending Beatmaps',
+            'graveyard_beatmapset_count' => 'Graveyarded Beatmaps',
         ],
     ],
 

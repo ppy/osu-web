@@ -29,11 +29,11 @@ return [
     ],
 
     'email' => [
-        'subject' => 'osu! 帳戶找回',
+        'subject' => 'osu! 帳戶恢復',
     ],
 
     'error' => [
-        'contact_support' => '請聯繫支持團隊以找回帳戶',
+        'contact_support' => '請聯繫支持團隊以找回帳戶。',
         'is_privileged' => '聯繫 peppy（笑）',
         'missing_key' => '必填',
         'too_many_tries' => '重試次數過多',
@@ -54,6 +54,6 @@ return [
     ],
 
     'starting' => [
-        'username' => '輸入郵箱或用戶名',
+        'username' => '輸入郵件地址或使用者名稱',
     ],
 ];

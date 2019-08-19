@@ -144,6 +144,7 @@ class NewsPost extends Model implements Commentable
         }
 
         // prevent time-based expiration
+        // FIXME: should use its own column instead so we can tell whether or not it's actually updated
         static::select()->update(['updated_at' => Carbon::now()]);
 
         foreach (array_keys($latestSlugs) as $newSlug) {

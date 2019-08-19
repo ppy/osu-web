@@ -29,69 +29,69 @@ return [
             'beatmapset_discussion' => [
                 '_' => 'การสนทนาเกี่ยวกับ Beatmap',
                 'beatmapset_discussion_lock' => 'Beatmap ":title" ได้ถูกปิดการใช้งานการสนทนา',
-                'beatmapset_discussion_lock_compact' => '',
+                'beatmapset_discussion_lock_compact' => 'การสนทนาได้ถูกล็อกไว้',
                 'beatmapset_discussion_post_new' => ':username ได้เขียนข้อความใหม่ใน ":title" การสนทนาของ beatmap',
-                'beatmapset_discussion_post_new_compact' => '',
+                'beatmapset_discussion_post_new_compact' => 'โพสต์ใหม้โดย :username',
                 'beatmapset_discussion_unlock' => 'Beatmap ":title" ได้ถูกเปิดการใช้งานในการสนทนาแล้ว',
-                'beatmapset_discussion_unlock_compact' => '',
+                'beatmapset_discussion_unlock_compact' => 'การสนทนาได้ถูกปลดล๊อค',
             ],
 
             'beatmapset_state' => [
                 '_' => 'สถานะของ beatmap ถูกเปลี่ยน',
                 'beatmapset_disqualify' => 'Beatmap ":title" ได้ถูกตัดสิทธิ์โดย :username',
-                'beatmapset_disqualify_compact' => '',
+                'beatmapset_disqualify_compact' => 'Beatmap ถูกตัดสิทธ์',
                 'beatmapset_love' => 'Beatmap ":title" ได้ถูกเลื่อนขั้นให้เป็นที่ชื่นชอบโดย :username',
-                'beatmapset_love_compact' => '',
+                'beatmapset_love_compact' => 'Beatmap โปรโมทเป็น Loved',
                 'beatmapset_nominate' => 'Beatmap ":title" ได้ถูกเสนอชื่อโดย :username',
                 'beatmapset_nominate_compact' => '',
                 'beatmapset_qualify' => 'Beatmap ":title" ได้มีการเสนอชื่อมากเพียงพอที่จะขึ้นการจัดอันดับแล้ว',
-                'beatmapset_qualify_compact' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_rank_compact' => '',
+                'beatmapset_qualify_compact' => 'Beatmap ได้ถูกเข้าคิวมาจัดอันดับ',
+                'beatmapset_rank' => '":title" ได้ถูกแรงค์แล้ว',
+                'beatmapset_rank_compact' => 'Beatmap ได้รับการจัดอันดับ',
                 'beatmapset_reset_nominations' => 'ปัญหานี้โพสต์โดย :username รีเซ็ทการเสนอชื่อของ beatmap ":title" ',
                 'beatmapset_reset_nominations_compact' => '',
             ],
 
             'comment' => [
-                '_' => '',
+                '_' => 'ความคิดเห็นใหม่',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new' => ':username ได้แสดงความคิดเห็น ":content" บน ":title"',
+                'comment_new_compact' => ':username ได้แสดงความคิดเห็น ":content"',
             ],
         ],
 
         'channel' => [
-            '_' => '',
+            '_' => 'ห้องสนทนา',
 
             'channel' => [
-                '_' => '',
+                '_' => 'ข้อความใหม่',
                 'pm' => [
-                    'channel_message' => '',
-                    'channel_message_compact' => '',
-                    'channel_message_group' => '',
+                    'channel_message' => ':username พูดถึง ":title"',
+                    'channel_message_compact' => ':title',
+                    'channel_message_group' => 'จาก :username',
                 ],
             ],
         ],
 
         'build' => [
-            '_' => '',
+            '_' => 'บันทึกการเปลี่ยนแปลง',
 
             'comment' => [
-                '_' => '',
+                '_' => 'ความคิดเห็นใหม่',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new' => ':username ได้แสดงความคิดเห็น ":content" บน ":title"',
+                'comment_new_compact' => ':username ได้แสดงความคิดเห็น ":content"',
             ],
         ],
 
         'news_post' => [
-            '_' => '',
+            '_' => 'ข่าวสาร',
 
             'comment' => [
-                '_' => '',
+                '_' => 'ความคิดเห็นใหม่',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new' => ':username ได้แสดงความคิดเห็น ":content" บน ":title"',
+                'comment_new_compact' => ':username ได้แสดงความคิดเห็น ":content"',
             ],
         ],
 
@@ -101,7 +101,7 @@ return [
             'forum_topic_reply' => [
                 '_' => 'ตอบกลับในฟอรั่มใหม่',
                 'forum_topic_reply' => ':username ได้ตอบกลับในฟอรั่ม ":title"',
-                'forum_topic_reply_compact' => '',
+                'forum_topic_reply_compact' => ':username ตอบกลับ',
             ],
         ],
 
@@ -115,11 +115,11 @@ return [
         ],
 
         'user_achievement' => [
-            '_' => '',
+            '_' => 'เหรียญตรา',
 
             'user_achievement_unlock' => [
-                '_' => '',
-                'user_achievement_unlock' => '',
+                '_' => 'เหรียญตราใหม่',
+                'user_achievement_unlock' => 'ปลดล๊อค ":title"!',
             ],
         ],
     ],

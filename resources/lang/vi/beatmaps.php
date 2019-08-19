@@ -62,13 +62,13 @@ return [
 
         'lock' => [
             'button' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'Khóa thảo luận',
+                'unlock' => 'Mở khóa thảo luận',
             ],
 
             'prompt' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'Lí do khóa',
+                'unlock' => 'Bạn có chắc chắn muốn mở khóa không ?',
             ],
         ],
 
@@ -246,7 +246,7 @@ return [
         'approved' => 'Được Chấp Nhận',
         'favourites' => '',
         'graveyard' => 'Graveyard',
-        'leaderboard' => '',
+        'leaderboard' => 'Có danh sách xếp hạng',
         'loved' => 'Loved',
         'mine' => '',
         'pending' => 'Đang chờ & WIP',

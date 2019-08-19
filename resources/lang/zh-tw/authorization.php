@@ -26,8 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => '你今天的提名次數已達上限，請明天再試。',
-            'full_bn_required' => '',
-            'full_bn_required_hybrid' => '',
+            'full_bn_required' => '您必須是完整的提名者才能執行此合格提名。',
+            'full_bn_required_hybrid' => '你必須是一個完整的提名者至提名圖譜設定最少一個遊戲模式。',
             'incorrect_state' => '執行操作時發生錯誤，請重新載入頁面。',
             'owner' => "不能提名自己的圖譜。",
         ],
@@ -52,7 +52,7 @@ return [
             'not_owner' => '只有作者可以編輯。',
         ],
         'store' => [
-            'beatmapset_locked' => '',
+            'beatmapset_locked' => '這個圖譜被鎖定討論。',
         ],
     ],
 
@@ -124,7 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => '沒有權限，無法進入該板塊。',
                 'over' => '投票已結束！',
-                'play_more' => '',
+                'play_more' => '你需要在論壇上投票之前多玩一些。',
                 'voted' => '不允許修改投票。',
 
                 'user' => [
@@ -145,7 +145,7 @@ return [
                 'not_owner' => '只有樓主可以編輯封面。',
             ],
             'store' => [
-                'forum_not_allowed' => '',
+                'forum_not_allowed' => '此論壇不接受主題覆蓋。',
             ],
         ],
 

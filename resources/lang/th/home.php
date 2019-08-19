@@ -36,7 +36,7 @@ return [
         'advanced_link' => 'การค้นหาขั้นสูง',
         'button' => 'ค้นหา',
         'empty_result' => 'ไม่พบสิ่งใด!',
-        'keyword_required' => '',
+        'keyword_required' => 'ต้องการค้นหาคำหลัก',
         'placeholder' => 'type to search',
         'title' => 'ค้นหา',
 

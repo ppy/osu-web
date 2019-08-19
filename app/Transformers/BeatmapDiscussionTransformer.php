@@ -27,8 +27,11 @@ use League\Fractal;
 class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
+        'beatmapset',
         'posts',
         'current_user_attributes',
+        'starting_post',
+        'votes',
     ];
 
     public function transform(BeatmapDiscussion $discussion)
@@ -52,10 +55,21 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
             'updated_at' => json_time($discussion->updated_at),
             'deleted_at' => json_time($discussion->deleted_at),
             'last_post_at' => json_time($discussion->last_post_at),
-            'votes' => $discussion->votesSummary(),
 
             'kudosu_denied' => $discussion->kudosu_denied,
         ];
+    }
+
+    public function includeStartingPost(BeatmapDiscussion $discussion)
+    {
+        if (!$this->isVisible($discussion)) {
+            return;
+        }
+
+        return $this->item(
+            $discussion->startingPost,
+            new BeatmapDiscussionPostTransformer()
+        );
     }
 
     public function includePosts(BeatmapDiscussion $discussion)
@@ -67,6 +81,23 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
         return $this->collection(
             $discussion->beatmapDiscussionPosts,
             new BeatmapDiscussionPostTransformer()
+        );
+    }
+
+    public function includeVotes(BeatmapDiscussion $discussion)
+    {
+        return $this->primitive($discussion->votesSummary());
+    }
+
+    public function includeBeatmapset(BeatmapDiscussion $discussion)
+    {
+        if (!$this->isVisible($discussion)) {
+            return;
+        }
+
+        return $this->item(
+            $discussion->beatmapset,
+            new BeatmapsetCompactTransformer()
         );
     }
 
