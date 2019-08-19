@@ -20,17 +20,19 @@
 
 namespace App\Transformers;
 
-use App\Models\Wiki\Page;
+use App\Models\Wiki\PageSearchResult;
 use League\Fractal\TransformerAbstract;
 
 class WikiPageTransformer extends TransformerAbstract
 {
     protected $availableIncludes = ['content'];
 
-    public function transform(Page $page)
+    public function transform(PageSearchResult $page)
     {
         return [
             'title' => $page->title(),
+            'highlighted_title' => $page->highlightedTitle(true),
+            'subtitle' => $page->subtitle(),
             'path' => $page->path,
             'source_path' => $page->pagePath(),
             'edit_url' => $page->editUrl(),
@@ -40,7 +42,7 @@ class WikiPageTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeContent(Page $page)
+    public function includeContent(PageSearchResult $page)
     {
         return $this->item($page, function ($page) {
             return [$page->page()];
