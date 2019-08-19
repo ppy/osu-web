@@ -37,6 +37,6 @@ export class OwnClients extends React.Component {
     });
   }
   renderEmpty() {
-    return osu.trans('oauth.authorized-clients.none');
+    return osu.trans('oauth.own-clients.none');
   }
 }

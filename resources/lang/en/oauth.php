@@ -50,4 +50,14 @@ return [
         'label' => 'First, let\'s sign into your account!',
         'title' => 'Account Sign-in',
     ],
+
+    'own-clients' => [
+        'confirm_delete' => 'Are you sure you want to delete this client?',
+        'none' => 'No Clients',
+
+        'revoked' => [
+            'false' => 'Delete',
+            'true' => 'Deleted',
+        ],
+    ],
 ];

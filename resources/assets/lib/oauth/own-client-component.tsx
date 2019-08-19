@@ -28,7 +28,7 @@ interface Props {
 @observer
 export class OwnClient extends React.Component<Props> {
   deleteClicked = (event: React.MouseEvent<HTMLElement>) => {
-    if (!confirm('Deleting the application cannot be undone!')) { return; }
+    if (!confirm(osu.trans('oauth.own-clients.confirm_delete'))) { return; }
 
     this.props.client.delete().catch(osu.ajaxError);
   }
@@ -60,7 +60,7 @@ export class OwnClient extends React.Component<Props> {
             disabled={client.isRevoking || client.revoked}
           >
             {
-              client.isRevoking ? <Spinner /> : 'Delete'
+              client.isRevoking ? <Spinner /> : osu.trans(`oauth.own-clients.revoked.${client.revoked}`)
             }
           </button>
         </div>
