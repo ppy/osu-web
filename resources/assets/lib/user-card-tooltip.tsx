@@ -18,6 +18,7 @@
 
 import * as _ from 'lodash';
 import * as React from 'react';
+import { unmountComponentAtNode } from 'react-dom';
 import { activeKeyDidChange as contextActiveKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
 import { TooltipContext } from 'tooltip-context';
 import { UserCard } from 'user-card';
@@ -123,6 +124,7 @@ function onMouseOver(event: JQueryEventObject) {
     // wrong userId, destroy current tooltip
     const qtip = $(el).qtip('api');
     if (qtip != null) {
+      unmountComponentAtNode(qtip.tooltip.find('.js-react--user-card-tooltip')[0]);
       qtip.destroy();
       delete el._tooltip;
     }
