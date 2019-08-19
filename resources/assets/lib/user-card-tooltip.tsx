@@ -124,7 +124,10 @@ function onMouseOver(event: JQueryEventObject) {
     // wrong userId, destroy current tooltip
     const qtip = $(el).qtip('api');
     if (qtip != null) {
-      unmountComponentAtNode(qtip.tooltip.find('.js-react--user-card-tooltip')[0]);
+      if (qtip.tooltip != null) {
+        unmountComponentAtNode(qtip.tooltip.find('.js-react--user-card-tooltip')[0]);
+      }
+
       qtip.destroy();
       delete el._tooltip;
     }
