@@ -108,6 +108,10 @@ return [
         'target' => 'drop here to upload',
     ],
 
+    'input' => [
+        'search' => 'search...',
+    ],
+
     'pagination' => [
         'previous' => 'prev',
         'next' => 'next',

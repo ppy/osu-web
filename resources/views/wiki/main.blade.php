@@ -43,3 +43,9 @@
         </div>
     </div>
 @endsection
+
+@section('script')
+    @if(Auth::user() !== null)
+        @include('layout._extra_js', ['src' => 'js/react/wiki-search.js'])
+    @endif
+@endsection
