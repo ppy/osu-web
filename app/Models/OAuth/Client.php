@@ -74,6 +74,18 @@ class Client extends PassportClient
         });
     }
 
+    public function revoke()
+    {
+        $this->getConnection()->transaction(function () {
+            $now = now('UTC');
+            // TODO: also revoke refresh tokens.
+            $this->tokens()->update(['revoked' => true, 'updated_at' => $now]);
+            // TODO: set timestamp to false on authcodes
+            // $this->authCodes()->update(['revoked' => true]);
+            $this->update(['revoked' => true, 'updated_at' => $now]);
+        });
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

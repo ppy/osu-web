@@ -37,14 +37,7 @@ class OwnClientsController extends Controller
     public function destroy($clientId)
     {
         $client = auth()->user()->oauthClients()->findOrFail($clientId);
-        $client->getConnection()->transaction(function () use ($client) {
-            $now = now('UTC');
-            // TODO: also revoke refresh tokens.
-            $client->tokens()->update(['revoked' => true, 'updated_at' => $now]);
-            // TODO: set timestamp to false on authcodes
-            // $client->authCodes()->update(['revoked' => true]);
-            $client->update(['revoked' => true, 'updated_at' => $now]);
-        });
+        $client->revoke();
 
         return response(null, 204);
     }
