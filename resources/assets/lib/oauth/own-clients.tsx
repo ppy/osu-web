@@ -16,12 +16,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { observer } from 'mobx-react';
 import { OwnClient } from 'oauth/own-client';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
 const store = core.dataStore.ownClientStore;
 
+@observer
 export class OwnClients extends React.Component {
   render() {
     return (
