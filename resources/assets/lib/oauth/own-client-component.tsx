@@ -37,25 +37,16 @@ export class OwnClient extends React.Component<Props> {
     const client = this.props.client;
 
     return (
-      <div className='authorized-client'>
-        <div className='authorized-client__details'>
-          <div className='authorized-client__name'>
+      <div className='oauth-client'>
+        <div className='oauth-client__details'>
+          <div className='oauth-client__name'>
             {client.name}
-          </div>
-          <div>
-            {client.redirect}
-          </div>
-          <div>
-            {client.secret}
-          </div>
-          <div>
-            {client.revoked ? 'revoked' : 'active'}
           </div>
         </div>
 
-        <div className='authorized-client__actions'>
+        <div className='oauth-client__actions'>
           <button
-            className={osu.classWithModifiers('authorized-client__button', client.revoked ? ['revoked'] : [])}
+            className={osu.classWithModifiers('oauth-client__button', client.revoked ? ['revoked'] : [])}
             onClick={this.deleteClicked}
             disabled={client.isRevoking || client.revoked}
           >

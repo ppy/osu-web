@@ -25,7 +25,7 @@ const store = core.dataStore.ownClientStore;
 export class OwnClients extends React.Component {
   render() {
     return (
-      <div className='authorized-clients'>
+      <div className='oauth-clients'>
         {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
       </div>
     );

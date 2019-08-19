@@ -36,21 +36,21 @@ export class AuthorizedClient extends React.Component<Props> {
     };
 
     return (
-      <div className='authorized-client'>
-        <div className='authorized-client__details'>
-          <div className='authorized-client__name'>
+      <div className='oauth-client'>
+        <div className='oauth-client__details'>
+          <div className='oauth-client__name'>
             {client.name}
           </div>
-          <span className='authorized-client__owner'>
+          <span className='oauth-client__owner'>
             <StringWithComponent pattern={osu.trans('oauth.authorized-clients.owned_by')} mappings={mappings} />
           </span>
-          <div className='authorized-client__scopes'>
+          <div className='oauth-client__scopes'>
             {this.renderPermissions()}
           </div>
         </div>
-        <div className='authorized-client__actions'>
+        <div className='oauth-client__actions'>
           <button
-            className={osu.classWithModifiers('authorized-client__button', client.revoked ? ['revoked'] : [])}
+            className={osu.classWithModifiers('oauth-client__button', client.revoked ? ['revoked'] : [])}
             onClick={this.revokeClicked}
             disabled={client.isRevoking || client.revoked}
           >
