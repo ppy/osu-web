@@ -31,6 +31,7 @@ use App\Models\Event;
 use App\Models\Forum;
 use App\Models\NewsPost;
 use App\Models\Notification;
+use App\Models\Score\Best;
 use App\Models\User;
 use Exception;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -135,6 +136,14 @@ class LegacyInterOpController extends Controller
         $user = User::findOrFail($id);
 
         dispatch(new EsIndexDocument($user));
+
+        foreach (Beatmap::MODES as $modeStr => $modeId) {
+            $class = Best\Model::getClassByString($modeStr);
+            $table = (new $class)->getTable();
+            $user->getConnection()->insert(
+                "INSERT INTO score_process_queue (score_id, mode, status) SELECT score_id, {$modeId}, 1 FROM {$table} WHERE user_id = {$user->getKey()}"
+            );
+        }
 
         return response(null, 204);
     }
