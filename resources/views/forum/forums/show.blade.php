@@ -23,6 +23,7 @@
         'mode' => 'forum_post',
     ],
     'titlePrepend' => $forum->forum_name,
+    'useTorusFont' => true,
 ])
 
 @section('content')
