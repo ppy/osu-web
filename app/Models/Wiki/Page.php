@@ -172,6 +172,7 @@ class Page
                 'path_clean' => static::cleanupPath($this->path),
                 'title' => strip_tags($this->title()),
                 'tags' => $this->tags(),
+                'type' => $this->type(),
             ];
         }
 

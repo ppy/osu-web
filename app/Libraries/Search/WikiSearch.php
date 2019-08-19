@@ -115,6 +115,9 @@ class WikiSearch extends RecordSearch
 
         return (new BoolQuery)
             ->must($langQuery)
-            ->must($matchQuery);
+            ->must($matchQuery)
+            ->mustNot(['match' => [
+                'type' => 'main_page',
+            ]]);
     }
 }
