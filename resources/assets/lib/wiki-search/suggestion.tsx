@@ -55,8 +55,9 @@ export default class Suggestion extends React.PureComponent<Props, {}> {
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}
       >
-        <span
+        <a
           className='wiki-search-suggestions__suggestion-text'
+          href={laroute.route('wiki.show', {page: this.props.suggestion.path})}
           dangerouslySetInnerHTML={{__html: this.props.suggestion.highlighted_title}}
         />
         <span
