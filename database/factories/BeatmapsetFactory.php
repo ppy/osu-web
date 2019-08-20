@@ -40,6 +40,10 @@ $factory->define(App\Models\Beatmapset::class, function (Faker\Generator $faker)
     ];
 });
 
+$factory->state(App\Models\Beatmapset::class, 'deleted', function () {
+    return ['deleted_at' => now()];
+});
+
 $factory->state(App\Models\Beatmapset::class, 'inactive', function () {
     return ['active' => 0];
 });

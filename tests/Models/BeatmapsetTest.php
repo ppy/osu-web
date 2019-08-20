@@ -178,6 +178,14 @@ class BeatmapsetTest extends TestCase
         $this->assertTrue($beatmapset->is(Beatmapset::withoutGlobalScopes()->find($id))); // no global scopes
     }
 
+    public function testGlobalScopeSoftDelete()
+    {
+        $beatmapset = factory(Beatmapset::class)->states(['inactive', 'deleted'])->create();
+        $id = $beatmapset->getKey();
+
+        $this->assertNull(Beatmapset::withTrashed()->find($id));
+    }
+
     private function createBeatmapset($params = []) : Beatmapset
     {
         $defaultParams = [
