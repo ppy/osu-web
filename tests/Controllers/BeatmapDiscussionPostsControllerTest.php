@@ -18,7 +18,6 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->mapper = factory(User::class)->create();
         $this->user = factory(User::class)->create();
         $this->beatmapset = factory(Beatmapset::class)->create([
-            'discussion_enabled' => true,
             'user_id' => $this->mapper->getKey(),
         ]);
         $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
@@ -32,7 +31,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         ]);
         $this->beatmapDiscussionPost = $this->beatmapDiscussion->beatmapDiscussionPosts()->save($post);
 
-        $this->otherBeatmapset = factory(Beatmapset::class)->create();
+        $this->otherBeatmapset = factory(Beatmapset::class)->states('no_discussion')->create();
         $this->otherBeatmap = $this->otherBeatmapset->beatmaps()->save(factory(Beatmap::class)->make());
     }
 
@@ -63,6 +62,26 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
         $this->assertSame($currentNotifications + 1, Notification::count());
         $this->assertSame($currentUserNotifications + 1, UserNotification::count());
+    }
+
+    public function testPostStoreNewDiscussionInactiveBeatmapset()
+    {
+        $this->beatmapset = factory(Beatmapset::class)->states('inactive')->create([
+            'user_id' => $this->mapper->getKey(),
+        ]);
+
+        $this
+            ->actingAs($this->user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmapset_id' => $this->beatmapset->beatmapset_id,
+                'beatmap_discussion' => [
+                    'message_type' => 'praise',
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ])
+            ->assertStatus(404);
     }
 
     public function testPostStoreNewDiscussionNoteByMapper()
