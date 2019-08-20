@@ -20,6 +20,7 @@ $factory->define(App\Models\Beatmapset::class, function (Faker\Generator $faker)
         'creator' => $faker->userName,
         'artist' => $artist,
         'title' => $title,
+        'discussion_enabled' => true,
         'displaytitle' => "{$artist}|{$title}",
         'source' => $faker->domainWord,
         'tags' => $faker->domainWord,
@@ -37,4 +38,16 @@ $factory->define(App\Models\Beatmapset::class, function (Faker\Generator $faker)
         'approved_date' => $faker->dateTime(),
         'submit_date' => $faker->dateTime(),
     ];
+});
+
+$factory->state(App\Models\Beatmapset::class, 'deleted', function () {
+    return ['deleted_at' => now()];
+});
+
+$factory->state(App\Models\Beatmapset::class, 'inactive', function () {
+    return ['active' => 0];
+});
+
+$factory->state(App\Models\Beatmapset::class, 'no_discussion', function () {
+    return ['discussion_enabled' => false];
 });
