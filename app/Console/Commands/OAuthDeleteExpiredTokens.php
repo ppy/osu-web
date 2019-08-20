@@ -34,13 +34,16 @@ class OAuthDeleteExpiredTokens extends Command
     {
         $expiredBefore = now()->subDays(config('osu.oauth.retain_expired_tokens_days'));
 
-        $count = Token::where('expires_at', '<', $expiredBefore)->delete();
-        $this->line("Deleted {$count} expired access tokens.");
-
-        $count = DB::table('oauth_refresh_tokens')->where('expires_at', '<', $expiredBefore)->delete();
-        $this->line("Deleted {$count} expired refresh tokens.");
-
         $count = DB::table('oauth_auth_codes')->where('expires_at', '<', $expiredBefore)->delete();
         $this->line("Deleted {$count} expired auth codes.");
+
+        $refreshTokensQuery = DB::table('oauth_refresh_tokens')->where('expires_at', '<', $expiredBefore);
+
+        // This assumes the refresh token always has a longer valid lifetime than the access token.
+        $count = Token::whereIn('id', (clone $refreshTokensQuery)->select('access_token_id'))->delete();
+        $this->line("Deleted {$count} expired access tokens.");
+
+        $count = $refreshTokensQuery->delete();
+        $this->line("Deleted {$count} expired refresh tokens.");
     }
 }
