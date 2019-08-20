@@ -32,7 +32,7 @@ export class Detail extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @state = extended: true
+    @state = extended: props.user.ranking_extended
 
 
   render: =>
@@ -80,4 +80,10 @@ export class Detail extends React.PureComponent
 
 
   toggleExtend: =>
+    $.ajax laroute.route('account.options'),
+      method: 'put',
+      dataType: 'json',
+      data:
+        user_profile_customization: ranking_extended: !@state.extended
+
     @setState extended: !@state.extended
