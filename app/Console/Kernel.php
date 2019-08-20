@@ -68,6 +68,8 @@ class Kernel extends ConsoleKernel
 
         Commands\MigrateFreshAllCommand::class,
 
+        Commands\OAuthDeleteExpiredTokens::class,
+
         Commands\UserBestScoresCheckCommand::class,
         Commands\UserRecalculateRankCounts::class,
     ];
@@ -98,6 +100,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('modding:rank')
             ->cron('*/20 * * * *');
+
+        $schedule->command('oauth:delete-expired-tokens')
+            ->daily();
     }
 
     protected function commands()
