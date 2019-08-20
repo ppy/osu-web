@@ -132,7 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => ':date tarihinde katıldı',
         'lastvisit' => 'Son görülme :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'Şu an çevrimiçi',
         'missingtext' => 'Yazım hatası yapmış olabilirsin! (veya bu kullanıcı banlanmış olabilir)',
         'origin_country' => 'Ülke: :country',
         'page_description' => 'osu! - :username hakkında bilmek istediğiniz her şey!',
@@ -149,10 +149,14 @@ return [
                     'button' => 'Resim yükle',
                     'dropzone' => 'Yüklemek için dosyayı bırak',
                     'dropzone_info' => 'Yüklemek için resmi buraya da bırakabilirsiniz',
-                    'restriction_info' => "Yükleme <a href=' için uygun".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter'lara</a> özel",
                     'size_info' => 'Kapak boyutu 2800x620 olmalı',
                     'too_large' => 'Yüklenen dosya boyutu çok büyük.',
                     'unsupported_format' => 'Desteklenmeyen biçim.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -219,7 +223,6 @@ return [
                 'recent_entries' => 'Son Kudosu Geçmişi',
                 'title' => 'Kudosu!',
                 'total' => 'Kazanılan Toplam Kudosu',
-                'total_info' => 'Kullanıcının beatmap\'lere ne kadar katkıda bulunduğuna bağlıdır. Daha fazla bilgi için <a href="'.osu_url('user.kudosu').'daha fazla bilgi için ">bu sayfaya</a> bakınız.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -258,6 +261,11 @@ return [
                         'reset' => ':post gönderisinde :giver tarafından kudosu sıfırlandı',
                         'revoke' => ':post gönderisinde :giver tarafından kudosu reddedildi',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -335,7 +343,11 @@ return [
             'description' => '<strong>ben!</strong>, profil sayfanızdaki kişiselleştirilebilir bir alandır.',
             'edit_big' => 'Beni düzenle!',
             'placeholder' => 'Sayfanın içeriğini buraya yaz',
-            'restriction_info' => "<a href=' olmanız gerekiyor".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> olmanız gerekir.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => ':link kadar katkı',
@@ -364,7 +376,7 @@ return [
     ],
 
     'status' => [
-        'all' => '',
+        'all' => 'Tümü',
         'online' => 'Çevrimiçi',
         'offline' => 'Çevrimdışı',
     ],
@@ -373,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Hesap Doğrulama',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

@@ -150,10 +150,14 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                     'button' => 'Carica immagine',
                     'dropzone' => 'Trascina qui per caricarla',
                     'dropzone_info' => 'Puoi anche trascinare qui l\'immagine per caricarla',
-                    'restriction_info' => "Caricamento disponibile solo per gli <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a>",
                     'size_info' => 'L\'immagine di copertina dovrebbe essere 2800x620',
                     'too_large' => 'Il file caricato è troppo grande.',
                     'unsupported_format' => 'Formato non supportato.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -220,7 +224,6 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                 'recent_entries' => 'Storico dei recenti kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Totale Kudosu Guadagnati',
-                'total_info' => 'Basandosi su quando ha contribuito l\'utente alla moderazione delle beatmap. Vedi <a href="'.osu_url('user.kudosu').'">questa pagina</a> per ulteriori informazioni.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -259,6 +262,11 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                         'reset' => 'Kudosu resettato da :giver per il post :post',
                         'revoke' => 'Kudosu negato da :giver per il post :post',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -336,7 +344,11 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
             'description' => '<strong>io!</strong> è un\'area personale personalizzabile nella tua pagina del profilo.',
             'edit_big' => 'Modificami!',
             'placeholder' => 'Scrivi il contenuto della pagina qui',
-            'restriction_info' => "Devi essere un <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> per sbloccare questa funzione.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Ha contribuito :link',
@@ -374,5 +386,10 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
     ],
     'verify' => [
         'title' => 'Verifica dell\'account',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

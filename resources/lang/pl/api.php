@@ -31,7 +31,7 @@ return [
         'identify' => 'zidentyfikować cię i uzyskać publiczne informacje z twojego profilu.',
 
         'friends' => [
-            'read' => 'Zobacz, kogo obserwujesz.',
+            'read' => 'zobaczyć, kogo obserwujesz.',
         ],
     ],
 ];

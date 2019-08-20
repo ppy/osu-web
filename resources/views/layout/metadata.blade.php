@@ -108,8 +108,8 @@
     <script src="/vendor/js/moment-locales/{{ $momentLocale }}.js" data-turbolinks-track="reload"></script>
 @endif
 
-@if (isset($rss))
-    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ $rss }}">
+@if (isset($atom))
+    <link rel="alternate" type="application/atom+xml" title="{{ $atom['title'] }}" href="{{ $atom['url'] }}" />
 @endif
 
 @if (isset($canonicalUrl))

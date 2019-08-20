@@ -149,10 +149,14 @@ return [
                     'button' => '画像のアップロード',
                     'dropzone' => 'ここにドロップしてアップロード',
                     'dropzone_info' => 'ここにドラッグ＆ドロップでアップロードが可能です。',
-                    'restriction_info' => "<a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!サポーター</a>のみアップロードできます",
                     'size_info' => '推奨の画像サイズは2800x620です',
                     'too_large' => 'アップロードファイルが大きすぎます。',
                     'unsupported_format' => 'サポートされていないフォーマットです。',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -219,7 +223,6 @@ return [
                 'recent_entries' => '最近のKudosu履歴',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosuの累計獲得数',
-                'total_info' => 'ビートマップModdingなどへの貢献度を表す数値です。詳細は<a href="'.osu_url('user.kudosu').'">このページ</a>を参照して下さい。',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -258,6 +261,11 @@ return [
                         'reset' => ':postの:giverによるkudosuリセット',
                         'revoke' => ':postの:giverによるkudosu拒否',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -335,7 +343,11 @@ return [
             'description' => '<strong>me!</strong>はプロフィール上で自由に編集できる領域です。',
             'edit_big' => 'me!を編集',
             'placeholder' => 'ここにページの内容を入力',
-            'restriction_info' => "<a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!サポーター</a>限定の機能です。",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'フォーラム投稿数 :link',
@@ -373,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'アカウントの認証',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

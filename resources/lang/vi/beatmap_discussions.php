@@ -74,13 +74,6 @@ return [
         ],
     ],
 
-    'user' => [
-        'admin' => 'admin',
-        'bng' => 'người đề cử',
-        'owner' => 'mapper',
-        'nat' => 'nat',
-    ],
-
     'user_filter' => [
         'everyone' => 'Mọi người',
         'label' => 'Lọc theo người dùng',

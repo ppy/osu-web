@@ -16,21 +16,38 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.store-product {
-  padding: 20px;
-  background-color: @osu-colour-b4;
-  color: white;
-
-  &__title {
-    color: @osu-colour-l1;
+.modding-profile-list {
+  &--votes {
+    display: flex;
+    flex-wrap: wrap;
   }
 
-  &__footer-section {
-    padding: 20px;
-    background-color: @osu-colour-b5;
+  &__thumbnail {
+    margin: 20px 10px;
   }
 
-  &__select-label {
-    color: white;
+  &__empty {
+    color: @osu-colour-f1;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+
+  &__row {
+    display: flex;
+  }
+
+  &__show-more {
+    .link-default();
+    .link-plain();
+    color: @osu-colour-f1;
+    font-size: @font-size--normal;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  &__timestamp {
+    width: 110px;
+    flex-shrink: 0;
   }
 }

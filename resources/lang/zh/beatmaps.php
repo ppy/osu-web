@@ -244,14 +244,14 @@ return [
     'status' => [
         'any' => '所有',
         'approved' => 'Approved',
-        'favourites' => '',
+        'favourites' => '收藏夹',
         'graveyard' => '坟图',
-        'leaderboard' => '',
+        'leaderboard' => '计入排名',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => '我的谱面',
         'pending' => 'Pending & WIP',
         'qualified' => 'Qualified',
-        'ranked' => '',
+        'ranked' => '进榜',
     ],
     'genre' => [
         'any' => '所有',

@@ -27,6 +27,7 @@ return [
         'home' => [
             '_' => 'home',
             'account-edit' => 'impostazioni',
+            'account-verifyLink' => '',
             'friends-index' => 'amici',
             'changelog-index' => 'note di rilascio',
             'changelog-build' => 'versione',
@@ -128,7 +129,7 @@ return [
             'modding-history-votesGiven' => 'i voti dei giocatori per le modifiche sono stati inviati',
             'modding-history-votesReceived' => 'i voti dei giocatori per le modifiche sono stati ricevuti',
             'oauth_login' => '',
-            'oauth_request' => '',
+            'oauth_request' => 'oauth autorizzazione ',
             'settings' => 'Impostazioni',
         ],
         'store' => [

@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'A megbeszélés zárolva van.',
         'first_post' => 'Nem lehet a kezdő posztot törölni.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Érvénytelen nehézség lett megadva.',
         'invalid_beatmapset_id' => 'Érvénytelen beatmap lett megadva.',
         'locked' => 'A megbeszélés zárolva van.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'A hype-oláshoz bejelentkezve kell lenned.',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Törölt hozzászólásokra nem lehet válaszolni.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Beatmap metaadat törlése nem engedélyezett.',
             'beatmapset_post_no_edit' => 'Beatmap metaadat poszt szerkesztése nem engedélyezett.',
             'only_quote' => 'A válaszod csak egy idézetet tartalmaz.',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,6 +106,10 @@ return [
             'minimum_one_selection' => 'Minimum egy opció kell felhasználónként.',
             'minimum_two_options' => 'Legalább 2 választási lehetőség kell.',
             'too_many_options' => 'Elérted a maximum opciók számát.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,6 +142,12 @@ return [
         'wrong_password_confirmation' => 'Jelszó megerősítés nem egyezik.',
         'too_long' => 'Elérted a maximum hosszúságot - maximum :limit karaktert használhatsz.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
             'restricted' => 'Felfüggesztett állapotban nem változtathatsz felhasználónevet.',
             'supporter_required' => [
@@ -127,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "Nem jelentheted magadat!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

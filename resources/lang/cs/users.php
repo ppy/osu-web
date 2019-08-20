@@ -132,7 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Členem od :date',
         'lastvisit' => 'Naposledy spatřen :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'Momentálně aktivní',
         'missingtext' => 'Možná jste se přepsal! (nebo byl uživatel zabanován)',
         'origin_country' => 'Z :country',
         'page_description' => 'osu! - Všechno co jste kdy chtěli vědět o :username!',
@@ -149,10 +149,14 @@ return [
                     'button' => 'Nahrát obrázek',
                     'dropzone' => 'Přetáhni sem pro nahrání',
                     'dropzone_info' => 'Můžeš také přetánout sem pro nahrání',
-                    'restriction_info' => "Nahrání k dispozici pro <a href='".route('store.products.show', 'supporter-tag')."pouze ' target='_blank'>osu!supporteři</a>",
                     'size_info' => 'Velikost záhlaví by měla být 2800x620',
                     'too_large' => 'Nahraný soubor je příliš velký.',
                     'unsupported_format' => 'Nepodporovaný formát.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -219,7 +223,6 @@ return [
                 'recent_entries' => 'Nedávná Kudosu historie',
                 'title' => 'Kudosu!',
                 'total' => 'Celkově získané Kudosu',
-                'total_info' => 'Na základě toho jak moc uživatel přispěl k moderaci map. Pro více informací se obraťte na <a href="'.osu_url('user.kudosu').'"> tuto stánku </a>.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -258,6 +261,11 @@ return [
                         'reset' => 'Kudosu bylo obnoveno od :giver za příspěvek :post',
                         'revoke' => 'Odepřeno kudosu od :giver za příspěvek :post',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -335,7 +343,11 @@ return [
             'description' => '<strong>já!</strong> je osobní přizpůsobitelná plocha na vašem profilu.',
             'edit_big' => 'Uprav mě!',
             'placeholder' => 'Zde napiš obsah stánky',
-            'restriction_info' => "Musíš být <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> aby jsi odemkl tuto funkci.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Přispěl :link',
@@ -364,7 +376,7 @@ return [
     ],
 
     'status' => [
-        'all' => '',
+        'all' => 'Všichni',
         'online' => 'Online',
         'offline' => 'Offline',
     ],
@@ -373,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Ověření účtu',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

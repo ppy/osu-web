@@ -132,7 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Werd lid op :date',
         'lastvisit' => 'Laatst gezien op :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'Momenteel online',
         'missingtext' => 'Je hebt misschien een typfout gemaakt! (of de gebruiker is verbannen)',
         'origin_country' => 'Uit :country',
         'page_description' => 'osu! - Alles wat je ooit over :username wilde weten!',
@@ -149,10 +149,14 @@ return [
                     'button' => 'Upload afbeelding',
                     'dropzone' => 'Drop hier om te uploaden',
                     'dropzone_info' => 'Je kunt je afbeelding ook hier droppen om te uploaden',
-                    'restriction_info' => "Uploaden alleen beschikbaar voor <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
                     'size_info' => 'Cover grootte moet 2800x620 zijn',
                     'too_large' => 'Het geüploade bestand is te groot.',
                     'unsupported_format' => 'Niet ondersteund formaat.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -219,7 +223,6 @@ return [
                 'recent_entries' => 'Recente Kudosu Geschiedenis',
                 'title' => 'Kudosu!',
                 'total' => 'Totaal Aantal Kudosu Verdiend',
-                'total_info' => 'Gebaseerd op hoeveel contributie de gebruiker heeft geleverd aan beatmap moderatie. Zie <a href="'.osu_url('user.kudosu').'">deze pagina</a> voor meer informatie.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -258,6 +261,11 @@ return [
                         'reset' => 'Kudosu reset door :giver voor de post :post',
                         'revoke' => 'Kudosu geweigerd door :giver voor :post',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -335,7 +343,11 @@ return [
             'description' => '<strong>ik!</strong> is een persoonlijk bewerkbaar gedeelte van je profiel.',
             'edit_big' => 'Bewerk me!',
             'placeholder' => 'Typ pagina inhoud hier',
-            'restriction_info' => "Je moet een <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> zijn om dit te gebruiken.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Plaatste :link',
@@ -364,7 +376,7 @@ return [
     ],
 
     'status' => [
-        'all' => '',
+        'all' => 'Alle',
         'online' => 'Online',
         'offline' => 'Offline',
     ],
@@ -373,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Accountverificatie',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

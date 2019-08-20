@@ -149,10 +149,14 @@ return [
                     'button' => 'Last opp bilde',
                     'dropzone' => 'Slipp her for å laste opp',
                     'dropzone_info' => 'Du kan også slippe bildet ditt her for å laste det opp',
-                    'restriction_info' => "Opplasting er kun tilgjengelig for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supportere</a>",
                     'size_info' => 'Størrelsen på banneret bør være 2800x620',
                     'too_large' => 'Den opplastede filen er for stor.',
                     'unsupported_format' => 'Formatet støttes ikke.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -219,7 +223,6 @@ return [
                 'recent_entries' => 'Nylig Kudosu Historie',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Opptjent',
-                'total_info' => 'Basert på hvor mange bidrag en bruker har gjort til beatmapmoderasjon. Se <a href="'.osu_url('user.kudosu').'">denne siden</a> for mer informasjon.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -258,6 +261,11 @@ return [
                         'reset' => 'Kudosu tilbakestilt av :giver for innlegget i :post',
                         'revoke' => 'Nektet kudosu fra :giver for innlegget :post',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -335,7 +343,11 @@ return [
             'description' => '<strong>me!</strong> er et personlig egendefinerbart område på profilsiden din.',
             'edit_big' => 'Rediger "om meg!"',
             'placeholder' => 'Skriv sideinnhold her',
-            'restriction_info' => "Du må være en <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> for å låse opp denne funksjonen.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Bidratt med :link',
@@ -373,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Kontobekreftelse',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

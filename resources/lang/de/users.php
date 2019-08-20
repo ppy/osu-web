@@ -149,10 +149,14 @@ return [
                     'button' => 'Bild hochladen',
                     'dropzone' => 'Zum Hochladen hier ablegen',
                     'dropzone_info' => 'Du kannst das Bild auch hier ablegen, um es hochzuladen',
-                    'restriction_info' => "Nur <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!-Supporter</a> können hochladen",
                     'size_info' => 'Banner sollte 2800x620 groß sein',
                     'too_large' => 'Datei ist zu groß.',
                     'unsupported_format' => 'Format wird nicht unterstützt.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -219,7 +223,6 @@ return [
                 'recent_entries' => 'Kudosu-Geschichte',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu insgesamt',
-                'total_info' => 'Basierend auf dem Beitrag zur Beatmapmoderation. Siehe <a href="'.osu_url('user.kudosu').'">diese Seite</a> für weitere Informationen.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -258,6 +261,11 @@ return [
                         'reset' => 'Kudosu von :giver im Post :post zurückgesetzt',
                         'revoke' => 'Kudosu von :giver im Post :post verwehrt',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -335,7 +343,11 @@ return [
             'description' => '<strong>me!</strong> ist ein persönlicher Bereich auf deinem osu!-Profil, den du nach deinem Belieben anpassen kannst.',
             'edit_big' => 'me! bearbeiten',
             'placeholder' => 'Seiteninhalt hier eingeben',
-            'restriction_info' => "Für dieses Feature musst du ein <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!-Supporter</a> sein.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => ':link beigetragen',
@@ -373,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Accountbestätigung',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

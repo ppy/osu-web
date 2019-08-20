@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Προφίλ',
 
             'user' => [
+                'user_discord' => '',
                 'user_from' => 'τρέχουσα τοποθεσία',
                 'user_interests' => 'ενδιαφέροντα',
                 'user_msnm' => '',
                 'user_occ' => 'ενασχόληση',
                 'user_twitter' => '',
                 'user_website' => 'ιστοσελίδα',
-                'user_discord' => '',
             ],
         ],
 
@@ -62,9 +64,37 @@ return [
         ],
     ],
 
-    'oauth' => [
+    'notifications' => [
         'title' => '',
+        'topic_auto_subscribe' => '',
+    ],
+
+    'oauth' => [
         'authorized_clients' => '',
+        'title' => '',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'πληκτρολόγιο',
+        'mouse' => 'ποντίκι',
+        'tablet' => 'γραφίδα',
+        'title' => 'Τρόπος παιχνιδιού',
+        'touch' => 'οθόνη αφής',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'Αποκλεισμός των ιδιωτικών μηνυμάτων από άτομα που δεν βρίσκονται στη λίστα φίλων σας',
+        'hide_online' => 'απόκρυψη παρουσίας',
+        'title' => 'Απόρρητο',
+    ],
+
+    'security' => [
+        'current_session' => 'τρέχουσα',
+        'end_session' => 'Λήξη Συνεδρίας',
+        'end_session_confirmation' => 'Αυτό θα λήξει τη συνεδρία σας σε αυτή την συσκευή. Είστε σίγουρος;',
+        'last_active' => 'Τελευταία ενεργός:',
+        'title' => 'Ασφάλεια',
+        'web_sessions' => 'συνεδρίες',
     ],
 
     'update_email' => [
@@ -78,31 +108,12 @@ return [
 ',
     ],
 
-    'playstyles' => [
-        'title' => 'Τρόπος παιχνιδιού',
-        'mouse' => 'ποντίκι',
-        'keyboard' => 'πληκτρολόγιο',
-        'tablet' => 'γραφίδα',
-        'touch' => 'οθόνη αφής',
-    ],
-
-    'privacy' => [
-        'title' => 'Απόρρητο',
-        'friends_only' => 'Αποκλεισμός των ιδιωτικών μηνυμάτων από άτομα που δεν βρίσκονται στη λίστα φίλων σας',
-        'hide_online' => 'απόκρυψη παρουσίας',
-    ],
-
-    'notifications' => [
+    'verification_completed' => [
+        'text' => '',
         'title' => '',
-        'topic_auto_subscribe' => '',
     ],
 
-    'security' => [
-        'current_session' => 'τρέχουσα',
-        'end_session' => 'Λήξη Συνεδρίας',
-        'end_session_confirmation' => 'Αυτό θα λήξει τη συνεδρία σας σε αυτή την συσκευή. Είστε σίγουρος;',
-        'last_active' => 'Τελευταία ενεργός:',
-        'title' => 'Ασφάλεια',
-        'web_sessions' => 'συνεδρίες',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

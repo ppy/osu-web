@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => '討論被鎖定。',
         'first_post' => '無法刪除第一個討論。',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => '指定的難度無效。',
         'invalid_beatmapset_id' => '指定的譜面無效。',
         'locked' => '討論被鎖定。',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => '登錄後才能推薦',
@@ -52,7 +61,11 @@ return [
     ],
 
     'comment' => [
-        'deleted_parent' => '',
+        'deleted_parent' => '無法回覆給已刪除評論。',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'follow' => [
@@ -72,17 +85,31 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => '不允許刪除譜面信息帖。',
             'beatmapset_post_no_edit' => '不允許編輯譜面信息帖。',
-            'only_quote' => '',
+            'only_quote' => '您的回覆僅有引用。',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
             'duplicate_options' => '不允許重複的選項。',
-            'grace_period_expired' => '',
+            'grace_period_expired' => '無法修改超過 :limit 個小時的投票。',
             'hiding_results_forever' => '無法隱藏不會完結之投票的結果',
             'invalid_max_options' => '每人可選的選項不能超出總選項數。',
             'minimum_one_selection' => '每人至少可選一項。',
             'minimum_two_options' => '需要至少兩個選項。',
             'too_many_options' => '選項數量超出限制。',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,6 +142,12 @@ return [
         'wrong_password_confirmation' => '重複新密碼與新密碼不一致。',
         'too_long' => '超出長度限制——最多為 :limit 個字符。',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
             'restricted' => '帳戶處於限制模式時無法更變使用者名稱。',
             'supporter_required' => [
@@ -126,6 +159,15 @@ return [
     ],
 
     'user_report' => [
-        'self' => "",
+        'self' => "您不能檢舉你自己！",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

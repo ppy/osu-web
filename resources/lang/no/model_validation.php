@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Diskusjonen er låst.',
         'first_post' => 'Kan ikke slette det første innlegget.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Ugyldig vanskelighetsgrad angitt.',
         'invalid_beatmapset_id' => 'Ugyldig beatmap angitt.',
         'locked' => 'Diskusjonen er låst.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'Må være logget inn for å hype.',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Å svare til slettede kommentarer er ikke tillatt.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Sletting av beatmap metadata innlegget er ikke tillatt.',
             'beatmapset_post_no_edit' => 'Redigering av beatmap metadata innlegget er ikke tillatt.',
             'only_quote' => 'Svaret ditt inneholder kun et sitat.',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,6 +106,10 @@ return [
             'minimum_one_selection' => 'Minimum et valg pr. bruker kreves.',
             'minimum_two_options' => 'Trenger minst to valgalternativer.',
             'too_many_options' => 'Overskredet maksimal antall tillatte alternativer.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,6 +142,12 @@ return [
         'wrong_password_confirmation' => 'Passordene samsvarer ikke.',
         'too_long' => 'Overskrider maksimumslengden - kan bare være opp til :limit tegn.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
             'restricted' => 'Du kan ikke endre brukernavnet ditt mens du er begrenset.',
             'supporter_required' => [
@@ -127,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "Du kan ikke rapportere deg selv!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

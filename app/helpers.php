@@ -31,6 +31,11 @@ function array_search_null($value, $array)
     }
 }
 
+function atom_id(string $namespace, $id = null) : string
+{
+    return 'tag:'.request()->getHttpHost().',2019:'.$namespace.($id === null ? '' : "/{$id}");
+}
+
 function background_image($url, $proxy = true)
 {
     if (!present($url)) {

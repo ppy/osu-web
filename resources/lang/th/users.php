@@ -132,7 +132,7 @@ return [
         'is_supporter' => 'osu!ผู้สนับสนุน',
         'joined_at' => 'เข้าร่วมเมื่อ :date',
         'lastvisit' => 'ออนไลน์ล่าสุด :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'ออนไลน์ในขณะนี้',
         'missingtext' => 'คุณอาจจะผิดพลาดนะ! (หรือไม่ก็ผู้ใช้อาจจะถูกแบน)',
         'origin_country' => 'มาจาก :country',
         'page_description' => 'osu! - ทุกสิ่งทุกอย่างที่คุณอยากรู้เกี่ยวกับ :username!',
@@ -149,10 +149,14 @@ return [
                     'button' => 'อัพโหลดรูปภาพ',
                     'dropzone' => 'วางที่นี่เพื่ออัพโหลด',
                     'dropzone_info' => 'นอกจากนี้คุณยังสามารถวางรูปภาพเพื่ออัปโหลด',
-                    'restriction_info' => "อัพโหลดพร้อมแล้ว สำหรับ <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!ผู้สนับสนุน</a> เท่านั้น",
                     'size_info' => 'รูปภาพหน้าปกควรจะมีขนาด 2800x620',
                     'too_large' => 'ไฟล์มีขนาดใหญ่เกินไป',
                     'unsupported_format' => 'ไม่รองรับไฟล์นามสกุลนี้',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -219,8 +223,6 @@ return [
                 'recent_entries' => 'ประวัติ Kudosu ล่าสุด',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu ที่ได้รับ',
-                'total_info' => 'ขึ้นอยู่กับจำนวนผู้ใช้ที่ได้รับการดูแล บีทแมพ. 
-ดู <a href="'.osu_url('user.kudosu').'">this page</a> สำหรับข้อมูลเพิ่มเติม',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -259,6 +261,11 @@ return [
                         'reset' => 'Kudosu reset by :giver for the post :post',
                         'revoke' => 'Denied kudosu by :giver for the post :post',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -336,7 +343,11 @@ return [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'การมีส่วนร่วม :link',
@@ -365,7 +376,7 @@ return [
     ],
 
     'status' => [
-        'all' => '',
+        'all' => 'ทั้งหมด',
         'online' => 'ออนไลน์',
         'offline' => 'ออฟไลน์',
     ],
@@ -374,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'ยืนยันตัวตนบัญชี',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

@@ -21,6 +21,7 @@
 namespace App\Transformers;
 
 use App\Models\User;
+use App\Models\UserGroup;
 use League\Fractal;
 
 class UserTransformer extends Fractal\TransformerAbstract
@@ -35,6 +36,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'follower_count',
         'friends',
         'graveyard_beatmapset_count',
+        'groups',
         'is_admin',
         'loved_beatmapset_count',
         'monthly_playcounts',
@@ -174,6 +176,22 @@ class UserTransformer extends Fractal\TransformerAbstract
     public function includeGraveyardBeatmapsetCount(User $user)
     {
         return $this->primitive($user->profileBeatmapsetsGraveyard()->count());
+    }
+
+    public function includeGroups(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $groups = [];
+
+            foreach ($user->groupIds() as $id) {
+                $name = array_search_null($id, UserGroup::GROUPS);
+                if ($name !== null && $id !== UserGroup::GROUPS['admin']) {
+                    $groups[] = $name;
+                }
+            }
+
+            return $groups;
+        });
     }
 
     public function includeIsAdmin(User $user)

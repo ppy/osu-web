@@ -149,10 +149,14 @@ return [
                     'button' => 'Upload image',
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
-                    'restriction_info' => "Upload available for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> only",
                     'size_info' => 'Cover size should be 2800x620',
                     'too_large' => 'Uploaded file is too large.',
                     'unsupported_format' => 'Unsupported format.',
+
+                    'restriction_info' => [
+                        '_' => 'Upload available for :link only',
+                        'link' => 'osu!supporters',
+                    ],
                 ],
             ],
 
@@ -164,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count_delimited follower|:count_delimited followers',
+            'none' => 'none',
             'unranked' => 'No recent plays',
 
             'achievements' => [
@@ -192,6 +197,16 @@ return [
                     'title' => 'Pending Beatmaps',
                 ],
             ],
+            'discussions' => [
+                'title' => 'Discussions',
+                'title_longer' => 'Recent Discussions',
+                'show_more' => 'see more discussions',
+            ],
+            'events' => [
+                'title' => 'Events',
+                'title_longer' => 'Recent Events',
+                'show_more' => 'see more events',
+            ],
             'historical' => [
                 'empty' => 'No performance records. :(',
                 'title' => 'Historical',
@@ -219,7 +234,6 @@ return [
                 'recent_entries' => 'Recent Kudosu History',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Earned',
-                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.osu_url('user.kudosu').'">this page</a> for more information.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -259,6 +273,11 @@ return [
                         'revoke' => 'Denied kudosu by :giver for the post :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => 'Based on how much of a contribution the user has made to beatmap moderation. See :link for more information.',
+                    'link' => 'this page',
+                ],
             ],
             'me' => [
                 'title' => 'me!',
@@ -267,6 +286,11 @@ return [
                 'empty' => "This user hasn't gotten any yet. ;_;",
                 'recent' => 'Latest',
                 'title' => 'Medals',
+            ],
+            'posts' => [
+                'title' => 'Posts',
+                'title_longer' => 'Recent Posts',
+                'show_more' => 'see more posts',
             ],
             'recent_activity' => [
                 'title' => 'Recent',
@@ -284,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'First Place Ranks',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Votes Given (last 3 months)',
+                'received' => 'Votes Received (last 3 months)',
+                'title' => 'Votes',
+                'title_longer' => 'Recent Votes',
+                'vote_count' => ':count_delimited vote|:count_delimited votes',
             ],
             'account_standing' => [
                 'title' => 'Account Standing',
@@ -335,7 +366,11 @@ return [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+
+            'restriction_info' => [
+                '_' => 'You need to be an :link to unlock this feature.',
+                'link' => 'osu!supporter',
+            ],
         ],
         'post_count' => [
             '_' => 'Contributed :link',
@@ -360,6 +395,11 @@ return [
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Total Hits',
             'total_score' => 'Total Score',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Ranked & Approved Beatmaps',
+            'loved_beatmapset_count' => 'Loved Beatmaps',
+            'unranked_beatmapset_count' => 'Pending Beatmaps',
+            'graveyard_beatmapset_count' => 'Graveyarded Beatmaps',
         ],
     ],
 

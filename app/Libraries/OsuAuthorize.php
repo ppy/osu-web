@@ -570,8 +570,13 @@ class OsuAuthorize
      * @param Beatmapset $beatmapset
      * @return string
      */
-    public function checkBeatmapsetShow(?User $user, Beatmapset $beatmapset) : string
+    public function checkBeatmapsetShow(?User $user, ?Beatmapset $beatmapset) : string
     {
+        // FIXME: will return incorrect result if it's soft deleted and the caller passed null.
+        if ($beatmapset === null) {
+            return 'unauthorized';
+        }
+
         if (!$beatmapset->trashed()) {
             return 'ok';
         }

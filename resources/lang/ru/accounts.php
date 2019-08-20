@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Аватар',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Профиль',
 
             'user' => [
+                'user_discord' => 'discord',
                 'user_from' => 'место проживания',
                 'user_interests' => 'интересы',
                 'user_msnm' => 'skype',
                 'user_occ' => 'род деятельности',
                 'user_twitter' => 'twitter',
                 'user_website' => 'веб-сайт',
-                'user_discord' => 'discord',
             ],
         ],
 
@@ -62,9 +64,37 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => 'Уведомления',
+        'topic_auto_subscribe' => 'автоматически включать уведомления для тем на форуме, когда вы их создаёте',
+    ],
+
     'oauth' => [
-        'title' => '',
-        'authorized_clients' => '',
+        'authorized_clients' => 'авторизованные клиенты',
+        'title' => 'OAuth',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'клавиатура',
+        'mouse' => 'мышь',
+        'tablet' => 'графический планшет',
+        'title' => 'Устройства',
+        'touch' => 'сенсорный экран',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'блокировать личные сообщения от людей, не входящих в мой список друзей',
+        'hide_online' => 'скрыть ваше присутствие',
+        'title' => 'Приватность',
+    ],
+
+    'security' => [
+        'current_session' => 'это вы',
+        'end_session' => 'Закончить сеанс',
+        'end_session_confirmation' => 'Сеанс на этом устройстве будет немедленно завершён. Вы уверены?',
+        'last_active' => 'Был активен:',
+        'title' => 'Безопасность',
+        'web_sessions' => 'последняя активность',
     ],
 
     'update_email' => [
@@ -77,31 +107,12 @@ return [
         'update' => 'сменить',
     ],
 
-    'playstyles' => [
-        'title' => 'Устройства',
-        'mouse' => 'мышь',
-        'keyboard' => 'клавиатура',
-        'tablet' => 'графический планшет',
-        'touch' => 'сенсорный экран',
+    'verification_completed' => [
+        'text' => '',
+        'title' => '',
     ],
 
-    'privacy' => [
-        'title' => 'Приватность',
-        'friends_only' => 'блокировать личные сообщения от людей, не входящих в мой список друзей',
-        'hide_online' => 'скрыть ваше присутствие',
-    ],
-
-    'notifications' => [
-        'title' => 'Уведомления',
-        'topic_auto_subscribe' => 'автоматически включать уведомления для тем на форуме, когда вы их создаёте',
-    ],
-
-    'security' => [
-        'current_session' => 'это вы',
-        'end_session' => 'Закончить сеанс',
-        'end_session_confirmation' => 'Сеанс на этом устройстве будет немедленно завершён. Вы уверены?',
-        'last_active' => 'Был активен:',
-        'title' => 'Безопасность',
-        'web_sessions' => 'последняя активность',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

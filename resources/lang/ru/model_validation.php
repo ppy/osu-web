@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Обсуждение закрыто.',
         'first_post' => 'Невозможно удалить первую публикацию.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Указана неверная сложность.',
         'invalid_beatmapset_id' => 'Указана неправильная карта.',
         'locked' => 'Обсуждение закрыто.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'Вам нужно войти, чтобы хайпить.',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Нельзя ответить на удалённый комментарий.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Нельзя удалить метаданные карты.',
             'beatmapset_post_no_edit' => 'Нельзя изменить метаданные карты.',
             'only_quote' => 'Ваш ответ содержит только цитату.',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,6 +106,10 @@ return [
             'minimum_one_selection' => 'Требуется минимум один вариант для каждого пользователя.',
             'minimum_two_options' => 'Нужно как минимум два варианта.',
             'too_many_options' => 'Превышено максимальное количество вариантов.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,6 +142,12 @@ return [
         'wrong_password_confirmation' => 'Подтверждения пароля не совпадают.',
         'too_long' => 'Превышено максимальное количество символов - можно использовать только до :limit characters символов.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
             'restricted' => 'Вы не можете сменить своё имя, пока ваш аккаунт ограничен.',
             'supporter_required' => [
@@ -127,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "Вы не можете пожаловаться на себя!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

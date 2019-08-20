@@ -149,10 +149,14 @@ return [
                     'button' => '上传图片',
                     'dropzone' => '拖拽到此处',
                     'dropzone_info' => '将图片拖动到这里也可以上传',
-                    'restriction_info' => "自定义头图只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> 可用",
                     'size_info' => '图片大小最好是 2800x620 像素',
                     'too_large' => '上传的图片过大。',
                     'unsupported_format' => '不支持的格式。',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -219,7 +223,6 @@ return [
                 'recent_entries' => '最近 Kudosu 记录',
                 'title' => 'Kudosu!',
                 'total' => '总共获得 kudosu',
-                'total_info' => '取决于你对制谱的贡献如何。查看 <a href="'.osu_url('user.kudosu').'">这个页面</a> 以得到更多信息。',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -258,6 +261,11 @@ return [
                         'reset' => '在帖子 :post 中被 :giver 重置 kudosu ',
                         'revoke' => '在帖子 :post 中被 :giver 移除 kudosu ',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -335,7 +343,11 @@ return [
             'description' => '<strong>个人介绍</strong> 是您可以自定义的展示区.',
             'edit_big' => '编辑',
             'placeholder' => '在这里编辑',
-            'restriction_info' => "需要成为 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> 以解锁该特性.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => '发表了 :link',
@@ -373,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => '账户认证',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

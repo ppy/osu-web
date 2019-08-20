@@ -149,10 +149,14 @@ return [
                     'button' => 'Качи изображение',
                     'dropzone' => 'Пуснете файла тук, за да го качите',
                     'dropzone_info' => 'Можете също да пуснете вашето изображение тук за качване',
-                    'restriction_info' => "Качване налично за <a href='".route('store.products.show', 'supporter-tag')."само за ' target='_blank'>osu!supporter</a>",
                     'size_info' => 'Размерът на корицата трябва да е 2800x620 пиксела',
                     'too_large' => 'Каченият файл е прекалено голям.',
                     'unsupported_format' => 'Неподдържан формат.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -219,7 +223,6 @@ return [
                 'recent_entries' => 'Скорошна Kudosu история',
                 'title' => 'Kudosu!',
                 'total' => 'Общо получено Kudosu',
-                'total_info' => 'Въз основа на това колко този потребител е помогнал с редактирането на бийтмапове. Вижте <a href="'.osu_url('user.kudosu').'"> тази страница</a> за повече информация.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -258,6 +261,11 @@ return [
                         'reset' => 'Нулиране на Kudosu от :giver за публикацията :post',
                         'revoke' => 'Отхвърлено Kudosu от :giver за публикацията :post',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -335,7 +343,11 @@ return [
             'description' => '<strong>за мен!</strong> е една персонализирана част от профилната ви страница.',
             'edit_big' => 'Редактирай ме!',
             'placeholder' => 'Въведи съдържанието на страницата тук',
-            'restriction_info' => "Трябва да сте <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a>, за да отключите тази функция.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Приноси :link',
@@ -373,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Потвърждение на акаунта',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

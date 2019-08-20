@@ -22,10 +22,10 @@ return [
     'cancel' => 'İptal et',
 
     'authorise' => [
-        'authorise' => '',
+        'authorise' => 'İzin ver',
         'request' => 'hesabınıza erişmek için izin istiyor.',
-        'scopes_title' => '',
-        'title' => '',
+        'scopes_title' => 'Bu uygulama şunları yapabilecek:',
+        'title' => 'İzin İsteği',
 
         'wrong_user' => [
             '_' => ':user olarak giriş yaptınız. :logout_link.',
@@ -34,20 +34,20 @@ return [
     ],
 
     'authorized-clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Bu istemcinin izinlerini iptal etmek istediğinize emin misiniz?',
+        'scopes_title' => 'Bu uygulama şunları yapabilir:',
+        'owned_by' => ':user kişisine ait',
+        'none' => 'İstemci yok',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Erişimi iptal et',
+            'true' => 'Erişim iptal edildi',
         ],
     ],
 
     'login' => [
         'download' => 'Oyunu indirmek ve bir hesap yaratmak için buraya tıklayın',
         'label' => 'İlk olarak, hadi hesabına giriş yapalım!',
-        'title' => '',
+        'title' => 'Hesaba giriş yap',
     ],
 ];

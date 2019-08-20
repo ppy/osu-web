@@ -37,9 +37,9 @@ return [
         ],
     ],
     'input' => [
-        'disabled' => '無法傳送訊息。',
+        'disabled' => '無法傳送訊息...',
         'placeholder' => '輸入訊息中...',
-        'send' => '送出',
+        'send' => '發送',
     ],
     'no-conversations' => [
         'howto' => "在使用者個人資料或卡片的彈出方塊上點擊信封圖案以開始聊天。",

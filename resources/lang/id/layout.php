@@ -27,6 +27,7 @@ return [
         'home' => [
             '_' => 'beranda',
             'account-edit' => 'pengaturan',
+            'account-verifyLink' => '',
             'friends-index' => 'teman',
             'changelog-index' => 'riwayat perubahan',
             'changelog-build' => 'versi',

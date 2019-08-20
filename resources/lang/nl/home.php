@@ -36,7 +36,7 @@ return [
         'advanced_link' => 'Geavanceerd zoeken',
         'button' => 'Zoeken',
         'empty_result' => 'Niets gevonden!',
-        'keyword_required' => '',
+        'keyword_required' => 'Een zoekwoord is vereist',
         'placeholder' => 'type om te zoeken',
         'title' => 'Zoek',
 

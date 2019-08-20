@@ -149,10 +149,14 @@ return [
                     'button' => 'Subir imagen',
                     'dropzone' => 'Suelta aquí para subir',
                     'dropzone_info' => 'También puedes soltar tu imagen aquí para subirla',
-                    'restriction_info' => "Subida solo disponible para <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
                     'size_info' => 'El tamaño de la portada debe ser de 2800x620',
                     'too_large' => 'El archivo subido es demasiado grande.',
                     'unsupported_format' => 'Formato no soportado.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -219,7 +223,6 @@ return [
                 'recent_entries' => 'Historial de Kudosu Reciente',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu Total Obtenido',
-                'total_info' => 'Basado en qué tanto ha colaborado el usuario a la moderación de beatmaps. Mira <a href="'.osu_url('user.kudosu').'">esta página</a> para más información.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -258,6 +261,11 @@ return [
                         'reset' => 'Kudosu reiniciado por :giver por la publicación :post',
                         'revoke' => 'Kudosu denegado por :giver por la publicación :post',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -335,7 +343,11 @@ return [
             'description' => '<strong>¡yo!</strong> es una área personal y personalizable en tu perfil.',
             'edit_big' => 'Editar ¡yo!',
             'placeholder' => 'Escribe el contenido de la pagina aquí',
-            'restriction_info' => "Necesitas ser un <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> para desbloquear esta función.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Contribuyó en :link',
@@ -373,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Verificación de la cuenta',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

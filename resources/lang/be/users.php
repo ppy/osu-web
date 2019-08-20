@@ -149,10 +149,14 @@ return [
                     'button' => 'Запампаваць выяву',
                     'dropzone' => 'Перацягніце сюды, каб запампаваць',
                     'dropzone_info' => 'Вы таксама можаце перацягнуць сюды, каб запампаваць',
-                    'restriction_info' => "Запампоўка даступна толькі для <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
                     'size_info' => 'Памер фону павінен быць 2800x620',
                     'too_large' => 'Запампаваны файл надта вялікі.',
                     'unsupported_format' => 'Фармат не падтрымліваецца.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -219,7 +223,6 @@ return [
                 'recent_entries' => 'Нядаўняя гісторыя кудосу',
                 'title' => 'Кудосу!',
                 'total' => 'Агулам зароблена кудосу',
-                'total_info' => 'Абапіраючыся на тое, як шмат было зроблена выпраўленняў бітмапы карыстальнікам падчас мадэрацыі. Паглядзіце <a href="'.osu_url('user.kudosu').'">старонку</a>, каб даведацца больш.',
 
                 'entry' => [
                     'amount' => ':amount кудосу',
@@ -258,6 +261,11 @@ return [
                         'reset' => ':giver скінуў кудосу за адказ у допісе :post',
                         'revoke' => ':giver забраў кудосу за адказ у допісе :post',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -335,7 +343,11 @@ return [
             'description' => '<strong>пра мяне!</strong> гэта ваша ўласнае месца ў профілю, якое можна дастасаваць.',
             'edit_big' => 'Рэдагаваць мяне!',
             'placeholder' => 'Напішыце змесціва старонкі тут',
-            'restriction_info' => "Вам трэба мець <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a>, каб разблакаваць гэту функцыю.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Размясціў :link',
@@ -373,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => 'Пацверджанне ўліковага запісу',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

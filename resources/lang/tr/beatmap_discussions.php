@@ -74,13 +74,6 @@ return [
         ],
     ],
 
-    'user' => [
-        'admin' => 'yönetici',
-        'bng' => 'nominatör',
-        'owner' => 'mapper',
-        'nat' => '',
-    ],
-
     'user_filter' => [
         'everyone' => 'Herkes',
         'label' => 'Kullanıcıya göre filtrele',

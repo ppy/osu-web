@@ -149,10 +149,14 @@ return [
                     'button' => '이미지 업로드',
                     'dropzone' => '업로드하려면 여기에 끌어놓으세요',
                     'dropzone_info' => '이쪽에 이미지를 끌어놓아 업로드할수도 있습니다',
-                    'restriction_info' => "<a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!서포터</a>만 업로드할 수 있습니다",
                     'size_info' => '표지 크기는 2800x620 이여야 합니다',
                     'too_large' => '업로드된 파일이 너무 큽니다.',
                     'unsupported_format' => '지원되지 않는 확장자입니다.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -219,7 +223,6 @@ return [
                 'recent_entries' => '최근 Kudosu 기록',
                 'title' => 'Kudosu!',
                 'total' => '총 획득한 Kudosu 수',
-                'total_info' => '사용자가 비트맵 제작 과정에 얼마나 기여했는지를 나타내는 척도입니다. 더 많은 설명을 얻고 싶으면 <a href="'.osu_url('user.kudosu').'">이 페이지</a>를 확인해주세요.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -258,6 +261,11 @@ return [
                         'reset' => ':post에서 :giver님으로부터 kudosu가 초기화되었습니다.',
                         'revoke' => ':post에서 :giver님으로부터 kudosu 획득 자격을 박탈당했습니다.',
                     ],
+                ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
                 ],
             ],
             'me' => [
@@ -335,7 +343,11 @@ return [
             'description' => '<strong>me!</strong>는 유저 프로필 페이지에서 개인이 꾸밀 수 있는 공간입니다.',
             'edit_big' => 'me! 수정하기',
             'placeholder' => '페이지에 들어갈 내용을 입력하세요.',
-            'restriction_info' => "이 기능을 이용하려면 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a>가 되어야 합니다.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => '게시글 수 :link',
@@ -373,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => '계정 인증',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

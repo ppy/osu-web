@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user 的摸圖紀錄",
-        'title_compact' => '',
+        'title_compact' => '摸圖',
 
         'discussions' => [
             'title_recent' => '最近討論的主題',
@@ -78,7 +78,7 @@ return [
         'forgot' => '忘記密碼？',
         'beta' => [
             'main' => 'Beta 版僅限於特定使用者存取',
-            'small' => '',
+            'small' => '(osu!贊助者將在不久後開放)',
         ],
 
         'here' => '這裡', // this is substituted in when generating a link above. change it to suit the language.
@@ -101,7 +101,7 @@ return [
     'report' => [
         'button_text' => '檢舉',
         'comments' => '補充評論',
-        'placeholder' => '',
+        'placeholder' => '請提供任何您覺得有用的資訊。',
         'reason' => '原因',
         'thanks' => '感謝您的舉報！',
         'title' => '檢舉 :username?',
@@ -114,10 +114,10 @@ return [
         'options' => [
             'cheating' => '違規 / 作弊',
             'insults' => '侮辱我 / 其他人',
-            'spam' => '',
-            'unwanted_content' => '',
-            'nonsense' => '',
-            'other' => '',
+            'spam' => '垃圾訊息',
+            'unwanted_content' => '鏈接不適當的內容',
+            'nonsense' => '無用內容',
+            'other' => '其他（在下方輸入原因）',
         ],
     ],
     'restricted_banner' => [
@@ -149,10 +149,14 @@ return [
                     'button' => '上傳圖片',
                     'dropzone' => '拖動到此處以上傳',
                     'dropzone_info' => '您也可以將圖片拉到此處上傳',
-                    'restriction_info' => "自定義皮膚只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!贊助者</a> 可用",
                     'size_info' => '圖片尺寸應為2800x620',
                     'too_large' => '上傳的圖片檔案過大.',
                     'unsupported_format' => '不支援的檔案格式.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -168,11 +172,11 @@ return [
 
             'achievements' => [
                 'achieved-on' => '達成於 :date',
-                'locked' => '',
+                'locked' => '已鎖定',
                 'title' => '成就',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => '作者：:artist',
                 'none' => '暫時沒有...',
                 'title' => '圖譜',
 
@@ -198,7 +202,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => '遊玩紀錄',
-                    'count_label' => '',
+                    'count_label' => '遊玩次數',
                 ],
                 'most_played' => [
                     'count' => '遊玩次數',
@@ -210,7 +214,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => '重播觀看的歷史記錄',
-                    'count_label' => '',
+                    'count_label' => '重播觀看次數',
                 ],
             ],
             'kudosu' => [
@@ -219,7 +223,6 @@ return [
                 'recent_entries' => '近期 Kudosu 記錄',
                 'title' => 'Kudosu!',
                 'total' => '總共獲得 kudosu',
-                'total_info' => '根據使用者對於製作圖譜的貢獻度。請參閱 <a href="'.osu_url('user.kudosu').'">> 本頁</a> 以瞭解更多資訊。',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -259,13 +262,18 @@ return [
                         'revoke' => '此貼文 :post 已被 :giver 移除 kudosu 點數',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
-                'title' => '個人簡介',
+                'title' => '個人簡介!',
             ],
             'medals' => [
                 'empty' => "該使用者尚未獲得成就。;_;",
-                'recent' => '',
+                'recent' => '最新',
                 'title' => '成就',
             ],
             'recent_activity' => [
@@ -275,7 +283,7 @@ return [
                 'download_replay' => '下載重播',
                 'empty' => '尚未有好成績。 :(',
                 'not_ranked' => '僅被列入排名的圖譜才能獲得 pp。',
-                'pp_weight' => '',
+                'pp_weight' => '權重 :percentage',
                 'title' => '排名',
 
                 'best' => [
@@ -309,8 +317,8 @@ return [
         ],
 
         'header_title' => [
-            '_' => '',
-            'info' => '',
+            '_' => ':info 玩家',
+            'info' => '資訊',
         ],
 
         'info' => [
@@ -335,7 +343,11 @@ return [
             'description' => '<strong>個人介紹</strong> 在您的個人簡介網頁可以自行修改。',
             'edit_big' => '編輯',
             'placeholder' => '在這裡編輯',
-            'restriction_info' => "您必須是 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!贊助者</a> 以解鎖此功能.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => '發表 :link',
@@ -343,16 +355,16 @@ return [
         ],
         'rank' => [
             'country' => ':mode 模式的國內排名',
-            'country_simple' => '',
+            'country_simple' => '地區排名',
             'global' => ':mode 模式的全球排名',
-            'global_simple' => '',
+            'global_simple' => '全球排名',
         ],
         'stats' => [
             'hit_accuracy' => '準確率',
             'level' => '等級 :level',
-            'level_progress' => '',
+            'level_progress' => '距離下一級的進度',
             'maximum_combo' => '最大連擊',
-            'medals' => '',
+            'medals' => '成就',
             'play_count' => '遊玩次數',
             'play_time' => '總遊玩時間',
             'ranked_score' => 'Ranked 圖譜總分',
@@ -373,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => '帳號驗證',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

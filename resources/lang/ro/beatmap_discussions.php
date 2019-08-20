@@ -74,13 +74,6 @@ return [
         ],
     ],
 
-    'user' => [
-        'admin' => 'admin',
-        'bng' => 'nominalizator',
-        'owner' => 'mapper',
-        'nat' => '',
-    ],
-
     'user_filter' => [
         'everyone' => 'Toată lumea',
         'label' => 'Filtrează după utilizator',

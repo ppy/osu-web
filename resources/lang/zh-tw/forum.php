@@ -48,13 +48,13 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => '將論壇標為已讀',
+        'forums' => '將論壇標為已讀',
+        'busy' => '標記已讀…',
     ],
 
     'poll' => [
-        'edit_warning' => '',
+        'edit_warning' => '編輯投票將會清除目前結果！',
 
         'actions' => [
             'edit' => '編輯投票',
@@ -75,7 +75,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited 主題',
-            'topic_starter' => '',
+            'topic_starter' => '主題開啟者',
         ],
     ],
 
@@ -200,7 +200,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => '星級優先',
             'replies' => '回覆數',
             'views' => '瀏覽數',
         ],
