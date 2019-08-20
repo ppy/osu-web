@@ -20,6 +20,7 @@
 
 namespace App\Console\Commands;
 
+use DB;
 use Illuminate\Console\Command;
 use Laravel\Passport\Token;
 
@@ -31,13 +32,15 @@ class OAuthDeleteExpiredTokens extends Command
 
     public function handle()
     {
-        $count = Token
-            ::where(
-                'expires_at',
-                '<',
-                now()->subDays(config('osu.oauth.retain_expired_tokens_days'))
-            )->delete();
+        $expiredBefore = now()->subDays(config('osu.oauth.retain_expired_tokens_days'));
 
-        $this->line("Deleted {$count} expired tokens.");
+        $count = Token::where('expires_at', '<', $expiredBefore)->delete();
+        $this->line("Deleted {$count} expired access tokens.");
+
+        $count = DB::table('oauth_refresh_tokens')->where('expires_at', '<', $expiredBefore)->delete();
+        $this->line("Deleted {$count} expired refresh tokens.");
+
+        $count = DB::table('oauth_auth_codes')->where('expires_at', '<', $expiredBefore)->delete();
+        $this->line("Deleted {$count} expired auth codes.");
     }
 }
