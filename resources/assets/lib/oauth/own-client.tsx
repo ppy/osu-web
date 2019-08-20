@@ -18,8 +18,11 @@
 
 import { observer } from 'mobx-react';
 import { OwnClient as Client } from 'models/oauth/own-client';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Spinner } from 'spinner';
+
+const uiState = core.dataStore.uiState;
 
 interface Props {
   client: Client;
@@ -39,7 +42,7 @@ export class OwnClient extends React.Component<Props> {
     return (
       <div className='oauth-client'>
         <div className='oauth-client__details'>
-          <div className='oauth-client__name'>
+          <div className='oauth-client__name' onClick={this.showClientDetails}>
             {client.name}
           </div>
         </div>
@@ -57,5 +60,9 @@ export class OwnClient extends React.Component<Props> {
         </div>
       </div>
     );
+  }
+
+  showClientDetails = () => {
+    uiState.selectedClient.client = this.props.client;
   }
 }

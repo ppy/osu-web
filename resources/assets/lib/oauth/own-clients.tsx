@@ -20,16 +20,23 @@ import { observer } from 'mobx-react';
 import { OwnClient } from 'oauth/own-client';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { ClientDetails } from './client-details';
 
 const store = core.dataStore.ownClientStore;
+const uiState = core.dataStore.uiState;
 
 @observer
 export class OwnClients extends React.Component {
   render() {
     return (
-      <div className='oauth-clients'>
-        {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
-      </div>
+      <>
+        <div className='oauth-clients'>
+          {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
+        </div>
+        {
+          uiState.selectedClient.client != null ? <ClientDetails client={uiState.selectedClient.client!} /> : null
+        }
+      </>
     );
   }
 

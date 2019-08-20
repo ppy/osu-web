@@ -18,9 +18,15 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import ChatStateStore from 'chat/chat-state-store';
+import { observable } from 'mobx';
+import { Client } from 'models/oauth/client';
 import Store from 'stores/store';
 
 export default class UIStateStore extends Store {
   chat = new ChatStateStore(this.root, this.dispatcher);
+  @observable selectedClient = {
+    client: null,
+  };
+
   handleDispatchAction(action: DispatcherAction) { /* do nothing */}
 }
