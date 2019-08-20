@@ -108,6 +108,9 @@ return [
         'endpoint' => presence(env('NOTIFICATION_ENDPOINT'), '/home/notifications/feed'),
         'queue_name' => presence(env('NOTIFICATION_QUEUE'), 'notification'),
     ],
+    'oauth' => [
+        'retain_expired_tokens_days' => abs(get_int(env('OAUTH_RETAIN_EXPIRED_TOKENS_DAYS'))) ?? 30,
+    ],
     'search' => [
         'minimum_length' => get_int(env('SEARCH_MINIMUM_LENGTH', 2)),
 

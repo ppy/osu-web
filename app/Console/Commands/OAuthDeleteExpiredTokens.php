@@ -31,7 +31,12 @@ class OAuthDeleteExpiredTokens extends Command
 
     public function handle()
     {
-        $count = Token::where('expires_at', '<', now())->delete();
+        $count = Token
+            ::where(
+                'expires_at',
+                '<',
+                now()->subDays(config('osu.oauth.retain_expired_tokens_days'))
+            )->delete();
 
         $this->line("Deleted {$count} expired tokens.");
     }
