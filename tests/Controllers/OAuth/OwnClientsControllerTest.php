@@ -104,29 +104,16 @@ class OwnClientsControllerTest extends TestCase
         $this->assertSame($count + 1, Client::count());
     }
 
-    public function testCannotCreateClientWithEmptyName()
+    /**
+     * @dataProvider emptyStringsTestDataProvider
+     *
+     * @return void
+     */
+    public function testCannotCreateClientWithEmptyStrings($name, $redirect)
     {
         $data = [
-            'name' => ' ',
-            'redirect' => 'https://nowhere.local',
-        ];
-
-        $count = Client::count();
-
-        $this
-            ->actingAs($this->owner)
-            ->withSession(['verified' => true])
-            ->json('POST', route('oauth.own-clients.store'), $data)
-            ->assertStatus(422);
-
-        $this->assertSame($count, Client::count());
-    }
-
-    public function testCannotCreateClientWithEmptyRedirect()
-    {
-        $data = [
-            'name' => 'best client',
-            'redirect' => ' ',
+            'name' => $name,
+            'redirect' => $redirect,
         ];
 
         $count = Client::count();
@@ -161,6 +148,18 @@ class OwnClientsControllerTest extends TestCase
         $this->assertSame($id, $this->client->id);
         $this->assertSame('test', $this->client->name);
         $this->assertSame('https://nowhere.local', $this->client->redirect);
+    }
+
+    public function emptyStringsTestDataProvider()
+    {
+        return [
+            ['name', null],
+            ['name', ''],
+            ['name', ' '],
+            [null, 'https://nowhere.local'],
+            ['', 'https://nowhere.local'],
+            [' ', 'https://nowhere.local'],
+        ];
     }
 
     private function createClient(User $owner) : Client
