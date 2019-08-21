@@ -30,6 +30,13 @@
     top: 15%;
     left: -@_stripe-distance;
     border-radius: 10000px;
+    display: none;
+  }
+
+  @media @desktop {
+    &::before {
+      display: block;
+    }
   }
 
   &--forum {
