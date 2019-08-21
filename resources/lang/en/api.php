@@ -33,5 +33,9 @@ return [
         'friends' => [
             'read' => 'See who you are following.',
         ],
+
+        'users' => [
+            'read' => 'Read the public profile of any user.'
+        ],
     ],
 ];
