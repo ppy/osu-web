@@ -103,7 +103,11 @@ class ModdingHistoryController extends Controller
         $posts['items'] = $posts['query']->get();
 
         $events = BeatmapsetEvent::search($this->searchParams);
-        $events['items'] = $events['query']->with(['beatmapset', 'beatmapDiscussion'])->whereHas('beatmapset')->get();
+        $events['items'] = $events['query']->with([
+            'beatmapset',
+            'beatmapDiscussion.beatmapset',
+            'beatmapDiscussion.startingPost',
+        ])->whereHas('beatmapset')->get();
 
         $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
         $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
@@ -188,7 +192,7 @@ class ModdingHistoryController extends Controller
             'events' => json_collection(
                 $events['items'],
                 'BeatmapsetEvent',
-                ['user', 'discussion.starting_post', 'beatmapset', 'beatmapset.user']
+                ['discussion.starting_post', 'beatmapset.user']
             ),
             'posts' => json_collection(
                 $posts['items'],
