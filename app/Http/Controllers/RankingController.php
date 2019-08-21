@@ -129,15 +129,15 @@ class RankingController extends Controller
                     ->from(DB::raw("{$table} FORCE INDEX (ranked_score)"))
                     ->orderBy('ranked_score', 'desc');
             }
+
+            if (is_api_request()) {
+                $stats->with(['user.userProfileCustomization']);
+            }
         }
 
         $maxResults = $this->maxResults($modeInt);
         $maxPages = ceil($maxResults / static::PAGE_SIZE);
         $page = clamp(get_int(request('page')), 1, $maxPages);
-
-        if (is_api_request()) {
-            $stats->with(['user.userProfileCustomization']);
-        }
 
         $stats = $stats->limit(static::PAGE_SIZE)
             ->offset(static::PAGE_SIZE * ($page - 1))
