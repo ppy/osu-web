@@ -177,7 +177,7 @@ class AccountController extends Controller
         $params = get_params(request(), 'user_profile_customization', [
             'comments_sort:string',
             'extras_order:string[]',
-            'ranking_extended:string',
+            'ranking_extended:bool',
         ]);
 
         try {

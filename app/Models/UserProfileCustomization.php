@@ -128,7 +128,7 @@ class UserProfileCustomization extends Model
 
     public function setRankingExtendedAttribute($value)
     {
-        $this->setOption('ranking_extended', $value === 'true');
+        $this->setOption('ranking_extended', $value);
     }
 
     public function setOption($key, $value)
