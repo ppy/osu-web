@@ -16,9 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-@extends('master', [
-    'bodyAdditionalClasses' => 'osu-layout--body-333',
-])
+@extends('master')
 
 @section('content')
     <div class="osu-layout osu-layout__row">

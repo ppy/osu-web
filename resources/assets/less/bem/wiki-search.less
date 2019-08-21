@@ -25,17 +25,24 @@
     padding: 0 20px;
     margin-right: -38px;
 
-    background-color: #222222;
+    background-color: @osu-colour-b6;
+    color: @osu-colour-c1;
 
     font-size: @font-size--wiki-search;
 
-    border: 2px solid @yellow;
+    border: 2px solid @osu-colour-orange-1;
     .default-border-radius;
+
+    &::placeholder {
+      color: @osu-colour-c2;
+    }
   }
 
   &__button {
     height: 54px;
     font-size: 18px;
+
+    color: @osu-colour-c1;
 
     padding-right: 20px;
     .center-content;

@@ -24,7 +24,7 @@
   margin-bottom: 7px;
   padding: 30px;
 
-  background-color: #444;
+  background: @osu-colour-b4;
 
   text-align: center;
 
@@ -44,9 +44,22 @@
     }
   }
 
+  &__text {
+    color: @osu-colour-c1;
+  }
+
   &__link {
+    .link-default();
+
     &::before {
+      display: inline-block;
       content: "\2022\00a0";
+
+      color: @osu-colour-c1;
+
+      &:hover {
+        color: @osu-colour-c1;
+      }
     }
 
     &:first-child {
@@ -69,7 +82,6 @@
   }
 
   &__links {
-    color: #ccc;
     font-size: 13px;
     font-style: italic;
     font-weight: 700;
@@ -92,7 +104,7 @@
   }
 
   &__title {
-    color: #fff;
+    color: @osu-colour-c1;
     font-size: 20px;
     font-weight: 300;
 
@@ -100,6 +112,10 @@
 
     .@{_top}:first-child & {
       font-size: 30px;
+    }
+
+    a {
+      .link-default();
     }
   }
 }

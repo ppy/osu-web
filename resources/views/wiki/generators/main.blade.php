@@ -43,9 +43,9 @@ $lastLevel = 1;
         @endif
 
         @if (array_key_exists("url", $element))
-            <span class="wiki-main-page-panel__link"><a href="{{ $element['url'] }}">{{ $element["text"] }}</a></span>
+            <a class="wiki-main-page-panel__link" href="{{ $element['url'] }}">{{ $element["text"] }}</a>
         @else
-            <span class="wiki-main-page-panel__link">{{ $element["text"] }}</span>
+            <span class="wiki-main-page-panel__text">{{ $element["text"] }}</span>
         @endif
     @endif
 
