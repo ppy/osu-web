@@ -20,10 +20,10 @@
 
 namespace App\Http\Controllers\OAuth;
 
+use App\Exceptions\InvariantException;
 use App\Exceptions\ModelNotSavedException;
 use App\Http\Controllers\Controller;
 use App\Models\OAuth\Client;
-use Laravel\Passport\ClientRepository;
 
 class OwnClientsController extends Controller
 {
@@ -49,9 +49,20 @@ class OwnClientsController extends Controller
     {
         $params = request(['name', 'redirect']);
 
-        $repository = new ClientRepository();
-        $passportClient = $repository->create(auth()->user()->getKey(), $params['name'], $params['redirect']);
-        $client = Client::find($passportClient->getKey());
+        // from ClientRepository::create but with custom Client.
+        $client = (new Client)->forceFill([
+            'user_id' => auth()->user()->getKey(),
+            'name' => $params['name'],
+            'secret' => str_random(40),
+            'redirect' => $params['redirect'],
+            'personal_access_client' => false,
+            'password_client' => false,
+            'revoked' => false,
+        ]);
+
+        if (!$client->save()) {
+            throw new InvariantException($client->validationErrors()->toSentence());
+        }
 
         return json_item($client, 'OAuth\Client');
     }

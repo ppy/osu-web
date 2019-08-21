@@ -22,11 +22,14 @@ namespace App\Models\OAuth;
 
 use App\Exceptions\InvariantException;
 use App\Models\User;
+use App\Traits\Validatable;
 use Laravel\Passport\Client as PassportClient;
 use Laravel\Passport\Token;
 
 class Client extends PassportClient
 {
+    use Validatable;
+
     public static function forUser(User $user)
     {
         // Get clients matching non-revoked tokens. Expired tokens should be included.
@@ -50,6 +53,21 @@ class Client extends PassportClient
         }
 
         return $clients;
+    }
+
+    public function isValid()
+    {
+        $this->validationErrors()->reset();
+
+        if (mb_strlen(trim($this->name)) === 0) {
+            $this->validationErrors()->add('name', 'required');
+        }
+
+        if (mb_strlen(trim($this->redirect)) === 0) {
+            $this->validationErrors()->add('redirect', 'required');
+        }
+
+        return $this->validationErrors()->isEmpty();
     }
 
     public function revokeForUser(User $user)
@@ -86,8 +104,22 @@ class Client extends PassportClient
         });
     }
 
+    public function save(array $options = [])
+    {
+        if (!$this->isValid()) {
+            return false;
+        }
+
+        return parent::save($options);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'oauth';
     }
 }
