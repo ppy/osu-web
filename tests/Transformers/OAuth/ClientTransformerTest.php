@@ -19,9 +19,7 @@
  */
 namespace Tests\Transformers\OAuth;
 
-use App\Models\OAuth\Client;
 use App\Models\User;
-use Laravel\Passport\ClientRepository;
 use TestCase;
 
 class ClientTransformerTest extends TestCase
@@ -36,8 +34,7 @@ class ClientTransformerTest extends TestCase
         parent::setUp();
 
         $this->owner = factory(User::class)->create();
-        $this->repository = new ClientRepository();
-        $this->client = $this->createClient($this->owner);
+        $this->client = $this->createOAuthClient($this->owner);
     }
 
     public function testRedirectAndSecretNotVisibleToOwner()
@@ -57,12 +54,5 @@ class ClientTransformerTest extends TestCase
 
         $this->assertArrayNotHasKey('redirect', $json);
         $this->assertArrayNotHasKey('secret', $json);
-    }
-
-    private function createClient(User $owner) : Client
-    {
-        $passportClient = $this->repository->create($owner->getKey(), 'test', url('/auth/callback'));
-
-        return Client::findOrFail($passportClient->getKey());
     }
 }

@@ -19,7 +19,6 @@
  */
 use App\Models\OAuth\Client;
 use App\Models\User;
-use Laravel\Passport\ClientRepository;
 
 class ClientTest extends TestCase
 {
@@ -30,8 +29,7 @@ class ClientTest extends TestCase
         parent::setUp();
 
         $this->owner = factory(User::class)->create();
-        $this->repository = new ClientRepository();
-        $this->client = $this->createClient($this->owner);
+        $this->client = $this->createOAuthClient($this->owner);
     }
 
     public function testScopesFromTokensAreAggregated()
@@ -66,7 +64,7 @@ class ClientTest extends TestCase
             'user_id' => $user->getKey(),
         ]);
 
-        $otherClient = $this->createClient($this->owner);
+        $otherClient = $this->createOAuthClient($this->owner);
         $otherClient->tokens()->create([
             'id' => '2',
             'revoked' => false,
@@ -176,12 +174,5 @@ class ClientTest extends TestCase
         $this->client->revokeForUser($user1);
         $this->assertCount(0, Client::forUser($user1));
         $this->assertCount(1, Client::forUser($user2));
-    }
-
-    private function createClient(User $owner) : Client
-    {
-        $passportClient = $this->repository->create($owner->getKey(), 'test', url('/auth/callback'));
-
-        return Client::findOrFail($passportClient->getKey());
     }
 }

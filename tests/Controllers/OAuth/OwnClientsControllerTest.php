@@ -21,7 +21,6 @@ namespace Tests\OAuth;
 
 use App\Models\OAuth\Client;
 use App\Models\User;
-use Laravel\Passport\ClientRepository;
 use TestCase;
 
 class OwnClientsControllerTest extends TestCase
@@ -36,8 +35,7 @@ class OwnClientsControllerTest extends TestCase
         parent::setUp();
 
         $this->owner = factory(User::class)->create();
-        $this->repository = new ClientRepository();
-        $this->client = $this->createClient($this->owner);
+        $this->client = $this->createOAuthClient($this->owner);
     }
 
     public function testGuestCannotDeleteClient()
@@ -160,12 +158,5 @@ class OwnClientsControllerTest extends TestCase
             ['', 'https://nowhere.local'],
             [' ', 'https://nowhere.local'],
         ];
-    }
-
-    private function createClient(User $owner) : Client
-    {
-        $passportClient = $this->repository->create($owner->getKey(), 'test', url('/auth/callback'));
-
-        return Client::findOrFail($passportClient->getKey());
     }
 }
