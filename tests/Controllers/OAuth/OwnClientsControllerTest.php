@@ -73,6 +73,73 @@ class OwnClientsControllerTest extends TestCase
         $this->assertFalse(Client::find($this->client->getKey())->revoked);
     }
 
+    public function testCreateNewClient()
+    {
+        $data = [
+            'name' => 'best client',
+            'redirect' => 'https://nowhere.local',
+        ];
+
+        $count = Client::count();
+
+        $response = $this
+            ->actingAs($this->owner)
+            ->withSession(['verified' => true])
+            ->json('POST', route('oauth.own-clients.store'), $data)
+            ->assertSuccessful()
+            ->getOriginalContent();
+
+        // because user needs to see this after it's generated.
+        $this->assertArrayHasKey('secret', $response);
+
+        $client = Client::find($response['id']);
+        $this->assertNotNull($client);
+        $this->assertNotEmpty($client->secret);
+        $this->assertSame($this->owner->getKey(), $client->user_id);
+        $this->assertSame('best client', $client->name);
+        $this->assertSame('https://nowhere.local', $client->redirect);
+        $this->assertFalse($client->personal_access_client);
+        $this->assertFalse($client->password_client);
+        $this->assertFalse($client->revoked);
+        $this->assertSame($count + 1, Client::count());
+    }
+
+    public function testCannotCreateClientWithEmptyName()
+    {
+        $data = [
+            'name' => ' ',
+            'redirect' => 'https://nowhere.local',
+        ];
+
+        $count = Client::count();
+
+        $this
+            ->actingAs($this->owner)
+            ->withSession(['verified' => true])
+            ->json('POST', route('oauth.own-clients.store'), $data)
+            ->assertStatus(422);
+
+        $this->assertSame($count, Client::count());
+    }
+
+    public function testCannotCreateClientWithEmptyRedirect()
+    {
+        $data = [
+            'name' => 'best client',
+            'redirect' => ' ',
+        ];
+
+        $count = Client::count();
+
+        $this
+            ->actingAs($this->owner)
+            ->withSession(['verified' => true])
+            ->json('POST', route('oauth.own-clients.store'), $data)
+            ->assertStatus(422);
+
+        $this->assertSame($count, Client::count());
+    }
+
     public function testOnlyRedirectIsUpdated()
     {
         $id = $this->client->getKey();

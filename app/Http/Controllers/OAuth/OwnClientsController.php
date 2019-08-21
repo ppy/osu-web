@@ -22,6 +22,8 @@ namespace App\Http\Controllers\OAuth;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Http\Controllers\Controller;
+use App\Models\OAuth\Client;
+use Laravel\Passport\ClientRepository;
 
 class OwnClientsController extends Controller
 {
@@ -45,7 +47,13 @@ class OwnClientsController extends Controller
 
     public function store()
     {
+        $params = request(['name', 'redirect']);
 
+        $repository = new ClientRepository();
+        $passportClient = $repository->create(auth()->user()->getKey(), $params['name'], $params['redirect']);
+        $client = Client::find($passportClient->getKey());
+
+        return json_item($client, 'OAuth\Client');
     }
 
     public function update($clientId)
