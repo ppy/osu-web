@@ -24,6 +24,11 @@ class RouteScopesTest extends TestCase
         $expected = [
             'api/v2/friends' => ['friends.read'],
             'api/v2/me/{mode?}' => ['identify'],
+            'api/v2/users/{user}/{mode?}' => ['users.read'],
+            'api/v2/users/{user}/beatmapsets/{type}' => ['users.read'],
+            'api/v2/users/{user}/kudosu' => ['users.read'],
+            'api/v2/users/{user}/recent_activity' => ['users.read'],
+            'api/v2/users/{user}/scores/{type}' => ['users.read'],
         ];
 
         $loaded = [];
