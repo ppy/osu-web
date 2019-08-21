@@ -117,9 +117,11 @@
   }
 
   &__icon {
-    .circle(36px);
     .center-content();
-    font-size: 12px; // icon size
+    min-width: 46px;
+    height: 36px;
+    border-radius: 10000px;
+    font-size: 14px; // icon size
     background-color: @osu-colour-b6;
     color: @osu-colour-c1;
 
@@ -132,8 +134,12 @@
       align-self: center;
     }
 
+    &--small {
+      font-size: 12px; // icon size
+    }
+
     &--unread {
-      border: 1px solid @osu-colour-h1;
+      border: 2px solid @osu-colour-h1;
     }
   }
 

@@ -35,23 +35,24 @@
             class="
                 forum-topic-entry__icon
                 {{ $isRead ? '' : 'forum-topic-entry__icon--unread' }}
+                {{ $topic->isLocked() ? 'forum-topic-entry__icon--small' : '' }}
             "
             href="{{ route("forum.topics.show", $topic->topic_id) }}"
         >
-            <i class="
-                {{
-                    $topic->topic_type === 2 ?
-                        'fas fa-exclamation-triangle' :
-                        ($isRead ? 'far fa-comment-alt' : 'fas fa-comment-alt')
-                }}
-            "></i>
-        </a>
+            <span>
+                <i class="
+                    {{
+                        $topic->topic_type === 2 ?
+                            'fas fa-exclamation-triangle' :
+                            ($isRead ? 'far fa-comment-alt' : 'fas fa-comment-alt')
+                    }}
+                "></i>
 
-        @if ($topic->isLocked())
-            <div class="forum-topic-entry__lock">
-                <i class="fas fa-lock"></i>
-            </div>
-        @endif
+                @if ($topic->isLocked())
+                    <i class="fas fa-lock"></i>
+                @endif
+            </span>
+        </a>
     </div>
 
     <div class="forum-topic-entry__col forum-topic-entry__col--main">
