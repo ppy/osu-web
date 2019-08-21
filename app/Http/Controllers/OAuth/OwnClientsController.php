@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers\OAuth;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Http\Controllers\Controller;
 
 class OwnClientsController extends Controller
@@ -40,5 +41,24 @@ class OwnClientsController extends Controller
         $client->revoke();
 
         return response(null, 204);
+    }
+
+    public function store()
+    {
+
+    }
+
+    public function update($clientId)
+    {
+        $client = auth()->user()->oauthClients()->findOrFail($clientId);
+
+        $params = request(['redirect']);
+
+        // client doesn't inherit from our base model.
+        if (!$client->fill($params)->save()) {
+            throw new ModelNotSavedException();
+        }
+
+        return $client;
     }
 }

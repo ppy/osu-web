@@ -43,7 +43,7 @@ class OwnClientsControllerTest extends TestCase
     public function testGuestCannotDeleteClient()
     {
         $this
-            ->json('DELETE', route('oauth.own-clients.destroy', ['own_client' => $this->client->getkey()]))
+            ->json('DELETE', route('oauth.own-clients.destroy', ['own_client' => $this->client->getKey()]))
             ->assertStatus(401);
 
         $this->assertFalse(Client::find($this->client->getKey())->revoked);
@@ -54,7 +54,7 @@ class OwnClientsControllerTest extends TestCase
         $this
             ->actingAs($this->owner)
             ->withSession(['verified' => true])
-            ->json('DELETE', route('oauth.own-clients.destroy', ['own_client' => $this->client->getkey()]))
+            ->json('DELETE', route('oauth.own-clients.destroy', ['own_client' => $this->client->getKey()]))
             ->assertSuccessful();
 
         $this->assertTrue(Client::find($this->client->getKey())->revoked);
@@ -67,10 +67,33 @@ class OwnClientsControllerTest extends TestCase
         $this
             ->actingAs($user)
             ->withSession(['verified' => true])
-            ->json('DELETE', route('oauth.own-clients.destroy', ['own_client' => $this->client->getkey()]))
+            ->json('DELETE', route('oauth.own-clients.destroy', ['own_client' => $this->client->getKey()]))
             ->assertStatus(404);
 
         $this->assertFalse(Client::find($this->client->getKey())->revoked);
+    }
+
+    public function testOnlyRedirectIsUpdated()
+    {
+        $id = $this->client->getKey();
+
+        $data = [
+            'id' => $id + 1,
+            'name' => 'new name',
+            'redirect' => 'https://nowhere.local',
+        ];
+
+        $this
+            ->actingAs($this->owner)
+            ->withSession(['verified' => true])
+            ->json('PUT', route('oauth.own-clients.update', ['own_client' => $id]), $data)
+            ->assertSuccessful();
+
+        $this->client->refresh();
+        // FIXME: assert other values didn't change
+        $this->assertSame($id, $this->client->id);
+        $this->assertSame('test', $this->client->name);
+        $this->assertSame('https://nowhere.local', $this->client->redirect);
     }
 
     private function createClient(User $owner) : Client
