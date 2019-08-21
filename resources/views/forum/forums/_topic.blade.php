@@ -24,9 +24,12 @@
         {{ $topic->trashed() ? 'forum-topic-entry--deleted' : '' }}
         clickable-row
         js-forum-topic-entry
+        t-forum-{{ $topic->forum->categorySlug() }}
     "
     data-topic-id="{{ $topic->topic_id }}"
 >
+    <div class="forum-item-stripe u-forum--before-bg"><span class="fas fa-angle-right"></span></div>
+
     <div class="forum-topic-entry__col forum-topic-entry__col--icon">
         <a
             class="

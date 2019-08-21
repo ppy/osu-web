@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <li class="clickable-row forum-item t-forum-{{ $forum->categorySlug() }}">
-    <div class="forum-item__stripe u-forum--before-bg"><span class="fas fa-angle-right"></span></div>
+    <div class="forum-item-stripe u-forum--before-bg"><span class="fas fa-angle-right"></span></div>
 
     <div class="forum-item__details">
         {!! link_to(

@@ -21,19 +21,21 @@
 
   font-size: @font-size--normal;
   display: flex;
-  margin: 2px -8px;
-  background-color: @osu-colour-b4;
+  margin: 2px -@forum-item-overflow;
+  background-color: @forum-item-background-color;
   .default-border-radius();
-  padding: 7px 0 7px 8px;
+  padding: 7px 0 7px @forum-item-overflow;
   color: @osu-colour-c2;
+  transition: @forum-item-animate;
 
   &:hover {
-    background-color: @osu-colour-b3;
+    background-color: @forum-item-background-color-hover;
   }
+
   @media @desktop {
-    margin-left: -20px;
-    margin-right: -20px;
-    padding-left: 20px;
+    margin-left: -@forum-item-overflow-desktop;
+    margin-right: -@forum-item-overflow-desktop;
+    padding-left: @forum-item-overflow-desktop;
   }
 
   &--deleted {
