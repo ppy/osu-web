@@ -32,8 +32,8 @@
         'modifiers' => ['forums-show']
     ])
 
-    <div class="osu-page osu-page--forum">
-        <div class="forum-title forum-title--forum">
+    <div class="osu-page osu-page--forum t-forum-{{ $forum->categorySlug() }}">
+        <div class="forum-title forum-title--forum u-forum--before-bg">
             <h1 class="forum-title__name">
                 <a class="link--white link--no-underline" href="{{ route("forum.forums.show", $forum->getKey()) }}">
                     {{ $forum->forum_name }}

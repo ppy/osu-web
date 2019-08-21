@@ -18,13 +18,25 @@
 
 .forum-title {
   @_top: forum-title;
+  @_stripe-distance: 10px;
   flex: 1;
 
+  &::before {
+    content: '';
+    position: absolute;
+    height: 80%;
+    width: 3px;
+    background-color: @osu-colour-p;
+    top: 15%;
+    left: -@_stripe-distance;
+    border-radius: 10000px;
+  }
+
   &--forum {
-    padding: @padding-base;
+    margin: @padding-base;
 
     @media @desktop {
-      padding: 20px @padding-base-desktop;
+      margin: 20px @padding-base-desktop;
     }
   }
 

@@ -17,28 +17,41 @@
  */
 
 .forum-item {
-  padding: 5px 3px;
-  margin: 2px -8px;
+  @_top: forum-item;
+  @_background-color: @osu-colour-b4;
+  @_background-color-hover: @osu-colour-b3;
+  @_content-margin: 5px;
+  @_overflow: @padding-base - 2px;
+  @_overflow-desktop: @padding-base-desktop - 20px;
+  @_stripe-move: 15px;
+
+  ._animate() {
+    transition: 120ms transform, 120ms background-color;
+  }
+
+  padding: @_content-margin (@_overflow - @_content-margin);
+  margin: 2px -@_overflow;
   display: flex;
+  ._animate();
 
   .default-border-radius();
-  background-color: @osu-colour-b4;
+  background-color: @_background-color;
   font-size: @font-size--normal;
 
   &:hover {
-    background-color: @osu-colour-b3;
+    background-color: @_background-color-hover;
   }
 
   @media @desktop {
-    margin-left: -20px;
-    margin-right: -20px;
-    padding-left: 15px;
-    padding-right: 15px;
+    margin-left: -@_overflow-desktop;
+    margin-right: -@_overflow-desktop;
+    padding-left: (@_overflow-desktop - @_content-margin);
+    padding-right: (@_overflow-desktop - @_content-margin);
   }
 
   &__arrow {
     font-size: 14px; // icon size
-    margin: 5px;
+    margin: @_content-margin;
     align-self: center;
     flex: none;
 
@@ -52,15 +65,20 @@
   }
 
   &__details {
-    margin: 5px;
+    margin: @_content-margin;
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    @media @desktop {
+      will-change: transform;
+      ._animate();
+    }
   }
 
   &__latest-post {
-    margin: 5px;
+    margin: @_content-margin;
     flex-direction: column;
     justify-content: center;
     color: @osu-colour-c2;
@@ -85,15 +103,63 @@
     font-size: @font-size--title-small-3;
     font-weight: 400;
     color: @osu-colour-c1;
+    width: max-content;
+    max-width: 100%;
 
     .link-hover({
       color: @osu-colour-c1;
     });
   }
 
+  &__stripe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25px;
+    padding-right: 5px;
+    height: 100%;
+    overflow: hidden;
+    .center-content();
+    color: transparent;
+
+    &::after {
+      content: '';
+      .full-size();
+      border-radius: @border-radius-base 0 0 @border-radius-base;
+      background-color: @_background-color;
+      top: 0;
+      will-change: transform;
+      ._animate();
+      left: 3px;
+
+      @media @desktop {
+        left: 5px;
+      }
+    }
+
+    &::before {
+      content: '';
+      .full-size();
+      border-radius: @border-radius-base 0 0 @border-radius-base;
+      background-color: @osu-colour-p;
+    }
+
+    .@{_top}:hover & {
+      color: @_background-color-hover;
+
+      &::after {
+        background-color: @_background-color-hover;
+
+        @media @desktop {
+          transform: translateX(@_stripe-move);
+        }
+      }
+    }
+  }
+
   &__subforum {
     white-space: nowrap;
-    margin: 2px 10px;
+    margin: 2px 10px; // see __subforums
   }
 
   &__subforum-icon {
