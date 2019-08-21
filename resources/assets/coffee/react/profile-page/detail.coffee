@@ -32,7 +32,8 @@ export class Detail extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @state = extended: props.user.ranking_extended
+    @state =
+      expanded: props.user.ranking_expanded
 
 
   render: =>
@@ -41,10 +42,10 @@ export class Detail extends React.PureComponent
         el DetailBar,
           stats: @props.stats
           toggleExtend: @toggleExtend
-          extended: @state.extended
+          expanded: @state.expanded
           user: @props.user
       div
-        className: if @state.extended then '' else 'hidden'
+        className: if @state.expanded then '' else 'hidden'
         div className: "#{bn}__row #{bn}__row--top",
           div className: "#{bn}__col #{bn}__col--top-left",
             div className: "#{bn}__top-left-item",
@@ -84,6 +85,8 @@ export class Detail extends React.PureComponent
       method: 'put',
       dataType: 'json',
       data:
-        user_profile_customization: ranking_extended: !@state.extended
+        user_profile_customization:
+          ranking_expanded:
+            !@state.expanded
 
-    @setState extended: !@state.extended
+    @setState expanded: !@state.expanded

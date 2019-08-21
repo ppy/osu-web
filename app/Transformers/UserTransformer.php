@@ -96,7 +96,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'post_count' => $user->user_posts,
             'profile_colour' => $user->user_colour,
             'profile_order' => $profileCustomization->extras_order,
-            'ranking_extended' => $profileCustomization->ranking_extended,
+            'ranking_expanded' => $profileCustomization->ranking_expanded,
             'cover_url' => $profileCustomization->cover()->url(),
             'cover' => [
                 'custom_url' => $profileCustomization->cover()->fileUrl(),
