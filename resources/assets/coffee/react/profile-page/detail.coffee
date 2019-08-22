@@ -33,7 +33,7 @@ export class Detail extends React.PureComponent
     super props
 
     @state =
-      expanded: props.user.ranking_expanded
+      expanded: if currentUser.id? then currentUser.ranking_expanded else true
 
 
   render: =>
@@ -81,12 +81,13 @@ export class Detail extends React.PureComponent
 
 
   toggleExtend: =>
-    $.ajax laroute.route('account.options'),
-      method: 'put',
-      dataType: 'json',
-      data:
-        user_profile_customization:
-          ranking_expanded:
-            !@state.expanded
+    if currentUser.id?
+      $.ajax laroute.route('account.options'),
+        method: 'put',
+        dataType: 'json',
+        data:
+          user_profile_customization:
+            ranking_expanded:
+              !@state.expanded
 
     @setState expanded: !@state.expanded
