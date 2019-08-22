@@ -57,14 +57,12 @@ class ClientsController extends Controller
 
     public function store()
     {
-        $params = request(['name', 'redirect']);
-
         // from ClientRepository::create but with custom Client.
         $client = (new Client)->forceFill([
             'user_id' => auth()->user()->getKey(),
-            'name' => $params['name'],
+            'name' => request('name'),
             'secret' => str_random(40),
-            'redirect' => $params['redirect'],
+            'redirect' => request('redirect'),
             'personal_access_client' => false,
             'password_client' => false,
             'revoked' => false,
@@ -74,7 +72,11 @@ class ClientsController extends Controller
             throw new InvariantException($client->validationErrors()->toSentence());
         }
 
-        return json_item($client, 'OAuth\Client');
+        if (request()->wantsJson()) {
+            return json_item($client, 'OAuth\Client');
+        }
+
+        return ujs_redirect(route('account.edit'));
     }
 
     public function update($clientId)
