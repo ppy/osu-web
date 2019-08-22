@@ -73,15 +73,19 @@
     <div class="osu-page osu-page--supporter">
         <div class="supporter">
             <div class="supporter-quote">
-                <blockquote class="supporter-quote__content">
-                    "I've always tried to run osu! exactly how I'd want to see it run if I were a player. While this does mean osu! will never be a super-profitable business, that was never the goal (nor will it ever be!). We intentionally avoid advertising, partnerships, etc because I feel that would detract from the core experience.
-                    <br/><br/>
-                    osu! is free-to-win – supporting osu! won’t give you any competitive advantage (but it might make you cooler amongst your friends!). I am hugely grateful, and honestly astounded, that we have come this far purely on donations, but this is where we are! Your contributions cover completely our small team's salaries, licensing efforts via the Featured Artist program, prizes and funding for official tournaments, but most importantly make sure we have quality servers and bandwidth available around the globe.
-                    <br/><br/>
-                    I would like to offer thanks and gratitude on behalf of myself and the rest of the team, to those who have supported osu!.
-                    <br/><br/>
-                    You keep osu! running."
-                </blockquote>
+                <div class="supporter-quote__body">
+                    <div class="supporter-quote__quote-mark supporter-quote__quote-mark--left"><i class="fas fa-quote-left"></i></div>
+                    <blockquote class="supporter-quote__content">
+                        I've always tried to run osu! exactly how I'd want to see it run if I were a player. While this does mean osu! will never be a super-profitable business, that was never the goal (nor will it ever be!). We intentionally avoid advertising, partnerships, etc because I feel that would detract from the core experience.
+                        <br/><br/>
+                        osu! is free-to-win – supporting osu! won’t give you any competitive advantage (but it might make you cooler amongst your friends!). I am hugely grateful, and honestly astounded, that we have come this far purely on donations, but this is where we are! Your contributions cover completely our small team's salaries, licensing efforts via the Featured Artist program, prizes and funding for official tournaments, but most importantly make sure we have quality servers and bandwidth available around the globe.
+                        <br/><br/>
+                        I would like to offer thanks and gratitude on behalf of myself and the rest of the team, to those who have supported osu!.
+                        <br/><br/>
+                        You keep osu! running.
+                    </blockquote>
+                    <div class="supporter-quote__quote-mark supporter-quote__quote-mark--right"><i class="fas fa-quote-right"></i></div>
+                </div>
                 <div class="supporter-quote__signature">— Dean "peppy" Herbert, creator of osu!</div>
             </div>
             <h3 class="supporter__title">

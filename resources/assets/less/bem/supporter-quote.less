@@ -19,7 +19,7 @@
 .supporter-quote {
   .default-box-shadow();
   .inner-shadow-top();
-  padding: 30px 40px 15px 90px;
+  padding: 30px;
   background-color: @osu-colour-b4;
   color: white;
   font-size: @font-size--normal;
@@ -29,10 +29,39 @@
     padding: 30px;
   }
 
+  &__body {
+    display: flex;
+
+    @media @mobile {
+      flex-direction: column;
+    }
+  }
+
   &__content {
     margin: 0;
     padding: 0;
     border: none;
+  }
+
+  &__quote-mark {
+    font-size: 50px;
+    color: @osu-colour-b3;
+
+    &--left {
+      align-self: flex-start;
+      padding-right: 20px;
+      @media @mobile {
+        margin-top: -20px;
+      }
+    }
+
+    &--right {
+      align-self: flex-end;
+      padding-left: 20px;
+      @media @mobile {
+        margin-top: -40px;
+      }
+    }
   }
 
   &__signature {
