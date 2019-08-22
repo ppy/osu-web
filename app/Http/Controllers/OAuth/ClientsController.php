@@ -25,7 +25,7 @@ use App\Exceptions\ModelNotSavedException;
 use App\Http\Controllers\Controller;
 use App\Models\OAuth\Client;
 
-class OwnClientsController extends Controller
+class ClientsController extends Controller
 {
     protected $section = 'user';
 
@@ -37,12 +37,22 @@ class OwnClientsController extends Controller
         $this->middleware('verify-user');
     }
 
+    public function create()
+    {
+        return view('oauth.clients.create');
+    }
+
     public function destroy($clientId)
     {
         $client = auth()->user()->oauthClients()->findOrFail($clientId);
         $client->revoke();
 
         return response(null, 204);
+    }
+
+    public function index()
+    {
+        return json_collection(auth()->user()->oauthClients()->get(), 'OAuth\Client');
     }
 
     public function store()

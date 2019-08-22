@@ -23,7 +23,7 @@ use App\Models\OAuth\Client;
 use App\Models\User;
 use TestCase;
 
-class OwnClientsControllerTest extends TestCase
+class ClientsControllerTest extends TestCase
 {
     protected $repository;
 
@@ -41,7 +41,7 @@ class OwnClientsControllerTest extends TestCase
     public function testGuestCannotDeleteClient()
     {
         $this
-            ->json('DELETE', route('oauth.own-clients.destroy', ['own_client' => $this->client->getKey()]))
+            ->json('DELETE', route('oauth.clients.destroy', ['client' => $this->client->getKey()]))
             ->assertStatus(401);
 
         $this->assertFalse(Client::find($this->client->getKey())->revoked);
@@ -52,7 +52,7 @@ class OwnClientsControllerTest extends TestCase
         $this
             ->actingAs($this->owner)
             ->withSession(['verified' => true])
-            ->json('DELETE', route('oauth.own-clients.destroy', ['own_client' => $this->client->getKey()]))
+            ->json('DELETE', route('oauth.clients.destroy', ['client' => $this->client->getKey()]))
             ->assertSuccessful();
 
         $this->assertTrue(Client::find($this->client->getKey())->revoked);
@@ -65,7 +65,7 @@ class OwnClientsControllerTest extends TestCase
         $this
             ->actingAs($user)
             ->withSession(['verified' => true])
-            ->json('DELETE', route('oauth.own-clients.destroy', ['own_client' => $this->client->getKey()]))
+            ->json('DELETE', route('oauth.clients.destroy', ['client' => $this->client->getKey()]))
             ->assertStatus(404);
 
         $this->assertFalse(Client::find($this->client->getKey())->revoked);
@@ -83,7 +83,7 @@ class OwnClientsControllerTest extends TestCase
         $response = $this
             ->actingAs($this->owner)
             ->withSession(['verified' => true])
-            ->json('POST', route('oauth.own-clients.store'), $data)
+            ->json('POST', route('oauth.clients.store'), $data)
             ->assertSuccessful()
             ->getOriginalContent();
 
@@ -119,7 +119,7 @@ class OwnClientsControllerTest extends TestCase
         $this
             ->actingAs($this->owner)
             ->withSession(['verified' => true])
-            ->json('POST', route('oauth.own-clients.store'), $data)
+            ->json('POST', route('oauth.clients.store'), $data)
             ->assertStatus(422);
 
         $this->assertSame($count, Client::count());
@@ -138,7 +138,7 @@ class OwnClientsControllerTest extends TestCase
         $this
             ->actingAs($this->owner)
             ->withSession(['verified' => true])
-            ->json('PUT', route('oauth.own-clients.update', ['own_client' => $id]), $data)
+            ->json('PUT', route('oauth.clients.update', ['client' => $id]), $data)
             ->assertSuccessful();
 
         $this->client->refresh();
