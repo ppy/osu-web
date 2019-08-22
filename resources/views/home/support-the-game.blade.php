@@ -31,9 +31,6 @@
                     <div class="supporter-status__flex-container">
                         <div class="supporter-heart{{ $supporterStatus['current'] ? ' supporter-heart--active' : '' }}"></div>
                         <div class="supporter-status__flex-container-inner">
-                            <div class="supporter-status__title">
-                                {{ trans('community.support.supporter_status.title') }}
-                            </div>
                             <div class="supporter-status__progress-bar supporter-status__progress-bar--active">
                                 <div class="supporter-status__progress-bar-fill supporter-status__progress-bar-fill--active" style="width: {{$supporterStatus['remainingRatio'] ?? 0}}%;"></div>
                             </div>
