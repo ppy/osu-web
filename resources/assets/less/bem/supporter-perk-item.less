@@ -19,25 +19,35 @@
 .supporter-perk-item {
   @top: supporter-perk-item;
   flex: none;
-  margin: 5px;
   overflow: hidden;
   color: #fff;
   font-size: @font-size--title-small;
   transition: .25s all;
+  width: calc(33% - 10px);
+  margin-bottom: 20px;
 
-  width: calc(100% - 10px);
-
-  @media @desktop {
-    width: calc(33% - 10px);
+  @media @mobile {
+    align-items: center;
+    display: flex;
+    width: calc(100% - 10px);
   }
 
-  &--big {
+  &--image {
     display: flex;
     padding: 20px;
+
+    @media @mobile {
+      flex-direction: column-reverse;
+      padding-top: 0;
+    }
   }
 
   &--flipped {
     flex-direction: row-reverse;
+
+    @media @mobile {
+      flex-direction: column-reverse;
+    }
   }
 
   &--hero {
@@ -45,28 +55,30 @@
     display: flex;
     justify-content: flex-end;
     padding: 20px;
+
+    @media @mobile {
+      height: 300px;
+    }
   }
 
   &--image-group {
     display: flex;
     text-align: right;
     align-items: center;
-    width: 90%;
+    width: 100%;
+    flex-direction: row-reverse;
+    margin-bottom: 5px;
 
     @media @mobile {
-      flex-direction: column;
-      text-align: center;
+      flex-direction: column-reverse;
+      text-align: left;
+      align-items: flex-start;
+      margin-bottom: 10px;
     }
   }
 
   &__content {
-    .@{top}--hero & {
-      margin: 0;
-    }
-
-    .@{top}--img & {
-      margin: 0;
-    }
+    margin: 0;
   }
 
   &__image {
@@ -75,6 +87,10 @@
     border-radius: 10px;
     display: inline-block;
     overflow: hidden;
+
+    @media @mobile {
+      width: 100%;
+    }
   }
 
   &__hero-image {
@@ -83,16 +99,17 @@
   }
 
   &__img {
-    background-size: cover;
     width: 500px;
-    background-position: top center;
     height: 100px;
     border-radius: 10px;
     overflow: hidden;
     flex-shrink: 0;
 
     @media @mobile {
+      align-self: center;
       flex-shrink: 1;
+      max-width: calc(100% - 40px);
+      margin-top: 10px;
     }
   }
 
@@ -102,9 +119,23 @@
     padding: 0px 20px;
     transition: .25s all;
 
-    .@{top}--big & {
+    .@{top}--image & {
       margin-left: -45px;
       margin-top: 10px;
+
+      @media @mobile {
+        margin-left: 0;
+        margin-top: 0;
+      }
+    }
+
+    .@{top}--flipped & {
+      margin-left: 0;
+      margin-right: -45px;
+
+      @media @mobile {
+        margin-right: 0;
+      }
     }
 
     .@{top}--hero & {
@@ -114,10 +145,10 @@
       margin-left: 200px;
     }
 
-    .@{top}--img & {
-      margin-left: -10px;
-      margin-right: -45px;
-      z-index: 1;
+    .@{top}--image-group & {
+      @media @desktop {
+        margin-right: -45px;
+      }
     }
   }
 
@@ -126,34 +157,75 @@
     .@{top}--feature & {
       color: @osu-colour-lime-3;
     }
-    .@{top}--big & {
+    .@{top}--image & {
       color: @osu-colour-lime-3;
     }
   }
 
   &__meta {
+    .@{top}--image & {
+      display: flex;
+      margin: 10px 0;
+
+      @media @mobile {
+        align-items: center;
+      }
+    }
+
     .@{top}--hero & {
       width: 300px;
-      background-color: .osu-hsla(@osu-colour-b4, 0.8)[@hsla];
+      background-color: .osu-hsla(@osu-colour-b4, 0.95)[@hsla];
       border-radius: 10px;
       padding: 10px;
       align-self: center;
-      margin-top: -50px
+
+      @media @desktop {
+        margin-top: -50px
+      }
+    }
+
+    .@{top}--flipped & {
+      display: flex;
+      flex-direction: row-reverse;
+
+      @media @mobile {
+        flex-direction: row;
+      }
+    }
+
+    .@{top}--image-group & {
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+
+      @media @mobile {
+        flex-direction: row;
+      }
     }
   }
 
   &__text {
-    padding: 20px 10px;
+    padding: 10px;
     font-style: italic;
     color: @osu-colour-f1;
 
-    .@{top}--big & {
-      margin-top: -30px;
-      margin-left: 30px;
+    .@{top}--image & {
+      margin-top: 30px;
+      margin-left: -20px;
+
+      @media @mobile {
+        margin-left: 0;
+        margin-top: 0;
+      }
     }
 
-    .@{top}--img & {
-      padding: 0;
+    .@{top}--flipped & {
+      margin-top: 30px;
+      margin-left: 0;
+
+      @media @mobile {
+        margin-top: 0;
+      }
     }
   }
 

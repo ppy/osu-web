@@ -226,18 +226,18 @@ class HomeController extends Controller
                         'image' => '/images/layout/supporter/direct.png',
                     ],
                     [
+                        'type' => 'image-flipped',
+                        'name' => 'beatmap_filters',
+                        'icon' => 'fas fa-filter',
+                        'image' => '/images/layout/supporter/filter.jpg',
+                    ],
+                    [
                         'type' => 'group',
                         'items' => [
                             'auto_downloads' => 'fas fa-download',
                             'more_beatmaps' => 'fas fa-file-upload',
                             'early_access' => 'fas fa-flask',
                         ],
-                    ],
-                    [
-                        'type' => 'image-flipped',
-                        'name' => 'beatmap_filters',
-                        'icon' => 'fas fa-filter',
-                        'image' => '/images/layout/supporter/filter.jpg',
                     ],
                     [
                         'type' => 'hero',

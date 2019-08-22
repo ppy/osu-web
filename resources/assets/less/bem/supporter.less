@@ -34,12 +34,15 @@
     color: @osu-colour-orange-1;
     font-weight: 100;
     font-style: italic;
+    line-height: normal;
     margin: 0;
-    padding: 30px;
+    padding: 20px 20px 10px;
     text-align: center;
 
     &--convinced {
-      margin-top: -30px;
+      @media @desktop {
+        margin-top: -30px;
+      }
     }
   }
 }

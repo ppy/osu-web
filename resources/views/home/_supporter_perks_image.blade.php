@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="supporter-perk-item--big{{$perk['type'] === 'image-flipped' ? ' supporter-perk-item--flipped' : ''}}">
+<div class="supporter-perk-item--image{{$perk['type'] === 'image-flipped' ? ' supporter-perk-item--flipped' : ''}}">
     <div class="supporter-perk-item__image">
         <img
             src="{{$perk['image']}}"
