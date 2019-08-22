@@ -18,7 +18,6 @@
 
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
-import { Modal } from 'modal';
 import { OwnClient as Client } from 'models/oauth/own-client';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -33,37 +32,46 @@ interface Props {
 export class ClientDetails extends React.Component<Props> {
   @action
   handleCloseClick = () => {
-    uiState.selectedClient.client = null;
+    uiState.account.client = null;
+  }
+
+  handleUpdateClick = () => {
+    this.props.client.redirect = 'http://derp';
+    this.props.client.update();
   }
 
   handleRevokeAllTokens = () => {
 
   }
 
+  handleSubmit = () => {
+
+  }
+
   render() {
     return (
-      <Modal>
-        <div className='oauth-client-details'>
-          <div className='oauth-client-details__name'>{this.props.client.name}</div>
+      <div className='oauth-client-details'>
+        <div className='oauth-client-details__name'>{this.props.client.name}</div>
 
-          <div>{this.props.client.redirect}</div>
-          Client ID
-          <div>{this.props.client.id}</div>
-          Client Secret
-          <div>{this.props.client.secret}</div>
-          <button className='oauth-client-details__button oauth-client-details__button--danger' onClick={this.handleRevokeAllTokens}>Revoke all user tokens</button>
+        <div>{this.props.client.redirect}</div>
+        Client ID
+        <div>{this.props.client.id}</div>
+        Client Secret
+        <div>{this.props.client.secret}</div>
+        <button className='oauth-client-details__button oauth-client-details__button--danger' onClick={this.handleRevokeAllTokens}>Revoke all user tokens</button>
 
+        <form>
           <div>
             Authorization callback URL
 
             <input className='oauth-client-details__input' type='text' defaultValue={this.props.client.redirect} />
           </div>
 
-          <button className='oauth-client-details__button' onClick={this.handleUpdateClick}>Update Application</button>
+          <button className='oauth-client-details__button' type='submit'>Update Application</button>
           <button className='oauth-client-details__button oauth-client-details__button--danger' onClick={this.handleDeleteClick}>Delete Application</button>
           <button className='oauth-client-details__button' onClick={this.handleCloseClick}>Close</button>
-        </div>
-      </Modal>
+        </form>
+      </div>
     );
   }
 }

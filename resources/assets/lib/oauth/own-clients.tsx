@@ -16,25 +16,44 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { action } from 'mobx';
 import { observer } from 'mobx-react';
+import { Modal } from 'modal';
 import { OwnClient } from 'oauth/own-client';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { ClientDetails } from './client-details';
+import { NewClient } from './new-client';
 
 const store = core.dataStore.ownClientStore;
 const uiState = core.dataStore.uiState;
 
 @observer
 export class OwnClients extends React.Component {
+  @action
+  handleNewClientClicked = () => {
+    uiState.account.newClientVisible = true;
+  }
+
+  handleModalClose = () => {
+    uiState.account.client = null;
+    uiState.account.newClientVisible = false;
+  }
+
   render() {
     return (
       <>
         <div className='oauth-clients'>
           {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
         </div>
+        <button className='btn-osu-big btn-osu-big--account-edit' onClick={this.handleNewClientClicked}>New OAuth Application</button>
+
         {
-          uiState.selectedClient.client != null ? <ClientDetails client={uiState.selectedClient.client!} /> : null
+          uiState.account.client != null ? <Modal onClose={this.handleModalClose}><ClientDetails client={uiState.account.client!} /></Modal> : null
+        }
+
+        {
+          uiState.account.newClientVisible ? <Modal onClose={this.handleModalClose}><NewClient /></Modal> : null
         }
       </>
     );

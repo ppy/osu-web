@@ -37,11 +37,19 @@ export class OwnClient extends Client {
 
     return $.ajax({
       method: 'DELETE',
-      url: laroute.route('oauth.own-clients.destroy', { own_client: this.id }),
+      url: laroute.route('oauth.clients.destroy', { client: this.id }),
     }).then(() => {
       this.revoked = true;
     }).always(() => {
       this.isRevoking = false;
+    });
+  }
+
+  async update() {
+    return $.ajax({
+      data: { redirect: this.redirect },
+      method: 'PUT',
+      url: laroute.route('oauth.clients.update', { client: this.id }),
     });
   }
 }

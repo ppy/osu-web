@@ -16,24 +16,27 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import DispatcherAction from 'actions/dispatcher-action';
-import ChatStateStore from 'chat/chat-state-store';
-import { observable } from 'mobx';
-import { Client } from 'models/oauth/client';
-import Store from 'stores/store';
+import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
+import * as React from 'react';
+import { Modal } from 'modal';
 
-interface AccountUIState {
-  client: Client | null;
-  newClientVisible: boolean;
-}
+const store = core.dataStore.clientStore;
 
-export default class UIStateStore extends Store {
-  @observable account: AccountUIState = {
-    client: null,
-    newClientVisible: false,
-  };
+@observer
+export class NewClient extends React.Component {
+  render() {
+    return (
+        <form action={laroute.route('oauth.clients.store')} autoComplete='off' method='post'>
+          <label>Application Name</label>
+          <input type='text' />
 
-  chat = new ChatStateStore(this.root, this.dispatcher);
+          <label>Authorization callback URL</label>
+          <input type='text' />
 
-  handleDispatchAction(action: DispatcherAction) { /* do nothing */}
+          <button type='submit'>Register application</button>
+          <button type='button'>Cancel</button>
+        </form>
+    );
+  }
 }

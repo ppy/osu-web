@@ -71,7 +71,10 @@ declare module 'comments-manager' {
 }
 
 declare module 'modal' {
-  class Modal extends React.PureComponent {}
+  interface Props {
+    onClose?: () => void;
+  }
+  class Modal extends React.PureComponent<Props> {}
 }
 
 declare module 'popup-menu' {

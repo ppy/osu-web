@@ -63,6 +63,6 @@ export class OwnClient extends React.Component<Props> {
   }
 
   showClientDetails = () => {
-    uiState.selectedClient.client = this.props.client;
+    uiState.account.client = this.props.client;
   }
 }
