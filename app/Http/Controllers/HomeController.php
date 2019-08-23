@@ -271,9 +271,17 @@ class HomeController extends Controller
                     'items' => [
                         'more_favourites' => [
                             'icons' => ['fas fa-star'],
+                            'translation_options' => [
+                                'normally' => config('osu.beatmapset.favourite_limit'),
+                                'supporter' => config('osu.beatmapset.favourite_limit_supporter'),
+                            ],
                         ],
                         'more_friends' => [
                             'icons' => ['fas fa-user-friends'],
+                            'translation_options' => [
+                                'normally' => config('osu.user.max_friends'),
+                                'supporter' => config('osu.user.max_friends_supporter'),
+                            ],
                         ],
                         'friend_filtering' => [
                             'icons' => ['fas fa-medal'],

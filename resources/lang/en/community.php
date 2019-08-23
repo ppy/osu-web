@@ -121,11 +121,11 @@ return [
 
             'more_favourites' => [
                 'title' => 'More Favourites',
-                'description' => 'The maximum number of beatmaps you can favourite is increased from 99 &rarr; 1024',
+                'description' => 'The maximum number of beatmaps you can favourite is increased from :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'More Friends',
-                'description' => 'The maximum number of friends you can have is increased from 250 &rarr; 500',
+                'description' => 'The maximum number of friends you can have is increased from :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
                 'title' => 'Upload More Beatmaps',
