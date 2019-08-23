@@ -15,25 +15,25 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="supporter-perk-item--image{{$perk['type'] === 'image-flipped' ? ' supporter-perk-item--flipped' : ''}}">
-    <div class="supporter-perk-item__image">
+<div class="supporter-perk-list-image{{$perk['type'] === 'image-flipped' ? ' supporter-perk-list-image--flipped' : ''}}">
+    <div class="supporter-perk-list-image__image">
         <img
             src="/images/layout/supporter/{{$perk['name']}}.jpg"
             srcSet="/images/layout/supporter/{{$perk['name']}}.jpg 1x, /images/layout/supporter/{{retinaify($perk['name'].'.jpg')}} 2x"
         />
     </div>
-    <div class="supporter-perk-item__meta">
-        <div class="supporter-perk-item__icon">
+    <div class="supporter-perk-list-image__meta">
+        <div class="supporter-perk-list-image__icon">
             <span class="fa-stack">
-                <i class="fas fa-circle fa-stack-2x supporter-perk-item__icon-bg"></i>
+                <i class="fas fa-circle fa-stack-2x supporter-perk-list-image__icon-bg"></i>
                 <i class="{{$perk['icon']}} fa-stack-1x"></i>
             </span>
         </div>
-        <div class="supporter-perk-item__text">
-            <h4 class="supporter-perk-item__title">
+        <div class="supporter-perk-list-image__text">
+            <h4 class="supporter-perk-list-image__title">
                 {{ trans('community.support.perks.'.$perk['name'].'.title') }}
             </h4>
-            <p class="supporter-perk-item__content">
+            <p class="supporter-perk-list-image__content">
                 {{ trans('community.support.perks.'.$perk['name'].'.description') }}
             </p>
         </div>

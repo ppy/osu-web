@@ -16,35 +16,21 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.supporter-perk-item {
-  @top: supporter-perk-item;
-  flex: none;
-  overflow: hidden;
-  color: #fff;
-  font-size: @font-size--title-small;
-  transition: .25s all;
-  width: calc(33% - 10px);
-  margin-bottom: 20px;
+.supporter-perk-list-image {
+  @top: supporter-perk-list-image;
+  display: flex;
+  padding: 20px;
 
   @media @mobile {
-    align-items: center;
-    display: flex;
-    width: calc(100% - 10px);
+    flex-direction: column-reverse;
+    padding-top: 0;
   }
 
-  &--image-group {
-    display: flex;
-    text-align: right;
-    align-items: center;
-    width: 100%;
+  &--flipped {
     flex-direction: row-reverse;
-    margin-bottom: 5px;
 
     @media @mobile {
       flex-direction: column-reverse;
-      text-align: left;
-      align-items: flex-start;
-      margin-bottom: 10px;
     }
   }
 
@@ -64,51 +50,42 @@
     }
   }
 
-  &__group-image {
-    width: 500px;
-    height: 100px;
-    border-radius: 10px;
-    overflow: hidden;
-    flex-shrink: 0;
-
-    @media @mobile {
-      align-self: center;
-      flex-shrink: 1;
-      max-width: calc(100% - 40px);
-      margin-top: 10px;
-    }
-  }
-
   &__icon {
     color: #fff;
     font-size: 26px; // icon size
     padding: 0px 20px;
-    transition: .25s all;
+    margin-left: -45px;
+    margin-top: 10px;
 
-    .@{top}--image-group & {
-      @media @desktop {
-        margin-right: -45px;
+    @media @mobile {
+      margin-left: 0;
+      margin-top: 0;
+    }
+
+    .@{top}--flipped & {
+      margin-left: 0;
+      margin-right: -45px;
+
+      @media @mobile {
+        margin-right: 0;
       }
     }
   }
 
   &__icon-bg {
-    color: @osu-colour-blue-3;
-    .@{top}--feature & {
-      color: @osu-colour-lime-3;
-    }
-  }
-
-  &__link {
-    .link-default();
-    display: block;
-    margin-top: 10px;
+    color: @osu-colour-lime-3;
   }
 
   &__meta {
-    .@{top}--image-group & {
-      display: flex;
+    display: flex;
+    margin: 10px 0;
+
+    @media @mobile {
       align-items: center;
+    }
+
+    .@{top}--flipped & {
+      display: flex;
       flex-direction: row-reverse;
 
       @media @mobile {
@@ -121,6 +98,22 @@
     padding: 10px;
     font-style: italic;
     color: @osu-colour-f1;
+    margin-top: 30px;
+    margin-left: -20px;
+
+    @media @mobile {
+      margin-left: 0;
+      margin-top: 0;
+    }
+
+    .@{top}--flipped & {
+      margin-top: 30px;
+      margin-left: 0;
+
+      @media @mobile {
+        margin-top: 0;
+      }
+    }
   }
 
   &__title {
