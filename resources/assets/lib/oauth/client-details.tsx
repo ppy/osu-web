@@ -73,8 +73,7 @@ export class ClientDetails extends React.Component<Props, State> {
   @action
   handleSubmit = () => {
     // TODO: handle errors
-    this.props.client.redirect = this.state.redirect;
-    this.props.client.update();
+    this.props.client.updateWith(this.state);
   }
 
   render() {

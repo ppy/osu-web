@@ -86,6 +86,6 @@ class ClientsController extends Controller
             throw new ModelNotSavedException();
         }
 
-        return $client;
+        return json_item($client, 'OAuth\Client');
     }
 }

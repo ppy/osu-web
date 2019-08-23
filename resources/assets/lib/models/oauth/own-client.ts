@@ -45,11 +45,27 @@ export class OwnClient extends Client {
     });
   }
 
-  async update() {
+  @action
+  updateFromJson(json: OwnClientJSON) {
+    this.id = json.id;
+    this.name = json.name;
+    this.scopes = new Set(json.scopes);
+    this.userId = json.user_id;
+    this.user = json.user;
+    this.redirect = json.redirect;
+    this.secret = json.secret;
+  }
+
+  @action
+  async updateWith(partial: Partial<OwnClient>) {
+    const { redirect } = partial;
+
     return $.ajax({
-      data: { redirect: this.redirect },
+      data: { redirect },
       method: 'PUT',
       url: laroute.route('oauth.clients.update', { client: this.id }),
+    }).then((data: OwnClientJSON) => {
+      this.updateFromJson(data);
     });
   }
 }
