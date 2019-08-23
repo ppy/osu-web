@@ -71,19 +71,6 @@
   }
 }
 
-// https://fontawesome.com/how-to-use/on-the-web/advanced/css-pseudo-elements
-// font-weight: 900 (Solid), 400 (Regular or Brands), 300 (Light)
-// font-family: Font Awesome 5 Free, Font Awesome 5 Brands
-.font-awesome(@_font-weight: 900, @_font-family: "Font Awesome 5 Free") {
-  display: inline-block;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  font-family: @_font-family;
-  font-weight: @_font-weight;
-}
-
 .fragment-target-fn(@offset: 0) {
   position: static; // relative will still block pointer-events
 
