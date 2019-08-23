@@ -35,17 +35,17 @@ export class ClientDetails extends React.Component<Props> {
     uiState.account.client = null;
   }
 
-  handleUpdateClick = () => {
-    this.props.client.redirect = 'http://derp';
-    this.props.client.update();
+  handleDeleteClick = () => {
+
   }
 
   handleRevokeAllTokens = () => {
 
   }
 
-  handleSubmit = () => {
-
+  handleUpdateClick = () => {
+    this.props.client.redirect = 'http://derp';
+    this.props.client.update();
   }
 
   render() {
@@ -58,18 +58,18 @@ export class ClientDetails extends React.Component<Props> {
         <div>{this.props.client.id}</div>
         Client Secret
         <div>{this.props.client.secret}</div>
-        <button className='oauth-client-details__button oauth-client-details__button--danger' onClick={this.handleRevokeAllTokens}>Revoke all user tokens</button>
+        <button className='btn-osu-big btn-osu-big--danger' onClick={this.handleRevokeAllTokens}>Revoke all user tokens</button>
 
-        <form>
-          <div>
-            Authorization callback URL
+        <form autoComplete='off'>
+          <div className='account-edit-entry'>
+            <div className='account-edit-entry__label'>Authorization callback URL</div>
 
-            <input className='oauth-client-details__input' type='text' defaultValue={this.props.client.redirect} />
+            <input className='account-edit-entry__input' type='text' defaultValue={this.props.client.redirect} />
           </div>
 
-          <button className='oauth-client-details__button' type='submit'>Update Application</button>
-          <button className='oauth-client-details__button oauth-client-details__button--danger' onClick={this.handleDeleteClick}>Delete Application</button>
-          <button className='oauth-client-details__button' onClick={this.handleCloseClick}>Close</button>
+          <button className='btn-osu-big' type='button'>Update Application</button>
+          <button className='btn-osu-big btn-osu-big--danger' onClick={this.handleDeleteClick}>Delete Application</button>
+          <button className='btn-osu-big' onClick={this.handleCloseClick}>Close</button>
         </form>
       </div>
     );

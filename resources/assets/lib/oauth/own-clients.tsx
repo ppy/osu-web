@@ -46,7 +46,7 @@ export class OwnClients extends React.Component {
         <div className='oauth-clients'>
           {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
         </div>
-        <button className='btn-osu-big btn-osu-big--account-edit' onClick={this.handleNewClientClicked}>New OAuth Application</button>
+        <button className='btn-osu-big' onClick={this.handleNewClientClicked}>New OAuth Application</button>
 
         {
           uiState.account.client != null ? <Modal onClose={this.handleModalClose}><ClientDetails client={uiState.account.client!} /></Modal> : null

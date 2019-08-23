@@ -43,6 +43,8 @@ export default class OwnClientStore extends Store {
   updateWithJson(json: OwnClientJSON) {
     const client = new Client(json);
     this.clients.set(client.id, client);
+
+    return client;
   }
 
   @action

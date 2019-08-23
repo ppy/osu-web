@@ -17,14 +17,20 @@
  */
 
 import { OwnClientJSON } from 'interfaces/own-client-json';
+import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
 const store = core.dataStore.ownClientStore;
+const uiState = core.dataStore.uiState;
 
 @observer
 export class NewClient extends React.Component {
+  handleCancel = () => {
+    uiState.account.newClientVisible = false;
+  }
+
   handleInputChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
     const value = target.value;
@@ -35,6 +41,7 @@ export class NewClient extends React.Component {
     });
   }
 
+  @action
   handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
 
@@ -43,13 +50,15 @@ export class NewClient extends React.Component {
       method: 'POST',
       url: laroute.route('oauth.clients.store'),
     }).then((data: OwnClientJSON) => {
-      store.updateWithJson(data);
+      const client = store.updateWithJson(data);
+      uiState.account.newClientVisible = false;
+      uiState.account.client = client;
     }).catch(osu.ajaxError);
   }
 
   render() {
     return (
-        <form className='oauth-client-details' autoComplete='off' onSubmit={this.handleSubmit} >
+        <form className='oauth-client-details' autoComplete='off' onSubmit={this.handleSubmit}>
           <div className='account-edit-entry'>
             <input className='account-edit-entry__input' name='name' onChange={this.handleInputChange} type='text' />
             <div className='account-edit-entry__label'>Application Name</div>
@@ -60,8 +69,8 @@ export class NewClient extends React.Component {
             <div className='account-edit-entry__label'>Authorization callback URL</div>
           </div>
 
-          <button className='oauth-client-details__button' type='submit'>Register application</button>
-          <button className='oauth-client-details__button' type='button'>Cancel</button>
+          <button className='btn-osu-big' type='submit'>Register application</button>
+          <button className='btn-osu-big' type='button' onClick={this.handleCancel}>Cancel</button>
         </form>
     );
   }

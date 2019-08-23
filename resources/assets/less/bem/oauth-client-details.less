@@ -20,53 +20,11 @@
   .default-border-radius();
 
   padding: 30px;
+  font-size: 14px;
 
   display: flex;
   flex-direction: column;
 
   background-color: black;
   color: white;
-
-  &__button {
-    .reset-input();
-    .default-text-shadow();
-    .link-white();
-    .link-plain();
-    .center-content();
-
-    flex: none;
-    margin: 0 10px;
-    padding: 10px 20px;
-    min-width: 100px;
-    border-radius: 10000px;
-
-    background-color: #444;
-
-    &:hover {
-      background-color: #333;
-    };
-
-    &--danger {
-      background-color: @red;
-
-      &:hover {
-        background-color: @red-light;
-      };
-    }
-  }
-
-  &__input {
-    .reset-input();
-    .default-border-radius();
-
-    flex: 1;
-    background-color: @osu-colour-b3;
-    border: 2px solid transparent;
-    color: #fff;
-    padding: 5px;
-
-    &:focus {
-      border-color: @osu-colour-l1;
-    }
-  }
 }
