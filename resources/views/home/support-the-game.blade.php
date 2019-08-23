@@ -136,17 +136,17 @@
                 <div class="supporter__block supporter__block--{{'bg-'.$index % 3}}">
                     @switch ($group['type'])
                         @case('group')
-                            @include('home._supporter_perks_group', ['perks' => $group['items']])
+                            @include('home._supporter_perk_group', ['perks' => $group['items']])
                             @break
                         @case('hero')
-                            @include('home._supporter_perks_hero', ['perk' => $group])
+                            @include('home._supporter_perk_hero', ['perk' => $group])
                             @break
                         @case('image')
                         @case('image-flipped')
-                            @include('home._supporter_perks_image', ['perk' => $group])
+                            @include('home._supporter_perk_image', ['perk' => $group])
                             @break
                         @case('image-group')
-                            @include('home._supporter_perks_image_group', ['perks' => $group['items']])
+                            @include('home._supporter_perk_image_group', ['perks' => $group['items']])
                             @break
                     @endswitch
                 </div>

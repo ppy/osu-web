@@ -20,7 +20,7 @@
         @foreach($perks as $name => $icon)
             @if (strlen($name) > 0)
                 <div class="supporter-perk-item supporter-perk-item--feature supporter-perk-item--image-group{{$index == 0 ? ' supporter-perk-item--first' : ''}}">
-                    <div class="supporter-perk-item__img">
+                    <div class="supporter-perk-item__group-image">
                         <img
                             src="/images/layout/supporter/{{$name}}.jpg"
                             srcSet="/images/layout/supporter/{{$name}}.jpg 1x, /images/layout/supporter/{{retinaify($name.'.jpg')}} 2x"
