@@ -35,14 +35,23 @@ export class ClientDetails extends React.Component<Props> {
     uiState.account.client = null;
   }
 
+  @action
   handleDeleteClick = () => {
+    if (!confirm(osu.trans('oauth.clients.confirm_delete'))) { return; }
 
+    this.props.client.delete().then(() => {
+      uiState.account.client = null;
+    });
   }
 
+  @action
   handleRevokeAllTokens = () => {
+    if (!confirm(osu.trans('oauth.clients.confirm_revoke_tokens'))) { return; }
 
+    console.log('revoke all');
   }
 
+  @action
   handleUpdateClick = () => {
     this.props.client.redirect = 'http://derp';
     this.props.client.update();
@@ -60,17 +69,15 @@ export class ClientDetails extends React.Component<Props> {
         <div>{this.props.client.secret}</div>
         <button className='btn-osu-big btn-osu-big--danger' onClick={this.handleRevokeAllTokens}>Revoke all user tokens</button>
 
-        <form autoComplete='off'>
-          <div className='account-edit-entry'>
-            <div className='account-edit-entry__label'>Authorization callback URL</div>
+        <div className='account-edit-entry'>
+          <div className='account-edit-entry__label'>Authorization callback URL</div>
 
-            <input className='account-edit-entry__input' type='text' defaultValue={this.props.client.redirect} />
-          </div>
+          <input className='account-edit-entry__input' type='text' defaultValue={this.props.client.redirect} />
+        </div>
 
-          <button className='btn-osu-big' type='button'>Update Application</button>
-          <button className='btn-osu-big btn-osu-big--danger' onClick={this.handleDeleteClick}>Delete Application</button>
-          <button className='btn-osu-big' onClick={this.handleCloseClick}>Close</button>
-        </form>
+        <button className='btn-osu-big' type='button'>Update Application</button>
+        <button className='btn-osu-big btn-osu-big--danger' onClick={this.handleDeleteClick}>Delete Application</button>
+        <button className='btn-osu-big' onClick={this.handleCloseClick}>Close</button>
       </div>
     );
   }
