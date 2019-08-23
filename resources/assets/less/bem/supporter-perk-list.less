@@ -24,23 +24,9 @@
     padding: 15px;
   }
 
-  &--image-list {
-    @media @desktop {
-      padding: 20px 40px;
-    }
-  }
-
   &__list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
-    .@{top}--image-list & {
-      flex-direction: column;
-
-      @media @desktop {
-        align-items: center;
-      }
-    }
   }
 }
