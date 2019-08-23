@@ -206,20 +206,20 @@ class HomeController extends Controller
             // why support
             'support-reasons' => [
                 // localization name => options
-                'team'  => [
+                'team' => [
                     'icons' => ['fas fa-users'],
                 ],
-                'infra'  => [
+                'infra' => [
                     'icons' => ['fas fa-server'],
                 ],
-                'featured-artists'  => [
+                'featured-artists' => [
                     'icons' => ['fas fa-user-astronaut'],
                     'link' => route('artists.index'),
                 ],
-                'ads'  => [
+                'ads' => [
                     'icons' => ['fas fa-ad', 'fas fa-slash'],
                 ],
-                'tournaments'  => [
+                'tournaments' => [
                     'icons' => ['fas fa-trophy'],
                     'link' => route('tournaments.index'),
                 ],
