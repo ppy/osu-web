@@ -21,6 +21,7 @@ import { observer } from 'mobx-react';
 import { OwnClient as Client } from 'models/oauth/own-client';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { Spinner } from 'spinner';
 
 const uiState = core.dataStore.uiState;
 
@@ -40,12 +41,12 @@ export class ClientDetails extends React.Component<Props, State> {
   };
 
   @action
-  handleCloseClick = () => {
+  handleClose = () => {
     uiState.account.client = null;
   }
 
   @action
-  handleDeleteClick = () => {
+  handleDelete = () => {
     if (!confirm(osu.trans('oauth.clients.confirm_delete'))) { return; }
 
     this.props.client.delete().then(() => {
@@ -98,9 +99,23 @@ export class ClientDetails extends React.Component<Props, State> {
           <input className='account-edit-entry__input' name='redirect' type='text' onChange={this.handleInputChange} value={this.state.redirect} />
         </div>
 
-        <button className='btn-osu-big' type='button' onClick={this.handleSubmit}>Update Application</button>
-        <button className='btn-osu-big btn-osu-big--danger' onClick={this.handleDeleteClick}>Delete Application</button>
-        <button className='btn-osu-big' onClick={this.handleCloseClick}>Close</button>
+        <button
+          className='btn-osu-big'
+          disabled={this.props.client.isUpdating}
+          onClick={this.handleSubmit}
+          type='button'
+        >
+          {this.props.client.isUpdating ? <Spinner /> : 'Update Application'}
+        </button>
+        <button
+          className='btn-osu-big btn-osu-big--danger'
+          disabled={this.props.client.isRevoking}
+          onClick={this.handleDelete}
+          type='button'
+        >
+          {this.props.client.isRevoking ? <Spinner /> : 'Delete Application'}
+        </button>
+        <button className='btn-osu-big' onClick={this.handleClose}>Close</button>
       </div>
     );
   }

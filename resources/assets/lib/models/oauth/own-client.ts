@@ -17,10 +17,11 @@
  */
 
 import { OwnClientJSON } from 'interfaces/own-client-json';
-import { action } from 'mobx';
+import { action, observable } from 'mobx';
 import { Client } from 'models/oauth/client';
 
 export class OwnClient extends Client {
+  @observable isUpdating = false;
   redirect: string;
   secret: string;
 
@@ -59,6 +60,7 @@ export class OwnClient extends Client {
   @action
   async updateWith(partial: Partial<OwnClient>) {
     const { redirect } = partial;
+    this.isUpdating = true;
 
     return $.ajax({
       data: { redirect },
@@ -66,6 +68,8 @@ export class OwnClient extends Client {
       url: laroute.route('oauth.clients.update', { client: this.id }),
     }).then((data: OwnClientJSON) => {
       this.updateFromJson(data);
+    }).always(() => {
+      this.isUpdating = false;
     });
   }
 }
