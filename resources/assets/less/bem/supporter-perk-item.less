@@ -50,18 +50,6 @@
     }
   }
 
-  &--hero {
-    height: 500px;
-    display: flex;
-    justify-content: flex-end;
-    padding: 20px;
-
-    @media @mobile {
-      height: 300px;
-      justify-content: center;
-    }
-  }
-
   &--image-group {
     display: flex;
     text-align: right;
@@ -92,11 +80,6 @@
     @media @mobile {
       width: 100%;
     }
-  }
-
-  &__hero-image {
-    .full-size();
-    object-fit: cover;
   }
 
   &__group-image {
@@ -139,13 +122,6 @@
       }
     }
 
-    .@{top}--hero & {
-      padding: 20px;
-      margin-top: -50px;
-      margin-bottom: -50px;
-      margin-left: 200px;
-    }
-
     .@{top}--image-group & {
       @media @desktop {
         margin-right: -45px;
@@ -176,18 +152,6 @@
 
       @media @mobile {
         align-items: center;
-      }
-    }
-
-    .@{top}--hero & {
-      width: 300px;
-      background-color: .osu-hsla(@osu-colour-b4, 0.95)[@hsla];
-      border-radius: 10px;
-      padding: 10px;
-      align-self: center;
-
-      @media @desktop {
-        margin-top: -50px
       }
     }
 
