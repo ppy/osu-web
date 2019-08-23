@@ -16,13 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.supporter-perk-item {
-  @top: supporter-perk-item;
+.supporter-perk-list-group {
+  @top: supporter-perk-list-group;
   flex: none;
   overflow: hidden;
   color: #fff;
   font-size: @font-size--title-small;
-  transition: .25s all;
   width: calc(33% - 10px);
   margin-bottom: 20px;
 
@@ -32,7 +31,7 @@
     width: calc(100% - 10px);
   }
 
-  &--image-group {
+  &--image {
     display: flex;
     text-align: right;
     align-items: center;
@@ -53,18 +52,6 @@
   }
 
   &__image {
-    width: 1050px;
-    height: 320px;
-    border-radius: 10px;
-    display: inline-block;
-    overflow: hidden;
-
-    @media @mobile {
-      width: 100%;
-    }
-  }
-
-  &__group-image {
     width: 500px;
     height: 100px;
     border-radius: 10px;
@@ -82,10 +69,9 @@
   &__icon {
     color: #fff;
     font-size: 26px; // icon size
-    padding: 0px 20px;
-    transition: .25s all;
+    padding: 0 20px;
 
-    .@{top}--image-group & {
+    .@{top}--image & {
       @media @desktop {
         margin-right: -45px;
       }
@@ -93,9 +79,9 @@
   }
 
   &__icon-bg {
-    color: @osu-colour-blue-3;
-    .@{top}--feature & {
-      color: @osu-colour-lime-3;
+    color: @osu-colour-lime-3;
+    .@{top}--why-support & {
+      color: @osu-colour-blue-3;
     }
   }
 
@@ -106,7 +92,7 @@
   }
 
   &__meta {
-    .@{top}--image-group & {
+    .@{top}--image & {
       display: flex;
       align-items: center;
       flex-direction: row-reverse;

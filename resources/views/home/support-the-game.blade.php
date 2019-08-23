@@ -94,28 +94,28 @@
             <div class="supporter-perk-list">
                 <div class="supporter-perk-list__list">
                     @foreach($data['support-reasons'] as $name => $options)
-                        <div class="supporter-perk-item">
-                            <div class="supporter-perk-item__icon">
+                        <div class="supporter-perk-list-group supporter-perk-list-group--why-support">
+                            <div class="supporter-perk-list-group__icon">
                                 <span class="fa-stack">
-                                    <i class="fas fa-circle fa-stack-2x supporter-perk-item__icon-bg"></i>
+                                    <i class="fas fa-circle fa-stack-2x supporter-perk-list-group__icon-bg"></i>
                                     @foreach($options['icons'] as $icon)
                                         <i class="{{ $icon }} fa-stack-1x"></i>
                                     @endforeach
                                 </span>
                             </div>
 
-                            <div class="supporter-perk-item__text">
-                                <h4 class="supporter-perk-item__title">
+                            <div class="supporter-perk-list-group__text">
+                                <h4 class="supporter-perk-list-group__title">
                                     {!! trans("community.support.money_goes_where.blocks.{$name}.title") !!}
                                 </h4>
-                                <p class="supporter-perk-item__content">
+                                <p class="supporter-perk-list-group__content">
                                     {!! trans("community.support.money_goes_where.blocks.{$name}.body") !!}
                                     @if (isset($options['link']))
                                         {!! link_to(
                                             $options['link'],
                                             trans("community.support.money_goes_where.blocks.{$name}.link_text"),
                                             [
-                                                'class' => 'supporter-perk-item__link',
+                                                'class' => 'supporter-perk-list-group__link',
                                                 'rel' => 'nofollow noreferrer',
                                                 'target' => '_blank',
                                             ]

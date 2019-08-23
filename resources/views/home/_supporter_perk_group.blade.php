@@ -17,21 +17,21 @@
 --}}
 <div class="supporter-perk-list">
     <div class="supporter-perk-list__list">
-        @foreach($perks as $perk => $icon)
-            @if (strlen($perk) > 0)
-                <div class="supporter-perk-item supporter-perk-item--feature">
-                    <div class="supporter-perk-item__icon">
+        @foreach($perks as $name => $icon)
+            @if (strlen($name) > 0)
+                <div class="supporter-perk-list-group">
+                    <div class="supporter-perk-list-group__icon">
                         <span class="fa-stack">
-                            <i class="fas fa-circle fa-stack-2x supporter-perk-item__icon-bg"></i>
+                            <i class="fas fa-circle fa-stack-2x supporter-perk-list-group__icon-bg"></i>
                             <i class="{{ $icon }} fa-stack-1x"></i>
                         </span>
                     </div>
-                    <div class="supporter-perk-item__text">
-                        <h4 class="supporter-perk-item__title">
-                            {{ trans('community.support.perks.'.$perk.'.title') }}
+                    <div class="supporter-perk-list-group__text">
+                        <h4 class="supporter-perk-list-group__title">
+                            {{ trans('community.support.perks.'.$name.'.title') }}
                         </h4>
-                        <p class="supporter-perk-item__content">
-                            {!! trans('community.support.perks.'.$perk.'.description') !!}
+                        <p class="supporter-perk-list-group__content">
+                            {!! trans('community.support.perks.'.$name.'.description') !!}
                         </p>
                     </div>
                 </div>
