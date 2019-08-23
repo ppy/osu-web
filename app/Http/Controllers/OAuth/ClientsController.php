@@ -72,11 +72,7 @@ class ClientsController extends Controller
             throw new InvariantException($client->validationErrors()->toSentence());
         }
 
-        if (request()->wantsJson()) {
-            return json_item($client, 'OAuth\Client');
-        }
-
-        return ujs_redirect(route('account.edit'));
+        return json_item($client, 'OAuth\Client');
     }
 
     public function update($clientId)

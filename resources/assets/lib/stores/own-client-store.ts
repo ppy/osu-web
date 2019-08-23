@@ -35,9 +35,14 @@ export default class OwnClientStore extends Store {
 
   initialize(data: OwnClientJSON[]) {
     for (const item of data) {
-      const client = new Client(item);
-      this.clients.set(client.id, client);
+      this.updateWithJson(item);
     }
+  }
+
+  @action
+  updateWithJson(json: OwnClientJSON) {
+    const client = new Client(json);
+    this.clients.set(client.id, client);
   }
 
   @action
