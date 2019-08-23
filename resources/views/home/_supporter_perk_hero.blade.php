@@ -18,24 +18,24 @@
 <div class="supporter-perk-list-hero">
     <img
         class="supporter-perk-list-hero__image"
-        src="/images/layout/supporter/{{$perk['name']}}.jpg"
-        srcSet="/images/layout/supporter/{{$perk['name']}}.jpg 1x, /images/layout/supporter/{{retinaify($perk['name'].'.jpg')}} 2x"
+        src="/images/layout/supporter/{{$group['name']}}.jpg"
+        srcSet="/images/layout/supporter/{{$group['name']}}.jpg 1x, /images/layout/supporter/{{retinaify($group['name'].'.jpg')}} 2x"
     />
     <div class="supporter-perk-list-hero__meta">
         <div class="supporter-perk-list-hero__icon">
             <span class="fa-stack">
                 <i class="fas fa-circle fa-stack-2x supporter-perk-list-hero__icon-bg"></i>
-                @foreach($perk['icons'] as $icon)
+                @foreach($group['icons'] as $icon)
                     <i class="{{ $icon }} fa-stack-1x"></i>
                 @endforeach
             </span>
         </div>
         <div class="supporter-perk-list-hero__text">
             <h4 class="supporter-perk-list-hero__title">
-                {{ trans("community.support.perks.{$perk['name']}.title") }}
+                {{ trans("community.support.perks.{$group['name']}.title") }}
             </h4>
             <p class="supporter-perk-list-hero__content">
-                {{ trans("community.support.perks.{$perk['name']}.description") }}
+                {{ trans("community.support.perks.{$group['name']}.description") }}
             </p>
         </div>
     </div>

@@ -16,12 +16,12 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    $section = isset($perks['section']) ? $perks['section'] : 'perks';
+    $section = isset($group['section']) ? $group['section'] : 'perks';
 @endphp
 
 <div class="supporter-perk-list">
     <div class="supporter-perk-list__list">
-        @foreach($perks['items'] as $name => $options)
+        @foreach($group['items'] as $name => $options)
             <div class="supporter-perk-list-group{{$section !== 'perks' ? " supporter-perk-list-group--{$section}" : ''}}">
                 <div class="supporter-perk-list-group__icon">
                     <span class="fa-stack">

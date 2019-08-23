@@ -17,7 +17,7 @@
 --}}
 <div class="supporter-perk-list">
     <div class="supporter-perk-list__list">
-        @foreach($perks['items'] as $name => $options)
+        @foreach($group['items'] as $name => $options)
             @if (strlen($name) > 0)
                 <div class="supporter-perk-list-group supporter-perk-list-group--image">
                     <div class="supporter-perk-list-group__image">

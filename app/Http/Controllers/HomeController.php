@@ -243,7 +243,8 @@ class HomeController extends Controller
                     'icons' => ['fas fa-search'],
                 ],
                 [
-                    'type' => 'image-flipped',
+                    'type' => 'image',
+                    'variant' => 'flipped',
                     'name' => 'beatmap_filters',
                     'icons' => ['fas fa-filter'],
                 ],
@@ -289,7 +290,7 @@ class HomeController extends Controller
                     ],
                 ],
                 [
-                    'type' => 'image-group',
+                    'type' => 'image_group',
                     'items' => [
                         'yellow_fellow' => [
                             'icons' => ['fas fa-fire'],

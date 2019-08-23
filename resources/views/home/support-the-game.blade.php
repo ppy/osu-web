@@ -91,7 +91,7 @@
             <h3 class="supporter__title">
                 {{ trans('community.support.why-support.title') }}
             </h3>
-            @include('home._supporter_perk_group', ['perks' => $data['support-reasons']])
+            @include('home._supporter_perk_group', ['group' => $data['support-reasons']])
             <div class="supporter__block supporter__block--bg-0">
                 <h3 class="supporter__title">
                     {{ trans('community.support.perks.title') }}
@@ -99,21 +99,7 @@
             </div>
             @foreach($data['perks'] as $index => $group)
                 <div class="supporter__block supporter__block--{{'bg-'.$index % 3}}">
-                    @switch ($group['type'])
-                        @case('group')
-                            @include('home._supporter_perk_group', ['perks' => $group])
-                            @break
-                        @case('hero')
-                            @include('home._supporter_perk_hero', ['perk' => $group])
-                            @break
-                        @case('image')
-                        @case('image-flipped')
-                            @include('home._supporter_perk_image', ['perk' => $group])
-                            @break
-                        @case('image-group')
-                            @include('home._supporter_perk_image_group', ['perks' => $group])
-                            @break
-                    @endswitch
+                    @include("home._supporter_perk_{$group['type']}", ['group' => $group])
                 </div>
             @endforeach
             <h3 class="supporter__title supporter__title--convinced">
