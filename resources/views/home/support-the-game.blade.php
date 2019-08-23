@@ -66,7 +66,7 @@
                     <!-- end: supporter status -->
                 @endif
             </div>
-            <ol class="page-mode-v2 page-mode-v2--breadcrumbs"></ol>
+            <ol class="page-mode-v2 page-mode-v2--empty"></ol>
         </div>
     </div>
 

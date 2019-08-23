@@ -31,7 +31,11 @@
 
   @media @desktop {
     padding: 0 (@gutter-desktop - 10px);
-    //min-height: @_bar-active-height;
+    min-height: @_bar-active-height;
+  }
+
+  &--empty {
+    min-height: 0;
   }
 
   &::after {
