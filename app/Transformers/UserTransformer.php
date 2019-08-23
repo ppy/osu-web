@@ -50,7 +50,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'unranked_beatmapset_count',
         'unread_pm_count',
         'user_achievements',
-        'ranking_expanded',
+        'user_preferences',
     ];
 
     public function transform(User $user)
@@ -290,8 +290,12 @@ class UserTransformer extends Fractal\TransformerAbstract
         );
     }
 
-    public function includeRankingExpanded(User $user)
+    public function includeUserPreferences(User $user)
     {
-        return $this->primitive($user->profileCustomization()->ranking_expanded);
+        return $this->item($user, function ($user) {
+            return [
+                'ranking_expanded' => $user->profileCustomization()->ranking_expanded,
+            ];
+        });
     }
 }

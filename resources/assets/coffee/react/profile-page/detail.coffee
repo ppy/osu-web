@@ -33,7 +33,7 @@ export class Detail extends React.PureComponent
     super props
 
     @state =
-      expanded: if currentUser.id? then currentUser.ranking_expanded else true
+      expanded: if currentUser.id? then currentUser.user_preferences.ranking_expanded else true
 
 
   render: =>
