@@ -60,19 +60,23 @@ export class ClientDetails extends React.Component<Props> {
   render() {
     return (
       <div className='oauth-client-details'>
-        <div className='oauth-client-details__name'>{this.props.client.name}</div>
-
-        <div>{this.props.client.redirect}</div>
-        Client ID
-        <div>{this.props.client.id}</div>
-        Client Secret
-        <div>{this.props.client.secret}</div>
+        <div className='oauth-client-details__group'>
+          <div className='oauth-client-details__label'>Application Name</div>
+          <div className='oauth-client-details__value'>{this.props.client.name}</div>
+        </div>
+        <div className='oauth-client-details__group'>
+          <div className='oauth-client-details__label'>Client ID</div>
+          <div className='oauth-client-details__value'>{this.props.client.id}</div>
+        </div>
+        <div>
+          <div className='oauth-client-details__label'>Client Secret</div>
+          <div className='oauth-client-details__value'>{this.props.client.secret}</div>
+        </div>
         <button className='btn-osu-big btn-osu-big--danger' onClick={this.handleRevokeAllTokens}>Revoke all user tokens</button>
 
-        <div className='account-edit-entry'>
-          <div className='account-edit-entry__label'>Authorization callback URL</div>
-
-          <input className='account-edit-entry__input' type='text' defaultValue={this.props.client.redirect} />
+        <div className='oauth-client-details__group'>
+          <div className='oauth-client-details__label'>Application Callback URL</div>
+          <input className='account-edit-entry__input' name='redirect' type='text' defaultValue={this.props.client.redirect} />
         </div>
 
         <button className='btn-osu-big' type='button'>Update Application</button>

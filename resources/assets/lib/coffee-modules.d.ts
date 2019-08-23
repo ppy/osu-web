@@ -72,6 +72,7 @@ declare module 'comments-manager' {
 
 declare module 'modal' {
   interface Props {
+    visible: boolean;
     onClose?: () => void;
   }
   class Modal extends React.PureComponent<Props> {}

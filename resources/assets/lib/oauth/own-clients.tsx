@@ -49,11 +49,11 @@ export class OwnClients extends React.Component {
         <button className='btn-osu-big' onClick={this.handleNewClientClicked}>New OAuth Application</button>
 
         {
-          uiState.account.client != null ? <Modal onClose={this.handleModalClose}><ClientDetails client={uiState.account.client!} /></Modal> : null
+          uiState.account.client != null ? <Modal visible={true} onClose={this.handleModalClose}><ClientDetails client={uiState.account.client!} /></Modal> : null
         }
 
         {
-          uiState.account.newClientVisible ? <Modal onClose={this.handleModalClose}><NewClient /></Modal> : null
+          uiState.account.newClientVisible ? <Modal visible={true} onClose={this.handleModalClose}><NewClient /></Modal> : null
         }
       </>
     );
