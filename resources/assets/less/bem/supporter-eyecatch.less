@@ -1,0 +1,85 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.supporter-eyecatch {
+  .at2x-simple('/images/layout/supporter/banner-bg.jpg');
+  background-size: cover;
+  width: auto;
+  height: 480px;
+  background-position: center;
+  padding: 30px;
+
+  &::before {
+    content: ' ';
+    .full-size();
+    background: linear-gradient(to bottom, .osu-hsla(@osu-colour-b5, 1)[@hsla] 4%, .osu-hsla(@osu-colour-b5, 0)[@hsla] 100%);
+  }
+
+  &::after {
+    content: ' ';
+    .full-size();
+    .at2x-simple('/images/layout/supporter/banner-fg.png');
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__box {
+    background: @osu-colour-b4;
+    width: 350px;
+    padding: 50px;
+    text-align: center;
+    height: 100%;
+    margin: 10px 0;
+    border-radius: 15px;
+
+    @media @mobile {
+      z-index: 1;
+      background: .osu-hsla(@osu-colour-b4, 0.9)[@hsla];
+      width: 100%;
+    }
+  }
+
+  &__link {
+    .link-plain();
+  }
+
+  &__text {
+    font-size: @font-size--title-small-3;
+    font-style: italic;
+    color: @osu-colour-l1;
+    margin: 10px 0 0;
+
+    &--main {
+      font-size: 26px;
+      font-weight: normal;
+
+      @media @desktop {
+        margin-top: 40px;
+      }
+    }
+
+    &--sub-1 {
+      margin-top: 0;
+      color: @osu-colour-f1;
+    }
+
+    &--sub-2 {
+      margin-top: 40px;
+    }
+  }
+}

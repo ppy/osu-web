@@ -28,6 +28,10 @@
 
   @media @desktop {
     min-height: @nav2-header-image-height;
+
+    &--supporter {
+      min-height: 450px
+    }
   }
 
   &--chat {
@@ -61,6 +65,11 @@
 
     .@{_top}--news & {
       .at2x-simple('/images/headers/news.png');
+    }
+
+    .@{_top}--supporter & {
+      opacity: 0.2;
+      .at2x-simple('/images/headers/supporter.jpg');
     }
   }
 
