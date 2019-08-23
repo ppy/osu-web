@@ -17,7 +17,7 @@
 --}}
 <div class="supporter-perk-list">
     <div class="supporter-perk-list__list">
-        @foreach($perks as $name => $icon)
+        @foreach($perks['items'] as $name => $options)
             @if (strlen($name) > 0)
                 <div class="supporter-perk-list-group supporter-perk-list-group--image">
                     <div class="supporter-perk-list-group__image">
@@ -30,15 +30,17 @@
                         <div class="supporter-perk-list-group__icon">
                             <span class="fa-stack">
                                 <i class="fas fa-circle fa-stack-2x supporter-perk-list-group__icon-bg"></i>
-                                <i class="{{ $icon }} fa-stack-1x"></i>
+                                @foreach($options['icons'] as $icon)
+                                    <i class="{{ $icon }} fa-stack-1x"></i>
+                                @endforeach
                             </span>
                         </div>
                         <div class="supporter-perk-list-group__text">
                             <h4 class="supporter-perk-list-group__title">
-                                {{ trans('community.support.perks.'.$name.'.title') }}
+                                {{ trans("community.support.perks.{$name}.title") }}
                             </h4>
                             <p class="supporter-perk-list-group__content">
-                                {!! trans('community.support.perks.'.$name.'.description') !!}
+                                {{ trans("community.support.perks.{$name}.description") }}
                             </p>
                         </div>
                     </div>

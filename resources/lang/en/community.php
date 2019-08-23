@@ -26,36 +26,35 @@ return [
             'gift' => 'or gift supporter to other players',
             'instructions' => 'click the heart button to proceed to the osu!store',
         ],
-        'money_goes_where' => [
+        'why-support' => [
             'title' => 'Why should I support osu!? Where does the money go?',
-            'blocks' => [
-                'team' => [
-                    'title' => 'Support the Team',
-                    'body' => 'A small team develops and runs osu!. Your support helps them to, you know... live.',
-                ],
-                'infra' => [
-                    'title' => 'Server Infrastructure',
-                    'body' => 'Contributions go towards the servers for running the website, multiplayer services, online leaderboards, etc.',
-                ],
-                'featured-artists' => [
-                    'title' => 'Featured Artists',
-                    'body' => 'With your support, we can approach even more awesome artists and license more great music for use in osu!',
-                    'link_text' => 'View the current roster &raquo;',
-                ],
-                'ads' => [
-                    'title' => 'Keep osu! self-sustaining',
-                    'body' => 'Your contributions help keep the game independent and completely free from ads and outside sponsors.',
-                ],
-                'tournaments' => [
-                    'title' => 'Official Tournaments',
-                    'body' => 'Help fund the running of (and the prizes for) the official osu! World Cup tournaments.',
-                    'link_text' => 'Explore tournaments &raquo;',
-                ],
-                'bounty-program' => [
-                    'title' => 'Open Source Bounty Program',
-                    'body' => 'Support the community contributors that have given their time and effort to help make osu! better.',
-                    'link_text' => 'Find out more &raquo;',
-                ],
+
+            'team' => [
+                'title' => 'Support the Team',
+                'description' => 'A small team develops and runs osu!. Your support helps them to, you know... live.',
+            ],
+            'infra' => [
+                'title' => 'Server Infrastructure',
+                'description' => 'Contributions go towards the servers for running the website, multiplayer services, online leaderboards, etc.',
+            ],
+            'featured-artists' => [
+                'title' => 'Featured Artists',
+                'description' => 'With your support, we can approach even more awesome artists and license more great music for use in osu!',
+                'link_text' => 'View the current roster &raquo;',
+            ],
+            'ads' => [
+                'title' => 'Keep osu! self-sustaining',
+                'description' => 'Your contributions help keep the game independent and completely free from ads and outside sponsors.',
+            ],
+            'tournaments' => [
+                'title' => 'Official Tournaments',
+                'description' => 'Help fund the running of (and the prizes for) the official osu! World Cup tournaments.',
+                'link_text' => 'Explore tournaments &raquo;',
+            ],
+            'bounty-program' => [
+                'title' => 'Open Source Bounty Program',
+                'description' => 'Support the community contributors that have given their time and effort to help make osu! better.',
+                'link_text' => 'Find out more &raquo;',
             ],
         ],
         'perks' => [
@@ -134,7 +133,7 @@ return [
             ],
             'friend_filtering' => [
                 'title' => 'Friend Leaderboards',
-                'description' => 'Compete with your friends and see how you rank up against them!*<br/><br/><small>* not yet available on new site, comingsoonlol(tm)</small>',
+                'description' => 'Compete with your friends and see how you rank up against them!*<br/><br/><small>* not yet available on new site, comingsoon(tm)</small>',
             ],
 
         ],

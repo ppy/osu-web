@@ -89,44 +89,9 @@
                 <div class="supporter-quote__signature">— Dean "peppy" Herbert, creator of osu!</div>
             </div>
             <h3 class="supporter__title">
-                {{ trans('community.support.money_goes_where.title') }}
+                {{ trans('community.support.why-support.title') }}
             </h3>
-            <div class="supporter-perk-list">
-                <div class="supporter-perk-list__list">
-                    @foreach($data['support-reasons'] as $name => $options)
-                        <div class="supporter-perk-list-group supporter-perk-list-group--why-support">
-                            <div class="supporter-perk-list-group__icon">
-                                <span class="fa-stack">
-                                    <i class="fas fa-circle fa-stack-2x supporter-perk-list-group__icon-bg"></i>
-                                    @foreach($options['icons'] as $icon)
-                                        <i class="{{ $icon }} fa-stack-1x"></i>
-                                    @endforeach
-                                </span>
-                            </div>
-
-                            <div class="supporter-perk-list-group__text">
-                                <h4 class="supporter-perk-list-group__title">
-                                    {!! trans("community.support.money_goes_where.blocks.{$name}.title") !!}
-                                </h4>
-                                <p class="supporter-perk-list-group__content">
-                                    {!! trans("community.support.money_goes_where.blocks.{$name}.body") !!}
-                                    @if (isset($options['link']))
-                                        {!! link_to(
-                                            $options['link'],
-                                            trans("community.support.money_goes_where.blocks.{$name}.link_text"),
-                                            [
-                                                'class' => 'supporter-perk-list-group__link',
-                                                'rel' => 'nofollow noreferrer',
-                                                'target' => '_blank',
-                                            ]
-                                        ) !!}
-                                    @endif
-                                </p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
+            @include('home._supporter_perk_group', ['perks' => $data['support-reasons']])
             <div class="supporter__block supporter__block--bg-0">
                 <h3 class="supporter__title">
                     {{ trans('community.support.perks.title') }}
@@ -136,7 +101,7 @@
                 <div class="supporter__block supporter__block--{{'bg-'.$index % 3}}">
                     @switch ($group['type'])
                         @case('group')
-                            @include('home._supporter_perk_group', ['perks' => $group['items']])
+                            @include('home._supporter_perk_group', ['perks' => $group])
                             @break
                         @case('hero')
                             @include('home._supporter_perk_hero', ['perk' => $group])
@@ -146,7 +111,7 @@
                             @include('home._supporter_perk_image', ['perk' => $group])
                             @break
                         @case('image-group')
-                            @include('home._supporter_perk_image_group', ['perks' => $group['items']])
+                            @include('home._supporter_perk_image_group', ['perks' => $group])
                             @break
                     @endswitch
                 </div>

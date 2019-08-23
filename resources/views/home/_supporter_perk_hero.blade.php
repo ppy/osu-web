@@ -25,15 +25,17 @@
         <div class="supporter-perk-list-hero__icon">
             <span class="fa-stack">
                 <i class="fas fa-circle fa-stack-2x supporter-perk-list-hero__icon-bg"></i>
-                <i class="{{$perk['icon']}} fa-stack-1x"></i>
+                @foreach($perk['icons'] as $icon)
+                    <i class="{{ $icon }} fa-stack-1x"></i>
+                @endforeach
             </span>
         </div>
         <div class="supporter-perk-list-hero__text">
             <h4 class="supporter-perk-list-hero__title">
-                {{ trans('community.support.perks.'.$perk['name'].'.title') }}
+                {{ trans("community.support.perks.{$perk['name']}.title") }}
             </h4>
             <p class="supporter-perk-list-hero__content">
-                {{ trans('community.support.perks.'.$perk['name'].'.description') }}
+                {{ trans("community.support.perks.{$perk['name']}.description") }}
             </p>
         </div>
     </div>

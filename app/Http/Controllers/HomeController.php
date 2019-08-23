@@ -205,27 +205,30 @@ class HomeController extends Controller
         $pageLayout = [
             // why support
             'support-reasons' => [
-                // localization name => options
-                'team' => [
-                    'icons' => ['fas fa-users'],
-                ],
-                'infra' => [
-                    'icons' => ['fas fa-server'],
-                ],
-                'featured-artists' => [
-                    'icons' => ['fas fa-user-astronaut'],
-                    'link' => route('artists.index'),
-                ],
-                'ads' => [
-                    'icons' => ['fas fa-ad', 'fas fa-slash'],
-                ],
-                'tournaments' => [
-                    'icons' => ['fas fa-trophy'],
-                    'link' => route('tournaments.index'),
-                ],
-                'bounty-program' => [
-                    'icons' => ['fas fa-child'],
-                    'link' => osu_url('bounty-form'),
+                'type' => 'group',
+                'section' => 'why-support',
+                'items' => [
+                    'team' => [
+                        'icons' => ['fas fa-users'],
+                    ],
+                    'infra' => [
+                        'icons' => ['fas fa-server'],
+                    ],
+                    'featured-artists' => [
+                        'icons' => ['fas fa-user-astronaut'],
+                        'link' => route('artists.index'),
+                    ],
+                    'ads' => [
+                        'icons' => ['fas fa-ad', 'fas fa-slash'],
+                    ],
+                    'tournaments' => [
+                        'icons' => ['fas fa-trophy'],
+                        'link' => route('tournaments.index'),
+                    ],
+                    'bounty-program' => [
+                        'icons' => ['fas fa-child'],
+                        'link' => osu_url('bounty-form'),
+                    ],
                 ],
             ],
 
@@ -237,41 +240,61 @@ class HomeController extends Controller
                 [
                     'type' => 'image',
                     'name' => 'osu_direct',
-                    'icon' => 'fas fa-search',
+                    'icons' => ['fas fa-search'],
                 ],
                 [
                     'type' => 'image-flipped',
                     'name' => 'beatmap_filters',
-                    'icon' => 'fas fa-filter',
+                    'icons' => ['fas fa-filter'],
                 ],
                 [
                     'type' => 'group',
                     'items' => [
-                        'auto_downloads' => 'fas fa-download',
-                        'more_beatmaps' => 'fas fa-file-upload',
-                        'early_access' => 'fas fa-flask',
+                        'auto_downloads' => [
+                            'icons' => ['fas fa-download'],
+                        ],
+                        'more_beatmaps' => [
+                            'icons' => ['fas fa-file-upload'],
+                        ],
+                        'early_access' => [
+                            'icons' => ['fas fa-flask'],
+                        ],
                     ],
                 ],
                 [
                     'type' => 'hero',
                     'name' => 'customisation',
-                    'icon' => 'fas fa-image',
+                    'icons' => ['fas fa-image'],
                 ],
                 [
                     'type' => 'group',
                     'items' => [
-                        'more_favourites' => 'fas fa-star',
-                        'more_friends' => 'fas fa-user-friends',
-                        'friend_filtering' => 'fas fa-medal',
+                        'more_favourites' => [
+                            'icons' => ['fas fa-star'],
+                        ],
+                        'more_friends' => [
+                            'icons' => ['fas fa-user-friends'],
+                        ],
+                        'friend_filtering' => [
+                            'icons' => ['fas fa-medal'],
+                        ],
                     ],
                 ],
                 [
                     'type' => 'image-group',
                     'items' => [
-                        'yellow_fellow' => 'fas fa-fire',
-                        'speedy_downloads' => 'fas fa-tachometer-alt',
-                        'change_username' => 'fas fa-magic',
-                        'skinnables' => 'fas fa-paint-brush',
+                        'yellow_fellow' => [
+                            'icons' => ['fas fa-fire'],
+                        ],
+                        'speedy_downloads' => [
+                            'icons' => ['fas fa-tachometer-alt'],
+                        ],
+                        'change_username' => [
+                            'icons' => ['fas fa-magic'],
+                        ],
+                        'skinnables' => [
+                            'icons' => ['fas fa-paint-brush'],
+                        ],
                     ],
                 ],
             ],
