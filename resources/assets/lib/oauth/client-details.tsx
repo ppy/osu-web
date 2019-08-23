@@ -65,13 +65,6 @@ export class ClientDetails extends React.Component<Props, State> {
   }
 
   @action
-  handleRevokeAllTokens = () => {
-    if (!confirm(osu.trans('oauth.clients.confirm_revoke_tokens'))) { return; }
-
-    console.log('revoke all');
-  }
-
-  @action
   handleSubmit = () => {
     // TODO: handle errors
     this.props.client.updateWith(this.state);
@@ -92,7 +85,6 @@ export class ClientDetails extends React.Component<Props, State> {
           <div className='oauth-client-details__label'>Client Secret</div>
           <div className='oauth-client-details__value'>{this.props.client.secret}</div>
         </div>
-        <button className='btn-osu-big btn-osu-big--danger' onClick={this.handleRevokeAllTokens}>Revoke all user tokens</button>
 
         <div className='oauth-client-details__group'>
           <div className='oauth-client-details__label'>Application Callback URL</div>
