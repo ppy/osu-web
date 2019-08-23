@@ -93,12 +93,12 @@
             </h3>
             <div class="supporter-perk-list">
                 <div class="supporter-perk-list__list">
-                    @foreach($data['blocks'] as $name => $icons)
+                    @foreach($data['support-reasons'] as $name => $options)
                         <div class="supporter-perk-item">
                             <div class="supporter-perk-item__icon">
                                 <span class="fa-stack">
                                     <i class="fas fa-circle fa-stack-2x supporter-perk-item__icon-bg"></i>
-                                    @foreach($icons as $icon)
+                                    @foreach($options['icons'] as $icon)
                                         <i class="{{ $icon }} fa-stack-1x"></i>
                                     @endforeach
                                 </span>
@@ -110,6 +110,17 @@
                                 </h4>
                                 <p class="supporter-perk-item__content">
                                     {!! trans("community.support.money_goes_where.blocks.{$name}.body") !!}
+                                    @if (isset($options['link']))
+                                        {!! link_to(
+                                            $options['link'],
+                                            trans("community.support.money_goes_where.blocks.{$name}.link_text"),
+                                            [
+                                                'class' => 'supporter-perk-item__link',
+                                                'rel' => 'nofollow noreferrer',
+                                                'target' => '_blank',
+                                            ]
+                                        ) !!}
+                                    @endif
                                 </p>
                             </div>
                         </div>

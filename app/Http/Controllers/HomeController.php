@@ -202,79 +202,98 @@ class HomeController extends Controller
             }
         }
 
+        $pageLayout = [
+            // why support
+            'support-reasons' => [
+                // localization name => options
+                'team'  => [
+                    'icons' => ['fas fa-users'],
+                ],
+                'infra'  => [
+                    'icons' => ['fas fa-server'],
+                ],
+                'featured-artists'  => [
+                    'icons' => ['fas fa-user-astronaut'],
+                    'link' => route('artists.index'),
+                ],
+                'ads'  => [
+                    'icons' => ['fas fa-ad', 'fas fa-slash'],
+                ],
+                'tournaments'  => [
+                    'icons' => ['fas fa-trophy'],
+                    'link' => route('tournaments.index'),
+                ],
+                'bounty-program' => [
+                    'icons' => ['fas fa-child'],
+                    'link' => osu_url('bounty-form'),
+                ],
+            ],
+
+            // supporter perks
+
+            // There are 5 perk rendering types: image, image-flipped, hero, group and image-group.
+            // image, image-flipped, hero each show an individual perk (with image) while group and image-group show groups of perks (the latter with images)
+            'perks' => [
+                [
+                    'type' => 'image',
+                    'name' => 'osu_direct',
+                    'icon' => 'fas fa-search',
+                    'image' => '/images/layout/supporter/direct.png',
+                ],
+                [
+                    'type' => 'image-flipped',
+                    'name' => 'beatmap_filters',
+                    'icon' => 'fas fa-filter',
+                    'image' => '/images/layout/supporter/filter.jpg',
+                ],
+                [
+                    'type' => 'group',
+                    'items' => [
+                        'auto_downloads' => 'fas fa-download',
+                        'more_beatmaps' => 'fas fa-file-upload',
+                        'early_access' => 'fas fa-flask',
+                    ],
+                ],
+                [
+                    'type' => 'hero',
+                    'name' => 'customisation',
+                    'icon' => 'fas fa-image',
+                    'image' => '/images/layout/supporter/customisation.jpg',
+                ],
+                [
+                    'type' => 'group',
+                    'items' => [
+                        'more_favourites' => 'fas fa-star',
+                        'more_friends' => 'fas fa-user-friends',
+                        'friend_filtering' => 'fas fa-medal',
+                    ],
+                ],
+                [
+                    'type' => 'image-group',
+                    'items' => [
+                        'yellow_fellow' => [
+                            'icon' => 'fas fa-fire',
+                            'image' => '/images/layout/supporter/yellow_fellow.jpg',
+                        ],
+                        'speedy_downloads' => [
+                            'icon' => 'fas fa-tachometer-alt',
+                            'image' => '/images/layout/supporter/speedy_downloads.jpg',
+                        ],
+                        'change_username' => [
+                            'icon' => 'fas fa-magic',
+                            'image' => '/images/layout/supporter/change_username.jpg',
+                        ],
+                        'skinnables' => [
+                            'icon' => 'fas fa-paint-brush',
+                            'image' => '/images/layout/supporter/skinnables.jpg',
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
         return view('home.support-the-game')
             ->with('supporterStatus', $supporterStatus ?? [])
-            ->with('data', [
-                // why support sections
-                'blocks' => [
-                    // localization's name => array of icons
-                    'team' => ['fas fa-users'],
-                    'infra' => ['fas fa-server'],
-                    'featured-artists' => ['fas fa-user-astronaut'],
-                    'ads' => ['fas fa-ad', 'fas fa-slash'],
-                    'tournaments' => ['fas fa-trophy'],
-                    'bounty-program' => ['fas fa-child'],
-                ],
-
-                // supporter perks
-                'perks' => [
-                    // localization's name => icon
-                    [
-                        'type' => 'image',
-                        'name' => 'osu_direct',
-                        'icon' => 'fas fa-search',
-                        'image' => '/images/layout/supporter/direct.png',
-                    ],
-                    [
-                        'type' => 'image-flipped',
-                        'name' => 'beatmap_filters',
-                        'icon' => 'fas fa-filter',
-                        'image' => '/images/layout/supporter/filter.jpg',
-                    ],
-                    [
-                        'type' => 'group',
-                        'items' => [
-                            'auto_downloads' => 'fas fa-download',
-                            'more_beatmaps' => 'fas fa-file-upload',
-                            'early_access' => 'fas fa-flask',
-                        ],
-                    ],
-                    [
-                        'type' => 'hero',
-                        'name' => 'customisation',
-                        'icon' => 'fas fa-image',
-                        'image' => '/images/layout/supporter/customisation.jpg',
-                    ],
-                    [
-                        'type' => 'group',
-                        'items' => [
-                            'more_favourites' => 'fas fa-star',
-                            'more_friends' => 'fas fa-user-friends',
-                            'friend_filtering' => 'fas fa-medal',
-                        ],
-                    ],
-                    [
-                        'type' => 'image-group',
-                        'items' => [
-                            'yellow_fellow' => [
-                                'icon' => 'fas fa-fire',
-                                'image' => '/images/layout/supporter/yellow_fellow.jpg',
-                            ],
-                            'speedy_downloads' => [
-                                'icon' => 'fas fa-tachometer-alt',
-                                'image' => '/images/layout/supporter/speedy_downloads.jpg',
-                            ],
-                            'change_username' => [
-                                'icon' => 'fas fa-magic',
-                                'image' => '/images/layout/supporter/change_username.jpg',
-                            ],
-                            'skinnables' => [
-                                'icon' => 'fas fa-paint-brush',
-                                'image' => '/images/layout/supporter/skinnables.jpg',
-                            ],
-                        ],
-                    ],
-                ],
-            ]);
+            ->with('data', $pageLayout);
     }
 }

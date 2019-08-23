@@ -40,6 +40,7 @@ return [
                 'featured-artists' => [
                     'title' => 'Featured Artists',
                     'body' => 'With your support, we can approach even more awesome artists and license more great music for use in osu!',
+                    'link_text' => 'View the current roster &raquo;',
                 ],
                 'ads' => [
                     'title' => 'Keep osu! self-sustaining',
@@ -48,11 +49,12 @@ return [
                 'tournaments' => [
                     'title' => 'Official Tournaments',
                     'body' => 'Help fund the running of (and the prizes for) the official osu! World Cup tournaments.',
+                    'link_text' => 'Explore tournaments &raquo;',
                 ],
                 'bounty-program' => [
                     'title' => 'Open Source Bounty Program',
-                    'body' => 'Support the community contributors that have given their time and effort to help make osu! better. :link',
-                    'link_text' => 'Click here to find out more!',
+                    'body' => 'Support the community contributors that have given their time and effort to help make osu! better.',
+                    'link_text' => 'Find out more &raquo;',
                 ],
             ],
         ],
