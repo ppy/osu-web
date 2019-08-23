@@ -238,13 +238,11 @@ class HomeController extends Controller
                     'type' => 'image',
                     'name' => 'osu_direct',
                     'icon' => 'fas fa-search',
-                    'image' => '/images/layout/supporter/direct.png',
                 ],
                 [
                     'type' => 'image-flipped',
                     'name' => 'beatmap_filters',
                     'icon' => 'fas fa-filter',
-                    'image' => '/images/layout/supporter/filter.jpg',
                 ],
                 [
                     'type' => 'group',
@@ -258,7 +256,6 @@ class HomeController extends Controller
                     'type' => 'hero',
                     'name' => 'customisation',
                     'icon' => 'fas fa-image',
-                    'image' => '/images/layout/supporter/customisation.jpg',
                 ],
                 [
                     'type' => 'group',
@@ -271,22 +268,10 @@ class HomeController extends Controller
                 [
                     'type' => 'image-group',
                     'items' => [
-                        'yellow_fellow' => [
-                            'icon' => 'fas fa-fire',
-                            'image' => '/images/layout/supporter/yellow_fellow.jpg',
-                        ],
-                        'speedy_downloads' => [
-                            'icon' => 'fas fa-tachometer-alt',
-                            'image' => '/images/layout/supporter/speedy_downloads.jpg',
-                        ],
-                        'change_username' => [
-                            'icon' => 'fas fa-magic',
-                            'image' => '/images/layout/supporter/change_username.jpg',
-                        ],
-                        'skinnables' => [
-                            'icon' => 'fas fa-paint-brush',
-                            'image' => '/images/layout/supporter/skinnables.jpg',
-                        ],
+                        'yellow_fellow' => 'fas fa-fire',
+                        'speedy_downloads' => 'fas fa-tachometer-alt',
+                        'change_username' => 'fas fa-magic',
+                        'skinnables' => 'fas fa-paint-brush',
                     ],
                 ],
             ],

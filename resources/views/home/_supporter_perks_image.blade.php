@@ -18,8 +18,8 @@
 <div class="supporter-perk-item--image{{$perk['type'] === 'image-flipped' ? ' supporter-perk-item--flipped' : ''}}">
     <div class="supporter-perk-item__image">
         <img
-            src="{{$perk['image']}}"
-            srcSet="{{$perk['image']}} 1x, {{retinaify($perk['image'])}} 2x"
+            src="/images/layout/supporter/{{$perk['name']}}.jpg"
+            srcSet="/images/layout/supporter/{{$perk['name']}}.jpg 1x, /images/layout/supporter/{{retinaify($perk['name'].'.jpg')}} 2x"
         />
     </div>
     <div class="supporter-perk-item__meta">

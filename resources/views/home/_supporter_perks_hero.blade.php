@@ -18,8 +18,8 @@
 <div class="supporter-perk-item--hero">
     <img
         class="supporter-perk-item__hero-image"
-        src="{{$perk['image']}}"
-        srcSet="{{$perk['image']}} 1x, {{retinaify($perk['image'])}} 2x"
+        src="/images/layout/supporter/{{$perk['name']}}.jpg"
+        srcSet="/images/layout/supporter/{{$perk['name']}}.jpg 1x, /images/layout/supporter/{{retinaify($perk['name'].'.jpg')}} 2x"
     />
     <div class="supporter-perk-item__meta">
         <div class="supporter-perk-item__icon">

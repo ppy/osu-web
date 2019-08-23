@@ -17,20 +17,20 @@
 --}}
 <div class="supporter-perk-list supporter-perk-list--image-list">
     <div class="supporter-perk-list__list">
-        @foreach($perks as $name => $perk)
+        @foreach($perks as $name => $icon)
             @if (strlen($name) > 0)
                 <div class="supporter-perk-item supporter-perk-item--feature supporter-perk-item--image-group{{$index == 0 ? ' supporter-perk-item--first' : ''}}">
                     <div class="supporter-perk-item__img">
                         <img
-                            src="{{$perk['image']}}"
-                            srcSet="{{$perk['image']}} 1x, {{retinaify($perk['image'])}} 2x"
+                            src="/images/layout/supporter/{{$name}}.jpg"
+                            srcSet="/images/layout/supporter/{{$name}}.jpg 1x, /images/layout/supporter/{{retinaify($name.'.jpg')}} 2x"
                         />
                     </div>
                     <div class="supporter-perk-item__meta">
                         <div class="supporter-perk-item__icon">
                             <span class="fa-stack">
                                 <i class="fas fa-circle fa-stack-2x supporter-perk-item__icon-bg"></i>
-                                <i class="{{ $perk['icon'] }} fa-stack-1x"></i>
+                                <i class="{{ $icon }} fa-stack-1x"></i>
                             </span>
                         </div>
                         <div class="supporter-perk-item__text">
