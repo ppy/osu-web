@@ -42,9 +42,7 @@ export class NewClient extends React.Component {
   }
 
   @action
-  handleSubmit = (event: React.SyntheticEvent) => {
-    event.preventDefault();
-
+  handleSubmit = () => {
     $.ajax({
       data: this.state,
       method: 'POST',
@@ -58,7 +56,7 @@ export class NewClient extends React.Component {
 
   render() {
     return (
-        <form className='oauth-client-details' autoComplete='off' onSubmit={this.handleSubmit}>
+        <form className='oauth-client-details' autoComplete='off'>
           <div className='account-edit-entry'>
             <input className='account-edit-entry__input' name='name' onChange={this.handleInputChange} type='text' />
             <div className='account-edit-entry__label'>Application Name</div>
@@ -69,7 +67,7 @@ export class NewClient extends React.Component {
             <div className='account-edit-entry__label'>Authorization callback URL</div>
           </div>
 
-          <button className='btn-osu-big' type='submit'>Register application</button>
+          <button className='btn-osu-big' type='button' onClick={this.handleSubmit}>Register application</button>
           <button className='btn-osu-big' type='button' onClick={this.handleCancel}>Cancel</button>
         </form>
     );
