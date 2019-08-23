@@ -33,8 +33,7 @@ export class NewClient extends React.Component {
 
   handleInputChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
-    const value = target.value;
-    const name = target.name;
+    const { name, value } = target;
 
     this.setState({
       [name]: value,

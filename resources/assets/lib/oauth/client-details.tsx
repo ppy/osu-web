@@ -28,8 +28,17 @@ interface Props {
   client: Client;
 }
 
+interface State {
+  redirect: string;
+  [key: string]: string;
+}
+
 @observer
-export class ClientDetails extends React.Component<Props> {
+export class ClientDetails extends React.Component<Props, State> {
+  readonly state: State = {
+    redirect: this.props.client.redirect,
+  };
+
   @action
   handleCloseClick = () => {
     uiState.account.client = null;
@@ -45,6 +54,16 @@ export class ClientDetails extends React.Component<Props> {
   }
 
   @action
+  handleInputChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
+    const target = event.target as HTMLInputElement;
+    const { name, value } = target;
+
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  @action
   handleRevokeAllTokens = () => {
     if (!confirm(osu.trans('oauth.clients.confirm_revoke_tokens'))) { return; }
 
@@ -52,8 +71,9 @@ export class ClientDetails extends React.Component<Props> {
   }
 
   @action
-  handleUpdateClick = () => {
-    this.props.client.redirect = 'http://derp';
+  handleSubmit = () => {
+    // TODO: handle errors
+    this.props.client.redirect = this.state.redirect;
     this.props.client.update();
   }
 
@@ -76,10 +96,10 @@ export class ClientDetails extends React.Component<Props> {
 
         <div className='oauth-client-details__group'>
           <div className='oauth-client-details__label'>Application Callback URL</div>
-          <input className='account-edit-entry__input' name='redirect' type='text' defaultValue={this.props.client.redirect} />
+          <input className='account-edit-entry__input' name='redirect' type='text' onChange={this.handleInputChange} value={this.state.redirect} />
         </div>
 
-        <button className='btn-osu-big' type='button'>Update Application</button>
+        <button className='btn-osu-big' type='button' onClick={this.handleSubmit}>Update Application</button>
         <button className='btn-osu-big btn-osu-big--danger' onClick={this.handleDeleteClick}>Delete Application</button>
         <button className='btn-osu-big' onClick={this.handleCloseClick}>Close</button>
       </div>
