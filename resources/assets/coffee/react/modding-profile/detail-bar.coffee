@@ -66,7 +66,7 @@ export class DetailBar extends React.PureComponent
 
         @renderExtraMenu()
 
-      div className: "#{bn}__column #{bn}__column--right",
+      div className: "#{bn}__column #{bn}__column--right #{bn}__column--modding",
         div className: "#{bn}__entry #{bn}__entry--ranking",
           el Rank, type: 'global', stats: @props.stats
 
