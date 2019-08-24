@@ -53,6 +53,13 @@
         min-width: @profile-stats-box-width-desktop;
       }
     }
+
+    &--modding {
+      @media @mobile {
+        overflow-x: auto; // level badge overflows on screens like iPhone SE/5
+        padding-bottom: 20px;
+      }
+    }
   }
 
   &__entry {
