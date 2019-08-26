@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class AddExpiresAtIndexToOauthTables extends Migration
 {
     const TABLES = ['oauth_auth_codes', 'oauth_access_tokens', 'oauth_refresh_tokens'];
+
     /**
      * Run the migrations.
      *
