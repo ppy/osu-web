@@ -54,7 +54,7 @@ export class OwnClient extends React.Component<Props> {
             disabled={client.isRevoking || client.revoked}
           >
             {
-              client.isRevoking ? <Spinner /> : osu.trans(`oauth.own-clients.revoked.${client.revoked}`)
+              client.isRevoking ? <Spinner /> : osu.trans(`oauth.own_clients.revoked.${client.revoked}`)
             }
           </button>
         </div>

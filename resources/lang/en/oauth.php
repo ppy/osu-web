@@ -33,7 +33,7 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
+    'authorized_clients' => [
         'confirm_revoke' => 'Are you sure you want to revoke this client\'s permissions?',
         'scopes_title' => 'This application can:',
         'owned_by' => 'Owned by :user',
@@ -58,7 +58,7 @@ return [
         'title' => 'Account Sign-in',
     ],
 
-    'own-clients' => [
+    'own_clients' => [
         'confirm_delete' => 'Are you sure you want to delete this client?',
         'new' =>  'New OAuth Application',
         'none' => 'No Clients',

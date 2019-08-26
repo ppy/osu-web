@@ -47,7 +47,7 @@ export class OwnClients extends React.Component {
         <div className='oauth-clients'>
           {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
         </div>
-        <button className='btn-osu-big btn-osu-big--settings-oauth' onClick={this.handleNewClientClicked}>{osu.trans('oauth.own-clients.new')}</button>
+        <button className='btn-osu-big btn-osu-big--settings-oauth' onClick={this.handleNewClientClicked}>{osu.trans('oauth.own_clients.new')}</button>
 
         {this.renderModaledComponents()}
       </>
@@ -60,7 +60,7 @@ export class OwnClients extends React.Component {
     });
   }
   renderEmpty() {
-    return osu.trans('oauth.own-clients.none');
+    return osu.trans('oauth.own_clients.none');
   }
 
   renderModaledComponents() {
