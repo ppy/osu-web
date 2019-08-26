@@ -47,6 +47,7 @@ export class ClientDetails extends React.Component<Props, State> {
 
   @action
   handleDelete = () => {
+    if (this.props.client.isRevoking) { return; }
     if (!confirm(osu.trans('oauth.clients.confirm_delete'))) { return; }
 
     this.props.client.delete().then(() => {
@@ -66,6 +67,7 @@ export class ClientDetails extends React.Component<Props, State> {
 
   @action
   handleSubmit = () => {
+    if (this.props.client.isUpdating) { return; }
     // TODO: handle errors
     this.props.client.updateWith(this.state);
   }
@@ -94,7 +96,7 @@ export class ClientDetails extends React.Component<Props, State> {
         <div className='oauth-client-details__buttons'>
           <button
             className='btn-osu-big btn-osu-big--settings-oauth'
-            disabled={this.props.client.isUpdating}
+            disabled={this.props.client.isUpdating || this.props.client.revoked}
             onClick={this.handleSubmit}
             type='button'
           >
@@ -103,7 +105,7 @@ export class ClientDetails extends React.Component<Props, State> {
 
           <button
             className='btn-osu-big btn-osu-big--danger btn-osu-big--settings-oauth'
-            disabled={this.props.client.isRevoking}
+            disabled={this.props.client.isRevoking || this.props.client.revoked}
             onClick={this.handleDelete}
             type='button'
           >

@@ -117,9 +117,16 @@
   &--danger {
     background-color: @red;
 
-    &:hover {
+    &:focus,
+    &:hover,
+    &:active {
       background-color: @red-light;
     };
+
+    &[disabled] {
+      background-color: @osu-colour-b3;
+      color: @osu-colour-f1;
+    }
   }
 
   &--download-landing {
