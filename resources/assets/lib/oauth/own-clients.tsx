@@ -31,13 +31,14 @@ const uiState = core.dataStore.uiState;
 @observer
 export class OwnClients extends React.Component {
   @action
-  handleNewClientClicked = () => {
-    uiState.account.newClientVisible = true;
-  }
-
   handleModalClose = () => {
     uiState.account.client = null;
     uiState.account.newClientVisible = false;
+  }
+
+  @action
+  handleNewClientClicked = () => {
+    uiState.account.newClientVisible = true;
   }
 
   render() {
@@ -48,13 +49,7 @@ export class OwnClients extends React.Component {
         </div>
         <button className='btn-osu-big' onClick={this.handleNewClientClicked}>New OAuth Application</button>
 
-        {
-          uiState.account.client != null ? <Modal visible={true} onClose={this.handleModalClose}><ClientDetails client={uiState.account.client!} /></Modal> : null
-        }
-
-        {
-          uiState.account.newClientVisible ? <Modal visible={true} onClose={this.handleModalClose}><NewClient /></Modal> : null
-        }
+        {this.renderModaledComponents()}
       </>
     );
   }
@@ -66,5 +61,22 @@ export class OwnClients extends React.Component {
   }
   renderEmpty() {
     return osu.trans('oauth.own-clients.none');
+  }
+
+  renderModaledComponents() {
+    let component: React.ReactElement;
+    if (uiState.account.newClientVisible) {
+      component = <NewClient />;
+    } else if (uiState.account.client != null) {
+      component = <ClientDetails client={uiState.account.client!} />;
+    } else {
+      return null;
+    }
+
+    return (
+      <Modal visible={true} onClose={this.handleModalClose}>
+        {component}
+      </Modal>
+    );
   }
 }
