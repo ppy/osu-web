@@ -45,6 +45,13 @@ return [
         ],
     ],
 
+    'client' => [
+        'id' => 'Client ID',
+        'name' => 'Application Name',
+        'redirect' => 'Application Callback URL',
+        'secret' => 'Client Secret',
+    ],
+
     'login' => [
         'download' => 'Click here to download the game and create an account',
         'label' => 'First, let\'s sign into your account!',
@@ -53,6 +60,7 @@ return [
 
     'own-clients' => [
         'confirm_delete' => 'Are you sure you want to delete this client?',
+        'new' =>  'New OAuth Application',
         'none' => 'No Clients',
 
         'revoked' => [

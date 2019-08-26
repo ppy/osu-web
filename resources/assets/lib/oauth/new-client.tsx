@@ -68,12 +68,12 @@ export class NewClient extends React.Component {
     return (
         <form className='oauth-client-details' autoComplete='off'>
           <div className='oauth-client-details__group'>
-            <div className='oauth-client-details__label'>Application Name</div>
+            <div className='oauth-client-details__label'>{osu.trans('oauth.client.name')}</div>
             <input className='oauth-client-details__input' name='name' onChange={this.handleInputChange} type='text' />
           </div>
 
           <div className='oauth-client-details__group'>
-            <div className='oauth-client-details__label'>Authorization callback URL</div>
+          <div className='oauth-client-details__label'>{osu.trans('oauth.client.redirect')}</div>
             <input className='oauth-client-details__input' name='redirect' onChange={this.handleInputChange} type='text' />
           </div>
 
@@ -81,7 +81,7 @@ export class NewClient extends React.Component {
             <button className='btn-osu-big btn-osu-big--settings-oauth' type='button' onClick={this.handleSubmit}>
               {uiState.account.isCreatingNewClient ? <Spinner /> : 'Register application'}
             </button>
-            <button className='btn-osu-big btn-osu-big--settings-oauth' type='button' onClick={this.handleCancel}>Cancel</button>
+            <button className='btn-osu-big btn-osu-big--settings-oauth' type='button' onClick={this.handleCancel}>{osu.trans('common.buttons.cancel')}</button>
           </div>
         </form>
     );

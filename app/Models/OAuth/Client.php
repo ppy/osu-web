@@ -120,6 +120,6 @@ class Client extends PassportClient
 
     public function validationErrorsTranslationPrefix()
     {
-        return 'oauth';
+        return 'oauth.client';
     }
 }

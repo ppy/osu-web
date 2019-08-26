@@ -48,7 +48,7 @@ export class ClientDetails extends React.Component<Props, State> {
   @action
   handleDelete = () => {
     if (this.props.client.isRevoking) { return; }
-    if (!confirm(osu.trans('oauth.clients.confirm_delete'))) { return; }
+    if (!confirm(osu.trans('oauth.own-clients.confirm_delete'))) { return; }
 
     this.props.client.delete().then(() => {
       uiState.account.client = null;
@@ -76,20 +76,20 @@ export class ClientDetails extends React.Component<Props, State> {
     return (
       <div className='oauth-client-details'>
         <div className='oauth-client-details__group'>
-          <div className='oauth-client-details__label'>Application Name</div>
+          <div className='oauth-client-details__label'>{osu.trans('oauth.client.name')}</div>
           <div>{this.props.client.name}</div>
         </div>
         <div className='oauth-client-details__group'>
-          <div className='oauth-client-details__label'>Client ID</div>
+          <div className='oauth-client-details__label'>{osu.trans('oauth.client.id')}</div>
           <div>{this.props.client.id}</div>
         </div>
         <div>
-          <div className='oauth-client-details__label'>Client Secret</div>
+          <div className='oauth-client-details__label'>{osu.trans('oauth.client.secret')}</div>
           <div>{this.props.client.secret}</div>
         </div>
 
         <div className='oauth-client-details__group'>
-          <div className='oauth-client-details__label'>Application Callback URL</div>
+          <div className='oauth-client-details__label'>{osu.trans('oauth.client.redirect')}</div>
           <input className='oauth-client-details__input' name='redirect' type='text' onChange={this.handleInputChange} value={this.state.redirect} />
         </div>
 
@@ -100,7 +100,7 @@ export class ClientDetails extends React.Component<Props, State> {
             onClick={this.handleSubmit}
             type='button'
           >
-            {this.props.client.isUpdating ? <Spinner /> : 'Update Application'}
+            {this.props.client.isUpdating ? <Spinner /> : osu.trans('common.buttons.update')}
           </button>
 
           <button
@@ -109,12 +109,12 @@ export class ClientDetails extends React.Component<Props, State> {
             onClick={this.handleDelete}
             type='button'
           >
-            {this.props.client.isRevoking ? <Spinner /> : 'Delete Application'}
+            {this.props.client.isRevoking ? <Spinner /> : osu.trans('common.buttons.delete')}
           </button>
         </div>
 
         <div className='oauth-client-details__buttons'>
-          <button className='btn-osu-big btn-osu-big--settings-oauth' onClick={this.handleClose}>Close</button>
+          <button className='btn-osu-big btn-osu-big--settings-oauth' onClick={this.handleClose}>{osu.trans('common.buttons.close')}</button>
         </div>
       </div>
     );

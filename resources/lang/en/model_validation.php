@@ -118,6 +118,15 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'attributes' => [
+                'name' => 'Application Name',
+                'redirect' => 'Application Callback URL',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Password may not contain username.',
         'email_already_used' => 'Email address already used.',

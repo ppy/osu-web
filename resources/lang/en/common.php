@@ -37,6 +37,7 @@ return [
         'change' => 'change',
         'click_to_copy' => 'click to copy to clipboard',
         'click_to_copy_copied' => 'copied to clipboard!',
+        'close' => 'Close',
         'collapse' => 'collapse',
         'delete' => 'Delete',
         'edit' => 'Edit',
@@ -58,6 +59,7 @@ return [
         'show_deleted' => 'Show deleted',
         'show_more' => 'show more',
         'show_more_options' => 'show more options',
+        'update' => 'Update',
         'upload_image' => 'upload image',
 
         'watch' => [
