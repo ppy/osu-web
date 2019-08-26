@@ -59,10 +59,7 @@ class ModdingHistoryController extends Controller
             $this->searchParams = array_merge(['user' => $this->user->user_id], request()->query());
             $this->searchParams['is_moderator'] = $this->isModerator;
             $this->searchParams['is_kudosu_moderator'] = $this->isKudosuModerator;
-
-            if (!$this->isModerator) {
-                $this->searchParams['with_deleted'] = false;
-            }
+            $this->searchParams['with_deleted'] = $this->isModerator;
 
             return $next($request);
         });
@@ -76,30 +73,41 @@ class ModdingHistoryController extends Controller
 
         $this->searchParams['limit'] = 10;
         $this->searchParams['sort'] = 'id_desc';
-        $this->searchParams['with_deleted'] = $this->isModerator;
 
         $discussions = BeatmapDiscussion::search($this->searchParams);
-        $discussions['items'] = $discussions['query']->with([
+        $discussions['query']->with([
             'beatmap',
             'beatmapDiscussionVotes',
             'beatmapset',
             'startingPost',
-        ])->get();
+        ]);
+
+        if ($this->isModerator) {
+            $discussions['query']->visibleWithTrashed();
+        } else {
+            $discussions['query']->visible();
+        }
+
+        $discussions['items'] = $discussions['query']->get();
 
         $posts = BeatmapDiscussionPost::search($this->searchParams);
-        $posts['items'] = $posts['query']->with([
+        $posts['query']->with([
             'beatmapDiscussion.beatmap',
             'beatmapDiscussion.beatmapset',
-        ])->get();
+        ]);
+
+        if (!$this->isModerator) {
+            $posts['query']->visible();
+        }
+
+        $posts['items'] = $posts['query']->get();
 
         $events = BeatmapsetEvent::search($this->searchParams);
-        if ($this->isModerator) {
-            $events['items'] = $events['query']->with(['beatmapset' => function ($query) {
-                $query->withTrashed();
-            }])->with('beatmapDiscussion')->get();
-        } else {
-            $events['items'] = $events['query']->with(['beatmapset', 'beatmapDiscussion'])->get();
-        }
+        $events['items'] = $events['query']->with([
+            'beatmapset',
+            'beatmapDiscussion.beatmapset',
+            'beatmapDiscussion.startingPost',
+        ])->whereHas('beatmapset')->get();
 
         $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
         $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
@@ -184,7 +192,7 @@ class ModdingHistoryController extends Controller
             'events' => json_collection(
                 $events['items'],
                 'BeatmapsetEvent',
-                ['user', 'discussion.starting_post', 'beatmapset', 'beatmapset.user']
+                ['discussion.starting_post', 'beatmapset.user']
             ),
             'posts' => json_collection(
                 $posts['items'],

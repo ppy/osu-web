@@ -654,4 +654,19 @@ class BeatmapDiscussion extends Model
     {
         $query->whereNull('deleted_at');
     }
+
+    public function scopeVisible($query)
+    {
+        $query->visibleWithTrashed()
+            ->withoutTrashed();
+    }
+
+    public function scopeVisibleWithTrashed($query)
+    {
+        $query->whereHas('visibleBeatmapset')
+            ->where(function ($q) {
+                $q->whereNull('beatmap_id')
+                    ->orWhereHas('visibleBeatmap');
+            });
+    }
 }

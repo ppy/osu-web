@@ -16,30 +16,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.stg-quote {
-  .default-box-shadow();
-  .inner-shadow-top();
-  padding: 30px 40px 15px 90px;
-  background-color: #fff;
-  font-size: @font-size--normal;
-  font-style: italic;
+.supporter-perk-list {
+  @top: supporter-perk-list;
+  padding: 20px 20px 0;
 
-  &__bg {
-    position: absolute;
-    color: #ddd;
-    font-size: 60px;
-    left: 30px;
-    top: 0;
+  @media @mobile {
+    padding: 15px;
   }
 
-  &__content {
-    margin: 0;
-    padding: 0;
-    border: none;
-  }
-
-  &__signature {
-    margin-top: 10px;
-    text-align: right;
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

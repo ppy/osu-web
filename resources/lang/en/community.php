@@ -20,54 +20,53 @@
 
 return [
     'support' => [
-        'header' => [
-            // size in font-size
-            'big_description' => 'Love osu!?<br/>
-                                Support the development of osu! :D',
-            'small_description' => '',
-            'support_button' => 'I want to support osu!',
+        'convinced' => [
+            'title' => 'I\'m convinced! :D',
+            'support' => 'support osu!',
+            'gift' => 'or gift supporter to other players',
+            'instructions' => 'click the heart button to proceed to the osu!store',
         ],
+        'why-support' => [
+            'title' => 'Why should I support osu!? Where does the money go?',
 
-        'dev_quote' => 'osu! is a completely free-to-play game, but running it is most definitely not so free.
-        Between the cost of commissioning servers and high quality international bandwidth, the time spent maintaining the system and community,
-        providing prizes for competitions, answering support questions and generally keeping people happy, osu! consumes quite a hefty amount of money!
-        Oh, and don\'t forget the fact that we do it without any advertising or partnering with silly toolbars and the likes!
-            <br/><br/>osu! is at the end of the day largely run by myself, to which you may know best as "peppy".
-            I have had to quit my day job in order to keep up with osu!,
-            and do at times struggle to maintain the standards I strive for.
-            I would like to offer my personal thanks to those who have supported osu! thus far,
-            and just as much to those who continue to support this amazing game and community into the future :).',
-
-        'supporter_status' => [
-            'contribution' => 'Thanks for your support so far! You have contributed a total of :dollars over :tags tag purchases!',
-            'gifted' => ':giftedTags of your tag purchases were gifted (for a total of :giftedDollars gifted), how generous!',
-            'not_yet' => "You don't have an osu!supporter tag yet :(",
-            'title' => 'Current osu!supporter status',
-            'valid_until' => 'Your current osu!supporter tag is valid until :date!',
-            'was_valid_until' => 'Your osu!supporter tag was valid until :date.',
-        ],
-
-        'why_support' => [
-            'title' => 'Why should I support osu!?',
-            'blocks' => [
-                'dev' => 'Developed and maintained predominantly by one guy in Australia',
-                'time' => 'Takes so much time to keep running that it\'s no longer possible to call it a "hobby".',
-                'ads' => 'No ads anywhere. <br/><br/>
-                        Unlike 99.95% of the web, we don\'t profit off shoving stuff in your face.',
-                'goodies' => 'You get some extra goodies!',
+            'team' => [
+                'title' => 'Support the Team',
+                'description' => 'A small team develops and runs osu!. Your support helps them to, you know... live.',
+            ],
+            'infra' => [
+                'title' => 'Server Infrastructure',
+                'description' => 'Contributions go towards the servers for running the website, multiplayer services, online leaderboards, etc.',
+            ],
+            'featured-artists' => [
+                'title' => 'Featured Artists',
+                'description' => 'With your support, we can approach even more awesome artists and license more great music for use in osu!',
+                'link_text' => 'View the current roster &raquo;',
+            ],
+            'ads' => [
+                'title' => 'Keep osu! self-sustaining',
+                'description' => 'Your contributions help keep the game independent and completely free from ads and outside sponsors.',
+            ],
+            'tournaments' => [
+                'title' => 'Official Tournaments',
+                'description' => 'Help fund the running of (and the prizes for) the official osu! World Cup tournaments.',
+                'link_text' => 'Explore tournaments &raquo;',
+            ],
+            'bounty-program' => [
+                'title' => 'Open Source Bounty Program',
+                'description' => 'Support the community contributors that have given their time and effort to help make osu! better.',
+                'link_text' => 'Find out more &raquo;',
             ],
         ],
-
         'perks' => [
-            'title' => 'Oh? What do I get?!',
+            'title' => 'Cool! What perks do I get?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'Quick and easy access to search beatmaps without leaving the game.',
+                'description' => 'Gain quick and easy access to search for and download beatmaps without having to leave the game.',
             ],
 
             'auto_downloads' => [
-                'title' => 'Auto Downloads',
-                'description' => 'Automatic downloads when playing multiplayer, spectating others, or clicking links in chat!',
+                'title' => 'Automatic Downloads',
+                'description' => 'Beatmaps will automatically download in multiplayer games, while spectating others, or when clicking relevant links in chat!',
             ],
 
             'upload_more' => [
@@ -77,17 +76,17 @@ return [
 
             'early_access' => [
                 'title' => 'Early Access',
-                'description' => 'Access to early releases, where you can try new features before they go public!',
+                'description' => 'Gain early access to new releases with new features before they go public!<br/><br/>This includes early access to new features on the website too!',
             ],
 
             'customisation' => [
                 'title' => 'Customisation',
-                'description' => 'Customise your profile by adding a fully customisable user page.',
+                'description' => "Stand out by uploading a custom cover image or by creating a fully customizable 'me!' section within your user profile.",
             ],
 
             'beatmap_filters' => [
                 'title' => 'Beatmap Filters',
-                'description' => 'Filter beatmap searches by played and unplayed maps and rank achieved (if any).',
+                'description' => 'Filter beatmap searches by played and unplayed maps, or by rank achieved.',
             ],
 
             'yellow_fellow' => [
@@ -102,7 +101,7 @@ return [
 
             'change_username' => [
                 'title' => 'Change Username',
-                'description' => 'The ability to change your username without additional costs. (once max)',
+                'description' => 'One free name change is included with your first supporter purchase.',
             ],
 
             'skinnables' => [
@@ -120,22 +119,30 @@ return [
                 'description' => 'The ability to view beatmap country / friend / mod-specific rankings in-game.',
             ],
 
-            'feel_special' => [
-                'title' => 'Feel Special',
-                'description' => 'The warm and fuzzy feeling of doing your part to keep osu! running smoothly!',
+            'more_favourites' => [
+                'title' => 'More Favourites',
+                'description' => 'The maximum number of beatmaps you can favourite is increased from :normally &rarr; :supporter',
+            ],
+            'more_friends' => [
+                'title' => 'More Friends',
+                'description' => 'The maximum number of friends you can have is increased from :normally &rarr; :supporter',
+            ],
+            'more_beatmaps' => [
+                'title' => 'Upload More Beatmaps',
+                'description' => 'How many non-ranked beatmaps you can have at once is calculated from a base value plus an additional bonus for each ranked beatmap you currently have (up to a limit).<br/><br/>Normally this is 4 plus 1 per ranked beatmap (up to 2). With supporter, this increases to 8 plus 1 per ranked beatmap (up to 12).',
+            ],
+            'friend_filtering' => [
+                'title' => 'Friend Leaderboards',
+                'description' => 'Compete with your friends and see how you rank up against them!*<br/><br/><small>* not yet available on new site, comingsoon(tm)</small>',
             ],
 
-            'more_to_come' => [
-                'title' => 'More to come',
-                'description' => '',
-            ],
         ],
-
-        'convinced' => [
-            'title' => 'I\'m convinced! :D',
-            'support' => 'support osu!',
-            'gift' => 'or gift support to other players',
-            'instructions' => 'click the heart button to proceed to the osu!store',
+        'supporter_status' => [
+            'contribution' => 'Thanks for your support so far! You have contributed :dollars over :tags tag purchases!',
+            'gifted' => "You have given away :giftedTags of your purchases as gifts (that's :giftedDollars worth), how generous!",
+            'not_yet' => "You haven't ever had an osu!supporter tag :(",
+            'valid_until' => 'Your current osu!supporter tag is valid until :date!',
+            'was_valid_until' => 'Your osu!supporter tag was valid until :date.',
         ],
     ],
 ];

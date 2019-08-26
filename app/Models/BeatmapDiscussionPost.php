@@ -153,6 +153,11 @@ class BeatmapDiscussionPost extends Model
         return $this->belongsTo(BeatmapDiscussion::class);
     }
 
+    public function visibleBeatmapDiscussion()
+    {
+        return $this->beatmapDiscussion()->visible();
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -337,5 +342,11 @@ class BeatmapDiscussionPost extends Model
     public function scopeWithoutSystem($query)
     {
         $query->where('system', '=', false);
+    }
+
+    public function scopeVisible($query)
+    {
+        $query->withoutTrashed()
+            ->whereHas('visibleBeatmapDiscussion');
     }
 }
