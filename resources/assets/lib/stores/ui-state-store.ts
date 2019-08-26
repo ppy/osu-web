@@ -24,12 +24,14 @@ import Store from 'stores/store';
 
 interface AccountUIState {
   client: Client | null;
+  isCreatingNewClient: boolean;
   newClientVisible: boolean;
 }
 
 export default class UIStateStore extends Store {
   @observable account: AccountUIState = {
     client: null,
+    isCreatingNewClient: false,
     newClientVisible: false,
   };
 

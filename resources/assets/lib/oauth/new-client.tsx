@@ -21,6 +21,7 @@ import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { Spinner } from 'spinner';
 
 const store = core.dataStore.ownClientStore;
 const uiState = core.dataStore.uiState;
@@ -29,6 +30,7 @@ const uiState = core.dataStore.uiState;
 export class NewClient extends React.Component {
   handleCancel = () => {
     uiState.account.newClientVisible = false;
+    uiState.account.isCreatingNewClient = false;
   }
 
   handleInputChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
@@ -42,6 +44,12 @@ export class NewClient extends React.Component {
 
   @action
   handleSubmit = () => {
+    if (uiState.account.isCreatingNewClient) {
+      return;
+    }
+
+    uiState.account.isCreatingNewClient = true;
+
     $.ajax({
       data: this.state,
       method: 'POST',
@@ -50,7 +58,10 @@ export class NewClient extends React.Component {
       const client = store.updateWithJson(data);
       uiState.account.newClientVisible = false;
       uiState.account.client = client;
-    }).catch(osu.ajaxError);
+    }).catch(osu.ajaxError)
+    .always(() => {
+      uiState.account.isCreatingNewClient = false;
+    });
   }
 
   render() {
@@ -67,7 +78,9 @@ export class NewClient extends React.Component {
           </div>
 
           <div className='oauth-client-details__buttons'>
-            <button className='btn-osu-big btn-osu-big--settings-oauth' type='button' onClick={this.handleSubmit}>Register application</button>
+            <button className='btn-osu-big btn-osu-big--settings-oauth' type='button' onClick={this.handleSubmit}>
+              {uiState.account.isCreatingNewClient ? <Spinner /> : 'Register application'}
+            </button>
             <button className='btn-osu-big btn-osu-big--settings-oauth' type='button' onClick={this.handleCancel}>Cancel</button>
           </div>
         </form>
