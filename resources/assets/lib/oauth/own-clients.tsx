@@ -19,11 +19,11 @@
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import { Modal } from 'modal';
+import { ClientDetails } from 'oauth/client-details';
+import { NewClient } from 'oauth/new-client';
 import { OwnClient } from 'oauth/own-client';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { ClientDetails } from './client-details';
-import { NewClient } from './new-client';
 
 const store = core.dataStore.ownClientStore;
 const uiState = core.dataStore.uiState;
