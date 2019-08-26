@@ -56,14 +56,14 @@ export class NewClient extends React.Component {
   render() {
     return (
         <form className='oauth-client-details' autoComplete='off'>
-          <div className='account-edit-entry'>
-            <input className='account-edit-entry__input' name='name' onChange={this.handleInputChange} type='text' />
-            <div className='account-edit-entry__label'>Application Name</div>
+          <div className='oauth-client-details__group'>
+            <div className='oauth-client-details__label'>Application Name</div>
+            <input className='oauth-client-details__input' name='name' onChange={this.handleInputChange} type='text' />
           </div>
 
-          <div className='account-edit-entry'>
-            <input className='account-edit-entry__input' name='redirect' onChange={this.handleInputChange} type='text' />
-            <div className='account-edit-entry__label'>Authorization callback URL</div>
+          <div className='oauth-client-details__group'>
+            <div className='oauth-client-details__label'>Authorization callback URL</div>
+            <input className='oauth-client-details__input' name='redirect' onChange={this.handleInputChange} type='text' />
           </div>
 
           <button className='btn-osu-big' type='button' onClick={this.handleSubmit}>Register application</button>

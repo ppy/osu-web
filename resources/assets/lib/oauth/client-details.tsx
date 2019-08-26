@@ -75,20 +75,20 @@ export class ClientDetails extends React.Component<Props, State> {
       <div className='oauth-client-details'>
         <div className='oauth-client-details__group'>
           <div className='oauth-client-details__label'>Application Name</div>
-          <div className='oauth-client-details__value'>{this.props.client.name}</div>
+          <div>{this.props.client.name}</div>
         </div>
         <div className='oauth-client-details__group'>
           <div className='oauth-client-details__label'>Client ID</div>
-          <div className='oauth-client-details__value'>{this.props.client.id}</div>
+          <div>{this.props.client.id}</div>
         </div>
         <div>
           <div className='oauth-client-details__label'>Client Secret</div>
-          <div className='oauth-client-details__value'>{this.props.client.secret}</div>
+          <div>{this.props.client.secret}</div>
         </div>
 
         <div className='oauth-client-details__group'>
           <div className='oauth-client-details__label'>Application Callback URL</div>
-          <input className='account-edit-entry__input' name='redirect' type='text' onChange={this.handleInputChange} value={this.state.redirect} />
+          <input className='oauth-client-details__input' name='redirect' type='text' onChange={this.handleInputChange} value={this.state.redirect} />
         </div>
 
         <button

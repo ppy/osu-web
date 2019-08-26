@@ -19,24 +19,44 @@
 .oauth-client-details {
   .default-border-radius();
 
-  padding: 30px;
-  font-size: 14px;
-
   display: flex;
   flex-direction: column;
+  flex: 1;
 
-  background-color: @osu-colour-b5;
+  padding: 20px;
+  font-size: 14px;
+  min-width: 320px;
+  max-width: 480px;
+
+  background-color: @osu-colour-b4;
   color: white;
 
   &__group {
+    display: flex;
+    flex-direction: column;
     margin: 10px 0;
+  }
+
+  &__input {
+    .reset-input();
+    .default-border-radius();
+
+    flex: 1;
+    align-self: stretch;
+    background-color: @osu-colour-b3;
+    border: 2px solid transparent;
+    padding: 5px;
+
+    @media @mobile {
+      font-size: @font-size--phone-input;
+    }
+
+    &:focus {
+      border-color: @osu-colour-l1;
+    }
   }
 
   &__label {
     color: @osu-colour-f1;
-  }
-
-  &__value {
-
   }
 }
