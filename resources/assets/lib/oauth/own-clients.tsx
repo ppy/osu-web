@@ -47,7 +47,7 @@ export class OwnClients extends React.Component {
         <div className='oauth-clients'>
           {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
         </div>
-        <button className='btn-osu-big' onClick={this.handleNewClientClicked}>New OAuth Application</button>
+        <button className='btn-osu-big btn-osu-big--settings-oauth' onClick={this.handleNewClientClicked}>New OAuth Application</button>
 
         {this.renderModaledComponents()}
       </>

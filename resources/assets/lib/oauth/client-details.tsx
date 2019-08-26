@@ -91,23 +91,29 @@ export class ClientDetails extends React.Component<Props, State> {
           <input className='oauth-client-details__input' name='redirect' type='text' onChange={this.handleInputChange} value={this.state.redirect} />
         </div>
 
-        <button
-          className='btn-osu-big'
-          disabled={this.props.client.isUpdating}
-          onClick={this.handleSubmit}
-          type='button'
-        >
-          {this.props.client.isUpdating ? <Spinner /> : 'Update Application'}
-        </button>
-        <button
-          className='btn-osu-big btn-osu-big--danger'
-          disabled={this.props.client.isRevoking}
-          onClick={this.handleDelete}
-          type='button'
-        >
-          {this.props.client.isRevoking ? <Spinner /> : 'Delete Application'}
-        </button>
-        <button className='btn-osu-big' onClick={this.handleClose}>Close</button>
+        <div className='oauth-client-details__buttons'>
+          <button
+            className='btn-osu-big btn-osu-big--settings-oauth'
+            disabled={this.props.client.isUpdating}
+            onClick={this.handleSubmit}
+            type='button'
+          >
+            {this.props.client.isUpdating ? <Spinner /> : 'Update Application'}
+          </button>
+
+          <button
+            className='btn-osu-big btn-osu-big--danger btn-osu-big--settings-oauth'
+            disabled={this.props.client.isRevoking}
+            onClick={this.handleDelete}
+            type='button'
+          >
+            {this.props.client.isRevoking ? <Spinner /> : 'Delete Application'}
+          </button>
+        </div>
+
+        <div className='oauth-client-details__buttons'>
+          <button className='btn-osu-big btn-osu-big--settings-oauth' onClick={this.handleClose}>Close</button>
+        </div>
       </div>
     );
   }

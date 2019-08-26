@@ -66,8 +66,10 @@ export class NewClient extends React.Component {
             <input className='oauth-client-details__input' name='redirect' onChange={this.handleInputChange} type='text' />
           </div>
 
-          <button className='btn-osu-big' type='button' onClick={this.handleSubmit}>Register application</button>
-          <button className='btn-osu-big' type='button' onClick={this.handleCancel}>Cancel</button>
+          <div className='oauth-client-details__buttons'>
+            <button className='btn-osu-big btn-osu-big--settings-oauth' type='button' onClick={this.handleSubmit}>Register application</button>
+            <button className='btn-osu-big btn-osu-big--settings-oauth' type='button' onClick={this.handleCancel}>Cancel</button>
+          </div>
         </form>
     );
   }
