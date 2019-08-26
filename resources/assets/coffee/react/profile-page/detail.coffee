@@ -32,7 +32,8 @@ export class Detail extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @state = extended: true
+    @state =
+      expanded: if currentUser.id? then currentUser.user_preferences.ranking_expanded else true
 
 
   render: =>
@@ -41,10 +42,10 @@ export class Detail extends React.PureComponent
         el DetailBar,
           stats: @props.stats
           toggleExtend: @toggleExtend
-          extended: @state.extended
+          expanded: @state.expanded
           user: @props.user
       div
-        className: if @state.extended then '' else 'hidden'
+        className: if @state.expanded then '' else 'hidden'
         div className: "#{bn}__row #{bn}__row--top",
           div className: "#{bn}__col #{bn}__col--top-left",
             div className: "#{bn}__top-left-item",
@@ -80,4 +81,13 @@ export class Detail extends React.PureComponent
 
 
   toggleExtend: =>
-    @setState extended: !@state.extended
+    if currentUser.id?
+      $.ajax laroute.route('account.options'),
+        method: 'put',
+        dataType: 'json',
+        data:
+          user_profile_customization:
+            ranking_expanded:
+              !@state.expanded
+
+    @setState expanded: !@state.expanded
