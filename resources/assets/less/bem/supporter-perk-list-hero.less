@@ -16,59 +16,60 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.stg-perk {
-  @top: stg-perk;
+.supporter-perk-list-hero {
+  height: 500px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
 
-  .default-border-radius();
-  .default-box-shadow();
-  .own-layer();
-  flex: none;
-  margin: 5px;
-  overflow: hidden;
-  background-color: #fff;
-  color: #000;
-  font-size: @font-size--title-small;
-  text-align: center;
-  transition: .25s all;
-
-  width: calc(100% - 10px);
-  @media @desktop {
-    width: calc(25% - 10px);
+  @media @mobile {
+    height: 300px;
+    justify-content: center;
   }
 
-  &:hover {
-    .thicker-box-shadow();
+  &__content {
+    margin: 0;
   }
 
   &__icon {
-    .default-text-shadow();
-    .btn-bg();
-    background-color: @blue-darker;
-    background-size: 500px;
     color: #fff;
-    font-size: 36px; // icon size
+    font-size: 26px; // icon size
     padding: 20px;
-    transition: .25s all;
+    margin-top: -50px;
+    margin-bottom: -50px;
+    margin-left: 200px;
+  }
 
-    .@{top}--feature & {
-      background-color: @green-light;
-      padding: 10px;
-    }
+  &__icon-bg {
+    color: @osu-colour-blue-3;
+  }
 
-    .@{top}:hover & {
-      background-color: @pink;
+  &__image {
+    .full-size();
+    object-fit: cover;
+  }
+
+  &__meta {
+    width: 300px;
+    background-color: .osu-hsla(@osu-colour-b4, 0.95)[@hsla];
+    border-radius: 10px;
+    padding: 10px;
+    align-self: center;
+
+    @media @desktop {
+      margin-top: -50px
     }
   }
 
   &__text {
-    padding: 20px 10px;
+    padding: 10px;
     font-style: italic;
+    color: @osu-colour-f1;
   }
 
   &__title {
     margin: 0 0 10px;
-    font-weight: bold;
     font-size: 120%;
-    color: @pink-darker;
+    color: white;
   }
 }

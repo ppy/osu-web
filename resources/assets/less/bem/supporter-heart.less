@@ -1,0 +1,95 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.supporter-heart {
+  @animation-rate: 937.5ms; // 64bpm (aka 128bpm at half-time)
+
+  @keyframes support-circle-pulsate {
+    0%   { transform: scale(0.9); }
+    20%  { transform: scale(1.0); }
+    100% { transform: scale(0.9); }
+  }
+
+  @keyframes support-circle-glow {
+    // this is basically .default-box-shadow() animated to have a less intense shadow with an added glow when pulsating
+    0%   { box-shadow: 0 1px @box-shadow-radius @box-shadow-color, inset 0 0 0px white;  }
+    20%  { box-shadow: 0 1px @box-shadow-radius lighten(@box-shadow-color, 70%), inset 0 0 5px white;  }
+    80%  { box-shadow: 0 1px @box-shadow-radius @box-shadow-color, inset 0 0 0px white;  }
+  }
+
+  @keyframes support-heart-pulsate {
+    0%   { transform: scale(1.0); }
+    20%  { transform: scale(1.2); }
+    100% { transform: scale(1.0); }
+  }
+
+  @keyframes support-heart-glow {
+    0%   { text-shadow: 0 0 0px white; }
+    20%  { text-shadow: 0 0 10px white; }
+    80%  { text-shadow: 0 0 0px white; }
+  }
+
+  .btn-bg();
+  .default-box-shadow();
+  .center-content();
+  .circle(130px);
+  .own-layer();
+
+  flex-shrink: 0;
+  margin-top: -20px;
+  background-color: @osu-colour-b6;
+  opacity: 0.5;
+  padding: 8px 5px 5px; // manual alignment
+  border: 10px solid #fff;
+  color: #fff;
+  font-size: 50px;
+  will-change: box-shadow, transform;
+
+  z-index: 1;
+
+  background-position: 50% 0%;
+
+  &--larger {
+    .circle(150px);
+    &::after {
+      font-size: 60px;
+    }
+  }
+
+  @media @mobile {
+    margin-top: 30px;
+  }
+
+  &::after {
+    .fas();
+    content: "\f004"; //fa-heart
+    .own-layer();
+    will-change: text-shadow, transform;
+  }
+
+  &--active {
+    opacity: 1;
+    background-color: @osu-colour-pink-1;
+    animation: support-circle-pulsate @animation-rate infinite ease-in-out, support-circle-glow @animation-rate infinite ease-in-out;
+    animation-fill-mode: none;
+
+    &::after {
+      animation: support-heart-pulsate @animation-rate infinite ease-in-out, support-heart-glow @animation-rate infinite ease-in-out;
+    }
+  }
+}

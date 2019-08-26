@@ -16,57 +16,56 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.stg-block {
-  background-color: #ddd;
-  padding: 30px;
-
+.supporter-quote {
+  .default-box-shadow();
   .inner-shadow-top();
+  padding: 30px;
+  background-color: @osu-colour-b4;
+  color: white;
+  font-size: @font-size--normal;
+  font-style: italic;
 
-  &--convinced {
-    background-color: #fff;
-    text-align: center;
+  @media @mobile {
+    padding: 30px;
   }
 
-  &--features {
-    background-color: #eee;
-  }
-
-  &--top {
-    box-shadow: none;
-  }
-
-  &__perks {
-    margin: -5px;
+  &__body {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
 
-  &__run {
-    font-size: @font-size--title-small;
-    font-style: italic;
-    color: #555;
-    margin: 10px 0 0;
-
-    &--main {
-      font-size: @font-size--large;
-      font-weight: bold;
-    }
-
-    &--sub-1 {
-      margin-top: 0;
-    }
-
-    &--sub-2 {
-      color: #999;
+    @media @mobile {
+      flex-direction: column;
     }
   }
 
-  &__title {
-    font-size: @font-size--title;
-    color: @pink-darker;
-    font-style: italic;
-    margin: 0 0 30px;
-    text-align: center;
+  &__content {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  &__quote-mark {
+    font-size: 50px;
+    color: @osu-colour-b3;
+
+    &--left {
+      align-self: flex-start;
+      padding-right: 20px;
+      @media @mobile {
+        margin-top: -20px;
+      }
+    }
+
+    &--right {
+      align-self: flex-end;
+      padding-left: 20px;
+      @media @mobile {
+        margin-top: -40px;
+      }
+    }
+  }
+
+  &__signature {
+    margin-top: 10px;
+    text-align: right;
   }
 }
