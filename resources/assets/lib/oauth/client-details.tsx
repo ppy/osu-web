@@ -68,8 +68,8 @@ export class ClientDetails extends React.Component<Props, State> {
   @action
   handleSubmit = () => {
     if (this.props.client.isUpdating) { return; }
-    // TODO: handle errors
-    this.props.client.updateWith(this.state);
+    // FIXME: per-field error.
+    this.props.client.updateWith(this.state).catch(osu.ajaxError);
   }
 
   render() {

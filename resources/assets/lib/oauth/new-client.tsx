@@ -58,7 +58,7 @@ export class NewClient extends React.Component {
       const client = store.updateWithJson(data);
       uiState.account.newClientVisible = false;
       uiState.account.client = client;
-    }).catch(osu.ajaxError)
+    }).catch(osu.ajaxError) // FIXME: show error per field instead.
     .always(() => {
       uiState.account.isCreatingNewClient = false;
     });

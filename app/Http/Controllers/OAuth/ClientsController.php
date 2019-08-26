@@ -69,7 +69,10 @@ class ClientsController extends Controller
         ]);
 
         if (!$client->save()) {
-            throw new InvariantException($client->validationErrors()->toSentence());
+            return response([
+                'form_error' => $client->validationErrors()->all(),
+                'error' => $client->validationErrors()->toSentence(),
+            ], 422);
         }
 
         return json_item($client, 'OAuth\Client');
@@ -83,7 +86,10 @@ class ClientsController extends Controller
 
         // client doesn't inherit from our base model.
         if (!$client->fill($params)->save()) {
-            throw new ModelNotSavedException();
+          return response([
+            'form_error' => $client->validationErrors()->all(),
+            'error' => $client->validationErrors()->toSentence(),
+          ], 422);
         }
 
         return json_item($client, 'OAuth\Client');
