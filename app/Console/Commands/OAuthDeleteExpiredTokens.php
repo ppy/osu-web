@@ -45,5 +45,8 @@ class OAuthDeleteExpiredTokens extends Command
 
         $count = $refreshTokensQuery->delete();
         $this->line("Deleted {$count} expired refresh tokens.");
+
+        $count = Token::where('user_id', null)->where('expires_at', '<', $expiredBefore)->delete();
+        $this->line("Deleted {$count} expired client credential grant tokens.");
     }
 }
