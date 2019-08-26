@@ -37,11 +37,6 @@ class ClientsController extends Controller
         $this->middleware('verify-user');
     }
 
-    public function create()
-    {
-        return view('oauth.clients.create');
-    }
-
     public function destroy($clientId)
     {
         $client = auth()->user()->oauthClients()->findOrFail($clientId);
