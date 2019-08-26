@@ -30,16 +30,16 @@ export class TopRanks extends React.PureComponent
       el ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       div null,
-        h3 className: 'page-extra__title page-extra__title--small', osu.trans('users.show.extra.top_ranks.best.title')
+        h3 className: 'title title--page-extra-small', osu.trans('users.show.extra.top_ranks.best.title')
         @renderScores 'scoresBest', 'best'
 
       div null,
         h3
-          className: 'page-extra__title page-extra__title--small'
+          className: 'title title--page-extra-small'
           osu.trans('users.show.extra.top_ranks.first.title')
           ' '
           if @props.user.scores_first_count > 0
-            span className: 'page-extra__title-count',
+            span className: 'title__count',
               osu.formatNumber(@props.user.scores_first_count)
 
         @renderScores 'scoresFirsts', 'firsts'

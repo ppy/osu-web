@@ -19,11 +19,24 @@
 .forum-topic-entry {
   @_top: forum-topic-entry;
 
-  list-style: none;
   font-size: @font-size--normal;
   display: flex;
-  border-bottom: 1px solid #ccc;
-  margin: 0 @forum-topic-entry--main-margin;
+  margin: 2px -@forum-item-overflow;
+  background-color: @forum-item-background-color;
+  .default-border-radius();
+  padding: 7px 0 7px @forum-item-overflow;
+  color: @osu-colour-c2;
+  transition: @forum-item-animate;
+
+  &:hover {
+    background-color: @forum-item-background-color-hover;
+  }
+
+  @media @desktop {
+    margin-left: -@forum-item-overflow-desktop;
+    margin-right: -@forum-item-overflow-desktop;
+    padding-left: @forum-item-overflow-desktop;
+  }
 
   &--deleted {
     opacity: 0.5;
@@ -33,89 +46,37 @@
     opacity: 0.5;
   }
 
-  &--empty {
-    padding: 10px 0 5px;
-  }
-
-  &__bg {
-    .full-size();
-    margin: 0 (-@forum-topic-entry--main-margin);
-    width: calc(100% + (@forum-topic-entry--main-margin * 2));
-    background-color: @gray-lighter;
-    opacity: 0;
-    will-change: opacity;
-    transition: all 250ms ease;
-
-    .@{_top}:hover & {
-      opacity: 1;
-      transition: none;
-    }
-  }
-
   &__col {
     .center-content();
     flex: none;
-    margin: 10px 0;
 
     &--buttons {
-      margin: -2.5px;
+      margin: -2px 18px -2px -2px;
     }
 
     &--icon {
-      .circle(32px);
-      align-self: center;
-      font-size: @font-size--forum-topic-entry-icon;
+      align-self: flex-start;
 
-      background-color: @gray-light;
-      background-image: url("/images/backgrounds/button.svg");
-      background-size: 50px;
-      background-position: center;
-
-      color: #fff;
-
-      &:hover,
-      &:active,
-      &:focus {
-        color: #fff;
-        text-decoration: none;
-      }
-    }
-
-    &--icon-plus {
-      background-color: @blue-darker;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
     }
 
     &--last-link {
-      font-size: @font-size--forum-topic-entry-icon-small;
-      color: @gray;
+      .link-default();
+      font-size: 14px; // icon size
       width: 30px;
-      font-weight: bold;
 
-      &:hover,
-      &:active,
-      &:focus {
+      .link-hover({
         text-decoration: none;
-      }
-    }
-
-    &--lock {
-      position: absolute;
-      padding: 0 5px;
-      top: 0;
-      bottom: 0;
-      left: (-@forum-topic-entry--main-margin);
-      width: @forum-topic-entry--main-margin;
-      justify-content: flex-end;
-
-      font-size: @font-size--forum-topic-entry-icon;
+      });
     }
 
     &--main {
       flex: 1;
-      margin: 7.5px 5px;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: normal;
       word-break: break-word;
       min-width: 0;
 
@@ -127,30 +88,110 @@
   }
 
   &__content {
-    margin: 2px 5px;
     flex: none;
+    padding: 0 10px;
 
-    &--middle {
-      text-align: right;
-      width: 70px;
+    &--counts {
+      min-width: 150px;
+      white-space: nowrap;
     }
 
     &--left {
       flex: 1;
+      min-width: 0;
     }
 
     &--right {
+      margin-top: 10px;
       width: 100%;
 
       @media @desktop {
+        margin-top: 0;
         width: 200px;
-        text-align: right;
       }
     }
   }
 
+  &__count {
+    font-weight: 600;
+  }
+
+  &__icon {
+    .center-content();
+    min-width: 46px;
+    height: 36px;
+    border-radius: 10000px;
+    font-size: 14px; // icon size
+    background-color: @osu-colour-b6;
+    color: @osu-colour-c1;
+
+    .link-hover({
+      color: @osu-colour-c1;
+      text-decoration: none;
+    });
+
+    @media @desktop {
+      align-self: center;
+    }
+
+    &--small {
+      font-size: 12px; // icon size
+    }
+
+    &--unread {
+      border: 2px solid @osu-colour-h1;
+    }
+  }
+
+  &__issue-icons {
+    flex: none;
+    display: flex;
+    padding: 5px 5px 0;
+    order: 1;
+
+    @media @desktop {
+      align-self: center;
+      order: 0;
+      padding-top: 0;
+    }
+  }
+
+  &__link {
+    .link-default();
+  }
+
+  &__lock {
+    color: @osu-colour-c2;
+    font-size: 10px; // icon size
+    margin-top: 5px;
+
+    @media @desktop {
+      position: absolute;
+      margin-top: 0;
+      top: 0;
+      right: 100%;
+      margin-right: 5px;
+    }
+  }
+
   &__title {
+    display: block;
+    width: max-content;
+    max-width: 100%;
     font-size: @font-size--title-small;
-    font-weight: 500;
+    color: @osu-colour-c1;
+    word-wrap: break-word;
+
+    .link-hover({
+      color: @osu-colour-c1;
+    });
+  }
+
+  &__user-icon {
+    background-color: @user-color-default;
+    height: 0.6em;
+    width: 0.6em;
+    display: inline-block;
+    border-radius: 10000px;
   }
 }
