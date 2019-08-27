@@ -69,7 +69,9 @@ export class ClientDetails extends React.Component<Props, State> {
   handleSubmit = () => {
     if (this.props.client.isUpdating) { return; }
     // FIXME: per-field error.
-    this.props.client.updateWith(this.state).catch(osu.ajaxError);
+    this.props.client.updateWith(this.state).then(() => {
+      uiState.account.client = null;
+    }).catch(osu.ajaxError);
   }
 
   render() {
