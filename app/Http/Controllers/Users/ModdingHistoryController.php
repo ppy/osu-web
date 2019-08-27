@@ -43,10 +43,10 @@ class ModdingHistoryController extends Controller
         $this->middleware(function ($request, $next) {
             $this->isModerator = priv_check('BeatmapDiscussionModerate')->can();
             $this->isKudosuModerator = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
-            $this->user = User::lookup(request('user'), null, $this->isModerator);
+            $this->user = User::lookupWithHistory(request('user'), null, $this->isModerator, true);
 
             if ($this->user === null || $this->user->isBot() || !priv_check('UserShow', $this->user)->can()) {
-                abort(404);
+                return response()->view('users.show_not_found')->setStatusCode(404);
             }
 
             if ((string) $this->user->user_id !== (string) request('user')) {
@@ -59,10 +59,7 @@ class ModdingHistoryController extends Controller
             $this->searchParams = array_merge(['user' => $this->user->user_id], request()->query());
             $this->searchParams['is_moderator'] = $this->isModerator;
             $this->searchParams['is_kudosu_moderator'] = $this->isKudosuModerator;
-
-            if (!$this->isModerator) {
-                $this->searchParams['with_deleted'] = false;
-            }
+            $this->searchParams['with_deleted'] = $this->isModerator;
 
             return $next($request);
         });
@@ -76,45 +73,146 @@ class ModdingHistoryController extends Controller
 
         $this->searchParams['limit'] = 10;
         $this->searchParams['sort'] = 'id_desc';
-        $this->searchParams['with_deleted'] = $this->isModerator;
 
         $discussions = BeatmapDiscussion::search($this->searchParams);
-        $discussions['items'] = $discussions['query']->with([
-                'user',
-                'beatmapset',
-                'startingPost',
-            ])->get();
+        $discussions['query']->with([
+            'beatmap',
+            'beatmapDiscussionVotes',
+            'beatmapset',
+            'startingPost',
+        ]);
+
+        if ($this->isModerator) {
+            $discussions['query']->visibleWithTrashed();
+        } else {
+            $discussions['query']->visible();
+        }
+
+        $discussions['items'] = $discussions['query']->get();
 
         $posts = BeatmapDiscussionPost::search($this->searchParams);
-        $posts['items'] = $posts['query']->with([
-                'user',
-                'beatmapset',
-                'beatmapDiscussion',
-                'beatmapDiscussion.beatmapset',
-                'beatmapDiscussion.user',
-                'beatmapDiscussion.startingPost',
-            ])->get();
+        $posts['query']->with([
+            'beatmapDiscussion.beatmap',
+            'beatmapDiscussion.beatmapset',
+        ]);
+
+        if (!$this->isModerator) {
+            $posts['query']->visible();
+        }
+
+        $posts['items'] = $posts['query']->get();
 
         $events = BeatmapsetEvent::search($this->searchParams);
-        if ($this->isModerator) {
-            $events['items'] = $events['query']->with('user')->with(['beatmapset' => function ($query) {
-                $query->withTrashed();
-            }])->with('beatmapset.user')->get();
-        } else {
-            $events['items'] = $events['query']->with(['user', 'beatmapset', 'beatmapset.user'])->get();
-        }
+        $events['items'] = $events['query']->with([
+            'beatmapset',
+            'beatmapDiscussion.beatmapset',
+            'beatmapDiscussion.startingPost',
+        ])->whereHas('beatmapset')->get();
 
         $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
         $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
 
+        $discussionUserIds = [];
+        foreach ($discussions['items'] as $discussion) {
+            $discussionUserIds[] = $discussion->user_id;
+            $discussionUserIds[] = $discussion->startingPost->last_editor_id;
+        }
+
+        $userIdSources = [
+            $discussionUserIds,
+            $posts['items']
+                ->pluck('user_id')
+                ->toArray(),
+            $posts['items']
+                ->pluck('last_editor_id')
+                ->toArray(),
+            $events['items']
+                ->pluck('user_id')
+                ->toArray(),
+            $votes['items']
+                ->pluck('user_id')
+                ->toArray(),
+            $receivedVotes['items']
+                ->pluck('user_id')
+                ->toArray(),
+        ];
+
+        $userIds = [];
+
+        foreach ($userIdSources as $source) {
+            $userIds = array_merge($userIds, $source);
+        }
+
+        $userIds = array_values(array_filter(array_unique($userIds)));
+
+        $users = User::whereIn('user_id', $userIds)
+            ->with('userGroups')
+            ->default()
+            ->get();
+
+        $perPage = [
+            'recentlyReceivedKudosu' => 5,
+        ];
+
+        $extras = [];
+
+        foreach ($perPage as $page => $n) {
+            // Fetch perPage + 1 so the frontend can tell if there are more items
+            // by comparing items count and perPage number.
+            $extras[$page] = $this->getExtra($user, $page, $n + 1);
+        }
+
+        $jsonChunks = [
+            'extras' => $extras,
+            'perPage' => $perPage,
+            'user' => json_item(
+                $user,
+                'User',
+                [
+                    "statistics:mode({$user->playmode})",
+                    'active_tournament_banner',
+                    'badges',
+                    'follower_count',
+                    'graveyard_beatmapset_count',
+                    'groups',
+                    'loved_beatmapset_count',
+                    'previous_usernames',
+                    'ranked_and_approved_beatmapset_count',
+                    'statistics.rank',
+                    'statistics.scoreRanks',
+                    'support_level',
+                    'unranked_beatmapset_count',
+                ]
+            ),
+            'discussions' => json_collection(
+                $discussions['items'],
+                'BeatmapDiscussion',
+                ['starting_post', 'beatmapset', 'current_user_attributes']
+            ),
+            'events' => json_collection(
+                $events['items'],
+                'BeatmapsetEvent',
+                ['discussion.starting_post', 'beatmapset.user']
+            ),
+            'posts' => json_collection(
+                $posts['items'],
+                'BeatmapDiscussionPost',
+                ['beatmap_discussion.beatmapset']
+            ),
+            'votes' => [
+                'given' => $votes['items'],
+                'received' => $receivedVotes['items'],
+            ],
+            'users' => json_collection(
+                $users,
+                'UserCompact',
+                ['groups']
+            ),
+        ];
+
         return view('users.beatmapset_activities', compact(
-            'currentAction',
-            'discussions',
-            'events',
-            'posts',
-            'user',
-            'receivedVotes',
-            'votes'
+            'jsonChunks',
+            'user'
         ));
     }
 
@@ -249,5 +347,25 @@ class ModdingHistoryController extends Controller
         );
 
         return view('beatmapset_discussion_votes.index', compact('votes', 'user'));
+    }
+
+    private function getExtra($user, $page, $options, $perPage = 10, $offset = 0)
+    {
+        // Grouped by $transformer and sorted alphabetically ($transformer and then $page).
+        switch ($page) {
+            // KudosuHistory
+            case 'recentlyReceivedKudosu':
+                $transformer = 'KudosuHistory';
+                $query = $user->receivedKudosu()
+                    ->with('post', 'post.topic', 'giver', 'kudosuable')
+                    ->orderBy('exchange_id', 'desc');
+                break;
+        }
+
+        if (!isset($collection)) {
+            $collection = $query->limit($perPage)->offset($offset)->get();
+        }
+
+        return json_collection($collection, $transformer, $includes ?? []);
     }
 }

@@ -100,7 +100,7 @@ return [
             'title' => 'Tabela wyników',
 
             'headers' => [
-                'accuracy' => 'Precyzja',
+                'accuracy' => 'Celność',
                 'combo' => 'Combo',
                 'miss' => 'Pudła',
                 'mods' => 'Modyfikatory',

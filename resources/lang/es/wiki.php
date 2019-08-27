@@ -21,6 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'La página solicitada aún no se ha traducido al idioma seleccionado (:language). Mostrando la versión en inglés.',
+        'incomplete_or_outdated' => '',
         'languages' => 'Idiomas',
         'missing' => 'La página solicitada ":keyword" no se pudo encontrar.',
         'missing_title' => 'No encontrado',

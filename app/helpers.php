@@ -31,6 +31,11 @@ function array_search_null($value, $array)
     }
 }
 
+function atom_id(string $namespace, $id = null) : string
+{
+    return 'tag:'.request()->getHttpHost().',2019:'.$namespace.($id === null ? '' : "/{$id}");
+}
+
 function background_image($url, $proxy = true)
 {
     if (!present($url)) {
@@ -420,6 +425,17 @@ function strip_utf8_bom($input)
     return $input;
 }
 
+function tag($element, $attributes = [], $content = null)
+{
+    $attributeString = '';
+
+    foreach ($attributes ?? [] as $key => $value) {
+        $attributeString .= ' '.$key.'="'.e($value).'"';
+    }
+
+    return '<'.$element.$attributeString.'>'.($content ?? '').'</'.$element.'>';
+}
+
 function to_sentence($array, $key = 'common.array_and')
 {
     switch (count($array)) {
@@ -564,24 +580,31 @@ function current_action()
     return explode('@', Route::currentRouteAction(), 2)[1] ?? null;
 }
 
-function link_to_user($user_id, $user_name = null, $user_color = null)
+function link_to_user($id, $username = null, $color = null, $classNames = null)
 {
-    if ($user_id instanceof App\Models\User) {
-        $user_name ?? ($user_name = $user_id->username);
-        $user_color ?? ($user_color = $user_id->user_colour);
-        $user_id = $user_id->getKey();
+    if ($id instanceof App\Models\User) {
+        $username ?? ($username = $id->username);
+        $color ?? ($color = $id->user_colour);
+        $id = $id->getKey();
     }
-    $user_name = e($user_name);
-    $style = user_color_style($user_color, 'color');
+    $username = e($username);
+    $style = user_color_style($color, 'color');
 
-    if ($user_id) {
+    if ($classNames === null) {
+        $classNames = ['user-name'];
+    }
+
+    $class = implode(' ', $classNames);
+
+    if ($id === null) {
+        return "<span class='{$class}'>{$username}</span>";
+    } else {
+        $class .= ' js-usercard';
         // FIXME: remove `rawurlencode` workaround when fixed upstream.
         // Reference: https://github.com/laravel/framework/issues/26715
-        $user_url = e(route('users.show', rawurlencode($user_id)));
+        $url = e(route('users.show', rawurlencode($id)));
 
-        return "<a class='user-name js-usercard' data-user-id='{$user_id}' href='{$user_url}' style='{$style}'>{$user_name}</a>";
-    } else {
-        return "<span class='user-name'>{$user_name}</span>";
+        return "<a class='{$class}' data-user-id='{$id}' href='{$url}' style='{$style}'>{$username}</a>";
     }
 }
 

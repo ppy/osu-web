@@ -970,6 +970,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
                 'beatmapDiscussions.beatmapDiscussionVotes',
                 'beatmapDiscussions.beatmapset',
                 'beatmapDiscussions.beatmap',
+                'beatmapDiscussions.beatmapDiscussionVotes',
             ])->find($this->getKey()),
             'Beatmapset',
             [
@@ -978,6 +979,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
                 'discussions',
                 'discussions.current_user_attributes',
                 'discussions.posts',
+                'discussions.votes',
                 'events',
                 'nominations',
                 'related_users',
@@ -1157,5 +1159,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         static $pattern = '/^(.*?)-{15}/s';
 
         return preg_replace($pattern, '', $text);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('active', function ($builder) {
+            $builder->active();
+        });
     }
 }

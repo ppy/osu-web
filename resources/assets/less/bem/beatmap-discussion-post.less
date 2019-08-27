@@ -139,6 +139,11 @@
     }
 
     .@{_top}--reply & {
+      // override padding for discussion previews
+      .beatmap-discussion--preview & {
+        padding: 10px @_content-gutter-base;
+      }
+
       @media @desktop {
         padding-left: @beatmap-discussion--reply-padding;
         padding-right: @beatmap-discussion--reply-padding;
@@ -310,6 +315,10 @@
     border-radius: 1px;
     flex: none;
     width: 2px;
+
+    .@{_top}--ppy & {
+      background-color: @osu-colour-group-ppy;
+    }
 
     .@{_top}--bot & {
       background-color: @osu-colour-group-bot;

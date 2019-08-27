@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Profil',
 
             'user' => [
+                'user_discord' => '',
                 'user_from' => 'současná poloha',
                 'user_interests' => 'zájmy',
                 'user_msnm' => '',
                 'user_occ' => 'zaměstnání',
                 'user_twitter' => '',
                 'user_website' => 'webové stránky',
-                'user_discord' => '',
             ],
         ],
 
@@ -62,9 +64,37 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => 'Oznámení',
+        'topic_auto_subscribe' => 'automaticky povolit oznámení o nových tématech fóra, které vytvoříte',
+    ],
+
     'oauth' => [
-        'title' => '',
-        'authorized_clients' => '',
+        'authorized_clients' => 'autorizovaní klienti',
+        'title' => 'OAuth',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'klávesnice',
+        'mouse' => 'myš',
+        'tablet' => 'tablet',
+        'title' => 'Styly hraní',
+        'touch' => 'dotyk',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'blokovat soukromé zprávy od lidí, kteří nejsou v tvém seznamu přátel',
+        'hide_online' => 'skrýt váš online status',
+        'title' => 'Soukromí',
+    ],
+
+    'security' => [
+        'current_session' => 'současná',
+        'end_session' => 'Ukončit relaci',
+        'end_session_confirmation' => 'Toto okamžitě ukončí vaši relaci na tom zařízení. Jste si jistý?',
+        'last_active' => 'Naposledy aktivní:',
+        'title' => 'Zabezpečení',
+        'web_sessions' => 'webové relace',
     ],
 
     'update_email' => [
@@ -77,31 +107,12 @@ return [
         'update' => 'aktualizovat',
     ],
 
-    'playstyles' => [
-        'title' => 'Styly hraní',
-        'mouse' => 'myš',
-        'keyboard' => 'klávesnice',
-        'tablet' => 'tablet',
-        'touch' => 'dotyk',
+    'verification_completed' => [
+        'text' => '',
+        'title' => '',
     ],
 
-    'privacy' => [
-        'title' => 'Soukromí',
-        'friends_only' => 'blokovat soukromé zprávy od lidí, kteří nejsou v tvém seznamu přátel',
-        'hide_online' => 'skrýt váš online status',
-    ],
-
-    'notifications' => [
-        'title' => 'Oznámení',
-        'topic_auto_subscribe' => '',
-    ],
-
-    'security' => [
-        'current_session' => 'současná',
-        'end_session' => 'Ukončit relaci',
-        'end_session_confirmation' => 'Toto okamžitě ukončí vaši relaci na tom zařízení. Jste si jistý?',
-        'last_active' => 'Naposledy aktivní:',
-        'title' => 'Zabezpečení',
-        'web_sessions' => 'webové relace',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

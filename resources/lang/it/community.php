@@ -38,7 +38,7 @@ return [
         'supporter_status' => [
             'contribution' => 'Grazie per il tuo sostegno finora! Hai contribuito un totale di :dollars in :tags tag acquistati!',
             'gifted' => ':giftedTags dei tuo tag acquistati sono stati regalati (per un totale di :giftedDollars donati), come sei generoso!',
-            'not_yet' => "Non hai ancora un tag supporter ancora :(",
+            'not_yet' => "Non hai ancora una supporter tag :(",
             'title' => 'Stato supporter corrente',
             'valid_until' => 'Il tuo attuale tag supporter è valido fino al :date!',
             'was_valid_until' => 'Il tuo tag supporter era valido fino al :date.',
@@ -131,7 +131,7 @@ return [
         'convinced' => [
             'title' => 'Mi hai convinto! :D',
             'support' => 'sostieni osu!',
-            'gift' => 'or regala il supporter ad altri giocatori',
+            'gift' => 'o regala il supporter ad altri giocatori',
             'instructions' => 'clicca il bottone con il cuore per procedere al osu!store',
         ],
     ],

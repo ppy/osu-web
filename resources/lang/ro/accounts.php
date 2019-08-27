@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Profil',
 
             'user' => [
+                'user_discord' => '',
                 'user_from' => 'locație curentă',
                 'user_interests' => 'interese',
                 'user_msnm' => '',
                 'user_occ' => 'ocupație',
                 'user_twitter' => '',
                 'user_website' => 'site web',
-                'user_discord' => '',
             ],
         ],
 
@@ -62,9 +64,37 @@ return [
         ],
     ],
 
-    'oauth' => [
+    'notifications' => [
         'title' => '',
+        'topic_auto_subscribe' => '',
+    ],
+
+    'oauth' => [
         'authorized_clients' => '',
+        'title' => '',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'tastatură',
+        'mouse' => 'mouse',
+        'tablet' => 'tabletă',
+        'title' => 'Stiluri de joc',
+        'touch' => 'touch',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'Blochează mesajele private de la oameni care nu sunt pe lista ta de prieteni',
+        'hide_online' => 'ascunde-ți prezența online',
+        'title' => 'Confidențialitate',
+    ],
+
+    'security' => [
+        'current_session' => 'curent',
+        'end_session' => 'Încheie sesiunea',
+        'end_session_confirmation' => 'Acest lucru iți va încheia imediat sesiunea pe acel dispozitiv. Ești sigur?',
+        'last_active' => 'Ultima conectare:',
+        'title' => 'Securitate',
+        'web_sessions' => 'sesiuni web',
     ],
 
     'update_email' => [
@@ -77,31 +107,12 @@ return [
         'update' => 'actualizează',
     ],
 
-    'playstyles' => [
-        'title' => 'Stiluri de joc',
-        'mouse' => 'mouse',
-        'keyboard' => 'tastatură',
-        'tablet' => 'tabletă',
-        'touch' => 'touch',
-    ],
-
-    'privacy' => [
-        'title' => 'Confidențialitate',
-        'friends_only' => 'Blochează mesajele private de la oameni care nu sunt pe lista ta de prieteni',
-        'hide_online' => 'ascunde-ți prezența online',
-    ],
-
-    'notifications' => [
+    'verification_completed' => [
+        'text' => '',
         'title' => '',
-        'topic_auto_subscribe' => '',
     ],
 
-    'security' => [
-        'current_session' => 'curent',
-        'end_session' => 'Încheie sesiunea',
-        'end_session_confirmation' => 'Acest lucru iți va încheia imediat sesiunea pe acel dispozitiv. Ești sigur?',
-        'last_active' => 'Ultima conectare:',
-        'title' => 'Securitate',
-        'web_sessions' => 'sesiuni web',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

@@ -15,171 +15,112 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', [
+    'legacyNav' => false,
+])
 
 @section('content')
-    <div class="osu-page">
-        <!-- header info -->
-        <div class="stg-header">
-            <h2 class="stg-header__header">
-                {!! trans('community.support.header.big_description') !!}
-            </h2>
-
-            <p class="stg-header__description">
-                {!! trans('community.support.header.small_description') !!}
-            </p>
-
-            <a class="stg-header__button" href="{{ route('store.products.show', 'supporter-tag') }}">
-                {!! trans('community.support.header.support_button') !!}
-                <span class="stg-header__button-icon">
-                    <span class="fas fa-heart"></span>
-                </span>
-            </a>
+    <div class="header-v3 header-v3--supporter">
+        <div class="header-v3__bg"></div>
+        <div class="header-v3__overlay"></div>
+        <div class="osu-page osu-page--header-v3">
+            <div class="supporter-status">
+                <div class="supporter-status__pippi"></div>
+                @if (!empty($supporterStatus))
+                    <!-- supporter status  -->
+                    <div class="supporter-status__flex-container">
+                        <div class="supporter-heart{{ $supporterStatus['current'] ? ' supporter-heart--active' : '' }}"></div>
+                        <div class="supporter-status__flex-container-inner">
+                            <div class="supporter-status__progress-bar supporter-status__progress-bar--active">
+                                <div class="supporter-status__progress-bar-fill supporter-status__progress-bar-fill--active" style="width: {{$supporterStatus['remainingRatio'] ?? 0}}%;"></div>
+                            </div>
+                            @if ($supporterStatus['expiration'] !== null)
+                            <div class="supporter-status__text supporter-status__text--first">
+                                {!! trans('community.support.supporter_status.'.($supporterStatus['current'] ? 'valid_until' : 'was_valid_until'), [
+                                    'date' => '<strong>'.i18n_date($supporterStatus['expiration']).'</strong>'
+                                ]) !!}
+                            </div>
+                            @else
+                            <div class="supporter-status__text">
+                                {!! trans('community.support.supporter_status.not_yet') !!}
+                            </div>
+                            @endif
+                            @if ($supporterStatus['tags'] > 0)
+                            <div class="supporter-status__text">
+                                {!! trans('community.support.supporter_status.contribution', [
+                                    'dollars' => "<strong>{$supporterStatus['dollars']}</strong>",
+                                    'tags' => "<strong>{$supporterStatus['tags']}</strong>"
+                                ]) !!}
+                            </div>
+                            @endif
+                            @if ($supporterStatus['giftedTags'] > 0)
+                            <div class="supporter-status__text">
+                                {!! trans('community.support.supporter_status.gifted', [
+                                    'giftedDollars' => "<strong>{$supporterStatus['giftedDollars']}</strong>",
+                                    'giftedTags' => "<strong>{$supporterStatus['giftedTags']}</strong>"
+                                ]) !!}
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                    <!-- end: supporter status -->
+                @endif
+            </div>
+            <ol class="page-mode-v2 page-mode-v2--empty"></ol>
         </div>
-        <!-- end: header info -->
     </div>
 
-    <div class="osu-page osu-page--small">
-        <!-- quote -->
-        <div class="stg-quote">
-            <span class="stg-quote__bg">
-                <span class="fas fa-quote-left"></span>
-            </span>
-            <blockquote class="stg-quote__content">
-                "{!! trans('community.support.dev_quote') !!}"
-            </blockquote>
-            <div class="stg-quote__signature">— Dean "peppy" Herbert</div>
-        </div>
-        <!-- end: quote -->
-    </div>
-
-    <div class="osu-page osu-page--small osu-page--stg-block">
-        @if (!empty($supporterStatus))
-        <!-- supporter status  -->
-        <div class="stg-status{{ $supporterStatus['current'] ? ' stg-status--active' : '' }}">
-            <div class="stg-status__title">
-                {{ trans('community.support.supporter_status.title') }}
-            </div>
-            <div class="stg-status__flex-container">
-                <div class="stg-status__heart-container">
-                    <span class="fas fa-heart stg-status__heart"></span>
+    <div class="osu-page osu-page--supporter">
+        <div class="supporter">
+            <div class="supporter-quote">
+                <div class="supporter-quote__body">
+                    <div class="supporter-quote__quote-mark supporter-quote__quote-mark--left"><i class="fas fa-quote-left"></i></div>
+                    <blockquote class="supporter-quote__content">
+                        I've always tried to run osu! exactly how I'd want to see it run if I were a player. While this does mean osu! will never be a super-profitable business, that was never the goal (nor will it ever be!). We intentionally avoid advertising, partnerships, etc because I feel that would detract from the core experience.
+                        <br/><br/>
+                        osu! is free-to-win – supporting osu! won’t give you any competitive advantage (but it might make you cooler amongst your friends!). I am hugely grateful, and honestly astounded, that we have come this far purely on donations, but this is where we are! Your contributions cover completely our small team's salaries, licensing efforts via the Featured Artist program, prizes and funding for official tournaments, but most importantly make sure we have quality servers and bandwidth available around the globe.
+                        <br/><br/>
+                        I would like to offer thanks and gratitude on behalf of myself and the rest of the team, to those who have supported osu!.
+                        <br/><br/>
+                        You keep osu! running.
+                    </blockquote>
+                    <div class="supporter-quote__quote-mark supporter-quote__quote-mark--right"><i class="fas fa-quote-right"></i></div>
                 </div>
-                <div class="stg-status__flex-container-inner">
-                    <div class="stg-status__progress-bar">
-                        <div class="stg-status__progress-bar-fill" style="width: {{$supporterStatus['remainingRatio'] ?? 0}}%;"></div>
-                    </div>
-                    @if ($supporterStatus['expiration'] !== null)
-                    <div class="stg-status__text stg-status__text--first">
-                        {!! trans('community.support.supporter_status.'.($supporterStatus['current'] ? 'valid_until' : 'was_valid_until'), [
-                            'date' => '<strong>'.i18n_date($supporterStatus['expiration']).'</strong>'
-                        ]) !!}
-                    </div>
-                    @else
-                    <div class="stg-status__text">
-                        {!! trans('community.support.supporter_status.not_yet') !!}
-                    </div>
-                    @endif
-                    @if ($supporterStatus['tags'] > 0)
-                    <div class="stg-status__text">
-                        {!! trans('community.support.supporter_status.contribution', [
-                            'dollars' => "<strong>{$supporterStatus['dollars']}</strong>",
-                            'tags' => "<strong>{$supporterStatus['tags']}</strong>"
-                        ]) !!}
-                    </div>
-                    @endif
-                    @if ($supporterStatus['giftedTags'] > 0)
-                    <div class="stg-status__text">
-                        {!! trans('community.support.supporter_status.gifted', [
-                            'giftedDollars' => "<strong>{$supporterStatus['giftedDollars']}</strong>",
-                            'giftedTags' => "<strong>{$supporterStatus['giftedTags']}</strong>"
-                        ]) !!}
-                    </div>
-                    @endif
+                <div class="supporter-quote__signature">— Dean "peppy" Herbert, creator of osu!</div>
+            </div>
+            <h3 class="supporter__title">
+                {{ trans('community.support.why-support.title') }}
+            </h3>
+            @include('home._supporter_perk_group', ['group' => $data['support-reasons']])
+            <div class="supporter__block supporter__block--bg-0">
+                <h3 class="supporter__title">
+                    {{ trans('community.support.perks.title') }}
+                </h3>
+            </div>
+            @foreach($data['perks'] as $index => $group)
+                <div class="supporter__block supporter__block--{{'bg-'.$index % 3}}">
+                    @include("home._supporter_perk_{$group['type']}", ['group' => $group])
                 </div>
-            </div>
-        </div>
-        <!-- end: supporter status -->
-        @endif
-
-
-        <!-- why support  -->
-        <div class="stg-block{{ empty($supporterStatus) ? ' stg-block--top' : ''}}">
-            <h3 class="stg-block__title">
-                {{ trans('community.support.why_support.title') }}
-            </h3>
-
-            <div class="stg-block__perks">
-                @foreach($data['blocks'] as $name => $icon)
-                    <div class="stg-perk">
-                        <div class="stg-perk__icon">
-                            <span class="{{ $icon }}"></span>
-                        </div>
-
-                        <div class="stg-perk__text">
-                            {!! trans('community.support.why_support.blocks.'.$name) !!}
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-        <!-- end: why support -->
-
-
-        <!-- what gets -->
-        <div class="stg-block stg-block--features">
-            <h3 class="stg-block__title">
-                {{ trans('community.support.perks.title') }}
-            </h3>
-
-            <!-- preview -->
-            <div class="stg-block__preview"></div>
-
-            <div class="stg-block__perks">
-                @foreach($data['perks'] as $name => $icon)
-                    @if (strlen($name) > 0)
-                        <div class="stg-perk stg-perk--feature">
-                            <div class="stg-perk__icon">
-                                <span class="{{ $icon }}"></span>
-                            </div>
-
-                            <div class="stg-perk__text">
-                                <h4 class="stg-perk__title">
-                                    {{ trans('community.support.perks.'.$name.'.title') }}
-                                </h4>
-
-                                <p class="stg-perk__content">
-                                    {!! trans('community.support.perks.'.$name.'.description') !!}
-                                </p>
-                            </div>
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>
-        <!-- end: what gets -->
-
-        <!-- convinced -->
-        <div class="stg-block stg-block--convinced">
-            <h3 class="stg-block__title">
+            @endforeach
+            <h3 class="supporter__title supporter__title--convinced">
                 {{ trans('community.support.convinced.title') }}
             </h3>
-
-            <a class="icon-fancy" href="{{ route('store.products.show', 'supporter-tag') }}">
-                <span class="fas fa-heart"></span>
-            </a>
-
-            <div class="stg-block__run stg-block__run--main">
-                {{ trans('community.support.convinced.support') }}
-            </div>
-
-            <div class="stg-block__run stg-block__run--sub-1">
-                {{ trans('community.support.convinced.gift') }}
-            </div>
-            <div class="stg-block__run stg-block__run--sub-2">
-                {{ trans('community.support.convinced.instructions') }}
+            <div class="supporter-eyecatch">
+                <div class="supporter-eyecatch__box">
+                    <a class="supporter-eyecatch__link" href="{{ route('store.products.show', 'supporter-tag') }}">
+                        <div class="supporter-heart supporter-heart--larger supporter-heart--active"></div>
+                    </a>
+                    <div class="supporter-eyecatch__text supporter-eyecatch__text--main">
+                        {{ trans('community.support.convinced.support') }}
+                    </div>
+                    <div class="supporter-eyecatch__text supporter-eyecatch__text--sub-1">
+                        {{ trans('community.support.convinced.gift') }}
+                    </div>
+                    <div class="supporter-eyecatch__text supporter-eyecatch__text--sub-2">
+                        {{ trans('community.support.convinced.instructions') }}
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- end: convinced -->
-
     </div>
 @endsection

@@ -145,6 +145,7 @@ return [
     ],
     'urls' => [
         'base' => 'https://osu.ppy.sh',
+        'bounty-form' => env('OS_BOUNTY_URL'),
         'dev' => 'https://discord.gg/ppy',
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',

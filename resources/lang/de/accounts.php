@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Profil',
 
             'user' => [
+                'user_discord' => 'discord',
                 'user_from' => 'aktueller standort',
                 'user_interests' => 'Interessen',
                 'user_msnm' => 'skype',
                 'user_occ' => 'beschäftigung',
                 'user_twitter' => 'twitter',
                 'user_website' => 'webseite',
-                'user_discord' => 'discord',
             ],
         ],
 
@@ -62,9 +64,37 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => 'Nachrichten',
+        'topic_auto_subscribe' => 'aktiviere Nachrichten automatisch bei neue Forum Themen die du erstellst',
+    ],
+
     'oauth' => [
-        'title' => '',
-        'authorized_clients' => '',
+        'authorized_clients' => 'autorisierte Geräte',
+        'title' => 'OAuth',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'Tastatur',
+        'mouse' => 'Maus',
+        'tablet' => 'Tablet',
+        'title' => 'Spielstil',
+        'touch' => 'touch',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'Blockiere Nachrichten von Benutzern, die nicht auf deiner Freundesliste sind',
+        'hide_online' => 'Online-Status verstecken',
+        'title' => 'Privatsphäre',
+    ],
+
+    'security' => [
+        'current_session' => 'Aktuell',
+        'end_session' => 'Sitzung beenden',
+        'end_session_confirmation' => 'Das wird deine Sitzung auf diesem Gerät sofort beenden. Bist du sicher?',
+        'last_active' => 'Zuletzt aktiv:',
+        'title' => 'Sicherheit',
+        'web_sessions' => 'Sitzungen',
     ],
 
     'update_email' => [
@@ -77,31 +107,12 @@ return [
         'update' => 'speichern',
     ],
 
-    'playstyles' => [
-        'title' => 'Spielstil',
-        'mouse' => 'Maus',
-        'keyboard' => 'Tastatur',
-        'tablet' => 'Tablet',
-        'touch' => 'touch',
+    'verification_completed' => [
+        'text' => '',
+        'title' => '',
     ],
 
-    'privacy' => [
-        'title' => 'Privatsphäre',
-        'friends_only' => 'Blockiere Nachrichten von Benutzern, die nicht auf deiner Freundesliste sind',
-        'hide_online' => 'Online-Status verstecken',
-    ],
-
-    'notifications' => [
-        'title' => 'Nachrichten',
-        'topic_auto_subscribe' => 'aktiviere Nachrichten automatisch bei neue Forum Themen die du erstellst',
-    ],
-
-    'security' => [
-        'current_session' => 'Aktuell',
-        'end_session' => 'Sitzung beenden',
-        'end_session_confirmation' => 'Das wird deine Sitzung auf diesem Gerät sofort beenden. Bist du sicher?',
-        'last_active' => 'Zuletzt aktiv:',
-        'title' => 'Sicherheit',
-        'web_sessions' => 'Sitzungen',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

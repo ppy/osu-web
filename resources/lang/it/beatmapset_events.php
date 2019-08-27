@@ -40,7 +40,7 @@ return [
         'nominate' => 'Nominata da :user.',
         'nomination_reset' => 'Il nuovo problema :discussion (:text) ha comportato un reset di nomina.',
         'qualify' => 'Questa Beatmap ha raggiunto il numero massimo di nomine ed è stata qualificata.',
-        'rank' => 'Classificata.',
+        'rank' => 'Rankata.',
     ],
 
     'index' => [

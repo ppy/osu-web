@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => '編輯頭像',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => '編輯個人簡介',
 
             'user' => [
+                'user_discord' => 'Discord',
                 'user_from' => '目前所在地',
                 'user_interests' => '喜好',
                 'user_msnm' => 'skype',
                 'user_occ' => '職業',
                 'user_twitter' => 'twitter',
                 'user_website' => '個人網站',
-                'user_discord' => 'Discord',
             ],
         ],
 
@@ -62,9 +64,37 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => '通知',
+        'topic_auto_subscribe' => '自動啟用自己創建的主題的通知',
+    ],
+
     'oauth' => [
-        'title' => '',
-        'authorized_clients' => '',
+        'authorized_clients' => '已授權客戶端',
+        'title' => 'OAuth',
+    ],
+
+    'playstyles' => [
+        'keyboard' => '鍵盤',
+        'mouse' => '滑鼠',
+        'tablet' => '繪圖板',
+        'title' => '遊戲方式',
+        'touch' => '觸控螢幕',
+    ],
+
+    'privacy' => [
+        'friends_only' => '過濾來自好友以外的訊息',
+        'hide_online' => '隱藏在線狀態',
+        'title' => '隱私政策',
+    ],
+
+    'security' => [
+        'current_session' => '目前',
+        'end_session' => '終止會話',
+        'end_session_confirmation' => '你確定要立刻結束該設備上的會話嗎？',
+        'last_active' => '上次使用：',
+        'title' => '安全',
+        'web_sessions' => '瀏覽器會話',
     ],
 
     'update_email' => [
@@ -77,31 +107,12 @@ return [
         'update' => '更新',
     ],
 
-    'playstyles' => [
-        'title' => '遊戲方式',
-        'mouse' => '滑鼠',
-        'keyboard' => '鍵盤',
-        'tablet' => '繪圖板',
-        'touch' => '觸控螢幕',
+    'verification_completed' => [
+        'text' => '',
+        'title' => '',
     ],
 
-    'privacy' => [
-        'title' => '隱私政策',
-        'friends_only' => '過濾來自好友以外的訊息',
-        'hide_online' => '隱藏在線狀態',
-    ],
-
-    'notifications' => [
-        'title' => '通知',
-        'topic_auto_subscribe' => '自動啟用自己創建的主題的通知',
-    ],
-
-    'security' => [
-        'current_session' => '目前',
-        'end_session' => '終止會話',
-        'end_session_confirmation' => '你確定要立刻結束該設備上的會話嗎？',
-        'last_active' => '上次使用：',
-        'title' => '安全',
-        'web_sessions' => '瀏覽器會話',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

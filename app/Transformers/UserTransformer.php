@@ -21,6 +21,7 @@
 namespace App\Transformers;
 
 use App\Models\User;
+use App\Models\UserGroup;
 use League\Fractal;
 
 class UserTransformer extends Fractal\TransformerAbstract
@@ -35,6 +36,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'follower_count',
         'friends',
         'graveyard_beatmapset_count',
+        'groups',
         'is_admin',
         'loved_beatmapset_count',
         'monthly_playcounts',
@@ -48,6 +50,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'unranked_beatmapset_count',
         'unread_pm_count',
         'user_achievements',
+        'user_preferences',
     ];
 
     public function transform(User $user)
@@ -176,6 +179,22 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->primitive($user->profileBeatmapsetsGraveyard()->count());
     }
 
+    public function includeGroups(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $groups = [];
+
+            foreach ($user->groupIds() as $id) {
+                $name = array_search_null($id, UserGroup::GROUPS);
+                if ($name !== null && $id !== UserGroup::GROUPS['admin']) {
+                    $groups[] = $name;
+                }
+            }
+
+            return $groups;
+        });
+    }
+
     public function includeIsAdmin(User $user)
     {
         return $this->primitive($user->isAdmin(), function ($flag) {
@@ -269,5 +288,14 @@ class UserTransformer extends Fractal\TransformerAbstract
             $user->userAchievements()->orderBy('date', 'desc')->get(),
             new UserAchievementTransformer()
         );
+    }
+
+    public function includeUserPreferences(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return [
+                'ranking_expanded' => $user->profileCustomization()->ranking_expanded,
+            ];
+        });
     }
 }

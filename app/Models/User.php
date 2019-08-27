@@ -462,6 +462,24 @@ class User extends Model implements AuthenticatableContract
         return $user->first();
     }
 
+    public static function lookupWithHistory($usernameOrId, $type = null, $findAll = false)
+    {
+        $user = static::lookup($usernameOrId, $type, $findAll);
+
+        if ($user !== null) {
+            return $user;
+        }
+
+        $change = UsernameChangeHistory::visible()
+            ->where('username_last', $usernameOrId)
+            ->orderBy('change_id', 'desc')
+            ->first();
+
+        if ($change !== null) {
+            return static::lookup($change->user_id, 'id');
+        }
+    }
+
     public function getCountryAcronymAttribute($value)
     {
         return presence($value);
@@ -1430,7 +1448,7 @@ class User extends Model implements AuthenticatableContract
     // TODO: we should rename this to currentUserJson or something.
     public function defaultJson()
     {
-        return json_item($this, 'User', ['blocks', 'friends', 'is_admin', 'unread_pm_count']);
+        return json_item($this, 'User', ['blocks', 'friends', 'is_admin', 'unread_pm_count', 'user_preferences']);
     }
 
     public function supportLength()

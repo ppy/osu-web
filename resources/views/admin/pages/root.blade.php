@@ -21,7 +21,7 @@
     <div class="osu-layout__row osu-layout__row--page-admin">
         <h1>{{ trans('admin.pages.root.title') }}</h1>
 
-        <h2>{{ trans('admin.pages.root.sections.general') }}</h2>
+        <h2 class="title">{{ trans('admin.pages.root.sections.general') }}</h2>
         <ul>
             <li>
                 <a href="{{ route('admin.logs.index') }}">
@@ -33,7 +33,7 @@
             </li>
         </ul>
 
-        <h2>{{ trans('admin.pages.root.sections.store') }}</h2>
+        <h2 class="title">{{ trans('admin.pages.root.sections.store') }}</h2>
         <ul>
             <li>
                 <a href="{{ route('admin.store.orders.index') }}">
@@ -42,7 +42,7 @@
             </li>
         </ul>
 
-        <h2>{{ trans('admin.pages.root.sections.forum') }}</h2>
+        <h2 class="title">{{ trans('admin.pages.root.sections.forum') }}</h2>
         <ul>
             <li>
                 <a href="{{ route('admin.forum.forum-covers.index') }}">

@@ -50,7 +50,14 @@
             {{ $bodyAdditionalClasses ?? '' }}
         "
     >
-        <style>:root {--base-hue: {{ $currentHue }};}</style>
+        <style>
+            :root {
+                @if ($useTorusFont ?? false)
+                    --font-default-override: var(--font-default-torus);
+                @endif
+                --base-hue: {{ $currentHue }};
+            }
+        </style>
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
         <div class="blackout js-blackout" data-visibility="hidden"></div>
 

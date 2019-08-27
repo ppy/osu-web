@@ -37,6 +37,11 @@ return [
     'checkout' => [
         'generic' => 'Bei der Vorbereitung Ihrer Bestellung ist ein Fehler aufgetreten.',
     ],
+    'search' => [
+        'default' => '',
+        'operation_timeout_exception' => '',
+    ],
+
     'logged_out' => 'Du wurdest ausgeloggt. Einloggen und erneut versuchen.',
     'supporter_only' => 'Für dieses Feature muss man Supporter sein.',
     'no_restricted_access' => 'Diese Aktion steht nicht zur Verfügung, während der Account restricted ist.',

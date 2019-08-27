@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => '头像',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => '个人资料',
 
             'user' => [
+                'user_discord' => 'discord',
                 'user_from' => '当前位置',
                 'user_interests' => '兴趣爱好',
                 'user_msnm' => 'skype',
                 'user_occ' => '职业',
                 'user_twitter' => '推特',
                 'user_website' => '个人主页',
-                'user_discord' => 'discord',
             ],
         ],
 
@@ -62,9 +64,37 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => '通知',
+        'topic_auto_subscribe' => '自动启用自己创建的主题的通知',
+    ],
+
     'oauth' => [
-        'title' => '',
-        'authorized_clients' => '',
+        'authorized_clients' => '已授权的第三方',
+        'title' => '开放授权',
+    ],
+
+    'playstyles' => [
+        'keyboard' => '键盘',
+        'mouse' => '鼠标',
+        'tablet' => '数位板',
+        'title' => '游戏方式',
+        'touch' => '触摸屏',
+    ],
+
+    'privacy' => [
+        'friends_only' => '屏蔽来自陌生人的私信',
+        'hide_online' => '隐藏在线状态',
+        'title' => '隐私政策',
+    ],
+
+    'security' => [
+        'current_session' => '当前',
+        'end_session' => '终止会话',
+        'end_session_confirmation' => '这将立刻结束该设备上的会话，你确定吗？',
+        'last_active' => '上次使用：',
+        'title' => '安全',
+        'web_sessions' => '浏览器会话',
     ],
 
     'update_email' => [
@@ -77,31 +107,12 @@ return [
         'update' => '更新',
     ],
 
-    'playstyles' => [
-        'title' => '游戏方式',
-        'mouse' => '鼠标',
-        'keyboard' => '键盘',
-        'tablet' => '数位板',
-        'touch' => '触摸屏',
+    'verification_completed' => [
+        'text' => '',
+        'title' => '',
     ],
 
-    'privacy' => [
-        'title' => '隐私政策',
-        'friends_only' => '屏蔽来自陌生人的私信',
-        'hide_online' => '隐藏在线状态',
-    ],
-
-    'notifications' => [
-        'title' => '通知',
-        'topic_auto_subscribe' => '自动启用自己创建的主题的通知',
-    ],
-
-    'security' => [
-        'current_session' => '当前',
-        'end_session' => '终止会话',
-        'end_session_confirmation' => '这将立刻结束该设备上的会话，你确定吗？',
-        'last_active' => '上次使用：',
-        'title' => '安全',
-        'web_sessions' => '浏览器会话',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

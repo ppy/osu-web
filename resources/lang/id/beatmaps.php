@@ -244,14 +244,14 @@ return [
     'status' => [
         'any' => 'Semua',
         'approved' => 'Approved',
-        'favourites' => '',
+        'favourites' => 'Favorit',
         'graveyard' => 'Graveyard',
-        'leaderboard' => '',
+        'leaderboard' => 'Berpapan Peringkat',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => 'Map Saya',
         'pending' => 'Pending & WIP',
         'qualified' => 'Qualified',
-        'ranked' => '',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => 'Semua',

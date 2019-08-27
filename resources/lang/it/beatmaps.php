@@ -199,7 +199,7 @@ return [
             'prompt' => 'scrivi le parole chiave...',
             'login_required' => 'Accedi per effettuare una ricerca.',
             'options' => 'Più Opzioni di Ricerca',
-            'supporter_filter' => 'Filtrare per :filters necessita di un tag supporter attivo',
+            'supporter_filter' => 'Filtrare per :filters necessita di una supporter tag attiva',
             'not-found' => 'nessun risultato',
             'not-found-quote' => '... no, non abbiamo trovato nulla.',
             'filters' => [
@@ -244,14 +244,14 @@ return [
     'status' => [
         'any' => 'Tutto',
         'approved' => 'Approvate',
-        'favourites' => '',
+        'favourites' => 'Preferiti',
         'graveyard' => 'Cimitero',
-        'leaderboard' => '',
+        'leaderboard' => 'Ha la classifica',
         'loved' => 'Amate',
-        'mine' => '',
+        'mine' => 'Le mie mappe',
         'pending' => 'In Attesa & In Lavorazione',
         'qualified' => 'Qualificate',
-        'ranked' => '',
+        'ranked' => 'Rankata',
     ],
     'genre' => [
         'any' => 'Qualsiasi',

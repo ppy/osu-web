@@ -27,7 +27,7 @@
                     'mode' => $routeMode,
                     'type' => $routeType,
                     'spotlight' => $routeType === 'charts' ? $spotlight ?? null : null,
-                    'country' => $routeType !== 'charts' ? $country['acronym'] : null,
+                    'country' => $routeType === 'performance' ? $country['acronym'] : null,
                 ]), '?');
             }
         ];

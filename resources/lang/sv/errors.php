@@ -37,6 +37,11 @@ return [
     'checkout' => [
         'generic' => '',
     ],
+    'search' => [
+        'default' => '',
+        'operation_timeout_exception' => '',
+    ],
+
     'logged_out' => 'Du har blivit utloggad. Var vänlig logga in och försök igen .',
     'supporter_only' => 'Du måste vara en supporter för att använda denna funktion.',
     'no_restricted_access' => 'Du kan inte utföra denna återgärd medans ditt konto är begränsad.',

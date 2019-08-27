@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Dyskusja została zablokowana.',
         'first_post' => 'Nie możesz usunąć posta rozpoczynającego.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Ustawiono niewłaściwy poziom trudności.',
         'invalid_beatmapset_id' => 'Ustawiono niewłaściwą beatmapę.',
         'locked' => 'Dyskusja została zablokowana.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'Musisz się zalogować, aby nagłośnić tę beatmapę.',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Nie możesz odpowiedzieć na usunięty komentarz.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Nie możesz usuwać posta z metadanymi beatmapy.',
             'beatmapset_post_no_edit' => 'Nie możesz edytować posta z metadanymi beatmapy.',
             'only_quote' => 'Twoja odpowiedź zawiera tylko cytat.',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,6 +106,10 @@ return [
             'minimum_one_selection' => 'Wymagany jest conajmniej jeden wybór na użytkownika.',
             'minimum_two_options' => 'Wymagane są conajmniej dwie możliwości wyboru.',
             'too_many_options' => 'Przekroczono maksymalną liczbę możliwości wyboru.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,6 +142,12 @@ return [
         'wrong_password_confirmation' => 'Podane hasła nie są zgodne.',
         'too_long' => 'Przekroczono maksymalną liczbę znaków - możliwe jest użycie tylko :limit znaków.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
             'restricted' => 'Nie możesz zmienić swojej nazwy użytkownika podczas blokady konta.',
             'supporter_required' => [
@@ -127,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "Nie możesz zgłosić swojego konta!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

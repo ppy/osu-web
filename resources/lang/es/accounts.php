@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Perfil',
 
             'user' => [
+                'user_discord' => 'discord',
                 'user_from' => 'ubicación actual',
                 'user_interests' => 'intereses',
                 'user_msnm' => 'skype',
                 'user_occ' => 'ocupación',
                 'user_twitter' => 'twitter',
                 'user_website' => 'sitio web',
-                'user_discord' => 'discord',
             ],
         ],
 
@@ -62,9 +64,37 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => 'Notificaciones',
+        'topic_auto_subscribe' => 'activa automáticamente las notificaciones en nuevos temas del foro que crees',
+    ],
+
     'oauth' => [
-        'title' => '',
-        'authorized_clients' => '',
+        'authorized_clients' => 'clientes autorizados',
+        'title' => 'OAuth',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'teclado',
+        'mouse' => 'ratón',
+        'tablet' => 'tableta',
+        'title' => 'Estilos de juego',
+        'touch' => 'táctil',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'Bloquear mensajes privados de gente que no está en tu lista de amigos',
+        'hide_online' => 'mostrarse como desconectado',
+        'title' => 'Privacidad',
+    ],
+
+    'security' => [
+        'current_session' => 'actual',
+        'end_session' => 'Cerrar sesión',
+        'end_session_confirmation' => 'Esto cerrará inmediatamente su sesión en ese dispositivo. ¿Esta seguro?',
+        'last_active' => 'Última vez activo:',
+        'title' => 'Seguridad',
+        'web_sessions' => 'sesiones web',
     ],
 
     'update_email' => [
@@ -77,31 +107,12 @@ return [
         'update' => 'actualizar',
     ],
 
-    'playstyles' => [
-        'title' => 'Estilos de juego',
-        'mouse' => 'ratón',
-        'keyboard' => 'teclado',
-        'tablet' => 'tableta',
-        'touch' => 'táctil',
-    ],
-
-    'privacy' => [
-        'title' => 'Privacidad',
-        'friends_only' => 'Bloquear mensajes privados de gente que no está en tu lista de amigos',
-        'hide_online' => 'mostrarse como desconectado',
-    ],
-
-    'notifications' => [
+    'verification_completed' => [
+        'text' => '',
         'title' => '',
-        'topic_auto_subscribe' => '',
     ],
 
-    'security' => [
-        'current_session' => 'actual',
-        'end_session' => 'Cerrar sesión',
-        'end_session_confirmation' => 'Esto cerrará inmediatamente su sesión en ese dispositivo. ¿Esta seguro?',
-        'last_active' => 'Última vez activo:',
-        'title' => 'Seguridad',
-        'web_sessions' => 'sesiones web',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

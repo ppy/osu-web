@@ -52,7 +52,7 @@ return [
             'not_owner' => 'Solo el creador puede editar la publicación.',
         ],
         'store' => [
-            'beatmapset_locked' => '',
+            'beatmapset_locked' => 'Este beatmap está bloqueado para discusión.',
         ],
     ],
 
@@ -124,7 +124,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'Se requiere acceso al foro solicitado.',
                 'over' => 'La encuesta terminó y ya no se puede votar.',
-                'play_more' => '',
+                'play_more' => 'Necesitas jugar más antes de votar en el foro.',
                 'voted' => 'Cambiar el voto no está permitido.',
 
                 'user' => [

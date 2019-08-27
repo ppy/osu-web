@@ -21,6 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'Forespurt side er ennå ikke oversatt til det valgte språket (:language). Viser Engelsk versjon.',
+        'incomplete_or_outdated' => '',
         'languages' => 'Språk',
         'missing' => 'Forespurt side med ":keyword" kunne ikke bli funnet.',
         'missing_title' => 'Ikke funnet',

@@ -30,7 +30,7 @@ return [
     'rank' => '<strong><em>:user</em></strong> ha ottenuto il rank #:rank su <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> ha perso il primo posto su <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> ha ancora una volta scelto di sostenere osu! - grazie per la tua generosità!',
-    'user_support_first' => '<strong>:user</strong> è diventato un sostenitore di osu! - grazie per la tua generosità!',
-    'user_support_gift' => '<strong>:user</strong> ha ricevuto il regalo del osu! supporter!',
+    'user_support_first' => '<strong>:user</strong> è diventato un supporter di osu! - grazie per la tua generosità!',
+    'user_support_gift' => '<strong>:user</strong> ha ricevuto in regalo l\'osu! supporter!',
     'username_change' => '<strong>:previousUsername</strong> ha cambiato il suo nome utente in <strong><em>:user</strong></em>!',
 ];

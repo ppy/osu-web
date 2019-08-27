@@ -152,6 +152,11 @@ return [
                     'size_info' => '표지 크기는 2800x620 이여야 합니다',
                     'too_large' => '업로드된 파일이 너무 큽니다.',
                     'unsupported_format' => '지원되지 않는 확장자입니다.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -257,6 +262,11 @@ return [
                         'revoke' => ':post에서 :giver님으로부터 kudosu 획득 자격을 박탈당했습니다.',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'me!',
@@ -333,6 +343,11 @@ return [
             'description' => '<strong>me!</strong>는 유저 프로필 페이지에서 개인이 꾸밀 수 있는 공간입니다.',
             'edit_big' => 'me! 수정하기',
             'placeholder' => '페이지에 들어갈 내용을 입력하세요.',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => '게시글 수 :link',
@@ -370,5 +385,10 @@ return [
     ],
     'verify' => [
         'title' => '계정 인증',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

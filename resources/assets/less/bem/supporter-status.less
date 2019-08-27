@@ -1,0 +1,111 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.supporter-status {
+  @top: supporter-status;
+  @animation-rate: 937.5ms; // 64bpm (aka 128bpm at half-time)
+  color: white;
+
+  @keyframes support-fill-pour {
+    0% { width: 0; }
+  }
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-direction: row;
+
+  @media @mobile {
+    flex-direction: column-reverse;
+    align-items: center;
+    background: @osu-colour-b5;
+  }
+
+  &__flex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    flex-grow: 1;
+    margin-left: 30px;
+
+    @media @mobile {
+      flex-direction: column;
+      align-items: center;
+      margin-right: 30px;
+    }
+  }
+
+  &__flex-container-inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  &__pippi {
+    .at2x-simple('/images/layout/supporter/header-pippi.png');
+    background-size: cover;
+    background-position: center;
+    height: 348px;
+    width: 375px;
+    align-items: flex-end;
+    max-width: 100%;
+  }
+
+  &__progress-bar {
+    width: 100%;
+    height: 25px;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    background: .osu-hsla(@osu-colour-b6, 0.8)[@hsla];
+    opacity: 0.5;
+    overflow: hidden;
+    .own-layer();
+
+    &--active {
+      opacity: 1;
+    }
+  }
+
+  &__progress-bar-fill {
+    height: 100%;
+    background-color: @osu-colour-pink-1;
+    background-size: 40px 40px;
+    border-radius: 25px;
+    opacity: 0;
+
+    &--active {
+      opacity: 1;
+      animation: support-fill-pour @animation-rate ease-in-out;
+    }
+  }
+
+  &__text {
+    font-size: 11px;
+    &--first {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__title {
+    color: white;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+}

@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'La discusión está cerrada.',
         'first_post' => 'No se puede eliminar la publicación inicial.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Dificultad especificada inválida.',
         'invalid_beatmapset_id' => 'Beatmap especificado inválido',
         'locked' => 'La discusión está cerrada.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'Debes iniciar sesión para hypear.',
@@ -53,10 +62,14 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Responder a un comentario eliminado no esta permitido.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => ':attribute especificado inválido.',
     ],
 
     'forum' => [
@@ -73,16 +86,30 @@ return [
             'beatmapset_post_no_delete' => 'Eliminar la publicación de los metadatos del beatmapa no está permitido.',
             'beatmapset_post_no_edit' => 'Editar la publicación de los metadatos del mapa no está permitido.',
             'only_quote' => 'Tu respuesta sólo contiene una cita.',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Opciones duplicadas no permitidas.',
             'grace_period_expired' => 'No se puede editar una encuesta después de :limit horas',
-            'hiding_results_forever' => '',
+            'hiding_results_forever' => 'No se pueden ocultar los resultados de una encuesta que nunca finaliza.',
             'invalid_max_options' => 'La opciones por usuario no pueden exceder el número de opciones disponibles.',
             'minimum_one_selection' => 'Se requiere un mínimo de una opción por usuario.',
             'minimum_two_options' => 'Se necesitan al menos dos opciones.',
             'too_many_options' => 'Número de opciones permitidas excedidas.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,8 +142,14 @@ return [
         'wrong_password_confirmation' => 'La confirmación de contraseña no coincide.',
         'too_long' => 'Se excedió el límite máximo - puedes usar hasta :limit caracteres.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
-            'restricted' => '',
+            'restricted' => 'No puedes cambiar tu nombre de usuario mientras está restringido.',
             'supporter_required' => [
                 '_' => '¡Debes tener :link para cambiar tu nombre!',
                 'link_text' => 'apoyar a osu!',
@@ -127,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "¡No puedes denunciarte a ti mismo!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];
