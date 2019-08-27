@@ -19,11 +19,11 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import ChatStateStore from 'chat/chat-state-store';
 import { observable } from 'mobx';
-import { Client } from 'models/oauth/client';
+import { OwnClient } from 'models/oauth/own-client';
 import Store from 'stores/store';
 
 interface AccountUIState {
-  client: Client | null;
+  client: OwnClient | null;
   isCreatingNewClient: boolean;
   newClientVisible: boolean;
 }
