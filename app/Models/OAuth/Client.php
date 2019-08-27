@@ -21,10 +21,10 @@
 namespace App\Models\OAuth;
 
 use App\Exceptions\InvariantException;
+use App\Models\OAuth\Token;
 use App\Models\User;
 use App\Traits\Validatable;
 use Laravel\Passport\Client as PassportClient;
-use Laravel\Passport\Token;
 
 class Client extends PassportClient
 {
@@ -53,6 +53,26 @@ class Client extends PassportClient
         }
 
         return $clients;
+    }
+
+    public function authCodes()
+    {
+        return $this->hasMany(AuthCode::class, 'client_id');
+    }
+
+    public function refreshTokens()
+    {
+        return $this->hasManyThrough(
+            RefreshToken::class,
+            Token::class,
+            'client_id',
+            'access_token_id'
+        );
+    }
+
+    public function tokens()
+    {
+        return $this->hasMany(Token::class, 'client_id', 'id');
     }
 
     public function isValid()
@@ -95,11 +115,13 @@ class Client extends PassportClient
     public function revoke()
     {
         $this->getConnection()->transaction(function () {
+            $connection = $this->getConnection();
             $now = now('UTC');
-            // TODO: also revoke refresh tokens.
+
+
             $this->tokens()->update(['revoked' => true, 'updated_at' => $now]);
-            // TODO: set timestamp to false on authcodes
-            // $this->authCodes()->update(['revoked' => true]);
+            $this->refreshTokens()->update([(new RefreshToken)->qualifyColumn('revoked') => true]);
+            $this->authCodes()->update(['revoked' => true]);
             $this->update(['revoked' => true, 'updated_at' => $now]);
         });
     }
