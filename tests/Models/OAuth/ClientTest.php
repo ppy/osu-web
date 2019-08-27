@@ -175,4 +175,23 @@ class ClientTest extends TestCase
         $this->assertCount(0, Client::forUser($user1));
         $this->assertCount(1, Client::forUser($user2));
     }
+
+    public function testNumberOfClientsIsLimited()
+    {
+        config()->set('osu.oauth.max_user_clients', 1);
+
+        $client = $this->createOAuthClient($this->owner);
+        $this->assertFalse($client->exists);
+        $this->assertArrayHasKey('user.oauthClients.count', $client->validationErrors()->all());
+    }
+
+    public function testNumberOfClientsLimitDoesNotIncludeRevokedClients()
+    {
+        config()->set('osu.oauth.max_user_clients', 1);
+        $this->client->update(['revoked' => true]);
+
+        $client = $this->createOAuthClient($this->owner);
+        $this->assertTrue($client->exists);
+        $this->assertEmpty($client->validationErrors()->all());
+    }
 }
