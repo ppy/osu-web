@@ -16,53 +16,61 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'search' => [
-        'url' => route('forum.forums.search'),
-    ],
-    'pageDescription' => trans('forum.title')
+    'legacyNav' => false,
+    'pageDescription' => trans('forum.title'),
+    'searchParams' => ['mode' => 'forum_post'],
+    'useTorusFont' => true,
 ])
 
 @section('content')
-    <div class="osu-page">
-        <div class="osu-page-header osu-page-header--forum-index">
-            <div class="osu-page-header__title-box">
-                <h2 class="osu-page-header__title osu-page-header__title--small">
-                    {{ trans("forum.slogan") }}
-                </h2>
+    @include('forum._header', ['modifiers' => ['forums-index']])
 
-                <h1 class="osu-page-header__title">
-                    {{ trans("forum.title") }}
-                </h1>
-            </div>
-        </div>
-    </div>
-
-    <div class="osu-page osu-page--forum-pippi">
-        <div class="hidden-xs forum-pippi"></div>
-    </div>
-
-    <div class="osu-page">
+    <div class="osu-page osu-page--forum">
         @foreach($forums as $category)
-            <div id="forum-{{ $category->forum_id }}" class="
-                forum-category
-                col-sm-12
-                t-forum-{{ $category->categorySlug() }}
-            ">
-                <div class="row forum-category-header forum-category-header--forum-index u-forum--bg">
-                    <div class="forum-category-header__name">{{ $category->forum_name }}</div>
-                    <div class="forum-category-header__description">{{ $category->forum_desc }}</div>
+            <div class="forum-list">
+                <div class="u-has-anchor">
+                    <div class="fragment-target fragment-target--no-event" id="forum-{{ $category->getKey() }}"></div>
+                </div>
+                <div class="forum-list__header t-forum-{{ $category->categorySlug() }}">
+                    <div class="forum-title u-forum--before-bg">
+                        <h3 class="forum-title__name">{{ $category->forum_name }}</h3>
+                        <p class="forum-title__description">{{ $category->forum_desc }}</p>
+                    </div>
+
+                    <div class="forum-list__buttons">
+                        <div class="forum-list__button">
+                            @include('forum.forums._mark_as_read', ['forum' => $category, 'recursive' => true])
+                        </div>
+                    </div>
+
+                    <div class="forum-list__menu">
+                        @php
+                            $menuId = "forum-{$category->getKey()}";
+                        @endphp
+                        <button class="forum-list__menu-button js-click-menu" data-click-menu-target="{{ $menuId }}">
+                            <span class="fas fa-ellipsis-v"></span>
+                        </button>
+
+                        <div
+                            class="simple-menu simple-menu--forum-list js-click-menu"
+                            data-visibility="hidden"
+                            data-click-menu-id="{{ $menuId }}"
+                        >
+                            @include('forum.forums._mark_as_read', [
+                                'blockClass' => 'simple-menu__item',
+                                'forum' => $category,
+                                'recursive' => true,
+                            ])
+                        </div>
+                    </div>
                 </div>
 
-                @include("forum.forums._forums", ["forums" => $category->subforums])
+                <ul class="forum-list__items">
+                    @foreach ($category->subforums as $forum)
+                        @include('forum.forums._forum', compact('forum'))
+                    @endforeach
+                </ul>
             </div>
         @endforeach
-
-        <div class="forum-category col-sm-12">
-            <div class="forums">
-                <div class="forums__forum forums__forum--mark-as-read">
-                    @include('forum.forums._mark_as_read')
-                </div>
-            </div>
-        </div>
     </div>
 @endsection
