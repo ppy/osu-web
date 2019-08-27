@@ -18,6 +18,7 @@ RUN apk update && \
     php7-phar \
     php7-redis \
     php7-session \
+    php7-sockets \
     php7-simplexml \
     php7-sqlite3 \
     php7-tokenizer \
