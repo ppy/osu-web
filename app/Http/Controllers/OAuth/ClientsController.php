@@ -20,8 +20,6 @@
 
 namespace App\Http\Controllers\OAuth;
 
-use App\Exceptions\InvariantException;
-use App\Exceptions\ModelNotSavedException;
 use App\Http\Controllers\Controller;
 use App\Models\OAuth\Client;
 
@@ -81,7 +79,7 @@ class ClientsController extends Controller
 
         // client doesn't inherit from our base model.
         if (!$client->fill($params)->save()) {
-          return response([
+            return response([
             'form_error' => $client->validationErrors()->all(),
             'error' => $client->validationErrors()->toSentence(),
           ], 422);

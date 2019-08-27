@@ -60,7 +60,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Are you sure you want to delete this client?',
-        'new' =>  'New OAuth Application',
+        'new' => 'New OAuth Application',
         'none' => 'No Clients',
 
         'revoked' => [

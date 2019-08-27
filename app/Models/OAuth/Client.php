@@ -21,7 +21,6 @@
 namespace App\Models\OAuth;
 
 use App\Exceptions\InvariantException;
-use App\Models\OAuth\Token;
 use App\Models\User;
 use App\Traits\Validatable;
 use Laravel\Passport\Client as PassportClient;
@@ -129,7 +128,6 @@ class Client extends PassportClient
         $this->getConnection()->transaction(function () {
             $connection = $this->getConnection();
             $now = now('UTC');
-
 
             $this->tokens()->update(['revoked' => true, 'updated_at' => $now]);
             $this->refreshTokens()->update([(new RefreshToken)->qualifyColumn('revoked') => true]);
