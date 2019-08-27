@@ -54,6 +54,9 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     {
         parent::setUp();
 
+        // change config setting because we need more than 1 for the tests.
+        config()->set('osu.oauth.max_user_clients', 100);
+
         // Force connections to reset even if transactional tests were not used.
         // Should fix tests going wonky when different queue drivers are used, or anything that
         // breaks assumptions of object destructor timing.
