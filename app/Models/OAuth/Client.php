@@ -79,6 +79,13 @@ class Client extends PassportClient
     {
         $this->validationErrors()->reset();
 
+        if (!$this->exists) {
+            $max = config('osu.oauth.max_user_clients');
+            if ($this->user->oauthClients()->count() >= $max) {
+                $this->validationErrors()->add('user.oauthClients.count', '.too_many');
+            }
+        }
+
         if (mb_strlen(trim($this->name)) === 0) {
             $this->validationErrors()->add('name', 'required');
         }

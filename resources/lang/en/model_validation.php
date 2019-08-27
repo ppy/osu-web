@@ -120,6 +120,8 @@ return [
 
     'oauth' => [
         'client' => [
+            'too_many' => 'Exceeded maximum number of allowed OAuth applications.',
+
             'attributes' => [
                 'name' => 'Application Name',
                 'redirect' => 'Application Callback URL',
