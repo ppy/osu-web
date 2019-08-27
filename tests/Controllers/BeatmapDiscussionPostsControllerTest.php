@@ -435,4 +435,42 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $post = $post->fresh();
         $this->assertSame($newTimestamp, $post->beatmapDiscussion->timestamp);
     }
+
+    public function testPostDestroy()
+    {
+        $reply = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+
+        $this
+            ->actingAs($this->user)
+            ->delete(route('beatmap-discussion-posts.destroy', $reply->id))
+            ->assertStatus(200);
+
+        $reply->refresh();
+
+        $this->assertTrue($reply->trashed());
+    }
+
+    public function testPostDestroyWhenDiscussionResolved()
+    {
+        $reply = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+
+        $this->beatmapDiscussion->update(['resolved' => true]);
+
+        $this
+            ->actingAs($this->user)
+            ->delete(route('beatmap-discussion-posts.destroy', $reply->id))
+            ->assertStatus(403);
+
+        $reply->refresh();
+
+        $this->assertFalse($reply->trashed());
+    }
 }
