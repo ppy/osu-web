@@ -94,6 +94,11 @@ class Client extends PassportClient
             $this->validationErrors()->add('redirect', 'required');
         }
 
+        // TODO: this url validation is not very good.
+        if (!filter_var(trim($this->redirect), FILTER_VALIDATE_URL)) {
+            $this->validationErrors()->add('redirect', '.url');
+        }
+
         return $this->validationErrors()->isEmpty();
     }
 
