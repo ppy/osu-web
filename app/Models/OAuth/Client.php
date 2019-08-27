@@ -35,8 +35,7 @@ class Client extends PassportClient
         $tokensQuery = Token::where('user_id', $user->getKey())->where('revoked', false);
 
         $clients = static::whereIn('id', (clone $tokensQuery)->select('client_id'))
-            ->where('personal_access_client', false)
-            ->where('password_client', false)
+            ->thirdParty()
             ->where('revoked', false)
             ->with('user')
             ->get();
@@ -80,7 +79,7 @@ class Client extends PassportClient
 
         if (!$this->exists) {
             $max = config('osu.oauth.max_user_clients');
-            if ($this->user->oauthClients()->count() >= $max) {
+            if ($this->user->oauthClients()->thirdParty()->where('revoked', false)->count() >= $max) {
                 $this->validationErrors()->add('user.oauthClients.count', '.too_many');
             }
         }
@@ -143,6 +142,11 @@ class Client extends PassportClient
         }
 
         return parent::save($options);
+    }
+
+    public function scopeThirdParty($query)
+    {
+        return $query->where('personal_access_client', false)->where('password_client', false);
     }
 
     public function user()
