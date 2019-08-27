@@ -381,6 +381,10 @@ class OsuAuthorize
             return $prefix.'not_owner';
         }
 
+        if ($post->beatmapDiscussion->resolved) {
+            return $prefix.'resolved';
+        }
+
         return 'ok';
     }
 

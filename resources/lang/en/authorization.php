@@ -49,6 +49,7 @@ return [
     'beatmap_discussion_post' => [
         'destroy' => [
             'not_owner' => 'You can only delete your own posts.',
+            'resolved' => 'You can not delete a post after a discussion is resolved.',
             'system_generated' => 'Automatically generated post can not be deleted.',
         ],
 
