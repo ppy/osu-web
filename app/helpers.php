@@ -422,9 +422,11 @@ function render_to_string($view, $variables = [])
     return view()->make($view, $variables)->render();
 }
 
-function spinner()
+function spinner(?array $modifiers = null)
 {
-    return '<div class="la-ball-clip-rotate"></div>';
+    return tag('div', [
+        'class' => class_with_modifiers('la-ball-clip-rotate', $modifiers),
+    ]);
 }
 
 function strip_utf8_bom($input)
