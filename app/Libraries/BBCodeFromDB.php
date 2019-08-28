@@ -330,15 +330,10 @@ class BBCodeFromDB
         $text = str_replace("\n", '<br />', $text);
         $text = CleanHTML::purify($text);
 
-        $baseClassName = 'bbcode';
-        $className = $baseClassName;
+        $className = class_with_modifiers('bbcode', $this->options['modifiers']);
 
         if (present($this->options['extraClasses'])) {
             $className .= " {$this->options['extraClasses']}";
-        }
-
-        foreach ($this->options['modifiers'] as $mod) {
-            $className .= " {$baseClassName}--{$mod}";
         }
 
         if ($this->options['ignoreLineHeight']) {

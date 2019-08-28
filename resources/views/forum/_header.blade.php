@@ -15,14 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@php
-    $blockClass = 'header-v4';
-
-    foreach ($modifiers ?? [] as $modifier) {
-        $blockClass .= " header-v4--{$modifier}";
-    }
-@endphp
-<div class="{{ $blockClass }}">
+<div class="{{ class_with_modifiers('header-v4', $modifiers) }}">
     <div class="header-v4__bg-container">
         <div class="header-v4__bg" {!! background_image($background ?? null, false) !!}></div>
     </div>
