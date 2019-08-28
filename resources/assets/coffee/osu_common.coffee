@@ -245,7 +245,7 @@
 
 
   urlPresence: (url) ->
-    "url(#{url})" if osu.presence(url)?
+    if osu.present(url) then "url(#{url})" else null
 
 
   # TODO: add support for multiple badges and/or move server side?
