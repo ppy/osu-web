@@ -25,7 +25,6 @@ use App\Models\CountryStatistics;
 use App\Models\Spotlight;
 use App\Models\User;
 use App\Models\UserStatistics;
-use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class RankingController extends Controller
@@ -111,9 +110,7 @@ class RankingController extends Controller
                 static::MAX_RESULTS
             );
 
-            $class = UserStatistics\Model::getClass($mode);
-            $table = (new $class)->getTable();
-            $stats = $class
+            $stats = UserStatistics\Model::getClass($mode)
                 ::on('mysql-readonly')
                 ->with(['user', 'user.country'])
                 ->whereHas('user', function ($userQuery) {
@@ -125,13 +122,9 @@ class RankingController extends Controller
             }
 
             if ($type === 'performance') {
-                $stats
-                    ->orderBy('rank_score', 'desc')
-                    ->from(DB::raw("{$table} FORCE INDEX (rank_score)"));
+                $stats->orderBy('rank_score', 'desc');
             } else { // 'score'
-                $stats
-                    ->orderBy('ranked_score', 'desc')
-                    ->from(DB::raw("{$table} FORCE INDEX (ranked_score)"));
+                $stats->orderBy('ranked_score', 'desc');
             }
         }
 
