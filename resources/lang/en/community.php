@@ -66,17 +66,17 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Friend Ranking',
-                'description' => "See how you stack up against your friends on a beatmap's leaderboard, both in-game and on the website."
+                'description' => "See how you stack up against your friends on a beatmap's leaderboard, both in-game and on the website.",
             ],
 
             'country_ranking' => [
                 'title' => 'Country Ranking',
-                'description' => 'Conquer your country before you conquer the world.'
+                'description' => 'Conquer your country before you conquer the world.',
             ],
 
             'mod_filtering' => [
                 'title' => 'Filter by Mods',
-                'description' => 'Associate only with people who play HDHR? No problem!'
+                'description' => 'Associate only with people who play HDHR? No problem!',
             ],
 
             'auto_downloads' => [
