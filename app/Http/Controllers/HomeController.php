@@ -243,6 +243,20 @@ class HomeController extends Controller
                     'icons' => ['fas fa-search'],
                 ],
                 [
+                    'type' => 'image_group',
+                    'items' => [
+                        'friend_ranking' => [
+                            'icons' => ['fas fa-list-alt'],
+                        ],
+                        'country_ranking' => [
+                            'icons' => ['fas fa-globe-asia'],
+                        ],
+                        'mod_filtering' => [
+                            'icons' => ['fas fa-tasks'],
+                        ],
+                    ],
+                ],
+                [
                     'type' => 'image',
                     'variant' => 'flipped',
                     'name' => 'beatmap_filters',

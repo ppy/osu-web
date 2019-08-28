@@ -64,6 +64,21 @@ return [
                 'description' => 'Gain quick and easy access to search for and download beatmaps without having to leave the game.',
             ],
 
+            'friend_ranking' => [
+                'title' => 'Friend Ranking',
+                'description' => "See how you stack up against your friends on a beatmap's leaderboard, both in-game and on the website."
+            ],
+
+            'country_ranking' => [
+                'title' => 'Country Ranking',
+                'description' => 'Conquer your country before you conquer the world.'
+            ],
+
+            'mod_filtering' => [
+                'title' => 'Filter by Mods',
+                'description' => 'Associate only with people who play HDHR? No problem!'
+            ],
+
             'auto_downloads' => [
                 'title' => 'Automatic Downloads',
                 'description' => 'Beatmaps will automatically download in multiplayer games, while spectating others, or when clicking relevant links in chat!',
