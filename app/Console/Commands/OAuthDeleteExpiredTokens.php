@@ -39,12 +39,16 @@ class OAuthDeleteExpiredTokens extends Command
 
         $refreshTokensQuery = DB::table('oauth_refresh_tokens')->where('expires_at', '<', $expiredBefore);
 
-        // This assumes the refresh token always has a longer valid lifetime than the access token.
-        $count = Token::whereIn('id', (clone $refreshTokensQuery)->select('access_token_id'))->delete();
-        $this->line("Deleted {$count} expired access tokens.");
+        $accessTokenCount = 0;
+        $refreshTokenCount = 0;
+        $refreshTokensQuery->chunkById(1000, function ($chunk) use (&$accessTokenCount, &$refreshTokenCount) {
+            // This assumes the refresh token always has a longer valid lifetime than the access token.
+            $accessTokenCount += Token::whereIn('id', $chunk->pluck('access_token_id'))->delete();
+            $refreshTokenCount += DB::table('oauth_refresh_tokens')->whereIn('id', $chunk->pluck('id'))->delete();
+        });
 
-        $count = $refreshTokensQuery->delete();
-        $this->line("Deleted {$count} expired refresh tokens.");
+        $this->line("Deleted {$accessTokenCount} expired access tokens.");
+        $this->line("Deleted {$refreshTokenCount} expired refresh tokens.");
 
         $count = Token::where('user_id', null)->where('expires_at', '<', $expiredBefore)->delete();
         $this->line("Deleted {$count} expired client credential grant tokens.");
