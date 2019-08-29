@@ -24,9 +24,9 @@ return [
     'last_visit' => 'Recently active',
     'new' => 'Recent',
     'old' => 'Old',
+    'rank' => 'Rank',
     'top' => 'Top',
     'username' => 'Username',
-    'rank' => 'Rank',
 
     'forum_topics' => [
         'new' => 'Last reply',

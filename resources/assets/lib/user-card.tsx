@@ -49,6 +49,7 @@ export class UserCard extends React.PureComponent<Props, State> {
 
   static userLoading: User = {
     cover: {},
+    default_gamemode_rank: 0,
     default_group: '',
     id: 0,
     is_active: false,

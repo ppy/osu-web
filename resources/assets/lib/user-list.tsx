@@ -40,12 +40,17 @@ interface State {
   viewMode: ViewMode;
 }
 
-function usernameSortAscending(x: User, y: User) {
-  return x.username.localeCompare(y.username);
+function rankSortDescending(x: User, y: User) {
+ if (x.default_gamemode_rank == -1 || y.default_gamemode_rank == -1) {
+   return -1;
+ }
+ else {
+   return x.default_gamemode_rank - y.default_gamemode_rank;
+ }
 }
 
-function rankSortDescending(x: User, y: User) {
- return x.user_gamemode_rank > y.user_gamemode_rank; 
+function usernameSortAscending(x: User, y: User) {
+  return x.username.localeCompare(y.username);
 }
 
 export class UserList extends React.PureComponent<Props> {
@@ -65,11 +70,11 @@ export class UserList extends React.PureComponent<Props> {
     const users = this.getFilteredUsers(this.state.filter).slice();
 
     switch (this.state.sortMode) {
-      case 'username':
-        return users.sort(usernameSortAscending);
       case 'rank':
         return users.sort(rankSortDescending);
-
+      case 'username':
+        return users.sort(usernameSortAscending);
+      
       default:
         return users.sort((x, y) => {
           if (x.is_online && y.is_online) {

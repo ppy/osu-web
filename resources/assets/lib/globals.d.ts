@@ -93,6 +93,7 @@ interface User {
   country?: Country;
   country_code?: string;
   cover: Cover;
+  default_gamemode_rank: number;
   default_group: string;
   id: number;
   is_active: boolean;
