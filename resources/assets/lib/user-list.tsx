@@ -23,10 +23,10 @@ import { ViewMode } from 'user-card';
 import { UserCards } from 'user-cards';
 
 type Filter = 'all' | 'online' | 'offline';
-type SortMode = 'last_visit' | 'username';
+type SortMode = 'last_visit' | 'username' | 'rank';
 
 const filters: Filter[] = ['all', 'online', 'offline'];
-const sortModes: SortMode[] = ['last_visit', 'username'];
+const sortModes: SortMode[] = ['last_visit', 'username', 'rank'];
 const viewModes: ViewMode[] = ['card', 'list'];
 
 interface Props {
@@ -42,6 +42,10 @@ interface State {
 
 function usernameSortAscending(x: User, y: User) {
   return x.username.localeCompare(y.username);
+}
+
+function rankSortDescending(x: User, y: User) {
+ return x.user_gamemode_rank > y.user_gamemode_rank; 
 }
 
 export class UserList extends React.PureComponent<Props> {
@@ -63,6 +67,8 @@ export class UserList extends React.PureComponent<Props> {
     switch (this.state.sortMode) {
       case 'username':
         return users.sort(usernameSortAscending);
+      case 'rank':
+        return users.sort(rankSortDescending);
 
       default:
         return users.sort((x, y) => {

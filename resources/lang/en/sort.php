@@ -26,6 +26,7 @@ return [
     'old' => 'Old',
     'top' => 'Top',
     'username' => 'Username',
+    'rank' => 'Rank',
 
     'forum_topics' => [
         'new' => 'Last reply',
