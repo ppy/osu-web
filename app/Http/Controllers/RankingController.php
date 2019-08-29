@@ -126,11 +126,19 @@ class RankingController extends Controller
 
             if ($type === 'performance') {
                 $stats
-                    ->orderBy('rank_score', 'desc')
-                    ->from(DB::raw("{$table} FORCE INDEX (rank_score)"));
+                    ->orderBy('rank_score', 'desc');
+
+                if ($this->country === null) {
+                    // force to order by rank_score instead of sucking down entire users table first.
+                    $stats->from(DB::raw("{$table} FORCE INDEX (rank_score)"));
+                } else {
+                    // preferrable to rank_score when filtering by country
+                    $stats->from(DB::raw("{$table} FORCE INDEX (country_acronym_2)"));
+                }
             } else { // 'score'
                 $stats
                     ->orderBy('ranked_score', 'desc')
+                    // force to order by ranked_score instead of sucking down entire users table first.
                     ->from(DB::raw("{$table} FORCE INDEX (ranked_score)"));
             }
         }
