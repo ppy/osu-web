@@ -38,8 +38,8 @@ return [
         'generic' => '결제를 준비하는 중 오류가 발생하였습니다.',
     ],
     'search' => [
-        'default' => '',
-        'operation_timeout_exception' => '',
+        'default' => '결과를 불러오지 못했습니다. 나중에 다시 시도해주세요.',
+        'operation_timeout_exception' => '검색 기능의 사용량이 평소보다 많습니다, 잠시 후 다시 시도해 주세요.',
     ],
 
     'logged_out' => '로그아웃 되었습니다. 로그인하시고 다시 시도해보세요.',

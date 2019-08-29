@@ -21,7 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => '요청하신 페이지는 아직 사용하시는 언어(:language)로 번역되지 않았네요. 영어로 된 페이지를 보여드릴게요.',
-        'incomplete_or_outdated' => '',
+        'incomplete_or_outdated' => '이 페이지의 내용은 미완성 이거나 오래된 내용입니다. 도울 여건이 되신다면, 이 글을 업데이트하는 것을 고려해 주세요!',
         'languages' => '언어',
         'missing' => '요청하신 ":keyword" 페이지를 찾을 수 없습니다.',
         'missing_title' => '찾을 수 없음',

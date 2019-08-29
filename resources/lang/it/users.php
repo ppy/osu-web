@@ -155,8 +155,8 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                     'unsupported_format' => 'Formato non supportato.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Caricamento disponibile solo per gli :link',
+                        'link' => 'osu!supporter',
                     ],
                 ],
             ],
@@ -169,6 +169,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
 
         'extra' => [
             'followers' => '1 follower|:count followers',
+            'none' => '',
             'unranked' => 'Nessuna partita recente',
 
             'achievements' => [
@@ -196,6 +197,16 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                 'unranked' => [
                     'title' => 'Beatmap In Attesa',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Nessuna performance recente :(',
@@ -265,8 +276,8 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Basato sul contributo che l\'utente ha dato nella moderazione delle beatmap. Visita :link per più informazioni.',
+                    'link' => 'questa pagina',
                 ],
             ],
             'me' => [
@@ -276,6 +287,11 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                 'empty' => "Questo utente non ne ha ricevuti ancora. ;_;",
                 'recent' => 'Più recenti',
                 'title' => 'Medaglie',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Recenti',
@@ -293,6 +309,13 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                 'first' => [
                     'title' => 'Rank Primo Posto',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Stato dell\'account',
@@ -318,7 +341,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
         ],
 
         'header_title' => [
-            '_' => ':info giocatore',
+            '_' => ':info Giocatore',
             'info' => 'Informazioni',
         ],
 
@@ -346,8 +369,8 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
             'placeholder' => 'Scrivi il contenuto della pagina qui',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Devi essere un :link per sbloccare questa funzionalità.',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
@@ -373,6 +396,11 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
             'score_ranks' => 'Rank dei Punteggi',
             'total_hits' => 'Colpi Totali',
             'total_score' => 'Punteggio Totale',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -389,7 +417,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'Vista a schede',
+        'list' => 'Vista ad elenco',
     ],
 ];

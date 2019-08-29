@@ -38,8 +38,8 @@ return [
         'generic' => 'Terjadi kesalahan ketika akan melangsungkan proses check-out.',
     ],
     'search' => [
-        'default' => '',
-        'operation_timeout_exception' => '',
+        'default' => 'Hasil tidak ditemukan, coba lagi nanti.',
+        'operation_timeout_exception' => 'Aktivitas pencarian saat ini lebih sibuk dari biasanya, coba lagi nanti.',
     ],
 
     'logged_out' => 'Anda telah keluar. Mohon masuk dan coba lagi.',

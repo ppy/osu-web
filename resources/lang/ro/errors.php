@@ -38,8 +38,8 @@ return [
         'generic' => 'A apărut o eroare în timpul preparării comenzii tale.',
     ],
     'search' => [
-        'default' => '',
-        'operation_timeout_exception' => '',
+        'default' => 'Nu s-au putut obține rezultate, încearcă mai târziu.',
+        'operation_timeout_exception' => 'Căutarea este mai ocupată decât de obicei, încearcă mai târziu.',
     ],
 
     'logged_out' => 'Ai fost deconectat. Te rugăm să te conectezi și să incerci din nou.',

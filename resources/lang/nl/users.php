@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 volger|:count volgers',
+            'none' => '',
             'unranked' => 'Geen recente plays',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Afwachtende Beatmaps',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Geen prestatiegegevens. :(',
@@ -276,6 +287,11 @@ return [
                 'recent' => 'Recent',
                 'title' => 'Medailles',
             ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Recent',
             ],
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Eerste Ranks',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Account Reputatie',
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Totaal Aantal Hits',
             'total_score' => 'Totaal Aantal Score',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 

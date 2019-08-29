@@ -20,46 +20,63 @@
 
 return [
     'support' => [
-        'header' => [
-            // size in font-size
-            'big_description' => '喜欢 osu! 吗！？<br/>
-                                那就支持 osu! 开发吧 (￣3￣)',
-            'small_description' => '',
-            'support_button' => '我想支持 osu!',
+        'convinced' => [
+            'title' => '可以可以，买买买！',
+            'support' => '支持 osu!',
+            'gift' => '或者以礼物方式赠送给其它玩家',
+            'instructions' => '点击爱心前往 osu! 商店',
         ],
+        'why-support' => [
+            'title' => '为什么我应该支持 osu!？钱将用往何处？',
 
-        'dev_quote' => 'osu! 是一款完全免费的游戏，但是经营它却不是免费的。在我们租用服务器和高速网络、维护系统及社区、向比赛提供奖品、提供疑难解答以及让玩家们开心的同时，osu! 已经消耗了大量的金钱！噢，别忘了我们是凭着爱好在做 osu! ，没有任何的广告合作！
-            <br/><br/>大部分时间里，osu! 由我一个人运营着，
-            为了维护 osu! 我不得不辞去日常工作，
-            而我时常感受到使 osu! 维持我所期望的质量是一件很艰难的事情，
-            我以个人的名义感谢至今为止所有支持 osu! 的人，
-            也包括继续支持 osu! 的所有人 :)。',
-
-        'supporter_status' => [
-            'contribution' => '感谢你一直以来的支持！你已经捐赠了 :dollars 并购买了 :tags 次支持者标签！',
-            'gifted' => '你已经捐赠了 :giftedTags 次支持者标签（花费了 :giftedDollars ），真慷慨啊！',
-            'not_yet' => "你还没有支持者标签 :(",
-            'title' => '当前支持者状态',
-            'valid_until' => '你的支持者标签将在 :date 到期',
-            'was_valid_until' => '你的支持者标签已于 :date 到期',
-        ],
-
-        'why_support' => [
-            'title' => '为什么要支持 osu! ？',
-            'blocks' => [
-                'dev' => 'osu! 最初是 ppy 个人开发和维护的',
-                'time' => '运营它的成本和投入的精力已经超出了“兴趣”的范围',
-                'ads' => '无广告 <br/><br/>
-                        不像 99.95% 的网站，我们不会为了钱而糊你一脸的广告。',
-                'goodies' => '解锁更多高级功能！',
+            'team' => [
+                'title' => '支持开发团队',
+                'description' => '一个小团队开发并维护着 osu!，你的支持可以帮助他们继续下去。',
+            ],
+            'infra' => [
+                'title' => '维护服务器',
+                'description' => '',
+            ],
+            'featured-artists' => [
+                'title' => '精选艺术家',
+                'description' => '在你的支持下，我们可以与更多艺术家合作为 osu! 带来更多的绝佳音乐。',
+                'link_text' => '查看当前列表 &raquo;',
+            ],
+            'ads' => [
+                'title' => '',
+                'description' => '你的帮助可以让游戏保持独立并远离广告，不受外部赞助商的控制。',
+            ],
+            'tournaments' => [
+                'title' => '官方比赛',
+                'description' => '为运营 osu! 世界杯筹集资金（及奖励）。',
+                'link_text' => '探索比赛 &raquo;',
+            ],
+            'bounty-program' => [
+                'title' => '开源赏金计划',
+                'description' => '支持那些花费时间与精力来帮助 osu! 变得更好的社区贡献者。',
+                'link_text' => '了解更多 &raquo;',
             ],
         ],
-
         'perks' => [
             'title' => '我能得到什么？',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => '在游戏客户端内搜索和下载谱面。',
+            ],
+
+            'friend_ranking' => [
+                'title' => '好友排名',
+                'description' => "",
+            ],
+
+            'country_ranking' => [
+                'title' => '',
+                'description' => '',
+            ],
+
+            'mod_filtering' => [
+                'title' => '',
+                'description' => '',
             ],
 
             'auto_downloads' => [
@@ -79,7 +96,7 @@ return [
 
             'customisation' => [
                 'title' => '个性化',
-                'description' => '自定义个人资料页。',
+                'description' => "自定义个人资料页。",
             ],
 
             'beatmap_filters' => [
@@ -117,22 +134,30 @@ return [
                 'description' => '查看排名时可按 国家/好友/所选MOD 进行排名。',
             ],
 
-            'feel_special' => [
-                'title' => '满足感',
-                'description' => '对 “帮助 osu! 继续运营” 感到满足！',
-            ],
-
-            'more_to_come' => [
-                'title' => '更多特性即将到来',
+            'more_favourites' => [
+                'title' => '',
                 'description' => '',
             ],
-        ],
+            'more_friends' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'more_beatmaps' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'friend_filtering' => [
+                'title' => '',
+                'description' => '',
+            ],
 
-        'convinced' => [
-            'title' => '可以可以，买买买！',
-            'support' => '支持 osu!',
-            'gift' => '或者以礼物方式赠送给其它玩家',
-            'instructions' => '点击爱心前往 osu! 商店',
+        ],
+        'supporter_status' => [
+            'contribution' => '感谢你一直以来的支持！你已经捐赠了 :dollars 并购买了 :tags 次支持者标签！',
+            'gifted' => "你已经捐赠了 :giftedTags 次支持者标签（花费了 :giftedDollars ），真慷慨啊！",
+            'not_yet' => "你还没有支持者标签 :(",
+            'valid_until' => '你的支持者标签将在 :date 到期',
+            'was_valid_until' => '你的支持者标签已于 :date 到期',
         ],
     ],
 ];

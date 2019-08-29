@@ -19,33 +19,33 @@
  */
 
 return [
-    'all_read' => '',
-    'mark_all_read' => '',
+    'all_read' => 'Toate notificările citite!',
+    'mark_all_read' => 'Șterge-ți toate',
 
     'item' => [
         'beatmapset' => [
-            '_' => '',
+            '_' => 'Beatmap',
 
             'beatmapset_discussion' => [
-                '_' => '',
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_lock_compact' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_post_new_compact' => '',
-                'beatmapset_discussion_unlock' => '',
-                'beatmapset_discussion_unlock_compact' => '',
+                '_' => 'Discuții beatmap',
+                'beatmapset_discussion_lock' => 'Discuția pe ":title" a fost închisă',
+                'beatmapset_discussion_lock_compact' => 'Discuția a fost închisă',
+                'beatmapset_discussion_post_new' => 'Postare nouă pe ":title" de :username',
+                'beatmapset_discussion_post_new_compact' => 'Postare nouă de :username',
+                'beatmapset_discussion_unlock' => 'Discuția pe ":title" a fost redeschisă',
+                'beatmapset_discussion_unlock_compact' => 'Discuția a fost redeschisă',
             ],
 
             'beatmapset_state' => [
                 '_' => '',
-                'beatmapset_disqualify' => '',
-                'beatmapset_disqualify_compact' => '',
-                'beatmapset_love' => '',
-                'beatmapset_love_compact' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_nominate_compact' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_qualify_compact' => '',
+                'beatmapset_disqualify' => ':title a fost descalificat',
+                'beatmapset_disqualify_compact' => 'Beatmap-ul a fost descalificat',
+                'beatmapset_love' => ':title a fost promovat la loved',
+                'beatmapset_love_compact' => 'Beatmap-ul a fost promovat la loved',
+                'beatmapset_nominate' => ':title a fost nominat',
+                'beatmapset_nominate_compact' => 'Beatmap-ul a fost nominat',
+                'beatmapset_qualify' => ':title a starns destule nominații si a intrat în ranking queue',
+                'beatmapset_qualify_compact' => 'Beatmap-ul a intrat în ranking queue',
                 'beatmapset_rank' => '',
                 'beatmapset_rank_compact' => '',
                 'beatmapset_reset_nominations' => '',
@@ -53,55 +53,55 @@ return [
             ],
 
             'comment' => [
-                '_' => '',
+                '_' => 'Comentariu nou',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new' => ':username a comentat ":content" la ":title"',
+                'comment_new_compact' => ':username a comentat ":content"',
             ],
         ],
 
         'channel' => [
-            '_' => '',
+            '_' => 'Conversație',
 
             'channel' => [
-                '_' => '',
+                '_' => 'Mesaj nou',
                 'pm' => [
-                    'channel_message' => '',
-                    'channel_message_compact' => '',
-                    'channel_message_group' => '',
+                    'channel_message' => ':username spune ":title"',
+                    'channel_message_compact' => ':title',
+                    'channel_message_group' => 'de la :username',
                 ],
             ],
         ],
 
         'build' => [
-            '_' => '',
+            '_' => 'Istoric modificări',
 
             'comment' => [
-                '_' => '',
+                '_' => 'Comentariu nou',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new' => ':username a comentat ":content" la ":title"',
+                'comment_new_compact' => ':username a comentat ":content"',
             ],
         ],
 
         'news_post' => [
-            '_' => '',
+            '_' => 'Noutăți',
 
             'comment' => [
-                '_' => '',
+                '_' => 'Comentariu nou',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new' => ':username a comentat ":content" la ":title"',
+                'comment_new_compact' => ':username a comentat ":content"',
             ],
         ],
 
         'forum_topic' => [
-            '_' => '',
+            '_' => 'Subiect forum',
 
             'forum_topic_reply' => [
                 '_' => '',
-                'forum_topic_reply' => '',
-                'forum_topic_reply_compact' => '',
+                'forum_topic_reply' => ':username a răspuns la ":title"',
+                'forum_topic_reply_compact' => ':username a răspuns',
             ],
         ],
 
@@ -110,16 +110,16 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => '',
+                'legacy_pm' => ':count_delimited mesaj necitit|:count_delimited mesaje necitite',
             ],
         ],
 
         'user_achievement' => [
-            '_' => '',
+            '_' => 'Medalii',
 
             'user_achievement_unlock' => [
-                '_' => '',
-                'user_achievement_unlock' => '',
+                '_' => 'Medalie nouă',
+                'user_achievement_unlock' => 'Deblocat ":title"!',
             ],
         ],
     ],
