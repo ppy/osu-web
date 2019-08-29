@@ -41,10 +41,9 @@ interface State {
 }
 
 function rankSortDescending(x: User, y: User) {
- if (x.default_gamemode_rank == -1 || y.default_gamemode_rank == -1) {
+ if (x.default_gamemode_rank === -1 || y.default_gamemode_rank === -1) {
    return -1;
- }
- else {
+ } else {
    return x.default_gamemode_rank - y.default_gamemode_rank;
  }
 }
@@ -72,9 +71,10 @@ export class UserList extends React.PureComponent<Props> {
     switch (this.state.sortMode) {
       case 'rank':
         return users.sort(rankSortDescending);
+
       case 'username':
         return users.sort(usernameSortAscending);
-      
+
       default:
         return users.sort((x, y) => {
           if (x.is_online && y.is_online) {
