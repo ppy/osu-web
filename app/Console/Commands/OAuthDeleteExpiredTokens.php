@@ -82,7 +82,6 @@ class OAuthDeleteExpiredTokens extends Command
      *
      * @return void
      */
-
     private function deleteAuthCodes()
     {
         $query = DB::table('oauth_auth_codes')->where('expires_at', '<', $this->expiredBefore)->select('id', 'expires_at');
