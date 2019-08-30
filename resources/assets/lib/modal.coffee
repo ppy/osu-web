@@ -69,6 +69,10 @@ export class Modal extends PureComponent
     @clickEndTarget = e.target
 
 
+  # onclick's event does not include where a click started.
+  # onclick's target is the outermost element that is involved in a click;
+  # starting a click on the outer element and ending on an inner element will have the outer element as the event target,
+  # likewise, starting on an inner element end ending on the outer element will still use the outer element as the event target.
   hideModal: (e) =>
     @props.onClose?() if e.button == 0 &&
                          e.target == @ref.current &&
