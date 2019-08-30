@@ -24,15 +24,7 @@
         }
     @endphp
 
-    @php
-        $blockClass = 'pagination-v2';
-
-        foreach ($modifiers ?? [] as $modifier) {
-            $blockClass .= " pagination-v2--{$modifier}";
-        }
-    @endphp
-
-    <nav class="{{ $blockClass }}">
+    <nav class="{{ class_with_modifiers('pagination-v2', $modifiers ?? []) }}">
         <div class="pagination-v2__col">
             @if ($currentPage === 1)
                 <span class="pagination-v2__link pagination-v2__link--quick pagination-v2__link--disabled">

@@ -20,12 +20,11 @@
         @foreach($group['items'] as $name => $options)
             @if (strlen($name) > 0)
                 <div class="supporter-perk-list-group supporter-perk-list-group--image">
-                    <div class="supporter-perk-list-group__image">
-                        <img
-                            src="/images/layout/supporter/{{$name}}.jpg"
-                            srcSet="/images/layout/supporter/{{$name}}.jpg 1x, /images/layout/supporter/{{retinaify($name.'.jpg')}} 2x"
-                        />
-                    </div>
+                    <img
+                        class="supporter-perk-list-group__image"
+                        src="/images/layout/supporter/{{$name}}.jpg"
+                        srcSet="/images/layout/supporter/{{$name}}.jpg 1x, /images/layout/supporter/{{retinaify($name.'.jpg')}} 2x"
+                    />
                     <div class="supporter-perk-list-group__meta">
                         <div class="supporter-perk-list-group__icon">
                             <span class="fa-stack">
