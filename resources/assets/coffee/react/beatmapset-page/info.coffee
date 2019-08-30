@@ -25,6 +25,8 @@ export class Info extends React.Component
   constructor: (props) ->
     super props
 
+    @overlay = React.createRef()
+
     @state =
       isBusy: false
       isEditing: false
@@ -48,7 +50,7 @@ export class Info extends React.Component
   # likewise, starting on an inner element end ending on the outer element will still use the outer element as the event target.
   dismissEditor: (e) =>
     @setState isEditing: false if e.button == 0 &&
-                                  e.target == @overlay &&
+                                  e.target == @overlay.current &&
                                   @clickEndTarget == @clickStartTarget
 
 
@@ -147,7 +149,7 @@ export class Info extends React.Component
             onClick: @dismissEditor
             onMouseDown: @handleClickStart
             onMouseUp: @handleClickEnd
-            ref: (element) => @overlay = element
+            ref: @overlay
 
             div className: 'beatmapset-description-editor__container osu-page',
               el BBCodeEditor,
