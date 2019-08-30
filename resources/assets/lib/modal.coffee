@@ -61,8 +61,18 @@ export class Modal extends PureComponent
     @props.onClose?() if e.keyCode == 27
 
 
+  handleMouseDown: (e) =>
+    @clickStartTarget = e.target
+
+
+  handleMouseUp: (e) =>
+    @clickEndTarget = e.target
+
+
   hideModal: (e) =>
-    @props.onClose?() if e.button == 0 && e.target == @ref.current
+    @props.onClose?() if e.button == 0 &&
+                         e.target == @ref.current &&
+                         @clickEndTarget == @clickStartTarget
 
 
   open: ->
@@ -80,5 +90,7 @@ export class Modal extends PureComponent
     div
       className: 'js-react-modal'
       onClick: @hideModal
+      onMouseDown: @handleMouseDown
+      onMouseUp: @handleMouseUp
       ref: @ref
       @props.children
