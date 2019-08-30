@@ -42,12 +42,26 @@ export class Info extends React.Component
     $(window).off '.beatmapsetPageInfo'
 
 
+  # onclick's event does not include where a click started.
+  # onclick's target is the outermost element that is involved in a click;
+  # starting a click on the outer element and ending on an inner element will have the outer element as the event target,
+  # likewise, starting on an inner element end ending on the outer element will still use the outer element as the event target.
   dismissEditor: (e) =>
-    @setState isEditing: false if e.target == @overlay
+    @setState isEditing: false if e.button == 0 &&
+                                  e.target == @overlay &&
+                                  @clickEndTarget == @clickStartTarget
 
 
   editStart: =>
     @setState isEditing: true
+
+
+  handleClickEnd: (e) =>
+    @clickEndTarget = e.target
+
+
+  handleClickStart: (e) =>
+    @clickStartTarget = e.target
 
 
   onEditorChange: (action) =>
@@ -131,6 +145,8 @@ export class Info extends React.Component
           div
             className: 'beatmapset-description-editor__overlay'
             onClick: @dismissEditor
+            onMouseDown: @handleClickStart
+            onMouseUp: @handleClickEnd
             ref: (element) => @overlay = element
 
             div className: 'beatmapset-description-editor__container osu-page',
