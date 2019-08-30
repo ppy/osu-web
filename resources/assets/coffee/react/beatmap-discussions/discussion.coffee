@@ -20,7 +20,9 @@ import { NewReply } from './new-reply'
 import { Post } from './post'
 import { SystemPost } from './system-post'
 import * as React from 'react'
-import { button, div, i, span } from 'react-dom-factories'
+import { button, div, i, span, a } from 'react-dom-factories'
+import { UserAvatar } from 'user-avatar'
+
 el = React.createElement
 
 bn = 'beatmap-discussion'
@@ -78,8 +80,12 @@ export class Discussion extends React.PureComponent
               ['up', 'down'].map (direction) =>
                 div
                   key: direction
+                  direction: direction
                   className: "#{bn}__action"
+                  onMouseOver: @showVotes
+                  onTouchStart: @showVotes
                   @displayVote direction
+                  @voterList direction
 
               button
                 className: "#{bn}__action #{bn}__action--with-line"
@@ -134,11 +140,64 @@ export class Discussion extends React.PureComponent
       'data-score': score
       disabled: disabled
       onClick: @doVote
-      title: osu.trans("beatmaps.discussions.votes.#{type}")
       i className: "fas fa-#{icon}"
       span className: "#{vbn}__count",
         @props.discussion.votes[type]
 
+
+  voterList: (type) =>
+    div
+      className: "user-list-popup user-list-popup__template js-user-list-popup--#{@props.discussion.id}-#{type}"
+      style:
+        display: 'none'
+      if @props.discussion.votes[type] < 1
+        osu.trans "beatmaps.discussions.votes.none.#{type}"
+      else
+        [
+          div className: 'user-list-popup__title',
+            osu.trans("beatmaps.discussions.votes.latest.#{type}")
+            ':'
+          @props.discussion.votes['voters'][type].map (userId) =>
+            a
+              href: laroute.route('users.show', user: userId)
+              className: 'js-usercard user-list-popup__user'
+              key: userId
+              'data-user-id': userId
+              el UserAvatar, user: @props.users[userId] ? [], modifiers: ['full']
+          if @props.discussion.votes[type] > @props.discussion.votes['voters'][type].length
+            div className: 'user-list-popup__remainder-count',
+              osu.transChoice 'common.count.plus_others', @props.discussion.votes[type] - @props.discussion.votes['voters'][type].length
+        ]
+
+
+  showVotes: (event) =>
+    target = event.currentTarget
+
+    if @props.favcount < 1 || target._tooltip
+      return
+
+    target._tooltip = true
+
+    $(target).qtip
+      style:
+        classes: 'user-list-popup'
+        def: false
+        tip: false
+      content:
+        text: (event, api) => $(".js-user-list-popup--#{@props.discussion.id}-#{target.getAttribute('direction')}").html()
+      position:
+        at: 'top center'
+        my: 'bottom center'
+        viewport: $(window)
+      show:
+        delay: 100
+        ready: true
+        solo: true
+        effect: -> $(this).fadeTo(110, 1)
+      hide:
+        fixed: true
+        delay: 500
+        effect: -> $(this).fadeTo(250, 0)
 
   doVote: (e) =>
     LoadingOverlay.show()
