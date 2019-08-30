@@ -15,12 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="
-    login-box
-    @foreach ($modifiers ?? [] as $modifier)
-        login-box--{{ $modifier }}
-    @endforeach
-">
+<div class="{{ class_with_modifiers('login-box', $modifiers ?? []) }}">
     <div
         class="
             login-box__content
