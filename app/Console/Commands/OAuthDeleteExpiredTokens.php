@@ -30,27 +30,59 @@ class OAuthDeleteExpiredTokens extends Command
 
     protected $description = 'Deletes expired OAuth tokens';
 
+    /** @var \Carbon\Carbon */
+    private $expiredBefore;
+
     public function handle()
     {
-        $expiredBefore = now()->subDays(config('osu.oauth.retain_expired_tokens_days'));
+        $this->expiredBefore = now()->subDays(config('osu.oauth.retain_expired_tokens_days'));
 
-        $count = DB::table('oauth_auth_codes')->where('expires_at', '<', $expiredBefore)->delete();
-        $this->line("Deleted {$count} expired auth codes.");
+        $this->deleteAuthCodes();
+        $this->deleteAccessTokens();
+        $this->deleteClientGrantTokens();
+    }
 
-        $refreshTokensQuery = DB::table('oauth_refresh_tokens')->where('expires_at', '<', $expiredBefore);
+    /**
+     * Removes refresh tokens and associated access tokens.
+     *
+     * It uses chunkById which is much slower than a straight batch delete, but doesn't lock the entire table while deleting.
+     *
+     * @return void
+     */
+    private function deleteAccessTokens()
+    {
+        $refreshTokensQuery = DB::table('oauth_refresh_tokens')
+            ->where('expires_at', '<', $this->expiredBefore)
+            ->select('id', 'access_token_id');
+        $refreshTokensTotal = (clone $refreshTokensQuery)->count();
 
-        $accessTokenCount = 0;
-        $refreshTokenCount = 0;
-        $refreshTokensQuery->chunkById(1000, function ($chunk) use (&$accessTokenCount, &$refreshTokenCount) {
+        $progress = $this->output->createProgressBar($refreshTokensTotal);
+        $progress->setFormat('very_verbose');
+
+        $accessTokensDeleted = 0;
+        $refreshTokensDeleted = 0;
+        $refreshTokensQuery->chunkById(1000, function ($chunk) use (&$accessTokensDeleted, &$refreshTokensDeleted, $progress) {
             // This assumes the refresh token always has a longer valid lifetime than the access token.
-            $accessTokenCount += Token::whereIn('id', $chunk->pluck('access_token_id'))->delete();
-            $refreshTokenCount += DB::table('oauth_refresh_tokens')->whereIn('id', $chunk->pluck('id'))->delete();
+            $accessTokensDeleted += Token::whereIn('id', $chunk->pluck('access_token_id'))->delete();
+            $refreshTokensDeleted += DB::table('oauth_refresh_tokens')->whereIn('id', $chunk->pluck('id'))->delete();
+            $progress->advance($chunk->count());
         });
 
-        $this->line("Deleted {$accessTokenCount} expired access tokens.");
-        $this->line("Deleted {$refreshTokenCount} expired refresh tokens.");
+        $progress->finish();
+        $this->line('');
+        $this->line("Deleted {$accessTokensDeleted} expired access tokens.");
+        $this->line("Deleted {$refreshTokensDeleted} expired refresh tokens.");
+    }
 
-        $count = Token::where('user_id', null)->where('expires_at', '<', $expiredBefore)->delete();
+    private function deleteAuthCodes()
+    {
+        $count = DB::table('oauth_auth_codes')->where('expires_at', '<', $this->expiredBefore)->delete();
+        $this->line("Deleted {$count} expired auth codes.");
+    }
+
+    private function deleteClientGrantTokens()
+    {
+        $count = Token::where('user_id', null)->where('expires_at', '<', $this->expiredBefore)->delete();
         $this->line("Deleted {$count} expired client credential grant tokens.");
     }
 }
