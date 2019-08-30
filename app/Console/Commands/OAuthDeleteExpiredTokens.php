@@ -24,6 +24,10 @@ use DB;
 use Illuminate\Console\Command;
 use Laravel\Passport\Token;
 
+/**
+ * Removes expired tokens and auth codes from the OAuth tables.
+ * It uses chunkById which is much slower than a straight batch delete, but doesn't lock the entire table while deleting.
+ */
 class OAuthDeleteExpiredTokens extends Command
 {
     protected $signature = 'oauth:delete-expired-tokens';
@@ -44,8 +48,6 @@ class OAuthDeleteExpiredTokens extends Command
 
     /**
      * Removes refresh tokens and associated access tokens.
-     *
-     * It uses chunkById which is much slower than a straight batch delete, but doesn't lock the entire table while deleting.
      *
      * @return void
      */
@@ -74,15 +76,52 @@ class OAuthDeleteExpiredTokens extends Command
         $this->line("Deleted {$refreshTokensDeleted} expired refresh tokens.");
     }
 
+    /**
+     * Removes auth codes.
+     *
+     * @return void
+     */
+
     private function deleteAuthCodes()
     {
-        $count = DB::table('oauth_auth_codes')->where('expires_at', '<', $this->expiredBefore)->delete();
-        $this->line("Deleted {$count} expired auth codes.");
+        $query = DB::table('oauth_auth_codes')->where('expires_at', '<', $this->expiredBefore)->select('id');
+        $total = (clone $query)->count();
+
+        $progress = $this->output->createProgressBar($total);
+        $progress->setFormat('very_verbose');
+
+        $deleted = 0;
+        $query->chunkById(1000, function ($chunk) use (&$deleted, $progress) {
+            $deleted += DB::table('oauth_auth_codes')->whereIn('id', $chunk->pluck('id'))->delete();
+            $progress->advance($chunk->count());
+        });
+
+        $progress->finish();
+        $this->line('');
+        $this->line("Deleted {$deleted} expired auth codes.");
     }
 
+    /**
+     * Removes client credential grant tokens. These are access tokens with no associated user id.
+     *
+     * @return void
+     */
     private function deleteClientGrantTokens()
     {
-        $count = Token::where('user_id', null)->where('expires_at', '<', $this->expiredBefore)->delete();
-        $this->line("Deleted {$count} expired client credential grant tokens.");
+        $query = Token::where('user_id', null)->where('expires_at', '<', $this->expiredBefore)->select('id');
+        $total = (clone $query)->count();
+
+        $progress = $this->output->createProgressBar($total);
+        $progress->setFormat('very_verbose');
+
+        $deleted = 0;
+        $query->chunkById(1000, function ($chunk) use (&$deleted, $progress) {
+            $deleted += Token::whereIn('id', $chunk->pluck('id'))->delete();
+            $progress->advance($chunk->count());
+        });
+
+        $progress->finish();
+        $this->line('');
+        $this->line("Deleted {$deleted} expired auth codes.");
     }
 }
