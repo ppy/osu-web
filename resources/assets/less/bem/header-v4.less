@@ -37,6 +37,13 @@
     background-size: cover;
     opacity: 0.5;
 
+    &::before {
+      .full-size();
+      content: '';
+      background-image: linear-gradient(to right, @osu-colour-d5, transparent 200px, transparent 1000px, @osu-colour-d5);
+      background-position: center;
+    }
+
     .@{_top}--forums-index & {
       .at2x-simple('/images/headers/forum-index.jpg');
     }
