@@ -40,6 +40,7 @@ class OAuthDeleteExpiredTokens extends Command
     public function handle()
     {
         $this->expiredBefore = now()->subDays(config('osu.oauth.retain_expired_tokens_days'));
+        $this->line("Deleting before {$this->expiredBefore}");
 
         $this->deleteAuthCodes();
         $this->deleteAccessTokens();
@@ -55,7 +56,7 @@ class OAuthDeleteExpiredTokens extends Command
     {
         $refreshTokensQuery = DB::table('oauth_refresh_tokens')
             ->where('expires_at', '<', $this->expiredBefore)
-            ->select('id', 'access_token_id');
+            ->select('id', 'access_token_id', 'expires_at');
         $refreshTokensTotal = (clone $refreshTokensQuery)->count();
 
         $progress = $this->output->createProgressBar($refreshTokensTotal);
@@ -68,7 +69,7 @@ class OAuthDeleteExpiredTokens extends Command
             $accessTokensDeleted += Token::whereIn('id', $chunk->pluck('access_token_id'))->delete();
             $refreshTokensDeleted += DB::table('oauth_refresh_tokens')->whereIn('id', $chunk->pluck('id'))->delete();
             $progress->advance($chunk->count());
-        });
+        }, 'expires_at');
 
         $progress->finish();
         $this->line('');
@@ -84,7 +85,7 @@ class OAuthDeleteExpiredTokens extends Command
 
     private function deleteAuthCodes()
     {
-        $query = DB::table('oauth_auth_codes')->where('expires_at', '<', $this->expiredBefore)->select('id');
+        $query = DB::table('oauth_auth_codes')->where('expires_at', '<', $this->expiredBefore)->select('id', 'expires_at');
         $total = (clone $query)->count();
 
         $progress = $this->output->createProgressBar($total);
@@ -94,7 +95,7 @@ class OAuthDeleteExpiredTokens extends Command
         $query->chunkById(1000, function ($chunk) use (&$deleted, $progress) {
             $deleted += DB::table('oauth_auth_codes')->whereIn('id', $chunk->pluck('id'))->delete();
             $progress->advance($chunk->count());
-        });
+        }, 'expires_at');
 
         $progress->finish();
         $this->line('');
@@ -108,7 +109,7 @@ class OAuthDeleteExpiredTokens extends Command
      */
     private function deleteClientGrantTokens()
     {
-        $query = Token::where('user_id', null)->where('expires_at', '<', $this->expiredBefore)->select('id');
+        $query = Token::where('user_id', null)->where('expires_at', '<', $this->expiredBefore)->select('id', 'expires_at');
         $total = (clone $query)->count();
 
         $progress = $this->output->createProgressBar($total);
@@ -118,7 +119,7 @@ class OAuthDeleteExpiredTokens extends Command
         $query->chunkById(1000, function ($chunk) use (&$deleted, $progress) {
             $deleted += Token::whereIn('id', $chunk->pluck('id'))->delete();
             $progress->advance($chunk->count());
-        });
+        }, 'expires_at');
 
         $progress->finish();
         $this->line('');
