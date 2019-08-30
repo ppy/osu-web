@@ -312,7 +312,6 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
     Route::group(['prefix' => 'v2'], function () {
         Route::resource('comments', 'CommentsController', ['except' => ['create', 'edit']]);
         Route::post('comments/{comment}/report', 'CommentsController@report')->name('comments.report');
-        Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
         Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
         Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');
 
