@@ -36,4 +36,14 @@ class MarkdownRenderer extends Renderer
             'relative_url_root' => wiki_url($this->page->path),
         ]))->load($this->body)->toArray();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function renderIndexable()
+    {
+        return (new OsuMarkdown('wiki', [
+            'relative_url_root' => wiki_url($this->page->path),
+        ]))->load($this->body)->toIndexable();
+    }
 }

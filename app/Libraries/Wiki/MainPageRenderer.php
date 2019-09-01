@@ -104,4 +104,13 @@ class MainPageRenderer extends Renderer
 
         return $page;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function renderIndexable()
+    {
+        // returning nothing since the main page isn't searchable anyway
+        return '';
+    }
 }

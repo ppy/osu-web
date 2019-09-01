@@ -160,9 +160,9 @@ class Page
             $this->log('index document');
 
             $content = $this->getContent();
-            $indexContent = (new OsuMarkdown('wiki', [
-                'relative_url_root' => wiki_url($this->path),
-            ]))->load($content)->toIndexable();
+
+            $rendererClass = $this->renderer();
+            $indexContent = (new $rendererClass($this, $content))->renderIndexable();
 
             $params['body'] = [
                 'locale' => $this->locale,
@@ -284,7 +284,7 @@ class Page
                         // prefilling the header so layout() works
                         $this->cache['page']['header'] = OsuMarkdown::parseYamlHeader($body)['header'];
 
-                        $rendererClass = static::RENDERERS[$this->layout()];
+                        $rendererClass = $this->renderer();
 
                         $page = (new $rendererClass($this, $body))->render();
                     }
@@ -377,6 +377,19 @@ class Page
         }
 
         return static::TEMPLATES[$this->layout()];
+    }
+
+    public function renderer()
+    {
+        if ($this->page() === null) {
+            return;
+        }
+
+        if (!array_key_exists($this->layout(), static::RENDERERS)) {
+            throw new \Exception('Invalid wiki page type');
+        }
+
+        return static::RENDERERS[$this->layout()];
     }
 
     private function log($action)
