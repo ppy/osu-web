@@ -172,7 +172,7 @@ class Page
                 'path_clean' => static::cleanupPath($this->path),
                 'title' => strip_tags($this->title()),
                 'tags' => $this->tags(),
-                'type' => $this->type(),
+                'layout' => $this->layout(),
             ];
         }
 
@@ -281,10 +281,10 @@ class Page
                     }
 
                     if (present($body)) {
-                        // prefilling the header so type() works
+                        // prefilling the header so layout() works
                         $this->cache['page']['header'] = OsuMarkdown::parseYamlHeader($body)['header'];
 
-                        $rendererClass = static::RENDERERS[$this->type()];
+                        $rendererClass = static::RENDERERS[$this->layout()];
 
                         $page = (new $rendererClass($this, $body))->render();
                     }
@@ -357,13 +357,13 @@ class Page
         return presence($this->page()['header']['subtitle'] ?? null) ?? $this->defaultSubtitle;
     }
 
-    public function type()
+    public function layout()
     {
         if ($this->page() === null) {
             return;
         }
 
-        return presence($this->page()['header']['type'] ?? null) ?? 'markdown_page';
+        return presence($this->page()['header']['layout'] ?? null) ?? 'markdown_page';
     }
 
     public function template()
@@ -372,11 +372,11 @@ class Page
             return static::TEMPLATES['markdown_page'];
         }
 
-        if (!array_key_exists($this->type(), static::TEMPLATES)) {
+        if (!array_key_exists($this->layout(), static::TEMPLATES)) {
             throw new \Exception('Invalid wiki page type');
         }
 
-        return static::TEMPLATES[$this->type()];
+        return static::TEMPLATES[$this->layout()];
     }
 
     private function log($action)
