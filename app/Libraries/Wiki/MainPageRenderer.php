@@ -20,15 +20,15 @@
 
 namespace App\Libraries\Wiki;
 
-use App\Libraries\Markdown\OsuMarkdown;
-use League\CommonMark\DocParser;
-use League\CommonMark\Environment;
 use App\Libraries\Markdown\Block\Element\WikiSection;
 use App\Libraries\Markdown\Block\Parser\WikiSectionParser;
 use App\Libraries\Markdown\Block\Renderer\WikiSectionRenderer;
+use App\Libraries\Markdown\OsuMarkdown;
 use League\CommonMark\Block\Element as Block;
-use League\CommonMark\Inline\Element as Inline;
+use League\CommonMark\DocParser;
+use League\CommonMark\Environment;
 use League\CommonMark\HtmlRenderer;
+use League\CommonMark\Inline\Element as Inline;
 
 class MainPageRenderer extends Renderer
 {
@@ -51,7 +51,6 @@ class MainPageRenderer extends Renderer
         $this->renderer = new HtmlRenderer($env);
     }
 
-
     /**
      * @param \League\CommonMark\Block\Element\Document $document
      * @return void
@@ -67,10 +66,10 @@ class MainPageRenderer extends Renderer
                 continue;
             }
 
-            $blockClass = "wiki-main-page-panel";
-            $class = "";
+            $blockClass = 'wiki-main-page-panel';
+            $class = '';
 
-            switch(get_class($node)) {
+            switch (get_class($node)) {
                 case Block\Heading::class:
                     $class = "{$blockClass}__title";
                     break;

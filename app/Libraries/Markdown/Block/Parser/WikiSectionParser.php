@@ -25,10 +25,10 @@
 
 namespace App\Libraries\Markdown\Block\Parser;
 
+use App\Libraries\Markdown\Block\Element\WikiSection;
 use League\CommonMark\Block\Parser\BlockParserInterface;
 use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;
-use App\Libraries\Markdown\Block\Element\WikiSection;
 
 class WikiSectionParser implements BlockParserInterface
 {

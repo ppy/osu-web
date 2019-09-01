@@ -130,7 +130,7 @@ class WikiSection extends AbstractBlock
      */
     public function canContain(AbstractBlock $block)
     {
-        return !($block instanceof WikiSection);
+        return !($block instanceof self);
     }
 
     /**
@@ -160,12 +160,13 @@ class WikiSection extends AbstractBlock
 
             if (strlen($match[0]) >= $this->getLength()) {
                 $cursor->advanceBy(strlen($match[0]));
+
                 return false;
             }
         }
 
         // Skip optional spaces of fence offset
-        $cursor->match('/^ {0,' . $this->offset . '}/');
+        $cursor->match('/^ {0,'.$this->offset.'}/');
 
         return true;
     }
