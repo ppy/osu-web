@@ -46,7 +46,6 @@ abstract class Renderer
      */
     abstract public function render();
 
-
     /**
      * Renders the indexable {@see App\Models\Wiki\Page::page()} representation of this wiki page.
      */
