@@ -34,7 +34,9 @@
         @include('wiki._notice')
         <div class="js-react--wiki-search"></div>
             <div class="wiki-main-page__blurb">
-                {!! presence($page->page()["header"]["blurb"]) !!}
+                @if(array_key_exists('blurb', $page->page()['header']))
+                    {!! $page->page()['header']['blurb'] !!}
+                @endif
             </div>
         <div class="wiki-main-page__panels">
             {!! $page->page()["output"] !!}
