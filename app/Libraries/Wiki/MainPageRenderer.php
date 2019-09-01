@@ -26,24 +26,66 @@ use League\CommonMark\Environment;
 use App\Libraries\Markdown\Block\Element\WikiSection;
 use App\Libraries\Markdown\Block\Parser\WikiSectionParser;
 use App\Libraries\Markdown\Block\Renderer\WikiSectionRenderer;
-use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\Block\Element as Block;
+use League\CommonMark\Inline\Element as Inline;
+use League\CommonMark\HtmlRenderer;
 
 class MainPageRenderer extends Renderer
 {
+    /** @var DocParser */
     private $parser;
-    private $converter;
+
+    /** @var HtmlRenderer */
+    private $renderer;
 
     public function __construct($page, $body)
     {
         parent::__construct($page, $body);
 
-        $env = Environment::createCommonMarkEnvironment();
+        $env = Environment::createCommonMarkEnvironment(OsuMarkdown::DEFAULT_CONFIG);
 
         $env->addBlockParser(new WikiSectionParser);
         $env->addBlockRenderer(WikiSection::class, new WikiSectionRenderer);
 
         $this->parser = new DocParser($env);
-        $this->converter = new CommonMarkConverter(OsuMarkdown::DEFAULT_CONFIG, $env);
+        $this->renderer = new HtmlRenderer($env);
+    }
+
+
+    /**
+     * @param \League\CommonMark\Block\Element\Document $document
+     * @return void
+     */
+    private function addClasses($document)
+    {
+        $walker = $document->walker();
+
+        while ($event = $walker->next()) {
+            $node = $event->getNode();
+
+            if ($event->isEntering() || isset($node->data['attributes']['class'])) {
+                continue;
+            }
+
+            $blockClass = "wiki-main-page-panel";
+            $class = "";
+
+            switch(get_class($node)) {
+                case Block\Heading::class:
+                    $class = "{$blockClass}__title";
+                    break;
+                case Block\Paragraph::class:
+                    $class = "{$blockClass}__content";
+                    break;
+                case Inline\Link::class:
+                    $class = "{$blockClass}__link";
+                    break;
+            }
+
+            if (present($class)) {
+                $node->data['attributes']['class'] = $class;
+            }
+        }
     }
 
     /**
@@ -52,10 +94,13 @@ class MainPageRenderer extends Renderer
     public function render()
     {
         $body = OsuMarkdown::parseYamlHeader($this->body);
+        $document = $this->parser->parse($body['document']);
+
+        $this->addClasses($document);
 
         $page = [
             'header' => $body['header'],
-            'output' => $this->converter->convertToHtml($body['document']),
+            'output' => $this->renderer->renderBlock($document),
         ];
 
         return $page;

@@ -44,63 +44,15 @@
     }
   }
 
-  &__text {
-    color: @osu-colour-c1;
-  }
-
   &__link {
     .link-default();
-
-    &::before {
-      display: inline-block;
-      content: "\2022\00a0";
-
-      color: @osu-colour-c1;
-
-      &:hover {
-        color: @osu-colour-c1;
-      }
-    }
-
-    &:first-child {
-      &::before {
-        content: "\200B";
-      }
-    }
   }
 
-  &__sublinks &__link {
-    &::before {
-      content: "\00a0\2022\00a0";
-    }
-
-    &:first-child {
-      &::before {
-        content: "";
-      }
-    }
-  }
-
-  &__links {
+  &__content {
     font-size: 13px;
     font-style: italic;
     font-weight: 700;
-  }
-
-  &__sublinks {
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    &::before {
-      font-style: normal;
-      content: "(";
-    }
-
-    &::after {
-      font-style: normal;
-      content: ")";
-    }
+    color: @osu-colour-c1;
   }
 
   &__title {
@@ -112,10 +64,6 @@
 
     .@{_top}:first-child & {
       font-size: 30px;
-    }
-
-    a {
-      .link-default();
     }
   }
 }
