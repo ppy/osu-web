@@ -369,7 +369,7 @@ class Page
     public function template()
     {
         if ($this->page() === null) {
-            return;
+            return static::TEMPLATES['markdown_page'];
         }
 
         if (!array_key_exists($this->type(), static::TEMPLATES)) {
