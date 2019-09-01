@@ -18,7 +18,8 @@
 
 @import "app";
 
-@font-content: 'Open Sans', sans-serif;
+@font-content: 'Inter', sans-serif;
+@font-default-torus: Torus, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
 @font-default: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
 @font-default-vi: Exo, 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
 @font-default-zh: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
@@ -60,6 +61,10 @@
 // ┐(ﾟ ヮﾟ)┌
 @padding-wiki-desktop: 40px;
 
+// ┐(ﾟ ヮﾟ)┌
+@padding-base: 10px;
+@padding-base-desktop: 50px;
+
 @gutter-profile-page: 20px;
 @gutter-profile-page-desktop: @gutter-desktop;
 @padding-profile-page: 10px;
@@ -74,6 +79,13 @@
 
 @border-radius--nav-avatar: 10px;
 @border-radius--extra: 20px;
+
+@forum-item-overflow: @padding-base - 2px;
+@forum-item-overflow-desktop: @padding-base-desktop - 20px;
+@forum-item-background-color: @osu-colour-b4;
+@forum-item-background-color-hover: @osu-colour-b3;
+@forum-item-animate: all 120ms;
+
 
 // here be z-indexes
 @z-index--header-bg: -1;

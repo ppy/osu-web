@@ -38,7 +38,6 @@
 @endif
 
 <link href='//fonts.googleapis.com/css?family=Exo+2:300,300italic,200,200italic,400,400italic,500,500italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i' rel='stylesheet' type='text/css'>
 
 @if (App::getLocale() === 'vi')
     <link href='//fonts.googleapis.com/css?family=Exo:300,300italic,200,200italic,400,400italic,500,500italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
@@ -108,8 +107,8 @@
     <script src="/vendor/js/moment-locales/{{ $momentLocale }}.js" data-turbolinks-track="reload"></script>
 @endif
 
-@if (isset($rss))
-    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ $rss }}">
+@if (isset($atom))
+    <link rel="alternate" type="application/atom+xml" title="{{ $atom['title'] }}" href="{{ $atom['url'] }}" />
 @endif
 
 @if (isset($canonicalUrl))

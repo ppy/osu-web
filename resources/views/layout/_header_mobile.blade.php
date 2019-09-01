@@ -78,6 +78,9 @@
 
     @if (Auth::check() && !($currentSection === 'home' && $currentAction === 'search'))
         <form action="{{ route('search') }}" class="navbar-mobile-search">
+            @foreach ($searchParams ?? [] as $name => $value)
+                <input type="hidden" name="{{ $name }}" value="{{ $value }}" />
+            @endforeach
             <input class="navbar-mobile-search__input" name="query" />
             <button class="navbar-mobile-search__icon">
                 <i class="fas fa-search"></i>

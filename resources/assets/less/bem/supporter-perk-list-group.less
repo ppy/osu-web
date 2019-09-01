@@ -1,0 +1,117 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.supporter-perk-list-group {
+  @top: supporter-perk-list-group;
+  flex: none;
+  overflow: hidden;
+  color: #fff;
+  font-size: @font-size--title-small;
+  width: calc(33% - 10px);
+  margin-bottom: 20px;
+
+  @media @mobile {
+    align-items: center;
+    display: flex;
+    width: calc(100% - 10px);
+  }
+
+  &--image {
+    display: flex;
+    text-align: right;
+    align-items: center;
+    width: 100%;
+    flex-direction: row-reverse;
+    margin-bottom: 5px;
+
+    @media @mobile {
+      flex-direction: column-reverse;
+      text-align: left;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__content {
+    margin: 0;
+  }
+
+  &__image {
+    width: 500px;
+    height: 100px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    object-fit: cover;
+
+    @media @mobile {
+      align-self: center;
+      flex-shrink: 1;
+      max-width: calc(100% - 40px);
+      margin-top: 10px;
+    }
+  }
+
+  &__icon {
+    color: #fff;
+    font-size: 26px; // icon size
+    padding: 0 20px;
+
+    .@{top}--image & {
+      @media @desktop {
+        margin-right: -45px;
+      }
+    }
+  }
+
+  &__icon-bg {
+    color: @osu-colour-lime-3;
+    .@{top}--why-support & {
+      color: @osu-colour-blue-3;
+    }
+  }
+
+  &__link {
+    .link-default();
+    display: block;
+    margin-top: 10px;
+  }
+
+  &__meta {
+    .@{top}--image & {
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+
+      @media @mobile {
+        flex-direction: row;
+      }
+    }
+  }
+
+  &__text {
+    padding: 10px;
+    font-style: italic;
+    color: @osu-colour-f1;
+  }
+
+  &__title {
+    margin: 0 0 10px;
+    font-size: 120%;
+    color: white;
+  }
+}

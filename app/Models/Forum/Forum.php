@@ -356,16 +356,32 @@ class Forum extends Model
         return $this->forum_type === 1;
     }
 
-    public function markAsRead(User $user)
+    public function markAsRead(User $user, bool $recursive = false)
     {
-        $forumTrack = ForumTrack::firstOrNew([
-            'user_id' => $user->getKey(),
-            'forum_id' => $this->getKey(),
-        ]);
-        $forumTrack->mark_time = Carbon::now();
-        $forumTrack->save();
+        $forumIds = [$this->getKey()];
 
-        TopicTrack::where('user_id', $user->getKey())->where('forum_id', $this->getKey())->delete();
+        if ($recursive) {
+            $forums = static::all();
+
+            foreach ($forums as $forum) {
+                if (isset($forum->forum_parents[$this->getKey()])) {
+                    $forumIds[] = $forum->getKey();
+                }
+            }
+        }
+
+        $this->getConnection()->transaction(function () use ($forumIds, $user) {
+            foreach ($forumIds as $forumId) {
+                $forumTrack = ForumTrack::firstOrNew([
+                    'user_id' => $user->getKey(),
+                    'forum_id' => $forumId,
+                ]);
+                $forumTrack->mark_time = Carbon::now();
+                $forumTrack->save();
+            }
+
+            TopicTrack::where('user_id', $user->getKey())->whereIn('forum_id', $forumIds)->delete();
+        });
     }
 
     public function toMetaDescription()

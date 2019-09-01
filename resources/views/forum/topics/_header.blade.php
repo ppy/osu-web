@@ -21,9 +21,7 @@
     $newTopic = !isset($topic);
 ?>
 <div class="osu-page">
-    @include('forum._header_breadcrumb', [
-        'forum' => $_forum,
-    ])
+    @include('forum.topics._header_breadcrumb', ['forum' => $_forum])
 
     <div
         class="forum-category-header
