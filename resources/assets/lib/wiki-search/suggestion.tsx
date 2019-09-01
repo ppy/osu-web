@@ -42,7 +42,7 @@ export default class Suggestion extends React.PureComponent<Props, {}> {
     const el = e.target as HTMLDivElement;
 
     if (el.dataset.position != null) {
-      $.publish(`suggestion:${type}`, el.dataset.position);
+      $.publish(`suggestion:${type}`, Number.parseInt(el.dataset.position, 10));
     }
   }
 

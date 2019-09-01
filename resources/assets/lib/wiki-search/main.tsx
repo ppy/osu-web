@@ -98,7 +98,7 @@ export default class Main extends React.Component<{}, State> {
     });
   }
 
-  highlightSuggestion = (e: React.KeyboardEvent, position: number) => {
+  highlightSuggestion = (e: any, position: number) => {
     this.setState({
       highlightedSuggestion: position,
     });
