@@ -167,7 +167,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
      * @var \League\CommonMark\Node\Node
      * @return string
      */
-    public static function getText($node)
+    public function getText($node)
     {
         $text = '';
 

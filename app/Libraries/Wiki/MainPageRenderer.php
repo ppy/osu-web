@@ -21,57 +21,29 @@
 namespace App\Libraries\Wiki;
 
 use App\Libraries\Markdown\OsuMarkdown;
-use App\Libraries\Markdown\OsuMarkdownProcessor;
-use League\CommonMark\Block\Element\Heading;
 use League\CommonMark\DocParser;
 use League\CommonMark\Environment;
-use League\CommonMark\Inline\Element\Link;
+use App\Libraries\Markdown\Block\Element\WikiSection;
+use App\Libraries\Markdown\Block\Parser\WikiSectionParser;
+use App\Libraries\Markdown\Block\Renderer\WikiSectionRenderer;
+use League\CommonMark\CommonMarkConverter;
 
 class MainPageRenderer extends Renderer
 {
     private $parser;
+    private $converter;
 
     public function __construct($page, $body)
     {
         parent::__construct($page, $body);
 
         $env = Environment::createCommonMarkEnvironment();
+
+        $env->addBlockParser(new WikiSectionParser);
+        $env->addBlockRenderer(WikiSection::class, new WikiSectionRenderer);
+
         $this->parser = new DocParser($env);
-    }
-
-    /**
-     * @param \League\CommonMark\Block\Element\Document $document
-     * @return array[]
-     */
-    private function getElements($document)
-    {
-        $walker = $document->walker();
-
-        $sections = [];
-        $heading = [];
-
-        while ($event = $walker->next()) {
-            $node = $event->getNode();
-
-            if (!$event->isEntering() && !($node instanceof Heading)) {
-                continue;
-            }
-
-            if ($node instanceof Heading) {
-                if ($event->isEntering()) {
-                    $heading = [
-                        'level' => $node->getLevel(),
-                        'text' => OsuMarkdownProcessor::getText($node),
-                    ];
-                } else {
-                    array_push($sections, $heading);
-                }
-            } elseif ($node instanceof Link) {
-                $heading['url'] = $node->getUrl();
-            }
-        }
-
-        return $sections;
+        $this->converter = new CommonMarkConverter(OsuMarkdown::DEFAULT_CONFIG, $env);
     }
 
     /**
@@ -81,15 +53,10 @@ class MainPageRenderer extends Renderer
     {
         $body = OsuMarkdown::parseYamlHeader($this->body);
 
-        $document = $this->parser->parse($body['document']);
-        $elements = $this->getElements($document);
-
         $page = [
             'header' => $body['header'],
-            'output' => view('wiki.generators.main', ['elements' => array_slice($elements, 1)])->render(),
+            'output' => $this->converter->convertToHtml($body['document']),
         ];
-
-        $page['header']['title'] = $elements[0]['text'];
 
         return $page;
     }
