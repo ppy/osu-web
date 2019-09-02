@@ -55,14 +55,7 @@ class CommentsController extends Controller
             $this->logModerate('LOG_COMMENT_DELETE', $comment);
         }
 
-        $comments = collect([$comment]);
-
-        $bundle = new CommentBundle($comment->commentable, [
-            'comments' => $comments,
-            'includeCommentableMeta' => true,
-        ]);
-
-        return $bundle->toArray();
+        return static::singleCommentBundle($comment);
     }
 
     public function index()
@@ -208,14 +201,7 @@ class CommentsController extends Controller
             $this->logModerate('LOG_COMMENT_UPDATE', $comment);
         }
 
-        $comments = collect([$comment]);
-
-        $bundle = new CommentBundle($comment->commentable, [
-            'comments' => $comments,
-            'includeCommentableMeta' => true,
-        ]);
-
-        return $bundle->toArray();
+        return static::singleCommentBundle($comment);
     }
 
     public function voteDestroy($id)
@@ -230,14 +216,7 @@ class CommentsController extends Controller
 
         optional($vote)->delete();
 
-        $comments = collect([$comment->fresh()]);
-
-        $bundle = new CommentBundle($comment->commentable, [
-            'comments' => $comments,
-            'includeCommentableMeta' => true,
-        ]);
-
-        return $bundle->toArray();
+        return static::singleCommentBundle($comment->fresh());
     }
 
     public function voteStore($id)
@@ -256,11 +235,17 @@ class CommentsController extends Controller
             }
         }
 
-        $comments = collect([$comment->fresh()]);
+        return static::singleCommentBundle($comment->fresh());
+    }
+
+    private static function singleCommentBundle($comment)
+    {
+        $comments = collect([$comment]);
 
         $bundle = new CommentBundle($comment->commentable, [
             'comments' => $comments,
             'includeCommentableMeta' => true,
+            'includeParent' => true,
         ]);
 
         return $bundle->toArray();
