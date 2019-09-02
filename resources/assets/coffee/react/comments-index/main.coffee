@@ -17,11 +17,15 @@
 ###
 
 import { Comment } from 'comment'
+import { Observer } from 'mobx-react'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, h1, p, span } from 'react-dom-factories'
+
+beatmapsetStore = core.dataStore.beatmapsetStore
 el = React.createElement
 
-export class Main extends React.PureComponent
+export class Main extends React.Component
   constructor: (props) ->
     super props
 
@@ -43,21 +47,22 @@ export class Main extends React.PureComponent
           @renderHeaderTitle()
           @renderHeaderTabs()
 
-      div className: 'osu-page osu-page--comments',
-        for comment in @props.comments
-          el Comment,
-            key: comment.id
-            comment: comment
-            usersById: @props.usersById
-            userVotesByCommentId: @props.userVotesByCommentId
-            commentableMetaById: @props.commentableMetaById
-            showReplies: false
-            showCommentableMeta: true
-            linkParent: true
-            depth: 0
-            modifiers: ['dark']
+      el Observer, null, () =>
+        div className: 'osu-page osu-page--comments',
+          for comment in @props.comments
+            el Comment,
+              key: comment.id
+              comment: comment
+              usersById: @props.usersById
+              userVotesByCommentId: @props.userVotesByCommentId
+              commentableMetaById: @props.commentableMetaById
+              showReplies: false
+              showCommentableMeta: true
+              linkParent: true
+              depth: 0
+              modifiers: ['dark']
 
-        div ref: @pagination
+          div ref: @pagination
 
 
   renderHeaderTabs: =>
