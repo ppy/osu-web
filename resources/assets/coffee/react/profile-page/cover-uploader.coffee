@@ -83,7 +83,7 @@ export class CoverUploader extends React.Component
 
       div className: 'profile-cover-uploader__info',
         p className: 'profile-cover-uploader__info-entry',
-          strong
+          strong null,
             el StringWithComponent,
               mappings:
                 ':link': a
