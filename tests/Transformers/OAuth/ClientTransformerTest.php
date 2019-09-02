@@ -38,7 +38,7 @@ class ClientTransformerTest extends TestCase
         $this->client = $this->createOAuthClient($this->owner);
     }
 
-    public function testRedirectAndSecretNotVisibleToOwner()
+    public function testRedirectAndSecretVisibleToOwner()
     {
         auth()->setUser($this->owner);
         $json = json_item($this->client, 'OAuth\Client');
