@@ -55,7 +55,14 @@ class CommentsController extends Controller
             $this->logModerate('LOG_COMMENT_DELETE', $comment);
         }
 
-        return json_item($comment, 'Comment', ['editor', 'user', 'commentable_meta']);
+        $comments = collect([$comment]);
+
+        $bundle = new CommentBundle($comment->commentable, [
+            'comments' => $comments,
+            'includeCommentableMeta' => true,
+        ]);
+
+        return $bundle->toArray();
     }
 
     public function index()
@@ -201,7 +208,14 @@ class CommentsController extends Controller
             $this->logModerate('LOG_COMMENT_UPDATE', $comment);
         }
 
-        return json_item($comment, 'Comment', ['editor', 'user', 'commentable_meta']);
+        $comments = collect([$comment]);
+
+        $bundle = new CommentBundle($comment->commentable, [
+            'comments' => $comments,
+            'includeCommentableMeta' => true,
+        ]);
+
+        return $bundle->toArray();
     }
 
     public function voteDestroy($id)
@@ -216,7 +230,14 @@ class CommentsController extends Controller
 
         optional($vote)->delete();
 
-        return json_item($comment->fresh(), 'Comment', ['editor', 'user', 'commentable_meta']);
+        $comments = collect([$comment->fresh()]);
+
+        $bundle = new CommentBundle($comment->commentable, [
+            'comments' => $comments,
+            'includeCommentableMeta' => true,
+        ]);
+
+        return $bundle->toArray();
     }
 
     public function voteStore($id)
@@ -235,7 +256,14 @@ class CommentsController extends Controller
             }
         }
 
-        return json_item($comment->fresh(), 'Comment', ['editor', 'user', 'commentable_meta']);
+        $comments = collect([$comment->fresh()]);
+
+        $bundle = new CommentBundle($comment->commentable, [
+            'comments' => $comments,
+            'includeCommentableMeta' => true,
+        ]);
+
+        return $bundle->toArray();
     }
 
     private function logModerate($operation, $comment)
