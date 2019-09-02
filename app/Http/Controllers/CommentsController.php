@@ -141,6 +141,10 @@ class CommentsController extends Controller
             'editor', 'user', 'commentable_meta', 'parent.user',
         ]);
 
+        if (is_json_request()) {
+            return $commentBundle->toArray();
+        }
+
         return view('comments.show', compact('commentJson', 'commentBundle'));
     }
 
