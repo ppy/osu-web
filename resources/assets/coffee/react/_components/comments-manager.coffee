@@ -16,6 +16,12 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import core from 'osu-core-singleton'
+
+commentableMetaStore = core.dataStore.commentableMetaStore
+commentStore = core.dataStore.commentStore
+userStore = core.dataStore.userStore
+
 el = React.createElement
 
 export class CommentsManager extends React.PureComponent
@@ -92,6 +98,10 @@ export class CommentsManager extends React.PureComponent
 
 
   update: (_event, {commentable_meta, comments, users}) =>
+    commentableMetaStore.initialize commentable_meta
+    commentStore.initialize comments
+    userStore.initialize users
+
     @setState
       comments: @mergeCollection @state.comments, comments
       users: @mergeCollection @state.users, users
