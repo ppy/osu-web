@@ -169,7 +169,7 @@ export class CommentEditor extends React.PureComponent
         method = 'PUT'
 
         onDone = (data) ->
-          $.publish 'comment:updated', comment: data
+          $.publish 'comment:updated', data
 
     @xhr = $.ajax url, {method, data}
     .always =>

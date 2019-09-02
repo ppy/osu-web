@@ -404,7 +404,7 @@ export class Comment extends React.PureComponent
     @xhr.delete = $.ajax laroute.route('comments.destroy', comment: @props.comment.id),
       method: 'DELETE'
     .done (data) =>
-      $.publish 'comment:updated', comment: data
+      $.publish 'comment:updated', data
     .fail (xhr, status) =>
       return if status == 'abort'
 
@@ -460,7 +460,7 @@ export class Comment extends React.PureComponent
     @xhr.restore = $.ajax laroute.route('comments.restore', comment: @props.comment.id),
       method: 'POST'
     .done (data) =>
-      $.publish 'comment:updated', comment: data
+      $.publish 'comment:updated', data
     .fail (xhr, status) =>
       return if status == 'abort'
 
@@ -494,7 +494,7 @@ export class Comment extends React.PureComponent
     .always =>
       @setState postingVote: false
     .done (data) =>
-      $.publish 'comment:updated', comment: data
+      $.publish 'comment:updated', data
       $.publish "commentVote:#{voteAction}", id: @props.comment.id
     .fail (xhr, status) =>
       return if status == 'abort'

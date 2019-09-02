@@ -91,11 +91,11 @@ export class CommentsManager extends React.PureComponent
       total: commentBundle.total ? @state.total
 
 
-  update: (_event, {comment}) =>
+  update: (_event, {commentable_meta, comments, users}) =>
     @setState
-      comments: @mergeCollection @state.comments, [comment]
-      users: @mergeCollection @state.users, [comment.user, comment.editor]
-      commentableMeta: _.concat @state.commentableMeta, comment.commentable_meta
+      comments: @mergeCollection @state.comments, comments
+      users: @mergeCollection @state.users, users
+      commentableMeta: _.concat @state.commentableMeta, commentable_meta
 
 
   mergeCollection: (array, values, prepend) =>
