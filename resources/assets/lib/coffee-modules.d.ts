@@ -70,6 +70,14 @@ declare module 'comments-manager' {
   class CommentsManager extends React.PureComponent<Props> {}
 }
 
+declare module 'modal' {
+  interface Props {
+    onClose?: () => void;
+    visible: boolean;
+  }
+  class Modal extends React.PureComponent<Props> {}
+}
+
 declare module 'popup-menu' {
   type Children = (dismiss: () => void) => React.ReactFragment;
 

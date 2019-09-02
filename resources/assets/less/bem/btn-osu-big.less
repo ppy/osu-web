@@ -114,6 +114,21 @@
     }
   }
 
+  &--danger {
+    background-color: @red;
+
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: @red-light;
+    };
+
+    &[disabled] {
+      background-color: @osu-colour-b3;
+      color: @osu-colour-f1;
+    }
+  }
+
   &--download-landing {
     .default-box-shadow();
     .default-text-shadow();
@@ -221,6 +236,11 @@
     flex: 1 0 auto;
     text-transform: lowercase;
     margin: 0 5px;
+  }
+
+  &--settings-oauth {
+    min-width: @avatar-size--base;
+    padding: 7px 10px;
   }
 
   &--wrap-text {

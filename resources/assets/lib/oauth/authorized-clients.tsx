@@ -27,7 +27,7 @@ const store = core.dataStore.clientStore;
 export class AuthorizedClients extends React.Component {
   render() {
     return (
-      <div className='authorized-clients'>
+      <div className='oauth-clients'>
         {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
       </div>
     );
@@ -40,6 +40,6 @@ export class AuthorizedClients extends React.Component {
   }
 
   renderEmpty() {
-    return osu.trans('oauth.authorized-clients.none');
+    return osu.trans('oauth.authorized_clients.none');
   }
 }

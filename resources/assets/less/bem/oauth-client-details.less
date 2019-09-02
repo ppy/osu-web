@@ -16,53 +16,55 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.authorized-client {
+.oauth-client-details {
+  .default-border-radius();
+
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  flex: 1;
 
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #444;
+  padding: 20px;
+  font-size: 14px;
+  min-width: 320px;
+  max-width: 480px;
 
-  &__actions {
-    align-items: flex-start;
+  background-color: @osu-colour-b4;
+  color: white;
+
+  &__buttons {
+    display: grid;
+    grid-gap: 5px;
+    min-width: 200px;
+    margin: 10px 0;
+    align-self: center;
   }
 
-  &__button {
+  &__group {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+  }
+
+  &__input {
     .reset-input();
-    .default-text-shadow();
-    .link-white();
-    .link-plain();
-    .center-content();
-    flex: none;
-    margin: 0 10px;
-    padding: 10px 20px;
-    min-width: 100px;
-    border-radius: 10000px;
+    .default-border-radius();
 
-    background-color: @red;
+    flex: 1;
+    align-self: stretch;
+    background-color: @osu-colour-b3;
+    border: 2px solid transparent;
+    padding: 5px;
 
-    &:hover {
-      background-color: @red-light;
-    };
+    @media @mobile {
+      font-size: @font-size--phone-input;
+    }
 
-    &--revoked {
-      background-color: #444;
-
-      &:hover {
-        background-color: #444;
-      };
+    &:focus {
+      border-color: @osu-colour-l1;
     }
   }
 
-  &__name {
-    font-size: @font-size--title-small;
-    margin-bottom: 5px;
-    color: white;
-  }
-
-  &__scopes {
-    margin-top: 12px;
+  &__label {
+    color: @osu-colour-f1;
   }
 }
