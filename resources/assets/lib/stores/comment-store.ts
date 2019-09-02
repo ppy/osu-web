@@ -18,41 +18,17 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
-import { UserJSON } from 'chat/chat-api-responses';
+import { CommentJSON } from 'interfaces/comment-json';
 import { action, observable } from 'mobx';
-import User from 'models/user';
+import { Comment } from 'models/comment';
 import Store from 'stores/store';
 
-export default class UserStore extends Store {
-  @observable users = observable.map<number, User>();
+export default class CommentStore extends Store {
+  @observable comments = observable.map<number, Comment>();
 
   @action
   flushStore() {
-    this.users = observable.map<number, User>();
-  }
-
-  @action
-  getOrCreate(userId: number, props?: UserJSON): User {
-    let user = this.users.get(userId);
-
-    // TODO: update from props if newer?
-    if (user && user.loaded) {
-      return user;
-    }
-
-    if (props) {
-      user = User.fromJSON(props);
-    } else {
-      user = new User(userId);
-    }
-    // this.users.delete(userId);
-    this.users.set(userId, user);
-
-    if (!user.loaded) {
-      user.load();
-    }
-
-    return user;
+    this.comments.clear();
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
@@ -61,10 +37,10 @@ export default class UserStore extends Store {
     }
   }
 
-  initialize(data: UserJSON[]) {
+  initialize(data: CommentJSON[]) {
     for (const json of data) {
-      const user = User.fromJSON(json);
-      this.users.set(user.id, user);
+      const comment = Comment.fromJSON(json);
+      this.comments.set(comment.id, comment);
     }
   }
 }

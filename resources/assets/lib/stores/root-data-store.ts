@@ -21,6 +21,8 @@ import Dispatcher from 'dispatcher';
 import { BeatmapsetStore } from './beatmapset-store';
 import ChannelStore from './channel-store';
 import ClientStore from './client-store';
+import CommentStore from './comment-store';
+import CommentableMetaStore from './commentable-meta-store';
 import UIStateStore from './ui-state-store';
 import UserStore from './user-store';
 
@@ -29,6 +31,8 @@ export default class RootDataStore {
   beatmapsetStore: BeatmapsetStore;
   channelStore: ChannelStore;
   clientStore: ClientStore;
+  commentableMetaStore: CommentableMetaStore;
+  commentStore: CommentStore;
   uiState: UIStateStore;
   userStore: UserStore;
 
@@ -38,6 +42,8 @@ export default class RootDataStore {
     this.beatmapsetStore = new BeatmapsetStore(this, dispatcher);
     this.beatmapsetSearch = new BeatmapsetSearch(this.beatmapsetStore, dispatcher);
     this.clientStore = new ClientStore(this, dispatcher);
+    this.commentableMetaStore = new CommentableMetaStore(this, dispatcher);
+    this.commentStore = new CommentStore(this, dispatcher);
     this.channelStore = new ChannelStore(this, dispatcher);
     this.userStore = new UserStore(this, dispatcher);
   }
