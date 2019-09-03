@@ -81,9 +81,9 @@ export class CommentsManager extends React.PureComponent
     moreComments = osu.jsonClone @state.moreComments
     moreComments[commentBundle.has_more_id] = commentBundle.has_more
 
-    commentableMetaStore.updateWithJSON commentable_meta
-    commentStore.updateWithJSON comments
-    userStore.updateWithJSON users
+    commentableMetaStore.updateWithJSON commentBundle.commentable_meta
+    commentStore.updateWithJSON commentBundle.comments
+    userStore.updateWithJSON commentBundle.users
 
     @setState
       moreComments: moreComments

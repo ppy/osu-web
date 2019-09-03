@@ -42,7 +42,8 @@ export default class CommentStore extends Store {
     }
   }
 
-  updateWithJSON(data: CommentJSON[]) {
+  updateWithJSON(data: CommentJSON[] | undefined | null) {
+    if (data == null) { return; }
     for (const json of data) {
       const comment = Comment.fromJSON(json);
       this.comments.set(comment.id, comment);

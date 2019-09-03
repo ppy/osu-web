@@ -73,7 +73,8 @@ export default class UserStore extends Store {
     }
   }
 
-  updateWithJSON(data: UserJSON[]) {
+  updateWithJSON(data: UserJSON[] | undefined | null) {
+    if (data == null) { return; }
     for (const json of data) {
       const user = User.fromJSON(json);
       this.users.set(user.id, user);

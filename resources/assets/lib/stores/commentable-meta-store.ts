@@ -42,7 +42,8 @@ export default class CommentableMetaStore extends Store {
     }
   }
 
-  updateWithJSON(data: CommentableMetaJSON[]) {
+  updateWithJSON(data: CommentableMetaJSON[] | undefined | null) {
+    if (data == null) { return; }
     for (const json of data) {
       this.meta.set(`${json.type}-${json.id}`, json);
     }
