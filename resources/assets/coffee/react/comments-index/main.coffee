@@ -22,7 +22,6 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, h1, p, span } from 'react-dom-factories'
 
-beatmapsetStore = core.dataStore.beatmapsetStore
 el = React.createElement
 
 export class Main extends React.Component
