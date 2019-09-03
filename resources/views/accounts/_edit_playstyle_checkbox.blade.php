@@ -20,20 +20,13 @@
     data-playstyle="{{ $field }}"
 >
     <label class="account-edit-entry__checkbox">
-        <div class="osu-checkbox">
-            <input
-                value="{{$field}}"
-                class="osu-checkbox__input"
-                type="checkbox"
-                @if (in_array($field, Auth::user()->osu_playstyle ?? []))
-                    checked
-                @endif
-            >
-            <span class="osu-checkbox__box"></span>
-            <span class="osu-checkbox__tick">
-                <i class="fas fa-check"></i>
-            </span>
-        </div>
+        @include('objects._switch', [
+            'attributes' => [
+                'type' => 'checkbox',
+                'value' => $field,
+            ],
+            'checked' => in_array($field, auth()->user()->osu_playstyle ?? [], true),
+        ])
 
         <span class="account-edit-entry__checkbox-label">
             {{ trans('accounts.playstyles.'.$field) }}

@@ -26,20 +26,14 @@
         <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label js-account-edit" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
                 <label class="account-edit-entry__checkbox">
-                    <div class="osu-checkbox">
-                        <input
-                            name="user[pm_friends_only]"
-                            class="osu-checkbox__input js-account-edit__input"
-                            type="checkbox"
-                            @if (Auth::user()->pm_friends_only)
-                                checked
-                            @endif
-                        >
-                        <span class="osu-checkbox__box"></span>
-                        <span class="osu-checkbox__tick">
-                            <i class="fas fa-check"></i>
-                        </span>
-                    </div>
+                    @include('objects._switch', [
+                        'attributes' => [
+                            'name' => 'user[pm_friends_only]',
+                            'type' => 'checkbox',
+                        ],
+                        'additionalClass' => 'js-account-edit__input',
+                        'checked' => auth()->user()->pm_friends_only,
+                    ])
 
                     <span class="account-edit-entry__checkbox-label">
                         {{ trans('accounts.privacy.friends_only') }}
@@ -53,20 +47,14 @@
 
             <div class="account-edit-entry account-edit-entry--no-label js-account-edit" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
                 <label class="account-edit-entry__checkbox">
-                    <div class="osu-checkbox">
-                        <input
-                            name="user[hide_presence]"
-                            class="osu-checkbox__input js-account-edit__input"
-                            type="checkbox"
-                            @if (Auth::user()->hide_presence)
-                                checked
-                            @endif
-                        >
-                        <span class="osu-checkbox__box"></span>
-                        <span class="osu-checkbox__tick">
-                            <i class="fas fa-check"></i>
-                        </span>
-                    </div>
+                    @include('objects._switch', [
+                        'attributes' => [
+                            'name' => 'user[hide_presence]',
+                            'type' => 'checkbox',
+                        ],
+                        'additionalClass' => 'js-account-edit__input',
+                        'checked' => auth()->user()->hide_presence,
+                    ])
 
                     <span class="account-edit-entry__checkbox-label">
                         {{ trans('accounts.privacy.hide_online') }}

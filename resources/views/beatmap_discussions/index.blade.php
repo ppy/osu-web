@@ -52,9 +52,12 @@
                     <div class="simple-form__checkboxes-inline">
                         @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $type)
                             <label class="simple-form__checkbox simple-form__checkbox--inline">
-                                @include('objects._checkbox', [
-                                    'name' => 'message_types[]',
-                                    'value' => $type,
+                                @include('objects._switch', [
+                                    'attributes' => [
+                                        'name' => 'message_types[]',
+                                        'value' => $type,
+                                        'type' => 'checkbox'
+                                    ],
                                     'checked' => in_array($type, $search['params']['message_types'], true),
                                 ])
                                 {{ trans("beatmaps.discussions.message_type.{$type}") }}
@@ -66,10 +69,13 @@
                 @if (priv_check('BeatmapDiscussionModerate')->can())
                     <div class="simple-form__row simple-form__row--no-label">
                         <label class="simple-form__checkbox">
-                            @include('objects._checkbox', [
-                                'name' => 'with_deleted',
-                                'value' => 1,
-                                'checked' => $search['params']['with_deleted']
+                            @include('objects._switch', [
+                                'attributes' => [
+                                    'type' => 'checkbox',
+                                    'name' => 'with_deleted',
+                                    'value' => 1,
+                                ],
+                                'checked' => $search['params']['with_deleted'],
                             ])
                             {{ trans('beatmap_discussions.index.form.deleted') }}
                         </label>
