@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { runInAction } from 'mobx'
 import core from 'osu-core-singleton'
 
 commentableMetaStore = core.dataStore.commentableMetaStore
@@ -41,7 +42,7 @@ export class CommentsManager extends React.PureComponent
       commentBundle = osu.jsonClone(@props.commentBundle) ?
         osu.parseJson("json-comments-#{@props.commentableType}-#{@props.commentableId}")
 
-
+      uiState.comments.currentSort = commentBundle.sort
       # also props of the containing component
       @state =
         userVotes: commentBundle.user_votes
@@ -49,8 +50,6 @@ export class CommentsManager extends React.PureComponent
         userFollow: commentBundle.user_follow
         topLevelCount: commentBundle.top_level_count
         total: commentBundle.total
-        loadingSort: null
-        currentSort: commentBundle.sort
         moreComments: {}
 
 
@@ -165,7 +164,8 @@ export class CommentsManager extends React.PureComponent
 
     return unless sort in @SORTS
 
-    @setState loadingSort: sort
+    runInAction () ->
+      uiState.comments.loadingSort = sort
 
     params =
       commentable_type: @props.commentableType
@@ -181,6 +181,9 @@ export class CommentsManager extends React.PureComponent
         method: 'PUT'
         data: user_profile_customization: comments_sort: sort
 
+      runInAction () ->
+        uiState.comments.currentSort = data.sort
+
       @setState
         users: data.users ? []
         commentableMeta: data.commentable_meta ? []
@@ -188,8 +191,8 @@ export class CommentsManager extends React.PureComponent
         userFollow: data.user_follow
         topLevelCount: data.top_level_count
         total: data.total ? @state.total
-        currentSort: data.sort
         moreComments: {}
     .always =>
-      @setState
-        loadingSort: null
+      runInAction () ->
+        uiState.comments.loadingSort = null
+

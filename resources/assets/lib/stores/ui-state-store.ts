@@ -22,13 +22,17 @@ import { observable } from 'mobx';
 import Store from 'stores/store';
 
 interface CommentsUIState {
+  currentSort: 'new' | 'old' | 'top';
   isShowDeleted: boolean;
+  loadingSort: 'new' | 'old' | 'top' | null;
 }
 
 export default class UIStateStore extends Store {
   chat = new ChatStateStore(this.root, this.dispatcher);
   @observable comments: CommentsUIState = {
+    currentSort: 'new',
     isShowDeleted: false,
+    loadingSort: null,
   };
 
   handleDispatchAction(action: DispatcherAction) { /* do nothing */}

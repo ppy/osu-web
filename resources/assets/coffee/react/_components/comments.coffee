@@ -53,15 +53,13 @@ export class Comments extends React.PureComponent
         div className: 'comments__content',
           div className: 'comments__items comments__items--toolbar',
             el CommentsSort,
-              loadingSort: @props.loadingSort
-              currentSort: @props.currentSort
               modifiers: @props.modifiers
             div className: osu.classWithModifiers('sort', @props.modifiers),
               div className: 'sort__items',
                 @renderFollowToggle()
                 @renderShowDeletedToggle()
           if comments?
-            div className: "comments__items #{if @props.loadingSort? then 'comments__items--loading' else ''}",
+            div className: "comments__items #{if uiState.comments.loadingSort? then 'comments__items--loading' else ''}",
               comments.map @renderComment
 
               el DeletedCommentsCount, { comments, showDeleted: uiState.comments.isShowDeleted, modifiers: ['top'] }
@@ -88,7 +86,6 @@ export class Comments extends React.PureComponent
       comment: comment
       userVotesByCommentId: @props.userVotesByCommentId
       depth: 0
-      currentSort: @props.currentSort
       modifiers: @props.modifiers
       moreComments: @props.moreComments
       showDeleted: uiState.comments.isShowDeleted

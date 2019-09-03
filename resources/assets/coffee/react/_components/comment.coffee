@@ -258,7 +258,6 @@ export class Comment extends React.Component
 
             el CommentShowMore,
               parent: comment
-              sort: @props.currentSort
               comments: @children
               moreComments: @props.moreComments
               total: comment.replies_count
@@ -277,7 +276,6 @@ export class Comment extends React.Component
       depth: @props.depth + 1
       parent: @props.comment
       modifiers: @props.modifiers
-      currentSort: @props.currentSort
       moreComments: @props.moreComments
 
 
