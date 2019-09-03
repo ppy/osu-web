@@ -83,11 +83,10 @@ export class CommentsManager extends React.PureComponent
     moreComments[commentBundle.has_more_id] = commentBundle.has_more
 
     commentableMetaStore.initialize commentable_meta
-    commentStore.initialize comments # prepend / need to store an order
+    commentStore.initialize comments
     userStore.initialize users
 
     @setState
-      comments: @mergeCollection @state.comments, comments, true
       moreComments: moreComments
       total: commentBundle.total ? @state.total
 
@@ -96,9 +95,6 @@ export class CommentsManager extends React.PureComponent
     commentableMetaStore.initialize commentable_meta
     commentStore.initialize comments
     userStore.initialize users
-
-    @setState
-      comments: @mergeCollection @state.comments, comments
 
 
   mergeCollection: (array, values, prepend) =>
