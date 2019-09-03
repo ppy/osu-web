@@ -21,6 +21,7 @@ import { CommentEditor } from 'comment-editor'
 import { CommentShowMore } from 'comment-show-more'
 import { CommentsSort } from 'comments-sort'
 import DeletedCommentsCount from 'deleted-comments-count'
+import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, h2, span } from 'react-dom-factories'
@@ -28,53 +29,55 @@ import { Spinner } from 'spinner'
 
 el = React.createElement
 
+store = core.dataStore.commentStore
 uiState = core.dataStore.uiState
 
 export class Comments extends React.PureComponent
   render: =>
-    @commentsByParentId = _.groupBy(@props.comments, 'parent_id')
-    comments = @commentsByParentId[null]
+    el Observer, null, () =>
+      @commentsByParentId = _.groupBy(Object.values(store.comments.toPOJO()), 'parent_id')
+      comments = @commentsByParentId[null]
 
-    div className: osu.classWithModifiers('comments', @props.modifiers),
-      div className: 'u-has-anchor u-has-anchor--no-event',
-        div(className: 'fragment-target', id: 'comments')
-      h2 className: 'comments__title',
-        osu.trans('comments.title')
-        span className: 'comments__count', osu.formatNumber(@props.total)
-      div className: 'comments__new',
-        el CommentEditor,
-          commentableType: @props.commentableType
-          commentableId: @props.commentableId
-          focus: false
-          modifiers: @props.modifiers
-      div className: 'comments__content',
-        div className: 'comments__items comments__items--toolbar',
-          el CommentsSort,
-            loadingSort: @props.loadingSort
-            currentSort: @props.currentSort
+      div className: osu.classWithModifiers('comments', @props.modifiers),
+        div className: 'u-has-anchor u-has-anchor--no-event',
+          div(className: 'fragment-target', id: 'comments')
+        h2 className: 'comments__title',
+          osu.trans('comments.title')
+          span className: 'comments__count', osu.formatNumber(@props.total)
+        div className: 'comments__new',
+          el CommentEditor,
+            commentableType: @props.commentableType
+            commentableId: @props.commentableId
+            focus: false
             modifiers: @props.modifiers
-          div className: osu.classWithModifiers('sort', @props.modifiers),
-            div className: 'sort__items',
-              @renderFollowToggle()
-              @renderShowDeletedToggle()
-        if comments?
-          div className: "comments__items #{if @props.loadingSort? then 'comments__items--loading' else ''}",
-            comments.map @renderComment
+        div className: 'comments__content',
+          div className: 'comments__items comments__items--toolbar',
+            el CommentsSort,
+              loadingSort: @props.loadingSort
+              currentSort: @props.currentSort
+              modifiers: @props.modifiers
+            div className: osu.classWithModifiers('sort', @props.modifiers),
+              div className: 'sort__items',
+                @renderFollowToggle()
+                @renderShowDeletedToggle()
+          if comments?
+            div className: "comments__items #{if @props.loadingSort? then 'comments__items--loading' else ''}",
+              comments.map @renderComment
 
-            el DeletedCommentsCount, { comments, showDeleted: uiState.comments.isShowDeleted, modifiers: ['top'] }
+              el DeletedCommentsCount, { comments, showDeleted: uiState.comments.isShowDeleted, modifiers: ['top'] }
 
-            el CommentShowMore,
-              commentableType: @props.commentableType
-              commentableId: @props.commentableId
-              comments: comments
-              total: @props.topLevelCount
-              sort: @props.currentSort
-              modifiers: _.concat 'top', @props.modifiers
-              moreComments: @props.moreComments
-        else
-          div
-            className: 'comments__items comments__items--empty'
-            osu.trans('comments.empty')
+              el CommentShowMore,
+                commentableType: @props.commentableType
+                commentableId: @props.commentableId
+                comments: comments
+                total: @props.topLevelCount
+                sort: @props.currentSort
+                modifiers: _.concat 'top', @props.modifiers
+                moreComments: @props.moreComments
+          else
+            div
+              className: 'comments__items comments__items--empty'
+              osu.trans('comments.empty')
 
 
   renderComment: (comment) =>
