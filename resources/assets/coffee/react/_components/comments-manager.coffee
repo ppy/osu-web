@@ -74,11 +74,6 @@ export class CommentsManager extends React.PureComponent
     componentProps.commentableId = @props.commentableId
     componentProps.commentableType = @props.commentableType
     componentProps.userVotesByCommentId = _.keyBy @state.userVotes
-    componentProps.usersById = _.keyBy(@state.users ? [], 'id')
-    componentProps.commentableMetaById = _(@state.commentableMeta ? [])
-      .filter (item) -> item?
-      .keyBy (item) -> "#{item.type ? ''}-#{item.id ? ''}"
-      .value()
 
     el @props.component, componentProps
 
@@ -87,10 +82,12 @@ export class CommentsManager extends React.PureComponent
     moreComments = osu.jsonClone @state.moreComments
     moreComments[commentBundle.has_more_id] = commentBundle.has_more
 
+    commentableMetaStore.initialize commentable_meta
+    commentStore.initialize comments # prepend / need to store an order
+    userStore.initialize users
+
     @setState
-      comments: @mergeCollection @state.comments, commentBundle.comments, prepend
-      users: @mergeCollection @state.users, commentBundle.users
-      commentableMeta: _.concat @state.commentableMeta, commentBundle.commentable_meta
+      comments: @mergeCollection @state.comments, comments, true
       moreComments: moreComments
       total: commentBundle.total ? @state.total
 
@@ -102,8 +99,6 @@ export class CommentsManager extends React.PureComponent
 
     @setState
       comments: @mergeCollection @state.comments, comments
-      users: @mergeCollection @state.users, users
-      commentableMeta: _.concat @state.commentableMeta, commentable_meta
 
 
   mergeCollection: (array, values, prepend) =>
