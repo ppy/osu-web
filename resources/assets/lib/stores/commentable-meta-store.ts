@@ -23,7 +23,7 @@ import { action, observable } from 'mobx';
 import Store from 'stores/store';
 
 export default class CommentableMetaStore extends Store {
-  @observable meta = observable.map<string, CommentableMetaJSON>();
+  @observable meta = observable.map<string | undefined, CommentableMetaJSON>();
 
   @action
   flushStore() {
@@ -31,7 +31,9 @@ export default class CommentableMetaStore extends Store {
   }
 
   get(type: string, id: number) {
-    return this.meta.get(`${type}-${id}`);
+    const obj = this.meta.get(`${type}-${id}`);
+
+    return obj != null ? obj : this.meta.get(undefined);
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {

@@ -55,7 +55,6 @@ export class Main extends React.Component
               comment: comment
               usersById: @props.usersById
               userVotesByCommentId: @props.userVotesByCommentId
-              commentableMetaById: @props.commentableMetaById
               showReplies: false
               showCommentableMeta: true
               linkParent: true

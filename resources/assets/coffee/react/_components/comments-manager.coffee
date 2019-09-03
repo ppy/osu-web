@@ -49,7 +49,6 @@ export class CommentsManager extends React.PureComponent
         users: commentBundle.users ? []
         topLevelCount: commentBundle.top_level_count
         total: commentBundle.total
-        commentableMeta: commentBundle.commentable_meta ? []
         loadingSort: null
         currentSort: commentBundle.sort
         moreComments: {}

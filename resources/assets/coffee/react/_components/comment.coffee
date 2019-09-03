@@ -30,6 +30,7 @@ import { UserAvatar } from 'user-avatar'
 el = React.createElement
 
 deletedUser = username: osu.trans('users.deleted')
+commentableMetaStore = core.dataStore.commentableMetaStore
 store = core.dataStore.commentStore
 userStore = core.dataStore.userStore
 
@@ -274,7 +275,6 @@ export class Comment extends React.PureComponent
       commentsByParentId: @props.commentsByParentId
       usersById: @props.usersById
       userVotesByCommentId: @props.userVotesByCommentId
-      commentableMetaById: @props.commentableMetaById
       depth: @props.depth + 1
       parent: @props.comment
       modifiers: @props.modifiers
@@ -373,8 +373,8 @@ export class Comment extends React.PureComponent
 
 
   commentableMeta: =>
-    meta = @props.commentableMetaById["#{@props.comment.commentable_type}-#{@props.comment.commentable_id}"]
-    meta ?= @props.commentableMetaById['-']
+    comment = store.comments.get(@props.comment.id)
+    meta = commentableMetaStore.get(comment.commentable_type, comment.commentable_id)
 
     if meta.url
       component = a

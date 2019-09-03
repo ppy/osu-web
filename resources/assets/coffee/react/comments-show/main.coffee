@@ -42,7 +42,6 @@ export class Main extends React.PureComponent
           parent: @props.comment.parent
           usersById: @props.usersById
           userVotesByCommentId: @props.userVotesByCommentId
-          commentableMetaById: @props.commentableMetaById
           commentsByParentId: commentsByParentId
           moreComments: @props.moreComments
           showCommentableMeta: true
