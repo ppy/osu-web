@@ -56,7 +56,6 @@ export class Main extends React.Component
             el Comment,
               key: comment.id
               comment: comment
-              userVotesByCommentId: @props.userVotesByCommentId
               showReplies: false
               showCommentableMeta: true
               linkParent: true

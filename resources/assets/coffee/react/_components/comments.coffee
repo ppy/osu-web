@@ -84,7 +84,6 @@ export class Comments extends React.PureComponent
     el Comment,
       key: comment.id
       comment: comment
-      userVotesByCommentId: @props.userVotesByCommentId
       depth: 0
       modifiers: @props.modifiers
       moreComments: @props.moreComments

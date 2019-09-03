@@ -272,7 +272,6 @@ export class Comment extends React.Component
     el Comment,
       key: comment.id
       comment: comment
-      userVotesByCommentId: @props.userVotesByCommentId
       depth: @props.depth + 1
       parent: @props.comment
       modifiers: @props.modifiers
@@ -396,7 +395,7 @@ export class Comment extends React.Component
 
 
   hasVoted: =>
-    @props.userVotesByCommentId[@props.comment.id]?
+    store.userVotes.has(@props.comment.id)
 
 
   delete: =>

@@ -26,10 +26,17 @@ import Store from 'stores/store';
 
 export default class CommentStore extends Store {
   @observable comments = observable.map<number, Comment>();
+  @observable userVotes = new Set<number>();
+
+  @action
+  addVoted(commentIds: number[]) {
+    commentIds.forEach((value) => this.userVotes.add(value));
+  }
 
   @action
   flushStore() {
     this.comments.clear();
+    this.userVotes.clear();
   }
 
   getGroupedByParentId() {

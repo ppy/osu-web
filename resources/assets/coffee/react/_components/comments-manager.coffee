@@ -40,6 +40,7 @@ export class CommentsManager extends React.PureComponent
              json = osu.parseJson("json-comments-#{@props.commentableType}-#{@props.commentableId}") ? {}
 
     if json?
+      core.dataStore.commentStore.addVoted(json.user_votes)
       core.dataStore.commentStore.updateWithJSON(json.comments)
       core.dataStore.userStore.updateWithJSON(json.users)
       core.dataStore.commentableMetaStore.updateWithJSON(json.commentable_meta)
@@ -52,7 +53,6 @@ export class CommentsManager extends React.PureComponent
       uiState.comments.currentSort = json.sort
       # also props of the containing component
       @state =
-        userVotes: json.user_votes
         loadingFollow: false
         userFollow: json.user_follow
         topLevelCount: json.top_level_count
@@ -79,7 +79,6 @@ export class CommentsManager extends React.PureComponent
     componentProps = _.assign {}, @props.componentProps, @state
     componentProps.commentableId = @props.commentableId
     componentProps.commentableType = @props.commentableType
-    componentProps.userVotesByCommentId = _.keyBy @state.userVotes
 
     el @props.component, componentProps
 
@@ -123,11 +122,13 @@ export class CommentsManager extends React.PureComponent
 
 
   addVote: (_event, {id}) =>
-    @setState userVotes: _.concat @state.userVotes, id
+    runInAction () ->
+      commentStore.userVotes.add(id)
 
 
   removeVote: (_event, {id}) =>
-    @setState userVotes: _.filter @state.userVotes, (commentId) -> commentId != id
+    runInAction () ->
+      commentStore.userVotes.delete(id)
 
 
   jsonStorageId: =>
@@ -194,7 +195,6 @@ export class CommentsManager extends React.PureComponent
       @setState
         users: data.users ? []
         commentableMeta: data.commentable_meta ? []
-        userVotes: data.user_votes ? []
         userFollow: data.user_follow
         topLevelCount: data.top_level_count
         total: data.total ? @state.total
