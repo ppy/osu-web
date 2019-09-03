@@ -23,7 +23,7 @@
         'mode' => 'forum_post',
     ],
     'titlePrepend' => $forum->forum_name,
-    'useTorusFont' => true,
+    'use2019Font' => true,
 ])
 
 @section('content')
