@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, span } from 'react-dom-factories'
 import { ShowMoreLink } from 'show-more-link'
@@ -23,6 +24,8 @@ import { Spinner } from 'spinner'
 
 
 el = React.createElement
+
+uiState = core.dataStore.uiState
 
 bn = 'comment-show-more'
 
@@ -43,7 +46,7 @@ export class CommentShowMore extends React.PureComponent
 
   render: =>
     return null if @props.comments.length >= @props.total
-    return null unless (@props.moreComments[@props.parent?.id ? null] ? true)
+    return null unless (uiState.comments.hasMoreComments.get(@props.parent?.id ? null) ? true)
 
     blockClass = osu.classWithModifiers bn, @props.modifiers
 

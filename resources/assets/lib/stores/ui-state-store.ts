@@ -23,6 +23,7 @@ import Store from 'stores/store';
 
 interface CommentsUIState {
   currentSort: 'new' | 'old' | 'top';
+  hasMoreComments: Map<number, boolean>;
   isShowDeleted: boolean;
   loadingSort: 'new' | 'old' | 'top' | null;
 }
@@ -31,6 +32,7 @@ export default class UIStateStore extends Store {
   chat = new ChatStateStore(this.root, this.dispatcher);
   @observable comments: CommentsUIState = {
     currentSort: 'new',
+    hasMoreComments: new Map<number, boolean>(),
     isShowDeleted: false,
     loadingSort: null,
   };

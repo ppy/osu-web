@@ -259,7 +259,6 @@ export class Comment extends React.Component
             el CommentShowMore,
               parent: comment
               comments: @children
-              moreComments: @props.moreComments
               total: comment.replies_count
               modifiers: @props.modifiers
               label: osu.trans('comments.load_replies') if @children.length == 0
@@ -275,7 +274,6 @@ export class Comment extends React.Component
       depth: @props.depth + 1
       parent: @props.comment
       modifiers: @props.modifiers
-      moreComments: @props.moreComments
 
 
   renderRepliesText: =>

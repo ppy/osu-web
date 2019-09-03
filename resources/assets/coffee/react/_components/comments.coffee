@@ -71,7 +71,6 @@ export class Comments extends React.PureComponent
                 total: @props.topLevelCount
                 sort: @props.currentSort
                 modifiers: _.concat 'top', @props.modifiers
-                moreComments: @props.moreComments
           else
             div
               className: 'comments__items comments__items--empty'
@@ -86,7 +85,6 @@ export class Comments extends React.PureComponent
       comment: comment
       depth: 0
       modifiers: @props.modifiers
-      moreComments: @props.moreComments
       showDeleted: uiState.comments.isShowDeleted
 
 

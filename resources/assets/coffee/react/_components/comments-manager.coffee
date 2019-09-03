@@ -57,7 +57,6 @@ export class CommentsManager extends React.PureComponent
         userFollow: json.user_follow
         topLevelCount: json.top_level_count
         total: json.total
-        moreComments: {}
 
 
   componentDidMount: =>
@@ -84,22 +83,21 @@ export class CommentsManager extends React.PureComponent
 
 
   appendBundle: (_event, {commentBundle, prepend}) =>
-    moreComments = osu.jsonClone @state.moreComments
-    moreComments[commentBundle.has_more_id] = commentBundle.has_more
-
-    commentableMetaStore.updateWithJSON commentBundle.commentable_meta
-    commentStore.updateWithJSON commentBundle.comments
-    userStore.updateWithJSON commentBundle.users
+    runInAction () ->
+      uiState.comments.hasMoreComments.set(commentBundle.has_more_id, commentBundle.has_more)
+      commentableMetaStore.updateWithJSON commentBundle.commentable_meta
+      commentStore.updateWithJSON commentBundle.comments
+      userStore.updateWithJSON commentBundle.users
 
     @setState
-      moreComments: moreComments
       total: commentBundle.total ? @state.total
 
 
   update: (_event, {commentable_meta, comments, users}) =>
-    commentableMetaStore.updateWithJSON commentable_meta
-    commentStore.updateWithJSON comments
-    userStore.updateWithJSON users
+    runInAction () ->
+      commentableMetaStore.updateWithJSON commentable_meta
+      commentStore.updateWithJSON comments
+      userStore.updateWithJSON users
 
 
   mergeCollection: (array, values, prepend) =>
@@ -198,7 +196,6 @@ export class CommentsManager extends React.PureComponent
         userFollow: data.user_follow
         topLevelCount: data.top_level_count
         total: data.total ? @state.total
-        moreComments: {}
     .always =>
       runInAction () ->
         uiState.comments.loadingSort = null

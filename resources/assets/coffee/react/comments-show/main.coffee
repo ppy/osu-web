@@ -40,7 +40,6 @@ export class Main extends React.PureComponent
         el Comment,
           comment: mainComment
           parent: @props.comment.parent
-          moreComments: @props.moreComments
           showCommentableMeta: true
           depth: 0
           linkParent: true
