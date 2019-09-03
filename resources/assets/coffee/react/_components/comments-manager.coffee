@@ -42,7 +42,6 @@ export class CommentsManager extends React.PureComponent
 
       # also props of the containing component
       @state =
-        comments: commentBundle.comments ? []
         userVotes: commentBundle.user_votes
         loadingFollow: false
         userFollow: commentBundle.user_follow
@@ -182,7 +181,6 @@ export class CommentsManager extends React.PureComponent
         data: user_profile_customization: comments_sort: sort
 
       @setState
-        comments: data.comments ? []
         users: data.users ? []
         commentableMeta: data.commentable_meta ? []
         userVotes: data.user_votes ? []

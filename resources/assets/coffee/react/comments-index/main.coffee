@@ -24,6 +24,8 @@ import { button, div, h1, p, span } from 'react-dom-factories'
 
 el = React.createElement
 
+store = core.dataStore.commentStore
+
 export class Main extends React.Component
   constructor: (props) ->
     super props
@@ -47,8 +49,10 @@ export class Main extends React.Component
           @renderHeaderTabs()
 
       el Observer, null, () =>
+        # TODO: make less bad for coffeescript
+        comments = _.orderBy(Array.from(store.comments.toJS().values()), 'created_at', 'asc')
         div className: 'osu-page osu-page--comments',
-          for comment in @props.comments
+          for comment in comments
             el Comment,
               key: comment.id
               comment: comment
