@@ -21,11 +21,14 @@ import { CommentEditor } from 'comment-editor'
 import { CommentShowMore } from 'comment-show-more'
 import { CommentsSort } from 'comments-sort'
 import DeletedCommentsCount from 'deleted-comments-count'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, h2, span } from 'react-dom-factories'
 import { Spinner } from 'spinner'
 
 el = React.createElement
+
+uiState = core.dataStore.uiState
 
 export class Comments extends React.PureComponent
   render: =>
@@ -58,7 +61,7 @@ export class Comments extends React.PureComponent
           div className: "comments__items #{if @props.loadingSort? then 'comments__items--loading' else ''}",
             comments.map @renderComment
 
-            el DeletedCommentsCount, { comments, showDeleted: @props.showDeleted, modifiers: ['top'] }
+            el DeletedCommentsCount, { comments, showDeleted: uiState.comments.isShowDeleted, modifiers: ['top'] }
 
             el CommentShowMore,
               commentableType: @props.commentableType
@@ -75,7 +78,7 @@ export class Comments extends React.PureComponent
 
 
   renderComment: (comment) =>
-    return null if comment.deleted_at? && !@props.showDeleted
+    return null if comment.deleted_at? && !uiState.comments.isShowDeleted
 
     el Comment,
       key: comment.id
@@ -86,7 +89,7 @@ export class Comments extends React.PureComponent
       currentSort: @props.currentSort
       modifiers: @props.modifiers
       moreComments: @props.moreComments
-      showDeleted: @props.showDeleted
+      showDeleted: uiState.comments.isShowDeleted
 
 
   renderShowDeletedToggle: =>
@@ -95,7 +98,7 @@ export class Comments extends React.PureComponent
       className: 'sort__item sort__item--button'
       onClick: @toggleShowDeleted
       span className: 'sort__item-icon',
-        span className: if @props.showDeleted then 'fas fa-check-square' else 'far fa-square'
+        span className: if uiState.comments.isShowDeleted then 'fas fa-check-square' else 'far fa-square'
       osu.trans('common.buttons.show_deleted')
 
 

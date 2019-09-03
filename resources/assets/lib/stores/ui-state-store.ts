@@ -18,9 +18,18 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import ChatStateStore from 'chat/chat-state-store';
+import { observable } from 'mobx';
 import Store from 'stores/store';
+
+interface CommentsUIState {
+  isShowDeleted: boolean;
+}
 
 export default class UIStateStore extends Store {
   chat = new ChatStateStore(this.root, this.dispatcher);
+  @observable comments: CommentsUIState = {
+    isShowDeleted: false,
+  };
+
   handleDispatchAction(action: DispatcherAction) { /* do nothing */}
 }

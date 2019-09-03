@@ -34,7 +34,9 @@ commentableMetaStore = core.dataStore.commentableMetaStore
 store = core.dataStore.commentStore
 userStore = core.dataStore.userStore
 
-export class Comment extends React.PureComponent
+uiState = core.dataStore.uiState
+
+export class Comment extends React.Component
   MAX_DEPTH = 6
 
   makePreviewElement = document.createElement('div')
@@ -52,7 +54,6 @@ export class Comment extends React.PureComponent
 
 
   @defaultProps =
-    showDeleted: true
     showReplies: true
 
 
@@ -253,7 +254,7 @@ export class Comment extends React.PureComponent
             className: repliesClass
             @children.map @renderComment
 
-            el DeletedCommentsCount, { comments: @children, showDeleted: @props.showDeleted }
+            el DeletedCommentsCount, { comments: @children, showDeleted: uiState.isShowDeleted }
 
             el CommentShowMore,
               parent: comment
@@ -267,7 +268,7 @@ export class Comment extends React.PureComponent
 
 
   renderComment: (comment) =>
-    return null if comment.deleted_at? && !@props.showDeleted
+    return null if comment.deleted_at? && !uiState.isShowDeleted
 
     el Comment,
       key: comment.id
@@ -279,7 +280,6 @@ export class Comment extends React.PureComponent
       modifiers: @props.modifiers
       currentSort: @props.currentSort
       moreComments: @props.moreComments
-      showDeleted: @props.showDeleted
 
 
   renderRepliesText: =>

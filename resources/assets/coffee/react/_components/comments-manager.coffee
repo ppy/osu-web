@@ -22,6 +22,8 @@ commentableMetaStore = core.dataStore.commentableMetaStore
 commentStore = core.dataStore.commentStore
 userStore = core.dataStore.userStore
 
+uiState = core.dataStore.uiState
+
 el = React.createElement
 
 export class CommentsManager extends React.PureComponent
@@ -50,7 +52,6 @@ export class CommentsManager extends React.PureComponent
         loadingSort: null
         currentSort: commentBundle.sort
         moreComments: {}
-        showDeleted: false
 
 
   componentDidMount: =>
@@ -132,7 +133,7 @@ export class CommentsManager extends React.PureComponent
 
 
   toggleShowDeleted: =>
-    @setState showDeleted: !@state.showDeleted
+    uiState.comments.isShowDeleted = !uiState.comments.isShowDeleted
 
 
   toggleFollow: =>
