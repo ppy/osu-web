@@ -17,9 +17,12 @@
 ###
 
 import { Comment } from 'comment'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, h1, li, ol, p, span } from 'react-dom-factories'
 el = React.createElement
+
+store = core.dataStore.commentStore
 
 export class Main extends React.PureComponent
   render: =>
