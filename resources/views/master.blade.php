@@ -52,8 +52,9 @@
     >
         <style>
             :root {
-                @if ($useTorusFont ?? false)
+                @if ($use2019Font ?? false)
                     --font-default-override: var(--font-default-torus);
+                    --font-content-override: var(--font-content-inter);
                 @endif
                 --base-hue: {{ $currentHue }};
             }

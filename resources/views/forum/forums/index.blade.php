@@ -19,7 +19,7 @@
     'legacyNav' => false,
     'pageDescription' => trans('forum.title'),
     'searchParams' => ['mode' => 'forum_post'],
-    'useTorusFont' => true,
+    'use2019Font' => true,
 ])
 
 @section('content')
