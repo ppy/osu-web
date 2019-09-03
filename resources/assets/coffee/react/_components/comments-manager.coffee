@@ -82,9 +82,9 @@ export class CommentsManager extends React.PureComponent
     moreComments = osu.jsonClone @state.moreComments
     moreComments[commentBundle.has_more_id] = commentBundle.has_more
 
-    commentableMetaStore.initialize commentable_meta
-    commentStore.initialize comments
-    userStore.initialize users
+    commentableMetaStore.updateWithJSON commentable_meta
+    commentStore.updateWithJSON comments
+    userStore.updateWithJSON users
 
     @setState
       moreComments: moreComments
@@ -92,9 +92,9 @@ export class CommentsManager extends React.PureComponent
 
 
   update: (_event, {commentable_meta, comments, users}) =>
-    commentableMetaStore.initialize commentable_meta
-    commentStore.initialize comments
-    userStore.initialize users
+    commentableMetaStore.updateWithJSON commentable_meta
+    commentStore.updateWithJSON comments
+    userStore.updateWithJSON users
 
 
   mergeCollection: (array, values, prepend) =>

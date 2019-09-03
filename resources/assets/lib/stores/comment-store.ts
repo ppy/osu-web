@@ -37,7 +37,7 @@ export default class CommentStore extends Store {
     }
   }
 
-  initialize(data: CommentJSON[]) {
+  updateWithJSON(data: CommentJSON[]) {
     for (const json of data) {
       const comment = Comment.fromJSON(json);
       this.comments.set(comment.id, comment);
