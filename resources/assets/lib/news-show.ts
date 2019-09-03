@@ -17,14 +17,9 @@
  */
 
 import Main from 'news-show/main';
-import core from 'osu-core-singleton';
 
 reactTurbolinks.registerPersistent('news-show', Main, true, (container: HTMLElement) => {
   const data = osu.parseJson('json-show');
-
-  core.dataStore.commentStore.updateWithJSON(data.comment_bundle.comments);
-  core.dataStore.userStore.updateWithJSON(data.comment_bundle.users);
-  // core.dataStore.commentableMetaStore.updateWithJSON(data.comment_bundle.commentable_meta);
 
   return {
     commentBundle: data.comment_bundle,
