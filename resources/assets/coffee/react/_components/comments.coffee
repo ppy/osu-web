@@ -82,7 +82,6 @@ export class Comments extends React.PureComponent
       comment: comment
       commentsByParentId: @commentsByParentId
       userVotesByCommentId: @props.userVotesByCommentId
-      usersById: @props.usersById
       depth: 0
       currentSort: @props.currentSort
       modifiers: @props.modifiers

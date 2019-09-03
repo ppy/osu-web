@@ -46,7 +46,6 @@ export class CommentsManager extends React.PureComponent
         userVotes: commentBundle.user_votes
         loadingFollow: false
         userFollow: commentBundle.user_follow
-        users: commentBundle.users ? []
         topLevelCount: commentBundle.top_level_count
         total: commentBundle.total
         loadingSort: null

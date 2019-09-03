@@ -229,7 +229,7 @@ export class Comment extends React.PureComponent
               @renderRepliesText()
 
               if !@isDeleted() && comment.edited_at?
-                editor = @props.usersById[comment.edited_by_id] ? deletedUser
+                editor = userStore.get(comment.edited_by_id)
                 div
                   className: 'comment__row-item comment__row-item--info'
                   dangerouslySetInnerHTML:
@@ -273,7 +273,6 @@ export class Comment extends React.PureComponent
       key: comment.id
       comment: comment
       commentsByParentId: @props.commentsByParentId
-      usersById: @props.usersById
       userVotesByCommentId: @props.userVotesByCommentId
       depth: @props.depth + 1
       parent: @props.comment
@@ -451,9 +450,9 @@ export class Comment extends React.PureComponent
 
 
   userFor: (comment) =>
-    user = userStore.users.get(comment.user_id)?.toJSON()
-    console.log user
+    user = userStore.get(comment.user_id)?.toJSON()
 
+    # TODO: handle legacy name
     if user?
       user
     else if comment.legacy_name?

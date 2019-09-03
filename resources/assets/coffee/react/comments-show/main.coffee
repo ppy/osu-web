@@ -40,7 +40,6 @@ export class Main extends React.PureComponent
         el Comment,
           comment: mainComment
           parent: @props.comment.parent
-          usersById: @props.usersById
           userVotesByCommentId: @props.userVotesByCommentId
           commentsByParentId: commentsByParentId
           moreComments: @props.moreComments

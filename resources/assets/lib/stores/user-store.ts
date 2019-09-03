@@ -31,6 +31,18 @@ export default class UserStore extends Store {
     this.users = observable.map<number, User>();
   }
 
+  get(id: number) {
+    const user = this.users.get(id);
+
+    if (user == null) {
+      const deletedUser = new User(id);
+      deletedUser.username = osu.trans('users.deleted');
+      return deletedUser;
+    }
+
+    return user;
+  }
+
   @action
   getOrCreate(userId: number, props?: UserJSON): User {
     let user = this.users.get(userId);
