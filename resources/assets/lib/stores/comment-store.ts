@@ -19,6 +19,7 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { CommentJSON } from 'interfaces/comment-json';
+import { groupBy } from 'lodash';
 import { action, observable } from 'mobx';
 import { Comment } from 'models/comment';
 import Store from 'stores/store';
@@ -29,6 +30,10 @@ export default class CommentStore extends Store {
   @action
   flushStore() {
     this.comments.clear();
+  }
+
+  getGroupedByParentId() {
+    return groupBy(Object.values(this.comments.toPOJO()), 'parent_id');
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {

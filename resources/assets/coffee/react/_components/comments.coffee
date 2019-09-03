@@ -35,8 +35,8 @@ uiState = core.dataStore.uiState
 export class Comments extends React.PureComponent
   render: =>
     el Observer, null, () =>
-      @commentsByParentId = _.groupBy(Object.values(store.comments.toPOJO()), 'parent_id')
-      comments = @commentsByParentId[null]
+      # TODO: order by current order
+      comments = store.getGroupedByParentId()[null]
 
       div className: osu.classWithModifiers('comments', @props.modifiers),
         div className: 'u-has-anchor u-has-anchor--no-event',
@@ -86,7 +86,6 @@ export class Comments extends React.PureComponent
     el Comment,
       key: comment.id
       comment: comment
-      commentsByParentId: @commentsByParentId
       userVotesByCommentId: @props.userVotesByCommentId
       depth: 0
       currentSort: @props.currentSort

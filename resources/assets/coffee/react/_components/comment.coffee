@@ -50,7 +50,7 @@ export class Comment extends React.Component
 
 
   getChildren = (props) ->
-    props.commentsByParentId?[props.comment.id] ? []
+    store.getGroupedByParentId()[props.comment.id] ? []
 
 
   @defaultProps =
@@ -273,7 +273,6 @@ export class Comment extends React.Component
     el Comment,
       key: comment.id
       comment: comment
-      commentsByParentId: @props.commentsByParentId
       userVotesByCommentId: @props.userVotesByCommentId
       depth: @props.depth + 1
       parent: @props.comment

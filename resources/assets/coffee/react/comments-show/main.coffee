@@ -23,7 +23,7 @@ el = React.createElement
 
 export class Main extends React.PureComponent
   render: =>
-    commentsByParentId = _.groupBy(@props.comments, 'parent_id')
+    commentsByParentId = store.getGroupedByParentId()
 
     mainComment = commentsByParentId[@props.comment.parent_id][0]
     children = commentsByParentId[mainComment.id] ? []
@@ -41,7 +41,6 @@ export class Main extends React.PureComponent
           comment: mainComment
           parent: @props.comment.parent
           userVotesByCommentId: @props.userVotesByCommentId
-          commentsByParentId: commentsByParentId
           moreComments: @props.moreComments
           showCommentableMeta: true
           depth: 0
