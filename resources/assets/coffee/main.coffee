@@ -44,8 +44,8 @@ $(document).on 'turbolinks:load', ->
 
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
-@accountEditPlaystyle ?= new AccountEditPlaystyle
 @accountEditBlocklist ?= new AccountEditBlocklist
+@accountEditPlaystyle ?= new AccountEditPlaystyle
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
@@ -59,6 +59,7 @@ $(document).on 'turbolinks:load', ->
 @forumAutoClick ?= new ForumAutoClick
 @forumCover ?= new ForumCover
 @forumPoll ?= new _exported.ForumPoll(@)
+@forumPostPreview ?= new ForumPostPreview
 @forumTopicTitle ?= new ForumTopicTitle
 @forumTopicWatchAjax ?= new ForumTopicWatchAjax
 @gallery ?= new Gallery
@@ -70,7 +71,6 @@ $(document).on 'turbolinks:load', ->
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
 @postPreview ?= new PostPreview
-@replyPreview ?= new ReplyPreview
 @scale ?= new Scale
 @search ?= new Search
 @stickyFooter ?= new StickyFooter

@@ -32,7 +32,7 @@
 >
     @include("forum.topics._post_info", ["user" => $post->userNormalized()])
 
-    <div class="forum-post__body">
+    <div class="forum-post__body js-forum-post-edit--container">
         <div class="forum-post__content forum-post__content--header">
             @if (isset($topic) && $topic->topic_poster === $post->poster_id)
                 <span class="forum-user-badge forum-user-badge--inline">
@@ -68,49 +68,49 @@
                 {!! bbcode($post->userNormalized()->user_sig, $post->userNormalized()->user_sig_bbcode_uid) !!}
             </div>
         @endif
-    </div>
 
-    <div class="forum-post__actions">
-        <div class="forum-post-actions">
-            @if ($options['editLink'] === true)
-                <div class="forum-post-actions__action">
-                    <button
-                        type="button"
-                        class="btn-circle edit-post-link"
-                        title="{{ trans('forum.post.actions.edit') }}"
-                        data-tooltip-position="top center"
-                        data-url="{{ route('forum.posts.edit', $post) }}"
-                        data-remote="1"
-                    >
-                        <span class="btn-circle__content">
-                            <i class="fas fa-pencil-alt"></i>
-                        </span>
-                    </button>
-                </div>
-            @endif
+        <div class="forum-post__actions">
+            <div class="forum-post-actions">
+                @if ($options['editLink'] === true)
+                    <div class="forum-post-actions__action">
+                        <button
+                            type="button"
+                            class="btn-circle js-edit-post-start"
+                            title="{{ trans('forum.post.actions.edit') }}"
+                            data-tooltip-position="top center"
+                            data-url="{{ route('forum.posts.edit', $post) }}"
+                            data-remote="1"
+                        >
+                            <span class="btn-circle__content">
+                                <i class="fas fa-pencil-alt"></i>
+                            </span>
+                        </button>
+                    </div>
+                @endif
 
-            @if ($options["deleteLink"] === true)
-                <div class="forum-post-actions__action js-post-delete-toggle">
-                    @include('forum.topics._post_hide_action')
-                </div>
-            @endif
+                @if ($options["deleteLink"] === true)
+                    <div class="forum-post-actions__action js-post-delete-toggle">
+                        @include('forum.topics._post_hide_action')
+                    </div>
+                @endif
 
-            @if ($options['replyLink'] === true)
-                <div class="forum-post-actions__action">
-                    <button
-                        type="button"
-                        class="btn-circle js-forum-topic-reply--quote"
-                        title="{{ trans('forum.topics.actions.reply_with_quote') }}"
-                        data-tooltip-position="top center"
-                        data-url="{{ route('forum.posts.raw', ['id' => $post, 'quote' => 1]) }}"
-                        data-remote="1"
-                    >
-                        <span class="btn-circle__content">
-                            <i class="fas fa-reply"></i>
-                        </span>
-                    </button>
-                </div>
-            @endif
+                @if ($options['replyLink'] === true)
+                    <div class="forum-post-actions__action">
+                        <button
+                            type="button"
+                            class="btn-circle js-forum-topic-reply--quote"
+                            title="{{ trans('forum.topics.actions.reply_with_quote') }}"
+                            data-tooltip-position="top center"
+                            data-url="{{ route('forum.posts.raw', ['id' => $post, 'quote' => 1]) }}"
+                            data-remote="1"
+                        >
+                            <span class="btn-circle__content">
+                                <i class="fas fa-reply"></i>
+                            </span>
+                        </button>
+                    </div>
+                @endif
+            </div>
         </div>
     </div>
 </div>

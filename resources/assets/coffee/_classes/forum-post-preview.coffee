@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-class @ReplyPreview
+class @ForumPostPreview
   constructor: ->
     @input = '.js-forum-topic-reply--input'
 
@@ -28,49 +28,43 @@ class @ReplyPreview
 
     @lastBody = null
 
-    $(document).on 'click', '.js-forum-reply-preview--show', @fetchPreview
-    $(document).on 'click', '.js-forum-reply-preview--hide', @hidePreview
-
-    $(document).on 'turbolinks:load', @resetPreview
+    $(document).on 'click', '.js-forum-post-preview--show', @fetchPreview
+    $(document).on 'click', '.js-forum-post-preview--hide', @hidePreview
 
 
   fetchPreview: (e) =>
-    e.preventDefault()
-    $preview = $(@previewBox).find('.js-forum-reply-preview--content')
-    url = laroute.route 'bbcode-preview'
-    body = $(@input).val()
+    $form = $(e.target).parents('.js-forum-post-preview--form')
+    $preview = $form.find('.js-forum-post-preview--preview')
+    $body = $form.find('.js-forum-post-preview--body')
 
-    return if $(@previewButton).hasClass 'active'
+    text = $body.val()
+    lastText = $body.attr('data-last-text')
 
-    if body == @lastBody
-      @showPreview()
+
+    return if $form.attr('data-state') == 'preview'
+
+    if text == $body.attr('data-last-text')
+      @showPreview(e)
       return
 
-    $('.js-forum-reply-preview').attr('data-state', 'loading-preview')
+    $form.attr('data-state', 'loading-preview')
 
     $.ajax
-      url: url
+      url: laroute.route 'bbcode-preview'
       method: 'POST'
-      data:
-        text: body
+      data: { text }
 
     .done (data) =>
-      @lastBody = body
+      $form.attr('data-last-text', text)
 
       $preview.html(data)
-      @showPreview()
+      osu.pageChange()
+      @showPreview(e)
 
 
-  showPreview: =>
-    $('.js-forum-reply-preview').attr('data-state', 'preview')
+  showPreview: (e) =>
+    $(e.target).parents('.js-forum-post-preview--form').attr('data-state', 'preview')
 
-    osu.pageChange()
 
   hidePreview: (e) =>
-    e?.preventDefault()
-    $('.js-forum-reply-preview').attr('data-state', 'write')
-
-    osu.pageChange()
-
-  resetPreview: =>
-    @lastBody = null
+    $(e.target).parents('.js-forum-post-preview--form').attr('data-state', 'write')
