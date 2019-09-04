@@ -32,6 +32,10 @@ class @PostPreview
     $preview = $form.find('.js-post-preview--body')
     $previewBox = $form.find('.js-post-preview--box')
 
+    if body == ''
+      $previewBox.addClass 'hidden'
+      return
+
     return if $preview.attr('data-raw') == body
 
     $.post(url, text: body)
