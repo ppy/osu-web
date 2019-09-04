@@ -96,11 +96,8 @@ export class Comment extends React.Component
   render: =>
     el Observer, null, () =>
       @children = getChildren(@props)
-      comment = store.comments.get(@props.comment.id)
-      parent = store.comments.get(comment.parent_id)
-      user = @userFor(comment)
-      @comment = comment #lazy
-      @user = user #lazy
+      parent = store.comments.get(@props.comment.parent_id)
+      user = @userFor(@props.comment)
 
       modifiers = @props.modifiers?[..] ? []
       modifiers.push 'top' if @props.depth == 0
@@ -120,11 +117,11 @@ export class Comment extends React.Component
             div className: 'comment__float-container comment__float-container--left hidden-xs',
               @renderVoteButton()
 
-          @renderUserAvatar()
+          @renderUserAvatar user
 
           div className: 'comment__container',
             div className: 'comment__row comment__row--header',
-              @renderUsername()
+              @renderUsername user
 
               if parent?
                 span
@@ -139,15 +136,15 @@ export class Comment extends React.Component
             if @state.editing
               div className: 'comment__editor',
                 el CommentEditor,
-                  id: comment.id
-                  message: comment.message
+                  id: @props.comment.id
+                  message: @props.comment.message
                   modifiers: @props.modifiers
                   close: @closeEdit
-            else if comment.message_html?
+            else if @props.comment.message_html?
               div
                 className: 'comment__message',
                 dangerouslySetInnerHTML:
-                  __html: comment.message_html
+                  __html: @props.comment.message_html
 
             div className: 'comment__row comment__row--footer',
               if @canHaveVote()
@@ -157,7 +154,7 @@ export class Comment extends React.Component
 
               div
                 className: 'comment__row-item comment__row-item--info'
-                dangerouslySetInnerHTML: __html: osu.timeago(comment.created_at)
+                dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
 
               @renderPermalink()
               @renderReplyButton()
@@ -170,7 +167,7 @@ export class Comment extends React.Component
 
             @renderReplyBox()
 
-        if @props.showReplies && comment.replies_count > 0
+        if @props.showReplies && @props.comment.replies_count > 0
           div
             className: repliesClass
             @children.map @renderComment
@@ -178,9 +175,9 @@ export class Comment extends React.Component
             el DeletedCommentsCount, { comments: @children, showDeleted: uiState.isShowDeleted }
 
             el CommentShowMore,
-              parent: comment
+              parent: @props.comment
               comments: @children
-              total: comment.replies_count
+              total: @props.comment.replies_count
               modifiers: @props.modifiers
               label: osu.trans('comments.load_replies') if @children.length == 0
               ref: @loadMoreRef
@@ -218,13 +215,13 @@ export class Comment extends React.Component
 
 
   renderEditedBy: =>
-    if !@isDeleted() && @comment.edited_at?
-      editor = userStore.get(@comment.edited_by_id)
+    if !@isDeleted() && @props.comment.edited_at?
+      editor = userStore.get(@props.comment.edited_by_id)
       div
         className: 'comment__row-item comment__row-item--info'
         dangerouslySetInnerHTML:
           __html: osu.trans 'comments.edited',
-            timeago: osu.timeago(@comment.edited_at)
+            timeago: osu.timeago(@props.comment.edited_at)
             user:
               if editor.id?
                 osu.link(laroute.route('users.show', user: editor.id), editor.username, classNames: ['comment__link'])
@@ -235,7 +232,7 @@ export class Comment extends React.Component
   renderPermalink: =>
     div className: 'comment__row-item',
       a
-        href: laroute.route('comments.show', comment: @comment.id)
+        href: laroute.route('comments.show', comment: @props.comment.id)
         className: 'comment__action comment__action--permalink'
         osu.trans('common.buttons.permalink')
 
@@ -280,7 +277,7 @@ export class Comment extends React.Component
     if @state.showNewReply
       div className: 'comment__reply-box',
         el CommentEditor,
-          parent: @comment
+          parent: @props.comment
           close: @closeNewReply
           modifiers: @props.modifiers
 
@@ -300,8 +297,8 @@ export class Comment extends React.Component
       div className: 'comment__row-item',
         el ReportComment,
           className: 'comment__action'
-          comment: @comment
-          user: @userFor(@comment)
+          comment: @props.comment
+          user: @userFor(@props.comment)
 
 
   renderRestore: =>
@@ -314,30 +311,30 @@ export class Comment extends React.Component
           osu.trans('common.buttons.restore')
 
 
-  renderUserAvatar: =>
-    if @user.id?
+  renderUserAvatar: (user) =>
+    if user.id?
       a
         className: 'comment__avatar js-usercard'
-        'data-user-id': @user.id
-        href: laroute.route('users.show', user: @user.id)
-        el UserAvatar, user: @user, modifiers: ['full-circle']
+        'data-user-id': user.id
+        href: laroute.route('users.show', user: user.id)
+        el UserAvatar, user: user, modifiers: ['full-circle']
     else
       span
         className: 'comment__avatar'
-        el UserAvatar, user: @user, modifiers: ['full-circle']
+        el UserAvatar, user: user, modifiers: ['full-circle']
 
 
-  renderUsername: =>
-    if @user.id?
+  renderUsername: (user) =>
+    if user.id?
       a
-        'data-user-id': @user.id
-        href: laroute.route('users.show', user: @user.id)
+        'data-user-id': user.id
+        href: laroute.route('users.show', user: user.id)
         className: 'js-usercard comment__row-item comment__row-item--username comment__row-item--username-link'
-        @user.username
+        user.username
     else
       span
         className: 'comment__row-item comment__row-item--username'
-        @user.username
+        user.username
 
 
   # mobile vote button
@@ -406,7 +403,7 @@ export class Comment extends React.Component
 
   renderCommentableMeta: =>
     return unless @props.showCommentableMeta
-    meta = commentableMetaStore.get(@comment.commentable_type, @comment.commentable_id)
+    meta = commentableMetaStore.get(@props.comment.commentable_type, @props.comment.commentable_id)
 
     if meta.url
       component = a
