@@ -17,23 +17,25 @@
  */
 
 export default class ForumPoll {
-  private container: HTMLCollectionOf<Element>;
-
   constructor(window: Window) {
     $(window.document).on('click', '.js-forum-poll--switch-page', this.switchPage);
     $(window.document).on('click', '.js-forum-poll--switch-edit', this.switchEdit);
-
-    this.container = window.document.getElementsByClassName('js-forum-poll--container');
   }
 
-  switchEdit = () => {
-    const container = this.container[0];
+  switchEdit = (event: JQuery.ClickEvent) => {
+    const $container = $(event.target).parents('.js-forum-poll--container');
 
-    if (!(container instanceof HTMLElement)) {
-      return;
+    if ($container.attr('data-edit') === '1') {
+      $container.attr('data-edit', '0');
+
+      const form = $(event.target).closest('form')[0];
+
+      if (form != null) {
+        form.reset();
+      }
+    } else {
+      $container.attr('data-edit', '1');
     }
-
-    container.dataset.edit = container.dataset.edit === '0' ? '1' : '0';
   }
 
   switchPage = (event: JQuery.ClickEvent) => {
@@ -43,12 +45,10 @@ export default class ForumPoll {
       return;
     }
 
-    const container = this.container[0];
+    const targetPage = target.dataset.targetPage;
 
-    if (!(container instanceof HTMLElement)) {
-      return;
+    if (typeof targetPage === 'string') {
+      $(event.target).parents('.js-forum-poll--container').attr('data-page', targetPage);
     }
-
-    container.dataset.page = target.dataset.targetPage;
   }
 }
