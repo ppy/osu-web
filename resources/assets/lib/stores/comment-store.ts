@@ -29,7 +29,8 @@ export default class CommentStore extends Store {
   @observable userVotes = new Set<number>();
 
   @action
-  addVoted(commentIds: number[]) {
+  addVoted(commentIds: number[] | undefined | null) {
+    if (commentIds == null) { return; }
     commentIds.forEach((value) => this.userVotes.add(value));
   }
 
@@ -55,6 +56,14 @@ export default class CommentStore extends Store {
     }
   }
 
+  @action
+  initialize(comments: CommentJSON[] | undefined | null, votes: number[] | undefined | null) {
+    this.flushStore();
+    this.addVoted(votes);
+    this.updateWithJSON(comments);
+  }
+
+  @action
   updateWithJSON(data: CommentJSON[] | undefined | null) {
     if (data == null) { return; }
     for (const json of data) {

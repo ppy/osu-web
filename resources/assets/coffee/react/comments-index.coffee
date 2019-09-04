@@ -22,5 +22,12 @@ import { Main } from './comments-index/main'
 
 
 reactTurbolinks.registerPersistent 'comments-index', CommentsManager, true, ->
+  commentBundle = osu.parseJson('json-index')
+
+  if commentBundle?
+    core.dataStore.commentableMetaStore.initialize(commentBundle.commentable_meta)
+    core.dataStore.commentStore.initialize(commentBundle.comments, commentBundle.user_votes)
+    core.dataStore.userStore.updateWithJSON(commentBundle.users)
+
   component: Main
-  commentBundle: osu.parseJson('json-index')
+  commentBundle: commentBundle

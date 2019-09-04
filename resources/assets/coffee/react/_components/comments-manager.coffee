@@ -34,16 +34,17 @@ export class CommentsManager extends React.PureComponent
   constructor: (props) ->
     super props
 
-    json = if @props.commentBundle?
-             @props.commentBundle
-           else if @props.commentableType? && @props.commentableId?
-             json = osu.parseJson("json-comments-#{@props.commentableType}-#{@props.commentableId}") ? {}
+    json = if props.commentBundle?
+             props.commentBundle
+           else if props.commentableType? && props.commentableId?
+             # FIXME no initialization from component?
+             json = osu.parseJson("json-comments-#{props.commentableType}-#{props.commentableId}") ? {}
+             core.dataStore.commentStore.addVoted(json.user_votes)
+             core.dataStore.commentStore.updateWithJSON(json.comments)
+             core.dataStore.userStore.updateWithJSON(json.users)
+             core.dataStore.commentableMetaStore.updateWithJSON(json.commentable_meta)
 
-    if json?
-      core.dataStore.commentStore.addVoted(json.user_votes)
-      core.dataStore.commentStore.updateWithJSON(json.comments)
-      core.dataStore.userStore.updateWithJSON(json.users)
-      core.dataStore.commentableMetaStore.updateWithJSON(json.commentable_meta)
+             json
 
     @id = "comments-#{osu.uuid()}"
 

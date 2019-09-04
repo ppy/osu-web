@@ -42,6 +42,13 @@ export default class CommentableMetaStore extends Store {
     }
   }
 
+  @action
+  initialize(meta: CommentableMetaJSON[] | undefined | null) {
+    this.flushStore();
+    this.updateWithJSON(meta);
+  }
+
+  @action
   updateWithJSON(data: CommentableMetaJSON[] | undefined | null) {
     if (data == null) { return; }
     for (const json of data) {

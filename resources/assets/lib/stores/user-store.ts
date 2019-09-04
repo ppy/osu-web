@@ -73,6 +73,7 @@ export default class UserStore extends Store {
     }
   }
 
+  @action
   updateWithJSON(data: UserJSON[] | undefined | null) {
     if (data == null) { return; }
     for (const json of data) {
