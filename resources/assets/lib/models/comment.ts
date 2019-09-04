@@ -18,7 +18,6 @@
 
 import { CommentJSON } from 'interfaces/comment-json';
 import { orderBy } from 'lodash';
-import { observable } from 'mobx';
 
 export type CommentSort = 'new' | 'old' | 'top';
 
