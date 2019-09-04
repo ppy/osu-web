@@ -99,6 +99,8 @@ export class Comment extends React.Component
       comment = store.comments.get(@props.comment.id)
       parent = store.comments.get(comment.parent_id)
       user = @userFor(comment)
+      @comment = comment #lazy
+      @user = user #lazy
 
       modifiers = @props.modifiers?[..] ? []
       modifiers.push 'top' if @props.depth == 0
@@ -110,44 +112,19 @@ export class Comment extends React.Component
       div
         className: osu.classWithModifiers 'comment', modifiers
 
-        if @props.showReplies && @props.depth == 0 && @children.length > 0
-          div className: 'comment__float-container comment__float-container--right',
-            button
-              className: 'comment__top-show-replies'
-              type: 'button'
-              onClick: @toggleReplies
-              span className: "fas #{if @state.expandReplies then 'fa-angle-up' else 'fa-angle-down'}"
-
-        if @props.showCommentableMeta
-          @commentableMeta()
+        @renderRepliesToggle()
+        @renderCommentableMeta()
 
         div className: "comment__main #{if @isDeleted() then 'comment__main--deleted' else ''}",
           if @canHaveVote()
             div className: 'comment__float-container comment__float-container--left hidden-xs',
               @renderVoteButton()
 
-          if user.id?
-            a
-              className: 'comment__avatar js-usercard'
-              'data-user-id': user.id
-              href: laroute.route('users.show', user: user.id)
-              el UserAvatar, user: user, modifiers: ['full-circle']
-          else
-            span
-              className: 'comment__avatar'
-              el UserAvatar, user: user, modifiers: ['full-circle']
+          @renderUserAvatar()
+
           div className: 'comment__container',
             div className: 'comment__row comment__row--header',
-              if user.id?
-                a
-                  'data-user-id': user.id
-                  href: laroute.route('users.show', user: user.id)
-                  className: 'js-usercard comment__row-item comment__row-item--username comment__row-item--username-link'
-                  user.username
-              else
-                span
-                  className: 'comment__row-item comment__row-item--username'
-                  user.username
+              @renderUsername()
 
               if parent?
                 span
@@ -182,72 +159,16 @@ export class Comment extends React.Component
                 className: 'comment__row-item comment__row-item--info'
                 dangerouslySetInnerHTML: __html: osu.timeago(comment.created_at)
 
-              div className: 'comment__row-item',
-                a
-                  href: laroute.route('comments.show', comment: comment.id)
-                  className: 'comment__action comment__action--permalink'
-                  osu.trans('common.buttons.permalink')
-
-              if @props.showReplies && !@isDeleted()
-                div className: 'comment__row-item',
-                  button
-                    type: 'button'
-                    className: "comment__action #{if @state.showNewReply then 'comment__action--active' else ''}"
-                    onClick: @toggleNewReply
-                    osu.trans('common.buttons.reply')
-
-              if @canEdit()
-                div className: 'comment__row-item',
-                  button
-                    type: 'button'
-                    className: "comment__action #{if @state.editing then 'comment__action--active' else ''}"
-                    onClick: @toggleEdit
-                    osu.trans('common.buttons.edit')
-
-              if @isDeleted() && @canRestore()
-                div className: 'comment__row-item',
-                  button
-                    type: 'button'
-                    className: 'comment__action'
-                    onClick: @restore
-                    osu.trans('common.buttons.restore')
-
-              if !@isDeleted() && @canDelete()
-                div className: 'comment__row-item',
-                  button
-                    type: 'button'
-                    className: 'comment__action'
-                    onClick: @delete
-                    osu.trans('common.buttons.delete')
-
-              if @canReport()
-                div className: 'comment__row-item',
-                  el ReportComment,
-                    className: 'comment__action'
-                    comment: comment
-                    user: @userFor(comment)
-
+              @renderPermalink()
+              @renderReplyButton()
+              @renderEdit()
+              @renderRestore()
+              @renderDelete()
+              @renderReport()
               @renderRepliesText()
+              @renderEditedBy()
 
-              if !@isDeleted() && comment.edited_at?
-                editor = userStore.get(comment.edited_by_id)
-                div
-                  className: 'comment__row-item comment__row-item--info'
-                  dangerouslySetInnerHTML:
-                    __html: osu.trans 'comments.edited',
-                      timeago: osu.timeago(comment.edited_at)
-                      user:
-                        if editor.id?
-                          osu.link(laroute.route('users.show', user: editor.id), editor.username, classNames: ['comment__link'])
-                        else
-                          _.escape editor.username
-
-            if @state.showNewReply
-              div className: 'comment__reply-box',
-                el CommentEditor,
-                  parent: comment
-                  close: @closeNewReply
-                  modifiers: @props.modifiers
+            @renderReplyBox()
 
         if @props.showReplies && comment.replies_count > 0
           div
@@ -276,6 +197,49 @@ export class Comment extends React.Component
       modifiers: @props.modifiers
 
 
+  renderDelete: =>
+    if !@isDeleted() && @canDelete()
+      div className: 'comment__row-item',
+        button
+          type: 'button'
+          className: 'comment__action'
+          onClick: @delete
+          osu.trans('common.buttons.delete')
+
+
+  renderEdit: =>
+    if @canEdit()
+      div className: 'comment__row-item',
+        button
+          type: 'button'
+          className: "comment__action #{if @state.editing then 'comment__action--active' else ''}"
+          onClick: @toggleEdit
+          osu.trans('common.buttons.edit')
+
+
+  renderEditedBy: =>
+    if !@isDeleted() && @comment.edited_at?
+      editor = userStore.get(@comment.edited_by_id)
+      div
+        className: 'comment__row-item comment__row-item--info'
+        dangerouslySetInnerHTML:
+          __html: osu.trans 'comments.edited',
+            timeago: osu.timeago(@comment.edited_at)
+            user:
+              if editor.id?
+                osu.link(laroute.route('users.show', user: editor.id), editor.username, classNames: ['comment__link'])
+              else
+                _.escape editor.username
+
+
+  renderPermalink: =>
+    div className: 'comment__row-item',
+      a
+        href: laroute.route('comments.show', comment: @comment.id)
+        className: 'comment__action comment__action--permalink'
+        osu.trans('common.buttons.permalink')
+
+
   renderRepliesText: =>
     return if @props.comment.replies_count == 0
 
@@ -302,6 +266,81 @@ export class Comment extends React.Component
         osu.formatNumber(@props.comment.replies_count)
 
 
+  renderRepliesToggle: =>
+    if @props.showReplies && @props.depth == 0 && @children.length > 0
+      div className: 'comment__float-container comment__float-container--right',
+        button
+          className: 'comment__top-show-replies'
+          type: 'button'
+          onClick: @toggleReplies
+          span className: "fas #{if @state.expandReplies then 'fa-angle-up' else 'fa-angle-down'}"
+
+
+  renderReplyBox: =>
+    if @state.showNewReply
+      div className: 'comment__reply-box',
+        el CommentEditor,
+          parent: @comment
+          close: @closeNewReply
+          modifiers: @props.modifiers
+
+
+  renderReplyButton: =>
+    if @props.showReplies && !@isDeleted()
+      div className: 'comment__row-item',
+        button
+          type: 'button'
+          className: "comment__action #{if @state.showNewReply then 'comment__action--active' else ''}"
+          onClick: @toggleNewReply
+          osu.trans('common.buttons.reply')
+
+
+  renderReport: =>
+    if @canReport()
+      div className: 'comment__row-item',
+        el ReportComment,
+          className: 'comment__action'
+          comment: @comment
+          user: @userFor(@comment)
+
+
+  renderRestore: =>
+    if @isDeleted() && @canRestore()
+      div className: 'comment__row-item',
+        button
+          type: 'button'
+          className: 'comment__action'
+          onClick: @restore
+          osu.trans('common.buttons.restore')
+
+
+  renderUserAvatar: =>
+    if @user.id?
+      a
+        className: 'comment__avatar js-usercard'
+        'data-user-id': @user.id
+        href: laroute.route('users.show', user: @user.id)
+        el UserAvatar, user: @user, modifiers: ['full-circle']
+    else
+      span
+        className: 'comment__avatar'
+        el UserAvatar, user: @user, modifiers: ['full-circle']
+
+
+  renderUsername: =>
+    if @user.id?
+      a
+        'data-user-id': @user.id
+        href: laroute.route('users.show', user: @user.id)
+        className: 'js-usercard comment__row-item comment__row-item--username comment__row-item--username-link'
+        @user.username
+    else
+      span
+        className: 'comment__row-item comment__row-item--username'
+        @user.username
+
+
+  # mobile vote button
   renderVoteButton: =>
     className = osu.classWithModifiers('comment-vote', @props.modifiers)
     className += ' comment-vote--posting' if @state.postingVote
@@ -365,9 +404,9 @@ export class Comment extends React.Component
     !@isOwner()
 
 
-  commentableMeta: =>
-    comment = store.comments.get(@props.comment.id)
-    meta = commentableMetaStore.get(comment.commentable_type, comment.commentable_id)
+  renderCommentableMeta: =>
+    return unless @props.showCommentableMeta
+    meta = commentableMetaStore.get(@comment.commentable_type, @comment.commentable_id)
 
     if meta.url
       component = a
