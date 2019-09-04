@@ -17,6 +17,7 @@
 ###
 
 import { Comment } from 'comment'
+import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, h1, li, ol, p, span } from 'react-dom-factories'
@@ -26,27 +27,25 @@ store = core.dataStore.commentStore
 
 export class Main extends React.PureComponent
   render: =>
-    commentsByParentId = store.getGroupedByParentId()
+    el Observer, null, () =>
+      mainComment = store.getCommentsByParentId(@props.comment.parent_id)[0]
 
-    mainComment = commentsByParentId[@props.comment.parent_id][0]
-    children = commentsByParentId[mainComment.id] ? []
+      div null,
+        div className: 'header-v3 header-v3--comments',
+          div className: 'header-v3__bg'
+          div className: 'header-v3__overlay'
+          div className: 'osu-page osu-page--header-v3',
+            @renderHeaderTitle()
+            @renderHeaderTabs()
 
-    div null,
-      div className: 'header-v3 header-v3--comments',
-        div className: 'header-v3__bg'
-        div className: 'header-v3__overlay'
-        div className: 'osu-page osu-page--header-v3',
-          @renderHeaderTitle()
-          @renderHeaderTabs()
-
-      div className: 'osu-page osu-page--comment',
-        el Comment,
-          comment: mainComment
-          parent: @props.comment.parent
-          showCommentableMeta: true
-          depth: 0
-          linkParent: true
-          modifiers: ['dark', 'single']
+        div className: 'osu-page osu-page--comment',
+          el Comment,
+            comment: mainComment
+            parent: @props.comment.parent
+            showCommentableMeta: true
+            depth: 0
+            linkParent: true
+            modifiers: ['dark', 'single']
 
 
   renderHeaderTabs: =>
