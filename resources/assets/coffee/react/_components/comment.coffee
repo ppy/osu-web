@@ -49,10 +49,6 @@ export class Comment extends React.PureComponent
       _.truncate makePreviewElement.textContent, length: 100
 
 
-  getChildren = (props) ->
-    store.getGroupedByParentId()[props.comment.id] ? []
-
-
   @defaultProps =
     showReplies: true
 
@@ -69,9 +65,9 @@ export class Comment extends React.PureComponent
     else if @isDeleted()
       expandReplies = false
     else
-      @children = getChildren(@props)
+      children = store.getCommentsByParentId(@props.comment.id)
       # Collapse if either no children is loaded or current level doesn't add indentation.
-      expandReplies = @children.length > 0 && @props.depth < MAX_DEPTH
+      expandReplies = children?.length > 0 && @props.depth < MAX_DEPTH
 
     @state =
       postingVote: false
@@ -86,7 +82,7 @@ export class Comment extends React.PureComponent
 
   render: =>
     el Observer, null, () =>
-      @children = getChildren(@props)
+      @children = store.getCommentsByParentId(@props.comment.id) ? []
       parent = store.comments.get(@props.comment.parent_id)
       user = @userFor(@props.comment)
 

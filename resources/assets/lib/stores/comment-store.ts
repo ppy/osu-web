@@ -19,7 +19,7 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { CommentJSON } from 'interfaces/comment-json';
-import { groupBy } from 'lodash';
+import { Dictionary, groupBy } from 'lodash';
 import { action, observable } from 'mobx';
 import { Comment } from 'models/comment';
 import Store from 'stores/store';
@@ -27,6 +27,7 @@ import Store from 'stores/store';
 export default class CommentStore extends Store {
   @observable comments = observable.map<number, Comment>();
   @observable userVotes = new Set<number>();
+  private groupedByParentId: Dictionary<Comment[]> | null = null;
 
   @action
   addUserVote(comment: Comment) {
@@ -41,6 +42,7 @@ export default class CommentStore extends Store {
 
   @action
   flushStore() {
+    this.invalidate();
     this.comments.clear();
     this.userVotes.clear();
   }
@@ -51,8 +53,11 @@ export default class CommentStore extends Store {
   }
 
   getGroupedByParentId() {
-    // TODO: cache and invalidate....somehow..
-    return groupBy(Object.values(this.comments.toPOJO()), 'parent_id');
+    if (this.groupedByParentId == null) {
+      this.groupedByParentId = groupBy(Object.values(this.comments.toPOJO()), 'parent_id');
+    }
+
+    return this.groupedByParentId;
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
@@ -76,9 +81,14 @@ export default class CommentStore extends Store {
   @action
   updateWithJSON(data: CommentJSON[] | undefined | null) {
     if (data == null) { return; }
+    this.invalidate();
     for (const json of data) {
       const comment = Comment.fromJSON(json);
       this.comments.set(comment.id, comment);
     }
+  }
+
+  private invalidate() {
+    this.groupedByParentId = null;
   }
 }
