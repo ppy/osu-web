@@ -23,7 +23,7 @@ import { action, observable } from 'mobx';
 import Store from 'stores/store';
 
 export default class CommentableMetaStore extends Store {
-  @observable meta = observable.map<string | undefined, CommentableMetaJSON>();
+  @observable meta = observable.map<string | null, CommentableMetaJSON>();
 
   @action
   flushStore() {
@@ -33,7 +33,7 @@ export default class CommentableMetaStore extends Store {
   get(type: string, id: number) {
     const obj = this.meta.get(`${type}-${id}`);
 
-    return obj != null ? obj : this.meta.get(undefined);
+    return obj != null ? obj : this.meta.get(null);
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
@@ -45,7 +45,8 @@ export default class CommentableMetaStore extends Store {
   updateWithJSON(data: CommentableMetaJSON[] | undefined | null) {
     if (data == null) { return; }
     for (const json of data) {
-      this.meta.set(`${json.type}-${json.id}`, json);
+      const key = json.type != null && json.id != null ? `${json.type}-${json.id}` : null;
+      this.meta.set(key, json);
     }
   }
 }
