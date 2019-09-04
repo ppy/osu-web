@@ -35,7 +35,9 @@ class @PostPreview
       $previewBox.addClass 'hidden'
       return
 
-    return if $preview.attr('data-raw') == body
+    if $preview.attr('data-raw') == body
+      $previewBox.removeClass 'hidden'
+      return
 
     $.post(laroute.route('bbcode-preview'), text: body)
     .done (data) =>
