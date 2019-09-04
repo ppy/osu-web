@@ -34,6 +34,10 @@ class @PostPreview
 
     return if $preview.attr('data-raw') == body
 
+    if body == ''
+      $previewBox.addClass('hidden')
+      return
+
     $.post(url, text: body)
     .done (data) =>
       $preview.html data
