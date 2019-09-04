@@ -27,7 +27,6 @@ class @PostPreview
 
   loadPreview: (target) =>
     $form = $(target).closest('form')
-    url = laroute.route('bbcode-preview')
     body = target.value
     $preview = $form.find('.js-post-preview--body')
     $previewBox = $form.find('.js-post-preview--box')
@@ -38,7 +37,7 @@ class @PostPreview
 
     return if $preview.attr('data-raw') == body
 
-    $.post(url, text: body)
+    $.post(laroute.route('bbcode-preview'), text: body)
     .done (data) =>
       $preview.html data
       $preview.attr 'data-raw', body
