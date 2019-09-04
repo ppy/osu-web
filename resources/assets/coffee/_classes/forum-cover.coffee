@@ -168,7 +168,7 @@ class @ForumCover
 
     backgroundImageUrl = @uploadButton[0].dataset.fileUrl || @uploadButton[0].dataset.defaultFileUrl || null
 
-    @header[0].style.backgroundImage = osu.urlPresence(backgroundImageUrl)
+    $(@header).css(backgroundImage: osu.urlPresence(backgroundImageUrl) ? '')
 
     $('.js-forum-cover--remove').toggleClass('js-disabled', !@hasCover())
 
