@@ -22,6 +22,7 @@ import { CommentShowMore } from 'comment-show-more'
 import { CommentsSort } from 'comments-sort'
 import DeletedCommentsCount from 'deleted-comments-count'
 import { Observer } from 'mobx-react'
+import { Comment as CommentModel } from 'models/comment'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, h2, span } from 'react-dom-factories'
@@ -35,7 +36,7 @@ uiState = core.dataStore.uiState
 export class Comments extends React.PureComponent
   render: =>
     el Observer, null, () =>
-      comments = store.getCommentsByParentId(null, uiState.comments.currentSort)
+      comments = CommentModel.sort(store.getCommentsByParentId(null), uiState.comments.currentSort)
 
       div className: osu.classWithModifiers('comments', @props.modifiers),
         div className: 'u-has-anchor u-has-anchor--no-event',

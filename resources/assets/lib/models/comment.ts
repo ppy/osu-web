@@ -17,7 +17,10 @@
  */
 
 import { CommentJSON } from 'interfaces/comment-json';
+import { orderBy } from 'lodash';
 import { observable } from 'mobx';
+
+export type CommentSort = 'new' | 'old' | 'top';
 
 export class Comment {
   id: number;
@@ -30,5 +33,16 @@ export class Comment {
     const obj = Object.create(Comment.prototype);
 
     return Object.assign(obj, json);
+  }
+
+  static sort(comments: Comment[], sort: CommentSort) {
+    switch (sort) {
+      case 'old':
+        return orderBy(comments, 'created_at', 'asc');
+      case 'top':
+        return orderBy(comments, 'votes_count', 'desc');
+      default:
+        return orderBy(comments, 'created_at', 'desc');
+    }
   }
 }

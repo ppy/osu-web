@@ -19,13 +19,14 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import ChatStateStore from 'chat/chat-state-store';
 import { observable } from 'mobx';
+import { CommentSort } from 'models/comment';
 import Store from 'stores/store';
 
 interface CommentsUIState {
-  currentSort: 'new' | 'old' | 'top';
+  currentSort: CommentSort;
   hasMoreComments: Map<number, boolean>;
   isShowDeleted: boolean;
-  loadingSort: 'new' | 'old' | 'top' | null;
+  loadingSort: CommentSort | null;
 }
 
 export default class UIStateStore extends Store {

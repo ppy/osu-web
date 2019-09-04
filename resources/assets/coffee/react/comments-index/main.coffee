@@ -17,6 +17,7 @@
 ###
 
 import { Comment } from 'comment'
+import { Comment as CommentModel } from 'models/comment'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
@@ -50,7 +51,7 @@ export class Main extends React.Component
 
       el Observer, null, () =>
         # TODO: make less bad for coffeescript
-        comments = _.orderBy(Array.from(store.comments.toJS().values()), 'created_at', 'asc')
+        comments = CommentModel.sort(Object.values(store.comments.toPOJO()), 'new')
         div className: 'osu-page osu-page--comments',
           for comment in comments
             el Comment,
