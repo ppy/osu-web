@@ -166,7 +166,7 @@ class @ForumCover
   refresh: =>
     return unless @hasCoverEditor()
 
-    backgroundImageUrl = @uploadButton[0].dataset.fileUrl || @uploadButton[0].dataset.defaultFileUrl || null
+    backgroundImageUrl = @uploadButton[0].dataset.fileUrl || @uploadButton[0].dataset.defaultFileUrl
 
     $(@header).css(backgroundImage: osu.urlPresence(backgroundImageUrl) ? '')
 
