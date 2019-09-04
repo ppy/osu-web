@@ -36,7 +36,7 @@ userStore = core.dataStore.userStore
 
 uiState = core.dataStore.uiState
 
-export class Comment extends React.Component
+export class Comment extends React.PureComponent
   MAX_DEPTH = 6
 
   makePreviewElement = document.createElement('div')
@@ -78,15 +78,6 @@ export class Comment extends React.Component
       editing: false
       showNewReply: false
       expandReplies: expandReplies
-
-
-  componentDidUpdate: (prevProps) =>
-    prevChildren = getChildren(prevProps)
-    currentChildren = getChildren(@props)
-
-    # force expand when replying (adding child)
-    if !@state.expandReplies && prevChildren.length == 0 && currentChildren.length > 0
-      @setState expandReplies: true
 
 
   componentWillUnmount: =>
@@ -277,9 +268,10 @@ export class Comment extends React.Component
     if @state.showNewReply
       div className: 'comment__reply-box',
         el CommentEditor,
-          parent: @props.comment
           close: @closeNewReply
           modifiers: @props.modifiers
+          onPosted: @handleReplyPosted
+          parent: @props.comment
 
 
   renderReplyButton: =>
@@ -444,6 +436,10 @@ export class Comment extends React.Component
       return if status == 'abort'
 
       osu.ajaxError xhr
+
+
+  handleReplyPosted: (type) =>
+    @setState expandReplies: true if type == 'reply'
 
 
   toggleEdit: =>

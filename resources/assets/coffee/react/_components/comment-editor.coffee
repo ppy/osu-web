@@ -176,6 +176,7 @@ export class CommentEditor extends React.PureComponent
       @setState posting: false
     .done (data) =>
       onDone(data)
+      @props.onPosted?(@mode())
       @props.close?()
     .fail (xhr, status) =>
       osu.ajaxError(xhr, status)
