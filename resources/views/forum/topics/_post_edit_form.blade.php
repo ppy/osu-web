@@ -15,12 +15,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $withPreview = in_array($type, ['edit', 'reply'], true);
+@endphp
 <div
     class="
         forum-post-edit
         forum-post-edit--{{ $type }}
-        js-forum-topic-reply--block
-        js-forum-post-preview--form
+        {{ $type === 'reply' ? 'js-forum-topic-reply--block' : '' }}
+        {{ $withPreview ? 'js-forum-post-preview--form' : '' }}
     "
     data-state="write"
 >
@@ -32,23 +35,35 @@
         </div>
     @endif
 
-    <div class="js-forum-reply-write forum-post-edit__content">
+    <div class="{{ $type === 'reply' ? 'js-forum-reply-write' : '' }} forum-post-edit__content">
+        @if ($type === 'create')
+            <input
+                class="forum-post-edit__input-title"
+                placeholder="{{ trans("forum.topic.create.placeholder.title") }}"
+                name="title"
+            />
+        @endif
+
         <textarea
             class="
                 forum-post-edit__body
                 js-ujs-submit-disable
                 js-forum-post-preview--body
+                {{ $type === 'create' ? 'js-post-preview--auto' : '' }}
                 {{ $type === 'reply' ? 'js-quick-submit js-forum-topic-reply--input' : '' }}
             "
             name="body"
             placeholder="{{ trans('forum.topic.create.placeholder.body') }}"
             required
+            {{ $type === 'create' ? 'autofocus' : '' }}
         >{{ $content ?? '' }}</textarea>
 
-        <div class="forum-post-edit__preview">
-            <div class="forum-post-content forum-post-content--reply-preview js-forum-post-preview--preview">
+        @if ($withPreview)
+            <div class="forum-post-edit__preview">
+                <div class="forum-post-content forum-post-content--reply-preview js-forum-post-preview--preview">
+                </div>
             </div>
-        </div>
+        @endif
 
         <div class="forum-post-edit__buttons-bar">
             <div class="forum-post-edit__buttons forum-post-edit__buttons--toolbar">
@@ -78,23 +93,25 @@
                     </div>
                 @endif
 
-                <div class="forum-post-edit__button forum-post-edit__button--write">
-                    <button
-                        type="button"
-                        class="js-forum-post-preview--hide btn-osu-big btn-osu-big--forum-secondary"
-                    >
-                        {{ trans('forum.topic.create.preview_hide') }}
-                    </button>
-                </div>
+                @if ($withPreview)
+                    <div class="forum-post-edit__button forum-post-edit__button--write">
+                        <button
+                            type="button"
+                            class="js-forum-post-preview--hide btn-osu-big btn-osu-big--forum-secondary"
+                        >
+                            {{ trans('forum.topic.create.preview_hide') }}
+                        </button>
+                    </div>
 
-                <div class="forum-post-edit__button forum-post-edit__button--preview">
-                    <button
-                        type="button"
-                        class="js-forum-post-preview--show btn-osu-big btn-osu-big--forum-secondary"
-                    >
-                        {{ trans('forum.topic.create.preview') }}
-                    </button>
-                </div>
+                    <div class="forum-post-edit__button forum-post-edit__button--preview">
+                        <button
+                            type="button"
+                            class="js-forum-post-preview--show btn-osu-big btn-osu-big--forum-secondary"
+                        >
+                            {{ trans('forum.topic.create.preview') }}
+                        </button>
+                    </div>
+                @endif
 
                 <div class="forum-post-edit__button">
                     <button
@@ -106,6 +123,8 @@
                             {{ trans('forum.topic.post_reply') }}
                         @elseif ($type === 'edit')
                             {{ trans("forum.topic.post_edit.post") }}
+                        @elseif ($type === 'create')
+                            {{ trans('forum.topic.create.submit') }}
                         @endif
                     </button>
                 </div>

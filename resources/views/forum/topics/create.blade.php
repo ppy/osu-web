@@ -88,79 +88,9 @@
                 {{ trans('forum.topics.create.preview') }}
             </div>
 
-            <div class="forum-post-content js-post-preview--body"></div>
+            <div class="forum-post-content js-post-preview--preview"></div>
         </div>
 
-        <div class="forum-post-edit forum-post-edit--create">
-            <div class="js-forum-reply-write forum-post-edit__content">
-                <input
-                    class="forum-post-edit__input-title"
-                    placeholder="{{ trans("forum.topic.create.placeholder.title") }}"
-                    name="title"
-                />
-
-                <textarea
-                    class="
-                        forum-post-edit__body
-                        js-ujs-submit-disable
-                        js-post-preview--auto
-                    "
-                    required
-                    name="body"
-                    placeholder="{{ trans('forum.topic.create.placeholder.body') }}"
-                    autofocus
-                >{{ $post->post_text }}</textarea>
-
-                <div class="js-forum-reply-preview forum-post-edit__preview">
-                    <div class="forum-post-content forum-post-content--reply-preview js-forum-reply-preview--content">
-                    </div>
-                </div>
-
-                <div class="forum-post-edit__buttons-bar">
-                    <div class="forum-post-edit__buttons forum-post-edit__buttons--toolbar">
-                        @include("forum._post_toolbar")
-                    </div>
-
-                    <div class="forum-post-edit__buttons forum-post-edit__buttons--actions">
-                        <div class="forum-post-edit__button forum-post-edit__button--deactivate">
-                            <button
-                                type="button"
-                                class="js-forum-topic-reply--deactivate btn-osu-big btn-osu-big--forum-primary"
-                            >
-                                {{ trans('forum.topic.create.close') }}
-                            </button>
-                        </div>
-
-                        <div class="forum-post-edit__button forum-post-edit__button--write">
-                            <button
-                                type="button"
-                                class="js-forum-reply-preview--hide btn-osu-big btn-osu-big--forum-post-edit-preview"
-                            >
-                                {{ trans('forum.topic.create.preview_hide') }}
-                            </button>
-                        </div>
-
-                        <div class="forum-post-edit__button forum-post-edit__button--preview">
-                            <button
-                                type="button"
-                                class="js-forum-reply-preview--show btn-osu-big btn-osu-big--forum-post-edit-preview"
-                            >
-                                {{ trans('forum.topic.create.preview') }}
-                            </button>
-                        </div>
-
-                        <div class="forum-post-edit__button">
-                            <button
-                                class="btn-osu-big btn-osu-big--forum-primary"
-                                type="submit"
-                                data-disable-with="{{ trans('common.buttons.saving') }}"
-                            >
-                                {{ trans('forum.topic.create.submit') }}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('forum.topics._post_edit_form', ['type' => 'create', 'content' => $post->post_text])
     {!! Form::close() !!}
 @endsection
