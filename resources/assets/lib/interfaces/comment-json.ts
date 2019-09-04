@@ -16,6 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { UserJSON } from 'chat/chat-api-responses';
+
 export interface CommentableMetaJSON {
   id: number;
   title: string;
@@ -39,4 +41,11 @@ export interface CommentJSON {
   updated_at: string;
   user_id: number;
   votes_count: number;
+}
+
+export interface CommentBundleJSON {
+  commentable_meta: CommentableMetaJSON[];
+  comments: CommentJSON[];
+  user_votes: number[];
+  users: UserJSON[];
 }

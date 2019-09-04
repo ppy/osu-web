@@ -18,6 +18,7 @@
 
 import { BeatmapsetSearch } from 'beatmaps/beatmapset-search';
 import Dispatcher from 'dispatcher';
+import { CommentBundleJSON } from 'interfaces/comment-json';
 import { BeatmapsetStore } from './beatmapset-store';
 import ChannelStore from './channel-store';
 import ClientStore from './client-store';
@@ -46,5 +47,12 @@ export default class RootDataStore {
     this.commentStore = new CommentStore(this, dispatcher);
     this.channelStore = new ChannelStore(this, dispatcher);
     this.userStore = new UserStore(this, dispatcher);
+  }
+
+  updateWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON>) {
+    this.commentableMetaStore.updateWithJSON(commentBundle.commentable_meta);
+    this.commentStore.updateWithJSON(commentBundle.comments);
+    this.userStore.updateWithJSON(commentBundle.users);
+    this.commentStore.addVoted(commentBundle.user_votes);
   }
 }

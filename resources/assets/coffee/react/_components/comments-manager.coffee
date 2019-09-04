@@ -19,10 +19,6 @@
 import { runInAction } from 'mobx'
 import core from 'osu-core-singleton'
 
-commentableMetaStore = core.dataStore.commentableMetaStore
-commentStore = core.dataStore.commentStore
-userStore = core.dataStore.userStore
-
 uiState = core.dataStore.uiState
 
 el = React.createElement
@@ -39,10 +35,7 @@ export class CommentsManager extends React.PureComponent
            else if props.commentableType? && props.commentableId?
              # FIXME no initialization from component?
              json = osu.parseJson("json-comments-#{props.commentableType}-#{props.commentableId}") ? {}
-             core.dataStore.commentStore.addVoted(json.user_votes)
-             core.dataStore.commentStore.updateWithJSON(json.comments)
-             core.dataStore.userStore.updateWithJSON(json.users)
-             core.dataStore.commentableMetaStore.updateWithJSON(json.commentable_meta)
+             core.dataStore.updateWithCommentBundleJSON(json)
 
              json
 
@@ -84,9 +77,7 @@ export class CommentsManager extends React.PureComponent
   appendBundle: (_event, {commentBundle, prepend}) =>
     runInAction () ->
       uiState.comments.hasMoreComments.set(commentBundle.has_more_id, commentBundle.has_more)
-      commentableMetaStore.updateWithJSON commentBundle.commentable_meta
-      commentStore.updateWithJSON commentBundle.comments
-      userStore.updateWithJSON commentBundle.users
+      core.dataStore.updateWithCommentBundleJSON commentBundle
 
     @setState
       total: commentBundle.total ? @state.total
@@ -94,9 +85,7 @@ export class CommentsManager extends React.PureComponent
 
   update: (_event, {commentable_meta, comments, users}) =>
     runInAction () ->
-      commentableMetaStore.updateWithJSON commentable_meta
-      commentStore.updateWithJSON comments
-      userStore.updateWithJSON users
+      core.dataStore.updateWithCommentBundleJSON { commentable_meta, comments, users }
 
 
   jsonStorageId: =>
@@ -160,8 +149,7 @@ export class CommentsManager extends React.PureComponent
 
       runInAction () ->
         uiState.comments.currentSort = data.sort
-        commentStore.updateWithJSON data.comments
-        userStore.updateWithJSON data.users
+        dataStore.updateWithCommentBundleJSON data
 
       @setState
         userFollow: data.user_follow
