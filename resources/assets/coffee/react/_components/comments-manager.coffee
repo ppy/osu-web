@@ -99,25 +99,6 @@ export class CommentsManager extends React.PureComponent
       userStore.updateWithJSON users
 
 
-  mergeCollection: (array, values, prepend) =>
-    result = osu.jsonClone array
-    prepend ?= false
-
-    method = if prepend then 'unshift' else 'push'
-
-    for item in values
-      continue unless item?
-
-      pos = _.findIndex result, (i) -> i.id == item.id
-
-      if pos == -1
-        result[method] item
-      else
-        result[pos] = item
-
-    result
-
-
   jsonStorageId: =>
     "json-comments-manager-state-#{@props.commentableType}-#{@props.commentableId}"
 
