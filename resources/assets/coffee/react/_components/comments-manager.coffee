@@ -66,8 +66,6 @@ export class CommentsManager extends React.PureComponent
     $.subscribe "comments:toggle-show-deleted.#{@id}", @toggleShowDeleted
     $.subscribe "comments:toggle-follow.#{@id}", @toggleFollow
     $.subscribe "comment:updated.#{@id}", @update
-    $.subscribe "commentVote:added.#{@id}", @addVote
-    $.subscribe "commentVote:removed.#{@id}", @removeVote
     $(document).on "turbolinks:before-cache.#{@id}", @saveState
 
 
@@ -118,16 +116,6 @@ export class CommentsManager extends React.PureComponent
         result[pos] = item
 
     result
-
-
-  addVote: (_event, {id}) =>
-    runInAction () ->
-      commentStore.userVotes.add(id)
-
-
-  removeVote: (_event, {id}) =>
-    runInAction () ->
-      commentStore.userVotes.delete(id)
 
 
   jsonStorageId: =>

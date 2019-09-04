@@ -515,10 +515,10 @@ export class Comment extends React.PureComponent
 
     if @hasVoted()
       method = 'DELETE'
-      voteAction = 'removed'
+      storeMethod = 'removeUserVote'
     else
       method = 'POST'
-      voteAction = 'added'
+      storeMethod = 'addUserVote'
 
     @xhr.vote?.abort()
     @xhr.vote = $.ajax laroute.route('comments.vote', comment: @props.comment.id),
@@ -527,7 +527,8 @@ export class Comment extends React.PureComponent
       @setState postingVote: false
     .done (data) =>
       $.publish 'comment:updated', data
-      $.publish "commentVote:#{voteAction}", id: @props.comment.id
+      store[storeMethod](@props.comment)
+
     .fail (xhr, status) =>
       return if status == 'abort'
       return $(target).trigger('ajax:error', [xhr, status]) if xhr.status == 401
