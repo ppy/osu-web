@@ -179,10 +179,10 @@ export class CommentsManager extends React.PureComponent
 
       runInAction () ->
         uiState.comments.currentSort = data.sort
+        commentStore.updateWithJSON data.comments
+        userStore.updateWithJSON data.users
 
       @setState
-        users: data.users ? []
-        commentableMeta: data.commentable_meta ? []
         userFollow: data.user_follow
         topLevelCount: data.top_level_count
         total: data.total ? @state.total
