@@ -124,7 +124,7 @@ class CommentsController extends Controller
 
         $this->logModerate('LOG_COMMENT_RESTORE', $comment);
 
-        return json_item($comment, 'Comment', ['editor', 'user', 'commentable_meta']);
+        return static::singleCommentBundle($comment);
     }
 
     public function show($id)
