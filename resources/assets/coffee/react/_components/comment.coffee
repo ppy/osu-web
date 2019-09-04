@@ -110,7 +110,7 @@ export class Comment extends React.Component
       div
         className: osu.classWithModifiers 'comment', modifiers
 
-        if @props.depth == 0 && @children.length > 0
+        if @props.showReplies && @props.depth == 0 && @children.length > 0
           div className: 'comment__float-container comment__float-container--right',
             button
               className: 'comment__top-show-replies'
