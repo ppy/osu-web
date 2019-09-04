@@ -19,6 +19,7 @@
 {!! Form::open([
     'url' => route('forum.topics.edit-poll', $topic),
     'data-remote' => true,
+    'data-reload-on-success' => '1',
     'class' => 'js-forum-poll-edit-save forum-poll'
 ]) !!}
     <div class="forum-poll__row forum-poll__row--title">
