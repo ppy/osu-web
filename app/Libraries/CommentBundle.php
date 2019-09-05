@@ -33,16 +33,27 @@ class CommentBundle
     private $additionalComments;
     private $commentable;
     private $comments;
-    private $lastLoadedId;
     private $user;
 
-    public static function forComment(Comment $comment)
+    public static function forComment(Comment $comment, bool $includeNested = false)
     {
-        return new CommentBundle($comment->commentable, [
-            'params' => ['parent_id' => $comment->getKey()],
-            'additionalComments' => [$comment],
-            'includeCommentableMeta' => true,
-        ]);
+        $comments = [$comment];
+
+        if ($comment->parent !== null) {
+            $comments[] = $comment->parent;
+        }
+
+        $options = ['includeCommentableMeta' => true];
+
+        // having comments and additionalComments seems confusing
+        if ($includeNested) {
+            $options['additionalComments'] = collect($comments);
+            $options['params'] = ['parent_id' => $comment->getKey()];
+        } else {
+            $options['comments'] = collect($comments);
+        }
+
+        return new CommentBundle($comment->commentable, $options);
     }
 
     public static function forEmbed($commentable)
@@ -50,7 +61,7 @@ class CommentBundle
         return new static($commentable, ['params' => ['parent_id' => 0]]);
     }
 
-    public function __construct($commentable, $options = [])
+    public function __construct($commentable, array $options = [])
     {
         $this->commentable = $commentable;
 
@@ -86,13 +97,15 @@ class CommentBundle
                 $nestedParentIds = $nestedComments->pluck('id');
                 $comments = $comments->concat($nestedComments);
             }
+
+            $parents = Comment::whereIn('id', $comments->pluck('parent_id'))->get();
+            $comments = $comments->concat($parents);
         }
 
         $comments = $comments->concat($this->additionalComments);
-        $parents = Comment::whereIn('id', $comments->pluck('parent_id'))->get();
 
         $result = [
-            'comments' => json_collection($comments->concat($parents), 'Comment'),
+            'comments' => json_collection($comments, 'Comment'),
             'has_more' => $hasMore,
             'has_more_id' => $this->params->parentId,
             'user_votes' => $this->getUserVotes($comments),

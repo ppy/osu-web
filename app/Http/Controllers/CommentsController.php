@@ -55,7 +55,7 @@ class CommentsController extends Controller
             $this->logModerate('LOG_COMMENT_DELETE', $comment);
         }
 
-        return static::singleCommentBundle($comment);
+        return CommentBundle::forComment($comment)->toArray();
     }
 
     public function index()
@@ -123,14 +123,14 @@ class CommentsController extends Controller
 
         $this->logModerate('LOG_COMMENT_RESTORE', $comment);
 
-        return static::singleCommentBundle($comment);
+        return CommentBundle::forComment($comment)->toArray();
     }
 
     public function show($id)
     {
         $comment = Comment::findOrFail($id);
 
-        $commentBundle = CommentBundle::forComment($comment);
+        $commentBundle = CommentBundle::forComment($comment, true);
 
         $commentJson = json_item($comment, 'Comment', [
             'editor', 'user', 'commentable_meta', 'parent.user',
@@ -173,12 +173,7 @@ class CommentsController extends Controller
             $comments[] = $comment->parent;
         }
 
-        $bundle = new CommentBundle($comment->commentable, [
-            'comments' => $comments,
-            'includeCommentableMeta' => true,
-        ]);
-
-        return $bundle->toArray();
+        return CommentBundle::forComment($comment)->toArray();
     }
 
     public function update($id)
@@ -196,7 +191,7 @@ class CommentsController extends Controller
             $this->logModerate('LOG_COMMENT_UPDATE', $comment);
         }
 
-        return static::singleCommentBundle($comment);
+        return CommentBundle::forComment($comment)->toArray();
     }
 
     public function voteDestroy($id)
@@ -211,7 +206,7 @@ class CommentsController extends Controller
 
         optional($vote)->delete();
 
-        return static::singleCommentBundle($comment->fresh());
+        return CommentBundle::forComment($comment->fresh(), false)->toArray();
     }
 
     public function voteStore($id)
@@ -230,19 +225,7 @@ class CommentsController extends Controller
             }
         }
 
-        return static::singleCommentBundle($comment->fresh());
-    }
-
-    private static function singleCommentBundle($comment)
-    {
-        $comments = collect([$comment]);
-
-        $bundle = new CommentBundle($comment->commentable, [
-            'comments' => $comments,
-            'includeCommentableMeta' => true,
-        ]);
-
-        return $bundle->toArray();
+        return CommentBundle::forComment($comment->fresh(), false)->toArray();
     }
 
     private function logModerate($operation, $comment)
