@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="hidden-xs forum-post-info">
+<div class="forum-post-info">
     @if ($user->hasProfile())
         @if ($user->user_avatar)
             <div class="forum-post-info__row forum-post-info__row--avatar">
@@ -78,45 +78,4 @@
             {!! display_regdate($user) !!}
         </div>
     @endif
-</div>
-
-<div class="visible-xs">
-    <div class="forum-post__info-panel-xs" style="{{ user_color_style($user->user_colour, "background-color") }}">
-        @if ($user->user_avatar)
-            <div class="avatar-ribbon
-                avatar-ribbon--xs
-                avatar-ribbon--level-{{ $user->supportLevel() }}"
-            >
-                <div
-                    class="avatar avatar--forum-small"
-                    style="background-image: url('{{ $user->user_avatar }}');"
-                ></div>
-            </div>
-        @endif
-
-        <div class="forum-post__info-panel-xs-main">
-            <div class="forum-post__info-panel-xs-name">
-                <a class="forum-post__user-link-xs" href="{{ route("users.show", $user) }}">
-                    {{ $user->username }}
-                </a>
-
-                @if (isset($user->flags()["country"]) === true)
-                    <span class="forum-post__info-panel-xs-flag">
-                        <img
-                            class="flag-country flag-country--small-box"
-                            src="{{ flag_path($user->flags()['country'][0]) }}"
-                            alt="{{ $user->flags()["country"][0] }}"
-                            title="{{ $user->flags()["country"][1] }}"
-                        />
-                    </span>
-                @endif
-            </div>
-
-            @if ($user->title())
-                <div class="forum-post__info-panel-xs-title">
-                    {{ $user->title() }}
-                </div>
-            @endif
-        </div>
-    </div>
 </div>

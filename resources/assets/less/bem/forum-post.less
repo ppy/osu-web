@@ -24,17 +24,6 @@
   padding: 0;
 
   display: flex;
-  flex-direction: column;
-
-  @media @desktop {
-    flex-direction: row;
-  }
-
-  &--reply {
-    height: 100%;
-    background-color: transparent;
-    box-shadow: none;
-  }
 
   &.js-forum-post--hidden {
     opacity: 0.5;
@@ -65,29 +54,14 @@
     }
   }
 
-  &__avatar {
-    width: 100%;
-    padding: 0 50px;
-  }
-
   &__body {
-    flex: none;
+    flex: 1;
     display: flex;
     flex-direction: column;
-
-    @media @desktop {
-      flex: 1;
-    }
 
     // to prevent child from overflowing
     // reference: https://bugzilla.mozilla.org/show_bug.cgi?id=1108514#c2
     min-width: 0;
-
-    .@{_top}--reply & {
-      @media @desktop {
-        flex: none;
-      }
-    }
   }
 
   &__content {
@@ -125,128 +99,6 @@
         display: block;
         margin-right: @gutter-v2-desktop;
       }
-    }
-  }
-
-  &__info-link {
-    .link-gray-dark();
-    .link-plain();
-  }
-
-  &__info-panel-xs {
-    .default-border-radius;
-    background-color: @blue-darker;
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    margin: 20px;
-  }
-
-  &__info-panel-xs-flag {
-    margin-left: 5px;
-  }
-
-  &__info-panel-xs-main {
-    flex: 1 0 auto;
-  }
-
-  &__info-panel-xs-title {
-    font-size: 10px;
-    color: #fff;
-  }
-
-  &__info-panel-xs-name {
-    font-size: 14px;
-    display: flex;
-  }
-
-  &__info-row {
-    font-size: 11px;
-    font-weight: 600;
-    font-style: italic;
-    color: #555;
-    margin-bottom: 5px;
-
-    &--user-title {
-      color: #333;
-    }
-  }
-
-  &__reply-body {
-    .default-box-shadow();
-    background-color: #fff;
-    flex: none;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-
-    @media @desktop {
-      flex: 1;
-    }
-  }
-
-  &__reply-stick {
-    flex: 1 0 auto;
-    display: flex;
-    align-self: center;
-    justify-content: flex-end;
-  }
-
-  &__stripe {
-    position: absolute;
-    height: 100%;
-    right: 100%;
-    top: 0;
-    width: 10px;
-
-    display: none;
-
-    @media @desktop {
-      display: block;
-    }
-  }
-
-  &__topic-starter {
-    display: inline-flex;
-    background-color: @blue-darker;
-    color: #fff;
-    font-style: normal;
-    font-weight: normal;
-    border-radius: 10000px;
-    padding: 2px 10px;
-    margin: 5px 0;
-  }
-
-  &__user-link-xs {
-    // Overrides the ".forum-post a" above.
-    && {
-      color: #fff;
-    }
-  }
-
-  &__username {
-    .default-text-shadow();
-    display: block;
-    font-weight: 600;
-    font-style: italic;
-    padding: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    color: white !important; //TODO: remove after forum restyle
-
-    &:hover {
-      color: #fff;
-      text-decoration: none;
-      width: auto;
-      overflow: visible;
-    }
-
-    &:focus,
-    &:active {
-      color: #fff;
-      text-decoration: none;
     }
   }
 }
