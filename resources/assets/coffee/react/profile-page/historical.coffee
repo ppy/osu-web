@@ -60,7 +60,7 @@ export class Historical extends React.PureComponent
       if @hasMonthlyPlaycounts()
         div null,
           h3
-            className: 'page-extra__title page-extra__title--small'
+            className: 'title title--page-extra-small'
             osu.trans('users.show.extra.historical.monthly_playcounts.title')
 
           div
@@ -69,7 +69,7 @@ export class Historical extends React.PureComponent
 
 
       h3
-        className: 'page-extra__title page-extra__title--small'
+        className: 'title title--page-extra-small'
         osu.trans('users.show.extra.historical.most_played.title')
 
       if @props.beatmapPlaycounts?.length
@@ -95,7 +95,7 @@ export class Historical extends React.PureComponent
         p null, osu.trans('users.show.extra.historical.empty')
 
       h3
-        className: 'page-extra__title page-extra__title--small'
+        className: 'title title--page-extra-small'
         osu.trans('users.show.extra.historical.recent_plays.title')
 
       if @props.scoresRecent?.length
@@ -122,7 +122,7 @@ export class Historical extends React.PureComponent
       if @hasReplaysWatchedCounts()
         div null,
           h3
-            className: 'page-extra__title page-extra__title--small'
+            className: 'title title--page-extra-small'
             osu.trans('users.show.extra.historical.replays_watched_counts.title')
 
           div

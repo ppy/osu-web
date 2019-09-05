@@ -22,6 +22,7 @@ namespace App\Models\OAuth;
 
 use App\Exceptions\InvariantException;
 use App\Models\User;
+use DB;
 use Laravel\Passport\Client as PassportClient;
 use Laravel\Passport\Token;
 
@@ -68,7 +69,9 @@ class Client extends PassportClient
             ]);
 
             $user->getConnection()
-                ->table('oauth_refresh_tokens')
+                // force mysql optimizer to optimize properly with a fake multi-table update
+                // https://dev.mysql.com/doc/refman/8.0/en/subquery-optimization.html
+                ->table(DB::raw('oauth_refresh_tokens, (SELECT 1) dummy'))
                 ->whereIn('access_token_id', (clone $clientTokens)->select('id'))
                 ->update(['revoked' => true]);
         });

@@ -44,7 +44,9 @@ export BeatmapBasicStats = ({beatmapset, beatmap}) ->
           beatmap[stat]
 
       value =
-        if stat == 'total_length'
+        if stat == 'bpm'
+          if value > 1000 then '—' else osu.formatNumber(value)
+        else if stat == 'total_length'
           formatDuration value
         else
           osu.formatNumber(value)

@@ -25,7 +25,7 @@ el = React.createElement
 export class Discussions extends React.Component
   render: =>
     div className: 'page-extra',
-      h2 className: 'page-extra__title', osu.trans("users.show.extra.discussions.title_longer")
+      h2 className: 'title title--page-extra', osu.trans("users.show.extra.discussions.title_longer")
       div className: 'modding-profile-list',
         if @props.discussions.length == 0
           div className: 'modding-profile-list__empty', osu.trans('users.show.extra.none')

@@ -88,6 +88,23 @@
   }
 }
 
+.page-width(@extra-margin: 0px) {
+  width: calc(100% - (@extra-margin * 2));
+  max-width: (@container-sm - @extra-margin * 2);
+}
+
+.page-width-default() {
+  .page-width();
+
+  @media @desktop {
+    .page-width-desktop();
+  }
+}
+
+.page-width-desktop(@extra-margin: 0px) {
+  width: calc(100% - ((@extra-margin + @grid-gutter-width) * 2));
+  max-width: (@container-sm - @extra-margin * 2);
+}
 
 .default-border-radius() {
   border-radius: @border-radius-base;
@@ -143,10 +160,10 @@
 }
 
 .link-default() {
-  color: @osu-colour-l1;
+  color: @osu-colour-l2;
 
   .link-hover({
-    color: white;
+    color: @osu-colour-l1;
   });
 }
 

@@ -79,7 +79,15 @@ class ChangelogEntry extends Model
     public static function guessCategory($data)
     {
         static $ignored = [
+            'high priority',
             'resolves issue',
+            'size/xs',
+            'size/s',
+            'size/m',
+            'size/l',
+            'size/xl',
+            'size/xxl',
+            'update',
         ];
 
         foreach ($data['pull_request']['labels'] as $label) {
