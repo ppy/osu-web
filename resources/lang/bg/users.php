@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count_delimited последовател|:count_delimited последователи',
+            'none' => '',
             'unranked' => 'Няма скорошни данни',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Предстоящи класиране бийтмапове',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Няма записани изпълнения. :(',
@@ -276,6 +287,11 @@ return [
                 'recent' => 'Най-новите',
                 'title' => 'Медали',
             ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Скорошна активност',
             ],
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Класации на първо място',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Състояние на акаунта',
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Класации по брой точки',
             'total_hits' => 'Общ брой попадения',
             'total_score' => 'Общ брой точки',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 

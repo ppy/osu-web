@@ -29,7 +29,7 @@ return [
         'first_post' => 'Non puoi cancellare il post iniziale.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Il messaggio',
         ],
     ],
 
@@ -42,8 +42,8 @@ return [
         'locked' => 'La discussione è chiusa.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Tipo di messaggio',
+            'timestamp' => 'Data',
         ],
 
         'hype' => [
@@ -64,7 +64,7 @@ return [
         'deleted_parent' => 'Non è permesso rispondere ad un commento eliminato.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Il messaggio',
         ],
     ],
 
@@ -88,13 +88,13 @@ return [
             'only_quote' => 'La tua risposta contiene solo una citazione.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Contenuto del post',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Titolo dell\'argomento',
             ],
         ],
 
@@ -108,7 +108,7 @@ return [
             'too_many_options' => 'Raggiunto il massimo numero di opzioni permesse.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Titolo del sondaggio',
             ],
         ],
 
@@ -143,9 +143,9 @@ return [
         'too_long' => 'Lunghezza massima superata - può essere solo fino a :limit caratteri.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Nome utente',
+            'user_email' => 'Indirizzo email',
+            'password' => 'Password',
         ],
 
         'change_username' => [
@@ -165,8 +165,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Quantità',
+                'cost' => 'Prezzo',
             ],
         ],
     ],

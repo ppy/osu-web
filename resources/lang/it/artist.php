@@ -43,7 +43,7 @@ return [
 
     'songs' => [
         '_' => 'Canzoni',
-        'count' => ':count canzone |:count canzoni',
+        'count' => ':count_delimited canzone|:count_delimited canzoni',
         'exclusive' => 'Esclusiva di osu!',
     ],
 

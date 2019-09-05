@@ -27,7 +27,7 @@ return [
         'avatar' => [
             'title' => 'รูปโปรไฟล์',
             'rules' => '',
-            'rules_link' => '',
+            'rules_link' => 'กฎของชุมชน',
         ],
 
         'email' => [
@@ -108,11 +108,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'ตอนนี้คุณสามารถปิดแท็บ/หน้าต่างนี้ได้',
+        'title' => 'การยืนยันตนสำเร็จ',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'ลิงก์ยืนยันตนไม่ถูกต้องหรือหมดอายุแล้ว',
     ],
 ];

@@ -75,8 +75,11 @@ return [
         'minute_short_unit' => 'min|mins',
         'minutes' => ':count minuto|:count minutos',
         'months' => ':count mês|:count meses',
+        'post' => '',
         'second_short_unit' => 'seg|segs',
+        'star_priority' => '',
         'update' => ':count_delimited atualização|:count_delimited atualizações',
+        'view' => '',
         'years' => ':count ano|:count anos',
     ],
 

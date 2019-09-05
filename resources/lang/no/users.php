@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 følger|:count følgere',
+            'none' => '',
             'unranked' => 'Ingen nylige spill',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Ventende Beatmaps',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Ingen prestasjoner :(',
@@ -276,6 +287,11 @@ return [
                 'recent' => 'Nyeste',
                 'title' => 'Medaljer',
             ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Nylige',
             ],
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Førsteplasser',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Kontostatus',
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Poengsum Rangering',
             'total_hits' => 'Totale Treff',
             'total_score' => 'Samlet Poengsum',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
