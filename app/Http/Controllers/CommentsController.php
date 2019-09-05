@@ -132,15 +132,11 @@ class CommentsController extends Controller
 
         $commentBundle = CommentBundle::forComment($comment, true);
 
-        $commentJson = json_item($comment, 'Comment', [
-            'editor', 'user', 'commentable_meta', 'parent.user',
-        ]);
-
         if (is_json_request()) {
             return $commentBundle->toArray();
         }
 
-        return view('comments.show', compact('commentJson', 'commentBundle'));
+        return view('comments.show', compact('comment', 'commentBundle'));
     }
 
     public function store()

@@ -25,7 +25,8 @@
     <script id="json-show" type="application/json">
         {!! json_encode([
             'bundle' => $commentBundle->toArray(),
-            'comment' => $commentJson,
+            'comment_id' => $comment->getKey(),
+            'parent_id' => $comment->parent_id,
         ]) !!}
     </script>
 

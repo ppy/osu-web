@@ -31,6 +31,7 @@ reactTurbolinks.registerPersistent 'comments-show', CommentsManager, true, ->
     core.dataStore.userStore.updateWithJSON(commentBundle.users)
 
   component: Main
-  componentProps:
-    comment: data.comment
   commentBundle: commentBundle
+  componentProps:
+    comment_id: data.comment_id
+    parent_id: data.parent_id
