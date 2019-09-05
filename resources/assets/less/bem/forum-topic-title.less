@@ -17,6 +17,8 @@
  */
 
 .forum-topic-title {
+  @_top: forum-topic-title;
+
   .default-gutter-v2(-5px);
   padding-top: 5px;
   padding-bottom: 5px;
@@ -44,11 +46,36 @@
   }
 
   &__title {
-    padding: 0;
-    margin: 0;
+    .reset-input();
+    padding: 0 0 5px;
     font-size: @font-size--title;
     font-style: normal;
     color: @osu-colour-c1;
+    border-bottom: 1px solid transparent;
+    line-height: normal;
+
+    &--display {
+      .@{_top}__title-container[data-title-edit="1"] & {
+        opacity: 0;
+      }
+    }
+
+    &--edit {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: none;
+      border-bottom-color: @osu-colour-d1;
+
+      .@{_top}__title-container[data-title-edit="1"] & {
+        display: block;
+      }
+    }
+  }
+
+  &__title-container {
+    margin-bottom: 5px;
   }
 
   &__post-time {

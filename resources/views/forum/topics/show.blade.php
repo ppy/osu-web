@@ -30,7 +30,8 @@
 ])
 
 @php
-     $headerCover = $cover['fileUrl'] ?? $cover['defaultFileUrl'] ?? null;
+    $headerCover = $cover['fileUrl'] ?? $cover['defaultFileUrl'] ?? null;
+    $canEditTitle = priv_check('ForumTopicEdit', $topic)->can();
 @endphp
 @section('content')
     @include('forum.topics._floating_header')
@@ -51,7 +52,21 @@
         <div class="js-header--main">
             <div class="forum-topic-title">
                 <div class="forum-topic-title__item forum-topic-title__item--main">
-                    <h1 class="forum-topic-title__title">{{ $topic->topic_title }}</h1>
+                    <div class="forum-topic-title__title-container js-forum-topic-title--toggleable" data-edit="0">
+                        <h1 class="forum-topic-title__title forum-topic-title__title--display">
+                            {{ $topic->topic_title }}
+                        </h1>
+
+                        @if ($canEditTitle)
+                            <input
+                                class="forum-topic-title__title forum-topic-title__title--edit js-forum-topic-title--input"
+                                value="{{ $topic->topic_title }}"
+                                name="forum_topic[topic_title]"
+                                data-url="{{ route('forum.topics.update', $topic->getKey()) }}"
+                                maxlength="{{ App\Models\Forum\Topic::MAX_FIELD_LENGTHS['topic_title'] }}"
+                            />
+                        @endif
+                    </div>
                     <div class="forum-topic-title__post-time">
                         {!! trans("forum.post.posted_at", ["when" => timeago($topic->topic_time)]) !!}
                     </div>
@@ -66,7 +81,36 @@
                 </div>
             </div>
 
-            <div class="forum-topic-toolbar">
+            <div class="forum-topic-toolbar js-forum-topic-title--toggleable">
+                @if ($canEditTitle)
+                    <div class="forum-topic-toolbar__item forum-topic-toolbar__item--title-edit">
+                        <button
+                            type="button"
+                            class="btn-osu-big btn-osu-big--forum-secondary js-forum-topic-title--cancel"
+                        >
+                            {{ trans('common.buttons.cancel') }}
+                        </button>
+                    </div>
+
+                    <div class="forum-topic-toolbar__item forum-topic-toolbar__item--title-edit">
+                        <button
+                            type="button"
+                            class="btn-osu-big btn-osu-big--forum-primary js-forum-topic-title--save"
+                        >
+                            {{ trans('common.buttons.save') }}
+                        </button>
+                    </div>
+
+                    <div class="forum-topic-toolbar__item">
+                        <button
+                            type="button"
+                            class="btn-osu-big btn-osu-big--forum-secondary js-forum-topic-title--edit-start"
+                        >
+                            {{ trans('forum.topics.edit_title.start') }}
+                        </button>
+                    </div>
+                @endif
+
                 <div class="forum-topic-toolbar__item">
                     @include('forum.topics._cover_editor')
                 </div>

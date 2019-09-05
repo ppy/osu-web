@@ -17,6 +17,8 @@
  */
 
 .forum-topic-toolbar {
+  @_top: forum-topic-toolbar;
+
   .default-gutter-v2(-5px);
   padding-top: 5px;
   padding-bottom: 5px;
@@ -28,5 +30,17 @@
   &__item {
     margin: 5px;
     display: flex;
+
+    .@{_top}[data-title-edit="1"] & {
+      display: none;
+    }
+
+    &--title-edit {
+      display: none;
+
+      .@{_top}[data-title-edit="1"] & {
+        display: flex;
+      }
+    }
   }
 }
