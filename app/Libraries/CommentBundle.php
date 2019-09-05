@@ -28,9 +28,9 @@ class CommentBundle
 {
     public $depth;
     public $includeCommentableMeta;
-    public $includeParent;
     public $params;
 
+    private $additionalComments;
     private $commentable;
     private $comments;
     private $lastLoadedId;
@@ -53,7 +53,6 @@ class CommentBundle
         $this->additionalComments = $options['additionalComments'] ?? [];
         $this->depth = $options['depth'] ?? 2;
         $this->includeCommentableMeta = $options['includeCommentableMeta'] ?? false;
-        $this->includeParent = $options['includeParent'] ?? false;
     }
 
     public function toArray()
@@ -64,7 +63,6 @@ class CommentBundle
             $comments = $this->comments;
         } else {
             $comments = $this->getComments($this->commentsQuery(), false);
-
             if ($comments->count() > $this->params->limit) {
                 $hasMore = true;
                 $comments->pop();
@@ -82,9 +80,10 @@ class CommentBundle
         }
 
         $comments = $comments->concat($this->additionalComments);
+        $parents = Comment::whereIn('id', $comments->pluck('parent_id'))->get();
 
         $result = [
-            'comments' => json_collection($comments, 'Comment', $this->commentIncludes()),
+            'comments' => json_collection($comments->concat($parents), 'Comment'),
             'has_more' => $hasMore,
             'has_more_id' => $this->params->parentId,
             'user_votes' => $this->getUserVotes($comments),
@@ -104,17 +103,6 @@ class CommentBundle
         }
 
         return $result;
-    }
-
-    public function commentIncludes()
-    {
-        $includes = [];
-
-        if ($this->includeParent) {
-            $includes[] = 'parent';
-        }
-
-        return $includes;
     }
 
     public function commentsQuery()
@@ -164,10 +152,6 @@ class CommentBundle
             $query->with('commentable');
         }
 
-        if ($this->includeParent) {
-            $query->with('parent');
-        }
-
         if (!$sorted) {
             foreach ($sort as $column => $order) {
                 $query->orderBy($column, $order);
@@ -206,14 +190,6 @@ class CommentBundle
     {
         $userIds = $comments->pluck('user_id')
             ->concat($comments->pluck('edited_by_id'));
-
-        if ($this->includeParent) {
-            foreach ($comments as $comment) {
-                if ($comment->parent !== null) {
-                    $userIds[] = $comment->parent->user_id;
-                }
-            }
-        }
 
         return User::whereIn('user_id', $userIds)->get();
     }

@@ -82,7 +82,6 @@ class CommentsController extends Controller
         } else {
             $commentBundle->depth = 0;
             $commentBundle->includeCommentableMeta = true;
-            $commentBundle->includeParent = true;
 
             $commentPagination = new LengthAwarePaginator(
                 [],
@@ -245,7 +244,6 @@ class CommentsController extends Controller
         $bundle = new CommentBundle($comment->commentable, [
             'comments' => $comments,
             'includeCommentableMeta' => true,
-            'includeParent' => true,
         ]);
 
         return $bundle->toArray();
