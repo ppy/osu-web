@@ -81,12 +81,12 @@ class ChangelogEntry extends Model
         static $ignored = [
             'high priority',
             'resolves issue',
-            'size/XS',
-            'size/S',
-            'size/M',
-            'size/L',
-            'size/XL',
-            'size/XXL',
+            'size/xs',
+            'size/s',
+            'size/m',
+            'size/l',
+            'size/xl',
+            'size/xxl',
             'update',
         ];
 
