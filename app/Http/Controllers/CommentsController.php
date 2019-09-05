@@ -163,12 +163,6 @@ class CommentsController extends Controller
 
         broadcast_notification(Notification::COMMENT_NEW, $comment, $user);
 
-        $comments = collect([$comment]);
-
-        if ($comment->parent !== null) {
-            $comments[] = $comment->parent;
-        }
-
         return CommentBundle::forComment($comment)->toArray();
     }
 
