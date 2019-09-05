@@ -53,7 +53,7 @@ class CommentBundle
             $options['comments'] = collect($comments);
         }
 
-        return new CommentBundle($comment->commentable, $options);
+        return new static($comment->commentable, $options);
     }
 
     public static function forEmbed($commentable)
