@@ -130,11 +130,7 @@ class CommentsController extends Controller
     {
         $comment = Comment::findOrFail($id);
 
-        $commentBundle = new CommentBundle($comment->commentable, [
-            'params' => ['parent_id' => $comment->getKey()],
-            'additionalComments' => [$comment],
-            'includeCommentableMeta' => true,
-        ]);
+        $commentBundle = CommentBundle::forComment($comment);
 
         $commentJson = json_item($comment, 'Comment', [
             'editor', 'user', 'commentable_meta', 'parent.user',

@@ -36,6 +36,15 @@ class CommentBundle
     private $lastLoadedId;
     private $user;
 
+    public static function forComment(Comment $comment)
+    {
+        return new CommentBundle($comment->commentable, [
+            'params' => ['parent_id' => $comment->getKey()],
+            'additionalComments' => [$comment],
+            'includeCommentableMeta' => true,
+        ]);
+    }
+
     public static function forEmbed($commentable)
     {
         return new static($commentable, ['params' => ['parent_id' => 0]]);
