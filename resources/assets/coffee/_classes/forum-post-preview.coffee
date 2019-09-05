@@ -68,5 +68,8 @@ class @ForumPostPreview
 
 
   hidePreview: (e) =>
-    $(e.target).parents('.js-forum-post-preview--form').attr('data-state', 'write')
+    $form = $(e.target).parents('.js-forum-post-preview--form')
+    $form.attr('data-state', 'write')
     osu.pageChange() # sync height of reply box
+
+    $form.find('.js-forum-post-preview--body').focus()
