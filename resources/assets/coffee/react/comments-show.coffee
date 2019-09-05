@@ -22,13 +22,8 @@ import { Main } from './comments-show/main'
 
 reactTurbolinks.registerPersistent 'comments-show', CommentsManager, true, ->
   data = osu.parseJson('json-show')
-
   commentBundle = data.bundle
-
-  if commentBundle?
-    core.dataStore.commentableMetaStore.initialize(commentBundle.commentable_meta)
-    core.dataStore.commentStore.initialize(commentBundle.comments, commentBundle.user_votes)
-    core.dataStore.userStore.updateWithJSON(commentBundle.users)
+  core.dataStore.initializeWithCommentBundleJSON(commentBundle)
 
   component: Main
   commentBundle: commentBundle

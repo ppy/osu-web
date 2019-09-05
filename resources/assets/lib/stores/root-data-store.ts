@@ -49,6 +49,13 @@ export default class RootDataStore {
     this.userStore = new UserStore(this, dispatcher);
   }
 
+  initializeWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON> | null | undefined) {
+    if (commentBundle == null) { return; }
+    this.commentableMetaStore.initialize(commentBundle.commentable_meta);
+    this.commentStore.initialize(commentBundle.comments, commentBundle.user_votes);
+    this.userStore.updateWithJSON(commentBundle.users);
+  }
+
   updateWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON>) {
     this.commentableMetaStore.updateWithJSON(commentBundle.commentable_meta);
     this.commentStore.updateWithJSON(commentBundle.comments);
