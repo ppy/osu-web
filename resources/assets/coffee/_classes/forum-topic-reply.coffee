@@ -136,37 +136,14 @@ class @ForumTopicReply
       @forum.endPost().scrollIntoView()
 
 
-  stick: =>
-    return if @getState('sticking') == '1'
-
-    @setState 'sticking', '1'
-
-    $input = @$input()
-    inputFocused = $input.is(':focus')
-
-    @fixedBar[0].insertBefore(@box[0], @fixedBar[0].firstChild)
-
-    $input.focus() if inputFocused
-
-
-  unstick: (e) =>
-    return unless @getState('sticking') == '1'
-
-    @deleteState 'sticking'
-
-    @container[0].insertBefore(@box[0], @container[0].firstChild)
-
-
   stickOrUnstick: (_e, target) =>
-    if osu.isMobile()
-      if @box[0]?.dataset.state == 'active'
-        @stick()
+    stick =
+      if osu.isMobile()
+        @box[0]?.dataset.state == 'active'
       else
-        @unstick()
-    else if target == 'forum-topic-reply'
-      @stick()
-    else
-      @unstick()
+        target == 'forum-topic-reply'
+
+    @toggleStick(stick)
 
 
   toggle: =>
@@ -180,3 +157,23 @@ class @ForumTopicReply
   toggleDeactivate: (e) =>
     e.stopPropagation()
     @deactivate()
+
+
+  toggleStick: (stick) =>
+    isSticking = @getState('sticking') == '1'
+
+    return if stick == isSticking
+
+    if stick
+      @setState 'sticking', '1'
+      target = @fixedBar[0]
+    else
+      @deleteState 'sticking'
+      target = @container[0]
+
+    $input = @$input()
+    inputFocused = $input.is(':focus')
+
+    target.insertBefore(@box[0], target.firstChild)
+
+    $input.focus() if inputFocused
