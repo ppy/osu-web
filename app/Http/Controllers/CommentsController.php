@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
 use App\Libraries\CommentBundle;
+use App\Libraries\CommentBundleParams;
 use App\Libraries\MorphMap;
 use App\Models\Comment;
 use App\Models\Log;
@@ -72,9 +73,11 @@ class CommentsController extends Controller
             $commentable = $class::findOrFail($id);
         }
 
+        $params = request()->all();
+        $params['sort'] = $params['sort'] ?? CommentBundleParams::DEFAULT_SORT;
         $commentBundle = new CommentBundle(
             $commentable ?? null,
-            ['params' => request()->all()]
+            ['params' => $params]
         );
 
         if (is_json_request()) {
