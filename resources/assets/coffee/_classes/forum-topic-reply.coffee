@@ -17,7 +17,7 @@
 ###
 
 class @ForumTopicReply
-  constructor: (@forum) ->
+  constructor: (@forum, @stickyFooter) ->
     @container = document.getElementsByClassName('js-forum-topic-reply--container')
     @box = document.getElementsByClassName('js-forum-topic-reply')
     @block = document.getElementsByClassName('js-forum-topic-reply--block')
@@ -27,23 +27,28 @@ class @ForumTopicReply
 
     $(document).on 'ajax:success', '.js-forum-topic-reply', @posted
 
-    $(document).on 'click', '.js-forum-topic-reply--toggle', @toggle
     $(document).on 'click', '.js-forum-topic-reply--deactivate', @toggleDeactivate
+    $(document).on 'click', '.js-forum-topic-reply--toggle', @toggle
     $(document).on 'ajax:success', '.js-forum-topic-reply--quote', @activateWithReply
 
     $(document).on 'focus', '.js-forum-topic-reply--input', @activate
     $(document).on 'input change', '.js-forum-topic-reply--input', _.debounce(@inputChange, 500)
 
+    $.subscribe 'stickyFooter', @stickOrUnstick
+
     $(document).on 'turbolinks:load', @initialize
 
+
+  marker: -> document.querySelector('.js-sticky-footer[data-sticky-footer-target="forum-topic-reply"]')
 
   $input: -> $('.js-forum-topic-reply--input')
 
   initialize: =>
     return unless @available()
 
-    @input[0].value = @getState('text') ? ''
-    @activate(null, true) if @getState('active') == '1'
+    @deleteState 'sticking'
+    @input[0].value = @getState('text') || ''
+    @activate() if @getState('active') == '1'
 
 
   available: => @block.length
@@ -61,20 +66,15 @@ class @ForumTopicReply
     localStorage.setItem "forum-topic-reply--#{document.location.pathname}--#{key}", value
 
 
-  activate: (_e, force) =>
-    force ?= false
-
-    return if !force && @getState('active') == '1'
-
+  activate: (e) =>
     @setState 'active', '1'
+    @box[0].dataset.state = 'active'
     button.classList.add 'js-activated' for button in @toggleButtons
 
-    @fixedBar[0].insertBefore(@box[0], @fixedBar[0].firstChild)
-    @box[0].dataset.state = 'active'
-    @enableFlash()
+    @stickyFooter.markerEnable @marker()
+    $.publish 'stickyFooter:check'
 
-    # doesn't work on firefox without timeout
-    Timeout.set 0, => @$input().focus()
+    @enableFlash() if @getState('sticking') != '1' && currentUser.id?
 
 
   activateWithReply: (e, data) =>
@@ -95,9 +95,10 @@ class @ForumTopicReply
   deactivate: (e) =>
     e.preventDefault() if e
 
+    @stickyFooter.markerDisable @marker()
     @setState 'active', '0'
     button.classList.remove 'js-activated' for button in @toggleButtons
-    @container[0].insertBefore(@box[0], @container[0].firstChild)
+    $.publish 'stickyFooter:check'
     delete @box[0].dataset.state if @box[0].dataset.state?
     @disableFlash()
 
@@ -108,7 +109,7 @@ class @ForumTopicReply
 
   enableFlash: =>
     $('.js-forum-topic-reply').addClass('js-forum-topic-reply-flash')
-    Timeout.set 500, @disableFlash
+    Timeout.set 500, @disableFlash # so animation doesn't play again when element gets transplanted from unsticking.
 
 
   inputChange: =>
@@ -135,14 +136,47 @@ class @ForumTopicReply
       @forum.endPost().scrollIntoView()
 
 
+  stick: =>
+    return if @getState('sticking') == '1'
+
+    @setState 'sticking', '1'
+
+    $input = @$input()
+    inputFocused = $input.is(':focus')
+
+    @fixedBar[0].insertBefore(@box[0], @fixedBar[0].firstChild)
+
+    $input.focus() if inputFocused
+
+
+  unstick: (e) =>
+    return unless @getState('sticking') == '1'
+
+    @deleteState 'sticking'
+
+    @container[0].insertBefore(@box[0], @container[0].firstChild)
+
+
+  stickOrUnstick: (_e, target) =>
+    if osu.isMobile()
+      if @box[0]?.dataset.state == 'active'
+        @stick()
+      else
+        @unstick()
+    else if target == 'forum-topic-reply'
+      @stick()
+    else
+      @unstick()
+
+
   toggle: =>
     if @getState('active') == '1'
       @deactivate()
     else
       @activate()
+      @$input().focus()
 
 
   toggleDeactivate: (e) =>
-    e.preventDefault()
     e.stopPropagation()
     @deactivate()

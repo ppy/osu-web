@@ -150,6 +150,7 @@
     </div>
 
     @include('forum.topics._reply')
+    <div class="js-sticky-footer" data-sticky-footer-disabled="1" data-sticky-footer-target="forum-topic-reply"></div>
 @endsection
 
 @section('permanent-fixed-footer')
