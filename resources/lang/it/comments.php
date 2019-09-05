@@ -63,8 +63,8 @@ return [
 
     'show' => [
         'title' => [
-            '_' => 'Commenti :info',
-            'info' => 'Dettaglio',
+            '_' => 'Commenti',
+            'info' => 'Commenti',
         ],
     ],
 ];

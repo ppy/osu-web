@@ -143,9 +143,9 @@ return [
         'too_long' => '超出长度限制——最多为 :limit 个字符。',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => '用户名',
+            'user_email' => '电子邮件地址',
+            'password' => '密码',
         ],
 
         'change_username' => [

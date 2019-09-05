@@ -27,17 +27,17 @@ return [
             '_' => 'Beatmap',
 
             'beatmapset_discussion' => [
-                '_' => 'การสนทนาเกี่ยวกับ Beatmap',
+                '_' => 'พูดคุยบีตแมป',
                 'beatmapset_discussion_lock' => 'Beatmap ":title" ได้ถูกปิดการใช้งานการสนทนา',
                 'beatmapset_discussion_lock_compact' => 'การสนทนาได้ถูกล็อกไว้',
                 'beatmapset_discussion_post_new' => ':username ได้เขียนข้อความใหม่ใน ":title" การสนทนาของ beatmap',
-                'beatmapset_discussion_post_new_compact' => 'โพสต์ใหม้โดย :username',
+                'beatmapset_discussion_post_new_compact' => 'โพสต์ใหม่โดย :username',
                 'beatmapset_discussion_unlock' => 'Beatmap ":title" ได้ถูกเปิดการใช้งานในการสนทนาแล้ว',
                 'beatmapset_discussion_unlock_compact' => 'การสนทนาได้ถูกปลดล๊อค',
             ],
 
             'beatmapset_state' => [
-                '_' => 'สถานะของ beatmap ถูกเปลี่ยน',
+                '_' => 'สถานะของบีตแมปถูกเปลี่ยน',
                 'beatmapset_disqualify' => 'Beatmap ":title" ได้ถูกตัดสิทธิ์โดย :username',
                 'beatmapset_disqualify_compact' => 'Beatmap ถูกตัดสิทธ์',
                 'beatmapset_love' => 'Beatmap ":title" ได้ถูกเลื่อนขั้นให้เป็นที่ชื่นชอบโดย :username',

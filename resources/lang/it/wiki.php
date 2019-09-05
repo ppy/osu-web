@@ -20,8 +20,8 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'La pagina richiesta non è stata ancora aggiornata per la lingua selezionata (:language). Mostrando la versione inglese.',
-        'incomplete_or_outdated' => '',
+        'fallback_translation' => 'La pagina richiesta non è stata ancora aggiornata per la lingua selezionata (:language). Verrà mostrata la versione inglese.',
+        'incomplete_or_outdated' => 'Il contenuto di questa pagina è incompleto o non è molto recente. Se sei in grado di aiutare, cerca di aggiornare l\'articolo!',
         'languages' => 'Lingue',
         'missing' => 'La pagina richiesta ":keyword" non è stata trovata.',
         'missing_title' => 'Non trovato',

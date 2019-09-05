@@ -20,40 +20,63 @@
 
 return [
     'support' => [
-        'header' => [
-            // size in font-size
-            'big_description' => 'osu!\'yu seviyor musunuz?<br/>
-                                osu!\'nun gelişimine destek olun :D',
-            'small_description' => '',
-            'support_button' => 'osu!\'yu desteklemek istiyorum!',
+        'convinced' => [
+            'title' => 'İkna oldum! :D',
+            'support' => 'osu!\'yu destekle!',
+            'gift' => 'veya diğer oyunculara hediye et',
+            'instructions' => 'kalbe tıklayıp osu!store\'a ilerle',
         ],
+        'why-support' => [
+            'title' => '',
 
-        'dev_quote' => 'osu! oynaması tamamen bedava bir oyun, ancak onu ayakta tutmak kesinlikle değil.        Sunucuların tutulması ve uluslararası yüksek kalite bant genişliğinin sağlanması, sistemin ve topluluğun ayakta durması için harcanan zaman,         yarışmalar için ödüller sağlamak, desteğe gelen soruları yanıtlamak ve genel olarak insanları mutlu etmek derken, osu! oldukça yüklü bir miktar para tüketiyor!        Ah, aynı zamanda bütün bunları herhangi bir reklam göstermeden ya da şapşal araç çubukları gibileri olmadan yaptığımızı unutmayın!            <br/><br/>Günün sonunda, osu! çoğunlukla benim tarafımdan yürütülüyor, ki bazılarınız beni "peppy" olarak tanıyor olabilir.            osu!\'ya ayak uydurabilmek için günlük işimden istifa etmek zorunda kaldım,            ve zaman zaman ulaşmak için gayret gösterdiğim standartlarımı korumakta zorlanıyorum.            osu!\'yu şimdiye kadar desteklemiş olan herkese şahsi teşekkürlerimi sunmak istiyor,            ve bir o kadarını da bu harika oyunu ve topluluğunu destekleyenlere sunuyorum :).',
-
-        'supporter_status' => [
-            'contribution' => 'Desteğiniz için teşekkürler! Toplamda :tags farklı alımla :dollars yardımda bulundunuz!',
-            'gifted' => ':giftedTags defa hediye olarak aldınız (toplam :giftedDollars hediye verdiniz), bu ne bonkörlük!',
-            'not_yet' => "Şimdilik supporter'ınız yok :(",
-            'title' => 'Şu anki supporter durumu',
-            'valid_until' => 'Şu anki osu!supporter etiketiniz :date tarihine kadar geçerli!',
-            'was_valid_until' => 'osu!supporter etiketiniz :date tarihine kadar geçerliydi.',
-        ],
-
-        'why_support' => [
-            'title' => 'Neden osu!\'yu desteklemeliyim?',
-            'blocks' => [
-                'dev' => 'Çoğunlukla Avustralya\'da adamın biri tarafından geliştirilip idame ettiriliyor',
-                'time' => 'Sürdürmesi çok zaman aldığından artık "hobi" olmaktan çıktı.',
-                'ads' => 'Hiçbir yerde reklam yok.<br/><br/>                        İnternetin %99.95\'inin aksine, suratınıza bir şeyler dayayarak kâr sağlamıyoruz.',
-                'goodies' => 'Ekstra şeyler de alacaksınız!',
+            'team' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'infra' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'featured-artists' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'ads' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'tournaments' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'bounty-program' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
             ],
         ],
-
         'perks' => [
             'title' => 'Öyle mi? Neler alacağım?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'oyundan çıkmaya gerek kalmadan beatmaplere kolay ve hızlı ulaşım.',
+            ],
+
+            'friend_ranking' => [
+                'title' => '',
+                'description' => "",
+            ],
+
+            'country_ranking' => [
+                'title' => '',
+                'description' => '',
+            ],
+
+            'mod_filtering' => [
+                'title' => '',
+                'description' => '',
             ],
 
             'auto_downloads' => [
@@ -73,7 +96,7 @@ return [
 
             'customisation' => [
                 'title' => 'Özelleştirme',
-                'description' => 'Tamamen özelleştirilebilir bir kullanıcı sayfası ile profilinizi özelleştirin.',
+                'description' => "Tamamen özelleştirilebilir bir kullanıcı sayfası ile profilinizi özelleştirin.",
             ],
 
             'beatmap_filters' => [
@@ -111,22 +134,30 @@ return [
                 'description' => 'Oyun içinde beatmaplerin ülke/arkadaş/moda göre sıralamalarını görme yeteneği.',
             ],
 
-            'feel_special' => [
-                'title' => 'Özel Hisset',
-                'description' => 'osu!\'yu sıkıntısızca çalıştırmak için yaptığın katkının verdiği o sıcacık his!',
-            ],
-
-            'more_to_come' => [
-                'title' => 'Dahası gelecek',
+            'more_favourites' => [
+                'title' => '',
                 'description' => '',
             ],
-        ],
+            'more_friends' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'more_beatmaps' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'friend_filtering' => [
+                'title' => '',
+                'description' => '',
+            ],
 
-        'convinced' => [
-            'title' => 'İkna oldum! :D',
-            'support' => 'osu!\'yu destekle!',
-            'gift' => 'veya diğer oyunculara hediye et',
-            'instructions' => 'kalbe tıklayıp osu!store\'a ilerle',
+        ],
+        'supporter_status' => [
+            'contribution' => 'Desteğiniz için teşekkürler! Toplamda :tags farklı alımla :dollars yardımda bulundunuz!',
+            'gifted' => ":giftedTags defa hediye olarak aldınız (toplam :giftedDollars hediye verdiniz), bu ne bonkörlük!",
+            'not_yet' => "Şimdilik supporter'ınız yok :(",
+            'valid_until' => 'Şu anki osu!supporter etiketiniz :date tarihine kadar geçerli!',
+            'was_valid_until' => 'osu!supporter etiketiniz :date tarihine kadar geçerliydi.',
         ],
     ],
 ];

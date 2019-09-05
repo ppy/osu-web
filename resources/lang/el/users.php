@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 ακόλουθος|:count ακόλουθοι',
+            'none' => '',
             'unranked' => 'Κανένα πρόσφατο σκορ',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Εκκρεμή Beatmaps',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Κανένα ρεκόρ επίδοσης. :(',
@@ -276,6 +287,11 @@ return [
                 'recent' => 'Πρόσφατα',
                 'title' => 'Μετάλλια',
             ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Πρόσφατα',
             ],
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Πρώτες Θέσεις',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Κατάσταση λογαριασμού',
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Κατάταξη Score',
             'total_hits' => 'Συνολικά Hits',
             'total_score' => 'Συνολική Βαθμολογία',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
