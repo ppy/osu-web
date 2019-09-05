@@ -27,13 +27,9 @@
             <div class="account-edit-entry account-edit-entry--no-label js-account-edit" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
                 <label class="account-edit-entry__checkbox">
                     @include('objects._switch', [
-                        'attributes' => [
-                            'name' => 'user[user_notify]',
-                            'type' => 'checkbox',
-                            'value' => 1,
-                        ],
-                        'checked' => auth()->user()->user_notify,
                         'additionalClass'=> 'js-account-edit__input',
+                        'checked' => auth()->user()->user_notify,
+                        'name' => 'user[user_notify]',
                     ])
 
                     <span class="account-edit-entry__checkbox-label">

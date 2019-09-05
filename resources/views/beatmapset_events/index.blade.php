@@ -68,12 +68,9 @@
                             <div class="simple-form__checkbox-overflow-container">
                                 <label class="simple-form__checkbox simple-form__checkbox--overflow">
                                     @include('objects._switch', [
-                                        'attributes' => [
-                                            'name' => 'types[]',
-                                            'type' => 'checkbox',
-                                            'value' => $type,
-                                        ],
                                         'checked' => in_array($type, $search['params']['types'], true),
+                                        'name' => 'types[]',
+                                        'value' => $type,
                                     ])
                                     {{ trans("beatmapset_events.type.{$type}") }}
                                 </label>

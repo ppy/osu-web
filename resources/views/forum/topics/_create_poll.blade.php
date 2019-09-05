@@ -88,11 +88,8 @@
     <label class="simple-form__row">
         <div class="simple-form__label simple-form__label--full">
             @include('objects._switch', [
-                'attributes' => [
-                    'name' => 'forum_topic_poll[vote_change]',
-                    'type' => 'checkbox',
-                ],
                 'checked' => optional($topic)->poll_vote_change,
+                'name' => 'forum_topic_poll[vote_change]',
             ])
 
             {{ trans('forum.topics.create.poll.vote_change') }}
@@ -103,11 +100,8 @@
     <label class="simple-form__row">
         <div class="simple-form__label simple-form__label--full">
             @include('objects._switch', [
-                'attributes' => [
-                    'name' => 'forum_topic_poll[hide_results]',
-                    'type' => 'checkbox',
-                ],
                 'checked' => optional($topic)->poll_hide_results,
+                'name' => 'forum_topic_poll[hide_results]',
             ])
 
             {{ trans('forum.topics.create.poll.hide_results') }}

@@ -97,11 +97,8 @@ if (isset($fields)) {
 
         <label class="search-forum-options__input-group">
             @include('objects._switch', [
-                'attributes' => [
-                    'type' => 'checkbox',
-                    'name' => $fields['includeSubforums'],
-                ],
                 'checked' => request($fields['includeSubforums']),
+                'name' => $fields['includeSubforums'],
             ])
 
             {{ trans('home.search.forum_post.label.forum_children') }}

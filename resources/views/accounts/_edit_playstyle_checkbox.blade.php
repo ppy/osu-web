@@ -21,11 +21,8 @@
 >
     <label class="account-edit-entry__checkbox">
         @include('objects._switch', [
-            'attributes' => [
-                'type' => 'checkbox',
-                'value' => $field,
-            ],
             'checked' => in_array($field, auth()->user()->osu_playstyle ?? [], true),
+            'value' => $field,
         ])
 
         <span class="account-edit-entry__checkbox-label">
