@@ -97,9 +97,10 @@ class @ForumTopicReply
 
     @stickyFooter.markerDisable @marker()
     @setState 'active', '0'
+    delete @box[0].dataset.state if @box[0].dataset.state?
     button.classList.remove 'js-activated' for button in @toggleButtons
     $.publish 'stickyFooter:check'
-    delete @box[0].dataset.state if @box[0].dataset.state?
+    @stickOrUnstick() if osu.isMobile()
     @disableFlash()
 
 
