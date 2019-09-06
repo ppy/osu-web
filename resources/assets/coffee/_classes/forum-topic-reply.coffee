@@ -66,10 +66,8 @@ class @ForumTopicReply
     localStorage.setItem "forum-topic-reply--#{document.location.pathname}--#{key}", value
 
 
-  activate: (e) =>
+  activate: =>
     @setState 'active', '1'
-    @box[0].dataset.state = 'active'
-    button.classList.add 'js-activated' for button in @toggleButtons
 
     @stickyFooter.markerEnable @marker()
     $.publish 'stickyFooter:check'
@@ -89,18 +87,13 @@ class @ForumTopicReply
     @inputChange()
     $input[0].selectionStart = data.length
 
-    @activate(e)
+    @activate()
 
 
-  deactivate: (e) =>
-    e.preventDefault() if e
-
+  deactivate: =>
     @stickyFooter.markerDisable @marker()
     @setState 'active', '0'
-    delete @box[0].dataset.state if @box[0].dataset.state?
-    button.classList.remove 'js-activated' for button in @toggleButtons
     $.publish 'stickyFooter:check'
-    @stickOrUnstick() if osu.isMobile()
     @disableFlash()
 
 
@@ -139,10 +132,10 @@ class @ForumTopicReply
 
   stickOrUnstick: (_e, target) =>
     stick =
-      if osu.isMobile()
-        @box[0]?.dataset.state == 'active'
-      else
+      if osu.isDesktop()
         target == 'forum-topic-reply'
+      else
+        @getState('active') == '1'
 
     @toggleStick(stick)
 
@@ -152,10 +145,10 @@ class @ForumTopicReply
       @deactivate()
     else
       @activate()
-      @$input().focus()
 
 
   toggleDeactivate: (e) =>
+    # prevent reactivation if the button is located inside the form
     e.stopPropagation()
     @deactivate()
 
@@ -163,18 +156,32 @@ class @ForumTopicReply
   toggleStick: (stick) =>
     isSticking = @getState('sticking') == '1'
 
+    document.body.style.overflow =
+      if !stick || osu.isDesktop()
+        ''
+      else
+        'hidden'
+
     return if stick == isSticking
+
+    box = @box[0]
 
     if stick
       @setState 'sticking', '1'
+      box.dataset.state = 'active'
       target = @fixedBar[0]
+      buttonAction = 'add'
     else
       @deleteState 'sticking'
+      delete box.dataset.state if box.dataset.state?
       target = @container[0]
+      buttonAction = 'remove'
+
+    button.classList[buttonAction] 'js-activated' for button in @toggleButtons
 
     $input = @$input()
     inputFocused = $input.is(':focus')
 
-    target.insertBefore(@box[0], target.firstChild)
+    target.insertBefore(box, target.firstChild)
 
     $input.focus() if inputFocused
