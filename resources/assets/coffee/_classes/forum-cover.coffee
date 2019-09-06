@@ -166,9 +166,9 @@ class @ForumCover
   refresh: =>
     return unless @hasCoverEditor()
 
-    backgroundImageUrl = @uploadButton[0].dataset.fileUrl || @uploadButton[0].dataset.defaultFileUrl || null
+    backgroundImageUrl = @uploadButton[0].dataset.fileUrl || @uploadButton[0].dataset.defaultFileUrl
 
-    @header[0].style.backgroundImage = osu.urlPresence(backgroundImageUrl)
+    $(@header).css(backgroundImage: osu.urlPresence(backgroundImageUrl) ? '')
 
     $('.js-forum-cover--remove').toggleClass('js-disabled', !@hasCover())
 
