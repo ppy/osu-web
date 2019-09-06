@@ -50,28 +50,30 @@
                 {!! trans("forum.post.posted_at", ["when" => timeago($post->post_time)]) !!}
             </a>
 
-            <div class="forum-post__menu">
-                @php
-                    $menuId = implode(':', ['forum-post', $post->getKey(), rand()]);
-                @endphp
-                <button class="forum-post__menu-button js-click-menu" data-click-menu-target="{{ $menuId }}">
-                    <span class="fas fa-ellipsis-v"></span>
-                </button>
+            @if (count($buttons) > 0)
+                <div class="forum-post__menu">
+                    @php
+                        $menuId = implode(':', ['forum-post', $post->getKey(), rand()]);
+                    @endphp
+                    <button class="forum-post__menu-button js-click-menu" data-click-menu-target="{{ $menuId }}">
+                        <span class="fas fa-ellipsis-v"></span>
+                    </button>
 
-                <div
-                    class="simple-menu simple-menu--forum-list js-click-menu"
-                    data-visibility="hidden"
-                    data-click-menu-id="{{ $menuId }}"
-                >
-                    @foreach ($buttons as $button)
-                        @include("forum.posts._button_{$button}", [
-                            'class' => 'simple-menu__item',
-                            'post' => $post,
-                            'type' => 'menu',
-                        ])
-                    @endforeach
+                    <div
+                        class="simple-menu simple-menu--forum-list js-click-menu"
+                        data-visibility="hidden"
+                        data-click-menu-id="{{ $menuId }}"
+                    >
+                        @foreach ($buttons as $button)
+                            @include("forum.posts._button_{$button}", [
+                                'class' => 'simple-menu__item',
+                                'post' => $post,
+                                'type' => 'menu',
+                            ])
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
 
         <div class="forum-post__content forum-post__content--main">
@@ -98,14 +100,16 @@
             </div>
         @endif
 
-        <div class="forum-post__actions">
-            <div class="forum-post-actions">
-                @foreach ($buttons as $button)
-                    <div class="forum-post-actions__action">
-                        @include("forum.posts._button_{$button}", ['post' => $post, 'type' => 'circle'])
-                    </div>
-                @endforeach
+        @if (count($buttons) > 0)
+            <div class="forum-post__actions">
+                <div class="forum-post-actions">
+                    @foreach ($buttons as $button)
+                        <div class="forum-post-actions__action">
+                            @include("forum.posts._button_{$button}", ['post' => $post, 'type' => 'circle'])
+                        </div>
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endif
     </div>
 </div>
