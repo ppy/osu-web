@@ -42,6 +42,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '',
+
+        'index' => [
+            'title' => '',
+        ],
+
         'topics' => [
             'empty' => '没有主题！',
         ],

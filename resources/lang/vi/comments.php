@@ -23,7 +23,7 @@ return [
     'deleted_count' => ':count_delimited bình luận đã bị xóa',
     'edited' => 'đã chỉnh sửa :timeago bởi :user',
     'empty' => 'Chưa có bình luận nào.',
-    'load_replies' => '',
+    'load_replies' => 'hiển thị những trả lời',
     'replies' => 'Câu trả lời',
     'title' => 'Bình luận',
 

@@ -75,8 +75,11 @@ return [
         'minute_short_unit' => 'min',
         'minutes' => ':count minuta|:count minuty|:count minut',
         'months' => ':count měsíc|:count měsíců',
+        'post' => '',
         'second_short_unit' => 'sek',
+        'star_priority' => '',
         'update' => ':count_delimited aktualizace|:count_delimited aktualizace',
+        'view' => '',
         'years' => ':count rok|:count let',
     ],
 

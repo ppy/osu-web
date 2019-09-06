@@ -41,7 +41,7 @@ return [
 
         'revoked' => [
             'false' => 'Thu hồi quyền truy cập',
-            'true' => '',
+            'true' => 'Truy cập bị từ chối',
         ],
     ],
 

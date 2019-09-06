@@ -27,12 +27,12 @@ return [
     'list' => 'Lista',
     'list_numbered' => 'Lista Numerata',
     'size' => [
-        '_' => 'Dimensioni Font',
+        '_' => 'Dimensione Font',
         'tiny' => 'Minuscolo',
         'small' => 'Piccolo',
         'normal' => 'Normale',
         'large' => 'Grande',
     ],
     'spoilerbox' => 'Spoiler Box',
-    'strikethrough' => 'Strike',
+    'strikethrough' => 'Barrato',
 ];
