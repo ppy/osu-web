@@ -34,8 +34,8 @@
   }
 
   &__actions {
+    display: none;
     position: absolute;
-    display: flex;
     transition: opacity 120ms ease-in-out;
     will-change: opacity;
 
@@ -44,6 +44,7 @@
 
     @media @desktop {
       right: @gutter-v2-desktop;
+      display: flex;
       opacity: 0;
     }
 
@@ -78,7 +79,12 @@
     }
 
     &--header {
-      padding-top: @_padding-content;
+      padding-top: 10px;
+      display: flex;
+
+      @media @desktop {
+        padding-top: @_padding-content;
+      }
     }
 
     &--main {
@@ -99,6 +105,12 @@
         display: block;
         margin-right: @gutter-v2-desktop;
       }
+    }
+  }
+
+  &__menu {
+    @media @desktop {
+      display: none;
     }
   }
 }

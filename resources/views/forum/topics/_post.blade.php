@@ -16,11 +16,18 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <?php
-    if (!isset($options['deleteLink'])) { $options['deleteLink'] = false; }
-    if (!isset($options['editLink'])) { $options['editLink'] = false; }
-    if (!isset($options['signature'])) { $options['signature'] = true; }
-    if (!isset($options['replyLink'])) { $options['replyLink'] = false; }
-    if (!isset($options['postPosition'])) { $options['postPosition'] = 1; }
+    $options['postPosition'] = $options['postPosition'] ?? 1;
+    $options['signature'] = $options['signature'] ?? true;
+
+    $options['buttons']['delete'] = $options['buttons']['delete'] ?? false;
+    $options['buttons']['edit'] = $options['buttons']['edit'] ?? false;
+    $options['buttons']['quote'] = $options['buttons']['quote'] ?? false;
+
+    foreach (['edit', 'delete', 'quote'] as $buttonType) {
+        if ($options['buttons'][$buttonType]) {
+            $buttons[] = $buttonType;
+        }
+    }
 ?>
 <div
     class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} forum-post"
@@ -40,6 +47,29 @@
             <a class="link link--default js-post-url" rel="nofollow" href="{{ $post->exists ? route('forum.posts.show', $post->post_id) : '#' }}">
                 {!! trans("forum.post.posted_at", ["when" => timeago($post->post_time)]) !!}
             </a>
+
+            <div class="forum-post__menu">
+                @php
+                    $menuId = implode(':', ['forum-post', $post->getKey(), rand()]);
+                @endphp
+                <button class="forum-post__menu-button js-click-menu" data-click-menu-target="{{ $menuId }}">
+                    <span class="fas fa-ellipsis-v"></span>
+                </button>
+
+                <div
+                    class="simple-menu simple-menu--forum-list js-click-menu"
+                    data-visibility="hidden"
+                    data-click-menu-id="{{ $menuId }}"
+                >
+                    @foreach ($buttons as $button)
+                        @include("forum.posts._button_{$button}", [
+                            'class' => 'simple-menu__item',
+                            'post' => $post,
+                            'type' => 'menu',
+                        ])
+                    @endforeach
+                </div>
+            </div>
         </div>
 
         <div class="forum-post__content forum-post__content--main">
@@ -68,45 +98,11 @@
 
         <div class="forum-post__actions">
             <div class="forum-post-actions">
-                @if ($options['editLink'] === true)
+                @foreach ($buttons as $button)
                     <div class="forum-post-actions__action">
-                        <button
-                            type="button"
-                            class="btn-circle js-edit-post-start"
-                            title="{{ trans('forum.post.actions.edit') }}"
-                            data-tooltip-position="top center"
-                            data-url="{{ route('forum.posts.edit', $post) }}"
-                            data-remote="1"
-                        >
-                            <span class="btn-circle__content">
-                                <i class="fas fa-pencil-alt"></i>
-                            </span>
-                        </button>
+                        @include("forum.posts._button_{$button}", ['post' => $post, 'type' => 'circle'])
                     </div>
-                @endif
-
-                @if ($options["deleteLink"] === true)
-                    <div class="forum-post-actions__action js-post-delete-toggle">
-                        @include('forum.topics._post_hide_action')
-                    </div>
-                @endif
-
-                @if ($options['replyLink'] === true)
-                    <div class="forum-post-actions__action">
-                        <button
-                            type="button"
-                            class="btn-circle js-forum-topic-reply--quote"
-                            title="{{ trans('forum.topics.actions.reply_with_quote') }}"
-                            data-tooltip-position="top center"
-                            data-url="{{ route('forum.posts.raw', ['id' => $post, 'quote' => 1]) }}"
-                            data-remote="1"
-                        >
-                            <span class="btn-circle__content">
-                                <i class="fas fa-reply"></i>
-                            </span>
-                        </button>
-                    </div>
-                @endif
+                @endforeach
             </div>
         </div>
     </div>
