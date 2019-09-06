@@ -178,16 +178,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
 
         $this
-            ->actingAs($this->beatmapset->user)
-            ->post(route('beatmap-discussion-posts.store'), [
-                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
-                'beatmap_discussion' => [
-                    'resolved' => false,
-                ],
-                'beatmap_discussion_post' => [
-                    'message' => 'Hello',
-                ],
-            ])
+            ->postResolveDiscussion(false, $this->beatmapset->user)
             ->assertStatus(200);
 
         // reopen adds system post
@@ -203,17 +194,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
 
         $this
-            ->actingAs($user)
-            ->withSession(['verified' => true])
-            ->post(route('beatmap-discussion-posts.store'), [
-                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
-                'beatmap_discussion' => [
-                    'resolved' => false,
-                ],
-                'beatmap_discussion_post' => [
-                    'message' => 'Hello',
-                ],
-            ])
+            ->postResolveDiscussion(false, $user)
             ->assertStatus(200);
 
         // reopen adds system post
@@ -228,16 +209,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
 
         $this
-            ->actingAs($user)
-            ->post(route('beatmap-discussion-posts.store'), [
-                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
-                'beatmap_discussion' => [
-                    'resolved' => false,
-                ],
-                'beatmap_discussion_post' => [
-                    'message' => 'Hello',
-                ],
-            ])
+            ->postResolveDiscussion(false, $user)
             ->assertStatus(200);
 
         // reopen adds system post
@@ -251,16 +223,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
 
         $this
-            ->actingAs($this->beatmapDiscussion->user)
-            ->post(route('beatmap-discussion-posts.store'), [
-                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
-                'beatmap_discussion' => [
-                    'resolved' => false,
-                ],
-                'beatmap_discussion_post' => [
-                    'message' => 'Hello',
-                ],
-            ])
+            ->postResolveDiscussion(false, $this->beatmapDiscussion->user)
             ->assertStatus(200);
 
         // reopen adds system post
@@ -276,16 +239,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $lastResolved = $this->beatmapDiscussion->fresh()->resolved;
 
         $this
-            ->actingAs($this->user)
-            ->post(route('beatmap-discussion-posts.store'), [
-                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
-                'beatmap_discussion' => [
-                    'resolved' => !$lastResolved,
-                ],
-                'beatmap_discussion_post' => [
-                    'message' => 'Hello',
-                ],
-            ])
+            ->postResolveDiscussion(false, $this->user)
             ->assertStatus(200);
 
         // just add single post and no resolved state change
@@ -298,16 +252,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             $lastResolved = $this->beatmapDiscussion->fresh()->resolved;
 
             $this
-                ->actingAs($this->user)
-                ->post(route('beatmap-discussion-posts.store'), [
-                    'beatmap_discussion_id' => $this->beatmapDiscussion->id,
-                    'beatmap_discussion' => [
-                        'resolved' => !$lastResolved,
-                    ],
-                    'beatmap_discussion_post' => [
-                        'message' => 'Hello',
-                    ],
-                ])
+                ->postResolveDiscussion(!$lastResolved, $this->user)
                 ->assertStatus(200);
 
             // each resolve adds system post
@@ -323,16 +268,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
 
         $this
-            ->actingAs($user)
-            ->post(route('beatmap-discussion-posts.store'), [
-                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
-                'beatmap_discussion' => [
-                    'resolved' => true,
-                ],
-                'beatmap_discussion_post' => [
-                    'message' => 'Hello',
-                ],
-            ])
+            ->postResolveDiscussion(true, $user)
             ->assertStatus(403);
 
         $this->assertSame($lastDiscussionPosts, BeatmapDiscussionPost::count());
@@ -472,5 +408,21 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $reply->refresh();
 
         $this->assertFalse($reply->trashed());
+    }
+
+    private function postResolveDiscussion(bool $resolved, User $user)
+    {
+        return $this
+            ->actingAs($user)
+            ->withSession(['verified' => true])
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
+                'beatmap_discussion' => [
+                    'resolved' => $resolved,
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ]);
     }
 }
