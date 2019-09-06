@@ -61,8 +61,8 @@ return [
         'upload_image' => 'tải ảnh lên',
 
         'watch' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Ngừng theo dõi',
+            'to_1' => 'Theo dõi',
         ],
     ],
 
@@ -75,8 +75,11 @@ return [
         'minute_short_unit' => 'phút',
         'minutes' => ':count phút',
         'months' => ':count tháng',
+        'post' => '',
         'second_short_unit' => 'giây',
+        'star_priority' => '',
         'update' => '',
+        'view' => '',
         'years' => ':count năm',
     ],
 

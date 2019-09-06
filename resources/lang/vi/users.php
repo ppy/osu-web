@@ -132,7 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Đã tham gia :date',
         'lastvisit' => 'Lần cuối hoạt động :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'Hiện đang trực tuyến',
         'missingtext' => 'Có thể bạn đã thực hiện một lỗi đánh máy! (hoặc người dùng này có thể đã bị ban)',
         'origin_country' => 'Từ :country',
         'page_description' => 'osu! - Tất cả những bì bạn muốn biết về :username!',
@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count người theo dõi',
+            'none' => '',
             'unranked' => 'Không chơi gần đây',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Beatmap Đang Chờ',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Chưa ghi nhận điểm. :(',
@@ -276,6 +287,11 @@ return [
                 'recent' => 'Gần Nhất',
                 'title' => 'Huy Chương',
             ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Gần Đây',
             ],
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Xếp Hạng Nhất',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Trạng Thái Tài Khoản',
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Điểm Số',
             'total_hits' => 'Tổng Lần Bấm',
             'total_score' => 'Tổng Điểm',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 

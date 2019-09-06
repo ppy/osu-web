@@ -16,6 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
+    'legacyFont' => false,
     'legacyNav' => false,
     'pageDescription' => $forum->toMetaDescription(),
     'searchParams' => [
@@ -23,7 +24,6 @@
         'mode' => 'forum_post',
     ],
     'titlePrepend' => $forum->forum_name,
-    'use2019Font' => true,
 ])
 
 @section('content')

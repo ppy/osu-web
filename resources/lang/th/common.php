@@ -75,8 +75,11 @@ return [
         'minute_short_unit' => 'นาที|นาที',
         'minutes' => ':count_delimited นาที|:count_delimited นาที',
         'months' => ':count เดือน|:count เดือน',
+        'post' => '',
         'second_short_unit' => 'วินาที|วินาที',
+        'star_priority' => '',
         'update' => '',
+        'view' => '',
         'years' => ':count ปี|:count ปี',
     ],
 

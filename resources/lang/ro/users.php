@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 urmăritor|:count urmăritori',
+            'none' => '',
             'unranked' => 'Nu există jocuri recente',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Beatmaps în așteptare',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Nicio înregistrare de performanță. :(',
@@ -276,6 +287,11 @@ return [
                 'recent' => 'Recente',
                 'title' => 'Medalii',
             ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Recent',
             ],
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Primele locuri',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Starea contului',
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Clasament de scoruri',
             'total_hits' => 'Număr de clicuri',
             'total_score' => 'Scor total',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 

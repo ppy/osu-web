@@ -31,10 +31,12 @@ class @PostPreview
     $preview = $form.find('.js-post-preview--preview')
     $previewBox = $form.find('.js-post-preview--box')
 
-    return if $preview.attr('data-raw') == body
-
     if body == ''
-      $previewBox.addClass('hidden')
+      $previewBox.addClass 'hidden'
+      return
+
+    if $preview.attr('data-raw') == body
+      $previewBox.removeClass 'hidden'
       return
 
     $.post(laroute.route('bbcode-preview'), text: body)

@@ -26,8 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Ảnh đại diện',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => 'Hãy chắc rằng ảnh đại diện của bạn tuân thủ :link.<br/>Điều này có nghĩa rằng ảnh phải <strong>phù hợp với mọi lứa tuổi</strong>. Ví dụ như không có nội dung khỏa thân, thô tục hoặc gợi tưởng.',
+            'rules_link' => 'những tiêu chuẩn cộng đồng',
         ],
 
         'email' => [
@@ -71,7 +71,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => '',
-        'title' => '',
+        'title' => 'OAuth',
     ],
 
     'playstyles' => [
@@ -108,11 +108,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Bây giờ bạn có thể đóng cửa sổ này',
+        'title' => 'Tài khoản đã được xác minh',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Đường dẫn xác minh tài khoản không hợp lệ hoặc hết hạn',
     ],
 ];

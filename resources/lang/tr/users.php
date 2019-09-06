@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 takipçi|:count takipçi',
+            'none' => '',
             'unranked' => 'Son zamanlarda oynamamış',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Onay Beklenen Beatmapler',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Performans kaydı yok. :(',
@@ -276,6 +287,11 @@ return [
                 'recent' => 'En Son',
                 'title' => 'Madalyalar',
             ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Son',
             ],
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Birincilikler',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Hesap Durumu',
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Skor Dereceleri',
             'total_hits' => 'Toplam Vuruş',
             'total_score' => 'Toplam Skor',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 

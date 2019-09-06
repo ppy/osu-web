@@ -26,7 +26,7 @@
     ],
     'pageDescription' => $topic->toMetaDescription(),
     'legacyNav' => false,
-    'use2019Font' => true,
+    'legacyFont' => false,
 ])
 
 @php
