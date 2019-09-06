@@ -32,15 +32,7 @@ export default class UserStore extends Store {
   }
 
   get(id: number) {
-    const user = this.users.get(id);
-
-    if (user == null) {
-      const deletedUser = new User(id);
-      deletedUser.username = osu.trans('users.deleted');
-      return deletedUser;
-    }
-
-    return user;
+    return this.users.get(id);
   }
 
   @action

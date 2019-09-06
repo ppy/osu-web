@@ -474,7 +474,6 @@ export class Comment extends React.PureComponent
   userFor: (comment) =>
     user = userStore.get(comment.user_id)?.toJSON()
 
-    # TODO: handle legacy name
     if user?
       user
     else if comment.legacy_name?
