@@ -23,6 +23,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-height: 0; // prevent preview overflow in mobile
 
   &--create {
     .default-gutter-v2();
@@ -120,6 +121,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    min-height: 0; // prevent preview overflow in mobile
 
     .@{_top}--create & {
       padding: 20px 20px 10px;
@@ -174,6 +176,9 @@
 
     .@{_top}[data-state=preview] & {
       display: block;
+      min-height: 0;
+      overflow-y: auto;
+      margin-bottom: 5px;
     }
   }
 
