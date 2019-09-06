@@ -19,9 +19,13 @@
 .forum-post-content {
   .content-font();
   @_font-size: @font-size--normal-2;
-  font-size: @_font-size;
   word-wrap: break-word;
   color: @osu-colour-c1;
+  font-size: @font-size--normal;
+
+  @media @desktop {
+    font-size: @_font-size;
+  }
 
   &--edit {
     .reset-input();
