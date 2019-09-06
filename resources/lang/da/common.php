@@ -75,8 +75,11 @@ return [
         'minute_short_unit' => 'min|minutter',
         'minutes' => ':count minut|:count minutter',
         'months' => ':count måned|:count måneder',
+        'post' => '',
         'second_short_unit' => 'sek',
+        'star_priority' => '',
         'update' => '',
+        'view' => '',
         'years' => ':count år|:count år',
     ],
 

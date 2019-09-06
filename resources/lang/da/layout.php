@@ -23,6 +23,14 @@ return [
         'page_description' => 'osu! - Rytmen er kun et *klik* væk!  Med Ouendan/EBA, Taiko og originale spilmodes, såvel som en fuld funktionel beatmap-editor.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => '',
+        ],
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'hjem',

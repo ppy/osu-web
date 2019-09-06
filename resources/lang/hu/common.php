@@ -75,8 +75,11 @@ return [
         'minute_short_unit' => 'p|p',
         'minutes' => ':count perc |:count percek',
         'months' => ':count hónap|:count hónap',
+        'post' => '',
         'second_short_unit' => 'mp|mp',
+        'star_priority' => '',
         'update' => '',
+        'view' => '',
         'years' => ':count év|:count év',
     ],
 

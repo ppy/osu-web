@@ -29,24 +29,24 @@ return [
             'beatmapset_discussion' => [
                 '_' => '비트맵 토론',
                 'beatmapset_discussion_lock' => '비트맵 ":title"의 토론이 잠겼습니다.',
-                'beatmapset_discussion_lock_compact' => '토론이 잠겼습니다',
+                'beatmapset_discussion_lock_compact' => '토론이 잠겼습니다.',
                 'beatmapset_discussion_post_new' => ':username님이 ":title"의 비트맵 토론에 새로운 메시지를 게시했습니다.',
                 'beatmapset_discussion_post_new_compact' => ':username 님의 새로운 게시글',
                 'beatmapset_discussion_unlock' => '비트맵 ":title"의 토론이 잠금 해제되었습니다.',
-                'beatmapset_discussion_unlock_compact' => '토론이 잠금 해제되었습니다',
+                'beatmapset_discussion_unlock_compact' => '토론이 잠금 해제되었습니다.',
             ],
 
             'beatmapset_state' => [
-                '_' => '비트맵 상태 변경',
-                'beatmapset_disqualify' => '비트맵 ":title" 이(가) :username님에 의해 disqualified 처리되었습니다.',
-                'beatmapset_disqualify_compact' => '비트맵이 disqualified 처리 되었습니다',
-                'beatmapset_love' => '비트맵 ":title" 이(가) :username님에 의해 Loved 상태로 진급되었습니다.',
-                'beatmapset_love_compact' => '',
-                'beatmapset_nominate' => '비트맵 ":title" 이(가) :username님에 의해 지명되었습니다.',
-                'beatmapset_nominate_compact' => '',
-                'beatmapset_qualify' => '비트맵 ":title" 이(가) 충분한 지명을 받았으므로 랭크맵 대기열에 등록되었습니다.',
+                '_' => '비트맵 상태 변경됨.',
+                'beatmapset_disqualify' => '비트맵 ":title" 이(가) disqualified 처리되었습니다.',
+                'beatmapset_disqualify_compact' => '비트맵이 disqualified 처리 되었습니다.',
+                'beatmapset_love' => '":title" 이(가) loved 상태로 승격되었습니다.',
+                'beatmapset_love_compact' => '비트맵이 loved 상태로 승격되었습니다.',
+                'beatmapset_nominate' => '":title" 이(가) 지명되었습니다.',
+                'beatmapset_nominate_compact' => '비트맵이 지명 되었습니다.',
+                'beatmapset_qualify' => '":title" 이(가) 충분한 지명을 받았으므로 랭크맵 대기열에 등록되었습니다.',
                 'beatmapset_qualify_compact' => '비트맵이 랭크맵 대기열에 등록되었습니다.',
-                'beatmapset_rank' => '비트맵 ":title" 이(가) ranked 상태가 되었습니다.',
+                'beatmapset_rank' => '":title" 이(가) ranked 상태가 되었습니다.',
                 'beatmapset_rank_compact' => '비트맵이 ranked 상태가 되었습니다.',
                 'beatmapset_reset_nominations' => ':username님의 이슈 게시로 인해 비트맵 ":title"의 지명이 초기화되었습니다. ',
                 'beatmapset_reset_nominations_compact' => '지명이 초기화되었습니다.',
@@ -55,8 +55,8 @@ return [
             'comment' => [
                 '_' => '새 댓글',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new' => ':username님이 ":title"에 ":content"라고 댓글을 다셨습니다.',
+                'comment_new_compact' => ':username님이 ":content"라고 댓글을 다셨습니다.',
             ],
         ],
 
@@ -66,7 +66,7 @@ return [
             'channel' => [
                 '_' => '새 메시지',
                 'pm' => [
-                    'channel_message' => ':username 님이 ":title" 라고 하셨습니다',
+                    'channel_message' => ':username 님이 ":title" 라고 하셨습니다.',
                     'channel_message_compact' => ':title',
                     'channel_message_group' => ':username 님으로 부터',
                 ],
@@ -80,7 +80,7 @@ return [
                 '_' => '새 댓글',
 
                 'comment_new' => ':username 님이 ":title" 에 ":content" 를 다셨습니다.',
-                'comment_new_compact' => '',
+                'comment_new_compact' => ':username님이 ":content"라고 댓글을 다셨습니다.',
             ],
         ],
 
@@ -90,8 +90,8 @@ return [
             'comment' => [
                 '_' => '새 댓글',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new' => ':username님이 ":title"에 ":content"라고 댓글을 다셨습니다.',
+                'comment_new_compact' => ':username님이 ":content"라고 댓글을 다셨습니다.',
             ],
         ],
 
@@ -110,7 +110,7 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited개의 미확인 메시지.',
+                'legacy_pm' => ':count_delimited개의 미확인 메시지',
             ],
         ],
 

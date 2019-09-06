@@ -21,7 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'La página solicitada aún no se ha traducido al idioma seleccionado (:language). Mostrando la versión en inglés.',
-        'incomplete_or_outdated' => '',
+        'incomplete_or_outdated' => 'El contenido de esta página está incompleto u obsoleto. Si usted puede ayudar, por favor ¡considere actualizar el artículo!',
         'languages' => 'Idiomas',
         'missing' => 'La página solicitada ":keyword" no se pudo encontrar.',
         'missing_title' => 'No encontrado',

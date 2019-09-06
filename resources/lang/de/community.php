@@ -20,46 +20,63 @@
 
 return [
     'support' => [
-        'header' => [
-            // size in font-size
-            'big_description' => 'Du liebst osu!?<br/>
-                                Unterstütze die Entwicklung von osu! :D',
-            'small_description' => '',
-            'support_button' => 'Ich möchte osu! unterstützen!',
+        'convinced' => [
+            'title' => 'Ich bin überzeugt! :D',
+            'support' => 'unterstütze osu!',
+            'gift' => 'oder verschenke \'Supporter\' an andere Spieler',
+            'instructions' => 'klick auf das herz, um zum osu!store zu gelangen',
         ],
+        'why-support' => [
+            'title' => '',
 
-        'dev_quote' => 'osu! ist ein komplett kostenloses Spiel, es zu betreiben ist allerdings nicht umsonst. Vereint man die Kosten für Server, internationale Bandbreite, die investierte Zeit, um das System und die Community aufrechtzuerhalten, die Preise für Wettbewerbe, den Aufwand, um den Support zu betreiben und im Allgemeinen alle glücklich zu machen, dann kommt man auf eine ordentliche Summe!
-            <br/><br/>Im Endeffekt wird osu! größtenteils von mir, den ihr vielleicht als "peppy" kennt, am Laufen gehalten.
-            Ich musste meinen Beruf kündigen, um zeitlich mit osu! zurechtzukommen,
-            und habe manchmal Probleme damit, die von mir angestrebten Standards zu erreichen.
-            Ich würde gerne meinen persönlichen Dank an all die richten, die osu! bisher unterstützt haben,
-            genau so auch an diejenigen, die es in Zukunft weiterführen werden :).',
-
-        'supporter_status' => [
-            'contribution' => 'Danke für deine bisherige Unterstützung! Du hast insgesamt :dollars durch :tags Supporter-Tags beigesteuert!',
-            'gifted' => ':giftedTags deiner Supporter-Einkäufe waren Geschenke (für insgesamt :giftedDollars), wie großzügig von dir!',
-            'not_yet' => "Du hast noch kein Supporter-Tag :(",
-            'title' => 'Aktueller Supporter-Status',
-            'valid_until' => 'Dein aktuelles Supporter-Tag endet :date!',
-            'was_valid_until' => 'Dein Supporter-Tag war bis :date gültig.',
-        ],
-
-        'why_support' => [
-            'title' => 'Warum sollte ich osu! unterstützen?',
-            'blocks' => [
-                'dev' => 'Entwickelt und aufrechterhalten von einem Typen in Australien',
-                'time' => 'Nimmt so viel Zeit in Anspruch, dass es nicht mehr möglich ist, es als "Hobby" zu bezeichnen.',
-                'ads' => 'Keine Werbung. Nirgendwo. <br/><br/>
-                        Anders als der Großteil des Internets profitieren wir nicht davon, euch mit Werbung zu bombardieren',
-                'goodies' => 'Es gibt noch ein paar Goodies obendrauf!',
+            'team' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'infra' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'featured-artists' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'ads' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'tournaments' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'bounty-program' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
             ],
         ],
-
         'perks' => [
             'title' => 'Oh? Was gibt\'s denn?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'Schneller und einfacher Zugriff auf die Beatmapsuche, sogar innerhalb des Spiels.',
+            ],
+
+            'friend_ranking' => [
+                'title' => '',
+                'description' => "",
+            ],
+
+            'country_ranking' => [
+                'title' => '',
+                'description' => '',
+            ],
+
+            'mod_filtering' => [
+                'title' => '',
+                'description' => '',
             ],
 
             'auto_downloads' => [
@@ -79,7 +96,7 @@ return [
 
             'customisation' => [
                 'title' => 'Anpassung',
-                'description' => 'Füge deinem Profil eine persönliche Note hinzu, indem du eine komplett anpassbare Seite hinzufügst.',
+                'description' => "Füge deinem Profil eine persönliche Note hinzu, indem du eine komplett anpassbare Seite hinzufügst.",
             ],
 
             'beatmap_filters' => [
@@ -117,22 +134,30 @@ return [
                 'description' => 'Länder-, Freundes- und modspezifische Ranglisten im Spiel einsehen!',
             ],
 
-            'feel_special' => [
-                'title' => 'Ein gutes Gefühl',
-                'description' => 'Das tolle Gefühl, daran teilzuhaben, osu! am Laufen zu halten!',
-            ],
-
-            'more_to_come' => [
-                'title' => 'Es kommt noch mehr!',
+            'more_favourites' => [
+                'title' => '',
                 'description' => '',
             ],
-        ],
+            'more_friends' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'more_beatmaps' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'friend_filtering' => [
+                'title' => '',
+                'description' => '',
+            ],
 
-        'convinced' => [
-            'title' => 'Ich bin überzeugt! :D',
-            'support' => 'unterstütze osu!',
-            'gift' => 'oder verschenke \'Supporter\' an andere Spieler',
-            'instructions' => 'klick auf das herz, um zum osu!store zu gelangen',
+        ],
+        'supporter_status' => [
+            'contribution' => 'Danke für deine bisherige Unterstützung! Du hast insgesamt :dollars durch :tags Supporter-Tags beigesteuert!',
+            'gifted' => ":giftedTags deiner Supporter-Einkäufe waren Geschenke (für insgesamt :giftedDollars), wie großzügig von dir!",
+            'not_yet' => "Du hast noch kein Supporter-Tag :(",
+            'valid_until' => 'Dein aktuelles Supporter-Tag endet :date!',
+            'was_valid_until' => 'Dein Supporter-Tag war bis :date gültig.',
         ],
     ],
 ];
