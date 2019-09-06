@@ -392,22 +392,78 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
     public function testPostDestroyWhenDiscussionResolved()
     {
-        $reply = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+        // reply made before resolve
+        $reply1 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
             factory(BeatmapDiscussionPost::class, 'timeline')->make([
                 'user_id' => $this->user->getKey(),
             ])
         );
 
-        $this->beatmapDiscussion->update(['resolved' => true]);
+        $this->postResolveDiscussion(true, $this->user);
+
+        // reply made after resolve
+        $reply2 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
 
         $this
             ->actingAs($this->user)
-            ->delete(route('beatmap-discussion-posts.destroy', $reply->id))
+            ->delete(route('beatmap-discussion-posts.destroy', $reply1->id))
             ->assertStatus(403);
 
-        $reply->refresh();
+        $this
+            ->actingAs($this->user)
+            ->delete(route('beatmap-discussion-posts.destroy', $reply2->id))
+            ->assertSuccessful();
 
-        $this->assertFalse($reply->trashed());
+        $this->assertFalse($reply1->fresh()->trashed());
+        $this->assertTrue($reply2->fresh()->trashed());
+    }
+
+    public function testPostDestroyWhenDiscussionReResolved()
+    {
+        // reply made before resolve
+        $reply1 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+
+        $this->postResolveDiscussion(true, $this->user);
+        $this->postResolveDiscussion(false, $this->user);
+
+        // still should not be able to delete reply made before first resolve.
+        $this
+            ->actingAs($this->user)
+            ->delete(route('beatmap-discussion-posts.destroy', $reply1->id))
+            ->assertStatus(403);
+
+        $this->assertFalse($reply1->fresh()->trashed());
+
+        // reply made after resolve
+        $reply2 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+
+        $this->postResolveDiscussion(true, $this->user);
+
+        // should not be able to delete either reply.
+        $this
+            ->actingAs($this->user)
+            ->delete(route('beatmap-discussion-posts.destroy', $reply1->id))
+            ->assertStatus(403);
+
+        $this
+            ->actingAs($this->user)
+            ->delete(route('beatmap-discussion-posts.destroy', $reply2->id))
+            ->assertStatus(403);
+
+        $this->assertFalse($reply1->fresh()->trashed());
+        $this->assertFalse($reply2->fresh()->trashed());
     }
 
     private function postResolveDiscussion(bool $resolved, User $user)
