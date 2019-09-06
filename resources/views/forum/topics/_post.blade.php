@@ -21,9 +21,6 @@
     if (!isset($options['signature'])) { $options['signature'] = true; }
     if (!isset($options['replyLink'])) { $options['replyLink'] = false; }
     if (!isset($options['postPosition'])) { $options['postPosition'] = 1; }
-    if (!isset($options['large'])) {
-        $options['large'] = $options['postPosition'] === ($post->trashed() ? 0 : 1);
-    }
 ?>
 <div
     class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} forum-post"
