@@ -34,7 +34,7 @@
 >
     @if ($type === 'circle')
         <span class="btn-circle__content">
-            <i class="fas fa-reply"></i>
+            <i class="fas fa-comment"></i>
         </span>
     @else
         {{ trans('forum.topics.actions.reply_with_quote') }}
