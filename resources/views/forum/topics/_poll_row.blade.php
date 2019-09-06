@@ -25,12 +25,10 @@
         <label class="forum-poll-row__checkbox-container">
             @if (priv_check('ForumTopicVote', $topic)->can())
                 @include('objects._switch', [
-                    'attributes' => [
-                        'name' => 'forum_topic_vote[option_ids][]',
-                        'type' => $topic->poll_max_options === 1 ? 'radio' : 'checkbox',
-                        'value' => $pollOptionId,
-                    ],
                     'checked' => $pollOption['voted_by_user'],
+                    'name' => 'forum_topic_vote[option_ids][]',
+                    'type' => $topic->poll_max_options === 1 ? 'radio' : 'checkbox',
+                    'value' => $pollOptionId,
                 ])
             @endif
         </label>
