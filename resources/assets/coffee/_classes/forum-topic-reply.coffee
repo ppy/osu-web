@@ -188,3 +188,4 @@ class @ForumTopicReply
     target.insertBefore(box, target.firstChild)
 
     $input.focus() if inputFocused
+    osu.pageChange() # sync reply box height

@@ -15,6 +15,26 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    if (priv_check('ForumTopicReply', $topic)->can()) {
+        if (!$topic->isActive()) {
+            if (priv_check('ForumTopicStore', $topic->forum)->can()) {
+                $warning = trans('forum.topic.create.necropost.new_topic._', [
+                    'create' => link_to_route(
+                        'forum.topics.create',
+                        trans('forum.topic.create.necropost.new_topic.create'),
+                        ['forum_id' => $topic->forum],
+                        ['class' => 'link link--default']
+                    ),
+                ]);
+            } else {
+                $warning = e(trans('forum.topic.create.necropost.default'));
+            }
+        }
+    } else {
+        $warning = e(priv_check('ForumTopicReply', $topic)->message());
+    }
+@endphp
 <div class="js-forum-topic-reply--container js-sync-height--target forum-topic-reply" data-sync-height-id="forum-topic-reply">
     {!! Form::open([
         'url' => route('forum.topics.reply', $topic->getKey()),
@@ -23,41 +43,18 @@
         'data-sync-height-target' => 'forum-topic-reply',
         'data-force-reload' => Auth::check() ? '0' : '1',
     ]) !!}
-        @if (priv_check('ForumTopicReply', $topic)->can())
-            @if (!$topic->isActive())
-                <div class="warning-box">
-                    <div class="warning-box__icon">
-                        <i class="fas fa-exclamation-triangle"></i>
-                    </div>
-
-                    @if (priv_check('ForumTopicStore', $topic->forum)->can())
-                        <div class="warning-box__content">
-                            {!! trans('forum.topic.create.necropost.new_topic._', [
-                                'create' => link_to_route(
-                                    'forum.topics.create',
-                                    trans('forum.topic.create.necropost.new_topic.create'),
-                                    ['forum_id' => $topic->forum],
-                                    ['class' => 'link link--default']
-                                ),
-                            ]) !!}
-                        </div>
-                    @else
-                        {{ trans('forum.topic.create.necropost.default') }}
-                    @endif
-                </div>
-            @endif
-
-            @include('forum.topics._post_edit_form', ['type' => 'reply'])
-        @else
+        @if (isset($warning))
             <div class="warning-box">
                 <div class="warning-box__icon">
                     <i class="fas fa-exclamation-triangle"></i>
                 </div>
 
                 <div class="warning-box__content">
-                    {{ priv_check('ForumTopicReply', $topic)->message() }}
+                    {!! $warning !!}
                 </div>
             </div>
         @endif
+
+        @include('forum.topics._post_edit_form', ['type' => 'reply', 'enabled' => false])
     {!! Form::close() !!}
 </div>

@@ -17,6 +17,7 @@
 --}}
 @php
     $withPreview = in_array($type, ['edit', 'reply'], true);
+    $enabled = $enabled ?? true;
 @endphp
 <div
     class="
@@ -56,6 +57,9 @@
             placeholder="{{ trans('forum.topic.create.placeholder.body') }}"
             required
             {{ $type === 'create' ? 'autofocus' : '' }}
+            @if (!$enabled)
+                disabled
+            @endif
         >{{ $content ?? '' }}</textarea>
 
         @if ($withPreview)
@@ -67,7 +71,9 @@
 
         <div class="forum-post-edit__buttons-bar">
             <div class="forum-post-edit__buttons forum-post-edit__buttons--toolbar">
-                @include("forum._post_toolbar")
+                @if ($enabled)
+                    @include("forum._post_toolbar")
+                @endif
             </div>
 
             <div class="forum-post-edit__buttons forum-post-edit__buttons--actions">
@@ -93,7 +99,7 @@
                     </div>
                 @endif
 
-                @if ($withPreview)
+                @if ($enabled && $withPreview)
                     <div class="forum-post-edit__button forum-post-edit__button--write">
                         <button
                             type="button"
@@ -113,21 +119,23 @@
                     </div>
                 @endif
 
-                <div class="forum-post-edit__button">
-                    <button
-                        class="btn-osu-big btn-osu-big--forum-primary"
-                        type="submit"
-                        data-disable-with="{{ trans('common.buttons.saving') }}"
-                    >
-                        @if ($type === 'reply')
-                            {{ trans('forum.topic.post_reply') }}
-                        @elseif ($type === 'edit')
-                            {{ trans("forum.topic.post_edit.post") }}
-                        @elseif ($type === 'create')
-                            {{ trans('forum.topic.create.submit') }}
-                        @endif
-                    </button>
-                </div>
+                @if ($enabled)
+                    <div class="forum-post-edit__button">
+                        <button
+                            class="btn-osu-big btn-osu-big--forum-primary"
+                            type="submit"
+                            data-disable-with="{{ trans('common.buttons.saving') }}"
+                        >
+                            @if ($type === 'reply')
+                                {{ trans('forum.topic.post_reply') }}
+                            @elseif ($type === 'edit')
+                                {{ trans("forum.topic.post_edit.post") }}
+                            @elseif ($type === 'create')
+                                {{ trans('forum.topic.create.submit') }}
+                            @endif
+                        </button>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
