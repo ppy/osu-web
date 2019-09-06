@@ -111,9 +111,11 @@
                     </div>
                 @endif
 
-                <div class="forum-topic-toolbar__item">
-                    @include('forum.topics._cover_editor')
-                </div>
+                @if (priv_check('ForumTopicCoverEdit', $topic)->can())
+                    <div class="forum-topic-toolbar__item">
+                        @include('forum.topics._cover_editor')
+                    </div>
+                @endif
             </div>
         </div>
 
