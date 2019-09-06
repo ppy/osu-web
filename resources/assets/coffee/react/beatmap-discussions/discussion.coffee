@@ -186,11 +186,12 @@ export class Discussion extends React.PureComponent
     elementName = if post.system then SystemPost else Post
 
     canModeratePosts = BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
+    canBeEdited = @isOwner(post) && post.id > @resolvedSystemPostId()
     canBeDeleted =
       if type == 'discussion'
         @props.discussion.current_user_attributes?.can_destroy
       else
-        canModeratePosts || @isOwner(post)
+        canModeratePosts || canBeEdited
 
     el elementName,
       key: post.id
@@ -203,10 +204,18 @@ export class Discussion extends React.PureComponent
       users: @props.users
       user: @props.users[post.user_id]
       lastEditor: @props.users[post.last_editor_id]
-      canBeEdited: @props.currentUser.is_admin || @isOwner(post)
+      canBeEdited: @props.currentUser.is_admin || canBeEdited
       canBeDeleted: canBeDeleted
       canBeRestored: canModeratePosts
       currentUser: @props.currentUser
+
+
+  resolvedSystemPostId: =>
+    if !@_resolvedSystemPostId?
+      systemPost = _.findLast(@props.discussion.posts, (post) -> post.system && post.message.type == 'resolved' && post.message.value)
+      @_resolvedSystemPostId = systemPost?.id ? -1
+
+    return @_resolvedSystemPostId
 
 
   setCollapse: (_e, {collapse}) =>
