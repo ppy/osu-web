@@ -178,7 +178,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             } elseif (method_exists($child, 'getContent')) {
                 $text .= $child->getContent();
             } elseif (method_exists($child, 'children')) {
-                $text .= static::getText($child);
+                $text .= $this->getText($child);
             }
         }
 
