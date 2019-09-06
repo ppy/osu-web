@@ -17,7 +17,7 @@
 ###
 
 class @ForumTopicReply
-  constructor: (@forum, @stickyFooter) ->
+  constructor: ({ @forum, @forumPostPreview, @stickyFooter }) ->
     @container = document.getElementsByClassName('js-forum-topic-reply--container')
     @box = document.getElementsByClassName('js-forum-topic-reply')
     @block = document.getElementsByClassName('js-forum-topic-reply--block')
@@ -111,9 +111,12 @@ class @ForumTopicReply
 
 
   posted: (e, data) =>
+    input = @input[0]
+
     @deactivate()
-    @$input().val ''
+    input.value = ''
     @setState 'text', ''
+    @forumPostPreview.hidePreview(target: input)
 
     $newPost = $(data)
 
