@@ -325,6 +325,81 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame($editedMessage, $beatmapDiscussionPost->message);
     }
 
+    public function testPostUpdateNotLoggedIn()
+    {
+        $post = factory(BeatmapDiscussionPost::class)->create([
+            'beatmap_discussion_id' => $this->beatmapDiscussion->id,
+            'user_id' => $this->user->user_id,
+        ]);
+        $initialMessage = $post->message;
+
+        $this->putPost('', $post)
+            ->assertViewIs('users.login')
+            ->assertStatus(200);
+
+        $this->assertSame($initialMessage, $post->fresh()->message);
+    }
+
+    public function testPostUpdateWhenDiscussionResolved()
+    {
+        // reply made before resolve
+        $reply1 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+        $message1 = $reply1->message;
+
+        $this->postResolveDiscussion(true, $this->user);
+
+        // reply made after resolve
+        $reply2 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+        $message2 = $reply2->message;
+
+        $this->putPost("{$message1} edited", $reply1, $this->user)->assertStatus(403);
+        $this->putPost("{$message2} edited", $reply2, $this->user)->assertSuccessful();
+        $this->assertSame($message1, $reply1->fresh()->message);
+        $this->assertSame("{$message2} edited", $reply2->fresh()->message);
+    }
+
+    public function testPostUpdateWhenDiscussionReResolved()
+    {
+        // reply made before resolve
+        $reply1 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+        $message1 = $reply1->message;
+
+        $this->postResolveDiscussion(true, $this->user);
+        $this->postResolveDiscussion(false, $this->user);
+
+        // still should not be able to edit reply made before first resolve.
+        $this->putPost("{$message1} edited", $reply1, $this->user)->assertStatus(403);
+        $this->assertSame($message1, $reply1->fresh()->message);
+
+        // reply made after resolve
+        $reply2 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+        $message2 = $reply2->message;
+
+        $this->postResolveDiscussion(true, $this->user);
+
+        // should not be able to edit either reply.
+        $this->putPost("{$message1} edited", $reply1, $this->user)->assertStatus(403);
+        $this->putPost("{$message2} edited", $reply2, $this->user)->assertStatus(403);
+        $this->assertSame($message1, $reply1->fresh()->message);
+        $this->assertSame($message2, $reply2->fresh()->message);
+    }
+
     public function testStartingPostUpdate()
     {
         $post = $this->beatmapDiscussionPost;
