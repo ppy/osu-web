@@ -30,25 +30,35 @@
             $buttons[] = $buttonType;
         }
     }
+
+    $user = $post->userNormalized();
 ?>
 <div
     class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} forum-post"
     data-post-id="{{ $post->getKey() }}"
     data-post-position="{{ $options["postPosition"] }}"
 >
-    @include("forum.topics._post_info", ["user" => $post->userNormalized()])
+    @include('forum.topics._post_info', compact('user'))
 
     <div class="forum-post__body js-forum-post-edit--container">
         <div class="forum-post__content forum-post__content--header">
-            @if (isset($topic) && $topic->topic_poster === $post->poster_id)
-                <span class="forum-user-badge forum-user-badge--inline">
-                    {{ trans('forum.post.info.topic_starter') }}
-                </span>
-            @endif
+            <div class="forum-post__header-content">
+                @if (isset($topic) && $topic->topic_poster === $post->poster_id)
+                    <div class="forum-post__header-content-item">
+                        <span class="forum-user-badge">
+                            {{ trans('forum.post.info.topic_starter') }}
+                        </span>
+                    </div>
+                @endif
 
-            <a class="link link--default js-post-url" rel="nofollow" href="{{ $post->exists ? route('forum.posts.show', $post->post_id) : '#' }}">
-                {!! trans('forum.post.posted_at', ['when' => timeago($post->post_time)]) !!}
-            </a>
+                <div class="forum-post__header-content-item">
+                    {!! link_to_user($user, null, '', ['forum-post__user']) !!}
+
+                    <a class="link link--default js-post-url" rel="nofollow" href="{{ $post->exists ? route('forum.posts.show', $post->post_id) : '#' }}">
+                        {!! timeago($post->post_time) !!}
+                    </a>
+                </div>
+            </div>
 
             @if (count($buttons) > 0)
                 <div class="forum-post__menu">
