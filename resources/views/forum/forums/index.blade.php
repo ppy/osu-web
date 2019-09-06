@@ -16,10 +16,10 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
+    'legacyFont' => false,
     'legacyNav' => false,
     'pageDescription' => trans('forum.title'),
     'searchParams' => ['mode' => 'forum_post'],
-    'useTorusFont' => true,
 ])
 
 @section('content')

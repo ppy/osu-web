@@ -29,7 +29,7 @@ return [
         'first_post' => 'Tidak dapat menghapus postingan awal.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Isi pesan',
         ],
     ],
 
@@ -42,8 +42,8 @@ return [
         'locked' => 'Diskusi dikunci.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Tipe pesan',
+            'timestamp' => 'Keterangan Waktu',
         ],
 
         'hype' => [
@@ -64,7 +64,7 @@ return [
         'deleted_parent' => 'Membalas komentar yang sudah dihapus tidak diperbolehkan.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Isi pesan',
         ],
     ],
 
@@ -88,13 +88,13 @@ return [
             'only_quote' => 'Balasan Anda hanya berisi kutipan.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Isi postingan',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Judul topik',
             ],
         ],
 
@@ -108,7 +108,7 @@ return [
             'too_many_options' => 'Jumlah maksimum opsi melebihi yang diizinkan.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Judul pemungutan suara',
             ],
         ],
 
@@ -143,9 +143,9 @@ return [
         'too_long' => 'Melebihi batas maksimum - hanya bisa hingga :limit karakter.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Nama Pengguna',
+            'user_email' => 'Alamat Email',
+            'password' => 'Kata Sandi',
         ],
 
         'change_username' => [
@@ -165,8 +165,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Jumlah',
+                'cost' => 'Biaya',
             ],
         ],
     ],

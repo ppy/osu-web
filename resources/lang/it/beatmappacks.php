@@ -24,25 +24,25 @@ return [
             'important' => 'LEGGI PRIMA DI SCARICARE',
             'instruction' => [
                 '_' => "Installazione: Una volta scaricato il pacchetto desiderato, estrai il .rar nella cartella Songs di osu!.
-                    Tutte i brani saranno dei file .zip e/o .osz dentro il pacchetto, quindi osu! dovrà estrarre le beatmap in sé la prossima volta che entri nella modalità Play.
-                    :scary estrarre i file zip/osz manualmente,
-                    oppure le beatmap non verrano visualizzate correttamente su osu! e non funzioneranno a dovere.",
+                    Tutte le canzoni saranno ancora .zip e/o .osz dentro il pacchetto, quindi osu! dovrà estrarre le beatmap la prossima volta che entri nella modalità Play.
+                    :scary estrarre gli zip/osz manualmente,
+                    altrimenti le beatmap non verrano visualizzate correttamente su osu! e non funzioneranno a dovere.",
                 'scary' => 'NON',
             ],
             'note' => [
-                '_' => 'Nota inoltre che è altamente consigliabile :scary, visto che le mappe più vecchie sono di qualità nettamente inferiore rispetto alle più recenti.',
-                'scary' => 'scarica i pacchetti dal più recente al più vecchio',
+                '_' => 'Nota inoltre che è altamente consigliato di :scary, dato che le mappe più vecchie sono di qualità molto inferiore rispetto a quelle più recenti.',
+                'scary' => 'scaricare i pacchetti dal più recente al più vecchio',
             ],
         ],
-        'title' => 'Pacchetto di Beatmap',
+        'title' => 'Pacchetti Beatmap',
         'description' => 'Collezioni pre-confezionate di beatmap con un tema comune.',
     ],
 
     'show' => [
-        'download' => 'Download',
+        'download' => 'Scarica',
         'item' => [
-            'cleared' => 'completato',
-            'not_cleared' => 'non completate',
+            'cleared' => 'completata',
+            'not_cleared' => 'non completata',
         ],
     ],
 
@@ -54,7 +54,7 @@ return [
     ],
 
     'require_login' => [
-        '_' => 'Devi essere :link per scaricare',
-        'link_text' => 'accesso effettuato',
+        '_' => 'Devi :link per scaricare',
+        'link_text' => 'accedere',
     ],
 ];

@@ -34,14 +34,14 @@ return [
     ],
 
     'authorized-clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Tem certeza que deseja revogar as permissões deste cliente?',
+        'scopes_title' => 'A aplicação pode:',
+        'owned_by' => 'Possuído por :user',
+        'none' => 'Sem Clientes',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Revogar Acesso',
+            'true' => 'Acesso Revogado',
         ],
     ],
 

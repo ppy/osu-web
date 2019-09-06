@@ -23,6 +23,14 @@ return [
         'page_description' => 'osu! - Chỉ bắt đầu bằng một cái *click* chuột!  Với Ouendan/EBA, Taiko và những chế độ chơi nguyên bản, cũng như một level editor đầy đủ chức năng.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => '',
+        ],
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'trang chủ',

@@ -23,6 +23,14 @@ return [
         'page_description' => 'osu! - Rytmus je jen o klkání! Spolu s Ouendan/EBA, Taikem, originálními herními módy a plně funkčním level editorem.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => '',
+        ],
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'domů',

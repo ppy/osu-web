@@ -244,14 +244,14 @@ return [
     'status' => [
         'any' => '모두',
         'approved' => 'Approved',
-        'favourites' => '',
+        'favourites' => '즐겨찾기',
         'graveyard' => 'Graveyard',
-        'leaderboard' => '',
+        'leaderboard' => '리더보드 있음',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => '내 비트맵',
         'pending' => '보류 중 & 작업 중',
         'qualified' => 'Qualified',
-        'ranked' => '',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => '모두',

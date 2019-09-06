@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 følger|:count følgere',
+            'none' => '',
             'unranked' => 'Ingen seneste spil',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Afventende Beatmaps',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Ingen præstationsrekorder endnu. :(',
@@ -276,6 +287,11 @@ return [
                 'recent' => 'Seneste',
                 'title' => 'Medaljer',
             ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Seneste',
             ],
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Førstepladser',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Account Status',
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Hits i Alt',
             'total_score' => 'Samlet Score',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
