@@ -384,6 +384,21 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertTrue($reply->fresh()->trashed());
     }
 
+    public function testPostDestroyNotLoggedIn()
+    {
+        $reply = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+
+        $this->delete(route('beatmap-discussion-posts.destroy', $reply->id))
+            ->assertViewIs('users.login')
+            ->assertStatus(200);;
+
+        $this->assertFalse($reply->fresh()->trashed());
+    }
+
     public function testPostDestroyWhenDiscussionResolved()
     {
         // reply made before resolve
