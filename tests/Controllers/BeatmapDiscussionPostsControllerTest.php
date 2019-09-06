@@ -308,12 +308,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         // invalid user
         $this
-            ->actingAs($otherUser)
-            ->put(route('beatmap-discussion-posts.update', $beatmapDiscussionPost->id), [
-                'beatmap_discussion_post' => [
-                    'message' => $editedMessage,
-                ],
-            ])
+            ->putPost($beatmapDiscussionPost, $otherUser, $editedMessage)
             ->assertStatus(403);
 
         $beatmapDiscussionPost = $beatmapDiscussionPost->fresh();
@@ -322,12 +317,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         // correct user
         $this
-            ->actingAs($this->user)
-            ->put(route('beatmap-discussion-posts.update', $beatmapDiscussionPost->id), [
-                'beatmap_discussion_post' => [
-                    'message' => $editedMessage,
-                ],
-            ])
+            ->putPost($beatmapDiscussionPost, $this->user, $editedMessage)
             ->assertStatus(200);
 
         $beatmapDiscussionPost = $beatmapDiscussionPost->fresh();
@@ -338,18 +328,12 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     public function testStartingPostUpdate()
     {
         $post = $this->beatmapDiscussionPost;
-        $user = $this->user;
 
         $previousTimestamp = $post->beatmapDiscussion->timestamp;
 
         // removing timestamp isn't allowed
         $this
-            ->actingAs($this->user)
-            ->put(route('beatmap-discussion-posts.update', $post->id), [
-                'beatmap_discussion_post' => [
-                    'message' => 'Missing timestamp.',
-                ],
-            ])
+            ->putPost($post, $this->user, 'Missing timestamp.')
             ->assertStatus(422);
 
         $post = $post->fresh();
@@ -474,6 +458,17 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                 ],
                 'beatmap_discussion_post' => [
                     'message' => 'Hello',
+                ],
+            ]);
+    }
+
+    private function putPost(BeatmapDiscussionPost $post, ?User $user, string $message)
+    {
+        return $this
+            ->actingAs($user)
+            ->put(route('beatmap-discussion-posts.update', $post->id), [
+                'beatmap_discussion_post' => [
+                    'message' => $message,
                 ],
             ]);
     }
