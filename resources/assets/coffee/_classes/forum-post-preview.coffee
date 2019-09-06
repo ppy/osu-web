@@ -55,7 +55,7 @@ class @ForumPostPreview
       data: { text }
 
     .done (data) =>
-      $form.attr('data-last-text', text)
+      $body.attr('data-last-text', text)
 
       $preview.html(data)
       osu.pageChange()
