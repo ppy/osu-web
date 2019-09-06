@@ -380,14 +380,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             ])
         );
 
-        $this
-            ->actingAs($this->user)
-            ->delete(route('beatmap-discussion-posts.destroy', $reply->id))
-            ->assertStatus(200);
-
-        $reply->refresh();
-
-        $this->assertTrue($reply->trashed());
+        $this->deletePost($reply, $this->user)->assertStatus(200);
+        $this->assertTrue($reply->fresh()->trashed());
     }
 
     public function testPostDestroyWhenDiscussionResolved()
@@ -408,16 +402,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             ])
         );
 
-        $this
-            ->actingAs($this->user)
-            ->delete(route('beatmap-discussion-posts.destroy', $reply1->id))
-            ->assertStatus(403);
-
-        $this
-            ->actingAs($this->user)
-            ->delete(route('beatmap-discussion-posts.destroy', $reply2->id))
-            ->assertSuccessful();
-
+        $this->deletePost($reply1, $this->user)->assertStatus(403);
+        $this->deletePost($reply2, $this->user)->assertSuccessful();
         $this->assertFalse($reply1->fresh()->trashed());
         $this->assertTrue($reply2->fresh()->trashed());
     }
@@ -435,11 +421,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->postResolveDiscussion(false, $this->user);
 
         // still should not be able to delete reply made before first resolve.
-        $this
-            ->actingAs($this->user)
-            ->delete(route('beatmap-discussion-posts.destroy', $reply1->id))
-            ->assertStatus(403);
-
+        $this->deletePost($reply1, $this->user)->assertStatus(403);
         $this->assertFalse($reply1->fresh()->trashed());
 
         // reply made after resolve
@@ -452,18 +434,17 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->postResolveDiscussion(true, $this->user);
 
         // should not be able to delete either reply.
-        $this
-            ->actingAs($this->user)
-            ->delete(route('beatmap-discussion-posts.destroy', $reply1->id))
-            ->assertStatus(403);
-
-        $this
-            ->actingAs($this->user)
-            ->delete(route('beatmap-discussion-posts.destroy', $reply2->id))
-            ->assertStatus(403);
-
+        $this->deletePost($reply1, $this->user)->assertStatus(403);
+        $this->deletePost($reply2, $this->user)->assertStatus(403);
         $this->assertFalse($reply1->fresh()->trashed());
         $this->assertFalse($reply2->fresh()->trashed());
+    }
+
+    private function deletePost(BeatmapDiscussionPost $post, ?User $user)
+    {
+        return $this
+            ->actingAs($user)
+            ->delete(route('beatmap-discussion-posts.destroy', $post->id));
     }
 
     private function postResolveDiscussion(bool $resolved, User $user)
