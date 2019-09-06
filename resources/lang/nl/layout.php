@@ -25,9 +25,9 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => 'Community',
 
-            'forum' => '',
+            'forum' => 'Forum',
         ],
     ],
 
@@ -35,7 +35,7 @@ return [
         'home' => [
             '_' => 'start',
             'account-edit' => 'instellingen',
-            'account-verifyLink' => '',
+            'account-verifyLink' => 'Verificatie voltooid',
             'friends-index' => 'vrienden',
             'changelog-index' => 'changelog',
             'changelog-build' => 'versie',

@@ -26,7 +26,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => '',
+            'rules' => 'Avatarının :link\'na uyduğundan emin ol.<br/>Bu avatarının <strong>her yaş grubuna</strong> uygun olması gerektiği anlamına gelir. Yani çıplaklık, küfür veya müstehcen içerik olmamalıdır.',
             'rules_link' => 'topluluk kuralları',
         ],
 

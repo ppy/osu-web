@@ -25,9 +25,9 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => 'Topluluk',
 
-            'forum' => '',
+            'forum' => 'Forum',
         ],
     ],
 
@@ -35,7 +35,7 @@ return [
         'home' => [
             '_' => 'anasayfa',
             'account-edit' => 'ayarlar',
-            'account-verifyLink' => '',
+            'account-verifyLink' => 'Doğrulama Tamamlandı',
             'friends-index' => 'arkadaşlar',
             'changelog-index' => 'değişiklikler',
             'changelog-build' => 'sürüm',

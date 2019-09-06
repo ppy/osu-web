@@ -246,7 +246,7 @@ return [
         'approved' => 'Aprovado',
         'favourites' => 'Favoritos',
         'graveyard' => 'Cemitério',
-        'leaderboard' => '',
+        'leaderboard' => 'Possui Classificações',
         'loved' => 'Loved',
         'mine' => 'Meus Maps',
         'pending' => 'Pendente & Em Progresso',

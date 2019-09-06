@@ -154,8 +154,8 @@ return [
                     'unsupported_format' => '不支持的格式。',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => '自定义头图只有 :link 可用',
+                        'link' => 'osu! 支持者',
                     ],
                 ],
             ],
@@ -168,7 +168,7 @@ return [
 
         'extra' => [
             'followers' => '关注者：:count',
-            'none' => '',
+            'none' => '无',
             'unranked' => '最近没有玩过',
 
             'achievements' => [
@@ -198,14 +198,14 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => '讨论',
+                'title_longer' => '最近讨论',
+                'show_more' => '查看更多讨论',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => '事件',
+                'title_longer' => '最近事件',
+                'show_more' => '查看更多事件',
             ],
             'historical' => [
                 'empty' => '没有游戏记录。:(',
@@ -275,8 +275,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => '取决于你对制谱的贡献如何。查看 :link 获得更多信息。',
+                    'link' => '这个页面',
                 ],
             ],
             'me' => [
@@ -288,9 +288,9 @@ return [
                 'title' => '成就',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => '回复',
+                'title_longer' => '最近回复',
+                'show_more' => '查看更多回复',
             ],
             'recent_activity' => [
                 'title' => '最近活动',
@@ -310,11 +310,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => '给予投票（最近三个月）',
+                'received' => '所得投票（最近三个月）',
+                'title' => '投票',
+                'title_longer' => '最近投票',
+                'vote_count' => ':count_delimited 票',
             ],
             'account_standing' => [
                 'title' => '帐号状态',
@@ -369,7 +369,7 @@ return [
 
             'restriction_info' => [
                 '_' => '你需要成为 :link 才能使用此功能。',
-                'link' => '',
+                'link' => 'osu!支持者',
             ],
         ],
         'post_count' => [
