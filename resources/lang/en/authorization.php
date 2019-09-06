@@ -55,6 +55,7 @@ return [
 
         'edit' => [
             'not_owner' => 'Only the poster can edit post.',
+            'resolved' => 'You can not edit a post of a resolved discussion.',
             'system_generated' => 'Automatically generated post can not be edited.',
         ],
 
