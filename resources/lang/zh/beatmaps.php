@@ -251,7 +251,7 @@ return [
         'mine' => '我的谱面',
         'pending' => 'Pending & WIP',
         'qualified' => 'Qualified',
-        'ranked' => '进榜',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => '所有',

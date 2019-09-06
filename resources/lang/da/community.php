@@ -20,45 +20,63 @@
 
 return [
     'support' => [
-        'header' => [
-            // size in font-size
-            'big_description' => 'Elsker du osu!?<br/>
-                                Støt udviklerne af osu! :D',
-            'small_description' => '',
-            'support_button' => 'Jeg ønsker at støtte osu!',
+        'convinced' => [
+            'title' => 'Jeg er overbevist! :D',
+            'support' => 'støt osu!',
+            'gift' => 'eller giv det som en gave til en anden',
+            'instructions' => 'klik på knappen med hjertet for at gå videre til osu! butikken',
         ],
+        'why-support' => [
+            'title' => '',
 
-        'dev_quote' => 'osu! er et spil, som er helt gratis og frit at spille, men det at drive det er ikke helt gratis. Både på grund af serverne med international breddebånd af høj kvalitet, tiden det tager at vedligeholde systemet og fællesskabet, fremskaffelsen af præmier til konkurrencer og turnering, besvarelser af support spørgsmål og generelt det at sørge for, at alle er tilfredse koster rigtig, rigtig mange penge. Og glem nu ikke, at vi gør alt dette uden at tjene så meget som en krone på reklamer eller partnerskaber!
-            <br/><br/>osu! er i sidste ende stort set kun drevet af mig selv, bedre kendt som "peppy".
-            Jeg var nødt til at sige mit almindelig hverdagsjob op bare for, at holde osu! i live og for at holde de standarder, som jeg ønskede.
-            Jeg vil gerne personligt sige tusinde mange gange tak til alle dem, som har støttet osu! så vidt
-            og ligeledes til alle dem, som fortsat støtter dette fantastiske spil og fællesskab ud i fremtiden :)',
-
-        'supporter_status' => [
-            'contribution' => ' Tak for din støtte indtil nu! Du har bidraget med :dollars over :tags supporter tag indkøb!',
-            'gifted' => ':giftedTags af dine supporter tag indkøb var givet som gave (for et samlet antal af :giftedDollars), hvor generøst!',
-            'not_yet' => "You don't have a supporter tag yet :(",
-            'title' => 'Nuværende supporter status',
-            'valid_until' => 'Dit nuværende supporter tag gælder indtil den :date!',
-            'was_valid_until' => 'Dit supporter tag galdt indtil den :date.',
-        ],
-
-        'why_support' => [
-            'title' => 'Hvorfor skulle jeg støtte osu!?',
-            'blocks' => [
-                'dev' => 'Udviklet og vedligeholdt hovedsageligt af én fyr fra Australien.',
-                'time' => 'Tager så lang tid at vedligeholde, at jeg kan ikke længere kalde det en "hobby".',
-                'ads' => 'Ingen reklamer overhovedet. <br/><br/>
-                        I modsætning til 99.95% af internettet tjener vi ikke penge på at bombardere dig med reklamer.',
-                'goodies' => 'Du får nogle ekstra lækre fordele!',
+            'team' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'infra' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'featured-artists' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'ads' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'tournaments' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'bounty-program' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
             ],
         ],
-
         'perks' => [
             'title' => 'Uhh, hvad får jeg så?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'hurtig og nem adgang til at søge efter beatmaps uden at forlade spillet.',
+            ],
+
+            'friend_ranking' => [
+                'title' => '',
+                'description' => "",
+            ],
+
+            'country_ranking' => [
+                'title' => '',
+                'description' => '',
+            ],
+
+            'mod_filtering' => [
+                'title' => '',
+                'description' => '',
             ],
 
             'auto_downloads' => [
@@ -78,7 +96,7 @@ return [
 
             'customisation' => [
                 'title' => 'Tilpasning',
-                'description' => 'Du kan tilpasse din profil med mange flere indstillinger.',
+                'description' => "Du kan tilpasse din profil med mange flere indstillinger.",
             ],
 
             'beatmap_filters' => [
@@ -116,22 +134,30 @@ return [
                 'description' => 'Muligheden for at vise et beatmap specificeret efter land-, venne og mod rangeringer i spillet.',
             ],
 
-            'feel_special' => [
-                'title' => 'Føl Dig Speciel',
-                'description' => 'Nyd den fantastiske fornemmelse af, at du aktivt støtter osu!s fremtid',
-            ],
-
-            'more_to_come' => [
-                'title' => 'Og der kommer mere...',
+            'more_favourites' => [
+                'title' => '',
                 'description' => '',
             ],
-        ],
+            'more_friends' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'more_beatmaps' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'friend_filtering' => [
+                'title' => '',
+                'description' => '',
+            ],
 
-        'convinced' => [
-            'title' => 'Jeg er overbevist! :D',
-            'support' => 'støt osu!',
-            'gift' => 'eller giv det som en gave til en anden',
-            'instructions' => 'klik på knappen med hjertet for at gå videre til osu! butikken',
+        ],
+        'supporter_status' => [
+            'contribution' => ' Tak for din støtte indtil nu! Du har bidraget med :dollars over :tags supporter tag indkøb!',
+            'gifted' => ":giftedTags af dine supporter tag indkøb var givet som gave (for et samlet antal af :giftedDollars), hvor generøst!",
+            'not_yet' => "You don't have a supporter tag yet :(",
+            'valid_until' => 'Dit nuværende supporter tag gælder indtil den :date!',
+            'was_valid_until' => 'Dit supporter tag galdt indtil den :date.',
         ],
     ],
 ];

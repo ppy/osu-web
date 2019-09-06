@@ -25,6 +25,8 @@ export class Info extends React.Component
   constructor: (props) ->
     super props
 
+    @overlay = React.createRef()
+
     @state =
       isBusy: false
       isEditing: false
@@ -42,12 +44,23 @@ export class Info extends React.Component
     $(window).off '.beatmapsetPageInfo'
 
 
+  # see Modal#hideModal
   dismissEditor: (e) =>
-    @setState isEditing: false if e.target == @overlay
+    @setState isEditing: false if e.button == 0 &&
+                                  e.target == @overlay.current &&
+                                  @clickEndTarget == @clickStartTarget
 
 
   editStart: =>
     @setState isEditing: true
+
+
+  handleClickEnd: (e) =>
+    @clickEndTarget = e.target
+
+
+  handleClickStart: (e) =>
+    @clickStartTarget = e.target
 
 
   onEditorChange: (action) =>
@@ -131,7 +144,9 @@ export class Info extends React.Component
           div
             className: 'beatmapset-description-editor__overlay'
             onClick: @dismissEditor
-            ref: (element) => @overlay = element
+            onMouseDown: @handleClickStart
+            onMouseUp: @handleClickEnd
+            ref: @overlay
 
             div className: 'beatmapset-description-editor__container osu-page',
               el BBCodeEditor,

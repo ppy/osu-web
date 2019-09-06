@@ -27,7 +27,7 @@ return [
         'avatar' => [
             'title' => '头像',
             'rules' => '',
-            'rules_link' => '',
+            'rules_link' => '社群规则',
         ],
 
         'email' => [
@@ -108,11 +108,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => '现在可以关闭本窗口了',
+        'title' => '验证已经完成',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => '无效或过期的验证链接',
     ],
 ];

@@ -23,7 +23,7 @@ return [
 
     'authorise' => [
         'authorise' => '권한 부여',
-        'request' => '는 당신의 계정에 엑세스할 수 있는 권한을 요청합니다.',
+        'request' => '는 당신의 계정에 접근할 수 있는 권한을 요청합니다.',
         'scopes_title' => '이 애플리케이션은 다음 기능을 할 수 있습니다:',
         'title' => '권한 요청',
 
@@ -34,14 +34,14 @@ return [
     ],
 
     'authorized-clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => '정말로 이 클라이언트의 권한을 회수하시겠습니까?',
+        'scopes_title' => '이 애플리케이션이 할 수 있는 작업:',
+        'owned_by' => ':user님이 소유 중',
+        'none' => '클라이언트 없음',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => '접근 권한 회수',
+            'true' => '접근 권한 회수됨',
         ],
     ],
 

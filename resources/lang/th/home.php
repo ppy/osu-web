@@ -23,11 +23,11 @@ return [
         'download' => 'ดาวน์โหลดเลย',
         'online' => '<strong>:players</strong> currently online in <strong>:games</strong> games',
         'peak' => 'Peak, :count online users',
-        'players' => '<strong>:count</strong> registered players',
+        'players' => 'มีผู้เล่นลงทะเบียนแล้ว <strong>:count</strong> คน',
         'title' => 'ยินดีต้อนรับ',
 
         'slogan' => [
-            'main' => 'the bestest free-to-win rhythm game',
+            'main' => 'เกมดนตรีเล่นฟรีที่เริศที่สุดในสามโลก',
             'sub' => 'rhythm is just a click away',
         ],
     ],
@@ -35,9 +35,9 @@ return [
     'search' => [
         'advanced_link' => 'การค้นหาขั้นสูง',
         'button' => 'ค้นหา',
-        'empty_result' => 'ไม่พบสิ่งใด!',
+        'empty_result' => 'ไม่เจออะ',
         'keyword_required' => 'ต้องการค้นหาคำหลัก',
-        'placeholder' => 'type to search',
+        'placeholder' => 'หาอะไรพิมพ์ตรงนี้เลย',
         'title' => 'ค้นหา',
 
         'beatmapset' => [
@@ -48,22 +48,22 @@ return [
 
         'forum_post' => [
             'all' => 'ฟอรั่มทั้งหมด',
-            'link' => 'Search the forum',
+            'link' => 'ค้นหาตามฟอรัม',
             'more_simple' => 'See more forum search results',
             'title' => 'Forum',
 
             'label' => [
                 'forum' => 'search in forums',
-                'forum_children' => 'include subforums',
+                'forum_children' => 'รวมฟอรัมย่อยด้วย',
                 'topic_id' => 'หัวข้อ #',
-                'username' => 'ผู้สร้าง',
+                'username' => 'ผู้แต่ง',
             ],
         ],
 
         'mode' => [
             'all' => 'ทั้งหมด',
-            'beatmapset' => 'บีทแมพ',
-            'forum_post' => 'ฟอรั่ม',
+            'beatmapset' => 'บีตแมป',
+            'forum_post' => 'ฟอรัม',
             'user' => 'ผู้เล่น',
             'wiki_page' => 'วิกิ',
         ],
@@ -76,33 +76,33 @@ return [
         ],
 
         'wiki_page' => [
-            'link' => 'Search the wiki',
+            'link' => 'ค้นหาในวิกิ',
             'more_simple' => 'See more wiki search results',
             'title' => 'Wiki',
         ],
     ],
 
     'download' => [
-        'tagline' => "let's get<br>you started!",
-        'action' => 'Download osu!',
+        'tagline' => "เรามา<br>เริ่มกันเถอะ",
+        'action' => 'ดาวน์โหลด osu!',
         'os' => [
-            'windows' => 'สำหรับ Windows',
+            'windows' => 'สำหรับวินโดวส์',
             'macos' => 'สำหรับ macOS',
-            'linux' => 'สำหรับ Linux',
+            'linux' => 'สำหรับ GNU/Linux',
         ],
         'mirror' => 'mirror',
-        'macos-fallback' => 'macOS users',
+        'macos-fallback' => 'คนใช้ macOS',
         'steps' => [
             'register' => [
-                'title' => 'get an account',
-                'description' => 'follow the prompts when starting the game to sign in or make a new account',
+                'title' => 'สร้างบัญชี',
+                'description' => 'เข้าเกมแล้วทำตามที่มันบอกเพื่อเข้าสู่ระบบ หรือไปสร้างบัญชีใหม่',
             ],
             'download' => [
-                'title' => 'download the game',
-                'description' => 'click the button above to download the installer, then run it!',
+                'title' => 'ดาว์นโหลดเกม',
+                'description' => 'กดปุ่มข้างบนเพื่อดาวน์โหลดตัวติดตั้ง โหลดเสร็จก็รันซะ',
             ],
             'beatmaps' => [
-                'title' => 'get beatmaps',
+                'title' => 'ไปโหลดบีตแมป',
                 'description' => [
                     '_' => ':browse the vast library of user-created beatmaps and start playing!',
                     'browse' => 'browse',
@@ -116,10 +116,10 @@ return [
         'title' => 'dashboard',
         'news' => [
             'title' => 'ข่าวสาร',
-            'error' => 'Error loading news, try refreshing the page?...',
+            'error' => 'โหลดข่าวสารไม่ได้ ลองรีเฟรชดู เผื่อติดนะ',
         ],
         'header' => [
-            'welcome' => 'Hello, <strong>:username</strong>!',
+            'welcome' => 'สวัสดี <strong>:username</strong>',
             'messages' => 'คุณมี :count ข้อความใหม่|คุณมี :count ข้อความใหม่',
             'stats' => [
                 'friends' => 'จำนวนเพื่อนที่ออนไลน์',
@@ -129,13 +129,13 @@ return [
         ],
         'beatmaps' => [
             'new' => 'Ranked Beatmaps อันใหม่',
-            'popular' => 'บีทแมพที่นิยม',
+            'popular' => 'บีตแมปยอดฮิต',
             'by' => 'โดย',
             'plays' => ':count plays',
         ],
         'buttons' => [
-            'download' => 'Download osu!',
-            'support' => 'Support osu!',
+            'download' => 'ดาวน์โหลด osu!',
+            'support' => 'สนับสนุน osu!',
             'store' => 'osu!store',
         ],
     ],
@@ -144,8 +144,8 @@ return [
         'title' => 'ว้าว!',
         'subtitle' => 'You seem to be having a good time! :D',
         'body' => [
-            'part-1' => 'Did you know that osu! runs with no advertising, and relies on players to support its development and running costs?',
-            'part-2' => 'Did you also know that by supporting osu! you get a heap of useful features, such as <strong>in-game downloading</strong> which automatically triggers in spectator and multiplayer games?',
+            'part-1' => 'รู้หรือไม่ว่า osu! อยู่ได้โดยไม่มีโฆษณาเลย แต่จะขึ้นกับการสนับสนุนของผู้เล่นทุกคนซึ่งช่วยเรื่องการพัฒนาและค่าใช้จ่ายต่าง ๆ',
+            'part-2' => 'รู้หรือไม่ว่าคุณจะได้สิทธิพิเศษเพียบเมื่อสนับสนุน osu! เช่น <strong>การดาวน์โหลดในเกม</strong> เอาไว้ใช้ตอนที่ดูคนอื่นเล่นหรือเข้าห้องเล่นหลายคน',
         ],
         'find-out-more' => 'Click here to find out more!',
         'download-starting' => "Oh, and don't worry - your download has already been started for you already ;)",

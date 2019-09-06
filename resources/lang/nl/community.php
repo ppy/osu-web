@@ -20,44 +20,63 @@
 
 return [
     'support' => [
-        'header' => [
-            // size in font-size
-            'big_description' => 'Houd je van osu!?<br/>
-                                Support de ontwikkeling van osu! :D',
-            'small_description' => '',
-            'support_button' => 'Ik wil osu! supporten!',
+        'convinced' => [
+            'title' => 'Ik ben overgehaald! :D',
+            'support' => 'support osu!',
+            'gift' => 'of gun het iemand anders',
+            'instructions' => 'klik op het hartje om naar de osu!store te gaan',
         ],
+        'why-support' => [
+            'title' => '',
 
-        'dev_quote' => 'osu! is een compleet vrij-om-te-spelen spel, maar het draaien ervan is echter niet gratis. Tussen de kosten van de servers en de hoge kwaliteit internationale bandbreedte, de tijd die gebruikt wordt de systemen en de community bij te houden, het regelen van prijzen voor competities, het beantwoorden van ondersteuningsvragen en mensen over het algemeen blij houden gebruikt osu! een hoop geld. Oh en vergeet natuurlijk niet dat we dat allemaal doen zonder het tonen van advertenties of het partneren met onzinnige toolbars enzo!
-<br/><br/>osu! wordt aan het einde van de dag voor het grootste gedeelte onderhouden door mezelf; degene die je waarschijnlijk het beste kent als "peppy".
-Ik ben gestopt met m\'n oude baan om osu! bij te kunnen houden en zelfs dan heb ik nog steeds moeite met het ophouden van mijn standaarden.
-Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar net zoveel degenen die dit geweldige spel en community ondersteunen in de toekomst :).',
-
-        'supporter_status' => [
-            'contribution' => 'Bedankt voor je hulp tot nu toe! Je hebt in totaal :dollars toegedragen in :tags supporter aankopen!',
-            'gifted' => ':giftedTags van je aankopen waren een cadeau voor iemand anders (een totaal van :giftedDollars), hoe vrijgevig!',
-            'not_yet' => "Je hebt nog geen supporter tag :(",
-            'title' => 'Huidige supporter status',
-            'valid_until' => 'Je huidige supporter tag is geldig tot :date!',
-            'was_valid_until' => 'Je supporter tag was geldig tot :date.',
-        ],
-
-        'why_support' => [
-            'title' => 'Waarom zou ik osu! supporten?',
-            'blocks' => [
-                'dev' => 'Voor het grootste gedeelte ontwikkelt door één kerel in Australië.',
-                'time' => 'Neemt zoveel tijd in beslag dat je het geen "hobby" meer kunt noemen.',
-                'ads' => 'Geen advertenties. <br/><br/>
-                        Anders dan 99.95% van het internet verdienen wij geen geld door onzin in je gezicht te duwen.',
-                'goodies' => 'Je krijgt wat extra goodies!',
+            'team' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'infra' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'featured-artists' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'ads' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'tournaments' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'bounty-program' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
             ],
         ],
-
         'perks' => [
             'title' => 'Oh? Wat krijg ik dan?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'snel en makkelijk beatmaps zoeken zonder het spel te verlaten.',
+            ],
+
+            'friend_ranking' => [
+                'title' => '',
+                'description' => "",
+            ],
+
+            'country_ranking' => [
+                'title' => '',
+                'description' => '',
+            ],
+
+            'mod_filtering' => [
+                'title' => '',
+                'description' => '',
             ],
 
             'auto_downloads' => [
@@ -77,7 +96,7 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
 
             'customisation' => [
                 'title' => 'Personalisatie',
-                'description' => 'Personaliseer je profiel met een volledig bewerkbare sectie.',
+                'description' => "Personaliseer je profiel met een volledig bewerkbare sectie.",
             ],
 
             'beatmap_filters' => [
@@ -115,22 +134,30 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
                 'description' => 'De mogelijkheid om beatmaps scores per land / vrienden / mod-specifiek in-game te zien.',
             ],
 
-            'feel_special' => [
-                'title' => 'Voel je Speciaal',
-                'description' => 'Het warme, pluizige gevoel van het doen van jou deel om osu! vloeiend te laten lopen!',
-            ],
-
-            'more_to_come' => [
-                'title' => 'Meer komt nog',
+            'more_favourites' => [
+                'title' => '',
                 'description' => '',
             ],
-        ],
+            'more_friends' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'more_beatmaps' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'friend_filtering' => [
+                'title' => '',
+                'description' => '',
+            ],
 
-        'convinced' => [
-            'title' => 'Ik ben overgehaald! :D',
-            'support' => 'support osu!',
-            'gift' => 'of gun het iemand anders',
-            'instructions' => 'klik op het hartje om naar de osu!store te gaan',
+        ],
+        'supporter_status' => [
+            'contribution' => 'Bedankt voor je hulp tot nu toe! Je hebt in totaal :dollars toegedragen in :tags supporter aankopen!',
+            'gifted' => ":giftedTags van je aankopen waren een cadeau voor iemand anders (een totaal van :giftedDollars), hoe vrijgevig!",
+            'not_yet' => "Je hebt nog geen supporter tag :(",
+            'valid_until' => 'Je huidige supporter tag is geldig tot :date!',
+            'was_valid_until' => 'Je supporter tag was geldig tot :date.',
         ],
     ],
 ];

@@ -38,8 +38,8 @@ return [
         'generic' => '處理您的訂單時發生錯誤。',
     ],
     'search' => [
-        'default' => '',
-        'operation_timeout_exception' => '',
+        'default' => '無法獲得任何結果，請稍後再試。',
+        'operation_timeout_exception' => '搜索目前比平常更繁忙，稍後再試。',
     ],
 
     'logged_out' => '您已登出，請登入後再試。',
