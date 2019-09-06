@@ -23,6 +23,8 @@
     $options['buttons']['edit'] = $options['buttons']['edit'] ?? false;
     $options['buttons']['quote'] = $options['buttons']['quote'] ?? false;
 
+    $buttons = [];
+
     foreach (['edit', 'delete', 'quote'] as $buttonType) {
         if ($options['buttons'][$buttonType]) {
             $buttons[] = $buttonType;
