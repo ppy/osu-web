@@ -110,8 +110,15 @@
   }
 
   &__menu {
+    margin-left: auto;
+
     @media @desktop {
       display: none;
     }
+  }
+
+  &__menu-button {
+    .reset-input();
+    padding: 5px;
   }
 }
