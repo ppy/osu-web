@@ -308,7 +308,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         // invalid user
         $this
-            ->putPost($beatmapDiscussionPost, $otherUser, $editedMessage)
+            ->putPost($editedMessage, $beatmapDiscussionPost, $otherUser)
             ->assertStatus(403);
 
         $beatmapDiscussionPost = $beatmapDiscussionPost->fresh();
@@ -317,7 +317,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         // correct user
         $this
-            ->putPost($beatmapDiscussionPost, $this->user, $editedMessage)
+            ->putPost($editedMessage, $beatmapDiscussionPost, $this->user)
             ->assertStatus(200);
 
         $beatmapDiscussionPost = $beatmapDiscussionPost->fresh();
@@ -333,7 +333,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         // removing timestamp isn't allowed
         $this
-            ->putPost($post, $this->user, 'Missing timestamp.')
+            ->putPost('Missing timestamp.', $post, $this->user)
             ->assertStatus(422);
 
         $post = $post->fresh();
@@ -376,7 +376,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             ])
         );
 
-        $this->delete(route('beatmap-discussion-posts.destroy', $reply->id))
+        $this->deletePost($reply)
             ->assertViewIs('users.login')
             ->assertStatus(200);
 
@@ -439,10 +439,9 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertFalse($reply2->fresh()->trashed());
     }
 
-    private function deletePost(BeatmapDiscussionPost $post, ?User $user)
+    private function deletePost(BeatmapDiscussionPost $post, ?User $user = null)
     {
-        return $this
-            ->actingAs($user)
+        return ($user === null ? $this : $this->actingAs($user))
             ->delete(route('beatmap-discussion-posts.destroy', $post->id));
     }
 
@@ -462,10 +461,9 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             ]);
     }
 
-    private function putPost(BeatmapDiscussionPost $post, ?User $user, string $message)
+    private function putPost(string $message, BeatmapDiscussionPost $post, ?User $user = null)
     {
-        return $this
-            ->actingAs($user)
+        return ($user === null ? $this : $this->actingAs($user))
             ->put(route('beatmap-discussion-posts.update', $post->id), [
                 'beatmap_discussion_post' => [
                     'message' => $message,
