@@ -29,7 +29,7 @@ return [
         'first_post' => 'Невозможно удалить первую публикацию.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Сообщение',
         ],
     ],
 
@@ -42,8 +42,8 @@ return [
         'locked' => 'Обсуждение закрыто.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Тип сообщения',
+            'timestamp' => 'Временная отметка',
         ],
 
         'hype' => [
@@ -64,7 +64,7 @@ return [
         'deleted_parent' => 'Нельзя ответить на удалённый комментарий.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Сообщение',
         ],
     ],
 
@@ -94,7 +94,7 @@ return [
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Заголовок темы',
             ],
         ],
 
@@ -143,9 +143,9 @@ return [
         'too_long' => 'Превышено максимальное количество символов - можно использовать только до :limit characters символов.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Имя пользователя',
+            'user_email' => 'E-mail адрес',
+            'password' => 'Пароль',
         ],
 
         'change_username' => [
@@ -165,8 +165,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Кол-во',
+                'cost' => 'Цена',
             ],
         ],
     ],

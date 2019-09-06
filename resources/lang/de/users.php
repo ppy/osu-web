@@ -154,8 +154,8 @@ return [
                     'unsupported_format' => 'Format wird nicht unterstützt.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Hochladen nur für :link verfügbar',
+                        'link' => 'osu!supporter',
                     ],
                 ],
             ],
@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 Follower|:count Follower',
+            'none' => '',
             'unranked' => 'Keine Plays in letzter Zeit',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Pending Beatmaps',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Keine Performance-Einträge. :(',
@@ -264,8 +275,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Basierend auf dem Beitrag, den der Benutzer zur Beatmap-Moderation geleistet hat. Weitere Informationen unter :link.',
+                    'link' => 'diese Seite',
                 ],
             ],
             'me' => [
@@ -275,6 +286,11 @@ return [
                 'empty' => "Dieser Nutzer hat noch keine erhalten. ;_;",
                 'recent' => 'Neuste',
                 'title' => 'Medaillen',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Neulich',
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Erster Platz',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Accountstatus',
@@ -345,8 +368,8 @@ return [
             'placeholder' => 'Seiteninhalt hier eingeben',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Sie müssen ein :link sein, um diese Funktion freizuschalten.',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Ränge durch Punkte',
             'total_hits' => 'Total Hits',
             'total_score' => 'Gesamtpunktzahl',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -388,7 +416,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'Kartenansicht',
+        'list' => 'Listenansicht',
     ],
 ];

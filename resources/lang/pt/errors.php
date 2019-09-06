@@ -38,8 +38,8 @@ return [
         'generic' => 'Ocorreu um erro ao preparar o teu pagamento.',
     ],
     'search' => [
-        'default' => '',
-        'operation_timeout_exception' => '',
+        'default' => 'Não foi possível obter nenhuns resultados, tenta outra vez mais tarde.',
+        'operation_timeout_exception' => 'No presente, a pesquisa está mais ocupada que o habitual, tenta outra vez mais tarde.',
     ],
 
     'logged_out' => 'Foste desconectado. Por favor inicia sessão e tenta outra vez.',

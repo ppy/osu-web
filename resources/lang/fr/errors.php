@@ -38,8 +38,8 @@ return [
         'generic' => 'Une erreur s’est produite lors de la préparation de votre commande.',
     ],
     'search' => [
-        'default' => '',
-        'operation_timeout_exception' => '',
+        'default' => 'Impossible d\'obtenir des résultats, réessayez plus tard.',
+        'operation_timeout_exception' => 'La recherche est actuellement plus active que d\'habitude, réessayez plus tard.',
     ],
 
     'logged_out' => 'Vous avez été déconnecté. Merci de vous connecter et de réessayer.',

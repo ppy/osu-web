@@ -29,7 +29,7 @@ return [
         'first_post' => 'Başlangıç yazısı silinemez.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Mesaj',
         ],
     ],
 
@@ -42,7 +42,7 @@ return [
         'locked' => 'Tartışma kilitli.',
 
         'attributes' => [
-            'message_type' => '',
+            'message_type' => 'Mesaj türü',
             'timestamp' => '',
         ],
 
@@ -64,7 +64,7 @@ return [
         'deleted_parent' => 'Silinmiş yorumlara cevap verilemez.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Mesaj',
         ],
     ],
 
@@ -88,13 +88,13 @@ return [
             'only_quote' => 'Cevabınız sadece bir alıntı içeriyor.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Gönderi içeriği',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Konu başlığı',
             ],
         ],
 
@@ -108,7 +108,7 @@ return [
             'too_many_options' => 'İzin verilen maksimum seçenek sayısı aşıldı.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Anket başlığı',
             ],
         ],
 
@@ -143,9 +143,9 @@ return [
         'too_long' => 'Maksimum uzunluk aşıldı - yalnızca :limit karakter olabilir.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Kullanıcı adı',
+            'user_email' => 'E-posta adresi',
+            'password' => 'Şifre',
         ],
 
         'change_username' => [
@@ -165,8 +165,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Miktar',
+                'cost' => 'Ücret',
             ],
         ],
     ],
