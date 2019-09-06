@@ -17,14 +17,29 @@
 --}}
 <label class="osu-switch-v2">
     @if (isset($defaultValue))
-        <input type="hidden" name="{{ $attributes['name'] }}" value="{{ $defaultValue }}" />
+        <input
+            type="hidden"
+            @if (isset($name))
+                name="{{ $name }}"
+            @endif
+            value="{{ $defaultValue }}"
+        />
     @endif
     <input
-        @foreach ($attributes as $key => $value)
-            {!! $key !!}="{{ $value }}"
-        @endforeach
         class="osu-switch-v2__input {{ $additionalClass ?? '' }}"
-        {!! ($checked ?? false) ? 'checked' : '' !!}
+        type="{{ $type ?? 'checkbox' }}"
+        @if (isset($name))
+            name="{{ $name }}"
+        @endif
+        @if (isset($value))
+            value="{{ $value }}"
+        @endif
+        @if ($checked ?? false)
+            checked
+        @endif
+        @foreach ($attributes ?? [] as $k => $v)
+            {!! $k !!}="{{ $v }}"
+        @endforeach
     />
     <span class="osu-switch-v2__content"></span>
 </label>

@@ -38,12 +38,10 @@
             <label class="forum-poll-option">
                 <div class="forum-poll-option__input">
                     @include('objects._switch', [
-                        'attributes' => [
-                            'type' => $topic->poll_max_options === 1 ? 'radio' : 'checkbox',
-                            'name' => 'forum_topic_vote[option_ids][]',
-                            'value' => $pollOptionId,
-                        ],
                         'checked' => $pollOption['voted_by_user'],
+                        'name' => 'forum_topic_vote[option_ids][]',
+                        'type' => $topic->poll_max_options === 1 ? 'radio' : 'checkbox',
+                        'value' => $pollOptionId,
                     ])
                 </div>
                 <div class="forum-poll-option__label">

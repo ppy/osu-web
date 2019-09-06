@@ -27,12 +27,9 @@
             <div class="account-edit-entry account-edit-entry--no-label js-account-edit" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
                 <label class="account-edit-entry__checkbox">
                     @include('objects._switch', [
-                        'attributes' => [
-                            'name' => 'user[pm_friends_only]',
-                            'type' => 'checkbox',
-                        ],
                         'additionalClass' => 'js-account-edit__input',
                         'checked' => auth()->user()->pm_friends_only,
+                        'name' => 'user[pm_friends_only]',
                     ])
 
                     <span class="account-edit-entry__checkbox-label">
@@ -48,12 +45,9 @@
             <div class="account-edit-entry account-edit-entry--no-label js-account-edit" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
                 <label class="account-edit-entry__checkbox">
                     @include('objects._switch', [
-                        'attributes' => [
-                            'name' => 'user[hide_presence]',
-                            'type' => 'checkbox',
-                        ],
                         'additionalClass' => 'js-account-edit__input',
                         'checked' => auth()->user()->hide_presence,
+                        'name' => 'user[hide_presence]',
                     ])
 
                     <span class="account-edit-entry__checkbox-label">
