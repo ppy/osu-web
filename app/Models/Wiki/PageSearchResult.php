@@ -34,7 +34,7 @@ class PageSearchResult extends Page
         $this->hit = $hit;
     }
 
-    public function highlightedTitle($titleOnly = false)
+    public function highlightedTitle()
     {
         $highlights = $this->hit->highlights('title');
         if (empty($highlights)) {
@@ -42,10 +42,6 @@ class PageSearchResult extends Page
         }
 
         $title = $highlights[0];
-
-        if ($titleOnly) {
-            return $title;
-        }
 
         if (present($this->subtitle())) {
             $title = $this->subtitle().' / '.$title;

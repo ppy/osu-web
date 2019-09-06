@@ -88,15 +88,13 @@ class WikiSearch extends RecordSearch
         if ($this->params->queryString !== null) {
             $matchQuery->shouldMatch(1)
                 ->should(['match' => [
-                    'title' => [
+                    'tags' => [
                         'query' => $this->params->queryString,
                         'boost' => 10,
                     ],
-                ]]);
-
-            if (!$this->params->titleOnly) {
-                $matchQuery->should(['match' => [
-                    'tags' => [
+                ]])
+                ->should(['match' => [
+                    'title' => [
                         'query' => $this->params->queryString,
                         'boost' => 10,
                     ],
@@ -108,19 +106,15 @@ class WikiSearch extends RecordSearch
                     ],
                 ]]);
 
-                if (!$this->params->isQueryStringTooShort()) {
-                    $matchQuery->should(['match' => [
-                        'page_text' => $this->params->queryString,
-                    ]]);
-                }
+            if (!$this->params->isQueryStringTooShort()) {
+                $matchQuery->should(['match' => [
+                    'page_text' => $this->params->queryString,
+                ]]);
             }
         }
 
         return (new BoolQuery)
             ->must($langQuery)
-            ->must($matchQuery)
-            ->mustNot(['match' => [
-                'type' => 'main_page',
-            ]]);
+            ->must($matchQuery);
     }
 }

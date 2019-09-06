@@ -31,6 +31,5 @@ class WikiSearchRequestParams extends WikiSearchParams
         $this->queryString = trim($request['query']);
         $this->locale = $request['locale'];
         $this->from = $this->pageAsFrom(get_int($request['page']));
-        $this->titleOnly = $request['title_only'] === true;
     }
 }
