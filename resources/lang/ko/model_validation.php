@@ -29,7 +29,7 @@ return [
         'first_post' => '시작글은 삭제할 수 없습니다.',
 
         'attributes' => [
-            'message' => '',
+            'message' => '메시지',
         ],
     ],
 
@@ -42,8 +42,8 @@ return [
         'locked' => '토론이 잠겨있습니다.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => '메시지 유형',
+            'timestamp' => '타임스탬프',
         ],
 
         'hype' => [
@@ -64,7 +64,7 @@ return [
         'deleted_parent' => '삭제된 댓글에 답글을 달 수 없습니다.',
 
         'attributes' => [
-            'message' => '',
+            'message' => '메시지',
         ],
     ],
 
@@ -88,13 +88,13 @@ return [
             'only_quote' => '답글에 인용만 포함하고 있습니다.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => '본문 게시',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => '주제 제목',
             ],
         ],
 
@@ -108,7 +108,7 @@ return [
             'too_many_options' => '허용된 것 보다 많은 항목을 선택하셨습니다.',
 
             'attributes' => [
-                'title' => '',
+                'title' => '투표 제목',
             ],
         ],
 
@@ -143,9 +143,9 @@ return [
         'too_long' => '최대 길이를 초과하셨습니다 - :limit자리 까지만 가능합니다.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => '사용자 이름',
+            'user_email' => '이메일 주소',
+            'password' => '비밀번호',
         ],
 
         'change_username' => [
@@ -165,8 +165,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => '수량',
+                'cost' => '가격',
             ],
         ],
     ],

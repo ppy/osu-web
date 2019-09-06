@@ -75,8 +75,11 @@ return [
         'minute_short_unit' => 'menit|menit',
         'minutes' => ':count menit |:count menit',
         'months' => ':count bulan',
+        'post' => '',
         'second_short_unit' => 'detik|detik',
+        'star_priority' => '',
         'update' => ':count_delimited pembaharuan',
+        'view' => '',
         'years' => ':count tahun',
     ],
 

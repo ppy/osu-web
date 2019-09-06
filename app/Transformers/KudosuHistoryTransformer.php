@@ -51,8 +51,13 @@ class KudosuHistoryTransformer extends Fractal\TransformerAbstract
             $model = get_model_basename($kudosuHistory->kudosuable);
             $action = $kudosuHistory->details['event'].'.'.$kudosuHistory->action;
         } else {
-            // missing topic and not the new format.
-            return [];
+            $post = [
+                'url' => null,
+                'title' => '[deleted beatmap]',
+            ];
+
+            $model = 'forum_post';
+            $action = $kudosuHistory->action;
         }
 
         return [

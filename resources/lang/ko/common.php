@@ -75,8 +75,11 @@ return [
         'minute_short_unit' => '분',
         'minutes' => ':count분',
         'months' => ':count달',
+        'post' => '',
         'second_short_unit' => '초',
+        'star_priority' => '',
         'update' => ':count_delimited 업데이트',
+        'view' => '',
         'years' => ':count년',
     ],
 

@@ -393,17 +393,6 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
         //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]
         Route::get('users/{user}/{mode?}', 'UsersController@show');
     });
-    // legacy api routes
-    Route::group(['prefix' => 'v1', 'namespace' => 'API'], function () {
-        Route::get('get_match', 'LegacyController@getMatch');
-        Route::get('get_packs', 'LegacyController@getPacks');
-        Route::get('get_user', 'LegacyController@getUser');
-        Route::get('get_user_best', 'LegacyController@getUserBest');
-        Route::get('get_user_recent', 'LegacyController@getUserRecent');
-        Route::get('get_replay', 'LegacyController@getReplay');
-        Route::get('get_scores', 'LegacyController@getScores');
-        Route::get('get_beatmaps', 'LegacyController@getBeatmaps');
-    });
 });
 
 // Callbacks for legacy systems to interact with

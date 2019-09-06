@@ -20,10 +20,10 @@
 
 return [
     'deleted' => 'șters',
-    'deleted_count' => '',
+    'deleted_count' => ':count_delimited comentariu șters|:count_delimited comentariu șters',
     'edited' => 'editat :timeago de :user',
     'empty' => 'Niciun comentariu încă.',
-    'load_replies' => '',
+    'load_replies' => 'încarcă răspunsurile',
     'replies' => 'Răspunsuri',
     'title' => 'Comentarii',
 

@@ -26,8 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => 'Por favor, certifica-te de que o teu avatar respeita :link.<br/>Isto significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez, profanidade ou conteúdo sugestivo.',
+            'rules_link' => 'as regras da comunidade',
         ],
 
         'email' => [
@@ -108,11 +108,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Poderás agora fechar este(a) separador/janela',
+        'title' => 'A verificação foi concluída',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Link de verificação inválido ou expirado',
     ],
 ];

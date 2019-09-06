@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 följare|:count följare',
+            'none' => '',
             'unranked' => 'Inga senaste spel',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Väntade Beatmaps',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Inga prestanda uppgifter. :(',
@@ -276,6 +287,11 @@ return [
                 'recent' => '',
                 'title' => 'Medaljer',
             ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Senaste',
             ],
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Förstaplats-ranker',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Kontoställning',
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Poäng Ranker',
             'total_hits' => 'Totala Träffar',
             'total_score' => 'Total Poäng',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 

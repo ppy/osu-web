@@ -23,11 +23,19 @@ return [
         'page_description' => 'osu! - Il ritmo è ad un *click* di distanza!  Con Ouendan/EBA, Taiko e originali modalità di gameplay, oltre che un editor di livelli completamente funzionale.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => '',
+        ],
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'home',
             'account-edit' => 'impostazioni',
-            'account-verifyLink' => '',
+            'account-verifyLink' => 'Verifica Completata',
             'friends-index' => 'amici',
             'changelog-index' => 'note di rilascio',
             'changelog-build' => 'versione',
@@ -48,7 +56,7 @@ return [
             '_' => 'aiuto',
             'getFaq' => 'domande comuni',
             'getRules' => 'regole',
-            'getSupport' => 'supporto',
+            'getSupport' => 'davvero, mi serve aiuto!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -128,7 +136,7 @@ return [
             'modding-history-posts' => 'post di modding tra utenti',
             'modding-history-votesGiven' => 'i voti dei giocatori per le modifiche sono stati inviati',
             'modding-history-votesReceived' => 'i voti dei giocatori per le modifiche sono stati ricevuti',
-            'oauth_login' => '',
+            'oauth_login' => 'accedi per oauth',
             'oauth_request' => 'oauth autorizzazione ',
             'settings' => 'Impostazioni',
         ],

@@ -27,7 +27,7 @@ return [
         'avatar' => [
             'title' => 'Avatar',
             'rules' => '',
-            'rules_link' => '',
+            'rules_link' => 'topluluk kuralları',
         ],
 
         'email' => [
@@ -108,11 +108,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Bu pencereyi kapatabilirsiniz',
+        'title' => 'Doğrulama tamamlandı',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Geçersiz veya süresi dolmuş doğrulama bağlantısı',
     ],
 ];

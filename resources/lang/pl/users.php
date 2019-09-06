@@ -154,8 +154,8 @@ return [
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Tylko :link mogą przesyłać pliki',
+                        'link' => 'donatorzy osu!',
                     ],
                 ],
             ],
@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count_delimited obserwujący|:count_delimited obserwujących|:count_delimited obserwujących',
+            'none' => '',
             'unranked' => 'Brak nowych wyników',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Oczekujące beatmapy',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Brak wyników. :(',
@@ -264,8 +275,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Liczba zdobytych punktów kudosu jest oparta o wkład użytkownika w modowanie beatmap. Sprawdź :link, by dowiedzieć się więcej.',
+                    'link' => 'ten artykuł',
                 ],
             ],
             'me' => [
@@ -275,6 +286,11 @@ return [
                 'empty' => "Ten użytkownik nie uzyskał jeszcze żadnych medali. ;_;",
                 'recent' => 'Ostatnie',
                 'title' => 'Medale',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Ostatnie',
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Pierwsze miejsca',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Stan konta',
@@ -345,8 +368,8 @@ return [
             'placeholder' => 'Pisz tutaj',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Musisz być :link, by odblokować tę funkcję.',
+                'link' => 'donatorem osu!',
             ],
         ],
         'post_count' => [
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Wyniki',
             'total_hits' => 'Łączna liczba uderzeń',
             'total_score' => 'Łączny wynik',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -388,7 +416,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'Widok kart',
+        'list' => 'Widok listy',
     ],
 ];

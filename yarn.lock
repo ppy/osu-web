@@ -4797,6 +4797,11 @@ inline-source-map@~0.6.0:
   dependencies:
     source-map "~0.5.3"
 
+inter-ui@^3.9.0:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/inter-ui/-/inter-ui-3.9.0.tgz#40648d1e447f68fcaaa7de3c503e88f30fe01c84"
+  integrity sha512-zvjPVqDj5+wMCNnxGc/9owWXOWN88SYI+hIvY0bKpqleJvAanQYgwyhvGbbfY7tnFexaxN5kIFHID2UppKciXw==
+
 internal-ip@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/internal-ip/-/internal-ip-4.3.0.tgz#845452baad9d2ca3b69c635a137acb9a0dad0907"

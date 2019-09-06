@@ -28,7 +28,7 @@ return [
     'beatmapset_upload' => '<strong><em>:user</em></strong> ได้ทำการเพิ่ม beatmap ใหม่ ":beatmapset"',
     'empty' => "ผู้ใช้บัญชีรายนี้ไม่ได้มีการทำสิ่งที่น่าสนใจในช่วงนี้",
     'rank' => '<strong><em>:user</em></strong> ได้อันดับที่ #:rank ในเพลง <em>:beatmap</em> (:mode)',
-    'rank_lost' => '<strong><em>:user</em></strong> ได้เสียอันดับที่ 1 ในเพลง <em>:beatmap</em> (:mode)',
+    'rank_lost' => '<strong><em>:user</em></strong> เสียอันดับที่ 1 ในเพลง <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> ได้ทำการสนับสนุน osu! อีกครั้ง - ขอขอบคุณน้ำใจงามๆของท่าน',
     'user_support_first' => '<strong>:user</strong> ได้กลายผู้สนับสนุน osu! แล้ว - ขอขอบคุณน้ำใจงามๆของท่าน',
     'user_support_gift' => '<strong>:user</strong> ได้รับของขวัญจากเพื่อนที่กลายเป็น osu! supporter!',
