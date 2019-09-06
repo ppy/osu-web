@@ -128,7 +128,6 @@ class Client extends PassportClient
     public function revoke()
     {
         $this->getConnection()->transaction(function () {
-            $connection = $this->getConnection();
             $now = now('UTC');
 
             $this->tokens()->update(['revoked' => true, 'updated_at' => $now]);
