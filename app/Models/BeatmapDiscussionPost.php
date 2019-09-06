@@ -169,7 +169,7 @@ class BeatmapDiscussionPost extends Model
      * When a discussion is resolved, the posts preceeding the resolution are locked.
      * Posts after the resolution are not locked, unless the issue is re-opened and resolved again.
      *
-     * @return boolean
+     * @return bool
      */
     public function canEdit()
     {

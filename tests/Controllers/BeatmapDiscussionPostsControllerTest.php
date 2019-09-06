@@ -394,7 +394,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this->delete(route('beatmap-discussion-posts.destroy', $reply->id))
             ->assertViewIs('users.login')
-            ->assertStatus(200);;
+            ->assertStatus(200);
 
         $this->assertFalse($reply->fresh()->trashed());
     }
