@@ -20,49 +20,63 @@
 
 return [
     'support' => [
-        'header' => [
-            // size in font-size
-            'big_description' => 'osu!を楽しんでますか？<br/>
-                                osu!の開発者をサポートしましょう！',
-            'small_description' => '',
-            'support_button' => 'osu!をサポートする！',
+        'convinced' => [
+            'title' => 'いいですね！',
+            'support' => 'osu!をサポートする！',
+            'gift' => 'もしくはギフトを送る',
+            'instructions' => 'ハートボタンをクリックでosu!storeに飛びます(英語)',
         ],
+        'why-support' => [
+            'title' => '',
 
-        'dev_quote' => 'osu!は完全に無料でプレイできるゲームです、しかし維持するのは無料ではありません。
-        サーバー運用費用や高品質な国際帯域幅、システムのメンテナンスとコミュニティの維持に費やされた時間、
-        大会の賞品の提供、サポート対応、プレイヤーが満足のいく環境作りなど、osu!の維持には膨大な費用がかかっています！
-        そして、私達はいかなる広告も愚かなツールバーなどと提携せずに維持しているという事実を忘れないでください！
-            <br/><br/>osu!の大部分は私が維持しています。あなたは「peppy」として私を知っているかもしれません。
-            私はosu!を維持する為に仕事を辞めなくてはいけませんでした。
-            そして、自分に課した課題を維持する為に日々奮闘しています。
-            これまでosu!を支援してくれた方々に感謝を申し上げたいと思います。
-            そして、この素晴らしいゲームとコミュニティをこれからも支援し続けてくれる方々にも感謝を伝えたいです。',
-
-        'supporter_status' => [
-            'contribution' => 'osu!をサポートしてくれてありがとうございます！今までに:dollarsで:tags個のタグを購入しました！',
-            'gifted' => '今まで購入したサポータータグのうち:giftedTags個がギフト（ギフト合計金額：:giftedDollars）として送られました。あなたの寛大さに拍手！',
-            'not_yet' => "osu!サポータータグをまだ持っていません :(",
-            'title' => '現在のosu!サポーターのステータス',
-            'valid_until' => 'あなたのosu!サポータータグは:dateまで有効です！',
-            'was_valid_until' => 'あなたのosu!サポータータグは:dateに期限切れになりました。',
-        ],
-
-        'why_support' => [
-            'title' => 'osu!をサポートする理由とは？',
-            'blocks' => [
-                'dev' => 'オーストラリアのある一人の男によって開発され、維持されています',
-                'time' => '維持には莫大な時間がかかる為、もはや「趣味」と呼ぶことはできません。',
-                'ads' => '広告はありません。<br/><br/>
-                        99.95%のウェブとは違い、見たくもないものを見せつけて利益を得ることはしません。',
-                'goodies' => 'いろいろな特典を入手！',
+            'team' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'infra' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'featured-artists' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'ads' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'tournaments' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'bounty-program' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
             ],
         ],
-
         'perks' => [
             'title' => '特典って？',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'ゲームから離れることなくビートマップを素早くダウンロード。',
+            ],
+
+            'friend_ranking' => [
+                'title' => '',
+                'description' => "",
+            ],
+
+            'country_ranking' => [
+                'title' => '',
+                'description' => '',
+            ],
+
+            'mod_filtering' => [
+                'title' => '',
+                'description' => '',
             ],
 
             'auto_downloads' => [
@@ -82,7 +96,7 @@ return [
 
             'customisation' => [
                 'title' => 'カスタマイズ',
-                'description' => '自分のユーザーページに自由に編集できる領域が追加されます。',
+                'description' => "自分のユーザーページに自由に編集できる領域が追加されます。",
             ],
 
             'beatmap_filters' => [
@@ -120,22 +134,30 @@ return [
                 'description' => 'ゲーム内でビートマップの国別・フレンド・Mod別ランキングが利用できるようになります。',
             ],
 
-            'feel_special' => [
-                'title' => '特別な気持ち',
-                'description' => 'osu!をサポートをしているというポカポカの暖かい気持ちを満喫しましょう。',
-            ],
-
-            'more_to_come' => [
-                'title' => '追加予定',
+            'more_favourites' => [
+                'title' => '',
                 'description' => '',
             ],
-        ],
+            'more_friends' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'more_beatmaps' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'friend_filtering' => [
+                'title' => '',
+                'description' => '',
+            ],
 
-        'convinced' => [
-            'title' => 'いいですね！',
-            'support' => 'osu!をサポートする！',
-            'gift' => 'もしくはギフトを送る',
-            'instructions' => 'ハートボタンをクリックでosu!storeに飛びます(英語)',
+        ],
+        'supporter_status' => [
+            'contribution' => 'osu!をサポートしてくれてありがとうございます！今までに:dollarsで:tags個のタグを購入しました！',
+            'gifted' => "今まで購入したサポータータグのうち:giftedTags個がギフト（ギフト合計金額：:giftedDollars）として送られました。あなたの寛大さに拍手！",
+            'not_yet' => "osu!サポータータグをまだ持っていません :(",
+            'valid_until' => 'あなたのosu!サポータータグは:dateまで有効です！',
+            'was_valid_until' => 'あなたのosu!サポータータグは:dateに期限切れになりました。',
         ],
     ],
 ];

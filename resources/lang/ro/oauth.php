@@ -35,13 +35,13 @@ return [
 
     'authorized-clients' => [
         'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'scopes_title' => 'Această aplicaţie poate:',
+        'owned_by' => 'Deținut de :user',
+        'none' => 'Niciun Client',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Revoca accesul',
+            'true' => 'Acces revocat',
         ],
     ],
 

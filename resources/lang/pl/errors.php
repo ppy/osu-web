@@ -38,8 +38,8 @@ return [
         'generic' => 'Wystąpił błąd podczas przygotowywania twojego zamówienia.',
     ],
     'search' => [
-        'default' => '',
-        'operation_timeout_exception' => '',
+        'default' => 'Nie udało się niczego znaleźć, spróbuj ponownie później.',
+        'operation_timeout_exception' => 'Wyszukiwanie jest obecnie bardziej obciążone niż zwykle, spróbuj ponownie później.',
     ],
 
     'logged_out' => 'Wylogowano. Zaloguj się i spróbuj ponownie.',

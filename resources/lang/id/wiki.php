@@ -21,7 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'Laman yang diminta belum diterjemahkan ke dalam bahasa yang dipilih (:language). Menampilkan versi Bahasa Inggris.',
-        'incomplete_or_outdated' => '',
+        'incomplete_or_outdated' => 'Konten dalam laman ini tidak lengkap atau kedaluwarsa. Jika Anda dapat membantu, pertimbangkan untuk memperbarui artikel ini!',
         'languages' => 'Bahasa',
         'missing' => 'Laman ":keyword" yang diminta tidak dapat ditemukan.',
         'missing_title' => 'Tidak Ditemukan',

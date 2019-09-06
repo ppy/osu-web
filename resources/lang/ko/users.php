@@ -154,8 +154,8 @@ return [
                     'unsupported_format' => '지원되지 않는 확장자입니다.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => '업로드는 :link만 가능합니다',
+                        'link' => 'osu! 서포터',
                     ],
                 ],
             ],
@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count 팔로워|:count 팔로워',
+            'none' => '',
             'unranked' => '최근 플레이가 없습니다',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Pending 비트맵',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => '기록된 플레이가 없습니다. :(',
@@ -264,8 +275,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => '유저가 비트맵 제작 과정에 얼마나 기여했는지에 기반합니다. 더 많은 정보를 얻고싶으시다면 :link를 참고해주세요.',
+                    'link' => '이 페이지',
                 ],
             ],
             'me' => [
@@ -275,6 +286,11 @@ return [
                 'empty' => "아직 아무런 메달도 받지 못했네요. ;_;",
                 'recent' => '최근 획득',
                 'title' => '메달',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => '최근 활동',
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => '1위 달성 맵',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => '계정 상태',
@@ -345,8 +368,8 @@ return [
             'placeholder' => '페이지에 들어갈 내용을 입력하세요.',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => '이 기능을 사용하기 위해서는 :link가 되어야합니다.',
+                'link' => 'osu! 서포터',
             ],
         ],
         'post_count' => [
@@ -372,6 +395,11 @@ return [
             'score_ranks' => '점수 순위',
             'total_hits' => '총 타격 횟수',
             'total_score' => '총 점수',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -388,7 +416,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => '카드 형식 보기',
+        'list' => '목록으로 보기',
     ],
 ];

@@ -75,8 +75,11 @@ return [
         'minute_short_unit' => 'λεπτό|λεπτά',
         'minutes' => ':count λεπτό|:count λεπτά',
         'months' => ':count μήνας|:count μήνες',
+        'post' => '',
         'second_short_unit' => 'δευτ.|δευτ.',
+        'star_priority' => '',
         'update' => '',
+        'view' => '',
         'years' => ':count χρόνος|:count χρόνια',
     ],
 

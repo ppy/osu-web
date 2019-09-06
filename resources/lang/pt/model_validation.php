@@ -29,7 +29,7 @@ return [
         'first_post' => 'Não é possível eliminar uma publicação de começo.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'A mensagem',
         ],
     ],
 
@@ -42,8 +42,8 @@ return [
         'locked' => 'A discussão está bloqueada.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Tipos de mensagem',
+            'timestamp' => 'Marca de tempo',
         ],
 
         'hype' => [
@@ -64,7 +64,7 @@ return [
         'deleted_parent' => 'Responder a comentários eliminados não é permitido.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'A mensagem',
         ],
     ],
 
@@ -88,13 +88,13 @@ return [
             'only_quote' => 'A tua resposta contém apenas uma citação.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Corpo da publicação',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Título do tópico',
             ],
         ],
 
@@ -108,7 +108,7 @@ return [
             'too_many_options' => 'Número máximo de opções permitidas excedido.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Título da sondagem',
             ],
         ],
 
@@ -143,9 +143,9 @@ return [
         'too_long' => 'Comprimento máximo excedido - só pode ser até :limit caracteres.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Nome de utilizador',
+            'user_email' => 'Endereço de email',
+            'password' => 'Palavra-passe',
         ],
 
         'change_username' => [
@@ -165,8 +165,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Quantidade',
+                'cost' => 'Custo',
             ],
         ],
     ],
