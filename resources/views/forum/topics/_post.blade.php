@@ -47,7 +47,7 @@
             @endif
 
             <a class="link link--default js-post-url" rel="nofollow" href="{{ $post->exists ? route('forum.posts.show', $post->post_id) : '#' }}">
-                {!! trans("forum.post.posted_at", ["when" => timeago($post->post_time)]) !!}
+                {!! trans('forum.post.posted_at', ['when' => timeago($post->post_time)]) !!}
             </a>
 
             @if (count($buttons) > 0)
