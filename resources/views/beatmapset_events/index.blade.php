@@ -67,10 +67,10 @@
                         @foreach ($types as $type)
                             <div class="simple-form__checkbox-overflow-container">
                                 <label class="simple-form__checkbox simple-form__checkbox--overflow">
-                                    @include('objects._checkbox', [
+                                    @include('objects._switch', [
+                                        'checked' => in_array($type, $search['params']['types'], true),
                                         'name' => 'types[]',
                                         'value' => $type,
-                                        'checked' => in_array($type, $search['params']['types'], true),
                                     ])
                                     {{ trans("beatmapset_events.type.{$type}") }}
                                 </label>
