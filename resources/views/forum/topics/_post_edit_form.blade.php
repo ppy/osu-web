@@ -99,11 +99,12 @@
                     </div>
                 @endif
 
-                @if ($enabled && $withPreview)
+                @if ($withPreview)
                     <div class="forum-post-edit__button forum-post-edit__button--write">
                         <button
                             type="button"
                             class="js-forum-post-preview--hide btn-osu-big btn-osu-big--forum-secondary"
+                            {{ $enabled ? '' : 'disabled' }}
                         >
                             {{ trans('forum.topic.create.preview_hide') }}
                         </button>
@@ -113,29 +114,29 @@
                         <button
                             type="button"
                             class="js-forum-post-preview--show btn-osu-big btn-osu-big--forum-secondary"
+                            {{ $enabled ? '' : 'disabled' }}
                         >
                             {{ trans('forum.topic.create.preview') }}
                         </button>
                     </div>
                 @endif
 
-                @if ($enabled)
-                    <div class="forum-post-edit__button">
-                        <button
-                            class="btn-osu-big btn-osu-big--forum-primary"
-                            type="submit"
-                            data-disable-with="{{ trans('common.buttons.saving') }}"
-                        >
-                            @if ($type === 'reply')
-                                {{ trans('forum.topic.post_reply') }}
-                            @elseif ($type === 'edit')
-                                {{ trans("forum.topic.post_edit.post") }}
-                            @elseif ($type === 'create')
-                                {{ trans('forum.topic.create.submit') }}
-                            @endif
-                        </button>
-                    </div>
-                @endif
+                <div class="forum-post-edit__button">
+                    <button
+                        class="btn-osu-big btn-osu-big--forum-primary"
+                        type="submit"
+                        data-disable-with="{{ trans('common.buttons.saving') }}"
+                        {{ $enabled ? '' : 'disabled' }}
+                    >
+                        @if ($type === 'reply')
+                            {{ trans('forum.topic.post_reply') }}
+                        @elseif ($type === 'edit')
+                            {{ trans("forum.topic.post_edit.post") }}
+                        @elseif ($type === 'create')
+                            {{ trans('forum.topic.create.submit') }}
+                        @endif
+                    </button>
+                </div>
             </div>
         </div>
     </div>
