@@ -41,5 +41,9 @@ $factory->state(App\Models\Multiplayer\Event::class, 'part', function (Faker\Gen
 $factory->state(App\Models\Multiplayer\Event::class, 'game', function (Faker\Generator $faker) {
     return [
         'text' => 'test game',
+        'user_id' => null,
+        'game_id' => function () {
+            return factory(App\Models\Multiplayer\Game::class)->states('in_progress')->create()->game_id;
+        },
     ];
 });

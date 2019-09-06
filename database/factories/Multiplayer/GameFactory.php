@@ -8,7 +8,7 @@ $factory->define(App\Models\Multiplayer\Game::class, function (Faker\Generator $
     return [
         'beatmap_id' => $beatmap->beatmap_id,
         'start_time' => Carbon::now()->subSeconds($beatmap->total_length),
-        'play_mode' => $faker->numberBetween(0, 3),
+        'play_mode' => $beatmap->playmode,
         'scoring_type' => $faker->numberBetween(0, 3),
         'team_type' => $faker->numberBetween(0, 3),
     ];
