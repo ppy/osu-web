@@ -42,6 +42,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '',
+
+        'index' => [
+            'title' => '',
+        ],
+
         'topics' => [
             'empty' => 'Başlık yok!',
         ],
@@ -75,7 +81,7 @@ return [
 
         'info' => [
             'post_count' => ': sınırlandırılmış mesaj sayısı |: sınırlandırılmış mesaj sayıları',
-            'topic_starter' => '',
+            'topic_starter' => 'Konu Başlığı',
         ],
     ],
 

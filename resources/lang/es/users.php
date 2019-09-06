@@ -132,7 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Se unió en :date',
         'lastvisit' => 'Visto por última vez :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'En línea',
         'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido baneado)',
         'origin_country' => 'De :country',
         'page_description' => 'osu! - ¡Todo lo que siempre quisiste saber acerca de :username!',
@@ -152,6 +152,11 @@ return [
                     'size_info' => 'El tamaño de la portada debe ser de 2800x620',
                     'too_large' => 'El archivo subido es demasiado grande.',
                     'unsupported_format' => 'Formato no soportado.',
+
+                    'restriction_info' => [
+                        '_' => 'Carga disponible solo para :link',
+                        'link' => 'osu!supporters',
+                    ],
                 ],
             ],
 
@@ -163,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 seguidor|:count seguidores',
+            'none' => '',
             'unranked' => 'No hay partidas recientes',
 
             'achievements' => [
@@ -190,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Beatmaps Pendientes',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Sin récords de rendimiento. :(',
@@ -257,6 +273,11 @@ return [
                         'revoke' => 'Kudosu denegado por :giver por la publicación :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => 'Basado en qué tanto ha colaborado el usuario a la moderación de beatmaps. Vea :link para más información.',
+                    'link' => 'esta página',
+                ],
             ],
             'me' => [
                 'title' => '¡yo!',
@@ -265,6 +286,11 @@ return [
                 'empty' => "Este usuario aún no ha conseguido ninguna. ;_;",
                 'recent' => 'Más reciente',
                 'title' => 'Medallas',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Reciente',
@@ -282,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Primeros Lugares',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Estado de la cuenta',
@@ -333,6 +366,11 @@ return [
             'description' => '<strong>¡yo!</strong> es una área personal y personalizable en tu perfil.',
             'edit_big' => 'Editar ¡yo!',
             'placeholder' => 'Escribe el contenido de la pagina aquí',
+
+            'restriction_info' => [
+                '_' => 'Debes ser un :link para desbloquear esta función.',
+                'link' => 'osu!supporter',
+            ],
         ],
         'post_count' => [
             '_' => 'Contribuyó en :link',
@@ -357,11 +395,16 @@ return [
             'score_ranks' => 'Clasificación de las puntuaciones',
             'total_hits' => 'Golpes totales',
             'total_score' => 'Puntuación total',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
     'status' => [
-        'all' => '',
+        'all' => 'Todo',
         'online' => 'Conectados',
         'offline' => 'Desconectados',
     ],
@@ -370,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'Verificación de la cuenta',
+    ],
+
+    'view_mode' => [
+        'card' => 'Vista de tarjetas',
+        'list' => 'Visualizar en lista',
     ],
 ];

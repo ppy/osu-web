@@ -152,6 +152,11 @@ return [
                     'size_info' => '图片大小最好是 2800x620 像素',
                     'too_large' => '上传的图片过大。',
                     'unsupported_format' => '不支持的格式。',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -163,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '关注者：:count',
+            'none' => '',
             'unranked' => '最近没有玩过',
 
             'achievements' => [
@@ -190,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Pending 的谱面',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => '没有游戏记录。:(',
@@ -257,6 +273,11 @@ return [
                         'revoke' => '在帖子 :post 中被 :giver 移除 kudosu ',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => '个人介绍',
@@ -265,6 +286,11 @@ return [
                 'empty' => "该用户还没有获得成就。;_;",
                 'recent' => '最近取得',
                 'title' => '成就',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => '最近活动',
@@ -282,6 +308,13 @@ return [
                 'first' => [
                     'title' => '第一名',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => '帐号状态',
@@ -333,6 +366,11 @@ return [
             'description' => '<strong>个人介绍</strong> 是您可以自定义的展示区.',
             'edit_big' => '编辑',
             'placeholder' => '在这里编辑',
+
+            'restriction_info' => [
+                '_' => '你需要成为 :link 才能使用此功能。',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => '发表了 :link',
@@ -357,6 +395,11 @@ return [
             'score_ranks' => '得分等级',
             'total_hits' => '总命中次数',
             'total_score' => '总分',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Ranked & Approved 的谱面',
+            'loved_beatmapset_count' => 'Loved 的谱面',
+            'unranked_beatmapset_count' => 'Pending 的谱面',
+            'graveyard_beatmapset_count' => '坟场里的谱面',
         ],
     ],
 
@@ -370,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => '账户认证',
+    ],
+
+    'view_mode' => [
+        'card' => '卡片检视',
+        'list' => '列表检视',
     ],
 ];

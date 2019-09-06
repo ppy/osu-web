@@ -55,14 +55,14 @@ return [
         'search' => 'Buscar',
         'see_more' => 'ver más',
         'show' => 'mostrar',
-        'show_deleted' => '',
+        'show_deleted' => 'Mostrar eliminados',
         'show_more' => 'mostrar más',
         'show_more_options' => 'mostrar más opciones',
         'upload_image' => 'subir imagen',
 
         'watch' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Dejar de ver',
+            'to_1' => 'Ver',
         ],
     ],
 
@@ -75,8 +75,11 @@ return [
         'minute_short_unit' => 'min|mins',
         'minutes' => ':count minuto|:count minutos',
         'months' => ':count mes|:count meses',
+        'post' => '',
         'second_short_unit' => 'seg|segs',
-        'update' => '',
+        'star_priority' => '',
+        'update' => ':count_delimited actualización|:count_delimited actualizaciones',
+        'view' => '',
         'years' => ':count año|:count años',
     ],
 

@@ -244,14 +244,14 @@ return [
     'status' => [
         'any' => 'Todos',
         'approved' => 'Aprovado',
-        'favourites' => '',
+        'favourites' => 'Favoritos',
         'graveyard' => 'Cemitério',
         'leaderboard' => '',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => 'Meus Maps',
         'pending' => 'Pendente & Em Progresso',
         'qualified' => 'Qualificado',
-        'ranked' => '',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => 'Todos',

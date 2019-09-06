@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Аватар',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Профил',
 
             'user' => [
+                'user_discord' => '',
                 'user_from' => 'настоящо местонахождение',
                 'user_interests' => 'интереси',
                 'user_msnm' => '',
                 'user_occ' => 'работа/занимание',
                 'user_twitter' => '',
                 'user_website' => 'уеб сайт',
-                'user_discord' => '',
             ],
         ],
 
@@ -62,9 +64,37 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => 'Известия',
+        'topic_auto_subscribe' => '',
+    ],
+
     'oauth' => [
-        'title' => '',
         'authorized_clients' => '',
+        'title' => '',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'клавиатура',
+        'mouse' => 'мишка',
+        'tablet' => 'таблет',
+        'title' => 'Стил на игра',
+        'touch' => 'тъчскрийн',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'Блокирай лични съобщения от хора с който не си приятел',
+        'hide_online' => 'скриване на вашето онлайн присъствие',
+        'title' => 'Поверителност',
+    ],
+
+    'security' => [
+        'current_session' => 'текущ',
+        'end_session' => 'Прекрати сесията',
+        'end_session_confirmation' => 'Това незабавно ще прекрати сесията Ви на съответното устройство. Сигурни ли сте?',
+        'last_active' => 'Последно активен:',
+        'title' => 'Сигурност',
+        'web_sessions' => 'уеб сесии',
     ],
 
     'update_email' => [
@@ -77,31 +107,12 @@ return [
         'update' => 'обнови',
     ],
 
-    'playstyles' => [
-        'title' => 'Стил на игра',
-        'mouse' => 'мишка',
-        'keyboard' => 'клавиатура',
-        'tablet' => 'таблет',
-        'touch' => 'тъчскрийн',
+    'verification_completed' => [
+        'text' => '',
+        'title' => '',
     ],
 
-    'privacy' => [
-        'title' => 'Поверителност',
-        'friends_only' => 'Блокирай лични съобщения от хора с който не си приятел',
-        'hide_online' => 'скриване на вашето онлайн присъствие',
-    ],
-
-    'notifications' => [
-        'title' => 'Известия',
-        'topic_auto_subscribe' => '',
-    ],
-
-    'security' => [
-        'current_session' => 'текущ',
-        'end_session' => 'Прекрати сесията',
-        'end_session_confirmation' => 'Това незабавно ще прекрати сесията Ви на съответното устройство. Сигурни ли сте?',
-        'last_active' => 'Последно активен:',
-        'title' => 'Сигурност',
-        'web_sessions' => 'уеб сесии',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

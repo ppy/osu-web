@@ -152,6 +152,11 @@ return [
                     'size_info' => 'O tamanho da capa deveria ser 2800x620',
                     'too_large' => 'O ficheiro carregado é demasiado grande.',
                     'unsupported_format' => 'Formato não suportado.',
+
+                    'restriction_info' => [
+                        '_' => 'Carregamento disponível apenas para :link',
+                        'link' => 'osu!supporters',
+                    ],
                 ],
             ],
 
@@ -163,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 seguidor|:count seguidores',
+            'none' => '',
             'unranked' => 'Nenhuma partida recente',
 
             'achievements' => [
@@ -190,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Beatmaps Pendentes',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Sem registos de desempenho. :(',
@@ -257,6 +273,11 @@ return [
                         'revoke' => 'Kudosu negado por :giver para a publicação :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => 'Baseado no quão o utilizador contribuiu para a moderação do beatmap. Vê :link para mais informações.',
+                    'link' => 'esta página',
+                ],
             ],
             'me' => [
                 'title' => 'eu!',
@@ -265,6 +286,11 @@ return [
                 'empty' => "Este utilizador ainda não conseguiu nenhuma. ;_;",
                 'recent' => 'As mais recentes',
                 'title' => 'Medalhas',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Recente',
@@ -282,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Classificações de Primeiro Lugar',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Reputação da Conta',
@@ -333,6 +366,11 @@ return [
             'description' => '<strong>eu!</strong> é uma área pessoal personalizável na tua página de perfil.',
             'edit_big' => 'Edita-me!',
             'placeholder' => 'Escreve o conteúdo da página aqui',
+
+            'restriction_info' => [
+                '_' => 'Tu precisas de ser um :link para desbloquear esta funcionalidade.',
+                'link' => 'osu!supporter',
+            ],
         ],
         'post_count' => [
             '_' => 'Contribuiu em :link',
@@ -357,6 +395,11 @@ return [
             'score_ranks' => 'Classificações de Pontuação',
             'total_hits' => 'Acertos Totais',
             'total_score' => 'Pontuação Total',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -370,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'Verificação da Conta',
+    ],
+
+    'view_mode' => [
+        'card' => 'Vista do cartão',
+        'list' => 'Vista da lista',
     ],
 ];

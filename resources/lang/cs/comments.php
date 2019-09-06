@@ -20,10 +20,11 @@
 
 return [
     'deleted' => 'odstraněno',
-    'deleted_count' => '',
+    'deleted_count' => ':count_delimited smazaný komentář
+:count_delimited smazané komentáře',
     'edited' => 'upraveno před :timeago uživatelem :user',
     'empty' => 'Zatím zde nejsou žádné komentáře.',
-    'load_replies' => '',
+    'load_replies' => 'načíst odpovědi',
     'replies' => 'Odpovědi',
     'title' => 'Komentáře',
 

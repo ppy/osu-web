@@ -133,7 +133,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Ta beatmapa została zatwierdzona :date!',
-            'graveyard' => "Ta beatmapa nie była aktualizowana od :date i najprawdopodobniej została porzucona przez swojego twórcę...",
+            'graveyard' => "Ta beatmapa nie była aktualizowana od :date i trafiła do kategorii porzuconych...",
             'loved' => 'Ta beatmapa otrzymała status ulubionej społeczności :date!',
             'ranked' => 'Ta beatmapa otrzymała status rankingowy :date!',
             'wip' => 'Ważne: Ta beatmapa została oznaczona przez twórcę jako aktualnie rozwijana.',
@@ -244,14 +244,14 @@ return [
     'status' => [
         'any' => 'Jakikolwiek',
         'approved' => 'Zatwierdzone',
-        'favourites' => '',
+        'favourites' => 'Ulubione',
         'graveyard' => 'Porzucone',
-        'leaderboard' => '',
+        'leaderboard' => 'Z tabelą wyników',
         'loved' => 'Ulubione społeczności',
-        'mine' => '',
+        'mine' => 'Moje beatmapy',
         'pending' => 'Oczekujące i rozwijane',
         'qualified' => 'Zakwalifikowane',
-        'ranked' => '',
+        'ranked' => 'Rankingowe',
     ],
     'genre' => [
         'any' => 'Jakikolwiek',

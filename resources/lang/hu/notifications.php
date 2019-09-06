@@ -27,9 +27,9 @@ return [
             '_' => 'Beatmap',
 
             'beatmapset_discussion' => [
-                '_' => '',
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_lock_compact' => '',
+                '_' => 'Beatmap megbeszélés',
+                'beatmapset_discussion_lock' => '":title" megbeszélése lezárult',
+                'beatmapset_discussion_lock_compact' => 'A megbeszélést lezárták',
                 'beatmapset_discussion_post_new' => '',
                 'beatmapset_discussion_post_new_compact' => '',
                 'beatmapset_discussion_unlock' => '',
@@ -53,7 +53,7 @@ return [
             ],
 
             'comment' => [
-                '_' => '',
+                '_' => 'Új hozzászólás',
 
                 'comment_new' => '',
                 'comment_new_compact' => '',

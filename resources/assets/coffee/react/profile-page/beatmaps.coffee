@@ -47,12 +47,12 @@ export class Beatmaps extends React.PureComponent
     div
       key: section
       h3
-        className: 'page-extra__title page-extra__title--small'
+        className: 'title title--page-extra-small'
         osu.trans("users.show.extra.beatmaps.#{sectionSnaked}.title")
         ' '
         if count > 0
           span
-            className: 'page-extra__title-count'
+            className: 'title__count'
             osu.formatNumber(count)
 
       if beatmapsets.length > 0

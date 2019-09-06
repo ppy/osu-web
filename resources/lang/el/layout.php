@@ -23,10 +23,19 @@ return [
         'page_description' => 'osu! - Ο ρυθμός είναι μόνο ένα *κλικ* μακριά! Με Ouendan/EBA, Taiko και αυθεντικά gameplay modes, καθώς και έναν πλήρως λειτουργικό level editor.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => '',
+        ],
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'αρχική σελίδα',
             'account-edit' => 'ρυθμίσεις',
+            'account-verifyLink' => '',
             'friends-index' => 'φίλοι',
             'changelog-index' => 'αρχείο καταγραφής αλλαγών',
             'changelog-build' => 'έκδοση',

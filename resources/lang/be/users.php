@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Памер фону павінен быць 2800x620',
                     'too_large' => 'Запампаваны файл надта вялікі.',
                     'unsupported_format' => 'Фармат не падтрымліваецца.',
+
+                    'restriction_info' => [
+                        '_' => 'Запампоўка даступна толькі для :link',
+                        'link' => 'osu!supporters',
+                    ],
                 ],
             ],
 
@@ -163,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count падпісчык|:count падпісчыкі|:count падпісчыкаў',
+            'none' => '',
             'unranked' => 'Няма нядаўніх гульняў',
 
             'achievements' => [
@@ -190,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Чаканыя бітмапы',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Няма прадукцыйных спісаў. :(',
@@ -257,6 +273,11 @@ return [
                         'revoke' => ':giver забраў кудосу за адказ у допісе :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => 'Залежыць ад таго, колькі укладу карыстальнік унёс у мадэрацыю бітмапы. Глядзіце :link, каб даведацца больш.',
+                    'link' => 'гэту старонку',
+                ],
             ],
             'me' => [
                 'title' => 'пра мяне!',
@@ -265,6 +286,11 @@ return [
                 'empty' => "Гэты карыстальнік яшчэ нічога не атрымаў. ;_;",
                 'recent' => 'Апошнія',
                 'title' => 'Медалі',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Нядаўняя актыўнасць',
@@ -282,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Першыя месцы ў рэйтынгу',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Стан уліковага запісу',
@@ -333,6 +366,11 @@ return [
             'description' => '<strong>пра мяне!</strong> гэта ваша ўласнае месца ў профілю, якое можна дастасаваць.',
             'edit_big' => 'Рэдагаваць мяне!',
             'placeholder' => 'Напішыце змесціва старонкі тут',
+
+            'restriction_info' => [
+                '_' => 'Каб разблакаваць гэту функцыю патрэбны: :link.',
+                'link' => 'osu!supporter',
+            ],
         ],
         'post_count' => [
             '_' => 'Размясціў :link',
@@ -357,6 +395,11 @@ return [
             'score_ranks' => 'Рэйтынг па ачках',
             'total_hits' => 'Усяго патрапленняў',
             'total_score' => 'Усяго ачкоў',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -370,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'Пацверджанне ўліковага запісу',
+    ],
+
+    'view_mode' => [
+        'card' => 'Картачны выгляд',
+        'list' => 'У выглядзе спіса',
     ],
 ];

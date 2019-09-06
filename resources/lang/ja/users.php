@@ -152,6 +152,11 @@ return [
                     'size_info' => '推奨の画像サイズは2800x620です',
                     'too_large' => 'アップロードファイルが大きすぎます。',
                     'unsupported_format' => 'サポートされていないフォーマットです。',
+
+                    'restriction_info' => [
+                        '_' => 'アップロードは :link でのみ可能です',
+                        'link' => 'osu!サポーター',
+                    ],
                 ],
             ],
 
@@ -163,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count フォロワー',
+            'none' => '',
             'unranked' => '最近のプレイはありません',
 
             'achievements' => [
@@ -190,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => '保留中のビートマップ',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'パフォーマンスの記録がありません。',
@@ -257,6 +273,11 @@ return [
                         'revoke' => ':postの:giverによるkudosu拒否',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => 'ユーザーのビートマップモデレーションへの貢献度に基いています。詳細は :link を確認して下さい。',
+                    'link' => 'このページ',
+                ],
             ],
             'me' => [
                 'title' => 'me!',
@@ -265,6 +286,11 @@ return [
                 'empty' => "このユーザーはまだメダルを取得していません。",
                 'recent' => '最新',
                 'title' => 'メダル',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => '最近のアクティビティ',
@@ -282,6 +308,13 @@ return [
                 'first' => [
                     'title' => '1位の記録',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'アカウントの状態',
@@ -333,6 +366,11 @@ return [
             'description' => '<strong>me!</strong>はプロフィール上で自由に編集できる領域です。',
             'edit_big' => 'me!を編集',
             'placeholder' => 'ここにページの内容を入力',
+
+            'restriction_info' => [
+                '_' => 'この機能を解除するには:linkする必要があります。',
+                'link' => 'osu!サポーター',
+            ],
         ],
         'post_count' => [
             '_' => 'フォーラム投稿数 :link',
@@ -357,6 +395,11 @@ return [
             'score_ranks' => 'スコアランク',
             'total_hits' => '合計ヒット数',
             'total_score' => '合計スコア',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -370,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'アカウントの認証',
+    ],
+
+    'view_mode' => [
+        'card' => 'カードビュー',
+        'list' => '一覧表示',
     ],
 ];

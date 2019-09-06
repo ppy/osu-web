@@ -42,6 +42,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '',
+
+        'index' => [
+            'title' => '',
+        ],
+
         'topics' => [
             'empty' => 'Geen topics!',
         ],
@@ -75,7 +81,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited bericht|:count_delimited berichten',
-            'topic_starter' => '',
+            'topic_starter' => 'Onderwerp Starter',
         ],
     ],
 

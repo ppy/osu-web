@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Dimensiunea coperții trebuie să fie de 2800x620',
                     'too_large' => 'Fișierul încărcat este prea mare.',
                     'unsupported_format' => 'Format nesuportat.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -163,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 urmăritor|:count urmăritori',
+            'none' => '',
             'unranked' => 'Nu există jocuri recente',
 
             'achievements' => [
@@ -190,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Beatmaps în așteptare',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Nicio înregistrare de performanță. :(',
@@ -257,6 +273,11 @@ return [
                         'revoke' => 'Kudosu respinși de :giver pentru postarea :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'eu!',
@@ -265,6 +286,11 @@ return [
                 'empty' => "Acest utilizator nu a primit nici unul încă. ;_;",
                 'recent' => 'Recente',
                 'title' => 'Medalii',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Recent',
@@ -282,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Primele locuri',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Starea contului',
@@ -333,6 +366,11 @@ return [
             'description' => '<strong>eu!</strong> este o zonă personală personalizabilă în pagina ta de profil.',
             'edit_big' => 'Editează-mă!',
             'placeholder' => 'Introdu conținutul paginii aici',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'A contribuit la :link',
@@ -357,6 +395,11 @@ return [
             'score_ranks' => 'Clasament de scoruri',
             'total_hits' => 'Număr de clicuri',
             'total_score' => 'Scor total',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -370,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'Verificarea contului',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

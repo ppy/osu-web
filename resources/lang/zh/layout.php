@@ -23,10 +23,19 @@ return [
         'page_description' => 'osu! - 节奏跃然指上！内含来自「押忍！战斗应援团」、「精英节拍特工」、太鼓的以及 osu! 原创的游戏模式，以及为其设计的全功能谱面编辑器。',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => '',
+        ],
+    ],
+
     'menu' => [
         'home' => [
             '_' => '主页',
             'account-edit' => '设置',
+            'account-verifyLink' => '',
             'friends-index' => '好友',
             'changelog-index' => '更新日志',
             'changelog-build' => '版本',

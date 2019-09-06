@@ -132,7 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Členem od :date',
         'lastvisit' => 'Naposledy spatřen :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'Momentálně aktivní',
         'missingtext' => 'Možná jste se přepsal! (nebo byl uživatel zabanován)',
         'origin_country' => 'Z :country',
         'page_description' => 'osu! - Všechno co jste kdy chtěli vědět o :username!',
@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Velikost záhlaví by měla být 2800x620',
                     'too_large' => 'Nahraný soubor je příliš velký.',
                     'unsupported_format' => 'Nepodporovaný formát.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -163,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 sledující |:count followers',
+            'none' => '',
             'unranked' => 'Žádné poslední údaje o hraní',
 
             'achievements' => [
@@ -190,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Čekající Beatmapy',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Žádné výkonnostní záznamy. :(',
@@ -257,6 +273,11 @@ return [
                         'revoke' => 'Odepřeno kudosu od :giver za příspěvek :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'já!',
@@ -265,6 +286,11 @@ return [
                 'empty' => "Tento uživatel zatím žádné neobdržel ;_;",
                 'recent' => 'Nejnovější',
                 'title' => 'Medaile',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Nedávné',
@@ -282,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Umístění na prvním místě',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Stav účtu',
@@ -333,6 +366,11 @@ return [
             'description' => '<strong>já!</strong> je osobní přizpůsobitelná plocha na vašem profilu.',
             'edit_big' => 'Uprav mě!',
             'placeholder' => 'Zde napiš obsah stánky',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Přispěl :link',
@@ -357,11 +395,16 @@ return [
             'score_ranks' => 'Umístění podle skóre',
             'total_hits' => 'Celkově zásahů',
             'total_score' => 'Celkové skóre',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
     'status' => [
-        'all' => '',
+        'all' => 'Všichni',
         'online' => 'Online',
         'offline' => 'Offline',
     ],
@@ -370,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'Ověření účtu',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

@@ -36,7 +36,7 @@ return [
         'advanced_link' => 'Gelişmiş arama',
         'button' => 'Ara',
         'empty_result' => 'Hiçbir şey bulunamadı!',
-        'keyword_required' => '',
+        'keyword_required' => 'Bir arama anahtar sözcüğü gerekli',
         'placeholder' => 'aramak için yaz',
         'title' => 'Ara',
 

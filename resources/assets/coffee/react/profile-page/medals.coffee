@@ -46,7 +46,7 @@ export class Medals extends React.PureComponent
 
       if recentAchievements.length > 0
         div className: 'page-extra__recent-medals-box',
-          div className: 'page-extra__title page-extra__title--small',
+          div className: 'title title--page-extra-small',
             osu.trans('users.show.extra.medals.recent')
           div className: 'page-extra__recent-medals',
             for achievement in recentAchievements

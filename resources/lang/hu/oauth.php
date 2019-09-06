@@ -34,14 +34,14 @@ return [
     ],
 
     'authorized-clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Biztosan vissza akarod vonni ezen kliens jogait?',
+        'scopes_title' => 'Az alkalmazás képes:',
+        'owned_by' => ':user tulajdona',
+        'none' => 'Nincs Kliens',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Hozzáférés visszavonása',
+            'true' => 'Hozzáférés visszavonva',
         ],
     ],
 

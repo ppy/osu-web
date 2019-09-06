@@ -23,17 +23,26 @@ return [
         'page_description' => 'osu! - Rytmi on vain klikkauksen päässä! Varustettuna Ouendan/EBA ja Taikosta tutuilla sekä alkuperäisillä pelimuodoilla ja täysin toiminnallisella tasoeditorilla.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => '',
+        ],
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'etusivu',
             'account-edit' => 'asetukset',
+            'account-verifyLink' => '',
             'friends-index' => 'kaverit',
             'changelog-index' => 'muutosloki',
             'changelog-build' => 'versio',
             'getDownload' => 'lataa',
             'getIcons' => 'kuvakkeet',
             'groups-show' => 'ryhmät',
-            'index' => 'hallinta',
+            'index' => 'yleiskatsaus',
             'legal-show' => 'tiedot',
             'messages-index' => 'viestit',
             'news-index' => 'uutiset',

@@ -153,6 +153,11 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                     'size_info' => 'L\'immagine di copertina dovrebbe essere 2800x620',
                     'too_large' => 'Il file caricato è troppo grande.',
                     'unsupported_format' => 'Formato non supportato.',
+
+                    'restriction_info' => [
+                        '_' => 'Caricamento disponibile solo per gli :link',
+                        'link' => 'osu!supporter',
+                    ],
                 ],
             ],
 
@@ -164,6 +169,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
 
         'extra' => [
             'followers' => '1 follower|:count followers',
+            'none' => '',
             'unranked' => 'Nessuna partita recente',
 
             'achievements' => [
@@ -191,6 +197,16 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                 'unranked' => [
                     'title' => 'Beatmap In Attesa',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Nessuna performance recente :(',
@@ -258,6 +274,11 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                         'revoke' => 'Kudosu negato da :giver per il post :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => 'Basato sul contributo che l\'utente ha dato nella moderazione delle beatmap. Visita :link per più informazioni.',
+                    'link' => 'questa pagina',
+                ],
             ],
             'me' => [
                 'title' => 'io!',
@@ -266,6 +287,11 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                 'empty' => "Questo utente non ne ha ricevuti ancora. ;_;",
                 'recent' => 'Più recenti',
                 'title' => 'Medaglie',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Recenti',
@@ -283,6 +309,13 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                 'first' => [
                     'title' => 'Rank Primo Posto',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Stato dell\'account',
@@ -308,7 +341,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
         ],
 
         'header_title' => [
-            '_' => ':info giocatore',
+            '_' => ':info Giocatore',
             'info' => 'Informazioni',
         ],
 
@@ -334,6 +367,11 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
             'description' => '<strong>io!</strong> è un\'area personale personalizzabile nella tua pagina del profilo.',
             'edit_big' => 'Modificami!',
             'placeholder' => 'Scrivi il contenuto della pagina qui',
+
+            'restriction_info' => [
+                '_' => 'Devi essere un :link per sbloccare questa funzionalità.',
+                'link' => 'osu!supporter',
+            ],
         ],
         'post_count' => [
             '_' => 'Ha contribuito :link',
@@ -358,6 +396,11 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
             'score_ranks' => 'Rank dei Punteggi',
             'total_hits' => 'Colpi Totali',
             'total_score' => 'Punteggio Totale',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -371,5 +414,10 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
     ],
     'verify' => [
         'title' => 'Verifica dell\'account',
+    ],
+
+    'view_mode' => [
+        'card' => 'Vista a schede',
+        'list' => 'Vista ad elenco',
     ],
 ];

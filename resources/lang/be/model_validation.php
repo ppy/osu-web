@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Абмеркаванне закрыта.',
         'first_post' => 'Нельга выдаліць пачатковы допіс.',
+
+        'attributes' => [
+            'message' => 'Паведамленне',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Вызначана няправільная цяжкасць.',
         'invalid_beatmapset_id' => 'Вызначана няправільная бітмапа.',
         'locked' => 'Абмеркаванне закрыта.',
+
+        'attributes' => [
+            'message_type' => 'Тып паведамлення',
+            'timestamp' => 'Пазнака часу',
+        ],
 
         'hype' => [
             'guest' => 'Каб хайпаваць, трэба ўвайсці.',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Нельга адказваць на выдалены каментарый.',
+
+        'attributes' => [
+            'message' => 'Паведамленне',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Выдаленне метададзеных допіса бітмапы недазволена.',
             'beatmapset_post_no_edit' => 'Рэдагаванне метададзеных допіса бітмапы недазволена.',
             'only_quote' => 'Ваш адказ змяшчае толькі цытату.',
+
+            'attributes' => [
+                'post_text' => 'Змесціва допіса',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => 'Загаловак тэмы',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,6 +106,10 @@ return [
             'minimum_one_selection' => 'Патрабуецца мінімум адзін параметр на карыстальніка.',
             'minimum_two_options' => 'Трэба як мінімум два параметры.',
             'too_many_options' => 'Перавышана максімальна дазволеная колькасць параметраў.',
+
+            'attributes' => [
+                'title' => 'Загаловак апытання',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,6 +142,12 @@ return [
         'wrong_password_confirmation' => 'Пацверджанне паролю не супадаюць.',
         'too_long' => 'Перавышанп максімальная даўжыня - абмежаванне на :limit сімвалаў.',
 
+        'attributes' => [
+            'username' => 'Імя карыстальніка',
+            'user_email' => 'E-mail адрас',
+            'password' => 'Пароль',
+        ],
+
         'change_username' => [
             'restricted' => 'Вы не можаце змяніць імя карыстальніка падчас абмежавання.',
             'supporter_required' => [
@@ -127,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "Вы не можаце паскардзіцца на самога сябе!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => 'Колькасць',
+                'cost' => 'Цана',
+            ],
+        ],
     ],
 ];

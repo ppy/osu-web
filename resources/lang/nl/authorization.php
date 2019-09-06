@@ -145,7 +145,7 @@ return [
                 'not_owner' => 'Alleen de eigenaar kan de cover bewerken.',
             ],
             'store' => [
-                'forum_not_allowed' => '',
+                'forum_not_allowed' => 'Dit forum accepteert geen topic covers.',
             ],
         ],
 

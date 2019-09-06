@@ -24,19 +24,12 @@
     <td class="forum-poll-row__column">
         <label class="forum-poll-row__checkbox-container">
             @if (priv_check('ForumTopicVote', $topic)->can())
-                <div class="osu-checkbox">
-                    <input
-                        class="osu-checkbox__input"
-                        type="{{ $topic->poll_max_options == 1 ? 'radio' : 'checkbox' }}"
-                        value="{{ $pollOptionId }}"
-                        name="forum_topic_vote[option_ids][]"
-                        {{ $pollOption['voted_by_user'] ? 'checked' : '' }}
-                    >
-                    <span class="osu-checkbox__box"></span>
-                    <span class="osu-checkbox__tick">
-                        <i class="fas fa-{{ $topic->poll_max_options == 1 ? 'circle' : 'check' }}"></i>
-                    </span>
-                </div>
+                @include('objects._switch', [
+                    'checked' => $pollOption['voted_by_user'],
+                    'name' => 'forum_topic_vote[option_ids][]',
+                    'type' => $topic->poll_max_options === 1 ? 'radio' : 'checkbox',
+                    'value' => $pollOptionId,
+                ])
             @endif
         </label>
     </td>

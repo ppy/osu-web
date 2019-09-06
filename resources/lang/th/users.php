@@ -132,7 +132,7 @@ return [
         'is_supporter' => 'osu!ผู้สนับสนุน',
         'joined_at' => 'เข้าร่วมเมื่อ :date',
         'lastvisit' => 'ออนไลน์ล่าสุด :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'ออนไลน์ในขณะนี้',
         'missingtext' => 'คุณอาจจะผิดพลาดนะ! (หรือไม่ก็ผู้ใช้อาจจะถูกแบน)',
         'origin_country' => 'มาจาก :country',
         'page_description' => 'osu! - ทุกสิ่งทุกอย่างที่คุณอยากรู้เกี่ยวกับ :username!',
@@ -152,6 +152,11 @@ return [
                     'size_info' => 'รูปภาพหน้าปกควรจะมีขนาด 2800x620',
                     'too_large' => 'ไฟล์มีขนาดใหญ่เกินไป',
                     'unsupported_format' => 'ไม่รองรับไฟล์นามสกุลนี้',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -163,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count ผู้ติดตาม',
+            'none' => '',
             'unranked' => 'ยังไม่มีการเล่น',
 
             'achievements' => [
@@ -190,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'บีทแมพที่กำลังทำ',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'ไม่มี performance ที่บันทึกไว้. :(',
@@ -257,6 +273,11 @@ return [
                         'revoke' => 'Denied kudosu by :giver for the post :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'ฉัน!',
@@ -265,6 +286,11 @@ return [
                 'empty' => "ผู้ใช้คนนี้ยังไม่มีอะไรเลย. ;_;",
                 'recent' => 'ล่าสุด',
                 'title' => 'เหรียญตรา',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'ล่า​สุด',
@@ -282,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'First Place Ranks',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'ชื่อเสียงของบัญชี',
@@ -333,6 +366,11 @@ return [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'การมีส่วนร่วม :link',
@@ -357,11 +395,16 @@ return [
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Total Hits',
             'total_score' => 'คะแนนรวมทั้งหมด',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
     'status' => [
-        'all' => '',
+        'all' => 'ทั้งหมด',
         'online' => 'ออนไลน์',
         'offline' => 'ออฟไลน์',
     ],
@@ -370,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'ยืนยันตัวตนบัญชี',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

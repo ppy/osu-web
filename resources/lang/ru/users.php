@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Размер обложки должен быть равен 2800x620',
                     'too_large' => 'Загруженное изображение слишком большое.',
                     'unsupported_format' => 'Неподдерживаемый формат.',
+
+                    'restriction_info' => [
+                        '_' => 'Загрузка доступна только для :link',
+                        'link' => 'osu!supporters',
+                    ],
                 ],
             ],
 
@@ -163,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count подписчик|:count подписчика|:count подписчиков',
+            'none' => '',
             'unranked' => 'Нет недавних игр',
 
             'achievements' => [
@@ -190,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'На рассмотрении',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Пока записей нет :(',
@@ -257,6 +273,11 @@ return [
                         'revoke' => ':giver отнял кудосу за ответ в посте :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => 'Зависит от того, сколько вклада пользователь внёс в модерацию карт. Смотрите :link для дополнительной информации.',
+                    'link' => 'эту страницу',
+                ],
             ],
             'me' => [
                 'title' => 'обо мне!',
@@ -265,6 +286,11 @@ return [
                 'empty' => "Этот пользователь ещё ничего не получил. ;_;",
                 'recent' => 'Последние достижения',
                 'title' => 'Достижения',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Последняя активность',
@@ -282,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Рекорды',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Состояние аккаунта',
@@ -333,6 +366,11 @@ return [
             'description' => '<strong>обо мне!</strong> - это ваше личное редактируемое пространство в профиле.',
             'edit_big' => 'редактировать',
             'placeholder' => 'Введите контент страницы сюда',
+
+            'restriction_info' => [
+                '_' => 'Для использования этой функции нужен :link.',
+                'link' => 'osu!supporter',
+            ],
         ],
         'post_count' => [
             '_' => 'Написал :link',
@@ -357,6 +395,11 @@ return [
             'score_ranks' => 'Рейтинг по очкам',
             'total_hits' => 'Всего попаданий',
             'total_score' => 'Всего очков',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -370,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'Подтверждения аккаунта',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'rules' => '',
+            'rules_link' => '',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Profiili',
 
             'user' => [
+                'user_discord' => '',
                 'user_from' => 'nykyinen sijainti',
                 'user_interests' => 'kiinnostukset',
                 'user_msnm' => '',
                 'user_occ' => 'ammatti',
                 'user_twitter' => '',
                 'user_website' => 'verkkosivu',
-                'user_discord' => '',
             ],
         ],
 
@@ -62,9 +64,37 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => 'Ilmoitukset',
+        'topic_auto_subscribe' => '',
+    ],
+
     'oauth' => [
-        'title' => '',
         'authorized_clients' => '',
+        'title' => '',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'näppäimistö',
+        'mouse' => 'hiiri',
+        'tablet' => 'piirtopöytä',
+        'title' => 'Pelityylit',
+        'touch' => 'kosketus',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'estä yksityisviestit henkilöiltä jotka eivät ole kaverilistallasi',
+        'hide_online' => 'piilota online-tilasi',
+        'title' => 'Yksityisyys',
+    ],
+
+    'security' => [
+        'current_session' => 'nykyinen',
+        'end_session' => 'Sulje istunto',
+        'end_session_confirmation' => 'Suljetaanko istuntosi kyseisellä laitteella?',
+        'last_active' => 'Viimeksi aktiivisena',
+        'title' => 'Turvallisuus',
+        'web_sessions' => 'aktiiviset istunnot',
     ],
 
     'update_email' => [
@@ -77,31 +107,12 @@ return [
         'update' => 'päivitä',
     ],
 
-    'playstyles' => [
-        'title' => 'Pelityylit',
-        'mouse' => 'hiiri',
-        'keyboard' => 'näppäimistö',
-        'tablet' => 'piirtopöytä',
-        'touch' => 'kosketus',
+    'verification_completed' => [
+        'text' => '',
+        'title' => '',
     ],
 
-    'privacy' => [
-        'title' => 'Yksityisyys',
-        'friends_only' => 'estä yksityisviestit henkilöiltä jotka eivät ole kaverilistallasi',
-        'hide_online' => 'piilota online-tilasi',
-    ],
-
-    'notifications' => [
-        'title' => 'Ilmoitukset',
-        'topic_auto_subscribe' => '',
-    ],
-
-    'security' => [
-        'current_session' => 'nykyinen',
-        'end_session' => 'Sulje istunto',
-        'end_session_confirmation' => 'Suljetaanko istuntosi kyseisellä laitteella?',
-        'last_active' => 'Viimeksi aktiivisena',
-        'title' => 'Turvallisuus',
-        'web_sessions' => 'aktiiviset istunnot',
+    'verification_invalid' => [
+        'title' => '',
     ],
 ];

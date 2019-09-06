@@ -75,8 +75,11 @@ return [
         'minute_short_unit' => 'мин|мин',
         'minutes' => ':count минута|:count минути',
         'months' => ':count месец|:count месеца',
+        'post' => '',
         'second_short_unit' => 'сек|сек',
+        'star_priority' => '',
         'update' => ':count_delimited актуализация|:count_delimited актуализации',
+        'view' => '',
         'years' => ':count година|:count години',
     ],
 

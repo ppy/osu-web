@@ -152,6 +152,11 @@ return [
                     'size_info' => 'La taille de la bannière devrait être de 2800x620',
                     'too_large' => 'Le fichier est trop volumineux.',
                     'unsupported_format' => 'Format non supporté.',
+
+                    'restriction_info' => [
+                        '_' => 'Mise en ligne disponible pour les :link uniquement',
+                        'link' => 'osu!supporters',
+                    ],
                 ],
             ],
 
@@ -163,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count abonné|:count abonnés',
+            'none' => '',
             'unranked' => 'Aucune partie récente',
 
             'achievements' => [
@@ -190,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Beatmaps en attente',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Aucune performance enregistrée. :(',
@@ -257,6 +273,11 @@ return [
                         'revoke' => 'Kudosu refusé par :giver pour le post sur :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => 'Basé sur la quantité d\'une contribution que l\'utilisateur a apportée à la modération de la beatmap. Voir :link pour plus d\'informations.',
+                    'link' => 'cette page',
+                ],
             ],
             'me' => [
                 'title' => 'moi !',
@@ -265,6 +286,11 @@ return [
                 'empty' => "Cet utilisateur n'en a encore jamais reçue. ;_;",
                 'recent' => 'Dernier',
                 'title' => 'Médailles',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Activité récente',
@@ -282,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Premières places',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Statut du compte',
@@ -333,6 +366,11 @@ return [
             'description' => '<strong>Moi !</strong> est une zone personnalisable du profil.',
             'edit_big' => 'Éditez-moi !',
             'placeholder' => 'Tapez le contenu de la page',
+
+            'restriction_info' => [
+                '_' => 'Vous devez être un :link pour déverrouiller cette fonctionnalité.',
+                'link' => 'osu!supporter',
+            ],
         ],
         'post_count' => [
             '_' => 'A contribué à :link',
@@ -357,6 +395,11 @@ return [
             'score_ranks' => 'Classements de Scores',
             'total_hits' => 'Nombre de clics',
             'total_score' => 'Score total',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -370,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'Vérification de compte',
+    ],
+
+    'view_mode' => [
+        'card' => 'Vue en carte',
+        'list' => 'Vue en liste',
     ],
 ];

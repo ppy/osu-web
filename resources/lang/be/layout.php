@@ -23,10 +23,19 @@ return [
         'page_description' => 'osu! - Рытм у адным *націсканні* ад вас! Гульня з Ouendan/EBA, Taiko і арыгінальнымі гульнявымі рэжымамі, а таксама з поўным вартасным рэдактарам бітмап.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => '',
+        ],
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'галоўная',
             'account-edit' => 'налады',
+            'account-verifyLink' => 'Пацверджанне завершана',
             'friends-index' => 'сябры',
             'changelog-index' => 'спic змен',
             'changelog-build' => 'зборка',

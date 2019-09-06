@@ -23,10 +23,19 @@ return [
         'page_description' => 'osu! - Ritmul este doar la un *clic* distanță! Cu Ouendan/EBA, Taiko și moduri de joc originale,  precum și un editor de nivel complet funcțional.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => '',
+        ],
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'acasă',
             'account-edit' => 'setări',
+            'account-verifyLink' => '',
             'friends-index' => 'prieteni',
             'changelog-index' => 'jurnalul modificărilor',
             'changelog-build' => 'versiune',

@@ -37,6 +37,11 @@ return [
     'checkout' => [
         'generic' => 'Hiba történt a fizetés előkészítése közben.',
     ],
+    'search' => [
+        'default' => '',
+        'operation_timeout_exception' => '',
+    ],
+
     'logged_out' => 'Ki lettél léptetve. Kérlek lépj be és próbáld újra.',
     'supporter_only' => 'Támogatónak kell lenned a funkció használatához.',
     'no_restricted_access' => 'Felfüggesztett állapot erre nem vagy alkalmas.',

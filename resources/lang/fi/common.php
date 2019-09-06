@@ -75,8 +75,11 @@ return [
         'minute_short_unit' => 'm | m',
         'minutes' => ':count_delimited minuutti|:count_delimited minuuttia',
         'months' => ':count kuukausi|:count kuukautta',
+        'post' => '',
         'second_short_unit' => 's|s',
+        'star_priority' => '',
         'update' => '',
+        'view' => '',
         'years' => ':count vuosi|:count vuotta',
     ],
 

@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Størrelsen på banneret bør være 2800x620',
                     'too_large' => 'Den opplastede filen er for stor.',
                     'unsupported_format' => 'Formatet støttes ikke.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -163,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 følger|:count følgere',
+            'none' => '',
             'unranked' => 'Ingen nylige spill',
 
             'achievements' => [
@@ -190,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Ventende Beatmaps',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Ingen prestasjoner :(',
@@ -257,6 +273,11 @@ return [
                         'revoke' => 'Nektet kudosu fra :giver for innlegget :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'om meg!',
@@ -265,6 +286,11 @@ return [
                 'empty' => "Denne brukeren har ikke fått noen ennå. ;_;",
                 'recent' => 'Nyeste',
                 'title' => 'Medaljer',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Nylige',
@@ -282,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Førsteplasser',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Kontostatus',
@@ -333,6 +366,11 @@ return [
             'description' => '<strong>me!</strong> er et personlig egendefinerbart område på profilsiden din.',
             'edit_big' => 'Rediger "om meg!"',
             'placeholder' => 'Skriv sideinnhold her',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Bidratt med :link',
@@ -357,6 +395,11 @@ return [
             'score_ranks' => 'Poengsum Rangering',
             'total_hits' => 'Totale Treff',
             'total_score' => 'Samlet Poengsum',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -370,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'Kontobekreftelse',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

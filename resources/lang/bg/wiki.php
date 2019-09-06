@@ -21,6 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'Страницата все още не е преведена на избрания език (:language). Ще бъде показана на английски език.',
+        'incomplete_or_outdated' => '',
         'languages' => 'Езици',
         'missing' => 'Страницата ":keyword" не беше намерена.',
         'missing_title' => 'Не е намерено',

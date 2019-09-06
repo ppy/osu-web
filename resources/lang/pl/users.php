@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2800x620',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
+
+                    'restriction_info' => [
+                        '_' => 'Tylko :link mogą przesyłać pliki',
+                        'link' => 'donatorzy osu!',
+                    ],
                 ],
             ],
 
@@ -163,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count_delimited obserwujący|:count_delimited obserwujących|:count_delimited obserwujących',
+            'none' => '',
             'unranked' => 'Brak nowych wyników',
 
             'achievements' => [
@@ -191,6 +197,16 @@ return [
                     'title' => 'Oczekujące beatmapy',
                 ],
             ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'historical' => [
                 'empty' => 'Brak wyników. :(',
                 'title' => 'Historia',
@@ -204,7 +220,7 @@ return [
                     'title' => 'Najczęściej grane beatmapy',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'precyzja: :percentage',
+                    'accuracy' => 'celność: :percentage',
                     'title' => 'Ostatnie wyniki (24 godz.)',
                 ],
                 'replays_watched_counts' => [
@@ -257,6 +273,11 @@ return [
                         'revoke' => 'Odebrano kudosu przez :giver za post :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => 'Liczba zdobytych punktów kudosu jest oparta o wkład użytkownika w modowanie beatmap. Sprawdź :link, by dowiedzieć się więcej.',
+                    'link' => 'ten artykuł',
+                ],
             ],
             'me' => [
                 'title' => 'ja!',
@@ -265,6 +286,11 @@ return [
                 'empty' => "Ten użytkownik nie uzyskał jeszcze żadnych medali. ;_;",
                 'recent' => 'Ostatnie',
                 'title' => 'Medale',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Ostatnie',
@@ -282,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Pierwsze miejsca',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Stan konta',
@@ -333,6 +366,11 @@ return [
             'description' => '<strong>ja!</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
+
+            'restriction_info' => [
+                '_' => 'Musisz być :link, by odblokować tę funkcję.',
+                'link' => 'donatorem osu!',
+            ],
         ],
         'post_count' => [
             '_' => ':link',
@@ -345,7 +383,7 @@ return [
             'global_simple' => 'Ranking globalny',
         ],
         'stats' => [
-            'hit_accuracy' => 'Precyzja',
+            'hit_accuracy' => 'Celność',
             'level' => 'Poziom :level',
             'level_progress' => 'Postęp do następnego poziomu',
             'maximum_combo' => 'Maksymalne combo',
@@ -357,6 +395,11 @@ return [
             'score_ranks' => 'Wyniki',
             'total_hits' => 'Łączna liczba uderzeń',
             'total_score' => 'Łączny wynik',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -370,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'Weryfikacja konta',
+    ],
+
+    'view_mode' => [
+        'card' => 'Widok kart',
+        'list' => 'Widok listy',
     ],
 ];

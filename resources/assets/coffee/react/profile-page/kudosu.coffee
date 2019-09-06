@@ -62,9 +62,13 @@ export class Kudosu extends React.Component
               else
                 _.escape osu.trans('users.deleted')
 
-            post = osu.link kudosu.post?.url,
-              kudosu.post?.title
-              classNames: ['profile-extra-entries__link profile-extra-entries__link--kudosu']
+            post =
+              if kudosu.post?.url?
+                osu.link kudosu.post?.url,
+                  kudosu.post?.title
+                  classNames: ['profile-extra-entries__link profile-extra-entries__link--kudosu']
+              else
+                kudosu.post?.title
 
             li key: "kudosu-#{kudosu.id}", className: 'profile-extra-entries__item',
               div className: 'profile-extra-entries__detail',

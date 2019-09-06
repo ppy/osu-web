@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Το μέγεθος του εξωφύλλου πρέπει να είναι 2800x620',
                     'too_large' => 'Το αρχείο είναι πολύ μεγάλο.',
                     'unsupported_format' => 'Μη υποστηριζόμενη μορφή.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -163,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 ακόλουθος|:count ακόλουθοι',
+            'none' => '',
             'unranked' => 'Κανένα πρόσφατο σκορ',
 
             'achievements' => [
@@ -190,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Εκκρεμή Beatmaps',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Κανένα ρεκόρ επίδοσης. :(',
@@ -257,6 +273,11 @@ return [
                         'revoke' => 'Ο :giver αρνήθηκε τα kudosu για το post :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'me!',
@@ -265,6 +286,11 @@ return [
                 'empty' => "Αυτός ο χρήστης δεν έχει πάρει κανένα ακόμα. ;_;",
                 'recent' => 'Πρόσφατα',
                 'title' => 'Μετάλλια',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Πρόσφατα',
@@ -282,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Πρώτες Θέσεις',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Κατάσταση λογαριασμού',
@@ -333,6 +366,11 @@ return [
             'description' => 'To <strong>me!</strong> είναι μια προσωπική προσαρμόσιμη περιοχή στη σελίδα του προφίλ σας.',
             'edit_big' => 'Επεξεργασία!',
             'placeholder' => 'Γράψτε το περιεχόμενο της σελίδας εδώ',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Συνεισφορά :link',
@@ -357,6 +395,11 @@ return [
             'score_ranks' => 'Κατάταξη Score',
             'total_hits' => 'Συνολικά Hits',
             'total_score' => 'Συνολική Βαθμολογία',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -370,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'Επαλήθευση του Λογαριασμού',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

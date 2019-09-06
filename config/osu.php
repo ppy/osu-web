@@ -108,6 +108,9 @@ return [
         'endpoint' => presence(env('NOTIFICATION_ENDPOINT'), '/home/notifications/feed'),
         'queue_name' => presence(env('NOTIFICATION_QUEUE'), 'notification'),
     ],
+    'oauth' => [
+        'max_user_clients' => get_int(env('OAUTH_MAX_USER_CLIENTS')) ?? 1,
+    ],
     'search' => [
         'minimum_length' => get_int(env('SEARCH_MINIMUM_LENGTH', 2)),
 
@@ -145,6 +148,7 @@ return [
     ],
     'urls' => [
         'base' => 'https://osu.ppy.sh',
+        'bounty-form' => env('OS_BOUNTY_URL'),
         'dev' => 'https://discord.gg/ppy',
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',

@@ -132,7 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Werd lid op :date',
         'lastvisit' => 'Laatst gezien op :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'Momenteel online',
         'missingtext' => 'Je hebt misschien een typfout gemaakt! (of de gebruiker is verbannen)',
         'origin_country' => 'Uit :country',
         'page_description' => 'osu! - Alles wat je ooit over :username wilde weten!',
@@ -152,6 +152,11 @@ return [
                     'size_info' => 'Cover grootte moet 2800x620 zijn',
                     'too_large' => 'Het geüploade bestand is te groot.',
                     'unsupported_format' => 'Niet ondersteund formaat.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -163,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 volger|:count volgers',
+            'none' => '',
             'unranked' => 'Geen recente plays',
 
             'achievements' => [
@@ -190,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Afwachtende Beatmaps',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Geen prestatiegegevens. :(',
@@ -257,6 +273,11 @@ return [
                         'revoke' => 'Kudosu geweigerd door :giver voor :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'ik!',
@@ -265,6 +286,11 @@ return [
                 'empty' => "Deze gebruiker heeft er nog geen ;_;",
                 'recent' => 'Recent',
                 'title' => 'Medailles',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Recent',
@@ -282,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Eerste Ranks',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Account Reputatie',
@@ -333,6 +366,11 @@ return [
             'description' => '<strong>ik!</strong> is een persoonlijk bewerkbaar gedeelte van je profiel.',
             'edit_big' => 'Bewerk me!',
             'placeholder' => 'Typ pagina inhoud hier',
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Plaatste :link',
@@ -357,11 +395,16 @@ return [
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Totaal Aantal Hits',
             'total_score' => 'Totaal Aantal Score',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
     'status' => [
-        'all' => '',
+        'all' => 'Alle',
         'online' => 'Online',
         'offline' => 'Offline',
     ],
@@ -370,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'Accountverificatie',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

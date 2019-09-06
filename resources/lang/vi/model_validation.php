@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Cuộc thảo luận đã bị khóa.',
         'first_post' => 'Không thể xóa bài đăng mở đầu.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Difficulty đã chọn không hợp lệ.',
         'invalid_beatmapset_id' => 'Beatmap đã chọn không hợp lệ.',
         'locked' => 'Cuộc thảo luận đã bị khóa.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'Cần phải đăng nhập để hype.',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Không cho phép trả lời bình luận đã xóa.',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Không cho phép xóa beatmap metadata.',
             'beatmapset_post_no_edit' => 'Không cho phép chỉnh sửa beatmap metadata.',
             'only_quote' => 'Câu trả lời của bạn chỉ có một trích dẫn.',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,6 +106,10 @@ return [
             'minimum_one_selection' => 'Yêu cầu tối thiểu một lựa chọn cho mỗi người dùng.',
             'minimum_two_options' => 'Cần ít nhất hai lựa chọn.',
             'too_many_options' => 'Vượt quá số lượng lựa chọn tối đa.',
+
+            'attributes' => [
+                'title' => '',
+            ],
         ],
 
         'topic_vote' => [
@@ -115,6 +142,12 @@ return [
         'wrong_password_confirmation' => 'Mật khẩu xác nhận không phù hợp.',
         'too_long' => 'Đã vượt quá độ dài tối đa - tối đa :limit kí tự.',
 
+        'attributes' => [
+            'username' => '',
+            'user_email' => '',
+            'password' => '',
+        ],
+
         'change_username' => [
             'restricted' => 'Bạn không thể đổi tên người dùng khi đang bị hạn chế.',
             'supporter_required' => [
@@ -127,5 +160,14 @@ return [
 
     'user_report' => [
         'self' => "Bạn không thể báo cáo chính mình!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '',
+                'cost' => '',
+            ],
+        ],
     ],
 ];

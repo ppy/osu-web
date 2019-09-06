@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => '討論被鎖定。',
         'first_post' => '無法刪除第一個討論。',
+
+        'attributes' => [
+            'message' => '訊息',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => '指定的難度無效。',
         'invalid_beatmapset_id' => '指定的譜面無效。',
         'locked' => '討論被鎖定。',
+
+        'attributes' => [
+            'message_type' => '訊息類型',
+            'timestamp' => '時間戳',
+        ],
 
         'hype' => [
             'guest' => '登錄後才能推薦',
@@ -52,7 +61,11 @@ return [
     ],
 
     'comment' => [
-        'deleted_parent' => '',
+        'deleted_parent' => '無法回覆給已刪除評論。',
+
+        'attributes' => [
+            'message' => '訊息',
+        ],
     ],
 
     'follow' => [
@@ -72,17 +85,31 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => '不允許刪除譜面信息帖。',
             'beatmapset_post_no_edit' => '不允許編輯譜面信息帖。',
-            'only_quote' => '',
+            'only_quote' => '您的回覆僅有引用。',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '主題標題',
+            ],
         ],
 
         'topic_poll' => [
             'duplicate_options' => '不允許重複的選項。',
-            'grace_period_expired' => '',
+            'grace_period_expired' => '無法修改超過 :limit 個小時的投票。',
             'hiding_results_forever' => '無法隱藏不會完結之投票的結果',
             'invalid_max_options' => '每人可選的選項不能超出總選項數。',
             'minimum_one_selection' => '每人至少可選一項。',
             'minimum_two_options' => '需要至少兩個選項。',
             'too_many_options' => '選項數量超出限制。',
+
+            'attributes' => [
+                'title' => '投票標題',
+            ],
         ],
 
         'topic_vote' => [
@@ -95,37 +122,52 @@ return [
         'contains_username' => '密碼不能包含用戶名。',
         'email_already_used' => '郵箱已被使用。',
         'invalid_country' => '國家未被數據庫收錄。',
-        'invalid_discord' => 'Discord 用户名无效。',
+        'invalid_discord' => 'Discord 用户名無效。',
         'invalid_email' => "無效的郵箱地址。",
         'too_short' => '新密碼太短。',
         'unknown_duplicate' => '用戶名或郵箱已被使用。',
-        'username_available_in' => '该用户名将在 :duration 后可用。',
-        'username_available_soon' => '该用户名即将可用！',
-        'username_invalid_characters' => '用户名中包含非法字符。',
-        'username_in_use' => '用户名已经被使用！',
+        'username_available_in' => '該用戶名將在 :duration 後可用。',
+        'username_available_soon' => '該用戶名即將可用！',
+        'username_invalid_characters' => '用戶名中包含非法字符。',
+        'username_in_use' => '用戶名已經被使用！',
         'username_locked' => '使用者名稱已被使用！', // TODO: language for this should be slightly different.
-        'username_no_space_userscore_mix' => '请在下划线和空格间选一个，不要混用！',
-        'username_no_spaces' => "用户名不能以空格开头或结束。",
-        'username_not_allowed' => '不允许使用该用户名。',
+        'username_no_space_userscore_mix' => '請在下劃線和空格間選一個，不要混用！',
+        'username_no_spaces' => "用戶名不能以空格開頭或結束。",
+        'username_not_allowed' => '不允許使用該用戶名。',
         'username_too_short' => '用戶名太短。',
-        'username_too_long' => '用户名太长。',
+        'username_too_long' => '用戶名太長。',
         'weak' => '弱密碼。',
         'wrong_current_password' => '密碼不正確.',
         'wrong_email_confirmation' => '重複新郵箱與新郵箱不一致。',
         'wrong_password_confirmation' => '重複新密碼與新密碼不一致。',
         'too_long' => '超出長度限制——最多為 :limit 個字符。',
 
+        'attributes' => [
+            'username' => '使用者名稱',
+            'user_email' => '電子郵件地址',
+            'password' => '密碼',
+        ],
+
         'change_username' => [
             'restricted' => '帳戶處於限制模式時無法更變使用者名稱。',
             'supporter_required' => [
-                '_' => '你必须 :link 才能更改用户名！',
+                '_' => '你必須 :link 才能更改用戶名！',
                 'link_text' => '支持 osu!',
             ],
-            'username_is_same' => '这就是你的用户名，Baka！',
+            'username_is_same' => '這就是你的用戶名，Baka！',
         ],
     ],
 
     'user_report' => [
-        'self' => "",
+        'self' => "您不能檢舉你自己！",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '數量',
+                'cost' => '成本',
+            ],
+        ],
     ],
 ];
