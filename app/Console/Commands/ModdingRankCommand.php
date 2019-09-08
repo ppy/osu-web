@@ -51,7 +51,10 @@ class ModdingRankCommand extends Command
 
         $modeInts = array_values(Beatmap::MODES);
 
+        shuffle($modeInts);
+
         foreach ($modeInts as $modeInt) {
+            $this->waitRandom();
             $this->rankAll($modeInt);
         }
 
@@ -94,8 +97,16 @@ class ModdingRankCommand extends Command
         $this->info("Ranking {$toBeRanked->count()} beatmapset(s)");
 
         foreach ($toBeRanked as $beatmapset) {
+            $this->waitRandom();
             $this->info("Ranking beatmapset: {$beatmapset->getKey()}");
             $beatmapset->rank();
         }
+    }
+
+    private function waitRandom()
+    {
+        $delay = random(5, 120);
+        $this->info("Pausing for {$delay} seconds...");
+        sleep($delay);
     }
 }
