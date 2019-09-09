@@ -55,6 +55,6 @@
             </div>
         @endif
 
-        @include('forum.topics._post_edit_form', ['type' => 'reply', 'enabled' => false])
+        @include('forum.topics._post_edit_form', ['type' => 'reply', 'enabled' => priv_check('ForumTopicReply', $topic)->can()])
     {!! Form::close() !!}
 </div>
