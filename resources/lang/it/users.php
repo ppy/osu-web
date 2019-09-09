@@ -121,17 +121,17 @@ return [
         ],
     ],
     'restricted_banner' => [
-        'title' => 'Il tuo account è stato ristretto!',
-        'message' => 'Quando sei ristretto, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Questo è solitamente il risultato di un processo automatico e verrà risolto preferibilmente entro 24 ore. Se desideri fare appello alla tua restrizione, si prega di <a
-href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
+        'title' => 'Il tuo account è stato limitato!',
+        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto preferibilmente entro 24 ore. Se desideri fare appello alla tua restrizione, <a
+href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
     ],
     'show' => [
         'age' => ':age anni',
         'change_avatar' => 'cambia il tuo avatar!',
         'first_members' => 'Qui dall\'inizio',
         'is_developer' => 'sviluppatore di osu!',
-        'is_supporter' => 'supporter di osu!',
-        'joined_at' => 'Registrato :date',
+        'is_supporter' => 'osu!supporter',
+        'joined_at' => 'Registrato da :date',
         'lastvisit' => 'Ultimo accesso :date',
         'lastvisit_online' => 'Attualmente online',
         'missingtext' => 'Potresti aver fatto un errore di battitura! (o l\'utente potrebbe essere stato bannato)',
@@ -144,9 +144,9 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
         'edit' => [
             'cover' => [
                 'button' => 'Cambia copertina del profilo',
-                'defaults_info' => 'Più opzioni per la copertina saranno disponibili nel futuro',
+                'defaults_info' => 'Più opzioni per la copertina saranno disponibili in futuro',
                 'upload' => [
-                    'broken_file' => 'Elaborazione dell\'immagine non riuscito. Controlla l\'immagine caricata e riprova.',
+                    'broken_file' => 'Elaborazione dell\'immagine non riuscita. Controlla l\'immagine caricata e riprova.',
                     'button' => 'Carica immagine',
                     'dropzone' => 'Trascina qui per caricarla',
                     'dropzone_info' => 'Puoi anche trascinare qui l\'immagine per caricarla',
@@ -155,8 +155,8 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                     'unsupported_format' => 'Formato non supportato.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Caricamento disponibile solo per gli :link',
+                        'link' => 'osu!supporter',
                     ],
                 ],
             ],
@@ -168,11 +168,12 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
         ],
 
         'extra' => [
-            'followers' => '1 follower|:count followers',
+            'followers' => ':count_delimited follower|:count_delimited follower',
+            'none' => 'nessuno',
             'unranked' => 'Nessuna partita recente',
 
             'achievements' => [
-                'achieved-on' => 'Raggiunto il :date',
+                'achieved-on' => 'Ottenuto il :date',
                 'locked' => 'Bloccato',
                 'title' => 'Obiettivi',
             ],
@@ -191,11 +192,21 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                     'title' => 'Beatmap Amate',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmap Classificate e Approvate',
+                    'title' => 'Beatmap Classificate & Approvate',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmap In Attesa',
+                    'title' => 'Beatmap in Attesa',
                 ],
+            ],
+            'discussions' => [
+                'title' => 'Discussioni',
+                'title_longer' => 'Discussioni Recenti',
+                'show_more' => 'guarda più discussioni',
+            ],
+            'events' => [
+                'title' => 'Eventi',
+                'title_longer' => 'Eventi Recenti',
+                'show_more' => 'guarda più eventi',
             ],
             'historical' => [
                 'empty' => 'Nessuna performance recente :(',
@@ -221,7 +232,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
             'kudosu' => [
                 'available' => 'Kudosu Disponibili',
                 'available_info' => "I kudosu possono essere scambiati per delle stelle kudosu, che aiuteranno la tua beatmap ad ottenere più attenzione. Questo è il numero di kudosu che non hai ancora scambiato.",
-                'recent_entries' => 'Storico dei recenti kudosu',
+                'recent_entries' => 'Cronologia Kudosu Recenti',
                 'title' => 'Kudosu!',
                 'total' => 'Totale Kudosu Guadagnati',
 
@@ -231,24 +242,24 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Ricevuto :amount dall\'annullamento del rifiuto di kudosu del modding post :post',
+                            'give' => 'Ricevuto :amount dall\'annullamento del rifiuto di kudosu del post di modding :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Negato :amount dal modding post :post',
+                            'reset' => 'Negato :amount dal post di modding :post',
                         ],
 
                         'delete' => [
-                            'reset' => 'Perso :amount dalla rimozione del modding post :post',
+                            'reset' => 'Perso :amount dalla rimozione del post di modding di :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Ricevuto :amount dal ripristino del modding post :post',
+                            'give' => 'Ricevuto :amount dal ripristino del post di modding di :post',
                         ],
 
                         'vote' => [
                             'give' => 'Ricevuto :amount dall\'ottenimento di voti nel post di modding di :post',
-                            'reset' => 'Perso :amount dalla perdita di voti nel posto di modding di :post',
+                            'reset' => 'Perso :amount dalla perdita di voti nel post di modding di :post',
                         ],
 
                         'recalculate' => [
@@ -259,14 +270,14 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
 
                     'forum_post' => [
                         'give' => 'Ricevuto :amount da :giver per il post in :post',
-                        'reset' => 'Kudosu resettato da :giver per il post :post',
-                        'revoke' => 'Kudosu negato da :giver per il post :post',
+                        'reset' => 'Kudosu resettati da :giver per il post :post',
+                        'revoke' => 'Kudosu negati da :giver per il post :post',
                     ],
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Basato sul contributo che l\'utente ha dato nella moderazione delle beatmap. Visita :link per più informazioni.',
+                    'link' => 'questa pagina',
                 ],
             ],
             'me' => [
@@ -276,6 +287,11 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                 'empty' => "Questo utente non ne ha ricevuti ancora. ;_;",
                 'recent' => 'Più recenti',
                 'title' => 'Medaglie',
+            ],
+            'posts' => [
+                'title' => 'Post',
+                'title_longer' => 'Post Recenti',
+                'show_more' => 'guarda più post',
             ],
             'recent_activity' => [
                 'title' => 'Recenti',
@@ -293,6 +309,13 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
                 'first' => [
                     'title' => 'Rank Primo Posto',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Voti Assegnati (negli ultimi 3 mesi)',
+                'received' => 'Voti Ricevuti (negli ultimi 3 mesi)',
+                'title' => 'Voti',
+                'title_longer' => 'Voti Recenti',
+                'vote_count' => ':count_delimited voto|:count_delimited voti',
             ],
             'account_standing' => [
                 'title' => 'Stato dell\'account',
@@ -318,7 +341,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
         ],
 
         'header_title' => [
-            '_' => ':info giocatore',
+            '_' => ':info Giocatore',
             'info' => 'Informazioni',
         ],
 
@@ -346,8 +369,8 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
             'placeholder' => 'Scrivi il contenuto della pagina qui',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Devi essere un :link per sbloccare questa funzionalità.',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
@@ -373,6 +396,11 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
             'score_ranks' => 'Rank dei Punteggi',
             'total_hits' => 'Colpi Totali',
             'total_score' => 'Punteggio Totale',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Beatmap Classificate & Approvate',
+            'loved_beatmapset_count' => 'Beatmap Amate',
+            'unranked_beatmapset_count' => 'Beatmap in Attesa',
+            'graveyard_beatmapset_count' => 'Beatmap Abbandonate',
         ],
     ],
 
@@ -389,7 +417,7 @@ href="mailto:accounts@ppy.sh">contattare il supporto</a>.',
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'Vista a schede',
+        'list' => 'Vista ad elenco',
     ],
 ];

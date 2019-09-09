@@ -178,11 +178,7 @@ class OsuMarkdown
     {
         $converted = $this->converter->convertToHtml($this->document);
 
-        $blockClass = $this->config['block_name'];
-
-        foreach ($this->config['block_modifiers'] as $blockModifier) {
-            $blockClass .= " {$this->config['block_name']}--{$blockModifier}";
-        }
+        $blockClass = class_with_modifiers($this->config['block_name'], $this->config['block_modifiers']);
 
         $this->html = "<div class='{$blockClass}'>{$converted}</div>";
 

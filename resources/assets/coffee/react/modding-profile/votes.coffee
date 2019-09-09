@@ -26,7 +26,7 @@ export class Votes extends React.Component
   render: =>
 
     div className: 'page-extra',
-      h1 className: 'page-extra__title',
+      h1 className: 'title title--page-extra',
         osu.trans("users.show.extra.votes.title_longer")
 
       ['received', 'given'].map (direction) =>

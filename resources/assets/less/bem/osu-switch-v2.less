@@ -1,0 +1,79 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.osu-switch-v2 {
+  @_top: osu-switch-v2;
+
+  flex: none;
+  display: inline-flex;
+  cursor: pointer;
+  align-items: baseline;
+  font-size: inherit;
+  text-transform: none;
+  margin: 0 5px 0 0;
+
+  &__input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  &__content {
+    .center-content();
+    width: 1.5em;
+    height: 1.5em;
+    display: flex;
+    color: .osu-hsla(@osu-colour-h1, 0.5)[@hsla];
+    border: 2px solid currentColor;
+
+    &::after {
+      opacity: 0;
+    }
+
+    .@{_top}__input:checked + & {
+      color: @osu-colour-h1;
+
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    .@{_top}__input[type=checkbox] + & {
+      border-radius: 0.5em;
+
+      &::after {
+        .fas();
+        content: '\f00c';
+      }
+    }
+
+    .@{_top}__input[type=radio] + & {
+      border-radius: 50%;
+
+      &::after {
+        content: '';
+        background-color: currentColor;
+        border-radius: 50%;
+        width: calc(100% - 6px);
+        height: calc(100% - 6px);
+      }
+    }
+  }
+}

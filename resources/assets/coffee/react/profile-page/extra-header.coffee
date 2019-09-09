@@ -22,7 +22,7 @@ el = React.createElement
 
 export ExtraHeader = (props) ->
   div null,
-    h2 className: 'page-extra__title', osu.trans("users.show.extra.#{props.name}.title")
+    h2 className: 'title title--page-extra', osu.trans("users.show.extra.#{props.name}.title")
     if props.withEdit
       span className: 'page-extra__dragdrop-toggle hidden-xs js-profile-page-extra--sortable-handle',
         i className: 'fas fa-bars'

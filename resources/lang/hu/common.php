@@ -75,8 +75,11 @@ return [
         'minute_short_unit' => 'p|p',
         'minutes' => ':count perc |:count percek',
         'months' => ':count hónap|:count hónap',
+        'post' => ':count_delimited poszt|:count_delimited posztok',
         'second_short_unit' => 'mp|mp',
-        'update' => '',
+        'star_priority' => ':count_delimited: csillag prioritás|:count_delimited csillag prioritások',
+        'update' => ':count_delimited frissítés|:count_delimited frissítések',
+        'view' => ':count_delimited megtekintés|:count_delimited megtekintések',
         'years' => ':count év|:count év',
     ],
 

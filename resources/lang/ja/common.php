@@ -75,8 +75,11 @@ return [
         'minute_short_unit' => '分',
         'minutes' => ':count_delimited分',
         'months' => ':countヶ月',
+        'post' => ':count_delimited 投稿',
         'second_short_unit' => '秒',
+        'star_priority' => ':count_delimited スタープライオリティ',
         'update' => ':count_delimited アップデート',
+        'view' => ':count_delimited ビュー',
         'years' => ':count年',
     ],
 

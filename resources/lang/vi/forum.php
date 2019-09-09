@@ -42,6 +42,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Bài viết mới nhất',
+
+        'index' => [
+            'title' => '',
+        ],
+
         'topics' => [
             'empty' => 'Không có chủ đề nào cả!',
         ],
@@ -75,7 +81,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited bài đăng',
-            'topic_starter' => '',
+            'topic_starter' => 'Chủ đề mở đầu',
         ],
     ],
 

@@ -75,8 +75,11 @@ return [
         'minute_short_unit' => 'minuut|minuten',
         'minutes' => ':count_delimited minuut|:count_delimited minuten',
         'months' => ':count maand|:count maanden',
+        'post' => ':count_delimited bericht|:count_delimited berichten',
         'second_short_unit' => 'second|seconden',
+        'star_priority' => ':count_delimited ster prioriteit|:count_delimited ster prioriteiten',
         'update' => ':count_delimited update|:count_delimited updates',
+        'view' => ':count_delimited weergave|:count_delimited weergaven',
         'years' => ':count jaar|:count jaar',
     ],
 

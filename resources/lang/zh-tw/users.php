@@ -154,8 +154,8 @@ return [
                     'unsupported_format' => '不支援的檔案格式.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => '上傳可用於 :link 僅',
+                        'link' => 'osu! 贊助者',
                     ],
                 ],
             ],
@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '關注者：:count',
+            'none' => '',
             'unranked' => '近期沒有遊玩記錄',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Pending Beatmaps',
                 ],
+            ],
+            'discussions' => [
+                'title' => '討論',
+                'title_longer' => '最近討論',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => '尚無遊戲分數。:(',
@@ -264,8 +275,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => '基於使用者對圖譜審核的貢獻量。請看 :link 以獲得更多信息。',
+                    'link' => '這個頁面',
                 ],
             ],
             'me' => [
@@ -275,6 +286,11 @@ return [
                 'empty' => "該使用者尚未獲得成就。;_;",
                 'recent' => '最新',
                 'title' => '成就',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => '最近活動',
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => '第一名',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '投票',
+                'title_longer' => '最近投票',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => '帳號狀態',
@@ -345,8 +368,8 @@ return [
             'placeholder' => '在這裡編輯',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => '你需要成為一個 :link 解鎖此功能。',
+                'link' => 'osu! 贊助者',
             ],
         ],
         'post_count' => [
@@ -372,6 +395,11 @@ return [
             'score_ranks' => '得分等級',
             'total_hits' => '總命中次數',
             'total_score' => '總分',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '進榜 & 批准圖譜',
+            'loved_beatmapset_count' => 'Loved 圖譜',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -388,7 +416,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => '卡片檢視',
+        'list' => '列表檢視',
     ],
 ];

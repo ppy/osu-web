@@ -40,5 +40,5 @@ return [
     'title' => 'Amici',
     'title_compact' => 'amici',
 
-    'too_many' => 'Limite amici raggiunto.',
+    'too_many' => 'Limite amici raggiunto',
 ];

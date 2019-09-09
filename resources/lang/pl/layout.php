@@ -23,11 +23,19 @@ return [
         'page_description' => 'osu! - rytm jest tylko o *klik* stąd! Z Ouendanem/EBA, Taiko i oryginalnymi trybami gry, a także w pełni funkcjonalnym edytorem!',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Społeczność »',
+
+            'forum' => 'Forum',
+        ],
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'strona główna',
             'account-edit' => 'ustawienia',
-            'account-verifyLink' => '',
+            'account-verifyLink' => 'Weryfikacja zakończona',
             'friends-index' => 'znajomi',
             'changelog-index' => 'zmiany',
             'changelog-build' => 'kompilacja',

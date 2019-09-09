@@ -42,6 +42,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Neuester Beitrag',
+
+        'index' => [
+            'title' => 'Forum-Startseite',
+        ],
+
         'topics' => [
             'empty' => 'Keine Threads!',
         ],
