@@ -105,7 +105,7 @@ class ModdingRankCommand extends Command
 
     private function waitRandom()
     {
-        $delay = random(5, 120);
+        $delay = rand(5, 120);
         $this->info("Pausing for {$delay} seconds...");
         sleep($delay);
     }
