@@ -322,14 +322,14 @@
                         class="btn-osu-big btn-osu-big--forum-reply js-forum-topic-reply--toggle"
                     >
                         <span class="btn-osu-big__content">
-                            <span class="btn-osu-big__icon">
-                                <i class="fas fa-comment"></i>
-                            </span>
-
                             <span class="btn-osu-big__left">
                                 <span class="btn-osu-big__text-top">
                                     {{ trans('forum.topics.actions.reply') }}
                                 </span>
+                            </span>
+
+                            <span class="btn-osu-big__toggle">
+                                <i class="fas fa-dot-circle"></i>
                             </span>
                         </span>
                     </button>

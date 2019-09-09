@@ -245,7 +245,7 @@
   &--forum-reply {
     margin: 0 3px;
     border-radius: 10000px;
-    padding: 0 5px;
+    padding: 0 10px;
     height: @btn-circle-diameter;
     background-color: @osu-colour-l4;
 
@@ -463,6 +463,16 @@
     .@{top}--download-page & {
       font-style: italic;
       .default-text-shadow;
+    }
+  }
+
+  &__toggle {
+    margin: 0 5px;
+    color: @osu-colour-d1;
+
+    .@{top}.js-activated & {
+      color: @osu-colour-c1;
+      text-shadow: 0 0 10px @osu-colour-c2;
     }
   }
 }
