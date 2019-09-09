@@ -38,7 +38,7 @@ class @ForumTopicTitle
 
   cancel: =>
     @abort()
-    $(@toggleables).attr('data-title-edit', 0)
+    $(@toggleables).removeAttr('data-title-edit')
     @input[0].value = @input[0].defaultValue
 
 
