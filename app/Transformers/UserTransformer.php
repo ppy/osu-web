@@ -21,7 +21,6 @@
 namespace App\Transformers;
 
 use App\Models\User;
-use App\Models\UserGroup;
 use League\Fractal;
 
 class UserTransformer extends Fractal\TransformerAbstract
