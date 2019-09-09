@@ -23,11 +23,19 @@ return [
         'page_description' => 'osu! - Le rythme est à un seul *clic* !  Avec Ouendan/EBA, Taiko et les modes originaux de gameplay, avec un éditeur de niveau complet.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => '',
+        ],
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'accueil',
             'account-edit' => 'paramètres',
-            'account-verifyLink' => '',
+            'account-verifyLink' => 'Vérification terminée',
             'friends-index' => 'amis',
             'changelog-index' => 'notes de MàJ',
             'changelog-build' => 'build',

@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'description' => 'Queste sono le discussion di beatmap che stai seguendo. Verrai avvisato quando ci saranno nuovi post o aggiornamenti.',
+        'description' => 'Queste sono le discussioni di beatmap che stai seguendo. Verrai notificato quando ci sono nuovi post o aggiornamenti.',
         'title_compact' => 'lista modding',
         'title_main' => 'Lista Modding',
 

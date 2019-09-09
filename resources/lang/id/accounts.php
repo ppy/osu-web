@@ -26,8 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => 'Pastikan avatar Anda mematuhi :link.<br/> Hal ini berarti konten harus <strong>cocok untuk segala usia</strong>. mis. tidak menampilkan ketelanjangan, kata-kata kotor atau sugestif.',
+            'rules_link' => 'peraturan komunitas',
         ],
 
         'email' => [
@@ -108,11 +108,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Kamu dapat menutup laman ini sekarang',
+        'title' => 'Verifikasi selesai',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Tautan verifikasi tidak valid atau kedaluwarsa',
     ],
 ];

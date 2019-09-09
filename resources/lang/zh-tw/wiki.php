@@ -21,7 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => '請求的頁面還未被翻譯為選中語言 (:language)，現在正顯示英文版本。',
-        'incomplete_or_outdated' => '',
+        'incomplete_or_outdated' => '此頁面上的內容不完整或過時。 如果您能夠提供幫助，請考慮更新文章！',
         'languages' => '語言',
         'missing' => '請求的頁面未找到',
         'missing_title' => '未找到',

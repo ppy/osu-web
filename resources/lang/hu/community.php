@@ -20,49 +20,63 @@
 
 return [
     'support' => [
-        'header' => [
-            // size in font-size
-            'big_description' => 'Szereted az osu!-t?<br/>                                Támogasd az osu! fejlesztését! :D',
-            'small_description' => '',
-            'support_button' => 'Támogatni szeretném az osu!-t',
+        'convinced' => [
+            'title' => 'Meggyőztél! :D',
+            'support' => 'osu! támogatása!',
+            'gift' => 'vagy ajándékozz támogatói címet más játékosoknak',
+            'instructions' => 'kattints a szívet ábrázoló gombra, hogy továbblépj az osu!boltba',
         ],
+        'why-support' => [
+            'title' => '',
 
-        'dev_quote' => 'Az osu! egy teljesen ingyenes játék, a fenntartása viszont már kevésbé mondható annak.
-        A szerverek és a magas minőségű nemzetközi sávszélesség üzembe helyezése, a rendszerek és a közösség fenntartása, a díjak                                                         
-        szolgáltatása versenyekre, a felhasználók kérdéseinek megválaszolása valamint a boldogságuk fenntartása, mindezek között az osu! 
-        elég jelentős összeget emészt fel.
-        Oh, és ne feledjük azt a tényt sem, hogy mindezt reklámok, olcsó toolbar-okkal való partnerség és hasonló badarságok nélkül szolgáltatjuk!
-            <br/><br/>Mindezt beleszámítva, az osu!-t nagyrészt én tartom fenn, akit "peppy"-ként ismerhettek.
-            Ott kellett hagynom a munkámat, hogy lépést tarthassak az osu!-val,
-            és előfordul, hogy küszködnöm kell az általam elvárt színvonal fenntartásáért.
-            Személyes köszönetemet szeretném küldeni azoknak akik eddig az osu! támogatása mellett döntöttek,
-            és azoknak szintúgy, akik a jövőben is támogatni fogják ezt a csodálatos játékot és közösséget :).',
-
-        'supporter_status' => [
-            'contribution' => 'Köszönjük az eddigi támogatásodat! Összesen :dollars adománnyal járultál hozzá :tags: cím vásárlással!',
-            'gifted' => 'A cím vételeidből :giftedTags ajándékozott (eddig összesen :giftedDollars ajándékozott), milyen nagylelkű!',
-            'not_yet' => "Nincsen támogatói címed még :(",
-            'title' => 'Jelenlegi támogatói állapot',
-            'valid_until' => 'A jelenlegi támogatói címed eddig érvényes: :date!',
-            'was_valid_until' => 'A támogatói címed eddig volt érvényes: :date.',
-        ],
-
-        'why_support' => [
-            'title' => 'Miért kellene támogatnom az osu!-t!?',
-            'blocks' => [
-                'dev' => 'Nagyrészt egy ausztrál fickó által fejlesztve és karbantartva',
-                'time' => 'A fenntartása annyi időt emészt fel, hogy már nem nagyon nevezhető "hobbinak".',
-                'ads' => 'Egyetlen reklám sincs. <br/><br/>
-                        A web 99.95%-ával ellentétben, mi nem abból profitálunk, hogy dolgokat nyomunk az arcodba.',
-                'goodies' => 'Kapsz néhány extra jóságot!',
+            'team' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'infra' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'featured-artists' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'ads' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'tournaments' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'bounty-program' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
             ],
         ],
-
         'perks' => [
             'title' => 'Oh? Mit is kapok?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'gyors és egyszerű beatmap keresés a játék elhagyása nélkül.',
+            ],
+
+            'friend_ranking' => [
+                'title' => '',
+                'description' => "",
+            ],
+
+            'country_ranking' => [
+                'title' => '',
+                'description' => '',
+            ],
+
+            'mod_filtering' => [
+                'title' => '',
+                'description' => '',
             ],
 
             'auto_downloads' => [
@@ -82,7 +96,7 @@ return [
 
             'customisation' => [
                 'title' => 'Testreszabás',
-                'description' => 'Tedd egyedivé a profilod egy teljesen testre szabható felhasználói oldallal.',
+                'description' => "Tedd egyedivé a profilod egy teljesen testre szabható felhasználói oldallal.",
             ],
 
             'beatmap_filters' => [
@@ -120,22 +134,30 @@ return [
                 'description' => 'A lehetőség országos / baráti / mod-specifikus beatmap ranglétra megtekintésére játékon belül.',
             ],
 
-            'feel_special' => [
-                'title' => 'Érezd magad különlegesnek',
-                'description' => 'A meleg és bolyhos érzés attól, hogy segíted az osu! problémamentes működését!',
-            ],
-
-            'more_to_come' => [
-                'title' => 'Több is jön',
+            'more_favourites' => [
+                'title' => '',
                 'description' => '',
             ],
-        ],
+            'more_friends' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'more_beatmaps' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'friend_filtering' => [
+                'title' => '',
+                'description' => '',
+            ],
 
-        'convinced' => [
-            'title' => 'Meggyőztél! :D',
-            'support' => 'osu! támogatása!',
-            'gift' => 'vagy ajándékozz támogatói címet más játékosoknak',
-            'instructions' => 'kattints a szívet ábrázoló gombra, hogy továbblépj az osu!boltba',
+        ],
+        'supporter_status' => [
+            'contribution' => 'Köszönjük az eddigi támogatásodat! Összesen :dollars adománnyal járultál hozzá :tags: cím vásárlással!',
+            'gifted' => "A cím vételeidből :giftedTags ajándékozott (eddig összesen :giftedDollars ajándékozott), milyen nagylelkű!",
+            'not_yet' => "Nincsen támogatói címed még :(",
+            'valid_until' => 'A jelenlegi támogatói címed eddig érvényes: :date!',
+            'was_valid_until' => 'A támogatói címed eddig volt érvényes: :date.',
         ],
     ],
 ];

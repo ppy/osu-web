@@ -23,11 +23,19 @@ return [
         'page_description' => 'osu! - Ritmo está apenas a um *clique* de distância! Com Ouendan/EBA, Taiko e modos de jogo originais, como também um editor de níveis totalmente funcional.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => '',
+        ],
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'início',
             'account-edit' => 'definições',
-            'account-verifyLink' => '',
+            'account-verifyLink' => 'Verificação Concluída',
             'friends-index' => 'amigos',
             'changelog-index' => 'lista de mudanças',
             'changelog-build' => 'compilação',
