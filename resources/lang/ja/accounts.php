@@ -26,8 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'プロフィール画像',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => 'あなたのプロフィール画像が公序良俗に反したもので無いか確認してください。 :link.<br/>易しく言えば<strong>全ての年齢に適した</strong>、つまりヌードや冒涜的な表現などを想起させるものを含んでいない事を確認してください。',
+            'rules_link' => 'コミュニティールール',
         ],
 
         'email' => [
@@ -108,11 +108,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => '今すぐにこのウィンドウを閉じる事が出来ます。',
+        'title' => '認証が完了しました。',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => '無効もしくは期限切れの認証リンク',
     ],
 ];

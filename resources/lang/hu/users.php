@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 követő |:count követő',
+            'none' => '',
             'unranked' => 'Nem játszott mostanában',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Pending Beatmap-ek',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Nincsenek teljesítmény rekordok. :(',
@@ -276,6 +287,11 @@ return [
                 'recent' => 'Legújabb',
                 'title' => 'Medálok',
             ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Legutóbbi',
             ],
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Első Helyezéses Eredmények',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Fiók Állása',
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Eredmény Rangok',
             'total_hits' => 'Találatok Száma',
             'total_score' => 'Összpontszám',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
