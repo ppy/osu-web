@@ -29,7 +29,7 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
     protected $availableIncludes = [
         'country',
         'cover',
-        'groups',
+        'group_badge',
         'support_level',
     ];
 
@@ -71,20 +71,9 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
         });
     }
 
-    public function includeGroups(User $user)
+    public function includeGroupBadge(User $user)
     {
-        return $this->item($user, function ($user) {
-            $groups = [];
-
-            foreach ($user->groupIds() as $id) {
-                $name = array_search_null($id, UserGroup::GROUPS);
-                if ($name !== null && $id !== UserGroup::GROUPS['admin']) {
-                    $groups[] = $name;
-                }
-            }
-
-            return $groups;
-        });
+        return $this->primitive($user->groupBadge());
     }
 
     public function includeSupportLevel(User $user)

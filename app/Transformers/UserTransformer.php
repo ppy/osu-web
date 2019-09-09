@@ -36,7 +36,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'follower_count',
         'friends',
         'graveyard_beatmapset_count',
-        'groups',
+        'group_badge',
         'is_admin',
         'loved_beatmapset_count',
         'monthly_playcounts',
@@ -179,20 +179,9 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->primitive($user->profileBeatmapsetsGraveyard()->count());
     }
 
-    public function includeGroups(User $user)
+    public function includeGroupBadge(User $user)
     {
-        return $this->item($user, function ($user) {
-            $groups = [];
-
-            foreach ($user->groupIds() as $id) {
-                $name = array_search_null($id, UserGroup::GROUPS);
-                if ($name !== null && $id !== UserGroup::GROUPS['admin']) {
-                    $groups[] = $name;
-                }
-            }
-
-            return $groups;
-        });
+        return $this->primitive($user->groupBadge());
     }
 
     public function includeIsAdmin(User $user)

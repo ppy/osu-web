@@ -52,7 +52,7 @@ export class UserFilter extends React.PureComponent
 
 
   renderItem: ({ cssClasses, children, item, onClick }) =>
-    userBadge = if @isOwner(item) then 'mapper' else osu.userGroupBadge(item)
+    userBadge = if @isOwner(item) then 'mapper' else item.group_badge
     cssClasses += " beatmap-discussions-user-filter__item--#{userBadge}" if userBadge?
 
     a
