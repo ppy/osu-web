@@ -72,6 +72,8 @@ class @ForumTopicReply
     @stickyFooter.markerEnable @marker()
     $.publish 'stickyFooter:check'
 
+    button.classList.add 'js-activated' for button in @toggleButtons
+
     @enableFlash() if @getState('sticking') != '1' && currentUser.id?
 
     @input[0].focus()
@@ -97,6 +99,7 @@ class @ForumTopicReply
     @setState 'active', '0'
     $.publish 'stickyFooter:check'
     @disableFlash()
+    button.classList.remove 'js-activated' for button in @toggleButtons
 
 
   disableFlash: ->
@@ -173,16 +176,12 @@ class @ForumTopicReply
 
     if stick
       @setState 'sticking', '1'
-      box.dataset.state = 'active'
+      box.dataset.state = 'stick'
       target = @fixedBar[0]
-      buttonAction = 'add'
     else
       @deleteState 'sticking'
       delete box.dataset.state if box.dataset.state?
       target = @container[0]
-      buttonAction = 'remove'
-
-    button.classList[buttonAction] 'js-activated' for button in @toggleButtons
 
     $input = @$input()
     inputFocused = $input.is(':focus')
