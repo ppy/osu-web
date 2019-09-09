@@ -22,20 +22,21 @@ namespace App\Models\OAuth;
 
 use App\Exceptions\InvariantException;
 use App\Models\User;
+use App\Traits\Validatable;
 use DB;
 use Laravel\Passport\Client as PassportClient;
-use Laravel\Passport\Token;
 
 class Client extends PassportClient
 {
+    use Validatable;
+
     public static function forUser(User $user)
     {
         // Get clients matching non-revoked tokens. Expired tokens should be included.
         $tokensQuery = Token::where('user_id', $user->getKey())->where('revoked', false);
 
         $clients = static::whereIn('id', (clone $tokensQuery)->select('client_id'))
-            ->where('personal_access_client', false)
-            ->where('password_client', false)
+            ->thirdParty()
             ->where('revoked', false)
             ->with('user')
             ->get();
@@ -51,6 +52,53 @@ class Client extends PassportClient
         }
 
         return $clients;
+    }
+
+    public function authCodes()
+    {
+        return $this->hasMany(AuthCode::class, 'client_id');
+    }
+
+    public function refreshTokens()
+    {
+        return $this->hasManyThrough(
+            RefreshToken::class,
+            Token::class,
+            'client_id',
+            'access_token_id'
+        );
+    }
+
+    public function tokens()
+    {
+        return $this->hasMany(Token::class, 'client_id', 'id');
+    }
+
+    public function isValid()
+    {
+        $this->validationErrors()->reset();
+
+        if (!$this->exists) {
+            $max = config('osu.oauth.max_user_clients');
+            if ($this->user->oauthClients()->thirdParty()->where('revoked', false)->count() >= $max) {
+                $this->validationErrors()->add('user.oauthClients.count', '.too_many');
+            }
+        }
+
+        if (mb_strlen(trim($this->name)) === 0) {
+            $this->validationErrors()->add('name', 'required');
+        }
+
+        if (mb_strlen(trim($this->redirect)) === 0) {
+            $this->validationErrors()->add('redirect', 'required');
+        }
+
+        // TODO: this url validation is not very good.
+        if (!filter_var(trim($this->redirect), FILTER_VALIDATE_URL)) {
+            $this->validationErrors()->add('redirect', '.url');
+        }
+
+        return $this->validationErrors()->isEmpty();
     }
 
     public function revokeForUser(User $user)
@@ -77,8 +125,39 @@ class Client extends PassportClient
         });
     }
 
+    public function revoke()
+    {
+        $this->getConnection()->transaction(function () {
+            $now = now('UTC');
+
+            $this->tokens()->update(['revoked' => true, 'updated_at' => $now]);
+            $this->refreshTokens()->update([(new RefreshToken)->qualifyColumn('revoked') => true]);
+            $this->authCodes()->update(['revoked' => true]);
+            $this->update(['revoked' => true, 'updated_at' => $now]);
+        });
+    }
+
+    public function save(array $options = [])
+    {
+        if (!$this->isValid()) {
+            return false;
+        }
+
+        return parent::save($options);
+    }
+
+    public function scopeThirdParty($query)
+    {
+        return $query->where('personal_access_client', false)->where('password_client', false);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'oauth.client';
     }
 }
