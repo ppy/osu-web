@@ -102,7 +102,7 @@ class Kernel extends ConsoleKernel
             ->cron('*/20 * * * *');
 
         $schedule->command('oauth:delete-expired-tokens')
-            ->daily();
+            ->cron('14 1 * * *');
     }
 
     protected function commands()
