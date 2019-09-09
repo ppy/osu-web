@@ -96,7 +96,7 @@ class @ForumTopicReply
 
   deactivate: =>
     @stickyFooter.markerDisable @marker()
-    @setState 'active', '0'
+    @deleteState 'active'
     $.publish 'stickyFooter:check'
     @disableFlash()
     button.classList.remove 'js-activated' for button in @toggleButtons
