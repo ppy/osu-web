@@ -42,10 +42,10 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => '最新の投稿',
 
         'index' => [
-            'title' => '',
+            'title' => 'フォーラム 目次',
         ],
 
         'topics' => [

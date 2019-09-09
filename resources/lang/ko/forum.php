@@ -42,10 +42,10 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => '최근 게시글',
 
         'index' => [
-            'title' => '',
+            'title' => '포럼 목차',
         ],
 
         'topics' => [

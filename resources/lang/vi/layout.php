@@ -25,9 +25,9 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => 'Cộng đồng',
 
-            'forum' => '',
+            'forum' => 'Diễn đàn',
         ],
     ],
 

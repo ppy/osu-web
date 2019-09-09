@@ -77,7 +77,7 @@ return [
         'months' => ':count 个月',
         'post' => ':count_delimited 篇帖子',
         'second_short_unit' => '秒',
-        'star_priority' => '',
+        'star_priority' => ':count_delimited 个优先星',
         'update' => ':count_delimited 更新',
         'view' => ':count_delimited 次浏览',
         'years' => ':count_delimited 年',

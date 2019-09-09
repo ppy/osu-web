@@ -168,7 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count_delimited obserwujący|:count_delimited obserwujących|:count_delimited obserwujących',
-            'none' => '',
+            'none' => 'brak',
             'unranked' => 'Brak nowych wyników',
 
             'achievements' => [
@@ -198,14 +198,14 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Dyskusuje',
+                'title_longer' => 'Ostatnie dyskusje',
+                'show_more' => 'zobacz więcej dyskusji',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Wydarzenia',
+                'title_longer' => 'Ostatnie wydarzenia',
+                'show_more' => 'zobacz więcej wydarzeń',
             ],
             'historical' => [
                 'empty' => 'Brak wyników. :(',
@@ -288,9 +288,9 @@ return [
                 'title' => 'Medale',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Posty',
+                'title_longer' => 'Ostatnie posty',
+                'show_more' => 'zobacz więcej postów',
             ],
             'recent_activity' => [
                 'title' => 'Ostatnie',
@@ -310,11 +310,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => 'Oddane głosy (ostatnie 3 miesiące)',
+                'received' => 'Otrzymane głosy (ostatnie 3 miesiące)',
+                'title' => 'Głosy',
+                'title_longer' => 'Ostatnie głosy',
+                'vote_count' => ':count_delimited głos|:count_delimited głosy|:count_delimited głosów',
             ],
             'account_standing' => [
                 'title' => 'Stan konta',
@@ -396,10 +396,10 @@ return [
             'total_hits' => 'Łączna liczba uderzeń',
             'total_score' => 'Łączny wynik',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'ranked_and_approved_beatmapset_count' => 'Rankingowe i zatwierdzone beatmapy',
+            'loved_beatmapset_count' => 'Ulubione beatmapy społeczności',
+            'unranked_beatmapset_count' => 'Oczekujące beatmapy',
+            'graveyard_beatmapset_count' => 'Porzucone beatmapy',
         ],
     ],
 

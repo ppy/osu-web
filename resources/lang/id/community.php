@@ -27,15 +27,15 @@ return [
             'instructions' => 'klik tombol hati untuk melanjutkan ke osu!store',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => 'Kenapa saya harus mendukung osu!? Kemana uangnya akan pergi?',
 
             'team' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Dukung Tim kami',
+                'description' => 'Sebuah tim kecil mengembangkan dan menjalankan layanan osu!. Dukunganmu akan membantu... kehidupan mereka.',
             ],
             'infra' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Prasarana Server',
+                'description' => 'Kontribusi langsung digunakan untuk kebutuhan server dalam menjalankan situs web, layanan multiplayer, papan peringkat online, dan lainnya.',
             ],
             'featured-artists' => [
                 'title' => '',

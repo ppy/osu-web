@@ -42,7 +42,7 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'Bài viết mới nhất',
 
         'index' => [
             'title' => '',
@@ -81,7 +81,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited bài đăng',
-            'topic_starter' => '',
+            'topic_starter' => 'Chủ đề mở đầu',
         ],
     ],
 

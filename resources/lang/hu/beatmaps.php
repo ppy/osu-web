@@ -244,14 +244,14 @@ return [
     'status' => [
         'any' => 'Bármelyik',
         'approved' => 'Jóváhagyott',
-        'favourites' => '',
+        'favourites' => 'Kedvencek',
         'graveyard' => 'Temető',
-        'leaderboard' => '',
+        'leaderboard' => 'Van Ranglistája',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => 'Én mapjaim',
         'pending' => 'Függőben lévő & WIP',
         'qualified' => 'Kvalifikált',
-        'ranked' => '',
+        'ranked' => 'Rangsorolt',
     ],
     'genre' => [
         'any' => 'Bármelyik',
