@@ -26,8 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Has alcanzado tu límite de nominaciones diarias, por favor inténtalo de nuevo mañana.',
-            'full_bn_required' => '',
-            'full_bn_required_hybrid' => '',
+            'full_bn_required' => 'Debes ser un nominador para realizar esta nominación.',
+            'full_bn_required_hybrid' => 'Debes ser un nominador para nominar conjuntos de beatmaps con más de un modo de juego.',
             'incorrect_state' => 'Error al realizar esa acción, intenta actualizando la página.',
             'owner' => "No puedes nominar tu propio beatmap.",
         ],
@@ -145,7 +145,7 @@ return [
                 'not_owner' => 'Solo el dueño puede editar la portada.',
             ],
             'store' => [
-                'forum_not_allowed' => '',
+                'forum_not_allowed' => 'Este foro no acepta portadas de temas.',
             ],
         ],
 

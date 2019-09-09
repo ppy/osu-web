@@ -20,45 +20,63 @@
 
 return [
     'support' => [
-        'header' => [
-            // size in font-size
-            'big_description' => 'Suka osu!?<br/>                                Dukung pengembangannya! :D',
-            'small_description' => '',
-            'support_button' => 'Saya ingin mendukung osu!',
+        'convinced' => [
+            'title' => 'Saya yakin! :D',
+            'support' => 'dukung osu!',
+            'gift' => 'atau hadiahkan supporter tag kepada pemain lain',
+            'instructions' => 'klik tombol hati untuk melanjutkan ke osu!store',
         ],
+        'why-support' => [
+            'title' => 'Kenapa saya harus mendukung osu!? Kemana uangnya akan pergi?',
 
-        'dev_quote' => 'osu! merupakan permainan yang benar-benar bersifat gratis untuk dimainkan (free-to-play), namun aspek-aspek operasional untuk game ini tentunya membutuhkan biaya tersendiri. Dengan menimbang berbagai hal seperti penyewaan server berskala internasional yang memiliki bandwidth berkualitas tinggi, pengupayaan pemeliharaan sistem dan komunitas, penyediaan hadiah untuk berbagai kompetisi, pemberian layanan dukungan, dan membahagiakan para pemain secara umum, pengoperasian osu! membutuhkan biaya yang sama sekali tidak sedikit! Ketahuilah bahwa kami melakukan ini semua tanpa menyisipkan iklan apapun ataupun bermitra dengan penyedia perangkat lunak manapun yang tidak jelas, sama sekali!
-            <br/><br/>Pada akhirnya, sebagian besar dari osu! dijalankan oleh saya sendiri, yang lebih akrab dikenal sebagai \'peppy\'.
-            Saya harus keluar dari pekerjaan tetap saya agar dapat terus mengembangkan osu!,
-            dan di samping itu terkadang saya juga harus harus bersusah payah demi mempertahankan standar kualitas yang telah saya tetapkan.
-            Saya ingin mengucapkan terima kasih secara pribadi kepada mereka yang telah mendukung osu! sampai saat ini,
-            dan juga bagi mereka yang terus mendukung permainan yang luar biasa ini beserta komunitas-komunitasnya sampai ke masa yang akan datang :).',
-
-        'supporter_status' => [
-            'contribution' => 'Terima kasih atas dukungan Anda! Anda telah membeli supporter tag sebanyak :tags kali dengan total kontribusi sebesar :dollars!',
-            'gifted' => ':giftedTags dari pembelian tag Anda telah dihadiahkan (dengan total sebesar :giftedDollars telah dihadiahkan). Terima kasih atas kemurahan hati Anda!',
-            'not_yet' => "Anda belum pernah memiliki supporter tag :(",
-            'title' => 'Status supporter saat ini',
-            'valid_until' => 'Supporter Tag Anda saat ini berlaku hingga :date!',
-            'was_valid_until' => 'Supporter Tag Anda berlaku hingga :date.',
-        ],
-
-        'why_support' => [
-            'title' => 'Mengapa saya harus mendukung osu!?',
-            'blocks' => [
-                'dev' => 'Senantiasa dipelihara dan dikembangkan oleh satu orang di Australia',
-                'time' => 'Memerlukan begitu banyak waktu untuk menjalankannya sehingga tidak mungkin lagi menyebutnya sebagai \'hobi\'.',
-                'ads' => 'Tidak ada iklan di mana pun. <br/><br/>
-                Tidak seperti 99,95% situs web lainnya, kami tidak berorientasi pada keuntungan atau mengiklankan tawaran barang-barang secara semena-mena di depan layar monitor Anda.',
-                'goodies' => 'Anda akan mendapatkan beberapa fitur tambahan!',
+            'team' => [
+                'title' => 'Dukung Tim kami',
+                'description' => 'Sebuah tim kecil mengembangkan dan menjalankan layanan osu!. Dukunganmu akan membantu... kehidupan mereka.',
+            ],
+            'infra' => [
+                'title' => 'Prasarana Server',
+                'description' => 'Kontribusi langsung digunakan untuk kebutuhan server dalam menjalankan situs web, layanan multiplayer, papan peringkat online, dan lainnya.',
+            ],
+            'featured-artists' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'ads' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'tournaments' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'bounty-program' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
             ],
         ],
-
         'perks' => [
             'title' => 'Oh? Apa saja yang akan saya dapatkan?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'akses cepat dan mudah untuk mencari beatmap tanpa meninggalkan permainan.',
+            ],
+
+            'friend_ranking' => [
+                'title' => '',
+                'description' => "",
+            ],
+
+            'country_ranking' => [
+                'title' => '',
+                'description' => '',
+            ],
+
+            'mod_filtering' => [
+                'title' => '',
+                'description' => '',
             ],
 
             'auto_downloads' => [
@@ -78,7 +96,7 @@ return [
 
             'customisation' => [
                 'title' => 'Kustomisasi',
-                'description' => 'Kustomisasi profil Anda dengan menambahkan laman pengguna yang dapat Anda hias sepenuhnya.',
+                'description' => "Kustomisasi profil Anda dengan menambahkan laman pengguna yang dapat Anda hias sepenuhnya.",
             ],
 
             'beatmap_filters' => [
@@ -116,22 +134,30 @@ return [
                 'description' => 'Akses untuk melihat peringkat beatmap berdasarkan negara/teman/mod secara spesifik dalam game.',
             ],
 
-            'feel_special' => [
-                'title' => 'Merasa Spesial',
-                'description' => 'Perasaan hangat karena Anda telah melakukan bagian Anda untuk memastikan osu! berjalan lancar!',
-            ],
-
-            'more_to_come' => [
-                'title' => 'Masih banyak lagi',
+            'more_favourites' => [
+                'title' => '',
                 'description' => '',
             ],
-        ],
+            'more_friends' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'more_beatmaps' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'friend_filtering' => [
+                'title' => '',
+                'description' => '',
+            ],
 
-        'convinced' => [
-            'title' => 'Saya yakin! :D',
-            'support' => 'dukung osu!',
-            'gift' => 'atau hadiahkan supporter tag kepada pemain lain',
-            'instructions' => 'klik tombol hati untuk melanjutkan ke osu!store',
+        ],
+        'supporter_status' => [
+            'contribution' => 'Terima kasih atas dukungan Anda! Anda telah membeli supporter tag sebanyak :tags kali dengan total kontribusi sebesar :dollars!',
+            'gifted' => ":giftedTags dari pembelian tag Anda telah dihadiahkan (dengan total sebesar :giftedDollars telah dihadiahkan). Terima kasih atas kemurahan hati Anda!",
+            'not_yet' => "Anda belum pernah memiliki supporter tag :(",
+            'valid_until' => 'Supporter Tag Anda saat ini berlaku hingga :date!',
+            'was_valid_until' => 'Supporter Tag Anda berlaku hingga :date.',
         ],
     ],
 ];

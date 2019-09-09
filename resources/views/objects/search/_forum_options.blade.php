@@ -96,19 +96,10 @@ if (isset($fields)) {
         </label>
 
         <label class="search-forum-options__input-group">
-            <div class="osu-checkbox">
-                <input
-                    type="checkbox"
-                    name="{{ $fields['includeSubforums'] }}"
-                    {{ request($fields['includeSubforums']) ? 'checked' : '' }}
-                    class="osu-checkbox__input"
-                >
-                <span class="osu-checkbox__box"></span>
-                <span class="osu-checkbox__tick">
-                    <span class="fas fa-check"></span>
-                </span>
-
-            </div>
+            @include('objects._switch', [
+                'checked' => request($fields['includeSubforums']),
+                'name' => $fields['includeSubforums'],
+            ])
 
             {{ trans('home.search.forum_post.label.forum_children') }}
         </label>

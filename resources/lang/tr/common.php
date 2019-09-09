@@ -75,8 +75,11 @@ return [
         'minute_short_unit' => 'dk|dk',
         'minutes' => ':count dakika |:count dakika',
         'months' => ':count ay|:count ay',
+        'post' => ':count_delimited gönderi|:count_delimited gönderi',
         'second_short_unit' => 'sn|sn',
+        'star_priority' => '',
         'update' => ':count_delimited güncelleme|:count_delimited güncellemeler',
+        'view' => '',
         'years' => ':count yıl|:count yıl',
     ],
 

@@ -42,6 +42,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Post più recente',
+
+        'index' => [
+            'title' => 'Indice Forum',
+        ],
+
         'topics' => [
             'empty' => 'Nessun topic!',
         ],
@@ -50,7 +56,7 @@ return [
     'mark_as_read' => [
         'forum' => 'Contrassegna il forum come già letto',
         'forums' => 'Contrassegna i forum come già letti',
-        'busy' => 'Contrassegnando come già letti...',
+        'busy' => 'Contrassegnando come già letto...',
     ],
 
     'poll' => [
@@ -64,7 +70,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Vuoi veramente eliminare il post?',
         'confirm_restore' => 'Vuoi veramente ripristinare il post?',
-        'edited' => 'Ultima modifica di :user di :when, modificato :count volte in totale.',
+        'edited' => 'Ultima modifica di :user :when, modificato :count volte in totale.',
         'posted_at' => 'postato :when',
 
         'actions' => [
@@ -75,14 +81,14 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited post|:count_delimited post',
-            'topic_starter' => 'Comincia-conversazioni',
+            'topic_starter' => 'Starter del Topic',
         ],
     ],
 
     'search' => [
         'go_to_post' => 'Vai al post',
         'post_number_input' => 'inserisci numero post',
-        'total_posts' => ':posts_count post in totale',
+        'total_posts' => ':posts_count post totali',
     ],
 
     'topic' => [
@@ -90,12 +96,12 @@ return [
         'go_to_latest' => 'guarda gli ultimi post',
         'latest_post' => ':when da :user',
         'latest_reply_by' => 'ultima risposta di :user',
-        'new_topic' => 'Scrivi nuovo topic',
+        'new_topic' => 'Nuovo topic',
         'new_topic_login' => 'Effettua l\'accesso per postare un nuovo topic',
-        'post_reply' => 'Invia',
+        'post_reply' => 'Posta',
         'reply_box_placeholder' => 'Scrivi qui per rispondere',
         'reply_title_prefix' => 'Re',
-        'started_by' => 'da :user',
+        'started_by' => 'di :user',
         'started_by_verbose' => 'postato da :user',
 
         'create' => [
@@ -103,7 +109,7 @@ return [
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Scrivi',
-            'submit' => 'Invia',
+            'submit' => 'Posta',
 
             'necropost' => [
                 'default' => 'Questa discussione è inattiva da un bel po\' di tempo. Posta solo se hai una motivazione in particolare.',
@@ -121,7 +127,7 @@ return [
         ],
 
         'jump' => [
-            'enter' => 'clicca per inserire un numero del post specifico',
+            'enter' => 'clicca per inserire un numero specifico del post',
             'first' => 'vai al primo post',
             'last' => 'vai all\'ultimo post',
             'next' => 'salta i prossimi 10 post',
@@ -136,9 +142,9 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Iscrizioni ai Topic',
-            'title_compact' => 'iscrizioni',
-            'title_main' => 'Forum <strong>Sottoiscrizioni</strong>',
+            'title' => 'Iscrizioni Forum',
+            'title_compact' => 'iscrizioni forum',
+            'title_main' => '<strong>Iscrizioni</strong> Forum',
 
             'box' => [
                 'total' => 'Topic a cui sei iscritto',
@@ -153,8 +159,8 @@ return [
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Anullare l\'iscrizione dal topic?',
-                'title' => 'Disiscriviti',
+                'confirmation' => 'Annullare l\'iscrizione dal topic?',
+                'title' => 'Annulla iscrizione',
             ],
         ],
     ],
@@ -172,7 +178,7 @@ return [
         'create' => [
             'create_poll' => 'Creazione Sondaggio',
 
-            'preview' => 'Anteprima del post',
+            'preview' => 'Anteprima Post',
 
             'create_poll_button' => [
                 'add' => 'Crea un sondaggio',
@@ -182,15 +188,15 @@ return [
             'poll' => [
                 'hide_results' => 'Nascondi i risultati del sondaggio.',
                 'hide_results_info' => 'Saranno mostrati solo dopo la conclusione del sondaggio.',
-                'length' => 'Durata del sondaggio:',
+                'length' => 'Esegui sondaggio per',
                 'length_days_suffix' => 'giorni',
                 'length_info' => 'Lascia vuoto per un sondaggio senza fine',
-                'max_options' => 'Opzioni per Utente',
+                'max_options' => 'Opzioni per utente',
                 'max_options_info' => 'Questo è il numero di opzioni che ogni utente può selezionare quando vota.',
                 'options' => 'Opzioni',
                 'options_info' => 'Posiziona ogni opzione su una nuova linea. Puoi inserire fino a 10 opzioni.',
                 'title' => 'Domanda',
-                'vote_change' => 'Consenti il ri-votaggio.',
+                'vote_change' => 'Consenti di rivotare.',
                 'vote_change_info' => 'Se consentito, gli utenti possono cambiare il loro voto.',
             ],
         ],
@@ -278,12 +284,12 @@ return [
 
                 'info' => [
                     '_' => 'Questa è una :feature_request. Le richieste di nuove funzionalità possono essere votate dai :supporters.',
-                    'feature_request' => 'richiedi una funzionalità',
-                    'supporters' => 'sostenitori',
+                    'feature_request' => 'funzionalità proposta',
+                    'supporters' => 'supporter',
                 ],
 
                 'user' => [
-                    'count' => '{0} nessun voto|{1} :count voto|[2,*] :count voti',
+                    'count' => '{0} nessun voto|{1} :count_delimited voto|[2,*] :count_delimited voti',
                     'current' => 'Hai :votes rimanenti.',
                     'not_enough' => "Non hai altri voti rimanenti",
                 ],

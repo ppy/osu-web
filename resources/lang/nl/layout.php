@@ -23,11 +23,19 @@ return [
         'page_description' => 'osu! - Ritme is slechts een *klik* verwijderd!  Met Ouendan/EBA, Taiko en originele spelmodi, en zelfs een volledig functionele level editor.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Community',
+
+            'forum' => 'Forum',
+        ],
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'start',
             'account-edit' => 'instellingen',
-            'account-verifyLink' => '',
+            'account-verifyLink' => 'Verificatie voltooid',
             'friends-index' => 'vrienden',
             'changelog-index' => 'changelog',
             'changelog-build' => 'versie',

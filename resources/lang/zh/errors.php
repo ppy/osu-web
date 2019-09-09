@@ -38,8 +38,8 @@ return [
         'generic' => '结账时发生了一个错误',
     ],
     'search' => [
-        'default' => '',
-        'operation_timeout_exception' => '',
+        'default' => '无法获得任何结果，请稍后再试。',
+        'operation_timeout_exception' => '搜索目前比平常较繁忙，稍后再试。',
     ],
 
     'logged_out' => '你已退出，请登录后再试。',

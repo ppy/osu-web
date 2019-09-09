@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 seuraaja |:count seuraajaa',
+            'none' => '',
             'unranked' => 'Ei viimeaikaisia pelejä',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Vireillä olevat Beatmapit',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Tuloksia ei löydy. :(',
@@ -276,6 +287,11 @@ return [
                 'recent' => 'Viimeisin',
                 'title' => 'Mitalit',
             ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Viimeisimmät',
             ],
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Kärkisijat',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Tilin tila',
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Luokitukset',
             'total_hits' => 'Osumat',
             'total_score' => 'Kokonaispisteet',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 

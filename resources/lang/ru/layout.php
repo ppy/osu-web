@@ -23,11 +23,19 @@ return [
         'page_description' => 'osu! - Ритм всего лишь в *клике* от тебя! Игра с Ouendan/EBA, Taiko и оригинальным типом игры, с многофункциональным редактором карт.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Сообщество',
+
+            'forum' => 'Форум',
+        ],
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'общее',
             'account-edit' => 'настройки',
-            'account-verifyLink' => '',
+            'account-verifyLink' => 'Проверка завершена',
             'friends-index' => 'друзья',
             'changelog-index' => 'список изменений',
             'changelog-build' => 'сборка',

@@ -23,11 +23,19 @@ return [
         'page_description' => 'osu! - リズムはもう、その指先に！応援団や太鼓をモチーフにしたゲームモード、オリジナルのゲームモード、そしてレベルエディタも備えています。',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'コミュニティ',
+
+            'forum' => 'フォーラム',
+        ],
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'ホーム',
             'account-edit' => '設定',
-            'account-verifyLink' => '',
+            'account-verifyLink' => '認証が完了しました。',
             'friends-index' => 'フレンド',
             'changelog-index' => '更新履歴',
             'changelog-build' => 'ビルド',

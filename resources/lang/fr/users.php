@@ -154,8 +154,8 @@ return [
                     'unsupported_format' => 'Format non supporté.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Mise en ligne disponible pour les :link uniquement',
+                        'link' => 'osu!supporters',
                     ],
                 ],
             ],
@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count abonné|:count abonnés',
+            'none' => 'aucun',
             'unranked' => 'Aucune partie récente',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Beatmaps en attente',
                 ],
+            ],
+            'discussions' => [
+                'title' => 'Discussions',
+                'title_longer' => 'Discussions récentes',
+                'show_more' => 'voir plus de discussions',
+            ],
+            'events' => [
+                'title' => 'Événements',
+                'title_longer' => 'Événements récents',
+                'show_more' => 'voir plus d\'événements',
             ],
             'historical' => [
                 'empty' => 'Aucune performance enregistrée. :(',
@@ -264,8 +275,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Basé sur la quantité d\'une contribution que l\'utilisateur a apportée à la modération de la beatmap. Voir :link pour plus d\'informations.',
+                    'link' => 'cette page',
                 ],
             ],
             'me' => [
@@ -275,6 +286,11 @@ return [
                 'empty' => "Cet utilisateur n'en a encore jamais reçue. ;_;",
                 'recent' => 'Dernier',
                 'title' => 'Médailles',
+            ],
+            'posts' => [
+                'title' => 'Messages',
+                'title_longer' => 'Messages récents',
+                'show_more' => 'voir plus de messages',
             ],
             'recent_activity' => [
                 'title' => 'Activité récente',
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Premières places',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Votes donnés (3 derniers mois)',
+                'received' => 'Votes reçus (3 derniers mois)',
+                'title' => 'Votes',
+                'title_longer' => 'Votes récents',
+                'vote_count' => ':count_delimited vote|:count_delimited votes',
             ],
             'account_standing' => [
                 'title' => 'Statut du compte',
@@ -345,8 +368,8 @@ return [
             'placeholder' => 'Tapez le contenu de la page',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Vous devez être un :link pour déverrouiller cette fonctionnalité.',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Classements de Scores',
             'total_hits' => 'Nombre de clics',
             'total_score' => 'Score total',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Beatmaps classées et approuvées',
+            'loved_beatmapset_count' => 'Beatmaps adorées',
+            'unranked_beatmapset_count' => 'Beatmaps en attente',
+            'graveyard_beatmapset_count' => 'Beatmaps dans le cimetière',
         ],
     ],
 
@@ -388,7 +416,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'Vue en carte',
+        'list' => 'Vue en liste',
     ],
 ];

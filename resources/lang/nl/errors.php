@@ -38,8 +38,8 @@ return [
         'generic' => 'Er is een fout opgetreden tijdens het voorbereiden voor het afrekenen.',
     ],
     'search' => [
-        'default' => '',
-        'operation_timeout_exception' => '',
+        'default' => 'Kan geen resultaten krijgen, probeer het later opnieuw.',
+        'operation_timeout_exception' => 'Zoeken is momenteel drukker dan gebruikelijk, probeer het later opnieuw.',
     ],
 
     'logged_out' => 'Je bent uitgelogd. Log in en probeer opnieuw.',
