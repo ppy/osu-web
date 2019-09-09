@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,7 +18,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum__info-row {
-  margin-bottom: 10px;
-  flex: none;
+namespace App\Models\OAuth;
+
+use Laravel\Passport\AuthCode as PassportAuthCode;
+
+class AuthCode extends PassportAuthCode
+{
+    public $timestamps = false;
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
 }

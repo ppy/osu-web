@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,22 +18,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.edit-post {
-  display: flex;
-  flex-direction: column;
+namespace App\Models\OAuth;
 
-  .reply-box-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .reply-box-footer {
-    flex: none;
-    padding: 10px;
-  }
+use Laravel\Passport\Token as PassportToken;
 
-  [name=body] {
-    margin-bottom: 10px;
-    flex: 1;
-  }
+class Token extends PassportToken
+{
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function refreshToken()
+    {
+        return $this->hasOne(RefreshToken::class, 'access_token_id', 'id');
+    }
 }
