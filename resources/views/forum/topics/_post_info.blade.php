@@ -46,11 +46,12 @@
         </span>
     @endif
 
-    @if ($user->title() !== null)
-        <div class="forum-post-info__row">
-            <div class="forum-user-badge">
-                {{ $user->title() }}
-            </div>
+    @if ($user->groupBadge() !== null)
+        <div class="forum-post-info__row forum-post-info__row--group-badge">
+            <div class="{{ class_with_modifiers('user-group-badge', [
+                't-forum',
+                $user->groupBadge(),
+            ]) }}"></div>
         </div>
     @endif
 

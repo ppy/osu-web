@@ -48,6 +48,11 @@
       }
     }
 
+    &--group-badge {
+      width: 100%;
+      display: block;
+    }
+
     &--posts {
       font-size: @font-size--normal;
     }
@@ -61,14 +66,17 @@
     }
 
     &--support-level {
+      .center-content();
       background-color: @osu-colour-pink-1;
-      font-size: 8px; // icon size
-      min-width: 50px;
+      font-size: 6px; // icon size
       padding: 2px 5px;
       border-radius: 10000px;
+      width: 100%;
 
       @media @desktop {
-        .center-content();
+        font-size: 8px; // icon size
+        min-width: 50px;
+        width: auto;
       }
     }
 
