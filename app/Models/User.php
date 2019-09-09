@@ -848,11 +848,7 @@ class User extends Model implements AuthenticatableContract
     public function groupIds()
     {
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
-            if (isset($this->relations['userGroups'])) {
-                $this->memoized[__FUNCTION__] = $this->userGroups->pluck('group_id');
-            } else {
-                $this->memoized[__FUNCTION__] = model_pluck($this->userGroups(), 'group_id');
-            }
+            $this->memoized[__FUNCTION__] = $this->userGroups->pluck('group_id');
         }
 
         return $this->memoized[__FUNCTION__];
