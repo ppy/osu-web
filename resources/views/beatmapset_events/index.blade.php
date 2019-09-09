@@ -70,6 +70,7 @@
                                     @include('objects._switch', [
                                         'checked' => in_array($type, $search['params']['types'], true),
                                         'name' => 'types[]',
+                                        'type' => 'checkbox',
                                         'value' => $type,
                                     ])
                                     {{ trans("beatmapset_events.type.{$type}") }}
