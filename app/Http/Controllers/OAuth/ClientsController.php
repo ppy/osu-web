@@ -64,7 +64,6 @@ class ClientsController extends Controller
         if (!$client->save()) {
             return response([
                 'form_error' => $client->validationErrors()->all(),
-                'error' => $client->validationErrors()->toSentence(),
             ], 422);
         }
 
@@ -81,7 +80,6 @@ class ClientsController extends Controller
         if (!$client->fill($params)->save()) {
             return response([
             'form_error' => $client->validationErrors()->all(),
-            'error' => $client->validationErrors()->toSentence(),
           ], 422);
         }
 

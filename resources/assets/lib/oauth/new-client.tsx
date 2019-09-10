@@ -60,7 +60,7 @@ export class NewClient extends React.Component {
       uiState.account.errors.clear();
       uiState.account.newClientVisible = false;
       uiState.account.client = client;
-    }).catch(uiState.account.errors.loadErrors)
+    }).catch(uiState.account.errors.handleResponse)
     .always(() => {
       uiState.account.isCreatingNewClient = false;
     });

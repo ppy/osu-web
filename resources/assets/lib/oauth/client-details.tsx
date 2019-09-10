@@ -75,7 +75,7 @@ export class ClientDetails extends React.Component<Props, State> implements Hand
     // FIXME: per-field error.
     this.props.client.updateWith(this.state).then(() => {
       uiState.account.client = null;
-    }).catch(this.errors.loadErrors);
+    }).catch(this.errors.handleResponse);
   }
 
   render() {
