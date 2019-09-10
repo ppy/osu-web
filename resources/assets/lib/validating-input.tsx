@@ -40,7 +40,11 @@ export class ValidatingInput extends React.Component<Props> {
 
     return (
       <>
-        <input className={`${blockName}__input`} name={name} {...otherProps} />
+        <input
+          className={osu.classWithModifiers(`${blockName}__input`, messages.length > 0 ? ['has-error'] : [])}
+          name={name}
+          {...otherProps}
+        />
         {jsx}
       </>
     );
