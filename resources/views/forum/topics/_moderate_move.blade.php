@@ -40,17 +40,19 @@
                         </h1>
 
                         <p>
-                            <select name="destination_forum_id" class="form-control">
-                                @foreach (App\Models\Forum\Forum::displayList()->get() as $dstForum)
-                                    <option value="{{ $dstForum->getKey() }}"
-                                        {{ $dstForum->isOpen() ? '' : 'disabled' }}
-                                        {{ $dstForum->getKey() === $topic->forum_id ? 'selected' : '' }}
-                                    >
-                                        {{ str_repeat('–', $dstForum->currentDepth()) }}
-                                        {{ $dstForum->forum_name }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <label class="form-select">
+                                <select name="destination_forum_id" class="form-select__input">
+                                    @foreach (App\Models\Forum\Forum::displayList()->get() as $dstForum)
+                                        <option value="{{ $dstForum->getKey() }}"
+                                            {{ $dstForum->isOpen() ? '' : 'disabled' }}
+                                            {{ $dstForum->getKey() === $topic->forum_id ? 'selected' : '' }}
+                                        >
+                                            {{ str_repeat('–', $dstForum->currentDepth()) }}
+                                            {{ $dstForum->forum_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </label>
                         </p>
 
                         <p class="text-right">
