@@ -72,7 +72,7 @@
         <div class="forum-post-edit__buttons-bar">
             <div class="forum-post-edit__buttons forum-post-edit__buttons--toolbar">
                 @if ($enabled)
-                    @include("forum._post_toolbar")
+                    @include('forum._post_toolbar')
                 @endif
             </div>
 
