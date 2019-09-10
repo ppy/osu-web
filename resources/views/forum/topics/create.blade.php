@@ -16,7 +16,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'bodyAdditionalClasses' => 't-forum-'.$forum->categorySlug(),
     'legacyNav' => false,
     'legacyFont' => false,
 ])
