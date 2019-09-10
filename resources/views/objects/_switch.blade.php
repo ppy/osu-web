@@ -15,20 +15,31 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="osu-checkbox">
-    @if (!isset($value))
-        <input type="hidden" name="{{ $name }}" value="0">
+<label class="osu-switch-v2">
+    @if (isset($defaultValue))
+        <input
+            type="hidden"
+            @if (isset($name))
+                name="{{ $name }}"
+            @endif
+            value="{{ $defaultValue }}"
+        />
     @endif
     <input
-        type="checkbox"
-        class="osu-checkbox__input" name="{{ $name }}"
-        value="{{ isset($value) ? $value : '1' }}"
+        class="osu-switch-v2__input {{ $additionalClass ?? '' }}"
+        type="{{ $type ?? 'checkbox' }}"
+        @if (isset($name))
+            name="{{ $name }}"
+        @endif
+        @if (isset($value))
+            value="{{ $value }}"
+        @endif
         @if ($checked ?? false)
             checked
         @endif
-    >
-    <span class="osu-checkbox__box"></span>
-    <span class="osu-checkbox__tick">
-        <i class="fas fa-check"></i>
-    </span>
-</div>
+        @foreach ($attributes ?? [] as $k => $v)
+            {!! $k !!}="{{ $v }}"
+        @endforeach
+    />
+    <span class="osu-switch-v2__content"></span>
+</label>

@@ -45,7 +45,7 @@ return [
         'latest_post' => '',
 
         'index' => [
-            'title' => '',
+            'title' => '论坛主页',
         ],
 
         'topics' => [
@@ -81,7 +81,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited 帖子',
-            'topic_starter' => '主题开启者',
+            'topic_starter' => '楼主',
         ],
     ],
 

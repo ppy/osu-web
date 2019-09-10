@@ -40,7 +40,7 @@ return [
                 '_' => 'Trạng thái Beatmap đã thay đổi',
                 'beatmapset_disqualify' => '":title" đã bị bỏ xếp hạng',
                 'beatmapset_disqualify_compact' => 'Beatmap đã bị bỏ xếp hạng',
-                'beatmapset_love' => '',
+                'beatmapset_love' => '":title" đã được tiến vào danh mục Được yêu thích',
                 'beatmapset_love_compact' => 'Beatmap đã được tiến vào danh mục Được yêu thích',
                 'beatmapset_nominate' => '":title" đã được đề cử',
                 'beatmapset_nominate_compact' => 'Beatmap đã được đề cử',

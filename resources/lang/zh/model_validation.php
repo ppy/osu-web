@@ -43,7 +43,7 @@ return [
 
         'attributes' => [
             'message_type' => '',
-            'timestamp' => '',
+            'timestamp' => '时间戳',
         ],
 
         'hype' => [
@@ -165,7 +165,7 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
+                'quantity' => '数量',
                 'cost' => '',
             ],
         ],

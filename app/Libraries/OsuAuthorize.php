@@ -1405,7 +1405,7 @@ class OsuAuthorize
     {
         $prefix = 'forum.topic.vote.';
 
-        if ($topic->pollEnd() !== null && $topic->pollEnd()->isPast()) {
+        if (!$topic->poll()->isOpen()) {
             return $prefix.'over';
         }
 
@@ -1422,9 +1422,7 @@ class OsuAuthorize
         }
 
         if (!$topic->poll_vote_change) {
-            $userHasVoted = $topic->pollVotes()->where('vote_user_id', $user->getKey())->exists();
-
-            if ($userHasVoted) {
+            if ($topic->poll()->votedBy($user)) {
                 return $prefix.'voted';
             }
         }

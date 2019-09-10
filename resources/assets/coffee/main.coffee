@@ -82,7 +82,6 @@ $(document).on 'turbolinks:load', ->
 
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
-@forumSearchModal ?= new ForumSearchModal(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
 @twitchPlayer ?= new TwitchPlayer(@turbolinksReload)

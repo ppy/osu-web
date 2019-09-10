@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,53 +18,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.osu-checkbox {
-  @_top: osu-checkbox;
+namespace App\Models\OAuth;
 
-  flex: none;
-  .center-content();
-  display: inline-flex;
-  margin: 0 5px 0 0;
-  cursor: pointer;
-  width: 19px;
-  height: 19px;
-  font-size: 12px;
-  line-height: 1;
-  color: #fff;
+use Laravel\Passport\Token as PassportToken;
 
-  &--beatmap-discussion-new {
-    margin-top: 5px;
-  }
-
-  &__box {
-    .full-size();
-    .default-border-radius();
-    .default-box-shadow();
-    border: 1px solid @osu-colour-b2;
-    background-color: @osu-colour-b6;
-
-    .@{_top}__input:checked ~ & {
-      background-color: @osu-colour-h1;
+class Token extends PassportToken
+{
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
     }
-  }
 
-  // the input is hidden
-  &__input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    opacity: 0;
-    overflow: hidden;
-  }
-
-  &__tick {
-    visibility: hidden;
-    display: flex;
-
-    .@{_top}__input:checked ~ & {
-      visibility: visible;
+    public function refreshToken()
+    {
+        return $this->hasOne(RefreshToken::class, 'access_token_id', 'id');
     }
-  }
 }

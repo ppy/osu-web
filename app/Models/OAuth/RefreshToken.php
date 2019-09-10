@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,22 +18,22 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.edit-post {
-  display: flex;
-  flex-direction: column;
+namespace App\Models\OAuth;
 
-  .reply-box-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .reply-box-footer {
-    flex: none;
-    padding: 10px;
-  }
+use App\Models\Model;
+use Laravel\Passport\Token;
 
-  [name=body] {
-    margin-bottom: 10px;
-    flex: 1;
-  }
+class RefreshToken extends Model
+{
+    protected $table = 'oauth_refresh_tokens';
+
+    protected $casts = ['revoked' => 'boolean'];
+    protected $dates = ['expires_at'];
+
+    public $timestamps = false;
+
+    public function accessToken()
+    {
+        return $this->belongsTo(Token::class, 'access_token_id', 'id');
+    }
 }

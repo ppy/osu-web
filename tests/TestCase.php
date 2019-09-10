@@ -17,6 +17,8 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Models\OAuth\Client;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\Passport\Token;
 
@@ -52,6 +54,9 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     {
         parent::setUp();
 
+        // change config setting because we need more than 1 for the tests.
+        config()->set('osu.oauth.max_user_clients', 100);
+
         // Force connections to reset even if transactional tests were not used.
         // Should fix tests going wonky when different queue drivers are used, or anything that
         // breaks assumptions of object destructor timing.
@@ -80,6 +85,23 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         });
 
         $user->withAccessToken($token);
+    }
+
+    protected function createOAuthClient(User $user, string $name = 'test', string $redirect = '/auth/callback') : Client
+    {
+        $client = (new Client)->forceFill([
+            'user_id' => $user->getKey(),
+            'name' => $name,
+            'secret' => str_random(40),
+            'redirect' => url($redirect),
+            'personal_access_client' => false,
+            'password_client' => false,
+            'revoked' => false,
+        ]);
+
+        $client->save();
+
+        return $client;
     }
 
     protected function invokeMethod($obj, string $name, array $params = [])

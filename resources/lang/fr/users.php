@@ -168,7 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count abonné|:count abonnés',
-            'none' => '',
+            'none' => 'aucun',
             'unranked' => 'Aucune partie récente',
 
             'achievements' => [
@@ -198,14 +198,14 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Discussions',
+                'title_longer' => 'Discussions récentes',
+                'show_more' => 'voir plus de discussions',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Événements',
+                'title_longer' => 'Événements récents',
+                'show_more' => 'voir plus d\'événements',
             ],
             'historical' => [
                 'empty' => 'Aucune performance enregistrée. :(',
@@ -288,9 +288,9 @@ return [
                 'title' => 'Médailles',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Messages',
+                'title_longer' => 'Messages récents',
+                'show_more' => 'voir plus de messages',
             ],
             'recent_activity' => [
                 'title' => 'Activité récente',
@@ -310,11 +310,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => 'Votes donnés (3 derniers mois)',
+                'received' => 'Votes reçus (3 derniers mois)',
+                'title' => 'Votes',
+                'title_longer' => 'Votes récents',
+                'vote_count' => ':count_delimited vote|:count_delimited votes',
             ],
             'account_standing' => [
                 'title' => 'Statut du compte',
@@ -396,10 +396,10 @@ return [
             'total_hits' => 'Nombre de clics',
             'total_score' => 'Score total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'ranked_and_approved_beatmapset_count' => 'Beatmaps classées et approuvées',
+            'loved_beatmapset_count' => 'Beatmaps adorées',
+            'unranked_beatmapset_count' => 'Beatmaps en attente',
+            'graveyard_beatmapset_count' => 'Beatmaps dans le cimetière',
         ],
     ],
 

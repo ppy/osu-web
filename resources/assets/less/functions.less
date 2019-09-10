@@ -331,13 +331,16 @@
 }
 
 .content-font() {
-  font-family: @font-content;
+  .content-font-base();
   line-height: 1.35;
   color: #444;
 }
 
+.content-font-base() {
+  font-family: var(--font-content-override, var(--font-content));
+}
+
 .default-font() {
-  font-family: @font-default;
   font-family: var(--font-default-override, var(--font-default));
 }
 
