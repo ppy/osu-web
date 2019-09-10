@@ -17,7 +17,7 @@
  */
 
 import { OwnClientJSON } from 'interfaces/own-client-json';
-import { action, runInAction } from 'mobx';
+import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -58,15 +58,19 @@ export class NewClient extends React.Component {
       const client = store.updateWithJson(data);
       uiState.account.newClientVisible = false;
       uiState.account.client = client;
-    }).catch((xhr: JQueryXHR) => {
-      const response = xhr.responseJSON;
-      runInAction(() => {
-        uiState.account.errors.set('name', response.form_error.name);
-        uiState.account.errors.set('redirect', response.form_error.redirect);
-      });
-    }).always(() => {
+    }).catch(this.loadErrors)
+    .always(() => {
       uiState.account.isCreatingNewClient = false;
     });
+  }
+
+  @action
+  loadErrors(xhr: JQueryXHR) {
+    const errors = xhr.responseJSON.form_error;
+    if (errors == null) { return; } // TODO: add popup fallback?
+    for (const key of Object.keys(errors)) {
+      uiState.account.errors.set(key, errors[key]);
+    }
   }
 
   render() {
