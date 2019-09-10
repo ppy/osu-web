@@ -338,8 +338,9 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
         });
         Route::apiResource('rooms', 'Multiplayer\RoomsController', ['only' => ['show', 'store']]);
 
-        Route::group(['prefix' => 'beatmapsets'], function () {
+        Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
             Route::get('favourites', 'API\BeatmapsetsController@favourites');     //  GET /api/v2/beatmapsets/favourites
+            Route::post('{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('update-favourite');
         });
 
         Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
