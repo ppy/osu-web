@@ -39,6 +39,12 @@
     align-self: center;
   }
 
+  &__error {
+    margin-top: 5px;
+    color: @osu-colour-red-1;
+    padding-left: 10px;
+  }
+
   &__group {
     display: flex;
     flex-direction: column;
@@ -61,6 +67,10 @@
 
     &:focus {
       border-color: @osu-colour-l1;
+    }
+
+    &--has-error {
+      border-color: @osu-colour-red-1;
     }
   }
 
