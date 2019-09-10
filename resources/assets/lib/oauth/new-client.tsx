@@ -22,6 +22,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Spinner } from 'spinner';
+import { ValidatingInput } from 'validating-input';
 
 const store = core.dataStore.ownClientStore;
 const uiState = core.dataStore.uiState;
@@ -78,14 +79,24 @@ export class NewClient extends React.Component {
         <form className='oauth-client-details' autoComplete='off'>
           <div className='oauth-client-details__group'>
             <div className='oauth-client-details__label'>{osu.trans('oauth.client.name')}</div>
-            <input className='oauth-client-details__input' name='name' onChange={this.handleInputChange} type='text' />
-            <div className='oauth-client-details__error'>{uiState.account.errors.get('name')}</div>
+            <ValidatingInput
+              blockName='oauth-client-details'
+              errors={uiState.account.errors}
+              name='name'
+              onChange={this.handleInputChange}
+              type='text'
+            />
           </div>
 
           <div className='oauth-client-details__group'>
             <div className='oauth-client-details__label'>{osu.trans('oauth.client.redirect')}</div>
-            <input className='oauth-client-details__input' name='redirect' onChange={this.handleInputChange} type='text' />
-            <div className='oauth-client-details__error'>{uiState.account.errors.get('redirect')}</div>
+            <ValidatingInput
+              blockName='oauth-client-details'
+              errors={uiState.account.errors}
+              name='redirect'
+              onChange={this.handleInputChange}
+              type='text'
+            />
           </div>
 
           <div className='oauth-client-details__buttons'>
