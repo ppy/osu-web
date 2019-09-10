@@ -16,12 +16,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { FormErrors, HandlesErrors } from 'form-errors';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import { OwnClient as Client } from 'models/oauth/own-client';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Spinner } from 'spinner';
+import { ValidatingInput } from 'validating-input';
 
 const uiState = core.dataStore.uiState;
 
@@ -35,7 +37,9 @@ interface State {
 }
 
 @observer
-export class ClientDetails extends React.Component<Props, State> {
+export class ClientDetails extends React.Component<Props, State> implements HandlesErrors {
+  errors = new FormErrors();
+
   readonly state: State = {
     redirect: this.props.client.redirect,
   };
@@ -71,7 +75,7 @@ export class ClientDetails extends React.Component<Props, State> {
     // FIXME: per-field error.
     this.props.client.updateWith(this.state).then(() => {
       uiState.account.client = null;
-    }).catch(osu.ajaxError);
+    }).catch(this.errors.loadErrors);
   }
 
   render() {
@@ -92,7 +96,14 @@ export class ClientDetails extends React.Component<Props, State> {
 
         <div className='oauth-client-details__group'>
           <div className='oauth-client-details__label'>{osu.trans('oauth.client.redirect')}</div>
-          <input className='oauth-client-details__input' name='redirect' type='text' onChange={this.handleInputChange} value={this.state.redirect} />
+          <ValidatingInput
+            blockName='oauth-client-details'
+            errors={this.errors}
+            name='redirect'
+            onChange={this.handleInputChange}
+            type='text'
+            value={this.state.redirect}
+          />
         </div>
 
         <div className='oauth-client-details__buttons'>
