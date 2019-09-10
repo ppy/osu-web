@@ -56,11 +56,15 @@ export class OwnClients extends React.Component {
 
   renderClients() {
     return [...store.clients.values()].map((client) => {
-      return <OwnClient client={client} key={client.id} />;
+      return (
+        <div className='oauth-clients__client' key={client.id}>
+          <OwnClient client={client} />
+        </div>
+      );
     });
   }
   renderEmpty() {
-    return osu.trans('oauth.own_clients.none');
+    return <div className='oauth-clients__client'>{osu.trans('oauth.own_clients.none')}</div>;
   }
 
   renderModaledComponents() {
