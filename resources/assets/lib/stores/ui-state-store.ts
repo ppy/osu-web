@@ -17,15 +17,12 @@
  */
 
 import ChatStateStore from 'chat/chat-state-store';
+import { FormErrors, HandlesErrors } from 'form-errors';
 import { observable } from 'mobx';
 import { OwnClient } from 'models/oauth/own-client';
 import Store from 'stores/store';
 
-interface HasErrors {
-  errors: Map<string, string[]>;
-}
-
-interface AccountUIState extends HasErrors {
+interface AccountUIState extends HandlesErrors {
   client: OwnClient | null;
   isCreatingNewClient: boolean;
   newClientVisible: boolean;
@@ -34,7 +31,7 @@ interface AccountUIState extends HasErrors {
 export default class UIStateStore extends Store {
   @observable account: AccountUIState = {
     client: null,
-    errors: new Map(),
+    errors: new FormErrors(),
     isCreatingNewClient: false,
     newClientVisible: false,
   };

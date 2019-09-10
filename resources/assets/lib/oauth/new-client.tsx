@@ -57,21 +57,13 @@ export class NewClient extends React.Component {
       url: laroute.route('oauth.clients.store'),
     }).then((data: OwnClientJSON) => {
       const client = store.updateWithJson(data);
+      uiState.account.errors.clear();
       uiState.account.newClientVisible = false;
       uiState.account.client = client;
-    }).catch(this.loadErrors)
+    }).catch(uiState.account.errors.loadErrors)
     .always(() => {
       uiState.account.isCreatingNewClient = false;
     });
-  }
-
-  @action
-  loadErrors(xhr: JQueryXHR) {
-    const errors = xhr.responseJSON.form_error;
-    if (errors == null) { return; } // TODO: add popup fallback?
-    for (const key of Object.keys(errors)) {
-      uiState.account.errors.set(key, errors[key]);
-    }
   }
 
   render() {
