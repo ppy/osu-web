@@ -18,7 +18,7 @@
 @extends('master', [
     'bodyAdditionalClasses' => 't-forum-'.$forum->categorySlug(),
     'legacyNav' => false,
-    'use2019Font' => true,
+    'legacyFont' => false,
 ])
 
 @section('content')
