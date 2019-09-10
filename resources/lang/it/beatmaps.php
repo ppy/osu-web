@@ -310,7 +310,7 @@ return [
     ],
     'extra' => [
         'video' => 'Contiene video',
-        'storyboard' => 'Ha Storyboard',
+        'storyboard' => 'Contiene storyboard',
     ],
     'rank' => [
         'any' => 'Qualsiasi',

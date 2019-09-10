@@ -42,10 +42,10 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'Laatste bericht',
 
         'index' => [
-            'title' => '',
+            'title' => 'Forum Overzicht',
         ],
 
         'topics' => [

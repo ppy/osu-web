@@ -21,5 +21,5 @@
 return [
     'instrument_declined' => 'Paypal từ chối phương thức thanh toán này.',
     'invalid_resource_id' => 'Không tìm thấy thông tin thanh toán nào.',
-    'unknown' => "Thanh toán đã bị từ chối, nhưng chúng tôi không biết tại sao.",
+    'unknown' => "Thanh toán đã bị từ chối, nhưng chúng tôi không chắc tại sao.",
 ];

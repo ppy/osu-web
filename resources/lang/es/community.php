@@ -27,34 +27,34 @@ return [
             'instructions' => 'clic al botón del corazón para proceder a la osu!store',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => '¿Por qué debo apoyar osu!? ¿Dónde va el dinero?',
 
             'team' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Apoyar al equipo',
+                'description' => 'Un pequeño equipo desarrolla y ejecuta osu!. Tu apoyo les ayuda, tú sabes... en vivo.',
             ],
             'infra' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Infraestructura del servidor',
+                'description' => 'Las contribuciones van hacia los servidores para ejecutar el sitio web, servicios multijugador, foros de clasificación online, etc.',
             ],
             'featured-artists' => [
-                'title' => '',
+                'title' => 'Artistas Destacados',
                 'description' => '',
-                'link_text' => '',
+                'link_text' => 'Ver la lista actual &raquo;',
             ],
             'ads' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Mantener osu! autosuficiente',
+                'description' => 'Tus contribuciones ayudan a mantener el juego independiente y completamente libre de anuncios y patrocinadores externos.',
             ],
             'tournaments' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Torneos oficiales',
+                'description' => 'Ayuda a financiar el funcionamiento de (y los premios para) los torneos oficiales de la Copa Mundial.',
+                'link_text' => 'Explorar torneos &raquo;',
             ],
             'bounty-program' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Programa de Bounty de Código Abierto',
+                'description' => 'Apoyar a los colaboradores de la comunidad que han dado su tiempo y esfuerzo para ayudar a hacer osu!.',
+                'link_text' => 'Descubre más &raquo;',
             ],
         ],
         'perks' => [
@@ -65,18 +65,18 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => '',
+                'title' => 'Ranking de Amigos',
                 'description' => "",
             ],
 
             'country_ranking' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Ranking Nacional',
+                'description' => 'Conquista tu país antes de conquistar el mundo.',
             ],
 
             'mod_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Filtrar por Mods',
+                'description' => '¿Asociar sólo a las personas que juegan HDHR? ¡No hay problema!',
             ],
 
             'auto_downloads' => [
@@ -135,15 +135,15 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Más favoritos',
+                'description' => 'El número máximo de mapas de beatmaps que puedes preferir se incrementa desde :normally &rarr; :supporter',
             ],
             'more_friends' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Más Amigos',
+                'description' => 'El número máximo de amigos que puedes tener es aumentado de :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
-                'title' => '',
+                'title' => 'Subir más Beatmaps',
                 'description' => '',
             ],
             'friend_filtering' => [

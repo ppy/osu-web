@@ -27,14 +27,14 @@ return [
             'instructions' => 'คลิกที่ปุ่มหัวใจเพื่อดำเนินต่อไปที่ร้านของ osu!',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => 'ทำไมจึงควรสนับสนุน osu! และเงินที่ให้จะไปไหนบ้าง',
 
             'team' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'ช่วยเหลือทีมงาน',
+                'description' => 'ทีมงานที่คอยพัฒนา osu! การช่วยเหลือก็..ตามนั้นแหละ..ค่ากินค่าอยู่อะนะ',
             ],
             'infra' => [
-                'title' => '',
+                'title' => 'เซิร์ฟเวอร์และโครงสร้างพื้นฐาน',
                 'description' => '',
             ],
             'featured-artists' => [
@@ -43,18 +43,18 @@ return [
                 'link_text' => '',
             ],
             'ads' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'ช่วยให้ osu! อยู่ได้',
+                'description' => 'ความช่วยเหลือของคุณช่วยให้เกมนี้ไม่พึ่งพาใคร และไร้โฆษณาจากคนภายนอก',
             ],
             'tournaments' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'ช่วยเงินค่าดำเนินการ (และรางวัล) ทัวร์นาเมนต์ osu! World Cup',
                 'link_text' => '',
             ],
             'bounty-program' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'โครงการเขียนโค้ดล่ารางวัล',
+                'description' => 'ช่วยเหลือนักพัฒนาที่สละเวลาเพื่อให้ osu! ดีขึ้น',
+                'link_text' => 'อ่านเพิ่มเติม &raquo;',
             ],
         ],
         'perks' => [
@@ -65,18 +65,18 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => '',
-                'description' => "",
+                'title' => 'อันดับคะแนนของเพื่อน',
+                'description' => "ดูว่าคะแนนบีตแมปของตัวเองกับเพื่อนใครเจ๋งกว่ากัน ทั้งในเกมและบนเว็บ",
             ],
 
             'country_ranking' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'อันดับคะแนนประเทศ',
+                'description' => 'ครองประเทศ แล้วค่อยไปครองโลก',
             ],
 
             'mod_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'กรองตามม็อด',
+                'description' => 'อยากเล่นกับคนเล่น HDHR ใช่มั้ย จัดไป',
             ],
 
             'auto_downloads' => [
@@ -136,19 +136,19 @@ return [
 
             'more_favourites' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'จำนวนบีตแมปที่คุณชื่นชอบได้เพิ่มจาก :normally เป็น :supporter',
             ],
             'more_friends' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'จำนวนเพื่อนที่คุณมีได้สูงสุดเพิ่มจาก :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'อัปโหลดบีตแมปเพิ่ม',
+                'description' => 'จำนวนบีตแมปที่ไม่ได้จัดอันดับ ณ เวลาใด ๆ จะขึ้นกับค่าเริ่มต้น + โบนัสต่อจำนวนบีตแมปที่ได้จัดอันดับ (สูงสุดตามขีดจำกัดที่มี)<br/><br/>ปกติแล้วคือ 4 + 1 บีตแมปต่อบีตแมปที่ได้จัดอันดับ (สูงสุด 2) หากเป็นผู้สนับสนุน จะกลายเป็น 8 + 1 บีตแมป (สูงสุด 12)',
             ],
             'friend_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'อันดับคะแนนเพื่อน',
+                'description' => 'แข่งกับเพื่อนว่าใครเก่งกว่ากัน <br/><br/><small>*ยังไม่ขึ้นเว็บใหม่ แต่ก็ที่นี่ เร็ว ๆ นี้ย์(tm)</small>',
             ],
 
         ],

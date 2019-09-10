@@ -42,10 +42,10 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'Legújabb Poszt',
 
         'index' => [
-            'title' => '',
+            'title' => 'Fórum Index',
         ],
 
         'topics' => [

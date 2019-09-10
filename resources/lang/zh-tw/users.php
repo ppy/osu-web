@@ -396,7 +396,7 @@ return [
             'total_hits' => '總命中次數',
             'total_score' => '總分',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
+            'ranked_and_approved_beatmapset_count' => '進榜 & 批准圖譜',
             'loved_beatmapset_count' => 'Loved 圖譜',
             'unranked_beatmapset_count' => '',
             'graveyard_beatmapset_count' => '',

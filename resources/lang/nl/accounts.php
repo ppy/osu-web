@@ -26,8 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => 'Zorg ervoor dat uw avatar voldoet aan :link. <br/> Dit betekent dat deze <strong> geschikt moet zijn voor alle leeftijden </strong>. d.w.z. geen naaktheid, godslastering of suggestieve inhoud.',
+            'rules_link' => 'de community regels',
         ],
 
         'email' => [
@@ -108,11 +108,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'U kunt dit tabblad/venster nu sluiten',
+        'title' => 'Verificatie is voltooid',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Ongeldige of verlopen verificatielink',
     ],
 ];

@@ -25,9 +25,9 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => '커뮤니티',
 
-            'forum' => '',
+            'forum' => '포럼',
         ],
     ],
 

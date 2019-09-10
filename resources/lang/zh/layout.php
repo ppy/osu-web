@@ -25,9 +25,9 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => '社区',
 
-            'forum' => '',
+            'forum' => '论坛',
         ],
     ],
 
@@ -35,7 +35,7 @@ return [
         'home' => [
             '_' => '主页',
             'account-edit' => '设置',
-            'account-verifyLink' => '',
+            'account-verifyLink' => '验证完成',
             'friends-index' => '好友',
             'changelog-index' => '更新日志',
             'changelog-build' => '版本',

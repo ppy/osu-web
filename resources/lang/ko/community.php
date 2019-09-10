@@ -39,22 +39,22 @@ return [
             ],
             'featured-artists' => [
                 'title' => '공식 아티스트',
-                'description' => '',
-                'link_text' => '',
+                'description' => '여러분의 지원으로, 더 많은 놀라운 아티스트를 만나 osu! 에 사용할 굉장한 음악의 사용권을 취득할 수 있습니다!',
+                'link_text' => '현재 아티스트 명단 보기 &raquo;',
             ],
             'ads' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'osu!를 자립하게 유지합니다',
+                'description' => '여러분의 기여가 게임을 독립적이고, 일체의 광고와 외부 스폰서 없이 유지할 수 있도록 돕습니다.',
             ],
             'tournaments' => [
                 'title' => '공식 토너먼트',
-                'description' => '',
-                'link_text' => '',
+                'description' => 'osu! 공식 월드컵 토너먼트의 운영비 (그리고 상금) 를 마련할 수 있도록 돕습니다.',
+                'link_text' => '토너먼트 찾아보기 &raquo;',
             ],
             'bounty-program' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => '오픈 소스 포상금 프로그램',
+                'description' => '시간과 노력을 투자하여 osu! 를 더 좋게 만들 수 있도록 도와주시는 커뮤니티 기여자를 지원합니다.',
+                'link_text' => '더 알아보기 &raquo;',
             ],
         ],
         'perks' => [
@@ -66,17 +66,17 @@ return [
 
             'friend_ranking' => [
                 'title' => '친구 순위',
-                'description' => "",
+                'description' => "게임 안과 웹사이트의 비트맵 리더보드에서 친구보다 얼마나 한수 위인지 볼 수 있습니다.",
             ],
 
             'country_ranking' => [
                 'title' => '국가 순위',
-                'description' => '',
+                'description' => '세계 정복 전에는 국가 정복이죠.',
             ],
 
             'mod_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => '모드순 필터링',
+                'description' => 'HDHR을 플레이하는 사람들만 찾고 싶으신가요? 문제없어요!',
             ],
 
             'auto_downloads' => [
@@ -135,20 +135,20 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
-                'description' => '',
+                'title' => '더 많은 즐겨찾기',
+                'description' => '즐겨 찾을 수 있는 비트맵의 수가 :normally &rarr; :supporter 으로 늘어납니다.',
             ],
             'more_friends' => [
-                'title' => '',
-                'description' => '',
+                'title' => '더 많은 친구 수',
+                'description' => '사귈 수 있는 친구의 숫자가 :normally &rarr; :supporter 으로 늘어납니다.',
             ],
             'more_beatmaps' => [
-                'title' => '',
-                'description' => '',
+                'title' => '더 많은 비트맵 업로드',
+                'description' => '한 번에 가질 수 있는 Ranked 되지 않은 비트맵의 수는 기본 값 + 현재 소유하고 있는 각 Ranked 된 비트맵 (한계치까지) 의 추가적 보너스로 계산됩니다. <br/><br/>일반적으로 이 값은 Ranked 된 비트맵 당 4 + 1입니다 (최대 2). 서포터가 있으면, 이 값이 Ranked 된 비트맵 당 8 + 1로 증가합니다 (최대 12).',
             ],
             'friend_filtering' => [
                 'title' => '친구 리더보드',
-                'description' => '',
+                'description' => '친구와 경쟁하고 친구보다 얼마나 더 한수 위인지 알아보세요!*<br/><br/><small>* 신 사이트에는 아직 사용할 수 없습니다. 커밍 순(tm)</small>',
             ],
 
         ],

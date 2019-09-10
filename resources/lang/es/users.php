@@ -168,7 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 seguidor|:count seguidores',
-            'none' => '',
+            'none' => 'ninguno',
             'unranked' => 'No hay partidas recientes',
 
             'achievements' => [
@@ -198,14 +198,14 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Discusiones',
+                'title_longer' => 'Discusiones recientes',
+                'show_more' => 'ver más discusiones',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Eventos',
+                'title_longer' => 'Eventos Recientes',
+                'show_more' => 'ver más eventos',
             ],
             'historical' => [
                 'empty' => 'Sin récords de rendimiento. :(',
@@ -288,9 +288,9 @@ return [
                 'title' => 'Medallas',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Entradas',
+                'title_longer' => 'Entradas recientes',
+                'show_more' => 'ver más publicaciones',
             ],
             'recent_activity' => [
                 'title' => 'Reciente',
