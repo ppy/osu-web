@@ -17,7 +17,7 @@
  */
 
 import { OwnClientJSON } from 'interfaces/own-client-json';
-import { action } from 'mobx';
+import { action, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -58,8 +58,13 @@ export class NewClient extends React.Component {
       const client = store.updateWithJson(data);
       uiState.account.newClientVisible = false;
       uiState.account.client = client;
-    }).catch(osu.ajaxError) // FIXME: show error per field instead.
-    .always(() => {
+    }).catch((xhr: JQueryXHR) => {
+      const response = xhr.responseJSON;
+      runInAction(() => {
+        uiState.account.errors.set('name', response.form_error.name);
+        uiState.account.errors.set('redirect', response.form_error.redirect);
+      });
+    }).always(() => {
       uiState.account.isCreatingNewClient = false;
     });
   }
@@ -70,11 +75,13 @@ export class NewClient extends React.Component {
           <div className='oauth-client-details__group'>
             <div className='oauth-client-details__label'>{osu.trans('oauth.client.name')}</div>
             <input className='oauth-client-details__input' name='name' onChange={this.handleInputChange} type='text' />
+            <div className='oauth-client-details__error'>{uiState.account.errors.get('name')}</div>
           </div>
 
           <div className='oauth-client-details__group'>
-          <div className='oauth-client-details__label'>{osu.trans('oauth.client.redirect')}</div>
+            <div className='oauth-client-details__label'>{osu.trans('oauth.client.redirect')}</div>
             <input className='oauth-client-details__input' name='redirect' onChange={this.handleInputChange} type='text' />
+            <div className='oauth-client-details__error'>{uiState.account.errors.get('redirect')}</div>
           </div>
 
           <div className='oauth-client-details__buttons'>

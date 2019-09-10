@@ -21,7 +21,11 @@ import { observable } from 'mobx';
 import { OwnClient } from 'models/oauth/own-client';
 import Store from 'stores/store';
 
-interface AccountUIState {
+interface HasErrors {
+  errors: Map<string, string[]>;
+}
+
+interface AccountUIState extends HasErrors {
   client: OwnClient | null;
   isCreatingNewClient: boolean;
   newClientVisible: boolean;
@@ -30,6 +34,7 @@ interface AccountUIState {
 export default class UIStateStore extends Store {
   @observable account: AccountUIState = {
     client: null,
+    errors: new Map(),
     isCreatingNewClient: false,
     newClientVisible: false,
   };
