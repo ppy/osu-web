@@ -73,12 +73,12 @@ class UserAccountHistory extends Model
 
     public function scopeBans($query)
     {
-        return $query->where('ban_status', '>', 0)->orderBy('timestamp', 'desc');
+        return $query->where('ban_status', '<>', static::TYPES['note'])->orderBy('timestamp', 'desc');
     }
 
     public function scopeDefault($query)
     {
-        return $query->where('ban_status', 2);
+        return $query->where('ban_status', static::TYPES['silence']);
     }
 
     public function scopeRecent($query)
