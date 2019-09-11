@@ -30,6 +30,28 @@ export class FormErrors {
     this.errors.clear();
   }
 
+  /**
+   * Returns a list of errors with errors for specific input fields filtered out.
+   * This works fine for its current use-case and the way validation error keys
+   * are currently returned.
+   *
+   * @param names field names to filter out.
+   * @returns List of error messages.
+   */
+  except(names: string[]): string[] {
+    const keys = [...this.errors.keys()].filter((key) => names.every((name) => key !== name));
+
+    const messages: string[] = [];
+    for (const key of keys) {
+      const strings = this.errors.get(key);
+      if (strings != null) {
+        strings.forEach((value) => messages.push(value));
+      }
+    }
+
+    return messages;
+  }
+
   get(name: string) {
     return this.errors.get(name);
   }

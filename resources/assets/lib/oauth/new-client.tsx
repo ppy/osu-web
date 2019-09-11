@@ -69,6 +69,7 @@ export class NewClient extends React.Component {
   render() {
     return (
         <form className='oauth-client-details' autoComplete='off'>
+          {this.renderRemainingErrors()}
           <div className='oauth-client-details__group'>
             <div className='oauth-client-details__label'>{osu.trans('oauth.client.name')}</div>
             <ValidatingInput
@@ -99,5 +100,11 @@ export class NewClient extends React.Component {
           </div>
         </form>
     );
+  }
+
+  renderRemainingErrors() {
+    return uiState.account.errors.except(['name', 'redirect']).map((error, index) => {
+      return <div className='oauth-client-details__error' key={index}>{error}</div>;
+    });
   }
 }
