@@ -31,12 +31,13 @@
     <div class="forum-cover-edit__cover js-forum-cover--header"></div>
     <div class="forum-cover-edit__buttons">
         <label
-            class="btn-osu-big
+            class="
+                btn-osu-big
                 btn-osu-big--forum-cover
                 btn-osu-big--forum-cover-edit
                 js-forum-cover--upload-button
                 fileupload
-                forum-category-header__cover-uploader-label"
+            "
             data-default-file-url="{{ $cover['defaultFileUrl'] ?? '' }}"
             data-file-url="{{ $cover['fileUrl'] ?? '' }}"
             data-url="{{ $cover['url'] }}"
