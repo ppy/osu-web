@@ -31,7 +31,11 @@
         <div class="account-edit__input-group">
 
             <div class="account-edit-entry account-edit-entry--wide account-edit-entry--no-label">
-                <div class="account-edit-entry__misc-info js-post-preview--preview">
+                <div class="
+                    account-edit-entry__misc-info
+                    account-edit-entry__misc-info--signature-preview
+                    js-post-preview--preview
+                ">
                     {!! bbcode(Auth::user()->user_sig, Auth::user()->user_sig_bbcode_uid) !!}
                 </div>
             </div>
