@@ -29,6 +29,8 @@ const uiState = core.dataStore.uiState;
 
 @observer
 export class NewClient extends React.Component {
+  private static readonly inputFields = ['name', 'redirect'];
+
   handleCancel = () => {
     uiState.account.newClientVisible = false;
     uiState.account.isCreatingNewClient = false;
@@ -70,27 +72,21 @@ export class NewClient extends React.Component {
     return (
         <form className='oauth-client-details' autoComplete='off'>
           {this.renderRemainingErrors()}
-          <div className='oauth-client-details__group'>
-            <div className='oauth-client-details__label'>{osu.trans('oauth.client.name')}</div>
-            <ValidatingInput
-              blockName='oauth-client-details'
-              errors={uiState.account.errors}
-              name='name'
-              onChange={this.handleInputChange}
-              type='text'
-            />
-          </div>
 
-          <div className='oauth-client-details__group'>
-            <div className='oauth-client-details__label'>{osu.trans('oauth.client.redirect')}</div>
-            <ValidatingInput
-              blockName='oauth-client-details'
-              errors={uiState.account.errors}
-              name='redirect'
-              onChange={this.handleInputChange}
-              type='text'
-            />
-          </div>
+          {NewClient.inputFields.map((name) => {
+            return (
+              <div className='oauth-client-details__group' key={name}>
+                <div className='oauth-client-details__label'>{osu.trans(`oauth.client.${name}`)}</div>
+                <ValidatingInput
+                  blockName='oauth-client-details'
+                  errors={uiState.account.errors}
+                  name={name}
+                  onChange={this.handleInputChange}
+                  type='text'
+                />
+              </div>
+            );
+          })}
 
           <div className='oauth-client-details__buttons'>
             <button className='btn-osu-big' type='button' onClick={this.handleSubmit}>
@@ -103,7 +99,7 @@ export class NewClient extends React.Component {
   }
 
   renderRemainingErrors() {
-    return uiState.account.errors.except(['name', 'redirect']).map((error, index) => {
+    return uiState.account.errors.except(NewClient.inputFields).map((error, index) => {
       return <div className='oauth-client-details__error' key={index}>{error}</div>;
     });
   }
