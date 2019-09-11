@@ -49,29 +49,14 @@ class UserAccountHistory extends Model
         2 => 'silence',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id', 'user_id');
-    }
-
-    public function actor()
-    {
-        return $this->belongsTo(User::class, 'banner_id', 'user_id');
-    }
-
-    public function endTime()
-    {
-        return $this->timestamp->addSeconds($this->period);
-    }
-
-    public function getTypeAttribute()
-    {
-        return static::TYPES[$this->ban_status] ?? null;
-    }
-
     public function scopeBans($query)
     {
         return $query->where('ban_status', '>', 0)->orderBy('timestamp', 'desc');
+    }
+
+    public function scopeDefault($query)
+    {
+        return $query->where('ban_status', 2);
     }
 
     public function scopeRecent($query)
@@ -81,8 +66,23 @@ class UserAccountHistory extends Model
             ->orderBy('timestamp', 'desc');
     }
 
-    public function scopeDefault($query)
+    public function actor()
     {
-        return $query->where('ban_status', 2);
+        return $this->belongsTo(User::class, 'banner_id', 'user_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
+    }
+
+    public function getTypeAttribute()
+    {
+        return static::TYPES[$this->ban_status] ?? null;
+    }
+
+    public function endTime()
+    {
+        return $this->timestamp->addSeconds($this->period);
     }
 }
