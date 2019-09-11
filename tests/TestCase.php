@@ -99,7 +99,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
             'revoked' => false,
         ]);
 
-        $client->save();
+        $client->save(['skipValidations' => true]);
 
         return $client;
     }
