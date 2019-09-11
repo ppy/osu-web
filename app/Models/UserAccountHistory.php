@@ -63,6 +63,11 @@ class UserAccountHistory extends Model
         ]);
     }
 
+    public static function logUserResetPassword($user)
+    {
+        return static::addNote($user, 'User forgot and recovered their password.');
+    }
+
     public static function logUserUpdateEmail($user, $previousEmail)
     {
         $previousEmail = $previousEmail ?? 'null';
