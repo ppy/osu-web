@@ -73,7 +73,7 @@ export class ReportComment extends React.PureComponent<ReportCommentProps, Repor
           {osu.trans('report.comment.button')}
         </button>
         <ReportForm
-          allowOptions={false}
+          allowOptions={true}
           completed={this.state.completed}
           disabled={this.state.disabled}
           key='form'
@@ -81,6 +81,7 @@ export class ReportComment extends React.PureComponent<ReportCommentProps, Repor
           onSubmit={this.onSubmit}
           title={osu.trans('report.comment.title', { username: `<strong>${user.username}</strong>` })}
           visible={this.state.showingForm}
+          visibleOptions={['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other']}
         />
       </React.Fragment>
     );

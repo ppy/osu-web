@@ -40,7 +40,7 @@ export class ReportScore extends PureComponent
         osu.trans 'report.scores.button'
 
       el ReportForm,
-        allowOptions: false
+        allowOptions: true
         completed: @state.completed
         disabled: @state.disabled
         key: 'form'
@@ -48,6 +48,7 @@ export class ReportScore extends PureComponent
         onSubmit: @onSubmit
         title: osu.trans 'report.scores.title', username: "<strong>#{@props.score.user.username}</strong>"
         visible: @state.showingForm
+        visibleOptions: ['Cheating', 'Other']
     ]
 
 
