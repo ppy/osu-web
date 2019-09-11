@@ -248,15 +248,6 @@
     if osu.present(url) then "url(#{url})" else null
 
 
-  # TODO: add support for multiple badges and/or move server side?
-  # note: the display priority is as defined, from left to right. an exception for "bot" is made because users are only displayed as bots when it is their primary group
-  userGroupBadge: (user) ->
-    if user.is_bot
-      'bot'
-    else
-      _.intersection(['ppy', 'dev', 'gmt', 'nat', 'bng', 'bng_limited', 'support', 'alumni'], _.concat(user.default_group, user.groups))[0]
-
-
   navigate: (url, keepScroll, {action = 'advance'} = {}) ->
     osu.keepScrollOnLoad() if keepScroll
     Turbolinks.visit url, action: action
