@@ -49,11 +49,11 @@ export class OwnClients extends React.Component {
           {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
         </div>
         <BigButton
-          text={osu.trans('oauth.own_clients.new')}
           icon={'fas fa-plus'}
           props={{
             onClick: this.handleNewClientClicked,
           }}
+          text={osu.trans('oauth.own_clients.new')}
         />
 
         {this.renderModaledComponents()}

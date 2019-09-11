@@ -53,7 +53,7 @@ export class AuthorizedClient extends React.Component<Props> {
             text={osu.trans(`oauth.authorized_clients.revoked.${client.revoked}`)}
             icon={client.revoked ? 'fas fa-ban' : 'fas fa-trash'}
             isBusy={client.isRevoking}
-            modifiers={['account-edit', 'danger']}
+            modifiers={['account-edit', 'danger', 'settings-oauth']}
             props={{
               disabled: client.isRevoking || client.revoked,
               onClick: this.revokeClicked,

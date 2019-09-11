@@ -48,14 +48,22 @@ export class OwnClient extends React.Component<Props> {
         </div>
         <div className='oauth-client__actions'>
           <BigButton
-            text={osu.trans(`oauth.own_clients.revoked.${client.revoked}`)}
+            icon='fas fa-pencil-alt'
+            modifiers={['account-edit', 'settings-oauth']}
+            props={{
+              onClick: this.showClientDetails,
+            }}
+            text={osu.trans('common.buttons.edit')}
+          />
+          <BigButton
             icon={client.revoked ? 'fas fa-ban' : 'fas fa-trash'}
             isBusy={client.isRevoking}
-            modifiers={['account-edit', 'danger']}
+            modifiers={['account-edit', 'danger', 'settings-oauth']}
             props={{
               disabled: client.isRevoking || client.revoked,
               onClick: this.deleteClicked,
             }}
+            text={osu.trans(`oauth.own_clients.revoked.${client.revoked}`)}
           />
         </div>
       </div>
