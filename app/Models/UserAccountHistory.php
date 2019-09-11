@@ -44,10 +44,32 @@ class UserAccountHistory extends Model
     public $timestamps = false;
 
     const TYPES = [
-        0 => 'note',
-        1 => 'restriction',
-        2 => 'silence',
+        'note' => 0,
+        'restriction' => 1,
+        'silence' => 2,
     ];
+
+    public static function addNote($user, $message, $actor = null)
+    {
+        $actor = $actor ?? $user;
+
+        return static::create([
+            'user_id' => $user->getKey(),
+            'banner_id' => $actor->getKey(),
+
+            'ban_status' => static::TYPES['note'],
+
+            'reason' => $message,
+        ]);
+    }
+
+    public static function logUserUpdateEmail($user, $previousEmail)
+    {
+        $previousEmail = $previousEmail ?? 'null';
+        $message = "User changed email from {$previousEmail} to {$user->user_email}";
+
+        return static::addNote($user, $message);
+    }
 
     public function scopeBans($query)
     {
@@ -78,7 +100,7 @@ class UserAccountHistory extends Model
 
     public function getTypeAttribute()
     {
-        return static::TYPES[$this->ban_status] ?? null;
+        return array_search_null($this->ban_status, static::TYPES);
     }
 
     public function endTime()
