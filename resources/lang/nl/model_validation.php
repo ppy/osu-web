@@ -29,7 +29,7 @@ return [
         'first_post' => 'Je kan de startpost niet verwijderen.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Het bericht',
         ],
     ],
 
@@ -42,8 +42,8 @@ return [
         'locked' => 'Discussie is vergrendeld.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Berichttype',
+            'timestamp' => 'Timestamp',
         ],
 
         'hype' => [
@@ -64,7 +64,7 @@ return [
         'deleted_parent' => 'Op een verwijderde comment reageren is niet toegestaan.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Het bericht',
         ],
     ],
 
@@ -88,13 +88,13 @@ return [
             'only_quote' => 'Uw antwoord bevat slechts een citaat.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Post body',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Onderwerptitel',
             ],
         ],
 
@@ -108,7 +108,7 @@ return [
             'too_many_options' => 'Maximum aantal opties overschreden.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Poll titel',
             ],
         ],
 
@@ -143,9 +143,9 @@ return [
         'too_long' => 'Maximum lengte overschreden - kan enkel tot :limit karakters zijn.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Gebruikersnaam',
+            'user_email' => 'E-mailadres',
+            'password' => 'Wachtwoord',
         ],
 
         'change_username' => [
@@ -165,8 +165,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Hoeveelheid',
+                'cost' => 'Kosten',
             ],
         ],
     ],

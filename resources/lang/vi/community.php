@@ -27,34 +27,34 @@ return [
             'instructions' => 'nhấp vào nút trái tim để đi đến osu!store',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => 'Tại sao tôi nên hỗ trợ osu!? Tiền hỗ trợ sau này sẽ đi đâu?',
 
             'team' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Hỗ trợ đội ngũ',
+                'description' => 'Một nhóm nhỏ phát triển và điều hành osu!. Sự hỗ trợ của bạn giúp họ để, bạn biết rồi đấy... sống.',
             ],
             'infra' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Cơ sở hạ tầng máy chủ',
+                'description' => 'Đóng góp hướng tới máy chủ chạy trang web, dịch vụ nhiều người chơi, bảng xếp hạng trực tuyến, v.v.',
             ],
             'featured-artists' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Featured Artists',
+                'description' => 'Với sự hỗ trợ của bạn, chúng tôi có thể tiếp cận thêm nhiều nghệ sĩ tuyệt vời hơn nữa và cấp phép cho âm nhạc tuyệt vời hơn để dùng trong osu!',
                 'link_text' => '',
             ],
             'ads' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Giữ osu! tự duy trì',
+                'description' => 'Đóng góp của bạn giúp giữ trò chơi độc lập và hoàn toàn miễn phí từ quảng cáo và các nhà tài trợ bên ngoài.',
             ],
             'tournaments' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Giải đấu chính thức',
+                'description' => 'Giúp tài trợ cho việc điều hành (và giải thưởng cho) Giải đấu World Cup osu! chính thức.',
+                'link_text' => 'Khám phá giải đấu &raquo;',
             ],
             'bounty-program' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Chương trình thưởng mã nguồn mở',
+                'description' => 'Hỗ trợ những người đóng góp cộng đồng đã dành thời gian và nỗ lực để làm osu! tốt hơn.',
+                'link_text' => 'Tìm hiểu thêm &raquo;',
             ],
         ],
         'perks' => [
@@ -65,18 +65,18 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => '',
+                'title' => 'Xếp hạng bạn bè',
                 'description' => "",
             ],
 
             'country_ranking' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Xếp hạng quốc gia',
+                'description' => 'Chinh phục đất nước của bạn trước khi bạn chinh phục thế giới.',
             ],
 
             'mod_filtering' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'Chỉ liên kết với những người chơi HDHR ư? Không vấn đề gì!',
             ],
 
             'auto_downloads' => [
@@ -139,7 +139,7 @@ return [
                 'description' => '',
             ],
             'more_friends' => [
-                'title' => '',
+                'title' => 'Thêm bạn bè',
                 'description' => '',
             ],
             'more_beatmaps' => [

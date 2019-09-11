@@ -27,34 +27,34 @@ return [
             'instructions' => 'kliknij ikonę serca, aby przejść do sklepu osu!',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => 'Dlaczego mam wspomóc osu!? Na co przeznaczacie pieniądze?',
 
             'team' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Wynagrodzenie dla zespołu',
+                'description' => 'osu! jest prowadzone i rozwijane przez mały zespół. Twoje wsparcie pomoże im... przeżyć.',
             ],
             'infra' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Infrastruktura serwerowa',
+                'description' => 'Część wsparcia jest przeznaczona na serwery odpowiadające za działanie strony, tryb wieloosobowy, tabele wyników itd.',
             ],
             'featured-artists' => [
-                'title' => '',
+                'title' => 'Wyróżnieni artyści',
                 'description' => '',
-                'link_text' => '',
+                'link_text' => 'Pokaż aktualną listę artystów &raquo;',
             ],
             'ads' => [
-                'title' => '',
+                'title' => 'Samowystarczalność osu!',
                 'description' => '',
             ],
             'tournaments' => [
-                'title' => '',
+                'title' => 'Oficjalne turnieje',
                 'description' => '',
-                'link_text' => '',
+                'link_text' => 'Przeglądaj turnieje &raquo;',
             ],
             'bounty-program' => [
-                'title' => '',
+                'title' => 'Program nagradzania woluntariuszy',
                 'description' => '',
-                'link_text' => '',
+                'link_text' => 'Dowiedz się więcej &raquo;',
             ],
         ],
         'perks' => [
@@ -65,17 +65,17 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => '',
+                'title' => 'Ranking znajomych',
                 'description' => "",
             ],
 
             'country_ranking' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Ranking krajowy',
+                'description' => 'Podbij swój kraj, zanim podbijesz cały świat.',
             ],
 
             'mod_filtering' => [
-                'title' => '',
+                'title' => 'Filtrowanie wg. modyfikatorów',
                 'description' => '',
             ],
 
@@ -91,12 +91,12 @@ return [
 
             'early_access' => [
                 'title' => 'Wczesny dostęp',
-                'description' => 'Dostęp do wczesnych wersji, gdzie możesz wypróbować nowe opcje, zanim zostaną one upublicznione!',
+                'description' => 'Dostęp do wczesnych wersji, gdzie możesz wypróbować nowe opcje, zanim zostaną one upublicznione (w tym wczesny dostęp do nowych funkcji na stronie)!',
             ],
 
             'customisation' => [
                 'title' => 'Personalizacja',
-                'description' => "Spersonalizuj swój profil poprzez w pełni modyfikowalną stronę.",
+                'description' => "Spersonalizuj swój profil poprzez w pełni modyfikowalną stronę i własne tło profilu.",
             ],
 
             'beatmap_filters' => [
@@ -116,7 +116,7 @@ return [
 
             'change_username' => [
                 'title' => 'Zmiana nicku',
-                'description' => 'Możliwość zmiany nicku bez dodatkowych kosztów (jednorazowo)',
+                'description' => 'Możliwość zmiany nicku bez dodatkowych kosztów (jednorazowo).',
             ],
 
             'skinnables' => [
@@ -135,19 +135,19 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Zwiększony limit ulubionych beatmap',
+                'description' => 'Maksymalna liczba beatmap, które możesz dodać do ulubionych, zostaje zwiększona z :normally do :supporter',
             ],
             'more_friends' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Zwiększony limit znajomych',
+                'description' => 'Maksymalna liczba znajomych zostaje zwiększona z :normally do :supporter',
             ],
             'more_beatmaps' => [
-                'title' => '',
+                'title' => 'Zwiększony limit przesyłanych beatmap',
                 'description' => '',
             ],
             'friend_filtering' => [
-                'title' => '',
+                'title' => 'Tabele wyników znajomych',
                 'description' => '',
             ],
 
@@ -155,7 +155,7 @@ return [
         'supporter_status' => [
             'contribution' => 'Dziękujemy za twoje dotychczasowe wsparcie! Otrzymaliśmy od ciebie łącznie :dollars pochodzących z :tags zakupionych statusów donatora!',
             'gifted' => "Ze wszystkich zakupionych statusów donatora, :giftedTags podarowano innym użytkownikom (za łączną wartość :giftedDollars). Wspaniała szczodrość!",
-            'not_yet' => "Nie posiadasz jeszcze statusu donatora :(",
+            'not_yet' => "Nie masz jeszcze statusu donatora osu! :(",
             'valid_until' => 'Twój status donatora przestanie być aktywny :date!',
             'was_valid_until' => 'Twój status donatora przestał być aktywny :date.',
         ],

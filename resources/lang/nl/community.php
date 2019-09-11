@@ -27,34 +27,34 @@ return [
             'instructions' => 'klik op het hartje om naar de osu!store te gaan',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => 'Waarom zou ik osu moeten steunen!? Waar gaat het geld naartoe?',
 
             'team' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Steun het Team',
+                'description' => 'Een klein team ontwikkelt en draait osu!. Uw steun helpt hen, wel... om te leven.',
             ],
             'infra' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Server infrastructuur',
+                'description' => 'Bijdrages gaan naar de servers voor het uitvoeren van de website, multiplayer services, online leaderboards, etc.',
             ],
             'featured-artists' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Aanbevolen Artiesten',
+                'description' => 'Met jou steun kunnen we nog meer geweldige artiesten benaderen en meer geweldige muziek voor gebruik in osu! toestaan!',
+                'link_text' => 'Bekijk het huidige rooster &raquo;',
             ],
             'ads' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Hou osu! zelfvoorzienend',
+                'description' => 'Uw bijdragen helpen het spel onafhankelijk te houden en volledig vrij van advertenties en externe sponsors.',
             ],
             'tournaments' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Officiële toernooien',
+                'description' => 'Help het beheren van (en de prijzen voor) het officiële osu! wereldkampioenschap te financieren.',
+                'link_text' => 'Verken toernooien &raquo;',
             ],
             'bounty-program' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Open Source Bounty Programma',
+                'description' => 'Support de community bijdragers die hun tijd en moeite hebben gegeven om osu! te helpen beter te maken.',
+                'link_text' => 'Lees meer &raquo;',
             ],
         ],
         'perks' => [
@@ -65,18 +65,18 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => '',
-                'description' => "",
+                'title' => 'Vrienden ranglijst',
+                'description' => "Zie hoe je tegen je vrienden opstart op een beatmap ranglijst. zowel in het spel als op de website.",
             ],
 
             'country_ranking' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Land Ranglijst',
+                'description' => 'Verover je land voordat je de wereld verovert.',
             ],
 
             'mod_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Filter op Mods',
+                'description' => 'Alleen bij mensen die HDHR spelen? Geen probleem!',
             ],
 
             'auto_downloads' => [
@@ -135,20 +135,20 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Meer favorieten',
+                'description' => 'Het maximum aantal beatmaps dat je kan hebben als favoriet is verhoogd van :normally &rarr; :supporter',
             ],
             'more_friends' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Meer vrienden',
+                'description' => 'Het maximum aantal vrienden dat je kunt hebben is verhoogd van :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Upload meer beatmaps',
+                'description' => 'Hoeveel niet-gerangschikte beatmaps je tegelijkertijd kunt hebben, wordt berekend op basis van een basiswaarde plus een extra bonus voor elke gerangschikte beatmap die je momenteel hebt (tot een limiet). <br/> <br/> Normaal is dit 4 plus 1 per gerangschikte beatmap (maximaal 2). Met supporter neemt dit toe tot 8 plus 1 per gerangschikte beatmap (maximaal 12).',
             ],
             'friend_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Vrienden ranglijsten',
+                'description' => 'Concurreer met je vrienden en zie hoe je tegen hen opkomt! *<br/><br/><small>* nog niet beschikbaar op de nieuwe site, binnenkort beschikbaar(tm)</small>',
             ],
 
         ],

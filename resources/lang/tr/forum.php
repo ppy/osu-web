@@ -42,10 +42,10 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'Son Gönderi',
 
         'index' => [
-            'title' => '',
+            'title' => 'Forum Ana Sayfası',
         ],
 
         'topics' => [

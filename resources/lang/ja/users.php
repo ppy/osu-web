@@ -168,7 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count フォロワー',
-            'none' => '',
+            'none' => 'なし',
             'unranked' => '最近のプレイはありません',
 
             'achievements' => [
@@ -198,14 +198,14 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'ディスカッション',
+                'title_longer' => '最近のディスカッション',
+                'show_more' => '他のディスカッションを見る',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'イベント',
+                'title_longer' => '最近のイベント',
+                'show_more' => '他のイベントを見る',
             ],
             'historical' => [
                 'empty' => 'パフォーマンスの記録がありません。',
@@ -288,9 +288,9 @@ return [
                 'title' => 'メダル',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => '投稿',
+                'title_longer' => '最近の投稿',
+                'show_more' => '他の投稿を見る',
             ],
             'recent_activity' => [
                 'title' => '最近のアクティビティ',
@@ -310,11 +310,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => '与えた投票（３ヶ月）',
+                'received' => '受け取った投票（３ヶ月）',
+                'title' => '投票',
+                'title_longer' => '最近の投票',
+                'vote_count' => ':count_delimited 投票',
             ],
             'account_standing' => [
                 'title' => 'アカウントの状態',
@@ -396,10 +396,10 @@ return [
             'total_hits' => '合計ヒット数',
             'total_score' => '合計スコア',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'ranked_and_approved_beatmapset_count' => 'Ranked & Approvedのビートマップ',
+            'loved_beatmapset_count' => 'Lovedされたビートマップ',
+            'unranked_beatmapset_count' => '保留中のビートマップ',
+            'graveyard_beatmapset_count' => 'Graveyardのビートマップ',
         ],
     ],
 
