@@ -54,9 +54,9 @@ export class UserPage extends React.Component
 
 
   pageNew: =>
-    div className: 'text-center',
+    div className: 'profile-extra-user-page profile-extra-user-page--new',
       button
-        className: 'profile-extra-user-page__new-content   btn-osu btn-osu--lite btn-osu--profile-page-edit'
+        className: 'profile-extra-user-page__new-content  btn-osu btn-osu--lite btn-osu--profile-page-edit'
         onClick: @editStart
         disabled: !@props.user.has_supported
         osu.trans 'users.show.page.edit_big'
