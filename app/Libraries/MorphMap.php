@@ -20,6 +20,7 @@
 
 namespace App\Libraries;
 
+use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\Build;
 use App\Models\Chat\Channel;
@@ -33,6 +34,7 @@ class MorphMap
 {
     const MAP = [
         Beatmapset::class => 'beatmapset',
+        BeatmapDiscussionPost::class => 'beatmap_discussion_post',
         Build::class => 'build',
         Channel::class => 'channel',
         Comment::class => 'comment',

@@ -49,6 +49,7 @@ class UserReport extends Model
 
     const CREATED_AT = 'timestamp';
     const REPORTABLES = [
+        MorphMap::MAP[BeatmapDiscussionPost::class],
         MorphMap::MAP[Best\Fruits::class],
         MorphMap::MAP[Best\Mania::class],
         MorphMap::MAP[Best\Osu::class],

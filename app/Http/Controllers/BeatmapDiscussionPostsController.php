@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Exceptions\ValidationException;
 use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -241,5 +242,21 @@ class BeatmapDiscussionPostsController extends Controller
         $discussion->fill($discussionParams);
 
         return $discussion;
+    }
+
+    public function report($id)
+    {
+        /** @var BeatmapDiscussionPost|null */
+        $post = BeatmapDiscussionPost::findOrFail($id);
+
+        try {
+            $post->reportBy(auth()->user(), [
+                'comments' => trim(request('comments')),
+            ]);
+        } catch (ValidationException $e) {
+            return error_popup($e->getMessage());
+        }
+
+        return response(null, 204);
     }
 }
