@@ -28,4 +28,9 @@ return [
         'button' => 'Report',
         'title' => 'Report :username\'s comment?',
     ],
+
+    'beatmap-discussion-post' => [
+        'button' => 'Report',
+        'title' => 'Report :username\'s post?',
+    ],
 ];

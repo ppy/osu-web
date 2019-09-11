@@ -21,6 +21,7 @@ import { BigButton } from 'big-button'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
+import ReportBeatmapDiscussionPost from 'report-beatmap-discussion-post';
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -281,6 +282,11 @@ export class Post extends React.PureComponent
                 'data-confirm': osu.trans('common.confirmation')
                 osu.trans('beatmaps.discussions.allow_kudosu')
 
+          if @canReport()
+            el ReportBeatmapDiscussionPost,
+              className: "#{bn}__action #{bn}__action--button"
+              post: @props.post
+              user: @props.user
 
   clearPermalinkClicked: =>
     @setState permalinkTimer: null
@@ -338,3 +344,7 @@ export class Post extends React.PureComponent
 
   validPost: =>
     BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())
+
+
+  canReport: =>
+    currentUser.id? && @props.post.user_id != currentUser.id
