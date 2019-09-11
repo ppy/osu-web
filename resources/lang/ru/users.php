@@ -396,10 +396,10 @@ return [
             'total_hits' => 'Всего попаданий',
             'total_score' => 'Всего очков',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
+            'ranked_and_approved_beatmapset_count' => 'Ранкнутые и одобренные карты',
             'loved_beatmapset_count' => '',
             'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => 'Заброшенные карты',
         ],
     ],
 

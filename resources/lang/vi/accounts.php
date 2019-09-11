@@ -41,7 +41,7 @@ return [
             'current' => 'mật khẩu hiện tại',
             'new' => 'mật khẩu mới',
             'new_confirmation' => 'xác nhận mật khẩu',
-            'title' => 'Mật Khẩu',
+            'title' => 'Mật khẩu',
         ],
 
         'profile' => [
@@ -79,7 +79,7 @@ return [
         'mouse' => 'chuột',
         'tablet' => 'tablet',
         'title' => 'Lối Chơi',
-        'touch' => 'touchscreen',
+        'touch' => 'cảm ứng',
     ],
 
     'privacy' => [

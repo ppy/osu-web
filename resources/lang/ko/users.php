@@ -168,7 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count 팔로워|:count 팔로워',
-            'none' => '',
+            'none' => '없음',
             'unranked' => '최근 플레이가 없습니다',
 
             'achievements' => [
@@ -198,14 +198,14 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => '토론',
+                'title_longer' => '최근 토론',
+                'show_more' => '토론 더 보기',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => '이벤트',
+                'title_longer' => '최근 이벤트',
+                'show_more' => '이벤트 더 보기',
             ],
             'historical' => [
                 'empty' => '기록된 플레이가 없습니다. :(',
@@ -288,9 +288,9 @@ return [
                 'title' => '메달',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => '게시글',
+                'title_longer' => '최근 게시글',
+                'show_more' => '글 더 보기',
             ],
             'recent_activity' => [
                 'title' => '최근 활동',
@@ -310,11 +310,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => '투표 참여 수 (지난 3개월 간)',
+                'received' => '받은 투표수 (지난 3개월 간)',
+                'title' => '투표',
+                'title_longer' => '최근 투표',
+                'vote_count' => ':count_delimited 투표',
             ],
             'account_standing' => [
                 'title' => '계정 상태',
@@ -396,10 +396,10 @@ return [
             'total_hits' => '총 타격 횟수',
             'total_score' => '총 점수',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'ranked_and_approved_beatmapset_count' => 'Ranked 및 Approved 상태의 비트맵',
+            'loved_beatmapset_count' => 'Loved 비트맵',
+            'unranked_beatmapset_count' => '대기 중인 비트맵',
+            'graveyard_beatmapset_count' => '묻힌 비트맵',
         ],
     ],
 

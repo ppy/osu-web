@@ -29,7 +29,7 @@ return [
         'first_post' => 'Nem lehet a kezdő posztot törölni.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Az üzenet',
         ],
     ],
 
@@ -42,7 +42,7 @@ return [
         'locked' => 'A megbeszélés zárolva van.',
 
         'attributes' => [
-            'message_type' => '',
+            'message_type' => 'Üzenet típus',
             'timestamp' => '',
         ],
 
@@ -64,12 +64,12 @@ return [
         'deleted_parent' => 'Törölt hozzászólásokra nem lehet válaszolni.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Az üzenet',
         ],
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => 'Érvénytelen :attribute lett megadva.',
     ],
 
     'forum' => [
@@ -94,7 +94,7 @@ return [
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Téma cím',
             ],
         ],
 
@@ -108,7 +108,7 @@ return [
             'too_many_options' => 'Elérted a maximum opciók számát.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Szavazás címe',
             ],
         ],
 
@@ -143,9 +143,9 @@ return [
         'too_long' => 'Elérted a maximum hosszúságot - maximum :limit karaktert használhatsz.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Felhasználónév',
+            'user_email' => 'E-mail cím',
+            'password' => 'Jelszó',
         ],
 
         'change_username' => [
@@ -165,8 +165,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Mennyiség',
+                'cost' => 'Ár',
             ],
         ],
     ],

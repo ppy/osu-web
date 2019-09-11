@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmapset-favourites {
+.user-list-popup {
   @avatar-size: 32px;
   @avatar-margin: 1px;
   @columns: 10;
@@ -35,6 +35,10 @@
 
   @media @mobile {
     max-width: ((@avatar-size + 2*@avatar-margin) * @columns-mobile) + 20px;
+  }
+
+  &__title {
+    margin-bottom: 10px;
   }
 
   &__user {
