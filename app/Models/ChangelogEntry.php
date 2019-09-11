@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use App\Libraries\OsuWiki;
 use Carbon\Carbon;
 use Exception;
 
@@ -89,6 +90,10 @@ class ChangelogEntry extends Model
             'size/xxl',
             'update',
         ];
+
+        if ($data['repository']['full_name'] === OsuWiki::USER.'/'.OsuWiki::REPOSITORY) {
+            return;
+        }
 
         foreach ($data['pull_request']['labels'] as $label) {
             $name = $label['name'];
