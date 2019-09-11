@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { BigButton } from 'big-button';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import { Modal } from 'modal';
@@ -47,7 +48,13 @@ export class OwnClients extends React.Component {
         <div className='oauth-clients'>
           {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
         </div>
-        <button className='btn-osu-big btn-osu-big--settings-oauth' onClick={this.handleNewClientClicked}>{osu.trans('oauth.own_clients.new')}</button>
+        <BigButton
+          text={osu.trans('oauth.own_clients.new')}
+          icon={'fas fa-plus'}
+          props={{
+            onClick: this.handleNewClientClicked,
+          }}
+        />
 
         {this.renderModaledComponents()}
       </>

@@ -108,7 +108,7 @@ export class ClientDetails extends React.Component<Props, State> implements Hand
 
         <div className='oauth-client-details__buttons'>
           <button
-            className='btn-osu-big btn-osu-big--settings-oauth'
+            className='btn-osu-big'
             disabled={this.props.client.isUpdating || this.props.client.revoked}
             onClick={this.handleSubmit}
             type='button'
@@ -117,7 +117,7 @@ export class ClientDetails extends React.Component<Props, State> implements Hand
           </button>
 
           <button
-            className='btn-osu-big btn-osu-big--danger btn-osu-big--settings-oauth'
+            className='btn-osu-big btn-osu-big--danger'
             disabled={this.props.client.isRevoking || this.props.client.revoked}
             onClick={this.handleDelete}
             type='button'
@@ -127,7 +127,7 @@ export class ClientDetails extends React.Component<Props, State> implements Hand
         </div>
 
         <div className='oauth-client-details__buttons'>
-          <button className='btn-osu-big btn-osu-big--settings-oauth' onClick={this.handleClose}>{osu.trans('common.buttons.close')}</button>
+          <button className='btn-osu-big' onClick={this.handleClose}>{osu.trans('common.buttons.close')}</button>
         </div>
       </div>
     );

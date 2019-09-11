@@ -92,10 +92,10 @@ export class NewClient extends React.Component {
           </div>
 
           <div className='oauth-client-details__buttons'>
-            <button className='btn-osu-big btn-osu-big--settings-oauth' type='button' onClick={this.handleSubmit}>
+            <button className='btn-osu-big' type='button' onClick={this.handleSubmit}>
               {uiState.account.isCreatingNewClient ? <Spinner /> : 'Register application'}
             </button>
-            <button className='btn-osu-big btn-osu-big--settings-oauth' type='button' onClick={this.handleCancel}>{osu.trans('common.buttons.cancel')}</button>
+            <button className='btn-osu-big' type='button' onClick={this.handleCancel}>{osu.trans('common.buttons.cancel')}</button>
           </div>
         </form>
     );

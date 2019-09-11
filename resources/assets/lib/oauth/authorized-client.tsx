@@ -16,10 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { BigButton } from 'big-button';
 import { observer } from 'mobx-react';
 import { Client } from 'models/oauth/client';
 import * as React from 'react';
-import { Spinner } from 'spinner';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
 
@@ -49,15 +49,15 @@ export class AuthorizedClient extends React.Component<Props> {
           </div>
         </div>
         <div className='oauth-client__actions'>
-          <button
-            className={osu.classWithModifiers('oauth-client__button', client.revoked ? ['revoked'] : [])}
-            onClick={this.revokeClicked}
-            disabled={client.isRevoking || client.revoked}
-          >
-            {
-              client.isRevoking ? <Spinner /> : osu.trans(`oauth.authorized_clients.revoked.${client.revoked}`)
-            }
-          </button>
+          <BigButton
+            text={osu.trans(`oauth.authorized_clients.revoked.${client.revoked}`)}
+            icon={client.isRevoking ? '_spinner' : 'fas fa-trash'}
+            modifiers={['account-edit', 'danger']}
+            props={{
+              disabled: client.isRevoking || client.revoked,
+              onClick: this.revokeClicked,
+            }}
+          />
         </div>
       </div>
     );
