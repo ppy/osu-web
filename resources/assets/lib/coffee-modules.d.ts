@@ -102,6 +102,7 @@ declare module 'report-form' {
     onSubmit: ({comments}: {comments: string}) => void;
     title: string;
     visible: boolean;
+    visibleOptions?: string[];
   }
 
   class ReportForm extends React.PureComponent<ReportFormProps, any> {}

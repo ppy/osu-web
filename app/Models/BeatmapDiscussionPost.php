@@ -353,7 +353,6 @@ class BeatmapDiscussionPost extends Model
     protected function newReportableExtraParams(): array
     {
         return [
-            'reason' => 'Spam',
             'user_id' => $this->user_id,
         ];
     }

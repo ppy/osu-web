@@ -77,13 +77,14 @@ export default class ReportBeatmapDiscussionPost extends React.Component<Props, 
           {osu.trans('report.beatmap-discussion-post.button')}
         </button>
         <ReportForm
-          allowOptions={false}
+          allowOptions={true}
           completed={this.state.completed}
           disabled={this.state.disabled}
           onClose={this.onFormClose}
           onSubmit={this.onSubmit}
           title={osu.trans('report.beatmap-discussion-post.title', {username: `<strong>${user.username}</strong>`})}
           visible={this.state.showingForm}
+          visibleOptions={['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other']}
         />
       </>
     );

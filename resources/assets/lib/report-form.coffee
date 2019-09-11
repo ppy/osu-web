@@ -41,6 +41,9 @@ export class ReportForm extends PureComponent
       { id: 'Other', text: osu.trans 'users.report.options.other' },
     ]
 
+    if props.visibleOptions?
+      @options = _.intersectionWith @options, props.visibleOptions, (left, right) => left.id == right
+
     @textarea = createRef()
 
     @state =
@@ -139,4 +142,3 @@ export class ReportForm extends PureComponent
       comments: @textarea.current.value
 
     @props.onSubmit? data
-
