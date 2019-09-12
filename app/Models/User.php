@@ -1641,6 +1641,10 @@ class User extends Model implements AuthenticatableContract
 
     public static function findForLogin($username)
     {
+        if (!present($username)) {
+            return;
+        }
+
         return static::where('username', $username)
             ->orWhere('user_email', '=', strtolower($username))
             ->first();
