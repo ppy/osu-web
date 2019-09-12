@@ -848,11 +848,7 @@ class User extends Model implements AuthenticatableContract
     public function groupIds()
     {
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
-            if (isset($this->relations['userGroups'])) {
-                $this->memoized[__FUNCTION__] = $this->userGroups->pluck('group_id');
-            } else {
-                $this->memoized[__FUNCTION__] = model_pluck($this->userGroups(), 'group_id');
-            }
+            $this->memoized[__FUNCTION__] = $this->userGroups->pluck('group_id')->toArray();
         }
 
         return $this->memoized[__FUNCTION__];
@@ -1314,6 +1310,23 @@ class User extends Model implements AuthenticatableContract
         $this->osu_playmode = Beatmap::modeInt($value);
     }
 
+    public function groupBadge()
+    {
+        if ($this->isBot()) {
+            return 'bot';
+        }
+
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+            $groupNames = $this->userGroups->map->name()->all();
+            array_unshift($groupNames, $this->defaultGroup());
+
+            $badge = array_first(array_intersect(UserGroup::DISPLAY_PRIORITY, $groupNames));
+            $this->memoized[__FUNCTION__] = $badge;
+        }
+
+        return $this->memoized[__FUNCTION__];
+    }
+
     public function hasBlocked(self $user)
     {
         if (!array_key_exists('blocks', $this->memoized)) {
@@ -1628,6 +1641,10 @@ class User extends Model implements AuthenticatableContract
 
     public static function findForLogin($username)
     {
+        if (!present($username)) {
+            return;
+        }
+
         return static::where('username', $username)
             ->orWhere('user_email', '=', strtolower($username))
             ->first();
