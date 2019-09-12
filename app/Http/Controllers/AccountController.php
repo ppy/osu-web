@@ -27,6 +27,7 @@ use App\Libraries\UserVerificationState;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
 use App\Models\OAuth\Client;
+use App\Models\UserAccountHistory;
 use Auth;
 use Mail;
 use Request;
@@ -163,6 +164,8 @@ class AccountController extends Controller
             foreach ($addresses as $address) {
                 Mail::to($address)->send(new UserEmailUpdated($user));
             }
+
+            UserAccountHistory::logUserUpdateEmail($user, $previousEmail);
 
             return response([], 204);
         } else {

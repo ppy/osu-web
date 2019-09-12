@@ -80,7 +80,7 @@ class UsersController extends Controller
 
     public function checkUsernameAvailability()
     {
-        $username = Request::input('username');
+        $username = Request::input('username') ?? '';
 
         $errors = Auth::user()->validateChangeUsername($username);
 
