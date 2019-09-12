@@ -87,23 +87,6 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $user->withAccessToken($token);
     }
 
-    protected function createOAuthClient(User $user, string $name = 'test', string $redirect = '/auth/callback', array $saveOptions = []) : Client
-    {
-        $client = (new Client)->forceFill([
-            'user_id' => $user->getKey(),
-            'name' => $name,
-            'secret' => str_random(40),
-            'redirect' => url($redirect),
-            'personal_access_client' => false,
-            'password_client' => false,
-            'revoked' => false,
-        ]);
-
-        $client->save($saveOptions);
-
-        return $client;
-    }
-
     protected function invokeMethod($obj, string $name, array $params = [])
     {
         $method = new ReflectionMethod($obj, $name);
