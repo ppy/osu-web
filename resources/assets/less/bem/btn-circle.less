@@ -31,20 +31,12 @@
   transition: all 120ms ease-in-out;
   font-size: 14px;
 
-  &:focus {
-    background-color: @osu-colour-l4;
-    color: @osu-colour-c1;
-    text-decoration: none;
-    box-shadow: 0 5px 15px fade(#000, 40%);
-  }
-
-  &:hover,
-  &:active {
+  .link-hover({
     background-color: @osu-colour-l3;
     color: @osu-colour-c1;
     text-decoration: none;
     box-shadow: 0 5px 15px fade(#000, 40%);
-  }
+  });
 
   &--bbcode {
     .default-text-shadow();
@@ -105,16 +97,32 @@
   &--purple {
     background-color: @purple-dark;
 
+    .link-hover({
+      background-color: @purple;
+    });
+
     &.@{top}--activated {
       background-color: @purple-light;
+
+      .link-hover({
+        background-color: @purple-lighter;
+      });
     }
   }
 
   &--yellow {
     background-color: @yellow-dark;
 
+    .link-hover({
+      background-color: @yellow;
+    });
+
     &.@{top}--activated {
       background-color: @yellow-light;
+
+      .link-hover({
+        background-color: @yellow-lighter;
+      });
     }
   }
 
