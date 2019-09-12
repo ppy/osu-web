@@ -983,7 +983,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
                 'events',
                 'nominations',
                 'related_users',
-                'related_users.groups',
+                'related_users.group_badge',
             ]
         );
     }

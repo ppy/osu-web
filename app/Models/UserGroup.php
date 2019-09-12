@@ -50,6 +50,17 @@ class UserGroup extends Model
         'ppy' => 33,
     ];
 
+    const DISPLAY_PRIORITY = [
+        'ppy',
+        'dev',
+        'gmt',
+        'nat',
+        'bng',
+        'bng_limited',
+        'support',
+        'alumni',
+    ];
+
     public function group()
     {
         return $this->belongsTo(Group::class, 'group_id');
@@ -58,5 +69,14 @@ class UserGroup extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function name()
+    {
+        static $lookup;
+
+        $lookup = $lookup ?? array_flip(static::GROUPS);
+
+        return $lookup[$this->group_id] ?? null;
     }
 }
