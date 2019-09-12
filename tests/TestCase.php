@@ -87,7 +87,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $user->withAccessToken($token);
     }
 
-    protected function createOAuthClient(User $user, string $name = 'test', string $redirect = '/auth/callback') : Client
+    protected function createOAuthClient(User $user, string $name = 'test', string $redirect = '/auth/callback', array $saveOptions = []) : Client
     {
         $client = (new Client)->forceFill([
             'user_id' => $user->getKey(),
@@ -99,7 +99,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
             'revoked' => false,
         ]);
 
-        $client->save(['skipValidations' => true]);
+        $client->save($saveOptions);
 
         return $client;
     }

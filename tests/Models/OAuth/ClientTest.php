@@ -197,7 +197,7 @@ class ClientTest extends TestCase
 
     public function testRevokingClientSkipsValidation()
     {
-        $this->client = $this->createOAuthClient($this->owner, '', 'notvalid');
+        $this->client = $this->createOAuthClient($this->owner, '', 'notvalid', ['skipValidations' => true]);
         $this->assertTrue($this->client->exists);
         $this->client->revoke();
         $this->assertTrue($this->client->fresh()->revoked);
