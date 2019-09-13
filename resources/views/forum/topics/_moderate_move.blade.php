@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <button
-    class="btn-circle btn-circle--button btn-circle--topic-nav btn-circle--yellow"
+    class="btn-circle btn-circle--topic-nav btn-circle--yellow"
     data-target="#forum-topic-move-modal"
     data-toggle="modal"
     type="button"
@@ -56,7 +56,7 @@
                         </p>
 
                         <p class="text-right">
-                            <button class="btn-osu-big btn-osu-big--rounded">{{ trans('common.buttons.save') }}</button>
+                            <button class="btn-osu-big btn-osu-big--forum-primary">{{ trans('common.buttons.save') }}</button>
                         </p>
                     {!! Form::close() !!}
                 </div>

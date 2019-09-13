@@ -20,19 +20,18 @@ class @ForumCover
   constructor: ->
     @header = document.getElementsByClassName('js-forum-cover--header')
     @uploadButton = document.getElementsByClassName('js-forum-cover--upload-button')
+    @removeButton = document.getElementsByClassName('js-forum-cover--remove-button')
     @overlay = document.getElementsByClassName('js-forum-cover--overlay')
     @loading = document.getElementsByClassName('js-forum-cover--loading')
+    @modal = document.getElementsByClassName('js-forum-cover--modal')
 
-    $(document).on 'click', '.js-forum-cover--open-modal', @toggleModal
-    $(document).on 'click', '.js-forum-cover--remove', @remove
-    $(document).on 'click', @closeModal
+    $.subscribe 'click-menu:current', @checkModal
+    $(document).on 'click', '.js-forum-cover--remove-button', @remove
 
     $.subscribe 'dragenterGlobal', => @setOverlay('active')
     $.subscribe 'dragendGlobal', => @setOverlay('hidden')
     $(document).on 'dragenter', '.js-forum-cover--overlay', => @setOverlay('hover')
     $(document).on 'dragleave', '.js-forum-cover--overlay', => @setOverlay('active')
-
-    $.subscribe 'key:esc', @closeModal
 
     $(document).on 'turbolinks:load', @refresh
 
@@ -40,19 +39,10 @@ class @ForumCover
   $uploadButton: => $(@uploadButton[0])
 
 
-  closeModal: (e) =>
-    return unless @hasCoverEditor() && @isModalOpen()
+  checkModal: (e, target) =>
+    return if target != 'forum-cover-edit'
 
-    if e
-      return if $(e.target).closest('.js-forum-cover--open-modal').length
-      return if $(e.target).closest('.js-forum-cover--modal').length
-
-    return if $('#overlay').is(':visible')
-
-    Blackout.hide()
-    @header[0].classList.remove 'js-forum-cover--is-open'
-
-    @isModalOpen(false)
+    @initFileupload()
 
 
   hasCover: =>
@@ -66,10 +56,7 @@ class @ForumCover
   isModalOpen: (isModalOpen) =>
     return false if !@hasCoverEditor()
 
-    if isModalOpen?
-      @header[0].dataset.isModalOpen = if isModalOpen then '1' else ''
-
-    @header[0].dataset.isModalOpen == '1'
+    @modal[0]?.dataset.visibility != 'hidden'
 
 
   initFileupload: =>
@@ -87,7 +74,7 @@ class @ForumCover
       dropZone: $dropZone
 
       submit: =>
-        @loading[0].dataset.state = 'enabled'
+        @uploadButton[0].dataset.state = 'loading'
 
       done: (_e, data) =>
         @update(data.result)
@@ -95,26 +82,9 @@ class @ForumCover
       fail: osu.fileuploadFailCallback(@$uploadButton)
 
       complete: (_e, data) =>
-        @loading[0].dataset.state = ''
+        @uploadButton[0].dataset.state = ''
 
     @updateOptions()
-
-
-  toggleModal: (e) =>
-    e.preventDefault()
-
-    if @isModalOpen()
-      @closeModal()
-    else
-      @openModal()
-
-
-  openModal: =>
-    Blackout.show()
-    @isModalOpen(true)
-    @header[0].classList.add 'js-forum-cover--is-open'
-
-    @initFileupload()
 
 
   setOverlay: (targetState) =>
@@ -152,7 +122,7 @@ class @ForumCover
 
     return if !confirm(e.currentTarget.dataset.destroyConfirm)
 
-    @loading[0].dataset.state = 'enabled'
+    @removeButton[0].dataset.state = 'loading'
 
     $.ajax
       url: @uploadButton[0].dataset.url
@@ -160,7 +130,7 @@ class @ForumCover
     .done (data) =>
       @update data
     .always =>
-      @loading[0].dataset.state = ''
+      @removeButton[0].dataset.state = ''
 
 
   refresh: =>
@@ -170,6 +140,6 @@ class @ForumCover
 
     $(@header).css(backgroundImage: osu.urlPresence(backgroundImageUrl) ? '')
 
-    $('.js-forum-cover--remove').toggleClass('js-disabled', !@hasCover())
+    @removeButton[0].disabled = !@hasCover()
 
     @initFileupload()

@@ -1,0 +1,92 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.forum-post-info {
+  flex: none;
+  background-color: @osu-colour-b5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  text-align: center;
+  width: 45px;
+
+  @media @desktop {
+    width: 180px;
+    padding: 10px;
+  }
+
+  &__row {
+    margin: 5px 0;
+    display: none;
+
+    @media @desktop {
+      display: block;
+    }
+
+    &--avatar {
+      width: 100%;
+      display: block;
+
+      @media @desktop {
+        padding: 0 40px;
+      }
+    }
+
+    &--group-badge {
+      width: 100%;
+      display: block;
+    }
+
+    &--posts {
+      font-size: @font-size--normal;
+    }
+
+    &--registration {
+      font-size: @font-size--normal;
+
+      strong  {
+        font-weight: 600;
+      }
+    }
+
+    &--support-level {
+      .center-content();
+      background-color: @osu-colour-pink-1;
+      font-size: 6px; // icon size
+      padding: 2px 5px;
+      border-radius: 10000px;
+      width: 100%;
+
+      @media @desktop {
+        font-size: 8px; // icon size
+        min-width: 50px;
+        width: auto;
+      }
+    }
+
+    &--username {
+      font-size: @font-size--title-small-3;
+      color: @osu-colour-c1;
+
+      .link-hover({
+        color: @osu-colour-c1;
+      });
+    }
+  }
+}

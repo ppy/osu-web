@@ -34,7 +34,7 @@
                 <div class="
                     account-edit-entry__misc-info
                     account-edit-entry__misc-info--signature-preview
-                    js-post-preview--body
+                    js-post-preview--preview
                 ">
                     {!! bbcode(Auth::user()->user_sig, Auth::user()->user_sig_bbcode_uid) !!}
                 </div>

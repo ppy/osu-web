@@ -16,9 +16,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// TODO: remove after finished migrating to bbcode editor
-.post-box-toolbar {
+.forum-post-edit-box {
+  background-color: @osu-colour-b2;
+  padding: 10px @gutter-v2 10px 10px;
+  height: 100%;
   display: flex;
-  flex-wrap: wrap;
-  margin: -2px;
+
+  @media @desktop {
+    padding-right: @gutter-v2-desktop;
+  }
 }

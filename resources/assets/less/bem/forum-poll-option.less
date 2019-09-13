@@ -16,41 +16,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum__user-flag {
-  .default-box-shadow();
-  .default-border-radius();
+.forum-poll-option {
+  display: flex;
+  margin: 5px 0;
+  width: max-content;
+  max-width: 100%;
+  text-transform: none;
+  font-weight: normal;
+  cursor: pointer;
+  font-size: @font-size--title-small;
 
-  height: 20px;
-}
-
-.forum__user-flag--large {
-  height: 24px;
-}
-
-.forum__user-flag--small {
-  height: 13px;
-
-  box-shadow: none;
-  border-radius: 0;
-}
-
-.forum__user-flag--country {
-  width: 30px;
-
-  &.forum__user-flag--large {
-    width: 35px;
+  &__input {
+    margin-right: 10px;
   }
-
-  &.forum__user-flag--small {
-    width: 25px;
-  }
-}
-
-.forum__user-icon--large {
-  .circle(30px);
-  font-size: 14px;
-}
-
-.forum__user-icon--supporter {
-  background-color: @pink;
 }

@@ -44,7 +44,7 @@ class BBCodeFromDB
         ];
 
         $this->text = $text;
-        $this->uid = $uid;
+        $this->uid = presence($uid) ?? config('osu.bbcode.uid');
         $this->options = array_merge($defaultOptions, $options);
 
         if ($this->options['withGallery']) {
