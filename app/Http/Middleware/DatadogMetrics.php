@@ -32,7 +32,7 @@ class DatadogMetrics extends LaravelDatadogMiddleware
      *
      * @param Request $request
      * @param Response $response
-     * @param double $startTime
+     * @param float $startTime
      */
     protected static function logDuration(Request $request, Response $response, $startTime)
     {
