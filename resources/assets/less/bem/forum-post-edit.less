@@ -137,36 +137,6 @@
     margin-bottom: 10px;
   }
 
-  &__mode {
-    ._active() {
-      background-color: @osu-colour-b4;
-      border-radius: 10000px;
-      z-index: @z-index--forum-post-edit-mode;
-    }
-
-    .reset-input();
-    min-width: 110px;
-    padding: 2px 10px;
-    font-size: @font-size--normal;
-    flex: none;
-
-    & + & {
-      margin-left: -10px;
-    }
-
-    &:hover {
-      background-color: .osu-hsla(@osu-colour-b4, 0.4)[@hsla];
-    }
-  }
-
-  &__modes {
-    flex: none;
-    background-color: @osu-colour-b3;
-    border-radius: 10000px;
-    display: flex;
-    overflow: hidden;
-  }
-
   &__preview {
     display: none;
 
