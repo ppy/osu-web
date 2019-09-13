@@ -29,7 +29,7 @@
 ]) !!}
     <div class="forum-poll__row forum-poll__row--title">
         <h2 class="forum-poll__title">
-        {!! $topic->pollTitleHTML() !!}
+            {!! $topic->pollTitleHTML() !!}
         </h2>
     </div>
 
