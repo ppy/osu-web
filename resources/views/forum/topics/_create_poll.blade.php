@@ -27,7 +27,7 @@
         <input
             class="simple-form__input"
             name="forum_topic_poll[title]"
-            value="{{ optional($topic)->poll_title }}"
+            value="{{ optional($topic)->pollTitleRaw() }}"
         />
     </label>
 
