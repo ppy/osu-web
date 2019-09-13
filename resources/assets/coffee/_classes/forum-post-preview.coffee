@@ -30,7 +30,6 @@ class @ForumPostPreview
     text = $body.val()
     lastText = $body.attr('data-last-text')
 
-
     return if $form.attr('data-state') == 'preview'
 
     return unless osu.present(text)
