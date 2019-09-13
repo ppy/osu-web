@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'aprovado em ',
             'favourite' => 'Marcar este beatmapset como favorito',
-            'favourited_count' => '+ 1 outro!|+ :count outros!',
             'logged-out' => 'Precisas de iniciar sessão antes de transferir quaisquer beatmaps!',
             'loved' => 'adorado em ',
             'mapped_by' => 'mapeado por :mapper',

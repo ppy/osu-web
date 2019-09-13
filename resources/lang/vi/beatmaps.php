@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Upvote thảo luận này',
-            'down' => 'Downvote thảo luận này',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 

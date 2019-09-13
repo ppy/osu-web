@@ -33,7 +33,7 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
+    'authorized_clients' => [
         'confirm_revoke' => '',
         'scopes_title' => '',
         'owned_by' => '',
@@ -45,9 +45,27 @@ return [
         ],
     ],
 
+    'client' => [
+        'id' => '',
+        'name' => '',
+        'redirect' => '',
+        'secret' => '',
+    ],
+
     'login' => [
         'download' => 'Paina tästä ladataksesi pelin ja luodaksesi käyttäjän',
         'label' => 'Ensiksi, kirjaudutaan käyttäjällesi!',
         'title' => 'Kirjaudu Käyttäjälle',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '',
+        'new' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 ];

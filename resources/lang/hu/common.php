@@ -37,6 +37,7 @@ return [
         'change' => 'változtat',
         'click_to_copy' => 'kattints ide a vágólapra helyezéshez',
         'click_to_copy_copied' => 'vágólapra helyezve!',
+        'close' => '',
         'collapse' => 'összecsuk',
         'delete' => 'Törlés',
         'edit' => 'Szerkesztés',
@@ -58,6 +59,7 @@ return [
         'show_deleted' => 'Töröltek megjelenítése',
         'show_more' => 'több megjelenítése',
         'show_more_options' => 'további opciók mutatása',
+        'update' => '',
         'upload_image' => 'kép feltöltése',
 
         'watch' => [
@@ -75,6 +77,7 @@ return [
         'minute_short_unit' => 'p|p',
         'minutes' => ':count perc |:count percek',
         'months' => ':count hónap|:count hónap',
+        'plus_others' => '',
         'post' => ':count_delimited poszt|:count_delimited posztok',
         'second_short_unit' => 'mp|mp',
         'star_priority' => ':count_delimited: csillag prioritás|:count_delimited csillag prioritások',

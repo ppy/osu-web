@@ -33,21 +33,39 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
+    'authorized_clients' => [
         'confirm_revoke' => '',
-        'scopes_title' => 'Această aplicaţie poate:',
-        'owned_by' => 'Deținut de :user',
-        'none' => 'Niciun Client',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
 
         'revoked' => [
-            'false' => 'Revoca accesul',
-            'true' => 'Acces revocat',
+            'false' => '',
+            'true' => '',
         ],
+    ],
+
+    'client' => [
+        'id' => '',
+        'name' => '',
+        'redirect' => '',
+        'secret' => '',
     ],
 
     'login' => [
         'download' => 'Apasă aici pentru a descărca jocul şi de a crea un cont',
         'label' => 'Mai întâi, conectează-te în contul tău!',
         'title' => 'Conectează-te în contul tău',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '',
+        'new' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 ];

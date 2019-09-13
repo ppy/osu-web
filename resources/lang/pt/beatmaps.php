@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Dar positivo a esta discussão',
-            'down' => 'Dar negativo a esta discussão',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 

@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Upvotenout tuto diskuzi',
-            'down' => 'Downvotenout tuto diskuzi',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 

@@ -37,6 +37,7 @@ return [
         'change' => '變更',
         'click_to_copy' => '點擊以複製到剪貼簿',
         'click_to_copy_copied' => '已複製到剪貼簿！',
+        'close' => '',
         'collapse' => '摺疊',
         'delete' => '刪除',
         'edit' => '編輯',
@@ -58,6 +59,7 @@ return [
         'show_deleted' => '顯示刪除的項目',
         'show_more' => '顯示更多',
         'show_more_options' => '顯示更多選項',
+        'update' => '',
         'upload_image' => '上傳圖片',
 
         'watch' => [
@@ -75,6 +77,7 @@ return [
         'minute_short_unit' => '分',
         'minutes' => ':count_delimited 分鐘|:count_delimited 分鐘',
         'months' => ':count 個月',
+        'plus_others' => '',
         'post' => '',
         'second_short_unit' => '秒',
         'star_priority' => '',

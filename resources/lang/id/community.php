@@ -38,23 +38,23 @@ return [
                 'description' => 'Kontribusi langsung digunakan untuk kebutuhan server dalam menjalankan situs web, layanan multiplayer, papan peringkat online, dan lainnya.',
             ],
             'featured-artists' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Artis Unggulan',
+                'description' => 'Dengan dukunganmu, kami dapat mencari artis - artis berbakat lainnya dan melisensi musiknya untuk digunakan di osu!',
+                'link_text' => 'Lihat daftar saat ini &raquo;',
             ],
             'ads' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Bantu osu! untuk tetap berjalan sendiri',
+                'description' => 'Kontribusi kamu menjaga game ini berjalan independen dan bebas dari iklan maupun sponsor dari luar sepenuhnya.',
             ],
             'tournaments' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Turnamen Resmi',
+                'description' => 'Bantu mendanai untuk menjalankan (dan menambah hadiah) yang diberikan di turnamen osu! World Cup.',
+                'link_text' => 'Jelajahi turnamen &raquo;',
             ],
             'bounty-program' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Program Open Source Bounty',
+                'description' => 'Dukung community contributors yang telah menyisihkan waktu dan upaya mereka untuk membantu membuat osu! lebih baik.',
+                'link_text' => 'Temukan lebih banyak lagi &raquo;',
             ],
         ],
         'perks' => [
@@ -65,18 +65,18 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => '',
-                'description' => "",
+                'title' => 'Peringkat Teman',
+                'description' => "Lihat bagaimana kemampuanmu dibandingkan dengan teman-temanmu di papan peringkat beatmap, baik dalam game maupun di situs web.",
             ],
 
             'country_ranking' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Peringkat Negara',
+                'description' => 'Taklukkan negaramu sebelum kamu menaklukkan dunia.',
             ],
 
             'mod_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Filter berdasarkan Mod',
+                'description' => 'Ingin mencari orang yang memainkannya dengan HDHR? Tidak masalah!',
             ],
 
             'auto_downloads' => [
@@ -135,20 +135,20 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Lebih Banyak Favorit',
+                'description' => 'Jumlah maksimum beatmap yang dapat kamu favorit bertambah dari :normally &rarr; :supporter',
             ],
             'more_friends' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Lebih Banyak Teman',
+                'description' => 'Jumlah maksimum teman yang dapat kamu miliki bertambah dari :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Unggah Lebih Banyak Beatmap',
+                'description' => 'Berapa banyak beatmap non-ranked yang dapat kamu miliki dihitung dari nilai dasar ditambah bonus tambahan untuk tiap beatmap ranked yang kamu miliki saat ini (hingga batas).<br/><br/> Biasanya jumlahnya adalah 4 ditambah 1 per beatmap ranked (hingga 2). Dengan supporter, jumlah ini meningkat menjadi 8 ditambah 1 per beatmap ranked (hingga 12).',
             ],
             'friend_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Papan Peringkat Teman',
+                'description' => 'Bersainglah dengan teman-temanmu dan lihat bagaimana kamu dapat melawan dengan menunjukkan peringkatmu pada mereka!*<br/><br/><small>* fitur ini belum tersedia di situs baru, segera tersedia (tm) </small>',
             ],
 
         ],

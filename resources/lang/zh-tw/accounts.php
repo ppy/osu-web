@@ -71,6 +71,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => '已授權客戶端',
+        'own_clients' => '',
         'title' => 'OAuth',
     ],
 

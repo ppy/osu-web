@@ -37,6 +37,7 @@ return [
         'change' => 'ändra',
         'click_to_copy' => 'klicka för att kopiera till urklipp',
         'click_to_copy_copied' => 'kopierad till urklipp!',
+        'close' => '',
         'collapse' => '',
         'delete' => 'Radera',
         'edit' => '',
@@ -58,6 +59,7 @@ return [
         'show_deleted' => '',
         'show_more' => 'visa mer',
         'show_more_options' => '',
+        'update' => '',
         'upload_image' => 'ladda upp bild',
 
         'watch' => [
@@ -75,6 +77,7 @@ return [
         'minute_short_unit' => 'm|m',
         'minutes' => '',
         'months' => ':count månad|:count månader',
+        'plus_others' => '',
         'post' => '',
         'second_short_unit' => 's|s',
         'star_priority' => '',
