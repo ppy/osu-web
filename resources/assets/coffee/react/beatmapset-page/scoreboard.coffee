@@ -28,7 +28,7 @@ export class Scoreboard extends React.PureComponent
   DEFAULT_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL', 'SO']
   OSU_MODS = DEFAULT_MODS.concat('TD')
   MANIA_KEY_MODS = ['4K', '5K', '6K', '7K', '8K', '9K']
-  MANIA_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL']
+  MANIA_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL', 'MR']
 
   hitTypeMapping: =>
     # mapping of [displayed text, internal name] for each mode
