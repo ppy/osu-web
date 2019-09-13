@@ -62,10 +62,6 @@
 // ┐(ﾟ ヮﾟ)┌
 @padding-wiki-desktop: 40px;
 
-// ┐(ﾟ ヮﾟ)┌
-@padding-base: 10px;
-@padding-base-desktop: 50px;
-
 @gutter-profile-page: 20px;
 @gutter-profile-page-desktop: @gutter-desktop;
 @padding-profile-page: 10px;
@@ -74,6 +70,10 @@
 @gutter: 30px;
 @gutter-desktop: 70px;
 
+// ┐(ﾟ ヮﾟ)┌
+@gutter-v2: 10px;
+@gutter-v2-desktop: 50px;
+
 @height--nav-popup: 210px; // min-height; actual height will be calculated by js.
 
 @navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
@@ -81,12 +81,13 @@
 @border-radius--nav-avatar: 10px;
 @border-radius--extra: 20px;
 
-@forum-item-overflow: @padding-base - 2px;
-@forum-item-overflow-desktop: @padding-base-desktop - 20px;
+@forum-item-overflow: @gutter-v2 - 2px;
+@forum-item-overflow-desktop: @gutter-v2-desktop - 20px;
 @forum-item-background-color: @osu-colour-b4;
 @forum-item-background-color-hover: @osu-colour-b3;
 @forum-item-animate: all 120ms;
 
+@forum-signature-height: 150px;
 
 // here be z-indexes
 @z-index--header-bg: -1;

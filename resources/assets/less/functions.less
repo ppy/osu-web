@@ -128,6 +128,16 @@
   }
 }
 
+.default-gutter-v2(@adjustment: 0) {
+  padding-left: (@gutter-v2 + @adjustment);
+  padding-right: (@gutter-v2 + @adjustment);
+
+  @media @desktop {
+    padding-left: (@gutter-v2-desktop + @adjustment);
+    padding-right: (@gutter-v2-desktop + @adjustment);
+  }
+}
+
 .default-header-overlay() {
   &::before {
     .full-size();

@@ -16,51 +16,43 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-list {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  .default-gutter-v2();
+.form-select {
+  .default-border-radius();
+  background-color: @osu-colour-b6;
+  color: @osu-colour-c1;
 
-  &__button {
-    flex: none;
-    margin: 2px 5px;
+  // reset global label style
+  text-transform: initial;
+  font-weight: initial;
+  margin: 0;
+
+  display: flex;
+  align-items: baseline;
+
+  font-size: @font-size--phone-input;
+
+  @media @desktop {
+    font-size: @font-size--normal;
   }
 
-  &__buttons {
-    flex: wrap;
-    margin: -2px -5px;
-    display: none;
-
-    @media @desktop {
-      display: flex;
-    }
-  }
-
-  &__menu {
-    margin-left: auto;
-
-    @media @desktop {
-      display :none;
-    }
-  }
-
-  &__menu-button {
-    .reset-input();
-    .circle(30px);
+  &::after {
+    .fas();
     .center-content();
-    .default-text-shadow();
-    background-color: @osu-colour-blue-2;
+    content: '\f078';
+    padding: 0 10px;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    background-color: inherit;
+    border-radius: inherit;
+    pointer-events: none;
   }
 
-  &__header {
-    display: flex;
-    align-items: flex-end;
-    margin-bottom: 10px;
-  }
-
-  &__items {
-    margin-top: 10px;
-    list-style: none;
-    padding: 0;
+  &__input {
+    .reset-input();
+    padding: 5px;
+    flex: 1;
+    background-color: inherit;
+    border-radius: inherit;
   }
 }
