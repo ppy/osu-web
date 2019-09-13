@@ -18,16 +18,6 @@
 
 class @ForumPostPreview
   constructor: ->
-    @input = '.js-forum-topic-reply--input'
-
-    @writeButton = '.js-forum-reply-preview--hide'
-    @previewButton = '.js-forum-reply-preview--show'
-
-    @editBox = '.js-forum-reply-write'
-    @previewBox = '.js-forum-reply-preview'
-
-    @lastBody = null
-
     $(document).on 'click', '.js-forum-post-preview--show', @fetchPreview
     $(document).on 'click', '.js-forum-post-preview--hide', @hidePreview
 
