@@ -38,6 +38,7 @@ class ModsHelper
         [14, 'PF', [5]],
         [5, 'SD'],
         [2, 'TD'],
+        [30, 'MR'],
 
         // mania keys (converts)
         [15, '4K'],
