@@ -28,7 +28,12 @@
 
     if ($type === 'circle') {
         $class = 'btn-circle';
+    } else {
+        // FIXME: make simple-menu-item block instead
+        $class = $class ?? 'simple-menu__item';
     }
+
+    $class .= " js-post-delete-toggle--{$type}";
 
     $label = trans("forum.post.actions.{$deleteString}");
     $confirmation = trans("forum.post.confirm_{$deleteString}");
