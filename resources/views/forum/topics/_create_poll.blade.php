@@ -17,7 +17,7 @@
 --}}
 @php
     $topic = $topic ?? null;
-    $options = optional($topic)->pollOptions() ?? collect();
+    $options = optional($topic)->pollOptions ?? collect();
 @endphp
 <div class="simple-form">
     <label class="simple-form__row">
@@ -40,7 +40,7 @@
             class="simple-form__input simple-form__input--full-height"
             name="forum_topic_poll[options]"
             rows="10"
-        >{{ $options->pluck('poll_option_text')->implode("\n") }}</textarea>
+        >{{ $options->map->optionTextRaw()->implode("\n") }}</textarea>
     </label>
 
     <label class="simple-form__row simple-form__row--half">
