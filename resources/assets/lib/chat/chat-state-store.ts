@@ -17,6 +17,7 @@
  */
 
 import { ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
+import Channel from 'models/chat/channel';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { action, observable } from 'mobx';
@@ -25,11 +26,11 @@ import Store from 'stores/store';
 export default class ChatStateStore extends Store {
   @observable autoScroll: boolean = false;
   @observable lastReadId: number = -1;
-  @observable selected: number = -1;
+  @observable selected: number = Channel.ID_NO_CHANNEL_SELECTED;
 
   @action
   flushStore() {
-    this.selected = -1;
+    this.selected = Channel.ID_NO_CHANNEL_SELECTED;
     this.lastReadId = -1;
   }
 

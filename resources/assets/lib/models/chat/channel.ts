@@ -23,6 +23,9 @@ import User from 'models/user';
 import Message from './message';
 
 export default class Channel {
+  static readonly ID_NEW_PM = -2;
+  static readonly ID_NO_CHANNEL_SELECTED = -1;
+
   @observable channelId: number;
   @observable description?: string;
   @observable icon?: string;
@@ -76,7 +79,7 @@ export default class Channel {
   }
 
   static newPM(target: User): Channel {
-    const channel = new Channel(-1);
+    const channel = new Channel(this.ID_NEW_PM);
     channel.newChannel = true;
     channel.type = 'PM';
     channel.name = target.username;

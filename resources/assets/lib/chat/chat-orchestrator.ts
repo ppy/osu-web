@@ -30,6 +30,7 @@ import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
 import ChatAPI from './chat-api';
 import { MessageJSON } from './chat-api-responses';
+import Channel from 'models/chat/channel';
 
 export default class ChatOrchestrator implements DispatchListener {
   private api: ChatAPI;
@@ -108,7 +109,7 @@ export default class ChatOrchestrator implements DispatchListener {
     } else if (action instanceof ChatChannelPartAction) {
       this.partChannel(action.channelId);
     } else if (action instanceof ChatPresenceUpdateAction) {
-      if (this.rootDataStore.uiState.chat.selected === -1) {
+      if (this.rootDataStore.uiState.chat.selected === Channel.ID_NO_CHANNEL_SELECTED) {
         this.focusNextChannel();
       }
     } else if (action instanceof WindowFocusAction) {
@@ -166,7 +167,7 @@ export default class ChatOrchestrator implements DispatchListener {
 
     this.focusNextChannel();
 
-    if (channelId !== -1) {
+    if (channelId !== Channel.ID_NO_CHANNEL_SELECTED && channelId !== Channel.ID_NEW_PM) {
       return this.api.partChannel(channelId, window.currentUser.id)
         .catch((err) => {
           console.debug('leaveChannel error', err);
