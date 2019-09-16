@@ -26,11 +26,11 @@ import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-action
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
 import { transaction } from 'mobx';
+import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
 import ChatAPI from './chat-api';
 import { MessageJSON } from './chat-api-responses';
-import Channel from 'models/chat/channel';
 
 export default class ChatOrchestrator implements DispatchListener {
   private api: ChatAPI;
