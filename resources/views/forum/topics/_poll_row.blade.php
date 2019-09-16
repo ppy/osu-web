@@ -16,7 +16,9 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    $percentage = i18n_number_format($pollOption['total'] / max($pollSummary['total'], 1), NumberFormatter::PERCENT, null, 2);
+    $percentage = $pollOption['total'] / max($pollSummary['total'], 1);
+    $percentageFormatted = i18n_number_format($percentage, NumberFormatter::PERCENT, null, 2);
+    $percentageStyle = i18n_number_format($percentage, NumberFormatter::PERCENT, null, 2, 'en');
 @endphp
 <div class="forum-poll-row {{ $pollOption['voted_by_user'] ? 'forum-poll-row--voted' : '' }}">
     <div class="forum-poll-row__row forum-poll-row__row--content">
@@ -30,7 +32,7 @@
             </div>
 
             <div class="forum-poll-row__result forum-poll-row__result--percentage">
-                {{ $percentage }}
+                {{ $percentageFormatted }}
             </div>
         @endif
     </div>
@@ -39,7 +41,7 @@
         <div class="bar bar--forum-poll {{ $pollOption['voted_by_user'] ? 'bar--forum-poll-voted' : '' }}">
             <div
                 class="bar__fill"
-                style="width: {{ $canViewResults ? $percentage : '100%' }}"
+                style="width: {{ $canViewResults ? $percentageStyle : '100%' }}"
             >
             </div>
         </div>
