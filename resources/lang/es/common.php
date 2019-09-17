@@ -37,6 +37,7 @@ return [
         'change' => 'cambiar',
         'click_to_copy' => 'haz clic para copiarlo al portapapeles',
         'click_to_copy_copied' => '¡copiado al portapapeles!',
+        'close' => '',
         'collapse' => 'colapsar',
         'delete' => 'Eliminar',
         'edit' => 'Editar',
@@ -58,6 +59,7 @@ return [
         'show_deleted' => 'Mostrar eliminados',
         'show_more' => 'mostrar más',
         'show_more_options' => 'mostrar más opciones',
+        'update' => '',
         'upload_image' => 'subir imagen',
 
         'watch' => [
@@ -75,6 +77,7 @@ return [
         'minute_short_unit' => 'min|mins',
         'minutes' => ':count minuto|:count minutos',
         'months' => ':count mes|:count meses',
+        'plus_others' => '',
         'post' => '',
         'second_short_unit' => 'seg|segs',
         'star_priority' => '',

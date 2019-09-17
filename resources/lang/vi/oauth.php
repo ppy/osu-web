@@ -33,21 +33,39 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
+    'authorized_clients' => [
         'confirm_revoke' => '',
-        'scopes_title' => 'Ứng dụng này có thể :',
-        'owned_by' => 'Được sở hữu bởi :user',
+        'scopes_title' => '',
+        'owned_by' => '',
         'none' => '',
 
         'revoked' => [
-            'false' => 'Thu hồi quyền truy cập',
-            'true' => 'Truy cập bị từ chối',
+            'false' => '',
+            'true' => '',
         ],
+    ],
+
+    'client' => [
+        'id' => '',
+        'name' => '',
+        'redirect' => '',
+        'secret' => '',
     ],
 
     'login' => [
         'download' => 'Nhấp vào đây để tải trò chơi và tạo tài khoản',
         'label' => 'Đầu tiên, hãy đăng nhập vào tài khoản của bạn!',
         'title' => 'Đăng Nhập Tài Khoản',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '',
+        'new' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 ];

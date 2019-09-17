@@ -44,11 +44,11 @@ return [
             ],
             'ads' => [
                 'title' => 'Samowystarczalność osu!',
-                'description' => '',
+                'description' => 'Twoje wsparcie pozwala uniezależnić osu! od reklam i zewnętrznych sponsorów.',
             ],
             'tournaments' => [
                 'title' => 'Oficjalne turnieje',
-                'description' => '',
+                'description' => 'Pomóż sfinansować przeprowadzenie i nagrody dla oficjalnych turniejów osu!.',
                 'link_text' => 'Przeglądaj turnieje &raquo;',
             ],
             'bounty-program' => [

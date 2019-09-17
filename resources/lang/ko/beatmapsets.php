@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'approved된 날짜: ',
             'favourite' => '즐겨찾기',
-            'favourited_count' => '및 +1명의 사람!|및 +:count명의 사람들!',
             'logged-out' => '로그인 후 비트맵을 다운로드하세요!',
             'loved' => 'loved된 날짜: ',
             'mapped_by' => ':mapper님의 맵',

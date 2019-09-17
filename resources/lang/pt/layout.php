@@ -25,10 +25,18 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => 'Comunidade',
 
-            'forum' => '',
+            'forum' => 'Fórum',
         ],
+    ],
+
+    'gallery' => [
+        'close' => '',
+        'fullscreen' => '',
+        'zoom' => '',
+        'previous' => '',
+        'next' => '',
     ],
 
     'menu' => [

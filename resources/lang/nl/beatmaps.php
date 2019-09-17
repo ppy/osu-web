@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Stem deze discussie bij',
-            'down' => 'Stem deze discussie af',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 

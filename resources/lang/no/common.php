@@ -37,6 +37,7 @@ return [
         'change' => 'endre',
         'click_to_copy' => 'klikk for å kopiere til utklippstavlen',
         'click_to_copy_copied' => 'kopiert til utklippstavle!',
+        'close' => '',
         'collapse' => 'skjul',
         'delete' => 'Slett',
         'edit' => 'Rediger',
@@ -58,6 +59,7 @@ return [
         'show_deleted' => 'Vis slettede',
         'show_more' => 'vis mer',
         'show_more_options' => 'vis flere valg',
+        'update' => '',
         'upload_image' => 'last opp bilde',
 
         'watch' => [
@@ -75,6 +77,7 @@ return [
         'minute_short_unit' => 'm|m',
         'minutes' => '::count_delimited minutt|:count_delimited minutter',
         'months' => '::count_delimited måned|:count_delimited måneder',
+        'plus_others' => '',
         'post' => '',
         'second_short_unit' => 's|s',
         'star_priority' => '',

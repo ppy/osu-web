@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Diskussion aufwerten',
-            'down' => 'Diskussion abwerten',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 
@@ -149,7 +155,7 @@ return [
         'button' => 'Beatmap hypen!',
         'button_done' => 'Schon gehypt!',
         'confirm' => "Sicher? Dies wird eins deiner letzten :n Hypes verwenden und kann nicht rückgängig gemacht werden.",
-        'explanation' => 'Hype diese Beatmap, um sie für Nominierungen und ranked sichtbarer zu machen!',
+        'explanation' => 'Hype diese Beatmap, um sie für Nominierungen und Ranking sichtbarer zu machen!',
         'explanation_guest' => 'Einloggen und diese Beatmap hypen, um sie für Nominierungen und ranked sichtbarer zu machen!',
         'new_time' => "Um :new_time wirst du deinen nächsten Hype erhalten.",
         'remaining' => 'Du hast noch :remaining Hypes übrig.',

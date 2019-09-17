@@ -33,21 +33,39 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
-        'confirm_revoke' => 'Sei sicuro di voler revocare i permessi a questo client?',
-        'scopes_title' => 'Questa applicazione può:',
-        'owned_by' => 'Di :user',
-        'none' => 'Nessun client',
+    'authorized_clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
 
         'revoked' => [
-            'false' => 'Revoca l\'accesso',
-            'true' => 'Accesso scaduto',
+            'false' => '',
+            'true' => '',
         ],
+    ],
+
+    'client' => [
+        'id' => '',
+        'name' => '',
+        'redirect' => '',
+        'secret' => '',
     ],
 
     'login' => [
         'download' => 'Clicca qui per scaricare il gioco e creare un account',
         'label' => 'Prima di tutto, accedi al tuo account!',
         'title' => 'Accesso account',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '',
+        'new' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 ];

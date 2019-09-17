@@ -71,6 +71,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'istek yetkilendirildi',
+        'own_clients' => '',
         'title' => 'Otomatik bağlantı',
     ],
 

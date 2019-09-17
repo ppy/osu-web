@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Megbeszélés felszavazása',
-            'down' => 'Megbeszélés leszavazása',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 

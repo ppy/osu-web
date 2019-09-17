@@ -58,10 +58,10 @@ return [
             ],
         ],
         'perks' => [
-            'title' => 'Oh? Che cosa avrò?!',
+            'title' => 'Figo! E che vantaggi ottengo?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'Accesso rapido e semplice per cercare beatmaps senza lasciare il gioco.',
+                'description' => 'Ottieni un accesso rapido e semplice per cercare e scaricare beatmap senza dover lasciare il gioco.',
             ],
 
             'friend_ranking' => [
@@ -81,7 +81,7 @@ return [
 
             'auto_downloads' => [
                 'title' => 'Download Automatici',
-                'description' => 'Download automatici quando giochi in multigiocatore, guardando altri, o cliccando link in chat!',
+                'description' => 'Le beatmap verranno scaricate automaticamente in partite multigiocatore, mentre guardi altri giocare, o cliccando vari link in chat!',
             ],
 
             'upload_more' => [
@@ -91,7 +91,7 @@ return [
 
             'early_access' => [
                 'title' => 'Accesso Anticipato',
-                'description' => 'Accesso a release anticipate, dove puoi provare nuove funzioni prima che siano pubbliche!',
+                'description' => 'Ottieni l\'accesso anticipato a nuove versioni con nuove funzionalità prima che vengano rilasciate!<br/><br/>Questo include l\'accesso anticipato anche a nuove funzionalità sul sito web!',
             ],
 
             'customisation' => [
@@ -100,8 +100,8 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Filtri Beatmap',
-                'description' => 'I filtri beatmap cercano tra mappe giocate e non giocate e rank raggiunto (se disponibile).',
+                'title' => 'Filtri per Beatmap',
+                'description' => 'I filtri per beatmap cercano tra mappe giocate e non giocate, o in base al rank ottenuto.',
             ],
 
             'yellow_fellow' => [
@@ -115,13 +115,13 @@ return [
             ],
 
             'change_username' => [
-                'title' => 'Cambia Nome Utente',
-                'description' => 'L\'abilità di cambiare il tuo nome utente senza costi aggiuntivi. (solo una volta)',
+                'title' => 'Cambio del Nome Utente',
+                'description' => 'Un cambio gratuito di nome è incluso nel tuo primo acquisto del supporter.',
             ],
 
             'skinnables' => [
-                'title' => 'Skinnabili',
-                'description' => 'Elementi Extra skinnabili in gioco, come lo sfondo del menu.',
+                'title' => 'Elementi Skinnabili',
+                'description' => 'Maggiori elementi skinnabili in gioco, come ad esempio lo sfondo del menu.',
             ],
 
             'feature_votes' => [

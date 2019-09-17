@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'อนุมัติเมื่อ ',
             'favourite' => 'Favourite beatmapset นี้',
-            'favourited_count' => '+1 ผู้อื่น| + :count ผู้อื่น',
             'logged-out' => 'คุณต้องเข้าสู่ระบบก่อนที่จะดาวน์โหลด beatmaps ใด ๆ',
             'loved' => 'loved เมื่อ ',
             'mapped_by' => 'แมพโดย :mapper',

@@ -42,10 +42,10 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'Kiriman Terbaru',
 
         'index' => [
-            'title' => '',
+            'title' => 'Indeks Forum',
         ],
 
         'topics' => [
