@@ -28,13 +28,14 @@
   color: white;
   padding: 5px 20px;
   border-radius: 10000px;
+  width: max-content;
 
   background-color: @osu-colour-b2;
 
-  &:hover {
+  .link-hover({
     color: white;
     background-color: @osu-colour-b1;
-  };
+  });
 
   &--beatmapsets {
     margin-bottom: 10px;
@@ -49,7 +50,11 @@
   }
 
   &--forum-topic {
-    margin: 5px auto 10px;
+    margin: 5px auto;
+
+    .link-hover({
+      background-color: @osu-colour-b3;
+    });
   }
 
   &--notification-group {
@@ -78,6 +83,7 @@
   &__label {
     opacity: 1;
     margin: 0 -5px;
+    display: flex;
 
     .@{_top}[disabled] &, .@{_top}.js-disabled & {
       opacity: 0;

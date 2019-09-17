@@ -44,8 +44,8 @@ $(document).on 'turbolinks:load', ->
 
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
-@accountEditPlaystyle ?= new AccountEditPlaystyle
 @accountEditBlocklist ?= new AccountEditBlocklist
+@accountEditPlaystyle ?= new AccountEditPlaystyle
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
@@ -58,6 +58,8 @@ $(document).on 'turbolinks:load', ->
 @forum ?= new Forum
 @forumAutoClick ?= new ForumAutoClick
 @forumCover ?= new ForumCover
+@forumPoll ?= new _exported.ForumPoll(@)
+@forumPostPreview ?= new ForumPostPreview
 @forumTopicTitle ?= new ForumTopicTitle
 @forumTopicWatchAjax ?= new ForumTopicWatchAjax
 @gallery ?= new Gallery
@@ -69,7 +71,6 @@ $(document).on 'turbolinks:load', ->
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
 @postPreview ?= new PostPreview
-@replyPreview ?= new ReplyPreview
 @scale ?= new Scale
 @search ?= new Search
 @stickyFooter ?= new StickyFooter
@@ -83,7 +84,7 @@ $(document).on 'turbolinks:load', ->
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
-@forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
+@forumTopicReply ?= new ForumTopicReply({ @forum, @forumPostPreview, @stickyFooter })
 @twitchPlayer ?= new TwitchPlayer(@turbolinksReload)
 _exported.WindowVHPatcher.init(window)
 

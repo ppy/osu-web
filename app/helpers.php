@@ -668,7 +668,7 @@ function bbcode($text, $uid, $options = [])
     return (new App\Libraries\BBCodeFromDB($text, $uid, $options))->toHTML();
 }
 
-function bbcode_for_editor($text, $uid)
+function bbcode_for_editor($text, $uid = null)
 {
     return (new App\Libraries\BBCodeFromDB($text, $uid))->toEditor();
 }

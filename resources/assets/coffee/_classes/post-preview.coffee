@@ -28,7 +28,7 @@ class @PostPreview
   loadPreview: (target) =>
     $form = $(target).closest('form')
     body = target.value
-    $preview = $form.find('.js-post-preview--body')
+    $preview = $form.find('.js-post-preview--preview')
     $previewBox = $form.find('.js-post-preview--box')
 
     if body == ''

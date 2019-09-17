@@ -16,26 +16,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-topic-reply {
+// TODO: remove after finished migrating to bbcode editor
+.post-box-toolbar {
   display: flex;
-  align-items: flex-end;
-  flex: 1 0 auto;
+  flex-wrap: wrap;
+  margin: -2px;
+  justify-content: center;
 
-  &__form {
-    .own-layer();
-    transition: opacity 120ms;
-
-    background-color: #444;
-    width: 100%;
-    padding-bottom: 20px;
-    padding-top: 10px;
-
-    &.js-forum-topic-reply-flash {
-      animation: forum-topic-reply-flash 500ms ease-in-out;
-    }
-  }
-
-  @keyframes forum-topic-reply-flash {
-    50% { background-color: #777; }
+  @media @desktop {
+    justify-content: flex-start;
   }
 }

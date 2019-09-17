@@ -18,6 +18,7 @@
 
 # Import shim so that globally declared scripts can work without changes.
 
+import ForumPoll from 'forum-poll'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
@@ -28,6 +29,7 @@ import WindowVHPatcher from 'window-vh-patcher'
 window.Promise ?= Promise
 
 window._exported = {
+  ForumPoll
   GalleryContest
   WindowVHPatcher
 }

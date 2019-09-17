@@ -26,7 +26,7 @@
   @_seek-bar-height-desktop-hover: 15px;
   @_seek-tooltip-arrow-height: 10px;
   width: 100%;
-  background-image: linear-gradient(to top, @gray-dark @_main-height, transparent @_main-height);
+  background-color: @osu-colour-d4;
 
   height: @_main-height;
 
@@ -92,11 +92,11 @@
 
   &__item {
     .reset-input();
-    .default-border-radius();
     .center-content();
-    color: #fff;
-    margin: 0 5px;
+    color: @osu-colour-c1;
+    margin: 0 3px;
     border: 2px solid transparent;
+    border-radius: 10000px;
 
     font-size: 12px;
     @media @desktop {
@@ -105,31 +105,32 @@
 
     ._button-hover() {
       background-color: #111;
-      color: #fff;
+      color: @osu-colour-c1;
       text-decoration: none;
     }
 
     &--button {
+      .default-text-shadow();
       width: @_content-height;
       height: @_content-height;
       display: inline-block;
+      background-color: @osu-colour-l4;
+      font-size: @font-size--small;
 
       &:focus,
       &:hover,
       &:active {
-        ._button-hover;
+        ._button-hover();
+        background-color: @osu-colour-l3;
+      }
+
+      @media @desktop {
+        font-size: @font-size--small;
       }
     }
 
     &--counter {
-      ._button-hover;
-    }
-
-    &--main {
-      margin: 0 2.5px;
-      @media @desktop {
-        margin: 0 10px;
-      }
+      ._button-hover();
     }
 
     &--focus {
@@ -152,19 +153,10 @@
     backface-visibility: hidden;
 
     height: @_seek-bar-height;
+    background-color: @osu-colour-h1;
 
     @media @desktop {
       height: @_seek-bar-height-desktop;
-    }
-
-    &::before {
-      content: ' ';
-      position: absolute;
-      left: 0;
-      top: 100%;
-      height: @_main-height;
-      width: 100%;
-      background-color: @gray-darker;
     }
 
     // easier targeting

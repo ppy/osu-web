@@ -29,7 +29,5 @@
                 {{ i18n_number_format($total) }}
             </div>
         </div>
-        <div class="counter-box__line">
-        </div>
     </div>
 @endif
