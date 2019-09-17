@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Upvote',
-            'down' => 'Downvote',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 

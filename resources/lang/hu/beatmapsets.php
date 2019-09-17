@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'elfogadva ',
             'favourite' => 'A beatmap szett kedvencek közé tétele',
-            'favourited_count' => '+ 1 másik!|+ :count másik!',
             'logged-out' => 'Beatmap letöltéshez be kell jelentkezned!',
             'loved' => 'kedvelve ',
             'mapped_by' => 'mappolva :mapper által',

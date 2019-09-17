@@ -33,21 +33,39 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
-        'confirm_revoke' => 'Вы уверены, что вы хотите удалить эти права доступа клиента?',
-        'scopes_title' => 'Это приложение может:',
-        'owned_by' => 'Владелец: :user',
-        'none' => 'Нет клиентов',
+    'authorized_clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
 
         'revoked' => [
-            'false' => 'Запретить доступ',
-            'true' => 'Доступ запрещён',
+            'false' => '',
+            'true' => '',
         ],
+    ],
+
+    'client' => [
+        'id' => '',
+        'name' => '',
+        'redirect' => '',
+        'secret' => '',
     ],
 
     'login' => [
         'download' => 'Нажмите здесь, чтобы скачать игру и создать аккаунт',
         'label' => 'Для начала, давайте войдём в ваш аккаунт!',
         'title' => 'Вход в аккаунт',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '',
+        'new' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 ];

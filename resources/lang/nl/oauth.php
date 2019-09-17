@@ -33,21 +33,39 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
-        'confirm_revoke' => 'Weet u zeker dat u de rechten van deze client wilt intrekken?',
-        'scopes_title' => 'Deze applicatie kan:',
-        'owned_by' => 'Dit is in bezit door :user',
-        'none' => 'Geen clients',
+    'authorized_clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
 
         'revoked' => [
-            'false' => 'Toegang intrekken',
-            'true' => 'Toegang Ingetrokken',
+            'false' => '',
+            'true' => '',
         ],
+    ],
+
+    'client' => [
+        'id' => '',
+        'name' => '',
+        'redirect' => '',
+        'secret' => '',
     ],
 
     'login' => [
         'download' => 'Klik hier om het spel te downloaden en een account aan te maken',
         'label' => 'Eerst, laten we inloggen op je account!',
         'title' => 'Account aanmelden',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '',
+        'new' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 ];

@@ -33,21 +33,39 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
-        'confirm_revoke' => '정말로 이 클라이언트의 권한을 회수하시겠습니까?',
-        'scopes_title' => '이 애플리케이션이 할 수 있는 작업:',
-        'owned_by' => ':user님이 소유 중',
-        'none' => '클라이언트 없음',
+    'authorized_clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
 
         'revoked' => [
-            'false' => '접근 권한 회수',
-            'true' => '접근 권한 회수됨',
+            'false' => '',
+            'true' => '',
         ],
+    ],
+
+    'client' => [
+        'id' => '',
+        'name' => '',
+        'redirect' => '',
+        'secret' => '',
     ],
 
     'login' => [
         'download' => '이곳을 눌러 게임을 다운로드하고 계정을 생성하세요',
         'label' => '우선 로그인해봅시다!',
         'title' => '계정 로그인',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '',
+        'new' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 ];

@@ -144,11 +144,11 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => '上传更多谱面',
-                'description' => '',
+                'description' => '同一时间你能拥有的未 ranked 的谱面数量由一个基数值和附加奖励相加得到，附加奖励根据你已 ranked 的谱面数量而定，并且有一个上限。<br/><br/>通常情况下，基数为4，每多一张 ranked 的谱面会增加 1，最多增加 2。当你是支持者时，基数变为8，每张 ranked 的谱面会增加 1，最多增加 12。',
             ],
             'friend_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => '有人排行榜',
+                'description' => '和你的朋友们一起比赛，看看你如何超过他们的排名！*<br/><br/><small>* 在新版网站上目前尚不支持此功能，新功能即将上线(tm)</small>',
             ],
 
         ],

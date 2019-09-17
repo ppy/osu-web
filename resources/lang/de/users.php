@@ -182,7 +182,7 @@ return [
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Lieblings-Beatmaps',
+                    'title' => 'Lieblingsbeatmaps',
                 ],
                 'graveyard' => [
                     'title' => 'Begrabene Beatmaps',

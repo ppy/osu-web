@@ -33,21 +33,39 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
-        'confirm_revoke' => 'Bu istemcinin izinlerini iptal etmek istediğinize emin misiniz?',
-        'scopes_title' => 'Bu uygulama şunları yapabilir:',
-        'owned_by' => ':user kişisine ait',
-        'none' => 'İstemci yok',
+    'authorized_clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
 
         'revoked' => [
-            'false' => 'Erişimi iptal et',
-            'true' => 'Erişim iptal edildi',
+            'false' => '',
+            'true' => '',
         ],
+    ],
+
+    'client' => [
+        'id' => '',
+        'name' => '',
+        'redirect' => '',
+        'secret' => '',
     ],
 
     'login' => [
         'download' => 'Oyunu indirmek ve bir hesap yaratmak için buraya tıklayın',
         'label' => 'İlk olarak, hadi hesabına giriş yapalım!',
         'title' => 'Hesaba giriş yap',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '',
+        'new' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 ];

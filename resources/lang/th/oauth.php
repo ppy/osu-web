@@ -33,21 +33,39 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
-        'confirm_revoke' => 'คุณแน่ใจหรือไม่ว่าต้องการเพิกถอนสิทธิ์รายนี้?',
-        'scopes_title' => 'โปรแกรมนี้สามารถ:',
-        'owned_by' => ':user เป็นเจ้าของ',
-        'none' => 'ไม่มีไคลเอนต์',
+    'authorized_clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
 
         'revoked' => [
-            'false' => 'ยกเลิกการเข้าถึง',
-            'true' => 'การเข้าถึงถูกยกเลิก',
+            'false' => '',
+            'true' => '',
         ],
+    ],
+
+    'client' => [
+        'id' => '',
+        'name' => '',
+        'redirect' => '',
+        'secret' => '',
     ],
 
     'login' => [
         'download' => 'คลิกที่นี่เพื่อดาวน์โหลดเกมและสร้างบัญชีผู้ใช้',
         'label' => 'อย่างแรก ล็อกอินก่อนนะ',
         'title' => 'ลงชื่อเข้าใช้บัญชี',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '',
+        'new' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 ];

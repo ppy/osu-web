@@ -33,21 +33,39 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
-        'confirm_revoke' => 'Apakah Anda yakin akan mencabut izin ini?',
-        'scopes_title' => 'Aplikasi ini dapat:',
-        'owned_by' => 'Dimiliki oleh :user',
-        'none' => 'Tidak ada klien',
+    'authorized_clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
 
         'revoked' => [
-            'false' => 'Cabut Akses',
-            'true' => 'Akses Dicabut',
+            'false' => '',
+            'true' => '',
         ],
+    ],
+
+    'client' => [
+        'id' => '',
+        'name' => '',
+        'redirect' => '',
+        'secret' => '',
     ],
 
     'login' => [
         'download' => 'Klik di sini untuk mengunduh osu! dan membuat akun',
         'label' => 'Pertama-tama, mari masuk ke dalam akun Anda!',
         'title' => 'Sign-in Akun',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '',
+        'new' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 ];
