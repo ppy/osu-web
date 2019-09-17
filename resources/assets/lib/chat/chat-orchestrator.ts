@@ -109,7 +109,13 @@ export default class ChatOrchestrator implements DispatchListener {
     } else if (action instanceof ChatChannelPartAction) {
       this.partChannel(action.channelId);
     } else if (action instanceof ChatPresenceUpdateAction) {
-      if (this.rootDataStore.uiState.chat.selected === Channel.ID_NO_CHANNEL_SELECTED) {
+      if (this.rootDataStore.uiState.chat.selected === Channel.ID_INVALID) {
+        const channel = this.rootDataStore.channelStore.get(this.rootDataStore.uiState.chat.selected);
+
+        if (channel !== undefined && channel.existsInDatabase === false) {
+          return;
+        }
+
         this.focusNextChannel();
       }
     } else if (action instanceof WindowFocusAction) {
@@ -167,7 +173,7 @@ export default class ChatOrchestrator implements DispatchListener {
 
     this.focusNextChannel();
 
-    if (channelId !== Channel.ID_NO_CHANNEL_SELECTED && channelId !== Channel.ID_NEW_PM) {
+    if (channelId !== Channel.ID_INVALID) {
       return this.api.partChannel(channelId, window.currentUser.id)
         .catch((err) => {
           console.debug('leaveChannel error', err);

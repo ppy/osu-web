@@ -26,11 +26,11 @@ import Store from 'stores/store';
 export default class ChatStateStore extends Store {
   @observable autoScroll: boolean = false;
   @observable lastReadId: number = -1;
-  @observable selected: number = Channel.ID_NO_CHANNEL_SELECTED;
+  @observable selected: number = Channel.ID_INVALID;
 
   @action
   flushStore() {
-    this.selected = Channel.ID_NO_CHANNEL_SELECTED;
+    this.selected = Channel.ID_INVALID;
     this.lastReadId = -1;
   }
 

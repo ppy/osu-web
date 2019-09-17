@@ -23,11 +23,11 @@ import User from 'models/user';
 import Message from './message';
 
 export default class Channel {
-  static readonly ID_NEW_PM = -2;
-  static readonly ID_NO_CHANNEL_SELECTED = -1;
+  static readonly ID_INVALID = -1;
 
   @observable channelId: number;
   @observable description?: string;
+  @observable existsInDatabase = false;
   @observable icon?: string;
   @observable lastMessageId: number = -1;
   @observable lastReadId?: number;
@@ -68,6 +68,7 @@ export default class Channel {
     const channel = Object.create(Channel.prototype);
     return Object.assign(channel, {
       channelId: json.channel_id,
+      existsInDatabase: true,
       name: json.name,
       type: json.type,
 
@@ -79,7 +80,7 @@ export default class Channel {
   }
 
   static newPM(target: User): Channel {
-    const channel = new Channel(this.ID_NEW_PM);
+    const channel = new Channel(this.ID_INVALID);
     channel.newChannel = true;
     channel.type = 'PM';
     channel.name = target.username;
@@ -161,5 +162,6 @@ export default class Channel {
 
     this.users = presence.users;
     this.metaLoaded = true;
+    this.existsInDatabase = true;
   }
 }
