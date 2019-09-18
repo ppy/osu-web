@@ -105,7 +105,7 @@ class BBCodeFromDB
     public function parseCode($text)
     {
         return preg_replace(
-            "#\n*\[code:{$this->uid}\]\n*(.*?)\n*\[/code:{$this->uid}\]\n*#s",
+            "#\[code:{$this->uid}\]\n*(.*?)\n*\[/code:{$this->uid}\]\n?#s",
             '<pre>\\1</pre>',
             $text);
     }
