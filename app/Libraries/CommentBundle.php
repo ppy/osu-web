@@ -37,20 +37,14 @@ class CommentBundle
 
     public static function forComment(Comment $comment, bool $includeNested = false)
     {
-        $comments = [$comment];
-
-        if ($comment->parent !== null) {
-            $comments[] = $comment->parent;
-        }
-
         $options = ['includeCommentableMeta' => true];
 
         // having comments and additionalComments seems confusing
         if ($includeNested) {
-            $options['additionalComments'] = collect($comments);
+            $options['additionalComments'] = collect([$comment]);
             $options['params'] = ['parent_id' => $comment->getKey()];
         } else {
-            $options['comments'] = collect($comments);
+            $options['comments'] = collect([$comment]);
         }
 
         return new static($comment->commentable, $options);
@@ -78,9 +72,13 @@ class CommentBundle
     public function toArray()
     {
         $hasMore = false;
+        $includedComments = collect();
 
         if (isset($this->comments)) {
             $comments = $this->comments;
+            if ($comments[0]->parent !== null) {
+                $includedComments->push($comments[0]->parent);
+            }
         } else {
             $comments = $this->getComments($this->commentsQuery(), false);
             if ($comments->count() > $this->params->limit) {
@@ -95,11 +93,11 @@ class CommentBundle
                 sort($ids);
                 $nestedComments = $this->getComments(Comment::whereIn('parent_id', $nestedParentIds));
                 $nestedParentIds = $nestedComments->pluck('id');
-                $comments = $comments->concat($nestedComments);
+                $includedComments = $includedComments->concat($nestedComments);
             }
 
             $parents = Comment::whereIn('id', $comments->pluck('parent_id'))->get();
-            $comments = $comments->concat($parents);
+            $includedComments = $includedComments->concat($parents);
         }
 
         $comments = $comments->concat($this->additionalComments);
@@ -108,6 +106,7 @@ class CommentBundle
             'comments' => json_collection($comments, 'Comment'),
             'has_more' => $hasMore,
             'has_more_id' => $this->params->parentId,
+            'included_comments' => json_collection($includedComments, 'Comment'),
             'user_votes' => $this->getUserVotes($comments),
             'user_follow' => $this->getUserFollow(),
             'users' => json_collection($this->getUsers($comments), 'UserCompact'),

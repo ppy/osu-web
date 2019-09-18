@@ -53,12 +53,14 @@ export default class RootDataStore {
     if (commentBundle == null) { return; }
     this.commentableMetaStore.initialize(commentBundle.commentable_meta);
     this.commentStore.initialize(commentBundle.comments, commentBundle.user_votes);
+    this.commentStore.updateWithJSON(commentBundle.included_comments);
     this.userStore.updateWithJSON(commentBundle.users);
   }
 
   updateWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON>) {
     this.commentableMetaStore.updateWithJSON(commentBundle.commentable_meta);
     this.commentStore.updateWithJSON(commentBundle.comments);
+    this.commentStore.updateWithJSON(commentBundle.included_comments);
     this.userStore.updateWithJSON(commentBundle.users);
     this.commentStore.addVoted(commentBundle.user_votes);
   }
