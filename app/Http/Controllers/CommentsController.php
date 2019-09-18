@@ -74,7 +74,10 @@ class CommentsController extends Controller
 
         $commentBundle = new CommentBundle(
             $commentable ?? null,
-            ['params' => request()->all()]
+            [
+                'params' => request()->all(),
+                'includeDeleted' => isset($commentable)
+            ]
         );
 
         if (is_json_request()) {

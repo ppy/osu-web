@@ -54,6 +54,7 @@ class CommentBundle
         $this->depth = $options['depth'] ?? 2;
         $this->includeCommentableMeta = $options['includeCommentableMeta'] ?? false;
         $this->includeParent = $options['includeParent'] ?? false;
+        $this->includeDeleted = $options['includeDeleted'] ?? true;
     }
 
     public function toArray()
@@ -120,10 +121,16 @@ class CommentBundle
     public function commentsQuery()
     {
         if (isset($this->commentable)) {
-            return $this->commentable->comments();
+            $query = $this->commentable->comments();
         } else {
-            return Comment::select();
+            $query = Comment::select();
         }
+
+        if (!$this->includeDeleted) {
+            $query->whereNull('deleted_at');
+        }
+
+        return $query;
     }
 
     private function getComments($query, $isChildren = true)
