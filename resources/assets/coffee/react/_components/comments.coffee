@@ -69,7 +69,7 @@ export class Comments extends React.PureComponent
                 commentableId: @props.commentableId
                 comments: comments
                 total: @props.topLevelCount
-                sort: @props.currentSort
+                sort: uiState.comments.currentSort
                 modifiers: _.concat 'top', @props.modifiers
           else
             div
