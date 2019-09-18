@@ -78,6 +78,7 @@ export class Comments extends React.PureComponent
 
 
   renderComment: (comment) =>
+    comment = store.comments.get(comment.id)
     return null if comment.deleted_at? && !uiState.comments.isShowDeleted
 
     el Comment,
