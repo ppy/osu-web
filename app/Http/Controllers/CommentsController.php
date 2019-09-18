@@ -140,10 +140,6 @@ class CommentsController extends Controller
      *
      * ---
      *
-     * ### Response Format
-     *
-     * Returns [CommentBundle](#commentbundle)
-     *
      * @authenticated
      *
      * @queryParam comments A description or comment to attach to the report.
