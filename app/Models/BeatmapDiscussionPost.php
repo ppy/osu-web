@@ -183,9 +183,9 @@ class BeatmapDiscussionPost extends Model
         $systemPost = static::where('system', true)
             ->where('id', '>', $this->id)
             ->where('beatmap_discussion_id', $this->beatmap_discussion_id)
-            ->first();
+            ->last();
 
-        return optional($systemPost)->message['value'] !== true;
+        return $this->getKey() > optional($systemPost)->getKey();
     }
 
     public function validateBeatmapsetDiscussion()
