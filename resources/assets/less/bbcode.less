@@ -39,14 +39,42 @@
     color: @osu-colour-l1;
   }
 
-  // quote tag
-  h4 {
-    font-size: @font-size--forum-quote-heading;
-  }
-
   blockquote {
     font-size: inherit;
-    padding-right: 0;
+    padding: 0 0 0 20px;
+    border: none;
+    color: @osu-colour-c2;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      border-radius: 10000px;
+      background-color: @osu-colour-c2;
+    }
+
+    // quote tag
+    h4 {
+      font-size: inherit;
+      color: @osu-colour-c1;
+      margin: 0;
+    }
+
+    // second and deeper levels
+    blockquote {
+      font-size: 0.9em;
+
+      &::before {
+        display: none;
+      }
+
+      h4 {
+        color: inherit;
+      }
+    }
   }
 
   img {
