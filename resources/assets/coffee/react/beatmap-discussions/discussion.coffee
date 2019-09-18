@@ -36,6 +36,10 @@ export class Discussion extends React.PureComponent
       highlighted: false
 
 
+  componentDidUpdate: =>
+    @_resolvedSystemPostId = null
+
+
   componentWillMount: =>
     $.subscribe "beatmapDiscussionEntry:collapse.#{@eventId}", @setCollapse
     $.subscribe "beatmapDiscussionEntry:highlight.#{@eventId}", @setHighlight
