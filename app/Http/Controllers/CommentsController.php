@@ -76,7 +76,7 @@ class CommentsController extends Controller
             $commentable ?? null,
             [
                 'params' => request()->all(),
-                'includeDeleted' => isset($commentable)
+                'includeDeleted' => isset($commentable),
             ]
         );
 
