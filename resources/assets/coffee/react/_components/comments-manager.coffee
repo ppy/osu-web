@@ -149,7 +149,7 @@ export class CommentsManager extends React.PureComponent
 
       runInAction () ->
         uiState.comments.currentSort = data.sort
-        core.dataStore.updateWithCommentBundleJSON data
+        core.dataStore.initializeWithCommentBundleJSON data
 
       @setState
         userFollow: data.user_follow
