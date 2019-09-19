@@ -68,7 +68,7 @@ export class Comments extends React.PureComponent
                 commentableType: @props.commentableType
                 commentableId: @props.commentableId
                 comments: comments
-                total: @props.topLevelCount
+                total: uiState.comments.topLevelCount
                 sort: uiState.comments.currentSort
                 modifiers: _.concat 'top', @props.modifiers
           else
@@ -100,7 +100,7 @@ export class Comments extends React.PureComponent
 
 
   renderFollowToggle: =>
-    if @props.userFollow
+    if uiState.comments.userFollow
       icon = 'fas fa-eye-slash'
       label = osu.trans('common.buttons.watch.to_0')
     else
