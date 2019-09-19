@@ -36,7 +36,8 @@ uiState = core.dataStore.uiState
 export class Comments extends React.PureComponent
   render: =>
     el Observer, null, () =>
-      comments = CommentModel.sort(store.getCommentsByParentId(null), uiState.comments.currentSort)
+      # TODO: comments should be passed in as props?
+      comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
 
       div className: osu.classWithModifiers('comments', @props.modifiers),
         div className: 'u-has-anchor u-has-anchor--no-event',
@@ -58,7 +59,7 @@ export class Comments extends React.PureComponent
               div className: 'sort__items',
                 @renderFollowToggle()
                 @renderShowDeletedToggle()
-          if comments?
+          if comments.length > 0
             div className: "comments__items #{if uiState.comments.loadingSort? then 'comments__items--loading' else ''}",
               comments.map @renderComment
 
@@ -78,7 +79,6 @@ export class Comments extends React.PureComponent
 
 
   renderComment: (comment) =>
-    comment = store.comments.get(comment.id)
     return null if comment.deleted_at? && !uiState.comments.isShowDeleted
 
     el Comment,

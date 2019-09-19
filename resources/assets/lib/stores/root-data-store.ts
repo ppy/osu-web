@@ -19,6 +19,7 @@
 import { BeatmapsetSearch } from 'beatmaps/beatmapset-search';
 import Dispatcher from 'dispatcher';
 import { CommentBundleJSON } from 'interfaces/comment-json';
+import { action } from 'mobx';
 import { BeatmapsetStore } from './beatmapset-store';
 import ChannelStore from './channel-store';
 import ClientStore from './client-store';
@@ -49,19 +50,36 @@ export default class RootDataStore {
     this.userStore = new UserStore(this, dispatcher);
   }
 
+  @action
   initializeWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON> | null | undefined) {
     if (commentBundle == null) { return; }
     this.commentableMetaStore.initialize(commentBundle.commentable_meta);
     this.commentStore.initialize(commentBundle.comments, commentBundle.user_votes);
     this.commentStore.updateWithJSON(commentBundle.included_comments);
     this.userStore.updateWithJSON(commentBundle.users);
+
+    if (commentBundle.comments != null) {
+      this.uiState.comments.topLevelCommentIds = commentBundle.comments.map((x) => x.id);
+    }
   }
 
+  @action
   updateWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON>) {
     this.commentableMetaStore.updateWithJSON(commentBundle.commentable_meta);
     this.commentStore.updateWithJSON(commentBundle.comments);
     this.commentStore.updateWithJSON(commentBundle.included_comments);
     this.userStore.updateWithJSON(commentBundle.users);
     this.commentStore.addVoted(commentBundle.user_votes);
+
+    if (commentBundle.comments != null) {
+      const ids = commentBundle.comments.map((x) => x.id);
+
+      // don't add existing ids; vote updates, etc will have existing ids.
+      for (const id of ids) {
+        if (!this.uiState.comments.topLevelCommentIds.includes(id)) {
+          this.uiState.comments.topLevelCommentIds.push(id);
+        }
+      }
+    }
   }
 }

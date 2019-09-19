@@ -27,6 +27,7 @@ interface CommentsUIState {
   hasMoreComments: Map<number, boolean>;
   isShowDeleted: boolean;
   loadingSort: CommentSort | null;
+  topLevelCommentIds: number[];
 }
 
 export default class UIStateStore extends Store {
@@ -36,6 +37,7 @@ export default class UIStateStore extends Store {
     hasMoreComments: new Map<number, boolean>(),
     isShowDeleted: false,
     loadingSort: null,
+    topLevelCommentIds: [],
   };
 
   handleDispatchAction(action: DispatcherAction) { /* do nothing */}
