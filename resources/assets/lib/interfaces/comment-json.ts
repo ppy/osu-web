@@ -47,6 +47,9 @@ export interface CommentBundleJSON {
   commentable_meta: CommentableMetaJSON[];
   comments: CommentJSON[];
   included_comments: CommentJSON[];
+  top_level_count: number;
+  total: number;
+  user_follow: boolean;
   user_votes: number[];
   users: UserJSON[];
 }

@@ -17,6 +17,7 @@
 ###
 
 import { runInAction } from 'mobx'
+import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 
 uiState = core.dataStore.uiState
@@ -41,16 +42,16 @@ export class CommentsManager extends React.PureComponent
 
     @id = "comments-#{osu.uuid()}"
 
-    @state = osu.parseJson @jsonStorageId()
+    # @state = osu.parseJson @jsonStorageId()
 
-    if !@state?
-      uiState.comments.currentSort = json.sort
-      # also props of the containing component
-      @state =
-        loadingFollow: false
-        userFollow: json.user_follow
-        topLevelCount: json.top_level_count
-        total: json.total
+    # if !@state?
+    #   uiState.comments.currentSort = json.sort
+    #   # also props of the containing component
+    #   @state =
+    #     loadingFollow: false
+    #     userFollow: json.user_follow
+    #     topLevelCount: json.top_level_count
+    #     total: json.total
 
 
   componentDidMount: =>
@@ -67,11 +68,12 @@ export class CommentsManager extends React.PureComponent
 
 
   render: =>
-    componentProps = _.assign {}, @props.componentProps, @state
-    componentProps.commentableId = @props.commentableId
-    componentProps.commentableType = @props.commentableType
+    el Observer, null, () =>
+      componentProps = _.assign {}, @props.componentProps
+      componentProps.commentableId = @props.commentableId
+      componentProps.commentableType = @props.commentableType
 
-    el @props.component, componentProps
+      el @props.component, componentProps
 
 
   appendBundle: (_event, {commentBundle, prepend}) =>
@@ -79,8 +81,8 @@ export class CommentsManager extends React.PureComponent
       uiState.comments.hasMoreComments.set(commentBundle.has_more_id, commentBundle.has_more)
       core.dataStore.updateWithCommentBundleJSON commentBundle
 
-    @setState
-      total: commentBundle.total ? @state.total
+    # @setState
+    #   total: commentBundle.total ? @state.total
 
 
   update: (_event, {commentable_meta, comments, users}) =>
@@ -107,18 +109,18 @@ export class CommentsManager extends React.PureComponent
       notifiable_id: @props.commentableId
       subtype: 'comment'
 
-    return if @state.loadingFollow
+    return if uiState.comments.loadingFollow
 
-    @setState loadingFollow: true
+    uiState.comments.loadingFollow = true
 
     $.ajax laroute.route('follows.store'),
       data: params
       dataType: 'json'
-      method: if @state.userFollow then 'DELETE' else 'POST'
+      method: if uiState.comments.userFollow then 'DELETE' else 'POST'
     .always =>
-      @setState loadingFollow: false
+      uiState.comments.loadingFollow = false
     .done =>
-      @setState userFollow: !@state.userFollow
+      uiState.comments.userFollow = !uiState.comments.userFollow
     .fail (xhr, status) =>
       return if status == 'abort'
 
@@ -150,11 +152,6 @@ export class CommentsManager extends React.PureComponent
       runInAction () ->
         uiState.comments.currentSort = data.sort
         core.dataStore.initializeWithCommentBundleJSON data
-
-      @setState
-        userFollow: data.user_follow
-        topLevelCount: data.top_level_count
-        total: data.total ? @state.total
     .always =>
       runInAction () ->
         uiState.comments.loadingSort = null

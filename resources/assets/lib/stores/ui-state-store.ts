@@ -18,7 +18,8 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import ChatStateStore from 'chat/chat-state-store';
-import { observable } from 'mobx';
+import { CommentBundleJSON } from 'interfaces/comment-json';
+import { observable, runInAction } from 'mobx';
 import { CommentSort } from 'models/comment';
 import Store from 'stores/store';
 
@@ -26,18 +27,63 @@ interface CommentsUIState {
   currentSort: CommentSort;
   hasMoreComments: Map<number, boolean>;
   isShowDeleted: boolean;
+  loadingFollow: boolean | null;
   loadingSort: CommentSort | null;
   topLevelCommentIds: number[];
+  topLevelCount: number;
+  total: number;
+  userFollow: boolean;
+}
+
+interface Updatable {
+  initializeWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON>): void;
+  updateWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON>): void;
 }
 
 export default class UIStateStore extends Store {
   chat = new ChatStateStore(this.root, this.dispatcher);
-  @observable comments: CommentsUIState = {
+
+  // only for the currently visible page
+  @observable comments: CommentsUIState & Updatable = {
     currentSort: 'new',
     hasMoreComments: new Map<number, boolean>(),
     isShowDeleted: false,
+    loadingFollow: null,
     loadingSort: null,
     topLevelCommentIds: [],
+    topLevelCount: 0,
+    total: 0,
+    userFollow: false,
+
+    initializeWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON>) {
+      runInAction(() => {
+        this.userFollow = commentBundle.user_follow;
+        this.topLevelCount = commentBundle.top_level_count;
+        this.total = commentBundle.total;
+        if (commentBundle.comments != null) {
+          this.topLevelCommentIds = commentBundle.comments.map((x) => x.id);
+        }
+      });
+    },
+
+    updateWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON>) {
+      runInAction(() => {
+        this.userFollow = commentBundle.user_follow;
+        this.topLevelCount = commentBundle.top_level_count;
+        this.total = commentBundle.total;
+
+        if (commentBundle.comments != null) {
+          const ids = commentBundle.comments.map((x) => x.id);
+
+          // don't add existing ids; vote updates, etc will have existing ids.
+          for (const id of ids) {
+            if (!this.topLevelCommentIds.includes(id)) {
+              this.topLevelCommentIds.push(id);
+            }
+          }
+        }
+      });
+    },
   };
 
   handleDispatchAction(action: DispatcherAction) { /* do nothing */}

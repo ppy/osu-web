@@ -57,10 +57,7 @@ export default class RootDataStore {
     this.commentStore.initialize(commentBundle.comments, commentBundle.user_votes);
     this.commentStore.updateWithJSON(commentBundle.included_comments);
     this.userStore.updateWithJSON(commentBundle.users);
-
-    if (commentBundle.comments != null) {
-      this.uiState.comments.topLevelCommentIds = commentBundle.comments.map((x) => x.id);
-    }
+    this.uiState.comments.initializeWithCommentBundleJSON(commentBundle);
   }
 
   @action
@@ -70,16 +67,6 @@ export default class RootDataStore {
     this.commentStore.updateWithJSON(commentBundle.included_comments);
     this.userStore.updateWithJSON(commentBundle.users);
     this.commentStore.addVoted(commentBundle.user_votes);
-
-    if (commentBundle.comments != null) {
-      const ids = commentBundle.comments.map((x) => x.id);
-
-      // don't add existing ids; vote updates, etc will have existing ids.
-      for (const id of ids) {
-        if (!this.uiState.comments.topLevelCommentIds.includes(id)) {
-          this.uiState.comments.topLevelCommentIds.push(id);
-        }
-      }
-    }
+    this.uiState.comments.updateWithCommentBundleJSON(commentBundle);
   }
 }
