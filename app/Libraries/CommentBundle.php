@@ -109,7 +109,7 @@ class CommentBundle
             'included_comments' => json_collection($includedComments, 'Comment'),
             'user_votes' => $this->getUserVotes($comments),
             'user_follow' => $this->getUserFollow(),
-            'users' => json_collection($this->getUsers($comments), 'UserCompact'),
+            'users' => json_collection($this->getUsers($comments->concat($includedComments)), 'UserCompact'),
             'sort' => $this->params->sort,
         ];
 
