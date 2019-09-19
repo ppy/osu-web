@@ -25,7 +25,6 @@ reactTurbolinks.registerPersistent('news-show', Main, true, (container: HTMLElem
   core.dataStore.initializeWithCommentBundleJSON(commentBundle);
 
   return {
-    commentBundle,
     container,
     post: data.post,
   };
