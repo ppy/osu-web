@@ -19,9 +19,7 @@
  .wiki-main-page-panel {
   @_top: wiki-main-page-panel;
 
-  width: 100%;
   min-height: 150px;
-  margin-bottom: 7px;
   padding: 30px;
 
   background: @osu-colour-b4;
@@ -31,16 +29,9 @@
   .default-border-radius;
   .default-box-shadow;
 
-  @media @desktop {
-    width: calc(50% ~'-' 3.5px);
-
-    &:nth-child(2n) {
-      margin-right: 7px;
-    }
-
-    &:first-child, &:last-child&:nth-child(2n) {
-      width: 100%;
-      margin-right: 0;
+  &--full {
+    @media @desktop {
+      grid-column: 1 / span 2;
     }
   }
 

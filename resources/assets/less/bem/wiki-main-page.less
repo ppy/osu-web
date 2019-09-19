@@ -29,9 +29,12 @@
   }
 
   &__panels {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-gap: 7px;
+
+    @media @desktop {
+      grid-template-columns: 50% 50%;
+    }
 
     padding-top: 45px;
   }
