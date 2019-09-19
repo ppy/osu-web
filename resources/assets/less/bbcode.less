@@ -82,7 +82,12 @@
   }
 
   pre {
+    .default-border-radius();
     white-space: pre-wrap;
+    background-color: @osu-colour-b5;
+    color: inherit;
+    padding: 10px;
+    border: none;
   }
 
   .unordered {
@@ -101,8 +106,8 @@
   // overrides bootstrap styling for [notice]
   .well {
     margin: 0;
-    background: @osu-colour-b6;
-    border: none;
+    background: @osu-colour-b5;
+    border: 2px solid @osu-colour-b1;
   }
 
   &--normal-line-height {
