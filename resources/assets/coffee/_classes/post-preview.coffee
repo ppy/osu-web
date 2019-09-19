@@ -29,7 +29,13 @@ class @PostPreview
     $form = $(target).closest('form')
     body = target.value
     $preview = $form.find('.js-post-preview--preview')
+    preview = $preview[0]
     $previewBox = $form.find('.js-post-preview--box')
+
+    if !preview?
+      return
+
+    preview._xhr?.abort()
 
     if body == ''
       $previewBox.addClass 'hidden'
@@ -39,7 +45,7 @@ class @PostPreview
       $previewBox.removeClass 'hidden'
       return
 
-    $.post(laroute.route('bbcode-preview'), text: body)
+    preview._xhr = $.post(laroute.route('bbcode-preview'), text: body)
     .done (data) =>
       $preview.html data
       $preview.attr 'data-raw', body
