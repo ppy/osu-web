@@ -57,7 +57,7 @@ export default class RootDataStore {
     this.commentStore.initialize(commentBundle.comments, commentBundle.user_votes);
     this.commentStore.updateWithJSON(commentBundle.included_comments);
     this.userStore.updateWithJSON(commentBundle.users);
-    this.uiState.comments.initializeWithCommentBundleJSON(commentBundle);
+    this.uiState.initializeWithCommentBundleJSON(commentBundle);
   }
 
   @action
@@ -67,6 +67,7 @@ export default class RootDataStore {
     this.commentStore.updateWithJSON(commentBundle.included_comments);
     this.userStore.updateWithJSON(commentBundle.users);
     this.commentStore.addVoted(commentBundle.user_votes);
-    this.uiState.comments.updateWithCommentBundleJSON(commentBundle);
+
+    this.uiState.updateWithCommentBundleJSON(commentBundle);
   }
 }

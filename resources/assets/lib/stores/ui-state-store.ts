@@ -19,7 +19,7 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import ChatStateStore from 'chat/chat-state-store';
 import { CommentBundleJSON } from 'interfaces/comment-json';
-import { observable, runInAction } from 'mobx';
+import { action, observable } from 'mobx';
 import { CommentSort } from 'models/comment';
 import Store from 'stores/store';
 
@@ -35,16 +35,11 @@ interface CommentsUIState {
   userFollow: boolean;
 }
 
-interface Updatable {
-  initializeWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON>): void;
-  updateWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON>): void;
-}
-
 export default class UIStateStore extends Store {
   chat = new ChatStateStore(this.root, this.dispatcher);
 
   // only for the currently visible page
-  @observable comments: CommentsUIState & Updatable = {
+  @observable comments: CommentsUIState = {
     currentSort: 'new',
     hasMoreComments: new Map<number, boolean>(),
     isShowDeleted: false,
@@ -54,40 +49,41 @@ export default class UIStateStore extends Store {
     topLevelCount: 0,
     total: 0,
     userFollow: false,
-
-    initializeWithCommentBundleJSON(commentBundle: CommentBundleJSON) {
-      runInAction(() => {
-        this.hasMoreComments.set(commentBundle.has_more_id, commentBundle.has_more);
-        this.userFollow = commentBundle.user_follow;
-        this.topLevelCount = commentBundle.top_level_count;
-        this.total = commentBundle.total;
-
-        if (commentBundle.comments != null) {
-          this.topLevelCommentIds = commentBundle.comments.map((x) => x.id);
-        }
-      });
-    },
-
-    updateWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON>) {
-      runInAction(() => {
-        this.hasMoreComments.set(commentBundle.has_more_id, commentBundle.has_more);
-        this.userFollow = commentBundle.user_follow;
-        this.topLevelCount = commentBundle.top_level_count;
-        this.total = commentBundle.total;
-
-        if (commentBundle.comments != null) {
-          const ids = commentBundle.comments.map((x) => x.id);
-
-          // don't add existing ids; vote updates, etc will have existing ids.
-          for (const id of ids) {
-            if (!this.topLevelCommentIds.includes(id)) {
-              this.topLevelCommentIds.push(id);
-            }
-          }
-        }
-      });
-    },
   };
 
   handleDispatchAction(action: DispatcherAction) { /* do nothing */}
+
+  @action
+  initializeWithCommentBundleJSON(commentBundle: CommentBundleJSON) {
+    this.comments.hasMoreComments.set(commentBundle.has_more_id, commentBundle.has_more);
+    this.comments.userFollow = commentBundle.user_follow;
+    this.comments.topLevelCount = commentBundle.top_level_count;
+    this.comments.total = commentBundle.total;
+
+    if (commentBundle.comments != null) {
+      this.comments.topLevelCommentIds = commentBundle.comments.map((x) => x.id);
+    }
+  }
+
+  @action
+  updateWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON>) {
+    if (commentBundle.has_more_id !== undefined && commentBundle.has_more !== undefined) {
+      this.comments.hasMoreComments.set(commentBundle.has_more_id, commentBundle.has_more);
+    }
+
+    if (commentBundle.user_follow !== undefined) this.comments.userFollow = commentBundle.user_follow;
+    if (commentBundle.top_level_count !== undefined) this.comments.topLevelCount = commentBundle.top_level_count;
+    if (commentBundle.total !== undefined) this.comments.total = commentBundle.total;
+
+    if (commentBundle.comments !== undefined) {
+      const ids = commentBundle.comments.map((x) => x.id);
+
+      // don't add existing ids; vote updates, etc will have existing ids.
+      for (const id of ids) {
+        if (!this.comments.topLevelCommentIds.includes(id)) {
+          this.comments.topLevelCommentIds.push(id);
+        }
+      }
+    }
+  }
 }
