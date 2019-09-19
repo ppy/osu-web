@@ -78,7 +78,7 @@ class BBCodeFromDB
         $text = preg_replace("#\[box=(.*?):{$this->uid}\]\n*#s", $this->parseBoxHelperPrefix('\\1'), $text);
         $text = preg_replace("#\n*\[/box:{$this->uid}]\n?#s", $this->parseBoxHelperSuffix(), $text);
 
-        $text = preg_replace("#\[spoilerbox:{$this->uid}\]\n*#s", $this->parseBoxHelperPrefix('SPOILER'), $text);
+        $text = preg_replace("#\[spoilerbox:{$this->uid}\]\n*#s", $this->parseBoxHelperPrefix(''), $text);
         $text = preg_replace("#\n*\[/spoilerbox:{$this->uid}]\n?#s", $this->parseBoxHelperSuffix(), $text);
 
         return $text;
@@ -86,7 +86,7 @@ class BBCodeFromDB
 
     public function parseBoxHelperPrefix($linkText)
     {
-        return "<div class='js-spoilerbox bbcode-spoilerbox'><button class='js-spoilerbox__link bbcode-spoilerbox__link' type='button'><i class='fas fa-fw fa-chevron-right bbcode-spoilerbox__arrow'></i>{$linkText}</button><div class='bbcode-spoilerbox__body'>";
+        return "<div class='js-spoilerbox bbcode-spoilerbox'><button class='js-spoilerbox__link bbcode-spoilerbox__link' type='button'><span class='bbcode-spoilerbox__link-icon'></span><span class='bbcode-spoilerbox__link-text'>{$linkText}</span></button><div class='bbcode-spoilerbox__body'>";
     }
 
     public function parseBoxHelperSuffix()
