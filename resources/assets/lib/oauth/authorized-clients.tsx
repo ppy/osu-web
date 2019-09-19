@@ -40,6 +40,6 @@ export class AuthorizedClients extends React.Component {
   }
 
   renderEmpty() {
-    return osu.trans('oauth.authorized-clients.none');
+    return osu.trans('oauth.authorized_clients.none');
   }
 }

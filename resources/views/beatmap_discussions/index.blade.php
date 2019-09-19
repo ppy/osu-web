@@ -50,14 +50,14 @@
                         {{ trans('beatmap_discussions.index.form.types') }}
                     </div>
                     <div class="simple-form__checkboxes-inline">
-                        @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $type)
+                        @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $messageType)
                             <label class="simple-form__checkbox simple-form__checkbox--inline">
-                                @include('objects._checkbox', [
+                                @include('objects._switch', [
+                                    'checked' => in_array($messageType, $search['params']['message_types'], true),
                                     'name' => 'message_types[]',
-                                    'value' => $type,
-                                    'checked' => in_array($type, $search['params']['message_types'], true),
+                                    'value' => $messageType,
                                 ])
-                                {{ trans("beatmaps.discussions.message_type.{$type}") }}
+                                {{ trans("beatmaps.discussions.message_type.{$messageType}") }}
                             </label>
                         @endforeach
                     </div>
@@ -66,10 +66,9 @@
                 @if (priv_check('BeatmapDiscussionModerate')->can())
                     <div class="simple-form__row simple-form__row--no-label">
                         <label class="simple-form__checkbox">
-                            @include('objects._checkbox', [
+                            @include('objects._switch', [
+                                'checked' => $search['params']['with_deleted'],
                                 'name' => 'with_deleted',
-                                'value' => 1,
-                                'checked' => $search['params']['with_deleted']
                             ])
                             {{ trans('beatmap_discussions.index.form.deleted') }}
                         </label>

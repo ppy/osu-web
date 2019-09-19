@@ -132,7 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Đã tham gia :date',
         'lastvisit' => 'Lần cuối hoạt động :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'Hiện đang trực tuyến',
         'missingtext' => 'Có thể bạn đã thực hiện một lỗi đánh máy! (hoặc người dùng này có thể đã bị ban)',
         'origin_country' => 'Từ :country',
         'page_description' => 'osu! - Tất cả những bì bạn muốn biết về :username!',
@@ -154,7 +154,7 @@ return [
                     'unsupported_format' => 'Định dạng không được hỗ trợ.',
 
                     'restriction_info' => [
-                        '_' => '',
+                        '_' => 'Tải lên chỉ có sẵn cho :link',
                         'link' => '',
                     ],
                 ],
@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count người theo dõi',
+            'none' => 'không có',
             'unranked' => 'Không chơi gần đây',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Beatmap Đang Chờ',
                 ],
+            ],
+            'discussions' => [
+                'title' => 'Thảo luận',
+                'title_longer' => 'Thảo luận gần đây',
+                'show_more' => 'xem thảo luận khác',
+            ],
+            'events' => [
+                'title' => 'Sự kiện',
+                'title_longer' => 'Sự kiện gần đây',
+                'show_more' => 'xem sự kiện khác',
             ],
             'historical' => [
                 'empty' => 'Chưa ghi nhận điểm. :(',
@@ -265,7 +276,7 @@ return [
 
                 'total_info' => [
                     '_' => '',
-                    'link' => '',
+                    'link' => 'trang này',
                 ],
             ],
             'me' => [
@@ -275,6 +286,11 @@ return [
                 'empty' => "Người dùng này chưa có huy chương nào cả. ;_;",
                 'recent' => 'Gần Nhất',
                 'title' => 'Huy Chương',
+            ],
+            'posts' => [
+                'title' => 'Bài viết',
+                'title_longer' => 'Bài viết gần đây',
+                'show_more' => 'xem bài viết khác',
             ],
             'recent_activity' => [
                 'title' => 'Gần Đây',
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Xếp Hạng Nhất',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Trạng Thái Tài Khoản',
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Điểm Số',
             'total_hits' => 'Tổng Lần Bấm',
             'total_score' => 'Tổng Điểm',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 

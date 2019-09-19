@@ -42,6 +42,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '',
+
+        'index' => [
+            'title' => '论坛主页',
+        ],
+
         'topics' => [
             'empty' => '没有主题！',
         ],
@@ -75,7 +81,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited 帖子',
-            'topic_starter' => '主题开启者',
+            'topic_starter' => '楼主',
         ],
     ],
 

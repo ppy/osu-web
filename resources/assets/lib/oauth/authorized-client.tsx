@@ -42,7 +42,7 @@ export class AuthorizedClient extends React.Component<Props> {
             {client.name}
           </div>
           <span className='authorized-client__owner'>
-            <StringWithComponent pattern={osu.trans('oauth.authorized-clients.owned_by')} mappings={mappings} />
+            <StringWithComponent pattern={osu.trans('oauth.authorized_clients.owned_by')} mappings={mappings} />
           </span>
           <div className='authorized-client__scopes'>
             {this.renderPermissions()}
@@ -55,7 +55,7 @@ export class AuthorizedClient extends React.Component<Props> {
             disabled={client.isRevoking || client.revoked}
           >
             {
-              client.isRevoking ? <Spinner /> : osu.trans(`oauth.authorized-clients.revoked.${client.revoked}`)
+              client.isRevoking ? <Spinner /> : osu.trans(`oauth.authorized_clients.revoked.${client.revoked}`)
             }
           </button>
         </div>
@@ -67,7 +67,7 @@ export class AuthorizedClient extends React.Component<Props> {
     const scopes = Array.from(this.props.client.scopes).sort();
     return (
       <>
-        <div>{osu.trans('oauth.authorized-clients.scopes_title')}</div>
+        <div>{osu.trans('oauth.authorized_clients.scopes_title')}</div>
         <ul className='oauth-scopes'>
           {
             scopes.map((scope) => {
@@ -85,7 +85,7 @@ export class AuthorizedClient extends React.Component<Props> {
   }
 
   revokeClicked = (event: React.MouseEvent<HTMLElement>) => {
-    if (!confirm(osu.trans('oauth.authorized-clients.confirm_revoke'))) { return; }
+    if (!confirm(osu.trans('oauth.authorized_clients.confirm_revoke'))) { return; }
 
     this.props.client.revoke().catch(osu.ajaxError);
   }

@@ -118,6 +118,18 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Ο κωδικός δεν πρέπει να περιέχει το όνομα χρήστη.',
         'email_already_used' => 'Το email είναι ήδη σε χρήση.',

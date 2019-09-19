@@ -73,6 +73,8 @@ class BeatmapDiscussion extends Model
     const RESOLVABLE_TYPES = [1, 2];
     const KUDOSUABLE_TYPES = [1, 2];
 
+    const VOTES_TO_SHOW = 50;
+
     public static function search($rawParams = [])
     {
         $params = [
@@ -485,14 +487,26 @@ class BeatmapDiscussion extends Model
 
     public function votesSummary()
     {
-        $votes = ['up' => 0, 'down' => 0];
+        $votes = [
+            'up' => 0,
+            'down' => 0,
+            'voters' => [
+                'up' => [],
+                'down' => [],
+            ],
+        ];
 
-        foreach ($this->beatmapDiscussionVotes as $vote) {
-            if ($vote->score === 1) {
-                $votes['up'] += 1;
-            } elseif ($vote->score === -1) {
-                $votes['down'] += 1;
+        foreach ($this->beatmapDiscussionVotes->sortByDesc('created_at') as $vote) {
+            if ($vote->score === 0) {
+                continue;
             }
+
+            $direction = $vote->score > 0 ? 'up' : 'down';
+
+            if ($votes[$direction] < static::VOTES_TO_SHOW) {
+                $votes['voters'][$direction][] = $vote->user_id;
+            }
+            $votes[$direction] += 1;
         }
 
         return $votes;

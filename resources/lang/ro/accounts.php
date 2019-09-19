@@ -26,8 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => 'Te rog asigură-te că avatar-ul tău respectă :link<br/>Asta înseamnă că trebuie să fie <strong>adecvat pentru toate vârstele</strong>. Care să nu conțină nuditate, profanare sau conținut sugestiv.',
+            'rules_link' => 'regulile comunității',
         ],
 
         'email' => [
@@ -65,12 +65,13 @@ return [
     ],
 
     'notifications' => [
-        'title' => '',
+        'title' => 'Notificări',
         'topic_auto_subscribe' => '',
     ],
 
     'oauth' => [
         'authorized_clients' => '',
+        'own_clients' => '',
         'title' => '',
     ],
 
@@ -108,11 +109,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Poți închide această fereastră acum',
+        'title' => 'Verificarea a fost finalizată',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Link de verificare invalid sau expirat',
     ],
 ];

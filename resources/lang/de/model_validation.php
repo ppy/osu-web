@@ -29,7 +29,7 @@ return [
         'first_post' => 'Der erste Beitrag kann nicht gelöscht werden.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Die Nachricht',
         ],
     ],
 
@@ -42,8 +42,8 @@ return [
         'locked' => 'Die Diskussion ist gesperrt.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Nachrichtentyp',
+            'timestamp' => 'Zeitstempel',
         ],
 
         'hype' => [
@@ -64,7 +64,7 @@ return [
         'deleted_parent' => 'Das Antworten auf den gelöschten Kommentar ist nicht erlaubt.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Die Nachricht',
         ],
     ],
 
@@ -88,13 +88,13 @@ return [
             'only_quote' => 'In deiner Antwort ist nur ein Zitat enthalten.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Beitragsinhalt',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Titelthema',
             ],
         ],
 
@@ -108,13 +108,25 @@ return [
             'too_many_options' => 'Maximale Anzahl an Antworten überschritten',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Umfragenthema',
             ],
         ],
 
         'topic_vote' => [
             'required' => 'Es muss eine Antwort gewählt sein.',
             'too_many' => 'Mehr Antworten als erlaubt ausgewählt.',
+        ],
+    ],
+
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
         ],
     ],
 
@@ -143,9 +155,9 @@ return [
         'too_long' => 'Maximale Länge überschritten - höchstens :limit Zeichen.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Benutzername',
+            'user_email' => 'E-Mail-Adresse',
+            'password' => 'Passwort',
         ],
 
         'change_username' => [
@@ -165,8 +177,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Menge',
+                'cost' => 'Kosten',
             ],
         ],
     ],

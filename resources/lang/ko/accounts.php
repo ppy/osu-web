@@ -26,8 +26,8 @@ return [
 
         'avatar' => [
             'title' => '아바타',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => '당신의 아바타가 :link를 지키도록 해주십시오.<br/>이는 아바타가 <strong>모든 연령에 적합해야 한다</strong>는 것을 의미합니다. 즉, 나체, 남에게 모욕적인 표현 또는 이러한 것을 암시하는 내용이 없어야 합니다.',
+            'rules_link' => '커뮤니티 규칙',
         ],
 
         'email' => [
@@ -70,8 +70,9 @@ return [
     ],
 
     'oauth' => [
-        'authorized_clients' => '',
-        'title' => '',
+        'authorized_clients' => '인증된 클라이언트',
+        'own_clients' => '',
+        'title' => 'OAuth',
     ],
 
     'playstyles' => [
@@ -108,11 +109,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => '이제 창을 닫으셔도 됩니다.',
+        'title' => '인증이 완료되었습니다.',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => '유효하지 않거나 만료된 인증 링크입니다.',
     ],
 ];

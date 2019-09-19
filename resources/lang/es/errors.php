@@ -38,8 +38,8 @@ return [
         'generic' => 'Ha ocurrido un error mientras preparábamos tu compra.',
     ],
     'search' => [
-        'default' => '',
-        'operation_timeout_exception' => '',
+        'default' => 'No se obtuvo ningún resultado, inténtalo de nuevo más tarde.',
+        'operation_timeout_exception' => 'La búsqueda está más ocupada de lo habitual, inténtalo de nuevo más tarde.',
     ],
 
     'logged_out' => 'Tu sesión ha expirado. Por favor, inicia sesión y vuelve a intentarlo.',

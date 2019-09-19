@@ -42,6 +42,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '最新の投稿',
+
+        'index' => [
+            'title' => 'フォーラム 目次',
+        ],
+
         'topics' => [
             'empty' => 'トピックがありません！',
         ],

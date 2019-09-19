@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'одобрен ',
             'favourite' => 'Добавить в избранное',
-            'favourited_count' => '+ 1 другой!|+ :count других!',
             'logged-out' => 'Вы должны войти для загрузки карты!',
             'loved' => 'избран ',
             'mapped_by' => 'сделана :mapper',

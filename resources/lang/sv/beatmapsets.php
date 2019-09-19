@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'godkänd den ',
             'favourite' => 'Favorisera denna beatmapset',
-            'favourited_count' => '+ 1 annan!|+ :count andra!',
             'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!',
             'loved' => 'älskad den ',
             'mapped_by' => 'skapad av :mapper',

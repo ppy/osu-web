@@ -34,7 +34,7 @@ return [
 
     'error' => [
         'contact_support' => 'Please contact support to recover account.',
-        'is_privileged' => 'Contact peppy lulz.',
+        'is_privileged' => 'Please contact a high level admin to recover account.',
         'missing_key' => 'Required.',
         'too_many_tries' => 'Too many failed attempts.',
         'user_not_found' => 'Requested user does not exist.',

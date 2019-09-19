@@ -154,8 +154,8 @@ return [
                     'unsupported_format' => 'Niet ondersteund formaat.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Upload beschikbaar alleen voor :link',
+                        'link' => 'osu!supporters',
                     ],
                 ],
             ],
@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 volger|:count volgers',
+            'none' => 'geen',
             'unranked' => 'Geen recente plays',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Afwachtende Beatmaps',
                 ],
+            ],
+            'discussions' => [
+                'title' => 'Discussies',
+                'title_longer' => 'Recente discussies',
+                'show_more' => 'zie meer discussies',
+            ],
+            'events' => [
+                'title' => 'Gebeurtenissen',
+                'title_longer' => 'Recente gebeurtenissen',
+                'show_more' => 'meer gebeurtenissen zien',
             ],
             'historical' => [
                 'empty' => 'Geen prestatiegegevens. :(',
@@ -264,8 +275,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Op basis van hoeveel bijdrage de gebruiker heeft geleverd aan beatmap moderatie. Zie :link voor meer informatie.',
+                    'link' => 'deze pagina',
                 ],
             ],
             'me' => [
@@ -275,6 +286,11 @@ return [
                 'empty' => "Deze gebruiker heeft er nog geen ;_;",
                 'recent' => 'Recent',
                 'title' => 'Medailles',
+            ],
+            'posts' => [
+                'title' => 'Berichten',
+                'title_longer' => 'Recente berichten',
+                'show_more' => 'bekijk meer berichten',
             ],
             'recent_activity' => [
                 'title' => 'Recent',
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Eerste Ranks',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Gegeven stemmen (de afgelopen 3 maanden)',
+                'received' => 'Ontvangen stemmen (laatste 3 maanden)',
+                'title' => 'Stemmen',
+                'title_longer' => 'Recente stemmen',
+                'vote_count' => ':count_delimited stemmen|:count_delimited stemmen',
             ],
             'account_standing' => [
                 'title' => 'Account Reputatie',
@@ -345,8 +368,8 @@ return [
             'placeholder' => 'Typ pagina inhoud hier',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'U moet een :link zijn om deze functie te ontgrendelen.',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Totaal Aantal Hits',
             'total_score' => 'Totaal Aantal Score',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Gerankte & Goedgekeurde Beatmaps',
+            'loved_beatmapset_count' => 'Loved Beatmaps',
+            'unranked_beatmapset_count' => 'Afwachtende Beatmaps',
+            'graveyard_beatmapset_count' => 'Graveyarded Beatmaps',
         ],
     ],
 
@@ -388,7 +416,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'Kaartweergave',
+        'list' => 'Lijst weergave',
     ],
 ];

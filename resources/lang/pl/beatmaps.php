@@ -133,15 +133,21 @@ return [
 
         'status-messages' => [
             'approved' => 'Ta beatmapa została zatwierdzona :date!',
-            'graveyard' => "Ta beatmapa nie była aktualizowana od :date i najprawdopodobniej została porzucona przez swojego twórcę...",
+            'graveyard' => "Ta beatmapa nie była aktualizowana od :date i trafiła do kategorii porzuconych...",
             'loved' => 'Ta beatmapa otrzymała status ulubionej społeczności :date!',
             'ranked' => 'Ta beatmapa otrzymała status rankingowy :date!',
             'wip' => 'Ważne: Ta beatmapa została oznaczona przez twórcę jako aktualnie rozwijana.',
         ],
 
         'votes' => [
-            'up' => 'Oceń tę dyskusję poztywnie',
-            'down' => 'Oceń tę dyskusję negatywnie',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 

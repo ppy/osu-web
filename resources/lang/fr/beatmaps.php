@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Upvote cette discussion',
-            'down' => 'Downvote cette discussion',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 

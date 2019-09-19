@@ -33,21 +33,39 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
-        'confirm_revoke' => 'このクライアントの認証を無効化しますか？',
-        'scopes_title' => 'このアプリケーションでできること:',
-        'owned_by' => '所有者 :user',
-        'none' => 'クライアントがありません',
+    'authorized_clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
 
         'revoked' => [
-            'false' => 'アクセスを無効化',
-            'true' => 'アクセスが無効化されました',
+            'false' => '',
+            'true' => '',
         ],
+    ],
+
+    'client' => [
+        'id' => '',
+        'name' => '',
+        'redirect' => '',
+        'secret' => '',
     ],
 
     'login' => [
         'download' => 'ゲームをダウンロードしてアカウントを作成するにはここをクリック',
         'label' => 'まず、アカウントにログインしてみましょう！',
         'title' => 'アカウントログイン',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '',
+        'new' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 ];

@@ -154,8 +154,8 @@ return [
                     'unsupported_format' => 'Nem támogatott formátum.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Feltöltés csak :link -hez elérhető',
+                        'link' => 'osu!támogatók',
                     ],
                 ],
             ],
@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 követő |:count követő',
+            'none' => 'semmi',
             'unranked' => 'Nem játszott mostanában',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Pending Beatmap-ek',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => 'Események',
+                'title_longer' => 'Legutóbbi Események',
+                'show_more' => 'további események',
             ],
             'historical' => [
                 'empty' => 'Nincsenek teljesítmény rekordok. :(',
@@ -265,7 +276,7 @@ return [
 
                 'total_info' => [
                     '_' => '',
-                    'link' => '',
+                    'link' => 'ez az oldal',
                 ],
             ],
             'me' => [
@@ -275,6 +286,11 @@ return [
                 'empty' => "Ez a felhasználó még nem rendelkezik egyel sem. ;_;",
                 'recent' => 'Legújabb',
                 'title' => 'Medálok',
+            ],
+            'posts' => [
+                'title' => 'Bejegyzések',
+                'title_longer' => 'Legutóbbi bejegyzések',
+                'show_more' => 'láss további bejegyzéseket',
             ],
             'recent_activity' => [
                 'title' => 'Legutóbbi',
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Első Helyezéses Eredmények',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Szavazatok Leadva (legutóbbi 3 hónap)',
+                'received' => 'Beérkezett Szavazatok (legutóbbi 3 hónap)',
+                'title' => 'Szavazatok',
+                'title_longer' => 'Legutóbbi Szavazatok',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Fiók Állása',
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Eredmény Rangok',
             'total_hits' => 'Találatok Száma',
             'total_score' => 'Összpontszám',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 

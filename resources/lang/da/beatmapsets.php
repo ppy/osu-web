@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'godkendt den ',
             'favourite' => 'Markér dette beatmapset som favorit',
-            'favourited_count' => '+ 1 anden!|+ :count andre!',
             'logged-out' => 'Du skal være logget ind for at kunne downloade beatmaps!',
             'loved' => 'loved den ',
             'mapped_by' => 'mappet af :mapper',

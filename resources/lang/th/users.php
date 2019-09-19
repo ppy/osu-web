@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count ผู้ติดตาม',
+            'none' => '',
             'unranked' => 'ยังไม่มีการเล่น',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'บีทแมพที่กำลังทำ',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'ไม่มี performance ที่บันทึกไว้. :(',
@@ -276,6 +287,11 @@ return [
                 'recent' => 'ล่าสุด',
                 'title' => 'เหรียญตรา',
             ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'recent_activity' => [
                 'title' => 'ล่า​สุด',
             ],
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'First Place Ranks',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'ชื่อเสียงของบัญชี',
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Total Hits',
             'total_score' => 'คะแนนรวมทั้งหมด',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 

@@ -42,6 +42,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Legújabb Poszt',
+
+        'index' => [
+            'title' => 'Fórum Index',
+        ],
+
         'topics' => [
             'empty' => 'Nincsenek témák!',
         ],

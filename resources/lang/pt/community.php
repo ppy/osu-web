@@ -20,49 +20,63 @@
 
 return [
     'support' => [
-        'header' => [
-            // size in font-size
-            'big_description' => 'Adoras o osu!?<br/>
-                                Apoia o desenvolvimento dele! :D',
-            'small_description' => '',
-            'support_button' => 'Eu quero ajudar o osu!',
+        'convinced' => [
+            'title' => 'Estou convencido! :D',
+            'support' => 'ajuda o osu!',
+            'gift' => 'ou dá apoio a outros jogadores',
+            'instructions' => 'clica no botão do coração para proceder à osu!store',
         ],
+        'why-support' => [
+            'title' => 'Porque é que deveria apoiar o osu!? Para onde vai o dinheiro?',
 
-        'dev_quote' => 'osu! é um jogo completamente grátis, mas mantê-lo a funcionar já não é assim tão grátis. 
-        Entre o custo de servidores de aluguer e banda-larga internacional de alta qualidade, o tempo gasto em manutenção do sistema e da comunidade,  -----
-        fornecer prémios para competições, responder a questões de suporte e geralmente manter as pessoas felizes, osu! consome uma boa quantidade pesada de dinheiro!
-        Ah, e não te esqueças do facto que nós o fazemos sem qualquer tipo de anúncio ou parcerias com barras de ferramentas tontas e do género!
-            <br/><br/>osu! é no final do dia maioritariamente gerido por mim, o qual talvez devas conhecer melhor por "peppy".
-            Eu tive que desistir do meu trabalho do dia de forma a conseguir acompanhar com o osu!,
-            e às vezes esforço-me para manter os princípios pelos quais eu luto.
-            Eu gostaria de oferecer o meu obrigado pessoal àqueles que apoiaram o osu! até agora,
-            e tanto quanto àqueles que continuam a apoiar este jogo estupendo e comunidade no futuro :).',
-
-        'supporter_status' => [
-            'contribution' => 'Obrigado pelo teu apoio até agora! Contribuíste para um total de :dollars sobre compras de :tags etiquetas!',
-            'gifted' => ':giftedTags das tuas compras de etiquetas foram oferecidas (por um total de :giftedDollars oferecidos), que generoso!',
-            'not_yet' => "Ainda não tens uma etiqueta de apoiante :(",
-            'title' => 'Estado atual de apoiante',
-            'valid_until' => 'A tua etiqueta atual de apoiante é válida até :date!',
-            'was_valid_until' => 'A tua etiqueta de apoiante é válida até :date.',
-        ],
-
-        'why_support' => [
-            'title' => 'Porque é que deveria ajudar o osu!?',
-            'blocks' => [
-                'dev' => 'Desenvolvido e preservado predominantemente por um tipo na Austrália',
-                'time' => 'Leva tanto tempo para continuar a executar, que já não é possível chamá-lo um "hobby".',
-                'ads' => 'Sem quaisquer anúncios. <br/><br/>
-                        Ao contrário dos 99.95% da web, nós não lucramos ao atirar-te cenas para a tua cara.',
-                'goodies' => 'Recebes uns presentes!',
+            'team' => [
+                'title' => 'Apoiar a Equipa',
+                'description' => 'Uma pequena equipa desenvolve e executa o osu!. O teu apoio ajuda-os a, tu sabes... viver.',
+            ],
+            'infra' => [
+                'title' => 'Infraestrutura do Servidor',
+                'description' => 'As contribuições vão para os servidores que correm o sítio web, serviços multijogador, tabelas de líderes online, etc.',
+            ],
+            'featured-artists' => [
+                'title' => 'Artistas Destacados',
+                'description' => 'Com o teu apoio, podemos reunir ainda mais artistas incríveis e licenciar mais músicas fixes para usar no osu!',
+                'link_text' => 'Ver a lista atual &raquo;',
+            ],
+            'ads' => [
+                'title' => 'Mantém o osu! autossustentável',
+                'description' => 'As tuas contribuições ajudam a manter o jogo independente e totalmente livre de anúncios e patrocinadores externos.',
+            ],
+            'tournaments' => [
+                'title' => 'Torneios Oficiais',
+                'description' => 'Ajuda a financiar o funcionamento dos (e os prémios para os) torneios oficiais do Campeonato do Mundo osu!.',
+                'link_text' => 'Explorar torneios &raquo;',
+            ],
+            'bounty-program' => [
+                'title' => 'Programa de Reputação de Código-aberto',
+                'description' => 'Apoia os colaboradores da comunidade que deram o seu tempo e esforço para ajudar a fazer o osu! melhor.',
+                'link_text' => 'Descobre mais &raquo;',
             ],
         ],
-
         'perks' => [
             'title' => 'Quê? O que é que eu recebo?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'acesso rápido e fácil para procurar beatmaps sem sair do jogo.',
+            ],
+
+            'friend_ranking' => [
+                'title' => 'Classificação de Amigos',
+                'description' => "Vê como te comparas contra os teus amigos numa tabela de classificações dum beatmap, dentro do jogo como também no sítio web.",
+            ],
+
+            'country_ranking' => [
+                'title' => 'Classificação Nacional',
+                'description' => 'Conquista o teu país antes de conquistar o mundo.',
+            ],
+
+            'mod_filtering' => [
+                'title' => 'Filtrar por Mods',
+                'description' => 'Associar apenas com pessoas que joguem HDHR? Não há problema!',
             ],
 
             'auto_downloads' => [
@@ -77,12 +91,12 @@ return [
 
             'early_access' => [
                 'title' => 'Acesso Antecipado',
-                'description' => 'Acede a lançamentos antecipados, onde podes experimentar novas funcionalidades antes de elas saírem em público!',
+                'description' => 'Ganha acesso a lançamentos antecipados, onde podes experimentar novas funcionalidades antes de elas saírem ao público!<br/><br/>Isto inclui também acesso antecipado a novas funcionalidades no sítio web!',
             ],
 
             'customisation' => [
                 'title' => 'Personalização',
-                'description' => 'Personaliza o teu perfil ao adicionar uma página de utilizador totalmente personalizável.',
+                'description' => "Personaliza o teu perfil ao adicionar uma página de utilizador totalmente personalizável.",
             ],
 
             'beatmap_filters' => [
@@ -120,22 +134,30 @@ return [
                 'description' => 'A habilidade de ver as classificações nacional / amigo / mod-específico dum beatmap dentro do jogo.',
             ],
 
-            'feel_special' => [
-                'title' => 'Sente-te Especial',
-                'description' => 'O sentimento quente e felpudo de fazeres a tua parte para manter o osu! a correr suavemente!',
+            'more_favourites' => [
+                'title' => 'Mais Favoritos',
+                'description' => 'O número máximo de beatmaps que podes pôr nos favoritos é aumentado de :normally &rarr; :supporter',
+            ],
+            'more_friends' => [
+                'title' => 'Mais Amigos',
+                'description' => 'O número máximo de amigos que podes ter é aumentado de :normally &rarr; :supporter',
+            ],
+            'more_beatmaps' => [
+                'title' => 'Carregar Mais Beatmaps',
+                'description' => 'O número máximo de beatmaps não classificados que podes possuir é calculado dum valor base mais um bónus adicional para cada beatmap classificado que atualmente possuas (até a um certo limite).<br/><br/>Normalmente é 4 mais 1 por cada beatmap classificado (até 2). Com a osu!supporter, isto aumenta para 8 mais 1 por cada beatmap classificado (até 12).',
+            ],
+            'friend_filtering' => [
+                'title' => 'Tabela de Classificações de Amigos',
+                'description' => 'Compete com os teus amigos e vê como te classificas contra eles!*<br/><br/><small>* ainda não está disponível no novo site, embreve(tm)</small>',
             ],
 
-            'more_to_come' => [
-                'title' => 'Mais por vir',
-                'description' => '',
-            ],
         ],
-
-        'convinced' => [
-            'title' => 'Estou convencido! :D',
-            'support' => 'ajuda o osu!',
-            'gift' => 'ou dá apoio a outros jogadores',
-            'instructions' => 'clica no botão do coração para proceder à osu!store',
+        'supporter_status' => [
+            'contribution' => 'Obrigado pelo teu apoio até agora! Contribuíste para um total de :dollars sobre compras de :tags etiquetas!',
+            'gifted' => ":giftedTags das tuas compras de etiquetas foram oferecidas (por um total de :giftedDollars oferecidos), que generoso!",
+            'not_yet' => "Ainda não tens uma etiqueta de apoiante :(",
+            'valid_until' => 'A tua etiqueta atual de apoiante é válida até :date!',
+            'was_valid_until' => 'A tua etiqueta de apoiante é válida até :date.',
         ],
     ],
 ];

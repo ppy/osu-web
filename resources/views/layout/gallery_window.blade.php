@@ -43,11 +43,11 @@
 
                 <div class="pswp__counter"></div>
 
-                <button type="button" class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button type="button" class="pswp__button pswp__button--close" title="{{ trans('layout.gallery.close') }}"></button>
 
-                <button type="button" class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button type="button" class="pswp__button pswp__button--fs" title="{{ trans('layout.gallery.fullscreen') }}"></button>
 
-                <button type="button" class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <button type="button" class="pswp__button pswp__button--zoom" title="{{ trans('layout.gallery.zoom') }}"></button>
 
                 <div class="js-pswp-buttons"></div>
 
@@ -66,10 +66,10 @@
                 <div class="pswp__share-tooltip"></div>
             </div>
 
-            <button type="button" class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            <button type="button" class="pswp__button pswp__button--arrow--left" title="{{ trans('layout.gallery.previous') }}">
             </button>
 
-            <button type="button" class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            <button type="button" class="pswp__button pswp__button--arrow--right" title="{{ trans('layout.gallery.next') }}">
             </button>
 
             <div class="pswp__caption">

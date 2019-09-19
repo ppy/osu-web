@@ -42,6 +42,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Son Gönderi',
+
+        'index' => [
+            'title' => 'Forum Ana Sayfası',
+        ],
+
         'topics' => [
             'empty' => 'Başlık yok!',
         ],

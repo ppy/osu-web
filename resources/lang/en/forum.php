@@ -25,14 +25,16 @@ return [
     'title' => 'Forums',
 
     'covers' => [
+        'edit' => 'Edit cover',
+
         'create' => [
             '_' => 'Set cover image',
-            'button' => 'Upload image',
+            'button' => 'Upload cover',
             'info' => 'Cover size should be at :dimensions. You can also drop your image here to upload.',
         ],
 
         'destroy' => [
-            '_' => 'Remove cover image',
+            '_' => 'Remove cover',
             'confirm' => 'Are you sure you want to remove the cover image?',
         ],
     ],
@@ -59,14 +61,6 @@ return [
         'busy' => 'Marking as read...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'Editing a poll will remove the current results!',
-
-        'actions' => [
-            'edit' => 'Edit poll',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'Really delete post?',
         'confirm_restore' => 'Really restore post?',
@@ -77,6 +71,12 @@ return [
             'destroy' => 'Delete post',
             'restore' => 'Restore post',
             'edit' => 'Edit post',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => 'New reply',
+            ],
         ],
 
         'info' => [
@@ -105,6 +105,7 @@ return [
         'started_by_verbose' => 'started by :user',
 
         'create' => [
+            'close' => 'Close',
             'preview' => 'Preview',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -296,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => 'Poll Edit',
+                'edit_warning' => 'Editing a poll will remove the current results!',
                 'vote' => 'Vote',
+
+                'button' => [
+                    'change_vote' => 'Change vote',
+                    'edit' => 'Edit poll',
+                    'view_results' => 'Skip to results',
+                    'vote' => 'Vote',
+                ],
 
                 'detail' => [
                     'end_time' => 'Polling will end at :time',

@@ -26,8 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Awatar',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => 'Upewnij się, że twój awatar jest zgodny z :link.<br/>Oznacza to, że musi być <strong>stosowny dla wszystkich grup wiekowych</strong> i nie może ukazywać nagości, wulgarności ani sugestywnej zawartości.',
+            'rules_link' => 'zasadami społeczności',
         ],
 
         'email' => [
@@ -71,6 +71,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'autoryzowane aplikacje',
+        'own_clients' => '',
         'title' => 'OAuth',
     ],
 
@@ -108,11 +109,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Możesz zamknąć to okno',
+        'title' => 'Weryfikacja została zakończona',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Nieprawidłowy lub przedawniony link weryfikacyjny',
     ],
 ];

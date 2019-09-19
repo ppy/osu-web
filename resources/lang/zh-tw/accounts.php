@@ -26,8 +26,8 @@ return [
 
         'avatar' => [
             'title' => '編輯頭像',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => '請確保您的頭像堅持 :link.<br/>這意味著必須 <strong>適合所有年齡</strong>. i.e. 沒有裸露，褻瀆或暗示性的內容。',
+            'rules_link' => '社群規則',
         ],
 
         'email' => [
@@ -71,6 +71,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => '已授權客戶端',
+        'own_clients' => '',
         'title' => 'OAuth',
     ],
 
@@ -108,11 +109,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => '您可以關閉此選項/視窗',
+        'title' => '驗證已經完成',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => '無效或過期的驗證連結',
     ],
 ];

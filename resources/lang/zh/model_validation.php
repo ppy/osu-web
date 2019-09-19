@@ -29,7 +29,7 @@ return [
         'first_post' => '无法删除第一个讨论。',
 
         'attributes' => [
-            'message' => '',
+            'message' => '消息',
         ],
     ],
 
@@ -42,8 +42,8 @@ return [
         'locked' => '讨论被锁定。',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => '消息类型',
+            'timestamp' => '时间戳',
         ],
 
         'hype' => [
@@ -88,13 +88,13 @@ return [
             'only_quote' => '你的回复仅包含引用',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => '帖子主体',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => '主题标题',
             ],
         ],
 
@@ -108,13 +108,25 @@ return [
             'too_many_options' => '选项数量超出限制。',
 
             'attributes' => [
-                'title' => '',
+                'title' => '投票标题',
             ],
         ],
 
         'topic_vote' => [
             'required' => '至少选择一项以投票',
             'too_many' => '选项数量超出限制。',
+        ],
+    ],
+
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
         ],
     ],
 
@@ -143,9 +155,9 @@ return [
         'too_long' => '超出长度限制——最多为 :limit 个字符。',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => '用户名',
+            'user_email' => '电子邮件地址',
+            'password' => '密码',
         ],
 
         'change_username' => [
@@ -165,8 +177,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => '数量',
+                'cost' => '价格',
             ],
         ],
     ],
