@@ -62,7 +62,9 @@ class PasswordResetController extends Controller
         if ($error === null) {
             return ['message' => trans('password_reset.notice.sent')];
         } else {
-            return error_popup($error);
+            return response(['form_error' => [
+                'username' => [$error],
+            ]], 422);
         }
     }
 
