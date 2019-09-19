@@ -55,11 +55,13 @@ export default class UIStateStore extends Store {
     total: 0,
     userFollow: false,
 
-    initializeWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON>) {
+    initializeWithCommentBundleJSON(commentBundle: CommentBundleJSON) {
       runInAction(() => {
+        this.hasMoreComments.set(commentBundle.has_more_id, commentBundle.has_more);
         this.userFollow = commentBundle.user_follow;
         this.topLevelCount = commentBundle.top_level_count;
         this.total = commentBundle.total;
+
         if (commentBundle.comments != null) {
           this.topLevelCommentIds = commentBundle.comments.map((x) => x.id);
         }
@@ -68,6 +70,7 @@ export default class UIStateStore extends Store {
 
     updateWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON>) {
       runInAction(() => {
+        this.hasMoreComments.set(commentBundle.has_more_id, commentBundle.has_more);
         this.userFollow = commentBundle.user_follow;
         this.topLevelCount = commentBundle.top_level_count;
         this.total = commentBundle.total;

@@ -51,7 +51,7 @@ export default class RootDataStore {
   }
 
   @action
-  initializeWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON> | null | undefined) {
+  initializeWithCommentBundleJSON(commentBundle: CommentBundleJSON | null | undefined) {
     if (commentBundle == null) { return; }
     this.commentableMetaStore.initialize(commentBundle.commentable_meta);
     this.commentStore.initialize(commentBundle.comments, commentBundle.user_votes);

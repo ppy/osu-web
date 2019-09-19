@@ -31,27 +31,12 @@ export class CommentsManager extends React.PureComponent
   constructor: (props) ->
     super props
 
-    json = if props.commentBundle?
-             props.commentBundle
-           else if props.commentableType? && props.commentableId?
-             # FIXME no initialization from component?
-             json = osu.parseJson("json-comments-#{props.commentableType}-#{props.commentableId}") ? {}
-             core.dataStore.updateWithCommentBundleJSON(json)
-
-             json
+    if props.commentableType? && props.commentableId?
+      # FIXME no initialization from component?
+      json = osu.parseJson("json-comments-#{props.commentableType}-#{props.commentableId}") ? {}
+      core.dataStore.updateWithCommentBundleJSON(json)
 
     @id = "comments-#{osu.uuid()}"
-
-    # @state = osu.parseJson @jsonStorageId()
-
-    # if !@state?
-    #   uiState.comments.currentSort = json.sort
-    #   # also props of the containing component
-    #   @state =
-    #     loadingFollow: false
-    #     userFollow: json.user_follow
-    #     topLevelCount: json.top_level_count
-    #     total: json.total
 
 
   componentDidMount: =>
@@ -77,17 +62,11 @@ export class CommentsManager extends React.PureComponent
 
 
   appendBundle: (_event, {commentBundle, prepend}) =>
-    runInAction () ->
-      uiState.comments.hasMoreComments.set(commentBundle.has_more_id, commentBundle.has_more)
-      core.dataStore.updateWithCommentBundleJSON commentBundle
-
-    # @setState
-    #   total: commentBundle.total ? @state.total
+    core.dataStore.updateWithCommentBundleJSON commentBundle
 
 
   update: (_event, {commentable_meta, comments, users}) =>
-    runInAction () ->
-      core.dataStore.updateWithCommentBundleJSON { commentable_meta, comments, users }
+    core.dataStore.updateWithCommentBundleJSON { commentable_meta, comments, users }
 
 
   jsonStorageId: =>
