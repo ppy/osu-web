@@ -38,6 +38,9 @@ export class CommentsManager extends React.PureComponent
 
     @id = "comments-#{osu.uuid()}"
 
+    state = osu.parseJson @jsonStorageId()
+    uiState.importCommentsUIStateJSON(state) if state?
+
 
   componentDidMount: =>
     $.subscribe "comments:added.#{@id}", @appendBundle
@@ -74,7 +77,7 @@ export class CommentsManager extends React.PureComponent
 
 
   saveState: =>
-    osu.storeJson @jsonStorageId(), @state
+    osu.storeJson @jsonStorageId(), uiState.comments
 
 
   toggleShowDeleted: =>

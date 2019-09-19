@@ -54,6 +54,14 @@ export default class UIStateStore extends Store {
   handleDispatchAction(action: DispatcherAction) { /* do nothing */}
 
   @action
+  importCommentsUIStateJSON(json: any) {
+    const keys = Object.keys(json).filter((key) => key !== 'hasMoreComments');
+    for (const key of keys) {
+      (this.comments as any)[key] = json[key];
+    }
+  }
+
+  @action
   initializeWithCommentBundleJSON(commentBundle: CommentBundleJSON) {
     this.comments.hasMoreComments.set(commentBundle.has_more_id, commentBundle.has_more);
     this.comments.userFollow = commentBundle.user_follow;
