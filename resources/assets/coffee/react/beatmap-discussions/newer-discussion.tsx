@@ -18,7 +18,7 @@
 
 import * as React from 'react';
 import { Value } from 'slate';
-import { Editor } from 'slate-react';
+import {Editor, findDOMNode} from 'slate-react';
 
 // interface State {
 //   editorState: EditorState;
@@ -35,6 +35,8 @@ const existingValue: any = localStorage.getItem('content') || '{"document":{"nod
 const initialValue = Value.fromJSON(JSON.parse(existingValue));
 
 class TestComponent extends React.Component<any, any> {
+  // input = React.createRef<HTMLDivElement>();
+
   remove = (event) => {
     const { editor, node } = this.props;
 
@@ -42,28 +44,41 @@ class TestComponent extends React.Component<any, any> {
     editor.removeNodeByKey(node.key);
   }
 
+  // focus = () => {
+  //   if (!this.input.current) {
+  //     return;
+  //   }
+  //
+  //   this.input.current.focus();
+  // }
+
   render(): React.ReactNode {
+    const { isFocused } = this.props;
+
+    // const styles = isFocused ? { border: '1px solid blue' } : {};
+    const styles = {};
+
     return (
-      <div className="beatmap-discussion beatmap-discussion--preview" {...this.props.attributes}>
+      <div className="beatmap-discussion beatmap-discussion--preview" style={styles} {...this.props.attributes}>
           <div className="beatmap-discussion__discussion">
               <div className="beatmap-discussion-post beatmap-discussion-post--reply beatmap-discussion-post--dev">
                   <div className="beatmap-discussion-post__content">
                       <div className="beatmap-discussion-post__user-container">
                           <div className="beatmap-discussion-post__avatar">
-                              <a className="beatmap-discussion-post__user-link" href="/users/102">
+                              <div className="beatmap-discussion-post__user-link" href="/users/102">
                                   <div className="avatar avatar--full-rounded"
                                        style={{backgroundImage: 'url(https://a.ppy.sh/102?1500537068)'}}>
                                   </div>
-                              </a>
+                              </div>
                           </div>
                           <div className="beatmap-discussion-post__user">
                               <div className="beatmap-discussion-post__user-row">
-                                  <a className="beatmap-discussion-post__user-link" href="/users/102">
+                                  <div className="beatmap-discussion-post__user-link" href="/users/102">
                                       <span className="beatmap-discussion-post__user-text u-ellipsis-overflow">nekodex</span>
-                                  </a>
-                                  <a className="beatmap-discussion-post__user-modding-history-link" href="/users/102/modding" title="View modding history">
+                                  </div>
+                                  <div className="beatmap-discussion-post__user-modding-history-link" href="/users/102/modding" title="View modding history">
                                       <i className="fas fa-align-left"></i>
-                                  </a>
+                                  </div>
                               </div>
                               <div className="beatmap-discussion-post__user-badge">
                                   <div className="user-group-badge user-group-badge--dev"></div>
@@ -72,9 +87,7 @@ class TestComponent extends React.Component<any, any> {
                           <div className="beatmap-discussion-post__user-stripe"></div>
                       </div>
                       <div className="beatmap-discussion-post__message-container undefined">
-                          <div className="beatmap-discussion-post__message">
-                              <div className="beatmapset-discussion-message">{this.props.children}</div>
-                          </div>
+                          <div className="beatmapset-discussion-message" ref={this.input}>{this.props.children}</div>
                           <div className="beatmap-discussion-post__info-container">
                               <span className="beatmap-discussion-post__info">
                                   {/*<time className="timeago" dateTime="2019-09-05T08:04:17+00:00" title="2019-09-05T08:04:17+00:00">8 days ago</time>*/}
@@ -110,6 +123,8 @@ export default class NewerDiscussion extends React.Component<any, any> {
   // private TIMESTAMP_REGEX = /\b(\d{2,}):([0-5]\d)[:.](\d{3})\b/g;
 
   editor = React.createRef<Editor>();
+  menu = React.createRef<HTMLDivElement>();
+  menuBody = React.createRef<HTMLDivElement>();
 
   constructor(props: {}) {
     super(props);
@@ -130,6 +145,8 @@ export default class NewerDiscussion extends React.Component<any, any> {
     // ]);
 
     this.state = {
+      menuOffset: -1000,
+      menuShown: false,
       value: initialValue,
     };
 
@@ -183,31 +200,33 @@ export default class NewerDiscussion extends React.Component<any, any> {
   //   );
   // }
 
-  TimestampSpan = (props: any) => {
-    console.log('timestamp', props);
-    return (
-      <span className='beatmapset-discussion-message'>
-        <a href={`osu:\/\/edit\/${props.decoratedText}`} className='beatmapset-discussion-message__timestamp'>
-          {props.children}
-        </a>
-      </span>
-    );
-  }
+  // TimestampSpan = (props: any) => {
+  //   console.log('timestamp', props);
+  //   return (
+  //     <span className='beatmapset-discussion-message'>
+  //       <a href={`osu:\/\/edit\/${props.decoratedText}`} className='beatmapset-discussion-message__timestamp'>
+  //         {props.children}
+  //       </a>
+  //     </span>
+  //   );
+  // }
+  //
+  // myBlockRenderer = (contentBlock: any) => {
+  //   const type = contentBlock.getType();
+  //   if (type === 'atomic') {
+  //     return {
+  //       component: TestComponent,
+  //       editable: false,
+  //       props: {
+  //         foo: 'bar',
+  //       },
+  //     };
+  //   }
+  // }
 
-  myBlockRenderer = (contentBlock: any) => {
-    const type = contentBlock.getType();
-    if (type === 'atomic') {
-      return {
-        component: TestComponent,
-        editable: false,
-        props: {
-          foo: 'bar',
-        },
-      };
-    }
-  }
+  buttan = (event) => {
+    event.preventDefault();
 
-  buttan = () => {
     if (!this.editor.current) {
       return;
     }
@@ -255,20 +274,45 @@ export default class NewerDiscussion extends React.Component<any, any> {
     }
   }
 
-  log = () => {
-    console.log(
-      'LOGGGGGGGG',
-      this.state.value.toJSON(),
-    );
-    // console.log(convertToRaw(this.state.editorState.getCurrentContent()));
-  }
+  log = () => console.log(this.state.value.toJSON());
 
   // @ts-ignore
   onChange = ({ value }) => {
+    // console.log('onChange');
     const content = JSON.stringify(value.toJSON());
     localStorage.setItem('content', content);
 
-    this.setState({ value });
+    this.setState({value}, () => {
+      if (!this.editor.current.value.selection.isFocused && !this.state.menuShown) {
+        this.setState({menuOffset: -1000});
+        return;
+      }
+
+      let menuOffset: number = 0;
+      if (this.editor.current && this.editor.current.value.anchorBlock) {
+        const node = findDOMNode(this.editor.current.value.anchorBlock.key);
+        menuOffset = node.offsetTop + (node.offsetHeight / 2);
+        this.setState({menuOffset});
+      }
+    });
+  }
+
+  showMenu = () => {
+    if (!this.menuBody.current) {
+      return;
+    }
+
+    // this.menuBody.current.style.display = 'block';
+    this.setState({menuShown: true});
+  }
+
+  hideMenu = () => {
+    if (!this.menuBody.current) {
+      return;
+    }
+
+    // this.menuBody.current.style.display = 'none';
+    this.setState({menuShown: false});
   }
 
   render(): React.ReactNode {
@@ -286,15 +330,43 @@ export default class NewerDiscussion extends React.Component<any, any> {
                   <Editor
                     value={this.state.value}
                     onChange={this.onChange}
-                    // editorState={this.state.editorState}
-                    // onChange={this.onChange}
-                    // placeholder='WANG ALL THE CHUNGS'
-                    // blockRendererFn={this.myBlockRenderer}
                     renderBlock={this.renderBlock}
                     ref={this.editor}
                   />
-                  <hr width='100%' />
-
+                  <div
+                    className={`${bn}__menu`}
+                    ref={this.menu}
+                    style={{
+                      color: 'white',
+                      // cursor: 'pointer',
+                      fontSize: '16px',
+                      left: '-13px',
+                      position: 'absolute',
+                      top: `${this.state.menuOffset}px`,
+                    }}
+                    onMouseOver={this.showMenu}
+                    onMouseOut={this.hideMenu}
+                  >
+                    <div className="forum-post-edit__button"><i className="fa fas fa-plus-circle" /></div>
+                    <div
+                      className={`${bn}__menu-content`}
+                      ref={this.menuBody}
+                      style={{
+                        display: this.state.menuShown ? 'block' : 'none',
+                        position: 'relative',
+                      }}
+                    >
+                      <button type="button" className="btn-circle btn-circle--bbcode" onClick={this.buttan}>
+                        <span className="beatmap-discussion-message-type beatmap-discussion-message-type--suggestion"><i className="far fa-circle"></i></span>
+                      </button>
+                      <button type="button" className="btn-circle btn-circle--bbcode" onClick={this.buttan}>
+                        <span className="beatmap-discussion-message-type beatmap-discussion-message-type--problem"><i className="fas fa-exclamation-circle"></i></span>
+                      </button>
+                      <button type="button" className="btn-circle btn-circle--bbcode" onClick={this.buttan}>
+                        <span className="beatmap-discussion-message-type beatmap-discussion-message-type--praise"><i className="fas fa-heart"></i></span>
+                      </button>
+                    </div>
+                  </div>
                   <div className="forum-post-edit__buttons forum-post-edit__buttons--actions">
                     <div className="forum-post-edit__button">
                         <button type="button" className="btn-osu-big btn-osu-big--forum-secondary" onClick={this.buttan}>
@@ -302,20 +374,12 @@ export default class NewerDiscussion extends React.Component<any, any> {
                         </button>
                     </div>
 
-                    <div className="forum-post-edit__button forum-post-edit__button--preview">
-                        <button type="button" className="btn-osu-big btn-osu-big--forum-secondary" onClick={this.log}>
+                      <div className="forum-post-edit__button">
+                          <button className="btn-osu-big btn-osu-big--forum-primary" type="submit" onClick={this.log}>
                             log
                         </button>
                     </div>
-
-                      <div className="forum-post-edit__button">
-                          <button className="btn-osu-big btn-osu-big--forum-primary" type="submit" data-disable-with="Saving...">
-                              Post
-                          </button>
-                      </div>
                   </div>
-                  {/*<button type='button' onClick={this.buttan}>buttan</button>*/}
-                  {/*<button type='button' onClick={this.log}>log</button>*/}
                 </div>
               </div>
             </div>
