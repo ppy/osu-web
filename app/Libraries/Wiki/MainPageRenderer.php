@@ -20,9 +20,6 @@
 
 namespace App\Libraries\Wiki;
 
-use App\Libraries\Markdown\Block\Element\WikiSection;
-use App\Libraries\Markdown\Block\Parser\WikiSectionParser;
-use App\Libraries\Markdown\Block\Renderer\WikiSectionRenderer;
 use App\Libraries\Markdown\OsuMarkdown;
 use League\CommonMark\Block\Element as Block;
 use League\CommonMark\DocParser;
@@ -43,9 +40,6 @@ class MainPageRenderer extends Renderer
         parent::__construct($page, $body);
 
         $env = Environment::createCommonMarkEnvironment(OsuMarkdown::DEFAULT_CONFIG);
-
-        $env->addBlockParser(new WikiSectionParser);
-        $env->addBlockRenderer(WikiSection::class, new WikiSectionRenderer);
 
         $this->parser = new DocParser($env);
         $this->renderer = new HtmlRenderer($env);

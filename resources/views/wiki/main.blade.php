@@ -33,14 +33,7 @@
     <div class="osu-page osu-page--wiki wiki-main-page">
         @include('wiki._notice')
         <div class="js-react--wiki-search"></div>
-        <div class="wiki-main-page__blurb">
-            @if(array_key_exists('blurb', $page->page()['header']))
-                {!! $page->page()['header']['blurb'] !!}
-            @endif
-        </div>
-        <div class="wiki-main-page__panels">
-            {!! $page->page()["output"] !!}
-        </div>
+        {!! $page->page()["output"] !!}
     </div>
 @endsection
 
