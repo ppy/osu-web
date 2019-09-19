@@ -29,8 +29,6 @@ use Github\Exception\RuntimeException as GithubException;
 class OsuWiki
 {
     const CACHE_DURATION = 60;
-    const REPOSITORY = 'osu-wiki';
-    const USER = 'ppy';
 
     const IMAGE_EXTENSIONS = ['gif', 'jpeg', 'jpg', 'png'];
 
@@ -47,7 +45,7 @@ class OsuWiki
         try {
             return GitHub::repo()
                 ->contents()
-                ->show(static::USER, static::REPOSITORY, $path);
+                ->show(static::user(), static::repository(), $path, config('osu.wiki.branch'));
         } catch (GithubException $e) {
             $message = $e->getMessage();
 
@@ -115,7 +113,7 @@ class OsuWiki
     {
         $diff = GitHub::repo()
             ->commits()
-            ->compare(static::USER, static::REPOSITORY, $old, $new);
+            ->compare(static::user(), static::repository(), $old, $new);
 
         return $diff['files'];
     }
@@ -125,6 +123,16 @@ class OsuWiki
         $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
 
         return in_array($extension, static::IMAGE_EXTENSIONS, true);
+    }
+
+    public static function repository()
+    {
+        return config('osu.wiki.repository');
+    }
+
+    public static function user()
+    {
+        return config('osu.wiki.user');
     }
 
     public function __construct($path)

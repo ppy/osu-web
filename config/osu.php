@@ -216,6 +216,11 @@ return [
     'user_report_notification' => [
         'endpoint' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT')),
     ],
+    'wiki' => [
+        'branch' => env('WIKI_BRANCH', 'master'),
+        'repository' => env('WIKI_REPOSITORY', 'osu-wiki'),
+        'user' => env('WIKI_USER', 'ppy'),
+    ],
     'changelog' => [
         'build_history_interval' => 60 * intval(env('CHANGELOG_BUILD_HISTORY_INTERVAL', 30)), // in minutes, converted to seconds
         'chart_days' => intval(env('CHANGELOG_CHART_DAYS', 7)),

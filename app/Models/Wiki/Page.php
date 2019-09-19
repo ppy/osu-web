@@ -175,7 +175,7 @@ class Page implements WikiObject
 
     public function editUrl()
     {
-        return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/wiki/'.$this->pagePath();
+        return 'https://github.com/'.OsuWiki::user().'/'.OsuWiki::repository().'/tree/master/wiki/'.$this->pagePath();
     }
 
     public function esDeleteDocument()
