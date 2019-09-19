@@ -64,8 +64,11 @@
 
         @if ($withPreview)
             <div class="forum-post-edit__preview">
-                <div class="forum-post-content forum-post-content--reply-preview js-forum-post-preview--preview">
-                </div>
+                <div class="
+                    forum-post-content
+                    js-forum-post-preview--preview
+                    {{ $type === 'reply' ? 'forum-post-content--reply-preview' : '' }}
+                "></div>
             </div>
         @endif
 
