@@ -56,15 +56,13 @@ export default class UIStateStore extends Store {
   private orderedCommentsByParentId: Dictionary<Comment[]> = {};
 
   getOrderedCommentsByParentId(parentId: number) {
-    if (this.orderedCommentsByParentId[parentId] == null) {
-      const comments = this.root.commentStore.getRepliesByParentId(parentId);
-      this.orderedCommentsByParentId[parentId] = orderBy(comments, 'votes_count', 'desc');
-    }
-
+    this.populateOrderedCommentsForParentId(parentId);
     return this.orderedCommentsByParentId[parentId];
   }
 
   handleDispatchAction(action: DispatcherAction) { /* do nothing */}
+
+  // TODO: all the methods below should be moved out
 
   @action
   importCommentsUIStateJSON(json: any) {
@@ -85,25 +83,47 @@ export default class UIStateStore extends Store {
   }
 
   @action
-  updateWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON>) {
-    if (commentBundle.has_more_id !== undefined && commentBundle.has_more !== undefined) {
-      this.comments.hasMoreComments[commentBundle.has_more_id] = commentBundle.has_more;
+  updateFromCommentsAdded(commentBundle: CommentBundleJSON) {
+    this.comments.hasMoreComments[commentBundle.has_more_id] = commentBundle.has_more;
+    this.comments.topLevelCount = commentBundle.top_level_count;
+    this.comments.total = commentBundle.total;
+
+    const ids = commentBundle.comments.map((x) => x.id);
+    for (const id of ids) {
+      this.comments.topLevelCommentIds.push(id);
     }
+  }
 
-    if (commentBundle.sort !== undefined) this.comments.currentSort = commentBundle.sort as CommentSort;
-    if (commentBundle.user_follow !== undefined) this.comments.userFollow = commentBundle.user_follow;
-    if (commentBundle.top_level_count !== undefined) this.comments.topLevelCount = commentBundle.top_level_count;
-    if (commentBundle.total !== undefined) this.comments.total = commentBundle.total;
+  @action
+  updateFromCommentsNew(commentBundle: CommentBundleJSON) {
+    this.comments.topLevelCount = commentBundle.top_level_count;
+    this.comments.total = commentBundle.total;
 
-    if (commentBundle.comments !== undefined) {
-      const ids = commentBundle.comments.map((x) => x.id);
+    const comment = commentBundle.comments[0];
+    const parentId = comment.parent_id;
+    if (parentId == null) {
+      this.comments.topLevelCommentIds.unshift(comment.id);
+    } else {
+      this.populateOrderedCommentsForParentId(parentId);
+      this.orderedCommentsByParentId[parentId].unshift(comment);
+    }
+  }
 
-      // don't add existing ids; vote updates, etc will have existing ids.
-      for (const id of ids) {
-        if (!this.comments.topLevelCommentIds.includes(id)) {
-          this.comments.topLevelCommentIds.push(id);
-        }
-      }
+  private orderComments(comments: Comment[]) {
+    switch (this.comments.currentSort) {
+      case 'old':
+        return orderBy(comments, 'created_at', 'asc');
+      case 'top':
+        return orderBy(comments, 'votes_count', 'desc');
+      default:
+        return orderBy(comments, 'created_at', 'desc');
+    }
+  }
+
+  private populateOrderedCommentsForParentId(parentId: number) {
+    if (this.orderedCommentsByParentId[parentId] == null) {
+      const comments = this.root.commentStore.getRepliesByParentId(parentId);
+      this.orderedCommentsByParentId[parentId] = this.orderComments(comments);
     }
   }
 }

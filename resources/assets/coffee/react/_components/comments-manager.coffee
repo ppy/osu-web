@@ -45,11 +45,12 @@ export class CommentsManager extends React.PureComponent
 
 
   componentDidMount: =>
-    $.subscribe "comments:added.#{@id}", @appendBundle
+    $.subscribe "comments:added.#{@id}", @handleCommentsAdded
+    $.subscribe "comments:new.#{@id}", @handleCommentsNew
     $.subscribe "comments:sort.#{@id}", @updateSort
     $.subscribe "comments:toggle-show-deleted.#{@id}", @toggleShowDeleted
     $.subscribe "comments:toggle-follow.#{@id}", @toggleFollow
-    $.subscribe "comment:updated.#{@id}", @update
+    $.subscribe "comment:updated.#{@id}", @handleCommentUpdated
     $(document).on "turbolinks:before-cache.#{@id}", @saveState
 
 
@@ -66,14 +67,19 @@ export class CommentsManager extends React.PureComponent
       el @props.component, componentProps
 
 
-  appendBundle: (_event, commentBundle) =>
+  handleCommentsAdded: (_event, commentBundle) =>
     runInAction () ->
       core.dataStore.updateWithCommentBundleJSON commentBundle
-      uiState.updateWithCommentBundleJSON commentBundle
+      uiState.updateFromCommentsAdded commentBundle
 
 
+  handleCommentsNew: (_event, commentBundle) =>
+    runInAction () ->
+      core.dataStore.updateWithCommentBundleJSON commentBundle
+      uiState.updateFromCommentsNew commentBundle
 
-  update: (_event, commentBundle) =>
+
+  handleCommentUpdated: (_event, commentBundle) =>
     runInAction () ->
       core.dataStore.updateWithCommentBundleJSON commentBundle
 
