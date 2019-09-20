@@ -22,9 +22,11 @@ export type CommentSort = 'new' | 'old' | 'top';
 
 export class Comment {
   id: number;
+  parent_id: number | null;
 
   constructor(json: CommentJSON) {
     this.id = json.id;
+    this.parent_id = json.parent_id;
   }
 
   static fromJSON(json: CommentJSON): Comment {

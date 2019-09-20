@@ -19,7 +19,7 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { CommentJSON } from 'interfaces/comment-json';
-import { Dictionary, groupBy } from 'lodash';
+import { Dictionary } from 'lodash';
 import { action, observable } from 'mobx';
 import { Comment } from 'models/comment';
 import Store from 'stores/store';
@@ -27,7 +27,7 @@ import Store from 'stores/store';
 export default class CommentStore extends Store {
   @observable comments = observable.map<number, Comment>();
   @observable userVotes = new Set<number>();
-  private groupedByParentId: Dictionary<Comment[]> | null = null;
+  private groupedByParentId: Dictionary<Comment[]> = {};
 
   @action
   addUserVote(comment: Comment) {
@@ -47,17 +47,9 @@ export default class CommentStore extends Store {
     this.userVotes.clear();
   }
 
-  getGroupedByParentId() {
-    if (this.groupedByParentId == null) {
-      this.groupedByParentId = groupBy(Object.values(this.comments.toPOJO()), 'parent_id');
-    }
-
-    return this.groupedByParentId;
-  }
-
   getRepliesByParentId(parentId: number | null) {
     // indexers get converted to string and null becomes "null".
-    return this.getGroupedByParentId()[String(parentId)];
+    return this.groupedByParentId[String(parentId)];
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
@@ -81,14 +73,25 @@ export default class CommentStore extends Store {
   @action
   updateWithJSON(data: CommentJSON[] | undefined | null) {
     if (data == null) { return; }
-    this.invalidate();
+
     for (const json of data) {
       const comment = Comment.fromJSON(json);
+      const exists = this.comments.has(comment.id);
       this.comments.set(comment.id, comment);
+
+      // assume already grouped if key exists
+      if (!exists) {
+        const key = String(comment.parent_id);
+        if (this.groupedByParentId[key] != null) {
+          this.groupedByParentId[key].push(comment);
+        } else {
+          this.groupedByParentId[key] = [comment];
+        }
+      }
     }
   }
 
   private invalidate() {
-    this.groupedByParentId = null;
+    this.groupedByParentId = {};
   }
 }
