@@ -95,6 +95,6 @@ export class CommentShowMore extends React.PureComponent
       data: params
       dataType: 'json'
     .done (data) =>
-      $.publish 'comments:added', commentBundle: data
+      $.publish 'comments:added', data
     .always =>
       @setState loading: false

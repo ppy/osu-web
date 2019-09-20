@@ -28,7 +28,7 @@ store = core.dataStore.commentStore
 export class Main extends React.PureComponent
   render: =>
     el Observer, null, () =>
-      mainComment = store.getCommentsByParentId(@props.parent_id)[0]
+      mainComment = store.getRepliesByParentId(@props.parent_id)[0]
 
       div null,
         div className: 'header-v3 header-v3--comments',

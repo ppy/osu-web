@@ -66,7 +66,7 @@ export class CommentsManager extends React.PureComponent
       el @props.component, componentProps
 
 
-  appendBundle: (_event, {commentBundle, prepend}) =>
+  appendBundle: (_event, commentBundle) =>
     runInAction () ->
       core.dataStore.updateWithCommentBundleJSON commentBundle
       uiState.updateWithCommentBundleJSON commentBundle

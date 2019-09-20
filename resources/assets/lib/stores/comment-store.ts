@@ -19,7 +19,7 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { CommentJSON } from 'interfaces/comment-json';
-import { Dictionary, groupBy } from 'lodash';
+import { Dictionary, groupBy, orderBy } from 'lodash';
 import { action, observable } from 'mobx';
 import { Comment } from 'models/comment';
 import Store from 'stores/store';
@@ -47,17 +47,17 @@ export default class CommentStore extends Store {
     this.userVotes.clear();
   }
 
-  getCommentsByParentId(parentId: number | null) {
-    // indexers get converted to string and null becomes "null".
-    return this.getGroupedByParentId()[String(parentId)];
-  }
-
   getGroupedByParentId() {
     if (this.groupedByParentId == null) {
       this.groupedByParentId = groupBy(Object.values(this.comments.toPOJO()), 'parent_id');
     }
 
     return this.groupedByParentId;
+  }
+
+  getRepliesByParentId(parentId: number | null) {
+    // indexers get converted to string and null becomes "null".
+    return orderBy(this.getGroupedByParentId()[String(parentId)], 'created_at', 'desc');
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {

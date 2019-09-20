@@ -65,7 +65,7 @@ export class Comment extends React.PureComponent
     else if @isDeleted()
       expandReplies = false
     else
-      children = store.getCommentsByParentId(@props.comment.id)
+      children = store.getRepliesByParentId(@props.comment.id)
       # Collapse if either no children is loaded or current level doesn't add indentation.
       expandReplies = children?.length > 0 && @props.depth < MAX_DEPTH
 
@@ -82,7 +82,7 @@ export class Comment extends React.PureComponent
 
   render: =>
     el Observer, null, () =>
-      @children = store.getCommentsByParentId(@props.comment.id) ? []
+      @children = store.getRepliesByParentId(@props.comment.id) ? []
       parent = store.comments.get(@props.comment.parent_id)
       user = @userFor(@props.comment)
 

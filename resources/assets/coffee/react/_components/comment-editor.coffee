@@ -163,7 +163,7 @@ export class CommentEditor extends React.PureComponent
 
         onDone = (data) =>
           @setState message: ''
-          $.publish 'comments:added', commentBundle: data, prepend: true
+          $.publish 'comments:added', data
       when 'edit'
         url = laroute.route 'comments.update', comment: @props.id
         method = 'PUT'
