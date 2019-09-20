@@ -101,14 +101,16 @@ class CommentBundle
             $includedComments = $includedComments->concat($parents);
         }
 
+        $allComments = $comments->concat($includedComments);
+
         $result = [
             'comments' => json_collection($comments, 'Comment'),
             'has_more' => $hasMore,
             'has_more_id' => $this->params->parentId,
             'included_comments' => json_collection($includedComments, 'Comment'),
-            'user_votes' => $this->getUserVotes($comments),
+            'user_votes' => $this->getUserVotes($allComments),
             'user_follow' => $this->getUserFollow(),
-            'users' => json_collection($this->getUsers($comments->concat($includedComments)), 'UserCompact'),
+            'users' => json_collection($this->getUsers($comments->concat($allComments)), 'UserCompact'),
             'sort' => $this->params->sort,
         ];
 
