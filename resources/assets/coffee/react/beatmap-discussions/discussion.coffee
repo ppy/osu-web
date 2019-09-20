@@ -36,10 +36,6 @@ export class Discussion extends React.PureComponent
       highlighted: false
 
 
-  componentDidUpdate: =>
-    @_resolvedSystemPostId = null
-
-
   componentWillMount: =>
     $.subscribe "beatmapDiscussionEntry:collapse.#{@eventId}", @setCollapse
     $.subscribe "beatmapDiscussionEntry:highlight.#{@eventId}", @setHighlight
@@ -64,6 +60,7 @@ export class Discussion extends React.PureComponent
     lineClasses += " #{bn}__line--resolved" if @props.discussion.resolved
 
     lastResolvedState = false
+    @_resolvedSystemPostId = null
 
     div
       className: topClasses
