@@ -33,7 +33,7 @@ export default class TurbolinksReload {
     $(`.${className}`).remove();
   }
 
-  load = (src: string, onload: () => void | undefined | null) => {
+  load = (src: string, onload?: () => void) => {
     if (this.loaded[src]) {
       return;
     }
