@@ -46,7 +46,7 @@ export class CommentShowMore extends React.PureComponent
 
   render: =>
     return null if @props.comments.length >= @props.total
-    return null unless (uiState.comments.hasMoreComments.get(@props.parent?.id ? null) ? true)
+    return null unless (uiState.comments.hasMoreComments[@props.parent?.id ? null] ? true)
 
     blockClass = osu.classWithModifiers bn, @props.modifiers
 

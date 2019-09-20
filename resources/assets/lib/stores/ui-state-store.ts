@@ -19,13 +19,14 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import ChatStateStore from 'chat/chat-state-store';
 import { CommentBundleJSON } from 'interfaces/comment-json';
+import { Dictionary } from 'lodash';
 import { action, observable } from 'mobx';
 import { CommentSort } from 'models/comment';
 import Store from 'stores/store';
 
 interface CommentsUIState {
   currentSort: CommentSort;
-  hasMoreComments: Map<number, boolean>;
+  hasMoreComments: Dictionary<boolean>;
   isShowDeleted: boolean;
   loadingFollow: boolean | null;
   loadingSort: CommentSort | null;
@@ -35,35 +36,34 @@ interface CommentsUIState {
   userFollow: boolean;
 }
 
+const defaultCommentsUIState: CommentsUIState = {
+  currentSort: 'new',
+  hasMoreComments: {},
+  isShowDeleted: false,
+  loadingFollow: null,
+  loadingSort: null,
+  topLevelCommentIds: [],
+  topLevelCount: 0,
+  total: 0,
+  userFollow: false,
+};
+
 export default class UIStateStore extends Store {
   chat = new ChatStateStore(this.root, this.dispatcher);
 
   // only for the currently visible page
-  @observable comments: CommentsUIState = {
-    currentSort: 'new',
-    hasMoreComments: new Map<number, boolean>(),
-    isShowDeleted: false,
-    loadingFollow: null,
-    loadingSort: null,
-    topLevelCommentIds: [],
-    topLevelCount: 0,
-    total: 0,
-    userFollow: false,
-  };
+  @observable comments = Object.assign({}, defaultCommentsUIState);
 
   handleDispatchAction(action: DispatcherAction) { /* do nothing */}
 
   @action
   importCommentsUIStateJSON(json: any) {
-    const keys = Object.keys(json).filter((key) => key !== 'hasMoreComments');
-    for (const key of keys) {
-      (this.comments as any)[key] = json[key];
-    }
+    this.comments = Object.assign({}, defaultCommentsUIState, json);
   }
 
   @action
   initializeWithCommentBundleJSON(commentBundle: CommentBundleJSON) {
-    this.comments.hasMoreComments.set(commentBundle.has_more_id, commentBundle.has_more);
+    this.comments.hasMoreComments[commentBundle.has_more_id] = commentBundle.has_more;
     this.comments.currentSort = commentBundle.sort as CommentSort;
     this.comments.userFollow = commentBundle.user_follow;
     this.comments.topLevelCount = commentBundle.top_level_count;
@@ -77,7 +77,7 @@ export default class UIStateStore extends Store {
   @action
   updateWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON>) {
     if (commentBundle.has_more_id !== undefined && commentBundle.has_more !== undefined) {
-      this.comments.hasMoreComments.set(commentBundle.has_more_id, commentBundle.has_more);
+      this.comments.hasMoreComments[commentBundle.has_more_id] = commentBundle.has_more;
     }
 
     if (commentBundle.sort !== undefined) this.comments.currentSort = commentBundle.sort as CommentSort;
