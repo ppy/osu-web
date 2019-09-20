@@ -19,7 +19,7 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
 import { CommentJSON } from 'interfaces/comment-json';
-import { Dictionary, groupBy, orderBy } from 'lodash';
+import { Dictionary, groupBy } from 'lodash';
 import { action, observable } from 'mobx';
 import { Comment } from 'models/comment';
 import Store from 'stores/store';
@@ -57,7 +57,7 @@ export default class CommentStore extends Store {
 
   getRepliesByParentId(parentId: number | null) {
     // indexers get converted to string and null becomes "null".
-    return orderBy(this.getGroupedByParentId()[String(parentId)], 'created_at', 'desc');
+    return this.getGroupedByParentId()[String(parentId)];
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {

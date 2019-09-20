@@ -19,9 +19,9 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import ChatStateStore from 'chat/chat-state-store';
 import { CommentBundleJSON } from 'interfaces/comment-json';
-import { Dictionary } from 'lodash';
+import { Dictionary, orderBy } from 'lodash';
 import { action, observable } from 'mobx';
-import { CommentSort } from 'models/comment';
+import { Comment, CommentSort } from 'models/comment';
 import Store from 'stores/store';
 
 interface CommentsUIState {
@@ -53,6 +53,16 @@ export default class UIStateStore extends Store {
 
   // only for the currently visible page
   @observable comments = Object.assign({}, defaultCommentsUIState);
+  private orderedCommentsByParentId: Dictionary<Comment[]> = {};
+
+  getOrderedCommentsByParentId(parentId: number) {
+    if (this.orderedCommentsByParentId[parentId] == null) {
+      const comments = this.root.commentStore.getRepliesByParentId(parentId);
+      this.orderedCommentsByParentId[parentId] = orderBy(comments, 'votes_count', 'desc');
+    }
+
+    return this.orderedCommentsByParentId[parentId];
+  }
 
   handleDispatchAction(action: DispatcherAction) { /* do nothing */}
 
