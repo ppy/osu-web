@@ -43,7 +43,7 @@ export class Comments extends React.PureComponent
           div(className: 'fragment-target', id: 'comments')
         h2 className: 'comments__title',
           osu.trans('comments.title')
-          span className: 'comments__count', osu.formatNumber(@props.total)
+          span className: 'comments__count', osu.formatNumber(uiState.comments.total)
         div className: 'comments__new',
           el CommentEditor,
             commentableType: @props.commentableType
