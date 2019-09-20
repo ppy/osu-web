@@ -26,7 +26,11 @@ export default class TurbolinksReload {
   private loaded: ScriptList = {};
 
   constructor() {
-    document.addEventListener('turbolinks:before-cache', this.unload);
+    document.addEventListener('turbolinks:before-cache', this.cleanup);
+  }
+
+  cleanup = () => {
+    $(`.${className}`).remove();
   }
 
   load = (src: string, onload: () => void | undefined | null) => {
@@ -52,9 +56,5 @@ export default class TurbolinksReload {
     el.src = src;
     document.body.appendChild(el);
     this.loaded[src] = true;
-  }
-
-  unload = () => {
-    $(`.${className}`).remove();
   }
 }
