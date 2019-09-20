@@ -42,7 +42,6 @@ export class Main extends React.PureComponent
         div className: 'osu-page osu-page--comment',
           el Comment,
             comment: comment
-            parent: store.comments.get(comment.parent_id)
             showCommentableMeta: true
             depth: 0
             linkParent: true
