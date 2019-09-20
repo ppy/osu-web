@@ -51,7 +51,7 @@ export default class RootDataStore {
   }
 
   @action
-  updateWithCommentBundleJSON(commentBundle: Partial<CommentBundleJSON>) {
+  updateWithCommentBundleJSON(commentBundle: CommentBundleJSON) {
     this.commentableMetaStore.updateWithJSON(commentBundle.commentable_meta);
     this.commentStore.updateWithJSON(commentBundle.comments);
     this.commentStore.updateWithJSON(commentBundle.included_comments);

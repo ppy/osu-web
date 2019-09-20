@@ -73,9 +73,9 @@ export class CommentsManager extends React.PureComponent
 
 
 
-  update: (_event, {commentable_meta, comments, users}) =>
+  update: (_event, commentBundle) =>
     runInAction () ->
-      core.dataStore.updateWithCommentBundleJSON { commentable_meta, comments, users }
+      core.dataStore.updateWithCommentBundleJSON commentBundle
 
 
   jsonStorageId: =>
