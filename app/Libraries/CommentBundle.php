@@ -30,21 +30,19 @@ class CommentBundle
     public $includeCommentableMeta;
     public $params;
 
-    private $additionalComments;
     private $commentable;
-    private $comments;
+    private $comment;
     private $user;
 
     public static function forComment(Comment $comment, bool $includeNested = false)
     {
-        $options = ['includeCommentableMeta' => true];
+        $options = [
+            'comment' => $comment,
+            'includeCommentableMeta' => true,
+        ];
 
-        // having comments and additionalComments seems confusing
         if ($includeNested) {
-            $options['additionalComments'] = collect([$comment]);
             $options['params'] = ['parent_id' => $comment->getKey()];
-        } else {
-            $options['comments'] = collect([$comment]);
         }
 
         return new static($comment->commentable, $options);
@@ -63,8 +61,7 @@ class CommentBundle
 
         $this->params = new CommentBundleParams($options['params'] ?? [], $this->user);
 
-        $this->comments = $options['comments'] ?? null;
-        $this->additionalComments = $options['additionalComments'] ?? [];
+        $this->comment = $options['comment'] ?? null;
         $this->depth = $options['depth'] ?? 2;
         $this->includeCommentableMeta = $options['includeCommentableMeta'] ?? false;
     }
@@ -74,10 +71,11 @@ class CommentBundle
         $hasMore = false;
         $includedComments = collect();
 
-        if (isset($this->comments)) {
-            $comments = $this->comments;
-            if ($comments[0]->parent !== null) {
-                $includedComments->push($comments[0]->parent);
+        // Either use the provided comment as a base, or look for matching comments.
+        if (isset($this->comment)) {
+            $comments = collect([$this->comment]);
+            if ($this->comment->parent !== null) {
+                $includedComments->push($this->comment->parent);
             }
         } else {
             $comments = $this->getComments($this->commentsQuery(), false);
@@ -85,7 +83,10 @@ class CommentBundle
                 $hasMore = true;
                 $comments->pop();
             }
+        }
 
+        // Get nested comments
+        if ($this->params->parentId !== null) {
             $nestedParentIds = $comments->pluck('id');
 
             for ($i = 0; $i < $this->depth; $i++) {
@@ -99,8 +100,6 @@ class CommentBundle
             $parents = Comment::whereIn('id', $comments->pluck('parent_id'))->get();
             $includedComments = $includedComments->concat($parents);
         }
-
-        $comments = $comments->concat($this->additionalComments);
 
         $result = [
             'comments' => json_collection($comments, 'Comment'),

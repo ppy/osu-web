@@ -24,11 +24,12 @@ import { a, button, div, h1, li, ol, p, span } from 'react-dom-factories'
 el = React.createElement
 
 store = core.dataStore.commentStore
+uiState = core.dataStore.uiState
 
 export class Main extends React.PureComponent
   render: =>
     el Observer, null, () =>
-      mainComment = store.getRepliesByParentId(@props.parent_id)[0]
+      comment = store.comments.get(uiState.comments.topLevelCommentIds[0])
 
       div null,
         div className: 'header-v3 header-v3--comments',
@@ -40,8 +41,8 @@ export class Main extends React.PureComponent
 
         div className: 'osu-page osu-page--comment',
           el Comment,
-            comment: mainComment
-            parent: store.comments.get(@props.parent_id)
+            comment: comment
+            parent: store.comments.get(comment.parent_id)
             showCommentableMeta: true
             depth: 0
             linkParent: true
