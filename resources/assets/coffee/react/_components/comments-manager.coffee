@@ -39,7 +39,7 @@ export class CommentsManager extends React.PureComponent
         uiState.initializeWithCommentBundleJSON(json)
 
       state = osu.parseJson @jsonStorageId()
-      uiState.importCommentsUIStateJSON(state) if state?
+      uiState.importCommentsUIState(state) if state?
 
     @id = "comments-#{osu.uuid()}"
 
@@ -90,7 +90,7 @@ export class CommentsManager extends React.PureComponent
 
   saveState: =>
     if @props.commentableType? && @props.commentableId?
-      osu.storeJson @jsonStorageId(), uiState.comments
+      osu.storeJson @jsonStorageId(), uiState.exportCommentsUIState()
 
 
   toggleShowDeleted: =>

@@ -55,6 +55,13 @@ export default class UIStateStore extends Store {
   @observable comments = Object.assign({}, defaultCommentsUIState);
   private orderedCommentsByParentId: Dictionary<Comment[]> = {};
 
+  exportCommentsUIState() {
+    return {
+      comments: this.comments,
+      orderedCommentsByParentId: this.orderedCommentsByParentId,
+    };
+  }
+
   getOrderedCommentsByParentId(parentId: number) {
     this.populateOrderedCommentsForParentId(parentId);
     return this.orderedCommentsByParentId[parentId];
@@ -65,8 +72,9 @@ export default class UIStateStore extends Store {
   // TODO: all the methods below should be moved out
 
   @action
-  importCommentsUIStateJSON(json: any) {
-    this.comments = Object.assign({}, defaultCommentsUIState, json);
+  importCommentsUIState(json: any) {
+    this.comments = Object.assign({}, defaultCommentsUIState, json.comments);
+    this.orderedCommentsByParentId = json.orderedCommentsByParentId;
   }
 
   @action
@@ -80,6 +88,8 @@ export default class UIStateStore extends Store {
     if (commentBundle.comments != null) {
       this.comments.topLevelCommentIds = commentBundle.comments.map((x) => x.id);
     }
+
+    this.orderedCommentsByParentId = {};
   }
 
   @action
