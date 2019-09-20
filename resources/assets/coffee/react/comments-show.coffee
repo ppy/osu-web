@@ -21,12 +21,8 @@ import core from 'osu-core-singleton'
 import { Main } from './comments-show/main'
 
 reactTurbolinks.registerPersistent 'comments-show', CommentsManager, true, ->
-  data = osu.parseJson('json-show')
-  commentBundle = data.bundle
+  commentBundle = osu.parseJson('json-show')
   core.dataStore.updateWithCommentBundleJSON(commentBundle)
   core.dataStore.uiState.initializeWithCommentBundleJSON(commentBundle)
 
   component: Main
-  componentProps:
-    comment_id: data.comment_id
-    parent_id: data.parent_id

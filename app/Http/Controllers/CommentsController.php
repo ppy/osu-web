@@ -197,7 +197,7 @@ class CommentsController extends Controller
             return $commentBundle->toArray();
         }
 
-        return view('comments.show', compact('comment', 'commentBundle'));
+        return view('comments.show', compact('commentBundle'));
     }
 
     /**
