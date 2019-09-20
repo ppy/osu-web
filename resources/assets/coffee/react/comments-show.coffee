@@ -23,7 +23,8 @@ import { Main } from './comments-show/main'
 reactTurbolinks.registerPersistent 'comments-show', CommentsManager, true, ->
   data = osu.parseJson('json-show')
   commentBundle = data.bundle
-  core.dataStore.initializeWithCommentBundleJSON(commentBundle)
+  core.dataStore.updateWithCommentBundleJSON(commentBundle)
+  core.dataStore.uiState.initializeWithCommentBundleJSON(commentBundle)
 
   component: Main
   componentProps:

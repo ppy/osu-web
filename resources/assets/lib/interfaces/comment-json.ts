@@ -49,6 +49,7 @@ export interface CommentBundleJSON {
   has_more: boolean;
   has_more_id: number;
   included_comments: CommentJSON[];
+  sort: string;
   top_level_count: number;
   total: number;
   user_follow: boolean;

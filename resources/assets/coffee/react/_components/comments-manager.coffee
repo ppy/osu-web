@@ -34,12 +34,14 @@ export class CommentsManager extends React.PureComponent
     if props.commentableType? && props.commentableId?
       # FIXME no initialization from component?
       json = osu.parseJson("json-comments-#{props.commentableType}-#{props.commentableId}", true)
-      core.dataStore.updateWithCommentBundleJSON(json)
+      if json?
+        core.dataStore.updateWithCommentBundleJSON(json)
+        uiState.initializeWithCommentBundleJSON(json)
+
+      state = osu.parseJson @jsonStorageId()
+      uiState.importCommentsUIStateJSON(state) if state?
 
     @id = "comments-#{osu.uuid()}"
-
-    state = osu.parseJson @jsonStorageId()
-    uiState.importCommentsUIStateJSON(state) if state?
 
 
   componentDidMount: =>
@@ -65,11 +67,15 @@ export class CommentsManager extends React.PureComponent
 
 
   appendBundle: (_event, {commentBundle, prepend}) =>
-    core.dataStore.updateWithCommentBundleJSON commentBundle
+    runInAction () ->
+      core.dataStore.updateWithCommentBundleJSON commentBundle
+      uiState.updateWithCommentBundleJSON commentBundle
+
 
 
   update: (_event, {commentable_meta, comments, users}) =>
-    core.dataStore.updateWithCommentBundleJSON { commentable_meta, comments, users }
+    runInAction () ->
+      core.dataStore.updateWithCommentBundleJSON { commentable_meta, comments, users }
 
 
   jsonStorageId: =>
@@ -77,7 +83,8 @@ export class CommentsManager extends React.PureComponent
 
 
   saveState: =>
-    osu.storeJson @jsonStorageId(), uiState.comments
+    if @props.commentableType? && @props.commentableId?
+      osu.storeJson @jsonStorageId(), uiState.comments
 
 
   toggleShowDeleted: =>
@@ -132,8 +139,8 @@ export class CommentsManager extends React.PureComponent
         data: user_profile_customization: comments_sort: sort
 
       runInAction () ->
-        uiState.comments.currentSort = data.sort
-        core.dataStore.initializeWithCommentBundleJSON data
+        core.dataStore.updateWithCommentBundleJSON data
+        uiState.initializeWithCommentBundleJSON data
     .always =>
       runInAction () ->
         uiState.comments.loadingSort = null
