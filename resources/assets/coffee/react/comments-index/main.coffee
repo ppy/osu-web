@@ -17,7 +17,6 @@
 ###
 
 import { Comment } from 'comment'
-import { Comment as CommentModel } from 'models/comment'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
@@ -26,6 +25,7 @@ import { button, div, h1, p, span } from 'react-dom-factories'
 el = React.createElement
 
 store = core.dataStore.commentStore
+uiState = core.dataStore.uiState
 
 export class Main extends React.Component
   constructor: (props) ->
@@ -50,8 +50,7 @@ export class Main extends React.Component
           @renderHeaderTabs()
 
       el Observer, null, () =>
-        # TODO: make less bad for coffeescript
-        comments = CommentModel.sort(Object.values(store.comments.toPOJO()), 'new')
+        comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
         div className: 'osu-page osu-page--comments',
           for comment in comments
             el Comment,
