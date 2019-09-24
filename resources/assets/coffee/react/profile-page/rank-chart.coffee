@@ -93,6 +93,13 @@ export class RankChart extends React.Component
         x: data[0].x - 1
         y: data[0].y
 
-    _.last(data).y = -@props.stats.rank.global
+    lastData = _.last(data)
+
+    if lastData.x == 0
+      lastData.y = -@props.stats.rank.global
+    else
+      data.push
+        x: 0
+        y: -@props.stats.rank.global
 
     @rankChart.loadData data
