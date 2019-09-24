@@ -44,7 +44,6 @@ return [
     'main' => [
         'title' => 'Knowledge Base',
         'subtitle' => 'because osu!pedia sounds lame',
-        'search-enter-prompt' => 'press enter for full search',
     ],
     'search' => [
         'path' => 'from',
