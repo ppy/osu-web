@@ -1,0 +1,15 @@
+Upper line text.
+[box=First!]
+Packed box.
+[/box]
+Bottom line text.
+
+Prefix text.[box=Second box]Inline box (except it's not).[/box]Suffix text.
+
+Upper line text.
+
+[box=Third box]
+Box with blank lines.
+[/box]
+
+Bottom line text.
