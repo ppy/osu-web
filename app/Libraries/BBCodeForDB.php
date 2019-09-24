@@ -35,8 +35,8 @@ class BBCodeForDB
     public function extraEscapes($text)
     {
         return str_replace(
-            ['[', ']', '.', ':'],
-            ['&#91;', '&#93;', '&#46;', '&#58;'],
+            ['[', ']', '.', ':', "\n"],
+            ['&#91;', '&#93;', '&#46;', '&#58;', '&#10;'],
             $text
         );
     }
@@ -84,11 +84,11 @@ class BBCodeForDB
     public function parseCode($text)
     {
         return preg_replace_callback(
-            "#\[code\](?<code>.+?)\[/code\]#s",
+            "#\[code\](?<prespaces>\n*)(?<code>.+?)(?<postspaces>\n*)\[/code\]#s",
             function ($m) {
                 $escapedCode = $this->extraEscapes($m['code']);
 
-                return "[code:{$this->uid}]{$escapedCode}[/code:{$this->uid}]";
+                return "[code:{$this->uid}]{$m['prespaces']}{$escapedCode}{$m['postspaces']}[/code:{$this->uid}]";
             },
             $text
         );
