@@ -85,6 +85,12 @@ class CommentBundle
             }
         }
 
+        // Get parents when listing comments index
+        if ($this->commentable === null) {
+            $parents = $this->getComments(Comment::whereIn('id', $comments->pluck('parent_id')));
+            $includedComments = $includedComments->concat($parents);
+        }
+
         // Get nested comments
         if ($this->params->parentId !== null) {
             $nestedParentIds = $comments->pluck('id');
