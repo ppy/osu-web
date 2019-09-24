@@ -221,6 +221,7 @@ class TopicsController extends Controller
         $postEndId = get_int(Request::input('end'));
         $nthPost = get_int(Request::input('n'));
         $skipLayout = Request::input('skip_layout') === '1';
+        $showDeleted = Request::input('show_deleted', 'true') === 'true';
         $jumpTo = null;
 
         $topic = Topic
@@ -243,7 +244,7 @@ class TopicsController extends Controller
 
         priv_check('ForumView', $topic->forum)->ensureCan();
 
-        $posts = $topic->posts()->showDeleted($userCanModerate);
+        $posts = $topic->posts()->showDeleted($showDeleted && $userCanModerate);
 
         if ($postStartId === 'unread') {
             $postStartId = Post::lastUnreadByUser($topic, Auth::user());
@@ -345,7 +346,8 @@ class TopicsController extends Controller
                 'firstPostPosition',
                 'firstPostId',
                 'topic',
-                'userCanModerate'
+                'userCanModerate',
+                'showDeleted'
             )
         );
     }

@@ -205,6 +205,8 @@
                             @include("forum.topics._issue_tag_{$type}")
                         @endforeach
                     @endif
+
+                    @include('forum.topics._moderate_toggle_deleted')
                 @endif
 
                 @include('forum.topics._watch', ['topic' => $topic, 'state' => $watch])
