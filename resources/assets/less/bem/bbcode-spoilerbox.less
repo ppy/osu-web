@@ -18,32 +18,53 @@
 
 .bbcode-spoilerbox {
   @_top: bbcode-spoilerbox;
-
-  &__arrow {
-    display: inline-block;
-    color: @osu-colour-b1;
-    margin-right: 5px;
-
-    .@{_top}.js-spoilerbox--open & {
-      transform: rotate(90deg);
-    }
-  }
+  @_padding-left: 20px;
 
   &__body {
     display: none;
+    margin-top: 10px;
+    padding-left: @_padding-left;
+    color: @osu-colour-c2;
 
     .@{_top}.js-spoilerbox--open & {
-      .default-border-radius();
       display: block;
-      background: @osu-colour-b6;
-      padding: 20px;
-      margin-top: 4px;
     }
   }
 
   &__link {
     .reset-input();
     .link-default();
-    font-weight: bold;
+    text-align: left;
+    display: flex;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__link-icon {
+    width: @_padding-left;
+    display: block;
+    flex: none;
+
+    &::before {
+      .fas();
+      content: '\f105'; // angle-right
+      color: @osu-colour-c1;
+      display: inline-block;
+      text-align: left;
+    }
+
+    .@{_top}.js-spoilerbox--open &::before {
+      content: '\f107'; // angle-down
+    }
+  }
+
+  &__link-text {
+    &::before {
+      content: 'SPOILER';
+      margin-right: 10px;
+      font-weight: bold;
+    }
   }
 }
