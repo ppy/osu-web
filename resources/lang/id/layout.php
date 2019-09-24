@@ -23,11 +23,27 @@ return [
         'page_description' => 'osu! - Rhythm is just a *click* away! Dengan berbagai mode permainan seperti Ouendan/EBA, Taiko, serta level editor yang berfungsi.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Komunitas',
+
+            'forum' => 'Forum',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => '',
+        'fullscreen' => '',
+        'zoom' => '',
+        'previous' => '',
+        'next' => '',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'beranda',
             'account-edit' => 'pengaturan',
-            'account-verifyLink' => '',
+            'account-verifyLink' => 'Verifikasi Selesai',
             'friends-index' => 'teman',
             'changelog-index' => 'riwayat perubahan',
             'changelog-build' => 'versi',

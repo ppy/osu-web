@@ -29,7 +29,7 @@ return [
         'first_post' => 'Нельга выдаліць пачатковы допіс.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Паведамленне',
         ],
     ],
 
@@ -42,8 +42,8 @@ return [
         'locked' => 'Абмеркаванне закрыта.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Тып паведамлення',
+            'timestamp' => 'Пазнака часу',
         ],
 
         'hype' => [
@@ -64,7 +64,7 @@ return [
         'deleted_parent' => 'Нельга адказваць на выдалены каментарый.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Паведамленне',
         ],
     ],
 
@@ -88,13 +88,13 @@ return [
             'only_quote' => 'Ваш адказ змяшчае толькі цытату.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Змесціва допіса',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Загаловак тэмы',
             ],
         ],
 
@@ -108,13 +108,25 @@ return [
             'too_many_options' => 'Перавышана максімальна дазволеная колькасць параметраў.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Загаловак апытання',
             ],
         ],
 
         'topic_vote' => [
             'required' => 'Выберыце параметр падчас галасавання.',
             'too_many' => 'Выбрана больш параметраў, чым дазволена.',
+        ],
+    ],
+
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
         ],
     ],
 
@@ -143,9 +155,9 @@ return [
         'too_long' => 'Перавышанп максімальная даўжыня - абмежаванне на :limit сімвалаў.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Імя карыстальніка',
+            'user_email' => 'E-mail адрас',
+            'password' => 'Пароль',
         ],
 
         'change_username' => [
@@ -165,8 +177,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Колькасць',
+                'cost' => 'Цана',
             ],
         ],
     ],

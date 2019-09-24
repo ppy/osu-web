@@ -24,15 +24,17 @@
   padding: 2px 10px;
   font-weight: bold;
   display: flex;
-
-  &::before {
-    align-self: center;
-  }
+  justify-content: center;
+  align-items: center;
 
   &--alumni {
     color: @osu-colour-group-alumni;
     &::before {
-      content: 'ALUMNI';
+      content: 'OLD';
+
+      @media @desktop {
+        content: 'ALUMNI';
+      }
     }
   }
 
@@ -75,7 +77,11 @@
   &--mapper {
     color: @osu-colour-blue-1;
     &::before {
-      content: 'MAPPER';
+      content: 'MAP';
+
+      @media @desktop {
+        content: 'MAPPER';
+      }
     }
   }
 
@@ -96,7 +102,27 @@
   &--support {
     color: @osu-colour-group-support;
     &::before {
-      content: 'SUPPORT';
+      content: 'SPT';
+
+      @media @desktop {
+        content: 'SUPPORT';
+      }
+    }
+  }
+
+  // actual modifiers start here
+  &--t-forum {
+    width: 100%;
+    font-size: @font-size--tiny;
+    padding-left: 0;
+    padding-right: 0;
+
+    @media @desktop {
+      margin: auto;
+      width: min-content;
+      font-size: @font-size--small;
+      padding-left: 20px;
+      padding-right: 20px;
     }
   }
 }

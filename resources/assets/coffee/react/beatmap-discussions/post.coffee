@@ -72,7 +72,7 @@ export class Post extends React.PureComponent
       if @isOwner()
         'mapper'
       else
-        @userGroupBadge()
+        @props.user.group_badge
 
     topClasses += " #{bn}--#{userBadge}" if userBadge?
 
@@ -327,13 +327,6 @@ export class Post extends React.PureComponent
     .fail osu.ajaxError
 
     .always => @setState posting: false
-
-
-  userGroupBadge: =>
-    if !@cache.hasOwnProperty('userGroupBadge')
-      @cache.userGroupBadge = osu.userGroupBadge(@props.user)
-
-    @cache.userGroupBadge
 
 
   validPost: =>

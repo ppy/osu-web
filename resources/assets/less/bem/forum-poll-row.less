@@ -18,39 +18,29 @@
 
 .forum-poll-row {
   @_top: forum-poll-row;
+  margin: 3px 0; // vertical +2px from __row
+  display: flex;
+  flex-direction: column;
 
-  &--voted {
-    font-weight: bold;
-  }
-
-  &__column {
-    padding: 5px;
-
-    &--bar {
-      width: 100%;
-      min-width: 100px;
-    }
-
-    &--percentage {
-      color: @blue-dark;
-
-      .@{_top}--voted & {
-        color: @pink-dark;
-      }
-    }
-  }
-
-  &__option-text {
-    padding: 10px;
-    color: #555;
-  }
-
-  &__checkbox-container {
+  &__row {
+    margin: 2px 0;
     display: flex;
-    align-items: center;
-    margin: 0;
-    font-size: inherit;
-    font-weight: inherit;
-    text-transform: none;
+    flex-wrap: wrap;
+  }
+
+  &__text {
+    flex: 1;
+  }
+
+  &__result {
+    flex: none;
+    min-width: 60px;
+    padding-right: 5px;
+
+    @media @desktop {
+      text-align: right;
+      padding-right: 0;
+      padding-left: 5px;
+    }
   }
 }

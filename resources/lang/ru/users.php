@@ -154,8 +154,8 @@ return [
                     'unsupported_format' => 'Неподдерживаемый формат.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Загрузка доступна только для :link',
+                        'link' => 'osu!supporters',
                     ],
                 ],
             ],
@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count подписчик|:count подписчика|:count подписчиков',
+            'none' => '',
             'unranked' => 'Нет недавних игр',
 
             'achievements' => [
@@ -181,7 +182,7 @@ return [
                 'title' => 'Карты',
 
                 'favourite' => [
-                    'title' => 'Любимые карты',
+                    'title' => 'Избранные карты',
                 ],
                 'graveyard' => [
                     'title' => 'Заброшенные карты',
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'На рассмотрении',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Пока записей нет :(',
@@ -264,8 +275,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Зависит от того, сколько вклада пользователь внёс в модерацию карт. Смотрите :link для дополнительной информации.',
+                    'link' => 'эту страницу',
                 ],
             ],
             'me' => [
@@ -275,6 +286,11 @@ return [
                 'empty' => "Этот пользователь ещё ничего не получил. ;_;",
                 'recent' => 'Последние достижения',
                 'title' => 'Достижения',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Последняя активность',
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Рекорды',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Состояние аккаунта',
@@ -345,8 +368,8 @@ return [
             'placeholder' => 'Введите контент страницы сюда',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Для использования этой функции нужен :link.',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Рейтинг по очкам',
             'total_hits' => 'Всего попаданий',
             'total_score' => 'Всего очков',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Ранкнутые и одобренные карты',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => 'Заброшенные карты',
         ],
     ],
 

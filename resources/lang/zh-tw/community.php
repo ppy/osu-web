@@ -20,46 +20,63 @@
 
 return [
     'support' => [
-        'header' => [
-            // size in font-size
-            'big_description' => '喜歡 osu! 嗎！？<br/>
-                                那就贊助 osu! 開發吧！:D',
-            'small_description' => '',
-            'support_button' => '我想贊助 osu!',
+        'convinced' => [
+            'title' => '可以可以，買買買！',
+            'support' => '支持 osu!',
+            'gift' => '或者以禮物方式贈送給其它玩家',
+            'instructions' => '點擊愛心前往 osu! 商店',
         ],
+        'why-support' => [
+            'title' => '',
 
-        'dev_quote' => 'osu! 是一款完全免費的遊戲，但是經營它卻不是免費的。在我們租用服務器和高速網絡、維護系統及社區、向比賽提供獎品、提供疑難解答以及讓玩家們開心的同時，osu! 已經消耗了大量的金錢！噢，別忘了我們是憑著愛好在做 osu! ，沒有任何的廣告合作！
-            <br/><br/>osu! 由我一個人運營著，
-            為了維護 osu! 我已經辭去了我的日常工作，
-            而我時常感受到使 osu! 維持我所期望的質量是一件很艱難的事情，
-            我以個人的名義感謝至今為止所有支持 osu! 的人，
-            也包括繼續支持 osu! 的所有人 :)。',
-
-        'supporter_status' => [
-            'contribution' => '感謝您一直以來的支持！你已經捐贈了 :dollars 並購買了 :tags 次贊助者標籤！',
-            'gifted' => '您已經捐贈了 :giftedTags 次贊助者標籤（花費了 :giftedDollars ），真慷慨啊！',
-            'not_yet' => "您還沒有贊助者標籤 :(",
-            'title' => '當前贊助者狀態',
-            'valid_until' => '您的贊助者標籤將在 :date 到期',
-            'was_valid_until' => '您的贊助者標籤已於 :date 到期',
-        ],
-
-        'why_support' => [
-            'title' => '為什麼要贊助 osu! ？',
-            'blocks' => [
-                'dev' => 'osu! 最初是由 ppy 個人開發與維護的',
-                'time' => '營運它的成本和投入的精力已經不能稱作是興趣了',
-                'ads' => '完全無廣告 <br/><br/>
-                        不像 99.95% 的網站，我們從不刊登廣告，也沒有從中獲利。',
-                'goodies' => '解鎖更多額外的服務！',
+            'team' => [
+                'title' => '支持團隊',
+                'description' => '',
+            ],
+            'infra' => [
+                'title' => '伺服器基礎設施',
+                'description' => '',
+            ],
+            'featured-artists' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'ads' => [
+                'title' => '保持 osu! 自持',
+                'description' => '',
+            ],
+            'tournaments' => [
+                'title' => '官方錦標賽',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'bounty-program' => [
+                'title' => '開源賞金計劃',
+                'description' => '',
+                'link_text' => '',
             ],
         ],
-
         'perks' => [
             'title' => '我能得到什麼？',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => '在遊戲內提供圖譜快速下載與搜尋。',
+            ],
+
+            'friend_ranking' => [
+                'title' => '好友排行榜',
+                'description' => "",
+            ],
+
+            'country_ranking' => [
+                'title' => '國家排行榜',
+                'description' => '',
+            ],
+
+            'mod_filtering' => [
+                'title' => '',
+                'description' => '',
             ],
 
             'auto_downloads' => [
@@ -79,7 +96,7 @@ return [
 
             'customisation' => [
                 'title' => '客製化',
-                'description' => '客製化您的頁面。',
+                'description' => "客製化您的頁面。",
             ],
 
             'beatmap_filters' => [
@@ -117,22 +134,30 @@ return [
                 'description' => '查看排名時可按 國家/好友/所選MOD 進行排名。',
             ],
 
-            'feel_special' => [
-                'title' => '滿足感',
-                'description' => '對 “幫助 osu! 繼續運營” 感到滿足！',
-            ],
-
-            'more_to_come' => [
-                'title' => '更多特性即將到來',
+            'more_favourites' => [
+                'title' => '更多收藏',
                 'description' => '',
             ],
-        ],
+            'more_friends' => [
+                'title' => '更多好友',
+                'description' => '',
+            ],
+            'more_beatmaps' => [
+                'title' => '上載更多圖譜',
+                'description' => '',
+            ],
+            'friend_filtering' => [
+                'title' => '好友排行榜',
+                'description' => '',
+            ],
 
-        'convinced' => [
-            'title' => '可以可以，買買買！',
-            'support' => '支持 osu!',
-            'gift' => '或者以禮物方式贈送給其它玩家',
-            'instructions' => '點擊愛心前往 osu! 商店',
+        ],
+        'supporter_status' => [
+            'contribution' => '感謝您一直以來的支持！你已經捐贈了 :dollars 並購買了 :tags 次贊助者標籤！',
+            'gifted' => "您已經捐贈了 :giftedTags 次贊助者標籤（花費了 :giftedDollars ），真慷慨啊！",
+            'not_yet' => "您還沒有贊助者標籤 :(",
+            'valid_until' => '您的贊助者標籤將在 :date 到期',
+            'was_valid_until' => '您的贊助者標籤已於 :date 到期',
         ],
     ],
 ];

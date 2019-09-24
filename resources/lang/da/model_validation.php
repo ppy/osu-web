@@ -118,6 +118,18 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Adgangskoden må ikke indholde et brugernavn.',
         'email_already_used' => 'Email-adressen er allerede i brug.',

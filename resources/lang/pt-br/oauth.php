@@ -33,7 +33,7 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
+    'authorized_clients' => [
         'confirm_revoke' => '',
         'scopes_title' => '',
         'owned_by' => '',
@@ -45,9 +45,27 @@ return [
         ],
     ],
 
+    'client' => [
+        'id' => '',
+        'name' => '',
+        'redirect' => '',
+        'secret' => '',
+    ],
+
     'login' => [
         'download' => 'Clique aqui para baixar o jogo e criar uma nova',
         'label' => 'Primeiro, vamos entrar em sua conta!',
         'title' => 'Iniciar Sessão',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '',
+        'new' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 ];

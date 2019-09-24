@@ -23,11 +23,27 @@ return [
         'page_description' => 'osu! - Der Rhythmus ist nur einen *Klick* entfernt!  Mit Ouendan/EBA, Taiko und eigenen Spielmodi, zusätzlich zu einem voll funktionalen Leveleditor',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Community',
+
+            'forum' => 'Forum',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => '',
+        'fullscreen' => '',
+        'zoom' => '',
+        'previous' => '',
+        'next' => '',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'home',
             'account-edit' => 'einstellungen',
-            'account-verifyLink' => '',
+            'account-verifyLink' => 'Überprüfung abgeschlossen',
             'friends-index' => 'freunde',
             'changelog-index' => 'changelog',
             'changelog-build' => 'version',

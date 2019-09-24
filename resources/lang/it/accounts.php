@@ -26,8 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => 'Assicurati che il tuo avatar aderisca alle :link.<br/>Questo significa che deve essere <strong>adatto a tutte le età</strong>. es. nessun contenuto di nudità, profanità o provocante.',
+            'rules_link' => 'regole della comunità',
         ],
 
         'email' => [
@@ -66,11 +66,12 @@ return [
 
     'notifications' => [
         'title' => 'Notifiche',
-        'topic_auto_subscribe' => 'attiva automaticamente le notifiche sui nuovi argomenti del forum che crei',
+        'topic_auto_subscribe' => 'attiva automaticamente le notifiche sui nuovi topic del forum che crei',
     ],
 
     'oauth' => [
-        'authorized_clients' => '',
+        'authorized_clients' => 'client autorizzati',
+        'own_clients' => '',
         'title' => 'OAuth',
     ],
 
@@ -92,7 +93,7 @@ return [
         'current_session' => 'questo dispositivo',
         'end_session' => 'Termina Sessione',
         'end_session_confirmation' => 'Questo terminerà la sessione sul dispositivo selezionato. Vuoi continuare?',
-        'last_active' => 'Ultimo visto:',
+        'last_active' => 'Ultima attività:',
         'title' => 'Sicurezza',
         'web_sessions' => 'sessioni web',
     ],
@@ -108,11 +109,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Ora puoi chiudere questa scheda/finestra',
+        'title' => 'La verifica è stata completata',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Link di verifica non valido o scaduto',
     ],
 ];

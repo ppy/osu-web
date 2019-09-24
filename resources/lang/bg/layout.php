@@ -23,6 +23,22 @@ return [
         'page_description' => 'osu! - Ритъмът е само на *клик* от вас! Със специални режими на игра като Ouendan/EBA и Taiko, както и напълно фунциониращ редактор на бийтмапове.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => '',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => '',
+        'fullscreen' => '',
+        'zoom' => '',
+        'previous' => '',
+        'next' => '',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'начало',

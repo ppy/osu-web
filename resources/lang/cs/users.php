@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 sledující |:count followers',
+            'none' => '',
             'unranked' => 'Žádné poslední údaje o hraní',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Čekající Beatmapy',
                 ],
+            ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'historical' => [
                 'empty' => 'Žádné výkonnostní záznamy. :(',
@@ -276,6 +287,11 @@ return [
                 'recent' => 'Nejnovější',
                 'title' => 'Medaile',
             ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Nedávné',
             ],
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Umístění na prvním místě',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Stav účtu',
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Umístění podle skóre',
             'total_hits' => 'Celkově zásahů',
             'total_score' => 'Celkové skóre',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 

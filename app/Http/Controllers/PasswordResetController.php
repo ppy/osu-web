@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\PasswordReset;
 use App\Models\User;
+use App\Models\UserAccountHistory;
 use Carbon\Carbon;
 use Mail;
 use Request;
@@ -61,7 +62,9 @@ class PasswordResetController extends Controller
         if ($error === null) {
             return ['message' => trans('password_reset.notice.sent')];
         } else {
-            return error_popup($error);
+            return response(['form_error' => [
+                'username' => [$error],
+            ]], 422);
         }
     }
 
@@ -106,6 +109,8 @@ class PasswordResetController extends Controller
         if ($user->update($params)) {
             $this->clear();
             $this->login($user);
+
+            UserAccountHistory::logUserResetPassword($user);
 
             return ['message' => trans('password_reset.notice.saved')];
         } else {

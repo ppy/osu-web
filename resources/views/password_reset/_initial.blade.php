@@ -27,6 +27,8 @@
         {{ trans('password_reset.starting.username') }}
 
         <input name="username" class="password-reset__input" autofocus>
+
+        <span class="password-reset__error js-form-error--error"></span>
     </label>
 
     <div class="password-reset__input-group">

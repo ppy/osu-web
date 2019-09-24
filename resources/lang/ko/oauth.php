@@ -23,7 +23,7 @@ return [
 
     'authorise' => [
         'authorise' => '권한 부여',
-        'request' => '는 당신의 계정에 엑세스할 수 있는 권한을 요청합니다.',
+        'request' => '는 당신의 계정에 접근할 수 있는 권한을 요청합니다.',
         'scopes_title' => '이 애플리케이션은 다음 기능을 할 수 있습니다:',
         'title' => '권한 요청',
 
@@ -33,7 +33,7 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
+    'authorized_clients' => [
         'confirm_revoke' => '',
         'scopes_title' => '',
         'owned_by' => '',
@@ -45,9 +45,27 @@ return [
         ],
     ],
 
+    'client' => [
+        'id' => '',
+        'name' => '',
+        'redirect' => '',
+        'secret' => '',
+    ],
+
     'login' => [
         'download' => '이곳을 눌러 게임을 다운로드하고 계정을 생성하세요',
         'label' => '우선 로그인해봅시다!',
         'title' => '계정 로그인',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '',
+        'new' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 ];

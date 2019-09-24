@@ -44,7 +44,7 @@ class BBCodeFromDB
         ];
 
         $this->text = $text;
-        $this->uid = $uid;
+        $this->uid = presence($uid) ?? config('osu.bbcode.uid');
         $this->options = array_merge($defaultOptions, $options);
 
         if ($this->options['withGallery']) {
@@ -75,11 +75,11 @@ class BBCodeFromDB
 
     public function parseBox($text)
     {
-        $text = preg_replace("#\[box=(.*?):{$this->uid}\]#", $this->parseBoxHelperPrefix('\\1'), $text);
-        $text = str_replace("[/box:{$this->uid}]", $this->parseBoxHelperSuffix(), $text);
+        $text = preg_replace("#\[box=(.*?):{$this->uid}\]\n*#s", $this->parseBoxHelperPrefix('\\1'), $text);
+        $text = preg_replace("#\n*\[/box:{$this->uid}]\n?#s", $this->parseBoxHelperSuffix(), $text);
 
-        $text = str_replace("[spoilerbox:{$this->uid}]", $this->parseBoxHelperPrefix('SPOILER'), $text);
-        $text = str_replace("[/spoilerbox:{$this->uid}]", $this->parseBoxHelperSuffix(), $text);
+        $text = preg_replace("#\[spoilerbox:{$this->uid}\]\n*#s", $this->parseBoxHelperPrefix('SPOILER'), $text);
+        $text = preg_replace("#\n*\[/spoilerbox:{$this->uid}]\n?#s", $this->parseBoxHelperSuffix(), $text);
 
         return $text;
     }
@@ -105,7 +105,7 @@ class BBCodeFromDB
     public function parseCode($text)
     {
         return preg_replace(
-            "#\n*\[code:{$this->uid}\]\n*(.*?)\n*\[/code:{$this->uid}\]\n*#s",
+            "#\[code:{$this->uid}\]\n*(.*?)\n*\[/code:{$this->uid}\]\n?#s",
             '<pre>\\1</pre>',
             $text);
     }

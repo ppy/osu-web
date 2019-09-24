@@ -29,7 +29,7 @@ return [
         'first_post' => 'Não é possível excluir a publicação inicial.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'A mensagem',
         ],
     ],
 
@@ -42,8 +42,8 @@ return [
         'locked' => 'Discussão está trancada.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Tipo de mensagem',
+            'timestamp' => 'Marcação de Tempo',
         ],
 
         'hype' => [
@@ -64,7 +64,7 @@ return [
         'deleted_parent' => 'Não é permitido responder comentários excluídos.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'A mensagem',
         ],
     ],
 
@@ -88,13 +88,13 @@ return [
             'only_quote' => 'Sua resposta contém apenas uma citação.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Corpo da publicação',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Título do tópico',
             ],
         ],
 
@@ -108,13 +108,25 @@ return [
             'too_many_options' => 'Número máximo de opções permitidas excedido.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Título da enquete',
             ],
         ],
 
         'topic_vote' => [
             'required' => 'Selecione uma opção quando votar.',
             'too_many' => 'Mais opções selecionadas do que permitidas.',
+        ],
+    ],
+
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
         ],
     ],
 
@@ -143,9 +155,9 @@ return [
         'too_long' => 'ultrapassou tamanho máximo - deve ser até :limit caracteres.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Nome de Usuário',
+            'user_email' => 'Endereço de email',
+            'password' => 'Senha',
         ],
 
         'change_username' => [
@@ -165,8 +177,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Quantidade',
+                'cost' => 'Custo',
             ],
         ],
     ],

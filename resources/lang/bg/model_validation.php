@@ -118,6 +118,18 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Паролата не може да съдържа в себе си потребителското име.',
         'email_already_used' => 'Този имейл адрес вече се използва.',

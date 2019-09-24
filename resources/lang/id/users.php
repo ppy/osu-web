@@ -154,8 +154,8 @@ return [
                     'unsupported_format' => 'Format tidak didukung.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Layanan unggah tersedia hanya untuk :link',
+                        'link' => 'osu!supporter',
                     ],
                 ],
             ],
@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count pengikut',
+            'none' => 'kosong',
             'unranked' => 'Tidak ada rekam jejak permainan yang tercatat dalam beberapa waktu ke belakang',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Beatmap Pending',
                 ],
+            ],
+            'discussions' => [
+                'title' => 'Diskusi',
+                'title_longer' => 'Diskusi Terbaru',
+                'show_more' => 'lihat lebih banyak diskusi',
+            ],
+            'events' => [
+                'title' => 'Aktivitas',
+                'title_longer' => 'Aktivitas Terakhir',
+                'show_more' => 'lihat lebih banyak aktivitas',
             ],
             'historical' => [
                 'empty' => 'Tidak ada catatan performa terbaru. :(',
@@ -264,8 +275,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Berdasarkan seberapa besar kontribusi yang telah dilakukan pengguna dalam moderasi beatmap. Kunjungi :link untuk informasi lebih lanjut.',
+                    'link' => 'laman ini',
                 ],
             ],
             'me' => [
@@ -275,6 +286,11 @@ return [
                 'empty' => "Pengguna ini belum mendapatkannya. ;_;",
                 'recent' => 'Terbaru',
                 'title' => 'Medali',
+            ],
+            'posts' => [
+                'title' => 'Posting',
+                'title_longer' => 'Postingan Terbaru',
+                'show_more' => 'lihat lebih banyak posting',
             ],
             'recent_activity' => [
                 'title' => 'Terbaru',
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Peringkat Pertama',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Suara Diberikan (3 bulan terakhir)',
+                'received' => 'Suara Diterima (3 bulan terakhir)',
+                'title' => 'Hak Suara',
+                'title_longer' => 'Pilihan Terbaru',
+                'vote_count' => ':count_delimited pilihan',
             ],
             'account_standing' => [
                 'title' => 'Kondisi Akun',
@@ -345,8 +368,8 @@ return [
             'placeholder' => 'Ketik konten laman di sini',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Kamu harus menjadi seorang :link untuk menggunakan fitur ini.',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Peringkat Skor',
             'total_hits' => 'Jumlah Hit',
             'total_score' => 'Jumlah Skor',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Beatmap Ranked & Approved',
+            'loved_beatmapset_count' => 'Beatmap Loved',
+            'unranked_beatmapset_count' => 'Beatmap Pending',
+            'graveyard_beatmapset_count' => 'Beatmap Graveyarded',
         ],
     ],
 
@@ -388,7 +416,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'Tampilan kartu',
+        'list' => 'Tampilan daftar',
     ],
 ];

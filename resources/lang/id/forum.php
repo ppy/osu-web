@@ -42,6 +42,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Kiriman Terbaru',
+
+        'index' => [
+            'title' => 'Indeks Forum',
+        ],
+
         'topics' => [
             'empty' => 'Topik tidak ditemukan!',
         ],

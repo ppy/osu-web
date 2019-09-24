@@ -154,8 +154,8 @@ return [
                     'unsupported_format' => 'Desteklenmeyen biçim.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Yükleme sadece :link için mevcut',
+                        'link' => 'osu!supporterlar',
                     ],
                 ],
             ],
@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 takipçi|:count takipçi',
+            'none' => 'hiçbiri',
             'unranked' => 'Son zamanlarda oynamamış',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Onay Beklenen Beatmapler',
                 ],
+            ],
+            'discussions' => [
+                'title' => 'Tartışmalar',
+                'title_longer' => 'Son Tartışmalar',
+                'show_more' => 'daha fazla tartışma gör',
+            ],
+            'events' => [
+                'title' => 'Etkinlikler',
+                'title_longer' => 'Son Etkinlikler',
+                'show_more' => 'daha fazla etkinlik gör',
             ],
             'historical' => [
                 'empty' => 'Performans kaydı yok. :(',
@@ -265,7 +276,7 @@ return [
 
                 'total_info' => [
                     '_' => '',
-                    'link' => '',
+                    'link' => 'bu sayfa',
                 ],
             ],
             'me' => [
@@ -275,6 +286,11 @@ return [
                 'empty' => "Bu kullanıcı daha hiç almamış. ;_;",
                 'recent' => 'En Son',
                 'title' => 'Madalyalar',
+            ],
+            'posts' => [
+                'title' => 'Gönderiler',
+                'title_longer' => 'Son Gönderiler',
+                'show_more' => 'daha fazla gönderi gör',
             ],
             'recent_activity' => [
                 'title' => 'Son',
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Birincilikler',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Verilen Oylar (son 3 ayda)',
+                'received' => 'Alınan Oylar (son 3 ayda)',
+                'title' => 'Oylar',
+                'title_longer' => 'Son Oylar',
+                'vote_count' => ':count_delimited oy|:count_delimited oy',
             ],
             'account_standing' => [
                 'title' => 'Hesap Durumu',
@@ -345,8 +368,8 @@ return [
             'placeholder' => 'Sayfanın içeriğini buraya yaz',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Bu özelliğin kilidini açmak için bir :link olman lazım.',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Skor Dereceleri',
             'total_hits' => 'Toplam Vuruş',
             'total_score' => 'Toplam Skor',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Dereceli ve Onaylanmış Beatmapler',
+            'loved_beatmapset_count' => 'Sevilen Beatmapler',
+            'unranked_beatmapset_count' => 'Onay Bekleyen Beatmapler',
+            'graveyard_beatmapset_count' => 'Terk Edilmiş Beatmapler',
         ],
     ],
 
@@ -388,7 +416,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'Kart Görünümü',
+        'list' => 'Liste Görünümü',
     ],
 ];

@@ -29,7 +29,7 @@ return [
         'first_post' => 'Невозможно удалить первую публикацию.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Сообщение',
         ],
     ],
 
@@ -42,8 +42,8 @@ return [
         'locked' => 'Обсуждение закрыто.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Тип сообщения',
+            'timestamp' => 'Временная отметка',
         ],
 
         'hype' => [
@@ -64,7 +64,7 @@ return [
         'deleted_parent' => 'Нельзя ответить на удалённый комментарий.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Сообщение',
         ],
     ],
 
@@ -88,13 +88,13 @@ return [
             'only_quote' => 'Ваш ответ содержит только цитату.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Тело сообщения',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Заголовок темы',
             ],
         ],
 
@@ -108,13 +108,25 @@ return [
             'too_many_options' => 'Превышено максимальное количество вариантов.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Заголовок опроса',
             ],
         ],
 
         'topic_vote' => [
             'required' => 'Выберите вариант, за который хотите проголосовать.',
             'too_many' => 'Выбрано больше вариантов, чем разрешено.',
+        ],
+    ],
+
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
         ],
     ],
 
@@ -143,9 +155,9 @@ return [
         'too_long' => 'Превышено максимальное количество символов - можно использовать только до :limit characters символов.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Имя пользователя',
+            'user_email' => 'E-mail адрес',
+            'password' => 'Пароль',
         ],
 
         'change_username' => [
@@ -165,8 +177,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Кол-во',
+                'cost' => 'Цена',
             ],
         ],
     ],

@@ -37,6 +37,7 @@ return [
         'change' => 'промяна',
         'click_to_copy' => 'щракнете, за да копирате в клипборда',
         'click_to_copy_copied' => 'копиранo в клипборда!',
+        'close' => '',
         'collapse' => 'свиване',
         'delete' => 'Изтрий',
         'edit' => 'Редактирай',
@@ -58,6 +59,7 @@ return [
         'show_deleted' => 'Покажи изтритите',
         'show_more' => 'покажи още',
         'show_more_options' => 'покажи още опции',
+        'update' => '',
         'upload_image' => 'качи снимка',
 
         'watch' => [
@@ -75,8 +77,12 @@ return [
         'minute_short_unit' => 'мин|мин',
         'minutes' => ':count минута|:count минути',
         'months' => ':count месец|:count месеца',
+        'plus_others' => '',
+        'post' => '',
         'second_short_unit' => 'сек|сек',
+        'star_priority' => '',
         'update' => ':count_delimited актуализация|:count_delimited актуализации',
+        'view' => '',
         'years' => ':count година|:count години',
     ],
 

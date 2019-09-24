@@ -23,6 +23,22 @@ return [
         'page_description' => 'osu! - Rytmen är bara ett *klick* bort!  Med Ouendan/EBA, Taiko och originala spel lägen, och en full funktionell nivå redigerare.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => '',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => '',
+        'fullscreen' => '',
+        'zoom' => '',
+        'previous' => '',
+        'next' => '',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'hem',

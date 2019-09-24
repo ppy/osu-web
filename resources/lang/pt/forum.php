@@ -42,6 +42,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Última Publicação',
+
+        'index' => [
+            'title' => 'Índice do Fórum',
+        ],
+
         'topics' => [
             'empty' => 'Sem tópicos!',
         ],

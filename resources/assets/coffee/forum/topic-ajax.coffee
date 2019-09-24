@@ -16,43 +16,13 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-$(document).on 'ajax:success', '.js-forum-poll-edit', (e, data, status, xhr) ->
-  $(e.target).trigger('ajax:complete', [xhr, status])
 
-  $poll = $('.js-forum-poll')
-
-  $poll
-    .attr 'data-original-poll', $poll.html()
-    .html data
-
-  osu.pageChange()
-
-
-$(document).on 'click', '.js-forum-poll-edit-cancel', ->
-  $poll = $('.js-forum-poll')
-  $poll
-    .html $poll.attr('data-original-poll')
-    .attr 'data-original-poll', null
-
-  osu.pageChange()
-
-
-$(document).on 'ajax:success', '.js-forum-poll-edit-save', (e, data, status, xhr) ->
-  $(e.target).trigger('ajax:complete', [xhr, status])
-
-  $poll = $('.js-forum-poll')
-    .html $(data).html()
-    .attr 'data-original-poll', null
-
-  osu.pageChange()
-
-
-$(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->
+$(document).on 'ajax:success', '.js-edit-post-start', (e, data, status, xhr) ->
   # ajax:complete needs to be triggered early because the link (target) is
   # removed in this callback.
   $(e.target).trigger('ajax:complete', [xhr, status])
 
-  $postBox = $(e.target).parents('.js-forum-post')
+  $postBox = $(e.target).parents('.js-forum-post-edit--container')
 
   $postBox
     .attr 'data-original-post', $postBox.html()
@@ -66,7 +36,7 @@ $(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->
 $(document).on 'click', '.js-edit-post-cancel', (e) ->
   e.preventDefault()
 
-  $postBox = $(e.target).parents '.js-forum-post'
+  $postBox = $(e.target).parents '.js-forum-post-edit--container'
   $postBox
     .html $postBox.attr('data-original-post')
     .attr 'data-original-post', null

@@ -31,12 +31,14 @@
   &__item {
     margin: 4px 5px;
     flex: none;
+    display: flex; // remove space between ::before and content
+    align-items: baseline;
 
     & + &::before {
       .fas();
       content: "\f105"; // fa-angle-right
 
-      margin-right: 5px;
+      margin-right: 10px;
     }
   }
 

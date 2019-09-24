@@ -34,9 +34,10 @@ return [
         'back_to_previous' => 'Torna alla posizione precedente',
         'back_to_top' => 'Torna in cima',
         'cancel' => 'Cancella',
-        'change' => 'modifica',
+        'change' => 'cambia',
         'click_to_copy' => 'clicca per copiare negli appunti',
         'click_to_copy_copied' => 'copiato negli appunti!',
+        'close' => '',
         'collapse' => 'comprimi',
         'delete' => 'Elimina',
         'edit' => 'Modifica',
@@ -58,6 +59,7 @@ return [
         'show_deleted' => 'Mostra eliminati',
         'show_more' => 'mostra altro',
         'show_more_options' => 'mostra più opzioni',
+        'update' => '',
         'upload_image' => 'carica immagine',
 
         'watch' => [
@@ -67,17 +69,21 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count medaglia |:count medaglie',
-        'days' => ':count giorno |:count giorni',
+        'badges' => ':count_delimited medaglia|:count_delimited medaglie',
+        'days' => ':count_delimited giorno|:count_delimited giorni',
         'hour_short_unit' => 'ora|ore',
-        'hours' => ':count ora|:count ore',
+        'hours' => ':count_delimited ora|:count_delimited ore',
         'item' => ':count unità|:count unità',
         'minute_short_unit' => 'minuto|minuti',
-        'minutes' => ':count minuto |:count minuti',
-        'months' => ':count mese|:count mesi',
+        'minutes' => ':count_delimited minuto|:count_delimited minuti',
+        'months' => ':count_delimited mese|:count_delimited mesi',
+        'plus_others' => '',
+        'post' => ':count_delimited post|:count_delimited post',
         'second_short_unit' => 'secondo|secondi',
+        'star_priority' => ':count_delimited stella di priorità|:count_delimited stelle di priorità',
         'update' => ':count_delimited aggiornamento|:count_delimited aggiornamenti',
-        'years' => ':count anno|:count anni',
+        'view' => ':count_delimited visualizzazione|:count_delimited visualizzazioni',
+        'years' => ':count_delimited anno|:count_delimited anni',
     ],
 
     'countdown' => [
@@ -123,10 +129,10 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count giorni fa|:count giorni fa',
-        'hours_ago' => ':count ore fa|:count ore fa',
+        'days_ago' => ':count_delimited giorno fa|:count_delimited giorni fa',
+        'hours_ago' => ':count_delimited ora fa|:count_delimited ore fa',
         'now' => 'ora',
-        'remaining' => 'Tempo rimanente',
+        'remaining' => 'Tempo Rimanente',
     ],
 
     'title' => [

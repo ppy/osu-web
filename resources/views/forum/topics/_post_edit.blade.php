@@ -19,31 +19,10 @@
     'url' => route('forum.posts.update', $post),
     'method' => 'patch',
     'data-remote' => true,
-    'class' => 'js-forum-post-edit forum-post '.($post->userNormalized()->isSpecial() ? 'forum-post--special' : ''),
-    'data-post-position' => $post->postPosition,
+    'class' => 'js-forum-post-edit forum-post-edit-box',
 ]) !!}
-    @if ($post->userNormalized()->isSpecial())
-        <div
-            class="forum-post__stripe"
-            style="{{ user_color_style($post->userNormalized()->user_colour, "background-color") }}"
-        ></div>
-    @endif
-
-    @include("forum.topics._post_info", ["user" => $post->userNormalized()])
-
-    <div class="forum-post__body">
-        <div class="forum-post__content">
-            @include('forum.posts._form_body', ['postBody' => [
-                'content' => $post->bodyRaw, 'focus' => true,
-                'extraClasses' => 'forum-post-content--edit',
-            ]])
-        </div>
-
-        <div class="forum-post__content forum-post__content--edit-bar">
-            @include("forum.topics._post_box_footer", [
-                "submitText" => trans("forum.topic.post_edit.post"),
-                "editing" => true
-            ])
-        </div>
-    </div>
+    @include('forum.topics._post_edit_form', [
+        'content' => $post->bodyRaw,
+        'type' => 'edit',
+    ])
 {!! Form::close() !!}

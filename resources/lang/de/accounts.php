@@ -26,8 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => 'Bitte stelle sicher, dass sich dein Avatar an :link hält.<br/>Das heißt, es muss <strong>für alle Altersklassen geeignet</strong> sein. Z.B. keine Nacktheit, Obszönität oder anstößiger Inhalt.',
+            'rules_link' => 'die Community Regeln',
         ],
 
         'email' => [
@@ -71,6 +71,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'autorisierte Geräte',
+        'own_clients' => '',
         'title' => 'OAuth',
     ],
 
@@ -108,11 +109,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Sie können diesen Tab/Fenster jetzt schließen',
+        'title' => 'Überprüfung wurde abgeschlossen',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Ungültiger oder abgelaufener Bestätigungslink',
     ],
 ];

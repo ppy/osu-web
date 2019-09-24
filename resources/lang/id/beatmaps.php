@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Berikan vote positif pada untai diskusi ini',
-            'down' => 'Berikan vote negatif pada untai diskusi ini',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 

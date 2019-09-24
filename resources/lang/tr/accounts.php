@@ -26,8 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => 'Avatarının :link\'na uyduğundan emin ol.<br/>Bu avatarının <strong>her yaş grubuna</strong> uygun olması gerektiği anlamına gelir. Yani çıplaklık, küfür veya müstehcen içerik olmamalıdır.',
+            'rules_link' => 'topluluk kuralları',
         ],
 
         'email' => [
@@ -71,6 +71,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'istek yetkilendirildi',
+        'own_clients' => '',
         'title' => 'Otomatik bağlantı',
     ],
 
@@ -108,11 +109,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Bu pencereyi kapatabilirsiniz',
+        'title' => 'Doğrulama tamamlandı',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Geçersiz veya süresi dolmuş doğrulama bağlantısı',
     ],
 ];

@@ -20,44 +20,63 @@
 
 return [
     'support' => [
-        'header' => [
-            // size in font-size
-            'big_description' => 'Kochasz osu!?<br/>                                 Wspomóż rozwój gry! :D',
-            'small_description' => '',
-            'support_button' => 'Chcę wspomóc osu!',
+        'convinced' => [
+            'title' => 'Zachęciłeś mnie! :D',
+            'support' => 'wspomóż osu!',
+            'gift' => 'albo podaruj status donatora innemu graczowi',
+            'instructions' => 'kliknij ikonę serca, aby przejść do sklepu osu!',
         ],
+        'why-support' => [
+            'title' => 'Dlaczego mam wspomóc osu!? Na co przeznaczacie pieniądze?',
 
-        'dev_quote' => 'osu! jest kompletnie darmową grą, ale utrzymanie jej nie jest już darmowe. Oprócz kosztów utrzymania serwerów i wysokiej jakości internetu, czasu spędzonego na zarządzanie systemem i społecznością, ustanawiania nagród za konkursy, odpowiadania na pytania dotyczące pomocy technicznej i ogólnego uszczęsliwiania społeczności, osu! wymaga dość sporej sumy pieniędzy. I nie zapominajmy, że robimy to bez żadnych reklam ani partnerstw z denerwującymi toolbarami!
-            <br/><br/>osu! jest w większości utrzymwane przeze mnie, którego możecie znać jako "peppy".
-            Musiałem opuścić normalną pracę, aby wyrabiać się czasowo z osu! i czasami zdarza się, że mam problem z utrzymaniem standardów, o które się staram.
-            Chciałbym zaoferować osobiste podziękowania dla każdego, który wspomógł osu! do tej pory,
-            tak samo jak tych, którzy ciągle wspierają tę wspaniałą grę i społeczność :).',
-
-        'supporter_status' => [
-            'contribution' => 'Dziękujemy za twoje dotychczasowe wsparcie! Otrzymaliśmy od ciebie łącznie :dollars pochodzących z :tags zakupionych statusów donatora!',
-            'gifted' => 'Ze wszystkich zakupionych statusów donatora, :giftedTags podarowano innym użytkownikom (za łączną wartość :giftedDollars). Wspaniała szczodrość!',
-            'not_yet' => "Nie posiadasz jeszcze statusu donatora :(",
-            'title' => 'Status donatora',
-            'valid_until' => 'Twój status donatora przestanie być aktywny :date!',
-            'was_valid_until' => 'Twój status donatora przestał być aktywny :date.',
-        ],
-
-        'why_support' => [
-            'title' => 'Dlaczego mam wspomóc osu!?',
-            'blocks' => [
-                'dev' => 'Stworzona i utrzymywana głównie przez jedną osobę z Australii.',
-                'time' => 'Zajmuje tyle czasu, że nie można tego już nazwać "hobby".',
-                'ads' => 'Brak jakichkolwiek reklam. <br/><br/>
-                        W odróżnieniu od 99,95% Internetu, nie zarabiamy na pokazywaniu reklam.',
-                'goodies' => 'Dostajesz dodatkowe korzyści!',
+            'team' => [
+                'title' => 'Wynagrodzenie dla zespołu',
+                'description' => 'osu! jest prowadzone i rozwijane przez mały zespół. Twoje wsparcie pomoże im... przeżyć.',
+            ],
+            'infra' => [
+                'title' => 'Infrastruktura serwerowa',
+                'description' => 'Część wsparcia jest przeznaczona na serwery odpowiadające za działanie strony, tryb wieloosobowy, tabele wyników itd.',
+            ],
+            'featured-artists' => [
+                'title' => 'Wyróżnieni artyści',
+                'description' => '',
+                'link_text' => 'Pokaż aktualną listę artystów &raquo;',
+            ],
+            'ads' => [
+                'title' => 'Samowystarczalność osu!',
+                'description' => 'Twoje wsparcie pozwala uniezależnić osu! od reklam i zewnętrznych sponsorów.',
+            ],
+            'tournaments' => [
+                'title' => 'Oficjalne turnieje',
+                'description' => 'Pomóż sfinansować przeprowadzenie i nagrody dla oficjalnych turniejów osu!.',
+                'link_text' => 'Przeglądaj turnieje &raquo;',
+            ],
+            'bounty-program' => [
+                'title' => 'Program nagradzania woluntariuszy',
+                'description' => '',
+                'link_text' => 'Dowiedz się więcej &raquo;',
             ],
         ],
-
         'perks' => [
             'title' => 'Tak? Co dostaję?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'szybki i łatwy dostęp do beatmap bez opuszczania gry.',
+                'description' => 'Szybki i łatwy dostęp do beatmap bez potrzeby opuszczania gry.',
+            ],
+
+            'friend_ranking' => [
+                'title' => 'Ranking znajomych',
+                'description' => "",
+            ],
+
+            'country_ranking' => [
+                'title' => 'Ranking krajowy',
+                'description' => 'Podbij swój kraj, zanim podbijesz cały świat.',
+            ],
+
+            'mod_filtering' => [
+                'title' => 'Filtrowanie wg. modyfikatorów',
+                'description' => '',
             ],
 
             'auto_downloads' => [
@@ -72,12 +91,12 @@ return [
 
             'early_access' => [
                 'title' => 'Wczesny dostęp',
-                'description' => 'Dostęp do wczesnych wersji, gdzie możesz wypróbować nowe opcje, zanim zostaną one upublicznione!',
+                'description' => 'Dostęp do wczesnych wersji, gdzie możesz wypróbować nowe opcje, zanim zostaną one upublicznione (w tym wczesny dostęp do nowych funkcji na stronie)!',
             ],
 
             'customisation' => [
                 'title' => 'Personalizacja',
-                'description' => 'Spersonalizuj swój profil poprzez w pełni modyfikowalną stronę.',
+                'description' => "Spersonalizuj swój profil poprzez w pełni modyfikowalną stronę i własne tło profilu.",
             ],
 
             'beatmap_filters' => [
@@ -97,7 +116,7 @@ return [
 
             'change_username' => [
                 'title' => 'Zmiana nicku',
-                'description' => 'Możliwość zmiany nicku bez dodatkowych kosztów (jednorazowo)',
+                'description' => 'Możliwość zmiany nicku bez dodatkowych kosztów (jednorazowo).',
             ],
 
             'skinnables' => [
@@ -115,22 +134,30 @@ return [
                 'description' => 'Możliwość przeglądania rankingu krajowego, znajomych oraz dla wybranych przez ciebie modów w grze.',
             ],
 
-            'feel_special' => [
-                'title' => 'Uczucie wyjątkowości',
-                'description' => 'Wspaniałe uczucie pochodzące z wspomagania osu!',
+            'more_favourites' => [
+                'title' => 'Zwiększony limit ulubionych beatmap',
+                'description' => 'Maksymalna liczba beatmap, które możesz dodać do ulubionych, zostaje zwiększona z :normally do :supporter',
             ],
-
-            'more_to_come' => [
-                'title' => 'Więcej w przyszłości',
+            'more_friends' => [
+                'title' => 'Zwiększony limit znajomych',
+                'description' => 'Maksymalna liczba znajomych zostaje zwiększona z :normally do :supporter',
+            ],
+            'more_beatmaps' => [
+                'title' => 'Zwiększony limit przesyłanych beatmap',
                 'description' => '',
             ],
-        ],
+            'friend_filtering' => [
+                'title' => 'Tabele wyników znajomych',
+                'description' => '',
+            ],
 
-        'convinced' => [
-            'title' => 'Zachęciłeś mnie! :D',
-            'support' => 'wspomóż osu!',
-            'gift' => 'albo podaruj status donatora innemu graczowi',
-            'instructions' => 'kliknij ikonę serca, aby przejść do sklepu osu!',
+        ],
+        'supporter_status' => [
+            'contribution' => 'Dziękujemy za twoje dotychczasowe wsparcie! Otrzymaliśmy od ciebie łącznie :dollars pochodzących z :tags zakupionych statusów donatora!',
+            'gifted' => "Ze wszystkich zakupionych statusów donatora, :giftedTags podarowano innym użytkownikom (za łączną wartość :giftedDollars). Wspaniała szczodrość!",
+            'not_yet' => "Nie masz jeszcze statusu donatora osu! :(",
+            'valid_until' => 'Twój status donatora przestanie być aktywny :date!',
+            'was_valid_until' => 'Twój status donatora przestał być aktywny :date.',
         ],
     ],
 ];

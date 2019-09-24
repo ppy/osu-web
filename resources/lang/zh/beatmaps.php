@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => '支持该讨论',
-            'down' => '反对该讨论',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 
@@ -251,7 +257,7 @@ return [
         'mine' => '我的谱面',
         'pending' => 'Pending & WIP',
         'qualified' => 'Qualified',
-        'ranked' => '进榜',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => '所有',

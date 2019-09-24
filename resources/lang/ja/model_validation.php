@@ -29,7 +29,7 @@ return [
         'first_post' => '最初の投稿は削除できません。',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'メッセージ',
         ],
     ],
 
@@ -42,8 +42,8 @@ return [
         'locked' => 'ディスカッションはロックされています。',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'メッセージタイプ',
+            'timestamp' => 'タイムスタンプ',
         ],
 
         'hype' => [
@@ -64,7 +64,7 @@ return [
         'deleted_parent' => '削除されたコメントに返信することはできません。',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'メッセージ',
         ],
     ],
 
@@ -88,13 +88,13 @@ return [
             'only_quote' => 'あなたの返信には引用しかありません。',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => '本文を送信',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'タイトル',
             ],
         ],
 
@@ -108,13 +108,25 @@ return [
             'too_many_options' => '選択肢の数が多すぎます。',
 
             'attributes' => [
-                'title' => '',
+                'title' => '投票タイトル',
             ],
         ],
 
         'topic_vote' => [
             'required' => '投票する選択肢を選んでください。',
             'too_many' => '許可されている選択肢の選択数を超えました。',
+        ],
+    ],
+
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
         ],
     ],
 
@@ -143,9 +155,9 @@ return [
         'too_long' => '使用文字数の制限を超えています。上限は:limit文字です。',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'ユーザー名',
+            'user_email' => 'メールアドレス',
+            'password' => 'パスワード',
         ],
 
         'change_username' => [
@@ -165,8 +177,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => '数量',
+                'cost' => '価格',
             ],
         ],
     ],

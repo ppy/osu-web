@@ -42,6 +42,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '최근 게시글',
+
+        'index' => [
+            'title' => '포럼 목차',
+        ],
+
         'topics' => [
             'empty' => '주제글이 아무것도 없습니다!',
         ],
