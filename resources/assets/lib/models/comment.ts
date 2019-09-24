@@ -21,17 +21,37 @@ import { CommentJSON } from 'interfaces/comment-json';
 export type CommentSort = 'new' | 'old' | 'top';
 
 export class Comment {
+  commentableId: number;
+  commentableType: string; // TODO: type?
+  createdAt: string;
+  deletedAt: string | null;
+  editedAt: string | null;
+  editedById: number | null;
   id: number;
-  parent_id: number | null;
+  legacyName: string | null;
+  message: string;
+  messageHtml: string;
+  parentId: number | null;
+  repliesCount: number;
+  updatedAt: string;
+  userId: number;
+  votesCount: number;
 
   constructor(json: CommentJSON) {
+    this.commentableId = json.commentable_id;
+    this.commentableType = json.commentable_type;
+    this.createdAt = json.created_at;
+    this.deletedAt = json.deleted_at;
+    this.editedAt = json.edited_at;
+    this.editedById = json.edited_by_id;
     this.id = json.id;
-    this.parent_id = json.parent_id;
-  }
-
-  static fromJSON(json: CommentJSON): Comment {
-    const obj = Object.create(Comment.prototype);
-
-    return Object.assign(obj, json);
+    this.legacyName = json.legacy_name;
+    this.message = json.message;
+    this.messageHtml = json.message_html;
+    this.parentId = json.parent_id;
+    this.repliesCount = json.replies_count;
+    this.updatedAt = json.updated_at;
+    this.userId = json.user_id;
+    this.votesCount = json.votes_count;
   }
 }

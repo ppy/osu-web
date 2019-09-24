@@ -88,8 +88,8 @@ export class CommentShowMore extends React.PureComponent
     if lastComment?
       params.cursor =
         id: lastComment.id
-        created_at: lastComment.created_at
-        votes_count: lastComment.votes_count
+        created_at: lastComment.createdAt
+        votes_count: lastComment.votesCount
 
     @xhr = $.ajax laroute.route('comments.index'),
       data: params

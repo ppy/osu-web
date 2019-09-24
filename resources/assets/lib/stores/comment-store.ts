@@ -75,13 +75,13 @@ export default class CommentStore extends Store {
     if (data == null) { return; }
 
     for (const json of data) {
-      const comment = Comment.fromJSON(json);
+      const comment = new Comment(json);
       const exists = this.comments.has(comment.id);
       this.comments.set(comment.id, comment);
 
       // assume already grouped if key exists
       if (!exists) {
-        const key = String(comment.parent_id);
+        const key = String(comment.parentId);
         if (this.groupedByParentId[key] != null) {
           this.groupedByParentId[key].push(comment);
         } else {

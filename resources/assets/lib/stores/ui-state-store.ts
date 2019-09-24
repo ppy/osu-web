@@ -109,8 +109,8 @@ export default class UIStateStore extends Store {
     this.comments.topLevelCount = commentBundle.top_level_count;
     this.comments.total = commentBundle.total;
 
-    const comment = commentBundle.comments[0];
-    const parentId = comment.parent_id;
+    const comment = new Comment(commentBundle.comments[0]);
+    const parentId = comment.parentId;
     if (parentId == null) {
       this.comments.topLevelCommentIds.unshift(comment.id);
     } else {
@@ -122,11 +122,11 @@ export default class UIStateStore extends Store {
   private orderComments(comments: Comment[]) {
     switch (this.comments.currentSort) {
       case 'old':
-        return orderBy(comments, 'created_at', 'asc');
+        return orderBy(comments, 'createdAt', 'asc');
       case 'top':
-        return orderBy(comments, 'votes_count', 'desc');
+        return orderBy(comments, 'votesCount', 'desc');
       default:
-        return orderBy(comments, 'created_at', 'desc');
+        return orderBy(comments, 'createdAt', 'desc');
     }
   }
 

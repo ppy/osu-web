@@ -42,10 +42,10 @@ export class Comment extends React.PureComponent
   makePreviewElement = document.createElement('div')
 
   makePreview = (comment) ->
-    if comment.deleted_at?
+    if comment.deletedAt?
       osu.trans('comments.deleted')
     else
-      makePreviewElement.innerHTML = comment.message_html
+      makePreviewElement.innerHTML = comment.messageHtml
       _.truncate makePreviewElement.textContent, length: 100
 
 
@@ -83,7 +83,7 @@ export class Comment extends React.PureComponent
   render: =>
     el Observer, null, () =>
       @children = uiState.getOrderedCommentsByParentId(@props.comment.id) ? []
-      parent = store.comments.get(@props.comment.parent_id)
+      parent = store.comments.get(@props.comment.parentId)
       user = @userFor(@props.comment)
 
       modifiers = @props.modifiers?[..] ? []
@@ -127,11 +127,11 @@ export class Comment extends React.PureComponent
                   message: @props.comment.message
                   modifiers: @props.modifiers
                   close: @closeEdit
-            else if @props.comment.message_html?
+            else if @props.comment.messageHtml?
               div
                 className: 'comment__message',
                 dangerouslySetInnerHTML:
-                  __html: @props.comment.message_html
+                  __html: @props.comment.messageHtml
 
             div className: 'comment__row comment__row--footer',
               if @canHaveVote()
@@ -141,7 +141,7 @@ export class Comment extends React.PureComponent
 
               div
                 className: 'comment__row-item comment__row-item--info'
-                dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.created_at)
+                dangerouslySetInnerHTML: __html: osu.timeago(@props.comment.createdAt)
 
               @renderPermalink()
               @renderReplyButton()
@@ -154,7 +154,7 @@ export class Comment extends React.PureComponent
 
             @renderReplyBox()
 
-        if @props.showReplies && @props.comment.replies_count > 0
+        if @props.showReplies && @props.comment.repliesCount > 0
           div
             className: repliesClass
             @children.map @renderComment
@@ -164,7 +164,7 @@ export class Comment extends React.PureComponent
             el CommentShowMore,
               parent: @props.comment
               comments: @children
-              total: @props.comment.replies_count
+              total: @props.comment.repliesCount
               modifiers: @props.modifiers
               label: osu.trans('comments.load_replies') if @children.length == 0
               ref: @loadMoreRef
@@ -172,7 +172,7 @@ export class Comment extends React.PureComponent
 
   renderComment: (comment) =>
     comment = store.comments.get(comment.id)
-    return null if comment.deleted_at? && !uiState.comments.isShowDeleted
+    return null if comment.deletedAt? && !uiState.comments.isShowDeleted
 
     el Comment,
       key: comment.id
@@ -203,13 +203,13 @@ export class Comment extends React.PureComponent
 
 
   renderEditedBy: =>
-    if !@isDeleted() && @props.comment.edited_at?
-      editor = userStore.get(@props.comment.edited_by_id)
+    if !@isDeleted() && @props.comment.editedAt?
+      editor = userStore.get(@props.comment.editedById)
       div
         className: 'comment__row-item comment__row-item--info'
         dangerouslySetInnerHTML:
           __html: osu.trans 'comments.edited',
-            timeago: osu.timeago(@props.comment.edited_at)
+            timeago: osu.timeago(@props.comment.editedAt)
             user:
               if editor.id?
                 osu.link(laroute.route('users.show', user: editor.id), editor.username, classNames: ['comment__link'])
@@ -226,7 +226,7 @@ export class Comment extends React.PureComponent
 
 
   renderRepliesText: =>
-    return if @props.comment.replies_count == 0
+    return if @props.comment.repliesCount == 0
 
     if @props.showReplies
       if !@state.expandReplies && @children.length == 0
@@ -234,7 +234,7 @@ export class Comment extends React.PureComponent
         label = osu.trans('comments.load_replies')
       else
         onClick = @toggleReplies
-        label = "#{osu.trans('comments.replies')} (#{osu.formatNumber(@props.comment.replies_count)})"
+        label = "#{osu.trans('comments.replies')} (#{osu.formatNumber(@props.comment.repliesCount)})"
 
       label = "[#{if @state.expandReplies then '-' else '+'}] #{label}"
 
@@ -248,7 +248,7 @@ export class Comment extends React.PureComponent
       div className: 'comment__row-item',
         osu.trans('comments.replies')
         ': '
-        osu.formatNumber(@props.comment.replies_count)
+        osu.formatNumber(@props.comment.repliesCount)
 
 
   renderRepliesToggle: =>
@@ -344,7 +344,7 @@ export class Comment extends React.PureComponent
       onClick: @voteToggle
       disabled: @state.postingVote || !@canVote()
       span className: 'comment-vote__text',
-        "+#{osu.formatNumberSuffixed(@props.comment.votes_count, null, maximumFractionDigits: 1)}"
+        "+#{osu.formatNumberSuffixed(@props.comment.votesCount, null, maximumFractionDigits: 1)}"
       if @state.postingVote
         span className: 'comment-vote__spinner', el Spinner
       hover
@@ -359,7 +359,7 @@ export class Comment extends React.PureComponent
       type: 'button'
       onClick: @voteToggle
       disabled: @state.postingVote
-      "+#{osu.formatNumberSuffixed(@props.comment.votes_count, null, maximumFractionDigits: 1)}"
+      "+#{osu.formatNumberSuffixed(@props.comment.votesCount, null, maximumFractionDigits: 1)}"
 
 
   canDelete: =>
@@ -379,7 +379,7 @@ export class Comment extends React.PureComponent
 
 
   canReport: =>
-    currentUser.id? && @props.comment.user_id != currentUser.id
+    currentUser.id? && @props.comment.userId != currentUser.id
 
 
   canRestore: =>
@@ -392,7 +392,7 @@ export class Comment extends React.PureComponent
 
   renderCommentableMeta: =>
     return unless @props.showCommentableMeta
-    meta = commentableMetaStore.get(@props.comment.commentable_type, @props.comment.commentable_id)
+    meta = commentableMetaStore.get(@props.comment.commentableType, @props.comment.commentableId)
 
     if meta.url
       component = a
@@ -404,17 +404,17 @@ export class Comment extends React.PureComponent
       params = null
 
     div className: 'comment__commentable-meta',
-      if @props.comment.commentable_type?
+      if @props.comment.commentableType?
         span className: 'comment__commentable-meta-type',
           span className: 'comment__commentable-meta-icon fas fa-comment'
           ' '
-          osu.trans("comments.commentable_name.#{@props.comment.commentable_type}")
+          osu.trans("comments.commentable_name.#{@props.comment.commentableType}")
       component params,
         meta.title
 
 
   isOwner: =>
-    @props.comment.user_id? && @props.comment.user_id == currentUser.id
+    @props.comment.userId? && @props.comment.userId == currentUser.id
 
 
   hasVoted: =>
@@ -448,7 +448,7 @@ export class Comment extends React.PureComponent
 
 
   isDeleted: =>
-    @props.comment.deleted_at?
+    @props.comment.deletedAt?
 
 
   loadReplies: =>
@@ -473,12 +473,12 @@ export class Comment extends React.PureComponent
 
 
   userFor: (comment) =>
-    user = userStore.get(comment.user_id)?.toJSON()
+    user = userStore.get(comment.userId)?.toJSON()
 
     if user?
       user
-    else if comment.legacy_name?
-      username: comment.legacy_name
+    else if comment.legacyName?
+      username: comment.legacyName
     else
       deletedUser
 
