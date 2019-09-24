@@ -81,6 +81,7 @@ $(document).on 'turbolinks:load', ->
 @userLogin ?= new UserLogin
 @userVerification ?= new UserVerification
 
+@osuEnchant ?= new _exported.Enchant(@, @turbolinksReload)
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)

@@ -18,6 +18,7 @@
 
 # Import shim so that globally declared scripts can work without changes.
 
+import Enchant from 'enchant'
 import ForumPoll from 'forum-poll'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
@@ -30,6 +31,7 @@ import TurbolinksReload from 'turbolinks-reload'
 window.Promise ?= Promise
 
 window._exported = {
+  Enchant
   ForumPoll
   GalleryContest
   TurbolinksReload
