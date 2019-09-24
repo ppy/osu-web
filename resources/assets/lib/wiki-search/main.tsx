@@ -16,10 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as _ from 'lodash';
 import * as React from 'react';
 
-export default class Main extends React.Component<{}, {}> {
+export default class Main extends React.Component {
   input = React.createRef<HTMLInputElement>();
 
   constructor(props: {}) {
@@ -61,7 +60,7 @@ export default class Main extends React.Component<{}, {}> {
     return (
       <div className='wiki-search'>
         <input
-          className='wiki-search__bar js-wiki-search-input'
+          className='wiki-search__bar'
           ref={this.input}
           placeholder={osu.trans('common.input.search')}
           onKeyDown={this.onKeyDown}
