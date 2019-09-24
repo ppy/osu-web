@@ -21,20 +21,6 @@ import * as React from 'react';
 export class WikiSearch extends React.Component {
   input = React.createRef<HTMLInputElement>();
 
-  constructor(props: {}) {
-    super(props);
-
-    this.input = React.createRef();
-  }
-
-  componentDidMount() {
-    const input = this.input.current;
-
-    if (input) {
-      input.focus();
-    }
-  }
-
   onKeyDown = (e: React.KeyboardEvent) => {
     if (e.keyCode === 13) { // enter
       this.performSearch();
@@ -44,29 +30,31 @@ export class WikiSearch extends React.Component {
   performSearch = () => {
     const input = this.input.current;
 
-    if (input) {
-      if (input.value === '') {
-        return;
-      }
-
-      Turbolinks.visit(laroute.route('search', {
-        mode: 'wiki_page',
-        query: input.value,
-      }));
+    if (input == null || input.value === '') {
+      return;
     }
+
+    Turbolinks.visit(laroute.route('search', {
+      mode: 'wiki_page',
+      query: input.value,
+    }));
   }
 
   render() {
     return (
       <div className='wiki-search'>
-        <input
-          className='wiki-search__bar'
-          ref={this.input}
-          placeholder={osu.trans('common.input.search')}
-          onKeyDown={this.onKeyDown}
-        />
-
-        <span className='wiki-search__button fa fa-search' onClick={this.performSearch}/>
+        <div className='wiki-search__bar'>
+          <input
+            className='wiki-search__input'
+            ref={this.input}
+            placeholder={osu.trans('common.input.search')}
+            autoFocus={true}
+            onKeyDown={this.onKeyDown}
+          />
+          <button className='wiki-search__button' onClick={this.performSearch}>
+            <i className='fa fa-search'/>
+          </button>
+        </div>
       </div>
     );
   }

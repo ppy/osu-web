@@ -21,17 +21,25 @@
 
   &__bar {
     .default-border-radius();
-    height: 54px;
-    width: 100%;
-    padding: 0 20px;
-    margin-right: -38px;
+    display: flex;
+    flex-direction: row;
 
-    background-color: @osu-colour-b6;
-    color: @osu-colour-c1;
+    width: 100%;
+    padding: 13px 20px;
 
     font-size: @font-size--wiki-search;
 
+    background-color: @osu-colour-b6;
+
     border: 2px solid @osu-colour-orange-1;
+  }
+
+  &__input {
+    background: transparent;
+    color: @osu-colour-c1;
+    flex-grow: 1;
+
+    border: none;
 
     &::placeholder {
       color: @osu-colour-c2;
@@ -40,15 +48,8 @@
 
   &__button {
     .center-content();
-    height: 54px;
-    font-size: 18px;
+    .reset-input();
 
     color: @osu-colour-c1;
-
-    padding-right: 20px;
-
-    &:hover {
-      cursor: pointer;
-    }
   }
 }
