@@ -20,7 +20,7 @@
 
 @section('content')
     <div class="osu-layout osu-layout__row">
-        <div class="osu-page-header osu-page-header--wiki-main-page">
+        <div class="osu-page-header osu-page-header--wiki osu-page-header--wiki-main-page">
             <div class="osu-page-header__title-box">
                 <span class="osu-page-header__title osu-page-header__title--icon">
                     <i class="fa fa-university"></i>
@@ -32,13 +32,9 @@
     </div>
     <div class="osu-page osu-page--wiki wiki-main-page">
         @include('wiki._notice')
+        @if(Auth::user() !== null)
         <div class="js-react--wiki-search"></div>
+        @endif
         {!! $page->page()["output"] !!}
     </div>
-@endsection
-
-@section('script')
-    @if(Auth::user() !== null)
-        @include('layout._extra_js', ['src' => 'js/react/wiki-search.js'])
-    @endif
 @endsection

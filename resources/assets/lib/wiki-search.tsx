@@ -18,7 +18,7 @@
 
 import * as React from 'react';
 
-export default class Main extends React.Component {
+export class WikiSearch extends React.Component {
   input = React.createRef<HTMLInputElement>();
 
   constructor(props: {}) {
