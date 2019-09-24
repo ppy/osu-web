@@ -17,6 +17,7 @@
  */
 
 import { CommentJSON } from 'interfaces/comment-json';
+import { computed } from 'mobx';
 
 export type CommentSort = 'new' | 'old' | 'top';
 
@@ -53,5 +54,55 @@ export class Comment {
     this.updatedAt = json.updated_at;
     this.userId = json.user_id;
     this.votesCount = json.votes_count;
+  }
+
+  @computed
+  get canDelete() {
+    return this.canModerate || this.isOwner;
+  }
+
+  @computed
+  get canEdit() {
+    return this.canModerate || (this.isOwner && !this.isDeleted);
+  }
+
+  @computed
+  get canHaveVote() {
+    return !this.isDeleted;
+  }
+
+  @computed
+  get canModerate() {
+    return currentUser.is_admin || currentUser.can_moderate;
+  }
+
+  @computed
+  get canReport() {
+    return currentUser.id != null && this.userId !== currentUser.id;
+  }
+
+  @computed
+  get canRestore() {
+    return this.canModerate;
+  }
+
+  @computed
+  get canVote() {
+    return !this.isOwner;
+  }
+
+  @computed
+  get isDeleted() {
+    return this.deletedAt != null;
+  }
+
+  @computed
+  get isEdited() {
+    return this.editedAt != null;
+  }
+
+  @computed
+  get isOwner() {
+    return currentUser.id != null && this.userId === currentUser.id;
   }
 }

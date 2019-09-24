@@ -42,7 +42,7 @@ export class Comment extends React.PureComponent
   makePreviewElement = document.createElement('div')
 
   makePreview = (comment) ->
-    if comment.deletedAt?
+    if comment.isDeleted
       osu.trans('comments.deleted')
     else
       makePreviewElement.innerHTML = comment.messageHtml
@@ -62,7 +62,7 @@ export class Comment extends React.PureComponent
     if osu.isMobile()
       # There's no indentation on mobile so don't expand by default otherwise it will be confusing.
       expandReplies = false
-    else if @isDeleted()
+    else if @props.comment.isDeleted
       expandReplies = false
     else
       children = uiState.getOrderedCommentsByParentId(@props.comment.id)
@@ -99,8 +99,8 @@ export class Comment extends React.PureComponent
         @renderRepliesToggle()
         @renderCommentableMeta()
 
-        div className: "comment__main #{if @isDeleted() then 'comment__main--deleted' else ''}",
-          if @canHaveVote()
+        div className: "comment__main #{if @props.comment.isDeleted then 'comment__main--deleted' else ''}",
+          if @props.comment.canHaveVote
             div className: 'comment__float-container comment__float-container--left hidden-xs',
               @renderVoteButton()
 
@@ -115,7 +115,7 @@ export class Comment extends React.PureComponent
                   className: 'comment__row-item comment__row-item--parent'
                   @parentLink(parent)
 
-              if @isDeleted()
+              if @props.comment.isDeleted
                 span
                   className: 'comment__row-item comment__row-item--deleted'
                   osu.trans('comments.deleted')
@@ -134,7 +134,7 @@ export class Comment extends React.PureComponent
                   __html: @props.comment.messageHtml
 
             div className: 'comment__row comment__row--footer',
-              if @canHaveVote()
+              if @props.comment.canHaveVote
                 div
                   className: 'comment__row-item visible-xs'
                   @renderVoteText()
@@ -172,7 +172,7 @@ export class Comment extends React.PureComponent
 
   renderComment: (comment) =>
     comment = store.comments.get(comment.id)
-    return null if comment.deletedAt? && !uiState.comments.isShowDeleted
+    return null if comment.isDeleted && !uiState.comments.isShowDeleted
 
     el Comment,
       key: comment.id
@@ -183,7 +183,7 @@ export class Comment extends React.PureComponent
 
 
   renderDelete: =>
-    if !@isDeleted() && @canDelete()
+    if !@props.comment.isDeleted && @props.comment.canDelete
       div className: 'comment__row-item',
         button
           type: 'button'
@@ -193,7 +193,7 @@ export class Comment extends React.PureComponent
 
 
   renderEdit: =>
-    if @canEdit()
+    if @props.comment.canEdit
       div className: 'comment__row-item',
         button
           type: 'button'
@@ -203,7 +203,7 @@ export class Comment extends React.PureComponent
 
 
   renderEditedBy: =>
-    if !@isDeleted() && @props.comment.editedAt?
+    if !@props.comment.isDeleted && @props.comment.isEdited
       editor = userStore.get(@props.comment.editedById)
       div
         className: 'comment__row-item comment__row-item--info'
@@ -272,7 +272,7 @@ export class Comment extends React.PureComponent
 
 
   renderReplyButton: =>
-    if @props.showReplies && !@isDeleted()
+    if @props.showReplies && !@props.comment.isDeleted
       div className: 'comment__row-item',
         button
           type: 'button'
@@ -282,7 +282,7 @@ export class Comment extends React.PureComponent
 
 
   renderReport: =>
-    if @canReport()
+    if @props.comment.canReport
       div className: 'comment__row-item',
         el ReportComment,
           className: 'comment__action'
@@ -291,7 +291,7 @@ export class Comment extends React.PureComponent
 
 
   renderRestore: =>
-    if @isDeleted() && @canRestore()
+    if @props.comment.isDeleted && @props.comment.canRestore
       div className: 'comment__row-item',
         button
           type: 'button'
@@ -342,7 +342,7 @@ export class Comment extends React.PureComponent
       className: className
       type: 'button'
       onClick: @voteToggle
-      disabled: @state.postingVote || !@canVote()
+      disabled: @state.postingVote || !@props.comment.canVote
       span className: 'comment-vote__text',
         "+#{osu.formatNumberSuffixed(@props.comment.votesCount, null, maximumFractionDigits: 1)}"
       if @state.postingVote
@@ -360,34 +360,6 @@ export class Comment extends React.PureComponent
       onClick: @voteToggle
       disabled: @state.postingVote
       "+#{osu.formatNumberSuffixed(@props.comment.votesCount, null, maximumFractionDigits: 1)}"
-
-
-  canDelete: =>
-    @canModerate() || @isOwner()
-
-
-  canEdit: =>
-    @canModerate() || (@isOwner() && !@isDeleted())
-
-
-  canHaveVote: =>
-    !@isDeleted()
-
-
-  canModerate: =>
-    currentUser.is_admin || currentUser.can_moderate
-
-
-  canReport: =>
-    currentUser.id? && @props.comment.userId != currentUser.id
-
-
-  canRestore: =>
-    @canModerate()
-
-
-  canVote: =>
-    !@isOwner()
 
 
   renderCommentableMeta: =>
@@ -411,10 +383,6 @@ export class Comment extends React.PureComponent
           osu.trans("comments.commentable_name.#{@props.comment.commentableType}")
       component params,
         meta.title
-
-
-  isOwner: =>
-    @props.comment.userId? && @props.comment.userId == currentUser.id
 
 
   hasVoted: =>
@@ -445,10 +413,6 @@ export class Comment extends React.PureComponent
 
   closeEdit: =>
     @setState editing: false
-
-
-  isDeleted: =>
-    @props.comment.deletedAt?
 
 
   loadReplies: =>
