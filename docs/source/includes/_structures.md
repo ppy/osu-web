@@ -102,7 +102,7 @@ url              | string     | url of the object
       "legacy_name": null,
       "message": "absolutely",
       "message_html": "<div class='osu-md-default'><p class=\"osu-md-default__paragraph\">absolutely</p>\n</div>",
-      "parent_id": 262,
+      "parent_id": null,
       "replies_count": 0,
       "updated_at": "2019-09-05T07:31:20+00:00",
       "user_id": 2,
@@ -111,6 +111,7 @@ url              | string     | url of the object
   ],
   "has_more": true,
   "has_more_id": 276,
+  "included_comments": [],
   "sort": "new",
   "user_follow": false,
   "user_votes": [277],
@@ -149,16 +150,17 @@ url              | string     | url of the object
 
 Comments and related data.
 
-Field            | Type                                  | Description
----------------- | ------------------------------------- | --------------------------------------------------------------
-commentable_meta | [CommentableMeta](#commentablemeta)[] | ID of the object the comment is attached to
-comments         | [Comment](#comment)[]                 | Array of comments; comments may not necessarily be in order
-has_more         | boolean                               | has more
-has_more_id      | number?                               | id that has more
-sort             | string                                | one of the [CommentSort](#commentsort) types
-user_follow      | boolean                               | is the current user watching the comment thread?
-user_votes       | number[]                              | IDs of the comments in the bundle the current user has upvoted
-users            | [UserCompact](#usercompact)[]         | array of users related to the comments
+Field             | Type                                  | Description
+----------------- | ------------------------------------- | --------------------------------------------------------------
+commentable_meta  | [CommentableMeta](#commentablemeta)[] | ID of the object the comment is attached to
+comments          | [Comment](#comment)[]                 | Array of comments ordered according to `sort`;
+has_more          | boolean                               | If there are more comments or replies available
+has_more_id       | number?                               |
+included_comments | [Comment](#comment)[]                 | Related comments; e.g. parent comments and nested replies
+sort              | string                                | one of the [CommentSort](#commentsort) types
+user_follow       | boolean                               | is the current user watching the comment thread?
+user_votes        | number[]                              | IDs of the comments in the bundle the current user has upvoted
+users             | [UserCompact](#usercompact)[]         | array of users related to the comments
 
 
 ## CommentSort
