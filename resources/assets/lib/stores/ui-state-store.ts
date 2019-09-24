@@ -67,7 +67,7 @@ export default class UIStateStore extends Store {
     return this.orderedCommentsByParentId[parentId];
   }
 
-  handleDispatchAction(action: DispatcherAction) { /* do nothing */}
+  handleDispatchAction(dispatchedAction: DispatcherAction) { /* do nothing */}
 
   // TODO: all the methods below should be moved out
 
