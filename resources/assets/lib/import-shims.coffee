@@ -24,6 +24,7 @@ import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
 import GalleryContest from 'gallery-contest'
 import WindowVHPatcher from 'window-vh-patcher'
+import TurbolinksReload from 'turbolinks-reload'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
@@ -31,6 +32,7 @@ window.Promise ?= Promise
 window._exported = {
   ForumPoll
   GalleryContest
+  TurbolinksReload
   WindowVHPatcher
 }
 
