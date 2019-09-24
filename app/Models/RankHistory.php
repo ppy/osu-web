@@ -138,7 +138,14 @@ class RankHistory extends Model
         $diffHead = $data[0] - $data[1];
         $diffTail = $data[0] - array_last($data);
 
-        if (abs($diffTail) < abs($diffHead)) {
+        $shiftData = abs($diffTail) < abs($diffHead);
+
+        if (!$shiftData) {
+            $currentRank = $this->user->statistics($this->mode)->globalRank();
+            $shiftData = $currentRank === $data[0];
+        }
+
+        if ($shiftData) {
             $lastRank = array_shift($data);
             $data[] = $lastRank;
         }
