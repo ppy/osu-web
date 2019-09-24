@@ -36,4 +36,16 @@
             {{ trans('password_reset.button.start') }}
         </button>
     </div>
+
+    @if (config('services.enchant.id') !== null)
+        <div>
+            {!! trans('password_reset.starting.support._', ['button' => tag('a', [
+                'class' => 'link link--default js-enchant--show',
+                'role' => 'button',
+                'href' => '#',
+            ], trans('password_reset.starting.support.button'))]) !!}
+        </div>
+
+        <div class="enchant-help-center" data-id="{{ config('services.enchant.id') }}"></div>
+    @endif
 {!! Form::close() !!}
