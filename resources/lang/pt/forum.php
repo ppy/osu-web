@@ -25,6 +25,8 @@ return [
     'title' => 'Fóruns osu!',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Colocar imagem de capa',
             'button' => 'Carregar imagem',
@@ -59,14 +61,6 @@ return [
         'busy' => 'A marcar como visto...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'Editar uma sondagem irá remover os resultados atuais!',
-
-        'actions' => [
-            'edit' => 'Editar sondagem',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'Queres mesmo apagar a publicação?',
         'confirm_restore' => 'Queres mesmo restaurar a publicação?',
@@ -77,6 +71,12 @@ return [
             'destroy' => 'Eliminar publicação',
             'restore' => 'Restaurar publicação',
             'edit' => 'Editar publicação',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -105,6 +105,7 @@ return [
         'started_by_verbose' => 'começado por :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Amostra',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -296,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Votar',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'A sondagem irá terminar em :time',

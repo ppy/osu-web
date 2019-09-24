@@ -27,7 +27,7 @@ return [
         'community' => [
             '_' => '',
 
-            'forum' => '',
+            'forum' => 'Forum',
         ],
     ],
 

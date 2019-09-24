@@ -23,15 +23,15 @@ return [
         'convinced' => [
             'title' => 'Zachęciłeś mnie! :D',
             'support' => 'wspomóż osu!',
-            'gift' => 'albo podaruj status donatora innemu graczowi',
+            'gift' => 'lub podaruj status donatora innemu graczowi',
             'instructions' => 'kliknij ikonę serca, aby przejść do sklepu osu!',
         ],
         'why-support' => [
-            'title' => 'Dlaczego mam wspomóc osu!? Na co przeznaczacie pieniądze?',
+            'title' => 'Dlaczego warto wspomóc osu!? Na co są przeznaczane pieniądze?',
 
             'team' => [
                 'title' => 'Wynagrodzenie dla zespołu',
-                'description' => 'osu! jest prowadzone i rozwijane przez mały zespół. Twoje wsparcie pomoże im... przeżyć.',
+                'description' => 'osu! jest prowadzone i rozwijane przez mały zespół. Twoje wsparcie pomaga im, no wiesz, żyć.',
             ],
             'infra' => [
                 'title' => 'Infrastruktura serwerowa',
@@ -39,26 +39,26 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Wyróżnieni artyści',
-                'description' => '',
+                'description' => 'Dzięki twojemu wsparciu możemy kontaktować się ze świetnymi artystami, aby osu! zyskało jeszcze więcej niesamowitej licencjonowanej muzyki!',
                 'link_text' => 'Pokaż aktualną listę artystów &raquo;',
             ],
             'ads' => [
-                'title' => 'Samowystarczalność osu!',
-                'description' => 'Twoje wsparcie pozwala uniezależnić osu! od reklam i zewnętrznych sponsorów.',
+                'title' => 'Samowystarczalność',
+                'description' => 'Twoje wsparcie pozwala utrzymać osu! wolne od reklam i zewnętrznych sponsorów.',
             ],
             'tournaments' => [
                 'title' => 'Oficjalne turnieje',
-                'description' => 'Pomóż sfinansować przeprowadzenie i nagrody dla oficjalnych turniejów osu!.',
+                'description' => 'Pomóż finansować organizację i nagrody dla oficjalnych turniejów osu! World Cup.',
                 'link_text' => 'Przeglądaj turnieje &raquo;',
             ],
             'bounty-program' => [
-                'title' => 'Program nagradzania woluntariuszy',
-                'description' => '',
+                'title' => 'Program nagradzania ochotników',
+                'description' => 'Wspomóż ochotników, którzy poświęcają swój czas, aby uczynić osu! lepszą grą.',
                 'link_text' => 'Dowiedz się więcej &raquo;',
             ],
         ],
         'perks' => [
-            'title' => 'Tak? Co dostaję?!',
+            'title' => 'Bajer! Co dostaję?',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'Szybki i łatwy dostęp do beatmap bez potrzeby opuszczania gry.',
@@ -66,7 +66,7 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Ranking znajomych',
-                'description' => "",
+                'description' => "Sprawdź, gdzie plasujesz się w rywalizacji ze znajomymi na liście wyników beatmapy zarówno na stronie, jak i w grze.",
             ],
 
             'country_ranking' => [
@@ -75,13 +75,13 @@ return [
             ],
 
             'mod_filtering' => [
-                'title' => 'Filtrowanie wg. modyfikatorów',
-                'description' => '',
+                'title' => 'Filtrowanie według modyfikatorów',
+                'description' => 'Chcesz widzieć tylko graczy HDHR? Nie ma problemu!',
             ],
 
             'auto_downloads' => [
                 'title' => 'Automatyczne pobieranie',
-                'description' => 'Automatyczne pobieranie podczas grania w trybie wieloosobowym, oglądania kogoś czy klikania linków w czacie!',
+                'description' => 'Automatyczne pobieranie podczas grania w trybie wieloosobowym, oglądania kogoś czy klikania linków na czacie!',
             ],
 
             'upload_more' => [
@@ -91,17 +91,17 @@ return [
 
             'early_access' => [
                 'title' => 'Wczesny dostęp',
-                'description' => 'Dostęp do wczesnych wersji, gdzie możesz wypróbować nowe opcje, zanim zostaną one upublicznione (w tym wczesny dostęp do nowych funkcji na stronie)!',
+                'description' => 'Uzyskaj dostęp do wczesnych wersji nowych funkcji, zanim zostaną one upublicznione (w tym do tych na stronie)!',
             ],
 
             'customisation' => [
                 'title' => 'Personalizacja',
-                'description' => "Spersonalizuj swój profil poprzez w pełni modyfikowalną stronę i własne tło profilu.",
+                'description' => "Wyróżnij się z tłumu dzięki niestandardowemu obrazowi tła lub tworząc w pełni dowolną stronę „O mnie” ze swojego profilu użytkownika.",
             ],
 
             'beatmap_filters' => [
                 'title' => 'Filtry beatmap',
-                'description' => 'Filtruj wyszukiwania beatmap przez osiągnięty wynik.',
+                'description' => 'Filtruj wyniki wyszukiwania beatmap według zagranych i niezagranych lub osiągniętego wyniku.',
             ],
 
             'yellow_fellow' => [
@@ -116,7 +116,7 @@ return [
 
             'change_username' => [
                 'title' => 'Zmiana nicku',
-                'description' => 'Możliwość zmiany nicku bez dodatkowych kosztów (jednorazowo).',
+                'description' => 'Jednorazowa darmowa zmiana nazwy użytkownika przy pierwszym zakupie.',
             ],
 
             'skinnables' => [
@@ -136,19 +136,19 @@ return [
 
             'more_favourites' => [
                 'title' => 'Zwiększony limit ulubionych beatmap',
-                'description' => 'Maksymalna liczba beatmap, które możesz dodać do ulubionych, zostaje zwiększona z :normally do :supporter',
+                'description' => 'Maksymalna liczba beatmap, które możesz dodać do ulubionych, zostaje zwiększona z :normally do :supporter.',
             ],
             'more_friends' => [
                 'title' => 'Zwiększony limit znajomych',
-                'description' => 'Maksymalna liczba znajomych zostaje zwiększona z :normally do :supporter',
+                'description' => 'Maksymalna liczba znajomych zostaje zwiększona z :normally do :supporter.',
             ],
             'more_beatmaps' => [
                 'title' => 'Zwiększony limit przesyłanych beatmap',
-                'description' => '',
+                'description' => 'Maksymalna liczba posiadanych beatmap nierankingowych jest obliczana na podstawie wartości bazowej, do której dolicza się premię za każdą rankingową beatmapę, jaką masz na koncie (do pewnej granicy).<br/><br/>Zazwyczaj jest to 4 plus 1 (maks. 2) za każdą rankingową beatmapę. Mając status donatora, ta wartość jest zwiększona do 8 plus 1 (maks 12) za każdą rankingową beatmapę.',
             ],
             'friend_filtering' => [
-                'title' => 'Tabele wyników znajomych',
-                'description' => '',
+                'title' => 'Rankingi znajomych',
+                'description' => 'Rywalizuj ze swoimi znajomymi i zobacz, jak ci idzie!*<br/><br/><small>* funkcja jeszcze niedostępna na nowej stronie',
             ],
 
         ],

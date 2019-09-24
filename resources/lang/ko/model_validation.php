@@ -120,12 +120,12 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
-            'url' => '',
+            'too_many' => '허용된 OAuth 애플리케이션 수를 초과했습니다.',
+            'url' => '유효한 URL을 입력하세요.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => '애플리케이션 이름',
+                'redirect' => '애플리케이션 Callback URL',
             ],
         ],
     ],

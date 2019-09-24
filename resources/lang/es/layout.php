@@ -32,11 +32,11 @@ return [
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Cerrar (Esc)',
+        'fullscreen' => 'Activar/Desactivar pantalla completa',
+        'zoom' => 'Zoom Acercar/Alejar',
+        'previous' => 'Anterior (flecha izquierda)',
+        'next' => 'Siguiente (flecha derecha)',
     ],
 
     'menu' => [

@@ -92,7 +92,7 @@ return [
     'security' => [
         'current_session' => 'saat ini',
         'end_session' => 'Akhiri Sesi',
-        'end_session_confirmation' => 'Aksi ini akan langsung mengakhiri sesi di perangkat Anda. Apa anda yakin?',
+        'end_session_confirmation' => 'Aksi ini akan langsung mengakhiri sesi anda di perangkat tersebut. Apakah anda yakin?',
         'last_active' => 'Terakhir aktif:',
         'title' => 'Keamanan',
         'web_sessions' => 'web session',

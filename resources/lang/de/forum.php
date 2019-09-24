@@ -25,6 +25,8 @@ return [
     'title' => 'osu! Foren',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Banner festlegen',
             'button' => 'Bild hochladen',
@@ -59,14 +61,6 @@ return [
         'busy' => 'Als gelesen markieren...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'Beim bearbeiten einer Umfrage, werden die aktuellen Ergebnisse gelöscht!',
-
-        'actions' => [
-            'edit' => 'Umfrage bearbeiten',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'Post entfernen?',
         'confirm_restore' => 'Post wiederherstellen?',
@@ -77,6 +71,12 @@ return [
             'destroy' => 'Post löschen',
             'restore' => 'Post wiederherstellen',
             'edit' => 'Post bearbeiten',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -105,6 +105,7 @@ return [
         'started_by_verbose' => 'gestartet von :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Vorschau',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -296,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Abstimmung',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Abstimmung endet am :time',

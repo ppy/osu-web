@@ -141,12 +141,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Brak negatywnych ocen',
+                'up' => 'Brak pozytywnych ocen',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Ostatnie negatywne oceny',
+                'up' => 'Ostatnie pozytywne oceny',
             ],
         ],
     ],
@@ -286,6 +286,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'Brak modyfikatorów',

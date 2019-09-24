@@ -141,12 +141,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Ainda sem votos negativos',
+                'up' => 'Ainda sem votos positivos',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Últimos votos negativos',
+                'up' => 'Últimos votos positivos',
             ],
         ],
     ],
@@ -286,6 +286,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',

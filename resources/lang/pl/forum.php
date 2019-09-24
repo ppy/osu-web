@@ -22,9 +22,11 @@ return [
     'pinned_topics' => 'Przypięte wątki',
     'slogan' => "samodzielna rozgrywka jest niebezpieczna.",
     'subforums' => 'Podfora',
-    'title' => 'forum osu!',
+    'title' => 'Forum',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Ustaw tło',
             'button' => 'Dodaj tło',
@@ -59,14 +61,6 @@ return [
         'busy' => 'Oznaczanie jako przeczytane...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'Edycja ankiety usunie dotychczasowe wyniki!',
-
-        'actions' => [
-            'edit' => 'Edytuj ankietę',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'Czy na pewno chcesz usunąć post?',
         'confirm_restore' => 'Czy na pewno chcesz przywrócić post?',
@@ -77,6 +71,12 @@ return [
             'destroy' => 'Usuń post',
             'restore' => 'Przywróć post',
             'edit' => 'Edytuj post',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -105,6 +105,7 @@ return [
         'started_by_verbose' => 'utworzony przez :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Podgląd',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -296,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Zagłosuj',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Ankieta zakończy się :time',

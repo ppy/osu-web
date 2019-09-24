@@ -32,11 +32,11 @@ return [
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'ปิด (กด Esc)',
+        'fullscreen' => 'ปรับเป็นเต็มหน้าจอ',
+        'zoom' => 'ซูมเข้า/ออก',
+        'previous' => 'รูปที่แล้ว (กดลูกศรซ้าย)',
+        'next' => 'รูปต่อไป (กดลูกศรขวา)',
     ],
 
     'menu' => [

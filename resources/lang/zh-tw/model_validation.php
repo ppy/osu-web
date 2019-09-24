@@ -121,10 +121,10 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => '',
-            'url' => '',
+            'url' => '請輸入有效的 URL。',
 
             'attributes' => [
-                'name' => '',
+                'name' => '應用程式名稱',
                 'redirect' => '',
             ],
         ],

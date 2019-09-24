@@ -25,6 +25,8 @@ return [
     'title' => 'forum osu!',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Pasang gambar sampul',
             'button' => 'Unggah gambar',
@@ -59,14 +61,6 @@ return [
         'busy' => 'Menandai sebagai telah terbaca...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'Mengubah isi dari suatu jajak pendapat akan menghilangkan semua hasil yang sudah tercatat saat ini!',
-
-        'actions' => [
-            'edit' => 'Sunting jajak pendapat',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'Yakin menghapus post?',
         'confirm_restore' => 'Yakin mengembalikan post?',
@@ -77,6 +71,12 @@ return [
             'destroy' => 'Hapus Kiriman',
             'restore' => 'Kembalikan post',
             'edit' => 'Sunting post',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -105,6 +105,7 @@ return [
         'started_by_verbose' => 'topik dimulai oleh :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Pratinjau',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -296,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Pilih',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Pemilihan akan berakhir :time',
