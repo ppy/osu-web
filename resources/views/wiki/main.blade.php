@@ -28,6 +28,8 @@
                 <h1 class="osu-page-header__title osu-page-header__title--main">{{ trans('wiki.main.title') }}</h1>
                 <h2 class="osu-page-header__title osu-page-header__title--small">{{ trans('wiki.main.subtitle') }}</h2>
             </div>
+
+            @include('wiki._actions')
         </div>
     </div>
     <div class="osu-page osu-page--wiki wiki-main-page">
