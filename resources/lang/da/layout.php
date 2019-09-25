@@ -34,7 +34,7 @@ return [
     'gallery' => [
         'close' => '',
         'fullscreen' => '',
-        'zoom' => '',
+        'zoom' => 'Zoom ind/ud',
         'previous' => '',
         'next' => '',
     ],

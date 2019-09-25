@@ -68,7 +68,7 @@ return [
 
             'prompt' => [
                 'lock' => '잠긴 이유',
-                'unlock' => '잠금 해제하시겠습니까?',
+                'unlock' => '잠금 해제하시겠어요?',
             ],
         ],
 
@@ -141,12 +141,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => '아직 비추천이 없습니다',
+                'up' => '아직 추천이 없습니다',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => '최근 비추천',
+                'up' => '최근 추천',
             ],
         ],
     ],
@@ -286,6 +286,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => '모드 없음',

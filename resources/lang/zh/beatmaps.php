@@ -141,12 +141,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => '还没有差评',
+                'up' => '还没有好评',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => '最新差评',
+                'up' => '最新好评',
             ],
         ],
     ],
@@ -286,6 +286,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

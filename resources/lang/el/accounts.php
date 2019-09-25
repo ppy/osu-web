@@ -26,8 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => 'Παρακαλώ βεβαιωθείτε ότι το avatar σας συμφωνεί με :link. <br/>Αυτό σημαίνει ότι πρέπει να είναι <strong>κατάλληλο για όλες τις ηλικές</strong>.',
+            'rules_link' => 'τους κανόνες κοινότητας',
         ],
 
         'email' => [
@@ -65,14 +65,14 @@ return [
     ],
 
     'notifications' => [
-        'title' => '',
-        'topic_auto_subscribe' => '',
+        'title' => 'Ειδοποιήσεις',
+        'topic_auto_subscribe' => 'αυτόματη ενεργοποίηση ειδοποιήσεων για τα νέα θέματα που δημιουργείτε στο φόρουμ',
     ],
 
     'oauth' => [
-        'authorized_clients' => '',
-        'own_clients' => '',
-        'title' => '',
+        'authorized_clients' => 'εγκεκριμένοι clients',
+        'own_clients' => 'οι δικοί σας clients',
+        'title' => 'OAuth',
     ],
 
     'playstyles' => [
@@ -110,11 +110,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Μπορείτε πλέον να κλείσετε αυτήν την καρτέλα/παραάθυρο',
+        'title' => 'Η επαλήθευση ολοκληρώθηκε',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Μη έγκυρος ή ληξιπρόθεσμος σύνδεσμος',
     ],
 ];

@@ -198,7 +198,7 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => 'Dyskusuje',
+                'title' => 'Dyskusje',
                 'title_longer' => 'Ostatnie dyskusje',
                 'show_more' => 'zobacz więcej dyskusji',
             ],
@@ -280,7 +280,7 @@ return [
                 ],
             ],
             'me' => [
-                'title' => 'ja!',
+                'title' => 'O mnie',
             ],
             'medals' => [
                 'empty' => "Ten użytkownik nie uzyskał jeszcze żadnych medali. ;_;",
@@ -363,7 +363,7 @@ return [
         ],
         'page' => [
             'button' => 'Edytuj stronę użytkownika',
-            'description' => '<strong>ja!</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',
+            'description' => '<strong>O mnie</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
 

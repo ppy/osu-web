@@ -32,11 +32,11 @@ return [
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Tutup (Esc)',
+        'fullscreen' => 'Beralih ke layar penuh',
+        'zoom' => 'Perbesar/perkecil tampilan',
+        'previous' => 'Sebelumnya (arrow left)',
+        'next' => 'Selanjutnya (arrow right)',
     ],
 
     'menu' => [

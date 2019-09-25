@@ -55,5 +55,10 @@ return [
 
     'starting' => [
         'username' => 'Add meg az e-mail címed vagy felhasználóneved',
+
+        'support' => [
+            '_' => '',
+            'button' => '',
+        ],
     ],
 ];
