@@ -35,19 +35,19 @@ return [
 
     'authorized_clients' => [
         'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
+        'scopes_title' => 'แอปพลิเคชันนี้สามารถ:',
+        'owned_by' => ':user เป็นเจ้าของ',
         'none' => '',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'ยกเลิกการเข้าถึง',
+            'true' => 'ยกเลิกการเข้าถึงแล้ว',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
+        'id' => 'ID ของไคลเอนต์',
+        'name' => 'ชื่อแอปพลิเคชัน',
         'redirect' => '',
         'secret' => '',
     ],

@@ -120,12 +120,12 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
-            'url' => '',
+            'too_many' => 'Jumlah aplikasi OAuth melebihi batas maksimal.',
+            'url' => 'Harap masukkan URL valid.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Nama Aplikasi',
+                'redirect' => 'Callback URL Aplikasi',
             ],
         ],
     ],

@@ -37,7 +37,7 @@ return [
         'change' => '更改',
         'click_to_copy' => '点击以复制到剪贴板',
         'click_to_copy_copied' => '已经复制到剪贴板！',
-        'close' => '',
+        'close' => '关闭',
         'collapse' => '折叠',
         'delete' => '删除',
         'edit' => '编辑',
@@ -59,7 +59,7 @@ return [
         'show_deleted' => '显示已删除的评论',
         'show_more' => '显示更多',
         'show_more_options' => '显示更多选项',
-        'update' => '',
+        'update' => '更新',
         'upload_image' => '上传图片',
 
         'watch' => [

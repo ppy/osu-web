@@ -94,7 +94,7 @@ return [
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Τίτλος Θέματος',
             ],
         ],
 

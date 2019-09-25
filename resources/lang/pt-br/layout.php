@@ -25,18 +25,18 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => 'Comunidade',
 
-            'forum' => '',
+            'forum' => 'Fórum',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Fechar (Esc)',
+        'fullscreen' => 'Alternar tela cheia',
+        'zoom' => 'Ampliar/Reduzir',
+        'previous' => 'Anterior (seta esquerda)',
+        'next' => 'Seguinte (seta direita)',
     ],
 
     'menu' => [
