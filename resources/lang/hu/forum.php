@@ -25,6 +25,8 @@ return [
     'title' => 'osu! fórumok',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Borítókép megadása',
             'button' => 'Kép feltöltése',
@@ -42,10 +44,10 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'Legújabb Poszt',
 
         'index' => [
-            'title' => '',
+            'title' => 'Fórum Index',
         ],
 
         'topics' => [
@@ -59,14 +61,6 @@ return [
         'busy' => 'Olvasottnak jelölés...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'A szavazás szerkesztése eltávolítja a jelenlegi eredményeket!',
-
-        'actions' => [
-            'edit' => 'Szavazás szerkesztése',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'Biztosan törlöd a posztot?',
         'confirm_restore' => 'Biztosan visszaállítod a posztot?',
@@ -77,6 +71,12 @@ return [
             'destroy' => 'Poszt törlése',
             'restore' => 'Poszt visszaállítása',
             'edit' => 'Poszt szerkesztése',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -105,6 +105,7 @@ return [
         'started_by_verbose' => ':user által indítva',
 
         'create' => [
+            'close' => '',
             'preview' => 'Előnézet',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -296,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => 'Szavazás Szerkesztése',
+                'edit_warning' => 'A szavazás szerkesztése eltörli a jelenlegi eredményeket!',
                 'vote' => 'Szavazat',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Szavazás vége :time -kor lesz',

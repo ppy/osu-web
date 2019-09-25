@@ -650,7 +650,7 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
-function wiki_url($page = 'Welcome', $locale = null)
+function wiki_url($page = 'Main_Page', $locale = null)
 {
     // FIXME: remove `rawurlencode` workaround when fixed upstream.
     // Reference: https://github.com/laravel/framework/issues/26715
@@ -668,7 +668,7 @@ function bbcode($text, $uid, $options = [])
     return (new App\Libraries\BBCodeFromDB($text, $uid, $options))->toHTML();
 }
 
-function bbcode_for_editor($text, $uid)
+function bbcode_for_editor($text, $uid = null)
 {
     return (new App\Libraries\BBCodeFromDB($text, $uid))->toEditor();
 }
@@ -746,7 +746,7 @@ function nav_links()
         'orders-index' => route('store.orders.index'),
     ];
     $links['help'] = [
-        'getWiki' => wiki_url('Welcome'),
+        'getWiki' => wiki_url('Main_Page'),
         'getFaq' => wiki_url('FAQ'),
         'getRules' => wiki_url('Rules'),
         'getSupport' => wiki_url('Help_Centre'),
@@ -763,7 +763,7 @@ function footer_landing_links()
             'changelog-index' => route('changelog.index'),
             'beatmaps' => action('BeatmapsetsController@index'),
             'download' => route('download'),
-            'wiki' => wiki_url('Welcome'),
+            'wiki' => wiki_url('Main_Page'),
         ],
         'help' => [
             'faq' => wiki_url('FAQ'),

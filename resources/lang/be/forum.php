@@ -25,6 +25,8 @@ return [
     'title' => 'osu! Форум',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Усталяваць фонавы відарыс',
             'button' => 'Запампаваць выяву',
@@ -59,14 +61,6 @@ return [
         'busy' => 'Пазначыць як прачытанае...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'Рэдагаванне апытання выдаліць бягучыя вынікі!',
-
-        'actions' => [
-            'edit' => 'Рэдагаваць апытанне',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'Выдаліць допіс?',
         'confirm_restore' => 'Аднавіць допіс?',
@@ -77,6 +71,12 @@ return [
             'destroy' => 'Выдаліць допіс',
             'restore' => 'Аднавіць допіс',
             'edit' => 'Рэдагаваць допіс',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -105,6 +105,7 @@ return [
         'started_by_verbose' => 'пачата :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Перадпрагляд',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -296,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Галасаваць',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Апытанне скончыцца :time',

@@ -17,19 +17,17 @@
  */
 
 .profile-detail-bar {
-  @_column-padding: 10px;
+  @_padding: 5px;
   width: 100%;
-  display: none;
   display: flex;
   flex-wrap: wrap;
   flex: none;
-  padding: (@padding-profile-page - @_column-padding) (@gutter-profile-page - @_column-padding);
   justify-content: space-between;
   align-items: center;
   background-color: @osu-colour-b4;
 
   @media @desktop {
-    height: 60px;
+    padding: @_padding;
     padding-left: @gutter-profile-page-desktop;
     padding-right: @gutter-profile-page-desktop;
   }
@@ -37,20 +35,27 @@
   &__column {
     display: flex;
     width: 100%;
-    padding: @_column-padding;
 
     @media @desktop {
       width: auto;
     }
 
+    @media @mobile {
+      padding: 10px;
+    }
+
     &--left {
       align-self: stretch;
-      margin: -5px;
     }
 
     &--right {
+      align-items: center;
       @media @desktop {
         min-width: @profile-stats-box-width-desktop;
+      }
+      @media @mobile {
+        padding: 0 @gutter-profile-page @gutter-profile-page - @_padding @gutter-profile-page;
+        flex-wrap: wrap;
       }
     }
   }
@@ -59,9 +64,6 @@
     flex: none;
 
     &--ranking {
-      height: 0; // enforce overflow to bottom
-      align-self: flex-start;
-
       & + & {
         margin-left: 10px;
       }

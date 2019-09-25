@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,44 +18,32 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.create-topic {
-  flex: 1 0 auto;
-  min-height: 600px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+namespace App\Libraries\Wiki;
 
-  [name=title] {
-    .reset-input();
-    .default-text-shadow();
+use App\Libraries\Markdown\OsuMarkdown;
 
-    width: 100%;
-    color: #fff;
-    text-align: center;
-    font-style: normal;
-
-    &::placeholder {
-      color: #fff;
+/**
+ * {@inheritdoc}
+ */
+class MarkdownRenderer extends Renderer
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function render()
+    {
+        return (new OsuMarkdown('wiki', [
+            'relative_url_root' => wiki_url($this->page->path),
+        ]))->load($this->body)->toArray();
     }
-  }
 
-  [name=body] {
-    flex: 1;
-    resize: vertical;
-    background: none;
-    margin-bottom: 10px;
-  }
-
-  .create-topic-buttons {
-    display: flex;
-    justify-content: flex-end;
-
-    > * {
-      margin-left: 10px;
+    /**
+     * {@inheritdoc}
+     */
+    public function renderIndexable()
+    {
+        return (new OsuMarkdown('wiki', [
+            'relative_url_root' => wiki_url($this->page->path),
+        ]))->load($this->body)->toIndexable();
     }
-  }
-}
-
-#topic-post-form {
-  flex: 1 0 auto;
 }

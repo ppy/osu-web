@@ -25,10 +25,18 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => '社群',
 
-            'forum' => '',
+            'forum' => '論壇',
         ],
+    ],
+
+    'gallery' => [
+        'close' => '關閉 (Esc)',
+        'fullscreen' => '切換全螢幕',
+        'zoom' => '放大/縮小',
+        'previous' => '',
+        'next' => '',
     ],
 
     'menu' => [

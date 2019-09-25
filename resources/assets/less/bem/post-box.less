@@ -16,9 +16,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-topic-header {
-  &__sticky-marker {
-    position: absolute;
-    bottom: 20px;
+// TODO: remove after finished migrating to bbcode editor
+.post-box-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -2px;
+  justify-content: center;
+
+  @media @desktop {
+    justify-content: flex-start;
   }
 }

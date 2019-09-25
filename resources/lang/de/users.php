@@ -168,7 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 Follower|:count Follower',
-            'none' => '',
+            'none' => 'nichts',
             'unranked' => 'Keine Plays in letzter Zeit',
 
             'achievements' => [
@@ -182,7 +182,7 @@ return [
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Lieblings-Beatmaps',
+                    'title' => 'Lieblingsbeatmaps',
                 ],
                 'graveyard' => [
                     'title' => 'Begrabene Beatmaps',
@@ -198,14 +198,14 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Diskussionen',
+                'title_longer' => 'Neueste Diskussionen',
+                'show_more' => 'mehr Diskussionen anzeigen',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Events',
+                'title_longer' => 'Neueste Events',
+                'show_more' => 'mehr Events anzeigen',
             ],
             'historical' => [
                 'empty' => 'Keine Performance-Einträge. :(',
@@ -288,9 +288,9 @@ return [
                 'title' => 'Medaillen',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Beiträge',
+                'title_longer' => 'Neueste Beiträge',
+                'show_more' => 'weitere Beiträge anschauen',
             ],
             'recent_activity' => [
                 'title' => 'Neulich',
@@ -310,11 +310,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => 'Abgegebene Stimmen (letzte 3 Monate)',
+                'received' => 'Erhaltene Stimmen (letzte 3 Monate)',
+                'title' => 'Stimmen',
+                'title_longer' => 'Neueste Stimmen',
+                'vote_count' => ':count_delimited Stimme|:count_delimited Stimmen',
             ],
             'account_standing' => [
                 'title' => 'Accountstatus',
@@ -391,15 +391,15 @@ return [
             'play_count' => 'Play-Anzahl',
             'play_time' => 'Gesamtspielzeit',
             'ranked_score' => 'Punktzahl auf Ranglisten',
-            'replays_watched_by_others' => 'Wiederholungen von anderen angesehen',
+            'replays_watched_by_others' => 'Von anderen angeschaute Wiederholungen',
             'score_ranks' => 'Ränge durch Punkte',
             'total_hits' => 'Total Hits',
             'total_score' => 'Gesamtpunktzahl',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'ranked_and_approved_beatmapset_count' => 'Ranked & Approved Beatmaps',
+            'loved_beatmapset_count' => 'Loved Beatmaps',
+            'unranked_beatmapset_count' => 'Pending Beatmaps',
+            'graveyard_beatmapset_count' => 'Begrabende Beatmaps',
         ],
     ],
 

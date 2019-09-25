@@ -71,6 +71,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'autorisierte Geräte',
+        'own_clients' => 'eigene Geräte',
         'title' => 'OAuth',
     ],
 

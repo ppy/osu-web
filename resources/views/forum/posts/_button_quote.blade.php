@@ -15,17 +15,28 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<textarea
-    {{ $postBody['focus'] ? 'autofocus' : '' }}
-    required
-    class="
-        js-ujs-submit-disable
-        js-quick-submit
-        forum-post-content
-        forum-post-content--editor
-        {{ $postBody['extraClasses'] or '' }}
-    "
-    name="body"
-    placeholder="{{ trans('forum.topic.create.placeholder.body') }}"
-    {!! $postBody['extraAttrs'] or '' !!}
->{{ $postBody['content'] or '' }}</textarea>
+@php
+    if ($type === 'circle') {
+        $class = 'btn-circle';
+    }
+
+    $class .= ' js-forum-topic-reply--quote';
+@endphp
+<button
+    type="button"
+    class="{{ $class }}"
+    data-tooltip-position="top center"
+    data-url="{{ route('forum.posts.raw', ['id' => $post, 'quote' => 1]) }}"
+    data-remote="1"
+    @if ($type === 'circle')
+        title="{{ trans('forum.topics.actions.reply_with_quote') }}"
+    @endif
+>
+    @if ($type === 'circle')
+        <span class="btn-circle__content">
+            <i class="fas fa-comment"></i>
+        </span>
+    @else
+        {{ trans('forum.topics.actions.reply_with_quote') }}
+    @endif
+</button>

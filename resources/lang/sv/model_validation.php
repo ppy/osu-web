@@ -118,6 +118,18 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Lösenord får inte innehålla användarnamn.',
         'email_already_used' => 'E-postadress används redan.',

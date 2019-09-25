@@ -55,5 +55,10 @@ return [
 
     'starting' => [
         'username' => '輸入郵件地址或使用者名稱',
+
+        'support' => [
+            '_' => '',
+            'button' => '',
+        ],
     ],
 ];

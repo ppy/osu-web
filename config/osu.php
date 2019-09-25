@@ -109,6 +109,7 @@ return [
         'queue_name' => presence(env('NOTIFICATION_QUEUE'), 'notification'),
     ],
     'oauth' => [
+        'retain_expired_tokens_days' => abs(get_int(env('OAUTH_RETAIN_EXPIRED_TOKENS_DAYS'))) ?? 30,
         'max_user_clients' => get_int(env('OAUTH_MAX_USER_CLIENTS')) ?? 1,
     ],
     'search' => [

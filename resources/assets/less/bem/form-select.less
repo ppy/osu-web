@@ -16,43 +16,43 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmapset-favourites {
-  @avatar-size: 32px;
-  @avatar-margin: 1px;
-  @columns: 10;
-  @columns-mobile: 5;
-
-  z-index: @z-index--user-card-tooltip !important;
-
-  background-color: .osu-hsla(@osu-colour-b6, 0.75)[@hsla];
-  color: white;
-  font-size: @font-size--normal;
-  max-width: ((@avatar-size + 2*@avatar-margin) * @columns) + 20px;
-  padding: 5px;
-
+.form-select {
   .default-border-radius();
-  .default-box-shadow();
+  background-color: @osu-colour-b6;
+  color: @osu-colour-c1;
 
-  @media @mobile {
-    max-width: ((@avatar-size + 2*@avatar-margin) * @columns-mobile) + 20px;
+  // reset global label style
+  text-transform: initial;
+  font-weight: initial;
+  margin: 0;
+
+  display: flex;
+  align-items: baseline;
+
+  font-size: @font-size--phone-input;
+
+  @media @desktop {
+    font-size: @font-size--normal;
   }
 
-  &__user {
-    .default-border-radius();
-    display: inline-block;
-    width: @avatar-size;
-    height: @avatar-size;
-    margin: 0px @avatar-margin;
-    overflow: hidden;
+  &::after {
+    .fas();
+    .center-content();
+    content: '\f078';
+    padding: 0 10px;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    background-color: inherit;
+    border-radius: inherit;
+    pointer-events: none;
   }
 
-  &__remainder-count {
-    text-align: right;
-    margin-top: 5px;
-  }
-
-  // fix qtip's padding
-  .qtip-content {
+  &__input {
+    .reset-input();
     padding: 5px;
+    flex: 1;
+    background-color: inherit;
+    border-radius: inherit;
   }
 }

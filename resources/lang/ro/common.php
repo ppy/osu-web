@@ -37,6 +37,7 @@ return [
         'change' => 'modifică',
         'click_to_copy' => 'faceți clic pentru a copia în clipboard',
         'click_to_copy_copied' => 'copiat în clipboard!',
+        'close' => '',
         'collapse' => 'restrânge',
         'delete' => 'Șterge',
         'edit' => 'Editează',
@@ -58,6 +59,7 @@ return [
         'show_deleted' => 'Arată șterse',
         'show_more' => 'arată mai mult',
         'show_more_options' => 'arată mai multe opţiuni',
+        'update' => '',
         'upload_image' => 'încarcă imaginea',
 
         'watch' => [
@@ -75,6 +77,7 @@ return [
         'minute_short_unit' => 'minut|minute',
         'minutes' => ':count minut|:count minute',
         'months' => ':count lună|:count luni',
+        'plus_others' => '',
         'post' => '',
         'second_short_unit' => 'secundă|secunde',
         'star_priority' => '',

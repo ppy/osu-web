@@ -16,26 +16,47 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-topic-reply {
-  display: flex;
-  align-items: flex-end;
-  flex: 1 0 auto;
+.wiki-main-page-panel {
+  @_top: wiki-main-page-panel;
 
-  &__form {
-    .own-layer();
-    transition: opacity 120ms;
+  .default-border-radius();
+  .default-box-shadow();
 
-    background-color: #444;
-    width: 100%;
-    padding-bottom: 20px;
-    padding-top: 10px;
+  min-height: 150px;
+  padding: 30px;
 
-    &.js-forum-topic-reply-flash {
-      animation: forum-topic-reply-flash 500ms ease-in-out;
+  background: @osu-colour-b4;
+
+  text-align: center;
+
+
+  &--full {
+    @media @desktop {
+      grid-column: 1 / span 2;
     }
   }
 
-  @keyframes forum-topic-reply-flash {
-    50% { background-color: #777; }
+  &__link {
+    .link-default();
+  }
+
+  &__content {
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 700;
+    color: @osu-colour-c1;
+  }
+
+  &__title {
+    color: @osu-colour-c1;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: normal;
+
+    margin-bottom: 40px;
+
+    .@{_top}:first-child & {
+      font-size: 30px;
+    }
   }
 }

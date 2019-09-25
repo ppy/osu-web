@@ -16,9 +16,38 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// TODO: remove after finished migrating to bbcode editor
-.post-box-toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  margin: -2px;
+.wiki-search {
+  padding-top: 10px;
+
+  &__bar {
+    .default-border-radius();
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    padding: 13px 20px;
+
+    font-size: @font-size--wiki-search;
+
+    background-color: @osu-colour-b6;
+
+    border: 2px solid @osu-colour-orange-1;
+  }
+
+  &__input {
+    .reset-input();
+    color: @osu-colour-c1;
+    flex-grow: 1;
+
+    &::placeholder {
+      color: @osu-colour-c2;
+    }
+  }
+
+  &__button {
+    .center-content();
+    .reset-input();
+
+    color: @osu-colour-c1;
+  }
 }

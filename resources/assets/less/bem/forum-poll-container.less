@@ -16,22 +16,28 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.edit-post {
-  display: flex;
-  flex-direction: column;
+.forum-poll-container {
+  @_top: forum-poll-container;
 
-  .reply-box-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .reply-box-footer {
-    flex: none;
-    padding: 10px;
-  }
+  &__content {
+    display: none;
 
-  [name=body] {
-    margin-bottom: 10px;
-    flex: 1;
+    &--edit {
+      .@{_top}[data-edit="1"] & {
+        display: block;
+      }
+    }
+
+    &--form {
+      .@{_top}[data-page=form][data-edit="0"] & {
+        display: block;
+      }
+    }
+
+    &--results {
+      .@{_top}[data-page=results][data-edit="0"] & {
+        display: block;
+      }
+    }
   }
 }
