@@ -14,6 +14,10 @@ return [
     |
     */
 
+    'enchant' => [
+        'id' => presence(env('ENCHANT_ID')),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
