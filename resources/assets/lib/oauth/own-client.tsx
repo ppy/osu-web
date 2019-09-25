@@ -51,6 +51,7 @@ export class OwnClient extends React.Component<Props> {
             icon='fas fa-pencil-alt'
             modifiers={['account-edit', 'settings-oauth']}
             props={{
+              disabled: client.isRevoking || client.revoked,
               onClick: this.showClientDetails,
             }}
             text={osu.trans('common.buttons.edit')}
