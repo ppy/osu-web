@@ -79,7 +79,7 @@ export class OwnClients extends React.Component {
     if (uiState.account.newClientVisible) {
       component = <NewClient />;
     } else if (uiState.account.client != null) {
-      component = <ClientDetails client={uiState.account.client!} />;
+      component = <ClientDetails client={uiState.account.client} />;
     } else {
       return null;
     }
