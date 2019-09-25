@@ -48,7 +48,7 @@ export class AuthorizedClient extends React.Component<Props> {
             {this.renderPermissions()}
           </div>
         </div>
-        <div className='oauth-client__actions'>
+        <div>
           <BigButton
             text={osu.trans(`oauth.authorized_clients.revoked.${client.revoked}`)}
             icon={client.revoked ? 'fas fa-ban' : 'fas fa-trash'}

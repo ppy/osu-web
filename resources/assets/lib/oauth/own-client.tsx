@@ -46,7 +46,7 @@ export class OwnClient extends React.Component<Props> {
             {client.name}
           </button>
         </div>
-        <div className='oauth-client__actions'>
+        <div>
           <BigButton
             icon='fas fa-pencil-alt'
             modifiers={['account-edit', 'settings-oauth']}
