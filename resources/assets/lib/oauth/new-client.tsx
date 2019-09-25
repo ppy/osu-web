@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { FormErrors, HandlesErrors } from 'form-errors';
 import { OwnClientJSON } from 'interfaces/own-client-json';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
@@ -28,8 +29,10 @@ const store = core.dataStore.ownClientStore;
 const uiState = core.dataStore.uiState;
 
 @observer
-export class NewClient extends React.Component {
+export class NewClient extends React.Component implements HandlesErrors {
   private static readonly inputFields = ['name', 'redirect'];
+
+  errors = new FormErrors();
 
   handleCancel = () => {
     uiState.account.newClientVisible = false;
@@ -59,10 +62,9 @@ export class NewClient extends React.Component {
       url: laroute.route('oauth.clients.store'),
     }).then((data: OwnClientJSON) => {
       const client = store.updateWithJson(data);
-      uiState.account.errors.clear();
       uiState.account.newClientVisible = false;
       uiState.account.client = client;
-    }).catch(uiState.account.errors.handleResponse)
+    }).catch(this.errors.handleResponse)
     .always(() => {
       uiState.account.isCreatingNewClient = false;
     });
@@ -79,7 +81,7 @@ export class NewClient extends React.Component {
                 <div className='oauth-client-details__label'>{osu.trans(`oauth.client.${name}`)}</div>
                 <ValidatingInput
                   blockName='oauth-client-details'
-                  errors={uiState.account.errors}
+                  errors={this.errors}
                   name={name}
                   onChange={this.handleInputChange}
                   type='text'
@@ -99,7 +101,7 @@ export class NewClient extends React.Component {
   }
 
   renderRemainingErrors() {
-    return uiState.account.errors.except(NewClient.inputFields).map((error, index) => {
+    return this.errors.except(NewClient.inputFields).map((error, index) => {
       return <div className='oauth-client-details__error' key={index}>{error}</div>;
     });
   }
