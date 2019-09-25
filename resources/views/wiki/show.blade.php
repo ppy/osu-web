@@ -115,7 +115,7 @@
         @endif
 
         <div class="wiki-page">
-            <div class="hidden-xs wiki-page__toc">
+            <div class="hidden-xs wiki-page__toc u-fancy-scrollbar">
                 <div class="wiki-toc">
                     <h2 class="wiki-toc__title">
                         {{ trans('wiki.show.toc') }}
