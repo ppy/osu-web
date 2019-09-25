@@ -34,8 +34,8 @@
     </div>
     <div class="osu-page osu-page--wiki wiki-main-page">
         @include('wiki._notice')
-        @if(Auth::user() !== null)
-        <div class="js-react--wiki-search"></div>
+        @if (Auth::user() !== null)
+            <div class="js-react--wiki-search"></div>
         @endif
         {!! $page->page()["output"] !!}
     </div>

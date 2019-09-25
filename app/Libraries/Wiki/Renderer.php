@@ -28,9 +28,6 @@ use App\Models\Wiki\Page;
  */
 abstract class Renderer
 {
-    // protected $page;
-    // protected $body;
-
     /**
      * @param Page $page
      * @param string $body
