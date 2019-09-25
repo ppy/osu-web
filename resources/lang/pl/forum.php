@@ -25,11 +25,11 @@ return [
     'title' => 'Forum',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Edytuj tło',
 
         'create' => [
             '_' => 'Ustaw tło',
-            'button' => 'Dodaj tło',
+            'button' => 'Prześlij tło',
             'info' => 'Tło powinno mieć rozdzielczość :dimensions. Możesz także upuścić tutaj swoje tło, aby je dodać.',
         ],
 
@@ -75,7 +75,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Nowa odpowiedź',
             ],
         ],
 
@@ -105,7 +105,7 @@ return [
         'started_by_verbose' => 'utworzony przez :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Zamknij',
             'preview' => 'Podgląd',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -297,15 +297,15 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
-                'edit_warning' => '',
+                'edit' => 'Edytowanie ankiety',
+                'edit_warning' => 'Wprowadzenie zmian do ankiety spowoduje usunięcie obecnych wyników!',
                 'vote' => 'Zagłosuj',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
-                    'view_results' => '',
-                    'vote' => '',
+                    'change_vote' => 'Zmień głos',
+                    'edit' => 'Edytuj ankietę',
+                    'view_results' => 'Przejdź do wyników',
+                    'vote' => 'Zagłosuj',
                 ],
 
                 'detail' => [

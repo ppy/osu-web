@@ -25,7 +25,7 @@ return [
     'title' => 'osu! Foren',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Cover bearbeiten',
 
         'create' => [
             '_' => 'Banner festlegen',
@@ -75,7 +75,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Neue Antwort',
             ],
         ],
 
@@ -105,7 +105,7 @@ return [
         'started_by_verbose' => 'gestartet von :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Schließen',
             'preview' => 'Vorschau',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -297,15 +297,15 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
-                'edit_warning' => '',
+                'edit' => 'Umfrage bearbeiten',
+                'edit_warning' => 'Bearbeiten der Umfrage wird die derzeitigen Ergebnisse entfernen!',
                 'vote' => 'Abstimmung',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
-                    'view_results' => '',
-                    'vote' => '',
+                    'change_vote' => 'Stimme ändern',
+                    'edit' => 'Umfrage bearbeiten',
+                    'view_results' => 'Zu Ergebnissen springen',
+                    'vote' => 'Abstimmen',
                 ],
 
                 'detail' => [

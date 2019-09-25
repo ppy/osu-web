@@ -77,7 +77,7 @@ return [
         'minute_short_unit' => 'menit|menit',
         'minutes' => ':count menit |:count menit',
         'months' => ':count bulan',
-        'plus_others' => '',
+        'plus_others' => '+ :count_delimited lainnya!',
         'post' => ':count_delimited kiriman',
         'second_short_unit' => 'detik|detik',
         'star_priority' => ':count_delimited star priority',

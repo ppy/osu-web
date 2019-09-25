@@ -25,7 +25,7 @@ return [
     'title' => 'Fóruns osu!',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Editar capa',
 
         'create' => [
             '_' => 'Colocar imagem de capa',
@@ -75,7 +75,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Nova resposta',
             ],
         ],
 
@@ -105,7 +105,7 @@ return [
         'started_by_verbose' => 'começado por :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Fechar',
             'preview' => 'Amostra',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -297,15 +297,15 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
-                'edit_warning' => '',
+                'edit' => 'Edição de Sondagem',
+                'edit_warning' => 'Ao editar uma sondagem, isto irá remover os resultados atuais!',
                 'vote' => 'Votar',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
-                    'view_results' => '',
-                    'vote' => '',
+                    'change_vote' => 'Trocar de voto',
+                    'edit' => 'Editar a sondagem',
+                    'view_results' => 'Ir para os resultados',
+                    'vote' => 'Votar',
                 ],
 
                 'detail' => [

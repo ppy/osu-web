@@ -57,8 +57,8 @@ return [
         'username' => 'Masukkan alamat email atau nama pengguna',
 
         'support' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Membutuhkan bantuan tambahan? Hubungi kami dengan menghubungi :button berikut.',
+            'button' => 'tim dukungan',
         ],
     ],
 ];

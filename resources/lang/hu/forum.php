@@ -297,8 +297,8 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
-                'edit_warning' => '',
+                'edit' => 'Szavazás Szerkesztése',
+                'edit_warning' => 'A szavazás szerkesztése eltörli a jelenlegi eredményeket!',
                 'vote' => 'Szavazat',
 
                 'button' => [

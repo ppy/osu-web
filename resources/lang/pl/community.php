@@ -148,7 +148,7 @@ return [
             ],
             'friend_filtering' => [
                 'title' => 'Rankingi znajomych',
-                'description' => 'Rywalizuj ze swoimi znajomymi i zobacz, jak ci idzie!*<br/><br/><small>* funkcja jeszcze niedostępna na nowej stronie',
+                'description' => 'Rywalizuj ze swoimi znajomymi i zobacz, jak ci idzie!*<br/><br/><small>* funkcja jeszcze niedostępna na nowej stronie</small>',
             ],
 
         ],

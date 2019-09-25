@@ -286,7 +286,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
-        'MR' => '',
+        'MR' => 'Espelhar',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'Sem mods',

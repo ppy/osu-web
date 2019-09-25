@@ -25,7 +25,7 @@ return [
     'title' => 'forum osu!',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Sunting sampul',
 
         'create' => [
             '_' => 'Pasang gambar sampul',
@@ -75,7 +75,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Balasan baru',
             ],
         ],
 
@@ -105,7 +105,7 @@ return [
         'started_by_verbose' => 'topik dimulai oleh :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Tutup',
             'preview' => 'Pratinjau',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -297,15 +297,15 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
-                'edit_warning' => '',
+                'edit' => 'Sunting jajak pendapat',
+                'edit_warning' => 'Menyunting isi jajak pendapat akan menghilangkan semua hasil yang sudah tercatat sampai saat ini!',
                 'vote' => 'Pilih',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
-                    'view_results' => '',
-                    'vote' => '',
+                    'change_vote' => 'Ganti suara',
+                    'edit' => 'Sunting jajak pendapat',
+                    'view_results' => 'Lewati ke hasil jajak pendapat',
+                    'vote' => 'Pilih',
                 ],
 
                 'detail' => [

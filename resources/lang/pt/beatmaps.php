@@ -286,7 +286,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
-        'MR' => '',
+        'MR' => 'Link alternativo',
         'NC' => '',
         'NF' => '',
         'NM' => '',
