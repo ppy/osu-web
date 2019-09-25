@@ -34,22 +34,22 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Вы уверены, что хотите отозвать права доступа этого клиента?',
+        'scopes_title' => 'Это приложение может:',
+        'owned_by' => 'Владелец: :user',
+        'none' => 'Нет клиентов',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Отозвать права доступа',
+            'true' => 'Права доступа отозваны',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
+        'id' => 'ID клиента',
+        'name' => 'Имя приложения',
         'redirect' => '',
-        'secret' => '',
+        'secret' => 'Секрет клиента',
     ],
 
     'login' => [
@@ -59,13 +59,13 @@ return [
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => 'Вы уверены, что хотите удалить этого клиента?',
+        'new' => 'Новое приложение OAuth',
+        'none' => 'Нет клиентов',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Удалить',
+            'true' => 'Удалён',
         ],
     ],
 ];

@@ -36,6 +36,7 @@
     .link-default();
     text-align: left;
     display: flex;
+    font-weight: bold;
 
     &:hover {
       text-decoration: underline;
@@ -57,14 +58,6 @@
 
     .@{_top}.js-spoilerbox--open &::before {
       content: '\f107'; // angle-down
-    }
-  }
-
-  &__link-text {
-    &::before {
-      content: 'SPOILER';
-      margin-right: 10px;
-      font-weight: bold;
     }
   }
 }

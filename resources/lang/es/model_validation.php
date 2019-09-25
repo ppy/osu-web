@@ -120,12 +120,12 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
-            'url' => '',
+            'too_many' => 'Has excedido al numero máximo de aplicaciones OAuth.',
+            'url' => 'Por favor, ingrese una URL válida.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Nombre de Aplicación',
+                'redirect' => 'URL de llamada de Aplicación',
             ],
         ],
     ],

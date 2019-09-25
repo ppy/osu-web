@@ -37,7 +37,7 @@ return [
         'change' => 'เปลี่ยน',
         'click_to_copy' => 'คลิกเพื่อคัดลอกไปยังคลิปบอร์ด',
         'click_to_copy_copied' => 'คัดลอกไปยังคลิปบอร์ดแล้ว',
-        'close' => '',
+        'close' => 'ปิด',
         'collapse' => 'ยุบ',
         'delete' => 'ลบ',
         'edit' => 'แก้ไข',
@@ -59,7 +59,7 @@ return [
         'show_deleted' => 'แสดงรายการที่ลบ',
         'show_more' => 'แสดงเพิ่มเติม',
         'show_more_options' => 'แสดงตัวเลือกเพิ่มเติม',
-        'update' => '',
+        'update' => 'อัปเดต',
         'upload_image' => 'อัพโหลดรูปภาพ',
 
         'watch' => [

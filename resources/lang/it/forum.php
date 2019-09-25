@@ -25,6 +25,8 @@ return [
     'title' => 'forum osu!',
 
     'covers' => [
+        'edit' => 'Modifica la copertina',
+
         'create' => [
             '_' => 'Imposta immagine di copertina',
             'button' => 'Carica immagine',
@@ -59,14 +61,6 @@ return [
         'busy' => 'Contrassegnando come già letto...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'Modificare un sondaggio rimuoverà i risultati attuali!',
-
-        'actions' => [
-            'edit' => 'Modifica sondaggio',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'Vuoi veramente eliminare il post?',
         'confirm_restore' => 'Vuoi veramente ripristinare il post?',
@@ -77,6 +71,12 @@ return [
             'destroy' => 'Elimina post',
             'restore' => 'Ripristina post',
             'edit' => 'Modifica post',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => 'Nuova risposta',
+            ],
         ],
 
         'info' => [
@@ -105,6 +105,7 @@ return [
         'started_by_verbose' => 'postato da :user',
 
         'create' => [
+            'close' => 'Chiudi',
             'preview' => 'Anteprima',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -296,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => 'Modifica Sondaggio',
+                'edit_warning' => 'Modificare un sondaggio rimuoverà i risultati attuali!',
                 'vote' => 'Vota',
+
+                'button' => [
+                    'change_vote' => 'Cambia voto',
+                    'edit' => 'Modifica il sondaggio',
+                    'view_results' => 'Salta ai risultati',
+                    'vote' => 'Vota',
+                ],
 
                 'detail' => [
                     'end_time' => 'Il sondaggio scade tra :time',

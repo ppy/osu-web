@@ -312,7 +312,7 @@ return [
             'votes' => [
                 'given' => '',
                 'received' => '',
-                'title' => '',
+                'title' => 'Stemmer',
                 'title_longer' => '',
                 'vote_count' => '',
             ],

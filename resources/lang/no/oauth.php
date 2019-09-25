@@ -64,8 +64,8 @@ return [
         'none' => '',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Slett',
+            'true' => 'Slettet',
         ],
     ],
 ];

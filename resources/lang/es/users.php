@@ -310,11 +310,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => 'Votos dados (últimos 3 meses)',
+                'received' => 'Votos recibidos (últimos 3 meses)',
+                'title' => 'Votos',
+                'title_longer' => 'Votos recientes',
+                'vote_count' => ':count_delimited voto|:count_delimited votos',
             ],
             'account_standing' => [
                 'title' => 'Estado de la cuenta',
@@ -396,10 +396,10 @@ return [
             'total_hits' => 'Golpes totales',
             'total_score' => 'Puntuación total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'ranked_and_approved_beatmapset_count' => 'Beatmaps Rankeados y Aprobados',
+            'loved_beatmapset_count' => 'Beatmaps Amados',
+            'unranked_beatmapset_count' => 'Beatmaps Pendientes',
+            'graveyard_beatmapset_count' => 'Beatmaps Abandonados',
         ],
     ],
 

@@ -121,10 +121,10 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => '',
-            'url' => '',
+            'url' => 'กรุณาใส่ URL ที่ถูกต้อง',
 
             'attributes' => [
-                'name' => '',
+                'name' => 'ชื่อแอปพลิเคชัน',
                 'redirect' => '',
             ],
         ],

@@ -59,7 +59,7 @@ return [
         'show_deleted' => 'Töröltek megjelenítése',
         'show_more' => 'több megjelenítése',
         'show_more_options' => 'további opciók mutatása',
-        'update' => '',
+        'update' => 'Frissítés',
         'upload_image' => 'kép feltöltése',
 
         'watch' => [

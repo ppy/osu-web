@@ -36,8 +36,8 @@ return [
     'authorized_clients' => [
         'confirm_revoke' => '',
         'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'owned_by' => '管理者 :user',
+        'none' => 'クライアントがありません',
 
         'revoked' => [
             'false' => '',
@@ -46,8 +46,8 @@ return [
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
+        'id' => 'クライアントID',
+        'name' => 'アプリケーション名',
         'redirect' => '',
         'secret' => '',
     ],
@@ -59,13 +59,13 @@ return [
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
+        'confirm_delete' => 'あなたは本当にクライアントを削除しますか？',
         'new' => '',
-        'none' => '',
+        'none' => 'クライアントがありません',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => '削除',
+            'true' => '削除しました',
         ],
     ],
 ];
