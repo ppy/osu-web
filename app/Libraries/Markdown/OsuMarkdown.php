@@ -21,12 +21,13 @@
 namespace App\Libraries\Markdown;
 
 use App\Libraries\Markdown\Indexing\RendererExtension as IndexingRendererExtension;
-use Jonnybarnes\CommonmarkLinkify\LinkifyExtension;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
+use League\CommonMark\Event\DocumentParsedEvent;
+use League\CommonMark\Ext\Autolink\AutolinkExtension;
+use League\CommonMark\Ext\Table as TableExtension;
 use Symfony\Component\Yaml\Exception\ParseException as YamlParseException;
 use Symfony\Component\Yaml\Yaml;
-use Webuni\CommonMark\TableExtension;
 
 class OsuMarkdown
 {
@@ -111,13 +112,13 @@ class OsuMarkdown
         );
 
         $env = Environment::createCommonMarkEnvironment();
-        $this->processor = new OsuMarkdownProcessor;
-        $env->addDocumentProcessor($this->processor);
+        $this->processor = new OsuMarkdownProcessor($env);
+        $env->addEventListener(DocumentParsedEvent::class, [$this->processor, 'onDocumentParsed']);
 
         $env->addExtension(new TableExtension\TableExtension);
         $env->addBlockRenderer(TableExtension\Table::class, new OsuTableRenderer);
 
-        $env->addExtension(new LinkifyExtension);
+        $env->addExtension(new AutolinkExtension);
 
         $this->converter = new CommonMarkConverter($this->config, $env);
     }
