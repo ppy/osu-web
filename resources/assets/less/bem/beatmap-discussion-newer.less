@@ -17,6 +17,7 @@
  */
 
 .beatmap-discussion-newer {
+  @_top: beatmap-discussion-newer;
   @_avatar-size: 45px;
   @_side-padding: 20px;
 
@@ -39,6 +40,35 @@
     color: white;
     background: @osu-colour-b5;
     .default-border-radius();
+  }
+
+  &__dropdown {
+    align-items: center;
+    display: flex;
+    margin-left: -5px;
+    margin-right: 10px;
+    padding: 5px;
+
+    .default-border-radius();
+    background-color: @osu-colour-b5;
+    overflow: hidden;
+
+    &::after {
+      .fas();
+      .full-size();
+      background-color: .osu-hsla(@osu-colour-b6, 0.5)[@hsla];
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      content: '\f078';
+    }
+
+    &:hover {
+      &:after {
+        opacity: 1;
+      }
+    }
   }
 
   &__footer {
