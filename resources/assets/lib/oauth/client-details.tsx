@@ -70,10 +70,10 @@ export class ClientDetails extends React.Component<Props, State> {
   }
 
   @action
-  handleSubmit = () => {
+  handleUpdate = () => {
     if (this.props.client.isUpdating) { return; }
     this.props.client.updateWith(this.state).then(() => {
-      uiState.account.client = null;
+      this.errors.clear();
     }).catch(this.errors.handleResponse);
   }
 
@@ -109,7 +109,7 @@ export class ClientDetails extends React.Component<Props, State> {
           <button
             className='btn-osu-big'
             disabled={this.props.client.isUpdating || this.props.client.revoked}
-            onClick={this.handleSubmit}
+            onClick={this.handleUpdate}
             type='button'
           >
             {this.props.client.isUpdating ? <Spinner /> : osu.trans('common.buttons.update')}
