@@ -80,10 +80,10 @@ export class ClientDetails extends React.Component<Props, State> implements Hand
   render() {
     return (
       <div className='oauth-client-details'>
-        <div className='oauth-client-details__group'>
-          <div className='oauth-client-details__label'>{osu.trans('oauth.client.name')}</div>
-          <div>{this.props.client.name}</div>
+        <div className='oauth-client-details__header'>
+          {this.props.client.name}
         </div>
+
         <div className='oauth-client-details__group'>
           <div className='oauth-client-details__label'>{osu.trans('oauth.client.id')}</div>
           <div>{this.props.client.id}</div>
