@@ -31,14 +31,13 @@ class BBCodeForDBTest extends TestCase
         $baseFilePath = "{$path}/{$name}.base.txt";
         $dbFilePath = "{$path}/{$name}.db.txt";
 
-        $text = new BBCodeForDB();
+        $text = new BBCodeForDB;
         $text->uid = $this->uid;
-        $text->text = trim(file_get_contents($baseFilePath));
+        $text->text = file_get_contents($baseFilePath);
 
-        $output = $this->normalizeHTML($text->generate());
-        $referenceOutput = $this->normalizeHTML(file_get_contents($dbFilePath));
+        $output = $text->generate();
 
-        $this->assertSame($referenceOutput, $output);
+        $this->assertStringEqualsFile($dbFilePath, $output);
     }
 
     public function examples()
