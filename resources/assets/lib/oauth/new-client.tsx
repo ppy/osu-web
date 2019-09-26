@@ -23,6 +23,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Spinner } from 'spinner';
+import { StringWithComponent } from 'string-with-component';
 import { ValidatingInput } from 'validating-input';
 
 const store = core.dataStore.ownClientStore;
@@ -71,6 +72,16 @@ export class NewClient extends React.Component implements HandlesErrors {
   }
 
   render() {
+    const link = (
+      <a
+        className='oauth-client-details__link'
+        href={`${process.env.DOCS_URL}#terms-of-use`}
+        key='link'
+      >
+        {osu.trans('oauth.new_client.terms_of_use.link')}
+      </a>
+    );
+
     return (
         <form className='oauth-client-details' autoComplete='off'>
           {this.renderRemainingErrors()}
@@ -89,6 +100,10 @@ export class NewClient extends React.Component implements HandlesErrors {
               </div>
             );
           })}
+
+          <div>
+            <StringWithComponent pattern={osu.trans('oauth.new_client.terms_of_use._')} mappings={{ ':link': link }} />
+          </div>
 
           <div className='oauth-client-details__buttons'>
             <button className='btn-osu-big' type='button' onClick={this.handleSubmit}>

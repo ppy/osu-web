@@ -58,6 +58,13 @@ return [
         'title' => 'Account Sign-in',
     ],
 
+    'new_client' => [
+        'terms_of_use' => [
+            '_' => 'By using the API you are agreeing to the :link.',
+            'link' => 'Terms of Use',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => 'Are you sure you want to delete this client?',
         'new' => 'New OAuth Application',
