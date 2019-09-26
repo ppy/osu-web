@@ -18,10 +18,6 @@
 
 import { action, observable } from 'mobx';
 
-export interface HandlesErrors {
-  errors: FormErrors;
-}
-
 export class FormErrors {
   @observable private errors = new Map<string, string[]>();
 

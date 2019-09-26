@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { FormErrors, HandlesErrors } from 'form-errors';
+import { FormErrors } from 'form-errors';
 import { OwnClientJSON } from 'interfaces/own-client-json';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
@@ -30,10 +30,10 @@ const store = core.dataStore.ownClientStore;
 const uiState = core.dataStore.uiState;
 
 @observer
-export class NewClient extends React.Component implements HandlesErrors {
+export class NewClient extends React.Component {
   private static readonly inputFields = ['name', 'redirect'];
 
-  errors = new FormErrors();
+  private errors = new FormErrors();
 
   handleCancel = () => {
     uiState.account.newClientVisible = false;

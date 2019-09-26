@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { FormErrors, HandlesErrors } from 'form-errors';
+import { FormErrors } from 'form-errors';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import { OwnClient as Client } from 'models/oauth/own-client';
@@ -37,12 +37,12 @@ interface State {
 }
 
 @observer
-export class ClientDetails extends React.Component<Props, State> implements HandlesErrors {
-  errors = new FormErrors();
-
+export class ClientDetails extends React.Component<Props, State> {
   readonly state: State = {
     redirect: this.props.client.redirect,
   };
+
+  private errors = new FormErrors();
 
   @action
   handleClose = () => {
