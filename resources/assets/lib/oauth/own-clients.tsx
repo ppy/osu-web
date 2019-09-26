@@ -70,6 +70,7 @@ export class OwnClients extends React.Component {
       );
     });
   }
+
   renderEmpty() {
     return <div className='oauth-clients__client'>{osu.trans('oauth.own_clients.none')}</div>;
   }
