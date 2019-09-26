@@ -83,35 +83,41 @@ export class NewClient extends React.Component implements HandlesErrors {
     );
 
     return (
-        <form className='oauth-client-details' autoComplete='off'>
-          {this.renderRemainingErrors()}
-
-          {NewClient.inputFields.map((name) => {
-            return (
-              <div className='oauth-client-details__group' key={name}>
-                <div className='oauth-client-details__label'>{osu.trans(`oauth.client.${name}`)}</div>
-                <ValidatingInput
-                  blockName='oauth-client-details'
-                  errors={this.errors}
-                  name={name}
-                  onChange={this.handleInputChange}
-                  type='text'
-                />
-              </div>
-            );
-          })}
-
-          <div>
-            <StringWithComponent pattern={osu.trans('oauth.new_client.terms_of_use._')} mappings={{ ':link': link }} />
+        <div className='oauth-client-details'>
+          <div className='oauth-client-details__header'>
+            {osu.trans('oauth.new_client.header')}
           </div>
 
-          <div className='oauth-client-details__buttons'>
-            <button className='btn-osu-big' type='button' onClick={this.handleSubmit}>
-              {uiState.account.isCreatingNewClient ? <Spinner /> : 'Register application'}
-            </button>
-            <button className='btn-osu-big' type='button' onClick={this.handleCancel}>{osu.trans('common.buttons.cancel')}</button>
-          </div>
-        </form>
+          <form className='oauth-client-details__content' autoComplete='off'>
+            {this.renderRemainingErrors()}
+
+            {NewClient.inputFields.map((name) => {
+              return (
+                <div className='oauth-client-details__group' key={name}>
+                  <div className='oauth-client-details__label'>{osu.trans(`oauth.client.${name}`)}</div>
+                  <ValidatingInput
+                    blockName='oauth-client-details'
+                    errors={this.errors}
+                    name={name}
+                    onChange={this.handleInputChange}
+                    type='text'
+                  />
+                </div>
+              );
+            })}
+
+            <div>
+              <StringWithComponent pattern={osu.trans('oauth.new_client.terms_of_use._')} mappings={{ ':link': link }} />
+            </div>
+
+            <div className='oauth-client-details__buttons'>
+              <button className='btn-osu-big' type='button' onClick={this.handleSubmit}>
+                {uiState.account.isCreatingNewClient ? <Spinner /> : 'Register application'}
+              </button>
+              <button className='btn-osu-big' type='button' onClick={this.handleCancel}>{osu.trans('common.buttons.cancel')}</button>
+            </div>
+          </form>
+        </div>
     );
   }
 

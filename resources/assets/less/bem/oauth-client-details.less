@@ -39,6 +39,11 @@
     align-self: center;
   }
 
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__error {
     margin-top: 5px;
     color: @osu-colour-red-1;
@@ -49,6 +54,11 @@
     display: flex;
     flex-direction: column;
     margin: 10px 0;
+  }
+
+  &__header {
+    margin-bottom: 10px;
+    font-size: @font-size--title;
   }
 
   &__input {
