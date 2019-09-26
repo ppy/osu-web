@@ -24,8 +24,7 @@ import InstantReplace from 'slate-instant-replace';
 import { Editor, findDOMNode } from 'slate-react';
 import SoftBreak from 'slate-soft-break';
 
-const existingValue: any = localStorage.getItem('content') || '{"document":{"nodes":[{"object":"block","type":"paragraph","nodes":[{"object":"text","text":"A line of text in a paragraph."}]}]}}';
-const initialValue = Value.fromJSON(JSON.parse(existingValue));
+let initialValue: string = '{"document":{"nodes":[{"object":"block","type":"paragraph","nodes":[{"object":"text","text":"A line of text in a paragraph."}]}]}}';
 
 class TestDropdown extends React.Component<any, any> {
   onClick = (event: Event) => {
@@ -126,10 +125,14 @@ export default class NewerDiscussion extends React.Component<any, any> {
   constructor(props: {}) {
     super(props);
 
+    if (localStorage.getItem(`newDiscussion-${this.props.beatmapset.id}`)) {
+      initialValue = localStorage.getItem(`newDiscussion-${this.props.beatmapset.id}`);
+    }
+
     this.state = {
       menuOffset: -1000,
       menuShown: false,
-      value: initialValue,
+      value: Value.fromJSON(JSON.parse(initialValue)),
     };
   }
 
@@ -162,7 +165,7 @@ export default class NewerDiscussion extends React.Component<any, any> {
 
   onChange = ({ value }) => {
     const content = JSON.stringify(value.toJSON());
-    localStorage.setItem('content', content);
+    localStorage.setItem(`newDiscussion-${this.props.beatmapset.id}`, content);
 
     this.setState({value}, () => {
       if (!this.editor.current.value.selection.isFocused && !this.state.menuShown) {
