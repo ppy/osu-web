@@ -41,12 +41,11 @@ export class OwnClient extends React.Component<Props> {
 
     return (
       <div className='oauth-client'>
-        <div className='oauth-client__details'>
-          <button className='oauth-client__name oauth-client__name--link' onClick={this.showClientDetails}>
-            {client.name}
-          </button>
-        </div>
-        <div>
+        <button className='oauth-client__details oauth-client__details--button' onClick={this.showClientDetails}>
+          <div className='oauth-client__name'>{client.name}</div>
+          <div className='oauth-client__redirect'>{client.redirect}</div>
+        </button>
+        <div className='oauth-client__actions'>
           <BigButton
             icon='fas fa-pencil-alt'
             modifiers={['account-edit', 'settings-oauth']}

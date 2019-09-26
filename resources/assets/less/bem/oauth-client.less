@@ -20,6 +20,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  font-size: @font-size--title-small;
+  color: @osu-colour-c1;
 
   &__actions {
     flex: none;
@@ -30,14 +32,19 @@
     }
   }
 
-  &__name {
-    font-size: @font-size--title-small;
-    margin-bottom: 5px;
-    color: white;
-
-    &--link {
+  &__details {
+    &--button {
       .reset-input();
+      text-align: left;
     }
+  }
+
+  &__name {
+    margin-bottom: 5px;
+  }
+
+  &__redirect {
+    color: @osu-colour-c2;
   }
 
   &__scopes {
