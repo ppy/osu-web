@@ -23,31 +23,51 @@ class BBCodeFromDBTest extends TestCase
 {
     private $uid = '1';
 
-    public function testAll()
+    /**
+     * @dataProvider examples
+     */
+    public function testGenerateHTML($name, $path)
     {
+        $dbFilePath = "{$path}/{$name}.db.txt";
+        $htmlFilePath = "{$path}/{$name}.html";
+
         $text = new BBCodeFromDB('', $this->uid);
-        $path = __DIR__.'/bbcode_examples';
+        $text->text = trim(file_get_contents($dbFilePath));
 
-        foreach (glob("{$path}/*.db.txt") as $dbFilePath) {
-            $htmlFilePath = preg_replace('/\.db\.txt$/', '.html', $dbFilePath);
-            $text->text = trim(file_get_contents($dbFilePath));
+        $output = $this->normalizeHTML($text->toHTML());
+        $referenceOutput = $this->normalizeHTML("<div class='bbcode'>".file_get_contents($htmlFilePath).'</div>');
 
-            $output = $this->normalizeHTML($text->toHTML());
-            $referenceOutput = $this->normalizeHTML("<div class='bbcode'>".file_get_contents($htmlFilePath).'</div>');
-
-            $this->assertSame($referenceOutput, $output);
-        }
+        $this->assertSame($referenceOutput, $output);
     }
 
-    public function testRemoveBlockQuotes()
+    /**
+     * @dataProvider removeQuoteExamples
+     */
+    public function testRemoveBlockQuotes($name, $path)
+    {
+        $dbFilePath = "{$path}/{$name}.db.txt";
+        $expectedFilePath = "{$path}/{$name}.expected.txt";
+
+        $text = BBCodeFromDB::removeBlockQuotes(file_get_contents($dbFilePath));
+
+        $this->assertStringEqualsFile($expectedFilePath, $text);
+    }
+
+    public function examples()
+    {
+        $path = __DIR__.'/bbcode_examples';
+
+        return array_map(function ($dbFilePath) use ($path) {
+            return [basename($dbFilePath, '.db.txt'), $path];
+        }, glob("{$path}/*.db.txt"));
+    }
+
+    public function removeQuoteExamples()
     {
         $path = __DIR__.'/bbcode_examples/remove_quotes';
 
-        foreach (glob("$path/*.db.txt") as $dbFilePath) {
-            $expectedFilePath = preg_replace('/\.db\.txt$/', '.expected.txt', $dbFilePath);
-            $text = BBCodeFromDB::removeBlockQuotes(file_get_contents($dbFilePath));
-
-            $this->assertStringEqualsFile($expectedFilePath, $text);
-        }
+        return array_map(function ($dbFilePath) use ($path) {
+            return [basename($dbFilePath, '.db.txt'), $path];
+        }, glob("$path/*.db.txt"));
     }
 }
