@@ -18,5 +18,11 @@
 @extends('forum.topics.replace_delete_button', ['countDifference' => -1])
 
 @section('moderatorAction')
-    $el.addClass("js-forum-post--hidden");
+    $deletedToggle = document.querySelector(".js-forum-topic-moderate--toggle-deleted");
+
+    if ($deletedToggle.dataset.showDeleted === "1") {
+        $el.addClass("js-forum-post--hidden");
+    } else {
+        $el.remove();
+    }
 @endsection
