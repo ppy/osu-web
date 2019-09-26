@@ -60,6 +60,7 @@ return [
 
     'new_client' => [
         'header' => 'Register a new OAuth application',
+        'register' => 'Register application',
         'terms_of_use' => [
             '_' => 'By using the API you are agreeing to the :link.',
             'link' => 'Terms of Use',

@@ -112,7 +112,7 @@ export class NewClient extends React.Component implements HandlesErrors {
 
             <div className='oauth-client-details__buttons'>
               <button className='btn-osu-big' type='button' onClick={this.handleSubmit}>
-                {uiState.account.isCreatingNewClient ? <Spinner /> : 'Register application'}
+                {uiState.account.isCreatingNewClient ? <Spinner /> : osu.trans('oauth.new_client.register')}
               </button>
               <button className='btn-osu-big' type='button' onClick={this.handleCancel}>{osu.trans('common.buttons.cancel')}</button>
             </div>
