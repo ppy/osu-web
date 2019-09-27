@@ -68,7 +68,7 @@ class Artist extends Model
     {
         if (!array_key_exists('recentlyUpdatedArtists', self::$memoized)) {
             self::$memoized['recentlyUpdatedArtists'] =
-                cache_remember_mutexed('recentlyUpdatedArtists', 5, [], function () {
+                cache_remember_mutexed('recentlyUpdatedArtists', 300, [], function () {
                     return ArtistTrack::where('created_at', '>', Carbon::now()->subMonth(1))
                         ->select('artist_id')
                         ->groupBy('artist_id')
