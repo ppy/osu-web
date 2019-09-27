@@ -21,18 +21,28 @@ use App\Libraries\Markdown\OsuMarkdown;
 
 class IndexingProcessorTest extends TestCase
 {
-    public function testAll()
+    /**
+     * @dataProvider examples
+     */
+    public function testToIndexable($name, $path)
+    {
+        $mdFilePath = "{$path}/{$name}.md";
+        $textFilePath = "{$path}/{$name}.txt";
+
+        $markdown = file_get_contents($mdFilePath);
+
+        $output = (new OsuMarkdown('wiki'))->load($markdown)->toIndexable();
+        $referenceOutput = file_get_contents($textFilePath);
+
+        $this->assertSame($referenceOutput, $output);
+    }
+
+    public function examples()
     {
         $path = __DIR__.'/markdown_examples';
 
-        foreach (glob("{$path}/*.md") as $mdFilePath) {
-            $markdown = file_get_contents($mdFilePath);
-            $textFilePath = preg_replace('/\.md$/', '.txt', $mdFilePath);
-
-            $output = (new OsuMarkdown('wiki'))->load($markdown)->toIndexable();
-            $referenceOutput = file_get_contents($textFilePath);
-
-            $this->assertSame($referenceOutput, $output);
-        }
+        return array_map(function ($mdFilePath) use ($path) {
+            return [basename($mdFilePath, '.md'), $path];
+        }, glob("{$path}/*.md"));
     }
 }
