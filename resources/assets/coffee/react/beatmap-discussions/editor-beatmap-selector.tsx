@@ -37,33 +37,49 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
     };
   }
 
-  select = (event: React.MouseEvent<HTMLElement>) => {
-    event.preventDefault();
+  componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any): void {
+    this.syncBlackout();
 
-    const target = event.currentTarget as HTMLElement;
-
-    if (!target) {
+    if (!this.topRef.current) {
       return;
     }
 
-    const id = parseInt(target.dataset.id || '', 10);
-    if (id) {
-      this.setState({visible: false}, () => {
-        const {editor, node} = this.props;
-        const data = node.data.merge({beatmapId: id});
-        editor.setNodeByKey(node.key, {data});
-      });
+    const position = $(this.topRef.current).offset();
+    if (!position) {
+      return;
     }
+
+    const { top, left } = position;
+    this.portal.style.position = 'absolute';
+    this.portal.style.top = `${Math.floor(top + this.topRef.current.offsetHeight)}px`;
+    this.portal.style.left = `${Math.floor(left)}px`;
+
   }
 
-  toggleMenu = (event: Event) => {
-    event.preventDefault();
-    this.setState({
-      visible: !this.state.visible,
-    });
+  render(): React.ReactNode {
+    const beatmap = this.props.node.data.get('beatmapId') ? _.find(this.props.beatmaps, (b) => b.id === this.props.node.data.get('beatmapId')) : this.props.currentBeatmap;
+    return (
+      <React.Fragment>
+        <a href='#' className='beatmap-discussion-newer__dropdown' onClick={this.toggleMenu} contentEditable={false} {...this.props.attributes} ref={this.topRef}>
+          <BeatmapIcon
+            beatmap={beatmap}
+          />
+        </a>
+        {this.state.visible && this.renderList()}
+      </React.Fragment>
+    );
   }
 
-  beatmapThing = (beatmap: Beatmap) => {
+  renderList = () => {
+    return ReactDOM.createPortal(
+      (
+        <div className='beatmap-discussion-newer__dropdown-menu' contentEditable={false}>
+          {this.props.beatmaps.map((beatmap: Beatmap) => this.renderListItem(beatmap))}
+        </div>
+      ), this.portal);
+  }
+
+  renderListItem = (beatmap: Beatmap) => {
     if (beatmap.deleted_at) {
       return null;
     }
@@ -91,42 +107,33 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
     );
   }
 
-  componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any): void {
-    if (!this.topRef.current) {
+  select = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+
+    const target = event.currentTarget as HTMLElement;
+
+    if (!target) {
       return;
     }
 
-    const position = $(this.topRef.current).offset();
-    if (!position) {
-      return;
+    const id = parseInt(target.dataset.id || '', 10);
+    if (id) {
+      this.setState({visible: false}, () => {
+        const {editor, node} = this.props;
+        const data = node.data.merge({beatmapId: id});
+        editor.setNodeByKey(node.key, {data});
+      });
     }
-
-    const { top, left } = position;
-    this.portal.style.position = 'absolute';
-    this.portal.style.top = `${Math.floor(top + this.topRef.current.offsetHeight)}px`;
-    this.portal.style.left = `${Math.floor(left)}px`;
-
   }
 
-  renderList = () => {
-    return ReactDOM.createPortal(
-        <div className='beatmap-discussion-newer__dropdown-menu' contentEditable={false}>
-          {this.props.beatmaps.map((bm: Beatmap) => this.beatmapThing(bm))}
-        </div>
-      , this.portal);
+  syncBlackout = () => {
+    Blackout.toggle(this.state.visible, 0.5);
   }
 
-  render(): React.ReactNode {
-    const beatmap = this.props.node.data.get('beatmapId') ? _.find(this.props.beatmaps, (b) => b.id === this.props.node.data.get('beatmapId')) : this.props.currentBeatmap;
-    return (
-      <React.Fragment>
-        <a href='#' className='beatmap-discussion-newer__dropdown' onClick={this.toggleMenu} contentEditable={false} {...this.props.attributes} ref={this.topRef}>
-          <BeatmapIcon
-            beatmap={beatmap}
-          />
-        </a>
-        {this.state.visible && this.renderList()}
-      </React.Fragment>
-    );
+  toggleMenu = (event: Event) => {
+    event.preventDefault();
+    this.setState({
+      visible: !this.state.visible,
+    });
   }
 }

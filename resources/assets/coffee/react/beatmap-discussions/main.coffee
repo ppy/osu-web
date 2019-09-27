@@ -142,7 +142,6 @@ export class Main extends React.PureComponent
       else
         div
           className: 'osu-layout__section osu-layout__section--extra'
-
           if @state.currentMode == 'reviews'
             el Editor,
               beatmapset: @state.beatmapset

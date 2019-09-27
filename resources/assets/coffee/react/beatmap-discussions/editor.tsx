@@ -185,7 +185,7 @@ export default class Editor extends React.Component<any, any> {
           beatmapset={this.props.beatmapset}
           currentBeatmap={this.props.currentBeatmap}
           currentDiscussions={this.props.currentDiscussions}
-          beatmaps={_.toArray(this.props.beatmaps)}
+          beatmaps={_.flatten(_.values(this.props.beatmaps))}
           {...props}
         />;
       default:

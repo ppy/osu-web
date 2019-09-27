@@ -55,6 +55,8 @@
     background-color: @osu-colour-b5;
     overflow: hidden;
 
+    z-index: @z-index--blackout-visible;
+
     &::after {
       .fas();
       .full-size();
@@ -78,6 +80,7 @@
     background: @osu-colour-b5;
     .default-border-radius();
     .default-box-shadow();
+    z-index: @z-index--blackout-visible;
   }
 
   &__dropdown-menu-item {
