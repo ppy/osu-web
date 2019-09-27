@@ -26,7 +26,7 @@ import * as React from 'react'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { div } from 'react-dom-factories'
-import NewerDiscussion from './newer-discussion'
+import Editor from './editor'
 
 el = React.createElement
 
@@ -144,7 +144,7 @@ export class Main extends React.PureComponent
           className: 'osu-layout__section osu-layout__section--extra'
 
           if @state.currentMode == 'reviews'
-            el NewerDiscussion,
+            el Editor,
               beatmapset: @state.beatmapset
               users: @users()
               beatmaps: @beatmaps()

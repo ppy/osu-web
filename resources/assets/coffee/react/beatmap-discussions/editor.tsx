@@ -16,190 +16,18 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { BeatmapIcon } from 'beatmap-icon';
 import * as _ from 'lodash';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { Value } from 'slate';
-import { Editor as CoreEditor } from 'slate';
+import { Editor as SlateEditor } from 'slate';
 import InstantReplace from 'slate-instant-replace';
-import { Editor, findDOMNode, RenderBlockProps, RenderInlineProps } from 'slate-react';
+import { Editor as SlateReactEditor, findDOMNode, RenderBlockProps, RenderInlineProps } from 'slate-react';
 import SoftBreak from 'slate-soft-break';
+import EditorDiscussionComponent from './editor-discussion-component';
 
 let initialValue: string = '{"document":{"nodes":[{"object":"block","type":"paragraph","nodes":[{"object":"text","text":"A line of text in a paragraph."}]}]}}';
 
-type DiscussionType = 'hype' | 'mapperNote' | 'praise' | 'problem' | 'suggestion';
-
-class TestDropdown extends React.Component<any, any> {
-  portal: HTMLDivElement;
-  private topRef: React.RefObject<HTMLDivElement>;
-
-  constructor(props: {}) {
-    super(props);
-    this.portal = document.createElement('div');
-    document.body.appendChild(this.portal);
-    this.topRef = React.createRef<HTMLDivElement>();
-
-    this.state = {
-      visible: false,
-    };
-  }
-
-  select = (event: React.MouseEvent<HTMLElement>) => {
-    event.preventDefault();
-
-    const target = event.currentTarget as HTMLElement;
-
-    if (!target) {
-      return;
-    }
-
-    const id = parseInt(target.dataset.id || '', 10);
-    if (id) {
-      this.setState({visible: false}, () => {
-        const {editor, node} = this.props;
-        const data = node.data.merge({beatmapId: id});
-        editor.setNodeByKey(node.key, {data});
-      });
-    }
-  }
-
-  toggleMenu = (event: Event) => {
-    event.preventDefault();
-    this.setState({
-      visible: !this.state.visible,
-    });
-  }
-
-  beatmapThing = (beatmap: Beatmap) => {
-    if (beatmap.deleted_at) {
-      return null;
-    }
-    const menuItemClasses = ""
-
-    return (
-      <a
-        href='#'
-        className={menuItemClasses}
-        key={beatmap.id}
-        data-id={beatmap.id}
-        style={{
-          display: 'flex',
-        }}
-        onClick={this.select}
-      >
-        <BeatmapIcon
-          beatmap={beatmap}
-        />
-        <div
-          style={{
-            paddingLeft: '5px',
-          }}
-        >
-          {beatmap.version}
-        </div>
-      </a>
-    );
-  }
-
-  componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any): void {
-    if (!this.topRef.current) {
-      return;
-    }
-
-    const position = $(this.topRef.current).offset();
-    if (!position) {
-      return;
-    }
-
-    const { top, left } = position;
-    this.portal.style.position = 'absolute';
-    this.portal.style.top = `${Math.floor(top + this.topRef.current.offsetHeight)}px`;
-    this.portal.style.left = `${Math.floor(left)}px`;
-
-  }
-
-  renderList = () => {
-    return ReactDOM.createPortal(
-        <div className='beatmap-discussion-newer__dropdown-menu' contentEditable={false}>
-          {this.props.beatmaps.map((bm: Beatmap) => this.beatmapThing(bm))}
-        </div>
-      , this.portal);
-  }
-
-  render(): React.ReactNode {
-    const beatmap = this.props.node.data.get('beatmapId') ? _.find(this.props.beatmaps, (b) => b.id === this.props.node.data.get('beatmapId')) : this.props.currentBeatmap;
-    return (
-      <React.Fragment>
-        <a href='#' className='beatmap-discussion-newer__dropdown' onClick={this.toggleMenu} contentEditable={false} {...this.props.attributes} ref={this.topRef}>
-          <BeatmapIcon
-            beatmap={beatmap}
-          />
-        </a>
-        {this.state.visible && this.renderList()}
-      </React.Fragment>
-    );
-  }
-}
-
-class TestComponent extends React.Component<any, any> {
-  remove = (event: React.MouseEvent<HTMLElement>) => {
-    const { editor, node } = this.props;
-
-    event.preventDefault();
-    editor.removeNodeByKey(node.key);
-  }
-
-  render(): React.ReactNode {
-    const { isFocused, node } = this.props;
-    const styles = isFocused ? {} : {};
-    // const styles = {};
-    const type: DiscussionType = node.data.get('type');
-    const icons = {
-      hype: 'fas fa-bullhorn',
-      mapperNote: 'far fa-sticky-note',
-      praise: 'fas fa-heart',
-      problem: 'fas fa-exclamation-circle',
-      suggestion: 'far fa-circle',
-    };
-
-    return (
-      <div className='beatmap-discussion beatmap-discussion--preview' style={styles} {...this.props.attributes}>
-        <div className='beatmap-discussion__discussion'>
-            <div className='beatmap-discussion-post beatmap-discussion-post--reply'>
-                <div className='beatmap-discussion-post__content'>
-                    <TestDropdown {...this.props}/>
-                    <div className='beatmap-discussion-post__user-container' contentEditable={false}>
-                      <div className='beatmap-discussion-timestamp__icons-container' style={{marginRight: '10px'}}>
-                        <div className='beatmap-discussion-timestamp__icons'>
-                          <div className='beatmap-discussion-timestamp__icon'>
-                            <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={icons[type]} /></span>
-                          </div>
-                          <div className='beatmap-discussion-timestamp__icon beatmap-discussion-timestamp__icon--resolved'>
-                            {/*<i className="far fa-check-circle"></i>*/}
-                          </div>
-                        </div>
-                        <div className='beatmap-discussion-timestamp__text'>00:00.184</div>
-                      </div>
-                      <div className='beatmap-discussion-post__user-stripe'/>
-                    </div>
-                    <div className='beatmap-discussion-post__message-container undefined'>
-                        <div className='beatmapset-discussion-message'>{this.props.children}</div>
-                        <div className='beatmap-discussion-post__actions' contentEditable={false}>
-                            <div className='beatmap-discussion-post__actions-group'>
-                                <a className='beatmap-discussion-post__action beatmap-discussion-post__action--button' href='#' onClick={this.remove}>delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-    );
-  }
-}
-
-const Replacer = (editor: Editor, lastWord: string) => {
+const Replacer = (editor: SlateReactEditor, lastWord: string) => {
   const TIMESTAMP_REGEX = /\b(\d{2,}):([0-5]\d)[:.](\d{3})\b/;
   if (lastWord.match(TIMESTAMP_REGEX)) {
     editor.moveFocusBackward(lastWord.length); // select last word
@@ -209,8 +37,8 @@ const Replacer = (editor: Editor, lastWord: string) => {
   }
 };
 
-export default class NewerDiscussion extends React.Component<any, any> {
-  editor = React.createRef<Editor>();
+export default class Editor extends React.Component<any, any> {
+  editor = React.createRef<SlateReactEditor>();
   menu = React.createRef<HTMLDivElement>();
   menuBody = React.createRef<HTMLDivElement>();
   plugins = [
@@ -295,7 +123,7 @@ export default class NewerDiscussion extends React.Component<any, any> {
               <div className={bn}>
                 <div className='page-title'>{osu.trans('beatmaps.discussions.new.title')}</div>
                 <div className={`${bn}__content`}>
-                  <Editor
+                  <SlateReactEditor
                     value={this.state.value}
                     onChange={this.onChange}
                     plugins={this.plugins}
@@ -357,10 +185,10 @@ export default class NewerDiscussion extends React.Component<any, any> {
     );
   }
 
-  renderBlock = (props: RenderBlockProps, editor: CoreEditor, next: () => any) => {
+  renderBlock = (props: RenderBlockProps, editor: SlateEditor, next: () => any) => {
     switch (props.node.type) {
       case 'embed':
-        return <TestComponent
+        return <EditorDiscussionComponent
           beatmapset={this.props.beatmapset}
           currentBeatmap={this.props.currentBeatmap}
           currentDiscussions={this.props.currentDiscussions}
@@ -372,7 +200,7 @@ export default class NewerDiscussion extends React.Component<any, any> {
     }
   }
 
-  renderInline = (props: RenderInlineProps, editor: CoreEditor, next: () => any) => {
+  renderInline = (props: RenderInlineProps, editor: SlateEditor, next: () => any) => {
     const { node, attributes, children } = props;
     switch (node.type) {
       case 'timestamp': {
