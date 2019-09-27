@@ -32,7 +32,6 @@ export default class EditorDiscussionComponent extends React.Component<any, any>
   render(): React.ReactNode {
     const { isFocused, node } = this.props;
     const styles = isFocused ? {} : {};
-    // const styles = {};
     const type: DiscussionType = node.data.get('type');
     const icons = {
       hype: 'fas fa-bullhorn',

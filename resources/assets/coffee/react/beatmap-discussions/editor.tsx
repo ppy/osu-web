@@ -25,14 +25,14 @@ import { Editor as SlateReactEditor, findDOMNode, RenderBlockProps, RenderInline
 import SoftBreak from 'slate-soft-break';
 import EditorDiscussionComponent from './editor-discussion-component';
 
-let initialValue: string = '{"document":{"nodes":[{"object":"block","type":"paragraph","nodes":[{"object":"text","text":"A line of text in a paragraph."}]}]}}';
+let initialValue: string = '{"document":{"nodes":[{"object":"block","type":"paragraph","nodes":[{"object":"text","text":"This is a placeholder."}]}]}}';
 
 const Replacer = (editor: SlateReactEditor, lastWord: string) => {
   const TIMESTAMP_REGEX = /\b(\d{2,}):([0-5]\d)[:.](\d{3})\b/;
   if (lastWord.match(TIMESTAMP_REGEX)) {
     editor.moveFocusBackward(lastWord.length); // select last word
-    editor.unwrapInline('timestamp'); // remove existing urls
-    editor.wrapInline({ type: 'timestamp', data: { lastWord } }); // set URL inline
+    editor.unwrapInline('timestamp'); // remove existing timestamps
+    editor.wrapInline({ type: 'timestamp', data: { lastWord } }); // set timestamp inline
     editor.moveFocusForward(lastWord.length); // deselect it
   }
 };
@@ -73,6 +73,7 @@ export default class Editor extends React.Component<any, any> {
       .moveToStart()
       .insertBlock({
         type: 'embed',
+
         data: {
           type,
         },
@@ -132,12 +133,6 @@ export default class Editor extends React.Component<any, any> {
                     ref={this.editor}
                   />
                   <div className='forum-post-edit__buttons forum-post-edit__buttons--actions'>
-                    {/*<div className='forum-post-edit__button'>*/}
-                    {/*    <button type='button' className='btn-osu-big btn-osu-big--forum-secondary' onClick={this.buttan}>*/}
-                    {/*        buttan*/}
-                    {/*    </button>*/}
-                    {/*</div>*/}
-
                       <div className='forum-post-edit__button'>
                           <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>
                             log
@@ -148,8 +143,6 @@ export default class Editor extends React.Component<any, any> {
                     className={`${bn}__menu`}
                     ref={this.menu}
                     style={{
-                      color: 'white',
-                      fontSize: '16px',
                       left: '-13px',
                       position: 'absolute',
                       top: `${this.state.menuOffset}px`,
@@ -165,13 +158,13 @@ export default class Editor extends React.Component<any, any> {
                         display: this.state.menuShown ? 'block' : 'none',
                       }}
                     >
-                      <button type='button' className='btn-circle btn-circle--bbcode' onClick={(e) => this.buttan(e, 'suggestion')}>
+                      <button type='button' className='btn-circle btn-circle--bbcode' onClick={(event) => this.buttan(event, 'suggestion')}>
                         <span className='beatmap-discussion-message-type beatmap-discussion-message-type--suggestion'><i className='far fa-circle'/></span>
                       </button>
-                      <button type='button' className='btn-circle btn-circle--bbcode' onClick={(e) => this.buttan(e, 'problem')}>
+                      <button type='button' className='btn-circle btn-circle--bbcode' onClick={(event) => this.buttan(event, 'problem')}>
                         <span className='beatmap-discussion-message-type beatmap-discussion-message-type--problem'><i className='fas fa-exclamation-circle'/></span>
                       </button>
-                      <button type='button' className='btn-circle btn-circle--bbcode' onClick={(e) => this.buttan(e, 'praise')}>
+                      <button type='button' className='btn-circle btn-circle--bbcode' onClick={(event) => this.buttan(event, 'praise')}>
                         <span className='beatmap-discussion-message-type beatmap-discussion-message-type--praise'><i className='fas fa-heart'/></span>
                       </button>
                     </div>

@@ -23,10 +23,11 @@ import * as ReactDOM from 'react-dom';
 
 export default class EditorBeatmapSelector extends React.Component<any, any> {
   portal: HTMLDivElement;
-  private topRef: React.RefObject<HTMLDivElement>;
+  private readonly topRef: React.RefObject<HTMLDivElement>;
 
   constructor(props: {}) {
     super(props);
+
     this.portal = document.createElement('div');
     document.body.appendChild(this.portal);
     this.topRef = React.createRef<HTMLDivElement>();
@@ -66,7 +67,7 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
     if (beatmap.deleted_at) {
       return null;
     }
-    const menuItemClasses = '';
+    const menuItemClasses = 'beatmap-discussion-newer__dropdown-menu-item';
 
     return (
       <a
@@ -74,9 +75,6 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
         className={menuItemClasses}
         key={beatmap.id}
         data-id={beatmap.id}
-        style={{
-          display: 'flex',
-        }}
         onClick={this.select}
       >
         <BeatmapIcon
