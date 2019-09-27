@@ -342,12 +342,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         return $this->approved > 0;
     }
 
-    // TODO: remove this and update the coffee side names to match isScoreable.
-    public function hasScores()
-    {
-        return $this->attributes['approved'] > 0;
-    }
-
     public static function latestRankedOrApproved($count = 5)
     {
         // TODO: add filtering by game mode after mode-toggle UI/UX happens
