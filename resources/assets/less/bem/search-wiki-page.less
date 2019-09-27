@@ -25,6 +25,28 @@
     min-width: 0;
   }
 
+  &__row {
+    margin: 5px 0;
+    padding: 0;
+    line-height: 1.5;
+    word-wrap: break-word;
+    color: white;
+
+    &--title {
+      margin-top: 0;
+      font-size: @font-size--title-small-2;
+    }
+
+    &--excerpt {
+      font-size: @font-size--small-2;
+    }
+
+    &--footer {
+      color: @osu-colour-f1;
+      font-size: @font-size--small;
+    }
+  }
+
   &__more {
     color: @osu-colour-f1;
     .link-hover({ color: @osu-colour-f1 });
