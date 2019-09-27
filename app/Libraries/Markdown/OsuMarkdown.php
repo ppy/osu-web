@@ -75,7 +75,7 @@ class OsuMarkdown
     ];
 
     private $config;
-    private $document;
+    private $document = '';
     private $firstImage;
     private $header;
     private $html;
@@ -146,6 +146,8 @@ class OsuMarkdown
             $this->document = $rawInput;
             $this->header = [];
         }
+
+        $this->document = $this->document ?? '';
 
         return $this;
     }
