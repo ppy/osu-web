@@ -104,6 +104,13 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         return $client;
     }
 
+    protected function fileList($path, $suffix)
+    {
+        return array_map(function ($file) use ($path, $suffix) {
+            return [basename($file, $suffix), $path];
+        }, glob("{$path}/*{$suffix}"));
+    }
+
     protected function invokeMethod($obj, string $name, array $params = [])
     {
         $method = new ReflectionMethod($obj, $name);
@@ -123,12 +130,5 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     protected function normalizeHTML($html)
     {
         return str_replace("\n", '', preg_replace("/>\s*</s", '><', trim($html)));
-    }
-
-    protected function fileList($path, $suffix)
-    {
-        return array_map(function ($file) use ($path, $suffix) {
-            return [basename($file, $suffix), $path];
-        }, glob("{$path}/*{$suffix}"));
     }
 }
