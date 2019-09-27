@@ -75,6 +75,10 @@ Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
     Route::group(['prefix' => 'discussions', 'as' => 'discussions.'], function () {
         Route::resource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
     });
+
+    Route::group(['namespace' => 'Beatmapsets'], function () {
+        Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
+    });
 });
 Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
 Route::get('beatmapsets/{beatmapset}/discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
@@ -83,7 +87,6 @@ Route::post('beatmapsets/{beatmapset}/discussion-unlock', 'BeatmapsetsController
 Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
 Route::put('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@love')->name('beatmapsets.love');
 Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
-Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('beatmapsets.update-favourite');
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
 Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
@@ -311,6 +314,15 @@ Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payme
 // API
 Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-api', 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
+        Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
+            // TODO: this route should be different
+            Route::get('favourites', 'API\BeatmapsetsController@favourites');     //  GET /api/v2/beatmapsets/favourites
+
+            Route::group(['namespace' => 'Beatmapsets'], function () {
+                Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
+            });
+        });
+
         Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
             Route::post('new', 'ChatController@newConversation')->name('new');
             Route::get('updates', 'ChatController@updates')->name('updates');
@@ -337,11 +349,6 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
             });
         });
         Route::apiResource('rooms', 'Multiplayer\RoomsController', ['only' => ['show', 'store']]);
-
-        Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
-            Route::get('favourites', 'API\BeatmapsetsController@favourites');     //  GET /api/v2/beatmapsets/favourites
-            Route::post('{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('update-favourite');
-        });
 
         Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
             // GET /api/v2/scores/:mode/:score_id/download
