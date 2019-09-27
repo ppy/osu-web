@@ -19,12 +19,16 @@
 import { BeatmapIcon } from 'beatmap-icon';
 import * as _ from 'lodash';
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { Value } from 'slate';
+import { Editor as CoreEditor } from 'slate';
 import InstantReplace from 'slate-instant-replace';
-import { Editor, findDOMNode } from 'slate-react';
+import { Editor, findDOMNode, RenderBlockProps, RenderInlineProps } from 'slate-react';
 import SoftBreak from 'slate-soft-break';
 
 let initialValue: string = '{"document":{"nodes":[{"object":"block","type":"paragraph","nodes":[{"object":"text","text":"A line of text in a paragraph."}]}]}}';
+
+type DiscussionType = 'hype' | 'mapperNote' | 'praise' | 'problem' | 'suggestion';
 
 class TestDropdown extends React.Component<any, any> {
   portal: HTMLDivElement;
@@ -32,7 +36,7 @@ class TestDropdown extends React.Component<any, any> {
 
   constructor(props: {}) {
     super(props);
-    this.portal = window.wang = document.createElement('div');
+    this.portal = document.createElement('div');
     document.body.appendChild(this.portal);
     this.topRef = React.createRef<HTMLDivElement>();
 
@@ -41,17 +45,23 @@ class TestDropdown extends React.Component<any, any> {
     };
   }
 
-  select = (event: Event) => {
+  select = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
 
-    const target = event.currentTarget;
-    let id = parseInt(target.dataset['id']);
+    const target = event.currentTarget as HTMLElement;
 
-    this.setState({visible: false}, () => {
-      const {editor, node} = this.props;
-      const data = node.data.merge({beatmapId: id});
-      editor.setNodeByKey(node.key, {data});
-    });
+    if (!target) {
+      return;
+    }
+
+    const id = parseInt(target.dataset.id || '', 10);
+    if (id) {
+      this.setState({visible: false}, () => {
+        const {editor, node} = this.props;
+        const data = node.data.merge({beatmapId: id});
+        editor.setNodeByKey(node.key, {data});
+      });
+    }
   }
 
   toggleMenu = (event: Event) => {
@@ -61,7 +71,7 @@ class TestDropdown extends React.Component<any, any> {
     });
   }
 
-  beatmapThing = (beatmap) => {
+  beatmapThing = (beatmap: Beatmap) => {
     if (beatmap.deleted_at) {
       return null;
     }
@@ -93,12 +103,16 @@ class TestDropdown extends React.Component<any, any> {
   }
 
   componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any): void {
-    if (!this.topRef) {
+    if (!this.topRef.current) {
       return;
     }
 
-    const { top, left } = $(this.topRef.current).offset();
+    const position = $(this.topRef.current).offset();
+    if (!position) {
+      return;
+    }
 
+    const { top, left } = position;
     this.portal.style.position = 'absolute';
     this.portal.style.top = `${Math.floor(top + this.topRef.current.offsetHeight)}px`;
     this.portal.style.left = `${Math.floor(left)}px`;
@@ -107,14 +121,14 @@ class TestDropdown extends React.Component<any, any> {
 
   renderList = () => {
     return ReactDOM.createPortal(
-        <div href='#' className='beatmap-discussion-newer__dropdown-menu' contentEditable={false}>
-          {this.props.beatmaps.map((bm) => this.beatmapThing(bm))}
+        <div className='beatmap-discussion-newer__dropdown-menu' contentEditable={false}>
+          {this.props.beatmaps.map((bm: Beatmap) => this.beatmapThing(bm))}
         </div>
       , this.portal);
   }
 
   render(): React.ReactNode {
-    const beatmap = this.props.node.data.get('beatmapId') ? _.find(this.props.beatmaps, (b) => b.id === this.props.node.data.get('beatmapId')) : this.props.currentBeatmap];
+    const beatmap = this.props.node.data.get('beatmapId') ? _.find(this.props.beatmaps, (b) => b.id === this.props.node.data.get('beatmapId')) : this.props.currentBeatmap;
     return (
       <React.Fragment>
         <a href='#' className='beatmap-discussion-newer__dropdown' onClick={this.toggleMenu} contentEditable={false} {...this.props.attributes} ref={this.topRef}>
@@ -129,7 +143,7 @@ class TestDropdown extends React.Component<any, any> {
 }
 
 class TestComponent extends React.Component<any, any> {
-  remove = (event: Event) => {
+  remove = (event: React.MouseEvent<HTMLElement>) => {
     const { editor, node } = this.props;
 
     event.preventDefault();
@@ -138,9 +152,9 @@ class TestComponent extends React.Component<any, any> {
 
   render(): React.ReactNode {
     const { isFocused, node } = this.props;
-    // const styles = isFocused ? { border: '1px solid blue' } : {};
-    const styles = {};
-    const type = node.data.get('type');
+    const styles = isFocused ? {} : {};
+    // const styles = {};
+    const type: DiscussionType = node.data.get('type');
     const icons = {
       hype: 'fas fa-bullhorn',
       mapperNote: 'far fa-sticky-note',
@@ -170,7 +184,7 @@ class TestComponent extends React.Component<any, any> {
                       <div className='beatmap-discussion-post__user-stripe'/>
                     </div>
                     <div className='beatmap-discussion-post__message-container undefined'>
-                        <div className='beatmapset-discussion-message' ref={this.input}>{this.props.children}</div>
+                        <div className='beatmapset-discussion-message'>{this.props.children}</div>
                         <div className='beatmap-discussion-post__actions' contentEditable={false}>
                             <div className='beatmap-discussion-post__actions-group'>
                                 <a className='beatmap-discussion-post__action beatmap-discussion-post__action--button' href='#' onClick={this.remove}>delete</a>
@@ -185,7 +199,7 @@ class TestComponent extends React.Component<any, any> {
   }
 }
 
-const Replacer = (editor, lastWord) => {
+const Replacer = (editor: Editor, lastWord: string) => {
   const TIMESTAMP_REGEX = /\b(\d{2,}):([0-5]\d)[:.](\d{3})\b/;
   if (lastWord.match(TIMESTAMP_REGEX)) {
     editor.moveFocusBackward(lastWord.length); // select last word
@@ -207,8 +221,9 @@ export default class NewerDiscussion extends React.Component<any, any> {
   constructor(props: {}) {
     super(props);
 
-    if (localStorage.getItem(`newDiscussion-${this.props.beatmapset.id}`)) {
-      initialValue = localStorage.getItem(`newDiscussion-${this.props.beatmapset.id}`);
+    const savedValue = localStorage.getItem(`newDiscussion-${this.props.beatmapset.id}`);
+    if (savedValue) {
+      initialValue = savedValue;
     }
 
     this.state = {
@@ -218,7 +233,7 @@ export default class NewerDiscussion extends React.Component<any, any> {
     };
   }
 
-  buttan = (event, type) => {
+  buttan = (event: React.MouseEvent<HTMLElement>, type: string) => {
     event.preventDefault();
 
     if (!this.editor.current) {
@@ -236,7 +251,7 @@ export default class NewerDiscussion extends React.Component<any, any> {
       });
   }
 
-  hideMenu = (e) => {
+  hideMenu = (e: React.MouseEvent<HTMLElement>) => {
     if (!this.menuBody.current) {
       return;
     }
@@ -245,11 +260,15 @@ export default class NewerDiscussion extends React.Component<any, any> {
 
   log = () => console.log(this.state.value.toJSON());
 
-  onChange = ({ value }) => {
+  onChange = ({ value }: { value: Value }) => {
     const content = JSON.stringify(value.toJSON());
     localStorage.setItem(`newDiscussion-${this.props.beatmapset.id}`, content);
 
     this.setState({value}, () => {
+      if (!this.editor.current) {
+        return;
+      }
+
       if (!this.editor.current.value.selection.isFocused && !this.state.menuShown) {
         this.setState({menuOffset: -1000});
         return;
@@ -257,7 +276,7 @@ export default class NewerDiscussion extends React.Component<any, any> {
 
       let menuOffset: number = 0;
       if (this.editor.current && this.editor.current.value.anchorBlock) {
-        const node = findDOMNode(this.editor.current.value.anchorBlock.key);
+        const node = findDOMNode(this.editor.current.value.anchorBlock.key) as HTMLElement;
         menuOffset = node.offsetTop + (node.offsetHeight / 2);
         this.setState({menuOffset});
       }
@@ -285,11 +304,11 @@ export default class NewerDiscussion extends React.Component<any, any> {
                     ref={this.editor}
                   />
                   <div className='forum-post-edit__buttons forum-post-edit__buttons--actions'>
-                    <div className='forum-post-edit__button'>
-                        <button type='button' className='btn-osu-big btn-osu-big--forum-secondary' onClick={this.buttan}>
-                            buttan
-                        </button>
-                    </div>
+                    {/*<div className='forum-post-edit__button'>*/}
+                    {/*    <button type='button' className='btn-osu-big btn-osu-big--forum-secondary' onClick={this.buttan}>*/}
+                    {/*        buttan*/}
+                    {/*    </button>*/}
+                    {/*</div>*/}
 
                       <div className='forum-post-edit__button'>
                           <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>
@@ -338,7 +357,7 @@ export default class NewerDiscussion extends React.Component<any, any> {
     );
   }
 
-  renderBlock = (props, editor, next) => {
+  renderBlock = (props: RenderBlockProps, editor: CoreEditor, next: () => any) => {
     switch (props.node.type) {
       case 'embed':
         return <TestComponent
@@ -353,7 +372,7 @@ export default class NewerDiscussion extends React.Component<any, any> {
     }
   }
 
-  renderInline = (props, editor, next) => {
+  renderInline = (props: RenderInlineProps, editor: CoreEditor, next: () => any) => {
     const { node, attributes, children } = props;
     switch (node.type) {
       case 'timestamp': {
@@ -370,7 +389,7 @@ export default class NewerDiscussion extends React.Component<any, any> {
     }
   }
 
-  showMenu = (e) => {
+  showMenu = (event: React.MouseEvent<HTMLElement>) => {
     if (!this.menuBody.current) {
       return;
     }
