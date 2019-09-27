@@ -42,10 +42,6 @@ class BBCodeForDBTest extends TestCase
 
     public function examples()
     {
-        $path = __DIR__.'/bbcode_examples';
-
-        return array_map(function ($baseFilePath) use ($path) {
-            return [basename($baseFilePath, '.base.txt'), $path];
-        }, glob("{$path}/*.base.txt"));
+        return $this->fileList(__DIR__.'/bbcode_examples', '.base.txt');
     }
 }

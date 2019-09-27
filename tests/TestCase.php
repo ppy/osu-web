@@ -124,4 +124,11 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     {
         return str_replace("\n", '', preg_replace("/>\s*</s", '><', trim($html)));
     }
+
+    protected function fileList($path, $suffix)
+    {
+        return array_map(function ($file) use ($path, $suffix) {
+            return [basename($file, $suffix), $path];
+        }, glob("{$path}/*{$suffix}"));
+    }
 }

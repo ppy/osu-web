@@ -55,19 +55,11 @@ class BBCodeFromDBTest extends TestCase
 
     public function examples()
     {
-        $path = __DIR__.'/bbcode_examples';
-
-        return array_map(function ($dbFilePath) use ($path) {
-            return [basename($dbFilePath, '.db.txt'), $path];
-        }, glob("{$path}/*.db.txt"));
+        return $this->fileList(__DIR__.'/bbcode_examples', '.db.txt');
     }
 
     public function removeQuoteExamples()
     {
-        $path = __DIR__.'/bbcode_examples/remove_quotes';
-
-        return array_map(function ($dbFilePath) use ($path) {
-            return [basename($dbFilePath, '.db.txt'), $path];
-        }, glob("$path/*.db.txt"));
+        return $this->fileList(__DIR__.'/bbcode_examples/remove_quotes', '.db.txt');
     }
 }

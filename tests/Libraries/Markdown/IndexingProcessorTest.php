@@ -39,10 +39,6 @@ class IndexingProcessorTest extends TestCase
 
     public function examples()
     {
-        $path = __DIR__.'/markdown_examples';
-
-        return array_map(function ($mdFilePath) use ($path) {
-            return [basename($mdFilePath, '.md'), $path];
-        }, glob("{$path}/*.md"));
+        return $this->fileList(__DIR__.'/markdown_examples', '.md');
     }
 }
