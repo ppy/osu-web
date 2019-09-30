@@ -163,7 +163,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
     {
         // additional options
         static $orderOptions = [
-            'difficulties.difficultyrating' => [
+            'beatmaps.difficultyrating' => [
                 'asc' => ['mode' => 'min'],
                 'desc' => ['mode' => 'max'],
             ],
@@ -172,8 +172,17 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         $newSort = [];
         // assign sort modes if any.
         $options = ($orderOptions[$sort->field] ?? [])[$sort->order] ?? [];
+
+        // use relevant mode when sorting on nested field
+        if (starts_with($sort->field, 'beatmaps.') && $this->mode !== null) {
+            $options['nested'] = [
+                'path' => 'beatmaps',
+                'filter' => ['term' => ['beatmaps.playmode' => $this->mode]],
+            ];
+        }
+
         if ($options !== []) {
-            $sort->mode = $options['mode'];
+            $sort->extras = $options;
         }
 
         $newSort[] = $sort;
@@ -213,7 +222,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         static $fields = [
             'artist' => 'artist.raw',
             'creator' => 'creator.raw',
-            'difficulty' => 'difficulties.difficultyrating',
+            'difficulty' => 'beatmaps.difficultyrating',
             'favourites' => 'favourite_count',
             'nominations' => 'nominations',
             'plays' => 'play_count',

@@ -22,15 +22,15 @@ namespace App\Libraries\Elasticsearch;
 
 class Sort implements Queryable
 {
+    public $extras;
     public $field;
-    public $mode;
     public $order;
 
-    public function __construct(?string $field = null, ?string $order = null, ?string $mode = null)
+    public function __construct(?string $field = null, ?string $order = null, ?array $extras = [])
     {
         $this->field = $field;
         $this->order = $order;
-        $this->mode = $mode;
+        $this->extras = $extras;
     }
 
     public function isBlank()
@@ -51,10 +51,11 @@ class Sort implements Queryable
             return [$this->field];
         }
 
-        if ($this->mode === null) {
-            return [$this->field => ['order' => $this->order]];
+        $options = ['order' => $this->order];
+        foreach ($this->extras as $key => $value) {
+            $options[$key] = $value;
         }
 
-        return [$this->field => ['order' => $this->order, 'mode' => $this->mode]];
+        return [$this->field => $options];
     }
 }
