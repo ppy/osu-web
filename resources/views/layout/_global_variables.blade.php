@@ -19,8 +19,8 @@
     var csrf = "{{ csrf_token() }}";
     var section = "{{ $currentSection }}";
     var page = "{{ $currentAction }}";
-    var canonicalUrl = "{{ $canonicalUrl or '' }}";
-    var reloadUrl = "{{ $reloadUrl or '' }}";
+    var canonicalUrl = "{{ $canonicalUrl ?? '' }}";
+    var reloadUrl = "{{ $reloadUrl ?? '' }}";
 </script>
 
 @include ('layout._current_user')

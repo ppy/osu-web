@@ -23,20 +23,25 @@ class BBCodeForDBTest extends TestCase
 {
     private $uid = '1';
 
-    public function testAll()
+    /**
+     * @dataProvider examples
+     */
+    public function testGenerate($name, $path)
     {
-        $text = new BBCodeForDB();
+        $baseFilePath = "{$path}/{$name}.base.txt";
+        $dbFilePath = "{$path}/{$name}.db.txt";
+
+        $text = new BBCodeForDB;
         $text->uid = $this->uid;
-        $path = __DIR__.'/bbcode_examples';
+        $text->text = file_get_contents($baseFilePath);
 
-        foreach (glob("{$path}/*.base.txt") as $baseFilePath) {
-            $dbFilePath = preg_replace('/\.base\.txt$/', '.db.txt', $baseFilePath);
-            $text->text = trim(file_get_contents($baseFilePath));
+        $output = $text->generate();
 
-            $output = $this->normalizeHTML($text->generate());
-            $referenceOutput = $this->normalizeHTML(file_get_contents($dbFilePath));
+        $this->assertStringEqualsFile($dbFilePath, $output);
+    }
 
-            $this->assertSame($referenceOutput, $output);
-        }
+    public function examples()
+    {
+        return $this->fileList(__DIR__.'/bbcode_examples', '.base.txt');
     }
 }
