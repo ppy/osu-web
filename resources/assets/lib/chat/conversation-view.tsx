@@ -35,7 +35,6 @@ export default class ConversationView extends React.Component<any, any> {
 
   componentDidMount() {
     this.componentDidUpdate();
-    $(window).on('throttled-scroll', _.throttle(this.onScroll, 1000));
   }
 
   componentDidUpdate = () => {
@@ -80,13 +79,6 @@ export default class ConversationView extends React.Component<any, any> {
           </ul>
         </div>
       );
-    }
-  }
-
-  onScroll = () => {
-    const chatView = this.chatViewRef.current;
-    if (chatView) {
-      this.props.dataStore.uiState.chat.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
     }
   }
 
@@ -142,7 +134,7 @@ export default class ConversationView extends React.Component<any, any> {
     });
 
     return (
-      <div className='chat-conversation' onScroll={this.onScroll} ref={this.chatViewRef}>
+      <div className='chat-conversation' ref={this.chatViewRef}>
         <div className='chat-conversation__new-chat-avatar'>
           <UserAvatar user={{id: 0, avatar_url: channel.icon}} />
         </div>
