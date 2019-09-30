@@ -34,13 +34,13 @@
     "league/flysystem-aws-s3-v3": "^1.0",
     "league/fractal": "*",
     "league/html-to-markdown": "^4.7",
-    "lord/laroute": "*",
     "maknz/slack": "dev-laravel-5.4",
     "mariuzzo/laravel-js-localization": "*",
     "mpociot/laravel-apidoc-generator": "^3.7",
     "paypal/rest-api-sdk-php": "*",
     "sentry/sentry-laravel": "*",
     "symfony/yaml": "*",
+    "tightenco/ziggy": "^0.8.0",
     "xsolla/xsolla-sdk-php": "*"
   },
   "require-dev": {

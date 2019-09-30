@@ -16,12 +16,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { route } from 'laroute';
 import * as ApiResponses from './chat-api-responses';
 
 export default class ChatAPI {
   getMessages(channelId: number): Promise<ApiResponses.GetMessagesJSON> {
     return new Promise((resolve, reject) => {
-      $.get(laroute.route('chat.channels.messages.index', {channel: channelId}))
+      $.get(route('chat.channels.messages.index', {channel: channelId}))
         .done((response) => {
           resolve(response as ApiResponses.GetMessagesJSON);
         }).fail((error) => {
@@ -32,7 +33,7 @@ export default class ChatAPI {
 
   getUpdates(since: number): Promise<ApiResponses.GetUpdatesJSON> {
     return new Promise((resolve, reject) => {
-      $.get(laroute.route('chat.updates'),
+      $.get(route('chat.updates'),
         {since},
       ).done((response) => {
         resolve(response as ApiResponses.GetUpdatesJSON);
@@ -46,7 +47,7 @@ export default class ChatAPI {
     return new Promise((resolve, reject) => {
       $.ajax({
         type: 'PUT',
-        url: laroute.route('chat.channels.mark-as-read', {channel: channelId, message: messageId}),
+        url: route('chat.channels.mark-as-read', {channel: channelId, message: messageId}),
       }).done((response) => {
         resolve(response as ApiResponses.MarkAsReadJSON);
       }).fail((error) => {
@@ -57,7 +58,7 @@ export default class ChatAPI {
 
   newConversation(userId: number, message: string, action?: boolean): Promise<ApiResponses.NewConversationJSON> {
     return new Promise((resolve, reject) => {
-      $.post(laroute.route('chat.new'), {
+      $.post(route('chat.new'), {
         is_action: action,
         message,
         target_id: userId,
@@ -71,7 +72,7 @@ export default class ChatAPI {
 
   partChannel(channelId: number, userId: number) {
     return new Promise((resolve, reject) => {
-      $.ajax(laroute.route('chat.channels.part', {
+      $.ajax(route('chat.channels.part', {
         channel: channelId,
         user: userId,
       }), {
@@ -86,7 +87,7 @@ export default class ChatAPI {
 
   sendMessage(channelId: number, message: string, action?: boolean): Promise<ApiResponses.SendMessageJSON> {
     return new Promise((resolve, reject) => {
-      $.post(laroute.route('chat.channels.messages.store', {channel: channelId}), {
+      $.post(route('chat.channels.messages.store', {channel: channelId}), {
         is_action: action,
         message,
         target_id: channelId,

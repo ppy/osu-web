@@ -116,6 +116,10 @@ let webpackConfig = {
     }
   },
   resolve: {
+    alias: {
+      'ziggy': path.resolve(__dirname, 'resources/assets/js/ziggy.js'),
+      'ziggy-route': path.resolve(__dirname, 'vendor/tightenco/ziggy/dist/js/route.js'),
+    },
     modules: [
       path.resolve(__dirname, 'resources/assets/coffee'),
       path.resolve(__dirname, 'resources/assets/lib'),
@@ -234,7 +238,6 @@ mix
   'resources/assets/js/ga.js',
   'resources/assets/build/lang.js',
   'resources/assets/js/bootstrap-lang.js',
-  'resources/assets/js/laroute.js'
 ], 'public/js/app-deps.js') // FIXME: less dumb name; this needs to be separated -
                             // compiling coffee and then concating together doesn't
                             // work so well when versioning is used with webpack.

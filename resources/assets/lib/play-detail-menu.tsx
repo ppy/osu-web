@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { route } from 'laroute';
 import * as _ from 'lodash';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
@@ -42,7 +43,7 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
             <a
               className='simple-menu__item js-login-required--click'
               data-turbolinks={false}
-              href={laroute.route('scores.download', { mode: score.mode, score: score.id })}
+              href={route('scores.download', { mode: score.mode, score: score.id })}
               onClick={dismiss}
             >
               {osu.trans('users.show.extra.top_ranks.download_replay')}

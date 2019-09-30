@@ -17,6 +17,7 @@
  */
 
 import PostJson from 'interfaces/news-post-json';
+import { route } from 'laroute';
 import * as moment from 'moment';
 import * as React from 'react';
 
@@ -35,7 +36,7 @@ export default function PostItem({post}: {post: PostJson}) {
 
   return (
     <a
-      href={laroute.route('news.show', {news: post.slug})}
+      href={route('news.show', {news: post.slug})}
       className='news-card news-card--index'
     >
       {cover}

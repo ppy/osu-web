@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { route } from 'laroute';
 import * as React from 'react';
 import { ReportForm } from 'report-form';
 
@@ -53,7 +54,7 @@ export class ReportComment extends React.PureComponent<ReportCommentProps, Repor
       data: { comments },
       dataType: 'json',
       type: 'POST',
-      url: laroute.route('comments.report', { comment: this.props.comment.id }),
+      url: route('comments.report', { comment: this.props.comment.id }),
     };
 
     $.ajax(params).done(() => {
