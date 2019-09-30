@@ -21,12 +21,13 @@
 namespace App\Http\Controllers\Beatmapsets;
 
 use App\Exceptions\InvariantException;
-use App\Models\Beatmapset;
 use App\Http\Controllers\Controller;
+use App\Models\Beatmapset;
 
 class FavouritesController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
 
         $this->middleware('auth');
