@@ -16,11 +16,23 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import DispatcherAction from 'actions/dispatcher-action';
 import ChatStateStore from 'chat/chat-state-store';
+import { observable } from 'mobx';
+import { OwnClient } from 'models/oauth/own-client';
 import Store from 'stores/store';
 
+interface AccountUIState {
+  client: OwnClient | null;
+  isCreatingNewClient: boolean;
+  newClientVisible: boolean;
+}
+
 export default class UIStateStore extends Store {
+  @observable account: AccountUIState = {
+    client: null,
+    isCreatingNewClient: false,
+    newClientVisible: false,
+  };
+
   chat = new ChatStateStore(this.root, this.dispatcher);
-  handleDispatchAction(action: DispatcherAction) { /* do nothing */}
 }
