@@ -85,6 +85,13 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $user->withAccessToken($token);
     }
 
+    protected function fileList($path, $suffix)
+    {
+        return array_map(function ($file) use ($path, $suffix) {
+            return [basename($file, $suffix), $path];
+        }, glob("{$path}/*{$suffix}"));
+    }
+
     protected function invokeMethod($obj, string $name, array $params = [])
     {
         $method = new ReflectionMethod($obj, $name);
