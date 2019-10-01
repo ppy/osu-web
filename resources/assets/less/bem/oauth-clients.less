@@ -16,15 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import DispatcherAction from 'actions/dispatcher-action';
-import DispatchListener from 'dispatch-listener';
-import Dispatcher from 'dispatcher';
-import RootDataStore from 'stores/root-data-store';
-
-export default abstract class Store implements DispatchListener {
-  constructor(protected root: RootDataStore, protected dispatcher: Dispatcher) {
-    dispatcher.register(this);
+.oauth-clients {
+  &__client {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid @osu-colour-b5;
   }
-
-  handleDispatchAction(action: DispatcherAction) { /* do nothing */ }
 }
