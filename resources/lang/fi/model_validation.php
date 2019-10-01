@@ -118,6 +118,18 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Salasana ei saa sisältää käyttäjätunnusta.',
         'email_already_used' => 'Tämä sähköpostiosoite on jo käytössä.',

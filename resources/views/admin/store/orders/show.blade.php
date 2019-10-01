@@ -124,7 +124,7 @@
                 </div>
             </div>
 
-            <table class='table order-line-items {{ $table_class or "table-striped" }}'>
+            <table class='table order-line-items {{ $table_class ?? "table-striped" }}'>
                 <tbody>
                     @foreach($o->items()->hasShipping()->with('product')->get() as $i)
                     <tr>

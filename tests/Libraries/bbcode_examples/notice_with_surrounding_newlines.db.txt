@@ -4,7 +4,7 @@ Packed notice.
 [/notice:1]
 Bottom line text.
 
-Prefix text.[notice:1]Inline notice (except it's not).[/notice:1]Suffix text.
+Prefix text.[notice:1]Inline notice (except it&#039;s not).[/notice:1]Suffix text.
 
 Upper line text.
 

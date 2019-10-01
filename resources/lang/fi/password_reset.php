@@ -55,5 +55,10 @@ return [
 
     'starting' => [
         'username' => 'Anna sähköposti tai käyttäjänimi',
+
+        'support' => [
+            '_' => '',
+            'button' => '',
+        ],
     ],
 ];

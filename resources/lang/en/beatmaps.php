@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Upvote this discussion',
-            'down' => 'Downvote this discussion',
+            'none' => [
+                'down' => 'No downvotes yet',
+                'up' => 'No upvotes yet',
+            ],
+            'latest' => [
+                'down' => 'Latest downvotes',
+                'up' => 'Latest upvotes',
+            ],
         ],
     ],
 
@@ -280,6 +286,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => 'Mirror',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

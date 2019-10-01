@@ -25,6 +25,8 @@ return [
     'title' => 'osu! フォーラム',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'カバー画像の設定',
             'button' => '画像をアップロード',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '最新の投稿',
+
+        'index' => [
+            'title' => 'フォーラム 目次',
+        ],
+
         'topics' => [
             'empty' => 'トピックがありません！',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => 'フォーラムを既読にする',
         'forums' => 'フォーラムを既読にする',
         'busy' => '既読にする・・・',
-    ],
-
-    'poll' => [
-        'edit_warning' => '編集中の投票フォームは現在の編集状況が削除されます！',
-
-        'actions' => [
-            'edit' => '投票を編集',
-        ],
     ],
 
     'post' => [
@@ -71,6 +71,12 @@ return [
             'destroy' => '投稿を削除',
             'restore' => '投稿を復元',
             'edit' => '投稿を編集',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => '開始したユーザー: :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'プレビュー',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -290,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => '投票',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'ポールの期限終了は :time です',

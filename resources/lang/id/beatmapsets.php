@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'berstatus Approved sejak ',
             'favourite' => 'Masukkan beatmapset ini ke dalam daftar Favorit Anda',
-            'favourited_count' => '+ :count lagi!',
             'logged-out' => 'Anda harus masuk sebelum mengunduh beatmap!',
             'loved' => 'berstatus Loved sejak ',
             'mapped_by' => 'dibuat oleh :mapper',

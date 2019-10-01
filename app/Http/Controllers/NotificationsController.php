@@ -121,12 +121,12 @@ class NotificationsController extends Controller
 
         $unreadCount = auth()->user()->userNotifications()->where('is_read', false)->count();
 
-        return [
+        return response([
             'has_more' => $hasMore,
             'notifications' => $json,
             'unread_count' => $unreadCount,
             'notification_endpoint' => $this->endpointUrl(),
-        ];
+        ])->header('Cache-Control', 'no-store');
     }
 
     /**

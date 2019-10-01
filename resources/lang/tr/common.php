@@ -37,6 +37,7 @@ return [
         'change' => 'değiştir',
         'click_to_copy' => 'panoya kopyalamak için tıklayın',
         'click_to_copy_copied' => 'panoya kopyalandı!',
+        'close' => '',
         'collapse' => 'daraltın',
         'delete' => 'Sil',
         'edit' => 'Düzenle',
@@ -58,6 +59,7 @@ return [
         'show_deleted' => 'Silineni göster',
         'show_more' => 'daha fazla göster',
         'show_more_options' => 'daha fazla seçenek göster',
+        'update' => '',
         'upload_image' => 'görsel yükle',
 
         'watch' => [
@@ -75,8 +77,12 @@ return [
         'minute_short_unit' => 'dk|dk',
         'minutes' => ':count dakika |:count dakika',
         'months' => ':count ay|:count ay',
+        'plus_others' => '',
+        'post' => ':count_delimited gönderi|:count_delimited gönderi',
         'second_short_unit' => 'sn|sn',
+        'star_priority' => '',
         'update' => ':count_delimited güncelleme|:count_delimited güncellemeler',
+        'view' => '',
         'years' => ':count yıl|:count yıl',
     ],
 

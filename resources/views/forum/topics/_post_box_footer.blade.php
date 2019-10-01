@@ -26,9 +26,8 @@
                 class="
                     js-ujs-submit-disable
                     js-edit-post-cancel
-                    btn-osu
-                    btn-osu--post-editor
-                    btn-osu-default
+                    btn-osu-big
+                    btn-osu-big--forum-primary
                 "
                 type="button"
             >
@@ -38,9 +37,8 @@
 
         <button
             class="
-                btn-osu
-                btn-osu--post-editor
-                btn-osu-default
+                btn-osu-big
+                btn-osu-big--forum-primary
             "
             type="submit"
             data-disable-with="{{ trans('common.buttons.saving') }}"

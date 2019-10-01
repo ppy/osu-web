@@ -20,7 +20,9 @@ import { NewReply } from './new-reply'
 import { Post } from './post'
 import { SystemPost } from './system-post'
 import * as React from 'react'
-import { button, div, i, span } from 'react-dom-factories'
+import { button, div, i, span, a } from 'react-dom-factories'
+import { UserAvatar } from 'user-avatar'
+
 el = React.createElement
 
 bn = 'beatmap-discussion'
@@ -30,6 +32,7 @@ export class Discussion extends React.PureComponent
     super props
 
     @eventId = "beatmap-discussion-entry-#{@props.discussion.id}"
+    @tooltips = {}
 
     @state =
       collapsed: false
@@ -44,6 +47,11 @@ export class Discussion extends React.PureComponent
   componentWillUnmount: =>
     $.unsubscribe ".#{@eventId}"
     @voteXhr?.abort()
+
+
+  componentDidUpdate: =>
+    _.each @tooltips, (tooltip, type) =>
+      @refreshTooltip(tooltip.qtip('api'), type)
 
 
   render: =>
@@ -76,11 +84,15 @@ export class Discussion extends React.PureComponent
 
           if !@props.preview
             div className: "#{bn}__actions",
-              ['up', 'down'].map (direction) =>
+              ['up', 'down'].map (type) =>
                 div
-                  key: direction
+                  key: type
+                  type: type
                   className: "#{bn}__action"
-                  @displayVote direction
+                  onMouseOver: @showVoters
+                  onTouchStart: @showVoters
+                  @displayVote type
+                  @voterList type
 
               button
                 className: "#{bn}__action #{bn}__action--with-line"
@@ -135,10 +147,75 @@ export class Discussion extends React.PureComponent
       'data-score': score
       disabled: disabled
       onClick: @doVote
-      title: osu.trans("beatmaps.discussions.votes.#{type}")
       i className: "fas fa-#{icon}"
       span className: "#{vbn}__count",
         @props.discussion.votes[type]
+
+
+  voterList: (type) =>
+    div
+      className: "user-list-popup user-list-popup__template js-user-list-popup--#{@props.discussion.id}-#{type}"
+      style:
+        display: 'none'
+      if @props.discussion.votes[type] < 1
+        osu.trans "beatmaps.discussions.votes.none.#{type}"
+      else
+        el React.Fragment, null,
+          div className: 'user-list-popup__title',
+            osu.trans("beatmaps.discussions.votes.latest.#{type}")
+            ':'
+          @props.discussion.votes['voters'][type].map (userId) =>
+            a
+              href: laroute.route('users.show', user: userId)
+              className: 'js-usercard user-list-popup__user'
+              key: userId
+              'data-user-id': userId
+              el UserAvatar, user: @props.users[userId] ? [], modifiers: ['full']
+          if @props.discussion.votes[type] > @props.discussion.votes['voters'][type].length
+            div className: 'user-list-popup__remainder-count',
+              osu.transChoice 'common.count.plus_others', @props.discussion.votes[type] - @props.discussion.votes['voters'][type].length
+
+
+  getTooltipContent: (type) =>
+    $(".js-user-list-popup--#{@props.discussion.id}-#{type}").html()
+
+
+  refreshTooltip: (api, type) =>
+    return unless api
+    api.set('content.text', @getTooltipContent(type))
+
+
+  showVoters: (event) =>
+    target = event.currentTarget
+
+    if @props.favcount < 1 || target._tooltip
+      return
+
+    target._tooltip = true
+
+    type = target.getAttribute('type')
+
+    @tooltips[type] =
+      $(target).qtip
+        style:
+          classes: 'user-list-popup'
+          def: false
+          tip: false
+        content:
+          text: (event, api) => @getTooltipContent(type)
+        position:
+          at: 'top center'
+          my: 'bottom center'
+          viewport: $(window)
+        show:
+          delay: 100
+          ready: true
+          solo: true
+          effect: -> $(this).fadeTo(110, 1)
+        hide:
+          fixed: true
+          delay: 500
+          effect: -> $(this).fadeTo(250, 0)
 
 
   doVote: (e) =>

@@ -29,7 +29,7 @@ return [
         'first_post' => 'Nu se poate șterge postarea de pornire.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Mesajul',
         ],
     ],
 
@@ -42,8 +42,8 @@ return [
         'locked' => 'Discuția este închisă.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Tipul mesajului',
+            'timestamp' => 'Dată/Oră',
         ],
 
         'hype' => [
@@ -64,7 +64,7 @@ return [
         'deleted_parent' => 'Nu este permis să răspunzi la un comentariu șters.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Mesajul',
         ],
     ],
 
@@ -94,7 +94,7 @@ return [
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Titlul subiectului',
             ],
         ],
 
@@ -108,13 +108,25 @@ return [
             'too_many_options' => 'Ai depășit numărul maxim de opțiuni permise.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Titlu sondaj',
             ],
         ],
 
         'topic_vote' => [
             'required' => 'Selectează o opțiune când votezi.',
             'too_many' => 'Ai selectat mai multe opțiuni decât este permis.',
+        ],
+    ],
+
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
         ],
     ],
 
@@ -143,13 +155,13 @@ return [
         'too_long' => 'Ai depășit lungimea maximă - nu poate fi decât până la :limit caractere.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Nume de utilizator',
+            'user_email' => 'Adresă de e-mail',
+            'password' => 'Parolă',
         ],
 
         'change_username' => [
-            'restricted' => '',
+            'restricted' => 'Nu iți poți schimba numele de utilizator cât timp ești restricționat.',
             'supporter_required' => [
                 '_' => 'Trebuie să :link pentru a-ți schimba numele!',
                 'link_text' => 'fii un suporter osu!',
@@ -165,8 +177,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Cantitate',
+                'cost' => 'Cost',
             ],
         ],
     ],

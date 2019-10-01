@@ -25,6 +25,8 @@ return [
     'title' => 'osu! forumet',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Velg bannerbilde',
             'button' => 'Last opp bilde',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '',
+
+        'index' => [
+            'title' => '',
+        ],
+
         'topics' => [
             'empty' => 'Ingen emner!',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => 'Marker forum som lest',
         'forums' => 'Marker forumer som lest',
         'busy' => 'Marker som lest...',
-    ],
-
-    'poll' => [
-        'edit_warning' => 'Redigering av avstemming vil fjerne gjeldene resultater!',
-
-        'actions' => [
-            'edit' => 'Rediger avstemming',
-        ],
     ],
 
     'post' => [
@@ -71,6 +71,12 @@ return [
             'destroy' => 'Slett innlegg',
             'restore' => 'Gjenopprett innlegg',
             'edit' => 'Rediger innlegget',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => 'startet av :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Forhåndsvisning',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -290,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Stem',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Avstemming vil ende om :time',

@@ -33,21 +33,39 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
-        'confirm_revoke' => '確定撤回客戶端的權限？',
-        'scopes_title' => '這個應用程式可以：',
-        'owned_by' => '被 :user 擁有',
+    'authorized_clients' => [
+        'confirm_revoke' => '您確定要撤消此客戶端的權限嗎？',
+        'scopes_title' => '這個應用程式可以:',
+        'owned_by' => '擁有者 :user',
         'none' => '沒有客戶端',
 
         'revoked' => [
-            'false' => '撤回存取權限',
-            'true' => '存取遭撤回',
+            'false' => '',
+            'true' => '',
         ],
+    ],
+
+    'client' => [
+        'id' => '客戶端 ID',
+        'name' => '應用程式名稱',
+        'redirect' => '',
+        'secret' => '',
     ],
 
     'login' => [
         'download' => '點擊這裡下載遊戲並創建一個帳戶',
         'label' => '首先，登入您的帳號吧！',
         'title' => '登入',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '您確定要刪除此客戶端嗎？',
+        'new' => '新增 OAuth 應用程式',
+        'none' => '沒有客戶端',
+
+        'revoked' => [
+            'false' => '刪除',
+            'true' => '已刪除',
+        ],
     ],
 ];

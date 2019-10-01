@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => '支持该讨论',
-            'down' => '反对该讨论',
+            'none' => [
+                'down' => '还没有差评',
+                'up' => '还没有好评',
+            ],
+            'latest' => [
+                'down' => '最新差评',
+                'up' => '最新好评',
+            ],
         ],
     ],
 
@@ -251,7 +257,7 @@ return [
         'mine' => '我的谱面',
         'pending' => 'Pending & WIP',
         'qualified' => 'Qualified',
-        'ranked' => '进榜',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => '所有',
@@ -280,6 +286,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

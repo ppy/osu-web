@@ -17,23 +17,9 @@
 --}}
 @php
     $topic = $topic ?? null;
-    $options = optional($topic)->pollOptions() ?? collect()
+    $options = optional($topic)->pollOptions ?? collect();
 @endphp
-
-<div
-    class="simple-form simple js-form-toggle--form"
-    {{-- inlined style to work with jquery's slide animation --}}
-    @if (!$edit)
-        style="display: none;"
-    @endif
-    data-form-toggle-id="poll-create"
->
-    @if (!$edit)
-        <h2 class="simple-form__row simple-form__row--title">
-            {{ trans('forum.topics.create.create_poll') }}
-        </h2>
-    @endif
-
+<div class="simple-form">
     <label class="simple-form__row">
         <div class="simple-form__label">
             {{ trans('forum.topics.create.poll.title') }}
@@ -41,7 +27,7 @@
         <input
             class="simple-form__input"
             name="forum_topic_poll[title]"
-            value="{{ optional($topic)->poll_title }}"
+            value="{{ optional($topic)->pollTitleRaw() }}"
         />
     </label>
 
@@ -53,7 +39,8 @@
         <textarea
             class="simple-form__input simple-form__input--full-height"
             name="forum_topic_poll[options]"
-        >{{ $options->pluck('poll_option_text')->implode("\n") }}</textarea>
+            rows="10"
+        >{{ $options->map->optionTextRaw()->implode("\n") }}</textarea>
     </label>
 
     <label class="simple-form__row simple-form__row--half">
@@ -87,20 +74,10 @@
 
     <label class="simple-form__row">
         <div class="simple-form__label simple-form__label--full">
-            <div class="osu-checkbox">
-                <input
-                    class="osu-checkbox__input"
-                    name="forum_topic_poll[vote_change]"
-                    type="checkbox"
-                    @if (optional($topic)->poll_vote_change)
-                        checked
-                    @endif
-                />
-                <span class="osu-checkbox__box"></span>
-                <span class="osu-checkbox__tick">
-                    <i class="fas fa-check"></i>
-                </span>
-            </div>
+            @include('objects._switch', [
+                'checked' => optional($topic)->poll_vote_change,
+                'name' => 'forum_topic_poll[vote_change]',
+            ])
 
             {{ trans('forum.topics.create.poll.vote_change') }}
             <span class="simple-form__info">{{ trans('forum.topics.create.poll.vote_change_info') }}</span>
@@ -109,44 +86,13 @@
 
     <label class="simple-form__row">
         <div class="simple-form__label simple-form__label--full">
-            <div class="osu-checkbox">
-                <input
-                    class="osu-checkbox__input"
-                    name="forum_topic_poll[hide_results]"
-                    type="checkbox"
-                    @if (optional($topic)->poll_hide_results)
-                        checked
-                    @endif
-                />
-                <span class="osu-checkbox__box"></span>
-                <span class="osu-checkbox__tick">
-                    <i class="fas fa-check"></i>
-                </span>
-            </div>
+            @include('objects._switch', [
+                'checked' => optional($topic)->poll_hide_results,
+                'name' => 'forum_topic_poll[hide_results]',
+            ])
 
             {{ trans('forum.topics.create.poll.hide_results') }}
             <span class="simple-form__info">{{ trans('forum.topics.create.poll.hide_results_info') }}</span>
         </div>
     </label>
 </div>
-
-@if (!$edit)
-    <label class="btn-osu-lite btn-osu-lite--default">
-        <div class="label-toggle">
-            <input
-                class="label-toggle__checkbox js-form-toggle--input"
-                data-form-toggle-id="poll-create"
-                name="with_poll"
-                type="checkbox"
-            />
-
-            <span class="label-toggle__label label-toggle__label--uncheck">
-                {{ trans('forum.topics.create.create_poll_button.remove') }}
-            </span>
-
-            <span class="label-toggle__label label-toggle__label--check">
-                {{ trans('forum.topics.create.create_poll_button.add') }}
-            </span>
-        </div>
-    </label>
-@endif

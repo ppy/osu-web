@@ -154,8 +154,8 @@ return [
                     'unsupported_format' => 'Format wird nicht unterstützt.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Hochladen nur für :link verfügbar',
+                        'link' => 'osu!supporter',
                     ],
                 ],
             ],
@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 Follower|:count Follower',
+            'none' => 'nichts',
             'unranked' => 'Keine Plays in letzter Zeit',
 
             'achievements' => [
@@ -181,7 +182,7 @@ return [
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Lieblings-Beatmaps',
+                    'title' => 'Lieblingsbeatmaps',
                 ],
                 'graveyard' => [
                     'title' => 'Begrabene Beatmaps',
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Pending Beatmaps',
                 ],
+            ],
+            'discussions' => [
+                'title' => 'Diskussionen',
+                'title_longer' => 'Neueste Diskussionen',
+                'show_more' => 'mehr Diskussionen anzeigen',
+            ],
+            'events' => [
+                'title' => 'Events',
+                'title_longer' => 'Neueste Events',
+                'show_more' => 'mehr Events anzeigen',
             ],
             'historical' => [
                 'empty' => 'Keine Performance-Einträge. :(',
@@ -264,8 +275,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Basierend auf dem Beitrag, den der Benutzer zur Beatmap-Moderation geleistet hat. Weitere Informationen unter :link.',
+                    'link' => 'diese Seite',
                 ],
             ],
             'me' => [
@@ -275,6 +286,11 @@ return [
                 'empty' => "Dieser Nutzer hat noch keine erhalten. ;_;",
                 'recent' => 'Neuste',
                 'title' => 'Medaillen',
+            ],
+            'posts' => [
+                'title' => 'Beiträge',
+                'title_longer' => 'Neueste Beiträge',
+                'show_more' => 'weitere Beiträge anschauen',
             ],
             'recent_activity' => [
                 'title' => 'Neulich',
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Erster Platz',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Abgegebene Stimmen (letzte 3 Monate)',
+                'received' => 'Erhaltene Stimmen (letzte 3 Monate)',
+                'title' => 'Stimmen',
+                'title_longer' => 'Neueste Stimmen',
+                'vote_count' => ':count_delimited Stimme|:count_delimited Stimmen',
             ],
             'account_standing' => [
                 'title' => 'Accountstatus',
@@ -345,8 +368,8 @@ return [
             'placeholder' => 'Seiteninhalt hier eingeben',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Sie müssen ein :link sein, um diese Funktion freizuschalten.',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
@@ -368,10 +391,15 @@ return [
             'play_count' => 'Play-Anzahl',
             'play_time' => 'Gesamtspielzeit',
             'ranked_score' => 'Punktzahl auf Ranglisten',
-            'replays_watched_by_others' => 'Wiederholungen von anderen angesehen',
+            'replays_watched_by_others' => 'Von anderen angeschaute Wiederholungen',
             'score_ranks' => 'Ränge durch Punkte',
             'total_hits' => 'Total Hits',
             'total_score' => 'Gesamtpunktzahl',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Ranked & Approved Beatmaps',
+            'loved_beatmapset_count' => 'Loved Beatmaps',
+            'unranked_beatmapset_count' => 'Pending Beatmaps',
+            'graveyard_beatmapset_count' => 'Begrabende Beatmaps',
         ],
     ],
 
@@ -388,7 +416,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'Kartenansicht',
+        'list' => 'Listenansicht',
     ],
 ];

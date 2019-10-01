@@ -26,8 +26,8 @@ return [
 
         'avatar' => [
             'title' => '头像',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => '请确保你的头像符合 :link。<br/>这意味着必须是<strong>全年龄</strong>头像。即没有裸露、亵渎或暗示的内容',
+            'rules_link' => '社群规则',
         ],
 
         'email' => [
@@ -71,6 +71,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => '已授权的第三方',
+        'own_clients' => '拥有的客户端',
         'title' => '开放授权',
     ],
 
@@ -108,11 +109,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => '现在可以关闭本窗口了',
+        'title' => '验证已经完成',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => '无效或过期的验证链接',
     ],
 ];

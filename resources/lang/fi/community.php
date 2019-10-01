@@ -20,49 +20,63 @@
 
 return [
     'support' => [
-        'header' => [
-            // size in font-size
-            'big_description' => 'Rakastatko osua!?<br/>
-                                Tue osun kehittämistä! :D',
-            'small_description' => '',
-            'support_button' => 'Haluan tukea osu!a',
+        'convinced' => [
+            'title' => 'Vakuutuin! :D',
+            'support' => 'tue osua!',
+            'gift' => 'tai lahjoita Tukija toiselle pelaajalle',
+            'instructions' => 'klikkaa sydäntä jatkaaksesi osu!kauppaan',
         ],
+        'why-support' => [
+            'title' => '',
 
-        'dev_quote' => 'osu! on täysin ilmainen peli, mutta sen pystyssä pitäminen ei todellakaan ole ilmaista.
-        Palvelimien järjestämisen ja korkealaatuisen kansainvälisen kaistan lisäksi järjestelmän -ja yhteisön ylläpito,  
-        palkintojen tarjoaminen kilpailuihin, tukipyyntöihin vastaaminen ja yleisesti porukan pitäminen tyytyväisenä kuluttaa huomattavan määrän rahaa!
-        Äläkä unohda, että teemme tämän kaiken ilman mainoksia, työkalupalkkeja tai vastaavia.
-            <br/><br/>Minä, joka yleisimmin tunnetaan nimestä "peppy" pidän osun! toiminnassa suurilta osin yksin.
-            Jouduin Lopettamaan päivätyöni pysyäkseni osun! mukana
-            ja silti itse asettamieni laatuvaatimusten pitäminen on ajoittain hankalaa.
-            Haluaisin henkilökohtaisesti kiittää kaikkia, jotka ovat tukeneet osun! toimintaa tähän mennessä 
-            kuten myös heitä, jotka tukevat tätä loistavaa peliä ja yhteisöä tulevaisuudessa :).',
-
-        'supporter_status' => [
-            'contribution' => 'Kiitos tuestasi tähän saakka! Olet tukenut kokonaisuudessaan :dollars :tags tukijaostoksella!',
-            'gifted' => 'Tagiostoksistasi :giftedTags on lahjoitettu (yhteensä :giftedDollars), kuinka anteliasta!',
-            'not_yet' => "Et ole vielä tukija :(",
-            'title' => 'Tukemisesi tämänhetkinen tila',
-            'valid_until' => 'Nykyinen tukijatagi on voimassa :date asti!',
-            'was_valid_until' => 'Tukijatagisi oli voimassa :date asti.',
-        ],
-
-        'why_support' => [
-            'title' => 'Miksi tukisin osu!a?',
-            'blocks' => [
-                'dev' => 'Kehitetty ja ylläpidetty yhden australialaisen henkilön voimin',
-                'time' => 'Ylläpito vie niin paljon aikaa, että tätä ei voi kutsua enää "harrastukseksi".',
-                'ads' => 'Mainoksia ei ole missään. <br/><br/>
- Toisin kuin 99.95% verkosta, me emme tee voittoa tunkemalla asioita naamallesi.',
-                'goodies' => 'Saat lisäominaisuuksia käyttöösi!',
+            'team' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'infra' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'featured-artists' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'ads' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'tournaments' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'bounty-program' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
             ],
         ],
-
         'perks' => [
             'title' => 'Aha. No mitä minä sitten saan?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'Nopea ja helppo tapa etsiä beatmappejä ilman tarvetta poistua pelistä.',
+            ],
+
+            'friend_ranking' => [
+                'title' => '',
+                'description' => "",
+            ],
+
+            'country_ranking' => [
+                'title' => '',
+                'description' => '',
+            ],
+
+            'mod_filtering' => [
+                'title' => '',
+                'description' => '',
             ],
 
             'auto_downloads' => [
@@ -82,7 +96,7 @@ return [
 
             'customisation' => [
                 'title' => 'Kustomointi',
-                'description' => 'Tee profiilistasi omalaatuinen lisäämällä täysin muokattava käyttäjä-sivu.',
+                'description' => "Tee profiilistasi omalaatuinen lisäämällä täysin muokattava käyttäjä-sivu.",
             ],
 
             'beatmap_filters' => [
@@ -120,22 +134,30 @@ return [
                 'description' => 'Näet beatmapin maa-, kaveri- ja modikohtaiset sijoitukset pelissä.',
             ],
 
-            'feel_special' => [
-                'title' => 'Tunne itsesi erityiseksi',
-                'description' => 'Lämmin ja mukava tunne tehdessäsi osuuttasi, jotta osu! pysyy pystyssä sulavasti!',
-            ],
-
-            'more_to_come' => [
-                'title' => 'Lisää tulossa',
+            'more_favourites' => [
+                'title' => '',
                 'description' => '',
             ],
-        ],
+            'more_friends' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'more_beatmaps' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'friend_filtering' => [
+                'title' => '',
+                'description' => '',
+            ],
 
-        'convinced' => [
-            'title' => 'Vakuutuin! :D',
-            'support' => 'tue osua!',
-            'gift' => 'tai lahjoita Tukija toiselle pelaajalle',
-            'instructions' => 'klikkaa sydäntä jatkaaksesi osu!kauppaan',
+        ],
+        'supporter_status' => [
+            'contribution' => 'Kiitos tuestasi tähän saakka! Olet tukenut kokonaisuudessaan :dollars :tags tukijaostoksella!',
+            'gifted' => "Tagiostoksistasi :giftedTags on lahjoitettu (yhteensä :giftedDollars), kuinka anteliasta!",
+            'not_yet' => "Et ole vielä tukija :(",
+            'valid_until' => 'Nykyinen tukijatagi on voimassa :date asti!',
+            'was_valid_until' => 'Tukijatagisi oli voimassa :date asti.',
         ],
     ],
 ];

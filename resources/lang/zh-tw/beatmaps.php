@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => '正評此討論',
-            'down' => '負評此討論',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 
@@ -280,6 +286,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

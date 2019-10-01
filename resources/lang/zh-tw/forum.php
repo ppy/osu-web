@@ -25,6 +25,8 @@ return [
     'title' => 'osu! 論壇',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => '新增封面',
             'button' => '上傳圖片',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '',
+
+        'index' => [
+            'title' => '',
+        ],
+
         'topics' => [
             'empty' => '沒有主題！',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => '將論壇標為已讀',
         'forums' => '將論壇標為已讀',
         'busy' => '標記已讀…',
-    ],
-
-    'poll' => [
-        'edit_warning' => '編輯投票將會清除目前結果！',
-
-        'actions' => [
-            'edit' => '編輯投票',
-        ],
     ],
 
     'post' => [
@@ -71,6 +71,12 @@ return [
             'destroy' => '刪除回覆',
             'restore' => '恢復回覆',
             'edit' => '編輯回覆',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => '由 :user 發起',
 
         'create' => [
+            'close' => '',
             'preview' => '預覽',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -290,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => '投票',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => '將於 :time 結束',

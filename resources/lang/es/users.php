@@ -132,7 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Se unió en :date',
         'lastvisit' => 'Visto por última vez :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'En línea',
         'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido baneado)',
         'origin_country' => 'De :country',
         'page_description' => 'osu! - ¡Todo lo que siempre quisiste saber acerca de :username!',
@@ -154,8 +154,8 @@ return [
                     'unsupported_format' => 'Formato no soportado.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Carga disponible solo para :link',
+                        'link' => 'osu!supporters',
                     ],
                 ],
             ],
@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 seguidor|:count seguidores',
+            'none' => 'ninguno',
             'unranked' => 'No hay partidas recientes',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Beatmaps Pendientes',
                 ],
+            ],
+            'discussions' => [
+                'title' => 'Discusiones',
+                'title_longer' => 'Discusiones recientes',
+                'show_more' => 'ver más discusiones',
+            ],
+            'events' => [
+                'title' => 'Eventos',
+                'title_longer' => 'Eventos Recientes',
+                'show_more' => 'ver más eventos',
             ],
             'historical' => [
                 'empty' => 'Sin récords de rendimiento. :(',
@@ -264,8 +275,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Basado en qué tanto ha colaborado el usuario a la moderación de beatmaps. Vea :link para más información.',
+                    'link' => 'esta página',
                 ],
             ],
             'me' => [
@@ -275,6 +286,11 @@ return [
                 'empty' => "Este usuario aún no ha conseguido ninguna. ;_;",
                 'recent' => 'Más reciente',
                 'title' => 'Medallas',
+            ],
+            'posts' => [
+                'title' => 'Entradas',
+                'title_longer' => 'Entradas recientes',
+                'show_more' => 'ver más publicaciones',
             ],
             'recent_activity' => [
                 'title' => 'Reciente',
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Primeros Lugares',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Votos dados (últimos 3 meses)',
+                'received' => 'Votos recibidos (últimos 3 meses)',
+                'title' => 'Votos',
+                'title_longer' => 'Votos recientes',
+                'vote_count' => ':count_delimited voto|:count_delimited votos',
             ],
             'account_standing' => [
                 'title' => 'Estado de la cuenta',
@@ -345,8 +368,8 @@ return [
             'placeholder' => 'Escribe el contenido de la pagina aquí',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Debes ser un :link para desbloquear esta función.',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
@@ -372,11 +395,16 @@ return [
             'score_ranks' => 'Clasificación de las puntuaciones',
             'total_hits' => 'Golpes totales',
             'total_score' => 'Puntuación total',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Beatmaps Rankeados y Aprobados',
+            'loved_beatmapset_count' => 'Beatmaps Amados',
+            'unranked_beatmapset_count' => 'Beatmaps Pendientes',
+            'graveyard_beatmapset_count' => 'Beatmaps Abandonados',
         ],
     ],
 
     'status' => [
-        'all' => '',
+        'all' => 'Todo',
         'online' => 'Conectados',
         'offline' => 'Desconectados',
     ],
@@ -388,7 +416,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'Vista de tarjetas',
+        'list' => 'Visualizar en lista',
     ],
 ];

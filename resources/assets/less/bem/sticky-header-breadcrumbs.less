@@ -26,27 +26,20 @@
 
   &__item {
     display: flex;
-    line-height: 1;
-
     margin: 0;
+    align-items: baseline;
 
     & + & {
-      margin-left: 10px;
       &::before {
-        content: '»';
-        margin-right: 10px;
+        .fas();
+        content: '\f105';
+        margin: 0 10px;
       }
     }
   }
 
   &__link {
-    color: white;
-    font-weight: 300;
-
-    &:focus,
-    &:hover {
-      color: white;
-    }
+    .link-default();
 
     &--is-active {
       font-weight: 600;

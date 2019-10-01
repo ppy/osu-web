@@ -26,8 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => 'Pastikan avatar Anda mematuhi :link.<br/> Hal ini berarti konten harus <strong>cocok untuk segala usia</strong>. mis. tidak menampilkan ketelanjangan, kata-kata kotor atau sugestif.',
+            'rules_link' => 'peraturan komunitas',
         ],
 
         'email' => [
@@ -71,6 +71,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'klien yang memiliki akses',
+        'own_clients' => 'klien yang dimiliki',
         'title' => 'OAuth',
     ],
 
@@ -91,7 +92,7 @@ return [
     'security' => [
         'current_session' => 'saat ini',
         'end_session' => 'Akhiri Sesi',
-        'end_session_confirmation' => 'Aksi ini akan langsung mengakhiri sesi di perangkat Anda. Apa anda yakin?',
+        'end_session_confirmation' => 'Aksi ini akan langsung mengakhiri sesi anda di perangkat tersebut. Apakah anda yakin?',
         'last_active' => 'Terakhir aktif:',
         'title' => 'Keamanan',
         'web_sessions' => 'web session',
@@ -108,11 +109,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Kamu dapat menutup laman ini sekarang',
+        'title' => 'Verifikasi selesai',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Tautan verifikasi tidak valid atau kedaluwarsa',
     ],
 ];

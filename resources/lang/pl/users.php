@@ -154,8 +154,8 @@ return [
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Tylko :link mogą przesyłać pliki',
+                        'link' => 'donatorzy osu!',
                     ],
                 ],
             ],
@@ -168,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count_delimited obserwujący|:count_delimited obserwujących|:count_delimited obserwujących',
+            'none' => 'brak',
             'unranked' => 'Brak nowych wyników',
 
             'achievements' => [
@@ -195,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Oczekujące beatmapy',
                 ],
+            ],
+            'discussions' => [
+                'title' => 'Dyskusje',
+                'title_longer' => 'Ostatnie dyskusje',
+                'show_more' => 'zobacz więcej dyskusji',
+            ],
+            'events' => [
+                'title' => 'Wydarzenia',
+                'title_longer' => 'Ostatnie wydarzenia',
+                'show_more' => 'zobacz więcej wydarzeń',
             ],
             'historical' => [
                 'empty' => 'Brak wyników. :(',
@@ -264,17 +275,22 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Liczba zdobytych punktów kudosu jest oparta o wkład użytkownika w modowanie beatmap. Sprawdź :link, by dowiedzieć się więcej.',
+                    'link' => 'ten artykuł',
                 ],
             ],
             'me' => [
-                'title' => 'ja!',
+                'title' => 'O mnie',
             ],
             'medals' => [
                 'empty' => "Ten użytkownik nie uzyskał jeszcze żadnych medali. ;_;",
                 'recent' => 'Ostatnie',
                 'title' => 'Medale',
+            ],
+            'posts' => [
+                'title' => 'Posty',
+                'title_longer' => 'Ostatnie posty',
+                'show_more' => 'zobacz więcej postów',
             ],
             'recent_activity' => [
                 'title' => 'Ostatnie',
@@ -292,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Pierwsze miejsca',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Oddane głosy (ostatnie 3 miesiące)',
+                'received' => 'Otrzymane głosy (ostatnie 3 miesiące)',
+                'title' => 'Głosy',
+                'title_longer' => 'Ostatnie głosy',
+                'vote_count' => ':count_delimited głos|:count_delimited głosy|:count_delimited głosów',
             ],
             'account_standing' => [
                 'title' => 'Stan konta',
@@ -340,13 +363,13 @@ return [
         ],
         'page' => [
             'button' => 'Edytuj stronę użytkownika',
-            'description' => '<strong>ja!</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',
+            'description' => '<strong>O mnie</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Musisz być :link, by odblokować tę funkcję.',
+                'link' => 'donatorem osu!',
             ],
         ],
         'post_count' => [
@@ -372,6 +395,11 @@ return [
             'score_ranks' => 'Wyniki',
             'total_hits' => 'Łączna liczba uderzeń',
             'total_score' => 'Łączny wynik',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Rankingowe i zatwierdzone beatmapy',
+            'loved_beatmapset_count' => 'Ulubione beatmapy społeczności',
+            'unranked_beatmapset_count' => 'Oczekujące beatmapy',
+            'graveyard_beatmapset_count' => 'Porzucone beatmapy',
         ],
     ],
 
@@ -388,7 +416,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'Widok kart',
+        'list' => 'Widok listy',
     ],
 ];

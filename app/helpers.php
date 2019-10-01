@@ -97,6 +97,17 @@ function cache_forget_with_fallback($key)
     return Cache::forget("{$key}:with_fallback");
 }
 
+function class_with_modifiers(string $className, ?array $modifiers = null)
+{
+    $class = $className;
+
+    foreach ($modifiers ?? [] as $modifier) {
+        $class .= " {$className}--{$modifier}";
+    }
+
+    return $class;
+}
+
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
     $uid = uniqid($stat);
@@ -411,9 +422,11 @@ function render_to_string($view, $variables = [])
     return view()->make($view, $variables)->render();
 }
 
-function spinner()
+function spinner(?array $modifiers = null)
 {
-    return '<div class="la-ball-clip-rotate"></div>';
+    return tag('div', [
+        'class' => class_with_modifiers('la-ball-clip-rotate', $modifiers),
+    ]);
 }
 
 function strip_utf8_bom($input)
@@ -637,7 +650,7 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
-function wiki_url($page = 'Welcome', $locale = null)
+function wiki_url($page = 'Main_Page', $locale = null)
 {
     // FIXME: remove `rawurlencode` workaround when fixed upstream.
     // Reference: https://github.com/laravel/framework/issues/26715
@@ -655,7 +668,7 @@ function bbcode($text, $uid, $options = [])
     return (new App\Libraries\BBCodeFromDB($text, $uid, $options))->toHTML();
 }
 
-function bbcode_for_editor($text, $uid)
+function bbcode_for_editor($text, $uid = null)
 {
     return (new App\Libraries\BBCodeFromDB($text, $uid))->toEditor();
 }
@@ -733,7 +746,7 @@ function nav_links()
         'orders-index' => route('store.orders.index'),
     ];
     $links['help'] = [
-        'getWiki' => wiki_url('Welcome'),
+        'getWiki' => wiki_url('Main_Page'),
         'getFaq' => wiki_url('FAQ'),
         'getRules' => wiki_url('Rules'),
         'getSupport' => wiki_url('Help_Centre'),
@@ -750,7 +763,7 @@ function footer_landing_links()
             'changelog-index' => route('changelog.index'),
             'beatmaps' => action('BeatmapsetsController@index'),
             'download' => route('download'),
-            'wiki' => wiki_url('Welcome'),
+            'wiki' => wiki_url('Main_Page'),
         ],
         'help' => [
             'faq' => wiki_url('FAQ'),

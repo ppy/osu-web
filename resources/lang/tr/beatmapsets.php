@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'tarihinde onaylandı ',
             'favourite' => 'Haritayı favorilere ekle',
-            'favourited_count' => '+ 1 kişi tarafından!|+ :count kişi tarafından!',
             'logged-out' => 'Herhangi bir beatmapi indirmeden önce giriş yapmalısınız!',
             'loved' => 'sevilme tarihi: ',
             'mapped_by' => ':mapper tarafından yapıldı',

@@ -37,6 +37,7 @@ return [
         'change' => 'เปลี่ยน',
         'click_to_copy' => 'คลิกเพื่อคัดลอกไปยังคลิปบอร์ด',
         'click_to_copy_copied' => 'คัดลอกไปยังคลิปบอร์ดแล้ว',
+        'close' => 'ปิด',
         'collapse' => 'ยุบ',
         'delete' => 'ลบ',
         'edit' => 'แก้ไข',
@@ -58,6 +59,7 @@ return [
         'show_deleted' => 'แสดงรายการที่ลบ',
         'show_more' => 'แสดงเพิ่มเติม',
         'show_more_options' => 'แสดงตัวเลือกเพิ่มเติม',
+        'update' => 'อัปเดต',
         'upload_image' => 'อัพโหลดรูปภาพ',
 
         'watch' => [
@@ -75,8 +77,12 @@ return [
         'minute_short_unit' => 'นาที|นาที',
         'minutes' => ':count_delimited นาที|:count_delimited นาที',
         'months' => ':count เดือน|:count เดือน',
+        'plus_others' => '',
+        'post' => '',
         'second_short_unit' => 'วินาที|วินาที',
+        'star_priority' => '',
         'update' => '',
+        'view' => '',
         'years' => ':count ปี|:count ปี',
     ],
 

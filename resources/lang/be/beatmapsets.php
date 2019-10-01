@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'ухваліны ',
             'favourite' => 'Дадаць да абраных',
-            'favourited_count' => '+ 1 іншы!|+ :count іншых!',
             'logged-out' => 'Каб спампаваць нейкую бітмапу, вам трэба ўвайсці!',
             'loved' => 'абраны ',
             'mapped_by' => 'створана :mapper',

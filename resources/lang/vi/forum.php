@@ -25,6 +25,8 @@ return [
     'title' => 'diễn đàn osu!',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Đặt ảnh bìa',
             'button' => 'Tải lên ảnh',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Bài viết mới nhất',
+
+        'index' => [
+            'title' => '',
+        ],
+
         'topics' => [
             'empty' => 'Không có chủ đề nào cả!',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => 'Đánh dấu diễn đàn đã đọc',
         'forums' => 'Đánh dấu diễn đàn đã đọc',
         'busy' => 'Đang đánh dấu đã đọc...',
-    ],
-
-    'poll' => [
-        'edit_warning' => 'Chỉnh sửa cuộc thăm dò sẽ xóa bỏ các kết quả hiện tại!',
-
-        'actions' => [
-            'edit' => 'Sửa cuộc thăm dò',
-        ],
     ],
 
     'post' => [
@@ -73,9 +73,15 @@ return [
             'edit' => 'Chỉnh sửa bài viết',
         ],
 
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
+        ],
+
         'info' => [
             'post_count' => ':count_delimited bài đăng',
-            'topic_starter' => '',
+            'topic_starter' => 'Chủ đề mở đầu',
         ],
     ],
 
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => 'bắt đầu bởi :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Xem trước',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -290,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Bỏ phiếu',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Cuộc thăm dò sẽ kết thúc vào :time',

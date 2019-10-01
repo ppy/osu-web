@@ -16,59 +16,80 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'bodyAdditionalClasses' => 't-forum-'.$forum->categorySlug(),
+    'legacyNav' => false,
+    'legacyFont' => false,
 ])
 
 @section('content')
+    @include('forum._header', [
+        'forum' => $forum,
+        'modifiers' => ['forum'],
+    ])
+
     {!! Form::open([
-        "url" => route("forum.topics.store", ['forum_id' => $forum]),
+        'url' => route('forum.topics.store', ['forum_id' => $forum]),
         'data-remote' => true,
+        'class' => 'osu-page osu-page--forum-topic',
     ]) !!}
         <input type="hidden" name="cover_id" class="js-forum-cover--input">
 
-        @include('forum.topics._header')
-
-        <div id="topic-post-form" class="osu-layout__row">
-            <div class="forum-post">
-                @if (Auth::user()->isSpecial())
-                    <div
-                        class="forum-post__stripe"
-                        style="{{ user_color_style(Auth::user()->user_colour, "background-color") }}"
-                    ></div>
-                @endif
-
-                @include("forum.topics._post_info", ["user" => Auth::user(), "options" => ["large" => true]])
-
-                <div class="forum-post__body">
-                    <div class="forum-post__preview js-post-preview--box hidden">
-                        <div class="forum-post__content forum-post__content--header">
-                            {{ trans('forum.topics.create.preview') }}
-                        </div>
-                        <div class="forum-post__content forum-post__content--main">
-                            <div class="forum-post-content js-post-preview--body">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="forum-post__content">
-                        @include('forum.posts._form_body', ['postBody' => [
-                            'content' => $post->post_text,
-                            'focus' => true,
-                            'extraClasses' => 'js-post-preview--auto forum-post-content--edit',
-                            'extraAttrs' => 'tabindex="1"',
-                        ]])
-                    </div>
-
-                    <div class="forum-post__content forum-post__content--poll-create">
-                        @include('forum.topics._create_poll', ['edit' => false])
-                    </div>
-
-                    <div class="forum-post__content forum-post__content--edit-bar forum-post__content--edit-bar-create">
-                        @include('forum.topics._post_box_footer', [
-                            'submitText' => trans('forum.topic.create.submit'),
-                        ])
-                    </div>
-                </div>
+        <div class="forum-topic-title">
+            <div class="forum-topic-title__item">
+                <h1 class="forum-topic-title__title">
+                    {{ trans('forum.topic.new_topic') }}
+                </h1>
             </div>
         </div>
+
+        <div class="forum-topic-toolbar">
+            <div class="forum-topic-toolbar__item">
+                <label
+                    type="button"
+                    class="btn-osu-big btn-osu-big--forum-secondary"
+                >
+                    <div class="label-toggle">
+                        <input
+                            class="label-toggle__checkbox js-form-toggle--input"
+                            data-form-toggle-id="poll-create"
+                            name="with_poll"
+                            type="checkbox"
+                        />
+
+                        <span class="label-toggle__label label-toggle__label--uncheck">
+                            {{ trans('forum.topics.create.create_poll_button.remove') }}
+                        </span>
+
+                        <span class="label-toggle__label label-toggle__label--check">
+                            {{ trans('forum.topics.create.create_poll_button.add') }}
+                        </span>
+                    </div>
+                </label>
+            </div>
+
+            <div class="forum-topic-toolbar__item">
+                @include('forum.topics._cover_editor')
+            </div>
+        </div>
+
+        {{-- inlined style to work with jquery's slide animation --}}
+        <div class="forum-poll js-form-toggle--form" data-form-toggle-id="poll-create" style="display: none">
+            <div class="forum-poll__row forum-poll__row--title">
+                <h2 class="forum-poll__title">
+                    {{ trans('forum.topics.create.create_poll') }}
+                </h2>
+            </div>
+
+            @include('forum.topics._create_poll')
+        </div>
+
+        <div class="js-post-preview--box hidden forum-post-preview">
+            <div class="forum-post-preview__title">
+                {{ trans('forum.topics.create.preview') }}
+            </div>
+
+            <div class="forum-post-content js-post-preview--preview"></div>
+        </div>
+
+        @include('forum.topics._post_edit_form', ['type' => 'create', 'content' => $post->post_text])
     {!! Form::close() !!}
 @endsection

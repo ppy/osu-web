@@ -16,6 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
+    'legacyFont' => false,
     'legacyNav' => false,
     'pageDescription' => $forum->toMetaDescription(),
     'searchParams' => [
@@ -23,13 +24,12 @@
         'mode' => 'forum_post',
     ],
     'titlePrepend' => $forum->forum_name,
-    'useTorusFont' => true,
 ])
 
 @section('content')
     @include('forum._header', [
         'background' => $cover['fileUrl'] ?? null,
-        'modifiers' => ['forums-show']
+        'modifiers' => ['forum']
     ])
 
     <div class="osu-page osu-page--forum t-forum-{{ $forum->categorySlug() }}">

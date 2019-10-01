@@ -23,7 +23,7 @@
 
   &--search-box {
     .default-border-radius();
-    background-color: @osu-colour-b4;
+    background-color: @osu-colour-b2;
     padding: 10px 10px 0;
     margin: 10px 0;
     font-size: @font-size--normal;
@@ -32,6 +32,7 @@
   &__checkbox {
     text-transform: none;
     cursor: pointer;
+    font-weight: normal;
 
     &--inline {
       flex: none;
@@ -77,21 +78,21 @@
   &__info {
     margin: 0;
     font-weight: normal;
+    color: @osu-colour-c2;
   }
 
   &__input {
     .default-border-radius();
-    .default-box-shadow();
     flex: 1 0 auto;
     display: inline-flex;
 
     border: none;
     outline: none;
-    padding: 5px;
+    padding: 5px 10px;
 
     resize: vertical;
-    background-color: #fff;
-    color: @input-color;
+    background-color: @osu-colour-b4;
+    color: @osu-colour-c1;
     font-weight: normal;
     font-size: @font-size--phone-input;
     width: 100%;
@@ -154,7 +155,7 @@
   &__label {
     width: @_base-column-width;
     flex: none;
-    font-weight: bold;
+    font-weight: normal;
 
     margin: 10px 0;
     @media @desktop {

@@ -25,6 +25,8 @@ return [
     'title' => 'foros de osu!',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Establecer imagen de portada',
             'button' => 'Subir imagen',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Último mensaje',
+
+        'index' => [
+            'title' => 'Índice del foro',
+        ],
+
         'topics' => [
             'empty' => '¡No hay temas!',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => 'Marcar foro como leído',
         'forums' => 'Marcar foros como leídos',
         'busy' => 'Marcando como leído...',
-    ],
-
-    'poll' => [
-        'edit_warning' => 'Editando una encuesta eliminará los resultados actuales!',
-
-        'actions' => [
-            'edit' => 'Editar encuesta',
-        ],
     ],
 
     'post' => [
@@ -71,6 +71,12 @@ return [
             'destroy' => 'Eliminar publicación',
             'restore' => 'Restaurar publicación',
             'edit' => 'Editar publicación',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => 'iniciado por :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Previsualizar',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -290,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Votar',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'La encuesta terminará el :time',

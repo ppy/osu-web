@@ -22,12 +22,14 @@ return [
     'pinned_topics' => 'Przypięte wątki',
     'slogan' => "samodzielna rozgrywka jest niebezpieczna.",
     'subforums' => 'Podfora',
-    'title' => 'forum osu!',
+    'title' => 'Forum',
 
     'covers' => [
+        'edit' => 'Edytuj tło',
+
         'create' => [
             '_' => 'Ustaw tło',
-            'button' => 'Dodaj tło',
+            'button' => 'Prześlij tło',
             'info' => 'Tło powinno mieć rozdzielczość :dimensions. Możesz także upuścić tutaj swoje tło, aby je dodać.',
         ],
 
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Ostatni post',
+
+        'index' => [
+            'title' => 'Forum',
+        ],
+
         'topics' => [
             'empty' => 'Brak wątków!',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => 'Oznacz forum jako przeczytane',
         'forums' => 'Oznacz fora jako przeczytane',
         'busy' => 'Oznaczanie jako przeczytane...',
-    ],
-
-    'poll' => [
-        'edit_warning' => 'Edycja ankiety usunie dotychczasowe wyniki!',
-
-        'actions' => [
-            'edit' => 'Edytuj ankietę',
-        ],
     ],
 
     'post' => [
@@ -71,6 +71,12 @@ return [
             'destroy' => 'Usuń post',
             'restore' => 'Przywróć post',
             'edit' => 'Edytuj post',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => 'Nowa odpowiedź',
+            ],
         ],
 
         'info' => [
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => 'utworzony przez :user',
 
         'create' => [
+            'close' => 'Zamknij',
             'preview' => 'Podgląd',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -290,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => 'Edytowanie ankiety',
+                'edit_warning' => 'Wprowadzenie zmian do ankiety spowoduje usunięcie obecnych wyników!',
                 'vote' => 'Zagłosuj',
+
+                'button' => [
+                    'change_vote' => 'Zmień głos',
+                    'edit' => 'Edytuj ankietę',
+                    'view_results' => 'Przejdź do wyników',
+                    'vote' => 'Zagłosuj',
+                ],
 
                 'detail' => [
                     'end_time' => 'Ankieta zakończy się :time',
