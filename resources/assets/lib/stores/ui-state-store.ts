@@ -82,8 +82,8 @@ export default class UIStateStore extends Store {
     this.comments.hasMoreComments[commentBundle.has_more_id] = commentBundle.has_more;
     this.comments.currentSort = commentBundle.sort as CommentSort;
     this.comments.userFollow = commentBundle.user_follow;
-    this.comments.topLevelCount = commentBundle.top_level_count;
-    this.comments.total = commentBundle.total;
+    this.comments.topLevelCount = commentBundle.top_level_count ? commentBundle.top_level_count : 0;
+    this.comments.total = commentBundle.total ? commentBundle.total : 0;
 
     if (commentBundle.comments != null) {
       this.comments.topLevelCommentIds = commentBundle.comments.map((x) => x.id);
@@ -114,8 +114,10 @@ export default class UIStateStore extends Store {
 
   @action
   updateFromCommentsNew(commentBundle: CommentBundleJSON) {
-    this.comments.topLevelCount = commentBundle.top_level_count;
-    this.comments.total = commentBundle.total;
+    if (commentBundle.top_level_count && commentBundle.total) {
+      this.comments.topLevelCount = commentBundle.top_level_count;
+      this.comments.total = commentBundle.total;
+    }
 
     const comment = new Comment(commentBundle.comments[0]);
     const parentId = comment.parentId;
