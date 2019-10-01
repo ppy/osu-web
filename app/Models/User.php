@@ -222,6 +222,7 @@ class User extends Model implements AuthenticatableContract
         'user_interests' => 30,
         'user_msnm' => 255,
         'user_occ' => 30,
+        'user_sig' => 3000,
         'user_twitter' => 255,
         'user_website' => 200,
     ];
