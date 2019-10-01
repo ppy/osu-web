@@ -65,7 +65,7 @@ function broadcast_notification(...$arguments)
 /**
  * Like cache_remember_with_fallback but with a mutex that only allows a single process to run the callback.
  */
-function cache_remember_mutexed(string $key, $minutes, callable $callback, $default)
+function cache_remember_mutexed(string $key, $minutes, $default, callable $callback)
 {
     static $oneMonthInMinutes = 30 * 24 * 60;
     $fullKey = "{$key}:with_fallback";

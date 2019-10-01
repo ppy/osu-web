@@ -364,7 +364,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     public static function mostPlayedToday($mode = 'osu', $count = 5)
     {
         // TODO: this only returns based on osu mode plays for now, add other game modes after mode-toggle UI/UX happens
-        return cache_remember_mutexed("beatmapsets_most_played_today_{$mode}_{$count}", 60, function () use ($count) {
+        return cache_remember_mutexed("beatmapsets_most_played_today_{$mode}_{$count}", 60, [], function () use ($count) {
             $counts = Score\Osu::selectRaw('beatmapset_id, count(*) as playcount')
                     ->whereNotIn('beatmapset_id', self::BUNDLED_IDS)
                     ->groupBy('beatmapset_id')
@@ -378,7 +378,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             }
 
             return $mostPlayed;
-        }, []);
+        });
     }
 
     public static function coverSizes()
