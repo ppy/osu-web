@@ -381,6 +381,10 @@ class OsuAuthorize
             return $prefix.'not_owner';
         }
 
+        if (!$post->canEdit()) {
+            return $prefix.'resolved';
+        }
+
         return 'ok';
     }
 
@@ -403,6 +407,10 @@ class OsuAuthorize
 
         if ($user->user_id !== $post->user_id) {
             return $prefix.'not_owner';
+        }
+
+        if (!$post->canEdit()) {
+            return $prefix.'resolved';
         }
 
         return 'ok';
