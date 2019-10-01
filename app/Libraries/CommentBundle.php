@@ -85,6 +85,8 @@ class CommentBundle
             }
         }
 
+        $commentIds = $comments->pluck('id');
+
         // Get parents when listing comments index
         if ($this->commentable === null) {
             $parents = $this->getComments(Comment::whereIn('id', $comments->pluck('parent_id')));
@@ -93,11 +95,9 @@ class CommentBundle
 
         // Get nested comments
         if ($this->params->parentId !== null) {
-            $nestedParentIds = $comments->pluck('id');
+            $nestedParentIds = $commentIds;
 
             for ($i = 0; $i < $this->depth; $i++) {
-                $ids = $nestedParentIds->toArray();
-                sort($ids);
                 $nestedComments = $this->getComments(Comment::whereIn('parent_id', $nestedParentIds));
                 $nestedParentIds = $nestedComments->pluck('id');
                 $includedComments = $includedComments->concat($nestedComments);
@@ -107,6 +107,9 @@ class CommentBundle
             $includedComments = $includedComments->concat($parents);
         }
 
+        $includedComments = $includedComments->unique('id', true)->reject(function ($comment) use ($commentIds) {
+            return $commentIds->contains($comment->getKey());
+        });
         $allComments = $comments->concat($includedComments);
 
         $result = [
