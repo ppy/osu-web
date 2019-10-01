@@ -37,7 +37,7 @@ return [
         'change' => 'endre',
         'click_to_copy' => 'klikk for å kopiere til utklippstavlen',
         'click_to_copy_copied' => 'kopiert til utklippstavle!',
-        'close' => '',
+        'close' => 'Lukk',
         'collapse' => 'skjul',
         'delete' => 'Slett',
         'edit' => 'Rediger',
@@ -59,7 +59,7 @@ return [
         'show_deleted' => 'Vis slettede',
         'show_more' => 'vis mer',
         'show_more_options' => 'vis flere valg',
-        'update' => '',
+        'update' => 'Oppdater',
         'upload_image' => 'last opp bilde',
 
         'watch' => [

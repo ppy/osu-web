@@ -25,6 +25,8 @@ return [
     'title' => 'osu! форум',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Задай изображение за корицата',
             'button' => 'Качи изображение',
@@ -59,14 +61,6 @@ return [
         'busy' => 'Маркиране като прочетено...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'Редактирането на анкетата ще анулира текущите резултати!',
-
-        'actions' => [
-            'edit' => 'Редактирай анкета',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'Наистина ли искате да изтриете публикацията?',
         'confirm_restore' => 'Наистина ли искате да възстановите публикацията?',
@@ -77,6 +71,12 @@ return [
             'destroy' => 'Изтрий публикацията',
             'restore' => 'Възстанови публикацията',
             'edit' => 'Редактиране на публикацията',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -105,6 +105,7 @@ return [
         'started_by_verbose' => 'започнато от :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Преглед',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -296,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Гласувай',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Гласуването затваря в :time',

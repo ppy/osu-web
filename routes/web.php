@@ -214,7 +214,7 @@ Route::get('legal/{page}', 'LegalController@show')->name('legal');
 
 Route::group(['as' => 'oauth.', 'prefix' => 'oauth', 'namespace' => 'OAuth'], function () {
     Route::resource('authorized-clients', 'AuthorizedClientsController', ['only' => ['destroy']]);
-    Route::resource('clients', 'ClientsController', ['except' => ['create', 'edit']]);
+    Route::resource('clients', 'ClientsController', ['except' => ['create', 'edit', 'show']]);
 });
 
 Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');

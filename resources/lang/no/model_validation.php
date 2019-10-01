@@ -155,9 +155,9 @@ return [
         'too_long' => 'Overskrider maksimumslengden - kan bare være opp til :limit tegn.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Brukernavn',
+            'user_email' => 'E-postadresse',
+            'password' => 'Passord',
         ],
 
         'change_username' => [

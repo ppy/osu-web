@@ -286,6 +286,7 @@ return [
         'HD' => 'Gömd',
         'HR' => 'Hård Rock',
         'HT' => 'Halv Tid',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'Ingen Fail',
         'NM' => 'Inga mods',

@@ -286,6 +286,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

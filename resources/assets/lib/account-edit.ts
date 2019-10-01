@@ -17,12 +17,22 @@
  */
 
 import { AuthorizedClients } from 'oauth/authorized-clients';
+import { OwnClients } from 'oauth/own-clients';
 import core from 'osu-core-singleton';
 
 reactTurbolinks.register('authorized-clients', AuthorizedClients, (container: HTMLElement) => {
   const json = osu.parseJson('json-authorized-clients', true);
   if (json != null) {
     core.dataStore.clientStore.initialize(json);
+  }
+
+  return {};
+});
+
+reactTurbolinks.register('own-clients', OwnClients, (container: HTMLElement) => {
+  const json = osu.parseJson('json-own-clients', true);
+  if (json != null) {
+    core.dataStore.ownClientStore.initialize(json);
   }
 
   return {};

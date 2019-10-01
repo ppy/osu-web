@@ -141,12 +141,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Belum ada downvote',
+                'up' => 'Belum ada upvote',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Downvotes terbaru',
+                'up' => 'Upvotes terbaru',
             ],
         ],
     ],
@@ -286,6 +286,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => 'Mirror',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

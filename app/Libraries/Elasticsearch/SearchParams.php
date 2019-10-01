@@ -20,8 +20,6 @@
 
 namespace App\Libraries\Elasticsearch;
 
-use Cache;
-
 abstract class SearchParams
 {
     /** @var int */

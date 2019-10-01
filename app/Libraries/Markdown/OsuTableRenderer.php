@@ -21,13 +21,12 @@
 namespace App\Libraries\Markdown;
 
 use League\CommonMark\Block\Element\AbstractBlock;
+use League\CommonMark\Block\Renderer\BlockRendererInterface;
 use League\CommonMark\ElementRendererInterface;
+use League\CommonMark\Ext\Table\Table;
 use League\CommonMark\HtmlElement;
-use League\CommonMark\Util\Xml;
-use Webuni\CommonMark\TableExtension\Table;
-use Webuni\CommonMark\TableExtension\TableRenderer;
 
-class OsuTableRenderer extends TableRenderer
+class OsuTableRenderer implements BlockRendererInterface
 {
     public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, $inTightList = false)
     {
@@ -35,10 +34,7 @@ class OsuTableRenderer extends TableRenderer
             throw new InvalidArgumentException('Incompatible block type: '.get_class($block));
         }
 
-        $attrs = [];
-        foreach ($block->getData('attributes', []) as $key => $value) {
-            $attrs[$key] = Xml::escape($value, true);
-        }
+        $attrs = $block->getData('attributes', []);
 
         $separator = $htmlRenderer->getOption('inner_separator', "\n");
 

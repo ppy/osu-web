@@ -26,7 +26,7 @@
     }
 @endphp
 
-<table class='table order-line-items {{ $table_class or "table-striped" }}'>
+<table class='table order-line-items {{ $table_class ?? "table-striped" }}'>
     <tbody>
         @foreach ($order->items as $i)
             @if (!$forShipping || $i->product->requiresShipping())

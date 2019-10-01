@@ -22,7 +22,14 @@ import { CommentBundleJSON } from 'interfaces/comment-json';
 import { Dictionary, orderBy } from 'lodash';
 import { action, observable } from 'mobx';
 import { Comment, CommentSort } from 'models/comment';
+import { OwnClient } from 'models/oauth/own-client';
 import Store from 'stores/store';
+
+interface AccountUIState {
+  client: OwnClient | null;
+  isCreatingNewClient: boolean;
+  newClientVisible: boolean;
+}
 
 interface CommentsUIState {
   currentSort: CommentSort;
@@ -49,6 +56,12 @@ const defaultCommentsUIState: CommentsUIState = {
 };
 
 export default class UIStateStore extends Store {
+  @observable account: AccountUIState = {
+    client: null,
+    isCreatingNewClient: false,
+    newClientVisible: false,
+  };
+
   chat = new ChatStateStore(this.root, this.dispatcher);
 
   // only for the currently visible page

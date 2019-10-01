@@ -85,7 +85,7 @@ export class Scoreboard extends React.PureComponent
             type: type
             active: @props.type == type
 
-      if currentUser.is_supporter && @props.hasScores
+      if currentUser.is_supporter && @props.isScoreable
         div className: 'beatmapset-scoreboard__mods-wrapper',
           div className: modsClassName,
             for mod in mods
@@ -112,7 +112,7 @@ export class Scoreboard extends React.PureComponent
               hitTypeMapping: @hitTypeMapping()
               scoreboardType: @props.type
 
-        else if !@props.hasScores
+        else if !@props.isScoreable
           p
             className: 'beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'
             osu.trans 'beatmapsets.show.scoreboard.no_scores.unranked'

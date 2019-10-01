@@ -391,7 +391,7 @@ return [
             'play_count' => 'Play-Anzahl',
             'play_time' => 'Gesamtspielzeit',
             'ranked_score' => 'Punktzahl auf Ranglisten',
-            'replays_watched_by_others' => 'Wiederholungen von anderen angesehen',
+            'replays_watched_by_others' => 'Von anderen angeschaute Wiederholungen',
             'score_ranks' => 'Ränge durch Punkte',
             'total_hits' => 'Total Hits',
             'total_score' => 'Gesamtpunktzahl',
