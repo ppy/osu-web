@@ -20,12 +20,13 @@
 
 namespace App\Libraries\Markdown\Indexing;
 
+use League\CommonMark\Block\Renderer\BlockRendererInterface;
 use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\Node\Node;
+use League\CommonMark\Inline\Renderer\InlineRendererInterface;
 
-class NoopRenderer
+class NoopRenderer implements BlockRendererInterface, InlineRendererInterface
 {
-    public function render(Node $block, ElementRendererInterface $renderer)
+    public function render($block, ElementRendererInterface $renderer, bool $inTightList = false)
     {
         return '';
     }

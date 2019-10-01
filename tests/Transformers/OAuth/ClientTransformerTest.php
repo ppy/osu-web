@@ -20,6 +20,7 @@
 
 namespace Tests\Transformers\OAuth;
 
+use App\Models\OAuth\Client;
 use App\Models\User;
 use TestCase;
 
@@ -35,7 +36,7 @@ class ClientTransformerTest extends TestCase
         parent::setUp();
 
         $this->owner = factory(User::class)->create();
-        $this->client = $this->createOAuthClient($this->owner);
+        $this->client = factory(Client::class)->make(['user_id' => $this->owner->getKey()]);
     }
 
     public function testRedirectAndSecretVisibleToOwner()

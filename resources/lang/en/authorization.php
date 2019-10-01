@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Automatically generated post can not be edited.',
-            'not_owner' => 'Only the poster can edit post.',
+        'destroy' => [
+            'not_owner' => 'You can only delete your own posts.',
+            'resolved' => 'You can not delete a post of a resolved discussion.',
+            'system_generated' => 'Automatically generated post can not be deleted.',
         ],
+
+        'edit' => [
+            'not_owner' => 'Only the poster can edit post.',
+            'resolved' => 'You can not edit a post of a resolved discussion.',
+            'system_generated' => 'Automatically generated post can not be edited.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'This beatmap is locked for discussion.',
         ],

@@ -16,35 +16,38 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { FormErrors } from 'form-errors';
 import { observer } from 'mobx-react';
-import { AuthorizedClient } from 'oauth/authorized-client';
-import core from 'osu-core-singleton';
 import * as React from 'react';
 
-const store = core.dataStore.clientStore;
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+  blockName: string;
+  errors: FormErrors;
+  name: string;
+}
 
 @observer
-export class AuthorizedClients extends React.Component {
+export class ValidatingInput extends React.Component<Props> {
   render() {
+    const {
+      blockName,
+      errors,
+      name,
+      ...otherProps
+    } = this.props;
+
+    const messages = errors.get(name) || [];
+    const jsx = messages.map((message, index) => <div key={index} className={`${blockName}__error`}>{message}</div>);
+
     return (
-      <div className='oauth-clients'>
-        {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
-      </div>
+      <>
+        <input
+          className={osu.classWithModifiers(`${blockName}__input`, messages.length > 0 ? ['has-error'] : [])}
+          name={name}
+          {...otherProps}
+        />
+        {jsx}
+      </>
     );
-  }
-
-  renderClients() {
-    return [...store.clients.values()].map((client) => {
-      return (
-        <div className='oauth-clients__client' key={client.id}>
-          <AuthorizedClient client={client} />
-        </div>
-
-      );
-    });
-  }
-
-  renderEmpty() {
-    return <div className='oauth-clients__client'>{osu.trans('oauth.authorized_clients.none')}</div>;
   }
 }
