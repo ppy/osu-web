@@ -63,6 +63,42 @@ function broadcast_notification(...$arguments)
 }
 
 /**
+ * Like cache_remember_with_fallback but with a mutex that only allows a single process to run the callback.
+ */
+function cache_remember_mutexed(string $key, $minutes, $default, callable $callback)
+{
+    static $oneMonthInMinutes = 30 * 24 * 60;
+    $fullKey = "{$key}:with_fallback";
+    $data = cache()->get($fullKey);
+
+    if ($data === null || $data['expires_at']->isPast()) {
+        $lockKey = "{$key}:lock";
+        // this is arbitrary, but you've got other problems if it takes more than 5 minutes.
+        // the max is because cache()->add() doesn't work so well with funny values.
+        $lockTime = min(max($minutes, 1), 5);
+
+        // only the first caller that manages to setnx runs this.
+        if (cache()->add($lockKey, 1, $lockTime)) {
+            try {
+                $data = [
+                    'expires_at' => Carbon\Carbon::now()->addMinutes($minutes),
+                    'value' => $callback(),
+                ];
+
+                cache()->put($fullKey, $data, max($oneMonthInMinutes, $minutes * 10));
+            } catch (Exception $e) {
+                // Log and continue with data from the first ::get.
+                log_error($e);
+            } finally {
+                cache()->forget($lockKey);
+            }
+        }
+    }
+
+    return $data['value'] ?? $default;
+}
+
+/**
  * Like Cache::remember but always save for one month or 10 * $minutes (whichever is longer)
  * and return old value if failed getting the value after it expires.
  */
