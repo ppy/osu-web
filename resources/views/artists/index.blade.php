@@ -37,12 +37,12 @@
                     @foreach ($artists as $artist)
                         <div class="artist__box{{$artist->visible ? '' : ' artist__box--hidden'}}">
                             <div class="artist__portrait-wrapper artist__portrait-wrapper--index">
-                                <a href="{{route('artists.show', ['id' => $artist->id])}}" class="artist__portrait artist__portrait--index" style="{{$artist->cover_url ? 'background-image: url(' . $artist->cover_url . ')' : ''}}"></a>
+                                <a href="{{route('artists.show', $artist)}}" class="artist__portrait artist__portrait--index" style="{{$artist->cover_url ? 'background-image: url(' . $artist->cover_url . ')' : ''}}"></a>
                                 @if($artist->label !== null)
                                     <a class="artist__label-overlay artist__label-overlay--index" href="{{$artist->label->website}}" style="background-image: url('{{$artist->label->icon_url}}')"></a>
                                 @endif
                             </div>
-                            <a href="{{route('artists.show', ['id' => $artist->id])}}" class="artist__name">{{$artist->name}}</a>
+                            <a href="{{route('artists.show', $artist)}}" class="artist__name">{{$artist->name}}</a>
                             <div class="artist__track-count">{{trans_choice('artist.songs.count', $artist->tracks_count)}}</div>
                         </div>
                     @endforeach
