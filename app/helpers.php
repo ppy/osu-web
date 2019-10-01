@@ -86,6 +86,9 @@ function cache_remember_mutexed(string $key, $minutes, callable $callback, $defa
                 ];
 
                 cache()->put($fullKey, $data, max($oneMonthInMinutes, $minutes * 10));
+            } catch (Exception $e) {
+                // Log and continue with data from the first ::get.
+                log_error($e);
             } finally {
                 cache()->forget($lockKey);
             }
