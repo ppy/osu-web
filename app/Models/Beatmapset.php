@@ -378,7 +378,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             }
 
             return $mostPlayed;
-        }) ?? [];
+        }, []);
     }
 
     public static function coverSizes()

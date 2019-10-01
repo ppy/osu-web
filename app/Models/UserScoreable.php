@@ -86,7 +86,7 @@ trait UserScoreable
         $key = "search-cache:beatmapBestScores:{$this->getKey()}:{$mode}";
         $ids = cache_remember_mutexed($key, config('osu.scores.es_cache_duration'), function () use ($mode) {
             return $this->beatmapBestScoreIds($mode, 100);
-        }) ?? [];
+        }, []);
 
         $ids = array_slice($ids, $offset, $limit);
         $clazz = Best\Model::getClassByString($mode);
