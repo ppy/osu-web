@@ -251,7 +251,7 @@ class BeatmapDiscussion extends Model
         }
 
         $beatmapsetKudosuGranted = (int) KudosuHistory
-            ::where('kudosuable_type', static::class)
+            ::whereIn('kudosuable_type', [static::class, $this->getMorphClass()])
             ->whereIn('kudosuable_id',
                 static
                     ::where('kudosu_denied', '=', false)
@@ -298,7 +298,7 @@ class BeatmapDiscussion extends Model
                 'amount' => $change,
                 'action' => $change > 0 ? 'give' : 'reset',
                 'date' => Carbon::now(),
-                'kudosuable_type' => static::class,
+                'kudosuable_type' => $this->getMorphClass(),
                 'kudosuable_id' => $this->id,
                 'details' => [
                     'event' => $event,

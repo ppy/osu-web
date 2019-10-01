@@ -23,31 +23,43 @@ class BBCodeFromDBTest extends TestCase
 {
     private $uid = '1';
 
-    public function testAll()
+    /**
+     * @dataProvider examples
+     */
+    public function testGenerateHTML($name, $path)
     {
+        $dbFilePath = "{$path}/{$name}.db.txt";
+        $htmlFilePath = "{$path}/{$name}.html";
+
         $text = new BBCodeFromDB('', $this->uid);
-        $path = __DIR__.'/bbcode_examples';
+        $text->text = trim(file_get_contents($dbFilePath));
 
-        foreach (glob("{$path}/*.db.txt") as $dbFilePath) {
-            $htmlFilePath = preg_replace('/\.db\.txt$/', '.html', $dbFilePath);
-            $text->text = trim(file_get_contents($dbFilePath));
+        $output = $this->normalizeHTML($text->toHTML());
+        $referenceOutput = $this->normalizeHTML("<div class='bbcode'>".file_get_contents($htmlFilePath).'</div>');
 
-            $output = $this->normalizeHTML($text->toHTML());
-            $referenceOutput = $this->normalizeHTML("<div class='bbcode'>".file_get_contents($htmlFilePath).'</div>');
-
-            $this->assertSame($referenceOutput, $output);
-        }
+        $this->assertSame($referenceOutput, $output);
     }
 
-    public function testRemoveBlockQuotes()
+    /**
+     * @dataProvider removeQuoteExamples
+     */
+    public function testRemoveBlockQuotes($name, $path)
     {
-        $path = __DIR__.'/bbcode_examples/remove_quotes';
+        $dbFilePath = "{$path}/{$name}.db.txt";
+        $expectedFilePath = "{$path}/{$name}.expected.txt";
 
-        foreach (glob("$path/*.db.txt") as $dbFilePath) {
-            $expectedFilePath = preg_replace('/\.db\.txt$/', '.expected.txt', $dbFilePath);
-            $text = BBCodeFromDB::removeBlockQuotes(file_get_contents($dbFilePath));
+        $text = BBCodeFromDB::removeBlockQuotes(file_get_contents($dbFilePath));
 
-            $this->assertStringEqualsFile($expectedFilePath, $text);
-        }
+        $this->assertStringEqualsFile($expectedFilePath, $text);
+    }
+
+    public function examples()
+    {
+        return $this->fileList(__DIR__.'/bbcode_examples', '.db.txt');
+    }
+
+    public function removeQuoteExamples()
+    {
+        return $this->fileList(__DIR__.'/bbcode_examples/remove_quotes', '.db.txt');
     }
 }
