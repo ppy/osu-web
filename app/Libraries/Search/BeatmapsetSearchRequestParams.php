@@ -175,9 +175,14 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         // use relevant mode when sorting on nested field
         if (starts_with($sort->field, 'beatmaps.') && $this->mode !== null) {
+            $modes = [$this->mode];
+            if ($this->includeConverts && $this->mode !== Beatmap::MODES['osu']) {
+                $modes[] = Beatmap::MODES['osu'];
+            }
+
             $options['nested'] = [
                 'path' => 'beatmaps',
-                'filter' => ['term' => ['beatmaps.playmode' => $this->mode]],
+                'filter' => ['terms' => ['beatmaps.playmode' => $modes]],
             ];
         }
 
