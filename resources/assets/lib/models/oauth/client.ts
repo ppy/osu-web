@@ -16,8 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { ClientJSON } from 'interfaces/client-json';
 import { action, observable } from 'mobx';
-import { ClientJSON } from 'oauth/client-json';
 
 export class Client {
   id: number;

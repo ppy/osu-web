@@ -18,12 +18,12 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
-import { ClientJSON } from 'interfaces/client-json';
+import { OwnClientJSON } from 'interfaces/own-client-json';
 import { action, observable } from 'mobx';
-import { Client } from 'models/oauth/client';
+import { OwnClient as Client } from 'models/oauth/own-client';
 import Store from 'stores/store';
 
-export default class ClientStore extends Store {
+export default class OwnClientStore extends Store {
   @observable clients = new Map<number, Client>();
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
@@ -33,11 +33,18 @@ export default class ClientStore extends Store {
     }
   }
 
-  initialize(data: ClientJSON[]) {
+  initialize(data: OwnClientJSON[]) {
     for (const item of data) {
-      const client = new Client(item);
-      this.clients.set(client.id, client);
+      this.updateWithJson(item);
     }
+  }
+
+  @action
+  updateWithJson(json: OwnClientJSON) {
+    const client = new Client(json);
+    this.clients.set(client.id, client);
+
+    return client;
   }
 
   @action

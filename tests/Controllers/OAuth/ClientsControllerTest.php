@@ -36,7 +36,7 @@ class ClientsControllerTest extends TestCase
         parent::setUp();
 
         $this->owner = factory(User::class)->create();
-        $this->client = $this->createOAuthClient($this->owner);
+        $this->client = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
     }
 
     public function testGuestCannotDeleteClient()
@@ -129,6 +129,7 @@ class ClientsControllerTest extends TestCase
     public function testOnlyRedirectIsUpdated()
     {
         $id = $this->client->getKey();
+        $name = $this->client->name;
 
         $data = [
             'id' => $id + 1,
@@ -145,7 +146,7 @@ class ClientsControllerTest extends TestCase
         $this->client->refresh();
         // FIXME: assert other values didn't change
         $this->assertSame($id, $this->client->id);
-        $this->assertSame('test', $this->client->name);
+        $this->assertSame($name, $this->client->name);
         $this->assertSame('https://nowhere.local', $this->client->redirect);
     }
 

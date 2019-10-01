@@ -178,16 +178,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
 
         $this
-            ->actingAs($this->beatmapset->user)
-            ->post(route('beatmap-discussion-posts.store'), [
-                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
-                'beatmap_discussion' => [
-                    'resolved' => false,
-                ],
-                'beatmap_discussion_post' => [
-                    'message' => 'Hello',
-                ],
-            ])
+            ->postResolveDiscussion(false, $this->beatmapset->user)
             ->assertStatus(200);
 
         // reopen adds system post
@@ -203,17 +194,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
 
         $this
-            ->actingAs($user)
-            ->withSession(['verified' => true])
-            ->post(route('beatmap-discussion-posts.store'), [
-                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
-                'beatmap_discussion' => [
-                    'resolved' => false,
-                ],
-                'beatmap_discussion_post' => [
-                    'message' => 'Hello',
-                ],
-            ])
+            ->postResolveDiscussion(false, $user)
             ->assertStatus(200);
 
         // reopen adds system post
@@ -228,16 +209,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
 
         $this
-            ->actingAs($user)
-            ->post(route('beatmap-discussion-posts.store'), [
-                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
-                'beatmap_discussion' => [
-                    'resolved' => false,
-                ],
-                'beatmap_discussion_post' => [
-                    'message' => 'Hello',
-                ],
-            ])
+            ->postResolveDiscussion(false, $user)
             ->assertStatus(200);
 
         // reopen adds system post
@@ -251,16 +223,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
 
         $this
-            ->actingAs($this->beatmapDiscussion->user)
-            ->post(route('beatmap-discussion-posts.store'), [
-                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
-                'beatmap_discussion' => [
-                    'resolved' => false,
-                ],
-                'beatmap_discussion_post' => [
-                    'message' => 'Hello',
-                ],
-            ])
+            ->postResolveDiscussion(false, $this->beatmapDiscussion->user)
             ->assertStatus(200);
 
         // reopen adds system post
@@ -276,16 +239,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $lastResolved = $this->beatmapDiscussion->fresh()->resolved;
 
         $this
-            ->actingAs($this->user)
-            ->post(route('beatmap-discussion-posts.store'), [
-                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
-                'beatmap_discussion' => [
-                    'resolved' => !$lastResolved,
-                ],
-                'beatmap_discussion_post' => [
-                    'message' => 'Hello',
-                ],
-            ])
+            ->postResolveDiscussion(false, $this->user)
             ->assertStatus(200);
 
         // just add single post and no resolved state change
@@ -298,16 +252,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             $lastResolved = $this->beatmapDiscussion->fresh()->resolved;
 
             $this
-                ->actingAs($this->user)
-                ->post(route('beatmap-discussion-posts.store'), [
-                    'beatmap_discussion_id' => $this->beatmapDiscussion->id,
-                    'beatmap_discussion' => [
-                        'resolved' => !$lastResolved,
-                    ],
-                    'beatmap_discussion_post' => [
-                        'message' => 'Hello',
-                    ],
-                ])
+                ->postResolveDiscussion(!$lastResolved, $this->user)
                 ->assertStatus(200);
 
             // each resolve adds system post
@@ -323,16 +268,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
 
         $this
-            ->actingAs($user)
-            ->post(route('beatmap-discussion-posts.store'), [
-                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
-                'beatmap_discussion' => [
-                    'resolved' => true,
-                ],
-                'beatmap_discussion_post' => [
-                    'message' => 'Hello',
-                ],
-            ])
+            ->postResolveDiscussion(true, $user)
             ->assertStatus(403);
 
         $this->assertSame($lastDiscussionPosts, BeatmapDiscussionPost::count());
@@ -372,12 +308,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         // invalid user
         $this
-            ->actingAs($otherUser)
-            ->put(route('beatmap-discussion-posts.update', $beatmapDiscussionPost->id), [
-                'beatmap_discussion_post' => [
-                    'message' => $editedMessage,
-                ],
-            ])
+            ->putPost($editedMessage, $beatmapDiscussionPost, $otherUser)
             ->assertStatus(403);
 
         $beatmapDiscussionPost = $beatmapDiscussionPost->fresh();
@@ -386,12 +317,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         // correct user
         $this
-            ->actingAs($this->user)
-            ->put(route('beatmap-discussion-posts.update', $beatmapDiscussionPost->id), [
-                'beatmap_discussion_post' => [
-                    'message' => $editedMessage,
-                ],
-            ])
+            ->putPost($editedMessage, $beatmapDiscussionPost, $this->user)
             ->assertStatus(200);
 
         $beatmapDiscussionPost = $beatmapDiscussionPost->fresh();
@@ -399,21 +325,90 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame($editedMessage, $beatmapDiscussionPost->message);
     }
 
+    public function testPostUpdateNotLoggedIn()
+    {
+        $post = factory(BeatmapDiscussionPost::class)->create([
+            'beatmap_discussion_id' => $this->beatmapDiscussion->id,
+            'user_id' => $this->user->user_id,
+        ]);
+        $initialMessage = $post->message;
+
+        $this->putPost('', $post)
+            ->assertViewIs('users.login')
+            ->assertStatus(200);
+
+        $this->assertSame($initialMessage, $post->fresh()->message);
+    }
+
+    public function testPostUpdateWhenDiscussionResolved()
+    {
+        // reply made before resolve
+        $reply1 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+        $message1 = $reply1->message;
+
+        $this->postResolveDiscussion(true, $this->user);
+
+        // reply made after resolve
+        $reply2 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+        $message2 = $reply2->message;
+
+        $this->putPost("{$message1} edited", $reply1, $this->user)->assertStatus(403);
+        $this->putPost("{$message2} edited", $reply2, $this->user)->assertSuccessful();
+        $this->assertSame($message1, $reply1->fresh()->message);
+        $this->assertSame("{$message2} edited", $reply2->fresh()->message);
+    }
+
+    public function testPostUpdateWhenDiscussionReResolved()
+    {
+        // reply made before resolve
+        $reply1 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+        $message1 = $reply1->message;
+
+        $this->postResolveDiscussion(true, $this->user);
+        $this->postResolveDiscussion(false, $this->user);
+
+        // still should not be able to edit reply made before first resolve.
+        $this->putPost("{$message1} edited", $reply1, $this->user)->assertStatus(403);
+        $this->assertSame($message1, $reply1->fresh()->message);
+
+        // reply made after resolve
+        $reply2 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+        $message2 = $reply2->message;
+
+        $this->postResolveDiscussion(true, $this->user);
+
+        // should not be able to edit either reply.
+        $this->putPost("{$message1} edited", $reply1, $this->user)->assertStatus(403);
+        $this->putPost("{$message2} edited", $reply2, $this->user)->assertStatus(403);
+        $this->assertSame($message1, $reply1->fresh()->message);
+        $this->assertSame($message2, $reply2->fresh()->message);
+    }
+
     public function testStartingPostUpdate()
     {
         $post = $this->beatmapDiscussionPost;
-        $user = $this->user;
 
         $previousTimestamp = $post->beatmapDiscussion->timestamp;
 
         // removing timestamp isn't allowed
         $this
-            ->actingAs($this->user)
-            ->put(route('beatmap-discussion-posts.update', $post->id), [
-                'beatmap_discussion_post' => [
-                    'message' => 'Missing timestamp.',
-                ],
-            ])
+            ->putPost('Missing timestamp.', $post, $this->user)
             ->assertStatus(422);
 
         $post = $post->fresh();
@@ -434,5 +429,120 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $post = $post->fresh();
         $this->assertSame($newTimestamp, $post->beatmapDiscussion->timestamp);
+    }
+
+    public function testPostDestroy()
+    {
+        $reply = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+
+        $this->deletePost($reply, $this->user)->assertStatus(200);
+        $this->assertTrue($reply->fresh()->trashed());
+    }
+
+    public function testPostDestroyNotLoggedIn()
+    {
+        $reply = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+
+        $this->deletePost($reply)
+            ->assertViewIs('users.login')
+            ->assertStatus(200);
+
+        $this->assertFalse($reply->fresh()->trashed());
+    }
+
+    public function testPostDestroyWhenDiscussionResolved()
+    {
+        // reply made before resolve
+        $reply1 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+
+        $this->postResolveDiscussion(true, $this->user);
+
+        // reply made after resolve
+        $reply2 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+
+        $this->deletePost($reply1, $this->user)->assertStatus(403);
+        $this->deletePost($reply2, $this->user)->assertSuccessful();
+        $this->assertFalse($reply1->fresh()->trashed());
+        $this->assertTrue($reply2->fresh()->trashed());
+    }
+
+    public function testPostDestroyWhenDiscussionReResolved()
+    {
+        // reply made before resolve
+        $reply1 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+
+        $this->postResolveDiscussion(true, $this->user);
+        $this->postResolveDiscussion(false, $this->user);
+
+        // still should not be able to delete reply made before first resolve.
+        $this->deletePost($reply1, $this->user)->assertStatus(403);
+        $this->assertFalse($reply1->fresh()->trashed());
+
+        // reply made after resolve
+        $reply2 = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+
+        $this->postResolveDiscussion(true, $this->user);
+
+        // should not be able to delete either reply.
+        $this->deletePost($reply1, $this->user)->assertStatus(403);
+        $this->deletePost($reply2, $this->user)->assertStatus(403);
+        $this->assertFalse($reply1->fresh()->trashed());
+        $this->assertFalse($reply2->fresh()->trashed());
+    }
+
+    private function deletePost(BeatmapDiscussionPost $post, ?User $user = null)
+    {
+        return ($user === null ? $this : $this->actingAs($user))
+            ->delete(route('beatmap-discussion-posts.destroy', $post->id));
+    }
+
+    private function postResolveDiscussion(bool $resolved, User $user)
+    {
+        return $this
+            ->actingAs($user)
+            ->withSession(['verified' => true])
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
+                'beatmap_discussion' => [
+                    'resolved' => $resolved,
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ]);
+    }
+
+    private function putPost(string $message, BeatmapDiscussionPost $post, ?User $user = null)
+    {
+        return ($user === null ? $this : $this->actingAs($user))
+            ->put(route('beatmap-discussion-posts.update', $post->id), [
+                'beatmap_discussion_post' => [
+                    'message' => $message,
+                ],
+            ]);
     }
 }

@@ -16,15 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import DispatcherAction from 'actions/dispatcher-action';
-import DispatchListener from 'dispatch-listener';
-import Dispatcher from 'dispatcher';
-import RootDataStore from 'stores/root-data-store';
+import { ClientJSON } from 'interfaces/client-json';
 
-export default abstract class Store implements DispatchListener {
-  constructor(protected root: RootDataStore, protected dispatcher: Dispatcher) {
-    dispatcher.register(this);
-  }
-
-  handleDispatchAction(action: DispatcherAction) { /* do nothing */ }
+export interface OwnClientJSON extends ClientJSON {
+  redirect: string;
+  secret: string;
 }

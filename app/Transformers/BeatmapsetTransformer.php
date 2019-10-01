@@ -79,7 +79,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'storyboard' => $beatmapset->storyboard,
             'ranked' => $beatmapset->approved,
             'status' => $beatmapset->status(),
-            'has_scores' => $beatmapset->hasScores(),
+            'is_scoreable' => $beatmapset->isScoreable(),
             'discussion_enabled' => $beatmapset->discussion_enabled,
             'discussion_locked' => $beatmapset->discussion_locked,
             'can_be_hyped' => $beatmapset->canBeHyped(),
