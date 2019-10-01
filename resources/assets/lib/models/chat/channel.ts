@@ -49,7 +49,7 @@ export default class Channel {
   }
 
   @computed
-  get isExists(): boolean {
+  get exists(): boolean {
     return this.channelId > 0;
   }
 

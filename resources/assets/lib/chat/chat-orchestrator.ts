@@ -93,7 +93,7 @@ export default class ChatOrchestrator implements DispatchListener {
   focusNextChannel() {
     const channelStore = this.rootDataStore.channelStore;
     const channel = channelStore.get(this.rootDataStore.uiState.chat.selected);
-    if (channel && (channel.isExists || channel.newChannel)) {
+    if (channel && (channel.exists || channel.newChannel)) {
       return;
     }
 
