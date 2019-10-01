@@ -211,7 +211,7 @@ export class Main extends React.Component
               beatmapset: @props.beatmapset
               currentUser: currentUser
 
-        if @props.beatmapset.has_scores
+        if @props.beatmapset.is_scoreable
           div className: 'osu-page osu-page--generic',
             el Scoreboard,
               type: @state.currentScoreboardType
@@ -222,7 +222,7 @@ export class Main extends React.Component
               enabledMods: @state.enabledMods
               countries: @props.countries
               loading: @state.loading
-              hasScores: @props.beatmapset.has_scores
+              isScoreable: @props.beatmapset.is_scoreable
 
         div className: 'osu-page osu-page--generic-compact',
           el CommentsManager,
