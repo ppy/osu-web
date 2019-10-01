@@ -45,7 +45,7 @@ class ClientsController extends Controller
 
     public function index()
     {
-        return json_collection(auth()->user()->oauthClients()->get(), 'OAuth\Client');
+        return json_collection(auth()->user()->oauthClients()->where('revoked', false)->get(), 'OAuth\Client');
     }
 
     public function store()
