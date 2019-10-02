@@ -53,6 +53,7 @@ class ArtistsController extends Controller
 
         $albums = $artist->albums()
             ->where('visible', true)
+            ->orderBy('id', 'desc')
             ->with(['tracks' => function ($query) {
                 $query->orderBy('display_order', 'ASC');
             }])->get();
