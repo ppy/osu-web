@@ -31,7 +31,8 @@ trait BeatmapsetTrait
     {
         return array_merge(
             $this->esBeatmapsetValues(),
-            ['difficulties' => $this->esBeatmapValues()]
+            ['beatmaps' => $this->esBeatmapValues()],
+            ['difficulties' => $this->esDifficultyValues()]
         );
     }
 
@@ -81,6 +82,20 @@ trait BeatmapsetTrait
     }
 
     private function esBeatmapValues()
+    {
+        $mappings = static::esMappings()['beatmaps']['properties'];
+
+        return $this->beatmaps->map(function ($beatmap) use ($mappings) {
+            $beatmapValues = [];
+            foreach ($mappings as $field => $mapping) {
+                $beatmapValues[$field] = $beatmap[$field];
+            }
+
+            return $beatmapValues;
+        });
+    }
+
+    private function esDifficultyValues()
     {
         $mappings = static::esMappings()['difficulties']['properties'];
 

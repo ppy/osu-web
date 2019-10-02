@@ -21,6 +21,63 @@
         "artist_unicode": {
           "type": "text"
         },
+        "beatmaps": {
+          "dynamic": false,
+          "type": "nested",
+          "properties": {
+            "approved": {
+              "type": "long"
+            },
+            "beatmap_id": {
+              "type": "long"
+            },
+            "countNormal": {
+              "type": "long"
+            },
+            "countSlider": {
+              "type": "long"
+            },
+            "countSpinner": {
+              "type": "long"
+            },
+            "countTotal": {
+              "type": "long"
+            },
+            "diff_approach": {
+              "type": "double"
+            },
+            "diff_drain": {
+              "type": "double"
+            },
+            "diff_overall": {
+              "type": "double"
+            },
+            "diff_size": {
+              "type": "double"
+            },
+            "difficultyrating": {
+              "type": "double"
+            },
+            "hit_length": {
+              "type": "long"
+            },
+            "passcount": {
+              "type": "long"
+            },
+            "playcount": {
+              "type": "long"
+            },
+            "playmode": {
+              "type": "byte"
+            },
+            "total_length": {
+              "type": "long"
+            },
+            "version": {
+              "type": "text"
+            }
+          }
+        },
         "bpm": {
           "type": "double"
         },
