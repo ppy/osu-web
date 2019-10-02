@@ -52,6 +52,13 @@ abstract class SearchParams
      */
     abstract public function isCacheable() : bool;
 
+    public function blockedUsers()
+    {
+        $user = auth()->user();
+
+        return $user !== null ? $user->blocks()->pluck($user->qualifyColumn('user_id')) : [];
+    }
+
     public function isQueryStringTooShort()
     {
         return mb_strlen($this->queryString) < config('osu.search.minimum_length');

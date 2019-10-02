@@ -58,7 +58,7 @@ class UserSearch extends RecordSearch
         ];
 
         $query = (new BoolQuery())
-            ->mustNot(['terms' => ['_id' => auth()->user()->blocks()->pluck('phpbb_users.user_id')]])
+            ->mustNot(['terms' => ['_id' => $this->params->blockedUsers()]])
             ->mustNot(['term' => ['is_old' => true]])
             ->filter(['term' => ['user_warnings' => 0]])
             ->filter(['term' => ['user_type' => 0]]);

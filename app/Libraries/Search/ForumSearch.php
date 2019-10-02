@@ -89,7 +89,7 @@ class ForumSearch extends Search
             $query->filter(['term' => ['poster_id' => $user ? $user->user_id : -1]]);
         }
 
-        $query->mustNot(['terms' => ['poster_id' => auth()->user()->blocks()->pluck('phpbb_users.user_id')]]);
+        $query->mustNot(['terms' => ['poster_id' => $this->params->blockedUsers()]]);
 
         return (new HasChildQuery('posts', 'posts'))
             ->size(3)
