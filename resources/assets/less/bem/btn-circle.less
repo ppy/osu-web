@@ -26,30 +26,29 @@
   text-shadow: inherit;
 
   flex: none;
-  background-color: @osu-colour-l2;
-  color: #fff;
+  background-color: @osu-colour-l4;
+  color: @osu-colour-c1;
   transition: all 120ms ease-in-out;
   font-size: 14px;
 
-  &:focus,
-  &:hover,
-  &:active {
-    color: #fff;
-    background-color: @osu-colour-l1;
+  .link-hover({
+    background-color: @osu-colour-l3;
+    color: @osu-colour-c1;
     text-decoration: none;
     box-shadow: 0 5px 15px fade(#000, 40%);
-  }
+  });
 
   &--bbcode {
     .default-text-shadow();
     margin: 2px;
     font-size: 13px;
     box-shadow: none;
+    background-color: transparent;
 
     &:focus,
     &:hover,
     &:active {
-      .default-box-shadow();
+      background-color: @osu-colour-l3;
     }
   }
 
@@ -79,7 +78,7 @@
   }
 
   &--topic-nav {
-    margin: 0 5px;
+    margin: 0 3px;
   }
 
   &--activated, &.js-activated {
@@ -98,16 +97,32 @@
   &--purple {
     background-color: @purple-dark;
 
+    .link-hover({
+      background-color: @purple;
+    });
+
     &.@{top}--activated {
       background-color: @purple-light;
+
+      .link-hover({
+        background-color: @purple-lighter;
+      });
     }
   }
 
   &--yellow {
     background-color: @yellow-dark;
 
+    .link-hover({
+      background-color: @yellow;
+    });
+
     &.@{top}--activated {
       background-color: @yellow-light;
+
+      .link-hover({
+        background-color: @yellow-lighter;
+      });
     }
   }
 

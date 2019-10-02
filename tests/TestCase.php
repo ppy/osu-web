@@ -17,8 +17,6 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-use App\Models\OAuth\Client;
-use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\Passport\Token;
 
@@ -87,21 +85,11 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $user->withAccessToken($token);
     }
 
-    protected function createOAuthClient(User $user, string $name = 'test', string $redirect = '/auth/callback') : Client
+    protected function fileList($path, $suffix)
     {
-        $client = (new Client)->forceFill([
-            'user_id' => $user->getKey(),
-            'name' => $name,
-            'secret' => str_random(40),
-            'redirect' => url($redirect),
-            'personal_access_client' => false,
-            'password_client' => false,
-            'revoked' => false,
-        ]);
-
-        $client->save();
-
-        return $client;
+        return array_map(function ($file) use ($path, $suffix) {
+            return [basename($file, $suffix), $path];
+        }, glob("{$path}/*{$suffix}"));
     }
 
     protected function invokeMethod($obj, string $name, array $params = [])

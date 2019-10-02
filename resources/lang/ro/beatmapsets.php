@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'aprobat pe ',
             'favourite' => 'Adaugă acest beatmapset la favorite',
-            'favourited_count' => '+ 1 alta!|+ :count alte!',
             'logged-out' => 'Trebuie să te autentifici înainte de a descărca vreun beatmap!',
             'loved' => 'loved pe ',
             'mapped_by' => 'mapat de :mapper',

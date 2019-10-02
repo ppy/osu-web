@@ -36,7 +36,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Drücke Enter, um :action. Benutze Shift+Enter für eine neue Zeile.',
+            '_' => 'Drücke Enter, um zu :action. Benutze Shift+Enter für eine neue Zeile.',
             'edit' => 'Speichern',
             'new' => 'posten',
             'reply' => 'antworten',

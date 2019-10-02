@@ -118,6 +118,18 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'too_many' => 'Maximale Anzahl erlaubter OAuth-Anwendungen überschritten.',
+            'url' => 'Bitte geben Sie eine gültige URL ein.',
+
+            'attributes' => [
+                'name' => 'Anwendungsname',
+                'redirect' => 'Anwendungs-Callback-URL',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Das Passwort darf den Nutzernamen nicht enthalten.',
         'email_already_used' => 'E-Mail-Adresse wird bereits verwendet.',

@@ -31,6 +31,14 @@ return [
         ],
     ],
 
+    'gallery' => [
+        'close' => 'Закрыть (Esc)',
+        'fullscreen' => '',
+        'zoom' => '',
+        'previous' => '',
+        'next' => '',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'общее',

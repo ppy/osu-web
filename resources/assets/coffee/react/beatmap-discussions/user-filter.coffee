@@ -45,8 +45,7 @@ export class UserFilter extends React.PureComponent
 
 
   mapUserProperties: (user) ->
-    default_group: user.default_group
-    groups: user.groups
+    group_badge: user.group_badge
     id: user.id
     text: user.username
 

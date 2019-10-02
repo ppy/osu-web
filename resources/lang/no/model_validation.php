@@ -118,6 +118,18 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Passord kan ikke inneholde brukernavnet ditt.',
         'email_already_used' => 'E-postadressen er allerede i bruk.',
@@ -143,9 +155,9 @@ return [
         'too_long' => 'Overskrider maksimumslengden - kan bare være opp til :limit tegn.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Brukernavn',
+            'user_email' => 'E-postadresse',
+            'password' => 'Passord',
         ],
 
         'change_username' => [

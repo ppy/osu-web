@@ -25,6 +25,8 @@ return [
     'title' => 'osu! φόρουμ',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Επιλογή εικόνας εξωφύλλου',
             'button' => 'Ανεβάστε εικόνα',
@@ -59,14 +61,6 @@ return [
         'busy' => 'Σήμανση ως αναγνωσμένου...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'Η επεξεργασία δημοσκόπησης θα καταργήσει τα τρέχοντα αποτελέσματα!',
-
-        'actions' => [
-            'edit' => 'Επεξεργασία δημοσκόπησης',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'Σίγουρα διαγραφή της δημοσίευσης;',
         'confirm_restore' => 'Σίγουρα επαναφορά της δημοσίευσης;',
@@ -79,9 +73,15 @@ return [
             'edit' => 'Επεξεργασία δημοσίευσης',
         ],
 
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
+        ],
+
         'info' => [
             'post_count' => ':count_delimited δημοσίευση|:count_delimited δημοσιεύσεις',
-            'topic_starter' => '',
+            'topic_starter' => 'Δημιουργός του Θέματος',
         ],
     ],
 
@@ -105,6 +105,7 @@ return [
         'started_by_verbose' => 'ξεκίνησε από :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Προεπισκόπηση',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -296,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Ψηφίστε',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Η ψηφοφορία θα λήξει στις :time',

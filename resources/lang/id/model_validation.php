@@ -118,6 +118,18 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'too_many' => 'Jumlah aplikasi OAuth melebihi batas maksimal.',
+            'url' => 'Harap masukkan URL valid.',
+
+            'attributes' => [
+                'name' => 'Nama Aplikasi',
+                'redirect' => 'Callback URL Aplikasi',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Nama pengguna tidak diperbolehkan untuk berada di dalam kata sandi.',
         'email_already_used' => 'Alamat email sudah digunakan.',

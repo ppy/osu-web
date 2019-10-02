@@ -33,21 +33,39 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
-        'confirm_revoke' => 'Er du sikker på at du vil inndra tillatelsen til denne applikasjonen?',
-        'scopes_title' => 'Denne applikasjonen kan:',
-        'owned_by' => 'Eid av :user',
-        'none' => 'Ingen autoriserte applikasjoner',
+    'authorized_clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
 
         'revoked' => [
-            'false' => 'Opphev tilgang',
-            'true' => 'Tilgang opphevet',
+            'false' => '',
+            'true' => '',
         ],
+    ],
+
+    'client' => [
+        'id' => '',
+        'name' => '',
+        'redirect' => '',
+        'secret' => '',
     ],
 
     'login' => [
         'download' => 'Klikk her for å laste ned spillet og opprette en konto',
         'label' => 'Først, la oss logge inn på kontoen din!',
         'title' => 'Kontoinnlogging',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '',
+        'new' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => 'Slett',
+            'true' => 'Slettet',
+        ],
     ],
 ];

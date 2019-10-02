@@ -118,6 +118,18 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Wachtwoorden mogen je gebruikersnaam niet bevatten.',
         'email_already_used' => 'Dit e-mailadres is al in gebruik.',

@@ -168,7 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count pengikut',
-            'none' => '',
+            'none' => 'kosong',
             'unranked' => 'Tidak ada rekam jejak permainan yang tercatat dalam beberapa waktu ke belakang',
 
             'achievements' => [
@@ -198,14 +198,14 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Diskusi',
+                'title_longer' => 'Diskusi Terbaru',
+                'show_more' => 'lihat lebih banyak diskusi',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Aktivitas',
+                'title_longer' => 'Aktivitas Terakhir',
+                'show_more' => 'lihat lebih banyak aktivitas',
             ],
             'historical' => [
                 'empty' => 'Tidak ada catatan performa terbaru. :(',
@@ -288,9 +288,9 @@ return [
                 'title' => 'Medali',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Posting',
+                'title_longer' => 'Postingan Terbaru',
+                'show_more' => 'lihat lebih banyak posting',
             ],
             'recent_activity' => [
                 'title' => 'Terbaru',
@@ -310,11 +310,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => 'Suara Diberikan (3 bulan terakhir)',
+                'received' => 'Suara Diterima (3 bulan terakhir)',
+                'title' => 'Hak Suara',
+                'title_longer' => 'Pilihan Terbaru',
+                'vote_count' => ':count_delimited pilihan',
             ],
             'account_standing' => [
                 'title' => 'Kondisi Akun',
@@ -396,10 +396,10 @@ return [
             'total_hits' => 'Jumlah Hit',
             'total_score' => 'Jumlah Skor',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'ranked_and_approved_beatmapset_count' => 'Beatmap Ranked & Approved',
+            'loved_beatmapset_count' => 'Beatmap Loved',
+            'unranked_beatmapset_count' => 'Beatmap Pending',
+            'graveyard_beatmapset_count' => 'Beatmap Graveyarded',
         ],
     ],
 

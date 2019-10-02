@@ -55,5 +55,10 @@ return [
 
     'starting' => [
         'username' => 'Entrez une adresse email ou un nom d\'utilisateur',
+
+        'support' => [
+            '_' => 'Vous avez besoin d\'aide supplémentaire ? Contactez-nous via notre :button.',
+            'button' => 'système de support',
+        ],
     ],
 ];
