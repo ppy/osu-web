@@ -23,10 +23,10 @@
  * https://github.com/iain/http_accept_language/blob/v2.1.1/spec/parser_spec.rb.
  */
 
-namespace Test\Libraries\AcceptHttpLanguage;
+namespace Tests\Libraries\AcceptHttpLanguage;
 
 use App\Libraries\AcceptHttpLanguage\Parser;
-use TestCase;
+use Tests\TestCase;
 
 class ParserTest extends TestCase
 {

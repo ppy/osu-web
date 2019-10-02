@@ -17,10 +17,16 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Laravel\Passport\Token;
 
-class TestCase extends Illuminate\Foundation\Testing\TestCase
+namespace Tests;
+
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Laravel\Passport\Token;
+use ReflectionMethod;
+use ReflectionProperty;
+
+class TestCase extends BaseTestCase
 {
     use DatabaseTransactions;
 

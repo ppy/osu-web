@@ -17,12 +17,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests\Chat;
+namespace Tests\Controllers\Chat;
 
 use App\Models\Chat;
 use App\Models\User;
 use Faker;
-use TestCase;
+use Tests\TestCase;
 
 class ChannelsControllerTest extends TestCase
 {

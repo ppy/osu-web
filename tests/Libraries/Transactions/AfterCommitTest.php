@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests;
+namespace Tests\Libraries\Transactions;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\Transactions\AfterCommit;
@@ -28,7 +28,7 @@ use App\Models\Model;
 use DB;
 use Exception;
 use Illuminate\Support\Facades\Schema;
-use TestCase;
+use Tests\TestCase;
 
 class AfterCommitTest extends TestCase
 {

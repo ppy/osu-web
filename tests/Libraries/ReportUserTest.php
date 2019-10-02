@@ -17,8 +17,13 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Libraries;
+
 use App\Exceptions\ValidationException;
 use App\Models\User;
+use Illuminate\Database\QueryException;
+use Tests\TestCase;
 
 class ReportUserTest extends TestCase
 {
@@ -40,7 +45,7 @@ class ReportUserTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $this->expectException(Illuminate\Database\QueryException::class);
+        $this->expectException(QueryException::class);
         $user->reportBy($this->reporter, [
             'reason' => 'NotAValidReason',
         ]);

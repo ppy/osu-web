@@ -1,11 +1,15 @@
 <?php
 
+namespace Tests\Controllers;
+
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionVote;
 use App\Models\Beatmapset;
 use App\Models\User;
 use App\Models\UserGroup;
+use DB;
+use Tests\TestCase;
 
 class BeatmapDiscussionsControllerTest extends TestCase
 {

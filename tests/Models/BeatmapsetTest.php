@@ -17,6 +17,9 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Models;
+
 use App\Exceptions\AuthorizationException;
 use App\Models\Beatmap;
 use App\Models\BeatmapMirror;
@@ -25,6 +28,7 @@ use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserGroup;
 use App\Models\UserNotification;
+use Tests\TestCase;
 
 class BeatmapsetTest extends TestCase
 {

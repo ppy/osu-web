@@ -1,7 +1,10 @@
 <?php
 
+namespace Tests\Controllers;
+
 use App\Models\Achievement;
 use App\Models\User;
+use Tests\TestCase;
 
 class LegacyInterOpControllerTest extends TestCase
 {

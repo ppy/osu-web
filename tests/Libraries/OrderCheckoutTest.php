@@ -17,6 +17,9 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Libraries;
+
 use App\Exceptions\InvariantException;
 use App\Libraries\OrderCheckout;
 use App\Models\Country;
@@ -25,6 +28,7 @@ use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
 use App\Models\Tournament;
 use Carbon\Carbon;
+use Tests\TestCase;
 
 // TODO: should split into Tournament-specific and generic Checkout tests.
 class OrderCheckoutTest extends TestCase

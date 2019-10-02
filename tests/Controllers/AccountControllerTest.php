@@ -1,8 +1,12 @@
 <?php
 
+namespace Tests\Controllers;
+
 use App\Models\User;
 use App\Models\UserProfileCustomization;
 use App\Models\WeakPassword;
+use Hash;
+use Tests\TestCase;
 
 class AccountControllerTest extends TestCase
 {

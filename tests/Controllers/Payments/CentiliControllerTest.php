@@ -18,13 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests\Payments;
+namespace Tests\Controllers\Payments;
 
 use App\Libraries\Payments\CentiliSignature;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use Config;
-use TestCase;
+use Tests\TestCase;
 
 class CentiliControllerTest extends TestCase
 {

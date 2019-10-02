@@ -17,10 +17,14 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Models;
+
 use App\Models\Build;
 use App\Models\Comment;
 use App\Models\User;
 use Carbon\Carbon;
+use Tests\TestCase;
 
 class CommentTest extends TestCase
 {

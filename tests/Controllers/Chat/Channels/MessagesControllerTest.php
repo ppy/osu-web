@@ -17,7 +17,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests\Chat\Channels;
+namespace Tests\Controllers\Chat\Channels;
 
 use App\Models\Chat;
 use App\Models\Chat\Message;
@@ -25,7 +25,7 @@ use App\Models\Chat\UserChannel;
 use App\Models\User;
 use App\Models\UserRelation;
 use Faker;
-use TestCase;
+use Tests\TestCase;
 
 class MessagesControllerTest extends TestCase
 {
