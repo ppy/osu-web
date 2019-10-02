@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+
 /**
  * @property \Illuminate\Database\Eloquent\Collection $albums ArtistAlbum
  * @property string|null $bandcamp
@@ -58,5 +60,10 @@ class Artist extends Model
     public function tracks()
     {
         return $this->hasMany(ArtistTrack::class);
+    }
+
+    public function isNew()
+    {
+        return $this->created_at->diffInDays() < Carbon::now()->subMonth(1)->diffInDays();
     }
 }
