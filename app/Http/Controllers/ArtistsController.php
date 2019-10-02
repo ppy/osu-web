@@ -57,7 +57,7 @@ class ArtistsController extends Controller
                 $query->orderBy('display_order', 'ASC');
             }])->get();
 
-        $tracks = $artist->tracks()->whereNull('album_id')->orderBy('display_order', 'ASC NULLS LAST')->get();
+        $tracks = $artist->tracks()->whereNull('album_id')->orderBy('id', 'desc')->get();
 
         $images = [
             'header_url' => $artist->header_url,
