@@ -25,6 +25,8 @@ return [
     'title' => 'osu!-foorumit',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Aseta kansikuva',
             'button' => 'Lataa kuva',
@@ -59,14 +61,6 @@ return [
         'busy' => 'Merkitään luetuksi...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'Äänestyksen muokkaaminen poistaa tämänhetkiset tulokset!',
-
-        'actions' => [
-            'edit' => 'Muokkaa äänestystä',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'Haluatko varmasti poistaa viestin?',
         'confirm_restore' => 'Haluatko varmasti palauttaa viestin?',
@@ -77,6 +71,12 @@ return [
             'destroy' => 'Poista viesti',
             'restore' => 'Palauta viesti',
             'edit' => 'Muokkaa viestiä',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -105,6 +105,7 @@ return [
         'started_by_verbose' => 'aloittanut :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Esikatselu',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -296,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Äänestä',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Kysely loppuu :time',

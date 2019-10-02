@@ -55,5 +55,10 @@ return [
 
     'starting' => [
         'username' => 'Zadejte Vaši e-mailovou adresu nebo uživatelské jméno',
+
+        'support' => [
+            '_' => '',
+            'button' => '',
+        ],
     ],
 ];

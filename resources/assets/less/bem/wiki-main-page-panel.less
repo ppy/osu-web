@@ -16,53 +16,47 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.authorized-client {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.wiki-main-page-panel {
+  @_top: wiki-main-page-panel;
 
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #444;
+  .default-border-radius();
+  .default-box-shadow();
 
-  &__actions {
-    align-items: flex-start;
-  }
+  min-height: 150px;
+  padding: 30px;
 
-  &__button {
-    .reset-input();
-    .default-text-shadow();
-    .link-white();
-    .link-plain();
-    .center-content();
-    flex: none;
-    margin: 0 10px;
-    padding: 10px 20px;
-    min-width: 100px;
-    border-radius: 10000px;
+  background: @osu-colour-b4;
 
-    background-color: @red;
+  text-align: center;
 
-    &:hover {
-      background-color: @red-light;
-    };
 
-    &--revoked {
-      background-color: #444;
-
-      &:hover {
-        background-color: #444;
-      };
+  &--full {
+    @media @desktop {
+      grid-column: 1 / span 2;
     }
   }
 
-  &__name {
-    font-size: @font-size--title-small;
-    margin-bottom: 5px;
-    color: white;
+  &__link {
+    .link-default();
   }
 
-  &__scopes {
-    margin-top: 12px;
+  &__content {
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 700;
+    color: @osu-colour-c1;
+  }
+
+  &__title {
+    color: @osu-colour-c1;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: normal;
+
+    margin-bottom: 40px;
+
+    .@{_top}:first-child & {
+      font-size: 30px;
+    }
   }
 }

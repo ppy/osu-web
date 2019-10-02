@@ -27,7 +27,7 @@ const store = core.dataStore.clientStore;
 export class AuthorizedClients extends React.Component {
   render() {
     return (
-      <div className='authorized-clients'>
+      <div className='oauth-clients'>
         {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
       </div>
     );
@@ -35,11 +35,16 @@ export class AuthorizedClients extends React.Component {
 
   renderClients() {
     return [...store.clients.values()].map((client) => {
-      return <AuthorizedClient client={client} key={client.id} />;
+      return (
+        <div className='oauth-clients__client' key={client.id}>
+          <AuthorizedClient client={client} />
+        </div>
+
+      );
     });
   }
 
   renderEmpty() {
-    return osu.trans('oauth.authorized_clients.none');
+    return <div className='oauth-clients__client'>{osu.trans('oauth.authorized_clients.none')}</div>;
   }
 }

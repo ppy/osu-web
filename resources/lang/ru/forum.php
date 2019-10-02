@@ -25,6 +25,8 @@ return [
     'title' => 'osu! форум',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Установить обложку',
             'button' => 'Загрузить изображение',
@@ -59,14 +61,6 @@ return [
         'busy' => 'Отмечается как прочитанное...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'Изменение опроса сбросит текущие ответы!',
-
-        'actions' => [
-            'edit' => 'Изменить опрос',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'Удалить ответ?',
         'confirm_restore' => 'Восстановить ответ?',
@@ -77,6 +71,12 @@ return [
             'destroy' => 'Удалить ответ',
             'restore' => 'Восстановить ответ',
             'edit' => 'Редактировать ответ',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -105,6 +105,7 @@ return [
         'started_by_verbose' => 'начато :user',
 
         'create' => [
+            'close' => 'Закрыть',
             'preview' => 'Предпросмотр',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -296,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => 'Изменение опроса удалит текущие результаты!',
                 'vote' => 'Голосовать',
+
+                'button' => [
+                    'change_vote' => 'Изменить голос',
+                    'edit' => '',
+                    'view_results' => 'Посмотреть результаты',
+                    'vote' => 'Голосовать',
+                ],
 
                 'detail' => [
                     'end_time' => 'Опрос будет закрыт :time',

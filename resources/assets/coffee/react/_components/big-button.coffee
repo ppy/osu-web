@@ -21,7 +21,7 @@ import { a, button, span, i } from 'react-dom-factories'
 import { Spinner } from 'spinner'
 el = React.createElement
 
-export BigButton = ({modifiers = [], text, icon, props = {}, extraClasses = []}) ->
+export BigButton = ({modifiers = [], text, icon, props = {}, extraClasses = [], isBusy = false}) ->
   props.className = osu.classWithModifiers('btn-osu-big', modifiers)
   props.className += " #{klass}" for klass in extraClasses
 
@@ -45,7 +45,7 @@ export BigButton = ({modifiers = [], text, icon, props = {}, extraClasses = []})
         span className: 'btn-osu-big__icon',
           # ensure no random width change when changing icon
           span className: 'fa-fw',
-            if icon == '_spinner'
+            if isBusy
               el Spinner
             else
               i className: icon

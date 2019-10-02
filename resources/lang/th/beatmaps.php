@@ -141,8 +141,8 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'ยังไม่มีคนโหวตลด',
+                'up' => 'ยังไม่มีคนโหวตเพิ่ม',
             ],
             'latest' => [
                 'down' => '',
@@ -286,6 +286,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

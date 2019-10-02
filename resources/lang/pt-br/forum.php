@@ -25,6 +25,8 @@ return [
     'title' => 'osu! fóruns',
 
     'covers' => [
+        'edit' => 'Editar capa',
+
         'create' => [
             '_' => 'Definir imagem de capa',
             'button' => 'Enviar imagem',
@@ -42,10 +44,10 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'Última Publicação',
 
         'index' => [
-            'title' => '',
+            'title' => 'Índice do Fórum',
         ],
 
         'topics' => [
@@ -59,14 +61,6 @@ return [
         'busy' => 'Marcando como lido...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'Editar uma enquete irá remover os resultados atuais!',
-
-        'actions' => [
-            'edit' => 'Editar enquete',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'Deseja mesmo a excluir publicação?',
         'confirm_restore' => 'Deseja mesmo restaurar a publicação?',
@@ -77,6 +71,12 @@ return [
             'destroy' => 'Excluir publicação',
             'restore' => 'Restaurar publicação',
             'edit' => 'Editar publicação',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => 'Nova resposta',
+            ],
         ],
 
         'info' => [
@@ -105,6 +105,7 @@ return [
         'started_by_verbose' => 'publicado por :user',
 
         'create' => [
+            'close' => 'Fechar',
             'preview' => 'Pré-visualizar',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -296,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => 'Edição de enquete',
+                'edit_warning' => 'Editar uma enquete irá remover os resultados atuais!',
                 'vote' => 'Votar',
+
+                'button' => [
+                    'change_vote' => 'Alterar voto',
+                    'edit' => 'Editar enquete',
+                    'view_results' => 'Ir para resultados',
+                    'vote' => 'Votar',
+                ],
 
                 'detail' => [
                     'end_time' => 'A votação encerrará às :time',

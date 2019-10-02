@@ -32,7 +32,7 @@ return [
     ],
 
     'gallery' => [
-        'close' => '',
+        'close' => 'Закрыть (Esc)',
         'fullscreen' => '',
         'zoom' => '',
         'previous' => '',
