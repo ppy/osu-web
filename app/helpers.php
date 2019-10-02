@@ -681,7 +681,7 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
         $postIdParamKey = 'end';
     }
 
-    $url = route('forum.topics.show', ['topics' => $topicId, $postIdParamKey => $postId]);
+    $url = route('forum.topics.show', ['topic' => $topicId, $postIdParamKey => $postId]);
 
     return $url;
 }
