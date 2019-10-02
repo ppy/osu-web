@@ -169,9 +169,7 @@ if (mix.inProduction()) {
   ];
 }
 
-if (!mix.inProduction() || process.env.SENTRY_RELEASE == 1) {
-  webpackConfig['devtool'] = '#source-map';
-}
+webpackConfig.devtool = '#source-map';
 
 if (process.env.SENTRY_RELEASE == 1) {
   webpackConfig['plugins'].push(
