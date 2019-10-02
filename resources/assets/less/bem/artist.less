@@ -38,54 +38,6 @@
     }
   }
 
-  &__album {
-    background-color: @osu-colour-b4;
-    padding: 20px;
-    align-items: center;
-    .default-box-shadow();
-    overflow: hidden;
-    @media @desktop {
-      margin-bottom: 10px;
-    }
-  }
-
-  &__album-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-
-  &__album-header-overlay {
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    filter: blur(20px);
-    -webkit-filter: blur(20px);
-    opacity: 0.5;
-    transition: 1s ease-in-out;
-    top: 0;
-    // Hide this overlay in Internet Explorer
-    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-      display: none;
-    }
-    &--sidebar {
-      opacity: 0;
-    }
-  }
-
-  &__album-cover {
-    width: 64px;
-    height: 64px;
-    .default-box-shadow();
-
-    &--sidebar {
-      width: 128px;
-      height: 128px;
-    }
-  }
-
   &__sidebar-album-link {
     display: block;
     text-align: center;
@@ -97,7 +49,7 @@
     }
 
     &:hover {
-      .@{_top}__album-header-overlay {
+      .artist-album__header-overlay {
         opacity: 0.2;
       }
     }
@@ -114,18 +66,6 @@
 
     @media @desktop {
       .default-box-shadow();
-    }
-  }
-
-  &__album-title {
-    padding: 10px;
-    font-size: 2em;
-    color: white;
-    .default-text-shadow();
-    &--sidebar {
-      padding: 0;
-      font-size: 14px;
-      margin-top: 5px;
     }
   }
 

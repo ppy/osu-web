@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+
 /**
  * @property Artist $artist
  * @property int|null $artist_id
@@ -43,5 +45,10 @@ class ArtistAlbum extends Model
     public function tracks()
     {
         return $this->hasMany(ArtistTrack::class, 'album_id', 'id');
+    }
+
+    public function isNew()
+    {
+        return $this->created_at->diffInDays() < Carbon::now()->subMonth(1)->diffInDays();
     }
 }

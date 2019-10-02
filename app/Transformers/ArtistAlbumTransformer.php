@@ -37,6 +37,7 @@ class ArtistAlbumTransformer extends Fractal\TransformerAbstract
             'title' => $album->title,
             'title_romanized' => $album->title_romanized,
             'genre' => $album->genre,
+            'is_new' => $album->isNew(),
             'cover_url' => $album->cover_url,
         ];
     }
