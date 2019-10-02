@@ -49,6 +49,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
     });
 });
 
+
 Route::group(['prefix' => 'beatmaps'], function () {
     // featured artists
     Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
@@ -254,6 +255,8 @@ Route::group(['prefix' => 'help'], function () {
     Route::put('wiki/{page}', 'WikiController@update')->where('page', '.+');
     route_redirect('/', 'wiki.show');
 });
+
+Route::post('wiki-update-webhook', 'WikiController@updateWebhook');
 
 // FIXME: someone split this crap up into proper controllers
 Route::group(['as' => 'store.', 'prefix' => 'store'], function () {

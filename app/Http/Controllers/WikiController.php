@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InvalidSignatureException;
 use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
 use Request;
@@ -68,6 +69,15 @@ class WikiController extends Controller
         (new Wiki\Page($path, $this->locale()))->refresh();
 
         return ujs_redirect(Request::getUri());
+    }
+
+    public function updateWebhook()
+    {
+        $signature = "sha1=" . hash_hmac('sha1', request()->getContent(), config('osu.wiki.webhook_secret'));
+
+        if (!hash_equals($signature, request()->header('X-Hub-Signature'))) {
+            throw new InvalidSignatureException;
+        }
     }
 
     private function showImage($path)

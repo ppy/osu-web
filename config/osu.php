@@ -211,4 +211,7 @@ return [
         'recent_weeks' => intval(env('CHANGELOG_RECENT_WEEKS', 6)),
         'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
     ],
+    'wiki' => [
+        'webhook_secret' => env('WIKI_WEBHOOK_SECRET', ''),
+    ],
 ];
