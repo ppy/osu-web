@@ -149,10 +149,14 @@ return [
                     'button' => 'Bild hochladen',
                     'dropzone' => 'Zum Hochladen hier ablegen',
                     'dropzone_info' => 'Du kannst das Bild auch hier ablegen, um es hochzuladen',
-                    'restriction_info' => "Nur <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!-Supporter</a> können hochladen",
                     'size_info' => 'Banner sollte 2800x620 groß sein',
                     'too_large' => 'Datei ist zu groß.',
                     'unsupported_format' => 'Format wird nicht unterstützt.',
+
+                    'restriction_info' => [
+                        '_' => 'Hochladen nur für :link verfügbar',
+                        'link' => 'osu!supporter',
+                    ],
                 ],
             ],
 
@@ -164,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 Follower|:count Follower',
+            'none' => 'nichts',
             'unranked' => 'Keine Plays in letzter Zeit',
 
             'achievements' => [
@@ -177,7 +182,7 @@ return [
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Lieblings-Beatmaps',
+                    'title' => 'Lieblingsbeatmaps',
                 ],
                 'graveyard' => [
                     'title' => 'Begrabene Beatmaps',
@@ -191,6 +196,16 @@ return [
                 'unranked' => [
                     'title' => 'Pending Beatmaps',
                 ],
+            ],
+            'discussions' => [
+                'title' => 'Diskussionen',
+                'title_longer' => 'Neueste Diskussionen',
+                'show_more' => 'mehr Diskussionen anzeigen',
+            ],
+            'events' => [
+                'title' => 'Events',
+                'title_longer' => 'Neueste Events',
+                'show_more' => 'mehr Events anzeigen',
             ],
             'historical' => [
                 'empty' => 'Keine Performance-Einträge. :(',
@@ -219,7 +234,6 @@ return [
                 'recent_entries' => 'Kudosu-Geschichte',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu insgesamt',
-                'total_info' => 'Basierend auf dem Beitrag zur Beatmapmoderation. Siehe <a href="'.osu_url('user.kudosu').'">diese Seite</a> für weitere Informationen.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -259,6 +273,11 @@ return [
                         'revoke' => 'Kudosu von :giver im Post :post verwehrt',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => 'Basierend auf dem Beitrag, den der Benutzer zur Beatmap-Moderation geleistet hat. Weitere Informationen unter :link.',
+                    'link' => 'diese Seite',
+                ],
             ],
             'me' => [
                 'title' => 'ich!',
@@ -267,6 +286,11 @@ return [
                 'empty' => "Dieser Nutzer hat noch keine erhalten. ;_;",
                 'recent' => 'Neuste',
                 'title' => 'Medaillen',
+            ],
+            'posts' => [
+                'title' => 'Beiträge',
+                'title_longer' => 'Neueste Beiträge',
+                'show_more' => 'weitere Beiträge anschauen',
             ],
             'recent_activity' => [
                 'title' => 'Neulich',
@@ -284,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Erster Platz',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Abgegebene Stimmen (letzte 3 Monate)',
+                'received' => 'Erhaltene Stimmen (letzte 3 Monate)',
+                'title' => 'Stimmen',
+                'title_longer' => 'Neueste Stimmen',
+                'vote_count' => ':count_delimited Stimme|:count_delimited Stimmen',
             ],
             'account_standing' => [
                 'title' => 'Accountstatus',
@@ -335,7 +366,11 @@ return [
             'description' => '<strong>me!</strong> ist ein persönlicher Bereich auf deinem osu!-Profil, den du nach deinem Belieben anpassen kannst.',
             'edit_big' => 'me! bearbeiten',
             'placeholder' => 'Seiteninhalt hier eingeben',
-            'restriction_info' => "Für dieses Feature musst du ein <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!-Supporter</a> sein.",
+
+            'restriction_info' => [
+                '_' => 'Sie müssen ein :link sein, um diese Funktion freizuschalten.',
+                'link' => 'osu!supporter',
+            ],
         ],
         'post_count' => [
             '_' => ':link beigetragen',
@@ -356,10 +391,15 @@ return [
             'play_count' => 'Play-Anzahl',
             'play_time' => 'Gesamtspielzeit',
             'ranked_score' => 'Punktzahl auf Ranglisten',
-            'replays_watched_by_others' => 'Wiederholungen von anderen angesehen',
+            'replays_watched_by_others' => 'Von anderen angeschaute Wiederholungen',
             'score_ranks' => 'Ränge durch Punkte',
             'total_hits' => 'Total Hits',
             'total_score' => 'Gesamtpunktzahl',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Ranked & Approved Beatmaps',
+            'loved_beatmapset_count' => 'Loved Beatmaps',
+            'unranked_beatmapset_count' => 'Pending Beatmaps',
+            'graveyard_beatmapset_count' => 'Begrabende Beatmaps',
         ],
     ],
 
@@ -373,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'Accountbestätigung',
+    ],
+
+    'view_mode' => [
+        'card' => 'Kartenansicht',
+        'list' => 'Listenansicht',
     ],
 ];

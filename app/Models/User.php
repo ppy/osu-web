@@ -26,6 +26,7 @@ use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
 use App\Libraries\UsernameValidation;
+use App\Models\OAuth\Client;
 use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
@@ -70,6 +71,7 @@ use Request;
  * @property int $group_id
  * @property mixed $hide_presence
  * @property \Illuminate\Database\Eloquent\Collection $monthlyPlaycounts UserMonthlyPlaycount
+ * @property \Illuminate\Database\Eloquent\Collection $oauthClients Client
  * @property int $osu_featurevotes
  * @property int $osu_kudosavailable
  * @property int $osu_kudosdenied
@@ -179,7 +181,7 @@ use Request;
 class User extends Model implements AuthenticatableContract
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
-    use HasApiTokens, Authenticatable, Reportable, UserAvatar, UserScoreable, Validatable;
+    use Authenticatable, HasApiTokens, Reportable, UserAvatar, UserScoreable, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -460,6 +462,24 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $user->first();
+    }
+
+    public static function lookupWithHistory($usernameOrId, $type = null, $findAll = false)
+    {
+        $user = static::lookup($usernameOrId, $type, $findAll);
+
+        if ($user !== null) {
+            return $user;
+        }
+
+        $change = UsernameChangeHistory::visible()
+            ->where('username_last', $usernameOrId)
+            ->orderBy('change_id', 'desc')
+            ->first();
+
+        if ($change !== null) {
+            return static::lookup($change->user_id, 'id');
+        }
     }
 
     public function getCountryAcronymAttribute($value)
@@ -828,11 +848,7 @@ class User extends Model implements AuthenticatableContract
     public function groupIds()
     {
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
-            if (isset($this->relations['userGroups'])) {
-                $this->memoized[__FUNCTION__] = $this->userGroups->pluck('group_id');
-            } else {
-                $this->memoized[__FUNCTION__] = model_pluck($this->userGroups(), 'group_id');
-            }
+            $this->memoized[__FUNCTION__] = $this->userGroups->pluck('group_id')->toArray();
         }
 
         return $this->memoized[__FUNCTION__];
@@ -1279,6 +1295,11 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(Changelog::class, 'user_id');
     }
 
+    public function oauthClients()
+    {
+        return $this->hasMany(Client::class, 'user_id');
+    }
+
     public function getPlaymodeAttribute($value)
     {
         return Beatmap::modeStr($this->osu_playmode);
@@ -1287,6 +1308,23 @@ class User extends Model implements AuthenticatableContract
     public function setPlaymodeAttribute($value)
     {
         $this->osu_playmode = Beatmap::modeInt($value);
+    }
+
+    public function groupBadge()
+    {
+        if ($this->isBot()) {
+            return 'bot';
+        }
+
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+            $groupNames = $this->userGroups->map->name()->all();
+            array_unshift($groupNames, $this->defaultGroup());
+
+            $badge = array_first(array_intersect(UserGroup::DISPLAY_PRIORITY, $groupNames));
+            $this->memoized[__FUNCTION__] = $badge;
+        }
+
+        return $this->memoized[__FUNCTION__];
     }
 
     public function hasBlocked(self $user)
@@ -1430,7 +1468,7 @@ class User extends Model implements AuthenticatableContract
     // TODO: we should rename this to currentUserJson or something.
     public function defaultJson()
     {
-        return json_item($this, 'User', ['blocks', 'friends', 'is_admin', 'unread_pm_count']);
+        return json_item($this, 'User', ['blocks', 'friends', 'is_admin', 'unread_pm_count', 'user_preferences']);
     }
 
     public function supportLength()
@@ -1603,6 +1641,10 @@ class User extends Model implements AuthenticatableContract
 
     public static function findForLogin($username)
     {
+        if (!present($username)) {
+            return;
+        }
+
         return static::where('username', $username)
             ->orWhere('user_email', '=', strtolower($username))
             ->first();

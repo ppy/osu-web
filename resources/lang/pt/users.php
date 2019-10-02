@@ -149,10 +149,14 @@ return [
                     'button' => 'Carregar imagem',
                     'dropzone' => 'Larga aqui para carregar',
                     'dropzone_info' => 'Também podes largar aqui a tua imagem para carregar',
-                    'restriction_info' => "Carregamento disponível para <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> só",
                     'size_info' => 'O tamanho da capa deveria ser 2800x620',
                     'too_large' => 'O ficheiro carregado é demasiado grande.',
                     'unsupported_format' => 'Formato não suportado.',
+
+                    'restriction_info' => [
+                        '_' => 'Carregamento disponível apenas para :link',
+                        'link' => 'osu!supporters',
+                    ],
                 ],
             ],
 
@@ -164,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 seguidor|:count seguidores',
+            'none' => 'nenhum',
             'unranked' => 'Nenhuma partida recente',
 
             'achievements' => [
@@ -192,6 +197,16 @@ return [
                     'title' => 'Beatmaps Pendentes',
                 ],
             ],
+            'discussions' => [
+                'title' => 'Discussões',
+                'title_longer' => 'Discussões Recentes',
+                'show_more' => 'ver mais discussões',
+            ],
+            'events' => [
+                'title' => 'Eventos',
+                'title_longer' => 'Eventos Recentes',
+                'show_more' => 'ver mais eventos',
+            ],
             'historical' => [
                 'empty' => 'Sem registos de desempenho. :(',
                 'title' => 'Historial',
@@ -219,7 +234,6 @@ return [
                 'recent_entries' => 'Historial Recente de Kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Total de Kudosu Ganhos',
-                'total_info' => 'Baseado no quão o utilizador contribuiu para a moderação do beatmap. Confirma em <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informação.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -259,6 +273,11 @@ return [
                         'revoke' => 'Kudosu negado por :giver para a publicação :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => 'Baseado no quão o utilizador contribuiu para a moderação do beatmap. Vê :link para mais informações.',
+                    'link' => 'esta página',
+                ],
             ],
             'me' => [
                 'title' => 'eu!',
@@ -267,6 +286,11 @@ return [
                 'empty' => "Este utilizador ainda não conseguiu nenhuma. ;_;",
                 'recent' => 'As mais recentes',
                 'title' => 'Medalhas',
+            ],
+            'posts' => [
+                'title' => 'Publicações',
+                'title_longer' => 'Publicações Recentes',
+                'show_more' => 'ver mais publicações',
             ],
             'recent_activity' => [
                 'title' => 'Recente',
@@ -284,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Classificações de Primeiro Lugar',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Votos Dados (últimos 3 meses)',
+                'received' => 'Votos Recebidos (últimos 3 meses)',
+                'title' => 'Votos',
+                'title_longer' => 'Votos Recentes',
+                'vote_count' => ':count_delimited voto|:count_delimited votos',
             ],
             'account_standing' => [
                 'title' => 'Reputação da Conta',
@@ -335,7 +366,11 @@ return [
             'description' => '<strong>eu!</strong> é uma área pessoal personalizável na tua página de perfil.',
             'edit_big' => 'Edita-me!',
             'placeholder' => 'Escreve o conteúdo da página aqui',
-            'restriction_info' => "Precisas de ser um <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> para desbloquear esta funcionalidade.",
+
+            'restriction_info' => [
+                '_' => 'Tu precisas de ser um :link para desbloquear esta funcionalidade.',
+                'link' => 'osu!supporter',
+            ],
         ],
         'post_count' => [
             '_' => 'Contribuiu em :link',
@@ -360,6 +395,11 @@ return [
             'score_ranks' => 'Classificações de Pontuação',
             'total_hits' => 'Acertos Totais',
             'total_score' => 'Pontuação Total',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Beatmaps Classificados e Aprovados',
+            'loved_beatmapset_count' => 'Beatmaps Adorados',
+            'unranked_beatmapset_count' => 'Beatmaps Pendentes',
+            'graveyard_beatmapset_count' => 'Beatmaps no Cemitério',
         ],
     ],
 
@@ -373,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'Verificação da Conta',
+    ],
+
+    'view_mode' => [
+        'card' => 'Vista do cartão',
+        'list' => 'Vista da lista',
     ],
 ];

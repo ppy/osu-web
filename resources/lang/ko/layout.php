@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - 리듬은 단순한 *클릭*만으로도 만들어질 수 있습니다! 응원단/리듬히어로, 태고와 이외 독자적인 게임플레이 모드, 완벽한 기능을 갖춘 맵 에디터까지 준비되어 있습니다.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '커뮤니티',
+
+            'forum' => '포럼',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => '닫기 (Esc)',
+        'fullscreen' => '전체화면 전환',
+        'zoom' => '확대 / 축소',
+        'previous' => '이전 (왼쪽 방향키)',
+        'next' => '다음 (오른쪽 방향키)',
+    ],
+
     'menu' => [
         'home' => [
             '_' => '메인',
             'account-edit' => '설정',
+            'account-verifyLink' => '인증 완료',
             'friends-index' => '친구',
             'changelog-index' => '변경 사항',
             'changelog-build' => '빌드 버전',

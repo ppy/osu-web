@@ -25,6 +25,11 @@
     opacity: 0.5;
   }
 
+  &--preview {
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
   &__actions {
     flex: none;
 
@@ -46,7 +51,7 @@
         content: ' ';
         width: 1px;
         right: 100%;
-        background-image: linear-gradient(to bottom, transparent, @osu-colour-b1 50%, transparent);
+        background-image: linear-gradient(to bottom, .osu-hsla(@osu-colour-b1, 0)[@hsla], @osu-colour-b1 50%, .osu-hsla(@osu-colour-b1, 0)[@hsla]);
       }
     }
   }
@@ -108,7 +113,7 @@
     // hopefully enough for type and resolve status icons.
     width: 50px;
 
-    .@{_top}--timeline & {
+    .@{_top}--timeline &, .@{_top}--preview & {
       // with timestamp, timeline's line and dot.
       width: 110px;
     }

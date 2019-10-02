@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - Ritmus csak egy *kattintásra*! Quendan/EBA, Taiko és más eredeti játékmódok, emellett egy teljes pálya szerkesztő.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Közösség',
+
+            'forum' => 'Fórum',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => '',
+        'fullscreen' => '',
+        'zoom' => '',
+        'previous' => '',
+        'next' => '',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'főoldal',
             'account-edit' => 'beállítások',
+            'account-verifyLink' => 'Sikeres hitelesítés',
             'friends-index' => 'barátok',
             'changelog-index' => 'változtatások',
             'changelog-build' => 'verzió',

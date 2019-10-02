@@ -49,6 +49,7 @@ interface OsuCommon {
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
+  link: (url: string, text: string, options?: { classNames?: string[]; isRemote?: boolean }) => string;
   linkify: (text: string, newWindow?: boolean) => string;
   parseJson: (id: string, remove?: boolean) => any;
   popup: (message: string, type: string) => void;

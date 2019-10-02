@@ -44,78 +44,15 @@
                 </h1>
             </div>
 
-            <div class="osu-page-header__actions">
-                <div class="forum-post-actions">
-                    <div class="forum-post-actions__action">
-                        <a
-                            class="btn-circle"
-                            href="{{ $page->editUrl() }}"
-                            title="{{ trans('wiki.show.edit.link') }}"
-                            data-tooltip-position="left center"
-                        >
-                            <span class="btn-circle__content">
-                                <i class="fab fa-github"></i>
-                            </span>
-                        </a>
-                    </div>
-
-                    @if (priv_check('WikiPageRefresh')->can())
-                        <div class="forum-post-actions__action">
-                            <button
-                                type="button"
-                                class="btn-circle"
-                                data-remote="true"
-                                data-url="{{ wiki_url($page->path) }}"
-                                data-method="PUT"
-                                title="{{ trans('wiki.show.edit.refresh') }}"
-                                data-tooltip-position="left center"
-                            >
-                                <span class="btn-circle__content">
-                                    <i class="fas fa-sync"></i>
-                                </span>
-                            </button>
-                        </div>
-                    @endif
-                </div>
-            </div>
+            @include('wiki._actions')
         </div>
     </div>
 
     <div class="osu-page osu-page--wiki">
-        @if ($page->page() !== null && $page->locale !== $page->requestedLocale)
-            <div class="wiki-notice">
-                <div class="wiki-notice__box">
-                    {{ trans('wiki.show.fallback_translation', ['language' => locale_name($page->requestedLocale)]) }}
-                </div>
-            </div>
-        @endif
-
-        @if ($page->isLegalTranslation())
-            <div class="wiki-notice">
-                <div class="wiki-notice__box wiki-notice__box--important">
-                    {!! trans('wiki.show.translation.legal', [
-                        'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(trans('wiki.show.translation.default')).'</a>',
-                    ]) !!}
-                </div>
-            </div>
-        @endif
-
-        @if ($page->isOutdated())
-            <div class="wiki-notice">
-                <div class="wiki-notice__box">
-                    @if ($page->isTranslation())
-                        {!! trans('wiki.show.translation.outdated', [
-                            'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(trans('wiki.show.translation.default')).'</a>',
-                        ]) !!}
-                    @else
-                        {!! trans('wiki.show.incomplete_or_outdated') !!}
-                    @endif
-                </div>
-            </div>
-        @endif
+        @include('wiki._notice')
 
         <div class="wiki-page">
-            <div class="hidden-xs wiki-page__toc">
+            <div class="hidden-xs wiki-page__toc u-fancy-scrollbar">
                 <div class="wiki-toc">
                     <h2 class="wiki-toc__title">
                         {{ trans('wiki.show.toc') }}

@@ -55,5 +55,10 @@ return [
 
     'starting' => [
         'username' => 'Nhập địa chỉ email hoặc tên tài khoản',
+
+        'support' => [
+            '_' => '',
+            'button' => '',
+        ],
     ],
 ];

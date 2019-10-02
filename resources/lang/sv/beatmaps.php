@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => '',
-            'down' => '',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 
@@ -280,6 +286,7 @@ return [
         'HD' => 'Gömd',
         'HR' => 'Hård Rock',
         'HT' => 'Halv Tid',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'Ingen Fail',
         'NM' => 'Inga mods',

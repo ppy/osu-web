@@ -25,6 +25,8 @@ return [
     'title' => 'osu! forumen',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Sätt omslags bild',
             'button' => 'Ladda upp bild',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '',
+
+        'index' => [
+            'title' => '',
+        ],
+
         'topics' => [
             'empty' => 'Inga ämnen!',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => '',
         'forums' => '',
         'busy' => '',
-    ],
-
-    'poll' => [
-        'edit_warning' => '',
-
-        'actions' => [
-            'edit' => '',
-        ],
     ],
 
     'post' => [
@@ -71,6 +71,12 @@ return [
             'destroy' => 'Radera inlägg',
             'restore' => 'Återställ inlägg',
             'edit' => 'Redigera inlägg',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => 'startad av :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Förhandsvisning',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -290,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Rösta',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Enkät kommer avslutas :time',

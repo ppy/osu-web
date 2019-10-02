@@ -36,7 +36,7 @@ return [
     ],
 
     'stat' => [
-        'accuracy' => 'Precyzja',
+        'accuracy' => 'Celność',
         'active_users' => 'Aktywni użytkownicy',
         'country' => 'Kraj',
         'play_count' => 'Liczba zagrań',

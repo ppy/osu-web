@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'Approved日 ',
             'favourite' => 'ビートマップセットをお気に入りに追加する',
-            'favourited_count' => '+ そのほか:count人！',
             'logged-out' => 'ビートマップをダウンロードするにはログインが必要です！',
             'loved' => 'loved追加日 ',
             'mapped_by' => '作者 :mapper',

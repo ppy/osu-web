@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Diskusi terkunci',
         'first_post' => 'Tidak dapat menghapus postingan awal.',
+
+        'attributes' => [
+            'message' => 'Isi pesan',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Tingkat kesulitan yang tidak valid ditentukan.',
         'invalid_beatmapset_id' => 'Beatmap yang tidak valid ditentukan.',
         'locked' => 'Diskusi dikunci.',
+
+        'attributes' => [
+            'message_type' => 'Tipe pesan',
+            'timestamp' => 'Keterangan Waktu',
+        ],
 
         'hype' => [
             'guest' => 'Silakan masuk untuk dapat memberikan hype.',
@@ -53,10 +62,14 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Membalas komentar yang sudah dihapus tidak diperbolehkan.',
+
+        'attributes' => [
+            'message' => 'Isi pesan',
+        ],
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => ':attribute yang Ditentukan Tidak Valid.',
     ],
 
     'forum' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Menghapus posting metadata beatmap tidak diizinkan.',
             'beatmapset_post_no_edit' => 'Menyunting posting metadata beatmap tidak diizinkan.',
             'only_quote' => 'Balasan Anda hanya berisi kutipan.',
+
+            'attributes' => [
+                'post_text' => 'Isi postingan',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => 'Judul topik',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,11 +106,27 @@ return [
             'minimum_one_selection' => 'Diperlukan setidaknya satu opsi per pengguna.',
             'minimum_two_options' => 'Diperlukan setidaknya dua opsi',
             'too_many_options' => 'Jumlah maksimum opsi melebihi yang diizinkan.',
+
+            'attributes' => [
+                'title' => 'Judul pemungutan suara',
+            ],
         ],
 
         'topic_vote' => [
             'required' => 'Pilih opsi saat memilih.',
             'too_many' => 'Jumlah pilihan Anda lebih banyak dari yang diizinkan.',
+        ],
+    ],
+
+    'oauth' => [
+        'client' => [
+            'too_many' => 'Jumlah aplikasi OAuth melebihi batas maksimal.',
+            'url' => 'Harap masukkan URL valid.',
+
+            'attributes' => [
+                'name' => 'Nama Aplikasi',
+                'redirect' => 'Callback URL Aplikasi',
+            ],
         ],
     ],
 
@@ -115,6 +154,12 @@ return [
         'wrong_password_confirmation' => 'Konfirmasi kata sandi tidak cocok.',
         'too_long' => 'Melebihi batas maksimum - hanya bisa hingga :limit karakter.',
 
+        'attributes' => [
+            'username' => 'Nama Pengguna',
+            'user_email' => 'Alamat Email',
+            'password' => 'Kata Sandi',
+        ],
+
         'change_username' => [
             'restricted' => 'Anda tidak dapat mengganti nama pengguna Anda selama dibatasi.',
             'supporter_required' => [
@@ -127,5 +172,14 @@ return [
 
     'user_report' => [
         'self' => "Anda tidak dapat melaporkan diri Anda sendiri!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => 'Jumlah',
+                'cost' => 'Biaya',
+            ],
+        ],
     ],
 ];

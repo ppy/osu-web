@@ -27,7 +27,7 @@ return [
         'title' => 'Willkommen',
 
         'slogan' => [
-            'main' => 'das allerbeste free-to-play rhythmusspiel',
+            'main' => 'das besteste free-to-play rhythmusspiel',
             'sub' => 'der rhythmus ist nur einen klick entfernt',
         ],
     ],

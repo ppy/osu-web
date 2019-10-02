@@ -70,7 +70,7 @@ class RankingController extends Controller
                 abort(404);
             }
 
-            if (request()->has('country') && !in_array($type, static::SPOTLIGHT_TYPES, true)) {
+            if (request()->has('country') && $type === 'performance') {
                 $countryStats = CountryStatistics::where('display', 1)
                     ->where('country_code', request('country'))
                     ->first();
@@ -97,20 +97,11 @@ class RankingController extends Controller
         $modeInt = Beatmap::modeInt($mode);
 
         if ($type === 'country') {
-            $maxResults = CountryStatistics::where('display', 1)
-                ->where('mode', $modeInt)
-                ->count();
-
             $stats = CountryStatistics::where('display', 1)
                 ->with('country')
                 ->where('mode', $modeInt)
                 ->orderBy('performance', 'desc');
         } else {
-            $maxResults = min(
-                $this->country !== null ? $this->country->usercount : static::MAX_RESULTS,
-                static::MAX_RESULTS
-            );
-
             $class = UserStatistics\Model::getClass($mode);
             $table = (new $class)->getTable();
             $stats = $class
@@ -120,27 +111,37 @@ class RankingController extends Controller
                     $userQuery->default();
                 });
 
-            if ($this->country !== null) {
-                $stats->where('country_acronym', $this->country['acronym']);
-            }
-
             if ($type === 'performance') {
-                $stats
-                    ->orderBy('rank_score', 'desc')
-                    ->from(DB::raw("{$table} FORCE INDEX (rank_score)"));
+                if ($this->country !== null) {
+                    $stats
+                        ->where('country_acronym', $this->country['acronym'])
+                        // preferrable to rank_score when filtering by country
+                        ->from(DB::raw("{$table} FORCE INDEX (country_acronym_2)"));
+                } else {
+                    // force to order by rank_score instead of sucking down entire users table first.
+                    $stats->from(DB::raw("{$table} FORCE INDEX (rank_score)"));
+                }
+
+                $stats->orderBy('rank_score', 'desc');
             } else { // 'score'
                 $stats
-                    ->orderBy('ranked_score', 'desc')
-                    ->from(DB::raw("{$table} FORCE INDEX (ranked_score)"));
+                    // force to order by ranked_score instead of sucking down entire users table first.
+                    ->from(DB::raw("{$table} FORCE INDEX (ranked_score)"))
+                    ->orderBy('ranked_score', 'desc');
+            }
+
+            if (is_api_request()) {
+                $stats->with(['user.userProfileCustomization']);
+            }
+
+            if (is_api_request()) {
+                $stats->with(['user.userProfileCustomization']);
             }
         }
 
+        $maxResults = $this->maxResults($modeInt);
         $maxPages = ceil($maxResults / static::PAGE_SIZE);
         $page = clamp(get_int(request('page')), 1, $maxPages);
-
-        if (is_api_request()) {
-            $stats->with(['user.userProfileCustomization']);
-        }
 
         $stats = $stats->limit(static::PAGE_SIZE)
             ->offset(static::PAGE_SIZE * ($page - 1))
@@ -216,5 +217,19 @@ class RankingController extends Controller
     private function optionFromSpotlight(Spotlight $spotlight) : array
     {
         return ['id' => $spotlight->chart_id, 'text' => $spotlight->name];
+    }
+
+    private function maxResults($modeInt)
+    {
+        if (request('type') === 'country') {
+            return CountryStatistics::where('display', 1)
+                ->where('mode', $modeInt)
+                ->count();
+        }
+
+        return min(
+            $this->country !== null ? $this->country->usercount : static::MAX_RESULTS,
+            static::MAX_RESULTS
+        );
     }
 }

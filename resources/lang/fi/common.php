@@ -37,6 +37,7 @@ return [
         'change' => 'vaihda',
         'click_to_copy' => 'kopioi leikepöydälle',
         'click_to_copy_copied' => 'kopioitu leikepöydälle!',
+        'close' => '',
         'collapse' => 'kutista',
         'delete' => 'Poista',
         'edit' => 'Muokkaa',
@@ -58,6 +59,7 @@ return [
         'show_deleted' => 'Näytä poistetut',
         'show_more' => 'näytä lisää',
         'show_more_options' => 'näytä lisävaihtoehtoja',
+        'update' => '',
         'upload_image' => 'lataa kuva',
 
         'watch' => [
@@ -75,8 +77,12 @@ return [
         'minute_short_unit' => 'm | m',
         'minutes' => ':count_delimited minuutti|:count_delimited minuuttia',
         'months' => ':count kuukausi|:count kuukautta',
+        'plus_others' => '',
+        'post' => '',
         'second_short_unit' => 's|s',
+        'star_priority' => '',
         'update' => '',
+        'view' => '',
         'years' => ':count vuosi|:count vuotta',
     ],
 

@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Dar positivo a esta discussão',
-            'down' => 'Dar negativo a esta discussão',
+            'none' => [
+                'down' => 'Ainda sem votos negativos',
+                'up' => 'Ainda sem votos positivos',
+            ],
+            'latest' => [
+                'down' => 'Últimos votos negativos',
+                'up' => 'Últimos votos positivos',
+            ],
         ],
     ],
 
@@ -196,8 +202,8 @@ return [
 
     'listing' => [
         'search' => [
-            'prompt' => 'digita em palavras-chave...',
-            'login_required' => 'Inicia sessão para pesquisar.',
+            'prompt' => 'escreve em palavras-chave...',
+            'login_required' => 'Inicia sessão para procurar',
             'options' => 'Mais Opções de Pesquisa',
             'supporter_filter' => 'Filtrar por :filters requer uma etiqueta de osu!supporter',
             'not-found' => 'sem resultados',
@@ -218,7 +224,7 @@ return [
                 'difficulty' => 'Dificuldade',
                 'favourites' => 'Favoritos',
                 'updated' => 'Atualizado',
-                'ranked' => 'Classificado',
+                'ranked' => 'Classificados',
                 'rating' => 'Avaliação',
                 'plays' => 'Partidas',
                 'relevance' => 'Relevância',
@@ -244,14 +250,14 @@ return [
     'status' => [
         'any' => 'Qualquer',
         'approved' => 'Aprovados',
-        'favourites' => '',
+        'favourites' => 'Favoritos',
         'graveyard' => 'Cemitério',
-        'leaderboard' => '',
+        'leaderboard' => 'Possui uma Tabela de Classificações',
         'loved' => 'Adorados',
-        'mine' => '',
+        'mine' => 'Meus Mapas',
         'pending' => 'Pendente & WIP',
         'qualified' => 'Qualificados',
-        'ranked' => '',
+        'ranked' => 'Classificados',
     ],
     'genre' => [
         'any' => 'Qualquer',
@@ -280,6 +286,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => 'Link alternativo',
         'NC' => '',
         'NF' => '',
         'NM' => '',

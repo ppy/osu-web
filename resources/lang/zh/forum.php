@@ -25,6 +25,8 @@ return [
     'title' => 'osu! 论坛',
 
     'covers' => [
+        'edit' => '编辑封面',
+
         'create' => [
             '_' => '设置封面',
             'button' => '上传图片',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '最新帖子',
+
+        'index' => [
+            'title' => '论坛主页',
+        ],
+
         'topics' => [
             'empty' => '没有主题！',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => '标记版块为已读',
         'forums' => '标记版块为已读',
         'busy' => '标记为已读…',
-    ],
-
-    'poll' => [
-        'edit_warning' => '编辑投票将清空当前投票结果！',
-
-        'actions' => [
-            'edit' => '编辑投票',
-        ],
     ],
 
     'post' => [
@@ -73,9 +73,15 @@ return [
             'edit' => '编辑回复',
         ],
 
+        'create' => [
+            'title' => [
+                'reply' => '新回复',
+            ],
+        ],
+
         'info' => [
             'post_count' => ':count_delimited 帖子',
-            'topic_starter' => '主题开启者',
+            'topic_starter' => '楼主',
         ],
     ],
 
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => '由 :user 发起',
 
         'create' => [
+            'close' => '关闭',
             'preview' => '预览',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -290,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '编辑投票',
+                'edit_warning' => '编辑投票将清空当前投票结果！',
                 'vote' => '投票',
+
+                'button' => [
+                    'change_vote' => '更改投票',
+                    'edit' => '编辑投票',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => '将于 :time 结束',

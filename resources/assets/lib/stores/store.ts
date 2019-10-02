@@ -26,5 +26,5 @@ export default abstract class Store implements DispatchListener {
     dispatcher.register(this);
   }
 
-  abstract handleDispatchAction(action: DispatcherAction): void;
+  handleDispatchAction(action: DispatcherAction) { /* do nothing */ }
 }

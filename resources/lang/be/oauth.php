@@ -33,7 +33,7 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
+    'authorized_clients' => [
         'confirm_revoke' => '',
         'scopes_title' => '',
         'owned_by' => '',
@@ -45,9 +45,27 @@ return [
         ],
     ],
 
+    'client' => [
+        'id' => '',
+        'name' => '',
+        'redirect' => '',
+        'secret' => '',
+    ],
+
     'login' => [
         'download' => 'Націсніце тут, каб спампаваць гульню і стварыць уліковы запіс',
         'label' => 'Спачатку вам трэба ўвайсці ва ўлік. запіс!',
         'title' => 'Увайсці ва ўліковы запіс',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '',
+        'new' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 ];

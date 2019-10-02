@@ -25,6 +25,8 @@ return [
     'title' => 'osu! fóra',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Přidat titulní obrázek',
             'button' => 'Nahrát obrázek',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '',
+
+        'index' => [
+            'title' => '',
+        ],
+
         'topics' => [
             'empty' => 'Žádná témata!',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => 'Označit fórum jako přečtené',
         'forums' => 'Označit fóra jako přečtená',
         'busy' => 'Označuju jako přečtené...',
-    ],
-
-    'poll' => [
-        'edit_warning' => 'Změna v hlasování vymaže stávající výsledky!',
-
-        'actions' => [
-            'edit' => 'Upravit hlasování',
-        ],
     ],
 
     'post' => [
@@ -71,6 +71,12 @@ return [
             'destroy' => 'Odstranit příspěvek',
             'restore' => 'Obnovit příspěvek',
             'edit' => 'Upravit příspěvek',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => 'započal :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Náhled',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -290,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Hlasovat',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Hlasování skončí za :time',

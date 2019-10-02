@@ -52,8 +52,8 @@ export class DetailBar extends React.PureComponent
         button
           className: 'profile-page-toggle'
           onClick: @props.toggleExtend
-          title: osu.trans("common.buttons.#{if @props.extended then 'collapse' else 'expand'}")
-          if @props.extended
+          title: osu.trans("common.buttons.#{if @props.expanded then 'collapse' else 'expand'}")
+          if @props.expanded
             span className: 'fas fa-chevron-up'
           else
             span className: 'fas fa-chevron-down'
@@ -77,7 +77,7 @@ export class DetailBar extends React.PureComponent
         @renderExtraMenu()
 
       div className: "#{bn}__column #{bn}__column--right",
-        if @props.extended
+        if @props.expanded
           div
             title: osu.trans('users.show.stats.level_progress')
             className: "#{bn}__entry #{bn}__entry--level-progress"
@@ -89,11 +89,11 @@ export class DetailBar extends React.PureComponent
               div className: "bar__text",
                 "#{@props.stats.level.progress}%"
 
-        if !@props.extended
+        if !@props.expanded
           div className: "#{bn}__entry #{bn}__entry--ranking",
             el Rank, type: 'global', stats: @props.stats
 
-        if !@props.extended
+        if !@props.expanded
           div className: "#{bn}__entry #{bn}__entry--ranking",
             el Rank, type: 'country', stats: @props.stats
 

@@ -52,6 +52,9 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     {
         parent::setUp();
 
+        // change config setting because we need more than 1 for the tests.
+        config()->set('osu.oauth.max_user_clients', 100);
+
         // Force connections to reset even if transactional tests were not used.
         // Should fix tests going wonky when different queue drivers are used, or anything that
         // breaks assumptions of object destructor timing.
@@ -80,6 +83,13 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         });
 
         $user->withAccessToken($token);
+    }
+
+    protected function fileList($path, $suffix)
+    {
+        return array_map(function ($file) use ($path, $suffix) {
+            return [basename($file, $suffix), $path];
+        }, glob("{$path}/*{$suffix}"));
     }
 
     protected function invokeMethod($obj, string $name, array $params = [])

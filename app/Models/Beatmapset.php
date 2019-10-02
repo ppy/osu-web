@@ -342,12 +342,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         return $this->approved > 0;
     }
 
-    // TODO: remove this and update the coffee side names to match isScoreable.
-    public function hasScores()
-    {
-        return $this->attributes['approved'] > 0;
-    }
-
     public static function latestRankedOrApproved($count = 5)
     {
         // TODO: add filtering by game mode after mode-toggle UI/UX happens
@@ -364,8 +358,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     public static function mostPlayedToday($mode = 'osu', $count = 5)
     {
         // TODO: this only returns based on osu mode plays for now, add other game modes after mode-toggle UI/UX happens
-
-        return Cache::remember("beatmapsets_most_played_today_{$mode}_{$count}", 60, function () use ($mode, $count) {
+        return cache_remember_mutexed("beatmapsets_most_played_today_{$mode}_{$count}", 60, [], function () use ($count) {
             $counts = Score\Osu::selectRaw('beatmapset_id, count(*) as playcount')
                     ->whereNotIn('beatmapset_id', self::BUNDLED_IDS)
                     ->groupBy('beatmapset_id')
@@ -970,6 +963,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
                 'beatmapDiscussions.beatmapDiscussionVotes',
                 'beatmapDiscussions.beatmapset',
                 'beatmapDiscussions.beatmap',
+                'beatmapDiscussions.beatmapDiscussionVotes',
             ])->find($this->getKey()),
             'Beatmapset',
             [
@@ -978,10 +972,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable
                 'discussions',
                 'discussions.current_user_attributes',
                 'discussions.posts',
+                'discussions.votes',
                 'events',
                 'nominations',
                 'related_users',
-                'related_users.groups',
+                'related_users.group_badge',
             ]
         );
     }
@@ -1157,5 +1152,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         static $pattern = '/^(.*?)-{15}/s';
 
         return preg_replace($pattern, '', $text);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('active', function ($builder) {
+            $builder->active();
+        });
     }
 }

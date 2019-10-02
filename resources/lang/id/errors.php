@@ -37,6 +37,11 @@ return [
     'checkout' => [
         'generic' => 'Terjadi kesalahan ketika akan melangsungkan proses check-out.',
     ],
+    'search' => [
+        'default' => 'Hasil tidak ditemukan, coba lagi nanti.',
+        'operation_timeout_exception' => 'Aktivitas pencarian saat ini lebih sibuk dari biasanya, coba lagi nanti.',
+    ],
+
     'logged_out' => 'Anda telah keluar. Mohon masuk dan coba lagi.',
     'supporter_only' => 'Anda harus menjadi supporter untuk menggunakan fitur ini.',
     'no_restricted_access' => 'Anda tidak dapat melakukan tindakan ini saat akun Anda sedang dibatasi.',

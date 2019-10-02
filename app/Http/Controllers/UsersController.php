@@ -29,7 +29,6 @@ use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\User;
-use App\Models\UsernameChangeHistory;
 use App\Models\UserNotFound;
 use Auth;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
@@ -81,7 +80,7 @@ class UsersController extends Controller
 
     public function checkUsernameAvailability()
     {
-        $username = Request::input('username');
+        $username = Request::input('username') ?? '';
 
         $errors = Auth::user()->validateChangeUsername($username);
 
@@ -236,18 +235,7 @@ class UsersController extends Controller
         // If no user is found, search for a previous username
         // only if parameter is not a number (assume number is an id lookup).
 
-        $user = User::lookup($id, null, true);
-
-        if ($user === null) {
-            $change = UsernameChangeHistory::visible()
-                ->where('username_last', $id)
-                ->orderBy('change_id', 'desc')
-                ->first();
-
-            if ($change !== null) {
-                $user = User::lookup($change->user_id, 'id');
-            }
-        }
+        $user = User::lookupWithHistory($id, null, true);
 
         if ($user === null || !priv_check('UserShow', $user)->can()) {
             if (is_json_request()) {

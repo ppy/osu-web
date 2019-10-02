@@ -44,7 +44,7 @@ class Kernel extends HttpKernel
         Middleware\VerifyPrivilegedUser::class,
         Middleware\CheckUserBanStatus::class,
         Middleware\TurbolinksSupport::class,
-        \ChaseConey\LaravelDatadogHelper\Middleware\LaravelDatadogMiddleware::class,
+        Middleware\DatadogMetrics::class,
     ];
 
     protected $middlewareGroups = [

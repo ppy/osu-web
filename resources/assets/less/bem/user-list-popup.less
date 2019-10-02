@@ -1,0 +1,62 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.user-list-popup {
+  @avatar-size: 32px;
+  @avatar-margin: 1px;
+  @columns: 10;
+  @columns-mobile: 5;
+
+  z-index: @z-index--user-card-tooltip !important;
+
+  background-color: .osu-hsla(@osu-colour-b6, 0.75)[@hsla];
+  color: white;
+  font-size: @font-size--normal;
+  max-width: ((@avatar-size + 2*@avatar-margin) * @columns) + 20px;
+  padding: 5px;
+
+  .default-border-radius();
+  .default-box-shadow();
+
+  @media @mobile {
+    max-width: ((@avatar-size + 2*@avatar-margin) * @columns-mobile) + 20px;
+  }
+
+  &__title {
+    margin-bottom: 10px;
+  }
+
+  &__user {
+    .default-border-radius();
+    display: inline-block;
+    width: @avatar-size;
+    height: @avatar-size;
+    margin: 0px @avatar-margin;
+    overflow: hidden;
+  }
+
+  &__remainder-count {
+    text-align: right;
+    margin-top: 5px;
+  }
+
+  // fix qtip's padding
+  .qtip-content {
+    padding: 5px;
+  }
+}

@@ -23,6 +23,34 @@
   color: white;
   padding: 2px 10px;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &--alumni {
+    color: @osu-colour-group-alumni;
+    &::before {
+      content: 'OLD';
+
+      @media @desktop {
+        content: 'ALUMNI';
+      }
+    }
+  }
+
+  &--bng {
+    color: @osu-colour-group-bng;
+    &::before {
+      content: 'BN';
+    }
+  }
+
+  &--bng_limited {
+    color: @osu-colour-group-bng;
+    &::before {
+      content: 'BN';
+    }
+  }
 
   &--bot {
     background-color: @osu-colour-group-bot;
@@ -46,6 +74,17 @@
     }
   }
 
+  &--mapper {
+    color: @osu-colour-blue-1;
+    &::before {
+      content: 'MAP';
+
+      @media @desktop {
+        content: 'MAPPER';
+      }
+    }
+  }
+
   &--nat {
     color: @osu-colour-group-nat;
     &::before {
@@ -53,38 +92,37 @@
     }
   }
 
-  &--bng {
-    color: @osu-colour-group-bng;
+  &--ppy {
+    color: @osu-colour-group-ppy;
     &::before {
-      content: 'BN';
-    }
-  }
-
-  &--bng_limited {
-    color: @osu-colour-group-bng;
-    &::before {
-      content: 'BN';
-    }
-  }
-
-  &--alumni {
-    color: @osu-colour-group-alumni;
-    &::before {
-      content: 'ALUMNI';
+      content: 'PPY';
     }
   }
 
   &--support {
     color: @osu-colour-group-support;
     &::before {
-      content: 'SUPPORT';
+      content: 'SPT';
+
+      @media @desktop {
+        content: 'SUPPORT';
+      }
     }
   }
 
-  &--mapper {
-    color: @osu-colour-blue-1;
-    &::before {
-      content: 'MAPPER';
+  // actual modifiers start here
+  &--t-forum {
+    width: 100%;
+    font-size: @font-size--tiny;
+    padding-left: 0;
+    padding-right: 0;
+
+    @media @desktop {
+      margin: auto;
+      width: min-content;
+      font-size: @font-size--small;
+      padding-left: 20px;
+      padding-right: 20px;
     }
   }
 }

@@ -37,6 +37,7 @@ return [
         'change' => 'wijzigen',
         'click_to_copy' => 'klik om naar klembord te kopiëren',
         'click_to_copy_copied' => 'gekopiëerd naar klembord!',
+        'close' => '',
         'collapse' => 'samenvouwen',
         'delete' => 'Verwijder',
         'edit' => 'Bewerk',
@@ -58,11 +59,12 @@ return [
         'show_deleted' => 'Toon verwijderd',
         'show_more' => 'toon meer',
         'show_more_options' => 'toon meer opties',
+        'update' => '',
         'upload_image' => 'upload afbeelding',
 
         'watch' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Niet meer volgen',
+            'to_1' => 'Bekijk',
         ],
     ],
 
@@ -75,8 +77,12 @@ return [
         'minute_short_unit' => 'minuut|minuten',
         'minutes' => ':count_delimited minuut|:count_delimited minuten',
         'months' => ':count maand|:count maanden',
+        'plus_others' => '',
+        'post' => ':count_delimited bericht|:count_delimited berichten',
         'second_short_unit' => 'second|seconden',
-        'update' => '',
+        'star_priority' => ':count_delimited ster prioriteit|:count_delimited ster prioriteiten',
+        'update' => ':count_delimited update|:count_delimited updates',
+        'view' => ':count_delimited weergave|:count_delimited weergaven',
         'years' => ':count jaar|:count jaar',
     ],
 

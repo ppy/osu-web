@@ -25,6 +25,8 @@ return [
     'title' => 'osu! 포럼',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => '표지 이미지 설정',
             'button' => '이미지 업로드',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '최근 게시글',
+
+        'index' => [
+            'title' => '포럼 목차',
+        ],
+
         'topics' => [
             'empty' => '주제글이 아무것도 없습니다!',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => '포럼을 읽음으로 표시',
         'forums' => '포럼을 읽음으로 표시',
         'busy' => '읽음으로 표시하는 중...',
-    ],
-
-    'poll' => [
-        'edit_warning' => '투표를 수정하면 현재 결과가 제거됩니다!',
-
-        'actions' => [
-            'edit' => '투표 수정',
-        ],
     ],
 
     'post' => [
@@ -71,6 +71,12 @@ return [
             'destroy' => '삭제',
             'restore' => '복원',
             'edit' => '수정',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => ':user 님이 시작함',
 
         'create' => [
+            'close' => '',
             'preview' => '미리보기',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -153,7 +160,7 @@ return [
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => '이 주제를 구독 해제하시겠습니까?',
+                'confirmation' => '이 주제를 구독 해제하시겠어요?',
                 'title' => '구독 해제',
             ],
         ],
@@ -290,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => '투표',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => '투표가 :time에 종료됩니다.',

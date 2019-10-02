@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - Ritim sadece bir *tık* uzakta! Ouendan/EBA, Taiko ve orijinal oyun modlarıyla, hem de tamamiyle işlevsel seviye editörüyle beraber.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Topluluk',
+
+            'forum' => 'Forum',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => '',
+        'fullscreen' => '',
+        'zoom' => '',
+        'previous' => '',
+        'next' => '',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'anasayfa',
             'account-edit' => 'ayarlar',
+            'account-verifyLink' => 'Doğrulama Tamamlandı',
             'friends-index' => 'arkadaşlar',
             'changelog-index' => 'değişiklikler',
             'changelog-build' => 'sürüm',
@@ -127,8 +144,8 @@ return [
             'modding-history-posts' => 'kullanıcı modlama gönderileri',
             'modding-history-votesGiven' => 'kullanıcı verilen modlama oyları',
             'modding-history-votesReceived' => 'kullanıcı alınan modlama oyları',
-            'oauth_login' => '',
-            'oauth_request' => '',
+            'oauth_login' => 'oauth için giriş yapın',
+            'oauth_request' => 'oauth doğrulaması',
             'settings' => 'Ayarlar',
         ],
         'store' => [

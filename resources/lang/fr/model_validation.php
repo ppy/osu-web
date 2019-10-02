@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'La discussion est verrouillée.',
         'first_post' => 'Impossible de supprimer le post de départ.',
+
+        'attributes' => [
+            'message' => 'Le message',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Difficulté spécifiée invalide.',
         'invalid_beatmapset_id' => 'Beatmap spécifiée invalide',
         'locked' => 'La discussion est verrouillée.',
+
+        'attributes' => [
+            'message_type' => 'Type de message',
+            'timestamp' => 'Horodatage',
+        ],
 
         'hype' => [
             'guest' => 'Vous devez être connecté pour hyper.',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Répondre à un commentaire supprimé n\'est pas autorisé.',
+
+        'attributes' => [
+            'message' => 'Le message',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Supprimer les métadonnées d\'une beatmap n\'est pas autorisé.',
             'beatmapset_post_no_edit' => 'Modifier les métadonnées d\'une beatmap n\'est pas autorisé.',
             'only_quote' => 'Votre réponse ne contient qu\'une citation.',
+
+            'attributes' => [
+                'post_text' => 'Contenu du post',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => 'Titre du sujet',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,11 +106,27 @@ return [
             'minimum_one_selection' => 'Un minimum d\'une réponse par utilisateur est nécessaire.',
             'minimum_two_options' => 'Au moins 2 réponses nécéssaires.',
             'too_many_options' => 'Nombre maximal de réponses dépassés.',
+
+            'attributes' => [
+                'title' => 'Titre du sondage',
+            ],
         ],
 
         'topic_vote' => [
             'required' => 'Séléctionnez une option pour voter.',
             'too_many' => 'Vous avez choisi trop de réponses.',
+        ],
+    ],
+
+    'oauth' => [
+        'client' => [
+            'too_many' => 'Nombre maximal d\'applications OAuth autorisées dépassé.',
+            'url' => 'Veuillez saisir une URL valide.',
+
+            'attributes' => [
+                'name' => 'Nom de l\'application',
+                'redirect' => 'URL de retour de l\'application',
+            ],
         ],
     ],
 
@@ -115,6 +154,12 @@ return [
         'wrong_password_confirmation' => 'La confirmation du mot de passe ne correspond pas.',
         'too_long' => 'Longueur maximale atteinte - elle est de :limit caractères.',
 
+        'attributes' => [
+            'username' => 'Nom d\'utilisateur',
+            'user_email' => 'Adresse e-mail',
+            'password' => 'Mot de passe',
+        ],
+
         'change_username' => [
             'restricted' => 'Vous ne pouvez pas changer votre nom d\'utilisateur pendant que vous êtes restreint.',
             'supporter_required' => [
@@ -127,5 +172,14 @@ return [
 
     'user_report' => [
         'self' => "Vous ne pouvez pas vous signaler vous-même !",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => 'Quantité',
+                'cost' => 'Coût',
+            ],
+        ],
     ],
 ];

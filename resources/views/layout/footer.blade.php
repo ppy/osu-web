@@ -15,14 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@php
-    $blockClass = 'no-print footer';
-
-    foreach ($modifiers ?? [] as $modifier) {
-        $blockClass .= " footer--{$modifier}";
-    }
-@endphp
-<footer class="{{ $blockClass }}">
+<footer class="no-print {{ class_with_modifiers('footer', $modifiers ?? []) }}">
     @if ($withLinks ?? true)
         <div class="footer__row">
             @foreach (footer_legal_links() as $action => $link)

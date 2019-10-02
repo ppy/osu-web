@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'rules' => 'Veuillez vous assurer que votre avatar adhère à :link.<br/>Cela signifie qu\'il doit être <strong>adapté à tous les âges</strong>. c\'est-à-dire pas de nudité, de profanation ou de contenu suggestif.',
+            'rules_link' => 'les règles de la communauté',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Profil',
 
             'user' => [
+                'user_discord' => 'discord',
                 'user_from' => 'localisation actuelle',
                 'user_interests' => 'centres d\'intérêt',
                 'user_msnm' => 'skype',
                 'user_occ' => 'occupation',
                 'user_twitter' => 'twitter',
                 'user_website' => 'site web',
-                'user_discord' => 'discord',
             ],
         ],
 
@@ -62,9 +64,38 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => 'Notifications',
+        'topic_auto_subscribe' => 'activer automatiquement les notifications sur les nouveaux sujets de forum que vous créez',
+    ],
+
     'oauth' => [
-        'title' => '',
-        'authorized_clients' => '',
+        'authorized_clients' => 'clients autorisés',
+        'own_clients' => 'clients',
+        'title' => 'OAuth',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'clavier',
+        'mouse' => 'souris',
+        'tablet' => 'tablette',
+        'title' => 'Styles de jeu',
+        'touch' => 'écran tactile',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'Bloque les messages privés des personnes qui ne sont pas dans votre liste d’amis',
+        'hide_online' => 'masquer votre présence en ligne',
+        'title' => 'Confidentialité',
+    ],
+
+    'security' => [
+        'current_session' => 'actuel',
+        'end_session' => 'Mettre fin à la session',
+        'end_session_confirmation' => 'Ceci va immédiatement mettre fin à votre session sur cet appareil. Êtes-vous sûr ?',
+        'last_active' => 'Dernière activité:',
+        'title' => 'Sécurité',
+        'web_sessions' => 'sessions web',
     ],
 
     'update_email' => [
@@ -77,31 +108,12 @@ return [
         'update' => 'mettre à jour',
     ],
 
-    'playstyles' => [
-        'title' => 'Styles de jeu',
-        'mouse' => 'souris',
-        'keyboard' => 'clavier',
-        'tablet' => 'tablette',
-        'touch' => 'écran tactile',
+    'verification_completed' => [
+        'text' => 'Vous pouvez maintenant fermer cet onglet/cette fenêtre',
+        'title' => 'La vérification est terminée',
     ],
 
-    'privacy' => [
-        'title' => 'Confidentialité',
-        'friends_only' => 'Bloque les messages privés des personnes qui ne sont pas dans votre liste d’amis',
-        'hide_online' => 'masquer votre présence en ligne',
-    ],
-
-    'notifications' => [
-        'title' => 'Notifications',
-        'topic_auto_subscribe' => 'activer automatiquement les notifications sur les nouveaux sujets de forum que vous créez',
-    ],
-
-    'security' => [
-        'current_session' => 'actuel',
-        'end_session' => 'Mettre fin à la session',
-        'end_session_confirmation' => 'Ceci va immédiatement mettre fin à votre session sur cet appareil. Êtes-vous sûr ?',
-        'last_active' => 'Dernière activité:',
-        'title' => 'Sécurité',
-        'web_sessions' => 'sessions web',
+    'verification_invalid' => [
+        'title' => 'Lien de vérification invalide ou expiré',
     ],
 ];

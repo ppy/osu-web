@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Проголосовать за это обсуждение',
-            'down' => 'Проголосовать против этого обсуждения',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 
@@ -244,14 +250,14 @@ return [
     'status' => [
         'any' => 'Все',
         'approved' => 'Одобренные',
-        'favourites' => '',
+        'favourites' => 'Избранные',
         'graveyard' => 'Заброшенные',
-        'leaderboard' => '',
+        'leaderboard' => 'С таблицей рекордов',
         'loved' => 'Любимые',
-        'mine' => '',
+        'mine' => 'Мои карты',
         'pending' => 'Ожидающие и в процессе разработки',
         'qualified' => 'Квалифицированные',
-        'ranked' => '',
+        'ranked' => 'Рейтинговые',
     ],
     'genre' => [
         'any' => 'Все',
@@ -280,6 +286,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',
@@ -299,7 +306,7 @@ return [
         'japanese' => 'Японский',
         'korean' => 'Корейский',
         'spanish' => 'Испанский',
-        'swedish' => 'Швецкий',
+        'swedish' => 'Шведский',
         'instrumental' => 'Инструментальный',
         'other' => 'Другой',
     ],

@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - Rhythm is just a *click* away!  With Ouendan/EBA, Taiko and original gameplay modes, as well as a fully functional level editor.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '社群',
+
+            'forum' => '論壇',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => '關閉 (Esc)',
+        'fullscreen' => '切換全螢幕',
+        'zoom' => '放大/縮小',
+        'previous' => '',
+        'next' => '',
+    ],
+
     'menu' => [
         'home' => [
             '_' => '首頁',
             'account-edit' => '設定',
+            'account-verifyLink' => '驗證已完成',
             'friends-index' => '好友',
             'changelog-index' => '更新日誌',
             'changelog-build' => '版本',
@@ -35,7 +52,7 @@ return [
             'groups-show' => '群組',
             'index' => '看板',
             'legal-show' => '資訊',
-            'messages-index' => '',
+            'messages-index' => '訊息',
             'news-index' => '新聞',
             'news-show' => '新聞',
             'password-reset-index' => '重設密碼',
@@ -78,13 +95,13 @@ return [
         ],
         'community' => [
             '_' => '社群',
-            'chat' => '',
-            'chat-index' => '',
+            'chat' => '對話',
+            'chat-index' => '對話',
             'dev' => '開發',
             'getForum' => '論壇',
             'getLive' => '直播',
-            'comments-index' => '',
-            'comments-show' => '',
+            'comments-index' => '評論',
+            'comments-show' => '評論',
             'contests' => '評選',
             'profile' => '個人簡介',
             'tournaments' => '官方比賽',
@@ -139,7 +156,7 @@ return [
 
             'getCheckout' => '結帳',
             'getInvoice' => '發票',
-            'orders-index' => '',
+            'orders-index' => '訂單記錄',
             'products-show' => '商品',
 
             'new' => '最新消息',

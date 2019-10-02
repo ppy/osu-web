@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - Rytmen er bare et *klikk* unna! Med Ouendan/EBA, Taiko og originale spillmoduser, samt en fullt funskjonell nivåredigerer.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => 'Forum',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => '',
+        'fullscreen' => '',
+        'zoom' => '',
+        'previous' => '',
+        'next' => '',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'hjem',
             'account-edit' => 'instillinger',
+            'account-verifyLink' => '',
             'friends-index' => 'venner',
             'changelog-index' => 'endringslogg',
             'changelog-build' => 'versjon',

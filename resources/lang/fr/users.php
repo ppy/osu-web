@@ -149,10 +149,14 @@ return [
                     'button' => 'Mettre en ligne l\'image',
                     'dropzone' => 'Déplacez ici pour uploader',
                     'dropzone_info' => 'Vous pouvez aussi glisser-déposer l\'image ici pour la mettre en ligne',
-                    'restriction_info' => "Mise en ligne disponible pour les <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> uniquement",
                     'size_info' => 'La taille de la bannière devrait être de 2800x620',
                     'too_large' => 'Le fichier est trop volumineux.',
                     'unsupported_format' => 'Format non supporté.',
+
+                    'restriction_info' => [
+                        '_' => 'Mise en ligne disponible pour les :link uniquement',
+                        'link' => 'osu!supporters',
+                    ],
                 ],
             ],
 
@@ -164,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count abonné|:count abonnés',
+            'none' => 'aucun',
             'unranked' => 'Aucune partie récente',
 
             'achievements' => [
@@ -192,6 +197,16 @@ return [
                     'title' => 'Beatmaps en attente',
                 ],
             ],
+            'discussions' => [
+                'title' => 'Discussions',
+                'title_longer' => 'Discussions récentes',
+                'show_more' => 'voir plus de discussions',
+            ],
+            'events' => [
+                'title' => 'Événements',
+                'title_longer' => 'Événements récents',
+                'show_more' => 'voir plus d\'événements',
+            ],
             'historical' => [
                 'empty' => 'Aucune performance enregistrée. :(',
                 'title' => 'Historique',
@@ -219,7 +234,6 @@ return [
                 'recent_entries' => 'Historique de Kudosu récent',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu reçus au total',
-                'total_info' => 'Basé sur la contribution de l\'utilisateur à la modération de beatmaps. Voir <a href="'.osu_url('user.kudosu').'">cette page</a> pour plus d\'informations.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -259,6 +273,11 @@ return [
                         'revoke' => 'Kudosu refusé par :giver pour le post sur :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => 'Basé sur la quantité d\'une contribution que l\'utilisateur a apportée à la modération de la beatmap. Voir :link pour plus d\'informations.',
+                    'link' => 'cette page',
+                ],
             ],
             'me' => [
                 'title' => 'moi !',
@@ -267,6 +286,11 @@ return [
                 'empty' => "Cet utilisateur n'en a encore jamais reçue. ;_;",
                 'recent' => 'Dernier',
                 'title' => 'Médailles',
+            ],
+            'posts' => [
+                'title' => 'Messages',
+                'title_longer' => 'Messages récents',
+                'show_more' => 'voir plus de messages',
             ],
             'recent_activity' => [
                 'title' => 'Activité récente',
@@ -284,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Premières places',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Votes donnés (3 derniers mois)',
+                'received' => 'Votes reçus (3 derniers mois)',
+                'title' => 'Votes',
+                'title_longer' => 'Votes récents',
+                'vote_count' => ':count_delimited vote|:count_delimited votes',
             ],
             'account_standing' => [
                 'title' => 'Statut du compte',
@@ -335,7 +366,11 @@ return [
             'description' => '<strong>Moi !</strong> est une zone personnalisable du profil.',
             'edit_big' => 'Éditez-moi !',
             'placeholder' => 'Tapez le contenu de la page',
-            'restriction_info' => "Vous devez être <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> pour débloquer cette fonctionnalité.",
+
+            'restriction_info' => [
+                '_' => 'Vous devez être un :link pour déverrouiller cette fonctionnalité.',
+                'link' => 'osu!supporter',
+            ],
         ],
         'post_count' => [
             '_' => 'A contribué à :link',
@@ -360,6 +395,11 @@ return [
             'score_ranks' => 'Classements de Scores',
             'total_hits' => 'Nombre de clics',
             'total_score' => 'Score total',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Beatmaps classées et approuvées',
+            'loved_beatmapset_count' => 'Beatmaps adorées',
+            'unranked_beatmapset_count' => 'Beatmaps en attente',
+            'graveyard_beatmapset_count' => 'Beatmaps dans le cimetière',
         ],
     ],
 
@@ -373,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'Vérification de compte',
+    ],
+
+    'view_mode' => [
+        'card' => 'Vue en carte',
+        'list' => 'Vue en liste',
     ],
 ];

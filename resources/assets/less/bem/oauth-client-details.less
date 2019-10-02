@@ -1,0 +1,94 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.oauth-client-details {
+  .default-border-radius();
+
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  padding: 20px;
+  font-size: 14px;
+  min-width: 320px;
+  max-width: 480px;
+
+  background-color: @osu-colour-b4;
+  color: @osu-colour-c1;
+
+  &__buttons {
+    display: grid;
+    grid-gap: 5px;
+    min-width: 200px;
+    margin: 10px 0;
+    align-self: center;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__error {
+    margin-top: 5px;
+    color: @osu-colour-red-1;
+    padding-left: 10px;
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+  }
+
+  &__header {
+    margin-bottom: 10px;
+    font-size: @font-size--title;
+  }
+
+  &__input {
+    .reset-input();
+    .default-border-radius();
+
+    flex: 1;
+    align-self: stretch;
+    background-color: @osu-colour-b3;
+    border: 2px solid transparent;
+    padding: 5px;
+
+    @media @mobile {
+      font-size: @font-size--phone-input;
+    }
+
+    &:focus {
+      border-color: @osu-colour-l1;
+    }
+
+    &--has-error {
+      border-color: @osu-colour-red-1;
+    }
+  }
+
+  &__label {
+    color: @osu-colour-f1;
+  }
+
+  &__link {
+    .link-default();
+  }
+}

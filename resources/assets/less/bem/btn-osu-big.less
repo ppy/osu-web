@@ -51,8 +51,7 @@
   }
 
   &--account-edit {
-    display: block;
-    width: @avatar-size--base;
+    min-width: @avatar-size--base;
     padding: 7px 10px;
     text-align: left;
   }
@@ -114,6 +113,21 @@
     }
   }
 
+  &--danger {
+    background-color: @red;
+
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: @red-light;
+    };
+
+    &[disabled] {
+      background-color: @osu-colour-b3;
+      color: @osu-colour-f1;
+    }
+  }
+
   &--download-landing {
     .default-box-shadow();
     .default-text-shadow();
@@ -155,27 +169,108 @@
   }
 
   &--forum-button {
-    border-radius: 18px;
-    padding: 0 10px;
-    height: 36px;
-    min-width: @forum-topic-new-topic-button--width;
+    padding: 8px 15px;
+
+    background-color: @osu-colour-blue-3;
+    border-radius: 10000px;
+    .default-text-shadow();
+    font-weight: normal;
     // remove line descenders on <a>; should probably go on the block if
     // the existing doesn't magically break.
     vertical-align: middle;
 
-    .@{top}__icon {
-      font-size: 120%;
+    &:focus,
+    &:hover {
+      background-color: @osu-colour-blue-2;
+      color: @osu-colour-c1;
     }
 
-    @media @narrow {
-      flex: 1;
+    &:active {
+      background-color: @osu-colour-blue-3;
+      color: @osu-colour-c1;
+    }
+
+    &[disabled] {
+      background-color: @osu-colour-b3;
+      color: @osu-colour-f1;
+    }
+  }
+
+  &--forum-cover {
+    .default-text-shadow();
+    background-color: @osu-colour-orange-3;
+    color: @osu-colour-c1;
+    padding: 8px 15px;
+    border-radius: 100000px;
+    font-weight: normal;
+
+    .link-hover({
+      background-color: @osu-colour-orange-2;
+    });
+
+    &[disabled] {
+      background-color: @osu-colour-orange-3;
+      color: @osu-colour-c1;
+      opacity: 0.5;
+    }
+  }
+
+  &--forum-cover-edit {
+    margin: 10px 15px;
+    min-width: 135px;
+  }
+
+  &--forum-primary {
+    border-radius: 10000px;
+    padding: 8px 20px;
+    background-color: @osu-colour-lime-3;
+    font-weight: normal;
+    .default-text-shadow();
+
+    .link-hover({
+      background-color: @osu-colour-lime-2;
+    });
+
+    &[disabled] {
+      background-color: @osu-colour-lime-3;
+      color: @osu-colour-c1;
+      opacity: 0.5;
     }
   }
 
   &--forum-reply {
-    border-radius: (@btn-circle-diameter / 2);
-    padding: 0 5px;
+    margin: 0 3px;
+    border-radius: 10000px;
+    padding: 0 10px;
     height: @btn-circle-diameter;
+    background-color: @osu-colour-l4;
+
+    &:focus {
+      background-color: @osu-colour-l4;
+    }
+
+    &:hover,
+    &:active {
+      background-color: @osu-colour-l3;
+    }
+  }
+
+  &--forum-secondary {
+    border-radius: 10000px;
+    padding: 8px 20px;
+    background-color: @osu-colour-blue-3;
+    font-weight: normal;
+    .default-text-shadow();
+
+    .link-hover({
+      background-color: @osu-colour-blue-2;
+    });
+
+    &[disabled] {
+      background-color: @osu-colour-blue-3;
+      color: @osu-colour-c1;
+      opacity: 0.5;
+    }
   }
 
   &--full {
@@ -211,6 +306,11 @@
     flex: 1 0 auto;
     text-transform: lowercase;
     margin: 0 5px;
+  }
+
+  &--settings-oauth {
+    margin: 0 5px 5px 5px;
+    min-width: 70px;
   }
 
   &--wrap-text {
@@ -332,6 +432,16 @@
     }
   }
 
+  &__loading-spinner {
+    position: absolute;
+    right: 10px;
+    opacity: 0;
+
+    .@{top}[data-state="loading"] & {
+      opacity: 1;
+    }
+  }
+
   &__text-top {
     .@{top}--user-homepage & {
       margin-bottom: 5px;
@@ -354,6 +464,16 @@
     .@{top}--download-page & {
       font-style: italic;
       .default-text-shadow;
+    }
+  }
+
+  &__toggle {
+    margin: 0 5px;
+    color: @osu-colour-d1;
+
+    .@{top}.js-activated & {
+      color: @osu-colour-c1;
+      text-shadow: 0 0 10px @osu-colour-c2;
     }
   }
 }

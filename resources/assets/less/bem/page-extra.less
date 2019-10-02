@@ -129,30 +129,22 @@
     }
   }
 
-  &__title {
-    display: inline-block;
-    color: #fff;
-    border-bottom: 2px solid @osu-colour-h1;
-    padding-bottom: 5px;
-    margin: 0 0 20px;
+  &__subtitle {
+    font-size: 14px;
     font-style: normal;
-    font-weight: bold;
-    font-size: @font-size--title-small-3;
+    color: white;
+    margin: 20px 0px;
 
-    &--small {
-      margin-top: 20px;
-      padding-bottom: 0;
-      border-bottom: none;
-      font-size: @font-size--title-small-3;
+    &::before {
+      content: ' ';
+      .full-size();
+      width: 4px;
+      height: 12px;
+      margin-top: 2px;
+      background: @osu-colour-h1;
+      margin-left: -15px;
+      .default-border-radius();
     }
-  }
-
-  &__title-count {
-    color: @osu-colour-f1;
-    background-color: @osu-colour-b6;
-    margin-left: 5px;
-    padding: 5px 10px;
-    border-radius: 10000px;
   }
 
   &__dragdrop-toggle {

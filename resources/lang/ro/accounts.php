@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'rules' => 'Te rog asigură-te că avatar-ul tău respectă :link<br/>Asta înseamnă că trebuie să fie <strong>adecvat pentru toate vârstele</strong>. Care să nu conțină nuditate, profanare sau conținut sugestiv.',
+            'rules_link' => 'regulile comunității',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Profil',
 
             'user' => [
+                'user_discord' => '',
                 'user_from' => 'locație curentă',
                 'user_interests' => 'interese',
                 'user_msnm' => '',
                 'user_occ' => 'ocupație',
                 'user_twitter' => '',
                 'user_website' => 'site web',
-                'user_discord' => '',
             ],
         ],
 
@@ -62,9 +64,38 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => 'Notificări',
+        'topic_auto_subscribe' => '',
+    ],
+
     'oauth' => [
-        'title' => '',
         'authorized_clients' => '',
+        'own_clients' => '',
+        'title' => '',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'tastatură',
+        'mouse' => 'mouse',
+        'tablet' => 'tabletă',
+        'title' => 'Stiluri de joc',
+        'touch' => 'touch',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'Blochează mesajele private de la oameni care nu sunt pe lista ta de prieteni',
+        'hide_online' => 'ascunde-ți prezența online',
+        'title' => 'Confidențialitate',
+    ],
+
+    'security' => [
+        'current_session' => 'curent',
+        'end_session' => 'Încheie sesiunea',
+        'end_session_confirmation' => 'Acest lucru iți va încheia imediat sesiunea pe acel dispozitiv. Ești sigur?',
+        'last_active' => 'Ultima conectare:',
+        'title' => 'Securitate',
+        'web_sessions' => 'sesiuni web',
     ],
 
     'update_email' => [
@@ -77,31 +108,12 @@ return [
         'update' => 'actualizează',
     ],
 
-    'playstyles' => [
-        'title' => 'Stiluri de joc',
-        'mouse' => 'mouse',
-        'keyboard' => 'tastatură',
-        'tablet' => 'tabletă',
-        'touch' => 'touch',
+    'verification_completed' => [
+        'text' => 'Poți închide această fereastră acum',
+        'title' => 'Verificarea a fost finalizată',
     ],
 
-    'privacy' => [
-        'title' => 'Confidențialitate',
-        'friends_only' => 'Blochează mesajele private de la oameni care nu sunt pe lista ta de prieteni',
-        'hide_online' => 'ascunde-ți prezența online',
-    ],
-
-    'notifications' => [
-        'title' => '',
-        'topic_auto_subscribe' => '',
-    ],
-
-    'security' => [
-        'current_session' => 'curent',
-        'end_session' => 'Încheie sesiunea',
-        'end_session_confirmation' => 'Acest lucru iți va încheia imediat sesiunea pe acel dispozitiv. Ești sigur?',
-        'last_active' => 'Ultima conectare:',
-        'title' => 'Securitate',
-        'web_sessions' => 'sesiuni web',
+    'verification_invalid' => [
+        'title' => 'Link de verificare invalid sau expirat',
     ],
 ];
