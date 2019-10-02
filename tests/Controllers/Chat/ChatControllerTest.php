@@ -27,34 +27,9 @@ class ChatControllerTest extends TestCase
 
     protected static $faker;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$faker = Faker\Factory::create();
-    }
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $trx = [];
-        $db = $this->app->make('db');
-        foreach (array_keys(config('database.connections')) as $name) {
-            $connection = $db->connection($name);
-
-            // connections with different names but to the same database share the same pdo connection.
-            $id = $connection->select('SELECT CONNECTION_ID() as connection_id')[0]->connection_id;
-            // Avoid setting isolation level or starting transaction more than once on a pdo connection.
-            if (!in_array($id, $trx, true)) {
-                $trx[] = $id;
-
-                // allow uncommitted changes be visible across connections.
-                $connection->statement('SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED');
-                $connection->beginTransaction();
-            }
-        }
-
-        $this->user = factory(User::class)->create();
-        $this->anotherUser = factory(User::class)->create();
     }
 
     //region POST /chat/new - Create New PM
@@ -464,4 +439,29 @@ class ChatControllerTest extends TestCase
     }
 
     //endregion
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $trx = [];
+        $db = $this->app->make('db');
+        foreach (array_keys(config('database.connections')) as $name) {
+            $connection = $db->connection($name);
+
+            // connections with different names but to the same database share the same pdo connection.
+            $id = $connection->select('SELECT CONNECTION_ID() as connection_id')[0]->connection_id;
+            // Avoid setting isolation level or starting transaction more than once on a pdo connection.
+            if (!in_array($id, $trx, true)) {
+                $trx[] = $id;
+
+                // allow uncommitted changes be visible across connections.
+                $connection->statement('SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED');
+                $connection->beginTransaction();
+            }
+        }
+
+        $this->user = factory(User::class)->create();
+        $this->anotherUser = factory(User::class)->create();
+    }
 }

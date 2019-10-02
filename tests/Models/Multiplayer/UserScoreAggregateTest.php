@@ -31,13 +31,6 @@ class UserScoreAggregateTest extends TestCase
 {
     private $room;
 
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->room = factory(Room::class)->create();
-    }
-
     public function testStartingPlayIncreasesAttempts()
     {
         $user = factory(User::class)->create();
@@ -185,6 +178,13 @@ class UserScoreAggregateTest extends TestCase
 
         $this->assertSame(0.65, $result['pp']);
         $this->assertSame(0.65, $result['accuracy']);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->room = factory(Room::class)->create();
     }
 
     private function playlistItem()
