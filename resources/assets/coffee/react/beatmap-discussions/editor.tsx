@@ -16,12 +16,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import isHotkey from 'is-hotkey';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { Value } from 'slate';
 import { Editor as SlateEditor } from 'slate';
 import InstantReplace from 'slate-instant-replace';
-import { Editor as SlateReactEditor, findDOMNode, RenderBlockProps, RenderInlineProps } from 'slate-react';
+import {
+  Editor as SlateReactEditor,
+  findDOMNode,
+  RenderBlockProps,
+  RenderInlineProps,
+  RenderMarkProps,
+} from 'slate-react';
 import SoftBreak from 'slate-soft-break';
 import EditorDiscussionComponent from './editor-discussion-component';
 
@@ -112,6 +119,25 @@ export default class Editor extends React.Component<any, any> {
     });
   }
 
+  onKeyDown = (event: KeyboardEvent, editor: SlateEditor, next: () => any) => {
+    let mark;
+
+    if (editor.value.anchorBlock.type === 'embed') {
+      return next();
+    }
+
+    if (isHotkey('mod+b', event)) {
+      mark = 'bold';
+    } else if (isHotkey('mod+i', event)) {
+      mark = 'italic';
+    } else {
+      return next();
+    }
+
+    event.preventDefault();
+    editor.toggleMark(mark);
+  }
+
   render(): React.ReactNode {
     const cssClasses = 'beatmap-discussion-new-float';
     const bn = 'beatmap-discussion-newer';
@@ -127,16 +153,43 @@ export default class Editor extends React.Component<any, any> {
                   <SlateReactEditor
                     value={this.state.value}
                     onChange={this.onChange}
+                    onKeyDown={this.onKeyDown}
                     plugins={this.plugins}
                     renderBlock={this.renderBlock}
                     renderInline={this.renderInline}
+                    renderMark={this.renderMark}
                     ref={this.editor}
                   />
-                  <div className='forum-post-edit__buttons forum-post-edit__buttons--actions'>
-                      <div className='forum-post-edit__button'>
-                          <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>
-                            log
-                        </button>
+                  <div className='forum-post-edit__buttons-bar'>
+                    <div className='forum-post-edit__buttons forum-post-edit__buttons--toolbar'>
+                      <div className='post-box-toolbar'>
+                          <button
+                              className='btn-circle btn-circle--bbcode'
+                              title='Bold'
+                              type='button'
+                          >
+                              <span className='btn-circle__content'>
+                                  <i className='fas fa-bold'/>
+                              </span>
+                          </button>
+
+                          <button
+                              className='btn-circle btn-circle--bbcode'
+                              title='Italic'
+                              type='button'
+                          >
+                              <span className='btn-circle__content'>
+                                  <i className='fas fa-italic'/>
+                              </span>
+                          </button>
+                      </div>
+                    </div>
+                    <div className='forum-post-edit__buttons forum-post-edit__buttons--actions'>
+                        <div className='forum-post-edit__button'>
+                            <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>
+                              log
+                          </button>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -181,13 +234,15 @@ export default class Editor extends React.Component<any, any> {
   renderBlock = (props: RenderBlockProps, editor: SlateEditor, next: () => any) => {
     switch (props.node.type) {
       case 'embed':
-        return <EditorDiscussionComponent
-          beatmapset={this.props.beatmapset}
-          currentBeatmap={this.props.currentBeatmap}
-          currentDiscussions={this.props.currentDiscussions}
-          beatmaps={_.flatten(_.values(this.props.beatmaps))}
-          {...props}
-        />;
+        return (
+          <EditorDiscussionComponent
+            beatmapset={this.props.beatmapset}
+            currentBeatmap={this.props.currentBeatmap}
+            currentDiscussions={this.props.currentDiscussions}
+            beatmaps={_.flatten(_.values(this.props.beatmaps))}
+            {...props}
+          />
+        );
       default:
         return next();
     }
@@ -205,6 +260,19 @@ export default class Editor extends React.Component<any, any> {
           </span>
         );
       }
+      default:
+        return next();
+    }
+  }
+
+  renderMark = (props: RenderMarkProps, editor: SlateEditor, next: () => any) => {
+    const { children, mark, attributes } = props;
+
+    switch (mark.type) {
+      case 'bold':
+        return <strong {...attributes}>{children}</strong>;
+      case 'italic':
+        return <em {...attributes}>{children}</em>;
       default:
         return next();
     }
