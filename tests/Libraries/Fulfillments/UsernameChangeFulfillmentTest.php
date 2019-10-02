@@ -20,6 +20,8 @@
 
 namespace Tests;
 
+use App\Exceptions\ChangeUsernameException;
+use App\Libraries\Fulfillments\FulfillmentException;
 use App\Libraries\Fulfillments\UsernameChangeFulfillment;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
@@ -75,9 +77,6 @@ class UsernameChangeFulfillmentTest extends TestCase
         $this->assertNull($this->user->username_previous);
     }
 
-    /**
-     * @expectedException \App\Libraries\Fulfillments\FulfillmentException
-     */
     public function testRevokeWhenNameDoesNotMatch()
     {
         $orderItem = factory(OrderItem::class, 'username_change')->create([
@@ -86,12 +85,11 @@ class UsernameChangeFulfillmentTest extends TestCase
         ]);
 
         $fulfiller = new UsernameChangeFulfillment($this->order);
+
+        $this->expectException(FulfillmentException::class);
         $fulfiller->revoke();
     }
 
-    /**
-     * @expectedException \App\Exceptions\ChangeUsernameException
-     */
     public function testRevokeWhenPreviousUsernameIsNull()
     {
         $orderItem = factory(OrderItem::class, 'username_change')->create([
@@ -100,12 +98,11 @@ class UsernameChangeFulfillmentTest extends TestCase
         ]);
 
         $fulfiller = new UsernameChangeFulfillment($this->order);
+
+        $this->expectException(ChangeUsernameException::class);
         $fulfiller->revoke();
     }
 
-    /**
-     * @expectedException \App\Libraries\Fulfillments\FulfillmentException
-     */
     public function testRunWhenInsuffientPaid()
     {
         $orderItem = factory(OrderItem::class, 'username_change')->create([
@@ -122,12 +119,11 @@ class UsernameChangeFulfillmentTest extends TestCase
         $history->saveOrExplode();
 
         $fulfiller = new UsernameChangeFulfillment($this->order);
+
+        $this->expectException(FulfillmentException::class);
         $fulfiller->run();
     }
 
-    /**
-     * @expectedException \App\Libraries\Fulfillments\FulfillmentException
-     */
     public function testRunWhenUsernameIsTaken()
     {
         factory(User::class)->create([
@@ -141,6 +137,8 @@ class UsernameChangeFulfillmentTest extends TestCase
         ]);
 
         $fulfiller = new UsernameChangeFulfillment($this->order);
+
+        $this->expectException(FulfillmentException::class);
         $fulfiller->run();
     }
 }
