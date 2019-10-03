@@ -47,6 +47,8 @@ use Carbon\Carbon;
  */
 class Artist extends Model
 {
+    static $memoized = [];
+
     public function label()
     {
         return $this->belongsTo(Label::class);
@@ -62,8 +64,20 @@ class Artist extends Model
         return $this->hasMany(ArtistTrack::class);
     }
 
-    public function isNew()
+    public function hasNewTracks()
     {
-        return $this->created_at->diffInDays() < Carbon::now()->subMonth(1)->diffInDays();
+        if (!array_key_exists('recentlyUpdatedArtists', self::$memoized)) {
+            self::$memoized['recentlyUpdatedArtists'] =
+                cache_remember_mutexed('recentlyUpdatedArtists', 5, [], function () {
+                    return ArtistTrack::where('created_at', '>', Carbon::now()->subMonth(1))
+                        ->select('artist_id')
+                        ->groupBy('artist_id')
+                        ->get()
+                        ->pluck('artist_id')
+                        ->toArray();
+                });
+        }
+
+        return in_array($this->id, self::$memoized['recentlyUpdatedArtists']);
     }
 }
