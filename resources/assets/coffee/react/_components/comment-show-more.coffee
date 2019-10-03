@@ -82,7 +82,7 @@ export class CommentShowMore extends React.PureComponent
       commentable_type: @props.parent?.commentable_type ? @props.commentableType
       commentable_id: @props.parent?.commentable_id ? @props.commentableId
       parent_id: @props.parent?.id ? 0
-      sort: @props.sort
+      sort: uiState.comments.currentSort
 
     lastComment = _.last(@props.comments)
     if lastComment?
