@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests;
+namespace Tests\Libraries\Fulfillments;
 
 use App\Libraries\Fulfillments\BannerFulfillment;
 use App\Libraries\Fulfillments\FulfillmentFactory;
@@ -30,7 +30,7 @@ use App\Models\Store\Product;
 use App\Models\Tournament;
 use App\Models\User;
 use Carbon\Carbon;
-use TestCase;
+use Tests\TestCase;
 
 class BannerFulfillmentTest extends TestCase
 {

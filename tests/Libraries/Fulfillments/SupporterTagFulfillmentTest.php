@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests;
+namespace Tests\Libraries\Fulfillments;
 
 use App\Libraries\Fulfillments\SupporterTagFulfillment;
 use App\Mail\DonationThanks;
@@ -30,7 +30,7 @@ use App\Models\User;
 use App\Models\UserDonation;
 use Carbon\Carbon;
 use Mail;
-use TestCase;
+use Tests\TestCase;
 
 class SupporterTagFulfillmentTest extends TestCase
 {

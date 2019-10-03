@@ -1,10 +1,13 @@
 <?php
 
+namespace Tests\Controllers;
+
 use App\Models\Beatmapset;
 use App\Models\Comment;
 use App\Models\Follow;
 use App\Models\Notification;
 use App\Models\User;
+use Tests\TestCase;
 
 class CommentsControllerTest extends TestCase
 {

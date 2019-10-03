@@ -18,12 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests\Payments;
+namespace Tests\Controllers\Payments;
 
 use App\Libraries\Payments\ShopifySignature;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
-use TestCase;
+use Tests\TestCase;
 
 class ShopifyControllerTest extends TestCase
 {

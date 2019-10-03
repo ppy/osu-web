@@ -1,9 +1,13 @@
 <?php
 
+namespace Tests\Controllers;
+
 use App\Models\Forum;
 use App\Models\User;
 use App\Models\UserGroup;
 use App\Models\UserStatistics\Osu as StatisticsOsu;
+use DB;
+use Tests\TestCase;
 
 class ForumTopicsControllerTest extends TestCase
 {

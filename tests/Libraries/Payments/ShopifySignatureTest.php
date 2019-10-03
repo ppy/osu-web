@@ -18,11 +18,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests;
+namespace Tests\Libraries\Payments;
 
 use App\Libraries\Payments\ShopifySignature;
 use Config;
-use TestCase;
+use Tests\TestCase;
 
 class ShopifySignatureTest extends TestCase
 {

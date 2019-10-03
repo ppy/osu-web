@@ -18,14 +18,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests\Multiplayer;
+namespace Tests\Models\Multiplayer;
 
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use App\Models\Multiplayer\RoomScore;
 use App\Models\Multiplayer\UserScoreAggregate;
 use App\Models\User;
-use TestCase;
+use Tests\TestCase;
 
 class UserScoreAggregateTest extends TestCase
 {

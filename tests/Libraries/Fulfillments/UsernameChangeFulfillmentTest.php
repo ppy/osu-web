@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests;
+namespace Tests\Libraries\Fulfillments;
 
 use App\Exceptions\ChangeUsernameException;
 use App\Libraries\Fulfillments\FulfillmentException;
@@ -28,7 +28,7 @@ use App\Models\Store\OrderItem;
 use App\Models\User;
 use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
-use TestCase;
+use Tests\TestCase;
 
 class UsernameChangeFulfillmentTest extends TestCase
 {

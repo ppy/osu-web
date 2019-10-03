@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Controllers;
+
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -8,6 +10,7 @@ use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserGroup;
 use App\Models\UserNotification;
+use Tests\TestCase;
 
 class BeatmapDiscussionPostsControllerTest extends TestCase
 {
