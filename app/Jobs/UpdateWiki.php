@@ -2,14 +2,14 @@
 
 namespace App\Jobs;
 
+use App\Libraries\OsuWiki;
 use App\Models\Wiki\Image;
 use App\Models\Wiki\Page;
 use App\Models\Wiki\WikiObject;
-use App\Libraries\OsuWiki;
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
 
 class UpdateWiki implements ShouldQueue
 {
@@ -82,7 +82,7 @@ class UpdateWiki implements ShouldQueue
         preg_match('/^(?:wiki\/)(.*)\/(.*)\.(.{2,})$/', $path, $matches);
 
         if (OsuWiki::isImage($path)) {
-            $path = $matches[1] . '/' . $matches[2] . '.' . $matches[3];
+            $path = $matches[1].'/'.$matches[2].'.'.$matches[3];
             return new Image($path);
         } else {
             return new Page($matches[1], $matches[2]);
