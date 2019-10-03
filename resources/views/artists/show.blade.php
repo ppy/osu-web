@@ -48,7 +48,7 @@
                             <div class="artist-album">
                                 <a class="fragment-target" name="album-{{$album['id']}}" id="album-{{$album['id']}}"></a>
                                 <div class="artist-album__header">
-                                    <div class="artist-album__header-overlay" style="background-image: url({{$album['cover_url']}});"></div>
+                                    <div class="artist-album__header-overlay{{$album['is_new'] ? ' artist-album__header-overlay--new' : ''}}" style="background-image: url({{$album['cover_url']}});"></div>
                                     <img class="artist-album__cover" src="{{$album['cover_url']}}">
                                     <span class="artist-album__title">{{$album['title']}}</span>
                                     <span class="artist-album__spacer"></span>
