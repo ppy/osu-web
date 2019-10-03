@@ -44,23 +44,6 @@
     }
   }
 
-  &__sidebar-album-link {
-    display: block;
-    text-align: center;
-    margin: 20px;
-    color: white;
-    &:hover, &:active {
-      color: white;
-      text-decoration: none;
-    }
-
-    &:hover {
-      .artist-album__header-overlay {
-        opacity: 0.2;
-      }
-    }
-  }
-
   &__admin-note {
     background-color: @osu-colour-h2;
     color: black;
@@ -175,6 +158,11 @@
     }
 
     &--albums {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
       @media @mobile {
         display: none;
       }

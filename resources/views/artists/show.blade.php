@@ -96,10 +96,17 @@
                 @if (count($albums) > 0)
                     <div class="artist__links-area artist__links-area--albums">
                         @foreach ($albums as $album)
-                            <a class="artist__sidebar-album-link" href="#album-{{$album['id']}}" data-turbolinks="false">
-                                <div class="artist-album__header-overlay artist-album__header-overlay--sidebar{{$album['is_new'] ? ' artist-album__header-overlay--new' : ''}}" style="background-image: url({{$album['cover_url']}});"></div>
-                                <img class="artist-album__cover artist-album__cover--sidebar" src="{{$album['cover_url']}}">
-                                <div class="artist-album__title artist-album__title--sidebar">{{$album['title']}}</div>
+                            <a class="artist-sidebar-album{{$album['is_new'] ? ' artist-sidebar-album--new' : ''}}" href="#album-{{$album['id']}}" data-turbolinks="false">
+                                <div class="artist-sidebar-album__cover-wrapper">
+                                    <div class="artist-sidebar-album__glow" style="background-image: url({{$album['cover_url']}});"></div>
+                                    <img class="artist-sidebar-album__cover" src="{{$album['cover_url']}}">
+                                    @if ($album['is_new'])
+                                        <span class="artist__badge-wrapper">
+                                            <span class="pill-badge pill-badge--yellow pill-badge--with-shadow">{{trans('common.badges.new')}}</span>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="artist-sidebar-album__title">{{$album['title']}}</div>
                             </a>
                         @endforeach
                     </div>

@@ -16,57 +16,63 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.artist-album {
-  background-color: @osu-colour-b4;
-  padding: 20px;
+.artist-sidebar-album {
+  @top: artist-sidebar-album;
+  text-align: center;
+  margin: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  .default-box-shadow();
-  overflow: hidden;
-  @media @desktop {
-    margin-bottom: 10px;
+
+  &:hover, &:active {
+    color: white;
+    text-decoration: none;
+  }
+
+  &:hover {
+    .@{top}__glow {
+      opacity: 0.4;
+    }
+  }
+
+  &__badge-wrapper {
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
 
   &__cover {
-    width: 64px;
-    height: 64px;
+    width: 128px;
+    height: 128px;
     .default-box-shadow();
+
+    .@{top}--new & {
+      box-shadow: 25px -10px 50px .osu-hsla(@osu-colour-orange-1, 0.2)[@hsla];
+    }
   }
 
-  &__header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+  &__cover-wrapper {
+    width: 128px;
+    height: 128px;
   }
 
-  &__header-overlay {
+  &__glow {
+    .full-size();
     background-size: cover;
     background-position: center;
-    width: 100%;
-    height: 100%;
-    position: absolute;
     filter: blur(20px);
-    -webkit-filter: blur(20px);
-    opacity: 0.5;
-    top: 0;
+    opacity: 0;
+    transition: 1s ease-in-out;
     // Hide this overlay in Internet Explorer
     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
       display: none;
     }
-
-    &--new {
-      &::after {
-        display: block;
-      }
-    }
-  }
-
-  &__spacer {
-    flex-grow: 1;
   }
 
   &__title {
-    padding: 10px;
-    font-size: 2em;
+    font-size: 14px;
+    margin-top: 5px;
     color: white;
     .default-text-shadow();
   }
