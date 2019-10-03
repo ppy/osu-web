@@ -47,7 +47,7 @@ use Carbon\Carbon;
  */
 class Artist extends Model
 {
-    static $memoized = [];
+    private static $memoized = [];
 
     public function label()
     {
@@ -78,6 +78,6 @@ class Artist extends Model
                 });
         }
 
-        return in_array($this->id, self::$memoized['recentlyUpdatedArtists']);
+        return in_array($this->id, self::$memoized['recentlyUpdatedArtists'], true);
     }
 }
