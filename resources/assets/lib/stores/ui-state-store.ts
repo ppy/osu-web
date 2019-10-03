@@ -89,6 +89,7 @@ export default class UIStateStore extends Store {
 
   @action
   initializeWithCommentBundleJSON(commentBundle: CommentBundleJSON) {
+    this.comments.hasMoreComments = {};
     this.comments.hasMoreComments[commentBundle.has_more_id] = commentBundle.has_more;
     this.comments.currentSort = commentBundle.sort as CommentSort;
     this.comments.userFollow = commentBundle.user_follow;
