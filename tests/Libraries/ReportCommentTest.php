@@ -26,12 +26,6 @@ class ReportCommentTest extends TestCase
 {
     private $reporter;
 
-    public function setUp()
-    {
-        parent::setUp();
-        $this->reporter = factory(User::class)->create();
-    }
-
     public function testCannotReportOwnComment()
     {
         $comment = $this->createComment($this->reporter);
@@ -64,6 +58,12 @@ class ReportCommentTest extends TestCase
         $this->assertSame($reportsCount + 1, $this->reporter->reportsMade()->count());
         $this->assertSame($report->user_id, $report->user_id);
         $this->assertTrue($report->reportable->is($comment));
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->reporter = factory(User::class)->create();
     }
 
     private function createComment($user)

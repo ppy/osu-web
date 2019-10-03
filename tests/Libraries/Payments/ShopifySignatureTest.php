@@ -26,17 +26,17 @@ use TestCase;
 
 class ShopifySignatureTest extends TestCase
 {
-    public function setUp()
-    {
-        parent::setUp();
-        Config::set('payments.shopify.webhook_key', 'magic');
-    }
-
     public function testCalculateSignature()
     {
         static $expected = 'Syw+KdQu/p0kqe9g2ttEdLFCRDb13IKygoZhQO4KO1w=';
         $signature = ShopifySignature::calculateSignature(file_get_contents(__DIR__.'/content.json'));
 
         $this->assertSame($expected, $signature);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        Config::set('payments.shopify.webhook_key', 'magic');
     }
 }
