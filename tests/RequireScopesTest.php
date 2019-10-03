@@ -17,26 +17,20 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests;
+
 use App\Exceptions\AuthorizationException;
 use App\Http\Middleware\RequireScopes;
 use App\Models\User;
 use Illuminate\Routing\Route;
 use Laravel\Passport\Exceptions\MissingScopeException;
+use Request;
 
 class RequireScopesTest extends TestCase
 {
     protected $next;
     protected $request;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->request = Request::create('/', 'GET');
-        $this->next = static function () {
-            // just an empty closure.
-        };
-    }
 
     public function testSingleton()
     {
@@ -212,6 +206,16 @@ class RequireScopesTest extends TestCase
 
             return $route;
         });
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->request = Request::create('/', 'GET');
+        $this->next = static function () {
+            // just an empty closure.
+        };
     }
 
     protected function setUser(?array $scopes = null)

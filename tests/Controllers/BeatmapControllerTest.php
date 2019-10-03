@@ -17,19 +17,15 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Controllers;
+
 use App\Models\Beatmap;
 use App\Models\User;
+use Tests\TestCase;
 
 class BeatmapControllerTest extends TestCase
 {
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->user = factory(User::class)->create();
-        $this->beatmap = factory(Beatmap::class)->states('approved')->create();
-    }
-
     public function testInvalidMode()
     {
         $this->json('GET', route('beatmaps.scores', $this->beatmap), [
@@ -69,5 +65,13 @@ class BeatmapControllerTest extends TestCase
             ->json('GET', route('beatmaps.scores', $this->beatmap), [
                 'type' => 'country',
             ])->assertStatus(200);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = factory(User::class)->create();
+        $this->beatmap = factory(Beatmap::class)->states('approved')->create();
     }
 }

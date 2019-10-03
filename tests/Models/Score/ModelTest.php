@@ -18,12 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests\Score;
+namespace Tests\Models\Score;
 
 use App\Exceptions\ClassNotFoundException;
 use App\Models\Beatmap;
 use App\Models\Score\Model;
-use TestCase;
+use Tests\TestCase;
 
 class ModelTest extends TestCase
 {

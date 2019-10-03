@@ -17,12 +17,18 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Laravel\Passport\Token;
 
-class TestCase extends Illuminate\Foundation\Testing\TestCase
+namespace Tests;
+
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Laravel\Passport\Token;
+use ReflectionMethod;
+use ReflectionProperty;
+
+class TestCase extends BaseTestCase
 {
-    use DatabaseTransactions;
+    use CreatesApplication, DatabaseTransactions;
 
     protected $connectionsToTransact = [
         'mysql',
@@ -34,21 +40,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
     protected $baseUrl = 'http://localhost';
 
-    /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
-    {
-        $app = require __DIR__.'/../bootstrap/app.php';
-
-        $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
-
-        return $app;
-    }
-
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

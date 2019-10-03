@@ -18,20 +18,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests;
+namespace Tests\Libraries\Payments;
 
 use App\Libraries\Payments\CentiliSignature;
 use Config;
-use TestCase;
+use Tests\TestCase;
 
 class CentiliSignatureTest extends TestCase
 {
-    public function setUp()
-    {
-        parent::setUp();
-        Config::set('payments.centili.secret_key', 'magic');
-    }
-
     public function testStringifyInput()
     {
         // sorts params and excludes 'sign'
@@ -68,5 +62,11 @@ class CentiliSignatureTest extends TestCase
         $signature = CentiliSignature::calculateSignature($params);
 
         $this->assertSame($expected, $signature);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        Config::set('payments.centili.secret_key', 'magic');
     }
 }
