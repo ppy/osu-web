@@ -16,7 +16,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import DispatcherAction from 'actions/dispatcher-action';
 import ChatStateStore from 'chat/chat-state-store';
 import { CommentBundleJSON } from 'interfaces/comment-json';
 import { Dictionary, orderBy } from 'lodash';
@@ -79,8 +78,6 @@ export default class UIStateStore extends Store {
     this.populateOrderedCommentsForParentId(parentId);
     return this.orderedCommentsByParentId[parentId];
   }
-
-  handleDispatchAction(dispatchedAction: DispatcherAction) { /* do nothing */}
 
   // TODO: all the methods below should be moved out
 
