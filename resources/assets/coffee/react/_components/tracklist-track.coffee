@@ -31,6 +31,10 @@ export class TracklistTrack extends React.Component
         span className: 'tracklist__name u-ellipsis-overflow',
           "#{@props.track.title} "
           span className: 'tracklist__version', @props.track.version
+        if @props.track.is_new
+          span className: 'tracklist__new',
+            span className: 'pill-badge pill-badge--yellow pill-badge--with-shadow', osu.trans('common.badges.new')
+
       td className: 'tracklist__length', @props.track.length
       td className: 'tracklist__bpm', "#{@props.track.bpm}bpm"
       td className: 'tracklist__genre u-ellipsis-overflow', @props.track.genre

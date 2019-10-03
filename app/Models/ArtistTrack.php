@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+
 /**
  * @property ArtistAlbum $album
  * @property int|null $album_id
@@ -50,5 +52,10 @@ class ArtistTrack extends Model
     public function album()
     {
         return $this->belongsTo(ArtistAlbum::class);
+    }
+
+    public function isNew()
+    {
+        return $this->created_at->diffInDays() < Carbon::now()->subMonth(1)->diffInDays();
     }
 }
