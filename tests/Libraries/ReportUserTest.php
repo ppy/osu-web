@@ -17,18 +17,17 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Libraries;
+
 use App\Exceptions\ValidationException;
 use App\Models\User;
+use Illuminate\Database\QueryException;
+use Tests\TestCase;
 
 class ReportUserTest extends TestCase
 {
     private $reporter;
-
-    public function setUp()
-    {
-        parent::setUp();
-        $this->reporter = factory(User::class)->create();
-    }
 
     public function testCannotReportSelf()
     {
@@ -40,7 +39,7 @@ class ReportUserTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $this->expectException(Illuminate\Database\QueryException::class);
+        $this->expectException(QueryException::class);
         $user->reportBy($this->reporter, [
             'reason' => 'NotAValidReason',
         ]);
@@ -57,5 +56,11 @@ class ReportUserTest extends TestCase
         $this->assertSame($reportsCount + 1, $this->reporter->reportsMade()->count());
         $this->assertSame($report->user_id, $report->user_id);
         $this->assertTrue($report->reportable->is($user));
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->reporter = factory(User::class)->create();
     }
 }

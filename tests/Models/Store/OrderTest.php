@@ -18,11 +18,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests;
+namespace Tests\Models\Store;
 
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
-use TestCase;
+use Tests\TestCase;
 
 class OrderTest extends TestCase
 {
