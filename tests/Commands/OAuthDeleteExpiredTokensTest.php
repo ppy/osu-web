@@ -18,12 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Test\Commands;
+namespace Tests\Commands;
 
 use App\Models\User;
 use DB;
 use Laravel\Passport\Token;
-use TestCase;
+use Tests\TestCase;
 
 class OAuthDeleteExpiredTokensTest extends TestCase
 {

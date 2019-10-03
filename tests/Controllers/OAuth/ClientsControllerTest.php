@@ -18,11 +18,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests\OAuth;
+namespace Tests\Controllers\OAuth;
 
 use App\Models\OAuth\Client;
 use App\Models\User;
-use TestCase;
+use Tests\TestCase;
 
 class ClientsControllerTest extends TestCase
 {

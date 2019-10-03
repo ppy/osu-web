@@ -16,9 +16,15 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Controllers\Chat;
+
 use App\Models\Chat;
 use App\Models\User;
+use App\Models\UserAccountHistory;
 use App\Models\UserRelation;
+use Faker;
+use Tests\TestCase;
 
 class ChatControllerTest extends TestCase
 {
@@ -120,7 +126,7 @@ class ChatControllerTest extends TestCase
         // TODO: convert $this->silencedUser to use afterCreatingState after upgrading to Laraval 5.6
         $silencedUser = factory(User::class)->create();
         $silencedUser->accountHistories()->save(
-            factory(App\Models\UserAccountHistory::class)->states('silence')->make()
+            factory(UserAccountHistory::class)->states('silence')->make()
         );
 
         $this->actAsScopedUser($silencedUser, ['*']);

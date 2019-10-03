@@ -17,8 +17,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Controllers;
+
 use App\Models\Score\Best\Osu;
 use App\Models\User;
+use Tests\TestCase;
 
 class ScoresControllerTest extends TestCase
 {

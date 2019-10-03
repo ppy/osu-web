@@ -22,7 +22,7 @@ namespace Tests\Transformers\OAuth;
 
 use App\Models\OAuth\Client;
 use App\Models\User;
-use TestCase;
+use Tests\TestCase;
 
 class ClientTransformerTest extends TestCase
 {

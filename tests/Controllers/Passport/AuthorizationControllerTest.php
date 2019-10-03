@@ -18,11 +18,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests\Passport;
+namespace Tests\Controllers\Passport;
 
 use App\Http\Controllers\Passport\AuthorizationController;
 use Mockery;
-use TestCase;
+use Tests\TestCase;
 use Zend\Diactoros\ServerRequest;
 
 class AuthorizationControllerTest extends TestCase

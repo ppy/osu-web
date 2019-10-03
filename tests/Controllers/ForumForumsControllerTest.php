@@ -1,6 +1,9 @@
 <?php
 
+namespace Tests\Controllers;
+
 use App\Models\Forum;
+use Tests\TestCase;
 
 class ForumForumsControllerTest extends TestCase
 {

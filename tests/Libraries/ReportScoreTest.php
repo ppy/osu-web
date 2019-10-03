@@ -17,10 +17,14 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Libraries;
+
 use App\Exceptions\ValidationException;
 use App\Models\Score\Best;
 use App\Models\User;
 use App\Models\UserReport;
+use Tests\TestCase;
 
 class ReportScoreTest extends TestCase
 {
