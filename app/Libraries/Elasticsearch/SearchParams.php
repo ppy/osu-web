@@ -52,7 +52,7 @@ abstract class SearchParams
      */
     abstract public function isCacheable() : bool;
 
-    public function blockedUsers()
+    public function blockedUserIds()
     {
         $user = auth()->user();
 
