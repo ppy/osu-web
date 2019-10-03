@@ -56,9 +56,14 @@ class ArtistsController extends Controller
             ->orderBy('id', 'desc')
             ->with(['tracks' => function ($query) {
                 $query->orderBy('display_order', 'ASC');
-            }])->get();
+            }, 'tracks.artist'])->get();
 
-        $tracks = $artist->tracks()->whereNull('album_id')->orderBy('id', 'desc')->get();
+        $tracks = $artist
+            ->tracks()
+            ->whereNull('album_id')
+            ->with('artist')
+            ->orderBy('id', 'desc')
+            ->get();
 
         $images = [
             'header_url' => $artist->header_url,
