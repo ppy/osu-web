@@ -8,13 +8,6 @@ class AccountControllerTest extends TestCase
 {
     private $user;
 
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->user = factory(User::class)->create();
-    }
-
     /**
      * Checks whether an OK status is returned when the
      * profile order update request is valid.
@@ -185,6 +178,13 @@ class AccountControllerTest extends TestCase
                 ],
             ])
             ->assertStatus(422);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = factory(User::class)->create();
     }
 
     private function user()

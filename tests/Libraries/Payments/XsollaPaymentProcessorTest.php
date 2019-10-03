@@ -31,13 +31,6 @@ use TestCase;
 
 class XsollaPaymentProcessorTest extends TestCase
 {
-    public function setUp()
-    {
-        parent::setUp();
-        Config::set('payments.xsolla.api_key', 'api_key');
-        $this->order = factory(Order::class)->states('checkout')->create();
-    }
-
     public function testWhenEverythingIsFine()
     {
         $params = $this->getTestParams();
@@ -140,6 +133,13 @@ class XsollaPaymentProcessorTest extends TestCase
         $errors = $subject->validationErrors()->all();
         $this->assertTrue($thrown);
         $this->assertArrayHasKey('order.items', $errors);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        Config::set('payments.xsolla.api_key', 'api_key');
+        $this->order = factory(Order::class)->states('checkout')->create();
     }
 
     private function getTestParams(array $overrides = [])

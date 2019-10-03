@@ -32,14 +32,6 @@ use TestCase;
 
 class UsernameChangeFulfillmentTest extends TestCase
 {
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->user = factory(User::class)->create(['osu_subscriptionexpiry' => Carbon::now()]);
-        $this->order = factory(Order::class, 'paid')->create(['user_id' => $this->user->user_id]);
-    }
-
     public function testRun()
     {
         $oldUsername = $this->user->username;
@@ -140,5 +132,13 @@ class UsernameChangeFulfillmentTest extends TestCase
 
         $this->expectException(FulfillmentException::class);
         $fulfiller->run();
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = factory(User::class)->create(['osu_subscriptionexpiry' => Carbon::now()]);
+        $this->order = factory(Order::class, 'paid')->create(['user_id' => $this->user->user_id]);
     }
 }

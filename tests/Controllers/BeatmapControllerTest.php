@@ -22,14 +22,6 @@ use App\Models\User;
 
 class BeatmapControllerTest extends TestCase
 {
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->user = factory(User::class)->create();
-        $this->beatmap = factory(Beatmap::class)->states('approved')->create();
-    }
-
     public function testInvalidMode()
     {
         $this->json('GET', route('beatmaps.scores', $this->beatmap), [
@@ -69,5 +61,13 @@ class BeatmapControllerTest extends TestCase
             ->json('GET', route('beatmaps.scores', $this->beatmap), [
                 'type' => 'country',
             ])->assertStatus(200);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = factory(User::class)->create();
+        $this->beatmap = factory(Beatmap::class)->states('approved')->create();
     }
 }

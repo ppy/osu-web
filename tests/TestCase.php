@@ -48,7 +48,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         return $app;
     }
 
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
