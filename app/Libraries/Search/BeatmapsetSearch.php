@@ -68,6 +68,7 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         $this->addBlacklistFilter($query);
+        $this->addBlockedUsersFilter($query);
         $this->addModeFilter($query);
         $this->addRecommendedFilter($query);
         $this->addGenreFilter($query);
@@ -105,6 +106,11 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         $query->filter($bool);
+    }
+
+    private function addBlockedUsersFilter($query)
+    {
+        $query->mustNot(['terms' => ['user_id' => $this->params->blockedUserIds()]]);
     }
 
     private function addExtraFilter($query)
