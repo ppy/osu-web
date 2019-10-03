@@ -56,7 +56,7 @@ abstract class SearchParams
     {
         $user = auth()->user();
 
-        return $user !== null ? $user->blocks()->pluck($user->qualifyColumn('user_id'))->toArray() : [];
+        return $user !== null ? $user->blockedUserIds()->toArray() : [];
     }
 
     public function isQueryStringTooShort()
