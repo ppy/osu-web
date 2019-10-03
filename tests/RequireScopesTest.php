@@ -32,16 +32,6 @@ class RequireScopesTest extends TestCase
     protected $next;
     protected $request;
 
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->request = Request::create('/', 'GET');
-        $this->next = static function () {
-            // just an empty closure.
-        };
-    }
-
     public function testSingleton()
     {
         $this->assertSame(app(RequireScopes::class), app(RequireScopes::class));
@@ -216,6 +206,16 @@ class RequireScopesTest extends TestCase
 
             return $route;
         });
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->request = Request::create('/', 'GET');
+        $this->next = static function () {
+            // just an empty closure.
+        };
     }
 
     protected function setUser(?array $scopes = null)

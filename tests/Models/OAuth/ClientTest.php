@@ -28,14 +28,6 @@ class ClientTest extends TestCase
 {
     protected $repository;
 
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->owner = factory(User::class)->create();
-        $this->client = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
-    }
-
     public function testScopesFromTokensAreAggregated()
     {
         $user = factory(User::class)->create();
@@ -206,5 +198,13 @@ class ClientTest extends TestCase
         $this->assertTrue($client->exists);
         $client->revoke();
         $this->assertTrue($client->fresh()->revoked);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->owner = factory(User::class)->create();
+        $this->client = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
     }
 }

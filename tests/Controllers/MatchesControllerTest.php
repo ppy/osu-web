@@ -33,25 +33,6 @@ class MatchesControllerTest extends TestCase
     private $publicMatchRoute;
     private $user;
 
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->user = factory(User::class)->create();
-
-        $this->publicMatch = factory(Match::class)->create();
-        factory(Event::class)->states('create')->create([
-            'match_id' => $this->publicMatch->match_id,
-        ]);
-        $this->publicMatchRoute = route('matches.show', $this->publicMatch->match_id);
-
-        $this->privateMatch = factory(Match::class)->states('private')->create();
-        factory(Event::class)->states('create')->create([
-            'match_id' => $this->privateMatch->match_id,
-        ]);
-        $this->privateMatchRoute = route('matches.show', $this->privateMatch->match_id);
-    }
-
     public function testPublicMatchLoggedOut() // OK
     {
         $this
@@ -120,5 +101,24 @@ class MatchesControllerTest extends TestCase
             ->actingAs($this->user)
             ->get($this->privateMatchRoute)
             ->assertStatus(200);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = factory(User::class)->create();
+
+        $this->publicMatch = factory(Match::class)->create();
+        factory(Event::class)->states('create')->create([
+            'match_id' => $this->publicMatch->match_id,
+        ]);
+        $this->publicMatchRoute = route('matches.show', $this->publicMatch->match_id);
+
+        $this->privateMatch = factory(Match::class)->states('private')->create();
+        factory(Event::class)->states('create')->create([
+            'match_id' => $this->privateMatch->match_id,
+        ]);
+        $this->privateMatchRoute = route('matches.show', $this->privateMatch->match_id);
     }
 }

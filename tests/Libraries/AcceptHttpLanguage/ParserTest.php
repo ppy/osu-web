@@ -33,11 +33,6 @@ class ParserTest extends TestCase
     /** @var Parser */
     private $parser;
 
-    public function setUp()
-    {
-        $this->parser = new Parser('en-us,en-gb;q=0.8,en;q=0.6,es-419');
-    }
-
     public function testShouldReturnEmptyArray()
     {
         $this->parser->header = null;
@@ -96,5 +91,10 @@ class ParserTest extends TestCase
     {
         $this->parser->header = 'ja,en-gb,en-us,fr-fr';
         $this->assertSame('ja-JP', $this->parser->languageRegionCompatibleFrom(['en-UK', 'en-US', 'ja-JP']));
+    }
+
+    protected function setUp(): void
+    {
+        $this->parser = new Parser('en-us,en-gb;q=0.8,en;q=0.6,es-419');
     }
 }

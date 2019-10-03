@@ -11,15 +11,6 @@ use Tests\TestCase;
 
 class ForumTopicsControllerTest extends TestCase
 {
-    public function setUp()
-    {
-        parent::setUp();
-
-        // initial user for forum posts and stuff
-        // FIXME: this is actually a hidden dependency
-        factory(User::class)->create();
-    }
-
     public function testReply()
     {
         $forum = factory(Forum\Forum::class, 'child')->create();
@@ -182,6 +173,15 @@ class ForumTopicsControllerTest extends TestCase
             ->assertStatus(422);
 
         $this->assertSame($initialTitle, $topic->fresh()->topic_title);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // initial user for forum posts and stuff
+        // FIXME: this is actually a hidden dependency
+        factory(User::class)->create();
     }
 
     private function defaultUserGroup($user)

@@ -31,14 +31,6 @@ class ClientsControllerTest extends TestCase
     private $client;
     private $owner;
 
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->owner = factory(User::class)->create();
-        $this->client = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
-    }
-
     public function testGuestCannotDeleteClient()
     {
         $this
@@ -160,5 +152,13 @@ class ClientsControllerTest extends TestCase
             ['', 'https://nowhere.local'],
             [' ', 'https://nowhere.local'],
         ];
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->owner = factory(User::class)->create();
+        $this->client = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
     }
 }

@@ -31,14 +31,6 @@ class ClientTransformerTest extends TestCase
     private $client;
     private $owner;
 
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->owner = factory(User::class)->create();
-        $this->client = factory(Client::class)->make(['user_id' => $this->owner->getKey()]);
-    }
-
     public function testRedirectAndSecretVisibleToOwner()
     {
         auth()->setUser($this->owner);
@@ -56,5 +48,13 @@ class ClientTransformerTest extends TestCase
 
         $this->assertArrayNotHasKey('redirect', $json);
         $this->assertArrayNotHasKey('secret', $json);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->owner = factory(User::class)->create();
+        $this->client = factory(Client::class)->make(['user_id' => $this->owner->getKey()]);
     }
 }

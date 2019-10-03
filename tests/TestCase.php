@@ -40,7 +40,7 @@ class TestCase extends BaseTestCase
 
     protected $baseUrl = 'http://localhost';
 
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

@@ -34,20 +34,6 @@ use Tests\TestCase;
 
 class SupporterTagFulfillmentTest extends TestCase
 {
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->user = factory(User::class)->create([
-            'osu_featurevotes' => 0,
-            'osu_subscriptionexpiry' => Carbon::today(),
-        ]);
-
-        $this->order = factory(Order::class, 'paid')->create([
-            'user_id' => $this->user->user_id,
-        ]);
-    }
-
     public function testDonateSupporterTagToSelf()
     {
         $donor = $this->user;
@@ -264,6 +250,20 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->assertTrue($donor->osu_subscriber);
         $this->assertTrue($expectedExpiry->equalTo($donor->osu_subscriptionexpiry));
         $this->assertSame(2, $donor->osu_featurevotes);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = factory(User::class)->create([
+            'osu_featurevotes' => 0,
+            'osu_subscriptionexpiry' => Carbon::today(),
+        ]);
+
+        $this->order = factory(Order::class, 'paid')->create([
+            'user_id' => $this->user->user_id,
+        ]);
     }
 
     private function createDonationOrderItem($order, $giftee, $cancelled = false, $run = false)

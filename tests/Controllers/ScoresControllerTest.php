@@ -29,13 +29,6 @@ class ScoresControllerTest extends TestCase
     private $score;
     private $user;
 
-    public function setUp()
-    {
-        parent::setUp();
-        $this->user = factory(User::class)->create();
-        $this->score = factory(Osu::class)->create();
-    }
-
     public function testDownload()
     {
         $this
@@ -78,5 +71,12 @@ class ScoresControllerTest extends TestCase
                 route('scores.report', ['mode' => 'nope', 'score' => $this->score->getKey()])
             )
             ->assertStatus(404);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->user = factory(User::class)->create();
+        $this->score = factory(Osu::class)->create();
     }
 }

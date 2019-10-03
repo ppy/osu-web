@@ -30,12 +30,6 @@ class ReportScoreTest extends TestCase
 {
     private $reporter;
 
-    public function setUp()
-    {
-        parent::setUp();
-        $this->reporter = factory(User::class)->create();
-    }
-
     public function testCannotReportOwnScore()
     {
         $score = Best\Osu::create(['user_id' => $this->reporter->getKey()]);
@@ -69,5 +63,11 @@ class ReportScoreTest extends TestCase
         $this->assertSame($score->getKey(), $report->score_id);
         $this->assertSame($score->user_id, $report->user_id);
         $this->assertTrue($report->reportable->is($score));
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->reporter = factory(User::class)->create();
     }
 }
