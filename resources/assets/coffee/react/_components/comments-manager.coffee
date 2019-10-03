@@ -145,6 +145,7 @@ export class CommentsManager extends React.PureComponent
         data: user_profile_customization: comments_sort: sort
 
       runInAction () ->
+        core.dataStore.commentStore.flushStore()
         core.dataStore.updateWithCommentBundleJSON data
         uiState.initializeWithCommentBundleJSON data
     .always =>
