@@ -33,7 +33,7 @@ use Carbon\Carbon;
 use Exception;
 use Log;
 
-class Page
+class Page implements WikiObject
 {
     // in minutes
     const REINDEX_AFTER = 300;
@@ -144,7 +144,7 @@ class Page
     {
         $params = static::searchIndexConfig();
 
-        if ($this->page() === null) {
+        if ($this->get() === null) {
             $this->log('index document empty');
 
             $params['body'] = [
@@ -166,7 +166,7 @@ class Page
 
             $params['body'] = [
                 'locale' => $this->locale,
-                'page' => json_encode($this->page()),
+                'page' => json_encode($this->get()),
                 'page_text' => $indexContent,
                 'path' => $this->path,
                 'path_clean' => static::cleanupPath($this->path),
@@ -224,13 +224,13 @@ class Page
 
     public function isOutdated() : bool
     {
-        return $this->page()['header']['outdated'] ?? false;
+        return $this->get()['header']['outdated'] ?? false;
     }
 
     public function isLegalTranslation() : bool
     {
         return $this->isTranslation()
-            && ($this->page()['header']['legal'] ?? false);
+            && ($this->get()['header']['legal'] ?? false);
     }
 
     public function isTranslation() : bool
@@ -238,7 +238,10 @@ class Page
         return $this->locale !== config('app.fallback_locale');
     }
 
-    public function page()
+    /**
+     * {@inheritdoc}
+     */
+    public function get()
     {
         if (!array_key_exists('page', $this->cache)) {
             foreach (array_unique([$this->requestedLocale, config('app.fallback_locale')]) as $locale) {
@@ -313,7 +316,7 @@ class Page
     public function hasParent()
     {
         return $this->parentPath() !== null
-            && (new static($this->parentPath(), $this->requestedLocale))->page() !== null;
+            && (new static($this->parentPath(), $this->requestedLocale))->get() !== null;
     }
 
     public function parentPath()
@@ -323,23 +326,26 @@ class Page
         }
     }
 
-    public function refresh()
+    /**
+     * {@inheritdoc}
+     */
+    public function forget()
     {
         dispatch(new EsDeleteDocument($this));
     }
 
     public function tags()
     {
-        return $this->page()['header']['tags'] ?? [];
+        return $this->get()['header']['tags'] ?? [];
     }
 
     public function title($withSubtitle = false)
     {
-        if ($this->page() === null) {
+        if ($this->get() === null) {
             return trans('wiki.show.missing_title');
         }
 
-        $title = presence($this->page()['header']['title'] ?? null) ?? $this->defaultTitle;
+        $title = presence($this->get()['header']['title'] ?? null) ?? $this->defaultTitle;
 
         if ($withSubtitle && present($this->subtitle())) {
             $title = $this->subtitle().' / '.$title;
@@ -350,25 +356,25 @@ class Page
 
     public function subtitle()
     {
-        if ($this->page() === null) {
+        if ($this->get() === null) {
             return;
         }
 
-        return presence($this->page()['header']['subtitle'] ?? null) ?? $this->defaultSubtitle;
+        return presence($this->get()['header']['subtitle'] ?? null) ?? $this->defaultSubtitle;
     }
 
     public function layout()
     {
-        if ($this->page() === null) {
+        if ($this->get() === null) {
             return;
         }
 
-        return presence($this->page()['header']['layout'] ?? null) ?? 'markdown_page';
+        return presence($this->get()['header']['layout'] ?? null) ?? 'markdown_page';
     }
 
     public function template()
     {
-        if ($this->page() === null) {
+        if ($this->get() === null) {
             return static::TEMPLATES['markdown_page'];
         }
 
@@ -381,7 +387,7 @@ class Page
 
     public function renderer()
     {
-        if ($this->page() === null) {
+        if ($this->get() === null) {
             return;
         }
 

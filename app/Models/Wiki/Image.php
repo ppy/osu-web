@@ -24,7 +24,7 @@ use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuWiki;
 use Exception;
 
-class Image
+class Image implements WikiObject
 {
     // in minutes
     const CACHE_DURATION = 120;
@@ -47,7 +47,10 @@ class Image
         return 'wiki:image:data:'.$this->path;
     }
 
-    public function data()
+    /**
+     * {@inheritdoc}
+     */
+    public function get()
     {
         if (!array_key_exists('data', $this->cache)) {
             $this->cache['data'] = cache_remember_with_fallback($this->cacheKeyData(), static::CACHE_DURATION, function () {
@@ -68,7 +71,7 @@ class Image
                         ) {
                             $newPath = 'shared/'.substr($this->url, strlen($this->referrer));
 
-                            return (new static($newPath))->data();
+                            return (new static($newPath))->get();
                         }
                         // return nothing otherwise
                     } else {
@@ -80,5 +83,14 @@ class Image
         }
 
         return $this->cache['data'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function forget()
+    {
+        cache_forget_with_fallback($this->cacheKeyData());
+        unset($this->cache['data']);
     }
 }

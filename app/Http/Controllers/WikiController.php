@@ -45,7 +45,7 @@ class WikiController extends Controller
 
         $page = new Wiki\Page($path, $this->locale());
 
-        if ($page->page() === null) {
+        if ($page->get() === null) {
             $redirectTarget = (new WikiRedirect())->resolve($path);
             if ($redirectTarget !== null && $redirectTarget !== $path) {
                 return ujs_redirect(wiki_url('').'/'.ltrim($redirectTarget, '/'));
@@ -66,7 +66,7 @@ class WikiController extends Controller
     {
         priv_check('WikiPageRefresh')->ensureCan();
 
-        (new Wiki\Page($path, $this->locale()))->refresh();
+        (new Wiki\Page($path, $this->locale()))->forget();
 
         return ujs_redirect(Request::getUri());
     }
@@ -82,7 +82,7 @@ class WikiController extends Controller
 
     private function showImage($path)
     {
-        $image = (new Wiki\Image($path, Request::url(), Request::header('referer')))->data();
+        $image = (new Wiki\Image($path, Request::url(), Request::header('referer')))->get();
 
         if ($image === null) {
             abort(404);
