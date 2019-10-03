@@ -1,8 +1,5 @@
-#!/usr/bin/env php
-<?php
+#!/bin/sh
 
-require_once __DIR__.'/../app/framework_helper_overrides.php';
+cd "$(dirname "$0")/.."
 
-// This will print the first shebang line in the file because it's called
-// from here instead of shell.
-require_once __DIR__.'/../vendor/bin/phpunit';
+exec vendor/bin/phpunit --prepend=app/framework_helper_overrides.php "$@"
