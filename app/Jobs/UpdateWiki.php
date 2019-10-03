@@ -83,6 +83,7 @@ class UpdateWiki implements ShouldQueue
 
         if (OsuWiki::isImage($path)) {
             $path = $matches[1].'/'.$matches[2].'.'.$matches[3];
+
             return new Image($path);
         } else {
             return new Page($matches[1], $matches[2]);

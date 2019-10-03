@@ -72,7 +72,7 @@ class WikiController extends Controller
 
     public function updateWebhook()
     {
-        $signature = "sha1=".hash_hmac('sha1', request()->getContent(), config('osu.wiki.webhook_secret'));
+        $signature = 'sha1='.hash_hmac('sha1', request()->getContent(), config('osu.wiki.webhook_secret'));
 
         if (!hash_equals($signature, request()->header('X-Hub-Signature'))) {
             throw new InvalidSignatureException;
