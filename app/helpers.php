@@ -791,6 +791,18 @@ function nav_links()
     return $links;
 }
 
+function nav_links_mobile()
+{
+    $links = [];
+
+    $links['profile'] = [
+        'friends' => route('friends.index'),
+        'settings' => route('account.edit'),
+    ];
+
+    return array_merge($links, nav_links());
+}
+
 function footer_landing_links()
 {
     return [
