@@ -31,6 +31,8 @@ class OsuWiki
     const REPOSITORY = 'osu-wiki';
     const USER = 'ppy';
 
+    const IMAGE_EXTENSIONS = ['gif', 'jpeg', 'jpg', 'png'];
+
     public $path;
     public $data;
 
@@ -61,6 +63,24 @@ class OsuWiki
     public static function fetchContent($path)
     {
         return (new static($path))->content();
+    }
+
+    public static function getUpdatedFiles($old, $new)
+    {
+        $diff = GitHub::repo()
+            ->commits()
+            ->compare(static::USER, static::REPOSITORY, $old, $new);
+
+        return array_filter($diff['files'], function ($file) {
+            return substr($file['filename'], 0, 4) === 'wiki';
+        });
+    }
+
+    public static function isImage($path)
+    {
+        $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+
+        return in_array($extension, static::IMAGE_EXTENSIONS, true);
     }
 
     public function __construct($path)

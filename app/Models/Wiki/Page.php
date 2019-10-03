@@ -332,6 +332,7 @@ class Page implements WikiObject
     public function forget()
     {
         dispatch(new EsDeleteDocument($this));
+        unset($this->cache['page']);
     }
 
     public function tags()

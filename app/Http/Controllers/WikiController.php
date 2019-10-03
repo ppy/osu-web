@@ -21,7 +21,9 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\InvalidSignatureException;
+use App\Jobs\UpdateWiki;
 use App\Libraries\WikiRedirect;
+use App\Libraries\OsuWiki;
 use App\Models\Wiki;
 use Request;
 
@@ -36,10 +38,7 @@ class WikiController extends Controller
             return ujs_redirect(wiki_url());
         }
 
-        $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
-        $imageExtensions = ['gif', 'jpeg', 'jpg', 'png'];
-
-        if (in_array($extension, $imageExtensions, true)) {
+        if (OsuWiki::isImage($path)) {
             return $this->showImage($path);
         }
 
@@ -78,6 +77,8 @@ class WikiController extends Controller
         if (!hash_equals($signature, request()->header('X-Hub-Signature'))) {
             throw new InvalidSignatureException;
         }
+
+        UpdateWiki::dispatch(request()->input('before'), request()->input('after'));
     }
 
     private function showImage($path)
