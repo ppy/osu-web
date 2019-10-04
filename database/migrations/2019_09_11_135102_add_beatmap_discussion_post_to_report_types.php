@@ -13,7 +13,7 @@ class AddBeatmapDiscussionPostToReportTypes extends Migration
     {
         DB::statement("ALTER TABLE osu_user_reports
                        MODIFY COLUMN reportable_type
-                       enum('user', 'comment', 'score_best_osu', 'score_best_taiko', 'score_best_fruits', 'score_best_mania', 'beatmap_discussion_post')");
+                       enum('user', 'comment', 'score_best_osu', 'score_best_taiko', 'score_best_fruits', 'score_best_mania', 'beatmapset_discussion_post')");
     }
 
     /**
@@ -25,6 +25,6 @@ class AddBeatmapDiscussionPostToReportTypes extends Migration
     {
         DB::statement("ALTER TABLE osu_user_reports
                        MODIFY COLUMN reportable_type
-                       enum('user', 'comment', 'score_best_osu', 'score_best_taiko', 'score_best_fruits', 'score_best_mania', 'beatmap_discussion_post')");
+                       enum('user', 'comment', 'score_best_osu', 'score_best_taiko', 'score_best_fruits', 'score_best_mania')");
     }
 }

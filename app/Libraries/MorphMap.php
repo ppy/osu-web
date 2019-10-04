@@ -34,7 +34,7 @@ class MorphMap
 {
     const MAP = [
         Beatmapset::class => 'beatmapset',
-        BeatmapDiscussionPost::class => 'beatmap_discussion_post',
+        BeatmapDiscussionPost::class => 'beatmapset_discussion_post',
         Build::class => 'build',
         Channel::class => 'channel',
         Comment::class => 'comment',
