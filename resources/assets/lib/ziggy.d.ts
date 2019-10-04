@@ -17,9 +17,13 @@
  */
 
 declare module 'ziggy' {
-  export const Ziggy: {};
+  interface ZiggyClass {
+    defaultParameters: {};
+  }
+
+  export const Ziggy: ZiggyClass;
 }
 
 declare module 'ziggy-route' {
-  export default function route(name: string, params: any, absolute?: boolean, ziggy?: {}): any;
+  export default function route(name: string, params: any, absolute?: boolean, ziggy?: ZiggyClass): any;
 }
