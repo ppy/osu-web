@@ -56,7 +56,9 @@ class ArtistsController extends Controller
             ->orderBy('id', 'desc')
             ->with(['tracks' => function ($query) {
                 $query->orderBy('display_order', 'ASC');
-            }, 'tracks.artist'])->get();
+            }])
+            ->with('tracks.artist')
+            ->get();
 
         $tracks = $artist
             ->tracks()
