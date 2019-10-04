@@ -21,7 +21,6 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Exceptions\ValidationException;
 use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
