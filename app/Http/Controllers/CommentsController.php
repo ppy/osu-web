@@ -99,21 +99,6 @@ class CommentsController extends Controller
         }
     }
 
-    public function report($id)
-    {
-        $comment = Comment::findOrFail($id);
-
-        try {
-            $comment->reportBy(auth()->user(), [
-                'comments' => trim(request('comments')),
-            ]);
-        } catch (ValidationException $e) {
-            return error_popup($e->getMessage());
-        }
-
-        return response(null, 204);
-    }
-
     public function restore($id)
     {
         $comment = Comment::findOrFail($id);

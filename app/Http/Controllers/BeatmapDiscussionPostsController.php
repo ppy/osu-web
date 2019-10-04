@@ -243,20 +243,4 @@ class BeatmapDiscussionPostsController extends Controller
 
         return $discussion;
     }
-
-    public function report($id)
-    {
-        /** @var BeatmapDiscussionPost|null */
-        $post = BeatmapDiscussionPost::findOrFail($id);
-
-        try {
-            $post->reportBy(auth()->user(), [
-                'comments' => trim(request('comments')),
-            ]);
-        } catch (ValidationException $e) {
-            return error_popup($e->getMessage());
-        }
-
-        return response(null, 204);
-    }
 }

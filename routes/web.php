@@ -66,7 +66,6 @@ Route::group(['prefix' => 'beatmapsets'], function () {
 
     Route::post('beatmap-discussions-posts/{beatmap_discussion_post}/restore', 'BeatmapDiscussionPostsController@restore')->name('beatmap-discussion-posts.restore');
     Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['destroy', 'index', 'store', 'update']]);
-    Route::post('beatmap-discussion-posts/{beatmap_discussion_post}/report', 'BeatmapDiscussionPostsController@report')->name('beatmap-discussion-posts.report');
 });
 
 Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
@@ -88,12 +87,10 @@ Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
 Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
-    Route::post('{mode}/{score}/report', 'ScoresController@report')->name('report');
     Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
 });
 
 Route::resource('comments', 'CommentsController', ['except' => ['create', 'edit']]);
-Route::post('comments/{comment}/report', 'CommentsController@report')->name('comments.report');
 Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
 Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
 Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');
@@ -237,7 +234,6 @@ Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 
 Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
-Route::post('users/{user}/report', 'UsersController@report')->name('users.report');
 
 Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'namespace' => 'Users'], function () {
     Route::get('/', 'ModdingHistoryController@index')->name('index');

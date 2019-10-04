@@ -33,21 +33,6 @@ class ScoresController extends Controller
         $this->middleware('auth');
     }
 
-    public function report($mode, $id)
-    {
-        $score = ScoreBest::getClassByString($mode)::findOrFail($id);
-
-        try {
-            $score->reportBy(auth()->user(), [
-                'comments' => trim(request('comments')),
-            ]);
-        } catch (ValidationException $e) {
-            return error_popup($e->getMessage());
-        }
-
-        return response(null, 204);
-    }
-
     public function download($mode, $id)
     {
         $score = ScoreBest::getClassByString($mode)
