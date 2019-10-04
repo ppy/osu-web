@@ -253,8 +253,8 @@ export class UserCard extends React.PureComponent<Props, State> {
           className='simple-menu__item'
           icon={true}
           onFormClose={dismiss}
-          reportable_id={this.user.id.toString()}
-          reportable_type='user'
+          reportableId={this.user.id.toString()}
+          reportableType='user'
           user={this.user}
         />
       </>

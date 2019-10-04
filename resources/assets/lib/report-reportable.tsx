@@ -24,8 +24,8 @@ interface Props {
   baseKey?: string;
   icon: boolean;
   onFormClose: () => void;
-  reportable_id: string;
-  reportable_type: string;
+  reportableId: string;
+  reportableType: string;
   user: User;
 }
 
@@ -75,8 +75,8 @@ export class ReportReportable extends React.PureComponent<Props & React.Detailed
     const data = {
       comments: report.comments,
       reason: report.reason,
-      reportable_id: this.props.reportable_id,
-      reportable_type: this.props.reportable_type,
+      reportable_id: this.props.reportableId,
+      reportable_type: this.props.reportableType,
     };
 
     const params = {
@@ -96,8 +96,8 @@ export class ReportReportable extends React.PureComponent<Props & React.Detailed
   }
 
   render(): React.ReactNode {
-    const { baseKey, icon, onFormClose, reportable_id, reportable_type, user, ...attribs } = this.props;
-    const groupKey = baseKey || this.props.reportable_type;
+    const { baseKey, icon, onFormClose, reportableId, reportableType, user, ...attribs } = this.props;
+    const groupKey = baseKey || this.props.reportableType;
 
     return (
       <>

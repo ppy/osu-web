@@ -286,8 +286,8 @@ export class Post extends React.PureComponent
           if @canReport()
             el ReportReportable,
               className: "#{bn}__action #{bn}__action--button"
-              reportable_id: @props.post.id
-              reportable_type: 'beatmapset_discussion_post'
+              reportableId: @props.post.id
+              reportableType: 'beatmapset_discussion_post'
               user: @props.user
 
 

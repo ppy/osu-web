@@ -216,8 +216,8 @@ export class Comment extends React.PureComponent
               div className: 'comment__row-item',
                 el ReportReportable,
                   className: 'comment__action'
-                  reportable_id: @props.comment.id
-                  reportable_type: 'comment'
+                  reportableId: @props.comment.id
+                  reportableType: 'comment'
                   user: @userFor(@props.comment)
 
             @renderRepliesText()

@@ -118,8 +118,8 @@ export class DetailBar extends React.PureComponent
         className: 'simple-menu__item'
         icon: true
         key: 'report'
-        reportable_id: @props.user.id
-        reportable_type: 'user'
+        reportableId: @props.user.id
+        reportableType: 'user'
         user: @props.user
       items.push reportButton
 
