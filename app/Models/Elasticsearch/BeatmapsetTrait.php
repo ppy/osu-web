@@ -20,6 +20,7 @@
 
 namespace App\Models\Elasticsearch;
 
+use App\Models\Beatmap;
 use App\Traits\EsIndexable;
 use Carbon\Carbon;
 
@@ -51,7 +52,12 @@ trait BeatmapsetTrait
         return static::on('mysql-readonly')
             ->withoutGlobalScopes()
             ->active()
-            ->with('beatmaps'); // note that the with query will run with the default scopes.
+            ->with([
+                'beatmaps', // note that the with query will run with the default scopes.
+                'beatmaps.difficulty' => function ($query) {
+                    $query->where('mods', 0);
+                }
+            ]);
     }
 
     public static function esSchemaFile()
@@ -85,14 +91,30 @@ trait BeatmapsetTrait
     {
         $mappings = static::esMappings()['beatmaps']['properties'];
 
-        return $this->beatmaps->map(function ($beatmap) use ($mappings) {
+        $beatmapsValues = [];
+        foreach ($this->beatmaps as $beatmap) {
             $beatmapValues = [];
             foreach ($mappings as $field => $mapping) {
                 $beatmapValues[$field] = $beatmap[$field];
             }
 
-            return $beatmapValues;
-        });
+            $beatmapValues['convert'] = false;
+            $beatmapsValues[] = $beatmapValues;
+
+            if ($beatmap->playmode === Beatmap::MODES['osu']) {
+                $diffs = $beatmap->difficulty->where('mode', '<>', Beatmap::MODES['osu'])->where('mods', 0)->all();
+                foreach ($diffs as $diff) {
+                    $convertValues = $beatmapValues; // is an array, so automatically a copy.
+                    $convertValues['convert'] = true;
+                    $convertValues['difficultyrating'] = $diff->diff_unified;
+                    $convertValues['playmode'] = $diff->mode;
+
+                    $beatmapsValues[] = $convertValues;
+                }
+            }
+        }
+
+        return $beatmapsValues;
     }
 
     private function esDifficultyValues()
