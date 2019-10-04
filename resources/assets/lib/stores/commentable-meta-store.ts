@@ -18,45 +18,22 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
-import { UserJSON } from 'chat/chat-api-responses';
+import { CommentableMetaJSON } from 'interfaces/comment-json';
 import { action, observable } from 'mobx';
-import User from 'models/user';
 import Store from 'stores/store';
 
-export default class UserStore extends Store {
-  @observable users = observable.map<number, User>();
+export default class CommentableMetaStore extends Store {
+  @observable meta = observable.map<string | null, CommentableMetaJSON>();
 
   @action
   flushStore() {
-    this.users = observable.map<number, User>();
+    this.meta.clear();
   }
 
-  get(id: number) {
-    return this.users.get(id);
-  }
+  get(type: string, id: number) {
+    const obj = this.meta.get(`${type}-${id}`);
 
-  @action
-  getOrCreate(userId: number, props?: UserJSON): User {
-    let user = this.users.get(userId);
-
-    // TODO: update from props if newer?
-    if (user && user.loaded) {
-      return user;
-    }
-
-    if (props) {
-      user = User.fromJSON(props);
-    } else {
-      user = new User(userId);
-    }
-    // this.users.delete(userId);
-    this.users.set(userId, user);
-
-    if (!user.loaded) {
-      user.load();
-    }
-
-    return user;
+    return obj != null ? obj : this.meta.get(null);
   }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
@@ -66,11 +43,17 @@ export default class UserStore extends Store {
   }
 
   @action
-  updateWithJSON(data: UserJSON[] | undefined | null) {
+  initialize(meta: CommentableMetaJSON[] | undefined | null) {
+    this.flushStore();
+    this.updateWithJSON(meta);
+  }
+
+  @action
+  updateWithJSON(data: CommentableMetaJSON[] | undefined | null) {
     if (data == null) { return; }
     for (const json of data) {
-      const user = User.fromJSON(json);
-      this.users.set(user.id, user);
+      const key = json.type != null && json.id != null ? `${json.type}-${json.id}` : null;
+      this.meta.set(key, json);
     }
   }
 }
