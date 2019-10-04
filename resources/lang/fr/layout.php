@@ -31,6 +31,14 @@ return [
         ],
     ],
 
+    'gallery' => [
+        'close' => 'Fermer (Échap)',
+        'fullscreen' => 'Plein écran',
+        'zoom' => 'Zoom avant/arrière',
+        'previous' => 'Précédent (flèche gauche)',
+        'next' => 'Suivant (flèche droite)',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'accueil',

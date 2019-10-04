@@ -18,23 +18,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests\Payments;
+namespace Tests\Controllers\Payments;
 
 use App\Libraries\Payments\ShopifySignature;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
-use TestCase;
+use Tests\TestCase;
 
 class ShopifyControllerTest extends TestCase
 {
-    public function setUp()
-    {
-        parent::setUp();
-        config()->set('payments.shopify.webhook_key', 'magic');
-
-        $this->url = route('payments.shopify.callback');
-    }
-
     public function testWebhookOrdersIdIsRequired()
     {
         $this->payload = [
@@ -151,6 +143,14 @@ class ShopifyControllerTest extends TestCase
         $this->assertSame($order->status, 'shipped');
         $this->assertEquals($order->updated_at, $oldUpdatedAt);
         $this->assertSame(Order::withoutGlobalScopes()->count(), 1);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        config()->set('payments.shopify.webhook_key', 'magic');
+
+        $this->url = route('payments.shopify.callback');
     }
 
     private function sendCallbackRequest(array $extraHeaders = [])

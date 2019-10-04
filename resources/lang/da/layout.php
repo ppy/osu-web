@@ -31,6 +31,14 @@ return [
         ],
     ],
 
+    'gallery' => [
+        'close' => '',
+        'fullscreen' => '',
+        'zoom' => 'Zoom ind/ud',
+        'previous' => '',
+        'next' => '',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'hjem',

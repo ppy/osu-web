@@ -33,21 +33,39 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
-        'confirm_revoke' => 'Вы ўпэўнены, што хочаце адклікаць дазволы гэтаму кліенты?',
-        'scopes_title' => 'Гэта праграма можа:',
-        'owned_by' => 'Уладальнік :user',
-        'none' => 'Няма кліентаў',
+    'authorized_clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
 
         'revoked' => [
-            'false' => 'Адклікаць доступ',
-            'true' => 'Доступ адкліканы',
+            'false' => '',
+            'true' => '',
         ],
+    ],
+
+    'client' => [
+        'id' => '',
+        'name' => '',
+        'redirect' => '',
+        'secret' => '',
     ],
 
     'login' => [
         'download' => 'Націсніце тут, каб спампаваць гульню і стварыць уліковы запіс',
         'label' => 'Спачатку вам трэба ўвайсці ва ўлік. запіс!',
         'title' => 'Увайсці ва ўліковы запіс',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '',
+        'new' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 ];

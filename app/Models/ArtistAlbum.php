@@ -44,4 +44,9 @@ class ArtistAlbum extends Model
     {
         return $this->hasMany(ArtistTrack::class, 'album_id', 'id');
     }
+
+    public function isNew()
+    {
+        return $this->created_at->isAfter(now()->subMonth(1));
+    }
 }

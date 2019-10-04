@@ -118,6 +118,18 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'too_many' => '허용된 OAuth 애플리케이션 수를 초과했습니다.',
+            'url' => '유효한 URL을 입력하세요.',
+
+            'attributes' => [
+                'name' => '애플리케이션 이름',
+                'redirect' => '애플리케이션 Callback URL',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => '비밀번호는 유저 이름을 포함할 수 없습니다.',
         'email_already_used' => '이미 사용중인 이메일 주소입니다.',

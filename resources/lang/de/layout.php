@@ -31,6 +31,14 @@ return [
         ],
     ],
 
+    'gallery' => [
+        'close' => 'Schließen (Esc)',
+        'fullscreen' => 'Vollbild umschalten',
+        'zoom' => 'Vergrößern/Verkleinern',
+        'previous' => 'Vorheriges (Pfeil links)',
+        'next' => 'Weiter (Pfeil rechts)',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'home',

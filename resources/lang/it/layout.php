@@ -31,6 +31,14 @@ return [
         ],
     ],
 
+    'gallery' => [
+        'close' => 'Chiudi (Esc)',
+        'fullscreen' => 'Passa a schermo intero',
+        'zoom' => 'Zoom in/out',
+        'previous' => 'Precedente (freccia sinistra)',
+        'next' => 'Successivo (freccia destra)',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'home',

@@ -12,6 +12,7 @@ import { UserCard } from 'user-card'
 import { UserCardStore } from 'user-card-store'
 import { startListening, UserCardTooltip } from 'user-card-tooltip'
 import { UserCards } from 'user-cards'
+import { WikiSearch } from 'wiki-search';
 
 window.reactTurbolinks ?= new ReactTurbolinks()
 
@@ -66,3 +67,5 @@ $(document).ready startListening
 reactTurbolinks.register 'user-cards', UserCards, (el) ->
   modifiers: try JSON.parse(el.dataset.modifiers)
   users: try JSON.parse(el.dataset.users)
+
+reactTurbolinks.register 'wiki-search', WikiSearch

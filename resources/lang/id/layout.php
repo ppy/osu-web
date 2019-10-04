@@ -25,10 +25,18 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => 'Komunitas',
 
-            'forum' => '',
+            'forum' => 'Forum',
         ],
+    ],
+
+    'gallery' => [
+        'close' => 'Tutup (Esc)',
+        'fullscreen' => 'Beralih ke layar penuh',
+        'zoom' => 'Perbesar/perkecil tampilan',
+        'previous' => 'Sebelumnya (arrow left)',
+        'next' => 'Selanjutnya (arrow right)',
     ],
 
     'menu' => [

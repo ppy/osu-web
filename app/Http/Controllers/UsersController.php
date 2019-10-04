@@ -80,7 +80,7 @@ class UsersController extends Controller
 
     public function checkUsernameAvailability()
     {
-        $username = Request::input('username');
+        $username = Request::input('username') ?? '';
 
         $errors = Auth::user()->validateChangeUsername($username);
 
@@ -252,7 +252,6 @@ class UsersController extends Controller
             'ranked_and_approved_beatmapset_count',
             'replays_watched_counts',
             'statistics.rank',
-            'statistics.scoreRanks',
             'support_level',
             'unranked_beatmapset_count',
             'user_achievements',

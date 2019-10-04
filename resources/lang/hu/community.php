@@ -48,7 +48,7 @@ return [
             ],
             'tournaments' => [
                 'title' => 'Hivatalos Versenyek',
-                'description' => '',
+                'description' => 'Támogasd a hivatalos osu! Világbajnokság rendezését (és díjait).',
                 'link_text' => 'Versenyek felfedezése &raquo;',
             ],
             'bounty-program' => [

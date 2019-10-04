@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'vahvistettu ',
             'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
-            'favourited_count' => '+ 1 muu!|+ :count muuta!',
             'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
             'loved' => 'rakastettu ',
             'mapped_by' => 'luonut: :mapper',

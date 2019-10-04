@@ -55,5 +55,10 @@ return [
 
     'starting' => [
         'username' => 'Indtast email-adresse eller brugernavn',
+
+        'support' => [
+            '_' => '',
+            'button' => '',
+        ],
     ],
 ];

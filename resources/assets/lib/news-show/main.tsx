@@ -32,6 +32,22 @@ interface Props {
 }
 
 export default class Main extends React.Component<Props> {
+  private contentContainer = React.createRef<HTMLDivElement>();
+
+  componentDidMount() {
+    const container = this.contentContainer.current;
+
+    if (!container) {
+      return;
+    }
+
+    const audioTags = container.getElementsByTagName('audio');
+
+    _.each(audioTags, (audio) => {
+      audio.volume = 0.45;
+    });
+  }
+
   render() {
     const {content, author} = this.processContent();
     const titleTrans = {
@@ -51,6 +67,7 @@ export default class Main extends React.Component<Props> {
             {this.renderHeader({author})}
 
             <div
+              ref={this.contentContainer}
               dangerouslySetInnerHTML={{
                 __html: content,
               }}
@@ -65,7 +82,6 @@ export default class Main extends React.Component<Props> {
           <CommentsManager
             commentableType='news_post'
             commentableId={this.props.post.id}
-            commentBundle={this.props.commentBundle}
             component={Comments}
             componentProps={{
               modifiers: ['changelog'],

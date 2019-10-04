@@ -58,7 +58,7 @@ class WikiController extends Controller
             $status = 404;
         }
 
-        return response()->view('wiki.show', compact('page'), $status ?? 200);
+        return response()->view($page->template(), compact('page'), $status ?? 200);
     }
 
     public function update($path)

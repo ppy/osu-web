@@ -269,7 +269,7 @@ abstract class Model extends BaseModel
 
             $bitset = ModsHelper::toBitset($modsArray);
             if ($bitset > 0) {
-                $q->orWhereRaw('enabled_mods & ? != 0', [$bitset]);
+                $q->orWhere('enabled_mods', $bitset);
             }
         });
     }

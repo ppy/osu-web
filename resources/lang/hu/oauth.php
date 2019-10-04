@@ -33,21 +33,39 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
-        'confirm_revoke' => 'Biztosan vissza akarod vonni ezen kliens jogait?',
-        'scopes_title' => 'Az alkalmazás képes:',
-        'owned_by' => ':user tulajdona',
-        'none' => 'Nincs Kliens',
+    'authorized_clients' => [
+        'confirm_revoke' => '',
+        'scopes_title' => '',
+        'owned_by' => '',
+        'none' => '',
 
         'revoked' => [
-            'false' => 'Hozzáférés visszavonása',
-            'true' => 'Hozzáférés visszavonva',
+            'false' => '',
+            'true' => '',
         ],
+    ],
+
+    'client' => [
+        'id' => '',
+        'name' => '',
+        'redirect' => '',
+        'secret' => '',
     ],
 
     'login' => [
         'download' => 'Kattints ide a játék letöltése és egy felhasználó létrehozásához',
         'label' => 'Először is, jelentkezz be a fiókodba!',
         'title' => 'Felhasználó Bejelentkezés',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '',
+        'new' => '',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 ];

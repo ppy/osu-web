@@ -361,18 +361,12 @@ export class NewDiscussion extends React.PureComponent
 
 
   submitButton: (type, extraProps) =>
-    icon =
-      if @state.posting == type
-        # for some reason the spinner wobbles
-        '_spinner'
-      else
-        BeatmapDiscussionHelper.messageType.icon[_.camelCase(type)]
-
     typeText = if type == 'problem' then @problemType() else type
 
     el BigButton,
       modifiers: ['beatmap-discussion-new']
-      icon: icon
+      icon: BeatmapDiscussionHelper.messageType.icon[_.camelCase(type)]
+      isBusy: @state.posting == type
       text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
       key: type
       props: _.merge

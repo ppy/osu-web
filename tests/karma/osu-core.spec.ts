@@ -31,6 +31,7 @@ describe('OsuCore user:update subscriber testing thing', () => {
       country_code: '',
       id: 1,
       is_active: true,
+      is_admin: true,
       is_bot: false,
       is_online: true,
       is_supporter: true,

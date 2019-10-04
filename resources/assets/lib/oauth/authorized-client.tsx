@@ -16,10 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { BigButton } from 'big-button';
 import { observer } from 'mobx-react';
-import { Client } from 'oauth/client';
+import { Client } from 'models/oauth/client';
 import * as React from 'react';
-import { Spinner } from 'spinner';
 import { StringWithComponent } from 'string-with-component';
 import { UserLink } from 'user-link';
 
@@ -36,28 +36,29 @@ export class AuthorizedClient extends React.Component<Props> {
     };
 
     return (
-      <div className='authorized-client'>
-        <div className='authorized-client__details'>
-          <div className='authorized-client__name'>
+      <div className='oauth-client'>
+        <div className='oauth-client__details'>
+          <div className='oauth-client__name'>
             {client.name}
           </div>
-          <span className='authorized-client__owner'>
-            <StringWithComponent pattern={osu.trans('oauth.authorized-clients.owned_by')} mappings={mappings} />
+          <span className='oauth-client__owner'>
+            <StringWithComponent pattern={osu.trans('oauth.authorized_clients.owned_by')} mappings={mappings} />
           </span>
-          <div className='authorized-client__scopes'>
+          <div className='oauth-client__scopes'>
             {this.renderPermissions()}
           </div>
         </div>
-        <div className='authorized-client__actions'>
-          <button
-            className={osu.classWithModifiers('authorized-client__button', client.revoked ? ['revoked'] : [])}
-            onClick={this.revokeClicked}
-            disabled={client.isRevoking || client.revoked}
-          >
-            {
-              client.isRevoking ? <Spinner /> : osu.trans(`oauth.authorized-clients.revoked.${client.revoked}`)
-            }
-          </button>
+        <div>
+          <BigButton
+            text={osu.trans(`oauth.authorized_clients.revoked.${client.revoked}`)}
+            icon={client.revoked ? 'fas fa-ban' : 'fas fa-trash'}
+            isBusy={client.isRevoking}
+            modifiers={['account-edit', 'danger', 'settings-oauth']}
+            props={{
+              disabled: client.isRevoking || client.revoked,
+              onClick: this.revokeClicked,
+            }}
+          />
         </div>
       </div>
     );
@@ -67,7 +68,7 @@ export class AuthorizedClient extends React.Component<Props> {
     const scopes = Array.from(this.props.client.scopes).sort();
     return (
       <>
-        <div>{osu.trans('oauth.authorized-clients.scopes_title')}</div>
+        <div>{osu.trans('oauth.authorized_clients.scopes_title')}</div>
         <ul className='oauth-scopes'>
           {
             scopes.map((scope) => {
@@ -85,7 +86,7 @@ export class AuthorizedClient extends React.Component<Props> {
   }
 
   revokeClicked = (event: React.MouseEvent<HTMLElement>) => {
-    if (!confirm(osu.trans('oauth.authorized-clients.confirm_revoke'))) { return; }
+    if (!confirm(osu.trans('oauth.authorized_clients.confirm_revoke'))) { return; }
 
     this.props.client.revoke().catch(osu.ajaxError);
   }
