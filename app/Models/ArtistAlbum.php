@@ -49,6 +49,6 @@ class ArtistAlbum extends Model
 
     public function isNew()
     {
-        return $this->created_at->diffInDays() < Carbon::now()->subMonth(1)->diffInDays();
+        return $this->created_at->isAfter(now()->subMonth(1));
     }
 }
