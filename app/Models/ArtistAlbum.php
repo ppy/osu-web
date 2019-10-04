@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
-
 /**
  * @property Artist $artist
  * @property int|null $artist_id

@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
-
 /**
  * @property ArtistAlbum $album
  * @property int|null $album_id
