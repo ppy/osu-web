@@ -30,6 +30,11 @@ interface ReportCommentState {
   showingForm: boolean;
 }
 
+interface ReportData {
+  comments: string;
+  reason?: string;
+}
+
 export class ReportComment extends React.PureComponent<ReportCommentProps, ReportCommentState> {
   private timeout?: number;
 
@@ -47,13 +52,20 @@ export class ReportComment extends React.PureComponent<ReportCommentProps, Repor
     this.setState({ disabled: false, showingForm: false });
   }
 
-  onSubmit = ({comments}: {comments: string}) => {
+  onSubmit = (report: ReportData) => {
     this.setState({ disabled: true });
+    const data = {
+      comments: report.comments,
+      reason: report.reason,
+      reportable_id: this.props.comment.id,
+      reportable_type: 'comment',
+    };
+
     const params = {
-      data: { comments },
+      data,
       dataType: 'json',
       type: 'POST',
-      url: laroute.route('comments.report', { comment: this.props.comment.id }),
+      url: laroute.route('reports.store'),
     };
 
     $.ajax(params).done(() => {

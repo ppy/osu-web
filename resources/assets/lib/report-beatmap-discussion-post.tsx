@@ -32,6 +32,11 @@ interface State {
   showingForm: boolean;
 }
 
+interface ReportData {
+  comments: string;
+  reason?: string;
+}
+
 export default class ReportBeatmapDiscussionPost extends React.Component<Props, State> {
   private timeout?: number;
 
@@ -52,20 +57,28 @@ export default class ReportBeatmapDiscussionPost extends React.Component<Props, 
     });
   }
 
-  onSubmit = ({comments}: {comments: string}) => {
-    this.setState({disabled: true});
+  onSubmit = (report: ReportData) => {
+    this.setState({ disabled: true });
+    const data = {
+      comments: report.comments,
+      reason: report.reason,
+      reportable_id: this.props.post.id,
+      reportable_type: 'beatmapset_discussion_post',
+    };
 
-    $.ajax({
-      data: { comments },
+    const params = {
+      data,
       dataType: 'json',
       type: 'POST',
-      url: laroute.route('beatmap-discussion-posts.report', {beatmap_discussion_post: this.props.post.id}),
-    }).done(() => {
+      url: laroute.route('reports.store'),
+    };
+
+    $.ajax(params).done(() => {
       this.timeout = Timeout.set(1000, this.onFormClose);
-      this.setState({completed: true});
+      this.setState({ completed: true });
     }).fail((xhr) => {
       osu.ajaxError(xhr);
-      this.setState({disabled: false});
+      this.setState({ disabled : false });
     });
   }
 

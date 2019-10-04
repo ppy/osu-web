@@ -67,16 +67,22 @@ export class ReportScore extends PureComponent
       showingForm: true
 
 
-  onSubmit: ({ comments }) =>
+  onSubmit: ({ comments, reason }) =>
     @setState disabled: true
 
-    $.ajax
-      type: 'POST'
-      url: laroute.route 'scores.report', score: @props.score.id, mode: @props.score.mode
-      data:
-        { comments }
-      dataType: 'json'
+    data =
+      comments: comments
+      reason: reason
+      reportable_id: @props.score.id
+      reportable_type: "score_best_#{@props.score.mode}"
 
+    params =
+      data: data
+      dataType: 'json',
+      type: 'POST',
+      url: laroute.route('reports.store')
+
+    $.ajax params
     .done () =>
       @timeout = Timeout.set 1000, @onFormClose
       @setState completed: true

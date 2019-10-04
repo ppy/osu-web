@@ -220,6 +220,8 @@ Route::group(['as' => 'oauth.', 'prefix' => 'oauth', 'namespace' => 'OAuth'], fu
 
 Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');
 
+Route::resource('reports', 'ReportsController', ['only' => ['store']]);
+
 Route::post('session', 'SessionsController@store')->name('login');
 Route::delete('session', 'SessionsController@destroy')->name('logout');
 

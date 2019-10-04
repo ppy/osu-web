@@ -87,15 +87,22 @@ export class ReportUser extends PureComponent
       showingForm: true
 
 
-  onSubmit: (data) =>
+  onSubmit: ({ comments, reason }) =>
     @setState disabled: true
 
-    $.ajax
-      type: 'POST'
-      url: laroute.route 'users.report', user: @props.user.id
-      data: data
-      dataType: 'json'
+    data =
+      comments: comments
+      reason: reason
+      reportable_id: @props.user.id
+      reportable_type: 'user'
 
+    params =
+      data: data
+      dataType: 'json',
+      type: 'POST',
+      url: laroute.route('reports.store')
+
+    $.ajax params
     .done () =>
       @timeout = Timeout.set 1000, @onFormClose
       @setState completed: true

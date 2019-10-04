@@ -288,6 +288,11 @@ export class Post extends React.PureComponent
               post: @props.post
               user: @props.user
 
+
+  canReport: =>
+    currentUser.id? && @props.post.user_id != currentUser.id
+
+
   clearPermalinkClicked: =>
     @setState permalinkTimer: null
 
@@ -344,7 +349,3 @@ export class Post extends React.PureComponent
 
   validPost: =>
     BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())
-
-
-  canReport: =>
-    currentUser.id? && @props.post.user_id != currentUser.id
