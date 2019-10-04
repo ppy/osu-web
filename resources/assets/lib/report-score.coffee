@@ -40,7 +40,6 @@ export class ReportScore extends PureComponent
         osu.trans 'report.scores.button'
 
       el ReportForm,
-        allowOptions: true
         completed: @state.completed
         disabled: @state.disabled
         key: 'form'

@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { isEmpty } from 'lodash'
 import { Modal } from 'modal'
 import { createElement as el, createRef, PureComponent } from 'react'
 import * as React from 'react'
@@ -25,10 +26,6 @@ import { SelectOptions } from 'select-options'
 bn = 'report-form'
 
 export class ReportForm extends PureComponent
-  @defaultProps =
-    allowOptions: true
-
-
   constructor: (props) ->
     super props
 
@@ -42,7 +39,7 @@ export class ReportForm extends PureComponent
     ]
 
     if props.visibleOptions?
-      @options = _.intersectionWith @options, props.visibleOptions, (left, right) => left.id == right
+      @options = _.intersectionWith @options, props.visibleOptions, (left, right) -> left.id == right
 
     @textarea = createRef()
 
@@ -86,7 +83,7 @@ export class ReportForm extends PureComponent
 
   renderFormContent: =>
     div null,
-      if @props.allowOptions
+      if !isEmpty(@options)
         [
           div
             key: 'label'
@@ -138,7 +135,7 @@ export class ReportForm extends PureComponent
 
   sendReport: (e) =>
     data =
-      reason: @state.selectedReason.id
+      reason: @state.selectedReason?.id
       comments: @textarea.current.value
 
     @props.onSubmit? data

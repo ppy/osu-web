@@ -73,7 +73,6 @@ export class ReportComment extends React.PureComponent<ReportCommentProps, Repor
           {osu.trans('report.comment.button')}
         </button>
         <ReportForm
-          allowOptions={true}
           completed={this.state.completed}
           disabled={this.state.disabled}
           key='form'

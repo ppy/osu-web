@@ -95,7 +95,6 @@ declare module 'react/beatmaps/search-content' {
 
 declare module 'report-form' {
   interface ReportFormProps {
-    allowOptions: boolean;
     completed: boolean;
     disabled: boolean;
     onClose: () => void;

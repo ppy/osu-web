@@ -77,7 +77,6 @@ export default class ReportBeatmapDiscussionPost extends React.Component<Props, 
           {osu.trans('report.beatmap-discussion-post.button')}
         </button>
         <ReportForm
-          allowOptions={true}
           completed={this.state.completed}
           disabled={this.state.disabled}
           onClose={this.onFormClose}
