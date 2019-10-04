@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', and ',
     ],
 
+    'badges' => [
+        'new' => 'NEW',
+    ],
+
     'buttons' => [
         'admin' => 'Admin',
         'back_to_previous' => 'Return to previous position',

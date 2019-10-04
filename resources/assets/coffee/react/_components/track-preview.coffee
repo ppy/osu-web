@@ -39,10 +39,7 @@ export class TrackPreview extends React.Component
 
 
   render: ->
-    if @props.track.cover_url && !@props.track.album_id
-      coverStyle = backgroundImage: osu.urlPresence(@props.track.cover_url)
-
-    div className: 'tracklist__cover', style: coverStyle,
+    div className: 'tracklist__cover', style: { backgroundImage: osu.urlPresence(@props.track.cover_url) },
       a
         className: 'tracklist__preview js-audio--play'
         href: '#'
