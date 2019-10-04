@@ -37,9 +37,14 @@
                     @foreach ($artists as $artist)
                         <div class="artist__box{{$artist->visible ? '' : ' artist__box--hidden'}}">
                             <div class="artist__portrait-wrapper artist__portrait-wrapper--index">
-                                <a href="{{route('artists.show', $artist)}}" class="artist__portrait artist__portrait--index" style="{{$artist->cover_url ? 'background-image: url(' . $artist->cover_url . ')' : ''}}"></a>
+                                <a href="{{route('artists.show', $artist)}}" class="artist__portrait artist__portrait--index {{$artist->hasNewTracks() ? ' artist__portrait--new' : ''}}" style="{{$artist->cover_url ? 'background-image: url(' . $artist->cover_url . ')' : ''}}"></a>
                                 @if($artist->label !== null)
                                     <a class="artist__label-overlay artist__label-overlay--index" href="{{$artist->label->website}}" style="background-image: url('{{$artist->label->icon_url}}')"></a>
+                                @endif
+                                @if($artist->hasNewTracks())
+                                    <span class="artist__badge-wrapper">
+                                        <span class="pill-badge pill-badge--yellow pill-badge--with-shadow">{{trans('common.badges.new')}}</span>
+                                    </span>
                                 @endif
                             </div>
                             <a href="{{route('artists.show', $artist)}}" class="artist__name">{{$artist->name}}</a>
