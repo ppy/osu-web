@@ -83,7 +83,6 @@ export default class Main extends React.Component<Props> {
           <CommentsManager
             commentableType='news_post'
             commentableId={this.props.post.id}
-            commentBundle={this.props.commentBundle}
             component={Comments}
             componentProps={{
               modifiers: ['changelog'],
