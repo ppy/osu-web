@@ -141,8 +141,12 @@ class RankHistory extends Model
         $shiftData = abs($diffTail) < abs($diffHead);
 
         if (!$shiftData) {
-            $currentRank = $this->user->statistics($this->mode)->globalRank();
-            $shiftData = $currentRank === $data[0];
+            $userStatistics = $this->user->statistics($this->mode);
+
+            if ($userStatistics !== null) {
+                $currentRank = $userStatistics->globalRank();
+                $shiftData = $currentRank === $data[0];
+            }
         }
 
         if ($shiftData) {
