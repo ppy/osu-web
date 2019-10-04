@@ -26,7 +26,7 @@
     type="button"
     class="{{ $class }}"
     data-tooltip-position="top center"
-    data-url="{{ route('forum.posts.raw', ['id' => $post, 'quote' => 1]) }}"
+    data-url="{{ route('forum.posts.raw', ['post' => $post, 'quote' => 1]) }}"
     data-remote="1"
     @if ($type === 'circle')
         title="{{ trans('forum.topics.actions.reply_with_quote') }}"

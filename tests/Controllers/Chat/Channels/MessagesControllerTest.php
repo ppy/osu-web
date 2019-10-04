@@ -17,7 +17,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests\Chat\Channels;
+namespace Tests\Controllers\Chat\Channels;
 
 use App\Models\Chat;
 use App\Models\Chat\Message;
@@ -25,32 +25,15 @@ use App\Models\Chat\UserChannel;
 use App\Models\User;
 use App\Models\UserRelation;
 use Faker;
-use TestCase;
+use Tests\TestCase;
 
 class MessagesControllerTest extends TestCase
 {
     protected static $faker;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$faker = Faker\Factory::create();
-    }
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->user = factory(User::class)->create();
-        $this->anotherUser = factory(User::class)->create();
-        $this->restrictedUser = factory(User::class)->states('restricted')->create();
-        // TODO: convert $this->silencedUser to use afterCreatingState after upgrading to Laraval 5.6
-        $this->silencedUser = factory(User::class)->create();
-        $this->silencedUser->accountHistories()->save(
-            factory(\App\Models\UserAccountHistory::class)->states('silence')->make()
-        );
-        $this->publicChannel = factory(Chat\Channel::class)->states('public')->create();
-        $this->privateChannel = factory(Chat\Channel::class)->states('private')->create();
-        $this->pmChannel = factory(Chat\Channel::class)->states('pm')->create();
     }
 
     //region GET /chat/channels/[channel_id] - Get Channel Messages (public)
@@ -365,4 +348,21 @@ class MessagesControllerTest extends TestCase
     }
 
     //endregion
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = factory(User::class)->create();
+        $this->anotherUser = factory(User::class)->create();
+        $this->restrictedUser = factory(User::class)->states('restricted')->create();
+        // TODO: convert $this->silencedUser to use afterCreatingState after upgrading to Laraval 5.6
+        $this->silencedUser = factory(User::class)->create();
+        $this->silencedUser->accountHistories()->save(
+            factory(\App\Models\UserAccountHistory::class)->states('silence')->make()
+        );
+        $this->publicChannel = factory(Chat\Channel::class)->states('public')->create();
+        $this->privateChannel = factory(Chat\Channel::class)->states('private')->create();
+        $this->pmChannel = factory(Chat\Channel::class)->states('pm')->create();
+    }
 }

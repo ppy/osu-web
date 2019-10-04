@@ -17,20 +17,17 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Controllers;
+
 use App\Models\Score\Best\Osu;
 use App\Models\User;
+use Tests\TestCase;
 
 class ScoresControllerTest extends TestCase
 {
     private $score;
     private $user;
-
-    public function setUp()
-    {
-        parent::setUp();
-        $this->user = factory(User::class)->create();
-        $this->score = factory(Osu::class)->create();
-    }
 
     public function testDownload()
     {
@@ -74,5 +71,12 @@ class ScoresControllerTest extends TestCase
                 route('scores.report', ['mode' => 'nope', 'score' => $this->score->getKey()])
             )
             ->assertStatus(404);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->user = factory(User::class)->create();
+        $this->score = factory(Osu::class)->create();
     }
 }

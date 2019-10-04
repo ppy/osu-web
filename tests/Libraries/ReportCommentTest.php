@@ -17,20 +17,18 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Libraries;
+
 use App\Exceptions\ValidationException;
 use App\Models\Build;
 use App\Models\User;
 use App\Models\UserReport;
+use Tests\TestCase;
 
 class ReportCommentTest extends TestCase
 {
     private $reporter;
-
-    public function setUp()
-    {
-        parent::setUp();
-        $this->reporter = factory(User::class)->create();
-    }
 
     public function testCannotReportOwnComment()
     {
@@ -64,6 +62,12 @@ class ReportCommentTest extends TestCase
         $this->assertSame($reportsCount + 1, $this->reporter->reportsMade()->count());
         $this->assertSame($report->user_id, $report->user_id);
         $this->assertTrue($report->reportable->is($comment));
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->reporter = factory(User::class)->create();
     }
 
     private function createComment($user)

@@ -38,7 +38,7 @@
                                     data-remote="1"
                                     data-confirm="{{trans('accounts.security.end_session_confirmation')}}"
                                     data-reload-on-success="1"
-                                    data-url="{{route('account.sessions.destroy', ['id' => $sessionId])}}"
+                                    data-url="{{route('account.sessions.destroy', ['session' => $sessionId])}}"
                                 >{{trans('accounts.security.end_session')}}<i class="fas fa-fw fa-sign-out-alt user-session-list-session__logout-icon"></i></button>
                             </div>
                         </div>
