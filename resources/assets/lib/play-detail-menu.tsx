@@ -19,7 +19,7 @@
 import * as _ from 'lodash';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
-import { ReportScore } from 'report-score';
+import { ReportReportable } from 'report-reportable';
 
 interface Props {
   score: Score;
@@ -50,7 +50,17 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
            ) : null
         }
 
-        {this.canReport ? <ReportScore score={score} /> : null}
+        {
+          this.canReport ? (
+            <ReportReportable
+              className='simple-menu__item'
+              baseKey='scores'
+              reportable_id={score.id}
+              reportable_type={`score_best_${score.mode}`}
+              user={score.user}
+            />
+          ) : null
+        }
       </>
     );
 

@@ -16,18 +16,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { Dictionary } from 'lodash';
 import * as React from 'react';
 import { ReportForm } from 'report-form';
 
-interface ReportCommentProps {
-  comment: Comment;
+interface Props {
+  baseKey?: string;
+  icon: boolean;
+  onFormClose: () => void;
+  reportable_id: string;
+  reportable_type: string;
   user: User;
-}
-
-interface ReportCommentState {
-  completed: boolean;
-  disabled: boolean;
-  showingForm: boolean;
 }
 
 interface ReportData {
@@ -35,10 +34,27 @@ interface ReportData {
   reason?: string;
 }
 
-export class ReportComment extends React.PureComponent<ReportCommentProps, ReportCommentState> {
+interface State {
+  completed: boolean;
+  disabled: boolean;
+  showingForm: boolean;
+}
+
+const availableOptions: Dictionary<string[]> = {
+  beatmapset_discussion_post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
+  comment: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
+  scores: ['Cheating', 'Other'],
+};
+
+export class ReportReportable extends React.PureComponent<Props & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, State> {
+  static defaultProps = {
+    icon: false,
+    onFormClose: () => { /** nothing */ },
+  };
+
   private timeout?: number;
 
-  constructor(props: ReportCommentProps) {
+  constructor(props: Props & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) {
     super(props);
 
     this.state = {
@@ -49,16 +65,18 @@ export class ReportComment extends React.PureComponent<ReportCommentProps, Repor
   }
 
   onFormClose = () => {
+    this.props.onFormClose();
     this.setState({ disabled: false, showingForm: false });
   }
 
   onSubmit = (report: ReportData) => {
     this.setState({ disabled: true });
+
     const data = {
       comments: report.comments,
       reason: report.reason,
-      reportable_id: this.props.comment.id,
-      reportable_type: 'comment',
+      reportable_id: this.props.reportable_id,
+      reportable_type: this.props.reportable_type,
     };
 
     const params = {
@@ -78,23 +96,32 @@ export class ReportComment extends React.PureComponent<ReportCommentProps, Repor
   }
 
   render(): React.ReactNode {
-    const { user, comment, ...attribs } = this.props;
+    const { baseKey, icon, onFormClose, reportable_id, reportable_type, user, ...attribs } = this.props;
+    const groupKey = baseKey || this.props.reportable_type;
+
     return (
-      <React.Fragment>
+      <>
         <button key='button' onClick={this.showForm} {...attribs}>
-          {osu.trans('report.comment.button')}
+          {
+            icon ? (
+              <span className='textual-button textual-button--inline'>
+                <i className='textual-button__icon fas fa-exclamation-triangle' />
+                {' '}
+                {osu.trans(`report.${groupKey}.button`)}
+              </span>
+            ) : osu.trans(`report.${groupKey}.button`)
+          }
         </button>
         <ReportForm
           completed={this.state.completed}
           disabled={this.state.disabled}
-          key='form'
           onClose={this.onFormClose}
           onSubmit={this.onSubmit}
-          title={osu.trans('report.comment.title', { username: `<strong>${user.username}</strong>` })}
+          title={osu.trans(`report.${groupKey}.title`, { username: `<strong>${user.username}</strong>` })}
           visible={this.state.showingForm}
-          visibleOptions={['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other']}
+          visibleOptions={availableOptions[groupKey]}
         />
-      </React.Fragment>
+      </>
     );
   }
 

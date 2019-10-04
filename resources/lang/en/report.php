@@ -19,9 +19,9 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'Report Score',
-        'title' => 'Report :username\'s score?',
+    'beatmapset_discussion_post' => [
+        'button' => 'Report',
+        'title' => 'Report :username\'s post?',
     ],
 
     'comment' => [
@@ -29,8 +29,13 @@ return [
         'title' => 'Report :username\'s comment?',
     ],
 
-    'beatmap-discussion-post' => [
+    'scores' => [
+        'button' => 'Report Score',
+        'title' => 'Report :username\'s score?',
+    ],
+
+    'user' => [
         'button' => 'Report',
-        'title' => 'Report :username\'s post?',
+        'title' => 'Report :username?',
     ],
 ];

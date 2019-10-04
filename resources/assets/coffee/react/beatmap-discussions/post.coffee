@@ -20,8 +20,9 @@ import { MessageLengthCounter } from './message-length-counter'
 import { BigButton } from 'big-button'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
+import { ReportReportable } from 'report-reportable'
 import { UserAvatar } from 'user-avatar'
-import ReportBeatmapDiscussionPost from 'report-beatmap-discussion-post';
+
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -283,9 +284,10 @@ export class Post extends React.PureComponent
                 osu.trans('beatmaps.discussions.allow_kudosu')
 
           if @canReport()
-            el ReportBeatmapDiscussionPost,
+            el ReportReportable,
               className: "#{bn}__action #{bn}__action--button"
-              post: @props.post
+              reportable_id: @props.post.id
+              reportable_type: 'beatmapset_discussion_post'
               user: @props.user
 
 

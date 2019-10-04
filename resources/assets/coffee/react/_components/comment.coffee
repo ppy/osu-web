@@ -21,7 +21,7 @@ import { CommentShowMore } from 'comment-show-more'
 import DeletedCommentsCount from 'deleted-comments-count'
 import * as React from 'react'
 import { a, button, div, span, textarea } from 'react-dom-factories'
-import { ReportComment } from 'report-comment'
+import { ReportReportable } from 'report-reportable'
 import { Spinner } from 'spinner'
 import { UserAvatar } from 'user-avatar'
 
@@ -214,9 +214,10 @@ export class Comment extends React.PureComponent
 
             if @canReport()
               div className: 'comment__row-item',
-                el ReportComment,
+                el ReportReportable,
                   className: 'comment__action'
-                  comment: @props.comment
+                  reportable_id: @props.comment.id
+                  reportable_type: 'comment'
                   user: @userFor(@props.comment)
 
             @renderRepliesText()

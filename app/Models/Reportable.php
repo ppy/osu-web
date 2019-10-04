@@ -41,13 +41,14 @@ trait Reportable
     public function reportBy(User $reporter, array $params = []) : ?UserReport
     {
         try {
-            return $this->reportedIn()->create(
-                array_merge([
-                    'comments' => $params['comments'] ?? '',
-                    'reason' => $params['reason'] ?? 'Cheating',
-                    'reporter_id' => $reporter->getKey(),
-                ], $this->newReportableExtraParams())
-            );
+            $attributes = array_merge($this->newReportableExtraParams(), [
+                'comments' => $params['comments'] ?? '',
+                'reporter_id' => $reporter->getKey(),
+            ]);
+
+            $attributes['reason'] = $params['reason'] ?? $attributes['reason'];
+
+            return $this->reportedIn()->create($attributes);
         } catch (PDOException $e) {
             // ignore duplicate reports
             if (!is_sql_unique_exception($e)) {

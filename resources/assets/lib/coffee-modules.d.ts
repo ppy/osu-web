@@ -106,22 +106,3 @@ declare module 'report-form' {
 
   class ReportForm extends React.PureComponent<ReportFormProps, any> {}
 }
-
-declare module 'report-score' {
-  interface Props {
-    score: Score;
-  }
-
-  class ReportScore extends React.PureComponent<Props> {}
-}
-
-declare module 'report-user' {
-  interface Props {
-    modifiers?: string[];
-    onFormClose?: () => void;
-    user: User;
-    wrapperClass?: string;
-  }
-
-  class ReportUser extends React.PureComponent<Props> {}
-}

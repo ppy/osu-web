@@ -85,6 +85,7 @@ interface Score {
   mode: string;
   replay: boolean;
   user_id: number;
+  user: User;
 }
 
 // TODO: should look at combining with the other User.ts at some point.
