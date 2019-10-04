@@ -20,8 +20,8 @@
 
 namespace App\Libraries;
 
-use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapDiscussion;
+use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\Build;
 use App\Models\Chat\Channel;
