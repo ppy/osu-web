@@ -41,4 +41,11 @@ return [
             'default' => 'Versão em inglês',
         ],
     ],
+    'main' => [
+        'title' => 'Base de Conhecimento',
+        'subtitle' => 'pois osu!pedia soa estranho',
+    ],
+    'search' => [
+        'path' => 'from',
+    ],
 ];
