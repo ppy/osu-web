@@ -35,7 +35,7 @@ class ScoresControllerTest extends TestCase
             ->actingAs($this->user)
             ->json(
                 'POST',
-                route('scores.report', ['mode' => 'osu', 'score' => $this->score->getKey()])
+                route('scores.download', ['mode' => 'osu', 'score' => $this->score->getKey()])
             )
             ->assertSuccessful();
     }
@@ -47,28 +47,6 @@ class ScoresControllerTest extends TestCase
             ->json(
                 'GET',
                 route('scores.download', ['mode' => 'nope', 'score' => $this->score->getKey()])
-            )
-            ->assertStatus(404);
-    }
-
-    public function testReport()
-    {
-        $this
-            ->actingAs($this->user)
-            ->json(
-                'POST',
-                route('scores.report', ['mode' => 'osu', 'score' => $this->score->getKey()])
-            )
-            ->assertSuccessful();
-    }
-
-    public function testReportInvalidMode()
-    {
-        $this
-            ->actingAs($this->user)
-            ->json(
-                'POST',
-                route('scores.report', ['mode' => 'nope', 'score' => $this->score->getKey()])
             )
             ->assertStatus(404);
     }
