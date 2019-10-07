@@ -83,7 +83,7 @@ class BeatmapsetSearch extends RecordSearch
             'nested' => [
                 'path' => 'beatmaps',
                 'query' => $nested->toArray(),
-            ]
+            ],
         ]);
 
         return $query;
