@@ -820,6 +820,14 @@ class Topic extends Model implements AfterCommit
         return $this->topic_last_post_time > Carbon::now()->subHours($minHours);
     }
 
+    // TODO: Remove when the "Report a Qualified beatmap here!" thread is
+    //       migrated away from the forum
+    // https://github.com/ppy/osu-web/issues/4784
+    public function allowsDoublePosting() : bool
+    {
+        return $this->topic_bumped === 2;
+    }
+
     public function isFeatureTopic()
     {
         return $this->topic_type === static::TYPES['normal'] && $this->forum->isFeatureForum();

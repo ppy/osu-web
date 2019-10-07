@@ -1236,7 +1236,7 @@ class OsuAuthorize
             return $prefix.'locked';
         }
 
-        if ($topic->isDoublePostBy($user)) {
+        if (!$topic->allowsDoublePosting() && $topic->isDoublePostBy($user)) {
             return $prefix.'double_post';
         }
 
