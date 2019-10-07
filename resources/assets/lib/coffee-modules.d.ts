@@ -69,9 +69,8 @@ declare module 'comments' {
 
 declare module 'comments-manager' {
   interface Props {
-    commentableId: number;
-    commentableType: string;
-    commentBundle: any;
+    commentableId?: number;
+    commentableType?: string;
     component: any;
     componentProps: any;
   }

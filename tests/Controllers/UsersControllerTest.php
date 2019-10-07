@@ -1,7 +1,10 @@
 <?php
 
+namespace Tests\Controllers;
+
 use App\Models\Country;
 use App\Models\User;
+use Tests\TestCase;
 
 class UsersControllerTest extends TestCase
 {

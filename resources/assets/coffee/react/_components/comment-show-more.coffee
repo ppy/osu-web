@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, span } from 'react-dom-factories'
 import { ShowMoreLink } from 'show-more-link'
@@ -23,6 +24,8 @@ import { Spinner } from 'spinner'
 
 
 el = React.createElement
+
+uiState = core.dataStore.uiState
 
 bn = 'comment-show-more'
 
@@ -43,7 +46,7 @@ export class CommentShowMore extends React.PureComponent
 
   render: =>
     return null if @props.comments.length >= @props.total
-    return null unless (@props.moreComments[@props.parent?.id ? null] ? true)
+    return null unless (uiState.comments.hasMoreComments[@props.parent?.id ? null] ? true)
 
     blockClass = osu.classWithModifiers bn, @props.modifiers
 
@@ -79,19 +82,19 @@ export class CommentShowMore extends React.PureComponent
       commentable_type: @props.parent?.commentable_type ? @props.commentableType
       commentable_id: @props.parent?.commentable_id ? @props.commentableId
       parent_id: @props.parent?.id ? 0
-      sort: @props.sort
+      sort: uiState.comments.currentSort
 
     lastComment = _.last(@props.comments)
     if lastComment?
       params.cursor =
         id: lastComment.id
-        created_at: lastComment.created_at
-        votes_count: lastComment.votes_count
+        created_at: lastComment.createdAt
+        votes_count: lastComment.votesCount
 
     @xhr = $.ajax laroute.route('comments.index'),
       data: params
       dataType: 'json'
     .done (data) =>
-      $.publish 'comments:added', commentBundle: data
+      $.publish 'comments:added', data
     .always =>
       @setState loading: false
