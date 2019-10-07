@@ -12,6 +12,10 @@
     {
       "type": "vcs",
       "url": "https://github.com/nanaya/slack-php"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/nanaya/ziggy"
     }
   ],
   "require": {
@@ -40,7 +44,7 @@
     "paypal/rest-api-sdk-php": "*",
     "sentry/sentry-laravel": "*",
     "symfony/yaml": "*",
-    "tightenco/ziggy": "^0.8.0",
+    "tightenco/ziggy": "dev-osuweb",
     "xsolla/xsolla-sdk-php": "*"
   },
   "require-dev": {
