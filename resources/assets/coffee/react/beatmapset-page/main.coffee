@@ -152,7 +152,7 @@ export class Main extends React.Component
 
   toggleFavourite: =>
     @favouriteXhr = $.ajax
-      url: laroute.route('beatmapsets.update-favourite', beatmapset: @props.beatmapset.id)
+      url: laroute.route('beatmapsets.favourites.store', beatmapset: @props.beatmapset.id)
       method: 'post'
       dataType: 'json'
       data:
@@ -160,8 +160,8 @@ export class Main extends React.Component
 
     .done (data) =>
       @setState
-        favcount: data.favcount
-        hasFavourited: data.favourited
+        favcount: data.favourite_count
+        hasFavourited: !@state.hasFavourited
 
     .fail (xhr, status) =>
       if status == 'abort'
