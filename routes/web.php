@@ -311,7 +311,6 @@ Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payme
 Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-api', 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::apiResource('comments', 'CommentsController');
-        Route::post('comments/{comment}/report', 'CommentsController@report')->name('comments.report');
         Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
         Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');
 
@@ -340,6 +339,9 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
                 Route::apiResource('{playlist}/scores', 'Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['store', 'update']]);
             });
         });
+
+        Route::resource('reports', 'ReportsController', ['only' => ['store']]);
+
         Route::apiResource('rooms', 'Multiplayer\RoomsController', ['only' => ['show', 'store']]);
 
         Route::group(['prefix' => 'beatmapsets'], function () {
