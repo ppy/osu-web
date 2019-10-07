@@ -87,6 +87,11 @@ return [
         'necropost_months' => 6,
         'poll_edit_hours' => get_int(env('FORUM_POLL_EDIT_HOURS')) ?? 1,
 
+        'double_post_allowed' => [
+            'forum_ids' => array_map('intval', explode(' ', env('DOUBLE_POST_ALLOWED_FORUM_IDS', '52 68 84 114'))),
+            'topic_ids' => array_map('intval', explode(' ', env('DOUBLE_POST_ALLOWED_TOPIC_IDS', '447428'))),
+        ],
+
         'double_post_time' => [
             'author' => 24,
             'normal' => 72,
