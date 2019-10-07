@@ -20,8 +20,9 @@
 
 namespace Tests\Transformers\OAuth;
 
+use App\Models\OAuth\Client;
 use App\Models\User;
-use TestCase;
+use Tests\TestCase;
 
 class ClientTransformerTest extends TestCase
 {
@@ -29,14 +30,6 @@ class ClientTransformerTest extends TestCase
 
     private $client;
     private $owner;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->owner = factory(User::class)->create();
-        $this->client = $this->createOAuthClient($this->owner);
-    }
 
     public function testRedirectAndSecretVisibleToOwner()
     {
@@ -55,5 +48,13 @@ class ClientTransformerTest extends TestCase
 
         $this->assertArrayNotHasKey('redirect', $json);
         $this->assertArrayNotHasKey('secret', $json);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->owner = factory(User::class)->create();
+        $this->client = factory(Client::class)->make(['user_id' => $this->owner->getKey()]);
     }
 }

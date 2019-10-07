@@ -163,19 +163,20 @@ export class CommentEditor extends React.PureComponent
 
         onDone = (data) =>
           @setState message: ''
-          $.publish 'comments:added', commentBundle: data, prepend: true
+          $.publish 'comments:new', data
       when 'edit'
         url = laroute.route 'comments.update', comment: @props.id
         method = 'PUT'
 
         onDone = (data) ->
-          $.publish 'comment:updated', comment: data
+          $.publish 'comment:updated', data
 
     @xhr = $.ajax url, {method, data}
     .always =>
       @setState posting: false
     .done (data) =>
       onDone(data)
+      @props.onPosted?(@mode())
       @props.close?()
     .fail (xhr, status) =>
       osu.ajaxError(xhr, status)

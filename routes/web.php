@@ -217,7 +217,7 @@ Route::get('legal/{page}', 'LegalController@show')->name('legal');
 
 Route::group(['as' => 'oauth.', 'prefix' => 'oauth', 'namespace' => 'OAuth'], function () {
     Route::resource('authorized-clients', 'AuthorizedClientsController', ['only' => ['destroy']]);
-    Route::resource('clients', 'ClientsController', ['except' => ['create', 'edit']]);
+    Route::resource('clients', 'ClientsController', ['except' => ['create', 'edit', 'show']]);
 });
 
 Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');
@@ -320,6 +320,11 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
                 Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
             });
         });
+
+        Route::apiResource('comments', 'CommentsController');
+        Route::post('comments/{comment}/report', 'CommentsController@report')->name('comments.report');
+        Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
+        Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');
 
         Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
             Route::post('new', 'ChatController@newConversation')->name('new');
