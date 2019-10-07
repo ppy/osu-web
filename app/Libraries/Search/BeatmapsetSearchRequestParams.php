@@ -20,6 +20,7 @@
 
 namespace App\Libraries\Search;
 
+use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Sort;
 use App\Models\Beatmap;
 use App\Models\Genre;
@@ -174,15 +175,20 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         $options = ($orderOptions[$sort->field] ?? [])[$sort->order] ?? [];
 
         // use relevant mode when sorting on nested field
-        if (starts_with($sort->field, 'beatmaps.') && $this->mode !== null) {
-            $modes = [$this->mode];
-            if ($this->includeConverts && $this->mode !== Beatmap::MODES['osu']) {
-                $modes[] = Beatmap::MODES['osu'];
+        if (starts_with($sort->field, 'beatmaps.')) {
+            $sortFilter = new BoolQuery;
+
+            if (!$this->includeConverts) {
+                $sortFilter->filter(['term' => ['beatmaps.convert' => false]]);
+            }
+
+            if ($this->mode !== null) {
+                $sortFilter->filter(['term' => ['beatmaps.playmode' => $this->mode]]);
             }
 
             $options['nested'] = [
                 'path' => 'beatmaps',
-                'filter' => ['terms' => ['beatmaps.playmode' => $modes]],
+                'filter' => $sortFilter->toArray(),
             ];
         }
 

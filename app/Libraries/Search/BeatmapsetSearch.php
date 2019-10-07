@@ -139,13 +139,12 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addModeFilter($query)
     {
-        if ($this->params->mode !== null) {
-            $modes = [$this->params->mode];
-            if ($this->params->includeConverts && $this->params->mode !== Beatmap::MODES['osu']) {
-                $modes[] = Beatmap::MODES['osu'];
-            }
+        if (!$this->params->includeConverts) {
+            $query->filter(['term' => ['beatmaps.convert' => false]]);
+        }
 
-            $query->filter(['terms' => ['beatmaps.playmode' => $modes]]);
+        if ($this->params->mode !== null) {
+            $query->filter(['term' => ['beatmaps.playmode' => $this->params->mode]]);
         }
     }
 
