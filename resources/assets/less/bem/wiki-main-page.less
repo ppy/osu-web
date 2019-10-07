@@ -17,14 +17,10 @@
  */
 
 .wiki-main-page {
+  @_top: wiki-main-page;
   background: @osu-colour-b5;
 
   &__blurb {
-    font-size: 12px;
-    text-align: center;
-    font-weight: 300;
-    color: @osu-colour-c1;
-
     padding-top: 30px;
   }
 
@@ -37,5 +33,39 @@
     }
 
     padding-top: 45px;
+  }
+
+  &__heading {
+    color: @osu-colour-c1;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: normal;
+
+    .wiki-main-page-panel & {
+      margin-bottom: 40px;
+    }
+
+    .wiki-main-page-panel:first-child & {
+      font-size: 30px;
+    }
+  }
+
+  &__paragraph {
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 700;
+    color: @osu-colour-c1;
+
+    .@{_top}__blurb & {
+      font-size: 12px;
+      text-align: center;
+      font-style: normal;
+      font-weight: 300;
+      color: @osu-colour-c1;
+    }
+  }
+
+  &__link {
+    .link-default();
   }
 }
