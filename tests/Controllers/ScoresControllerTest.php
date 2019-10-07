@@ -67,7 +67,7 @@ class ScoresControllerTest extends TestCase
 
         // Laravel doesn't remove the directory created for fakes and
         // Storage::fake() removes the files in the directory when called but leaves the directory there.
-        $this->beforeApplicationDestroyed(function() use ($disk) {
+        $this->beforeApplicationDestroyed(function () use ($disk) {
             $path = storage_path('framework/testing/disks/'.$disk);
             (new Filesystem)->deleteDirectory($path);
         });
