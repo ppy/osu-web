@@ -21,22 +21,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Beatmap;
-use App\Transformers\BeatmapsetTransformer;
-use Auth;
 use Request;
 
 class BeatmapsetsController extends Controller
 {
-    public function favourites()
-    {
-        $favourites = Auth::user()->favouriteBeatmapsets();
-
-        return json_collection(
-            $favourites->get(),
-            new BeatmapsetTransformer()
-        );
-    }
-
     public function lookup()
     {
         $beatmapId = Request::input('beatmap_id');
