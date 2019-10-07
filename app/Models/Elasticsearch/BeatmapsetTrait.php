@@ -56,7 +56,7 @@ trait BeatmapsetTrait
                 'beatmaps', // note that the with query will run with the default scopes.
                 'beatmaps.difficulty' => function ($query) {
                     $query->where('mods', 0);
-                }
+                },
             ]);
     }
 
@@ -102,12 +102,16 @@ trait BeatmapsetTrait
             $beatmapsValues[] = $beatmapValues;
 
             if ($beatmap->playmode === Beatmap::MODES['osu']) {
-                $diffs = $beatmap->difficulty->where('mode', '<>', Beatmap::MODES['osu'])->where('mods', 0)->all();
-                foreach ($diffs as $diff) {
+                foreach (Beatmap::MODES as $modeInt) {
+                    if ($modeInt === Beatmap::MODES['osu']) {
+                        continue;
+                    }
+
+                    $diff = $beatmap->difficulty->where('mode', $modeInt)->where('mods', 0)->first();
                     $convertValues = $beatmapValues; // is an array, so automatically a copy.
                     $convertValues['convert'] = true;
-                    $convertValues['difficultyrating'] = $diff->diff_unified;
-                    $convertValues['playmode'] = $diff->mode;
+                    $convertValues['difficultyrating'] = $diff !== null ? $diff->diff_unified : $beatmap->difficultyrating;
+                    $convertValues['playmode'] = $modeInt;
 
                     $beatmapsValues[] = $convertValues;
                 }
