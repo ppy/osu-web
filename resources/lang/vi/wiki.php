@@ -41,4 +41,11 @@ return [
             'default' => 'Phiên bản tiếng Anh',
         ],
     ],
+    'main' => [
+        'title' => '',
+        'subtitle' => '',
+    ],
+    'search' => [
+        'path' => '',
+    ],
 ];

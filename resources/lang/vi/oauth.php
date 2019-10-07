@@ -58,6 +58,15 @@ return [
         'title' => 'Đăng Nhập Tài Khoản',
     ],
 
+    'new_client' => [
+        'header' => '',
+        'register' => '',
+        'terms_of_use' => [
+            '_' => '',
+            'link' => '',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => '',
         'new' => '',

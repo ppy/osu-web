@@ -58,6 +58,15 @@ return [
         'title' => '账号登录',
     ],
 
+    'new_client' => [
+        'header' => '',
+        'register' => '',
+        'terms_of_use' => [
+            '_' => '',
+            'link' => '',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => '你确定想要删除这个客户端？',
         'new' => '新的 OAuth 应用',

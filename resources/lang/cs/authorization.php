@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Nelze upravovat automaticky generovaný příspěvek.',
-            'not_owner' => 'Pouze autor může příspěvek upravovat.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'Pouze autor může příspěvek upravovat.',
+            'resolved' => '',
+            'system_generated' => 'Nelze upravovat automaticky generovaný příspěvek.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'Tato beatmapa je zablokována od diskuze.',
         ],

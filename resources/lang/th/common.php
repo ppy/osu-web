@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ' และ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'ผู้ดูแล',
         'back_to_previous' => 'กลับไปยังตำแหน่งก่อนหน้านี้',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'วางที่นี่เพื่ออัพโหลด',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

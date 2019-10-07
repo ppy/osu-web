@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'επίτρεψε kudosu',
+        'beatmap_information' => '',
         'delete' => 'διαγραφή',
         'deleted' => 'Διαγράφηκε από :editor :delete_time.',
         'deny_kudosu' => 'αρνήσου kudosu',

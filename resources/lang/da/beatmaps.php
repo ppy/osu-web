@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'giv kudosu',
+        'beatmap_information' => '',
         'delete' => 'slet',
         'deleted' => 'Slettet af :editor :delete_time.',
         'deny_kudosu' => 'nægt kudosu',
