@@ -47,16 +47,19 @@ class UserReport extends Model
 {
     use Validatable;
 
-    const CREATED_AT = 'timestamp';
-    const REPORTABLES = [
-        MorphMap::MAP[BeatmapDiscussionPost::class],
-        MorphMap::MAP[Best\Fruits::class],
-        MorphMap::MAP[Best\Mania::class],
-        MorphMap::MAP[Best\Osu::class],
-        MorphMap::MAP[Best\Taiko::class],
-        MorphMap::MAP[Comment::class],
-        MorphMap::MAP[User::class],
+    const POST_TYPE_REASONS = ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'];
+    const SCORE_TYPE_REASONS = ['Cheating', 'Other'];
+
+    const ALLOWED_REASONS = [
+        MorphMap::MAP[BeatmapDiscussionPost::class] => self::POST_TYPE_REASONS,
+        MorphMap::MAP[Best\Fruits::class] => self::SCORE_TYPE_REASONS,
+        MorphMap::MAP[Best\Mania::class] => self::SCORE_TYPE_REASONS,
+        MorphMap::MAP[Best\Osu::class] => self::SCORE_TYPE_REASONS,
+        MorphMap::MAP[Best\Taiko::class] => self::SCORE_TYPE_REASONS,
+        MorphMap::MAP[Comment::class] => self::POST_TYPE_REASONS,
     ];
+
+    const CREATED_AT = 'timestamp';
 
     protected $table = 'osu_user_reports';
     protected $primaryKey = 'report_id';
@@ -99,6 +102,17 @@ class UserReport extends Model
                 'user_id',
                 '.self'
             );
+        }
+
+        $allowedReasons = static::ALLOWED_REASONS[$this->reportable_type] ?? null;
+        if ($allowedReasons !== null) {
+            if (!in_array($this->reason, $allowedReasons, true)) {
+                $this->validationErrors()->add(
+                    'reason',
+                    '.reason_not_valid',
+                    ['reason' => $this->reason]
+                );
+            }
         }
 
         return $this->validationErrors()->isEmpty();
