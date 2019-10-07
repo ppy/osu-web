@@ -84,6 +84,7 @@ interface Score {
   id: string;
   mode: string;
   replay: boolean;
+  user: User;
   user_id: number;
 }
 

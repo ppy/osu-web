@@ -111,33 +111,14 @@ declare module 'react/beatmaps/search-content' {
 
 declare module 'report-form' {
   interface ReportFormProps {
-    allowOptions: boolean;
     completed: boolean;
     disabled: boolean;
     onClose: () => void;
     onSubmit: ({comments}: {comments: string}) => void;
     title: string;
     visible: boolean;
+    visibleOptions?: string[];
   }
 
   class ReportForm extends React.PureComponent<ReportFormProps, any> {}
-}
-
-declare module 'report-score' {
-  interface Props {
-    score: Score;
-  }
-
-  class ReportScore extends React.PureComponent<Props> {}
-}
-
-declare module 'report-user' {
-  interface Props {
-    modifiers?: string[];
-    onFormClose?: () => void;
-    user: User;
-    wrapperClass?: string;
-  }
-
-  class ReportUser extends React.PureComponent<Props> {}
 }
