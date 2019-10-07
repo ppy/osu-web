@@ -175,7 +175,7 @@ class Product extends Model
         return $query->where('available_until', '<', Carbon::now());
     }
 
-    public function scopeLatest($query)
+    public function scopeListing($query)
     {
         return $query
             ->available()
