@@ -39,7 +39,7 @@ return [
     ],
     'search' => [
         'default' => 'Impossibile ottenere alcun risultato, riprova più tardi.',
-        'operation_timeout_exception' => 'Attualmente la ricerca è più in uso del solito, riprova più tardi.',
+        'operation_timeout_exception' => 'Attualmente la ricerca è più occupata del solito, riprova più tardi.',
     ],
 
     'logged_out' => 'Sei stato disconnesso. Per favore effettua di nuovo il login e riprova.',

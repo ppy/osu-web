@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Berikan vote positif pada untai diskusi ini',
-            'down' => 'Berikan vote negatif pada untai diskusi ini',
+            'none' => [
+                'down' => 'Belum ada downvote',
+                'up' => 'Belum ada upvote',
+            ],
+            'latest' => [
+                'down' => 'Downvotes terbaru',
+                'up' => 'Upvotes terbaru',
+            ],
         ],
     ],
 
@@ -280,6 +286,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => 'Mirror',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

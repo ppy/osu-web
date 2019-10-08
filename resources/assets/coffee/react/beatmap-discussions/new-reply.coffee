@@ -124,7 +124,8 @@ export class NewReply extends React.PureComponent
     div className: "#{bn}__action",
       el BigButton,
         text: osu.trans("common.buttons.#{action}")
-        icon: if @state.posting == action then '_spinner' else ACTION_ICONS[action]
+        icon: ACTION_ICONS[action]
+        isBusy: @state.posting == action
         props:
           disabled: !@validPost() || @state.posting?
           onClick: @throttledPost

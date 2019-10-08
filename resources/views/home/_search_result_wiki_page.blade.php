@@ -27,20 +27,20 @@
         >
             <div class="search-wiki-page">
                 <div class="search-wiki-page__content">
-                    <h1 class="search-entry__row search-entry__row--title">
+                    <h1 class="search-wiki-page__row search-wiki-page__row--title">
                         <span class="search-highlight">
                             {!! $entry->highlightedTitle() !!}
                         </span>
 
                     </h1>
 
-                    <p class="search-entry__row search-entry__row--excerpt">
+                    <p class="search-wiki-page__row search-wiki-page__row--excerpt">
                         <span class="search-highlight">
                             {!! $entry->highlights() !!}
                         </span>
                     </p>
 
-                    <p class="search-entry__row search-entry__row--footer">
+                    <p class="search-wiki-page__row search-wiki-page__row--footer">
                         {{ $url }}
                     </p>
                 </div>

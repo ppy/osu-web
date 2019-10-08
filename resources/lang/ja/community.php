@@ -27,34 +27,34 @@ return [
             'instructions' => 'ハートボタンをクリックでosu!storeに飛びます(英語)',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => 'なぜosu!を支援する必要があるんですか？お金はどこにいきますか？',
 
             'team' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'チームを支援する',
+                'description' => 'osu!は小規模なチームによって開発されていす。あなたのサポートがチームを助けます。',
             ],
             'infra' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'サーバーインフラ',
+                'description' => '寄付はウェブサイト、マルチプレイサービス、オンラインリーダーボードを実行するサーバーの為に使われます。',
             ],
             'featured-artists' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => '注目アーティスト',
+                'description' => 'あなたのサポートで私達は素晴らしいアーティストにアプローチして、osu!で使用するための素晴らしい音楽をライセンスすることができます。',
+                'link_text' => '現在の一覧を見る &raquo;',
             ],
             'ads' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'osu!の独立性を保つ',
+                'description' => 'あなたの貢献によってゲームは独立し、広告や外部のスポンサーから自由になることができます。',
             ],
             'tournaments' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => '公式トーナメント',
+                'description' => '公式osu!ワールドカップトーナメントに資金（および賞品）を提供してください！',
+                'link_text' => 'トーナメントを検索 &raquo;',
             ],
             'bounty-program' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'オープンソースバウンティプログラム',
+                'description' => 'osu!を改善するために時間と労力を費やしてきたコミュニティの貢献者を支援します。',
+                'link_text' => '詳細を見る &raquo;',
             ],
         ],
         'perks' => [
@@ -65,18 +65,18 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => '',
-                'description' => "",
+                'title' => 'フレンドランキング',
+                'description' => "ゲーム内とウェブサイトのリーダーボードで、フレンドと競い合う方法をご覧ください。",
             ],
 
             'country_ranking' => [
-                'title' => '',
-                'description' => '',
+                'title' => '国別ランキング',
+                'description' => '世界を征服する前に、国を征服してください。',
             ],
 
             'mod_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Modsで絞り込む',
+                'description' => 'HDHRをプレイする人と関連付けますか？問題ありません！',
             ],
 
             'auto_downloads' => [
@@ -135,20 +135,20 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'その他のお気に入り',
+                'description' => 'お気に入りに登録できるビートマップの数は:normally &rarr; :supporterに増加します',
             ],
             'more_friends' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'その他のフレンド',
+                'description' => '登録できるフレンドの数は:normally &rarr; :supporterに増加します',
             ],
             'more_beatmaps' => [
-                'title' => '',
-                'description' => '',
+                'title' => '他のビートマップをアップロード',
+                'description' => '一度に保持できるRankedされていないビートマップ数は、基準値とRankedされたビートマップの追加ボーナス値から計算されます。<br/><br/>通常これは4つで、Rankedされたビートマップごとに1つ追加されます。（最大２）サポーターになると、8つになりRankedされるごとに2つ追加されます。',
             ],
             'friend_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'フレンドリーダーボード',
+                'description' => 'フレンドと競い合って、自分がどのようにランクアップしていくか見てください！*<br/><br/><small>*新しいサイトはまだ利用できません。近日公開予定',
             ],
 
         ],

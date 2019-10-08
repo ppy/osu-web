@@ -27,7 +27,6 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'rank',
-        'scoreRanks',
         'user',
     ];
 
@@ -74,23 +73,6 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
             return [
                 'global' => $stats->globalRank(),
                 'country' => $stats->countryRank(),
-            ];
-        });
-    }
-
-    public function includeScoreRanks(UserStatistics\Model $stats = null)
-    {
-        if ($stats === null) {
-            $stats = new UserStatistics\Osu();
-        }
-
-        return $this->item($stats, function ($stats) {
-            return [
-                'XH' => $stats->xh_rank_count,
-                'SH' => $stats->sh_rank_count,
-                'X' => $stats->x_rank_count,
-                'S' => $stats->s_rank_count,
-                'A' => $stats->a_rank_count,
             ];
         });
     }

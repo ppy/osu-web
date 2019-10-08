@@ -33,11 +33,16 @@ Timeout.set(0, function () {
     @if (priv_check('ForumModerate', $post->forum)->can())
         @yield("moderatorAction")
 
-        var $toggle = $el.find(".js-post-delete-toggle");
+        var $toggle;
 
-        $toggle.html({!! json_encode(render_to_string('forum.topics._post_hide_action', [
-            'post' => $post,
-        ])) !!});
+        @foreach (['circle', 'menu'] as $type)
+            $toggle = $el.find(".js-post-delete-toggle--{{ $type }}");
+
+            $toggle.replaceWith({!! json_encode(render_to_string('forum.posts._button_delete', [
+                'post' => $post,
+                'type' => $type,
+            ])) !!});
+        @endforeach
         osu.pageChange();
     @else
         $el.css({

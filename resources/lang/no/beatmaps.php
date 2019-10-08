@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Oppstem denne diskusjonen',
-            'down' => 'Nedstem denne diskusjonen',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 
@@ -280,6 +286,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',

@@ -36,7 +36,7 @@ class BeatmapsController extends Controller
         $beatmap = Beatmap::findOrFail($id);
         $set = $beatmap->beatmapset;
 
-        return ujs_redirect(route('beatmapsets.show', ['beatmap' => $set->beatmapset_id]).'#'.$beatmap->mode.'/'.$id);
+        return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $set->beatmapset_id]).'#'.$beatmap->mode.'/'.$id);
     }
 
     public function scores($id)

@@ -31,6 +31,10 @@ export default class UserStore extends Store {
     this.users = observable.map<number, User>();
   }
 
+  get(id: number) {
+    return this.users.get(id);
+  }
+
   @action
   getOrCreate(userId: number, props?: UserJSON): User {
     let user = this.users.get(userId);
@@ -58,6 +62,15 @@ export default class UserStore extends Store {
   handleDispatchAction(dispatchedAction: DispatcherAction) {
     if (dispatchedAction instanceof UserLogoutAction) {
       this.flushStore();
+    }
+  }
+
+  @action
+  updateWithJSON(data: UserJSON[] | undefined | null) {
+    if (data == null) { return; }
+    for (const json of data) {
+      const user = User.fromJSON(json);
+      this.users.set(user.id, user);
     }
   }
 }

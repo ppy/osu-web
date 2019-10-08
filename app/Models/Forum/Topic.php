@@ -589,6 +589,11 @@ class Topic extends Model implements AfterCommit
         $this->attributes['poll_title'] = (new BBCodeForDB($value))->generate();
     }
 
+    public function pollTitleRaw()
+    {
+        return bbcode_for_editor($this->poll_title);
+    }
+
     public function pollTitleHTML()
     {
         return bbcode($this->poll_title, $this->posts()->withTrashed()->first()->bbcode_uid);

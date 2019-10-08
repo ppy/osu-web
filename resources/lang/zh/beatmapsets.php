@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'approved 于 ',
             'favourite' => '收藏这张谱面',
-            'favourited_count' => '还有 :count_delimited 人喜欢它',
             'logged-out' => '下载谱面前请先登录！',
             'loved' => 'loved 于 ',
             'mapped_by' => '作者: :mapper',

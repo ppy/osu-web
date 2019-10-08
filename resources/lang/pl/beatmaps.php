@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Oceń tę dyskusję poztywnie',
-            'down' => 'Oceń tę dyskusję negatywnie',
+            'none' => [
+                'down' => 'Brak negatywnych ocen',
+                'up' => 'Brak pozytywnych ocen',
+            ],
+            'latest' => [
+                'down' => 'Ostatnie negatywne oceny',
+                'up' => 'Ostatnie pozytywne oceny',
+            ],
         ],
     ],
 
@@ -280,6 +286,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => 'Mirror',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'Brak modyfikatorów',

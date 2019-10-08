@@ -18,14 +18,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests;
+namespace Tests\Jobs;
 
 use App\Jobs\BeatmapsetDelete;
 use App\Models\Beatmapset;
 use App\Models\Event;
 use App\Models\Log;
 use App\Models\User;
-use TestCase;
+use Tests\TestCase;
 
 class BeatmapsetDeleteTest extends TestCase
 {

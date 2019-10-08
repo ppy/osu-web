@@ -71,6 +71,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'ตัวรับที่ได้รับการยืนยัน',
+        'own_clients' => '',
         'title' => 'OAuth',
     ],
 

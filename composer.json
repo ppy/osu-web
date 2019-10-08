@@ -24,12 +24,13 @@
     "guzzlehttp/guzzle": "*",
     "itsgoingd/clockwork": ">=3.0",
     "jenssegers/agent": "^2.6",
-    "jonnybarnes/commonmark-linkify": "dev-master",
     "laravel/framework": "5.5.*",
     "laravel/passport": "*",
     "laravel/tinker": "~1.0",
     "laravelcollective/html": "5.5.*",
     "league/commonmark": ">=0.16.0",
+    "league/commonmark-ext-autolink": "^1.0",
+    "league/commonmark-ext-table": "*",
     "league/flysystem-aws-s3-v3": "^1.0",
     "league/fractal": "*",
     "league/html-to-markdown": "^4.7",
@@ -40,7 +41,6 @@
     "paypal/rest-api-sdk-php": "*",
     "sentry/sentry-laravel": "*",
     "symfony/yaml": "*",
-    "webuni/commonmark-table-extension": ">=0.8.0",
     "xsolla/xsolla-sdk-php": "*"
   },
   "require-dev": {
@@ -65,9 +65,6 @@
     ]
   },
   "autoload-dev": {
-    "classmap": [
-      "tests/TestCase.php"
-    ],
     "psr-4": {
       "Tests\\": "tests/"
     }

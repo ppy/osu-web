@@ -21,6 +21,7 @@
 namespace App\Transformers;
 
 use App\Models\Beatmap;
+use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
@@ -78,7 +79,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'storyboard' => $beatmapset->storyboard,
             'ranked' => $beatmapset->approved,
             'status' => $beatmapset->status(),
-            'has_scores' => $beatmapset->hasScores(),
+            'is_scoreable' => $beatmapset->isScoreable(),
             'discussion_enabled' => $beatmapset->discussion_enabled,
             'discussion_locked' => $beatmapset->discussion_locked,
             'can_be_hyped' => $beatmapset->canBeHyped(),
@@ -277,6 +278,10 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
                 $userIds[] = $post->user_id;
                 $userIds[] = $post->last_editor_id;
                 $userIds[] = $post->deleted_by_id;
+            }
+
+            foreach ($discussion->beatmapDiscussionVotes->sortByDesc('created_at')->take(BeatmapDiscussion::VOTES_TO_SHOW) as $vote) {
+                $userIds[] = $vote->user_id;
             }
         }
 

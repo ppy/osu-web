@@ -44,12 +44,12 @@
       background-position: center;
     }
 
-    .@{_top}--forums-index & {
-      .at2x-simple('/images/headers/forum-index.jpg');
+    .@{_top}--forum & {
+      .at2x-simple('/images/headers/forum-topic-covers/forum-cover-category-osu.jpg');
     }
 
-    .@{_top}--forums-show & {
-      .at2x-simple('/images/headers/forum-topic-covers/forum-cover-category-osu.jpg');
+    .@{_top}--forums-index & {
+      .at2x-simple('/images/headers/forum-index.jpg');
     }
   }
 
@@ -76,14 +76,11 @@
   }
 
   &__row {
-    padding: 0 @padding-base;
+    padding-top: 0;
+    padding-bottom: 0;
+    .default-gutter-v2();
     display: flex;
     align-items: center;
-
-    @media @desktop {
-      padding-left: @padding-base-desktop;
-      padding-right: @padding-base-desktop;
-    }
 
     &--bar {
       background-color: @osu-colour-d4;

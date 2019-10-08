@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'được chấp nhận vào ',
             'favourite' => 'Yêu thích beatmapset này',
-            'favourited_count' => '+ :count nữa!',
             'logged-out' => 'Bạn cần phải đăng nhập trước khi tải xuống beatmap!',
             'loved' => 'loved vào ',
             'mapped_by' => 'được tạo bởi :mapper',

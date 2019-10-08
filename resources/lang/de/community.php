@@ -27,34 +27,34 @@ return [
             'instructions' => 'klick auf das herz, um zum osu!store zu gelangen',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => 'Warum sollte ich osu! unterstützen? Wohin fließt das Geld?',
 
             'team' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Unterstütze das Team',
+                'description' => 'Ein kleines Team entwickelt und betreibt osu!. Deine Unterstützung hilft ihnen dabei, zu, du weißt schon... leben.',
             ],
             'infra' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Serverinfrastruktur',
+                'description' => 'Die Beiträge gehen an die Server, auf denen die Website, Multiplayer-Dienste, Online-Bestenlisten usw. ausgeführt werden.',
             ],
             'featured-artists' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Vorgestellte Künstler',
+                'description' => 'Mit Deiner Unterstützung können wir noch mehr großartige Künstler ansprechen und noch mehr großartige Musik für den Einsatz in osu! lizenzieren!',
+                'link_text' => 'Schaue den aktuellen Plan an &raquo;',
             ],
             'ads' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Halte osu! aufrecht',
+                'description' => 'Deine Beiträge tragen dazu bei, das Spiel unabhängig und völlig frei von Werbung und externen Sponsoren zu halten.',
             ],
             'tournaments' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Offizielle Turniere',
+                'description' => 'Hilf mit, die Durchführung (und die Preise) der offiziellen osu!-Weltcup-Turniere zu finanzieren.',
+                'link_text' => 'Erkunde Turniere &raquo;',
             ],
             'bounty-program' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Open-Source Prämienprogramm',
+                'description' => 'Unterstütze die Community-Mitarbeiter, die ihre Zeit und Mühe investiert haben, um osu! besser zu machen.',
+                'link_text' => 'Finde mehr heraus &raquo;',
             ],
         ],
         'perks' => [
@@ -65,18 +65,18 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => '',
-                'description' => "",
+                'title' => 'Freundes-Rangliste',
+                'description' => "Finde auf einer Beatmaps-Bestenliste im Spiel und auf der Website heraus, wie Du Dich gegen Deine Freunde behauptest.",
             ],
 
             'country_ranking' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Länder-Rangliste',
+                'description' => 'Erobere dein Land, bevor du die Welt eroberst.',
             ],
 
             'mod_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Nach Mods filtern',
+                'description' => 'Du freundest dich nur mit Leuten an, die HDHR spielen? Kein Problem!',
             ],
 
             'auto_downloads' => [
@@ -111,7 +111,7 @@ return [
 
             'speedy_downloads' => [
                 'title' => 'Schnelle Downloads',
-                'description' => 'Weniger Downloadbeschränkungen, vor allem mit osu!direct.',
+                'description' => 'Geringere Downloadbeschränkungen, insbesondere bei der Verwendung von osu!direct.',
             ],
 
             'change_username' => [
@@ -135,20 +135,20 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Mehr Favoriten',
+                'description' => 'Die maximale Anzahl von Beatmaps, die Du als Favoriten festlegen kannst, wird erhöht von :normally &rarr; :supporter',
             ],
             'more_friends' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Mehr Freunde',
+                'description' => 'Die maximale Anzahl von Freunden, die Du haben kannst, wurde erhöht von :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Weitere Beatmaps hochladen',
+                'description' => 'Die Anzahl der nicht-ranked Beatmaps, die Du gleichzeitig haben kannst, wird aus einem Basiswert plus einem zusätzlichen Bonus für jede eingestufte Beatmap berechnet (bis zu einem Limit).<br/><br/>Normalerweise ist dies 4 plus 1 pro ranked Beatmap (bis zu 2). Mit Supporter erhöht sich dies auf 8 plus 1 pro ranked Beatmap (bis zu 12).',
             ],
             'friend_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Freundes-Rangliste',
+                'description' => 'Miss Dich mit Deinen Freunden und finde heraus, wie Du Dich gegen sie behauptest!*<br/><br/><small>* noch nicht auf der neuen Seite verfügbar, Demnächst(tm)</small>',
             ],
 
         ],

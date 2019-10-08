@@ -168,7 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 seguidor|:count seguidores',
-            'none' => '',
+            'none' => 'ninguno',
             'unranked' => 'No hay partidas recientes',
 
             'achievements' => [
@@ -198,14 +198,14 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Discusiones',
+                'title_longer' => 'Discusiones recientes',
+                'show_more' => 'ver más discusiones',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Eventos',
+                'title_longer' => 'Eventos Recientes',
+                'show_more' => 'ver más eventos',
             ],
             'historical' => [
                 'empty' => 'Sin récords de rendimiento. :(',
@@ -288,9 +288,9 @@ return [
                 'title' => 'Medallas',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Entradas',
+                'title_longer' => 'Entradas recientes',
+                'show_more' => 'ver más publicaciones',
             ],
             'recent_activity' => [
                 'title' => 'Reciente',
@@ -310,11 +310,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => 'Votos dados (últimos 3 meses)',
+                'received' => 'Votos recibidos (últimos 3 meses)',
+                'title' => 'Votos',
+                'title_longer' => 'Votos recientes',
+                'vote_count' => ':count_delimited voto|:count_delimited votos',
             ],
             'account_standing' => [
                 'title' => 'Estado de la cuenta',
@@ -396,10 +396,10 @@ return [
             'total_hits' => 'Golpes totales',
             'total_score' => 'Puntuación total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'ranked_and_approved_beatmapset_count' => 'Beatmaps Rankeados y Aprobados',
+            'loved_beatmapset_count' => 'Beatmaps Amados',
+            'unranked_beatmapset_count' => 'Beatmaps Pendientes',
+            'graveyard_beatmapset_count' => 'Beatmaps Abandonados',
         ],
     ],
 

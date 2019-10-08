@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Dar positivo a esta discussão',
-            'down' => 'Dar negativo a esta discussão',
+            'none' => [
+                'down' => 'Ainda sem votos negativos',
+                'up' => 'Ainda sem votos positivos',
+            ],
+            'latest' => [
+                'down' => 'Últimos votos negativos',
+                'up' => 'Últimos votos positivos',
+            ],
         ],
     ],
 
@@ -280,6 +286,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => 'Link alternativo',
         'NC' => '',
         'NF' => '',
         'NM' => '',

@@ -25,10 +25,18 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => '커뮤니티',
 
-            'forum' => '',
+            'forum' => '포럼',
         ],
+    ],
+
+    'gallery' => [
+        'close' => '닫기 (Esc)',
+        'fullscreen' => '전체화면 전환',
+        'zoom' => '확대 / 축소',
+        'previous' => '이전 (왼쪽 방향키)',
+        'next' => '다음 (오른쪽 방향키)',
     ],
 
     'menu' => [

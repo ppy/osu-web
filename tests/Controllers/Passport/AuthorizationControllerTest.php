@@ -18,33 +18,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests\Passport;
+namespace Tests\Controllers\Passport;
 
 use App\Http\Controllers\Passport\AuthorizationController;
 use Mockery;
-use TestCase;
+use Tests\TestCase;
 use Zend\Diactoros\ServerRequest;
 
 class AuthorizationControllerTest extends TestCase
 {
     private $controller;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->controller = new AuthorizationController(
-            Mockery::mock('\League\OAuth2\Server\AuthorizationServer'),
-            Mockery::mock('\Illuminate\Contracts\Routing\ResponseFactory')
-        );
-    }
-
-    public function tearDown()
-    {
-        parent::tearDown();
-
-        Mockery::close();
-    }
 
     public function testAuthorizeNormalizes()
     {
@@ -96,5 +79,22 @@ class AuthorizationControllerTest extends TestCase
         $actual = $this->invokeMethod($this->controller, 'normalizeScopes', [$scopes]);
 
         $this->assertSame($actual, ['identify', 'read']);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->controller = new AuthorizationController(
+            Mockery::mock('\League\OAuth2\Server\AuthorizationServer'),
+            Mockery::mock('\Illuminate\Contracts\Routing\ResponseFactory')
+        );
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        Mockery::close();
     }
 }

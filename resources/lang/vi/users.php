@@ -154,7 +154,7 @@ return [
                     'unsupported_format' => 'Định dạng không được hỗ trợ.',
 
                     'restriction_info' => [
-                        '_' => '',
+                        '_' => 'Tải lên chỉ có sẵn cho :link',
                         'link' => '',
                     ],
                 ],
@@ -168,7 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count người theo dõi',
-            'none' => '',
+            'none' => 'không có',
             'unranked' => 'Không chơi gần đây',
 
             'achievements' => [
@@ -198,14 +198,14 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Thảo luận',
+                'title_longer' => 'Thảo luận gần đây',
+                'show_more' => 'xem thảo luận khác',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Sự kiện',
+                'title_longer' => 'Sự kiện gần đây',
+                'show_more' => 'xem sự kiện khác',
             ],
             'historical' => [
                 'empty' => 'Chưa ghi nhận điểm. :(',
@@ -276,7 +276,7 @@ return [
 
                 'total_info' => [
                     '_' => '',
-                    'link' => '',
+                    'link' => 'trang này',
                 ],
             ],
             'me' => [
@@ -288,9 +288,9 @@ return [
                 'title' => 'Huy Chương',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Bài viết',
+                'title_longer' => 'Bài viết gần đây',
+                'show_more' => 'xem bài viết khác',
             ],
             'recent_activity' => [
                 'title' => 'Gần Đây',

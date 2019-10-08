@@ -27,7 +27,7 @@ return [
         'avatar' => [
             'title' => 'Avatár',
             'rules' => '',
-            'rules_link' => '',
+            'rules_link' => 'a közösségi szabályok',
         ],
 
         'email' => [
@@ -71,6 +71,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'felhatalmazott kliensek',
+        'own_clients' => '',
         'title' => 'OAuth',
     ],
 
@@ -108,11 +109,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Mostmár bezárhatod ezt az oldalt',
+        'title' => 'Az ellenőrzés befejeződött',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Érvénytelen vagy lejárt ellenőrző link',
     ],
 ];

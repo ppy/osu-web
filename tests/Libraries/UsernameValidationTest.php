@@ -17,9 +17,13 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Libraries;
+
 use App\Libraries\UsernameValidation;
 use App\Models\User;
 use Carbon\Carbon;
+use Tests\TestCase;
 
 // FIXME: need more tests
 class UsernameValidationTest extends TestCase

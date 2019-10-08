@@ -24,7 +24,16 @@ declare module 'block-button' {
 }
 
 declare module 'big-button' {
-  class BigButton extends React.PureComponent<any> {}
+  interface Props {
+    extraClasses?: string[];
+    icon: string;
+    isBusy?: boolean;
+    modifiers?: string[];
+    props: any;
+    text: string;
+  }
+
+  class BigButton extends React.PureComponent<Props> {}
 }
 
 declare module 'flag-country' {
@@ -60,14 +69,21 @@ declare module 'comments' {
 
 declare module 'comments-manager' {
   interface Props {
-    commentableId: number;
-    commentableType: string;
-    commentBundle: any;
+    commentableId?: number;
+    commentableType?: string;
     component: any;
     componentProps: any;
   }
 
   class CommentsManager extends React.PureComponent<Props> {}
+}
+
+declare module 'modal' {
+  interface Props {
+    onClose?: () => void;
+    visible: boolean;
+  }
+  class Modal extends React.PureComponent<Props> {}
 }
 
 declare module 'popup-menu' {
@@ -95,33 +111,14 @@ declare module 'react/beatmaps/search-content' {
 
 declare module 'report-form' {
   interface ReportFormProps {
-    allowOptions: boolean;
     completed: boolean;
     disabled: boolean;
     onClose: () => void;
     onSubmit: ({comments}: {comments: string}) => void;
     title: string;
     visible: boolean;
+    visibleOptions?: string[];
   }
 
   class ReportForm extends React.PureComponent<ReportFormProps, any> {}
-}
-
-declare module 'report-score' {
-  interface Props {
-    score: Score;
-  }
-
-  class ReportScore extends React.PureComponent<Props> {}
-}
-
-declare module 'report-user' {
-  interface Props {
-    modifiers?: string[];
-    onFormClose?: () => void;
-    user: User;
-    wrapperClass?: string;
-  }
-
-  class ReportUser extends React.PureComponent<Props> {}
 }

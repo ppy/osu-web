@@ -25,17 +25,25 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => 'Közösség',
 
-            'forum' => '',
+            'forum' => 'Fórum',
         ],
+    ],
+
+    'gallery' => [
+        'close' => '',
+        'fullscreen' => '',
+        'zoom' => '',
+        'previous' => '',
+        'next' => '',
     ],
 
     'menu' => [
         'home' => [
             '_' => 'főoldal',
             'account-edit' => 'beállítások',
-            'account-verifyLink' => '',
+            'account-verifyLink' => 'Sikeres hitelesítés',
             'friends-index' => 'barátok',
             'changelog-index' => 'változtatások',
             'changelog-build' => 'verzió',

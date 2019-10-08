@@ -71,6 +71,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'аўтарызаваныя кліенты',
+        'own_clients' => '',
         'title' => 'OAuth',
     ],
 

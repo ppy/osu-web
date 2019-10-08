@@ -17,8 +17,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Models;
+
 use App\Models\Changelog;
 use App\Models\ChangelogEntry;
+use Tests\TestCase;
 
 class ChangelogEntryTest extends TestCase
 {

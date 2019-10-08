@@ -269,7 +269,7 @@ abstract class Model extends BaseModel
 
             $bitset = ModsHelper::toBitset($modsArray);
             if ($bitset > 0) {
-                $q->orWhereRaw('enabled_mods & ? != 0', [$bitset]);
+                $q->orWhere('enabled_mods', $bitset);
             }
         });
     }
@@ -340,7 +340,7 @@ abstract class Model extends BaseModel
     {
         return [
             'mode' => Beatmap::modeInt($this->getMode()),
-            'reason' => 'Cheating', // TODO: probably want more options
+            'reason' => 'Cheating',
             'score_id' => $this->getKey(),
             'user_id' => $this->user_id,
         ];

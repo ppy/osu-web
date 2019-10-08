@@ -62,7 +62,7 @@ class StoreController extends Controller
     {
         return view('store.index')
             ->with('cart', $this->userCart())
-            ->with('products', Store\Product::latest()->get());
+            ->with('products', Store\Product::listing()->get());
     }
 
     public function getInvoice($id = null)

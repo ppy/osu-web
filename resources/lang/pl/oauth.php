@@ -33,21 +33,39 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
-        'confirm_revoke' => 'Czy na pewno chcesz odebrać uprawnienia tej aplikacji?',
+    'authorized_clients' => [
+        'confirm_revoke' => 'Czy na pewno chcesz odebrać uprawnienia temu klientowi?',
         'scopes_title' => 'Ta aplikacja może:',
-        'owned_by' => 'Należy do użytkownika :user',
-        'none' => 'Brak aplikacji',
+        'owned_by' => 'Należy do :user',
+        'none' => 'Brak klientów',
 
         'revoked' => [
             'false' => 'Odbierz dostęp',
-            'true' => 'Dostęp został odebrany',
+            'true' => 'Odebrano dostęp',
         ],
+    ],
+
+    'client' => [
+        'id' => 'Numer ID klienta',
+        'name' => 'Nazwa aplikacji',
+        'redirect' => 'Adres URL wywołań zwrotnych aplikacji',
+        'secret' => 'Klucz klienta',
     ],
 
     'login' => [
         'download' => 'Kliknij tutaj, aby pobrać grę i utworzyć konto.',
         'label' => 'Na początek zaloguj się na swoje konto!',
         'title' => 'Logowanie do konta',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => 'Czy na pewno chcesz usunąć tego klienta?',
+        'new' => 'Nowa aplikacja OAuth',
+        'none' => 'Brak klientów',
+
+        'revoked' => [
+            'false' => 'Usuń',
+            'true' => 'Usunięto',
+        ],
     ],
 ];
