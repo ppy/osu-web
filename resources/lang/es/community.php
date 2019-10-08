@@ -39,7 +39,7 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Artistas Destacados',
-                'description' => '',
+                'description' => '¡Con tu soporte podemos acercarnos a mas artistas increíbles y licenciar mas músicas geniales para usar en osu!',
                 'link_text' => 'Ver la lista actual &raquo;',
             ],
             'ads' => [
@@ -66,7 +66,7 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Ranking de Amigos',
-                'description' => "",
+                'description' => "Vea como lo haces contra tus amigos en un ranking de beatmap, tanto dentro del juego como en la web.",
             ],
 
             'country_ranking' => [
@@ -147,8 +147,8 @@ return [
                 'description' => '',
             ],
             'friend_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Ranking de Amigos',
+                'description' => 'Compite con tus amigos y vea cómo se clasifica contra ellos!*<br/><br/><small>* aun no disponible en la nueva pagina, pronto(tm)</small>',
             ],
 
         ],

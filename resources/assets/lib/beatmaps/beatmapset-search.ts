@@ -24,6 +24,7 @@ import { BeatmapsetSearchFilters } from 'beatmapset-search-filters';
 import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
+import { route } from 'laroute';
 import { action, observable, runInAction } from 'mobx';
 import { BeatmapsetStore } from 'stores/beatmapset-store';
 
@@ -129,7 +130,7 @@ export class BeatmapsetSearch implements DispatchListener {
       }
     }
 
-    const url = laroute.route('beatmapsets.search');
+    const url = route('beatmapsets.search');
     this.xhr = $.ajax(url, {
       data: params,
       dataType: 'json',

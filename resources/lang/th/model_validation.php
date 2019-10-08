@@ -118,6 +118,18 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => 'กรุณาใส่ URL ที่ถูกต้อง',
+
+            'attributes' => [
+                'name' => 'ชื่อแอปพลิเคชัน',
+                'redirect' => '',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'รหัสผ่านต้องไม่ประกอบด้วยชื่อผู้ใช้',
         'email_already_used' => 'อีเมลนี้ถูกใช้ไปแล้ว',

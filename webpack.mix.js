@@ -86,6 +86,7 @@ vendor.forEach(function (script) {
 
 
 let webpackConfig = {
+  devtool: '#source-map',
   externals: {
     "lodash": "_",
     "moment": "moment",
@@ -96,6 +97,7 @@ let webpackConfig = {
   },
   plugins: [
     new webpack.DefinePlugin({
+      'process.env.DOCS_URL': JSON.stringify(process.env.DOCS_URL || 'https://docs.ppy.sh'),
       'process.env.PAYMENT_SANDBOX': JSON.stringify(paymentSandbox),
       'process.env.SHOPIFY_DOMAIN': JSON.stringify(process.env.SHOPIFY_DOMAIN),
       'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
@@ -116,6 +118,10 @@ let webpackConfig = {
     }
   },
   resolve: {
+    alias: {
+      'ziggy': path.resolve(__dirname, 'resources/assets/js/ziggy.js'),
+      'ziggy-route': path.resolve(__dirname, 'vendor/tightenco/ziggy/dist/js/route.js'),
+    },
     modules: [
       path.resolve(__dirname, 'resources/assets/coffee'),
       path.resolve(__dirname, 'resources/assets/lib'),
@@ -166,10 +172,6 @@ if (mix.inProduction()) {
       }
     }),
   ];
-}
-
-if (!mix.inProduction() || process.env.SENTRY_RELEASE == 1) {
-  webpackConfig['devtool'] = '#source-map';
 }
 
 if (process.env.SENTRY_RELEASE == 1) {
@@ -234,7 +236,6 @@ mix
   'resources/assets/js/ga.js',
   'resources/assets/build/lang.js',
   'resources/assets/js/bootstrap-lang.js',
-  'resources/assets/js/laroute.js'
 ], 'public/js/app-deps.js') // FIXME: less dumb name; this needs to be separated -
                             // compiling coffee and then concating together doesn't
                             // work so well when versioning is used with webpack.

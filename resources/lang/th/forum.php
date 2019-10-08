@@ -25,6 +25,8 @@ return [
     'title' => 'ฟอรั่ม osu!',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'ตั้งภาพหน้าปก',
             'button' => 'อัพโหลดรูปภาพ',
@@ -59,14 +61,6 @@ return [
         'busy' => 'กําลังทำเครื่องหมายว่าอ่านแล้ว...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'การแก้ไขโพลล์จะลบผลลัพท์ทั้งหมด!',
-
-        'actions' => [
-            'edit' => 'แก้ไขโพลล์',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'ต้องการลบโพสต์จริงหรอ?',
         'confirm_restore' => 'ต้องการกู้คืนโพสต์จริงหรอ?',
@@ -77,6 +71,12 @@ return [
             'destroy' => 'ลบโพสต์',
             'restore' => 'กู้คืนโพสต์',
             'edit' => 'แก้ไขโพสต์',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -105,6 +105,7 @@ return [
         'started_by_verbose' => 'เริ่มโดย :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Preview',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -296,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Vote',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Polling will end at :time',

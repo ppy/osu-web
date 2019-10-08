@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Bu tartışmaya artı oy ver',
-            'down' => 'Bu tartışmaya eksi oy ver',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 
@@ -280,6 +286,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',

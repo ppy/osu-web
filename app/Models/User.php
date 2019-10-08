@@ -1867,6 +1867,7 @@ class User extends Model implements AuthenticatableContract
     protected function newReportableExtraParams() : array
     {
         return [
+            'reason' => 'Cheating',
             'user_id' => $this->getKey(),
         ];
     }

@@ -77,10 +77,11 @@ $(document).on 'turbolinks:load', ->
 @timeago ?= new Timeago
 @tooltipBeatmap ?= new TooltipBeatmap
 @tooltipDefault ?= new TooltipDefault
-@turbolinksReload ?= new TurbolinksReload
+@turbolinksReload ?= new _exported.TurbolinksReload
 @userLogin ?= new UserLogin
 @userVerification ?= new UserVerification
 
+@osuEnchant ?= new _exported.Enchant(@, @turbolinksReload)
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)

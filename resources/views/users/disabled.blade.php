@@ -18,7 +18,7 @@
 @extends('master')
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page">
+    <div class="osu-page osu-page--generic">
         @include(i18n_view('users._disabled_message'))
     </div>
 @endsection

@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'έγινε approved στις ',
             'favourite' => 'Προσθέστε αυτό το beatmapset στα αγαπημένα',
-            'favourited_count' => '+1 ακόμη| + :count ακόμη!',
             'logged-out' => 'Πρέπει να συνδεθείτε πριν κάνετε λήψη κάποιου beatmap!',
             'loved' => 'έγινε loved στις ',
             'mapped_by' => 'δημιουργήθηκε από :mapper',

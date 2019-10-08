@@ -33,21 +33,39 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
+    'authorized_clients' => [
         'confirm_revoke' => '你确定要撤回给予的权限吗？',
-        'scopes_title' => '该应用能够：',
-        'owned_by' => '由 :user 开发',
+        'scopes_title' => '此应用能够：',
+        'owned_by' => '由 :user 拥有',
         'none' => '无授权第三方',
 
         'revoked' => [
-            'false' => '撤回权限',
-            'true' => '权限已撤回',
+            'false' => '',
+            'true' => '',
         ],
+    ],
+
+    'client' => [
+        'id' => '',
+        'name' => '应用名称',
+        'redirect' => '应用回调链接',
+        'secret' => '',
     ],
 
     'login' => [
         'download' => '点此以下载游戏并创建账号',
         'label' => '首先，让我们登录你的账号',
         'title' => '账号登录',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => '你确定想要删除这个客户端？',
+        'new' => '新的 OAuth 应用',
+        'none' => '',
+
+        'revoked' => [
+            'false' => '删除',
+            'true' => '已删除',
+        ],
     ],
 ];

@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => '批准於 ',
             'favourite' => '收藏這張圖譜',
-            'favourited_count' => '還有很多人...',
             'logged-out' => '下載圖譜前請先登入！',
             'loved' => 'loved 於 ',
             'mapped_by' => '由 :mapper 製作',

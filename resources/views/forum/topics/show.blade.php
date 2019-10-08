@@ -32,6 +32,16 @@
 @php
     $headerCover = $cover['fileUrl'] ?? $cover['defaultFileUrl'] ?? null;
     $canEditTitle = priv_check('ForumTopicEdit', $topic)->can();
+
+    $toolbarItems = [];
+
+    if ($canEditTitle) {
+        $toolbarItems['edit_title'] = true;
+    }
+
+    if (priv_check('ForumTopicCoverEdit', $topic)->can()) {
+        $toolbarItems['edit_cover'] = true;
+    }
 @endphp
 @section('content')
     @include('forum.topics._floating_header')
@@ -81,42 +91,44 @@
                 </div>
             </div>
 
-            <div class="forum-topic-toolbar js-forum-topic-title--toggleable">
-                @if ($canEditTitle)
-                    <div class="forum-topic-toolbar__item forum-topic-toolbar__item--title-edit">
-                        <button
-                            type="button"
-                            class="btn-osu-big btn-osu-big--forum-secondary js-forum-topic-title--cancel"
-                        >
-                            {{ trans('common.buttons.cancel') }}
-                        </button>
-                    </div>
+            @if (count($toolbarItems) > 0)
+                <div class="forum-topic-toolbar js-forum-topic-title--toggleable">
+                    @if (isset($toolbarItems['edit_title']))
+                        <div class="forum-topic-toolbar__item forum-topic-toolbar__item--title-edit">
+                            <button
+                                type="button"
+                                class="btn-osu-big btn-osu-big--forum-secondary js-forum-topic-title--cancel"
+                            >
+                                {{ trans('common.buttons.cancel') }}
+                            </button>
+                        </div>
 
-                    <div class="forum-topic-toolbar__item forum-topic-toolbar__item--title-edit">
-                        <button
-                            type="button"
-                            class="btn-osu-big btn-osu-big--forum-primary js-forum-topic-title--save"
-                        >
-                            {{ trans('common.buttons.save') }}
-                        </button>
-                    </div>
+                        <div class="forum-topic-toolbar__item forum-topic-toolbar__item--title-edit">
+                            <button
+                                type="button"
+                                class="btn-osu-big btn-osu-big--forum-primary js-forum-topic-title--save"
+                            >
+                                {{ trans('common.buttons.save') }}
+                            </button>
+                        </div>
 
-                    <div class="forum-topic-toolbar__item">
-                        <button
-                            type="button"
-                            class="btn-osu-big btn-osu-big--forum-secondary js-forum-topic-title--edit-start"
-                        >
-                            {{ trans('forum.topics.edit_title.start') }}
-                        </button>
-                    </div>
-                @endif
+                        <div class="forum-topic-toolbar__item">
+                            <button
+                                type="button"
+                                class="btn-osu-big btn-osu-big--forum-secondary js-forum-topic-title--edit-start"
+                            >
+                                {{ trans('forum.topics.edit_title.start') }}
+                            </button>
+                        </div>
+                    @endif
 
-                @if (priv_check('ForumTopicCoverEdit', $topic)->can())
-                    <div class="forum-topic-toolbar__item">
-                        @include('forum.topics._cover_editor')
-                    </div>
-                @endif
-            </div>
+                    @if (isset($toolbarItems['edit_cover']))
+                        <div class="forum-topic-toolbar__item">
+                            @include('forum.topics._cover_editor')
+                        </div>
+                    @endif
+                </div>
+            @endif
         </div>
 
         @if ($topic->poll()->exists())
@@ -137,7 +149,7 @@
             'attributes' => ['data-mode' => 'previous'],
             'hidden' => $posts->first()->post_id === $firstPostId,
             'modifiers' => ['forum-topic'],
-            'url' => route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]),
+            'url' => route('forum.topics.show', ['topic' => $topic, 'end' => ($posts->first()->post_id - 1)]),
         ])
 
         @include('forum.topics._posts')
@@ -289,7 +301,7 @@
                 </button>
 
                 <a
-                    href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
+                    href="{{ route('forum.topics.show', ['topic' => $topic, 'end' => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
                     class="js-forum-posts-seek--jump
                         forum-topic-nav__item
                         forum-topic-nav__item--main

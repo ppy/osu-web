@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => '',
-            'down' => '',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 
@@ -244,7 +250,7 @@ return [
     'status' => [
         'any' => 'Vilkårlig',
         'approved' => 'Godkendt',
-        'favourites' => '',
+        'favourites' => 'Favoritter',
         'graveyard' => 'Kirkegård',
         'leaderboard' => '',
         'loved' => 'Loved',
@@ -280,6 +286,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

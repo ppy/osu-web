@@ -111,7 +111,7 @@ return [
 
             'speedy_downloads' => [
                 'title' => 'Schnelle Downloads',
-                'description' => 'Weniger Downloadbeschränkungen, vor allem mit osu!direct.',
+                'description' => 'Geringere Downloadbeschränkungen, insbesondere bei der Verwendung von osu!direct.',
             ],
 
             'change_username' => [
@@ -144,11 +144,11 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Weitere Beatmaps hochladen',
-                'description' => 'Die Anzahl der nicht bewerteten Beatmaps, die Du gleichzeitig haben kannst, wird aus einem Basiswert plus einem zusätzlichen Bonus für jede eingestufte Beatmap berechnet (bis zu einem Limit).<br/><br/>Normalerweise sind dies 4 plus 1 pro eingestufte Beatmap (bis zu 2). Mit Supporter erhöht sich dies auf 8 plus 1 pro eingestufte Beatmap (bis zu 12).',
+                'description' => 'Die Anzahl der nicht-ranked Beatmaps, die Du gleichzeitig haben kannst, wird aus einem Basiswert plus einem zusätzlichen Bonus für jede eingestufte Beatmap berechnet (bis zu einem Limit).<br/><br/>Normalerweise ist dies 4 plus 1 pro ranked Beatmap (bis zu 2). Mit Supporter erhöht sich dies auf 8 plus 1 pro ranked Beatmap (bis zu 12).',
             ],
             'friend_filtering' => [
                 'title' => 'Freundes-Rangliste',
-                'description' => 'Messe Dich mit Deinen Freunden und finde heraus wie Du Dich gegen sie behauptest!*<br/><br/><small>* noch nicht auf der neuen Seite verfügbar, Demnächst(tm)</small>',
+                'description' => 'Miss Dich mit Deinen Freunden und finde heraus, wie Du Dich gegen sie behauptest!*<br/><br/><small>* noch nicht auf der neuen Seite verfügbar, Demnächst(tm)</small>',
             ],
 
         ],

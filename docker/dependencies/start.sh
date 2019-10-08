@@ -18,7 +18,7 @@ test -f .env || cp .env.example .env
 php artisan config:clear
 php artisan route:clear
 
-php artisan laroute:generate
+php artisan ziggy:generate
 yarn
 yarn generate-localizations
 

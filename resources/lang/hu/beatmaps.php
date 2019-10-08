@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Megbeszélés felszavazása',
-            'down' => 'Megbeszélés leszavazása',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 
@@ -222,7 +228,7 @@ return [
                 'rating' => 'Értékelés',
                 'plays' => 'Játszások',
                 'relevance' => 'Relevancia',
-                'nominations' => 'Nominálások',
+                'nominations' => 'Nominációk',
             ],
             'supporter_filter_quote' => [
                 '_' => ':filters általi szűrés aktív :link-et igényel',
@@ -248,7 +254,7 @@ return [
         'graveyard' => 'Temető',
         'leaderboard' => 'Van Ranglistája',
         'loved' => 'Loved',
-        'mine' => 'Én mapjaim',
+        'mine' => 'Saját mapjaim',
         'pending' => 'Függőben lévő & WIP',
         'qualified' => 'Kvalifikált',
         'ranked' => 'Rangsorolt',
@@ -280,6 +286,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',

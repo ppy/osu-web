@@ -118,6 +118,18 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'too_many' => 'Nombre maximal d\'applications OAuth autorisées dépassé.',
+            'url' => 'Veuillez saisir une URL valide.',
+
+            'attributes' => [
+                'name' => 'Nom de l\'application',
+                'redirect' => 'URL de retour de l\'application',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Le mot de passe ne doit pas contenir de nom d\'utilisateur.',
         'email_already_used' => 'Adresse email déjà utilisée.',

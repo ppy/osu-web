@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { route } from 'laroute';
 import Shopify from 'shopify-buy';
 import { toShopifyVariantGid } from 'shopify-gid';
 
@@ -71,7 +72,7 @@ export class Store {
       return;
     }
 
-    Turbolinks.visit(laroute.route('store.checkout.show', { checkout: orderId }));
+    Turbolinks.visit(route('store.checkout.show', { checkout: orderId }));
   }
 
   async beginShopifyCheckout(orderId: string) {
@@ -98,7 +99,7 @@ export class Store {
       shopifyCheckoutId: checkout.id,
     };
 
-    await osu.promisify($.post(laroute.route('store.checkout.store'), params));
+    await osu.promisify($.post(route('store.checkout.store'), params));
     window.location.href = checkout.webUrl;
   }
 
@@ -115,7 +116,7 @@ export class Store {
         // TODO: show error.
       }
     } else {
-      Turbolinks.visit(laroute.route('store.invoice.show', { invoice: target.dataset.orderId }));
+      Turbolinks.visit(route('store.invoice.show', { invoice: target.dataset.orderId }));
     }
   }
 

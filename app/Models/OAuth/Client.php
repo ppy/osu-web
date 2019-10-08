@@ -133,13 +133,13 @@ class Client extends PassportClient
             $this->tokens()->update(['revoked' => true, 'updated_at' => $now]);
             $this->refreshTokens()->update([(new RefreshToken)->qualifyColumn('revoked') => true]);
             $this->authCodes()->update(['revoked' => true]);
-            $this->update(['revoked' => true, 'updated_at' => $now]);
+            $this->update(['revoked' => true, 'updated_at' => $now], ['skipValidations' => true]);
         });
     }
 
     public function save(array $options = [])
     {
-        if (!$this->isValid()) {
+        if (!($options['skipValidations'] ?? false) && !$this->isValid()) {
             return false;
         }
 

@@ -94,7 +94,7 @@ return [
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Τίτλος Θέματος',
             ],
         ],
 
@@ -115,6 +115,18 @@ return [
         'topic_vote' => [
             'required' => 'Επιλέξτε μία επιλογή όταν ψηφίζετε.',
             'too_many' => 'Επιλέχθηκαν περισσότερες επιλογές από το επιτρεπόμενο όριο.',
+        ],
+    ],
+
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
         ],
     ],
 
