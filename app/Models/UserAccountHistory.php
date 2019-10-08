@@ -44,34 +44,46 @@ class UserAccountHistory extends Model
     public $timestamps = false;
 
     const TYPES = [
-        0 => 'note',
-        1 => 'restriction',
-        2 => 'silence',
+        'note' => 0,
+        'restriction' => 1,
+        'silence' => 2,
     ];
 
-    public function user()
+    public static function addNote($user, $message, $actor = null)
     {
-        return $this->belongsTo(User::class, 'user_id', 'user_id');
+        $actor = $actor ?? $user;
+
+        return static::create([
+            'user_id' => $user->getKey(),
+            'banner_id' => $actor->getKey(),
+
+            'ban_status' => static::TYPES['note'],
+
+            'reason' => $message,
+        ]);
     }
 
-    public function actor()
+    public static function logUserResetPassword($user)
     {
-        return $this->belongsTo(User::class, 'banner_id', 'user_id');
+        return static::addNote($user, 'User forgot and recovered their password.');
     }
 
-    public function endTime()
+    public static function logUserUpdateEmail($user, $previousEmail)
     {
-        return $this->timestamp->addSeconds($this->period);
-    }
+        $previousEmail = $previousEmail ?? 'null';
+        $message = "User changed email from {$previousEmail} to {$user->user_email}";
 
-    public function getTypeAttribute()
-    {
-        return static::TYPES[$this->ban_status] ?? null;
+        return static::addNote($user, $message);
     }
 
     public function scopeBans($query)
     {
-        return $query->where('ban_status', '>', 0)->orderBy('timestamp', 'desc');
+        return $query->where('ban_status', '<>', static::TYPES['note'])->orderBy('timestamp', 'desc');
+    }
+
+    public function scopeDefault($query)
+    {
+        return $query->where('ban_status', static::TYPES['silence']);
     }
 
     public function scopeRecent($query)
@@ -81,8 +93,23 @@ class UserAccountHistory extends Model
             ->orderBy('timestamp', 'desc');
     }
 
-    public function scopeDefault($query)
+    public function actor()
     {
-        return $query->where('ban_status', 2);
+        return $this->belongsTo(User::class, 'banner_id', 'user_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
+    }
+
+    public function getTypeAttribute()
+    {
+        return array_search_null($this->ban_status, static::TYPES);
+    }
+
+    public function endTime()
+    {
+        return $this->timestamp->addSeconds($this->period);
     }
 }

@@ -108,7 +108,7 @@ return [
             'timestamp' => 'Aikaleima',
             'timestamp_missing' => 'Paina ctrl-c editointitilassa ja liitä viestiisi lisätäksesi aikaleiman!',
             'title' => 'Uusi keskustelu',
-            'unpin' => '',
+            'unpin' => 'Poista kiinnitys',
         ],
 
         'show' => [
@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => '',
-            'down' => '',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 
@@ -244,7 +250,7 @@ return [
     'status' => [
         'any' => 'Kaikki',
         'approved' => 'Vahvistettu',
-        'favourites' => '',
+        'favourites' => 'Suosikit',
         'graveyard' => 'Hautausmaa',
         'leaderboard' => '',
         'loved' => 'Rakastettu',
@@ -280,6 +286,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',

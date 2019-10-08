@@ -18,15 +18,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests;
+namespace Tests\Libraries\Fulfillments;
 
 use App\Libraries\Fulfillments\FulfillmentFactory;
+use App\Libraries\Fulfillments\InvalidFulfillerException;
 use App\Libraries\Fulfillments\Mwc7SupporterFulfillment;
 use App\Libraries\Fulfillments\SupporterTagFulfillment;
 use App\Libraries\Fulfillments\UsernameChangeFulfillment;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
-use TestCase;
+use Tests\TestCase;
 
 class FulfillmentFactoryTest extends TestCase
 {
@@ -62,15 +63,14 @@ class FulfillmentFactoryTest extends TestCase
         $this->assertSame(Mwc7SupporterFulfillment::class, get_class($fulfillers[0]));
     }
 
-    /**
-     * @expectedException \App\Libraries\Fulfillments\InvalidFulfillerException
-     */
     public function testCustomClassDoesNotExist()
     {
         $orderItem = factory(OrderItem::class)->create([
             'product_id' => factory(Product::class)->create(['custom_class' => 'derp-derp'])->product_id,
         ]);
         $order = $orderItem->order;
+
+        $this->expectException(InvalidFulfillerException::class);
 
         FulfillmentFactory::createFulfillersFor($order);
     }

@@ -111,7 +111,7 @@ return [
 
         'status' => [
             'cancelled' => '已取消',
-            'checkout' => '準備中…',
+            'checkout' => '準備中',
             'delivered' => '已送達',
             'paid' => '已付款',
             'processing' => '待確認',
@@ -139,7 +139,7 @@ return [
     'supporter_tag' => [
         'gift' => '要贈與的玩家',
         'require_login' => [
-            '_' => '您需要 :link 以獲得 osu!supporter 標籤！',
+            '_' => '您需要 :link 以獲得 osu!贊助者標籤！',
             'link_text' => '登入',
         ],
     ],

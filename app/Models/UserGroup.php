@@ -47,6 +47,18 @@ class UserGroup extends Model
         'bot' => 29,
         'loved' => 31,
         'bng_limited' => 32,
+        'ppy' => 33,
+    ];
+
+    const DISPLAY_PRIORITY = [
+        'ppy',
+        'dev',
+        'gmt',
+        'nat',
+        'bng',
+        'bng_limited',
+        'support',
+        'alumni',
     ];
 
     public function group()
@@ -57,5 +69,14 @@ class UserGroup extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function name()
+    {
+        static $lookup;
+
+        $lookup = $lookup ?? array_flip(static::GROUPS);
+
+        return $lookup[$this->group_id] ?? null;
     }
 }

@@ -21,6 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'Pyydettyä sivua ei ole vielä käännetty valitulle kielelle (:language). Näytetään englanninkielinen versio.',
+        'incomplete_or_outdated' => '',
         'languages' => 'Kielet',
         'missing' => 'Pyydettyä sivua ":keyword" ei voitu löytää.',
         'missing_title' => 'Ei löytynyt',

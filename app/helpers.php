@@ -31,6 +31,11 @@ function array_search_null($value, $array)
     }
 }
 
+function atom_id(string $namespace, $id = null) : string
+{
+    return 'tag:'.request()->getHttpHost().',2019:'.$namespace.($id === null ? '' : "/{$id}");
+}
+
 function background_image($url, $proxy = true)
 {
     if (!present($url)) {
@@ -55,6 +60,42 @@ function beatmap_timestamp_format($ms)
 function broadcast_notification(...$arguments)
 {
     return (new App\Jobs\BroadcastNotification(...$arguments))->dispatch();
+}
+
+/**
+ * Like cache_remember_with_fallback but with a mutex that only allows a single process to run the callback.
+ */
+function cache_remember_mutexed(string $key, $minutes, $default, callable $callback)
+{
+    static $oneMonthInMinutes = 30 * 24 * 60;
+    $fullKey = "{$key}:with_fallback";
+    $data = cache()->get($fullKey);
+
+    if ($data === null || $data['expires_at']->isPast()) {
+        $lockKey = "{$key}:lock";
+        // this is arbitrary, but you've got other problems if it takes more than 5 minutes.
+        // the max is because cache()->add() doesn't work so well with funny values.
+        $lockTime = min(max($minutes, 1), 5);
+
+        // only the first caller that manages to setnx runs this.
+        if (cache()->add($lockKey, 1, $lockTime)) {
+            try {
+                $data = [
+                    'expires_at' => Carbon\Carbon::now()->addMinutes($minutes),
+                    'value' => $callback(),
+                ];
+
+                cache()->put($fullKey, $data, max($oneMonthInMinutes, $minutes * 10));
+            } catch (Exception $e) {
+                // Log and continue with data from the first ::get.
+                log_error($e);
+            } finally {
+                cache()->forget($lockKey);
+            }
+        }
+    }
+
+    return $data['value'] ?? $default;
 }
 
 /**
@@ -90,6 +131,17 @@ function cache_remember_with_fallback($key, $minutes, $callback)
 function cache_forget_with_fallback($key)
 {
     return Cache::forget("{$key}:with_fallback");
+}
+
+function class_with_modifiers(string $className, ?array $modifiers = null)
+{
+    $class = $className;
+
+    foreach ($modifiers ?? [] as $modifier) {
+        $class .= " {$className}--{$modifier}";
+    }
+
+    return $class;
 }
 
 function datadog_timing(callable $callable, $stat, array $tag = null)
@@ -406,9 +458,11 @@ function render_to_string($view, $variables = [])
     return view()->make($view, $variables)->render();
 }
 
-function spinner()
+function spinner(?array $modifiers = null)
 {
-    return '<div class="la-ball-clip-rotate"></div>';
+    return tag('div', [
+        'class' => class_with_modifiers('la-ball-clip-rotate', $modifiers),
+    ]);
 }
 
 function strip_utf8_bom($input)
@@ -418,6 +472,17 @@ function strip_utf8_bom($input)
     }
 
     return $input;
+}
+
+function tag($element, $attributes = [], $content = null)
+{
+    $attributeString = '';
+
+    foreach ($attributes ?? [] as $key => $value) {
+        $attributeString .= ' '.$key.'="'.e($value).'"';
+    }
+
+    return '<'.$element.$attributeString.'>'.($content ?? '').'</'.$element.'>';
 }
 
 function to_sentence($array, $key = 'common.array_and')
@@ -564,24 +629,31 @@ function current_action()
     return explode('@', Route::currentRouteAction(), 2)[1] ?? null;
 }
 
-function link_to_user($user_id, $user_name = null, $user_color = null)
+function link_to_user($id, $username = null, $color = null, $classNames = null)
 {
-    if ($user_id instanceof App\Models\User) {
-        $user_name ?? ($user_name = $user_id->username);
-        $user_color ?? ($user_color = $user_id->user_colour);
-        $user_id = $user_id->getKey();
+    if ($id instanceof App\Models\User) {
+        $username ?? ($username = $id->username);
+        $color ?? ($color = $id->user_colour);
+        $id = $id->getKey();
     }
-    $user_name = e($user_name);
-    $style = user_color_style($user_color, 'color');
+    $username = e($username);
+    $style = user_color_style($color, 'color');
 
-    if ($user_id) {
+    if ($classNames === null) {
+        $classNames = ['user-name'];
+    }
+
+    $class = implode(' ', $classNames);
+
+    if ($id === null) {
+        return "<span class='{$class}'>{$username}</span>";
+    } else {
+        $class .= ' js-usercard';
         // FIXME: remove `rawurlencode` workaround when fixed upstream.
         // Reference: https://github.com/laravel/framework/issues/26715
-        $user_url = e(route('users.show', rawurlencode($user_id)));
+        $url = e(route('users.show', rawurlencode($id)));
 
-        return "<a class='user-name js-usercard' data-user-id='{$user_id}' href='{$user_url}' style='{$style}'>{$user_name}</a>";
-    } else {
-        return "<span class='user-name'>{$user_name}</span>";
+        return "<a class='{$class}' data-user-id='{$id}' href='{$url}' style='{$style}'>{$username}</a>";
     }
 }
 
@@ -609,12 +681,12 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
         $postIdParamKey = 'end';
     }
 
-    $url = route('forum.topics.show', ['topics' => $topicId, $postIdParamKey => $postId]);
+    $url = route('forum.topics.show', ['topic' => $topicId, $postIdParamKey => $postId]);
 
     return $url;
 }
 
-function wiki_url($page = 'Welcome', $locale = null)
+function wiki_url($page = 'Main_Page', $locale = null)
 {
     // FIXME: remove `rawurlencode` workaround when fixed upstream.
     // Reference: https://github.com/laravel/framework/issues/26715
@@ -632,7 +704,7 @@ function bbcode($text, $uid, $options = [])
     return (new App\Libraries\BBCodeFromDB($text, $uid, $options))->toHTML();
 }
 
-function bbcode_for_editor($text, $uid)
+function bbcode_for_editor($text, $uid = null)
 {
     return (new App\Libraries\BBCodeFromDB($text, $uid))->toEditor();
 }
@@ -710,7 +782,7 @@ function nav_links()
         'orders-index' => route('store.orders.index'),
     ];
     $links['help'] = [
-        'getWiki' => wiki_url('Welcome'),
+        'getWiki' => wiki_url('Main_Page'),
         'getFaq' => wiki_url('FAQ'),
         'getRules' => wiki_url('Rules'),
         'getSupport' => wiki_url('Help_Centre'),
@@ -727,7 +799,7 @@ function footer_landing_links()
             'changelog-index' => route('changelog.index'),
             'beatmaps' => action('BeatmapsetsController@index'),
             'download' => route('download'),
-            'wiki' => wiki_url('Welcome'),
+            'wiki' => wiki_url('Main_Page'),
         ],
         'help' => [
             'faq' => wiki_url('FAQ'),
@@ -1083,7 +1155,7 @@ function get_params($input, $namespace, $keys)
 
     $params = [];
 
-    if (is_array($input)) {
+    if (is_array($input) || ($input instanceof ArrayAccess)) {
         foreach ($keys as $keyAndType) {
             $keyAndType = explode(':', $keyAndType);
 

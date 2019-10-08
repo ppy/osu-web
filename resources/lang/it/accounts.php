@@ -26,6 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'rules' => 'Assicurati che il tuo avatar aderisca alle :link.<br/>Questo significa che deve essere <strong>adatto a tutte le età</strong>. es. nessun contenuto di nudità, profanità o provocante.',
+            'rules_link' => 'regole della comunità',
         ],
 
         'email' => [
@@ -46,13 +48,13 @@ return [
             'title' => 'Profilo',
 
             'user' => [
+                'user_discord' => '',
                 'user_from' => 'posizione attuale',
                 'user_interests' => 'interessi',
                 'user_msnm' => '',
                 'user_occ' => 'occupazione',
                 'user_twitter' => '',
                 'user_website' => 'sito web',
-                'user_discord' => '',
             ],
         ],
 
@@ -62,9 +64,38 @@ return [
         ],
     ],
 
+    'notifications' => [
+        'title' => 'Notifiche',
+        'topic_auto_subscribe' => 'attiva automaticamente le notifiche sui nuovi topic del forum che crei',
+    ],
+
     'oauth' => [
-        'title' => '',
-        'authorized_clients' => '',
+        'authorized_clients' => 'client autorizzati',
+        'own_clients' => 'client personali',
+        'title' => 'OAuth',
+    ],
+
+    'playstyles' => [
+        'keyboard' => 'tastiera',
+        'mouse' => 'mouse',
+        'tablet' => 'tavoletta grafica',
+        'title' => 'Stili di gioco',
+        'touch' => 'schermo touch',
+    ],
+
+    'privacy' => [
+        'friends_only' => 'blocca messaggi privati dei non-amici',
+        'hide_online' => 'nascondi il tuo stato online',
+        'title' => 'Privacy',
+    ],
+
+    'security' => [
+        'current_session' => 'questo dispositivo',
+        'end_session' => 'Termina Sessione',
+        'end_session_confirmation' => 'Questo terminerà la sessione sul dispositivo selezionato. Vuoi continuare?',
+        'last_active' => 'Ultima attività:',
+        'title' => 'Sicurezza',
+        'web_sessions' => 'sessioni web',
     ],
 
     'update_email' => [
@@ -77,31 +108,12 @@ return [
         'update' => 'aggiorna',
     ],
 
-    'playstyles' => [
-        'title' => 'Stili di gioco',
-        'mouse' => 'mouse',
-        'keyboard' => 'tastiera',
-        'tablet' => 'tavoletta grafica',
-        'touch' => 'schermo touch',
+    'verification_completed' => [
+        'text' => 'Ora puoi chiudere questa scheda/finestra',
+        'title' => 'La verifica è stata completata',
     ],
 
-    'privacy' => [
-        'title' => 'Privacy',
-        'friends_only' => 'blocca messaggi privati dei non-amici',
-        'hide_online' => 'nascondi il tuo stato online',
-    ],
-
-    'notifications' => [
-        'title' => 'Notifiche',
-        'topic_auto_subscribe' => 'attiva automaticamente le notifiche sui nuovi argomenti del forum che crei',
-    ],
-
-    'security' => [
-        'current_session' => 'questo dispositivo',
-        'end_session' => 'Termina Sessione',
-        'end_session_confirmation' => 'Questo terminerà la sessione sul dispositivo selezionato. Vuoi continuare?',
-        'last_active' => 'Ultimo visto:',
-        'title' => 'Sicurezza',
-        'web_sessions' => 'sessioni web',
+    'verification_invalid' => [
+        'title' => 'Link di verifica non valido o scaduto',
     ],
 ];

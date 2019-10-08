@@ -33,11 +33,11 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
+    'authorized_clients' => [
         'confirm_revoke' => '',
         'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'owned_by' => '管理者 :user',
+        'none' => 'クライアントがありません',
 
         'revoked' => [
             'false' => '',
@@ -45,9 +45,27 @@ return [
         ],
     ],
 
+    'client' => [
+        'id' => 'クライアントID',
+        'name' => 'アプリケーション名',
+        'redirect' => '',
+        'secret' => '',
+    ],
+
     'login' => [
         'download' => 'ゲームをダウンロードしてアカウントを作成するにはここをクリック',
         'label' => 'まず、アカウントにログインしてみましょう！',
         'title' => 'アカウントログイン',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => 'あなたは本当にクライアントを削除しますか？',
+        'new' => '',
+        'none' => 'クライアントがありません',
+
+        'revoked' => [
+            'false' => '削除',
+            'true' => '削除しました',
+        ],
     ],
 ];

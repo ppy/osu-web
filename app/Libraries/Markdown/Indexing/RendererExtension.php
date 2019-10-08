@@ -21,13 +21,25 @@
 namespace App\Libraries\Markdown\Indexing;
 
 use League\CommonMark\Block\Element as Block;
-use League\CommonMark\Extension\CommonMarkCoreExtension;
+use League\CommonMark\ConfigurableEnvironmentInterface;
+use League\CommonMark\Ext\Table as TableExtension;
+use League\CommonMark\Extension\ExtensionInterface;
 use League\CommonMark\Inline\Element as Inline;
-use Webuni\CommonMark\TableExtension;
 
-class RendererExtension extends CommonMarkCoreExtension
+class RendererExtension implements ExtensionInterface
 {
-    public function getBlockRenderers()
+    public function register(ConfigurableEnvironmentInterface $environment)
+    {
+        foreach ($this->blockRenderers() as $class => $renderer) {
+            $environment->addBlockRenderer($class, $renderer, 10);
+        }
+
+        foreach ($this->inlineRenderers() as $class => $renderer) {
+            $environment->addInlineRenderer($class, $renderer, 10);
+        }
+    }
+
+    private function blockRenderers()
     {
         return [
             Block\BlockQuote::class => new BlockRenderer,
@@ -48,7 +60,7 @@ class RendererExtension extends CommonMarkCoreExtension
         ];
     }
 
-    public function getInlineRenderers()
+    private function inlineRenderers()
     {
         return [
             Inline\Code::class => new InlineRenderer,

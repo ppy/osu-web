@@ -19,14 +19,18 @@
  */
 
 return [
-    'not_negative' => ':attribute ไม่สามารถติดลบได้',
-    'required' => 'ต้องการ :attribute',
+    'not_negative' => ':attribute เป็นค่าลบไม่ได้',
+    'required' => 'ต้องมี :attribute',
     'too_long' => ':attribute เกินความยาวสูงสุด - สามารถใส่ได้ถึงแค่ :limit ตัวอักษร',
     'wrong_confirmation' => 'การยืนยันไม่ตรงกัน',
 
     'beatmap_discussion_post' => [
         'discussion_locked' => 'การสนทนาได้ถูกล็อกไว้',
         'first_post' => 'ไม่สามารถลบโพสต์ที่เริ่มต้น',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'ระดับความยากไม่ได้เลือกอย่างถูกต้อง',
         'invalid_beatmapset_id' => 'Beatmap ไม่ได้เลือกอย่างถูกต้อง',
         'locked' => 'การสนทนาได้ถูกล็อกไว้',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => '',
+        ],
 
         'hype' => [
             'guest' => 'ต้องเข้าสู่ระบบก่อนถึงจะ hype ได้',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => 'ไม่อนุญาตให้ตอบกลับในคอมเม้นต์ที่ถูกลบไปแล้ว',
+
+        'attributes' => [
+            'message' => '',
+        ],
     ],
 
     'follow' => [
@@ -70,24 +83,50 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'ไม่อนุญาตให้ลบโพสต์ beatmap metadata',
-            'beatmapset_post_no_edit' => 'ไม่อนุญาตให้ดัดแปลงโพสต์ beatmap metadata',
-            'only_quote' => 'การตอบกลับของคุณมีได้เพียงคำพูด',
+            'beatmapset_post_no_delete' => 'ไม่อนุญาตให้ลบโพสต์ Metadata ของบีตแมป',
+            'beatmapset_post_no_edit' => 'ไม่อนุญาตให้ดัดแปลงโพสต์ Metadata ของบีตแมป',
+            'only_quote' => 'การตอบกลับของคุณมีแค่คำพูด',
+
+            'attributes' => [
+                'post_text' => '',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '',
+            ],
         ],
 
         'topic_poll' => [
-            'duplicate_options' => 'ตัวเลือกซ้ำกันไม่อนุญาต',
+            'duplicate_options' => 'ห้ามมีตัวเลือกซ้ำกัน',
             'grace_period_expired' => 'ไม่สามารถแก้ไขโพลล์ได้หลังจากผ่านไปมากกว่า :limit ชั่วโมง',
-            'hiding_results_forever' => 'ไม่สามารถซ่อนผลลัพท์ของโพลล์ที่ยังไม่หมดเวลาได้',
+            'hiding_results_forever' => 'ไม่สามารถซ่อนผลโหวตของโพลล์ที่ไม่จำกัดเวลาโหวตได้',
             'invalid_max_options' => 'คัวเลือกต่อคนต้องไม่เกินจำนวนตัวเลือกที่ใช้ได้',
-            'minimum_one_selection' => 'ต้องการขั้นต่ำหนึ่งตัวเลือกต่อผู้เล่น',
+            'minimum_one_selection' => 'ต้องมีตัวเลือกอย่างน้อย 1 ตัวต่อผู้เล่น 1 คน',
             'minimum_two_options' => 'ต้องการอย่างน้อยสองตัวเลือก',
             'too_many_options' => 'เกินจำนวนตัวเลือกที่อนุญาตสูงสุด',
+
+            'attributes' => [
+                'title' => 'ชื่อโพลล์',
+            ],
         ],
 
         'topic_vote' => [
             'required' => 'เลือกตัวเลือกเมื่อจะโหวต',
             'too_many' => 'เลือกตัวเลือกมากเกินที่กำหนดไว้',
+        ],
+    ],
+
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => 'กรุณาใส่ URL ที่ถูกต้อง',
+
+            'attributes' => [
+                'name' => 'ชื่อแอปพลิเคชัน',
+                'redirect' => '',
+            ],
         ],
     ],
 
@@ -100,7 +139,7 @@ return [
         'too_short' => 'รหัสผ่านใหม่สั้นเกินไป',
         'unknown_duplicate' => 'ชื่อผู้ใช้หรืออีเมลถูกใช้ไปแล้ว',
         'username_available_in' => 'ชื่อผู้ใช้นี้สามารถใช้งานได้ใน :duration',
-        'username_available_soon' => 'ชื่อผู้ใช้นี้สามารถใช้งานได้ในอีกไม่นาที',
+        'username_available_soon' => 'ชื่อผู้ใช้นี้จะใช้ได้ในอีกไม่กี่นาที',
         'username_invalid_characters' => 'ชื่อผู้ใช้นี้ประกอบไปด้วยตัวอักขระที่ไม่ถูกต้อง',
         'username_in_use' => 'ชื่อผู้ใช้กำลังนี้ถูกใช้อยู่',
         'username_locked' => 'ชื่อนี้ถูกใช้ไปแล้ว', // TODO: language for this should be slightly different.
@@ -115,17 +154,32 @@ return [
         'wrong_password_confirmation' => 'การยืนยันรหัสผ่านไม่ตรงกัน',
         'too_long' => 'เกินความยาวสูงสุด - สามารถกำหนดได้ถึง :limit characters',
 
+        'attributes' => [
+            'username' => 'ชื่อผู้ใช้',
+            'user_email' => 'อีเมล์',
+            'password' => 'รหัสผ่าน',
+        ],
+
         'change_username' => [
             'restricted' => 'คุณไม่สามารถเปลี่ยนผู้ใช้ได้ขณะถูกจำกัดการใช้งาน',
             'supporter_required' => [
                 '_' => 'คุณต้องมี:linkจึงจะเปลี่ยนชื่อได้!',
                 'link_text' => 'สนับสนุน osu!',
             ],
-            'username_is_same' => 'นี่คือชื่อผู้ใช้ของคุณอยู่แล้ว โง่',
+            'username_is_same' => 'บ้าน่า นี่มันชื่อผู้ใช้คุณตอนนี้นี่',
         ],
     ],
 
     'user_report' => [
-        'self' => "คุณไม่สามารถรายงานตัวเองได้",
+        'self' => "เดี๋ยว คุณรายงานตัวเองไม่ได้",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => 'ปริมาณ',
+                'cost' => 'ราคา',
+            ],
+        ],
     ],
 ];

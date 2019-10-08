@@ -149,10 +149,14 @@ return [
                     'button' => 'Kép feltöltése',
                     'dropzone' => 'Húzd ide a feltöltendő fájlokat',
                     'dropzone_info' => 'Feltöltéshez ide is dobhatod a képed',
-                    'restriction_info' => "Feltöltés elérhető <a href='".route('store.products.show', 'supporter-tag')."csak ' target='_blank'>osu!támogatók</a>",
                     'size_info' => 'A borítónak 2800x620-asnak kellene lennie',
                     'too_large' => 'A feltöltött fájl túl nagy.',
                     'unsupported_format' => 'Nem támogatott formátum.',
+
+                    'restriction_info' => [
+                        '_' => 'Feltöltés csak :link -hez elérhető',
+                        'link' => 'osu!támogatók',
+                    ],
                 ],
             ],
 
@@ -164,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 követő |:count követő',
+            'none' => 'semmi',
             'unranked' => 'Nem játszott mostanában',
 
             'achievements' => [
@@ -192,6 +197,16 @@ return [
                     'title' => 'Pending Beatmap-ek',
                 ],
             ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => 'Események',
+                'title_longer' => 'Legutóbbi Események',
+                'show_more' => 'további események',
+            ],
             'historical' => [
                 'empty' => 'Nincsenek teljesítmény rekordok. :(',
                 'title' => 'Történelem',
@@ -219,7 +234,6 @@ return [
                 'recent_entries' => 'Legutóbbi Kudosu történelem',
                 'title' => 'Kudosu!',
                 'total' => 'Összesen megszerzett Kudosu',
-                'total_info' => 'Az alapján, hogy mennyire járult hozzá a felhasználó a beatmap moderáláshoz. Lásd <a href="'.osu_url('user.kudosu').'">ezt az oldalt</a> bővebb információkért.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -259,6 +273,11 @@ return [
                         'revoke' => 'Elutasitott kudosu :giver által a :post posztra',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => 'ez az oldal',
+                ],
             ],
             'me' => [
                 'title' => 'rólam!',
@@ -267,6 +286,11 @@ return [
                 'empty' => "Ez a felhasználó még nem rendelkezik egyel sem. ;_;",
                 'recent' => 'Legújabb',
                 'title' => 'Medálok',
+            ],
+            'posts' => [
+                'title' => 'Bejegyzések',
+                'title_longer' => 'Legutóbbi bejegyzések',
+                'show_more' => 'láss további bejegyzéseket',
             ],
             'recent_activity' => [
                 'title' => 'Legutóbbi',
@@ -284,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Első Helyezéses Eredmények',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Szavazatok Leadva (legutóbbi 3 hónap)',
+                'received' => 'Beérkezett Szavazatok (legutóbbi 3 hónap)',
+                'title' => 'Szavazatok',
+                'title_longer' => 'Legutóbbi Szavazatok',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Fiók Állása',
@@ -335,7 +366,11 @@ return [
             'description' => '<strong>Rólam!</strong> egy személyre szabható része a profilodnak.',
             'edit_big' => 'A rólam! szerkesztése!',
             'placeholder' => 'Írd ide az oldal tartalmát',
-            'restriction_info' => "A funkció feloldásához <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!támogató</a> kell hogy legyél.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Hozzájárult :link',
@@ -360,6 +395,11 @@ return [
             'score_ranks' => 'Eredmény Rangok',
             'total_hits' => 'Találatok Száma',
             'total_score' => 'Összpontszám',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -373,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'Fiók megerősítése',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

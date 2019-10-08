@@ -80,7 +80,7 @@ sftp-settings.json
 /storage/htmlpurifier/
 /bootstrap/cache/
 
-/resources/assets/js/laroute.js
+/resources/assets/js/ziggy.js
 /resources/assets/build/
 
 composer-installer

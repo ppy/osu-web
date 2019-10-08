@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - Il ritmo è ad un *click* di distanza!  Con Ouendan/EBA, Taiko e originali modalità di gameplay, oltre che un editor di livelli completamente funzionale.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Comunità',
+
+            'forum' => 'Forum',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => 'Chiudi (Esc)',
+        'fullscreen' => 'Passa a schermo intero',
+        'zoom' => 'Zoom in/out',
+        'previous' => 'Precedente (freccia sinistra)',
+        'next' => 'Successivo (freccia destra)',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'home',
             'account-edit' => 'impostazioni',
+            'account-verifyLink' => 'Verifica Completata',
             'friends-index' => 'amici',
             'changelog-index' => 'note di rilascio',
             'changelog-build' => 'versione',
@@ -47,7 +64,7 @@ return [
             '_' => 'aiuto',
             'getFaq' => 'domande comuni',
             'getRules' => 'regole',
-            'getSupport' => 'supporto',
+            'getSupport' => 'davvero, mi serve aiuto!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -64,14 +81,14 @@ return [
             'show' => 'informazioni',
         ],
         'beatmapsets' => [
-            '_' => 'beatmapsets',
+            '_' => 'beatmap',
             'discussion' => 'modding',
         ],
         'rankings' => [
             '_' => 'classifiche',
             'index' => 'performance',
             'performance' => 'performance',
-            'charts' => 'spotlights',
+            'charts' => 'spotlight',
             'score' => 'punteggio',
             'country' => 'paese',
             'kudosu' => 'kudosu',
@@ -121,25 +138,25 @@ return [
             'help' => 'Aiuto',
             'logout' => 'Disconnettiti',
             'messages' => 'Messaggi',
-            'modding-history-discussions' => 'discussioni di modding tra utenti',
-            'modding-history-events' => 'eventi di modding tra utenti',
-            'modding-history-index' => 'cronologia di modding tra utenti',
-            'modding-history-posts' => 'post di modding tra utenti',
+            'modding-history-discussions' => 'discussioni di modding degli utenti',
+            'modding-history-events' => 'eventi di modding degli utenti',
+            'modding-history-index' => 'cronologia di modding degli utenti',
+            'modding-history-posts' => 'post di modding degli utenti',
             'modding-history-votesGiven' => 'i voti dei giocatori per le modifiche sono stati inviati',
             'modding-history-votesReceived' => 'i voti dei giocatori per le modifiche sono stati ricevuti',
-            'oauth_login' => '',
-            'oauth_request' => '',
+            'oauth_login' => 'accedi per oauth',
+            'oauth_request' => 'autorizzazione oauth',
             'settings' => 'Impostazioni',
         ],
         'store' => [
             '_' => 'negozio',
-            'checkout-show' => 'pagamento',
+            'checkout-show' => 'checkout',
             'getListing' => 'lista',
             'cart-show' => 'carrello',
 
-            'getCheckout' => 'cassa',
+            'getCheckout' => 'checkout',
             'getInvoice' => 'fattura',
-            'orders-index' => 'ordini',
+            'orders-index' => 'cronologia ordini',
             'products-show' => 'prodotto',
 
             'new' => 'nuovo',
@@ -180,9 +197,9 @@ return [
         ],
         'help' => [
             '_' => 'Aiuto e Comunità',
-            'faq' => 'Domande Comunii',
+            'faq' => 'Domande Comuni',
             'forum' => 'Forum della Comunità',
-            'livestreams' => 'Dirette',
+            'livestreams' => 'Live',
             'report' => 'Segnala un problema',
         ],
         'legal' => [
@@ -202,11 +219,11 @@ return [
         ],
         '403' => [
             'error' => "Non dovresti essere qui.",
-            'description' => 'Potresti comunque provare tornando indietro.',
+            'description' => 'Puoi comunque provare a tornare indietro.',
         ],
         '401' => [
             'error' => "Non dovresti essere qui.",
-            'description' => 'Potresti comunque provare tornando indietro. O forse effettuando il login.',
+            'description' => 'Puoi comunque provare a tornare indietro. Oppure effettuando il login.',
         ],
         '405' => [
             'error' => 'Pagina Mancante',
@@ -214,11 +231,11 @@ return [
         ],
         '500' => [
             'error' => 'Oh no! Qualcosa si è rotto! ;_;',
-            'description' => "Siamo notificati automaticamente di qualsiasi errore.",
+            'description' => "Siamo notificati automaticamente per qualsiasi errore.",
         ],
         'fatal' => [
             'error' => 'Oh no! Qualcosa si è rotto (gravemente)! ;_;',
-            'description' => "Siamo notificati automaticamente di qualsiasi errore.",
+            'description' => "Siamo notificati automaticamente per qualsiasi errore.",
         ],
         '503' => [
             'error' => 'Chiuso per manutenzione!',
@@ -237,7 +254,7 @@ return [
             'email' => 'indirizzo email',
             'forgot' => "Ho dimenticato i miei dati",
             'password' => 'password',
-            'title' => 'Accedi per procedere',
+            'title' => 'Accedi per Procedere',
 
             'error' => [
                 'email' => "Il nome utente o l'indirizzo email non esiste",

@@ -132,7 +132,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Đã tham gia :date',
         'lastvisit' => 'Lần cuối hoạt động :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'Hiện đang trực tuyến',
         'missingtext' => 'Có thể bạn đã thực hiện một lỗi đánh máy! (hoặc người dùng này có thể đã bị ban)',
         'origin_country' => 'Từ :country',
         'page_description' => 'osu! - Tất cả những bì bạn muốn biết về :username!',
@@ -149,10 +149,14 @@ return [
                     'button' => 'Tải ảnh lên',
                     'dropzone' => 'Thả vào đây để tải lên',
                     'dropzone_info' => 'Bạn cũng có thể thả hình ảnh vào đây để tải lên',
-                    'restriction_info' => "Tải lên chỉ có sẵn cho <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>người hỗ trợ osu!</a>",
                     'size_info' => 'Kích cỡ ảnh bìa nên là 2800x620',
                     'too_large' => 'Tệp đã tải lên quá lơn.',
                     'unsupported_format' => 'Định dạng không được hỗ trợ.',
+
+                    'restriction_info' => [
+                        '_' => 'Tải lên chỉ có sẵn cho :link',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -164,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => ':count người theo dõi',
+            'none' => 'không có',
             'unranked' => 'Không chơi gần đây',
 
             'achievements' => [
@@ -192,6 +197,16 @@ return [
                     'title' => 'Beatmap Đang Chờ',
                 ],
             ],
+            'discussions' => [
+                'title' => 'Thảo luận',
+                'title_longer' => 'Thảo luận gần đây',
+                'show_more' => 'xem thảo luận khác',
+            ],
+            'events' => [
+                'title' => 'Sự kiện',
+                'title_longer' => 'Sự kiện gần đây',
+                'show_more' => 'xem sự kiện khác',
+            ],
             'historical' => [
                 'empty' => 'Chưa ghi nhận điểm. :(',
                 'title' => 'Lịch Sử',
@@ -219,7 +234,6 @@ return [
                 'recent_entries' => 'Lịch Sử Kudosu Gần Đây',
                 'title' => 'Kudosu!',
                 'total' => 'Tông Số Kudosu Nhận Được',
-                'total_info' => 'Dựa vào số lượng đóng góp mà người dùng này đã thực hiện để điều chỉnh beatmap. Xem <a href="'.osu_url('user.kudosu').'">trang này</a> để biết thêm thông tin.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -259,6 +273,11 @@ return [
                         'revoke' => 'Từ chối kudosu kudosu :giver cho bài đăng :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => 'trang này',
+                ],
             ],
             'me' => [
                 'title' => 'tôi!',
@@ -267,6 +286,11 @@ return [
                 'empty' => "Người dùng này chưa có huy chương nào cả. ;_;",
                 'recent' => 'Gần Nhất',
                 'title' => 'Huy Chương',
+            ],
+            'posts' => [
+                'title' => 'Bài viết',
+                'title_longer' => 'Bài viết gần đây',
+                'show_more' => 'xem bài viết khác',
             ],
             'recent_activity' => [
                 'title' => 'Gần Đây',
@@ -284,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Xếp Hạng Nhất',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Trạng Thái Tài Khoản',
@@ -335,7 +366,11 @@ return [
             'description' => '<strong>tôi!</strong> là một khu vực cá nhân có thể tùy chỉnh trong trang cá nhân của bạn.',
             'edit_big' => 'Chỉnh sửa tôi!',
             'placeholder' => 'Nhập nội dung trang vào đây',
-            'restriction_info' => "Bạn cần phải là <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>người hỗ trợ osu!</a> để mở khóa tính năng này.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Đã đóng góp :link',
@@ -360,6 +395,11 @@ return [
             'score_ranks' => 'Điểm Số',
             'total_hits' => 'Tổng Lần Bấm',
             'total_score' => 'Tổng Điểm',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -373,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'Xác Thực Tài Khoản',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

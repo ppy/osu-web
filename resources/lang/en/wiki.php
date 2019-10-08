@@ -22,7 +22,6 @@ return [
     'show' => [
         'fallback_translation' => 'Requested page is not yet translated to the selected language (:language). Showing English version.',
         'incomplete_or_outdated' => 'The content on this page is incomplete or outdated. If you are able to help out, please consider updating the article!',
-        'languages' => 'Languages',
         'missing' => 'Requested page ":keyword" could not be found.',
         'missing_title' => 'Not Found',
         'missing_translation' => 'Requested page could not be found for currently selected language.',
@@ -40,5 +39,12 @@ return [
 
             'default' => 'English version',
         ],
+    ],
+    'main' => [
+        'title' => 'Knowledge Base',
+        'subtitle' => 'because osu!pedia sounds lame',
+    ],
+    'search' => [
+        'path' => 'from',
     ],
 ];

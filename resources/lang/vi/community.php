@@ -20,46 +20,63 @@
 
 return [
     'support' => [
-        'header' => [
-            // size in font-size
-            'big_description' => 'Yêu thích osu!?<br/>
-                                Hãy ủng hộ quá trình phát triển của osu! :D',
-            'small_description' => '',
-            'support_button' => 'Tôi muốn ủng hộ osu!',
+        'convinced' => [
+            'title' => 'Tôi đã tin! :D',
+            'support' => 'hỗ trợ osu!',
+            'gift' => 'hay gửi support đến người chơi khác',
+            'instructions' => 'nhấp vào nút trái tim để đi đến osu!store',
         ],
+        'why-support' => [
+            'title' => 'Tại sao tôi nên hỗ trợ osu!? Tiền hỗ trợ sau này sẽ đi đâu?',
 
-        'dev_quote' => 'osu! là một trò chơi hoàn toàn miễn phí, nhưng để cho osu! hoạt động được thì lại không hề miễn phí. Giữa chi phí cho các máy chủ hoạt động và băng thông quốc tế chất lượng cao, thời gian dành ra để bảo trì hệ thống và cộng đồng osu!, việc cung cấp giải thưởng cho các cuộc thi, việc trả lời các câu hỏi giúp đỡ và giữ được sự vui vẻ cho mọi người như thường lệ, số lượng tiền mà osu! tiêu tốn khá là khổng lồ. Ồ, và chưa kể chúng tôi làm mà không nhờ đến quảng cáo nào hay hợp tác với nhưng thanh công cụ vớ vẩn và những thứ tương tự!
-            <br/><br/>Suy cho cùng thì osu! hoạt động được là phần lớn nhờ vào tôi, người mà bạn có thể biết đến với cái tên "peppy".
-            Tồi đã phải nghỉ công việc của mình để mà bắt kịp với osu!,
-            và cùng lúc cố gắng để duy trì những tiêu chuẩn mà tôi đặt ra.
-            Tôi muốn biếu tặng trực tiếp sự cảm tạ của tôi đối những người đã ủng hộ osu!,
-            và cũng như những người đang hỗ trợ trò chơi tuyệt với này cùng với cộng đồng của nó trong tương lai :).',
-
-        'supporter_status' => [
-            'contribution' => 'Cảm ơn về sự hỗ trợ của bạn! Bạn đã đóng góp tổng cộng :dollars với :tags tag đã mua!',
-            'gifted' => ':giftedTags tag đã mua của bạn đã được tặng (với tổng cộng :giftedDollars được tặng), thật hào phóng!',
-            'not_yet' => "Bạn chưa có supporter tag nào hết :(",
-            'title' => 'Trạng thái hỗ trợ',
-            'valid_until' => 'Supporter tag hiện tại của bạn có giá trị đến :date!',
-            'was_valid_until' => 'Supporter tag của bạn đã hết hạn vào :date.',
-        ],
-
-        'why_support' => [
-            'title' => 'Tại sao tôi nên ủng hộ osu!?',
-            'blocks' => [
-                'dev' => 'Được phát triển và duy trì một cách vượt trội bởi một gã sống ở Úc',
-                'time' => 'Dành quá nhiều thời gian để trò chơi hoạt động được đến mức không còn gọi nó là một "thú vui" nữa.',
-                'ads' => 'Không có quảng cáo ở bất cứ đâu. <br/><br/>
-                        Khác với 99.95% của web, chúng tôi không kiếm lợi nhuận bẳng cách ném đồ vào mặt bạn.',
-                'goodies' => 'Bạn sẽ được nhận thêm nhiều phần quà hấp dẫn!',
+            'team' => [
+                'title' => 'Hỗ trợ đội ngũ',
+                'description' => 'Một nhóm nhỏ phát triển và điều hành osu!. Sự hỗ trợ của bạn giúp họ để, bạn biết rồi đấy... sống.',
+            ],
+            'infra' => [
+                'title' => 'Cơ sở hạ tầng máy chủ',
+                'description' => 'Đóng góp hướng tới máy chủ chạy trang web, dịch vụ nhiều người chơi, bảng xếp hạng trực tuyến, v.v.',
+            ],
+            'featured-artists' => [
+                'title' => 'Featured Artists',
+                'description' => 'Với sự hỗ trợ của bạn, chúng tôi có thể tiếp cận thêm nhiều nghệ sĩ tuyệt vời hơn nữa và cấp phép cho âm nhạc tuyệt vời hơn để dùng trong osu!',
+                'link_text' => '',
+            ],
+            'ads' => [
+                'title' => 'Giữ osu! tự duy trì',
+                'description' => 'Đóng góp của bạn giúp giữ trò chơi độc lập và hoàn toàn miễn phí từ quảng cáo và các nhà tài trợ bên ngoài.',
+            ],
+            'tournaments' => [
+                'title' => 'Giải đấu chính thức',
+                'description' => 'Giúp tài trợ cho việc điều hành (và giải thưởng cho) Giải đấu World Cup osu! chính thức.',
+                'link_text' => 'Khám phá giải đấu &raquo;',
+            ],
+            'bounty-program' => [
+                'title' => 'Chương trình thưởng mã nguồn mở',
+                'description' => 'Hỗ trợ những người đóng góp cộng đồng đã dành thời gian và nỗ lực để làm osu! tốt hơn.',
+                'link_text' => 'Tìm hiểu thêm &raquo;',
             ],
         ],
-
         'perks' => [
             'title' => 'Ồ, Vậy tôi sẽ nhận được gì?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'Truy cập nhanh và dễ dàng để tìm beatmap mà không cần thoát trò chơi.',
+            ],
+
+            'friend_ranking' => [
+                'title' => 'Xếp hạng bạn bè',
+                'description' => "",
+            ],
+
+            'country_ranking' => [
+                'title' => 'Xếp hạng quốc gia',
+                'description' => 'Chinh phục đất nước của bạn trước khi bạn chinh phục thế giới.',
+            ],
+
+            'mod_filtering' => [
+                'title' => '',
+                'description' => 'Chỉ liên kết với những người chơi HDHR ư? Không vấn đề gì!',
             ],
 
             'auto_downloads' => [
@@ -79,7 +96,7 @@ return [
 
             'customisation' => [
                 'title' => 'Tùy Biến',
-                'description' => 'Tùy biến trang cá nhân của bạn bằng cách thêm một user page đầy đủ có thể chỉnh sửa.',
+                'description' => "Tùy biến trang cá nhân của bạn bằng cách thêm một user page đầy đủ có thể chỉnh sửa.",
             ],
 
             'beatmap_filters' => [
@@ -117,22 +134,30 @@ return [
                 'description' => 'Cho phép xem xếp hạng theo quốc gia / bạn bè / theo-mod của beatmap trong game.',
             ],
 
-            'feel_special' => [
-                'title' => 'Cảm Thấy Đặc Biệt',
-                'description' => 'Cảm giác ấm áp và dễ chịu khi chung tay giúp cho osu! chạy một cách trơn tru!',
-            ],
-
-            'more_to_come' => [
-                'title' => 'Còn hơn thế nữa',
+            'more_favourites' => [
+                'title' => '',
                 'description' => '',
             ],
-        ],
+            'more_friends' => [
+                'title' => 'Thêm bạn bè',
+                'description' => '',
+            ],
+            'more_beatmaps' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'friend_filtering' => [
+                'title' => '',
+                'description' => '',
+            ],
 
-        'convinced' => [
-            'title' => 'Tôi đã tin! :D',
-            'support' => 'hỗ trợ osu!',
-            'gift' => 'hay gửi support đến người chơi khác',
-            'instructions' => 'nhấp vào nút trái tim để đi đến osu!store',
+        ],
+        'supporter_status' => [
+            'contribution' => 'Cảm ơn về sự hỗ trợ của bạn! Bạn đã đóng góp tổng cộng :dollars với :tags tag đã mua!',
+            'gifted' => ":giftedTags tag đã mua của bạn đã được tặng (với tổng cộng :giftedDollars được tặng), thật hào phóng!",
+            'not_yet' => "Bạn chưa có supporter tag nào hết :(",
+            'valid_until' => 'Supporter tag hiện tại của bạn có giá trị đến :date!',
+            'was_valid_until' => 'Supporter tag của bạn đã hết hạn vào :date.',
         ],
     ],
 ];

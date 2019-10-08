@@ -149,10 +149,14 @@ return [
                     'button' => 'Ladda upp bild',
                     'dropzone' => 'Släpp här för att ladda upp',
                     'dropzone_info' => 'Du kan också släppa din bild här för att ladda upp',
-                    'restriction_info' => "Uppladdning tillgängligt för <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> endast",
                     'size_info' => 'Omslagets storlek bör vara 2800x620',
                     'too_large' => 'Uppladdad bild är för stor.',
                     'unsupported_format' => 'Formatet stöds ej.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -164,6 +168,7 @@ return [
 
         'extra' => [
             'followers' => '1 följare|:count följare',
+            'none' => '',
             'unranked' => 'Inga senaste spel',
 
             'achievements' => [
@@ -192,6 +197,16 @@ return [
                     'title' => 'Väntade Beatmaps',
                 ],
             ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'historical' => [
                 'empty' => 'Inga prestanda uppgifter. :(',
                 'title' => 'Historisk',
@@ -219,7 +234,6 @@ return [
                 'recent_entries' => 'Nyligen Kudosu Historia',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Intjänad',
-                'total_info' => 'Baserad på hur mycket bidrag användaren har gjort till beatmap moderation. Se <a href="'.osu_url('user.kudosu').'">denna sida</a> för mer information.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -259,6 +273,11 @@ return [
                         'revoke' => 'Nekad kudosu av :giver för inlägget :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'jag!',
@@ -267,6 +286,11 @@ return [
                 'empty' => "Denna användare har inte fått några än. ;_;",
                 'recent' => '',
                 'title' => 'Medaljer',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Senaste',
@@ -284,6 +308,13 @@ return [
                 'first' => [
                     'title' => 'Förstaplats-ranker',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Kontoställning',
@@ -335,7 +366,11 @@ return [
             'description' => '<strong>jag!</strong> är en personlig anpassningsbar del på din profil sida.',
             'edit_big' => 'Redigera mig!',
             'placeholder' => 'Skriv sidoinnehåll här',
-            'restriction_info' => "Du behöver vara en <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> för att låsa upp denna funktion.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Bidragit med :link',
@@ -360,6 +395,11 @@ return [
             'score_ranks' => 'Poäng Ranker',
             'total_hits' => 'Totala Träffar',
             'total_score' => 'Total Poäng',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -373,5 +413,10 @@ return [
     ],
     'verify' => [
         'title' => 'Kontoverifiering',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

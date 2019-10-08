@@ -37,6 +37,11 @@ return [
     'checkout' => [
         'generic' => 'Der opstod en fejl under forberedelsen af ​​dit køb.',
     ],
+    'search' => [
+        'default' => '',
+        'operation_timeout_exception' => '',
+    ],
+
     'logged_out' => 'Du er blevet logget ud. Log venligst ind og prøv igen.',
     'supporter_only' => 'Du skal være supporter for at udføre denne handling.',
     'no_restricted_access' => 'Du kan ikke udføre denne handling eftersom, at din konto er begrænset.',

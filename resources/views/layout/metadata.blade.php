@@ -24,7 +24,7 @@
 <meta name="theme-color" content="hsl({{ $currentHue }}, 10%, 40%)"> {{-- @osu-colour-b1 --}}
 
 <meta charset="utf-8">
-<meta name="description" content="{{ $pageDescription or trans('layout.defaults.page_description') }}">
+<meta name="description" content="{{ $pageDescription ?? trans('layout.defaults.page_description') }}">
 <meta name="keywords" content="osu, peppy, ouendan, elite, beat, agents, ds, windows, game, taiko, tatsujin, simulator, sim, xna, ddr, beatmania, osu!, osume">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -108,8 +108,8 @@
     <script src="/vendor/js/moment-locales/{{ $momentLocale }}.js" data-turbolinks-track="reload"></script>
 @endif
 
-@if (isset($rss))
-    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ $rss }}">
+@if (isset($atom))
+    <link rel="alternate" type="application/atom+xml" title="{{ $atom['title'] }}" href="{{ $atom['url'] }}" />
 @endif
 
 @if (isset($canonicalUrl))

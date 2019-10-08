@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'zatwierdzona od ',
             'favourite' => 'Dodaj do ulubionych',
-            'favourited_count' => '+ :count_delimited inna!|+ :count_delimited inne!|+ :count_delimited innych!',
             'logged-out' => 'Zaloguj się, aby zacząć pobierać beatmapy!',
             'loved' => 'ulubiona społeczności od ',
             'mapped_by' => 'autorstwa :mapper',
@@ -100,7 +99,7 @@ return [
             'title' => 'Tabela wyników',
 
             'headers' => [
-                'accuracy' => 'Precyzja',
+                'accuracy' => 'Celność',
                 'combo' => 'Combo',
                 'miss' => 'Pudła',
                 'mods' => 'Modyfikatory',

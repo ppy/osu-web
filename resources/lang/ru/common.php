@@ -37,6 +37,7 @@ return [
         'change' => 'изменить',
         'click_to_copy' => 'нажмите чтобы скопировать',
         'click_to_copy_copied' => 'скопировано!',
+        'close' => 'Закрыть',
         'collapse' => 'свернуть',
         'delete' => 'Удалить',
         'edit' => 'Изменить',
@@ -58,6 +59,7 @@ return [
         'show_deleted' => 'Показать удалённые',
         'show_more' => 'показать больше',
         'show_more_options' => 'показать больше опций',
+        'update' => 'Обновить',
         'upload_image' => 'выбрать файл',
 
         'watch' => [
@@ -75,8 +77,12 @@ return [
         'minute_short_unit' => 'мин',
         'minutes' => ':count минута|:count минуты|:count минут',
         'months' => ':count месяц|:count месяца|:count месяцев',
+        'plus_others' => '',
+        'post' => ':count_delimited пост|:count_delimited поста|:count_delimited постов',
         'second_short_unit' => 'сек',
+        'star_priority' => '',
         'update' => ':count_delimited обновление|:count_delimited обновления',
+        'view' => '',
         'years' => ':count год|:count года|:count лет',
     ],
 

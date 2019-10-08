@@ -18,11 +18,7 @@
 @php
     $bn = 'show-more-link';
 
-    $blockClass = $bn;
-
-    foreach ($modifiers ?? [] as $mod) {
-        $blockClass .= " {$bn}--{$mod}";
-    }
+    $blockClass = class_with_modifiers($bn, $modifiers ?? []);
 
     if ($hidden ?? false) {
         $blockClass .= ' hidden';

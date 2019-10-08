@@ -25,6 +25,8 @@ return [
     'title' => 'forumuri osu!',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Setează imaginea de copertă',
             'button' => 'Încarcă imaginea',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '',
+
+        'index' => [
+            'title' => '',
+        ],
+
         'topics' => [
             'empty' => 'Niciun subiect!',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => 'Marchează forumul ca citit',
         'forums' => 'Marchează forumurile ca citite',
         'busy' => 'Se marchează ca citit...',
-    ],
-
-    'poll' => [
-        'edit_warning' => 'Editarea unui sondaj va elimina rezultatele curente!',
-
-        'actions' => [
-            'edit' => 'Editează sondajul',
-        ],
     ],
 
     'post' => [
@@ -71,6 +71,12 @@ return [
             'destroy' => 'Șterge postarea',
             'restore' => 'Restaurează postarea',
             'edit' => 'Editează postarea',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => 'început de :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Previzualizare',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -290,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Votează',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Votarea se va termina în :time',

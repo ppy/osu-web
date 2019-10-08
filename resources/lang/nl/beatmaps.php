@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Stem deze discussie bij',
-            'down' => 'Stem deze discussie af',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 
@@ -244,14 +250,14 @@ return [
     'status' => [
         'any' => 'Alles',
         'approved' => 'Goedgekeurd',
-        'favourites' => '',
+        'favourites' => 'Favorieten',
         'graveyard' => 'Begraafplaats',
-        'leaderboard' => '',
+        'leaderboard' => 'Heeft Ranglijst',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => 'Mijn Mappen',
         'pending' => 'Pending & WIP',
         'qualified' => 'Gekwalificeerd',
-        'ranked' => '',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => 'Alles',
@@ -280,6 +286,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',

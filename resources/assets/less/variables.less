@@ -19,6 +19,8 @@
 @import "app";
 
 @font-content: 'Open Sans', sans-serif;
+@font-content-inter: Inter, sans-serif;
+@font-default-torus: Torus, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
 @font-default: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
 @font-default-vi: Exo, 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
 @font-default-zh: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
@@ -68,12 +70,24 @@
 @gutter: 30px;
 @gutter-desktop: 70px;
 
+// ┐(ﾟ ヮﾟ)┌
+@gutter-v2: 10px;
+@gutter-v2-desktop: 50px;
+
 @height--nav-popup: 210px; // min-height; actual height will be calculated by js.
 
 @navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
 
 @border-radius--nav-avatar: 10px;
 @border-radius--extra: 20px;
+
+@forum-item-overflow: @gutter-v2 - 2px;
+@forum-item-overflow-desktop: @gutter-v2-desktop - 20px;
+@forum-item-background-color: @osu-colour-b4;
+@forum-item-background-color-hover: @osu-colour-b3;
+@forum-item-animate: all 120ms;
+
+@forum-signature-height: 150px;
 
 // here be z-indexes
 @z-index--header-bg: -1;
@@ -86,17 +100,18 @@
 @z-index--page-header: 1;
 @z-index--tournament-header: 1;
 @z-index--notification-banner-v2: 1;
+@z-index--forum-post-edit-mode: 1;
+@z-index--forum-topic-reply-stick: 1; // inside fixed-bar
 
 @z-index--beatmaps-panel: 4;
 @z-index--profile-page-cover-selector: 5;
 @z-index--profile-previous-usernames: 10;
 @z-index--profile-tournament-banner: 11;
-@z-index--nav2: 100;
 @z-index--simple-menu: 101;
 @z-index--admin-menu: 499;
 @z-index--back-to-top: 500;
-@z-index--fixed-bar: 501;
-@z-index--nav-bar: 502;
+@z-index--nav-bar: 501;
+@z-index--fixed-bar: 502;
 @z-index--user-card-tooltip: 509;
 @z-index--blackout: 510;
 @z-index--blackout-visible: 511;
@@ -120,7 +135,6 @@
 @profile-header-height: 350px;
 @profile-user-bar-height: 60px;
 @profile-avatar-size: 120px;
-@profile-stats-box-width: 280px; // FIXME: remove this
 @profile-stats-box-width-desktop: 300px;
 
 @beatmapset-avatar-size: 50px;
@@ -135,6 +149,7 @@
 @nav-search-icon-width: 30px;
 
 // here be font-sizes
+@font-size--tiny: 8px;
 @font-size--small: 10px;
 @font-size--small-2: 11px;
 @font-size--normal: 12px;
@@ -149,6 +164,7 @@
 @font-size--large-3: 40px;
 
 @font-size--wiki: 14px;
+@font-size--wiki-search: 18px;
 
 @font-size--header-title: 32px;
 @font-size--header-title-mobile: 24px;

@@ -19,7 +19,8 @@
 import { ExtraHeader } from './extra-header'
 import { UserPageEditor } from './user-page-editor'
 import * as React from 'react'
-import { button, div, span, p } from 'react-dom-factories'
+import { a, button, div, span, p } from 'react-dom-factories'
+import { StringWithComponent } from 'string-with-component'
 el = React.createElement
 
 export class UserPage extends React.Component
@@ -53,9 +54,9 @@ export class UserPage extends React.Component
 
 
   pageNew: =>
-    div className: 'text-center',
+    div className: 'profile-extra-user-page profile-extra-user-page--new',
       button
-        className: 'profile-extra-user-page__new-content   btn-osu btn-osu--lite btn-osu--profile-page-edit'
+        className: 'profile-extra-user-page__new-content  btn-osu btn-osu--lite btn-osu--profile-page-edit'
         onClick: @editStart
         disabled: !@props.user.has_supported
         osu.trans 'users.show.page.edit_big'
@@ -71,8 +72,14 @@ export class UserPage extends React.Component
       if !@props.user.has_supported
         p
           className: 'profile-extra-user-page__new-content'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'users.show.page.restriction_info'
+          el StringWithComponent,
+            mappings:
+              ':link': a
+                href: laroute.route('store.products.show', product: 'supporter-tag')
+                key: 'link'
+                target: '_blank'
+                osu.trans 'users.show.page.restriction_info.link'
+            pattern: osu.trans 'users.show.page.restriction_info._'
 
 
   pageShow: =>

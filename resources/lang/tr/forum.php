@@ -25,6 +25,8 @@ return [
     'title' => 'osu! forumları',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Kapak fotoğrafı ekle',
             'button' => 'Resim yükle',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Son Gönderi',
+
+        'index' => [
+            'title' => 'Forum Ana Sayfası',
+        ],
+
         'topics' => [
             'empty' => 'Başlık yok!',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => 'Forumu okundu olarak işaretle',
         'forums' => 'Forumları okundu olarak işaretle',
         'busy' => 'Okundu olarak işaretleniyor...',
-    ],
-
-    'poll' => [
-        'edit_warning' => 'Bir anketi düzenlemek mevcut sonuçlarını siler!',
-
-        'actions' => [
-            'edit' => 'Anketi düzenle',
-        ],
     ],
 
     'post' => [
@@ -73,9 +73,15 @@ return [
             'edit' => 'Gönderiyi düzenle',
         ],
 
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
+        ],
+
         'info' => [
             'post_count' => ': sınırlandırılmış mesaj sayısı |: sınırlandırılmış mesaj sayıları',
-            'topic_starter' => '',
+            'topic_starter' => 'Konu Başlığı',
         ],
     ],
 
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => ':user tarafından başlatıldı',
 
         'create' => [
+            'close' => '',
             'preview' => 'Ön izleme ',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -290,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Oyla',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Anket :time tarihinde bitecek',

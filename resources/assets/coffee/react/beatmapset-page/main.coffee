@@ -152,7 +152,7 @@ export class Main extends React.Component
 
   toggleFavourite: =>
     @favouriteXhr = $.ajax
-      url: laroute.route('beatmapsets.update-favourite', beatmapset: @props.beatmapset.id)
+      url: laroute.route('beatmapsets.favourites.store', beatmapset: @props.beatmapset.id)
       method: 'post'
       dataType: 'json'
       data:
@@ -160,8 +160,8 @@ export class Main extends React.Component
 
     .done (data) =>
       @setState
-        favcount: data.favcount
-        hasFavourited: data.favourited
+        favcount: data.favourite_count
+        hasFavourited: !@state.hasFavourited
 
     .fail (xhr, status) =>
       if status == 'abort'
@@ -211,7 +211,7 @@ export class Main extends React.Component
               beatmapset: @props.beatmapset
               currentUser: currentUser
 
-        if @props.beatmapset.has_scores
+        if @props.beatmapset.is_scoreable
           div className: 'osu-page osu-page--generic',
             el Scoreboard,
               type: @state.currentScoreboardType
@@ -222,7 +222,7 @@ export class Main extends React.Component
               enabledMods: @state.enabledMods
               countries: @props.countries
               loading: @state.loading
-              hasScores: @props.beatmapset.has_scores
+              isScoreable: @props.beatmapset.is_scoreable
 
         div className: 'osu-page osu-page--generic-compact',
           el CommentsManager,

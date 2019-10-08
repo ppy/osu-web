@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', and ',
     ],
 
+    'badges' => [
+        'new' => 'NEW',
+    ],
+
     'buttons' => [
         'admin' => 'Admin',
         'back_to_previous' => 'Return to previous position',
@@ -37,6 +41,7 @@ return [
         'change' => 'change',
         'click_to_copy' => 'click to copy to clipboard',
         'click_to_copy_copied' => 'copied to clipboard!',
+        'close' => 'Close',
         'collapse' => 'collapse',
         'delete' => 'Delete',
         'edit' => 'Edit',
@@ -58,6 +63,7 @@ return [
         'show_deleted' => 'Show deleted',
         'show_more' => 'show more',
         'show_more_options' => 'show more options',
+        'update' => 'Update',
         'upload_image' => 'upload image',
 
         'watch' => [
@@ -75,8 +81,12 @@ return [
         'minute_short_unit' => 'min|mins',
         'minutes' => ':count_delimited minute|:count_delimited minutes',
         'months' => ':count_delimited month|:count_delimited months',
+        'plus_others' => '+ :count_delimited other!|+ :count_delimited others!',
+        'post' => ':count_delimited post|:count_delimited posts',
         'second_short_unit' => 'sec|secs',
+        'star_priority' => ':count_delimited star priority|:count_delimited star priorities',
         'update' => ':count_delimited update|:count_delimited updates',
+        'view' => ':count_delimited view|:count_delimited views',
         'years' => ':count_delimited year|:count_delimited years',
     ],
 
@@ -106,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'drop here to upload',
+    ],
+
+    'input' => [
+        'search' => 'search...',
     ],
 
     'pagination' => [

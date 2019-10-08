@@ -23,7 +23,7 @@ return [
     'deleted_count' => ':count_delimited個の削除されたコメント',
     'edited' => ':userが:timeagoに編集済み',
     'empty' => 'まだコメントがありません。',
-    'load_replies' => '',
+    'load_replies' => '返信を読み込む',
     'replies' => '返信',
     'title' => 'コメント',
 

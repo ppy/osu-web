@@ -62,9 +62,9 @@
   }
 
   &--forum-poll {
-    .default-border-radius();
-    height: unset;
-    background-color: #eee;
+    background-color: @osu-colour-b3;
+    border-radius: 10000px;
+    height: 6px;
   }
 
   &--locale {
@@ -99,14 +99,14 @@
     }
 
     .@{_top}--forum-poll & {
-      .default-border-radius();
-      position: absolute;
-      background-color: @blue-lighter;
+      background-color: @osu-colour-h1;
+      border-radius: 10000px;
+      opacity: 0.5;
     }
 
     // must be after --forum-poll
     .@{_top}--forum-poll-voted & {
-      background-color: @pink-lighter;
+      opacity: 1;
     }
 
     .@{_top}--user-profile & {

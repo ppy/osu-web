@@ -35,6 +35,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'follower_count',
         'friends',
         'graveyard_beatmapset_count',
+        'group_badge',
         'is_admin',
         'loved_beatmapset_count',
         'monthly_playcounts',
@@ -48,6 +49,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'unranked_beatmapset_count',
         'unread_pm_count',
         'user_achievements',
+        'user_preferences',
     ];
 
     public function transform(User $user)
@@ -176,6 +178,11 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->primitive($user->profileBeatmapsetsGraveyard()->count());
     }
 
+    public function includeGroupBadge(User $user)
+    {
+        return $this->primitive($user->groupBadge());
+    }
+
     public function includeIsAdmin(User $user)
     {
         return $this->primitive($user->isAdmin(), function ($flag) {
@@ -269,5 +276,14 @@ class UserTransformer extends Fractal\TransformerAbstract
             $user->userAchievements()->orderBy('date', 'desc')->get(),
             new UserAchievementTransformer()
         );
+    }
+
+    public function includeUserPreferences(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return [
+                'ranking_expanded' => $user->profileCustomization()->ranking_expanded,
+            ];
+        });
     }
 }

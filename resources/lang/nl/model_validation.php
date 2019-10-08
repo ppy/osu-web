@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Discussie is vergrendeld.',
         'first_post' => 'Je kan de startpost niet verwijderen.',
+
+        'attributes' => [
+            'message' => 'Het bericht',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Ongeldige moeilijkheidsgraad opgegeven.',
         'invalid_beatmapset_id' => 'Ongeldige beatmap opgegeven.',
         'locked' => 'Discussie is vergrendeld.',
+
+        'attributes' => [
+            'message_type' => 'Berichttype',
+            'timestamp' => 'Timestamp',
+        ],
 
         'hype' => [
             'guest' => 'He moet ingelogd zijn om te hypen.',
@@ -53,10 +62,14 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Op een verwijderde comment reageren is niet toegestaan.',
+
+        'attributes' => [
+            'message' => 'Het bericht',
+        ],
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => 'Ongeldig :attribute opgegeven.',
     ],
 
     'forum' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Beatmap metadata post verwijderen is niet toegestaan.',
             'beatmapset_post_no_edit' => 'Beatmap metadata post bewerken is niet toegestaan.',
             'only_quote' => 'Uw antwoord bevat slechts een citaat.',
+
+            'attributes' => [
+                'post_text' => 'Post body',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => 'Onderwerptitel',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,11 +106,27 @@ return [
             'minimum_one_selection' => 'Minstens een optie per gebruiker is vereist.',
             'minimum_two_options' => 'Moet ten minste twee opties hebben.',
             'too_many_options' => 'Maximum aantal opties overschreden.',
+
+            'attributes' => [
+                'title' => 'Poll titel',
+            ],
         ],
 
         'topic_vote' => [
             'required' => 'Selecteer een optie om te stemmen.',
             'too_many' => 'Meer opties selecteren is niet toegestaan.',
+        ],
+    ],
+
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
         ],
     ],
 
@@ -115,6 +154,12 @@ return [
         'wrong_password_confirmation' => 'Wachtwoord bevestiging komt niet overeen.',
         'too_long' => 'Maximum lengte overschreden - kan enkel tot :limit karakters zijn.',
 
+        'attributes' => [
+            'username' => 'Gebruikersnaam',
+            'user_email' => 'E-mailadres',
+            'password' => 'Wachtwoord',
+        ],
+
         'change_username' => [
             'restricted' => 'Je kan je gebruikersnaam niet wijzigen terwijl je restricted bent.',
             'supporter_required' => [
@@ -127,5 +172,14 @@ return [
 
     'user_report' => [
         'self' => "Je kunt jezelf niet rapporteren!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => 'Hoeveelheid',
+                'cost' => 'Kosten',
+            ],
+        ],
     ],
 ];

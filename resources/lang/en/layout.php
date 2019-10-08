@@ -23,6 +23,22 @@ return [
         'page_description' => 'osu! - Rhythm is just a *click* away!  With Ouendan/EBA, Taiko and original gameplay modes, as well as a fully functional level editor.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Community',
+
+            'forum' => 'Forum',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => 'Close (Esc)',
+        'fullscreen' => 'Toggle fullscreen',
+        'zoom' => 'Zoom in/out',
+        'previous' => 'Previous (arrow left)',
+        'next' => 'Next (arrow right)',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'home',

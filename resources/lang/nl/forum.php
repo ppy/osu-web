@@ -25,6 +25,8 @@ return [
     'title' => 'osu! forums',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Stel omslagafbeelding in',
             'button' => 'Afbeelding uploaden',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Laatste bericht',
+
+        'index' => [
+            'title' => 'Forum Overzicht',
+        ],
+
         'topics' => [
             'empty' => 'Geen topics!',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => 'Markeer forum als gelezen',
         'forums' => 'Markeer forums als gelezen',
         'busy' => 'Markeren als gelezen...',
-    ],
-
-    'poll' => [
-        'edit_warning' => 'Een poll bewerken zal de huidige resultaten verwijderen!',
-
-        'actions' => [
-            'edit' => 'Bewerk poll',
-        ],
     ],
 
     'post' => [
@@ -73,9 +73,15 @@ return [
             'edit' => 'Bewerk bericht',
         ],
 
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
+        ],
+
         'info' => [
             'post_count' => ':count_delimited bericht|:count_delimited berichten',
-            'topic_starter' => '',
+            'topic_starter' => 'Onderwerp Starter',
         ],
     ],
 
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => 'gestart door :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Voorbeeld',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -290,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Stem',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Stemmen eindigt op :time',

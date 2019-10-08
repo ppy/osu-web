@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => '批准於 ',
             'favourite' => '收藏這張圖譜',
-            'favourited_count' => '還有很多人...',
             'logged-out' => '下載圖譜前請先登入！',
             'loved' => 'loved 於 ',
             'mapped_by' => '由 :mapper 製作',
@@ -65,14 +64,14 @@ return [
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => '推薦這個圖譜如果你喜歡玩它來幫助它進度至 <strong>進榜</strong> 狀態。',
 
             'current' => [
-                '_' => '',
+                '_' => '此地圖目前是 :status 的。',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
+                    'pending' => '待處理',
+                    'qualified' => '已提名',
                     'wip' => '此功能仍在開發中',
                 ],
             ],

@@ -29,69 +29,69 @@ return [
             'beatmapset_discussion' => [
                 '_' => 'Beatmap tartışması',
                 'beatmapset_discussion_lock' => 'Beatmap ":title" tartışmak için kilitlendi.',
-                'beatmapset_discussion_lock_compact' => '',
+                'beatmapset_discussion_lock_compact' => 'Tartışma kilitlenmiş',
                 'beatmapset_discussion_post_new' => ':username ":title" beatmapinin tartışmasında yeni mesaj attı.',
-                'beatmapset_discussion_post_new_compact' => '',
+                'beatmapset_discussion_post_new_compact' => ':username tarafından yeni gönderi',
                 'beatmapset_discussion_unlock' => '":title" beatmapinin kilidi tartışmak için açıldı.',
-                'beatmapset_discussion_unlock_compact' => '',
+                'beatmapset_discussion_unlock_compact' => 'Tartışmanın kilidi açılmış',
             ],
 
             'beatmapset_state' => [
                 '_' => 'Beatmap durumu değişti',
-                'beatmapset_disqualify' => '',
-                'beatmapset_disqualify_compact' => '',
-                'beatmapset_love' => '',
-                'beatmapset_love_compact' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_nominate_compact' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_qualify_compact' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_rank_compact' => '',
-                'beatmapset_reset_nominations' => '',
-                'beatmapset_reset_nominations_compact' => '',
+                'beatmapset_disqualify' => '":title" diskalifiye edildi',
+                'beatmapset_disqualify_compact' => 'Beatmap diskalifiye edildi',
+                'beatmapset_love' => '":title" loved\'a yükseltildi',
+                'beatmapset_love_compact' => 'Beatmap loved\'a yükseltildi',
+                'beatmapset_nominate' => '":title" oylandı',
+                'beatmapset_nominate_compact' => 'Beatmap oylandı',
+                'beatmapset_qualify' => '":title" yeterli oy aldı ve derecelendirme sırasına girdi',
+                'beatmapset_qualify_compact' => 'Beatmap ranking sırasına girdi',
+                'beatmapset_rank' => '":title" ranked oldu',
+                'beatmapset_rank_compact' => 'Beatmap ranked oldu',
+                'beatmapset_reset_nominations' => '":title" \'ın oylaması yeniden başlatıldı',
+                'beatmapset_reset_nominations_compact' => 'Oylama yeniden başlatıldı',
             ],
 
             'comment' => [
-                '_' => '',
+                '_' => 'Yeni yorum',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new' => ':username ":title" üzerinde ":content" yorumunu yaptı',
+                'comment_new_compact' => ':username ":content" yorumunu yaptı',
             ],
         ],
 
         'channel' => [
-            '_' => '',
+            '_' => 'Sohbet',
 
             'channel' => [
-                '_' => '',
+                '_' => 'Yeni mesaj',
                 'pm' => [
-                    'channel_message' => '',
-                    'channel_message_compact' => '',
-                    'channel_message_group' => '',
+                    'channel_message' => ':username ":title" diyor',
+                    'channel_message_compact' => ':title',
+                    'channel_message_group' => ':username tarafından',
                 ],
             ],
         ],
 
         'build' => [
-            '_' => '',
+            '_' => 'Değişiklik kayıtları',
 
             'comment' => [
-                '_' => '',
+                '_' => 'Yeni yorum',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new' => ':username ":title" üzerinde ":content" yorumunu yaptı',
+                'comment_new_compact' => ':username ":content" yorumunu yaptı',
             ],
         ],
 
         'news_post' => [
-            '_' => '',
+            '_' => 'Gelişmeler',
 
             'comment' => [
-                '_' => '',
+                '_' => 'Yeni yorum',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new' => ':username ":title" üzerinde ":content" yorumunu yaptı',
+                'comment_new_compact' => ':username ":content" yorumunu yaptı',
             ],
         ],
 
@@ -101,12 +101,12 @@ return [
             'forum_topic_reply' => [
                 '_' => 'Yeni forum yanıtı',
                 'forum_topic_reply' => ':username ":title" konusuna yanıt verdi.',
-                'forum_topic_reply_compact' => '',
+                'forum_topic_reply_compact' => ':username yanıt verdi',
             ],
         ],
 
         'legacy_pm' => [
-            '_' => '',
+            '_' => 'Legacy Forum PM',
 
             'legacy_pm' => [
                 '_' => '',
@@ -115,11 +115,11 @@ return [
         ],
 
         'user_achievement' => [
-            '_' => '',
+            '_' => 'Madalyalar',
 
             'user_achievement_unlock' => [
-                '_' => '',
-                'user_achievement_unlock' => '',
+                '_' => 'Yeni madalya',
+                'user_achievement_unlock' => '":title" \'ın kilidi açıldı!',
             ],
         ],
     ],

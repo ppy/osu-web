@@ -20,19 +20,16 @@
   @_top: forum-poll;
 
   .default-box-shadow();
-  background-color: #fff;
+  .default-gutter-v2();
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: @osu-colour-b2;
+  color: @osu-colour-c1;
 
-  margin-bottom: 5px;
-  padding: 20px 30px 0;
-  font-size: @font-size--normal;
+  font-size: @font-size--title-small;
 
   display: flex;
   flex-direction: column;
-
-  @media @desktop {
-    padding-left: 60px;
-    padding-right: 60px;
-  }
 
   &__actions {
     position: absolute;
@@ -59,41 +56,47 @@
     }
   }
 
-  &__row {
-    margin: 0 0 20px;
-    text-align: center;
-
-    &--details {
-      margin-bottom: (20px - 5px);
-    }
-
-    &--options {
-      width: calc(100% + 10px);
-      margin-left: -5px;
-      margin-right: -5px;
-      text-align: left;
-      overflow-x: auto;
-    }
-
-    &--title {
-      color: inherit;
-      font-style: normal;
-      font-size: @font-size--title-small;
-    }
+  &__button {
+    margin: 5px;
   }
 
   &__detail {
-    font-weight: bold;
-    margin: 0 0 5px;
+    margin: 2px 0;
 
     &--sub {
       font-size: @font-size--small;
-      color: #777;
+      color: @osu-colour-c2;
     }
   }
 
+  &__row {
+    margin: 5px 0;
+    display: flex;
+    flex-direction: column;
+
+    &--buttons {
+      flex-flow: row wrap;
+      margin: 0 -5px;
+    }
+
+    &--details {
+      margin-top: 3px;
+      margin-bottom: 3px;
+    }
+
+    &--title {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__title {
+    color: inherit;
+    font-style: normal;
+    font-size: @font-size--title-small-4;
+    margin: 0;
+  }
+
   &__warning {
-    font-weight: bold;
-    margin-bottom: 20px;
+    color: @osu-colour-c2;
   }
 }

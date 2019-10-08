@@ -23,7 +23,7 @@ return [
     'deleted_count' => ':count_delimited verwijderde opmerking|:count_delimited verwijderde opmerkingen',
     'edited' => 'gewijzigd :timeago door :user',
     'empty' => 'Nog geen commentaar.',
-    'load_replies' => '',
+    'load_replies' => 'antwoorden laden',
     'replies' => 'Reacties',
     'title' => 'Opmerkingen',
 

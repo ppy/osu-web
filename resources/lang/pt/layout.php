@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - Ritmo está apenas a um *clique* de distância! Com Ouendan/EBA, Taiko e modos de jogo originais, como também um editor de níveis totalmente funcional.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Comunidade',
+
+            'forum' => 'Fórum',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => 'Fechar (Esc)',
+        'fullscreen' => 'Ativar/Desativar ecrã completo',
+        'zoom' => 'Aproximar/Afastar',
+        'previous' => 'Anterior (seta esquerda)',
+        'next' => 'Seguinte (seta direita)',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'início',
             'account-edit' => 'definições',
+            'account-verifyLink' => 'Verificação Concluída',
             'friends-index' => 'amigos',
             'changelog-index' => 'lista de mudanças',
             'changelog-build' => 'compilação',
@@ -47,7 +64,7 @@ return [
             '_' => 'ajuda',
             'getFaq' => 'perguntas frequentes',
             'getRules' => 'regras',
-            'getSupport' => 'não, a sério, eu preciso de ajuda!',
+            'getSupport' => 'não, a sério, preciso mesmo de ajuda!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -180,9 +197,9 @@ return [
         ],
         'help' => [
             '_' => 'Ajuda e Comunidade',
-            'faq' => 'Perguntas Frequentes',
+            'faq' => 'Perguntas Frequentes (em brasileiro)',
             'forum' => 'Fóruns da Comunidade',
-            'livestreams' => 'Transmissões Ao Vivo',
+            'livestreams' => 'Transmissões ao Vivo',
             'report' => 'Comunicar um Problema',
         ],
         'legal' => [
@@ -246,7 +263,7 @@ return [
         ],
 
         'register' => [
-            'info' => "Precisa de uma conta, senhor. Porque é que ainda não tem uma?",
+            'info' => "Precisa duma conta, senhor. Porque é que ainda não tem uma?",
             'title' => "Não tens uma conta?",
         ],
     ],

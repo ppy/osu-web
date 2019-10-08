@@ -16,8 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { route } from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
+import { unmountComponentAtNode } from 'react-dom';
 import { activeKeyDidChange as contextActiveKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
 import { TooltipContext } from 'tooltip-context';
 import { UserCard } from 'user-card';
@@ -122,7 +124,14 @@ function onMouseOver(event: JQueryEventObject) {
   if (el._tooltip !== el.dataset.userId) {
     // wrong userId, destroy current tooltip
     const qtip = $(el).qtip('api');
-    if (qtip != null) { qtip.destroy(); }
+    if (qtip != null) {
+      if (qtip.tooltip != null) {
+        unmountComponentAtNode(qtip.tooltip.find('.js-react--user-card-tooltip')[0]);
+      }
+
+      qtip.destroy();
+      delete el._tooltip;
+    }
   }
 }
 
@@ -134,9 +143,16 @@ function hideEffect() {
   $(this).fadeTo(110, 0);
 }
 
-function shouldShow(event: JQueryEventObject) {
+function shouldShow(event: JQueryEventObject, api: any) {
   if (tooltipWithActiveMenu != null || osu.isMobile()) {
+    return event.preventDefault();
+  }
+
+  // keyed React components can end up with reused DOM elements with a previously set tooltip.
+  const target = api.target[0] as HTMLElement;
+  if (target._tooltip !== target.dataset.userId) {
     event.preventDefault();
+    $(target).trigger('mouseover');
   }
 }
 
@@ -170,7 +186,7 @@ export class UserCardTooltip extends React.PureComponent<Props, State> {
   }
 
   getUser() {
-    const url = laroute.route('users.card', { user: this.props.lookup });
+    const url = route('users.card', { user: this.props.lookup });
 
     return $.ajax({
       dataType: 'json',

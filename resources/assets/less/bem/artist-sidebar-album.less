@@ -1,0 +1,75 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.artist-sidebar-album {
+  @top: artist-sidebar-album;
+  text-align: center;
+  margin: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:hover, &:active {
+    color: white;
+    text-decoration: none;
+  }
+
+  &:hover {
+    .@{top}__glow {
+      opacity: 0.4;
+    }
+  }
+
+  &__badge-wrapper {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  &__cover {
+    width: 128px;
+    height: 128px;
+    .default-box-shadow();
+
+    .@{top}--new & {
+      box-shadow: 15px -10px 50px .osu-hsla(@osu-colour-orange-1, 0.2)[@hsla];
+    }
+  }
+
+  &__cover-wrapper {
+    width: 128px;
+    height: 128px;
+  }
+
+  &__glow {
+    .full-size();
+    background-size: cover;
+    background-position: center;
+    filter: blur(20px);
+    opacity: 0;
+    transition: 1s ease-in-out;
+  }
+
+  &__title {
+    font-size: 14px;
+    margin-top: 5px;
+    color: white;
+    .default-text-shadow();
+  }
+}

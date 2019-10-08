@@ -23,10 +23,7 @@
     <div class="js-react--comments-show osu-layout osu-layout--full"></div>
 
     <script id="json-show" type="application/json">
-        {!! json_encode([
-            'bundle' => $commentBundle->toArray(),
-            'comment' => $commentJson,
-        ]) !!}
+        {!! json_encode($commentBundle->toArray()) !!}
     </script>
 
     @include('layout._extra_js', ['src' => 'js/react/comments-show.js'])

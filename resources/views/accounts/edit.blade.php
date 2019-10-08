@@ -112,6 +112,16 @@
                                 data-url="{{ route('account.avatar') }}"
                             >
                         </label>
+
+                        <div class="account-edit-entry__rules">
+                            {!! trans('accounts.edit.avatar.rules', [
+                                'link' => link_to(
+                                    wiki_url('Rules'),
+                                    trans('accounts.edit.avatar.rules_link'),
+                                    ['class' => 'account-edit-entry__link']
+                                )
+                            ]) !!}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -154,6 +164,10 @@
 @section("script")
   <script id="json-authorized-clients" type="application/json">
     {!! json_encode($authorizedClients) !!}
+  </script>
+
+  <script id="json-own-clients" type="application/json">
+    {!! json_encode($ownClients) !!}
   </script>
 
   @include('layout._extra_js', ['src' => 'js/react/account-edit.js'])

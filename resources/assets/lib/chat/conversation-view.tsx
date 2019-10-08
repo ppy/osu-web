@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { route } from 'laroute';
 import * as _ from 'lodash';
 import { inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
@@ -23,6 +24,7 @@ import * as moment from 'moment';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import RootDataStore from 'stores/root-data-store';
+import { StringWithComponent } from 'string-with-component';
 import { UserAvatar } from 'user-avatar';
 import MessageDivider from './message-divider';
 import MessageGroup from './message-group';
@@ -147,7 +149,11 @@ export default class ConversationView extends React.Component<any, any> {
         </div>
         <div className='chat-conversation__chat-label'>
           {channel.type === 'PM' ? (
-            osu.trans('chat.talking_with', {name: channel.name})
+            <StringWithComponent
+              pattern={osu.trans('chat.talking_with')}
+              // TODO: rework this once the user class situation is resolved
+              mappings={{':name': <a key='user' className='js-usercard' data-user-id={channel.pmTarget} href={route('users.show', {user: channel.pmTarget})}>{channel.name}</a>}}
+            />
           ) : (
             osu.trans('chat.talking_in', {channel: channel.name})
           )}
