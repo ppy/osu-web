@@ -76,7 +76,6 @@ class CommentsController extends Controller
             $commentable ?? null,
             [
                 'params' => request()->all(),
-                'includeDeleted' => isset($commentable),
             ]
         );
 
@@ -86,6 +85,7 @@ class CommentsController extends Controller
             $commentBundle->depth = 0;
             $commentBundle->includeCommentableMeta = true;
             $commentBundle->includeParent = true;
+            $commentBundle->includeDeleted = isset($commentable);
 
             $commentPagination = new LengthAwarePaginator(
                 [],
