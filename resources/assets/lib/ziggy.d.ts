@@ -16,23 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { route } from 'laroute';
-import * as React from 'react';
-
-interface Props {
-  user: User;
+declare module 'ziggy' {
+  export const Ziggy: {};
 }
 
-export class UserLink extends React.PureComponent<Props> {
-  render() {
-    return (
-      <a
-        className='js-usercard'
-        data-user-id={this.props.user.id}
-        href={route('users.show', { user: this.props.user.id })}
-      >
-        {this.props.user.username}
-      </a>
-    );
-  }
+declare module 'ziggy-route' {
+  export default function route(name: string, params: any, absolute?: boolean, ziggy?: {}): any;
 }
