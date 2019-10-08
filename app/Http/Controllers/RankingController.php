@@ -192,6 +192,14 @@ class RankingController extends Controller
             $beatmapsets = collect();
         }
 
+        if (is_api_request()) {
+            return [
+                'beatmapsets' => json_collection($beatmapsets, 'Beatmapset', ['beatmaps']),
+                'ranking' => json_collection($scores, 'UserStatistics', ['user', 'user.cover', 'user.country']),
+                'spotlight' => $spotlight
+            ];
+        }
+
         return view(
             'rankings.charts',
             compact('scores', 'scoreCount', 'selectOptions', 'spotlight', 'beatmapsets')
