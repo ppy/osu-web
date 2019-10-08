@@ -18,14 +18,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests;
+namespace Tests\Libraries;
 
 use App\Libraries\ReplayFile;
 use App\Models\Beatmap;
 use App\Models\ReplayViewCount;
 use App\Models\Score\Best;
 use App\Models\User;
-use TestCase;
+use Tests\TestCase;
 
 class ReplayFileTest extends TestCase
 {

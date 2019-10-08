@@ -149,7 +149,7 @@
             'attributes' => ['data-mode' => 'previous'],
             'hidden' => $posts->first()->post_id === $firstPostId,
             'modifiers' => ['forum-topic'],
-            'url' => route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]),
+            'url' => route('forum.topics.show', ['topic' => $topic, 'end' => ($posts->first()->post_id - 1)]),
         ])
 
         @include('forum.topics._posts')
@@ -303,7 +303,7 @@
                 </button>
 
                 <a
-                    href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
+                    href="{{ route('forum.topics.show', ['topic' => $topic, 'end' => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
                     class="js-forum-posts-seek--jump
                         forum-topic-nav__item
                         forum-topic-nav__item--main

@@ -16,19 +16,6 @@ class SanityTest extends DuskTestCase
     protected $failed = 0;
     protected $skipped = 0;
 
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->createScaffolding();
-
-        $this->beforeApplicationDestroyed(function () {
-            // We do this here while we can still access laravel,
-            // tearDown/tearDownAfterClass runs after laravel is torn down
-            $this->cleanup();
-        });
-    }
-
     public function createScaffolding()
     {
         if (!isset(self::$scaffolding)) {
@@ -423,5 +410,18 @@ class SanityTest extends DuskTestCase
         if ($count > 0) {
             return $matches[1][count($matches[1]) - 1];
         }
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->createScaffolding();
+
+        $this->beforeApplicationDestroyed(function () {
+            // We do this here while we can still access laravel,
+            // tearDown/tearDownAfterClass runs after laravel is torn down
+            $this->cleanup();
+        });
     }
 }

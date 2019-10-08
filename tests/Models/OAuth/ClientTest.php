@@ -17,20 +17,16 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Models\OAuth;
+
 use App\Models\OAuth\Client;
 use App\Models\User;
+use Tests\TestCase;
 
 class ClientTest extends TestCase
 {
     protected $repository;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->owner = factory(User::class)->create();
-        $this->client = $this->createOAuthClient($this->owner);
-    }
 
     public function testScopesFromTokensAreAggregated()
     {
@@ -64,7 +60,7 @@ class ClientTest extends TestCase
             'user_id' => $user->getKey(),
         ]);
 
-        $otherClient = $this->createOAuthClient($this->owner);
+        $otherClient = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
         $otherClient->tokens()->create([
             'id' => '2',
             'revoked' => false,
@@ -180,7 +176,7 @@ class ClientTest extends TestCase
     {
         config()->set('osu.oauth.max_user_clients', 1);
 
-        $client = $this->createOAuthClient($this->owner);
+        $client = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
         $this->assertFalse($client->exists);
         $this->assertArrayHasKey('user.oauthClients.count', $client->validationErrors()->all());
     }
@@ -190,8 +186,25 @@ class ClientTest extends TestCase
         config()->set('osu.oauth.max_user_clients', 1);
         $this->client->update(['revoked' => true]);
 
-        $client = $this->createOAuthClient($this->owner);
+        $client = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
         $this->assertTrue($client->exists);
         $this->assertEmpty($client->validationErrors()->all());
+    }
+
+    public function testRevokingClientSkipsValidation()
+    {
+        $client = factory(Client::class)->make(['user_id' => $this->owner->getKey()]);
+        $client->save(['skipValidations' => true]);
+        $this->assertTrue($client->exists);
+        $client->revoke();
+        $this->assertTrue($client->fresh()->revoked);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->owner = factory(User::class)->create();
+        $this->client = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
     }
 }

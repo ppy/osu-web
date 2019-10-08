@@ -1,5 +1,9 @@
 <?php
 
+namespace Tests\Controllers;
+
+use Tests\TestCase;
+
 class HomeControllerTest extends TestCase
 {
     public function testBbcodePreview()

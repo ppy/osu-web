@@ -59,6 +59,11 @@ class ReplayFile
         return pack('q', $this->score->score_id);
     }
 
+    public function getDiskName()
+    {
+        return $this->diskName;
+    }
+
     public function getVersion()
     {
         return optional($this->score->replayViewCount)->version ?? static::DEFAULT_VERSION;

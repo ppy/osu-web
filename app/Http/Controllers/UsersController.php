@@ -183,25 +183,6 @@ class UsersController extends Controller
         return $this->getExtra($this->user, 'recentActivity', [], $this->perPage, $this->offset);
     }
 
-    public function report($id)
-    {
-        $user = User::lookup($id, 'id', true);
-        if ($user === null || !priv_check('UserShow', $user)->can()) {
-            return response()->json([], 404);
-        }
-
-        try {
-            $user->reportBy(auth()->user(), [
-                'comments' => trim(request('comments')),
-                'reason' => trim(request('reason')),
-            ]);
-        } catch (ValidationException $e) {
-            return error_popup($e->getMessage());
-        }
-
-        return response(null, 204);
-    }
-
     public function scores($_userId, $type)
     {
         static $mapping = [
@@ -271,7 +252,6 @@ class UsersController extends Controller
             'ranked_and_approved_beatmapset_count',
             'replays_watched_counts',
             'statistics.rank',
-            'statistics.scoreRanks',
             'support_level',
             'unranked_beatmapset_count',
             'user_achievements',

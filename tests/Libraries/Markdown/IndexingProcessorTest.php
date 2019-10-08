@@ -17,22 +17,32 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Libraries\Markdown;
+
 use App\Libraries\Markdown\OsuMarkdown;
+use Tests\TestCase;
 
 class IndexingProcessorTest extends TestCase
 {
-    public function testAll()
+    /**
+     * @dataProvider examples
+     */
+    public function testToIndexable($name, $path)
     {
-        $path = __DIR__.'/markdown_examples';
+        $mdFilePath = "{$path}/{$name}.md";
+        $textFilePath = "{$path}/{$name}.txt";
 
-        foreach (glob("{$path}/*.md") as $mdFilePath) {
-            $markdown = file_get_contents($mdFilePath);
-            $textFilePath = preg_replace('/\.md$/', '.txt', $mdFilePath);
+        $markdown = file_get_contents($mdFilePath);
 
-            $output = (new OsuMarkdown('wiki'))->load($markdown)->toIndexable();
-            $referenceOutput = file_get_contents($textFilePath);
+        $output = (new OsuMarkdown('wiki'))->load($markdown)->toIndexable();
+        $referenceOutput = file_get_contents($textFilePath);
 
-            $this->assertSame($referenceOutput, $output);
-        }
+        $this->assertSame($referenceOutput, $output);
+    }
+
+    public function examples()
+    {
+        return $this->fileList(__DIR__.'/markdown_examples', '.md');
     }
 }

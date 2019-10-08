@@ -1,19 +1,16 @@
 <?php
 
+namespace Tests\Controllers;
+
 use App\Models\User;
 use App\Models\UserProfileCustomization;
 use App\Models\WeakPassword;
+use Hash;
+use Tests\TestCase;
 
 class AccountControllerTest extends TestCase
 {
     private $user;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->user = factory(User::class)->create();
-    }
 
     /**
      * Checks whether an OK status is returned when the
@@ -185,6 +182,13 @@ class AccountControllerTest extends TestCase
                 ],
             ])
             ->assertStatus(422);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = factory(User::class)->create();
     }
 
     private function user()

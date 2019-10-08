@@ -20,6 +20,7 @@ import AdminMenu from 'admin-menu';
 import { Comments } from 'comments';
 import { CommentsManager } from 'comments-manager';
 import NewsPostJson from 'interfaces/news-post-json';
+import { route } from 'laroute';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import NewsHeader from 'news-header';
@@ -82,7 +83,6 @@ export default class Main extends React.Component<Props> {
           <CommentsManager
             commentableType='news_post'
             commentableId={this.props.post.id}
-            commentBundle={this.props.commentBundle}
             component={Comments}
             componentProps={{
               modifiers: ['changelog'],
@@ -107,7 +107,7 @@ export default class Main extends React.Component<Props> {
                 'data-method': 'put',
                 'data-reload-on-success': 1,
                 'data-remote': true,
-                'data-url': laroute.route('news.update', {news: this.props.post.id}),
+                'data-url': route('news.update', {news: this.props.post.id}),
                 'type': 'button',
               },
               text: osu.trans('news.update.button'),
@@ -194,7 +194,7 @@ export default class Main extends React.Component<Props> {
       newerLink = (
         <a
           className='page-nav__link'
-          href={laroute.route('news.show', {news: newerPost.slug})}
+          href={route('news.show', {news: newerPost.slug})}
           title={newerPost.title}
         >
           <span className='page-nav__label'>
@@ -209,7 +209,7 @@ export default class Main extends React.Component<Props> {
       olderLink = (
         <a
           className='page-nav__link'
-          href={laroute.route('news.show', {news: olderPost.slug})}
+          href={route('news.show', {news: olderPost.slug})}
           title={olderPost.title}
         >
           <span className='fas fa-chevron-left' />
