@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "95974497b5d9f2ec04bcd196546fcf7e",
+    "content-hash": "b5d314b1f8b470143d21977a16f6e050",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -88,55 +88,6 @@
                 "sdk"
             ],
             "time": "2019-10-07T18:13:37+00:00"
-        },
-        {
-            "name": "bluedragon/laravel-routes",
-            "version": "v2.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://gitlab.com/blue-dragon/laravel-routes.git",
-                "reference": "115408627b6ad629712b50db44cf3b2f611b3b09"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/blue-dragon%2Flaravel-routes/repository/archive.zip?sha=115408627b6ad629712b50db44cf3b2f611b3b09",
-                "reference": "115408627b6ad629712b50db44cf3b2f611b3b09",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/routing": "^5.8||^6.0",
-                "illuminate/support": "^5.8||^6.0",
-                "php": ">=7.2"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^3.8||^3.9",
-                "squizlabs/php_codesniffer": "^3.4"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "BlueDragon\\LaravelRoutes\\LaravelRoutesServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "BlueDragon\\LaravelRoutes\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Blue Dragon",
-                    "email": "developers@bluedragon.nl"
-                }
-            ],
-            "description": "Publish Laravel routes to JavaScript",
-            "time": "2019-09-20T14:11:22+00:00"
         },
         {
             "name": "chaseconey/laravel-datadog-helper",

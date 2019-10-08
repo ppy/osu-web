@@ -23,7 +23,6 @@
     }
   ],
   "require": {
-    "bluedragon/laravel-routes": "*",
     "chaseconey/laravel-datadog-helper": "dev-laravel-6",
     "doctrine/dbal": "*",
     "egulias/email-validator": "*",
