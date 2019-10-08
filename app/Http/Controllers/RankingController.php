@@ -150,11 +150,16 @@ class RankingController extends Controller
         if (is_api_request()) {
             switch ($type) {
                 case 'country':
-                    return json_collection($stats, 'CountryStatistics', ['country']);
+                    $ranking = json_collection($stats, 'CountryStatistics', ['country']);
 
                 default:
-                    return json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
+                    $ranking = json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
             }
+
+            return [
+                'ranking' => $ranking,
+                'total' => $maxResults,
+            ];
         }
 
         $scores = new LengthAwarePaginator($stats, $maxPages * static::PAGE_SIZE, static::PAGE_SIZE, $page, [
