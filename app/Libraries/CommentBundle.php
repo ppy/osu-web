@@ -121,16 +121,10 @@ class CommentBundle
     public function commentsQuery()
     {
         if (isset($this->commentable)) {
-            $query = $this->commentable->comments();
+            return $this->commentable->comments();
         } else {
-            $query = Comment::select();
+            return Comment::select();
         }
-
-        if (!$this->includeDeleted) {
-            $query->whereNull('deleted_at');
-        }
-
-        return $query;
     }
 
     private function getComments($query, $isChildren = true)
@@ -173,6 +167,10 @@ class CommentBundle
 
         if ($this->includeParent) {
             $query->with('parent');
+        }
+
+        if (!$this->includeDeleted) {
+            $query->whereNull('deleted_at');
         }
 
         if (!$sorted) {
