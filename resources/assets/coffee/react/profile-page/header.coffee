@@ -125,7 +125,7 @@ export class Header extends React.Component
         ref: @coverSelector
         className: 'profile-header__cover-editor'
         button
-          className: 'profile-page-toggle profile-page-toggle--cover'
+          className: 'profile-page-toggle'
           title: osu.trans('users.show.edit.cover.button')
           onClick: @toggleEdit
           span className: 'fas fa-pencil-alt'
