@@ -17,9 +17,11 @@
 --}}
 @extends('forum.topics.replace_delete_button', ['countDifference' => -1])
 
-@section('moderatorAction')
+@section('action')
     if (forum.showDeleted()) {
-        $el.addClass("js-forum-post--hidden");
+        @if (priv_check('ForumModerate', $post->forum)->can())
+            $el.addClass("js-forum-post--hidden");
+        @endif
     } else {
         $el.css({
             minHeight: "0px",

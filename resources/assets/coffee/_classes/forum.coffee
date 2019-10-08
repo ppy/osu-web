@@ -70,7 +70,7 @@ class @Forum
 
 
   showDeleted: =>
-    @_showDeletedToggle[0].dataset.showDeleted == "1"
+    @_showDeletedToggle[0]?.dataset.showDeleted == "1"
 
 
   setTotalPosts: (n) =>
