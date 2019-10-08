@@ -38,14 +38,14 @@ use Schema;
  */
 class Spotlight extends Model
 {
-    public const PERIODIC_TYPES = ['bestof', 'monthly'];
+    const PERIODIC_TYPES = ['bestof', 'monthly'];
     const SPOTLIGHT_MAX_RESULTS = 40;
+
+    public $timestamps = false;
 
     protected $table = 'osu_charts';
     protected $primaryKey = 'chart_id';
     protected $guarded = [];
-
-    public $timestamps = false;
 
     protected $casts = [
         'active' => 'boolean',
