@@ -20,8 +20,6 @@ import { forEach } from 'lodash';
 import { Ziggy } from 'ziggy';
 import ziggyRoute from 'ziggy-route';
 
-Ziggy.defaultParameters = {};
-
 interface Attributes {
   [key: string]: string | number | null | undefined;
 }
@@ -31,9 +29,7 @@ export function route(name: string, params?: Attributes | null, absolute?: boole
     params = {};
   }
 
-  const url = ziggyRoute(name, params, absolute, Ziggy).toString() || '';
-
-  return url.replace(/\/+(\?|$)/, '$1');
+  return ziggyRoute(name, params, absolute, Ziggy).toString();
 }
 
 export function link_to_route(name: string, text: string, params?: Attributes | null, attrs?: Attributes | null) {

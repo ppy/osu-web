@@ -21,7 +21,6 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Exceptions\ValidationException;
 use App\Libraries\CommentBundle;
 use App\Libraries\CommentBundleParams;
 use App\Libraries\MorphMap;
@@ -131,34 +130,6 @@ class CommentsController extends Controller
 
             return view('comments.index', compact('commentBundle', 'commentPagination'));
         }
-    }
-
-    /**
-     * Report Comment
-     *
-     * Reports the specified comment for spam.
-     *
-     * ---
-     *
-     * @authenticated
-     *
-     * @queryParam comments A description or comment to attach to the report.
-     *
-     * @response 204
-     */
-    public function report($id)
-    {
-        $comment = Comment::findOrFail($id);
-
-        try {
-            $comment->reportBy(auth()->user(), [
-                'comments' => trim(request('comments')),
-            ]);
-        } catch (ValidationException $e) {
-            return error_popup($e->getMessage());
-        }
-
-        return response(null, 204);
     }
 
     public function restore($id)

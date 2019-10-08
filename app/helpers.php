@@ -1155,7 +1155,7 @@ function get_params($input, $namespace, $keys)
 
     $params = [];
 
-    if (is_array($input)) {
+    if (is_array($input) || ($input instanceof ArrayAccess)) {
         foreach ($keys as $keyAndType) {
             $keyAndType = explode(':', $keyAndType);
 

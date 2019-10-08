@@ -23,7 +23,7 @@ import { route } from 'laroute';
 import * as _ from 'lodash';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
-import { ReportUser } from 'report-user';
+import { ReportReportable } from 'report-reportable';
 import { Spinner } from 'spinner';
 import { SupporterIcon } from 'supporter-icon';
 
@@ -250,7 +250,14 @@ export class UserCard extends React.PureComponent<Props, State> {
         }
 
         <BlockButton onClick={dismiss} modifiers={['inline']} userId={this.user.id} wrapperClass='simple-menu__item' />
-        <ReportUser onFormClose={dismiss} modifiers={['inline']} user={this.user} wrapperClass='simple-menu__item' />
+        <ReportReportable
+          className='simple-menu__item'
+          icon={true}
+          onFormClose={dismiss}
+          reportableId={this.user.id.toString()}
+          reportableType='user'
+          user={this.user}
+        />
       </>
     );
 

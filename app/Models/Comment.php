@@ -214,7 +214,7 @@ class Comment extends Model
     protected function newReportableExtraParams() : array
     {
         return [
-            'reason' => 'Spam', // TODO: probably want more options
+            'reason' => 'Spam',
             'user_id' => $this->user_id,
         ];
     }
