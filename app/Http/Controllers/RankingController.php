@@ -175,28 +175,31 @@ class RankingController extends Controller
         }
 
         if ($spotlight->hasMode($mode)) {
+            $beatmapsets = $spotlight->beatmapsets($mode)->with('beatmaps')->get();
             $scores = $spotlight->ranking($mode);
+
             if (is_api_request()) {
                 $scores = $scores->with(['user.userProfileCustomization'])->get();
+
+                return [
+                    // transformer can't do nested includes with params properly.
+                    // https://github.com/thephpleague/fractal/issues/239
+                    'beatmapsets' => json_collection($beatmapsets, 'Beatmapset', ['beatmaps']),
+                    'ranking' => json_collection($scores, 'UserStatistics', ['user', 'user.cover', 'user.country']),
+                    'spotlight' => json_item($spotlight, 'Spotlight', ["participant_count:mode({$mode})"]),
+                ];
             } else {
                 $scores = $scores->get();
+                $scoreCount = $spotlight->participantCount($mode);
+            }
+        } else {
+            if (is_api_request()) {
+                abort(404);
             }
 
-            $beatmapsets = $spotlight->beatmapsets($mode)->with('beatmaps')->get();
-        } else {
+            $beatmapsets = collect();
             $scores = collect();
             $scoreCount = 0;
-            $beatmapsets = collect();
-        }
-
-        if (is_api_request()) {
-            return [
-                // transformer can't do nested includes with params properly.
-                // https://github.com/thephpleague/fractal/issues/239
-                'beatmapsets' => json_collection($beatmapsets, 'Beatmapset', ['beatmaps']),
-                'ranking' => json_collection($scores, 'UserStatistics', ['user', 'user.cover', 'user.country']),
-                'spotlight' => json_item($spotlight, 'Spotlight', ["participant_count:mode({$mode})"]),
-            ];
         }
 
         $selectOptions = [
@@ -205,8 +208,6 @@ class RankingController extends Controller
                 return $this->optionFromSpotlight($s);
             }),
         ];
-
-        $scoreCount = $spotlight->participantCount($mode);
 
         return view(
             'rankings.charts',
