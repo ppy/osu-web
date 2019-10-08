@@ -241,6 +241,7 @@ class @Forum
       start: null
       end: null
       skip_layout: 1
+      with_deleted: @showDeleted()
 
     if mode == 'previous'
       $refPost = $('.js-forum-post').first()
