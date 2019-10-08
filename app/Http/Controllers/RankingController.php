@@ -36,7 +36,6 @@ class RankingController extends Controller
 
     const PAGE_SIZE = 50;
     const MAX_RESULTS = 10000;
-    const SPOTLIGHT_MAX_RESULTS = 40;
     const RANKING_TYPES = ['performance', 'charts', 'score', 'country'];
     const SPOTLIGHT_TYPES = ['charts'];
 
@@ -183,7 +182,7 @@ class RankingController extends Controller
         ];
 
         if ($spotlight->hasMode($mode)) {
-            $scores = $this->getUserStats($spotlight, $mode)->get();
+            $scores = $spotlight->ranking($mode)->get();
             $scoreCount = $spotlight->userStats($mode)->count();
             $beatmapsets = $spotlight->beatmapsets($mode)->with('beatmaps')->get();
         } else {
@@ -204,22 +203,6 @@ class RankingController extends Controller
             'rankings.charts',
             compact('scores', 'scoreCount', 'selectOptions', 'spotlight', 'beatmapsets')
         );
-    }
-
-    private function getUserStats($spotlight, $mode)
-    {
-        // These models will not have the correct table name set on them
-        // as they get overriden when Laravel hydrates them.
-        return $spotlight->userStats($mode)
-            ->with(['user', 'user.country'])
-            ->whereHas('user', function ($userQuery) {
-                $model = new User;
-                $userQuery
-                    ->from("{$model->getConnection()->getDatabaseName()}.{$model->getTable()}")
-                    ->default();
-            })
-            ->orderBy('ranked_score', 'desc')
-            ->limit(static::SPOTLIGHT_MAX_RESULTS);
     }
 
     private function optionFromSpotlight(Spotlight $spotlight) : array

@@ -39,6 +39,7 @@ use Schema;
 class Spotlight extends Model
 {
     public const PERIODIC_TYPES = ['bestof', 'monthly'];
+    const SPOTLIGHT_MAX_RESULTS = 40;
 
     protected $table = 'osu_charts';
     protected $primaryKey = 'chart_id';
@@ -99,6 +100,22 @@ class Spotlight extends Model
     public function hasMode(string $mode)
     {
         return Schema::connection('mysql-charts')->hasTable($this->userStatsTableName($mode));
+    }
+
+    public function ranking(string $mode)
+    {
+        // These models will not have the correct table name set on them
+        // as they get overriden when Laravel hydrates them.
+        return $this->userStats($mode)
+            ->with(['user', 'user.country'])
+            ->whereHas('user', function ($userQuery) {
+                $model = new User;
+                $userQuery
+                    ->from($model->tableName(true))
+                    ->default();
+            })
+            ->orderBy('ranked_score', 'desc')
+            ->limit(static::SPOTLIGHT_MAX_RESULTS);
     }
 
     //=========================
