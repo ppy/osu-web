@@ -21,7 +21,6 @@
     if (forum.showDeleted()) {
         $el.addClass("js-forum-post--hidden");
     } else {
-        <!-- $el.remove(); -->
         $el.css({
             minHeight: "0px",
             height: $el.css("height")
