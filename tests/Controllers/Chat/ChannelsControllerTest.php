@@ -17,32 +17,20 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests\Chat;
+namespace Tests\Controllers\Chat;
 
 use App\Models\Chat;
 use App\Models\User;
 use Faker;
-use TestCase;
+use Tests\TestCase;
 
 class ChannelsControllerTest extends TestCase
 {
     protected static $faker;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$faker = Faker\Factory::create();
-    }
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->user = factory(User::class)->create();
-        $this->anotherUser = factory(User::class)->create();
-        $this->publicChannel = factory(Chat\Channel::class)->states('public')->create();
-        $this->privateChannel = factory(Chat\Channel::class)->states('private')->create();
-        $this->pmChannel = factory(Chat\Channel::class)->states('pm')->create();
-        $this->publicMessage = factory(Chat\Message::class)->create(['channel_id' => $this->publicChannel->channel_id]);
     }
 
     //region GET /chat/channels - Get Channel List
@@ -348,4 +336,16 @@ class ChannelsControllerTest extends TestCase
     }
 
     //endregion
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = factory(User::class)->create();
+        $this->anotherUser = factory(User::class)->create();
+        $this->publicChannel = factory(Chat\Channel::class)->states('public')->create();
+        $this->privateChannel = factory(Chat\Channel::class)->states('private')->create();
+        $this->pmChannel = factory(Chat\Channel::class)->states('pm')->create();
+        $this->publicMessage = factory(Chat\Message::class)->create(['channel_id' => $this->publicChannel->channel_id]);
+    }
 }

@@ -66,7 +66,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'last_updated' => json_time($beatmap->last_update),
             'ranked' => $beatmap->approved,
             'status' => $beatmap->status(),
-            'url' => route('beatmaps.show', ['id' => $beatmap->beatmap_id]),
+            'url' => route('beatmaps.show', ['beatmap' => $beatmap->beatmap_id]),
             'deleted_at' => $beatmap->deleted_at,
         ];
     }

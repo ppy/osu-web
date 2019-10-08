@@ -211,7 +211,6 @@ return [
         GrahamCampbell\GitHub\GitHubServiceProvider::class,
         Maknz\Slack\SlackServiceProvider::class,
         Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
-        Lord\Laroute\LarouteServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
 
         /*

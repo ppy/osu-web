@@ -17,14 +17,18 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-use App\Models\OAuth\Client;
-use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Laravel\Passport\Token;
 
-class TestCase extends Illuminate\Foundation\Testing\TestCase
+namespace Tests;
+
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Laravel\Passport\Token;
+use ReflectionMethod;
+use ReflectionProperty;
+
+class TestCase extends BaseTestCase
 {
-    use DatabaseTransactions;
+    use CreatesApplication, DatabaseTransactions;
 
     protected $connectionsToTransact = [
         'mysql',
@@ -36,21 +40,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
     protected $baseUrl = 'http://localhost';
 
-    /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
-    {
-        $app = require __DIR__.'/../bootstrap/app.php';
-
-        $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
-
-        return $app;
-    }
-
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -85,23 +75,6 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         });
 
         $user->withAccessToken($token);
-    }
-
-    protected function createOAuthClient(User $user, string $name = 'test', string $redirect = '/auth/callback') : Client
-    {
-        $client = (new Client)->forceFill([
-            'user_id' => $user->getKey(),
-            'name' => $name,
-            'secret' => str_random(40),
-            'redirect' => url($redirect),
-            'personal_access_client' => false,
-            'password_client' => false,
-            'revoked' => false,
-        ]);
-
-        $client->save();
-
-        return $client;
     }
 
     protected function fileList($path, $suffix)

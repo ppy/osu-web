@@ -16,53 +16,36 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.authorized-client {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+import { forEach } from 'lodash';
+import { Ziggy } from 'ziggy';
+import ziggyRoute from 'ziggy-route';
 
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #444;
+interface Attributes {
+  [key: string]: string | number | null | undefined;
+}
 
-  &__actions {
-    align-items: flex-start;
+export function route(name: string, params?: Attributes | null, absolute?: boolean) {
+  if (params == null) {
+    params = {};
   }
 
-  &__button {
-    .reset-input();
-    .default-text-shadow();
-    .link-white();
-    .link-plain();
-    .center-content();
-    flex: none;
-    margin: 0 10px;
-    padding: 10px 20px;
-    min-width: 100px;
-    border-radius: 10000px;
+  return ziggyRoute(name, params, absolute, Ziggy).toString();
+}
 
-    background-color: @red;
+export function link_to_route(name: string, text: string, params?: Attributes | null, attrs?: Attributes | null) {
+  const url = route(name, params);
 
-    &:hover {
-      background-color: @red-light;
-    };
+  const link = document.createElement('a');
+  link.textContent = text;
+  link.href = url;
 
-    &--revoked {
-      background-color: #444;
-
-      &:hover {
-        background-color: #444;
-      };
-    }
+  if (attrs != null) {
+    forEach(attrs, (value, key) => {
+      if (value != null) {
+        link.setAttribute(key, value.toString());
+      }
+    });
   }
 
-  &__name {
-    font-size: @font-size--title-small;
-    margin-bottom: 5px;
-    color: white;
-  }
-
-  &__scopes {
-    margin-top: 12px;
-  }
+  return link.outerHTML;
 }

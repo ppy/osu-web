@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests;
+namespace Tests\Libraries\Payments;
 
 use App\Exceptions\InvalidSignatureException;
 use App\Libraries\Payments\CentiliPaymentProcessor;
@@ -28,18 +28,10 @@ use App\Libraries\Payments\UnsupportedNotificationTypeException;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use Config;
-use TestCase;
+use Tests\TestCase;
 
 class CentiliPaymentProcessorTest extends TestCase
 {
-    public function setUp()
-    {
-        parent::setUp();
-        Config::set('payments.centili.api_key', 'api_key');
-        Config::set('payments.centili.conversion_rate', 120.00);
-        $this->order = factory(Order::class)->states('checkout')->create();
-    }
-
     public function testWhenEverythingIsFine()
     {
         $params = $this->getTestParams();
@@ -154,6 +146,14 @@ class CentiliPaymentProcessorTest extends TestCase
 
         $this->expectException(InvalidSignatureException::class);
         $this->runSubject($subject);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        Config::set('payments.centili.api_key', 'api_key');
+        Config::set('payments.centili.conversion_rate', 120.00);
+        $this->order = factory(Order::class)->states('checkout')->create();
     }
 
     private function getTestParams(array $overrides = [])

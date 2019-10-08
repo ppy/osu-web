@@ -340,7 +340,7 @@ abstract class Model extends BaseModel
     {
         return [
             'mode' => Beatmap::modeInt($this->getMode()),
-            'reason' => 'Cheating', // TODO: probably want more options
+            'reason' => 'Cheating',
             'score_id' => $this->getKey(),
             'user_id' => $this->user_id,
         ];

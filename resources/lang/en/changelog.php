@@ -19,7 +19,6 @@
  */
 
 return [
-    'feed_title' => 'feed',
     'generic' => 'Bug fixes and minor improvements',
 
     'build' => [
