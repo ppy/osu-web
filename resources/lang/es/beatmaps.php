@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Votar positivamente esta discusión',
-            'down' => 'Votar negativamente esta discusión',
+            'none' => [
+                'down' => 'No hay votos negativos',
+                'up' => 'Aún no hay votos',
+            ],
+            'latest' => [
+                'down' => 'Últimos votos negativos',
+                'up' => 'Últimos votos positivos',
+            ],
         ],
     ],
 
@@ -280,6 +286,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'Sin mods',

@@ -38,6 +38,7 @@ class ModsHelper
         [14, 'PF', [5]],
         [5, 'SD'],
         [2, 'TD'],
+        [30, 'MR'],
 
         // mania keys (converts)
         [15, '4K'],
@@ -83,7 +84,13 @@ class ModsHelper
 
         foreach (static::AVAILABLE_MODS as $availableMod) {
             if (in_array($availableMod[1], $mods, true)) {
-                $bitset ^= (1 << $availableMod[0]);
+                $bitset |= (1 << $availableMod[0]);
+
+                if (isset($availableMod[2])) {
+                    foreach ($availableMod[2] as $implicitMod) {
+                        $bitset |= (1 << $implicitMod);
+                    }
+                }
             }
         }
 

@@ -16,21 +16,18 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { Comment } from 'models/comment';
 import * as React from 'react';
 
-interface CommentJson {
-  deleted_at: string | null;
-}
-
 interface Props {
-  comments: CommentJson[];
+  comments: Comment[];
   modifiers: string[] | undefined;
   showDeleted: boolean;
 }
 
 export default class DeletedCommentsCount extends React.Component<Props> {
   render() {
-    const deletedCount = this.props.comments.filter((c) => c.deleted_at != null).length;
+    const deletedCount = this.props.comments.filter((c) => c.deletedAt != null).length;
 
     if (this.props.showDeleted || deletedCount === 0) {
       return null;

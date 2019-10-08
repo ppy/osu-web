@@ -37,6 +37,7 @@ return [
         'change' => '変更',
         'click_to_copy' => 'クリックでコピー',
         'click_to_copy_copied' => 'クリップボードにコピーされました！',
+        'close' => '',
         'collapse' => '折りたたむ',
         'delete' => '削除',
         'edit' => '編集',
@@ -58,6 +59,7 @@ return [
         'show_deleted' => '削除済みを表示',
         'show_more' => '展開する',
         'show_more_options' => '詳細オプションを表示する',
+        'update' => '',
         'upload_image' => '画像をアップロード',
 
         'watch' => [
@@ -75,11 +77,12 @@ return [
         'minute_short_unit' => '分',
         'minutes' => ':count_delimited分',
         'months' => ':countヶ月',
-        'post' => '',
+        'plus_others' => '',
+        'post' => ':count_delimited 投稿',
         'second_short_unit' => '秒',
-        'star_priority' => '',
+        'star_priority' => ':count_delimited スタープライオリティ',
         'update' => ':count_delimited アップデート',
-        'view' => '',
+        'view' => ':count_delimited ビュー',
         'years' => ':count年',
     ],
 

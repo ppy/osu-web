@@ -118,6 +118,18 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '請輸入有效的 URL。',
+
+            'attributes' => [
+                'name' => '應用程式名稱',
+                'redirect' => '',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => '密碼不能包含用戶名。',
         'email_already_used' => '郵箱已被使用。',

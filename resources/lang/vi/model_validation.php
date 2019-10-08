@@ -29,7 +29,7 @@ return [
         'first_post' => 'Không thể xóa bài đăng mở đầu.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Tin nhắn',
         ],
     ],
 
@@ -43,7 +43,7 @@ return [
 
         'attributes' => [
             'message_type' => '',
-            'timestamp' => '',
+            'timestamp' => 'Mốc thời gian',
         ],
 
         'hype' => [
@@ -64,7 +64,7 @@ return [
         'deleted_parent' => 'Không cho phép trả lời bình luận đã xóa.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Tin nhắn',
         ],
     ],
 
@@ -88,13 +88,13 @@ return [
             'only_quote' => 'Câu trả lời của bạn chỉ có một trích dẫn.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Thân bài viết',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Tiêu đề chủ đề',
             ],
         ],
 
@@ -108,13 +108,25 @@ return [
             'too_many_options' => 'Vượt quá số lượng lựa chọn tối đa.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Tiêu đề bài thăm dò',
             ],
         ],
 
         'topic_vote' => [
             'required' => 'Chọn một lựa chọn khi đang bỏ phiếu.',
             'too_many' => 'Vượt quá mức cho phép chọn các lựa chọn.',
+        ],
+    ],
+
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
         ],
     ],
 
@@ -143,9 +155,9 @@ return [
         'too_long' => 'Đã vượt quá độ dài tối đa - tối đa :limit kí tự.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Tên người chơi',
+            'user_email' => 'Địa chỉ email',
+            'password' => 'Mật khẩu',
         ],
 
         'change_username' => [
@@ -165,8 +177,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Số lượng',
+                'cost' => 'Chi phí',
             ],
         ],
     ],

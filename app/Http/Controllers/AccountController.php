@@ -27,6 +27,7 @@ use App\Libraries\UserVerificationState;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
 use App\Models\OAuth\Client;
+use App\Models\UserAccountHistory;
 use Auth;
 use Mail;
 use Request;
@@ -116,8 +117,9 @@ class AccountController extends Controller
             ->getIdWithoutKeyPrefix();
 
         $authorizedClients = json_collection(Client::forUser(auth()->user()), 'OAuth\Client', 'user');
+        $ownClients = json_collection(auth()->user()->oauthClients()->where('revoked', false)->get(), 'OAuth\Client');
 
-        return view('accounts.edit', compact('authorizedClients', 'blocks', 'sessions', 'currentSessionId'));
+        return view('accounts.edit', compact('authorizedClients', 'blocks', 'ownClients', 'sessions', 'currentSessionId'));
     }
 
     public function update()
@@ -163,6 +165,8 @@ class AccountController extends Controller
             foreach ($addresses as $address) {
                 Mail::to($address)->send(new UserEmailUpdated($user));
             }
+
+            UserAccountHistory::logUserUpdateEmail($user, $previousEmail);
 
             return response([], 204);
         } else {

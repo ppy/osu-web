@@ -64,7 +64,7 @@ return [
         'deleted_parent' => 'Besvarelse af slettede kommentar er ikke tilladt.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Beskeden',
         ],
     ],
 
@@ -118,6 +118,18 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Adgangskoden må ikke indholde et brugernavn.',
         'email_already_used' => 'Email-adressen er allerede i brug.',
@@ -143,7 +155,7 @@ return [
         'too_long' => 'Overskrider maksimale længde - kan højest være op til :limit karakterer.',
 
         'attributes' => [
-            'username' => '',
+            'username' => 'Brugernavn',
             'user_email' => '',
             'password' => '',
         ],

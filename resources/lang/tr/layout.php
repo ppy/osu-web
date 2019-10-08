@@ -25,17 +25,25 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => 'Topluluk',
 
-            'forum' => '',
+            'forum' => 'Forum',
         ],
+    ],
+
+    'gallery' => [
+        'close' => '',
+        'fullscreen' => '',
+        'zoom' => '',
+        'previous' => '',
+        'next' => '',
     ],
 
     'menu' => [
         'home' => [
             '_' => 'anasayfa',
             'account-edit' => 'ayarlar',
-            'account-verifyLink' => '',
+            'account-verifyLink' => 'Doğrulama Tamamlandı',
             'friends-index' => 'arkadaşlar',
             'changelog-index' => 'değişiklikler',
             'changelog-build' => 'sürüm',

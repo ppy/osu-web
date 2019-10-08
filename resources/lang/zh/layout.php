@@ -25,17 +25,25 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => '社区',
 
-            'forum' => '',
+            'forum' => '论坛',
         ],
+    ],
+
+    'gallery' => [
+        'close' => '关闭（ESC）',
+        'fullscreen' => '切换全屏',
+        'zoom' => '放大/缩小',
+        'previous' => '前一个（左箭头）',
+        'next' => '后一个（右箭头）',
     ],
 
     'menu' => [
         'home' => [
             '_' => '主页',
             'account-edit' => '设置',
-            'account-verifyLink' => '',
+            'account-verifyLink' => '验证完成',
             'friends-index' => '好友',
             'changelog-index' => '更新日志',
             'changelog-build' => '版本',

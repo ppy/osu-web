@@ -27,34 +27,34 @@ return [
             'instructions' => 'kattints a szívet ábrázoló gombra, hogy továbblépj az osu!boltba',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => 'Miért támogatnám az osu!-t? Hova megy a pénz?',
 
             'team' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Támogasd a Csapatot',
+                'description' => 'Egy kis csapat fejleszti és futtatja az osu!-t. A te támogatásod segíti őket, hogy, tudod.. éljenek.',
             ],
             'infra' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Szerver Infrastruktúra',
+                'description' => 'A támogatások a szerverekhez mennek amik futtatják a weboldalt, multiplayer szolgáltatásokhoz, online ranglétrákhoz, stb.',
             ],
             'featured-artists' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Kiemelt Előadók',
+                'description' => 'A te támogatásoddal mégtöbb nagyszerű előadókat érünk el és szerződtetünk le az osu!-hoz!',
+                'link_text' => 'Nézd meg a jelenlegi felállást &raquo;',
             ],
             'ads' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Tartsd az osu!-t önfenntartóvá',
+                'description' => 'A ti támogatásotok segíti, hogy a játék független legyen és teljesen hirdetésmentes szponzorok nélkül.',
             ],
             'tournaments' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Hivatalos Versenyek',
+                'description' => 'Támogasd a hivatalos osu! Világbajnokság rendezését (és díjait).',
+                'link_text' => 'Versenyek felfedezése &raquo;',
             ],
             'bounty-program' => [
                 'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'description' => 'Támogasd a közösséget ami adta az idejét és az erejét, hogy az osu!-t jobbá tegyék.',
+                'link_text' => 'Láss többet &raquo;',
             ],
         ],
         'perks' => [
@@ -65,17 +65,17 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => '',
+                'title' => 'Baráti Ranglista',
                 'description' => "",
             ],
 
             'country_ranking' => [
-                'title' => '',
+                'title' => 'Országos Ranglista',
                 'description' => '',
             ],
 
             'mod_filtering' => [
-                'title' => '',
+                'title' => 'Szűrés modok szerint',
                 'description' => '',
             ],
 
@@ -135,20 +135,21 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Több Kedvenc',
+                'description' => 'A maximum kedvencelhető beatmapek száma megnövekedett :normally &rarr; :supporter',
             ],
             'more_friends' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Több Barát',
+                'description' => 'A maximum barátok száma megnövekedett :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
-                'title' => '',
+                'title' => 'Több Beatmap Feltöltése',
                 'description' => '',
             ],
             'friend_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Baráti ranglétrák',
+                'description' => 'Versenyezz a barátaiddal és nézd, hogyan válsz jobbá ellenük! *<br/><br/><small>* még nem elérhető az új oldalon, hamarosan(tm)
+</small>',
             ],
 
         ],

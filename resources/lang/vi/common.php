@@ -37,6 +37,7 @@ return [
         'change' => 'đổi',
         'click_to_copy' => 'click để sao chép vào bộ nhớ tạm',
         'click_to_copy_copied' => 'đã sao chép vào bộ nhớ tạm!',
+        'close' => '',
         'collapse' => 'thu lại',
         'delete' => 'Xóa',
         'edit' => 'Chỉnh sửa',
@@ -58,6 +59,7 @@ return [
         'show_deleted' => 'Hiển thị bình luận đã xóa',
         'show_more' => 'hiển thị thêm',
         'show_more_options' => 'hiển thị thêm tùy chọn',
+        'update' => '',
         'upload_image' => 'tải ảnh lên',
 
         'watch' => [
@@ -75,11 +77,12 @@ return [
         'minute_short_unit' => 'phút',
         'minutes' => ':count phút',
         'months' => ':count tháng',
-        'post' => '',
+        'plus_others' => '',
+        'post' => ':count_delimited bài viết',
         'second_short_unit' => 'giây',
         'star_priority' => '',
-        'update' => '',
-        'view' => '',
+        'update' => ':count_delimited cập nhật',
+        'view' => ':count_delimited lượt xem',
         'years' => ':count năm',
     ],
 

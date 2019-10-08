@@ -25,17 +25,25 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => 'Community',
 
-            'forum' => '',
+            'forum' => 'Forum',
         ],
+    ],
+
+    'gallery' => [
+        'close' => '',
+        'fullscreen' => '',
+        'zoom' => '',
+        'previous' => '',
+        'next' => '',
     ],
 
     'menu' => [
         'home' => [
             '_' => 'start',
             'account-edit' => 'instellingen',
-            'account-verifyLink' => '',
+            'account-verifyLink' => 'Verificatie voltooid',
             'friends-index' => 'vrienden',
             'changelog-index' => 'changelog',
             'changelog-build' => 'versie',

@@ -23,20 +23,15 @@
  * https://github.com/iain/http_accept_language/blob/v2.1.1/spec/parser_spec.rb.
  */
 
-namespace Test\Libraries\AcceptHttpLanguage;
+namespace Tests\Libraries\AcceptHttpLanguage;
 
 use App\Libraries\AcceptHttpLanguage\Parser;
-use TestCase;
+use Tests\TestCase;
 
 class ParserTest extends TestCase
 {
     /** @var Parser */
     private $parser;
-
-    public function setUp()
-    {
-        $this->parser = new Parser('en-us,en-gb;q=0.8,en;q=0.6,es-419');
-    }
 
     public function testShouldReturnEmptyArray()
     {
@@ -96,5 +91,10 @@ class ParserTest extends TestCase
     {
         $this->parser->header = 'ja,en-gb,en-us,fr-fr';
         $this->assertSame('ja-JP', $this->parser->languageRegionCompatibleFrom(['en-UK', 'en-US', 'ja-JP']));
+    }
+
+    protected function setUp(): void
+    {
+        $this->parser = new Parser('en-us,en-gb;q=0.8,en;q=0.6,es-419');
     }
 }

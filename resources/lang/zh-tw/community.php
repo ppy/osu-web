@@ -27,7 +27,7 @@ return [
             'instructions' => '點擊愛心前往 osu! 商店',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => '我為什麼要支持osu!? 錢都花到哪兒了?',
 
             'team' => [
                 'title' => '支持團隊',
@@ -38,12 +38,12 @@ return [
                 'description' => '',
             ],
             'featured-artists' => [
-                'title' => '',
+                'title' => '精選藝術家',
                 'description' => '',
                 'link_text' => '',
             ],
             'ads' => [
-                'title' => '',
+                'title' => '保持 osu! 自持',
                 'description' => '',
             ],
             'tournaments' => [
@@ -52,7 +52,7 @@ return [
                 'link_text' => '',
             ],
             'bounty-program' => [
-                'title' => '',
+                'title' => '開源賞金計劃',
                 'description' => '',
                 'link_text' => '',
             ],
@@ -70,7 +70,7 @@ return [
             ],
 
             'country_ranking' => [
-                'title' => '國內排行榜',
+                'title' => '國家排行榜',
                 'description' => '',
             ],
 
@@ -135,7 +135,7 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
+                'title' => '更多收藏',
                 'description' => '',
             ],
             'more_friends' => [

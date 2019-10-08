@@ -33,10 +33,10 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
+    'authorized_clients' => [
         'confirm_revoke' => 'Bist du sicher, dass du die Berechtigungen dieses Gerätes widerrufen möchtest?',
         'scopes_title' => 'Diese Anwendung kann:',
-        'owned_by' => 'Im Besitz von :user',
+        'owned_by' => 'Gehört :user',
         'none' => 'Keine Geräte',
 
         'revoked' => [
@@ -45,9 +45,27 @@ return [
         ],
     ],
 
+    'client' => [
+        'id' => 'Client-ID',
+        'name' => 'Anwendungsname',
+        'redirect' => 'Anwendungs-Callback-URL',
+        'secret' => 'Client Secret',
+    ],
+
     'login' => [
         'download' => 'Klicke hier, um das Spiel herunterzuladen und ein Konto zu erstellen',
         'label' => 'Zuerst, melde dich mit deinen Konto an!',
         'title' => 'Konto-Anmeldung',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => 'Bist du sicher, dass du dieses Gerät löschen willst?',
+        'new' => 'Neue OAuth-Anwendung',
+        'none' => 'Keine Geräte',
+
+        'revoked' => [
+            'false' => 'Löschen',
+            'true' => 'Gelöscht',
+        ],
     ],
 ];

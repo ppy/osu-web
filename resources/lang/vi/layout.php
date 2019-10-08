@@ -25,10 +25,18 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => 'Cộng đồng',
 
-            'forum' => '',
+            'forum' => 'Diễn đàn',
         ],
+    ],
+
+    'gallery' => [
+        'close' => '',
+        'fullscreen' => '',
+        'zoom' => '',
+        'previous' => '',
+        'next' => '',
     ],
 
     'menu' => [

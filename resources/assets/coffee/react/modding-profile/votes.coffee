@@ -52,7 +52,7 @@ export class Votes extends React.Component
 
   renderUser: (user, score, count) =>
     bn = 'modding-profile-vote-card'
-    userBadge = osu.userGroupBadge(user)
+    userBadge = user.group_badge
     topClasses = bn
     topClasses += " #{bn}--#{userBadge}" if userBadge?
 

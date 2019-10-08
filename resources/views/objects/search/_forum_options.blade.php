@@ -67,10 +67,10 @@ if (isset($fields)) {
                 {{ trans('home.search.forum_post.label.forum') }}
             </div>
 
-            <div class="search-forum-options__input-container">
+            <div class="form-select">
                 <select
                     name="{{ $fields['forumId'] }}"
-                    class="search-forum-options__input"
+                    class="form-select__input"
                 >
                     <option value="">
                         {{ trans('home.search.forum_post.all') }}
@@ -88,10 +88,6 @@ if (isset($fields)) {
                         @endif
                     @endforeach
                 </select>
-
-                <div class="search-forum-options__dropdown-arrow">
-                    <span class="fas fa-chevron-down"></span>
-                </div>
             </div>
         </label>
 

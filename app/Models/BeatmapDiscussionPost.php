@@ -41,7 +41,7 @@ use DB;
  */
 class BeatmapDiscussionPost extends Model
 {
-    use Validatable;
+    use Validatable, Reportable;
 
     const MESSAGE_LIMIT_TIMELINE = 750;
 
@@ -161,6 +161,31 @@ class BeatmapDiscussionPost extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * Whether a post can be edited/deleted.
+     *
+     * When a discussion is resolved, the posts preceeding the resolution are locked.
+     * Posts after the resolution are not locked, unless the issue is re-opened and resolved again.
+     *
+     * @return bool
+     */
+    public function canEdit()
+    {
+        if ($this->system) {
+            return false;
+        }
+
+        // The only system post type currently implemented is 'resolved', so we're making the assumption
+        // the next system post is always going to be either a resolve or unresolve.
+        // This will have to be changed if more types are added.
+        $systemPost = static::where('system', true)
+            ->where('id', '>', $this->id)
+            ->where('beatmap_discussion_id', $this->beatmap_discussion_id)
+            ->last();
+
+        return $this->getKey() > optional($systemPost)->getKey();
     }
 
     public function validateBeatmapsetDiscussion()
@@ -348,5 +373,13 @@ class BeatmapDiscussionPost extends Model
     {
         $query->withoutTrashed()
             ->whereHas('visibleBeatmapDiscussion');
+    }
+
+    protected function newReportableExtraParams(): array
+    {
+        return [
+            'reason' => 'Spam',
+            'user_id' => $this->user_id,
+        ];
     }
 }

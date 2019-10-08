@@ -17,6 +17,7 @@
 ###
 
 import { BeatmapList } from './beatmap-list'
+import { BigButton } from 'big-button'
 import { Nominations } from './nominations'
 import { Subscribe } from './subscribe'
 import { UserFilter } from './user-filter'
@@ -62,6 +63,14 @@ export class Header extends React.PureComponent
 
         div className: "#{bn}__subscribe",
           el Subscribe, beatmapset: @props.beatmapset
+
+        div className: "#{bn}__info-page",
+          el BigButton,
+            modifiers: ['full']
+            text: osu.trans('beatmaps.discussions.beatmap_information')
+            icon: 'fas fa-info'
+            props:
+              href: laroute.route('beatmapsets.show', beatmapset: @props.beatmapset.id)
 
       div className: "#{bn}__content #{bn}__content--nomination",
         el Nominations,

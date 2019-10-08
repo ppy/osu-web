@@ -140,8 +140,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Approva questa discussione',
-            'down' => 'Disapprova questa discussione',
+            'none' => [
+                'down' => 'Ancora nessun voto negativo',
+                'up' => 'Ancora nessun voto positivo',
+            ],
+            'latest' => [
+                'down' => 'Ultimi voti negativi',
+                'up' => 'Ultimi voti positivi',
+            ],
         ],
     ],
 
@@ -280,6 +286,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'Senza Mod',
@@ -310,7 +317,7 @@ return [
     ],
     'extra' => [
         'video' => 'Contiene video',
-        'storyboard' => 'Ha Storyboard',
+        'storyboard' => 'Contiene storyboard',
     ],
     'rank' => [
         'any' => 'Qualsiasi',

@@ -118,6 +118,18 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Пароль не павінен змяшчаць імя карыстальніка.',
         'email_already_used' => 'Эл. пошта ўжо выкарыстоўваецца.',

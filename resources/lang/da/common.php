@@ -37,6 +37,7 @@ return [
         'change' => 'ændre',
         'click_to_copy' => 'klik for at kopiere til udklipsholder',
         'click_to_copy_copied' => 'kopieret til udklipsholder!',
+        'close' => 'Luk',
         'collapse' => '',
         'delete' => 'Slet',
         'edit' => 'Rediger',
@@ -58,6 +59,7 @@ return [
         'show_deleted' => '',
         'show_more' => 'vis mere',
         'show_more_options' => 'vis flere muligheder',
+        'update' => 'Opdatering',
         'upload_image' => 'upload billede',
 
         'watch' => [
@@ -75,6 +77,7 @@ return [
         'minute_short_unit' => 'min|minutter',
         'minutes' => ':count minut|:count minutter',
         'months' => ':count måned|:count måneder',
+        'plus_others' => '',
         'post' => '',
         'second_short_unit' => 'sek',
         'star_priority' => '',

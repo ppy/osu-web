@@ -35,7 +35,7 @@ return [
             ],
             'infra' => [
                 'title' => '维护服务器',
-                'description' => '',
+                'description' => '资金将用于维护网站和在线游玩、排行榜等服务',
             ],
             'featured-artists' => [
                 'title' => '精选艺术家',
@@ -43,7 +43,7 @@ return [
                 'link_text' => '查看当前列表 &raquo;',
             ],
             'ads' => [
-                'title' => '',
+                'title' => '维持 osu! 自给自足',
                 'description' => '你的帮助可以让游戏保持独立并远离广告，不受外部赞助商的控制。',
             ],
             'tournaments' => [
@@ -66,17 +66,17 @@ return [
 
             'friend_ranking' => [
                 'title' => '好友排名',
-                'description' => "",
+                'description' => "在游戏内与网站上查看谱面排行榜，了解你与好友孰强孰弱。",
             ],
 
             'country_ranking' => [
-                'title' => '',
-                'description' => '',
+                'title' => '国内排名',
+                'description' => '征服世界前，先征服你的国家。',
             ],
 
             'mod_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => '按 Mod 筛选',
+                'description' => '只和玩 HDHR 的玩家打？没问题！',
             ],
 
             'auto_downloads' => [
@@ -100,8 +100,8 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => '筛选铺面',
-                'description' => '可在搜索谱面时以更多角度筛选。',
+                'title' => '筛选谱面',
+                'description' => '可在搜索谱面时从更多方面筛选。',
             ],
 
             'yellow_fellow' => [
@@ -135,20 +135,20 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
-                'description' => '',
+                'title' => '更大收藏夹',
+                'description' => '你可以收藏的谱面数量将从 :normally 个增加到 :supporter 个',
             ],
             'more_friends' => [
-                'title' => '',
-                'description' => '',
+                'title' => '更多好友位',
+                'description' => '你的好友位数量将从 :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
-                'title' => '',
-                'description' => '',
+                'title' => '上传更多谱面',
+                'description' => '同一时间你能拥有的未 ranked 的谱面数量由一个基数值和附加奖励相加得到，附加奖励根据你已 ranked 的谱面数量而定，并且有一个上限。<br/><br/>通常情况下，基数为4，每多一张 ranked 的谱面会增加 1，最多增加 2。当你是支持者时，基数变为8，每张 ranked 的谱面会增加 1，最多增加 12。',
             ],
             'friend_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => '有人排行榜',
+                'description' => '和你的朋友们一起比赛，看看你如何超过他们的排名！*<br/><br/><small>* 在新版网站上目前尚不支持此功能，新功能即将上线(tm)</small>',
             ],
 
         ],

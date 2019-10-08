@@ -25,6 +25,8 @@ return [
     'title' => 'osu! forum',
 
     'covers' => [
+        'edit' => 'Modifier la couverture',
+
         'create' => [
             '_' => 'Définir la bannière',
             'button' => 'Uploader une image',
@@ -42,10 +44,10 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'Dernier message',
 
         'index' => [
-            'title' => '',
+            'title' => 'Accueil du forum',
         ],
 
         'topics' => [
@@ -59,14 +61,6 @@ return [
         'busy' => 'Marquer comme lu...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'Éditer un sondage supprimera les résultats actuels !',
-
-        'actions' => [
-            'edit' => 'Éditer le sondage',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'Voulez-vous vraiment supprimer ce post ?',
         'confirm_restore' => 'Voulez-vous vraiment restaurer ce post ?',
@@ -77,6 +71,12 @@ return [
             'destroy' => 'Supprimer le post',
             'restore' => 'Restaurer le post',
             'edit' => 'Modifier le post',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => 'Nouvelle réponse',
+            ],
         ],
 
         'info' => [
@@ -105,6 +105,7 @@ return [
         'started_by_verbose' => 'suivi par :user',
 
         'create' => [
+            'close' => 'Fermer',
             'preview' => 'Prévisualisation',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -296,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => 'Édition du sondage',
+                'edit_warning' => 'Éditer un sondage supprimera les résultats actuels !',
                 'vote' => 'Voter',
+
+                'button' => [
+                    'change_vote' => 'Changer le vote',
+                    'edit' => 'Éditer le sondage',
+                    'view_results' => 'Passer aux résultats',
+                    'vote' => 'Voter',
+                ],
 
                 'detail' => [
                     'end_time' => 'Le sondage termine à :time',

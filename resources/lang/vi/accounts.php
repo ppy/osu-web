@@ -41,7 +41,7 @@ return [
             'current' => 'mật khẩu hiện tại',
             'new' => 'mật khẩu mới',
             'new_confirmation' => 'xác nhận mật khẩu',
-            'title' => 'Mật Khẩu',
+            'title' => 'Mật khẩu',
         ],
 
         'profile' => [
@@ -71,6 +71,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => '',
+        'own_clients' => '',
         'title' => 'OAuth',
     ],
 
@@ -79,7 +80,7 @@ return [
         'mouse' => 'chuột',
         'tablet' => 'tablet',
         'title' => 'Lối Chơi',
-        'touch' => 'touchscreen',
+        'touch' => 'cảm ứng',
     ],
 
     'privacy' => [

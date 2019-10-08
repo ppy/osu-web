@@ -18,10 +18,9 @@
 
 .forum-topic-header-padding {
   @media @desktop {
-    // 5px: match .forum-post
-    // @nav2-height: undo nav2-header-legacy-padding
+    // 1px: match .forum-post
     // @nav2-height--pinned: to match the pinned menu
     // There's also forum-specific floating bar handled by sync-height
-    margin-top: (5px - @nav2-height + @nav2-height--pinned);
+    margin-top: (1px + @nav2-height--pinned);
   }
 }

@@ -33,7 +33,7 @@ return [
         ],
     ],
 
-    'authorized-clients' => [
+    'authorized_clients' => [
         'confirm_revoke' => 'Tem certeza que deseja revogar as permissões deste cliente?',
         'scopes_title' => 'A aplicação pode:',
         'owned_by' => 'Possuído por :user',
@@ -45,9 +45,27 @@ return [
         ],
     ],
 
+    'client' => [
+        'id' => 'ID do Cliente',
+        'name' => 'Nome da Aplicação',
+        'redirect' => 'URL de Callback da Aplicação',
+        'secret' => 'Client Secret',
+    ],
+
     'login' => [
         'download' => 'Clique aqui para baixar o jogo e criar uma nova',
         'label' => 'Primeiro, vamos entrar em sua conta!',
         'title' => 'Iniciar Sessão',
+    ],
+
+    'own_clients' => [
+        'confirm_delete' => 'Realmente deseja deletar esse cliente?',
+        'new' => 'Nova Aplicação OAuth',
+        'none' => 'Sem Clientes',
+
+        'revoked' => [
+            'false' => 'Excluir',
+            'true' => 'Excluído',
+        ],
     ],
 ];

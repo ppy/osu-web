@@ -25,6 +25,8 @@ return [
     'title' => 'osu! forumları',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Kapak fotoğrafı ekle',
             'button' => 'Resim yükle',
@@ -42,10 +44,10 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'Son Gönderi',
 
         'index' => [
-            'title' => '',
+            'title' => 'Forum Ana Sayfası',
         ],
 
         'topics' => [
@@ -59,14 +61,6 @@ return [
         'busy' => 'Okundu olarak işaretleniyor...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'Bir anketi düzenlemek mevcut sonuçlarını siler!',
-
-        'actions' => [
-            'edit' => 'Anketi düzenle',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'Gerçekten gönderiyi silmek istiyor musun?',
         'confirm_restore' => 'Gönderiyi geri yükle?',
@@ -77,6 +71,12 @@ return [
             'destroy' => 'Gönderiyi sil',
             'restore' => 'Gönderiyi geri getir',
             'edit' => 'Gönderiyi düzenle',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -105,6 +105,7 @@ return [
         'started_by_verbose' => ':user tarafından başlatıldı',
 
         'create' => [
+            'close' => '',
             'preview' => 'Ön izleme ',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -296,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Oyla',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Anket :time tarihinde bitecek',

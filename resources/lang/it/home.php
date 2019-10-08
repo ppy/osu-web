@@ -21,13 +21,13 @@
 return [
     'landing' => [
         'download' => 'Scarica ora',
-        'online' => '<strong>:players</strong> giocatori online ora in <strong>:games</strong> games',
+        'online' => '<strong>:players</strong> giocatori online in <strong>:games</strong> partite',
         'peak' => 'Picco, :count utenti online',
         'players' => '<strong>:count</strong> utenti registrati',
         'title' => 'benvenuto',
 
         'slogan' => [
-            'main' => 'il miglior gioco di ritmo free-to-play',
+            'main' => 'il miglior gioco di ritmo free-to-win',
             'sub' => 'il ritmo è solo ad un click di distanza',
         ],
     ],
@@ -41,7 +41,7 @@ return [
         'title' => 'Cerca',
 
         'beatmapset' => [
-            'more' => ':count altri risultati di ricerca di beatmap',
+            'more' => 'altri :count risultati di ricerca delle beatmap',
             'more_simple' => 'Vedi più risultati di ricerca delle beatmap',
             'title' => 'Beatmap',
         ],
@@ -69,9 +69,9 @@ return [
         ],
 
         'user' => [
-            'more' => ':count altri risultati di ricerca di giocatori',
-            'more_simple' => 'Vedi più risultati di ricerca del giocatore',
-            'more_hidden' => 'Ricerca del giocatore è limitata a :max giocatori. Prova a ridefinire la ricerca.',
+            'more' => 'altri :count risultati di ricerca di giocatori',
+            'more_simple' => 'Vedi più risultati di ricerca di giocatori',
+            'more_hidden' => 'La ricerca di giocatori è limitata a :max giocatori. Prova a ridefinire la ricerca.',
             'title' => 'Giocatori',
         ],
 
@@ -83,7 +83,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => "iniziamo!",
+        'tagline' => "iniziamo<br>subito!",
         'action' => 'Scarica osu!',
         'os' => [
             'windows' => 'per Windows',
@@ -119,18 +119,18 @@ return [
             'error' => 'Errore nel caricamento delle notizie, prova a riavviare la pagina?...',
         ],
         'header' => [
-            'welcome' => 'Ciao, <strong>:username</strong>!',
-            'messages' => 'Hai :count nuovo messaggio | Hai :count nuovi messaggi',
+            'welcome' => 'Ciao <strong>:username</strong>!',
+            'messages' => 'Hai :count_delimited nuovo messaggio|Hai :count_delimited nuovi messaggi',
             'stats' => [
-                'friends' => 'Amici online',
-                'games' => 'Giochi',
-                'online' => 'Utenti online',
+                'friends' => 'Amici Online',
+                'games' => 'Partite',
+                'online' => 'Utenti Online',
             ],
         ],
         'beatmaps' => [
             'new' => 'Nuove Beatmap Classificate',
-            'popular' => 'Beatmap popolari',
-            'by' => 'da',
+            'popular' => 'Beatmap Popolari',
+            'by' => 'di',
             'plays' => ':count giocate',
         ],
         'buttons' => [

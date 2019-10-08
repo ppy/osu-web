@@ -25,10 +25,18 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => 'Comunidad',
 
-            'forum' => '',
+            'forum' => 'Foro',
         ],
+    ],
+
+    'gallery' => [
+        'close' => 'Cerrar (Esc)',
+        'fullscreen' => 'Activar/Desactivar pantalla completa',
+        'zoom' => 'Zoom Acercar/Alejar',
+        'previous' => 'Anterior (flecha izquierda)',
+        'next' => 'Siguiente (flecha derecha)',
     ],
 
     'menu' => [

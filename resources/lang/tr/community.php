@@ -27,18 +27,18 @@ return [
             'instructions' => 'kalbe tıklayıp osu!store\'a ilerle',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => 'Neden osu!\'yu desteklemeliyim? Para nereye gidiyor?',
 
             'team' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Takımı Destekle',
+                'description' => 'osu!\'yu küçük bir takım geliştirip yönetiyor. Senin desteğin onları, bilirsin... hayatta tutar.',
             ],
             'infra' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Sunucu Altyapısı',
+                'description' => 'Katkılar, websitesini, çok oyunculu servisleri, çevrimiçi sıralamaları vb. sürdürmek için doğrudan sunuculara gider.',
             ],
             'featured-artists' => [
-                'title' => '',
+                'title' => 'Seçkin Sanatçılar',
                 'description' => '',
                 'link_text' => '',
             ],
@@ -47,14 +47,14 @@ return [
                 'description' => '',
             ],
             'tournaments' => [
-                'title' => '',
+                'title' => 'Resmi Turnuvalar',
                 'description' => '',
-                'link_text' => '',
+                'link_text' => 'Turnuvaları Keşfet &raquo;',
             ],
             'bounty-program' => [
                 'title' => '',
                 'description' => '',
-                'link_text' => '',
+                'link_text' => 'Daha fazlasını öğren &raquo;',
             ],
         ],
         'perks' => [
@@ -65,17 +65,17 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => '',
+                'title' => 'Arkadaş Sıralaması',
                 'description' => "",
             ],
 
             'country_ranking' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Ülkesel Sıralama',
+                'description' => 'Dünyayı fethetmeden önce ülkeni fethet.',
             ],
 
             'mod_filtering' => [
-                'title' => '',
+                'title' => 'Modlara Göre Filtrele',
                 'description' => '',
             ],
 
@@ -135,20 +135,20 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Daha Fazla Favori',
+                'description' => 'Favorine ekleyebileceğin maksimum beatmap sayısı :normally &rarr; :supporter olarak yükseltilir.',
             ],
             'more_friends' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Daha Fazla Arkadaş',
+                'description' => 'Ekleyebileceğin maksimum arkadaş sayısı :normally &rarr; :supporter olarak yükseltilir.',
             ],
             'more_beatmaps' => [
-                'title' => '',
+                'title' => 'Daha Fazla Beatmap Yükle',
                 'description' => '',
             ],
             'friend_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Arkadaş Sıralamaları',
+                'description' => 'Arkadaşlarınla rekabet et ve onlara karşı nasıl bir derece yaptığını gör!*<br/><br/><small>* henüz yeni sitede bulunmuyor, çok yakında(tm)</small>',
             ],
 
         ],

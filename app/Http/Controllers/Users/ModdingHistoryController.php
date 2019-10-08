@@ -174,12 +174,11 @@ class ModdingHistoryController extends Controller
                     'badges',
                     'follower_count',
                     'graveyard_beatmapset_count',
-                    'groups',
+                    'group_badge',
                     'loved_beatmapset_count',
                     'previous_usernames',
                     'ranked_and_approved_beatmapset_count',
                     'statistics.rank',
-                    'statistics.scoreRanks',
                     'support_level',
                     'unranked_beatmapset_count',
                 ]
@@ -206,7 +205,7 @@ class ModdingHistoryController extends Controller
             'users' => json_collection(
                 $users,
                 'UserCompact',
-                ['groups']
+                ['group_badge']
             ),
         ];
 

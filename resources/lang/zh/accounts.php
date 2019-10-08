@@ -26,7 +26,7 @@ return [
 
         'avatar' => [
             'title' => '头像',
-            'rules' => '',
+            'rules' => '请确保你的头像符合 :link。<br/>这意味着必须是<strong>全年龄</strong>头像。即没有裸露、亵渎或暗示的内容',
             'rules_link' => '社群规则',
         ],
 
@@ -71,6 +71,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => '已授权的第三方',
+        'own_clients' => '拥有的客户端',
         'title' => '开放授权',
     ],
 
