@@ -205,7 +205,7 @@ class @Forum
 
   toggleDeleted: =>
     Turbolinks.visit osu.updateQueryString null,
-      show_deleted: if @showDeleted() then 'false' else 'true'
+      with_deleted: if @showDeleted() then '0' else '1'
       n: @currentPostPosition
 
 
