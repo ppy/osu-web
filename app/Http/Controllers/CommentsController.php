@@ -116,7 +116,6 @@ class CommentsController extends Controller
         } else {
             $commentBundle->depth = 0;
             $commentBundle->includeCommentableMeta = true;
-            $commentBundle->includeParent = true;
             $commentBundle->includeDeleted = isset($commentable);
 
             $commentPagination = new LengthAwarePaginator(
