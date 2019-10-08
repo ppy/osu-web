@@ -102,6 +102,11 @@ class Spotlight extends Model
         return Schema::connection('mysql-charts')->hasTable($this->userStatsTableName($mode));
     }
 
+    public function participantCount(string $mode)
+    {
+        return $this->userStats($mode)->count();
+    }
+
     public function ranking(string $mode)
     {
         // These models will not have the correct table name set on them

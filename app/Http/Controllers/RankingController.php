@@ -174,16 +174,14 @@ class RankingController extends Controller
             $spotlight = Spotlight::findOrFail($chartId);
         }
 
-        $selectOptions = [
-            'selected' => $this->optionFromSpotlight($spotlight),
-            'options' => $spotlights->map(function ($s) {
-                return $this->optionFromSpotlight($s);
-            }),
-        ];
-
         if ($spotlight->hasMode($mode)) {
-            $scores = $spotlight->ranking($mode)->get();
-            $scoreCount = $spotlight->userStats($mode)->count();
+            $scores = $spotlight->ranking($mode);
+            if (is_api_request()) {
+                $scores = $scores->with(['user.userProfileCustomization'])->get();
+            } else {
+                $scores = $scores->get();
+            }
+
             $beatmapsets = $spotlight->beatmapsets($mode)->with('beatmaps')->get();
         } else {
             $scores = collect();
@@ -193,11 +191,22 @@ class RankingController extends Controller
 
         if (is_api_request()) {
             return [
+                // transformer can't do nested includes with params properly.
+                // https://github.com/thephpleague/fractal/issues/239
                 'beatmapsets' => json_collection($beatmapsets, 'Beatmapset', ['beatmaps']),
                 'ranking' => json_collection($scores, 'UserStatistics', ['user', 'user.cover', 'user.country']),
-                'spotlight' => $spotlight
+                'spotlight' => json_item($spotlight, 'Spotlight', ["participant_count:mode({$mode})"]),
             ];
         }
+
+        $selectOptions = [
+            'selected' => $this->optionFromSpotlight($spotlight),
+            'options' => $spotlights->map(function ($s) {
+                return $this->optionFromSpotlight($s);
+            }),
+        ];
+
+        $scoreCount = $spotlight->participantCount($mode);
 
         return view(
             'rankings.charts',
