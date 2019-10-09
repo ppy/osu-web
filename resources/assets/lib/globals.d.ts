@@ -11,8 +11,6 @@ declare var process: Process;
 
 declare var window: Window;
 
-// libraries
-declare var laroute: any;
 // TODO: Turbolinks 5.3 is Typescript, so this should be updated then.
 declare var Turbolinks: TurbolinksStatic;
 
@@ -84,6 +82,7 @@ interface Score {
   id: string;
   mode: string;
   replay: boolean;
+  user: User;
   user_id: number;
 }
 

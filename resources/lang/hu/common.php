@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', és ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Admin',
         'back_to_previous' => 'Vissza az előző pozícióra',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'húzd ide a feltöltéshez',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

@@ -179,7 +179,6 @@ class ModdingHistoryController extends Controller
                     'previous_usernames',
                     'ranked_and_approved_beatmapset_count',
                     'statistics.rank',
-                    'statistics.scoreRanks',
                     'support_level',
                     'unranked_beatmapset_count',
                 ]

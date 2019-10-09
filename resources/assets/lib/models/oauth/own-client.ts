@@ -17,6 +17,7 @@
  */
 
 import { OwnClientJSON } from 'interfaces/own-client-json';
+import { route } from 'laroute';
 import { action, observable } from 'mobx';
 import { Client } from 'models/oauth/client';
 
@@ -38,7 +39,7 @@ export class OwnClient extends Client {
 
     return $.ajax({
       method: 'DELETE',
-      url: laroute.route('oauth.clients.destroy', { client: this.id }),
+      url: route('oauth.clients.destroy', { client: this.id }),
     }).then(() => {
       this.revoked = true;
     }).always(() => {
@@ -65,7 +66,7 @@ export class OwnClient extends Client {
     return $.ajax({
       data: { redirect },
       method: 'PUT',
-      url: laroute.route('oauth.clients.update', { client: this.id }),
+      url: route('oauth.clients.update', { client: this.id }),
     }).then((data: OwnClientJSON) => {
       this.updateFromJson(data);
     }).always(() => {

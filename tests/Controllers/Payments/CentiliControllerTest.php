@@ -18,25 +18,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests\Payments;
+namespace Tests\Controllers\Payments;
 
 use App\Libraries\Payments\CentiliSignature;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use Config;
-use TestCase;
+use Tests\TestCase;
 
 class CentiliControllerTest extends TestCase
 {
-    public function setUp()
-    {
-        parent::setUp();
-        Config::set('payments.centili.secret_key', 'secret_key');
-        Config::set('payments.centili.api_key', 'api_key');
-        Config::set('payments.centili.conversion_rate', 120.00);
-        $this->order = factory(Order::class)->states('checkout')->create();
-    }
-
     public function testWhenEverythingIsFine()
     {
         $data = $this->getPostData();
@@ -63,6 +54,15 @@ class CentiliControllerTest extends TestCase
         );
 
         $response->assertStatus(406);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        Config::set('payments.centili.secret_key', 'secret_key');
+        Config::set('payments.centili.api_key', 'api_key');
+        Config::set('payments.centili.conversion_rate', 120.00);
+        $this->order = factory(Order::class)->states('checkout')->create();
     }
 
     private function getPostData(array $overrides = [])

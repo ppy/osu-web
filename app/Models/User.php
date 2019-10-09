@@ -210,7 +210,7 @@ class User extends Model implements AuthenticatableContract
     const CACHING = [
         'follower_count' => [
             'key' => 'followerCount',
-            'duration' => 720, // 12 hours
+            'duration' => 43200, // 12 hours
         ],
     ];
 
@@ -1876,6 +1876,7 @@ class User extends Model implements AuthenticatableContract
     protected function newReportableExtraParams() : array
     {
         return [
+            'reason' => 'Cheating',
             'user_id' => $this->getKey(),
         ];
     }

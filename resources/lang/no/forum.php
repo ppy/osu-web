@@ -44,7 +44,7 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'Siste Innlegg',
 
         'index' => [
             'title' => '',
@@ -105,7 +105,7 @@ return [
         'started_by_verbose' => 'startet av :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Lukk',
             'preview' => 'Forhåndsvisning',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -305,7 +305,7 @@ return [
                     'change_vote' => '',
                     'edit' => '',
                     'view_results' => '',
-                    'vote' => '',
+                    'vote' => 'Stem',
                 ],
 
                 'detail' => [

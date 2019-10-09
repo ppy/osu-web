@@ -32,6 +32,18 @@ class OsuHasher implements Hasher
     protected $rounds = 10;
 
     /**
+     * Get information about the given hashed value.
+     *
+     * @param string $hashedValue
+     *
+     * @return array
+     */
+    public function info($hashedValue)
+    {
+        return password_get_info(str_replace('$2a$', '$2y$', $hashedValue));
+    }
+
+    /**
      * Hash the given value.
      *
      * @param string $value

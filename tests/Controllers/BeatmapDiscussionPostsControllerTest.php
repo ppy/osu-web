@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Controllers;
+
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -8,33 +10,10 @@ use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserGroup;
 use App\Models\UserNotification;
+use Tests\TestCase;
 
 class BeatmapDiscussionPostsControllerTest extends TestCase
 {
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->mapper = factory(User::class)->create();
-        $this->user = factory(User::class)->create();
-        $this->beatmapset = factory(Beatmapset::class)->create([
-            'user_id' => $this->mapper->getKey(),
-        ]);
-        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        $this->beatmapDiscussion = factory(BeatmapDiscussion::class, 'timeline')->create([
-            'beatmapset_id' => $this->beatmapset->getKey(),
-            'beatmap_id' => $this->beatmap->getKey(),
-            'user_id' => $this->user->getKey(),
-        ]);
-        $post = factory(BeatmapDiscussionPost::class, 'timeline')->make([
-            'user_id' => $this->user->getKey(),
-        ]);
-        $this->beatmapDiscussionPost = $this->beatmapDiscussion->beatmapDiscussionPosts()->save($post);
-
-        $this->otherBeatmapset = factory(Beatmapset::class)->states('no_discussion')->create();
-        $this->otherBeatmap = $this->otherBeatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-    }
-
     public function testPostStoreNewDiscussion()
     {
         $currentDiscussions = BeatmapDiscussion::count();
@@ -512,6 +491,30 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->deletePost($reply2, $this->user)->assertStatus(403);
         $this->assertFalse($reply1->fresh()->trashed());
         $this->assertFalse($reply2->fresh()->trashed());
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->mapper = factory(User::class)->create();
+        $this->user = factory(User::class)->create();
+        $this->beatmapset = factory(Beatmapset::class)->create([
+            'user_id' => $this->mapper->getKey(),
+        ]);
+        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $this->beatmapDiscussion = factory(BeatmapDiscussion::class, 'timeline')->create([
+            'beatmapset_id' => $this->beatmapset->getKey(),
+            'beatmap_id' => $this->beatmap->getKey(),
+            'user_id' => $this->user->getKey(),
+        ]);
+        $post = factory(BeatmapDiscussionPost::class, 'timeline')->make([
+            'user_id' => $this->user->getKey(),
+        ]);
+        $this->beatmapDiscussionPost = $this->beatmapDiscussion->beatmapDiscussionPosts()->save($post);
+
+        $this->otherBeatmapset = factory(Beatmapset::class)->states('no_discussion')->create();
+        $this->otherBeatmap = $this->otherBeatmapset->beatmaps()->save(factory(Beatmap::class)->make());
     }
 
     private function deletePost(BeatmapDiscussionPost $post, ?User $user = null)

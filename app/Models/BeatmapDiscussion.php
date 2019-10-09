@@ -584,7 +584,7 @@ class BeatmapDiscussion extends Model
         $key = "beatmapDiscussion:{$this->getKey()}:votes:{$user->getKey()}";
 
         if ($increment) {
-            Cache::add($key, 0, 60);
+            Cache::add($key, 0, 3600);
 
             return Cache::increment($key);
         } else {

@@ -192,8 +192,7 @@ class @BeatmapDiscussionHelper
         params.beatmap = discussionState.beatmapId
         params.mode = discussionState.mode
 
-    url = new URL(document.location)
-    url.pathname = laroute.route 'beatmapsets.discussion', params
+    url = new URL(laroute.route('beatmapsets.discussion', params))
     url.hash = if discussionId? then url.hash = "/#{discussionId}" else ''
 
     if user?

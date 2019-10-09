@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', en ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Administrator',
         'back_to_previous' => 'Terug naar vorige positie',
@@ -37,7 +41,7 @@ return [
         'change' => 'wijzigen',
         'click_to_copy' => 'klik om naar klembord te kopiëren',
         'click_to_copy_copied' => 'gekopiëerd naar klembord!',
-        'close' => '',
+        'close' => 'Sluiten',
         'collapse' => 'samenvouwen',
         'delete' => 'Verwijder',
         'edit' => 'Bewerk',
@@ -59,7 +63,7 @@ return [
         'show_deleted' => 'Toon verwijderd',
         'show_more' => 'toon meer',
         'show_more_options' => 'toon meer opties',
-        'update' => '',
+        'update' => 'Update',
         'upload_image' => 'upload afbeelding',
 
         'watch' => [
@@ -77,7 +81,7 @@ return [
         'minute_short_unit' => 'minuut|minuten',
         'minutes' => ':count_delimited minuut|:count_delimited minuten',
         'months' => ':count maand|:count maanden',
-        'plus_others' => '',
+        'plus_others' => '+ :count_delimited andere!|+ :count_delimited anderen!',
         'post' => ':count_delimited bericht|:count_delimited berichten',
         'second_short_unit' => 'second|seconden',
         'star_priority' => ':count_delimited ster prioriteit|:count_delimited ster prioriteiten',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'laat hier los om te uploaden',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

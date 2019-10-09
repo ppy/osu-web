@@ -17,20 +17,18 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Libraries;
+
 use App\Exceptions\ValidationException;
 use App\Models\Score\Best;
 use App\Models\User;
 use App\Models\UserReport;
+use Tests\TestCase;
 
 class ReportScoreTest extends TestCase
 {
     private $reporter;
-
-    public function setUp()
-    {
-        parent::setUp();
-        $this->reporter = factory(User::class)->create();
-    }
 
     public function testCannotReportOwnScore()
     {
@@ -44,11 +42,11 @@ class ReportScoreTest extends TestCase
     {
         $score = Best\Osu::create(['user_id' => factory(User::class)->create()->getKey()]);
 
-        $report = $score->reportBy($this->reporter, [
+        $this->expectException(ValidationException::class);
+
+        $score->reportBy($this->reporter, [
             'reason' => 'NotAValidReason',
         ]);
-
-        $this->assertSame('Cheating', $report->reason);
     }
 
     public function testReportableInstance()
@@ -65,5 +63,11 @@ class ReportScoreTest extends TestCase
         $this->assertSame($score->getKey(), $report->score_id);
         $this->assertSame($score->user_id, $report->user_id);
         $this->assertTrue($report->reportable->is($score));
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->reporter = factory(User::class)->create();
     }
 }
