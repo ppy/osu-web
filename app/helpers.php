@@ -85,7 +85,7 @@ function cache_remember_mutexed(string $key, $seconds, $default, callable $callb
                     'value' => $callback(),
                 ];
 
-                cache()->put($fullKey, $data, max($oneMonthInSeconds, $seconds * 600));
+                cache()->put($fullKey, $data, max($oneMonthInSeconds, $seconds * 10));
             } catch (Exception $e) {
                 // Log and continue with data from the first ::get.
                 log_error($e);
@@ -99,7 +99,7 @@ function cache_remember_mutexed(string $key, $seconds, $default, callable $callb
 }
 
 /**
- * Like Cache::remember but always save for one month or 600 * $seconds (whichever is longer)
+ * Like Cache::remember but always save for one month or 10 * $seconds (whichever is longer)
  * and return old value if failed getting the value after it expires.
  */
 function cache_remember_with_fallback($key, $seconds, $callback)
@@ -117,7 +117,7 @@ function cache_remember_with_fallback($key, $seconds, $callback)
                 'value' => $callback(),
             ];
 
-            Cache::put($fullKey, $data, max($oneMonthInSeconds, $seconds * 600));
+            Cache::put($fullKey, $data, max($oneMonthInSeconds, $seconds * 10));
         } catch (Exception $e) {
             // Log and continue with data from the first ::get.
             log_error($e);
