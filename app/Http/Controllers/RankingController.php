@@ -23,7 +23,6 @@ namespace App\Http\Controllers;
 use App\Models\Beatmap;
 use App\Models\CountryStatistics;
 use App\Models\Spotlight;
-use App\Models\User;
 use App\Models\UserStatistics;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;

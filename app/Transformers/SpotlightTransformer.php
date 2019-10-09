@@ -26,7 +26,7 @@ use League\Fractal;
 class SpotlightTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'participant_count'
+        'participant_count',
     ];
 
     public function transform(Spotlight $spotlight)
