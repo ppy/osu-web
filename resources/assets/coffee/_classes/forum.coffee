@@ -205,7 +205,7 @@ class @Forum
 
   toggleDeleted: =>
     Turbolinks.visit osu.updateQueryString null,
-      with_deleted: if @showDeleted() then '0' else '1'
+      with_deleted: +!@showDeleted()
       n: @currentPostPosition
 
 
@@ -241,7 +241,7 @@ class @Forum
       start: null
       end: null
       skip_layout: 1
-      with_deleted: @showDeleted()
+      with_deleted: +@showDeleted()
 
     if mode == 'previous'
       $refPost = $('.js-forum-post').first()
