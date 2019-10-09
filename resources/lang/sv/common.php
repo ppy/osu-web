@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', och ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => '',
         'back_to_previous' => '',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'släpp här för att ladda upp',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

@@ -38,7 +38,7 @@ return [
         'generic' => 'En feil oppstod under klargjøring av kjøpet ditt.',
     ],
     'search' => [
-        'default' => '',
+        'default' => 'Kunne ikke hente noen treff. Prøv igjen senere.',
         'operation_timeout_exception' => '',
     ],
 

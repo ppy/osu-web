@@ -58,6 +58,15 @@ return [
         'title' => 'Logowanie do konta',
     ],
 
+    'new_client' => [
+        'header' => '',
+        'register' => '',
+        'terms_of_use' => [
+            '_' => '',
+            'link' => '',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => 'Czy na pewno chcesz usunąć tego klienta?',
         'new' => 'Nowa aplikacja OAuth',

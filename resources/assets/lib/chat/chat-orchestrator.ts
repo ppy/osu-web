@@ -92,6 +92,10 @@ export default class ChatOrchestrator implements DispatchListener {
 
   focusNextChannel() {
     const channelStore = this.rootDataStore.channelStore;
+    const channel = channelStore.get(this.rootDataStore.uiState.chat.selected);
+    if (channel && (channel.exists || channel.newChannel)) {
+      return;
+    }
 
     const channelList = channelStore.channelList;
     if (channelList.length > 0) {
@@ -108,9 +112,7 @@ export default class ChatOrchestrator implements DispatchListener {
     } else if (action instanceof ChatChannelPartAction) {
       this.partChannel(action.channelId);
     } else if (action instanceof ChatPresenceUpdateAction) {
-      if (this.rootDataStore.uiState.chat.selected === -1) {
-        this.focusNextChannel();
-      }
+      this.focusNextChannel();
     } else if (action instanceof WindowFocusAction) {
       this.windowIsActive = true;
       if (this.rootDataStore.channelStore.loaded) {

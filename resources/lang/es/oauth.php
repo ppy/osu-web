@@ -58,6 +58,15 @@ return [
         'title' => 'Iniciar sesión',
     ],
 
+    'new_client' => [
+        'header' => '',
+        'register' => '',
+        'terms_of_use' => [
+            '_' => '',
+            'link' => '',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => '¿Está seguro que desea borrar este cliente?',
         'new' => 'Nueva aplicación OAuth',
