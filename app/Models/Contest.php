@@ -204,7 +204,7 @@ class Contest extends Model
         $entries = $this->entries()->with('contest');
 
         if ($this->show_votes) {
-            return Cache::remember("contest_entries_with_votes_{$this->id}", 5, function () use ($entries) {
+            return Cache::remember("contest_entries_with_votes_{$this->id}", 300, function () use ($entries) {
                 $entries = $entries->with('user');
 
                 if ($this->isBestOf()) {

@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'accorder le kudosu',
+        'beatmap_information' => '',
         'delete' => 'supprimer',
         'deleted' => 'Supprimé par :editor :delete_time.',
         'deny_kudosu' => 'refuser le kudosu',

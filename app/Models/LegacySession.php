@@ -38,6 +38,7 @@ class LegacySession extends Model
 {
     protected $table = 'phpbb_sessions';
     protected $primaryKey = 'session_id';
+    protected $keyType = 'string';
     public $incrementing = false;
 
     protected $dateFormat = 'U';

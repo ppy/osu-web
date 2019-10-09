@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Kiriman yang dihasilkan secara otomatis tidak dapat disunting.',
-            'not_owner' => 'Hanya pemilik topik yang diperbolehkan untuk menyunting kiriman.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'Hanya pemilik topik yang diperbolehkan untuk menyunting kiriman.',
+            'resolved' => '',
+            'system_generated' => 'Kiriman yang dihasilkan secara otomatis tidak dapat disunting.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'Beatmap ini dikunci untuk diskusi.',
         ],

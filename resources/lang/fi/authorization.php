@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Automaattisesti luotua viestiä ei voi muokata.',
-            'not_owner' => 'Vain lähettäjä voi muokata viestiä.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'Vain lähettäjä voi muokata viestiä.',
+            'resolved' => '',
+            'system_generated' => 'Automaattisesti luotua viestiä ei voi muokata.',
+        ],
+
         'store' => [
             'beatmapset_locked' => '',
         ],

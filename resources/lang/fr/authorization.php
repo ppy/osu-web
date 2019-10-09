@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Un sujet posté automatiquement ne peut être édité.',
-            'not_owner' => 'Seul l\'auteur de ce post peut l\'éditer.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'Seul l\'auteur de ce post peut l\'éditer.',
+            'resolved' => '',
+            'system_generated' => 'Un sujet posté automatiquement ne peut être édité.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'Cette beatmap est verrouillée pour la discussion.',
         ],

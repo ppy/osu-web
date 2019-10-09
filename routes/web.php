@@ -90,12 +90,10 @@ Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate'
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
 Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
-    Route::post('{mode}/{score}/report', 'ScoresController@report')->name('report');
     Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
 });
 
 Route::resource('comments', 'CommentsController', ['except' => ['create', 'edit']]);
-Route::post('comments/{comment}/report', 'CommentsController@report')->name('comments.report');
 Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
 Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
 Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');
@@ -222,6 +220,8 @@ Route::group(['as' => 'oauth.', 'prefix' => 'oauth', 'namespace' => 'OAuth'], fu
 
 Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');
 
+Route::resource('reports', 'ReportsController', ['only' => ['store']]);
+
 Route::post('session', 'SessionsController@store')->name('login');
 Route::delete('session', 'SessionsController@destroy')->name('logout');
 
@@ -237,7 +237,6 @@ Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 
 Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
-Route::post('users/{user}/report', 'UsersController@report')->name('users.report');
 
 Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'namespace' => 'Users'], function () {
     Route::get('/', 'ModdingHistoryController@index')->name('index');
@@ -322,7 +321,6 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
         });
 
         Route::apiResource('comments', 'CommentsController');
-        Route::post('comments/{comment}/report', 'CommentsController@report')->name('comments.report');
         Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
         Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');
 
@@ -351,6 +349,9 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
                 Route::apiResource('{playlist}/scores', 'Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['store', 'update']]);
             });
         });
+
+        Route::resource('reports', 'ReportsController', ['only' => ['store']]);
+
         Route::apiResource('rooms', 'Multiplayer\RoomsController', ['only' => ['show', 'store']]);
 
         Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
@@ -424,6 +425,7 @@ route_redirect('/', 'home');
 
 // redirects go here
 route_redirect('forum/p/{post}', 'forum.posts.show');
+route_redirect('po/{post}', 'forum.posts.show');
 route_redirect('forum/t/{topic}', 'forum.topics.show');
 route_redirect('forum/{forum}', 'forum.forums.show');
 // redirects to beatmapset anyways so there's no point

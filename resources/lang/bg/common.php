@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', и ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Админ',
         'back_to_previous' => 'Връщане към предишния изглед',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'поставете тук за качване',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

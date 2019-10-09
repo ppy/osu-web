@@ -41,4 +41,11 @@ return [
             'default' => 'oryginalną wersję',
         ],
     ],
+    'main' => [
+        'title' => '',
+        'subtitle' => '',
+    ],
+    'search' => [
+        'path' => '',
+    ],
 ];

@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'อนุญาตการให้ค่าชื่อเสียง',
+        'beatmap_information' => '',
         'delete' => 'ลบ',
         'deleted' => 'ถูกลบโดย :editor เมื่อเวลา :delete_time',
         'deny_kudosu' => 'ปฏิเสธการให้ค่าชื่อเสียง',
