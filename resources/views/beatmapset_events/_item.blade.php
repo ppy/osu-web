@@ -17,7 +17,7 @@
 --}}
 @php
     $discussionId = isset($event->comment['beatmap_discussion_id']) ? $event->comment['beatmap_discussion_id'] : null;
-    $discussionLink = route('beatmapsets.discussion', $event->beatmapset);
+    $discussionLink = route('beatmapsets.discussion', ['beatmapset' => $event->beatmapset]);
     if ($discussionId) {
         $discussionLink .= '#/'.$discussionId;
     }
