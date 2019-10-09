@@ -41,4 +41,11 @@ return [
             'default' => 'Αγγλική έκδοση',
         ],
     ],
+    'main' => [
+        'title' => '',
+        'subtitle' => '',
+    ],
+    'search' => [
+        'path' => '',
+    ],
 ];

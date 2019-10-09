@@ -29,6 +29,10 @@ return [
         'last_word_connector' => '、と',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => '管理者',
         'back_to_previous' => '直前の状態に戻す',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'ここにドロップでアップロード',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [
