@@ -34,7 +34,7 @@ class CurrentStats
 
     public function __construct()
     {
-        $data = Cache::remember('current_stats:v1', 5, function () {
+        $data = Cache::remember('current_stats:v1', 300, function () {
             $stats = BanchoStats::stats();
             $latest = array_last($stats);
 
