@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', και ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Διαχειριστής',
         'back_to_previous' => 'Επιστροφή στην προηγούμενη κατάσταση',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'αφήστε εδώ για να ανεβάσετε',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [
