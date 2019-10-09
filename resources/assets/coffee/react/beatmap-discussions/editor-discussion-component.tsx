@@ -18,8 +18,7 @@
 
 import * as React from 'react';
 import EditorBeatmapSelector from './editor-beatmap-selector';
-
-type DiscussionType = 'hype' | 'mapperNote' | 'praise' | 'problem' | 'suggestion';
+import EditorIssueTypeSelector from './editor-issue-type-selector';
 
 export default class EditorDiscussionComponent extends React.Component<any, any> {
   remove = (event: React.MouseEvent<HTMLElement>) => {
@@ -30,33 +29,15 @@ export default class EditorDiscussionComponent extends React.Component<any, any>
   }
 
   render(): React.ReactNode {
-    const { isFocused, node } = this.props;
-    const styles = isFocused ? {} : {};
-    const type: DiscussionType = node.data.get('type');
-    const icons = {
-      hype: 'fas fa-bullhorn',
-      mapperNote: 'far fa-sticky-note',
-      praise: 'fas fa-heart',
-      problem: 'fas fa-exclamation-circle',
-      suggestion: 'far fa-circle',
-    };
-
     return (
-      <div className='beatmap-discussion beatmap-discussion--preview' style={styles} {...this.props.attributes}>
+      <div className='beatmap-discussion beatmap-discussion--preview' {...this.props.attributes}>
         <div className='beatmap-discussion__discussion'>
             <div className='beatmap-discussion-post beatmap-discussion-post--reply'>
                 <div className='beatmap-discussion-post__content'>
                     <EditorBeatmapSelector {...this.props}/>
                     <div className='beatmap-discussion-post__user-container' contentEditable={false}>
                       <div className='beatmap-discussion-timestamp__icons-container' style={{marginRight: '10px'}}>
-                        <div className='beatmap-discussion-timestamp__icons'>
-                          <div className='beatmap-discussion-timestamp__icon'>
-                            <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={icons[type]} /></span>
-                          </div>
-                          <div className='beatmap-discussion-timestamp__icon beatmap-discussion-timestamp__icon--resolved'>
-                            {/*<i className="far fa-check-circle"></i>*/}
-                          </div>
-                        </div>
+                        <EditorIssueTypeSelector {...this.props}/>
                         <div className='beatmap-discussion-timestamp__text'>00:00.184</div>
                       </div>
                       <div className='beatmap-discussion-post__user-stripe'/>
