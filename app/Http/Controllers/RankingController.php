@@ -157,6 +157,8 @@ class RankingController extends Controller
             }
 
             return [
+                // TODO: switch to offset?
+                'cursor' => empty($ranking) || ($page >= $maxPages) ? null : ['page' => $page + 1],
                 'ranking' => $ranking,
                 'total' => $maxResults,
             ];
